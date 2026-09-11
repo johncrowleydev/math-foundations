@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @Composable
-fun UpdateButton(openInitially: Boolean = false, saving: Boolean = false) {
+fun UpdateButton(openRequest: Int = 0, saving: Boolean = false) {
     val context = LocalContext.current
     val prefs = remember { Updates.prefs(context) }
     var revision by remember { mutableIntStateOf(0) }
@@ -36,7 +36,8 @@ fun UpdateButton(openInitially: Boolean = false, saving: Boolean = false) {
         remember(revision) {
             runCatching { AppRelease.parse(prefs.getString("ready", "")!!) }.getOrNull()
         }
-    var open by rememberSaveable { mutableStateOf(openInitially) }
+    var open by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(openRequest) { if (openRequest > 0) open = true }
     val manager = remember { WorkManager.getInstance(context) }
     val checkFlow = remember { manager.getWorkInfosForUniqueWorkFlow(Updates.CHECK) }
     val downloadFlow = remember { manager.getWorkInfosForUniqueWorkFlow(Updates.DOWNLOAD) }

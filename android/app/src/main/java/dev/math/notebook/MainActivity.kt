@@ -48,8 +48,24 @@ private val Ground = Color(0xfff2f1eb)
 private val Line = Color(0xffdde2d8)
 
 class MainActivity : ComponentActivity() {
+    private var updateRequest by mutableIntStateOf(0)
+
+    private fun consumeUpdateIntent(incoming: android.content.Intent) {
+        if (incoming.getBooleanExtra("showUpdates", false)) {
+            updateRequest++
+            incoming.removeExtra("showUpdates")
+        }
+    }
+
+    override fun onNewIntent(intent: android.content.Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        consumeUpdateIntent(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        consumeUpdateIntent(intent)
         Updates.schedule(this)
         enableEdgeToEdge(
             statusBarStyle =
@@ -90,14 +106,14 @@ class MainActivity : ComponentActivity() {
                         outline = Line,
                     )
             ) {
-                Notebook(viewModel(), intent.getBooleanExtra("showUpdates", false))
+                Notebook(viewModel(), updateRequest)
             }
         }
     }
 }
 
 @Composable
-private fun Notebook(model: NotebookModel, showUpdates: Boolean = false) {
+private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
     var focusId by rememberSaveable { mutableStateOf<Int?>(null) }
     var library by rememberSaveable { mutableStateOf(false) }
     val portrait =
