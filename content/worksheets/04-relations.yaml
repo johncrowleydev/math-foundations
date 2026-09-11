@@ -1,8 +1,5 @@
 title: 'Relations'
-instructions:
-  '80 exercises in eight sections. State domains and justify nontrivial conclusions. Give explicit
-  witnesses or counterexamples when requested. Use the blank space for working; the explained answer key follows
-  the student section.'
+instructions: '80 exercises in eight sections. State domains and justify nontrivial conclusions. Give explicit witnesses or counterexamples when requested. Use the blank space for working; the explained answer key follows the student section.'
 sections:
   - title: 'A. Pairs and representations'
     questions:
@@ -18,18 +15,12 @@ sections:
         answer: '$1Ru$ and $2Rw$ hold; $1Rv$ does not, because its pair is absent.'
       - id: 3
         type: freeform
-        prompt:
-          'For $R=\{(1,u),(2,v),(2,w)\}$ from $\{1,2\}$ to $\{u,v,w\}$, list the related outputs of each
-          input.'
+        prompt: 'For $R=\{(1,u),(2,v),(2,w)\}$ from $\{1,2\}$ to $\{u,v,w\}$, list the related outputs of each input.'
         answerLines: 3
-        answer:
-          'Input 1 relates to $u$. Input 2 relates to both $v,w$. Multiple outputs are permitted for a general
-          relation.'
+        answer: 'Input 1 relates to $u$. Input 2 relates to both $v,w$. Multiple outputs are permitted for a general relation.'
       - id: 4
         type: reasoning
-        prompt:
-          'Write the Boolean matrix of $R=\{(1,1),(1,3),(2,2),(3,1)\}$ on $\{1,2,3\}$ using that row and
-          column order.'
+        prompt: 'Write the Boolean matrix of $R=\{(1,1),(1,3),(2,2),(3,1)\}$ on $\{1,2,3\}$ using that row and column order.'
         answerLines: 4
         answer: 'The rows are $(1,0,1)$, $(0,1,0)$, and $(1,0,0)$. Entry $(i,j)$ is 1 exactly when $iRj$.'
       - id: 5
@@ -59,85 +50,61 @@ sections:
         answer: 'Exactly one: the empty relation. The Cartesian product is empty and has one subset.'
       - id: 10
         type: reasoning
-        prompt:
-          'Does the pair list alone determine reflexivity without knowing the underlying set? Use $R=\{(1,1)\}$
-          as an example.'
+        prompt: 'Does the pair list alone determine reflexivity without knowing the underlying set? Use $R=\{(1,1)\}$ as an example.'
         answerLines: 4
         answer: 'No. It is reflexive on $\{1\}$ but not on $\{1,2\}$, where the loop at 2 is missing.'
   - title: 'B. Testing finite relation properties'
     questions:
       - id: 11
         type: reasoning
-        prompt:
-          'On $A=\{1,2\}$, classify $R=\{(1,1),(2,2),(1,2)\}$ as reflexive, symmetric, antisymmetric, and
-          transitive.'
+        prompt: 'On $A=\{1,2\}$, classify $R=\{(1,1),(2,2),(1,2)\}$ as reflexive, symmetric, antisymmetric, and transitive.'
         answerLines: 4
-        answer:
-          'Reflexive, antisymmetric, and transitive; not symmetric since $(2,1)$ is absent. Every available
-          two-step chain already has its shortcut.'
+        answer: 'Reflexive, antisymmetric, and transitive; not symmetric since $(2,1)$ is absent. Every available two-step chain already has its shortcut.'
       - id: 12
         type: reasoning
         prompt: 'On $A=\{1,2\}$, classify $R=\{(1,2),(2,1)\}$ by the four main properties.'
         answerLines: 4
-        answer:
-          'Not reflexive; symmetric; not antisymmetric because distinct elements relate both ways; not transitive
-          because $1R2$ and $2R1$ require the missing $(1,1)$.'
+        answer: 'Not reflexive; symmetric; not antisymmetric because distinct elements relate both ways; not transitive because $1R2$ and $2R1$ require the missing $(1,1)$.'
       - id: 13
         type: reasoning
         prompt: 'Classify equality on $\{1,2,3\}$ by the four main properties.'
         answerLines: 4
-        answer:
-          'All four hold. Only loops occur, so every reverse and composable shortcut is already present,
-          and bidirectionality forces equal objects.'
+        answer: 'All four hold. Only loops occur, so every reverse and composable shortcut is already present, and bidirectionality forces equal objects.'
       - id: 14
         type: reasoning
         prompt: 'Classify the full relation $A\times A$ on $A=\{1,2\}$.'
         answerLines: 4
-        answer:
-          'Reflexive, symmetric, and transitive. Not antisymmetric because both $(1,2)$ and $(2,1)$ occur
-          with $1\ne2$.'
+        answer: 'Reflexive, symmetric, and transitive. Not antisymmetric because both $(1,2)$ and $(2,1)$ occur with $1\ne2$.'
       - id: 15
         type: reasoning
         prompt: 'Classify the empty relation on $\{1,2\}$.'
         answerLines: 4
-        answer:
-          'Not reflexive because loops are missing. Symmetric, antisymmetric, and transitive hold vacuously
-          since no antecedent involving a related pair is true.'
+        answer: 'Not reflexive because loops are missing. Symmetric, antisymmetric, and transitive hold vacuously since no antecedent involving a related pair is true.'
       - id: 16
         type: reasoning
         prompt: 'On $\{1,2,3\}$, does $R=\{(1,2),(2,3),(1,3)\}$ satisfy transitivity? Also decide reflexivity.'
         answerLines: 4
-        answer:
-          'It is transitive: the only composable two-step chain is $1R2R3$, and $(1,3)$ is present. It is
-          not reflexive because all loops are missing.'
+        answer: 'It is transitive: the only composable two-step chain is $1R2R3$, and $(1,3)$ is present. It is not reflexive because all loops are missing.'
       - id: 17
         type: freeform
-        prompt:
-          'On $\{1,2,3\}$, let $R$ contain all loops and also $(1,2),(2,3)$. Give a witness to failure of
-          transitivity.'
+        prompt: 'On $\{1,2,3\}$, let $R$ contain all loops and also $(1,2),(2,3)$. Give a witness to failure of transitivity.'
         answerLines: 3
         answer: '$1R2$ and $2R3$ hold, but $1R3$ does not. Adding $(1,3)$ repairs this particular failure.'
       - id: 18
         type: reasoning
         prompt: 'On $\{1,2,3\}$, classify $R=\{(1,2),(2,1),(2,3)\}$ as symmetric or antisymmetric.'
         answerLines: 4
-        answer:
-          'Neither. Symmetry fails at $(2,3)$ because $(3,2)$ is absent. Antisymmetry fails at the distinct
-          pair 1,2 with both directions present.'
+        answer: 'Neither. Symmetry fails at $(2,3)$ because $(3,2)$ is absent. Antisymmetry fails at the distinct pair 1,2 with both directions present.'
       - id: 19
         type: reasoning
         prompt: 'Is $R=\{(1,2)\}$ transitive on $\{1,2,3\}$? Explain why checking for a shortcut is vacuous here.'
         answerLines: 4
-        answer:
-          'Yes. No pair starts at 2, so no two listed pairs can form a two-step chain. Every transitivity
-          implication has a false antecedent.'
+        answer: 'Yes. No pair starts at 2, so no two listed pairs can form a two-step chain. Every transitivity implication has a false antecedent.'
       - id: 20
         type: freeform
         prompt: 'On $\{1,2\}$, is $R=\{(1,1)\}$ reflexive, irreflexive, or neither?'
         answerLines: 3
-        answer:
-          'Neither. It misses the required loop at 2 but contains the forbidden loop at 1. Not reflexive
-          does not mean irreflexive.'
+        answer: 'Neither. It misses the required loop at 2 but contains the forbidden loop at 1. Not reflexive does not mean irreflexive.'
   - title: 'C. Infinite domains and logical edge cases'
     questions:
       - id: 21
@@ -147,13 +114,9 @@ sections:
         answer: 'Reflexive, antisymmetric, and transitive. Not symmetric because $1\leq2$ but $2\nleq1$.'
       - id: 22
         type: reasoning
-        prompt:
-          'Classify $<$ on $\mathbb Z$ as reflexive, irreflexive, symmetric, antisymmetric, asymmetric, and
-          transitive.'
+        prompt: 'Classify $<$ on $\mathbb Z$ as reflexive, irreflexive, symmetric, antisymmetric, asymmetric, and transitive.'
         answerLines: 4
-        answer:
-          'Irreflexive, antisymmetric, asymmetric, and transitive; neither reflexive nor symmetric. Strict
-          inequalities cannot hold in both directions.'
+        answer: 'Irreflexive, antisymmetric, asymmetric, and transitive; neither reflexive nor symmetric. Strict inequalities cannot hold in both directions.'
       - id: 23
         type: freeform
         prompt: 'Is the relation $aRb$ defined by $a\ne b$ on $\mathbb Z$ transitive? Give a witness.'
@@ -178,9 +141,7 @@ sections:
         type: reasoning
         prompt: 'On positive integers, explain why divisibility is antisymmetric.'
         answerLines: 5
-        answer:
-          'If $b=ak$ and $a=b\ell$ with positive integer factors, substitution gives $k\ell=1$. Hence both
-          factors are 1 and $a=b$.'
+        answer: 'If $b=ak$ and $a=b\ell$ with positive integer factors, substitution gives $k\ell=1$. Hence both factors are 1 and $a=b$.'
       - id: 28
         type: freeform
         prompt: 'Why does divisibility on all integers fail antisymmetry?'
@@ -188,27 +149,21 @@ sections:
         answer: '$2\mid-2$ and $-2\mid2$ but $2\ne-2$. Allowing both signs breaks the positive-domain argument.'
       - id: 29
         type: reasoning
-        prompt:
-          'Which of reflexive, symmetric, antisymmetric, and transitive hold for the empty relation on the
-          empty set?'
+        prompt: 'Which of reflexive, symmetric, antisymmetric, and transitive hold for the empty relation on the empty set?'
         answerLines: 4
-        answer: 'All four hold. There are no objects or tuples that can violate any quantified condition.'
+        answer: 'All four hold. There are no objects or choices of inputs that can violate any quantified condition.'
       - id: 30
         type: reasoning
         prompt: 'Prove that an asymmetric relation is irreflexive.'
         answerLines: 5
-        answer:
-          'If some $aRa$ held, asymmetry applied with both variables equal to $a$ would imply $\neg aRa$,
-          a contradiction. Therefore every loop is absent.'
+        answer: 'If some $aRa$ held, asymmetry applied with both variables equal to $a$ would imply $\neg aRa$, a contradiction. Therefore every loop is absent.'
   - title: 'D. Equivalence relations and classes'
     questions:
       - id: 31
         type: freeform
         prompt: 'Define $aRb$ on $\mathbb Z$ by $4\mid(a-b)$. Which of $1R9$, $2R7$, and $-3R5$ hold?'
         answerLines: 3
-        answer:
-          '$1R9$ and $-3R5$ hold because their differences are $-8$. $2R7$ fails because $-5$ is not divisible
-          by 4.'
+        answer: '$1R9$ and $-3R5$ hold because their differences are $-8$. $2R7$ fails because $-5$ is not divisible by 4.'
       - id: 32
         type: freeform
         prompt: 'For congruence modulo 4, describe the class $[2]$ and list four of its members.'
@@ -218,9 +173,7 @@ sections:
         type: freeform
         prompt: 'For congruence modulo 4, are $[1]$ and $[9]$ equal? Explain.'
         answerLines: 3
-        answer:
-          'Yes. Since $1\equiv9\pmod4$, they describe the same integers with remainder 1. Representatives
-          need not be equal.'
+        answer: 'Yes. Since $1\equiv9\pmod4$, they describe the same integers with remainder 1. Representatives need not be equal.'
       - id: 34
         type: reasoning
         prompt: 'Prove reflexivity of congruence modulo any positive integer $m$.'
@@ -240,25 +193,17 @@ sections:
         type: reasoning
         prompt: 'Partition $\{0,1,2,3,4,5,6,7\}$ by congruence modulo 3.'
         answerLines: 4
-        answer:
-          'The blocks are $\{0,3,6\}$, $\{1,4,7\}$, and $\{2,5\}$. They are nonempty, disjoint, and cover
-          the set.'
+        answer: 'The blocks are $\{0,3,6\}$, $\{1,4,7\}$, and $\{2,5\}$. They are nonempty, disjoint, and cover the set.'
       - id: 38
         type: freeform
-        prompt:
-          'On finite binary strings, define equivalence by equal length. Describe the class of the string
-          01.'
+        prompt: 'On finite binary strings, define equivalence by equal length. Describe the class of the string 01.'
         answerLines: 3
-        answer:
-          'The class is $\{00,01,10,11\}$, all binary strings of length 2. The characters themselves do not
-          affect this equivalence.'
+        answer: 'The class is $\{00,01,10,11\}$, all binary strings of length 2. The characters themselves do not affect this equivalence.'
       - id: 39
         type: reasoning
         prompt: 'For an equivalence relation, prove that $aRb$ implies $[a]=[b]$, using $[a]=\{x:xRa\}$.'
         answerLines: 6
-        answer:
-          'If $xRa$, then $aRb$ and transitivity give $xRb$, so $[a]\subseteq[b]$. Symmetry gives $bRa$,
-          and the same argument yields the reverse inclusion.'
+        answer: 'If $xRa$, then $aRb$ and transitivity give $xRb$, so $[a]\subseteq[b]$. Symmetry gives $bRa$, and the same argument yields the reverse inclusion.'
       - id: 40
         type: reasoning
         prompt: 'A partition has blocks $\{a,c\}$ and $\{b\}$. List all pairs in the induced equivalence relation.'
@@ -270,9 +215,7 @@ sections:
         type: reasoning
         prompt: 'Explain why subset inclusion on $\mathcal P(\{1,2\})$ is a partial order but not a total order.'
         answerLines: 5
-        answer:
-          'Inclusion is reflexive and transitive, and mutual inclusion gives equality. The subsets $\{1\}$
-          and $\{2\}$ are incomparable, so the order is not total.'
+        answer: 'Inclusion is reflexive and transitive, and mutual inclusion gives equality. The subsets $\{1\}$ and $\{2\}$ are incomparable, so the order is not total.'
       - id: 42
         type: reasoning
         prompt: 'List the cover pairs of inclusion on $\mathcal P(\{1,2\})$, writing the smaller set first.'
@@ -282,27 +225,17 @@ sections:
         type: reasoning
         prompt: 'In the divisibility order on $\{1,2,3,6\}$, list covers and the least and greatest elements.'
         answerLines: 4
-        answer:
-          'Covers are $(1,2),(1,3),(2,6),(3,6)$. The least element is 1 and greatest is 6. The pair $(1,6)$
-          is implied and is not a cover.'
+        answer: 'Covers are $(1,2),(1,3),(2,6),(3,6)$. The least element is 1 and greatest is 6. The pair $(1,6)$ is implied and is not a cover.'
       - id: 44
         type: reasoning
-        prompt:
-          'In the divisibility order on $\{2,3,6\}$, identify all minimal elements and decide whether a least
-          element exists.'
+        prompt: 'In the divisibility order on $\{2,3,6\}$, identify all minimal elements and decide whether a least element exists.'
         answerLines: 4
-        answer:
-          'The minimal elements are 2 and 3. Neither divides the other, so neither is below every element;
-          no least element exists.'
+        answer: 'The minimal elements are 2 and 3. Neither divides the other, so neither is below every element; no least element exists.'
       - id: 45
         type: reasoning
-        prompt:
-          'In the divisibility order on $\{1,2,3\}$, identify maximal elements and decide whether a greatest
-          exists.'
+        prompt: 'In the divisibility order on $\{1,2,3\}$, identify maximal elements and decide whether a greatest exists.'
         answerLines: 4
-        answer:
-          'The maximal elements are 2 and 3, but there is no greatest element because neither is above the
-          other.'
+        answer: 'The maximal elements are 2 and 3, but there is no greatest element because neither is above the other.'
       - id: 46
         type: reasoning
         prompt: 'Prove that a partial order has at most one least element.'
@@ -317,32 +250,22 @@ sections:
         type: reasoning
         prompt: 'Why is a direct edge from $\varnothing$ to $\{1,2\}$ omitted in its subset Hasse diagram?'
         answerLines: 4
-        answer:
-          'There are intermediate subsets $\{1\}$ and $\{2\}$. The comparison holds, but it is not a cover
-          and is recovered from upward paths.'
+        answer: 'There are intermediate subsets $\{1\}$ and $\{2\}$. The comparison holds, but it is not a cover and is recovered from upward paths.'
       - id: 49
         type: reasoning
-        prompt:
-          'An upward Hasse diagram has cover edges $a\to b$, $a\to c$, $b\to d$, and $c\to d$. Are $b,c$
-          comparable? Is $a\preceq d$?'
+        prompt: 'An upward Hasse diagram has cover edges $a\to b$, $a\to c$, $b\to d$, and $c\to d$. Are $b,c$ comparable? Is $a\preceq d$?'
         answerLines: 4
-        answer:
-          '$b,c$ are incomparable because neither has an upward path to the other. $a\preceq d$ holds by
-          either two-edge upward path.'
+        answer: '$b,c$ are incomparable because neither has an upward path to the other. $a\preceq d$ holds by either two-edge upward path.'
       - id: 50
         type: reasoning
         prompt: "Explain why a partial order's strict upward graph cannot contain a directed cycle."
         answerLines: 5
-        answer:
-          'A cycle through distinct elements gives comparability in both directions by transitivity. Antisymmetry
-          then forces those elements equal, contradicting strict upward movement.'
+        answer: 'A cycle through distinct elements gives comparability in both directions by transitivity. Antisymmetry then forces those elements equal, contradicting strict upward movement.'
   - title: 'F. Relation composition'
     questions:
       - id: 51
         type: freeform
-        prompt:
-          'Use the convention that $S\circ R$ means first $R$, then $S$. Let $R=\{(1,a),(2,b)\}$ and $S=\{(a,u),(b,v)\}$.
-          Compute $S\circ R$.'
+        prompt: 'Use the convention that $S\circ R$ means first $R$, then $S$. Let $R=\{(1,a),(2,b)\}$ and $S=\{(a,u),(b,v)\}$. Compute $S\circ R$.'
         answerLines: 3
         answer: '$\{(1,u),(2,v)\}$. Each pair follows a two-stage path through the matching middle symbol.'
       - id: 52
@@ -364,14 +287,12 @@ sections:
         type: freeform
         prompt: 'On $\{1,2\}$, let $R=\{(1,2),(2,1)\}$. Find $R\circ R$.'
         answerLines: 3
-        answer: '$\{(1,1),(2,2)\}$. Each two-step path returns to its starting object.'
+        answer: '$\{(1,1),(2,2)\}$. Each two-step directed walk returns to its starting object.'
       - id: 56
         type: reasoning
         prompt: 'Let $R\subseteq A\times B$ and let $I_B$ be equality on $B$. Prove $I_B\circ R=R$.'
         answerLines: 5
-        answer:
-          'A pair $(a,b)$ belongs to the composition exactly when some $c$ satisfies $aRc$ and $c=b$. This
-          is equivalent to $aRb$, proving equality.'
+        answer: 'A pair $(a,b)$ belongs to the composition exactly when some $c$ satisfies $aRc$ and $c=b$. This is equivalent to $aRb$, proving equality.'
       - id: 57
         type: reasoning
         prompt: 'Give an example showing relation composition is not commutative on one set.'
@@ -381,23 +302,17 @@ sections:
         type: reasoning
         prompt: 'For compatible relations, what is $S\circ\varnothing$? Justify.'
         answerLines: 4
-        answer:
-          'It is empty. A witnessing intermediate object would require a pair in the empty first relation,
-          which is impossible.'
+        answer: 'It is empty. A witnessing intermediate object would require a pair in the empty first relation, which is impossible.'
       - id: 59
         type: reasoning
         prompt: 'Prove that transitivity of a relation $R$ on $A$ is equivalent to $R\circ R\subseteq R$.'
         answerLines: 6
-        answer:
-          'Membership in $R\circ R$ means some two-step chain $aRbRc$ exists. Transitivity says exactly that
-          each resulting pair $(a,c)$ belongs to $R$. Both statements impose the same condition.'
+        answer: 'Membership in $R\circ R$ means some two-step chain $aRbRc$ exists. Transitivity says exactly that each resulting pair $(a,c)$ belongs to $R$. Both statements impose the same condition.'
       - id: 60
         type: reasoning
         prompt: 'For compatible $R,S$, prove $(S\circ R)^{-1}=R^{-1}\circ S^{-1}$.'
         answerLines: 6
-        answer:
-          'A reversed pair $(c,a)$ belongs to the left exactly when some $b$ satisfies $aRb$ and $bSc$. Reversing
-          those pairs gives $cS^{-1}b$ and $bR^{-1}a$, exactly the condition on the right.'
+        answer: 'A reversed pair $(c,a)$ belongs to the left exactly when some $b$ satisfies $aRb$ and $bSc$. Reversing those pairs gives $cS^{-1}b$ and $bR^{-1}a$, exactly the condition on the right.'
   - title: 'G. Closures and reachability'
     questions:
       - id: 61
@@ -414,9 +329,7 @@ sections:
         type: freeform
         prompt: 'On $\{a,b,c\}$, find the transitive closure of $R=\{(a,b),(b,c)\}$.'
         answerLines: 3
-        answer:
-          '$\{(a,b),(b,c),(a,c)\}$. Add the sole missing shortcut; no loops are required by this acyclic
-          relation.'
+        answer: '$\{(a,b),(b,c),(a,c)\}$. Add the sole missing shortcut; no loops are required by this acyclic relation.'
       - id: 64
         type: reasoning
         prompt: 'On $\{1,2,3,4\}$, find the pairs added by transitive closure to $R=\{(1,2),(2,3),(3,4)\}$.'
@@ -426,127 +339,81 @@ sections:
         type: reasoning
         prompt: 'On $\{a,b\}$, find the transitive closure of $R=\{(a,b),(b,a)\}$.'
         answerLines: 4
-        answer:
-          'The closure is the full four-pair relation. Two-step cycles require both loops, and no further
-          pairs exist.'
+        answer: 'The closure is the full four-pair relation. Two-step cycles require both loops, and no further pairs exist.'
       - id: 66
         type: freeform
         prompt: 'On $\{1,2,3\}$, find the reflexive-transitive closure of $R=\{(1,2)\}$.'
         answerLines: 3
-        answer:
-          '$\{(1,1),(2,2),(3,3),(1,2)\}$. Include zero-step reachability for every vertex and the original
-          one-step connection.'
+        answer: '$\{(1,1),(2,2),(3,3),(1,2)\}$. Include zero-step reachability for every vertex and the original one-step connection.'
       - id: 67
         type: reasoning
         prompt: 'On $\{a,b,c\}$, find the smallest equivalence relation containing $(a,b)$ and $(b,c)$.'
         answerLines: 4
-        answer:
-          'All nine pairs in $\{a,b,c\}\times\{a,b,c\}$. Symmetry and transitivity connect every object to
-          every other, and reflexivity supplies loops.'
+        answer: 'All nine pairs in $\{a,b,c\}\times\{a,b,c\}$. Symmetry and transitivity connect every object to every other, and reflexivity supplies loops.'
       - id: 68
         type: reasoning
         prompt: 'Can adding pairs repair an antisymmetry violation caused by distinct $a,b$ with $aRb$ and $bRa$?'
         answerLines: 4
-        answer:
-          'No. Both offending pairs remain after any additions, so the violation persists. A repair must
-          remove a pair or change the model.'
+        answer: 'No. Both offending pairs remain after any additions, so the violation persists. A repair must remove a pair or change the model.'
       - id: 69
         type: reasoning
         prompt: 'Explain why repeatedly adding transitivity-required pairs terminates on a finite $n$-element set.'
         answerLines: 4
-        answer:
-          'Only $n^2$ distinct pairs are possible. Each productive step adds a previously missing pair and
-          never removes one, so only finitely many productive steps can occur.'
+        answer: 'Only $n^2$ distinct pairs are possible. Each productive step adds a previously missing pair and never removes one, so only finitely many productive steps can occur.'
       - id: 70
         type: reasoning
-        prompt:
-          'An immediate-prerequisite graph contains edges $A\to B$ and $B\to C$ but no edge $A\to C$. Does
-          that refute that $A$ must precede $C$?'
+        prompt: 'An immediate-prerequisite graph contains edges $A\to B$ and $B\to C$ but no edge $A\to C$. Does that refute that $A$ must precede $C$?'
         answerLines: 4
-        answer:
-          'No. Immediate edges need not be transitive. The reachability relation records that $A$ precedes
-          $C$ through $B$, even without a direct edge.'
+        answer: 'No. Immediate edges need not be transitive. The reachability relation records that $A$ precedes $C$ through $B$, even without a direct edge.'
   - title: 'H. Mixed proofs and error diagnosis'
     questions:
       - id: 71
         type: reasoning
         prompt: 'A student says antisymmetric means no arrow has a reverse, including loops. Correct the definition.'
         answerLines: 4
-        answer:
-          'Antisymmetry allows loops and says bidirectional relatedness forces equality. Forbidding every
-          reverse is asymmetry, which also forbids loops.'
+        answer: 'Antisymmetry allows loops and says bidirectional relatedness forces equality. Forbidding every reverse is asymmetry, which also forbids loops.'
       - id: 72
         type: reasoning
         prompt: 'Prove that a relation which is both symmetric and antisymmetric contains only loops.'
         answerLines: 5
-        answer:
-          'If $aRb$, symmetry gives $bRa$, and antisymmetry gives $a=b$. Thus every related pair has equal
-          coordinates.'
+        answer: 'If $aRb$, symmetry gives $bRa$, and antisymmetry gives $a=b$. Thus every related pair has equal coordinates.'
       - id: 73
         type: reasoning
         prompt: 'Prove that any relation containing only loops is transitive, even if some loops are missing.'
         answerLines: 5
-        answer:
-          'If $aRb$ and $bRc$, loop-only membership forces $a=b=c$. The required pair $(a,c)$ is then identical
-          to the already present $(a,b)$.'
+        answer: 'If $aRb$ and $bRc$, loop-only membership forces $a=b=c$. The required pair $(a,c)$ is then identical to the already present $(a,b)$.'
       - id: 74
         type: reasoning
         prompt: 'Give a reflexive symmetric relation on $\{1,2,3\}$ that is not transitive, with an explicit witness.'
         answerLines: 4
-        answer:
-          'Take all loops plus $(1,2),(2,1),(2,3),(3,2)$. It is reflexive and symmetric, but $1R2R3$ lacks
-          $(1,3)$.'
+        answer: 'Take all loops plus $(1,2),(2,1),(2,3),(3,2)$. It is reflexive and symmetric, but $1R2R3$ lacks $(1,3)$.'
       - id: 75
         type: reasoning
-        prompt:
-          'Show that the relation of having at least one common element on nonempty subsets of $\{1,2\}$
-          is not an equivalence relation.'
+        prompt: 'Show that the relation of having at least one common element on nonempty subsets of $\{1,2\}$ is not an equivalence relation.'
         answerLines: 4
-        answer:
-          '$\{1\}$ intersects $\{1,2\}$, and $\{1,2\}$ intersects $\{2\}$, but $\{1\}$ does not intersect
-          $\{2\}$. Transitivity fails.'
+        answer: '$\{1\}$ intersects $\{1,2\}$, and $\{1,2\}$ intersects $\{2\}$, but $\{1\}$ does not intersect $\{2\}$. Transitivity fails.'
       - id: 76
         type: reasoning
-        prompt:
-          'For an equivalence relation, prove every object belongs to its own class. Why does this help establish
-          a partition?'
+        prompt: 'For an equivalence relation, prove every object belongs to its own class. Why does this help establish a partition?'
         answerLines: 5
-        answer:
-          'Reflexivity gives $aRa$, hence $a\in[a]$. Each class is nonempty and every object lies in a class,
-          proving nonemptiness and coverage; disjointness of distinct classes needs the separate overlap argument.'
+        answer: 'Reflexivity gives $aRa$, hence $a\in[a]$. Each class is nonempty and every object lies in a class, proving nonemptiness and coverage; disjointness of distinct classes needs the separate overlap argument.'
       - id: 77
         type: reasoning
-        prompt:
-          'Prove that a partition defines a transitive relation when related means belonging to the same
-          block.'
+        prompt: 'Prove that a partition defines a transitive relation when related means belonging to the same block.'
         answerLines: 6
-        answer:
-          'If $a,b$ share one block and $b,c$ share another, the two blocks intersect at $b$. Partition blocks
-          are disjoint unless equal, so all three lie in one block and $a,c$ relate.'
+        answer: 'If $a,b$ share one block and $b,c$ share another, the two blocks intersect at $b$. Partition blocks are disjoint unless equal, so all three lie in one block and $a,c$ relate.'
       - id: 78
         type: reasoning
-        prompt:
-          'Can a two-element nonempty set carry a relation that is both an equivalence relation and a partial
-          order? Characterize it.'
+        prompt: 'Can a two-element nonempty set carry a relation that is both an equivalence relation and a partial order? Characterize it.'
         answerLines: 5
-        answer:
-          'Yes, exactly equality. Symmetry and antisymmetry permit only loops, while reflexivity requires
-          both loops. Equality also satisfies transitivity.'
+        answer: 'Yes, exactly equality. Symmetry and antisymmetry permit only loops, while reflexivity requires both loops. Equality also satisfies transitivity.'
       - id: 79
         type: reasoning
-        prompt:
-          'On $\mathbb N_0$, use ordinary $\leq$. Find a least element and decide whether a greatest or maximal
-          element exists.'
+        prompt: 'On $\mathbb N_0$, use ordinary $\leq$. Find a least element and decide whether a greatest or maximal element exists.'
         answerLines: 4
-        answer:
-          'Zero is least. There is no greatest or maximal element because each $n$ has a strictly larger
-          allowed element $n+1$.'
+        answer: 'Zero is least. There is no greatest or maximal element because each $n$ has a strictly larger allowed element $n+1$.'
       - id: 80
         type: reasoning
-        prompt:
-          'A transitivity check examines only triples of distinct objects. Explain the flaw with the smallest
-          useful counterexample.'
+        prompt: 'A transitivity check examines only triples of distinct objects. Explain the flaw with the smallest useful counterexample.'
         answerLines: 5
-        answer:
-          'On $\{a,b\}$, take $R=\{(a,b),(b,a)\}$. There are no triples of distinct objects, yet $aRbRa$
-          requires the missing loop at $a$. Repeated variables are allowed in the definition.'
+        answer: 'On $\{a,b\}$, take $R=\{(a,b),(b,a)\}$. There are no triples of distinct objects, yet $aRbRa$ requires the missing loop at $a$. Repeated variables are allowed in the definition.'

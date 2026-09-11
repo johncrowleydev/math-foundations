@@ -1,6 +1,6 @@
 # Propositional Logic
 
-Propositional logic is the study of statements that are either true or false and the rules for combining those statements. It is one of the basic languages of mathematical reasoning, proof, Boolean algebra, digital logic, and programming.
+Propositional logic is the study of statements that are either true or false and the rules for combining those statements. It is one of the basic languages of mathematical reasoning and proof: a proof is a chain of justified reasoning that establishes a claim. These same two truth values are called **Boolean** values in programming. **Boolean algebra** studies calculations with them, and digital logic uses such calculations to describe circuits.
 
 Imagine being given a rule and trying to decide what it actually guarantees. “If a number is divisible by four, it is even” is reliable. Reversing it sounds similar, but changes the claim: six is even without being divisible by four. Logic gives us a way to keep track of that difference, even when the sentences become too complicated to hold comfortably in our heads.
 
@@ -10,7 +10,7 @@ The symbols in this lesson are a compact way of recording reasoning that we will
 
 A **proposition** is a statement with a definite truth value: it is either true or false.
 
-Its **truth value** is that choice, true or false. “Definite” does not mean that we already know the answer. A claim about an enormous calculation may be a proposition even if no one has checked it. What matters is that it makes a claim that is true or false, rather than asking a question or issuing a command. Letters such as $x$ can stand for numbers whose values have not yet been specified; a sentence containing such a letter may not yet have a definite truth value.
+Its **truth value** is that choice, true or false. “Definite” does not mean that we already know the answer. A claim about an enormous calculation may be a proposition even if no one has checked it. What matters is that it makes a claim that is true or false, rather than asking a question or issuing a command. A **variable**, such as $x$, can stand for a number whose value has not yet been specified; a sentence containing such a letter may not yet have a definite truth value.
 
 Examples:
 
@@ -24,7 +24,7 @@ These are not propositions:
 - "Close the door." is a command.
 - $x>5$ is not yet a proposition because its truth depends on the value of $x$.
 
-We usually represent propositions with letters such as $p$, $q$, and $r$.
+A **propositional variable** is a letter standing for a proposition. We usually use letters such as $p$, $q$, and $r$. A **truth assignment**, or simply an **assignment**, chooses a truth value for each propositional variable under discussion. Those choices will let us evaluate statements formed with the operations introduced next.
 
 For example:
 
@@ -69,7 +69,7 @@ $$
 
 and means "$p$ and $q$."
 
-It is true only when both propositions are true.
+It is true only when both propositions are true. The parts joined by AND are called **conjuncts**.
 
 Suppose admission requires a ticket and identification. Bringing a ticket alone does not satisfy the combined requirement; neither does bringing identification alone. This is what the three false rows below record. You can read the table as four small scenarios rather than four facts to memorize.
 
@@ -80,7 +80,7 @@ Suppose admission requires a ticket and identification. Bringing a ticket alone 
 | F   | T   | F          |
 | F   | F   | F          |
 
-For Boolean-valued inputs in programming, this is the same basic truth operation represented by expressions such as `p && q`. Some languages also apply truthiness rules to non-Boolean values; here we reason only about true and false.
+For Boolean-valued inputs in programming, this is the same truth operation written `p && q`, where `&&` means AND. Some programming languages also convert other values, such as numbers or text, into true or false before using this operation. Those conversion rules are called **truthiness** rules; here our inputs are already true or false.
 
 ## Disjunction: OR
 
@@ -92,7 +92,7 @@ $$
 
 and means "$p$ or $q$."
 
-Mathematical OR is normally **inclusive OR**: it is true when either proposition is true or when both are true.
+The parts joined by OR are called **disjuncts**. Mathematical OR is normally **inclusive OR**: it is true when either proposition is true or when both are true.
 
 An advertisement saying “applicants with teaching or research experience are welcome” would ordinarily welcome someone with both. That is the sense of OR used here. The statement asks for at least one of the two conditions, without excluding the possibility that both hold.
 
@@ -115,7 +115,7 @@ $$
 
 and is read as "$p$ implies $q$" or "if $p$, then $q$."
 
-The first part, $p$, is the **antecedent**, the condition we start from. The second part, $q$, is the **consequent**, what the statement promises when that condition holds. These names will help us describe both useful arguments and tempting mistakes later.
+The first part, $p$, is the **antecedent**, the condition we start from. The second part, $q$, is the **consequent**, what the statement promises when that condition holds. These names will help us describe both sound reasoning and tempting mistakes later.
 
 Its truth table is:
 
@@ -139,6 +139,8 @@ For example:
 > If I win the lottery, I will buy you a car.
 
 The promise is broken only if I win the lottery and do not buy you a car. If I never win, the statement has not been falsified.
+
+![Evaluate the implication on each truth assignment](figure:logic-implication)
 
 ### Implication does not mean causation
 
@@ -190,7 +192,7 @@ $$
 \neg q\to\neg p.
 $$
 
-Two statements are **logically equivalent**, written $\equiv$, when they have the same truth value for every assignment to their component propositions. We will examine how to check this systematically shortly. Of the three transformations, only the contrapositive is always equivalent to the original:
+A **propositional variable**, such as $p$ or $q$, stands for a proposition. An **assignment** chooses a truth value for each such variable; we then evaluate the combined statement using those choices. Two statements are **logically equivalent**, written $\equiv$, when they have the same truth value for every assignment to their component propositions. We will examine how to check this systematically shortly. Of the three transformations, only the contrapositive is always equivalent to the original:
 
 $$
 p\to q \equiv \neg q\to\neg p.
@@ -315,7 +317,7 @@ $$
 
 If $p=F$ and $q=T$, then $p\lor q=T$ and $\neg p=T$, so $E=T$. Parentheses specify which smaller expressions must be evaluated before the final conjunction.
 
-A complete truth table checks every assignment. With two independent propositional variables there are $2^2=4$ rows:
+A complete truth table checks every assignment. Variables are **independent** here when each can be assigned T or F without restrictions from the others. With two independent propositional variables there are $2^2=4$ rows:
 
 | $p$ | $q$ | $p\lor q$ | $\neg p$ | $(p\lor q)\land\neg p$ | $\neg p\land q$ |
 | --- | --- | --------- | -------- | ---------------------- | --------------- |
@@ -371,7 +373,7 @@ When the outer negation moves inward:
 1. each individual proposition is negated, and
 2. AND and OR swap.
 
-In programming terms,
+For the programming examples below, `!` means NOT, `&&` means AND, and `||` means inclusive OR. Names such as `isAdmin` stand for true-or-false statements, just as $p$ and $q$ do. The semicolon ends a programming statement; it is not a logical operator.
 
 ```ts
 !(isAdmin && isActive);
@@ -473,7 +475,7 @@ $$
 
 ### Distributive laws
 
-Read $p\land(q\lor r)$ as “$p$ is required, together with at least one of $q$ and $r$.” We can split this into two acceptable routes: $p$ with $q$, or $p$ with $r$. This gives the first law below. The second law can feel less familiar from numerical algebra; its truth table confirms that it is equally valid in logic.
+Read $p\land(q\lor r)$ as “$p$ is required, together with at least one of $q$ and $r$.” We can split this into two acceptable routes: $p$ with $q$, or $p$ with $r$. This gives the first law below. The second law can feel less familiar from numerical algebra; its truth table confirms that it is correct for truth values as well.
 
 $$
 p\land(q\lor r)\equiv(p\land q)\lor(p\land r)
@@ -487,7 +489,9 @@ Notice that propositional logic has distribution in both directions: AND distrib
 
 For the first law, let $p$ mean “you have a ticket,” $q$ mean “you have a passport,” and $r$ mean “you have a driving licence.” Requiring a ticket together with either kind of identification gives two ways to qualify: ticket and passport, or ticket and driving licence. The ticket appears in both alternatives because it is required whichever identification you use. Merely writing $(p\land q)\lor r$ would wrongly allow a driving licence without a ticket.
 
-The second law deserves its own explanation. Suppose $p$ means “you have a guest pass,” $q$ means “you are a member,” and $r$ means “your membership is paid up.” The rule $p\lor(q\land r)$ allows either a guest pass or both membership conditions. In the rewritten rule $(p\lor q)\land(p\lor r)$, a guest pass satisfies both requirements at once. Without a guest pass, the first requirement forces membership and the second forces payment. The two versions therefore admit exactly the same cases. This argument checks both possibilities for $p$, rather than borrowing a rule from numerical algebra.
+![Track the shared ticket requirement](figure:logic-distribution)
+
+The second law deserves its own explanation. Suppose $p$ means “you have a guest pass,” $q$ means “you are a member,” and $r$ means “your membership is paid up.” The rule $p\lor(q\land r)$ allows either a guest pass or both membership conditions. In the rewritten rule $(p\lor q)\land(p\lor r)$, a guest pass satisfies both requirements at once. Without a guest pass, the first requirement forces membership and the second forces payment. The two versions therefore admit exactly the same cases. This reasoning checks both possibilities for $p$, rather than borrowing a rule from numerical algebra.
 
 Distribution works backward as well. If two alternatives share a requirement, we can pull that requirement out:
 
@@ -555,6 +559,8 @@ $$
 
 The reason for choosing the first step was not simply that distribution was available. It exposed a part whose truth value no longer depended on any variable. Read the original in words as a final check: it allows $p$ together with either possibility for $q$, so $p$ is the only genuine requirement.
 
+![Follow the simplification one justified step at a time](figure:logic-simplification)
+
 ### A worked simplification: remove a false alternative
 
 Now try the related expression
@@ -599,7 +605,7 @@ $$
 
 A proposition cannot simultaneously be true and false.
 
-A statement that is sometimes true and sometimes false is neither a tautology nor a contradiction. It is often called **contingent**.
+A statement that is sometimes true and sometimes false is neither a tautology nor a contradiction. It is often called **contingent**, or a **contingency**.
 
 ## Counterexamples
 
@@ -641,7 +647,7 @@ Therefore they are not logically equivalent.
 
 ## Arguments, premises, and conclusions
 
-An **argument** consists of one or more **premises** followed by a **conclusion** that is claimed to follow from them.
+An **argument** starts from one or more statements offered as assumptions, called **premises**. It then claims that another statement, its **conclusion**, follows from those premises. We assess the connection between the starting assumptions and the claimed result.
 
 For example:
 
@@ -650,6 +656,8 @@ For example:
 3. Therefore, an alert is sent.
 
 An argument is **valid** when there is no possible truth-value assignment that makes all of its premises true and its conclusion false.
+
+A **counterassignment** is an assignment that makes all premises true but the conclusion false; finding one demonstrates invalidity.
 
 Validity is about logical structure. It does not require the premises to be true in the real world. A valid argument with false premises can still have perfectly correct logical form.
 
@@ -665,7 +673,7 @@ $$
 P_1,P_2,\ldots,P_n \vdash C,
 $$
 
-meaning that conclusion $C$ is derivable from the premises.
+The symbols $P_1$ through $P_n$ name the individual premises; the subscript numbers identify them, and the dots mean that the list continues in the same way. $C$ names the conclusion. The **turnstile** $\vdash$ says that the conclusion is **derivable**: a sequence of permitted reasoning steps can lead from those premises to $C$. It is not a numerical inequality.
 
 ## Common rules of inference
 

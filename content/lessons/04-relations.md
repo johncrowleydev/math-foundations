@@ -8,7 +8,7 @@ This lesson builds on [Sets and Set Operations](../lessons/03-sets-and-set-opera
 
 A set tells us which objects are present; a relation tells us which connections are present. Think of a table with users down one side and permissions across the top. Marking a cell records one permission for one user. The set-of-pairs definition is a precise way to store exactly those marked cells, without requiring every user to have the same number of permissions.
 
-A **binary relation from $A$ to $B$** is a subset $R\subseteq A\times B$. We write $aRb$ as an alternative to $(a,b)\in R$. The order of the positions matters.
+“Binary” means that the relation has two input positions. A **binary relation from $A$ to $B$** is a subset $R\subseteq A\times B$. We write $aRb$, read “a is related to b by R,” as an alternative to $(a,b)\in R$. The first input $a$ comes from $A$ and the second input $b$ from $B$. The order of the positions matters.
 
 Let $A=\{\text{Ada},\text{Bo}\}$ be users and $B=\{\text{read},\text{write}\}$ be permissions. The relation
 
@@ -18,9 +18,13 @@ $$
 
 allows Ada both permissions and Bo only reading. A relation can connect an input to none, one, or several outputs. Requiring exactly one output will give the special kind of relation called a function in the next lesson.
 
-A relation **on $A$** is a subset of $A\times A$. The properties below concern relations on one set. Specifying $A$ is part of specifying the problem: adding a new element without adding any pairs can change whether a relation is reflexive.
+A relation **on $A$** is a subset of $A\times A$. The properties below concern relations on one set. Specifying $A$ is part of specifying the problem: adding a new element without adding any pairs can change whether every object relates to itself.
 
-For finite sets, a relation can be displayed as a Boolean matrix. Rows name first coordinates, columns name second coordinates, and an entry is 1 when the pair belongs. A directed graph gives another representation: draw an arrow from $a$ to $b$ when $aRb$. A loop represents $aRa$.
+A **matrix** is a rectangular table of entries with named or numbered rows and columns. A **Boolean matrix** uses only 0 and 1. For a finite relation, rows name first inputs, columns name second inputs, and the entry is 1 when the corresponding pair belongs to $R$, or 0 when it does not. For a relation on one set, use the same order for row and column labels. Its **main diagonal** consists of entries whose row and column identify the same object.
+
+We can also draw the relation on one set as a **directed graph**. Each object is a **vertex**, shown as a labeled dot; the plural is **vertices**, and **node** is another name for a vertex. A **directed edge**, shown as an arrow from one dot to another, records an ordered connection: draw an arrow from $a$ to $b$ exactly when $aRb$. An arrow returning to its own dot is a **self-loop**, or loop, and represents $aRa$. This drawing shows objects and connections, rather than the numerical coordinates of a function plot. A relation drawing includes a loop whenever the corresponding same-object pair is present. A **directed walk** is a sequence of vertices following the arrows, with repeats permitted. Its **length** counts the arrows followed, not the physical distance drawn.
+
+![One relation in two representations](figure:relation-representations)
 
 ## Four fundamental properties
 
@@ -34,7 +38,7 @@ $$
 \forall a\in A,\ aRa.
 $$
 
-In a finite matrix every diagonal entry must be 1. A single missing loop disproves reflexivity.
+In a finite matrix every main-diagonal entry must be 1. A single missing loop disproves reflexivity.
 
 Equality is reflexive because every object equals itself. By contrast, “is strictly smaller than” is not reflexive on a nonempty number domain: no number is strictly smaller than itself. Reflexivity asks for every self-pair, even if some objects have no connections to other objects.
 
@@ -58,13 +62,13 @@ Loops are permitted. If both $aRb$ and $bRa$ hold, antisymmetry forces the objec
 
 The numerical relation $\leq$ gives a familiar example. If $a\leq b$ and $b\leq a$, the two numbers must be equal. This explains the allowance for loops: $a\leq a$ is entirely consistent with antisymmetry.
 
-**Transitive** means every composable two-step connection has the corresponding direct connection:
+**Transitive** means every two-step connection has the corresponding direct connection. The two steps must fit together: the second starts at the object where the first ends.
 
 $$
 \forall a,b,c\in A,\ (aRb\land bRc)\to aRc.
 $$
 
-The variables may coincide. If $aRb$ and $bRa$, transitivity requires $aRa$ and $bRb$. It is a mistake to test only triples of distinct elements.
+The shorthand $aRbRc$ means $aRb$ and $bRc$: it records the two related pairs, not a new three-input relation. The variables may coincide. If $aRb$ and $bRa$, transitivity requires $aRa$ and $bRb$. It is a mistake to test only triples of distinct elements.
 
 For ordinary numbers, $a\leq b$ and $b\leq c$ guarantee $a\leq c$. A friendship relation need not behave this way: your friend's friend is not automatically your friend. Transitivity is a specific mathematical requirement, not a general rule about anything we happen to draw with connecting lines.
 
@@ -82,6 +86,8 @@ $$
 
 It is reflexive because every loop is listed. It is not symmetric because $(1,2)$ is present and $(2,1)$ is absent. It is antisymmetric because no pair of distinct elements appears in both directions. It is not transitive: $(1,2)$ and $(2,3)$ require $(1,3)$, which is missing.
 
+![Inspecting the finite relation](figure:relation-finite-check)
+
 Adding $(1,3)$ makes the relation transitive. The resulting relation is exactly $\leq$ restricted to $A$.
 
 For a finite relation, a systematic transitivity test chooses every listed pair $(a,b)$, then every listed pair $(b,c)$, and checks for $(a,c)$. Randomly checking several triples may miss the one that fails. For a relation on an infinite set, use the defining condition algebraically instead of trying to enumerate pairs.
@@ -96,7 +102,7 @@ A relation is **irreflexive** when $\forall a\in A,\ \neg aRa$. Failure to be re
 
 A relation is **asymmetric** when $aRb$ always implies $\neg bRa$. This forbids loops too: setting $b=a$ would make a loop contradict the condition. The usual strict order $<$ is asymmetric, whereas $\leq$ is antisymmetric but not asymmetric on a nonempty set.
 
-Use definitions to settle edge cases. Familiar words such as “opposite” or “reverse” are less reliable than the quantified formulas.
+Use definitions to settle empty and boundary cases. Familiar words such as “opposite” or “reverse” are less reliable than the quantified formulas.
 
 ## Equivalence relations
 
@@ -104,13 +110,15 @@ Often we want to ignore differences that are irrelevant to a particular question
 
 An **equivalence relation** is reflexive, symmetric, and transitive. It formalizes “the same with respect to a chosen feature.”
 
-Fix a positive integer $m$. Define congruence modulo $m$ on $\mathbb Z$ by
+For integers $d$ and $n$, **divisibility** means being an integer multiple: $d\mid n$, read “d divides n,” says $n=dk$ for some integer $k$. The vertical bar here does not mean cardinality.
+
+Now fix a positive integer $m$, called the **modulus**. Two integers are **congruent modulo $m$** when their difference is divisible by $m$. We write $a\equiv b\pmod m$, read “a is congruent to b modulo m.” In this context $\equiv$ relates integers, rather than expressing logical equivalence. The definition is
 
 $$
 a\equiv b\pmod m\quad\Longleftrightarrow\quad m\mid(a-b).
 $$
 
-Here $m\mid d$ means $d=mk$ for some integer $k$. We can prove all three properties:
+Equivalently, the two integers leave the same remainder when divided by $m$, using remainders from 0 through $m-1$. We can prove all three properties; the letters $k$ and $\ell$ below stand for integer multipliers witnessing divisibility:
 
 - Reflexivity: $a-a=0=m\cdot0$.
 - Symmetry: if $a-b=mk$, then $b-a=m(-k)$.
@@ -118,7 +126,7 @@ Here $m\mid d$ means $d=mk$ for some integer $k$. We can prove all three propert
 
 Thus congruence is an equivalence relation. For $m=3$, the integers 1, 4, and $-2$ are equivalent because their pairwise differences are multiples of 3.
 
-Other examples include strings having the same length and people having the same birthday month. Having a shared friend is generally not an equivalence relation: two people might each share a friend with a third person without sharing a friend with each other.
+A **string** is a finite ordered sequence of symbols; its **length** is the number of symbols. A **binary string** uses only 0 and 1, so 01 and 10 are different strings of length two. Other equivalence-relation examples include strings having the same length and people having the same birthday month. Having a shared friend is generally not an equivalence relation: two people might each share a friend with a third person without sharing a friend with each other.
 
 ## Equivalence classes and partitions
 
@@ -138,11 +146,13 @@ $$
 [2]=\{3k+2:k\in\mathbb Z\}.
 $$
 
-The labels are representatives, not the entire classes. For example, $[1]=[4]$ even though $1\ne4$.
+Read $[a]$ as “the equivalence class of a.” A **representative** is a chosen member used to name its class. The label names the class through one member; it is not the entire class. For example, $[1]=[4]$ even though $1\ne4$.
 
 Equivalence classes partition $A$. Reflexivity places each $a$ in $[a]$, so classes are nonempty and cover $A$. To see why overlapping classes are equal, suppose $z\in[a]\cap[b]$. Then $zRa$ and $zRb$. By symmetry $aRz$, and by transitivity $aRb$. If $x\in[a]$, then $xRa$ and $aRb$ imply $xRb$, so $x\in[b]$. Reversing the roles proves $[b]\subseteq[a]$.
 
 Consequently, two classes are either equal or disjoint. They cannot partly overlap.
+
+![Equivalence classes in a finite domain](figure:relation-classes)
 
 Conversely, any partition defines an equivalence relation: declare $aRb$ when they belong to the same block. Each object shares its block with itself, sharing a block is symmetric, and two successive same-block claims place all three objects in one block. This establishes a correspondence between equivalence relations and partitions.
 
@@ -154,7 +164,7 @@ Not every sensible comparison puts everything in a single line. One collection o
 
 A **partial order** is reflexive, antisymmetric, and transitive. A set together with a partial order is called a **partially ordered set**, or poset. We often write its relation as $\preceq$ to avoid implying that it is ordinary numerical comparison.
 
-Subset inclusion is a partial order on $\mathcal P(S)$. Every subset contains itself; if $A\subseteq B$ and $B\subseteq A$, then $A=B$; and inclusions compose transitively.
+For any set $S$, subset inclusion is a partial order on its power set $\mathcal P(S)$. Every subset contains itself; if $A\subseteq B$ and $B\subseteq A$, then $A=B$; and inclusions compose transitively.
 
 Divisibility is a partial order on the **positive integers**. Reflexivity follows from $a=a\cdot1$. If $b=ak$ and $a=b\ell$ for positive integers, then $k\ell=1$, so $k=\ell=1$ and $a=b$. Transitivity follows by multiplying the factors.
 
@@ -168,13 +178,15 @@ Antisymmetry guarantees agreement when comparison goes both ways. It does not gu
 
 A drawing of every comparison in a finite order quickly becomes cluttered. A Hasse diagram leaves out comparisons we can recover by following upward connections. It is therefore a compressed description, not a new relation. Learning what has been omitted is just as important as reading the connections that remain.
 
-For a finite poset, a **Hasse diagram** displays only the essential upward steps. An element $b$ **covers** $a$ when $a\prec b$ and no element lies strictly between them, where $a\prec b$ means $a\preceq b$ and $a\ne b$. Draw $b$ above $a$ and connect their covers. Omit loops and all edges already implied by a longer upward path.
+For a finite poset, a **Hasse diagram** displays only the essential upward steps. Write $a\prec b$ for $a\preceq b$ together with $a\ne b$; read it as “a is strictly below b in this order.” An element $b$ **[covers](ref:cover)** $a$ when $a\prec b$ and no element $c$ satisfies $a\prec c\prec b$. Draw a dot for each element, place $b$ above $a$, and join the dots when $b$ [covers](ref:cover?repeat) $a$. An **upward path** follows a sequence of these joins, always moving upward. Omit loops and direct joins for comparisons already implied by a longer upward path.
 
 Under inclusion, $\mathcal P(\{1,2\})$ has $\varnothing$ at the bottom, $\{1\}$ and $\{2\}$ above it, and $\{1,2\}$ at the top. The four cover connections form a diamond. There is no direct cover from $\varnothing$ to $\{1,2\}$ because intermediate subsets exist.
 
-The upward edges form a directed acyclic graph: a directed cycle among distinct elements would contradict antisymmetry. Reachability, together with equality, recovers the finite partial order. For a prerequisite graph, distinguish an immediate prerequisite edge from the transitive relation “must be completed before.”
+![The subset order as a Hasse diagram](figure:relation-hasse)
 
-A **least element** is below every element. A **minimal element** has no strictly smaller element. Least implies minimal, but several incomparable elements can all be minimal. Under divisibility on $\{2,3,6\}$, both 2 and 3 are minimal and neither is least; 6 is the greatest element. Greatest and maximal are defined by reversing the comparisons. A least or greatest element, when it exists, is unique by antisymmetry.
+Although arrowheads are omitted, each join is read upward. A **directed cycle** would follow arrows and return to its starting vertex without repeating any other vertex; an **acyclic** directed graph has no such cycle. The upward connections are acyclic, because returning to a different earlier element would contradict antisymmetry. **Reachability** means that one vertex can be reached from another by following the allowed directions. Here an upward path from $a$ to $b$, or equality $a=b$, recovers exactly the comparison $a\preceq b$. For a prerequisite graph, distinguish an immediate prerequisite edge from the transitive relation “must be completed before.”
+
+A **least element** $a$ satisfies $a\preceq x$ for every element $x$, including itself. A **minimal element** has no strictly smaller element. Least implies minimal, but several incomparable elements can all be minimal. Under divisibility on $\{2,3,6\}$, both 2 and 3 are minimal and neither is least; 6 is the greatest element. A **greatest element** is above every element. A **maximal element** has no strictly larger element; there can be several incomparable maximal elements, just as there can be several minimal ones. A least or greatest element, when it exists, is unique by antisymmetry.
 
 ## Inverses and composition of relations
 
@@ -186,9 +198,9 @@ $$
 R^{-1}=\{(b,a):(a,b)\in R\}\subseteq B\times A.
 $$
 
-This reverses every pair. For a relation on one set, symmetry means $R=R^{-1}$.
+Read $R^{-1}$ as “the inverse relation of R.” The superscript $-1$ is an operation name here, not a reciprocal. It reverses every pair. For a relation on one set, symmetry means $R=R^{-1}$.
 
-Let $R\subseteq A\times B$ and $S\subseteq B\times C$. We use the function-style convention: **$S\circ R$ means first $R$, then $S$**. Specifically,
+Let $R\subseteq A\times B$ and $S\subseteq B\times C$. These relations are **compatible** for this composition because the second-input set of $R$ matches the first-input set of $S$. We use the function-style convention: **$S\circ R$ means first $R$, then $S$**. Specifically,
 
 $$
 (a,c)\in S\circ R\quad\Longleftrightarrow\quad
@@ -197,7 +209,7 @@ $$
 
 If $R=\{(1,u),(2,u),(2,v)\}$ and $S=\{(u,p),(v,q)\}$, then $S\circ R=\{(1,p),(2,p),(2,q)\}$. A pair is included once even if several intermediate objects justify it.
 
-For a relation $R$ on $A$, transitivity is exactly $R\circ R\subseteq R$: every two-step connection already belongs to $R$. Adding all pairs connected by one or more steps produces the **transitive closure**. For a finite relation, repeatedly adding missing shortcuts eventually stops because only finitely many pairs are possible. If reachability in zero steps is included as well, also add every loop; that gives the reflexive-transitive closure.
+**Reachability** asks whether following the permitted arrows can lead from one object to another. We must specify whether a walk of length zero is allowed, since that lets an object reach itself without moving. For a relation $R$ on $A$, transitivity is exactly $R\circ R\subseteq R$: every two-step connection already belongs to $R$. Adding all pairs connected by one or more steps produces the **transitive closure**. For a finite relation, repeatedly adding missing shortcuts eventually stops because only finitely many pairs are possible. If reachability in zero steps is included as well, every object reaches itself without moving. Add every loop to record these cases; this gives the **reflexive-transitive closure**.
 
 ## Building closures without losing the meaning
 
@@ -209,7 +221,7 @@ The **reflexive closure** adds $(a,a),(b,b),(c,c)$. The **symmetric closure** ad
 
 If we require an equivalence relation, repairs can interact. Adding reverses gives $(b,a)$ and $(c,b)$. Transitivity then requires $(a,c)$ and $(c,a)$ as well as loops, so the smallest equivalence relation containing this $R$ is all of $A\times A$. The chain connects all three objects into one equivalence class.
 
-For a finite relation, repeatedly adding pairs required by the chosen properties stops eventually, because additions never remove a pair and at most $|A|^2$ pairs exist. This is an algorithmic justification for termination, separate from checking what the final relation means.
+For a finite relation, repeatedly adding pairs required by the chosen properties stops eventually, because additions never remove a pair and at most $|A|^2$ pairs exist. This explains why the repeated procedure must eventually stop; we must separately check what its resulting relation means.
 
 Not every desired repair can be achieved solely by adding pairs. If a relation already contains $(a,b)$ and $(b,a)$ for distinct elements, adding more pairs cannot make it antisymmetric. That violation persists. Either remove a conflicting pair, change the requirement, or replace objects by appropriately defined equivalence classes; those are different modeling decisions.
 

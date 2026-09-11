@@ -3,6 +3,7 @@ package dev.math.notebook
 import android.graphics.Typeface
 import android.widget.TextView
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import io.noties.markwon.Markwon
@@ -25,7 +26,17 @@ fun RichText(
     modifier: Modifier = Modifier,
     size: Float = 19f,
     onClick: (() -> Unit)? = null,
+    source: String = "",
 ) {
+    val references = LocalReferences.current
+    val lesson = LocalReferenceLesson.current
+    val linksEnabled = LocalReferenceLinksEnabled.current && onClick == null
+    val displayMarkdown =
+        if (linksEnabled) markdown
+        else markdown.replace(Regex("\\[([^\\]]*)\\]\\(ref:[^)]*\\)"), "$1")
+    val renderIdentity =
+        listOf(markdown, lesson, source, linksEnabled.toString()).joinToString("\u0000")
+    val lastRender = remember { arrayOf("") }
     AndroidView(
         modifier = modifier,
         factory = { context ->
@@ -47,13 +58,18 @@ fun RichText(
             }
         },
         update = { view ->
-            if (view.contentDescription != markdown) {
+            if (lastRender[0] != renderIdentity) {
+                lastRender[0] = renderIdentity
                 view.contentDescription = markdown
-                (view.tag as Markwon).setMarkdown(view, nativeMarkdown(markdown))
+                (view.tag as Markwon).setMarkdown(view, nativeMarkdown(displayMarkdown))
+                if (references != null && linksEnabled)
+                    attachReferenceLinks(view, references, lesson, source)
             }
             // Native TextViews receive taps inside their bounds before the Compose
             // choice row. Forward those taps so the entire answer remains a target.
-            if (onClick != null) view.setOnClickListener { onClick() }
+            view.setOnClickListener(
+                if (onClick != null) android.view.View.OnClickListener { onClick() } else null
+            )
         },
     )
 }

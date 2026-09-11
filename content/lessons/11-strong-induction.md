@@ -10,7 +10,7 @@ The word _strong_ describes the form of the hypothesis. The method proves no mor
 
 Suppose solving a problem of size $n$ breaks it into two smaller problems, but their sizes depend on the input. The immediately preceding case may tell us nothing about either piece. Strong induction lets the proof reach back to any earlier allowed size. The price is careful bookkeeping: every size we use must really be smaller and must lie in the range already covered.
 
-Let $P(n)$ be a statement for integers $n\geq n_0$. A familiar strong induction format is:
+Fix an integer starting index $n_0$, and let $P(n)$ be a statement for integers $n\geq n_0$. A familiar strong induction format is:
 
 1. Establish the required initial cases.
 2. Choose an arbitrary next index $n$ beyond those cases.
@@ -23,11 +23,13 @@ An equivalent formulation proves, for each $n\geq n_0$, that if all earlier case
 
 For readable proofs, separate the bases from the general argument, especially when several initial values are necessary.
 
+![More earlier statements are available](figure:strong-hypotheses)
+
 ## Why it is equivalent to ordinary induction
 
 We can package “all cases so far are true” as one larger statement. Ordinary induction on that statement automatically carries the whole history forward. This packaging explains how strong induction can offer more assumptions at a step without being a logically stronger principle.
 
-Suppose strong induction would prove a family $P(n)$ for $n\geq n_0$. Define a new statement
+Suppose strong induction would prove a family $P(n)$ for $n\geq n_0$. The colon in the next display introduces a definition, read “Q of n means.” Define a new statement
 
 $$
 Q(n):\quad P(j)\text{ holds for every integer }j\text{ with }n_0\leq j\leq n.
@@ -71,7 +73,7 @@ $$
 2\leq a<n,\qquad 2\leq b<n.
 $$
 
-Such factors exist by compositeness: a proper divisor $a$ with $1<a<n$ has quotient $b=n/a$ strictly between 1 and $n$. By the induction hypothesis, both $a$ and $b$ are products of primes. Multiplying their prime products expresses $n$ as a product of primes.
+Such factors exist by compositeness: a divisor $a$ with $1<a<n$ (smaller than the number and greater than 1) has quotient $b=n/a$ strictly between 1 and $n$. By the induction hypothesis, both $a$ and $b$ are products of primes. Multiplying their prime products expresses $n$ as a product of primes.
 
 Both cases establish $P(n)$, so strong induction proves the claim for every $n\geq2$.
 
@@ -83,7 +85,7 @@ This proof establishes **existence**, not **uniqueness**. It does not prove that
 
 The natural way to make a larger amount from a smaller one is to add one available stamp. If we always add a 4-unit stamp, we advance in steps of four and need starting points that cover all four possible positions in that pattern. This explains the block of consecutive base cases below; it is dictated by the construction rather than chosen by a rule of thumb.
 
-Suppose only stamps of values 4 and 7 units are available, with an unlimited supply of each. Values add normally; using zero stamps of one denomination is allowed.
+A **denomination** is the value printed on one stamp. Suppose only stamps of values 4 and 7 units are available, with an unlimited supply of each. Values add normally; using zero stamps of one denomination is allowed.
 
 **Claim.** Every integer amount $n\geq18$ can be made.
 
@@ -143,11 +145,11 @@ We did not need every earlier value in this step, only the last two. Strong indu
 
 ## Recursive algorithms: termination and correctness
 
-An algebraically plausible recursive rule can still run forever. We therefore ask two questions: do smaller calls eventually return, and if they return the promised answers, does this call combine them correctly? Strong induction can answer both, but they remain distinct parts of the explanation.
+A **recursive algorithm** is a procedure that calls itself on other inputs. A **call** runs the procedure for one input, and to **return** is to finish that call and supply its result. An algebraically plausible recursive rule can still run forever. We therefore ask two questions: do smaller calls eventually return, and if they return the promised answers, does this call combine them correctly? Strong induction can answer both, but they remain distinct parts of the explanation.
 
-A recursive algorithm needs two different guarantees: its calls eventually stop, and its returned value satisfies the specification. Strong induction fits both when every recursive call has a smaller nonnegative integer measure.
+A recursive algorithm needs two different guarantees: its calls eventually stop, and its returned value satisfies the specification. A **measure** assigns a size to each call. A decreasing relation is **well-founded** if it permits no infinite chain of strict decreases. A nonnegative integer measure that strictly decreases at each call has this property. Strong induction fits both guarantees when every recursive call has a strictly smaller nonnegative integer measure.
 
-Consider this function on nonnegative integers:
+In this pseudocode, `==` tests equality, `=` assigns a value, `*` multiplies, and `floor` rounds down to the greatest integer no larger than its input. An `if` chooses a branch; `else` covers the other case. Consider this function on nonnegative integers:
 
 ```text
 power_of_two(n):
@@ -169,7 +171,7 @@ The notation $\lfloor x\rfloor$ means the greatest integer at most $x$. For ever
 
 This reasoning assumes exact integer arithmetic. The algorithm's value may exceed the range of a fixed-width machine integer, so an implementation must use a suitable representation or restrict its input.
 
-“The input gets smaller” is not always enough for termination. It must decrease in a well-founded domain or measure: repeatedly halving a positive real number never reaches zero. Here the decreasing **integer** input is the crucial fact.
+“The input gets smaller” is not always enough for termination. The measure must decrease in a well-founded domain, one without an infinite chain of strict decreases: repeatedly halving a positive real number never reaches zero. Here the decreasing **integer** input is the crucial fact.
 
 ## A finite construction by splitting
 
@@ -187,7 +189,19 @@ $$
 
 Thus the count is independent of where the splits occur. The argument covers every permitted recursive construction, because $a,b$ were the arbitrary lengths created by its first split.
 
-This is a small example of reasoning about recursively built objects. More general **structural induction** follows the constructors of an object, such as a finite expression: prove a property for the simplest objects, then show each construction rule preserves it. For this course, induction on an explicit integer size is enough for our examples.
+This is a small example of reasoning about recursively built objects. A **constructor** is a rule for making a larger object from smaller ones. More general **structural induction** follows the constructors of an object, such as a finite expression: prove a property for the simplest objects, then show each construction rule preserves it. For this course, induction on an explicit integer size is enough for our examples.
+
+To discuss these structures, draw a **rooted tree** with one dot for the whole object, called the **root**, and dots below it for its immediate parts, called its **children**. Each non-root dot has exactly one parent above it; following children never returns to an earlier dot. A dot with no children is a **leaf**, and a dot with children is an **internal node**. In a **full binary tree**, every internal node has exactly two children. The part consisting of a node and everything below it is its **subtree**. A binary expression uses an operation with two inputs at each internal node and an input value at each leaf. An **atom** is a basic object that is not split further; an occurrence counts each appearance even when labels repeat.
+
+Another construction is a **tiling**: covering a region with pieces without gaps or overlaps. A domino here is a rectangle covering two adjacent unit squares, and it may be rotated. A tiling of a $2$-by-$n$ rectangle can start with a vertical domino or two horizontal dominoes; these leave smaller rectangles of widths $n-1$ and $n-2$. The zero-width rectangle has one empty tiling, the construction that places no pieces.
+
+A **binary representation** writes a nonnegative integer as a sum of distinct powers of 2, with the empty sum representing zero. For example, $5=2^2+2^0$. Repeated division by 2 gives an integer quotient $q$ and remainder $r$ with $n=2q+r$ and $r$ either 0 or 1. Reconstructing the number doubles the quotient's powers and adds 1 when the remainder is 1. This supplies smaller inputs for a strong-induction proof. When a recurrence uses $\max\{a_1,\ldots,a_{n-1}\}$, “max” means the greatest value in that finite nonempty collection.
+
+The same piece-count argument works for a rectangular grid of unit squares. A legal break splits one existing rectangle along a grid line into two smaller rectangles; pieces cannot be stacked to break several at once. If the rectangle contains $N$ unit squares and the first break leaves $a$ and $b$ squares, then $a+b=N$ and both are smaller than $N$. The induction count is $1+(a-1)+(b-1)=N-1$. Each break increases the number of pieces by exactly one, explaining why the shape and choice of first break do not change the final count.
+
+![Different first cuts, the same total](figure:strong-board-splitting)
+
+![A construction has parts and subparts](figure:strong-construction-tree)
 
 ## Common mistakes
 

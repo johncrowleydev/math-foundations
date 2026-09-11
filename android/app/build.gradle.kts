@@ -12,7 +12,7 @@ android {
     namespace = "dev.math.notebook"
     compileSdk = 36
     defaultConfig {
-        applicationId = "dev.math.notebook"
+        applicationId = providers.gradleProperty("validationApplicationId").orElse("dev.math.notebook").get()
         minSdk = 33
         targetSdk = 35
         versionCode = providers.gradleProperty("appVersionCode").orElse(releaseVersion.getProperty("code")).get().toInt()
@@ -39,7 +39,11 @@ val generateContent by tasks.registering(Exec::class) {
     inputs.file("../../scripts/notebook-placements.ts")
     inputs.file("../../scripts/inline-prerequisites.ts")
     inputs.file("../../scripts/quick-checks.ts")
+    inputs.file("../../scripts/teaching.ts")
+    inputs.file("../../scripts/formula-context.ts")
     outputs.file("src/main/assets/notebook.json")
+    outputs.file("src/main/assets/teaching.json")
+    outputs.file("src/main/assets/reading-order-v7.json")
 }
 tasks.named("preBuild") { dependsOn(generateContent) }
 dependencies {

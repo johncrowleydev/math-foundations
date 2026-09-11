@@ -14,7 +14,7 @@ $$
 A=\{2,4,6\}.
 $$
 
-Order and repeated entries do not change a set. Thus $\{2,4,6\}=\{6,2,4,2\}$. A set records membership, not sequence or multiplicity. A log containing the same event three times has information that a set of event types loses.
+Order and repeated entries do not change a set. Thus $\{2,4,6\}=\{6,2,4,2\}$. A set records which objects belong, not their order or how often they are listed. A log containing the same event three times has information that a set of event types loses.
 
 **Set-builder notation** describes membership using a condition:
 
@@ -22,7 +22,7 @@ $$
 A=\{n\in\mathbb Z: 0<n<8\text{ and }n\text{ is even}\}.
 $$
 
-The colon means “such that.” This is the same set as the roster above. Specify the domain: $\{x\in\mathbb R:x^2=4\}=\{-2,2\}$, while allowing only positive integers gives $\{2\}$.
+The colon means “such that.” This is the same set as the list above. Specify the domain: $\{x\in\mathbb R:x^2=4\}=\{-2,2\}$, while allowing only positive integers gives $\{2\}$.
 
 Two sets are equal exactly when they have the same elements:
 
@@ -31,9 +31,9 @@ A=B\quad\Longleftrightarrow\quad
 \forall x,\ (x\in A\leftrightarrow x\in B).
 $$
 
-The variables here range over an ambient collection containing both sets. Equality does not require that the descriptions of the sets look alike.
+Read $\Longleftrightarrow$ as “if and only if”; this longer arrow expresses the same two-way condition as $\leftrightarrow$. The variables here range over a surrounding collection containing every element of either set. Equality does not require that the descriptions of the sets look alike.
 
-The **empty set**, $\varnothing$, has no elements. Be careful with braces: $\{\varnothing\}$ is a set with one element, that element being the empty set. Likewise, $\{0\}$ has one element and is not empty.
+The **empty set**, $\varnothing$, has no elements. Be careful with braces: $\{\varnothing\}$ is a set with one element, that element being the empty set. Likewise, $\{0\}$ has one element and is not empty. A set with exactly one element is called a **singleton**. The number of distinct elements in a finite set is its **cardinality**, written $|A|$ and read “the cardinality of A.” Thus $|\varnothing|=0$ and $|\{\varnothing\}|=1$. These vertical bars count elements; they are not the absolute-value operation on a number.
 
 ## Membership and subsets are different
 
@@ -54,6 +54,8 @@ Every set is a subset of itself. The empty set is a subset of every set because 
 
 To disprove $A\subseteq B$, find an element of $A$ missing from $B$. For example, $\{2,4\}\nsubseteq\{1,2,3\}$ because $4$ belongs only to the first set.
 
+![Membership and subset comparison](figure:sets-membership)
+
 ## Union, intersection, difference, and complement
 
 Suppose one guest list contains your neighbors and another contains your colleagues. Combining the lists gives everyone invited by either description; comparing their overlap finds people who are both neighbors and colleagues. We can describe both operations by asking a simple yes-or-no membership question about one person at a time. This is the connection between set operations and the logical operators you already know.
@@ -66,7 +68,7 @@ For sets $A$ and $B$:
 | Intersection $A\cap B$    | $x\in A\land x\in B$     | In both            |
 | Difference $A\setminus B$ | $x\in A\land x\notin B$  | In $A$ but not $B$ |
 
-Fix a **universe** $U$ containing the sets under discussion. The complement of $A$ relative to $U$ is
+Fix a **universe** $U$ containing every element of the sets under discussion, so that those sets are subsets of $U$. The complement of $A$ relative to $U$ is
 
 $$
 A^c=U\setminus A.
@@ -81,6 +83,10 @@ U=\{1,2,3,4,5,6\},\quad A=\{1,2,4\},\quad B=\{2,3,4\}.
 $$
 
 Then $A\cup B=\{1,2,3,4\}$, $A\cap B=\{2,4\}$, $A\setminus B=\{1\}$, $B\setminus A=\{3\}$, and $A^c=\{3,5,6\}$. Difference is directional: its two versions need not agree.
+
+A **Venn diagram** represents sets by closed regions, usually circles, inside a rectangle representing the universe. A point inside both circles represents membership in both sets; one outside a circle is not in that set. Region area does not represent the number of elements.
+
+![Set operations on actual members](figure:sets-operations)
 
 Sets are **disjoint** when $A\cap B=\varnothing$. Disjoint does not mean that their sizes differ, or merely that they are unequal. The empty set is disjoint from every set, including itself.
 
@@ -160,6 +166,8 @@ $$
 
 A Venn diagram can help discover or remember these facts. An element argument establishes them without relying on a particular drawing.
 
+![Two De Morgan complement comparisons](figure:sets-de-morgan)
+
 ## Power sets
 
 So far, the elements of our examples have mostly been numbers or people. Now the elements will themselves be choices of subsets. If a meal offers two optional extras, a choice might include neither extra, one of them, or both. The power set collects all those possible choices; it is a set of sets, which is why the nested braces below are doing real work.
@@ -176,9 +184,11 @@ $$
 \mathcal P(\varnothing)=\{\varnothing\}.
 $$
 
-If a finite set $A$ has $n$ elements, then $\mathcal P(A)$ has $2^n$ elements. A subset makes one independent include-or-exclude choice for each element. These $n$ binary choices give $2\cdot2\cdots2=2^n$ possibilities. For $n=0$, there is one possible collection of choices: choosing nothing, which produces the empty subset.
+![A set and its power set](figure:sets-power)
 
-A bit mask with one bit per feature therefore represents a subset of the features. It represents membership, not an ordering of selected features.
+If a finite set $A$ has $n$ elements, then $\mathcal P(A)$ has $2^n$ elements. A subset makes one independent include-or-exclude choice for each element. These $n$ binary (two-option) choices give $2\cdot2\cdots2=2^n$ possibilities. For $n=0$, there is one possible collection of choices: choosing nothing, which produces the empty subset.
+
+A **bit** is a digit that is either 0 or 1. A **bit mask** uses one bit per feature, with 1 meaning included and 0 meaning excluded, to represent a subset of the features. For features a and b in that order, 00 selects neither, 10 selects only a, 01 selects only b, and 11 selects both. It represents membership, not an ordering of selected features.
 
 ## Ordered pairs and Cartesian products
 
@@ -192,7 +202,7 @@ $$
 A\times B=\{(a,b):a\in A\text{ and }b\in B\}.
 $$
 
-If $A=\{0,1\}$ and $B=\{u,v\}$, the product is $\{(0,u),(0,v),(1,u),(1,v)\}$. For finite sets, $|A\times B|=|A||B|$: each first coordinate can be paired with each second coordinate. Here $|A|$ denotes the number of elements, or **cardinality**, of a finite set.
+If $A=\{0,1\}$ and $B=\{u,v\}$, the product is $\{(0,u),(0,v),(1,u),(1,v)\}$. For finite sets, $|A\times B|=|A||B|$: each first coordinate can be paired with each second coordinate. Recall that $|A|$ counts the elements of $A$; the adjacent factors $|A||B|$ mean multiplication of the two counts.
 
 If either factor is empty, the product is empty because no complete pair can be formed. In general $A\times B\ne B\times A$, even though finite products have the same cardinality. Equal size does not imply equal elements.
 
@@ -210,7 +220,9 @@ $$
 
 Adding the individual sizes counts an element in both sets twice; subtracting the intersection leaves it counted once. If 24 students use Python, 18 use JavaScript, and 10 use both, then 32 use at least one. It does not follow that there are 32 students in the class: some may use neither.
 
-For three finite sets, **inclusion-exclusion** gives
+![Counting the union](figure:sets-count)
+
+For three finite sets, each **pairwise intersection** means the intersection of a chosen pair, including objects that also belong to the third set. The **triple intersection** contains objects in all three. **Inclusion-exclusion** adds individual sizes, subtracts pairwise overlaps, and restores the triple overlap:
 
 $$
 \begin{aligned}
@@ -228,11 +240,15 @@ For example, suppose the three sizes are 20, 16, and 12; the pairwise intersecti
 
 A partition is what you get when you sort every object into exactly one group. Sorting books by a single assigned shelf is a useful picture: no book should be missing, no book can occupy two groups in the sorting, and an empty group contributes nothing. These requirements explain each part of the formal definition.
 
-A **partition** of a set $A$ is a collection of nonempty, pairwise disjoint subsets whose union is $A$. The subsets are its **blocks**. Each element of $A$ belongs to exactly one block.
+A **partition** of a set $A$ is a collection of subsets called **blocks**, subject to three requirements. Every block is nonempty. Any two different blocks have no common element; this condition is called **pairwise disjointness**. Finally, the union of the blocks is $A$, so they cover the whole set. Together these requirements put each element of $A$ in exactly one block.
 
 For $A=\{1,2,3,4,5\}$, the blocks $\{1,3,5\}$ and $\{2,4\}$ form a partition. Adding an empty block violates nonemptiness; placing 3 in both blocks violates disjointness; omitting 5 violates coverage. Under this definition, the empty collection of blocks partitions the empty set.
 
-More generally, a family $(A_i)_{i\in I}$ assigns a set to each index in an index set $I$. The notation $\bigcup_{i\in I}A_i$ means that an element belongs to at least one indexed set; $\bigcap_{i\in I}A_i$ means it belongs to all of them. For an empty index set, the union is empty. If a universe $U$ has been fixed and all $A_i\subseteq U$, the empty intersection is $U$: every element satisfies the condition of belonging to every one of zero sets.
+We can label two blocks $B_1$ and $B_2$, read “B sub one” and “B sub two,” to tell them apart. The labels do not specify their sizes.
+
+![A partition into two blocks](figure:sets-partition)
+
+An **index** is a label used to select a member of a collection; it need not be a number. An **indexed family** $(A_i)_{i\in I}$ assigns a set $A_i$ to each label $i$ in an **index set** $I$. Read $A_i$ as “A sub i,” and the whole family notation as “the sets A sub i, indexed by i in I.” For example, with $I=\{1,2\}$ we might have $A_1=\{a,b\}$ and $A_2=\{b,c\}$. Read $\bigcup_{i\in I}A_i$ as “the union of A sub i over all i in I,” and read $\bigcap_{i\in I}A_i$ with “intersection” instead of “union.” The notation $\bigcup_{i\in I}A_i$ means that an element belongs to at least one indexed set; $\bigcap_{i\in I}A_i$ means it belongs to all of them. For an empty index set, the union is empty. If a universe $U$ has been fixed and all $A_i\subseteq U$, the empty intersection is $U$: every element satisfies the condition of belonging to every one of zero sets.
 
 Partitions connect directly to equivalence relations, which organize objects according to whether they are considered the same for a particular purpose.
 

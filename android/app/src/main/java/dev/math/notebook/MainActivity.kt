@@ -114,6 +114,37 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
+    val controller = model.references
+    val portrait =
+        LocalConfiguration.current.orientation ==
+            android.content.res.Configuration.ORIENTATION_PORTRAIT
+    CompositionLocalProvider(
+        LocalReferences provides controller,
+        LocalReferenceLesson provides model.lesson.slug,
+    ) {
+        BackHandler(controller.full || controller.target != null) { controller.back() }
+        Row(Modifier.fillMaxSize()) {
+            if (controller.standalone) ReferencePanel(model, controller, Modifier.fillMaxSize())
+            else {
+                Box(Modifier.weight(1f)) { NotebookLayout(model, showUpdates) }
+                if (controller.full && !portrait)
+                    ReferencePanel(model, controller, Modifier.width(420.dp).fillMaxHeight())
+            }
+        }
+        if (controller.full && portrait && !controller.standalone) {
+            androidx.compose.ui.window.Dialog(
+                onDismissRequest = controller::close,
+                properties =
+                    androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false),
+            ) {
+                ReferencePanel(model, controller, Modifier.fillMaxWidth(0.9f).fillMaxHeight(0.86f))
+            }
+        } else if (!controller.full && controller.target != null) QuickReference(model, controller)
+    }
+}
+
+@Composable
+private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
     var focusId by rememberSaveable { mutableStateOf<Int?>(null) }
     var library by rememberSaveable { mutableStateOf(false) }
     val portrait =
@@ -262,6 +293,12 @@ private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
                             model.mode(true)
                             focusId = null
                         }
+                    }
+                    TextButton(
+                        onClick = model.references::browse,
+                        modifier = Modifier.testTag("open-reference"),
+                    ) {
+                        Text("Reference")
                     }
                     UpdateButton(showUpdates, model.pendingSaves)
                 }
@@ -500,13 +537,22 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
             buildList<Pair<String, Any>> {
                 add("intro" to lesson.intro)
                 lesson.sections.forEachIndexed { i, s ->
-                    add("section:$i" to s)
+                    add("section:${s.id}" to s)
                     s.quickChecks.forEach { check -> add("quick:${check.id}" to check) }
                     s.questionIds.forEach { id -> add("question:$id" to lesson.question(id)) }
                 }
                 add("end" to "end")
             }
         }
+    LaunchedEffect(model.teachingJump) {
+        val jump = model.teachingJump ?: return@LaunchedEffect
+        val section = jump.second
+        val index =
+            if (section == "Introduction") 0
+            else entries.indexOfFirst { (it.second as? Section)?.title == section }
+        if (index >= 0) state.scrollToItem(index)
+        model.consumeTeachingJump(jump)
+    }
     LaunchedEffect(state) {
         snapshotFlow { state.firstVisibleItemIndex to state.firstVisibleItemScrollOffset }
             .distinctUntilChanged()
@@ -548,7 +594,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                             scope.launch {
                                                 state.scrollToItem(
                                                     entries.indexOfFirst {
-                                                        it.first == "section:$i"
+                                                        it.first == "section:${s.id}"
                                                     }
                                                 )
                                             }
@@ -594,7 +640,13 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                     color = Ink,
                                 )
                                 Spacer(Modifier.height(22.dp))
-                                RichText(value.markdown, Modifier.fillMaxWidth())
+                                if (value.blocks != null)
+                                    TeachingBlocks(
+                                        value.blocks,
+                                        Modifier.fillMaxWidth(),
+                                        source = "section:${value.id}",
+                                    )
+                                else RichText(value.markdown, Modifier.fillMaxWidth())
                             }
                         is Question -> QuestionCard(model, value, onFocus)
                         is QuickCheck -> QuickCheckCard(value, "${lesson.slug}:${value.id}")
@@ -616,7 +668,13 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                         color = Ink,
                                         modifier = Modifier.padding(top = 14.dp, bottom = 20.dp),
                                     )
-                                    RichText(lesson.intro, Modifier.fillMaxWidth(), 18f)
+                                    if (lesson.introBlocks != null)
+                                        TeachingBlocks(
+                                            lesson.introBlocks,
+                                            Modifier.fillMaxWidth(),
+                                            source = "intro",
+                                        )
+                                    else RichText(lesson.intro, Modifier.fillMaxWidth(), 18f)
                                     Row(
                                         Modifier.padding(top = 23.dp),
                                         verticalAlignment = Alignment.CenterVertically,
@@ -720,21 +778,27 @@ private fun QuestionCard(model: NotebookModel, q: Question, onFocus: (Int) -> Un
 @Composable
 private fun Prompt(q: Question, compact: Boolean = false) {
     if (q.instructions.isNotBlank()) {
-        RichText(q.instructions, Modifier.fillMaxWidth(), if (compact) 14f else 15f)
+        RichText(
+            q.instructions,
+            Modifier.fillMaxWidth(),
+            if (compact) 14f else 15f,
+            source = "question:${q.id}:instructions",
+        )
         Spacer(Modifier.height(16.dp))
     }
-    RichText(q.prompt, Modifier.fillMaxWidth(), if (compact) 19f else 21f)
+    RichText(
+        q.prompt,
+        Modifier.fillMaxWidth(),
+        if (compact) 19f else 21f,
+        source = "question:${q.id}:prompt",
+    )
     if (q.math.isNotBlank()) {
         Spacer(Modifier.height(14.dp))
-        RichText("$$\n${q.math}\n$$", Modifier.fillMaxWidth(), 22f)
-    }
-    if (q.columns.isNotEmpty()) {
-        Spacer(Modifier.height(12.dp))
-        Text(
-            "Complete the table in the writing space. Use T before F in lexicographic row order.",
-            fontSize = 12.sp,
-            color = Muted,
-            lineHeight = 19.sp,
+        RichText(
+            "$$\n${q.math}\n$$",
+            Modifier.fillMaxWidth(),
+            22f,
+            source = "question:${q.id}:math",
         )
     }
 }
@@ -749,9 +813,9 @@ private fun PaperCanvas(
     Column {
         if (q.columns.isNotEmpty())
             Row(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 12.dp)) {
-                q.columns.forEach { col ->
+                q.columns.forEachIndexed { index, col ->
                     Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
-                        RichText("$$$col$$", size = 15f)
+                        RichText("$$$col$$", size = 15f, source = "question:${q.id}:column:$index")
                     }
                 }
             }
@@ -849,7 +913,7 @@ private fun Answer(q: Question, modifier: Modifier = Modifier) {
             ) {
                 Label("ANSWER")
                 Spacer(Modifier.height(12.dp))
-                RichText(q.answer, Modifier.fillMaxWidth(), 17f)
+                RichText(q.answer, Modifier.fillMaxWidth(), 17f, source = "question:${q.id}:answer")
             }
     }
 }
@@ -1036,7 +1100,12 @@ private fun PracticePrompt(q: Question, modifier: Modifier) {
                 if (revealed) {
                     Label("ANSWER")
                     Spacer(Modifier.height(14.dp))
-                    RichText(q.answer, Modifier.fillMaxWidth(), 19f)
+                    RichText(
+                        q.answer,
+                        Modifier.fillMaxWidth(),
+                        19f,
+                        source = "question:${q.id}:answer",
+                    )
                     HorizontalDivider(Modifier.padding(vertical = 24.dp), color = Line)
                 }
                 Prompt(q)

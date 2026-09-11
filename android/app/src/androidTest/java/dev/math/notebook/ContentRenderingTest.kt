@@ -64,6 +64,27 @@ class ContentRenderingTest {
         assertEquals(15, lessons.length())
         assertEquals(1313, count)
         assertEquals(30, quickCount)
+        val teaching = TeachingLibrary(context)
+        for (figure in teaching.figures.values) {
+            collect(figure.getString("creation"))
+            collect(figure.getString("limitations"))
+            val labels = figure.getJSONObject("mathLabels")
+            labels.keys().forEach { math.add(labels.getString(it)) }
+            val frames = figure.getJSONArray("frames")
+            for (i in 0 until frames.length()) collect(frames.getJSONObject(i).getString("text"))
+        }
+        for (entry in teaching.entries) listOf(
+                entry.quick,
+                entry.definition,
+                entry.example,
+                entry.confusion,
+            )
+            .forEach(::collect)
+        for (formula in teaching.formulas.values) {
+            math.add(formula.getString("latex"))
+            val bindings = formula.getJSONArray("bindings")
+            for (i in 0 until bindings.length()) math.add(bindings.getJSONObject(i).getString("symbol"))
+        }
         val failures = mutableListOf<String>()
         for (formula in math) try {
             JLatexMathDrawable.builder(formula).textSize(40f).build()

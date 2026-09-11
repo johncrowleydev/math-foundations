@@ -10,7 +10,9 @@
     "content": "tsx scripts/build-android-content.ts",
     "test": "tsx --test scripts/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "pretest": "npm run audit:curriculum",
+    "audit:curriculum": "npm run content && tsx scripts/curriculum-inventory.ts"
   },
   "dependencies": {
     "katex": "^0.18.7",

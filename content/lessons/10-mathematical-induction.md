@@ -12,7 +12,7 @@ Picture a row of dominoes in which each falling domino is guaranteed to knock ov
 
 This method, which advances from one integer to the next, is called **ordinary induction**.
 
-Let $P(n)$ be a statement for each integer $n\geq n_0$. To prove that $P(n)$ holds for all such $n$, establish:
+Fix an integer starting index $n_0$, read “n sub zero.” Let $P(n)$ be a statement for each integer $n\geq n_0$. To prove that $P(n)$ holds for all such $n$, establish:
 
 1. **Base case:** $P(n_0)$ is true.
 2. **Inductive step:** for every integer $k\geq n_0$, if $P(k)$ is true, then $P(k+1)$ is true.
@@ -21,7 +21,9 @@ The temporary assumption $P(k)$ is the **induction hypothesis**. After proving t
 
 The base supplies $P(n_0)$. The step then supplies $P(n_0+1)$, then $P(n_0+2)$, and so on. For any particular integer at or beyond the starting point, finitely many applications reach it.
 
-This argument depends on the discrete order of the integers. There is no “next real number” after 0, so the same principle cannot cover a real interval by incrementing one unit at a time.
+This argument depends on the **discrete** order of the integers: each integer has an immediate successor, the next integer, one unit larger. There is no “next real number” after 0, so the same principle cannot cover a real interval by incrementing one unit at a time.
+
+![A base and a repeatable implication](figure:induction-chain)
 
 ## Why the hypothesis is not circular
 
@@ -203,13 +205,13 @@ $$
 u_n=2^n-1\quad\text{and}\quad v_n=2^n
 $$
 
-instead. Both formulas hold at 0. Assuming both at $k$ gives $u_{k+1}=(2^k-1)+2^k=2^{k+1}-1$ and $v_{k+1}=2\cdot2^k=2^{k+1}$. Ordinary induction can prove a conjunction just as it can prove a single equation.
+instead. Both formulas hold at 0. Assuming both at $k$ gives $u_{k+1}=(2^k-1)+2^k=2^{k+1}-1$ and $v_{k+1}=2\cdot2^k=2^{k+1}$. Proving these linked claims together is called **simultaneous induction**. Ordinary induction can prove a conjunction just as it can prove a single equation.
 
 ## Induction and repeated computation
 
-A loop repeatedly changes a state, such as the value stored in a running total. Instead of checking only the final output, we can describe what that state means after any number of iterations. If initialization establishes the description and each update preserves it, induction carries the description through the entire computation.
+A program's **[state](ref:program-state)** consists of its currently stored values. A loop repeatedly changes a state, such as the value stored in a running total. Instead of checking only the final output, we can describe what that state means after any number of iterations. If initialization establishes the description and each update preserves it, induction carries the description through the entire computation.
 
-An iterative program often performs one state change per iteration. Induction can prove a **loop invariant**, a property that holds after each allowed number of iterations.
+An **iterative** program works by repetition. It often performs one state change per iteration. Induction can prove a **loop invariant**, a property that holds after each allowed number of iterations.
 
 Consider this integer computation for an input $N\geq0$:
 
@@ -225,9 +227,9 @@ $$
 \text{total}=\sum_{i=1}^{k}i=\frac{k(k+1)}2.
 $$
 
-At $k=0$, the initialized total is the empty sum 0. If the invariant holds after $k<N$ iterations, adding $k+1$ establishes it after $k+1$. At termination, $k=N$, so the output is $N(N+1)/2$.
+At $k=0$, the initialized total is the empty sum 0. If the invariant holds after $k<N$ iterations, adding $k+1$ establishes it after $k+1$. At **termination**, when the loop has stopped, $k=N$, so the output is $N(N+1)/2$.
 
-This proof uses exact integer arithmetic. An implementation with bounded machine integers needs a separate guarantee against overflow. Mathematical correctness of an algorithm and correctness under a particular numeric representation are related but distinct obligations.
+This proof uses exact integer arithmetic. An implementation with bounded machine integers needs a separate guarantee against **overflow**, which occurs when a computed value falls outside the range its storage format can represent. Mathematical correctness of an algorithm and correctness under a particular numeric representation are related but distinct obligations.
 
 ## Common invalid induction arguments
 

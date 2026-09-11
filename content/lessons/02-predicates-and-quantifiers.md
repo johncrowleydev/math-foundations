@@ -14,7 +14,7 @@ The goal is to read a quantified statement, explain exactly what it promises, an
 
 ## Domains come first
 
-“There is a solution” sounds complete until someone asks what counts as an allowed answer. If we are assigning whole seats on a bus, half a seat will not do; if we are measuring a length, fractions may be perfectly appropriate. Specifying the domain gives a mathematical statement this missing context. It is part of the claim, not a technical detail to add afterward.
+“There is a solution” sounds complete until someone asks what counts as an allowed answer. If we are assigning whole seats on a bus, half a seat will not do; if we are measuring a length, fractions may be perfectly appropriate. Specifying the **domain**, the collection of allowed objects, gives a mathematical statement this missing context. It is part of the claim, not a technical detail to add afterward.
 
 A **domain**, or universe of discourse, is the collection of objects a variable is allowed to represent. The same expression can give different mathematical claims over different domains.
 
@@ -49,11 +49,13 @@ $$
 P(x):\quad x>5.
 $$
 
+Here $P$ names the predicate, $x$ is its input, and the colon means “is defined by.” Read $P(x)$ aloud as “P of x,” or use its meaning: “x is greater than five.”
+
 $P(x)$ is not a complete proposition while $x$ is unspecified. But substituting a particular integer gives one:
 
 Substituting 8 produces the proposition $8>5$, so $P(8)$ is true. Substituting 5 gives $5>5$, which is false because the inequality is strict. Substituting $-2$ also gives a false proposition. In each case we use the same condition; changing the input changes the statement being tested.
 
-Predicates can have several arguments. For integers $x,y$, define
+An **argument of a predicate** is an input supplied to it; this use of “argument” differs from a logical argument made of premises and a conclusion. Predicates can have several arguments. For integers $x,y$, define
 
 $$
 R(x,y):\quad x<y.
@@ -127,7 +129,7 @@ $$
 \exists n\in\mathbb{Z},\ n^2=9
 $$
 
-is true. Either $n=3$ or $n=-3$ is a witness. An existential statement does not claim that its witness is unique.
+is true. Either $n=3$ or $n=-3$ is a witness. An existential statement allows more than one witness; it promises at least one, not exactly one.
 
 To disprove an existential claim, showing that one candidate fails is not enough. You must show that every candidate fails. For example,
 
@@ -145,6 +147,8 @@ $$
 P(a)\lor P(b)\lor P(c).
 $$
 
+![A finite-domain witness](figure:quantifier-witness)
+
 These two quantifiers have opposite proof obligations:
 
 | Claim             | To establish it              | To refute it                  |
@@ -156,7 +160,9 @@ These two quantifiers have opposite proof obligations:
 
 When a sentence contains several variables, we need to know which instruction controls each one. The scope of a quantifier is the portion of the formula to which its “for every” or “there exists” applies. Parentheses play the role of boundaries. A repeated letter outside that boundary does not automatically become part of the quantified statement.
 
-A quantifier binds occurrences of its variable **within its scope**. Parentheses make that scope visible.
+A quantifier **binds** an occurrence of its variable when it controls the values that occurrence ranges over. Only occurrences **within its scope** are bound by that quantifier. Parentheses make that scope visible.
+
+An **arbitrary** choice has no extra restrictions beyond those explicitly stated; the reasoning must work for any permitted choice. Here $P$ and $Q$ stand for arbitrary one-input predicates on the same domain, and $R$ stands for an arbitrary two-input predicate. We are studying how variables are controlled, so no particular property is assumed for these predicates.
 
 In
 
@@ -178,7 +184,7 @@ $$
 (\forall t\,P(t))\land Q(x).
 $$
 
-A bound variable is a placeholder, so it can be renamed consistently without changing the statement, provided the renaming does not change which quantifier binds any occurrence. Choosing a fresh name not already used anywhere in the formula avoids both capturing free variables and collisions with nested quantifiers. For example,
+A bound variable is a placeholder, so it can be renamed consistently without changing the statement, provided the renaming does not change which quantifier binds any occurrence. Choosing a fresh name not already used anywhere in the formula avoids accidentally putting a formerly free occurrence under a quantifier, a mistake called **variable capture**. It also avoids giving an inner and an outer quantifier the same variable name. For example,
 
 $$
 \forall x\,P(x)\equiv\forall t\,P(t).
@@ -287,7 +293,9 @@ $$
 \exists x\exists y\,R(x,y)\equiv\exists y\exists x\,R(x,y).
 $$
 
-Mixed quantifiers generally cannot.
+Mixed quantifiers generally cannot. In a two-input truth table, each row fixes the first input and each column fixes the second. A cell records the truth of the predicate at that combination. This makes the different demands visible:
+
+![Comparing two quantifier orders](figure:quantifier-order)
 
 ## Relationships in ordinary language
 
@@ -367,7 +375,7 @@ This describes a particular $P$-object with no related $y$ at all.
 
 ## Existence, uniqueness, and exactly one
 
-"There is exactly one" combines two claims: **at least one exists** and **at most one exists**.
+**Uniqueness** means that at most one object satisfies the condition: two distinct solutions are not allowed. "There is exactly one" combines this with **existence**, the claim that at least one solution is present.
 
 Think of a system that promises exactly one assigned seat per passenger. An unassigned passenger violates existence; a passenger with two distinct assigned seats violates uniqueness. Preventing double assignments does not by itself guarantee that everyone gets a seat. A mathematical proof of “exactly one” must close both gaps.
 
@@ -413,7 +421,7 @@ is true if no domain element satisfies $P$. This is **vacuous truth**.
 
 For example, "Every file larger than 1 GB is archived" is true if there are no files larger than 1 GB. It does not claim that a large file exists.
 
-If we explicitly allow an empty domain $D=\varnothing$, then
+An **empty domain** contains no objects. The symbol $\varnothing$, read “the empty set,” names the collection with no elements. If we explicitly allow an empty domain $D=\varnothing$, then
 
 $$
 \forall x\in D,\ P(x)
@@ -529,7 +537,7 @@ When drafting your own proof, it can help to write those roles in words before f
 
 Quantifiers are useful outside a mathematics exercise because they force a requirement to say precisely what success means. A software check can inspect a finite list, while a mathematical specification can describe all inputs the program is intended to handle. Keeping these two jobs separate prevents a successful test run from being mistaken for a proof of universal correctness.
 
-For a finite list, universal and existential checks correspond to familiar operations:
+A JavaScript **array** stores a finite list of values. Its **methods** are named operations on that list: `every` tests whether all listed values pass a condition, while `some` tests whether at least one passes. Here `values` names the list. The expression `(x) => x > 0` supplies the test “given x, return whether x is positive”; this programming arrow defines a test, rather than a logical implication. `const` gives a name to the result, and a semicolon ends an instruction. You can read the example without needing to write JavaScript:
 
 ```ts
 const everyPositive = values.every((x) => x > 0);
@@ -538,7 +546,7 @@ const somePositive = values.some((x) => x > 0);
 
 On an empty list, `every` returns true and `some` returns false, matching the empty-domain conventions above. These checks quantify over the elements actually in the list. Checking a finite sample of integers is not a proof about all integers.
 
-Suppose $A(r,w)$ means "worker $w$ is assigned to request $r$." Then
+Let $R$ be the domain of requests and $W$ the domain of workers; $r$ and $w$ range over those respective domains. Suppose $A(r,w)$ means "worker $w$ is assigned to request $r$." Then
 
 $$
 \forall r\in R,\ \exists w\in W,\ A(r,w)

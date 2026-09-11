@@ -42,7 +42,7 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
             color = Color(0xff266655),
         )
         Spacer(Modifier.height(16.dp))
-        RichText(check.prompt, Modifier.fillMaxWidth(), 18f)
+        RichText(check.prompt, Modifier.fillMaxWidth(), 18f, source = "quick:${check.id}:prompt")
         Column(
             Modifier.fillMaxWidth().padding(top = 16.dp).selectableGroup(),
             verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -74,6 +74,21 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
                 }
             }
         }
+        val references = LocalReferences.current
+        if (references != null)
+            TextButton(
+                onClick = {
+                    references.studyTexts =
+                        listOf("quick:${check.id}:prompt" to check.prompt) +
+                            check.options.mapIndexed { i, option ->
+                                "quick:${check.id}:option:$i" to option
+                            }
+                    references.full = true
+                    references.open("question-reference")
+                }
+            ) {
+                Text("References for this question")
+            }
         TextButton(
             onClick = {
                 revealed = !revealed
@@ -85,9 +100,19 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
         }
         if (revealed) {
             Column(Modifier.fillMaxWidth().testTag("answer:$storageKey").padding(top = 8.dp)) {
-                RichText("**Answer:** ${check.options[check.answer]}", Modifier.fillMaxWidth(), 17f)
+                RichText(
+                    "**Answer:** ${check.options[check.answer]}",
+                    Modifier.fillMaxWidth(),
+                    17f,
+                    source = "quick:${check.id}:option:${check.answer}",
+                )
                 Spacer(Modifier.height(10.dp))
-                RichText(check.explanation, Modifier.fillMaxWidth(), 17f)
+                RichText(
+                    check.explanation,
+                    Modifier.fillMaxWidth(),
+                    17f,
+                    source = "quick:${check.id}:explanation",
+                )
             }
         }
     }

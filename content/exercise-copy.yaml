@@ -77,67 +77,67 @@ propositional-logic:
   '15':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=T$. Show the intermediate truth values.
-    answer: T.
+    answer: $\neg p=F$, so $\neg p\lor q=F\lor T=T$.
   '16':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$. Show the intermediate truth values.
-    answer: T.
+    answer: $\neg q=T$, so $p\land\neg q=T\land T=T$.
   '17':
     instructions: ''
     prompt: Evaluate the formula for $p=F$, $q=T$. Show the intermediate truth values.
-    answer: F.
+    answer: $\neg q=F$, so $p\lor\neg q=F\lor F=F$.
   '18':
     instructions: ''
     prompt: Evaluate the formula for $p=F$, $q=F$. Show the intermediate truth values.
-    answer: T.
+    answer: $p\land q=F$, so $\neg(p\land q)=T$.
   '19':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$. Show the intermediate truth values.
-    answer: F.
+    answer: 'F: the antecedent is true and the consequent is false, the only false implication case.'
   '20':
     instructions: ''
     prompt: Evaluate the formula for $p=F$, $q=T$. Show the intermediate truth values.
-    answer: T.
+    answer: 'T: the antecedent is false, so the IF–THEN promise is not violated.'
   '21':
     instructions: ''
     prompt: Evaluate the formula for $p=F$, $q=F$. Show the intermediate truth values.
-    answer: T.
+    answer: 'T: a false antecedent makes the implication true, including when its consequent is also false.'
   '22':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$. Show the intermediate truth values.
-    answer: T.
+    answer: "T: the antecedent is $q=F$, so $q\\to p$ is true."
   '23':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=T$. Show the intermediate truth values.
-    answer: T.
+    answer: 'T: the two truth values match.'
   '24':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$. Show the intermediate truth values.
-    answer: F.
+    answer: 'F: the two truth values differ.'
   '25':
     instructions: ''
     prompt: Evaluate the formula for $p=F$, $q=T$. Show the intermediate truth values.
-    answer: T.
+    answer: $\neg p=T$ and $p\lor q=T$, so their conjunction is T.
   '26':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$. Show the intermediate truth values.
-    answer: T.
+    answer: $p\to q=F$, so $\neg(p\to q)=T$ and $T\lor F=T$.
   '27':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$, $r=T$. Show the intermediate truth values.
-    answer: F.
+    answer: $p\land r=T$. The resulting implication $T\to F$ is F.
   '28':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$, $r=T$. Show the intermediate truth values.
-    answer: T.
+    answer: $\neg q=T$ and $p\lor r=T$, so the conjunction is T.
   '29':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$, $r=T$. Show the intermediate truth values.
-    answer: T.
+    answer: $p\to q=F$ and $q\to r=T$, so their disjunction is T.
   '30':
     instructions: ''
     prompt: Evaluate the formula for $p=T$, $q=F$, $r=T$. Show the intermediate truth values.
-    answer: T.
+    answer: $p\leftrightarrow r=T$ and $\neg q=T$, so the conjunction is T.
   '31':
     instructions: ''
     prompt: |-
@@ -191,27 +191,27 @@ propositional-logic:
     answer: "No. Set $p=F$, $q=T$: $p\\to q$ is true, but $q\\to p$ is false."
   '40':
     instructions: ''
-    prompt: Complete the truth table, including the variable columns, in the row order shown.
+    prompt: Complete the truth table, including the input columns. Use the input row order TT, TF, FT, FF.
     answer: "For $\\neg p$: F, F, T, T. Final column: T, F, T, T."
   '41':
     instructions: ''
-    prompt: Complete the truth table, including the variable columns, in the row order shown.
+    prompt: Complete the truth table, including the input columns. Use the input row order TT, TF, FT, FF.
     answer: "For $p\\land q$: T, F, F, F. Final column: F, T, T, T."
   '42':
     instructions: ''
-    prompt: Complete the truth table, including the variable columns, in the row order shown. Compare the final columns.
+    prompt: Complete the truth table, including the input columns. Use the input row order TT, TF, FT, FF. Compare the final columns.
     answer: "For $p\\to q$: T, F, T, T. For $q\\to p$: T, T, F, T."
   '43':
     instructions: ''
-    prompt: Complete the truth table, including the variable columns, in the row order shown.
+    prompt: Complete the truth table, including the input columns. Use the input row order TT, TF, FT, FF.
     answer: 'Final column: T, F, F, T.'
   '44':
     instructions: ''
-    prompt: Complete the truth table, including the variable columns, in the row order shown. Compare the final columns.
+    prompt: Complete the truth table, including the input columns. Use the input row order TT, TF, FT, FF. Compare the final columns.
     answer: 'Both final columns: T, F, T, T.'
   '45':
     instructions: ''
-    prompt: Complete the truth table, including the variable columns, in the row order shown.
+    prompt: Complete the truth table, including the input columns. Use the input row order TTT, TTF, TFT, TFF, FTT, FTF, FFT, FFF.
     answer: "For $p\\land q$: T, T, F, F, F, F, F, F. Final column: T, F, T, T, T, T, T, T."
   '46':
     instructions: ''
@@ -348,7 +348,7 @@ propositional-logic:
   '79':
     instructions: ''
     prompt: Does this mean exactly one of $p$ and $q$ is true? Explain.
-    answer: Yes. The first clause requires at least one true; the second excludes both being true.
+    answer: Yes. The first part requires at least one true; the second excludes both being true.
   '80':
     instructions: ''
     prompt: Rewrite using only NOT, AND, and OR.
@@ -572,7 +572,7 @@ propositional-logic:
   '135':
     instructions: ''
     prompt: Is this formula satisfiable? Give a satisfying assignment if one exists, or explain why none can exist.
-    answer: Unsatisfiable. The first clause needs one true, but the other clauses require both false.
+    answer: Unsatisfiable. The first part needs one true, but the other parts require both false.
   '136':
     instructions: ''
     prompt: Is every tautology satisfiable? Explain.
@@ -627,7 +627,7 @@ propositional-logic:
   '148':
     instructions: ''
     prompt: Determine validity; explain.
-    answer: Valid by cases. The premise $p\lor q$ makes at least one of $p,q$ true. If $p$ is true, $p\to r$ forces $r$; if $q$ is true, $q\to r$ forces $r$. Thus all premises cannot be true with a false conclusion.
+    answer: Valid. Consider each alternative separately. The premise $p\lor q$ makes at least one of $p,q$ true. If $p$ is true, $p\to r$ forces $r$; if $q$ is true, $q\to r$ forces $r$. Thus all premises cannot be true with a false conclusion.
   '149':
     instructions: ''
     prompt: Simplify as far as possible.
@@ -852,7 +852,7 @@ predicates-and-quantifiers:
     prompt: Rewrite the formula with negations applied only to individual predicates or comparisons. Keep the domain and variable order unchanged.
     answer: $\exists n\,(n\leq0)$.
   '44':
-    instructions: The variable $n$ ranges over the integers.
+    instructions: The variable $n$ ranges over the integers, and $P$ is an arbitrary predicate on the integers.
     prompt: Rewrite the formula with negations applied only to individual predicates or comparisons. Keep the domain and variable order unchanged.
     answer: $\forall n\,(n\geq0\lor\neg P(n))$.
   '45':
@@ -918,7 +918,7 @@ predicates-and-quantifiers:
   '60':
     instructions: The predicates have arbitrary meanings on a nonempty domain.
     prompt: May you swap two adjacent universal quantifiers? Two adjacent existential quantifiers? Explain.
-    answer: Yes in both cases. The universal statement covers all ordered pairs; the existential statement asks for some ordered pair. Changing search order does not change either claim.
+    answer: Yes in both cases. The universal statement checks every choice of the two inputs; the existential statement asks for at least one choice of the two inputs. Exchanging which input is considered first does not change either claim.
   '61':
     instructions: ''
     prompt: Determine truth over $\mathbb{Z}$, then over $\mathbb{R}$.
@@ -1110,7 +1110,7 @@ predicates-and-quantifiers:
   '108':
     instructions: Let $D=\{a,b,c\}$, with three distinct objects. The true cases are exactly $R(a,a)$, $R(a,b)$, $R(b,c)$, and $R(c,b)$; all other choices of inputs make $R$ false.
     prompt: Is this statement true or false? Explain your answer.
-    answer: 'True: $x=a$ is a witness. The other two diagonal entries are false.'
+    answer: 'True: $x=a$ is a witness because $R(a,a)$ is true. The other same-input cases, $R(b,b)$ and $R(c,c)$, are false.'
   '109':
     instructions: Let $D=\{a,b,c\}$, with three distinct objects. The true cases are exactly $R(a,a)$, $R(a,b)$, $R(b,c)$, and $R(c,b)$; all other choices of inputs make $R$ false.
     prompt: Is this statement true or false? Explain your answer.
@@ -1118,7 +1118,7 @@ predicates-and-quantifiers:
   '110':
     instructions: Let $D=\{a,b,c\}$, with three distinct objects. The true cases are exactly $R(a,a)$, $R(a,b)$, $R(b,c)$, and $R(c,b)$; all other choices of inputs make $R$ false.
     prompt: Is this statement true or false? Explain your answer.
-    answer: True. Use $a\mapsto b$, $b\mapsto c$, and $c\mapsto b$ as the distinct witnesses.
+    answer: True. When $x=a$, choose $y=b$; when $x=b$, choose $y=c$; when $x=c$, choose $y=b$. Each choice is different from its input and makes $R(x,y)$ true.
   '111':
     instructions: ''
     prompt: Prove that every integer has a larger integer.
@@ -1628,7 +1628,7 @@ relations:
   '37':
     instructions: ''
     prompt: Partition $\{0,1,2,3,4,5,6,7\}$ by congruence modulo 3.
-    answer: The blocks are $\{0,3,6\}$, $\{1,4,7\}$, and $\{2,5\}$. They are nonempty, disjoint, and cover the set.
+    answer: The blocks are $\{0,3,6\}$, $\{1,4,7\}$, and $\{2,5\}$. They are nonempty, share no elements, and together contain the whole set.
   '38':
     instructions: ''
     prompt: On finite binary strings, define equivalence by equal length. Describe the class of the string 01.
@@ -1700,7 +1700,7 @@ relations:
   '55':
     instructions: ''
     prompt: On $\{1,2\}$, let $R=\{(1,2),(2,1)\}$. Find $R\circ R$.
-    answer: $\{(1,1),(2,2)\}$. Each two-step path returns to its starting object.
+    answer: $\{(1,1),(2,2)\}$. Each two-step walk returns to its starting object.
   '56':
     instructions: ''
     prompt: Let $R\subseteq A\times B$ and let $I_B$ be equality on $B$. Prove $I_B\circ R=R$.
@@ -2303,7 +2303,7 @@ sequences-and-summations:
   '40':
     instructions: All indices are integers.
     prompt: Why does a finite geometric-sum derivation alone not justify assigning a value to an infinite series?
-    answer: It evaluates only a specified finite number of terms. Passing to infinitely many terms needs an additional definition and a convergence argument, neither supplied by the finite cancellation.
+    answer: The calculation evaluates only finitely many terms. An infinite sum requires a definition and a proof that the finite partial sums approach a particular real value; finite cancellation alone provides neither.
   '41':
     instructions: All indices are integers.
     prompt: Reindex $\sum_{k=3}^{7}(k+2)$ using $j=k-3$, and evaluate.
@@ -2322,7 +2322,7 @@ sequences-and-summations:
     answer: The interior squares cancel, leaving $6^2-1^2=35$.
   '45':
     instructions: Let $m\leq n$ be integers, and let the real values $b_m,\ldots,b_{n+1}$ be defined.
-    prompt: For integers $m\leq n$, simplify $\sum_{k=m}^{n}(b_{k+1}-b_k)$.
+    prompt: Simplify $\sum_{k=m}^{n}(b_{k+1}-b_k)$.
     answer: $b_{n+1}-b_m$. Every intermediate value appears once with each sign.
   '46':
     instructions: All indices are integers.
@@ -2423,7 +2423,7 @@ sequences-and-summations:
   '70':
     instructions: All indices are integers.
     prompt: For $n\geq1$, give simple bounds on $\sum_{k=1}^{n}1/k$ using the smallest and largest terms.
-    answer: Each term lies between $1/n$ and 1, so the sum lies between 1 and $n$. These are valid finite bounds, though not usually sharp.
+    answer: Each term lies between $1/n$ and 1, so the sum lies between 1 and $n$. These are valid finite bounds, though a more detailed argument can often give tighter bounds.
   '71':
     instructions: All indices are integers.
     prompt: A loop uses outer indices $i=0,\ldots,n-1$ and inner indices $j=0,\ldots,i-1$, adding 1 each time. For integer $n\geq0$, find the total.
@@ -2716,7 +2716,7 @@ direct-proof:
   '63':
     instructions: ''
     prompt: A proof claims $n^2=2k$ implies $n=2\sqrt{k/2}$ and hence evenness. What is missing?
-    answer: "There are two gaps. Taking the positive square root loses negative solutions: $n=-2,k=2$ satisfies $n^2=2k$ but not the claimed equation for $n$. Even for $n\\geq0$, the argument does not show that $\\sqrt{k/2}$ is an integer, as the evenness definition requires. A valid proof shows odd integer inputs have odd squares and uses contraposition."
+    answer: "There are two gaps. Taking the positive square root loses negative solutions: $n=-2,k=2$ satisfies $n^2=2k$ but not the claimed equation for $n$. Even for $n\\geq0$, the argument does not show that $\\sqrt{k/2}$ is an integer, as the evenness definition requires. This attempted proof therefore does not establish the claim."
   '64':
     instructions: ''
     prompt: A proof of rational addition omits the denominator check. Complete it.
@@ -2743,7 +2743,7 @@ direct-proof:
     answer: It proves at most one solution, which also allows zero solutions. To claim exactly one, separately exhibit a solution or otherwise prove existence.
   '70':
     instructions: ''
-    prompt: A proposed counterexample to even $n\to4\mid n$ chooses $n=3$. Repair it.
+    prompt: Someone claims that every even integer is divisible by 4 and proposes $n=3$ as a counterexample. Explain why this fails, and give a valid counterexample.
     answer: 'The hypothesis is false at 3, so it is not a counterexample. Choose 6: it is even but leaves remainder 2 on division by 4.'
   '71':
     instructions: ''
@@ -2851,15 +2851,15 @@ proof-by-contrapositive:
     prompt: 'Give the contrapositive of: for integers $a,b$, if $ab$ is even, at least one of $a,b$ is even. Push negations inward so that none applies to a compound statement.'
     answer: If both $a$ and $b$ are odd, then $ab$ is odd. Both odd factors are needed; assuming only one does not negate the conclusion.
   '17':
-    instructions: ''
+    instructions: 'Let $A$ be a proposition and $R(c,x)$ a predicate of two real numbers.'
     prompt: For a fixed real $c$, give the contrapositive of $A\to\forall x\in\mathbb R,\ R(c,x)$. Push negations inward so that none applies to a compound statement.
     answer: If $\exists x\in\mathbb R,\neg R(c,x)$, then $\neg A$. The negation of the universal conclusion supplies one failing witness.
   '18':
-    instructions: ''
+    instructions: 'Let $D$ be a domain, $P(x)$ a predicate on $D$, and $Q$ a proposition.'
     prompt: Give the contrapositive of $(\exists x\in D\,P(x))\to Q$. Push negations inward so that none applies to a compound statement.
     answer: $\neg Q\to\forall x\in D,\neg P(x)$. Negating existence says that every allowed candidate fails.
   '19':
-    instructions: ''
+    instructions: 'Let $A$ be a proposition, let $D,E$ be domains, and let $R(x,y)$ be a predicate for $x\in D$ and $y\in E$.'
     prompt: Give the contrapositive of $A\to\forall x\in D\exists y\in E\,R(x,y)$. Push negations inward so that none applies to a compound statement.
     answer: If $\exists x\in D\forall y\in E,\neg R(x,y)$, then $\neg A$. Quantifier order is retained while each quantifier switches kind.
   '20':
@@ -3059,7 +3059,7 @@ proof-by-contrapositive:
     prompt: A proof concludes that the original theorem is false because its attempted contrapositive proof stalled. Is this justified?
     answer: No. An unsuccessful proof attempt is not a counterexample. Falsity requires an allowed input making the original hypothesis true and conclusion false, or another valid refutation.
   '69':
-    instructions: ''
+    instructions: 'Let $A$ be a proposition and $P(x)$ a predicate on a fixed domain. Both quantifiers range over that same domain.'
     prompt: A proposed contrapositive of $A\to\exists xP(x)$ is $(\exists x\neg P(x))\to\neg A$. Repair it.
     answer: The correct form is $(\forall x\neg P(x))\to\neg A$. One failed candidate does not negate existence of a successful candidate.
   '70':
@@ -3216,7 +3216,7 @@ proof-by-contradiction:
     prompt: Prove $\sqrt8$ is irrational, using irrationality of $\sqrt2$.
     answer: Since $\sqrt8=2\sqrt2$, suppose $\sqrt8=r$ were rational. Then $\sqrt2=r/2$ would be rational by nonzero rational division, contradicting the established irrationality.
   '28':
-    instructions: ''
+    instructions: 'You may use the facts that $\sqrt2$, $\sqrt3$, and $\sqrt6$ are irrational.'
     prompt: Prove $\sqrt{12}$ is irrational, using irrationality of $\sqrt3$.
     answer: We have $\sqrt{12}=2\sqrt3$. If it equaled rational $r$, then $\sqrt3=r/2$ would be rational, contradicting irrationality of $\sqrt3$.
   '29':
@@ -3252,11 +3252,11 @@ proof-by-contradiction:
     prompt: Prove $5-2\sqrt2$ irrational.
     answer: If $5-2\sqrt2=r$ were rational, then $\sqrt2=(5-r)/2$ would be rational by closure, contradicting its established irrationality.
   '37':
-    instructions: ''
+    instructions: 'You may use the facts that $\sqrt2$, $\sqrt3$, and $\sqrt6$ are irrational.'
     prompt: Prove that $\sqrt2+\sqrt3$ is irrational, using irrationality of $\sqrt6$.
     answer: Suppose its value $r$ is rational. Squaring gives $r^2=5+2\sqrt6$, hence $\sqrt6=(r^2-5)/2$ is rational, a contradiction.
   '38':
-    instructions: ''
+    instructions: 'You may use the facts that $\sqrt2$, $\sqrt3$, and $\sqrt6$ are irrational.'
     prompt: Prove that $\sqrt3-\sqrt2$ is irrational, using irrationality of $\sqrt6$.
     answer: Suppose its value $r$ is rational. Then $r^2=5-2\sqrt6$, so $\sqrt6=(5-r^2)/2$ is rational, contradicting the stated fact.
   '39':
@@ -3264,7 +3264,7 @@ proof-by-contradiction:
     prompt: Give irrational numbers whose sum is rational, and justify each input's irrationality.
     answer: Use $\sqrt2$ and $-\sqrt2$, summing to 0. The first is established irrational; if the second were rational, its negative $\sqrt2$ would be rational too, a contradiction.
   '40':
-    instructions: ''
+    instructions: 'You may use the facts that $\sqrt2$, $\sqrt3$, and $\sqrt6$ are irrational.'
     prompt: Give irrational numbers whose product is rational and irrational numbers whose product is irrational.
     answer: $\sqrt2\cdot\sqrt2=2$ is rational. $\sqrt2\cdot\sqrt3=\sqrt6$ is irrational by the established square-root results. All inputs in both examples are irrational.
   '41':
@@ -3278,7 +3278,7 @@ proof-by-contradiction:
   '43':
     instructions: ''
     prompt: Distinguish the claims that every integer greater than 1 has a prime divisor and that every such integer is prime.
-    answer: 'The first allows composite numbers: 12 has prime divisors 2 and 3. The second is false because 12 also has proper nontrivial divisors. A prime divisor need not equal the original integer.'
+    answer: 'The first allows composite numbers: 12 has prime divisors 2 and 3. The second is false because 12 has positive divisors other than 1 and itself. A prime divisor need not equal the original integer.'
   '44':
     instructions: ''
     prompt: If $p_1,\ldots,p_k$ were all primes, why does $N=p_1\cdots p_k+1$ exceed 1?
@@ -3382,7 +3382,7 @@ proof-by-contradiction:
   '69':
     instructions: ''
     prompt: A proof negates every request has a worker as no request has a worker. Repair the assumption.
-    answer: "The negation is that at least one request has no worker: $\\exists r\\forall w\\neg A(r,w)$. The proposed assumption is stronger and may fail even when the original claim is false."
+    answer: "The negation is that at least one request has no worker. Write $A(r,w)$ for “worker $w$ is assigned to request $r$,” with $r$ ranging over requests and $w$ over workers. Then the negation is $\\exists r\\forall w\\neg A(r,w)$. The proposed assumption is stronger and may fail even when the original claim is false."
   '70':
     instructions: ''
     prompt: A uniqueness argument proves two solutions equal, then concludes there are no solutions. Explain.
@@ -3406,7 +3406,7 @@ proof-by-contradiction:
   '75':
     instructions: ''
     prompt: Prove that if $A\subseteq B$ and $B\subseteq A$, then $A=B$, by ruling out inequality.
-    answer: Suppose $A\ne B$. By set extensionality, some element belongs to exactly one set. If in $A$ only, $A\subseteq B$ is violated; if in $B$ only, $B\subseteq A$ is violated. Both cases contradict the hypotheses.
+    answer: Suppose $A\ne B$. By the definition of set equality, some element belongs to exactly one set. If in $A$ only, $A\subseteq B$ is violated; if in $B$ only, $B\subseteq A$ is violated. Both cases contradict the hypotheses.
   '76':
     instructions: ''
     prompt: Prove that if $f:A\to B$ has a left inverse $g:B\to A$ with $g(f(a))=a$, then $f$ is injective.
@@ -3426,7 +3426,7 @@ proof-by-contradiction:
   '80':
     instructions: ''
     prompt: Prove that a strictly increasing function $f:\mathbb R\to\mathbb R$ is injective. Strictly increasing means $a<b\to f(a)<f(b)$.
-    answer: Suppose distinct real $a,b$ have equal outputs. By real trichotomy, either $a<b$ or $b<a$. Strict increase gives respectively $f(a)<f(b)$ or $f(b)<f(a)$, each contradicting output equality. Therefore no collision exists.
+    answer: Suppose distinct real $a,b$ have equal outputs. Since distinct real numbers can be ordered, either $a<b$ or $b<a$. Strict increase gives respectively $f(a)<f(b)$ or $f(b)<f(a)$, each contradicting output equality. Therefore no collision exists.
 mathematical-induction:
   '1':
     instructions: ''
@@ -3641,7 +3641,7 @@ mathematical-induction:
     prompt: A variable starts at 0 and after iteration $i$ adds $i$, for $i=1,\ldots,N$. Prove by induction its value after $k$ iterations is $k(k+1)/2$.
     answer: 'Base $k=0$: initialization gives 0. Assume the invariant after $k<N$ iterations. Adding $k+1$ gives $k(k+1)/2+k+1=(k+1)(k+2)/2$. Thus it holds through $N$, where the final value is $N(N+1)/2$.'
   '54':
-    instructions: Iteration counts are nonnegative integers, and arithmetic is exact. A finite limit $N$ may be zero.
+    instructions: Iteration counts are nonnegative integers, and arithmetic is exact.
     prompt: A variable starts at 1 and doubles once per iteration. Prove by induction its value after $k\geq0$ iterations is $2^k$.
     answer: 'Base 0: initialized 1 equals $2^0$. If the value after $k$ iterations is $2^k$, the next doubling gives $2^{k+1}$. Induction proves the invariant for every allowed iteration count.'
   '55':
@@ -3679,7 +3679,7 @@ mathematical-induction:
   '63':
     instructions: ''
     prompt: A proof uses $P(k-1)$ while stating only the ordinary hypothesis $P(k)$. How can it be repaired?
-    answer: Supply the extra earlier statement, for example by strong induction with enough bases or ordinary induction on a paired statement. It is not available from the stated hypothesis automatically.
+    answer: Supply the extra earlier statement, for example by ordinary induction on a paired statement with enough base cases. It is not available from the stated hypothesis automatically.
   '64':
     instructions: ''
     prompt: A claimed step works only for $k\geq4$, but the proof checks only $P(1)$. What is missing?
@@ -3804,7 +3804,7 @@ strong-induction:
   '14':
     instructions: ''
     prompt: Does the prime-factorization induction prove uniqueness of prime factors? Explain.
-    answer: No. It constructs at least one prime product. Comparing two products and proving their prime multisets equal requires an additional argument, commonly a prime-divides-product lemma.
+    answer: No. It constructs at least one prime product. Comparing two products and proving their prime factors and the number of occurrences of each prime equal requires an additional argument, commonly a prime-divides-product lemma.
   '15':
     instructions: ''
     prompt: Express 84 as a product of primes by repeatedly decomposing a composite factor into smaller factors. Show the decomposition.
@@ -4281,7 +4281,7 @@ combinatorics:
   '53':
     instructions: ''
     prompt: Place 37 objects into 8 boxes. What lower bound on the maximum occupancy is guaranteed, and can it be achieved?
-    answer: At least $\lceil37/8\rceil=5$. Occupancies $5,5,5,5,5,4,4,4$ achieve maximum 5, so the bound is sharp.
+    answer: At least $\lceil37/8\rceil=5$. Occupancies $5,5,5,5,5,4,4,4$ achieve maximum 5, so no larger guarantee is possible.
   '54':
     instructions: ''
     prompt: Prove that among any six integers, two have difference divisible by 5.
@@ -4344,7 +4344,7 @@ combinatorics:
     answer: '$5!=120$: order the outputs assigned to the five labeled domain elements.'
   '69':
     instructions: ''
-    prompt: A test uses one browser from 3 choices, one operating system from 4, and one of 2 modes. All combinations are supported. Count tests.
+    prompt: A test uses one browser from 3 choices, one operating system from 4, and one of 2 modes. Every browser/system/mode configuration is supported. How many tests are there?
     answer: $3\cdot4\cdot2=24$. One test records a choice in each of three independent categories.
   '70':
     instructions: ''
@@ -4461,7 +4461,7 @@ recurrence-relations:
     answer: $a_n=5+3(n-1)=3n+2$ for $n\geq1$. There are $n-1$ increments from index 1, not $n$.
   '18':
     instructions: Sequence indices are nonnegative integers; the recurrence applies for every integer $n\geq1$.
-    prompt: For $a_0=0$ and $a_n=a_{n-1}+n(n+1)$, express $a_n$ as a sum and simplify using standard square and arithmetic sums.
+    prompt: For $a_0=0$ and $a_n=a_{n-1}+n(n+1)$, express $a_n$ as a sum and simplify. You may use $\sum_{j=1}^n j^2=n(n+1)(2n+1)/6$ and $\sum_{j=1}^n j=n(n+1)/2$.
     answer: $a_n=\sum_{j=1}^n(j^2+j)=n(n+1)(2n+1)/6+n(n+1)/2=n(n+1)(n+2)/3$.
   '19':
     instructions: Sequence indices are nonnegative integers; the recurrence applies for every integer $n\geq1$.
@@ -4518,7 +4518,7 @@ recurrence-relations:
   '32':
     instructions: Sequence indices are nonnegative integers; the recurrence applies for every integer $n\geq1$.
     prompt: Solve $a_0=3$, $a_n=2a_{n-1}+2^n$.
-    answer: Normalization gives $b_0=3$ and $b_n=b_{n-1}+1$, so $a_n=(n+3)2^n$.
+    answer: Define $b_n=a_n/2^n$. Dividing the recurrence by $2^n$ gives $b_0=3$ and $b_n=b_{n-1}+1$. Thus $b_n=n+3$ and $a_n=(n+3)2^n$.
   '33':
     instructions: Sequence indices are nonnegative integers; the recurrence applies for every integer $n\geq1$.
     prompt: Solve $a_0=0$, $a_n=3a_{n-1}+3^n$.
@@ -4533,7 +4533,7 @@ recurrence-relations:
     answer: "$a_n=\\sum_{j=1}^n2^{n-j}3^j=3(3^n-2^n)$. Substitution verifies: $2\\cdot3(3^{n-1}-2^{n-1})+3^n=3^{n+1}-3\\cdot2^n$."
   '36':
     instructions: ''
-    prompt: Let F(n) count length-n binary strings with no adjacent 1s. Determine F(0), F(1), and a recurrence for n at least 2.
+    prompt: Let $F(n)$ count length-$n$ binary strings with no adjacent 1s, where $n$ is a nonnegative integer. Determine $F(0)$, $F(1)$, and a recurrence for $n\geq2$.
     answer: $F(0)=1$ for the empty string and $F(1)=2$. Valid strings begin with 0 followed by a valid shorter string, or 10 followed by one shorter by two. Thus $F(n)=F(n-1)+F(n-2)$.
   '37':
     instructions: ''
@@ -4541,12 +4541,12 @@ recurrence-relations:
     answer: $3,5,8,13,21$, starting from $F(0)=1,F(1)=2$.
   '38':
     instructions: ''
-    prompt: A staircase has n steps. Moves advance one or two steps. Count ordered ways to reach the top by giving initial conditions and a recurrence.
+    prompt: A staircase has $n$ steps, where $n$ is a nonnegative integer. Moves advance one or two steps. Count ordered ways to reach the top exactly by giving initial conditions and a recurrence.
     answer: Let $W(0)=1$ for the empty move sequence and $W(1)=1$. For $n\geq2$, the final move is 1 or 2 steps, giving disjoint cases $W(n)=W(n-1)+W(n-2)$.
   '39':
     instructions: ''
     prompt: A staircase has $n$ steps, and each move advances one or two steps. Let $W(n)$ count ordered move sequences that reach the top exactly, with $W(0)=W(1)=1$ and $W(n)=W(n-1)+W(n-2)$ for $n\geq2$. Compute $W(5)$ and explain why order matters.
-    answer: $W(2)=2,W(3)=3,W(4)=5,W(5)=8$. For example, moves $1,2$ and $2,1$ are different ordered sequences even though their step sizes form the same multiset.
+    answer: $W(2)=2,W(3)=3,W(4)=5,W(5)=8$. For example, moves $1,2$ and $2,1$ are different ordered sequences even though they use the same step sizes the same number of times.
   '40':
     instructions: ''
     prompt: Explain why matching a few Fibonacci-like initial counts is insufficient to derive a counting recurrence.
@@ -4594,7 +4594,7 @@ recurrence-relations:
   '51':
     instructions: ''
     prompt: In the three-peg Tower of Hanoi puzzle, move a stack of $n$ differently sized disks to another peg. Move one exposed disk at a time and never place a larger disk on a smaller one. Let $H(n)$ be the minimum number of moves. State $H(0)$ and derive a recurrence for $H(n)$.
-    answer: "$H(0)=0$ and $H(n)=2H(n-1)+1$ for $n\\geq1$: move the smaller stack aside, move the largest disk, then restore the smaller stack on top."
+    answer: "$H(0)=0$ and $H(n)=2H(n-1)+1$ for $n\\geq1$. The usual construction moves the smaller stack to the spare peg, moves the largest disk to its destination, and moves the smaller stack onto it, using this many moves. For a lower bound, before the largest disk's first move the entire smaller stack must have moved to one other peg, requiring at least $H(n-1)$ moves. After its last move to the destination, the smaller stack is entirely on a different peg and needs at least $H(n-1)$ further moves. Those two stages and at least one largest-disk move give the same lower bound, so the construction is optimal."
   '52':
     instructions: ''
     prompt: In the three-peg Tower of Hanoi puzzle, one exposed disk moves at a time and no larger disk may rest on a smaller one. The minimum move count satisfies $H(0)=0$ and $H(n)=2H(n-1)+1$ for $n\geq1$. Compute $H(1)$ through $H(5)$.
@@ -4869,7 +4869,7 @@ graph-theory:
     prompt: Strong connectivity requires a nonempty digraph with a directed path between every ordered pair of vertices. Weak connectivity requires its underlying undirected graph to be connected. Length-zero paths are allowed. Classify the empty digraph and a one-vertex digraph with no arcs under both notions.
     answer: 'The empty digraph is neither strongly nor weakly connected. The singleton is both: its only required reachability is supplied by a length-0 path.'
   '40':
-    instructions: Use finite simple undirected graphs.
+    instructions: Use finite directed graphs with no self-loops.
     prompt: Does weak connectivity imply strong connectivity? Give a counterexample. Does strong connectivity imply weak connectivity?
     answer: "Weak does not imply strong: $a\\to b$ is a counterexample. Strong implies weak because every directed path remains an undirected path when directions are ignored."
   '41':
@@ -4974,7 +4974,7 @@ graph-theory:
     answer: $a:b,c$; $b:a,d,e$; $c:a,e$; $d:b$; $e:b,c,f$; $f:e$. There are 12 entries, twice the six undirected edges.
   '66':
     instructions: Use a finite simple undirected graph with $n$ vertices and $m$ edges.
-    prompt: For a graph with n vertices and m edges, compare adjacency-matrix and adjacency-list storage.
+    prompt: Compare adjacency-matrix and adjacency-list storage for this graph.
     answer: A matrix uses $n^2$ entries. Lists use storage proportional to $n+m$, with two neighbor entries per undirected edge and vertex-list overhead.
   '67':
     instructions: Use a finite simple undirected graph with $n$ vertices and $m$ edges.
@@ -5226,7 +5226,7 @@ asymptotic-growth:
     prompt: An outer loop runs i from 1 through n; the inner loop runs j from 1 through twice i. Give the exact body-operation count and a tight asymptotic bound.
     answer: $\sum_{i=1}^n2i=n(n+1)$, between $n^2$ and $2n^2$ for positive $n$, so $\Theta(n^2)$.
   '49':
-    instructions: Let $n$ be a positive integer. Loop ranges include both endpoints. Each body operation and loop-control step has constant positive cost.
+    instructions: Let $n$ be a positive integer. Loop ranges include both endpoints. Copying one element and each loop-control step have constant positive cost.
     prompt: An outer loop runs i from 1 through n. Each iteration copies an n-element array element by element. Classify element-copy work.
     answer: Each of the $n$ iterations copies $n$ elements, totaling $n^2$ writes and quadratic work. Treating the entire array copy as a unit step would change the cost model.
   '50':
@@ -5271,7 +5271,7 @@ asymptotic-growth:
     answer: Both halve the argument each level, but the two-child recurrence processes all nodes in a branching tree. Depth counts only levels; total work also counts how many nodes occupy them.
   '60':
     instructions: Inputs are $n=2^k$ for integers $k\geq0$; the recurrences apply for $n\geq2$.
-    prompt: A nonnegative cost satisfies only T(1)=1 and T(n) at most 2T(n/2)+n on powers of two. Is Theta(n log n) justified?
+    prompt: A nonnegative cost satisfies only $T(1)=1$ and $T(n)\leq2T(n/2)+n$ on powers of two. Is $T(n)=\Theta(n\log n)$ justified?
     answer: Only the corresponding upper bound is justified. The constant function $T(n)=1$ satisfies these inequalities, so a matching lower bound does not follow.
   '61':
     instructions: ''
@@ -5330,8 +5330,8 @@ asymptotic-growth:
     prompt: Is $n\log_2 n=O(n^2)$? Is it $\Theta(n^2)$?
     answer: The upper bound holds since $\log_2 n\leq n$ for positive integers. It is not a quadratic tight bound because $\log_2 n=o(n)$ gives $n\log_2 n=o(n^2)$.
   '75':
-    instructions: Inputs $n$ are positive integers. Functions are eventually nonnegative and comparison functions eventually positive. Constants do not depend on $n$.
-    prompt: A complete adjacency-list graph traversal examines each vertex once and each undirected edge twice. State a tight bound in n vertices and m edges under constant-cost inspections.
+    instructions: Let $n\geq1$ be the number of vertices and $m\geq0$ the number of edges. Here a bound in two input quantities means fixed positive constants that work for all allowed graphs, independently of both $n$ and $m$.
+    prompt: A complete adjacency-list traversal examines each vertex once and each undirected edge twice. State a tight bound under constant-cost inspections.
     answer: The count is $n+2m$, between $n+m$ and $2(n+m)$. Thus the traversal is $\Theta(n+m)$ when all vertices and adjacency entries are included.
   '76':
     instructions: Inputs $n$ are positive integers. Functions are eventually nonnegative and comparison functions eventually positive. Constants do not depend on $n$.

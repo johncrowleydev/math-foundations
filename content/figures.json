@@ -1,0 +1,2269 @@
+[
+  {
+    "id": "graph-first",
+    "kind": "graph",
+    "title": "Objects and their connections",
+    "lesson": "graph-theory",
+    "section": "Vertices, edges, and conventions",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["b", "c"],
+      ["c", "d"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "Each labeled dot represents one vertex. There are four: $a$, $b$, $c$, and $d$.",
+        "route": [],
+        "highlight": []
+      },
+      {
+        "text": "Each line represents one edge. The connections are $\\{a,b\\}$, $\\{a,c\\}$, $\\{b,c\\}$, and $\\{c,d\\}$. The triangle has an extra connection from $c$ to $d$.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["vertex", "edge"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $a$ to $c$; $b$ to $c$; $c$ to $d$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "graph-degree",
+    "kind": "graph",
+    "title": "Count the edges touching each vertex",
+    "lesson": "graph-theory",
+    "section": "Adjacency and degree",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["b", "c"],
+      ["c", "d"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "At $a$, two edges meet: $\\{a,b\\}$ and $\\{a,c\\}$. Therefore $\\deg(a)=2$.",
+        "route": [],
+        "highlight": ["a"]
+      },
+      {
+        "text": "At $b$, two edges meet: $\\{a,b\\}$ and $\\{b,c\\}$. Therefore $\\deg(b)=2$.",
+        "route": [],
+        "highlight": ["b"]
+      },
+      {
+        "text": "At $c$, three edges meet: $\\{a,c\\}$, $\\{b,c\\}$, and $\\{c,d\\}$. Therefore $\\deg(c)=3$.",
+        "route": [],
+        "highlight": ["c"]
+      },
+      {
+        "text": "At $d$, just $\\{c,d\\}$ meets the vertex. Therefore $\\deg(d)=1$.",
+        "route": [],
+        "highlight": ["d"]
+      },
+      {
+        "text": "The degree sum is $2+2+3+1=8$. Each of the four edges was counted at both ends.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["degree"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $a$ to $c$; $b$ to $c$; $c$ to $d$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "graph-routes",
+    "kind": "graph",
+    "title": "Follow a route, one edge at a time",
+    "lesson": "graph-theory",
+    "section": "Walks, trails, paths, and cycles",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["b", "c"],
+      ["c", "d"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "The vertex sequence $a,c,d$ is a path: no vertex repeats.",
+        "route": ["a", "c", "d"],
+        "highlight": []
+      },
+      {
+        "text": "The vertex sequence $a,b,c,a$ is a cycle and a closed trail. It is not a path under our convention.",
+        "route": ["a", "b", "c", "a"],
+        "highlight": []
+      },
+      {
+        "text": "The vertex sequence $a,b,c,a,c,d$ is a walk but not a trail: edge $\\{a,c\\}$ is used twice.",
+        "route": ["a", "b", "c", "a", "c", "d"],
+        "highlight": []
+      }
+    ],
+    "requires": ["walk", "path", "trail", "cycle"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $a$ to $c$; $b$ to $c$; $c$ to $d$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "graph-components",
+    "kind": "graph",
+    "title": "A triangle and a separate vertex",
+    "lesson": "graph-theory",
+    "section": "Connectivity and components",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["b", "c"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "The triangle is one connected component; isolated $d$ is another. No route joins $a$ to $d$.",
+        "route": [],
+        "highlight": []
+      },
+      {
+        "text": "A component is maximal, not necessarily largest. The one-vertex component cannot be enlarged while staying connected.",
+        "route": [],
+        "highlight": ["d"]
+      }
+    ],
+    "requires": ["component", "isolated"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $a$ to $c$; $b$ to $c$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "graph-tree",
+    "kind": "graph",
+    "title": "A tree has a unique path between vertices",
+    "lesson": "graph-theory",
+    "section": "Trees and forests",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["c", "d"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "All four vertices are connected and there is no cycle. This is a tree with $4-1=3$ edges.",
+        "route": [],
+        "highlight": []
+      },
+      {
+        "text": "The unique path from $b$ to $d$ has vertex sequence $b,a,c,d$.",
+        "route": ["b", "a", "c", "d"],
+        "highlight": []
+      }
+    ],
+    "requires": ["tree", "path"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $a$ to $c$; $c$ to $d$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "graph-root",
+    "kind": "graph",
+    "title": "Parent and child depend on the chosen root",
+    "lesson": "graph-theory",
+    "section": "Rooted trees",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["c", "d"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "Choose $a$ as root. Its children are $b$ and $c$; $c$ has child $d$. The depths of $a,b,c,d$ are $0,1,1,2$.",
+        "route": [],
+        "highlight": ["a"]
+      },
+      {
+        "text": "Choose $c$ as root instead. Its children are $a$ and $d$; $a$ has child $b$. The edges have not changed.",
+        "route": [],
+        "highlight": ["c"]
+      }
+    ],
+    "requires": ["root", "tree"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $a$ to $c$; $c$ to $d$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "graph-dag",
+    "kind": "graph",
+    "title": "Two valid schedules for the same prerequisites",
+    "lesson": "graph-theory",
+    "section": "Directed acyclic graphs and scheduling",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "c"],
+      ["b", "c"],
+      ["c", "d"]
+    ],
+    "directed": true,
+    "frames": [
+      {
+        "text": "Arrows mean “must finish before.” Both $a$ and $b$ must precede $c$, and $c$ must precede $d$.",
+        "route": [],
+        "highlight": []
+      },
+      {
+        "text": "One topological ordering is $a,b,c,d$. Another is $b,a,c,d$. There is no requirement between $a$ and $b$.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["dag", "topological-order"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $c$; $b$ to $c$; $c$ to $d$. Each connection points from the first named vertex to the second.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "graph-matrix",
+    "kind": "graph",
+    "title": "The picture and the adjacency table agree",
+    "lesson": "graph-theory",
+    "section": "Representing a graph",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 180,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "c",
+        "x": 330,
+        "y": 270
+      },
+      {
+        "id": "d",
+        "x": 540,
+        "y": 270
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["b", "c"],
+      ["c", "d"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "Rows and columns are ordered $a,b,c,d$. A $1$ records an edge between its row vertex and column vertex; a $0$ records no edge. The matrix is symmetric because these edges are undirected.",
+        "route": [],
+        "highlight": [],
+        "representation": "matrix"
+      },
+      {
+        "text": "Adjacency lists give the same information: $a$ has neighbors $b,c$; $b$ has $a,c$; $c$ has $a,b,d$; and $d$ has $c$. Each undirected edge appears in two lists.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["adjacency-matrix", "adjacency-list"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $a$ to $c$; $b$ to $c$; $c$ to $d$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d",
+      "0": "0",
+      "1": "1",
+      "1 = pair present; 0 = pair absent": "1=\\text{pair present};\\quad0=\\text{pair absent}"
+    }
+  },
+  {
+    "id": "graph-search",
+    "kind": "graph",
+    "title": "Breadth first and depth first take different routes",
+    "lesson": "graph-theory",
+    "section": "Breadth-first and depth-first search",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 300,
+        "y": 45
+      },
+      {
+        "id": "b",
+        "x": 140,
+        "y": 150
+      },
+      {
+        "id": "c",
+        "x": 450,
+        "y": 150
+      },
+      {
+        "id": "d",
+        "x": 65,
+        "y": 300
+      },
+      {
+        "id": "e",
+        "x": 210,
+        "y": 300
+      },
+      {
+        "id": "f",
+        "x": 510,
+        "y": 300
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["a", "c"],
+      ["b", "d"],
+      ["b", "e"],
+      ["c", "f"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "Start at $a$. Examine neighbors alphabetically in both traversals.",
+        "route": [],
+        "highlight": ["a"]
+      },
+      {
+        "text": "BFS discovers $b$ and $c$, then $d$, $e$, and $f$. Discovery order: $a,b,c,d,e,f$. Distances in that order: $0,1,1,2,2,2$.",
+        "route": [],
+        "highlight": ["b", "c"]
+      },
+      {
+        "text": "Recursive DFS follows $a,b,d$, returns to $b$, visits $e$, returns to $a$, then follows $c,f$. Discovery order: $a,b,d,e,c,f$.",
+        "route": ["a", "b", "d", "b", "e", "b", "a", "c", "f"],
+        "highlight": []
+      }
+    ],
+    "requires": ["bfs", "dfs", "queue", "stack"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$, $e$, $f$. The complete connection list is $a$ to $b$; $a$ to $c$; $b$ to $d$; $b$ to $e$; $c$ to $f$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d",
+      "e": "e",
+      "f": "f"
+    }
+  },
+  {
+    "id": "graph-euler-hamilton",
+    "kind": "graph",
+    "title": "Vertices once is different from edges once",
+    "lesson": "graph-theory",
+    "section": "Euler trails and Hamiltonian cycles",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 160,
+        "y": 70
+      },
+      {
+        "id": "b",
+        "x": 440,
+        "y": 70
+      },
+      {
+        "id": "c",
+        "x": 440,
+        "y": 280
+      },
+      {
+        "id": "d",
+        "x": 160,
+        "y": 280
+      }
+    ],
+    "edges": [
+      ["a", "b"],
+      ["b", "c"],
+      ["c", "d"],
+      ["d", "a"],
+      ["a", "c"],
+      ["b", "d"]
+    ],
+    "directed": false,
+    "frames": [
+      {
+        "text": "The outside route $a,b,c,d,a$ visits every vertex once before returning: a Hamiltonian cycle. It leaves both diagonals unused.",
+        "route": ["a", "b", "c", "d", "a"],
+        "highlight": []
+      },
+      {
+        "text": "Every vertex has degree 3. There are four odd-degree vertices, so this graph has no Euler trail. The crossing diagonals do not create a fifth vertex.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["euler-trail", "hamiltonian-cycle"],
+    "creation": "Original diagram drawn by the app from the listed vertex positions and edge pairs. Positions serve readability only; connections determine the graph. Highlighting changes emphasis, not the underlying graph. The vertices are $a$, $b$, $c$, $d$. The complete connection list is $a$ to $b$; $b$ to $c$; $c$ to $d$; $d$ to $a$; $a$ to $c$; $b$ to $d$. Each connection is undirected.",
+    "limitations": "This finite example illustrates the definitions; it is not a proof about every graph.",
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    }
+  },
+  {
+    "id": "logic-implication",
+    "kind": "flow",
+    "title": "Check the promise in each case",
+    "lesson": "propositional-logic",
+    "section": "Implication: IF ... THEN",
+    "steps": ["Inputs: p = T, q = T", "Check: does p hold while q fails?", "Result: (p → q) = T"],
+    "frames": [
+      {
+        "text": "This assignment does not violate the IF–THEN promise.",
+        "steps": [
+          "Inputs: p = T, q = T",
+          "Check: does p hold while q fails?",
+          "Result: (p → q) = T"
+        ],
+        "active": 2
+      },
+      {
+        "text": "The condition holds, but the promised result fails: this is the only false case.",
+        "steps": [
+          "Inputs: p = T, q = F",
+          "Check: does p hold while q fails?",
+          "Result: (p → q) = F"
+        ],
+        "active": 2
+      },
+      {
+        "text": "This assignment does not violate the IF–THEN promise.",
+        "steps": [
+          "Inputs: p = F, q = T",
+          "Check: does p hold while q fails?",
+          "Result: (p → q) = T"
+        ],
+        "active": 2
+      },
+      {
+        "text": "This assignment does not violate the IF–THEN promise.",
+        "steps": [
+          "Inputs: p = F, q = F",
+          "Check: does p hold while q fails?",
+          "Result: (p → q) = T"
+        ],
+        "active": 2
+      }
+    ],
+    "requires": ["implication", "truth-table", "assignment"],
+    "creation": "Original diagram drawn from the explicitly listed inputs and reasoning steps. Arrows indicate the order of calculation or reasoning, not additional unstated assumptions.",
+    "limitations": "The illustrated cases accompany the definitions and proofs in the text. A worked example by itself does not establish a claim about all inputs.",
+    "mathLabels": {
+      "Inputs: p = T, q = T": "\\text{Inputs: }p=\\mathrm{T},\\quad q=\\mathrm{T}",
+      "Check: does p hold while q fails?": "\\text{Check: does }p\\text{ hold while }q\\text{ fails?}",
+      "Result: (p → q) = T": "\\text{Result: }(p\\to q)=\\mathrm{T}",
+      "Inputs: p = T, q = F": "\\text{Inputs: }p=\\mathrm{T},\\quad q=\\mathrm{F}",
+      "Result: (p → q) = F": "\\text{Result: }(p\\to q)=\\mathrm{F}",
+      "Inputs: p = F, q = T": "\\text{Inputs: }p=\\mathrm{F},\\quad q=\\mathrm{T}",
+      "Inputs: p = F, q = F": "\\text{Inputs: }p=\\mathrm{F},\\quad q=\\mathrm{F}"
+    }
+  },
+  {
+    "id": "logic-distribution",
+    "kind": "flow",
+    "title": "A shared requirement must appear in both alternatives",
+    "lesson": "propositional-logic",
+    "section": "Common equivalence laws",
+    "steps": ["Ticket AND (passport OR licence)", "(Ticket AND passport) OR (Ticket AND licence)"],
+    "frames": [
+      {
+        "text": "The first form shares the ticket requirement across the two choices of identification.",
+        "active": 0
+      },
+      {
+        "text": "The expanded form repeats the ticket in each branch. A licence alone does not qualify.",
+        "active": 1
+      }
+    ],
+    "requires": ["distributive", "conjunction", "disjunction"],
+    "creation": "Original diagram drawn from the explicitly listed inputs and reasoning steps. Arrows indicate the order of calculation or reasoning, not additional unstated assumptions.",
+    "limitations": "The illustrated cases accompany the definitions and proofs in the text. A worked example by itself does not establish a claim about all inputs.",
+    "mathLabels": {
+      "Ticket AND (passport OR licence)": "\\text{Ticket}\\land(\\text{passport}\\lor\\text{licence})",
+      "(Ticket AND passport) OR (Ticket AND licence)": "\\begin{gathered}(\\text{Ticket}\\land\\text{passport})\\\\\\lor(\\text{Ticket}\\land\\text{licence})\\end{gathered}"
+    }
+  },
+  {
+    "id": "logic-simplification",
+    "kind": "flow",
+    "title": "Expose the shared requirement, then simplify",
+    "lesson": "propositional-logic",
+    "section": "Common equivalence laws",
+    "steps": ["(p ∧ q) ∨ (p ∧ ¬q)", "p ∧ (q ∨ ¬q)", "p ∧ T", "p"],
+    "frames": [
+      {
+        "text": "Start with two alternatives. Both require $p$; one also requires $q$, while the other requires $\\neg q$.",
+        "active": 0
+      },
+      {
+        "text": "Factor the shared requirement $p$. The remaining alternatives $q\\lor\\neg q$ cover both possible truth values of $q$.",
+        "active": 1
+      },
+      {
+        "text": "The parentheses are always true, so replace them with $T$.",
+        "active": 2
+      },
+      {
+        "text": "AND with $T$ leaves $p$ unchanged. The identity law completes the simplification.",
+        "active": 3
+      }
+    ],
+    "requires": ["factoring", "identity-law"],
+    "creation": "Original diagram drawn from the explicitly listed inputs and reasoning steps. Arrows indicate the order of calculation or reasoning, not additional unstated assumptions.",
+    "limitations": "The illustrated cases accompany the definitions and proofs in the text. A worked example by itself does not establish a claim about all inputs.",
+    "mathLabels": {
+      "(p ∧ q) ∨ (p ∧ ¬q)": "(p \\land q) \\lor (p \\land \\neg q)",
+      "p ∧ (q ∨ ¬q)": "p \\land (q \\lor \\neg q)",
+      "p ∧ T": "p \\land \\mathrm{T}",
+      "p": "p"
+    }
+  },
+  {
+    "id": "quantifier-witness",
+    "kind": "predicate-table",
+    "title": "One verified example is enough for existence",
+    "lesson": "predicates-and-quantifiers",
+    "section": "Existential quantification: there exists",
+    "rows": ["1", "2", "3"],
+    "columns": ["x² = 4"],
+    "rowLabel": "Input x",
+    "columnLabel": "Condition",
+    "values": [[false], [true], [false]],
+    "frames": [
+      {
+        "text": "The domain contains exactly 1, 2, and 3. Each row records whether that input has square 4. Only the row for 2 is true."
+      },
+      {
+        "text": "The outlined row supplies a witness: 2 is in the domain and its square is 4. The other rows may be false without defeating an existential claim.",
+        "highlight": ["row:2"]
+      }
+    ],
+    "requires": ["domain", "predicate", "witness"],
+    "creation": "Original native vector table. The three true-or-false cells are computed from $x^2=4$ at $x=1,2,3$. Labels T and F explicitly show truth without relying on shading.",
+    "limitations": "This is an exhaustive check of the stated three-element domain only. It makes no claim that 2 is the only integer whose square is 4.",
+    "mathLabels": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "x² = 4": "x^2 = 4",
+      "T": "\\mathrm{T}",
+      "F": "\\mathrm{F}",
+      "Input x": "\\text{Input }x",
+      "T = true; F = false": "\\mathrm{T}=\\text{true};\\quad\\mathrm{F}=\\text{false}"
+    }
+  },
+  {
+    "id": "quantifier-order",
+    "kind": "predicate-table",
+    "title": "A witness in every row is not one witness for all rows",
+    "lesson": "predicates-and-quantifiers",
+    "section": "Several variables and quantifier order",
+    "rows": ["1", "2"],
+    "columns": ["1", "2"],
+    "rowLabel": "Given x",
+    "columnLabel": "Candidate y",
+    "values": [
+      [true, false],
+      [false, true]
+    ],
+    "frames": [
+      {
+        "text": "Both variables range over $\\{1,2\\}$, and $R(x,y)$ means $x=y$. A cell is true exactly when its row label equals its column label. Each row has a true cell, so $\\forall x\\exists y\\,R(x,y)$ is true."
+      },
+      {
+        "text": "With $x=1$, choose $y=1$. The outlined row has one true cell.",
+        "highlight": ["row:1"]
+      },
+      {
+        "text": "With $x=2$, choose $y=2$. The witness may change when the input changes.",
+        "highlight": ["row:2"]
+      },
+      {
+        "text": "Fixing $y=1$ fails at $x=2$: this column is not all true.",
+        "highlight": ["column:1"]
+      },
+      {
+        "text": "Fixing $y=2$ fails at $x=1$. Neither candidate works for both inputs, so $\\exists y\\forall x\\,R(x,y)$ is false.",
+        "highlight": ["column:2"]
+      }
+    ],
+    "requires": ["domain", "predicate", "witness", "quantifier-order"],
+    "creation": "Original native vector table of equality on the two-element domain $\\{1,2\\}$. Rows are $x$ choices; columns are $y$ choices. Authored highlights inspect each possible row and column.",
+    "limitations": "This finite counterexample shows that the two quantifier orders are not generally equivalent. Some other predicates do make both statements true.",
+    "mathLabels": {
+      "1": "1",
+      "2": "2",
+      "T": "\\mathrm{T}",
+      "F": "\\mathrm{F}",
+      "Given x": "\\text{Given }x",
+      "Candidate y": "\\text{Candidate }y",
+      "T = true; F = false": "\\mathrm{T}=\\text{true};\\quad\\mathrm{F}=\\text{false}"
+    }
+  },
+  {
+    "id": "sets-membership",
+    "kind": "collections",
+    "title": "An element and a subset answer different questions",
+    "lesson": "sets-and-set-operations",
+    "section": "Membership and subsets are different",
+    "requires": ["set", "element", "subset", "singleton"],
+    "frames": [
+      {
+        "text": "Each large box represents the set named at its top. $B$ contains the numbers 1 and 2. Its element 1 is also the only member of $A$, so $A$ is a subset of $B$.",
+        "highlight": ["A", "B"]
+      },
+      {
+        "text": "The small outlined object $\\{1\\}$ inside $C$ is itself a set. Thus $\\{1\\}$ is an element of $C$, while it is not an element of $B$. $C$ contains the set $\\{1\\}$ and the number 2, but not the number 1 as a separate element.",
+        "highlight": ["C"]
+      }
+    ],
+    "creation": "Original native drawing of $A=\\{1\\}$, $B=\\{1,2\\}$, and $C=\\{\\{1\\},2\\}$. A small outlined box denotes an element that is itself a set; unboxed numbers are numerical elements. The large boxes display separate collections.",
+    "limitations": "The number labels denote ordinary numerical objects, distinguished from sets containing them. Box size and position carry no membership meaning.",
+    "collections": [
+      {
+        "label": "A",
+        "elements": ["1"]
+      },
+      {
+        "label": "B",
+        "elements": ["1", "2"]
+      },
+      {
+        "label": "C",
+        "elements": [["1"], "2"]
+      }
+    ],
+    "mathLabels": {
+      "A": "A",
+      "1": "1",
+      "B": "B",
+      "2": "2",
+      "C": "C",
+      "{1}": "\\{1\\}"
+    }
+  },
+  {
+    "id": "sets-operations",
+    "kind": "venn",
+    "title": "Follow the membership condition",
+    "lesson": "sets-and-set-operations",
+    "section": "Union, intersection, difference, and complement",
+    "requires": ["set", "union", "intersection", "set-difference", "complement", "venn-diagram"],
+    "frames": [
+      {
+        "operation": "union",
+        "text": "The rectangle is $U=\\{1, 2, 3, 4, 5, 6\\}$. $A$ = $\\{1, 2, 4\\}$ and $B$ = $\\{2, 3, 4\\}$. The shaded union contains 1, 2, 3, and 4: members of either circle, including their overlap."
+      },
+      {
+        "operation": "intersection",
+        "text": "The shaded intersection contains 2 and 4. Each lies inside both circles."
+      },
+      {
+        "operation": "difference",
+        "text": "$A$ minus $B$ contains only 1: it lies inside $A$ and outside $B$. The common members 2 and 4 are excluded."
+      },
+      {
+        "operation": "complement",
+        "text": "The complement of $A$ in $U$ contains 3, 5, and 6. Everything outside $A$ but inside the rectangle is selected."
+      }
+    ],
+    "creation": "Original native Venn drawing using exact membership in $U=\\{1,2,3,4,5,6\\}$, $A=\\{1,2,4\\}$, and $B=\\{2,3,4\\}$. Every number is positioned according to its two membership tests; native path union, intersection, and difference select the matching regions.",
+    "limitations": "Areas do not represent counts. The captions list every selected member, so shading is not the only way to identify the result. This example illustrates the definitions, rather than proving a general identity.",
+    "universe": ["1", "2", "3", "4", "5", "6"],
+    "a": ["1", "2", "4"],
+    "b": ["2", "3", "4"],
+    "mathLabels": {
+      "U": "U",
+      "A": "A",
+      "B": "B",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  {
+    "id": "sets-de-morgan",
+    "kind": "venn",
+    "title": "Outside the union means outside both sets",
+    "lesson": "sets-and-set-operations",
+    "section": "Laws of set operations",
+    "requires": ["venn-diagram", "set-de-morgan", "union", "intersection", "complement"],
+    "frames": [
+      {
+        "operation": "union",
+        "text": "First locate the union, containing 1, 2, 3, and 4. Its complement must exclude every one of these members."
+      },
+      {
+        "operation": "union-complement",
+        "text": "Outside that union are exactly 5 and 6. They are outside $A$ and outside $B$, so they also form the intersection of the two complements."
+      },
+      {
+        "operation": "intersection",
+        "text": "Now locate the intersection, containing 2 and 4. Its complement must exclude only these common members."
+      },
+      {
+        "operation": "intersection-complement",
+        "text": "The remaining members are 1, 3, 5, and 6. Each is outside $A$ or outside $B$ (possibly both), so these also form the union of the two complements."
+      }
+    ],
+    "creation": "Original native regions computed from the same six-element universe and the same $A$ and $B$ as the set-operation example. The four states show each operation and then its complement inside the fixed rectangle.",
+    "limitations": "The drawing verifies this finite example. The element proof in the lesson establishes the general laws. Geometric areas have no numerical significance.",
+    "universe": ["1", "2", "3", "4", "5", "6"],
+    "a": ["1", "2", "4"],
+    "b": ["2", "3", "4"],
+    "mathLabels": {
+      "U": "U",
+      "A": "A",
+      "B": "B",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  {
+    "id": "sets-power",
+    "kind": "collections",
+    "title": "The power set contains sets as its elements",
+    "lesson": "sets-and-set-operations",
+    "section": "Power sets",
+    "requires": ["power-set", "subset", "singleton"],
+    "frames": [
+      {
+        "text": "The large box $A$ contains the two elements $a$ and $b$. The large box $\\mathcal P(A)$ contains four elements, each drawn as a small outlined set: $\\{\\}$, $\\{a\\}$, $\\{b\\}$, and $\\{a,b\\}$. Here $\\{\\}$ means the empty set.",
+        "highlight": ["A"]
+      },
+      {
+        "text": "Each small outlined set is one possible selection from $A$. Include neither element, only $a$, only $b$, or both. These are all four subsets, and each is an element of $\\mathcal P(A)$.",
+        "highlight": ["P(A)"]
+      }
+    ],
+    "creation": "Original native nested-set drawing. The elements of $A$ are $a$ and $b$; $\\mathcal P(A)$ contains exactly the four subsets obtained by deciding independently whether to include each element. Empty braces inside a small box denote the empty set.",
+    "limitations": "The large boxes display two different sets. Their physical sizes do not represent cardinalities; count their immediate elements instead.",
+    "collections": [
+      {
+        "label": "A",
+        "elements": ["a", "b"]
+      },
+      {
+        "label": "P(A)",
+        "elements": [[], ["a"], ["b"], ["a", "b"]]
+      }
+    ],
+    "mathLabels": {
+      "A": "A",
+      "a": "a",
+      "b": "b",
+      "P(A)": "\\mathcal{P}(A)",
+      "{}": "\\{\\}",
+      "{a}": "\\{a\\}",
+      "{b}": "\\{b\\}",
+      "{a,b}": "\\{a,b\\}"
+    }
+  },
+  {
+    "id": "sets-count",
+    "kind": "venn",
+    "title": "Subtract the extra copy of the overlap",
+    "lesson": "sets-and-set-operations",
+    "section": "Counting unions without double-counting",
+    "requires": ["venn-diagram", "cardinality", "inclusion-exclusion"],
+    "frames": [
+      {
+        "operation": "union",
+        "text": "$A$ has 3 members and $B$ has 3. Adding $3 + 3$ counts 2 and 4 twice. The two common members form the intersection."
+      },
+      {
+        "operation": "intersection",
+        "text": "Subtract the intersection size 2 once: $3 + 3 - 2 = 4$. The distinct members of the union are 1, 2, 3, and 4. Members 5 and 6 belong to neither set."
+      }
+    ],
+    "creation": "Original finite membership drawing using $A=\\{1,2,4\\}$ and $B=\\{2,3,4\\}$. Counts come from the listed objects, not from circle areas.",
+    "limitations": "This is a two-set example. Three-set inclusion–exclusion needs the additional corrections described in the teaching text.",
+    "universe": ["1", "2", "3", "4", "5", "6"],
+    "a": ["1", "2", "4"],
+    "b": ["2", "3", "4"],
+    "mathLabels": {
+      "U": "U",
+      "A": "A",
+      "B": "B",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  {
+    "id": "sets-partition",
+    "kind": "collections",
+    "title": "Every element belongs to exactly one block",
+    "lesson": "sets-and-set-operations",
+    "section": "Partitions and indexed families",
+    "requires": ["partition", "partition-block", "disjoint"],
+    "frames": [
+      {
+        "text": "$A$ contains 1, 2, 3, and 4. $B_1$ contains 1 and 3; $B_2$ contains 2 and 4. Every member of $A$ appears in exactly one of these two blocks."
+      },
+      {
+        "text": "Both blocks are nonempty. They share no element, and together they cover $A$. These are all three requirements for a partition.",
+        "highlight": ["B₁", "B₂"]
+      }
+    ],
+    "creation": "Original native drawing of $A=\\{1,2,3,4\\}$ and the two subsets $B_1=\\{1,3\\}$, $B_2=\\{2,4\\}$. Subscripts label the blocks; they do not count their members.",
+    "limitations": "This picture shows a particular valid partition. A collection with overlap, a missing member, or an empty block fails the stated definition.",
+    "collections": [
+      {
+        "label": "A",
+        "elements": ["1", "2", "3", "4"]
+      },
+      {
+        "label": "B₁",
+        "elements": ["1", "3"]
+      },
+      {
+        "label": "B₂",
+        "elements": ["2", "4"]
+      }
+    ],
+    "mathLabels": {
+      "A": "A",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "B₁": "B_1",
+      "B₂": "B_2"
+    }
+  },
+  {
+    "id": "relation-representations",
+    "kind": "graph",
+    "title": "The same relation as arrows and matrix entries",
+    "lesson": "relations",
+    "section": "Relations as sets of ordered pairs",
+    "requires": ["relation", "vertex", "self-loop", "boolean-matrix"],
+    "frames": [
+      {
+        "text": "On $A$ = $\\{a,b,c\\}$, the relation contains exactly $(a,a)$, $(a,b)$, and $(b,c)$. The loop records $(a,a)$; the two other arrows record the other pairs. No unshown pair belongs."
+      },
+      {
+        "representation": "matrix",
+        "text": "Use $a,b,c$ in both row and column order. The three 1 entries record exactly the three listed pairs. The 0 entries record absent pairs."
+      },
+      {
+        "representation": "graph",
+        "highlight": ["a"],
+        "text": "The outlined vertex $a$ has two outgoing arrows: its loop and the arrow to $b$. There is no arrow from $a$ to $c$."
+      },
+      {
+        "representation": "matrix",
+        "highlight": ["a"],
+        "text": "Row $a$ is $1,1,0$. Its entries record those same two outgoing arrows and the missing arrow to $c$."
+      }
+    ],
+    "creation": "Original native diagram and Boolean matrix built from one stored pair list: $(a,a)$, $(a,b)$, $(b,c)$, on the three objects $a,b,c$. The matrix uses source as row and destination as column. Highlighting a vertex emphasizes its outgoing edges; the corresponding matrix state outlines that row.",
+    "limitations": "Positions carry no numerical meaning. An arrow returning to its starting vertex records a pair whose two entries are the same.",
+    "nodes": [
+      {
+        "id": "a",
+        "x": 100,
+        "y": 160
+      },
+      {
+        "id": "b",
+        "x": 300,
+        "y": 290
+      },
+      {
+        "id": "c",
+        "x": 500,
+        "y": 160
+      }
+    ],
+    "edges": [
+      ["a", "a"],
+      ["a", "b"],
+      ["b", "c"]
+    ],
+    "directed": true,
+    "allowLoops": true,
+    "mathLabels": {
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "0": "0",
+      "1": "1",
+      "1 = pair present; 0 = pair absent": "1=\\text{pair present};\\quad0=\\text{pair absent}"
+    }
+  },
+  {
+    "id": "relation-finite-check",
+    "kind": "graph",
+    "title": "Locate the exact reason a property fails",
+    "lesson": "relations",
+    "section": "A complete finite check",
+    "requires": ["reflexive", "symmetric", "antisymmetric", "transitive", "boolean-matrix"],
+    "frames": [
+      {
+        "highlight": ["1", "2", "3"],
+        "text": "Every vertex has its loop, so the relation is reflexive. Apart from loops, the only arrows are from 1 to 2 and from 2 to 3."
+      },
+      {
+        "highlight": ["1"],
+        "text": "The arrow from 1 to 2 has no reverse, so symmetry fails. No two distinct vertices relate in both directions, so antisymmetry holds."
+      },
+      {
+        "route": ["1", "2", "3"],
+        "text": "Following 1 to 2 and then 2 to 3 demands the direct pair $(1,3)$ for transitivity. That pair is absent, so this is a counterexample to transitivity."
+      },
+      {
+        "representation": "matrix",
+        "highlight": ["1"],
+        "text": "Row 1 is 1,1,0. Its final zero confirms that $(1,3)$ is missing. Replacing that zero with 1 repairs the missing shortcut in this example."
+      }
+    ],
+    "creation": "Original native graph and matrix for the exact five pairs $(1,1)$, $(2,2)$, $(3,3)$, $(1,2)$, $(2,3)$. Every diagonal entry is 1, reverse off-diagonal pairs are absent, and the two-step chain $1,2,3$ has no direct pair $(1,3)$.",
+    "limitations": "The final state describes a repair but still displays the original relation. Finding one failed implication refutes a property; claiming a property holds requires considering every relevant pair or triple.",
+    "nodes": [
+      {
+        "id": "1",
+        "x": 100,
+        "y": 180
+      },
+      {
+        "id": "2",
+        "x": 300,
+        "y": 100
+      },
+      {
+        "id": "3",
+        "x": 500,
+        "y": 280
+      }
+    ],
+    "edges": [
+      ["1", "1"],
+      ["2", "2"],
+      ["3", "3"],
+      ["1", "2"],
+      ["2", "3"]
+    ],
+    "directed": true,
+    "allowLoops": true,
+    "mathLabels": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "0": "0",
+      "1 = pair present; 0 = pair absent": "1=\\text{pair present};\\quad0=\\text{pair absent}"
+    }
+  },
+  {
+    "id": "relation-classes",
+    "kind": "collections",
+    "title": "Congruence groups the finite domain into whole classes",
+    "lesson": "relations",
+    "section": "Equivalence classes and partitions",
+    "requires": ["congruence", "equivalence-class", "partition"],
+    "frames": [
+      {
+        "text": "Restrict the domain to $A$ = $\\{0,1,2,3,4,5,6,7\\}$. The three displayed boxes are its congruence classes modulo 3. Their labels choose 0, 1, and 2 as representatives."
+      },
+      {
+        "highlight": ["[0]"],
+        "text": "The displayed class $[0]$ contains 0, 3, and 6. Any two have a difference divisible by 3."
+      },
+      {
+        "highlight": ["[1]", "[2]"],
+        "text": "The other classes are $\\{1,4,7\\}$ and $\\{2,5\\}$. The three classes are disjoint and together contain every element of the specified finite domain."
+      }
+    ],
+    "creation": "Original native grouping of the integers 0 through 7 by their remainders on division by 3. Remainders 0, 1, and 2 give the three classes shown.",
+    "limitations": "These are classes in the restricted finite domain. The corresponding classes on all integers contain infinitely many additional members.",
+    "collections": [
+      {
+        "label": "[0]",
+        "elements": ["0", "3", "6"]
+      },
+      {
+        "label": "[1]",
+        "elements": ["1", "4", "7"]
+      },
+      {
+        "label": "[2]",
+        "elements": ["2", "5"]
+      }
+    ],
+    "mathLabels": {
+      "[0]": "[0]",
+      "0": "0",
+      "3": "3",
+      "6": "6",
+      "[1]": "[1]",
+      "1": "1",
+      "4": "4",
+      "7": "7",
+      "[2]": "[2]",
+      "2": "2",
+      "5": "5"
+    }
+  },
+  {
+    "id": "relation-hasse",
+    "kind": "graph",
+    "title": "Read each cover comparison upward",
+    "lesson": "relations",
+    "section": "Hasse diagrams and extreme elements",
+    "requires": ["hasse-diagram", "cover", "power-set"],
+    "frames": [
+      {
+        "text": "This is the power set of $\\{1,2\\}$, ordered by inclusion. Each join goes from a subset below to a set covering it above. Arrowheads and loops are omitted by the Hasse convention."
+      },
+      {
+        "route": ["∅", "{1}", "{1,2}"],
+        "text": "The upward sequence $\\varnothing$, $\\{1\\}$, $\\{1,2\\}$ recovers the comparison $\\varnothing\\subseteq\\{1,2\\}$. There is no direct cover because an intermediate subset exists."
+      },
+      {
+        "highlight": ["{1}", "{2}"],
+        "text": "Neither $\\{1\\}$ nor $\\{2\\}$ has an upward path to the other. They are incomparable, even though each lies between $\\varnothing$ and $\\{1,2\\}$."
+      }
+    ],
+    "creation": "Original native Hasse drawing of all four subsets of $\\{1,2\\}$. Cover pairs add exactly one element. Stored edges are ordered from the lower subset to the upper subset, although the Hasse display deliberately omits arrowheads.",
+    "limitations": "This drawing encodes inclusion, not numerical comparison or physical distance. Read paths upward; an arbitrary undirected route does not establish an order comparison.",
+    "nodes": [
+      {
+        "id": "∅",
+        "x": 300,
+        "y": 300
+      },
+      {
+        "id": "{1}",
+        "x": 130,
+        "y": 185
+      },
+      {
+        "id": "{2}",
+        "x": 470,
+        "y": 185
+      },
+      {
+        "id": "{1,2}",
+        "x": 300,
+        "y": 65
+      }
+    ],
+    "edges": [
+      ["∅", "{1}"],
+      ["∅", "{2}"],
+      ["{1}", "{1,2}"],
+      ["{2}", "{1,2}"]
+    ],
+    "directed": false,
+    "presentation": "hasse",
+    "mathLabels": {
+      "∅": "\\varnothing",
+      "{1}": "\\{1\\}",
+      "{2}": "\\{2\\}",
+      "{1,2}": "\\{1,2\\}"
+    }
+  },
+  {
+    "id": "function-machine",
+    "title": "One output for each input",
+    "lesson": "functions",
+    "section": "What a function specifies",
+    "kind": "mapping",
+    "requires": ["function", "function-domain", "codomain"],
+    "frames": [
+      {
+        "text": "Let $f:\\{1,2,3\\}\\to\\{a,b,c\\}$ have $f(1)=a$, $f(2)=a$, and $f(3)=b$. Each input has exactly one arrow. Follow the outlined input $2$ to its output $a$.",
+        "highlight": ["2"]
+      },
+      {
+        "text": "The codomain still includes $c$, although no input is sent to it. Inputs $1$ and $2$ may share an output without violating the definition of a function.",
+        "highlight": ["c"]
+      }
+    ],
+    "creation": "Original vector drawing constructed from the displayed finite domain, codomain, and complete list of input/output pairs. Each arrow records one pair.",
+    "limitations": "Only this finite function is depicted. The positions and lengths of arrows carry no mathematical meaning.",
+    "mathLabels": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "a": "a",
+      "b": "b",
+      "c": "c"
+    },
+    "domain": ["1", "2", "3"],
+    "codomain": ["a", "b", "c"],
+    "pairs": [
+      ["1", "a"],
+      ["2", "a"],
+      ["3", "b"]
+    ]
+  },
+  {
+    "id": "function-preimage",
+    "title": "Follow arrows forward and backward",
+    "lesson": "functions",
+    "section": "Image and preimage",
+    "kind": "mapping",
+    "requires": ["image", "preimage"],
+    "frames": [
+      {
+        "text": "For this function, the image of $\\{1,2\\}$ is $\\{a\\}$. Follow the two outlined inputs forward; an output is listed only once.",
+        "highlight": ["1", "2"]
+      },
+      {
+        "text": "The preimage of $\\{a\\}$ is $\\{1,2\\}$. Follow every arrow ending at $a$ backward; a preimage need not have just one member.",
+        "highlight": ["a"]
+      },
+      {
+        "text": "The preimage of $\\{c\\}$ is empty because no arrow ends there. The symbol $f^{-1}$ here names a preimage operation, not an inverse function.",
+        "highlight": ["c"]
+      }
+    ],
+    "creation": "Original vector drawing constructed from the displayed finite domain, codomain, and complete list of input/output pairs. Each arrow records one pair.",
+    "limitations": "Only this finite function is depicted. The positions and lengths of arrows carry no mathematical meaning.",
+    "mathLabels": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "a": "a",
+      "b": "b",
+      "c": "c"
+    },
+    "domain": ["1", "2", "3"],
+    "codomain": ["a", "b", "c"],
+    "pairs": [
+      ["1", "a"],
+      ["2", "a"],
+      ["3", "b"]
+    ]
+  },
+  {
+    "id": "function-injection",
+    "title": "Distinct inputs stay distinct",
+    "lesson": "functions",
+    "section": "Injective functions",
+    "kind": "mapping",
+    "requires": ["injective"],
+    "frames": [
+      {
+        "text": "The three arrows end at three different outputs, so this function is injective. Compare inputs $1$ and $2$: their outputs are $b$ and $d$.",
+        "highlight": ["1", "2"]
+      },
+      {
+        "text": "The unused allowed output $c$ does not prevent injectivity. Injectivity compares outputs of distinct inputs.",
+        "highlight": ["c"]
+      }
+    ],
+    "creation": "Original vector drawing constructed from the displayed finite domain, codomain, and complete list of input/output pairs. Each arrow records one pair.",
+    "limitations": "Only this finite function is depicted. The positions and lengths of arrows carry no mathematical meaning.",
+    "mathLabels": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "a": "a",
+      "b": "b",
+      "c": "c",
+      "d": "d"
+    },
+    "domain": ["1", "2", "3"],
+    "codomain": ["a", "b", "c", "d"],
+    "pairs": [
+      ["1", "b"],
+      ["2", "d"],
+      ["3", "a"]
+    ]
+  },
+  {
+    "id": "function-surjection",
+    "title": "Every allowed output is reached",
+    "lesson": "functions",
+    "section": "Surjective functions",
+    "kind": "mapping",
+    "requires": ["surjective", "injective"],
+    "frames": [
+      {
+        "text": "Both allowed outputs, $a$ and $b$, receive at least one arrow, so this function is surjective.",
+        "highlight": ["a", "b"]
+      },
+      {
+        "text": "It is not injective: $1$ and $2$ share output $a$. Surjectivity and injectivity ask different questions.",
+        "highlight": ["1", "2"]
+      }
+    ],
+    "creation": "Original vector drawing constructed from the displayed finite domain, codomain, and complete list of input/output pairs. Each arrow records one pair.",
+    "limitations": "Only this finite function is depicted. The positions and lengths of arrows carry no mathematical meaning.",
+    "mathLabels": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "a": "a",
+      "b": "b"
+    },
+    "domain": ["1", "2", "3"],
+    "codomain": ["a", "b"],
+    "pairs": [
+      ["1", "a"],
+      ["2", "a"],
+      ["3", "b"]
+    ]
+  },
+  {
+    "id": "function-composition",
+    "title": "One value passes through two functions",
+    "lesson": "functions",
+    "section": "Composition and types",
+    "kind": "flow",
+    "requires": ["function-composition", "function-type"],
+    "frames": [
+      {
+        "text": "Use real inputs and outputs for $f(x)=x+1$ and $g(y)=y^2$. Start with input $2$.",
+        "active": 0
+      },
+      {
+        "text": "Apply the inner function first: $f$ turns $2$ into $3$. The symbol $x$ is its input placeholder.",
+        "active": 1
+      },
+      {
+        "text": "The value $3$ becomes the input $y$ of the outer function $g$. Squaring gives $9$.",
+        "active": 2
+      },
+      {
+        "text": "Read $(g\\circ f)(2)$ as “g composed with f, evaluated at two.” Reversing the order gives $f(g(2))=5$, a different value.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "x=2": "x=2",
+      "f(x)=x+1:\\quad f(2)=3": "f(x)=x+1:\\quad f(2)=3",
+      "g(y)=y^2:\\quad g(3)=9": "g(y)=y^2:\\quad g(3)=9",
+      "(g\\circ f)(2)=9": "(g\\circ f)(2)=9"
+    },
+    "steps": ["x=2", "f(x)=x+1:\\quad f(2)=3", "g(y)=y^2:\\quad g(3)=9", "(g\\circ f)(2)=9"]
+  },
+  {
+    "id": "sequence-arithmetic",
+    "title": "Equal additions, indexed terms",
+    "lesson": "sequences-and-summations",
+    "section": "Arithmetic and geometric sequences",
+    "kind": "sequence",
+    "requires": ["arithmetic-sequence", "sequence-index"],
+    "frames": [
+      {
+        "text": "With indices $0$ through $4$, each term increases by 2. These bars have values $3,5,7,9,11$; horizontal position records the index, not the value.",
+        "active": 0
+      },
+      {
+        "text": "The outlined bar has index $3$. Read its value from the number above it. The index below the bar and its height answer different questions.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native bars computed from the explicitly listed first five terms. Heights use a linear scale starting at zero; each bar is labeled with its exact value.",
+    "limitations": "Only five nonnegative terms are shown. The authored rule, not a visual extrapolation, defines later terms. The two sequence figures use different vertical scales.",
+    "mathLabels": {
+      "a_n=3+2n": "a_n=3+2n"
+    },
+    "values": [3, 5, 7, 9, 11],
+    "firstIndex": 0,
+    "rule": "a_n=3+2n"
+  },
+  {
+    "id": "sequence-geometric",
+    "title": "Equal ratios, different increments",
+    "lesson": "sequences-and-summations",
+    "section": "Arithmetic and geometric sequences",
+    "kind": "sequence",
+    "requires": ["geometric-sequence", "sequence-index"],
+    "frames": [
+      {
+        "text": "With indices $0$ through $4$, each term is twice the preceding term. Values are $1,2,4,8,16$. Equal ratios produce increasingly large additions.",
+        "active": 0
+      },
+      {
+        "text": "The outlined bar has index $3$. Read its value from the number above it. The index below the bar and its height answer different questions.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native bars computed from the explicitly listed first five terms. Heights use a linear scale starting at zero; each bar is labeled with its exact value.",
+    "limitations": "Only five nonnegative terms are shown. The authored rule, not a visual extrapolation, defines later terms. The two sequence figures use different vertical scales.",
+    "mathLabels": {
+      "a_n=2^n": "a_n=2^n"
+    },
+    "values": [1, 2, 4, 8, 16],
+    "firstIndex": 0,
+    "rule": "a_n=2^n"
+  },
+  {
+    "id": "sum-triangles",
+    "title": "Two triangles make a rectangle",
+    "lesson": "sequences-and-summations",
+    "section": "Deriving arithmetic sums",
+    "kind": "sum",
+    "requires": ["summation"],
+    "frames": [
+      {
+        "n": 3,
+        "text": "For $n=3$, rows of the unmarked triangle contain $1,2,\\ldots,3$ squares. The diagonally marked squares form a reversed copy. Together they fill a $3\\times4$ rectangle, so one copy has $6$ squares."
+      },
+      {
+        "n": 4,
+        "text": "For $n=4$, rows of the unmarked triangle contain $1,2,\\ldots,4$ squares. The diagonally marked squares form a reversed copy. Together they fill a $4\\times5$ rectangle, so one copy has $10$ squares."
+      },
+      {
+        "n": 5,
+        "text": "For $n=5$, rows of the unmarked triangle contain $1,2,\\ldots,5$ squares. The diagonally marked squares form a reversed copy. Together they fill a $5\\times6$ rectangle, so one copy has $15$ squares."
+      }
+    ],
+    "creation": "Original native unit squares. Row $r$ of the unmarked half has $r$ squares, for $r$ from 1 through $n$; the remaining $n+1-r$ squares form its reversed copy. Diagonal marks distinguish the second half independently of color.",
+    "limitations": "The small instances illustrate the general rearrangement justified in the text. Individual unit squares are counts, not a plot of a continuous function.",
+    "mathLabels": {
+      "2(1+\\cdots+3)=12": "2(1+\\cdots+3)=12",
+      "2(1+\\cdots+4)=20": "2(1+\\cdots+4)=20",
+      "2(1+\\cdots+5)=30": "2(1+\\cdots+5)=30"
+    },
+    "arrangement": "rectangle"
+  },
+  {
+    "id": "sum-telescope",
+    "title": "Watch the middle values cancel",
+    "lesson": "sequences-and-summations",
+    "section": "Reindexing and telescoping",
+    "kind": "flow",
+    "requires": ["telescoping"],
+    "frames": [
+      {
+        "text": "Expand $\\sum_{k=1}^3(b_{k+1}-b_k)$. The values $b_1,b_2,b_3,b_4$ may be any real numbers.",
+        "active": 0
+      },
+      {
+        "text": "Regroup equal intermediate values. Both $b_2$ and $b_3$ occur once positively and once negatively.",
+        "active": 1
+      },
+      {
+        "text": "Only the boundary terms $-b_1$ and $+b_4$ remain. Their sum is $b_4-b_1$. Cancellation of the middle terms explains this result, regardless of the signs of the sequence values.",
+        "active": 2
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "(b_2-b_1)+(b_3-b_2)+(b_4-b_3)": "(b_2-b_1)+(b_3-b_2)+(b_4-b_3)",
+      "-b_1+(b_2-b_2)+(b_3-b_3)+b_4": "-b_1+(b_2-b_2)+(b_3-b_3)+b_4",
+      "b_4-b_1": "b_4-b_1"
+    },
+    "steps": ["(b_2-b_1)+(b_3-b_2)+(b_4-b_3)", "-b_1+(b_2-b_2)+(b_3-b_3)+b_4", "b_4-b_1"]
+  },
+  {
+    "id": "proof-direct-odd",
+    "title": "From odd inputs to an even sum",
+    "lesson": "direct-proof",
+    "section": "Worked proof: the sum of two odd integers",
+    "kind": "flow",
+    "requires": ["direct-proof", "even-odd"],
+    "frames": [
+      {
+        "text": "Assume $a$ and $b$ are odd integers. Their definitions supply integers $r$ and $s$; they need not be equal.",
+        "active": 0
+      },
+      {
+        "text": "Substitute both definitions and expand. Each new line follows from the preceding information.",
+        "active": 1
+      },
+      {
+        "text": "Factor out 2. This is the shape required by the definition of an even integer.",
+        "active": 2
+      },
+      {
+        "text": "The remaining factor is an integer because integers are closed under addition. Thus $a+b$ is even; the conclusion follows from the assumptions.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "a=2r+1,\\quad b=2s+1": "a=2r+1,\\quad b=2s+1",
+      "a+b=2r+2s+2": "a+b=2r+2s+2",
+      "a+b=2(r+s+1)": "a+b=2(r+s+1)",
+      "r+s+1\\in\\mathbb Z": "r+s+1\\in\\mathbb Z"
+    },
+    "steps": ["a=2r+1,\\quad b=2s+1", "a+b=2r+2s+2", "a+b=2(r+s+1)", "r+s+1\\in\\mathbb Z"]
+  },
+  {
+    "id": "proof-contrapositive-odd",
+    "title": "Start with the negated conclusion",
+    "lesson": "proof-by-contrapositive",
+    "section": "Worked proof: an even square has an even root",
+    "kind": "flow",
+    "requires": ["proof-by-contrapositive", "even-odd"],
+    "frames": [
+      {
+        "text": "To prove “if $n^2$ is even, $n$ is even,” start instead by assuming the negation of the conclusion: $n$ is odd.",
+        "active": 0
+      },
+      {
+        "text": "Square the odd-number representation. The symbol $k$ is an arbitrary integer supplied by oddness.",
+        "active": 1
+      },
+      {
+        "text": "The result has the form twice an integer plus 1, so the square is odd.",
+        "active": 2
+      },
+      {
+        "text": "This proves the contrapositive. Its logical equivalence to the original implication then establishes the original claim.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "n=2k+1,\\quad k\\in\\mathbb Z": "n=2k+1,\\quad k\\in\\mathbb Z",
+      "n^2=4k^2+4k+1": "n^2=4k^2+4k+1",
+      "n^2=2(2k^2+2k)+1": "n^2=2(2k^2+2k)+1",
+      "n\\text{ odd}\\ \\Longrightarrow\\ n^2\\text{ odd}": "n\\text{ odd}\\ \\Longrightarrow\\ n^2\\text{ odd}"
+    },
+    "steps": [
+      "n=2k+1,\\quad k\\in\\mathbb Z",
+      "n^2=4k^2+4k+1",
+      "n^2=2(2k^2+2k)+1",
+      "n\\text{ odd}\\ \\Longrightarrow\\ n^2\\text{ odd}"
+    ]
+  },
+  {
+    "id": "proof-contradiction-largest",
+    "title": "The assumed maximum defeats itself",
+    "lesson": "proof-by-contradiction",
+    "section": "A first example: there is no greatest integer",
+    "kind": "flow",
+    "requires": ["contradiction-method"],
+    "frames": [
+      {
+        "text": "Temporarily assume a greatest integer $M$ exists. The letter $z$ ranges over all integers in the assumed bound.",
+        "active": 0
+      },
+      {
+        "text": "Adding 1 produces another integer, so the assumed bound must apply to $M+1$ too.",
+        "active": 1
+      },
+      {
+        "text": "But ordinary order arithmetic gives $M+1>M$.",
+        "active": 2
+      },
+      {
+        "text": "The assumption requires $M+1\\leq M$, conflicting with the strict inequality. Reject the temporary assumption: there is no greatest integer.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "M\\in\\mathbb Z,\\quad \\forall z\\in\\mathbb Z,\\ z\\leq M": "M\\in\\mathbb Z,\\quad \\forall z\\in\\mathbb Z,\\ z\\leq M",
+      "M+1\\in\\mathbb Z": "M+1\\in\\mathbb Z",
+      "M+1>M": "M+1>M",
+      "(M+1\\leq M)\\ \\land\\ (M+1>M)": "(M+1\\leq M)\\ \\land\\ (M+1>M)"
+    },
+    "steps": [
+      "M\\in\\mathbb Z,\\quad \\forall z\\in\\mathbb Z,\\ z\\leq M",
+      "M+1\\in\\mathbb Z",
+      "M+1>M",
+      "(M+1\\leq M)\\ \\land\\ (M+1>M)"
+    ]
+  },
+  {
+    "id": "induction-chain",
+    "title": "A base and a repeatable implication",
+    "lesson": "mathematical-induction",
+    "section": "The induction principle",
+    "kind": "flow",
+    "requires": ["ordinary-induction", "base-case", "induction-hypothesis"],
+    "frames": [
+      {
+        "text": "This illustration uses starting index $n_0=0$. Prove the base statement $P(0)$ independently.",
+        "active": 0
+      },
+      {
+        "text": "A proof of $P(k)\\Rightarrow P(k+1)$ for arbitrary $k\\geq0$ can first be used at $k=0$.",
+        "active": 1
+      },
+      {
+        "text": "Once $P(1)$ is established, the same general step applies at $k=1$.",
+        "active": 2
+      },
+      {
+        "text": "Only the beginning is drawn. Induction depends on the arbitrary-$k$ proof, not checking just the three arrows displayed.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "P(0)": "P(0)",
+      "P(0)\\Longrightarrow P(1)": "P(0)\\Longrightarrow P(1)",
+      "P(1)\\Longrightarrow P(2)": "P(1)\\Longrightarrow P(2)",
+      "P(2)\\Longrightarrow P(3)": "P(2)\\Longrightarrow P(3)"
+    },
+    "steps": [
+      "P(0)",
+      "P(0)\\Longrightarrow P(1)",
+      "P(1)\\Longrightarrow P(2)",
+      "P(2)\\Longrightarrow P(3)"
+    ]
+  },
+  {
+    "id": "strong-hypotheses",
+    "title": "More earlier statements are available",
+    "lesson": "strong-induction",
+    "section": "The strong induction principle",
+    "kind": "flow",
+    "requires": ["strong-induction", "induction-hypothesis"],
+    "frames": [
+      {
+        "text": "For a step with base index 0, assume the whole range of earlier statements up to $k$. These are temporary hypotheses.",
+        "active": 0
+      },
+      {
+        "text": "Use whichever earlier indices the argument needs. For example, $j$ might be much smaller than $k$; it must stay within the assumed range.",
+        "active": 1
+      },
+      {
+        "text": "Derive the next statement without assuming it. The general step and the required base cases together establish the infinite claim.",
+        "active": 2
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "P(0),P(1),\\ldots,P(k)": "P(0),P(1),\\ldots,P(k)",
+      "0\\leq j\\leq k:\\quad P(j)": "0\\leq j\\leq k:\\quad P(j)",
+      "P(k+1)": "P(k+1)"
+    },
+    "steps": ["P(0),P(1),\\ldots,P(k)", "0\\leq j\\leq k:\\quad P(j)", "P(k+1)"]
+  },
+  {
+    "id": "strong-board-splitting",
+    "title": "Different first cuts, the same total",
+    "lesson": "strong-induction",
+    "section": "A finite construction by splitting",
+    "kind": "board",
+    "requires": ["structural-induction"],
+    "frames": [
+      {
+        "regions": [[0, 0, 4, 3]],
+        "text": "Start with a $3\\times4$ board of 12 unit squares. Dashed lines mark the unit grid; solid borders delimit the current pieces."
+      },
+      {
+        "regions": [
+          [0, 0, 1, 3],
+          [1, 0, 3, 3]
+        ],
+        "text": "One vertical break makes pieces with 3 and 9 squares. Strong induction gives $3-1$ and $9-1$ further breaks, so the total is $1+2+8=11$."
+      },
+      {
+        "regions": [
+          [0, 0, 4, 1],
+          [0, 1, 4, 2]
+        ],
+        "text": "A different first break makes pieces with 4 and 8 squares. Now the count is $1+(4-1)+(8-1)=11$. The general argument uses arbitrary smaller piece sizes summing to 12."
+      }
+    ],
+    "creation": "Original native 4-column, 3-row grid. Authored states partition all 12 cells into rectangular pieces; no cells overlap or disappear. The second and third states are alternative first cuts, not consecutive cuts.",
+    "limitations": "A break splits one existing piece into two along a grid line. No stacking pieces for a single break is allowed. The finite drawings illustrate the general piece-count proof.",
+    "mathLabels": {},
+    "rows": 3,
+    "columns": 4
+  },
+  {
+    "id": "strong-construction-tree",
+    "title": "A construction has parts and subparts",
+    "lesson": "strong-induction",
+    "section": "A finite construction by splitting",
+    "kind": "graph",
+    "requires": ["construction-tree", "construction-leaf", "full-binary-tree"],
+    "frames": [
+      {
+        "text": "The top dot $R$ is the root, representing the whole construction. Its children are a finished part $L_1$ and a part $S$ that splits further. The outlined bottom dots $L_1,L_2,L_3$ are leaves: parts with no further splitting.",
+        "highlight": ["L_1", "L_2", "L_3"]
+      },
+      {
+        "text": "There are 3 leaves and 2 internal nodes. Each internal node has exactly two children, so this is a full binary tree. Its left subtree has one leaf; its right subtree has two.",
+        "highlight": ["R", "S"]
+      }
+    ],
+    "creation": "Original native diagram with connections $\\{R,L_1\\}$, $\\{R,S\\}$, $\\{S,L_2\\}$, and $\\{S,L_3\\}$. Positions indicate parent above child. Labels are identifiers, not numerical values.",
+    "limitations": "This is one construction tree, not the proof that every full binary tree has one more leaf than internal nodes. The proof must handle both smaller subtrees.",
+    "mathLabels": {
+      "R": "R",
+      "L_1": "L_1",
+      "S": "S",
+      "L_2": "L_2",
+      "L_3": "L_3"
+    },
+    "nodes": [
+      {
+        "id": "R",
+        "x": 300,
+        "y": 45
+      },
+      {
+        "id": "L_1",
+        "x": 150,
+        "y": 160
+      },
+      {
+        "id": "S",
+        "x": 420,
+        "y": 160
+      },
+      {
+        "id": "L_2",
+        "x": 340,
+        "y": 300
+      },
+      {
+        "id": "L_3",
+        "x": 510,
+        "y": 300
+      }
+    ],
+    "edges": [
+      ["R", "L_1"],
+      ["R", "S"],
+      ["S", "L_2"],
+      ["S", "L_3"]
+    ],
+    "directed": false
+  },
+  {
+    "id": "count-choice-tree",
+    "title": "Each leaf is one completed choice",
+    "lesson": "combinatorics",
+    "section": "The sum and product principles",
+    "kind": "graph",
+    "requires": ["decision-tree", "product-principle"],
+    "frames": [
+      {
+        "text": "Choose one of two starters, $A$ or $B$, then one of two endings, 1 or 2. The four leaf labels $\\mathrm{A1}$, $\\mathrm{A2}$, $\\mathrm{B1}$, $\\mathrm{B2}$ are the complete outcomes."
+      },
+      {
+        "text": "The highlighted route chooses $A$ then 2. Every outcome has one route, and every route ends in one outcome, giving $2\\cdot2=4$.",
+        "route": ["S", "A", "A2"]
+      }
+    ],
+    "creation": "Original vector tree with root $S$, two first choices, and two children per first choice. The label $\\mathrm{A1}$ denotes the ordered outcome $(A,1)$, and similarly for the other leaves. The letters and strings are labels, not products.",
+    "limitations": "This example has constant branch sizes. If different first choices permit different numbers of endings, add the branch totals instead.",
+    "mathLabels": {
+      "S": "S",
+      "A": "A",
+      "B": "B",
+      "A1": "\\mathrm{A1}",
+      "A2": "\\mathrm{A2}",
+      "B1": "\\mathrm{B1}",
+      "B2": "\\mathrm{B2}"
+    },
+    "nodes": [
+      {
+        "id": "S",
+        "x": 300,
+        "y": 40
+      },
+      {
+        "id": "A",
+        "x": 160,
+        "y": 160
+      },
+      {
+        "id": "B",
+        "x": 440,
+        "y": 160
+      },
+      {
+        "id": "A1",
+        "x": 60,
+        "y": 300
+      },
+      {
+        "id": "A2",
+        "x": 230,
+        "y": 300
+      },
+      {
+        "id": "B1",
+        "x": 380,
+        "y": 300
+      },
+      {
+        "id": "B2",
+        "x": 540,
+        "y": 300
+      }
+    ],
+    "edges": [
+      ["S", "A"],
+      ["S", "B"],
+      ["A", "A1"],
+      ["A", "A2"],
+      ["B", "B1"],
+      ["B", "B2"]
+    ],
+    "directed": false
+  },
+  {
+    "id": "count-order",
+    "title": "Six orders describe one committee",
+    "lesson": "combinatorics",
+    "section": "Unordered selections and combinations",
+    "kind": "flow",
+    "requires": ["combination", "permutation"],
+    "frames": [
+      {
+        "active": 0,
+        "text": "The upper box lists all six orders of three distinct people $A$, $B$, $C$. Each letter names a person; each three-letter string records an ordered selection."
+      },
+      {
+        "active": 1,
+        "text": "The arrow means “forget the order.” All six descriptions give the same committee $\\{A,B,C\\}$. Every three-person committee has exactly $3!=6$ orders, so dividing an ordered count by $3!$ removes the uniform repetition."
+      }
+    ],
+    "creation": "Original native boxes with an explicitly enumerated list of the six permutations of $A$, $B$, $C$. The single arrow maps each ordered description to the set of its members. Stepping outlines the current box.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "\\begin{array}{ccc}\\mathrm{ABC}&\\mathrm{ACB}&\\mathrm{BAC}\\\\\\mathrm{BCA}&\\mathrm{CAB}&\\mathrm{CBA}\\end{array}": "\\begin{array}{ccc}\\mathrm{ABC}&\\mathrm{ACB}&\\mathrm{BAC}\\\\\\mathrm{BCA}&\\mathrm{CAB}&\\mathrm{CBA}\\end{array}",
+      "\\{A,B,C\\}": "\\{A,B,C\\}"
+    },
+    "steps": [
+      "\\begin{array}{ccc}\\mathrm{ABC}&\\mathrm{ACB}&\\mathrm{BAC}\\\\\\mathrm{BCA}&\\mathrm{CAB}&\\mathrm{CBA}\\end{array}",
+      "\\{A,B,C\\}"
+    ]
+  },
+  {
+    "id": "count-stars-bars",
+    "title": "An empty run means an empty box",
+    "lesson": "combinatorics",
+    "section": "Repetition without order: distributing identical objects",
+    "kind": "bins",
+    "requires": ["stars-and-bars"],
+    "frames": [
+      {
+        "text": "The code $\\star\\star\\mid\\mid\\star\\star\\star$ assigns 2 tokens to box 1, none to box 2, and 3 to box 3. Adjacent bars preserve the empty middle box. There are five stars and two bars."
+      }
+    ],
+    "creation": "Original native token circles and labeled boxes, constructed from the list of counts $(2,0,3)$. The TeX strip emits one star per token and one separator between consecutive boxes.",
+    "limitations": "This depicts one of the allocations, not all of them. Tokens are identical, boxes are labeled, and empty boxes are allowed.",
+    "mathLabels": {
+      "\\star\\star\\mid\\mid\\star\\star\\star": "\\star\\star\\mid\\mid\\star\\star\\star"
+    },
+    "counts": [2, 0, 3],
+    "starsAndBars": true
+  },
+  {
+    "id": "count-pigeonhole",
+    "title": "Seven objects cannot fit one per box",
+    "lesson": "combinatorics",
+    "section": "The pigeonhole principle",
+    "kind": "bins",
+    "requires": ["pigeonhole"],
+    "frames": [
+      {
+        "text": "This allocation puts 7 objects into 3 boxes, with occupancies $2,3,2$. Some box must contain at least $\\lceil7/3\\rceil=3$: if all had at most 2, their total would be at most 6."
+      }
+    ],
+    "creation": "Original native circles from the exact list of counts $(2,3,2)$. Box labels distinguish the three categories. The total is computed by adding the counts.",
+    "limitations": "The drawing is one possible allocation. The caption gives the contradiction argument for every allocation; the picture alone is not a general proof.",
+    "mathLabels": {},
+    "counts": [2, 3, 2]
+  },
+  {
+    "id": "recurrence-unfold",
+    "title": "Substitute until the initial value",
+    "lesson": "recurrence-relations",
+    "section": "Iteration: unfold the definition",
+    "kind": "flow",
+    "requires": ["unfolding", "initial-condition"],
+    "frames": [
+      {
+        "text": "Use $a_0=0$ and $a_n=2a_{n-1}+1$ for $n\\geq1$. Start at the concrete target index 3.",
+        "active": 0
+      },
+      {
+        "text": "Replace $a_2$ using the same recurrence at index 2. Keep the enclosing factor of 2.",
+        "active": 1
+      },
+      {
+        "text": "Replace $a_1$ at index 1. Now the expression reaches the known initial term.",
+        "active": 2
+      },
+      {
+        "text": "Substitute $a_0=0$ and calculate 7. Three substitutions were needed; the general formula still requires a general argument.",
+        "active": 3
+      }
+    ],
+    "creation": "Original native vector boxes and arrows. Each box contains the explicitly authored expression shown; stepping outlines the current reasoning stage.",
+    "limitations": "The arrows describe the stated example or proof template. A finite display of steps does not establish an infinite claim without the argument in the text.",
+    "mathLabels": {
+      "a_3=2a_2+1": "a_3=2a_2+1",
+      "a_3=2(2a_1+1)+1": "a_3=2(2a_1+1)+1",
+      "a_3=2(2(2a_0+1)+1)+1": "a_3=2(2(2a_0+1)+1)+1",
+      "a_0=0:\\quad a_3=7": "a_0=0:\\quad a_3=7"
+    },
+    "steps": ["a_3=2a_2+1", "a_3=2(2a_1+1)+1", "a_3=2(2(2a_0+1)+1)+1", "a_0=0:\\quad a_3=7"]
+  },
+  {
+    "id": "recurrence-dependencies",
+    "title": "A term depends on two predecessors",
+    "lesson": "recurrence-relations",
+    "section": "Second-order homogeneous recurrences",
+    "kind": "graph",
+    "requires": ["second-order-recurrence"],
+    "frames": [
+      {
+        "text": "For $a_0=0$, $a_1=1$, and $a_n=a_{n-1}+a_{n-2}$ for integers $n\\geq2$, arrows point from the term being computed to the earlier terms it needs. Thus $a_3$ requires $a_2$ and $a_1$."
+      },
+      {
+        "text": "The term $a_2$ in turn requires $a_1$ and $a_0$. The initial conditions stop this dependency chain. The shared $a_1$ is one sequence value, even when needed more than once.",
+        "highlight": ["a_1", "a_0"]
+      }
+    ],
+    "creation": "Original native directed dependency diagram with ordered connections $(a_3,a_2)$, $(a_3,a_1)$, $(a_2,a_1)$, and $(a_2,a_0)$. Each connection points from a required calculation to a term it needs. Subscripts are term indices, not computed values.",
+    "limitations": "Arrows here mean “requires,” so they point backward in the index. This finite diagram is not an execution-time analysis and does not require recomputing shared terms.",
+    "mathLabels": {
+      "a_3": "a_3",
+      "a_2": "a_2",
+      "a_1": "a_1",
+      "a_0": "a_0"
+    },
+    "nodes": [
+      {
+        "id": "a_3",
+        "x": 300,
+        "y": 45
+      },
+      {
+        "id": "a_2",
+        "x": 130,
+        "y": 165
+      },
+      {
+        "id": "a_1",
+        "x": 450,
+        "y": 290
+      },
+      {
+        "id": "a_0",
+        "x": 90,
+        "y": 310
+      }
+    ],
+    "edges": [
+      ["a_3", "a_2"],
+      ["a_3", "a_1"],
+      ["a_2", "a_1"],
+      ["a_2", "a_0"]
+    ],
+    "directed": true
+  },
+  {
+    "id": "recurrence-levels",
+    "title": "Count calls and work at each level",
+    "lesson": "recurrence-relations",
+    "section": "Divide-and-conquer recurrences",
+    "kind": "graph",
+    "requires": ["recursion-tree", "divide-and-conquer"],
+    "frames": [
+      {
+        "text": "For input size $n=4$, the root performs 4 units of additional work. Its two children have input size 2 each. Numbers on nodes give input sizes. Subscripts $L$ and $R$ distinguish the left and right calls; $A$, $B$, $C$, and $D$ distinguish the four calls of size 1. These letters are labels, not variables or multipliers.",
+        "highlight": ["4"]
+      },
+      {
+        "text": "The next level contains two calls, each doing 2 units of additional work. The level total remains $2\\cdot2=4$.",
+        "highlight": ["2_L", "2_R"]
+      },
+      {
+        "text": "The four leaves each cost 1. Total work is $4+4+4=12$, agreeing with $4\\log_2 4+4$. Subscripts merely distinguish calls of the same size.",
+        "highlight": ["1_A", "1_B", "1_C", "1_D"]
+      }
+    ],
+    "creation": "Original native binary call tree for $T(1)=1$ and $T(n)=2T(n/2)+n$ at $n=4$. Node labels give input sizes; letter subscripts distinguish repeated sizes.",
+    "limitations": "This exact cost model includes leaves and assumes powers of two. Other input sizes or non-unit base costs require different formulas.",
+    "mathLabels": {
+      "4": "4",
+      "2_L": "2_L",
+      "2_R": "2_R",
+      "1_A": "1_A",
+      "1_B": "1_B",
+      "1_C": "1_C",
+      "1_D": "1_D"
+    },
+    "nodes": [
+      {
+        "id": "4",
+        "x": 300,
+        "y": 40
+      },
+      {
+        "id": "2_L",
+        "x": 160,
+        "y": 160
+      },
+      {
+        "id": "2_R",
+        "x": 440,
+        "y": 160
+      },
+      {
+        "id": "1_A",
+        "x": 60,
+        "y": 300
+      },
+      {
+        "id": "1_B",
+        "x": 230,
+        "y": 300
+      },
+      {
+        "id": "1_C",
+        "x": 380,
+        "y": 300
+      },
+      {
+        "id": "1_D",
+        "x": 540,
+        "y": 300
+      }
+    ],
+    "edges": [
+      ["4", "2_L"],
+      ["4", "2_R"],
+      ["2_L", "1_A"],
+      ["2_L", "1_B"],
+      ["2_R", "1_C"],
+      ["2_R", "1_D"]
+    ],
+    "directed": false
+  },
+  {
+    "id": "growth-eventual-bound",
+    "title": "The bound begins at a threshold",
+    "lesson": "asymptotic-growth",
+    "section": "Big O: an eventual upper bound",
+    "kind": "plot",
+    "requires": ["big-o", "threshold"],
+    "frames": [
+      {
+        "text": "The solid curve is $f(n)=n+3$ and the dashed curve is $2n$. At $n_0=3$ they meet; for every integer $n\\geq3$, $n+3\\leq2n$. This supplies $c=2$ and $n_0=3$ for $f(n)=O(n)$."
+      }
+    ],
+    "creation": "Original native curves sampled at 301 evenly spaced real values of $n$ between 1 and 12, using the explicit formulas $n+3$ and $2n$. Linear axes start at zero. The vertical dashed line marks $n_0=3$.",
+    "limitations": "The cost functions have integer inputs; continuous connecting curves help compare their values. The algebra $n+3\\leq2n$ for $n\\geq3$ proves the eventual bound, not the finite plot.",
+    "mathLabels": {
+      "n": "n",
+      "n+3": "n+3",
+      "2n": "2n",
+      "n_0=3": "n_0=3"
+    },
+    "xMax": 12,
+    "yMax": 24,
+    "threshold": 3,
+    "series": [
+      {
+        "label": "n+3",
+        "model": "polynomial",
+        "coefficients": [3, 1]
+      },
+      {
+        "label": "2n",
+        "model": "polynomial",
+        "coefficients": [0, 2]
+      }
+    ]
+  },
+  {
+    "id": "growth-comparison",
+    "title": "Different shapes on a shared scale",
+    "lesson": "asymptotic-growth",
+    "section": "Strictly slower growth",
+    "kind": "plot",
+    "requires": ["little-o", "binary-logarithm"],
+    "frames": [
+      {
+        "text": "On the same axes, compare $n$ (solid), $n\\log_2 n$ (dashed), and $n^2$ (dotted). At $n=8$, their values are 8, 24, and 64. Line patterns and labels distinguish the curves."
+      }
+    ],
+    "creation": "Original native curves computed from $n$, $n\\log_2 n$, and $n^2$ at 301 equally spaced sample positions between 1 and 8. Values 8, 24, and 64 at the right endpoint provide an exact scale check.",
+    "limitations": "Only a finite interval is visible. Separation on this plot is not proof of little-o relations; those require eventual bounds for every positive comparison constant.",
+    "mathLabels": {
+      "n": "n",
+      "n\\log_2 n": "n\\log_2 n",
+      "n^2": "n^2"
+    },
+    "xMax": 8,
+    "yMax": 64,
+    "series": [
+      {
+        "label": "n",
+        "model": "polynomial",
+        "coefficients": [0, 1]
+      },
+      {
+        "label": "n\\log_2 n",
+        "model": "nlogn",
+        "coefficients": [],
+        "base": 2
+      },
+      {
+        "label": "n^2",
+        "model": "polynomial",
+        "coefficients": [0, 0, 1]
+      }
+    ]
+  },
+  {
+    "id": "growth-loop-region",
+    "title": "Each square is one inner-body execution",
+    "lesson": "asymptotic-growth",
+    "section": "Dependent loop bounds",
+    "kind": "sum",
+    "requires": ["nested-sum", "loop"],
+    "frames": [
+      {
+        "n": 3,
+        "text": "For outer index $i=1,\\ldots,3$ and inner index $j=1,\\ldots,i$, row $i$ contains $i$ executions. The region contains $6$ squares, illustrating $n(n+1)/2$ executions when $n=3$."
+      },
+      {
+        "n": 5,
+        "text": "For outer index $i=1,\\ldots,5$ and inner index $j=1,\\ldots,i$, row $i$ contains $i$ executions. The region contains $15$ squares, illustrating $n(n+1)/2$ executions when $n=5$."
+      },
+      {
+        "n": 7,
+        "text": "For outer index $i=1,\\ldots,7$ and inner index $j=1,\\ldots,i$, row $i$ contains $i$ executions. The region contains $28$ squares, illustrating $n(n+1)/2$ executions when $n=7$."
+      }
+    ],
+    "creation": "Original native unit-square rows of lengths 1 through $n$. Each square corresponds to one pair of integer loop indices $(i,j)$ satisfying $1\\leq j\\leq i\\leq n$.",
+    "limitations": "This counts executions of the inner body only. Runtime also depends on the cost per body execution and loop control; the text states those assumptions.",
+    "mathLabels": {
+      "1+\\cdots+3=6": "1+\\cdots+3=6",
+      "1+\\cdots+5=15": "1+\\cdots+5=15",
+      "1+\\cdots+7=28": "1+\\cdots+7=28"
+    },
+    "arrangement": "triangle"
+  }
+]

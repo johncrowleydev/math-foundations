@@ -2,7 +2,7 @@
 
 A proof by contradiction begins by assuming that the statement to be proved is false. It then derives an impossibility from that assumption together with the accepted background facts. The contradiction forces us to reject the assumption and accept the original statement.
 
-This lesson builds on [Predicates and Quantifiers](../lessons/02-predicates-and-quantifiers.md), [Direct Proof](../lessons/07-direct-proof.md), and [Proof by Contrapositive](../lessons/08-proof-by-contrapositive.md). We use classical logic, the usual arithmetic of integers and real numbers, and the definitions of rationality and divisibility from those lessons.
+This lesson builds on [Predicates and Quantifiers](../lessons/02-predicates-and-quantifiers.md), [Direct Proof](../lessons/07-direct-proof.md), and [Proof by Contrapositive](../lessons/08-proof-by-contrapositive.md). We use **classical logic**, in which every proposition is true or false and double negation can be eliminated, together with the usual arithmetic of integers and real numbers, and the definitions of rationality and divisibility from those lessons.
 
 The method is powerful, but it requires precision: a statement can seem surprising without being contradictory, and negating only part of a theorem can lead to proving the wrong result.
 
@@ -10,7 +10,7 @@ The method is powerful, but it requires precision: a statement can seem surprisi
 
 Imagine temporarily accepting a claim in order to examine what it would force you to accept next. If its consequences conflict with established facts, the temporary claim cannot stand. A contradiction proof uses this idea in a controlled way: the assumption is exactly the negation of the desired statement, and the final conflict must be explicit.
 
-To prove a statement $S$ by contradiction:
+Here $S$ is the proposition being proved and $T$ denotes any proposition reached during the argument. To prove a statement $S$ by contradiction:
 
 1. Assume $\neg S$.
 2. Deduce consequences using that assumption and established facts.
@@ -21,7 +21,7 @@ The contradictory statements must concern the same object under the same assumpt
 
 If a theorem is an implication $P\to Q$, its negation is $P\land\neg Q$. A contradiction proof therefore assumes both the hypothesis and the failure of the conclusion.
 
-For a quantified claim, negate the whole statement. The negation of
+For a quantified claim, negate the whole statement. In the formulas below, $D$ is the domain and $P,Q$ are predicates on it. The negation of
 
 $$
 \forall x\in D,\quad P(x)\to Q(x)
@@ -47,6 +47,8 @@ The conclusion contradicts the assumption because the newly constructed integer 
 
 A direct formulation is also possible: for every integer $n$, the integer $n+1$ is larger. The two presentations make the same arithmetic observation with different logical organization.
 
+![The assumed maximum defeats itself](figure:proof-contradiction-largest)
+
 ## Contradiction versus contrapositive
 
 Both methods can begin by supposing the desired conclusion fails, so their presentations sometimes look similar. The difference is what else is assumed and what the proof is trying to reach. Keeping that bookkeeping visible helps the reader understand where the contradiction comes from and which assumptions are temporary.
@@ -61,13 +63,13 @@ Contradiction is especially natural for assertions of nonexistence, irrationalit
 
 The number $1/2$ can also be written as $2/4$, $3/6$, and many other fractions. To turn a shared divisor into a contradiction later, we must choose a representation that has already had all common factors removed. Otherwise discovering another shared divisor would merely tell us to simplify the fraction. This section justifies that choice before we rely on it.
 
-We will use a basic integer fact: every rational number can be written as $a/b$ with $a,b\in\mathbb{Z}$, $b>0$, and no common positive divisor of $a,b$ other than 1.
+A fraction is in **lowest terms** when its integer numerator and denominator have no common positive divisor greater than 1. This is also described as the entries being **coprime**. The **greatest common divisor**, written $\gcd(a,b)$ and read “g c d of a and b,” is their largest common positive divisor (with at least one of $a,b$ nonzero). Thus lowest terms means $\gcd(a,b)=1$. We will use a basic integer fact: every rational number can be written as $a/b$ with $a,b\in\mathbb{Z}$, $b>0$, and no common positive divisor of $a,b$ other than 1.
 
 Here is why. Start with any integer fraction having nonzero denominator, and move its sign to the numerator if necessary. Among the positive common divisors of its numerator and denominator, choose the greatest, $g$. Such a greatest divisor exists because every positive divisor of the positive denominator is at most that denominator, and 1 is a common divisor. Divide numerator and denominator by $g$.
 
 If the reduced numerator and denominator still shared a positive divisor $h>1$, then $gh>g$ would have divided both original numbers, contradicting the choice of $g$. The resulting fraction is in **lowest terms**.
 
-This reduction does not require a theorem about unique prime factorization. It relies only on a greatest element of a finite nonempty set of positive integers.
+This reduction does not require a theorem about unique prime factorization, which would say that every integer greater than 1 is a product of primes in exactly one way apart from rearranging factors. It relies only on a greatest element of a finite nonempty set of positive integers.
 
 ## The irrationality of the square root of 2
 
@@ -198,7 +200,9 @@ A good final sentence names the two facts that cannot coexist. If you can only s
 
 **Ignoring a side condition.** Dividing by a variable can invalidate the argument if zero is allowed. Choosing a lowest-terms representation or a nonzero denominator is mathematical work, not optional wording.
 
-**Losing the temporary scope.** The assumption made for contradiction is discharged at the end. It is not a fact to reuse in later arguments after its impossibility has been shown.
+**Losing the temporary scope.** The assumption made for contradiction is **discharged** at the end: we stop treating it as an available premise after showing it impossible. It is not a fact to reuse in later arguments after its impossibility has been shown.
+
+For reference in function proofs, a **left inverse** of $f:A\to B$ is a function $g:B\to A$ with $g(f(a))=a$ for every $a\in A$. A **right inverse** has $f(g(b))=b$ for every $b\in B$. Each condition checks one order of composition; an inverse function satisfies both. Applying a left inverse to equal outputs proves injectivity, while a right inverse supplies a preimage for every target and proves surjectivity.
 
 ## Readiness checklist
 

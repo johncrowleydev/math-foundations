@@ -45,6 +45,8 @@ data class Section(
     val markdown: String,
     val questionIds: List<Int>,
     val quickChecks: List<QuickCheck> = emptyList(),
+    val id: String = title,
+    val blocks: JSONArray? = null,
 )
 
 data class Lesson(
@@ -55,6 +57,7 @@ data class Lesson(
     val sections: List<Section>,
     val questions: List<Question>,
     val practiceIds: List<Int>,
+    val introBlocks: JSONArray? = null,
 ) {
     fun question(id: Int) = questions.first { it.id == id }
 }
@@ -62,6 +65,24 @@ data class Lesson(
 fun <T> JSONArray.mapItems(block: (Int) -> T): List<T> = (0 until length()).map(block)
 
 class NotebookModel(app: Application) : AndroidViewModel(app) {
+    internal val references = ReferenceController(TeachingLibrary(app))
+    var teachingJump by mutableStateOf<Pair<Int, String>?>(null)
+        private set
+
+    private var jumpSequence = 0
+
+    fun openTeaching(slug: String, section: String) {
+        val index = lessons.indexOfFirst { it.slug == slug }
+        if (index < 0) return
+        mode(false)
+        select(index)
+        teachingJump = (++jumpSequence) to section
+    }
+
+    fun consumeTeachingJump(jump: Pair<Int, String>) {
+        if (teachingJump == jump) teachingJump = null
+    }
+
     private val prefs = app.getSharedPreferences("notebook", 0)
     private val data =
         JSONObject(app.assets.open("notebook.json").bufferedReader().use { it.readText() })
@@ -97,6 +118,8 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
                                         )
                                     }
                                 } ?: emptyList(),
+                                s.optString("id", s.getString("title")),
+                                s.optJSONArray("blocks"),
                             )
                         }
                     },
@@ -120,6 +143,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
                         }
                     },
                     l.getJSONArray("practiceIds").let { ids -> ids.mapItems { ids.getInt(it) } },
+                    l.optJSONArray("introBlocks"),
                 )
             }
         }
@@ -171,10 +195,110 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
         prefs.edit().putInt("position:$slug", value).apply()
     }
 
-    fun reading(slug: String) = prefs.getInt("reading:$slug", 0) to prefs.getInt("offset:$slug", 0)
+    private fun readingKeys(slug: String): List<String> = buildList {
+        add("intro")
+        lessons
+            .first { it.slug == slug }
+            .sections
+            .forEach { s ->
+                add("section:${s.id}")
+                s.quickChecks.forEach { add("quick:${it.id}") }
+                s.questionIds.forEach { add("question:$it") }
+            }
+        add("end")
+    }
+
+    private fun readingContent(slug: String, key: String): Int {
+        val lesson = lessons.first { it.slug == slug }
+        val text =
+            when {
+                key == "intro" -> lesson.intro
+                key.startsWith("section:") ->
+                    lesson.sections
+                        .find { "section:${it.id}" == key }
+                        ?.let { section ->
+                            section.markdown +
+                                section.blocks?.toString().orEmpty() +
+                                references.library.figures.values
+                                    .filter {
+                                        it.getString("lesson") == slug &&
+                                            it.getString("section") == section.title
+                                    }
+                                    .joinToString { it.toString() }
+                        }
+                        .orEmpty()
+                key.startsWith("question:") ->
+                    lesson.questions
+                        .find { "question:${it.id}" == key }
+                        ?.let { it.instructions + it.prompt + it.math }
+                        .orEmpty()
+                key.startsWith("quick:") ->
+                    lesson.sections
+                        .flatMap { it.quickChecks }
+                        .find { "quick:${it.id}" == key }
+                        ?.let { it.prompt + it.options.joinToString() + it.explanation }
+                        .orEmpty()
+                else -> key
+            }
+        return text.hashCode()
+    }
+
+    fun reading(slug: String): Pair<Int, Int> {
+        val keys = readingKeys(slug)
+        val anchor = prefs.getString("reading-anchor:$slug", null)
+        if (anchor != null) {
+            val index = keys.indexOf(anchor)
+            if (index < 0) {
+                val section = prefs.getString("reading-section:$slug", "intro")
+                return keys.indexOf(section).coerceAtLeast(0) to 0
+            }
+            val unchanged =
+                prefs.getInt("reading-content:$slug", Int.MIN_VALUE) == readingContent(slug, anchor)
+            return index to if (unchanged) prefs.getInt("offset:$slug", 0) else 0
+        }
+        val legacy =
+            JSONObject(
+                getApplication<Application>()
+                    .assets
+                    .open("reading-order-v7.json")
+                    .bufferedReader()
+                    .use { it.readText() }
+            )
+        val previous = legacy.optJSONArray(slug)
+        val oldIndex = prefs.getInt("reading:$slug", 0)
+        val previousKey = previous?.optString(oldIndex)
+        val previousSection =
+            previous?.let { a ->
+                (0..oldIndex.coerceAtMost(a.length() - 1))
+                    .map { a.optString(it) }
+                    .lastOrNull { it.startsWith("section:") && it in keys }
+            }
+        val key = previousKey?.takeIf { it in keys } ?: previousSection ?: "intro"
+        // Rewritten teaching prose has a different height: retain its section, not an
+        // obsolete pixel offset that could skip newly introduced explanations.
+        val offset =
+            if (key.startsWith("question:") || key.startsWith("quick:"))
+                prefs.getInt("offset:$slug", 0)
+            else 0
+        val index = keys.indexOf(key).coerceAtLeast(0)
+        reading(slug, index, offset)
+        return index to offset
+    }
 
     fun reading(slug: String, index: Int, offset: Int) {
-        prefs.edit().putInt("reading:$slug", index).putInt("offset:$slug", offset).apply()
+        val keys = readingKeys(slug)
+        val key = keys.getOrNull(index) ?: "intro"
+        val section =
+            keys.take(index.coerceAtLeast(0) + 1).lastOrNull { it.startsWith("section:") }
+                ?: "intro"
+        prefs
+            .edit()
+            .putString("reading-anchor:$slug", key)
+            .putString("reading-section:$slug", section)
+            .putInt("reading-content:$slug", readingContent(slug, key))
+            .putInt("reading:$slug", index)
+            .putInt("offset:$slug", offset)
+            .apply()
     }
 
     fun page(key: String): InkPage =

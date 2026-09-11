@@ -10,7 +10,7 @@ We use $\mathbb{Z}$ for the integers, $\mathbb{N}_0$ for the nonnegative integer
 
 Before asking “what algebra should I do?”, ask what would count as finishing the proof. A statement about every integer, a statement asserting an example exists, and a statement asserting two descriptions are equivalent create different obligations. Reading those obligations correctly often determines the shape of the proof before any calculation begins.
 
-Many elementary theorems have the form
+A **theorem** is a statement established by proof. In the following form, $D$ is the domain, $x$ an element of it, and $P,Q$ predicates on that domain. Read it as “for every x in D, if P of x then Q of x.” Many elementary theorems have the form
 
 $$
 \forall x\in D,\quad P(x)\to Q(x).
@@ -42,8 +42,8 @@ Definitions are the tools that let a proof get started. Knowing that a number is
 
 For an integer $n$:
 
-- $n$ is **even** if $n=2k$ for some $k\in\mathbb{Z}$.
-- $n$ is **odd** if $n=2k+1$ for some $k\in\mathbb{Z}$.
+- $n$ is **[even](ref:even-odd)** if $n=2k$ for some $k\in\mathbb{Z}$.
+- $n$ is **[odd](ref:even-odd)** if $n=2k+1$ for some $k\in\mathbb{Z}$.
 - For integers $d,n$, $d\mid n$ means that $n=dk$ for some $k\in\mathbb{Z}$.
 
 The vertical bar in $d\mid n$ means “divides”; it is not division notation. For example, $3\mid12$ is a proposition, while $12/3$ is a number.
@@ -77,6 +77,8 @@ Since $a+b+1\in\mathbb{Z}$, the definition of evenness shows that $m+n$ is even.
 The witnesses $a$ and $b$ have different names because the two odd integers need not be equal. Writing $m=2k+1$ and $n=2k+1$ with the same $k$ would silently restrict the proof to $m=n$.
 
 Checking $3+5=8$ illustrates the theorem, but does not replace this proof. The symbolic argument covers all odd integers, including negative ones.
+
+![From odd inputs to an even sum](figure:proof-direct-odd)
 
 ## Divisibility and linear combinations
 
@@ -118,9 +120,9 @@ Similar reasoning shows closure under subtraction and multiplication. Division n
 
 ## Proof by cases
 
-Sometimes the right first step is to organize the inputs, rather than force one formula to handle all of them at once. With consecutive integers, exactly one is even. Splitting according to the parity of the first tells us which factor supplies a two. Each case is short because the split exposes the information the calculation needs.
+Sometimes the right first step is to organize the inputs, rather than force one formula to handle all of them at once. With consecutive integers, exactly one is even. The **parity** of an integer is whether it is even or odd. Splitting according to the parity of the first tells us which factor supplies a two. Each case is short because the split exposes the information the calculation needs.
 
-Sometimes no single convenient algebraic form covers every input. A **proof by cases** divides the possibilities into an exhaustive collection and proves the conclusion in each case.
+Sometimes no single convenient algebraic form covers every input. A **proof by cases** divides the possibilities into an **exhaustive** collection, meaning cases that together include every allowed input, and proves the conclusion in each case.
 
 **Claim.** For every integer $n$, $n(n+1)$ is even.
 
@@ -173,7 +175,7 @@ Proving one direction does not automatically prove the other. Some calculations 
 
 An existence proof can sometimes give a recipe for the object it promises. To find a number between two real numbers, the midpoint is a natural candidate. The proof then checks the recipe, rather than relying on a drawing in which the point merely appears to be between the endpoints.
 
-An existential proof can explicitly build a witness. In a statement $\forall x\,\exists y$, that witness may depend on the previously chosen $x$.
+A **constructive existence proof** explicitly builds a witness, an object with the required properties. In a statement $\forall x\,\exists y$, that witness may depend on the previously chosen $x$.
 
 **Claim.** Between any two distinct real numbers $a<b$, there is a real number $c$.
 
@@ -217,7 +219,7 @@ Another flawed argument says:
 
 There are two gaps. First, taking the positive square root loses negative possibilities for $n$: $n=-2$ and $k=2$ satisfy $n^2=2k$ but not the asserted equation for $n$. Second, even for nonnegative $n$, evenness requires an integer multiplying 2, and nothing here shows that $\sqrt{k/2}$ is an integer. Algebraic resemblance is not enough. The claim is true, but the next lesson develops a better method for proving it.
 
-When drafting, you may work backward from the desired expression to discover useful algebra. The finished proof should distinguish that exploration from justified deductions. Do not assume the conclusion while presenting an argument as a proof of it.
+**Circular reasoning** uses the conclusion itself, directly or indirectly, as an assumption in its supposed proof. When drafting, you may work backward from the desired expression to discover useful algebra. The finished proof should distinguish that exploration from justified deductions. Do not assume the conclusion while presenting an argument as a proof of it.
 
 ## Readiness checklist
 

@@ -1,6 +1,6 @@
 # Asymptotic Growth
 
-An exact operation count can be useful, but it often depends on implementation details that obscure the main pattern. Asymptotic notation describes how functions compare for sufficiently large inputs. It helps distinguish linear work from quadratic or exponential work while keeping the underlying claims precise.
+An exact operation count can be useful, but it often depends on implementation details that obscure the main pattern. Asymptotic notation describes how functions compare for sufficiently large inputs. Using n for a positive integer input size, linear, quadratic, and exponential comparison functions have forms such as $n$, $n^2$, and $2^n$, respectively. This notation helps distinguish these patterns of work while keeping the underlying claims precise.
 
 This lesson builds on [Functions](../lessons/05-functions.md), [Sequences and Summations](../lessons/06-sequences-and-summations.md), and [Recurrence Relations](../lessons/13-recurrence-relations.md). We will use integer input sizes and elementary inequalities. No limit or calculus machinery is required.
 
@@ -8,9 +8,9 @@ This lesson builds on [Functions](../lessons/05-functions.md), [Sequences and Su
 
 “This takes a long time” is incomplete until we say what work is being counted and how the input size is measured. Sorting a list of a thousand small integers and manipulating one integer with a thousand digits are different tasks. A useful growth claim begins by defining the quantity whose behavior we want to understand.
 
-Let $n\in\mathbb N$ be a positive integer measuring input size. Unless a different domain is specified, the functions compared below are real-valued and nonnegative for all sufficiently large $n$. The comparison function $g(n)$ will be strictly positive for all sufficiently large $n$.
+Here $\mathbb N=\{1,2,3,\ldots\}$ denotes the positive integers. Let $n\in\mathbb N$ be a positive integer measuring input size. Unless a different domain is specified, the functions compared below are real-valued and nonnegative for all sufficiently large $n$. The comparison function $g(n)$ will be strictly positive for all sufficiently large $n$.
 
-A cost function might count comparisons, array accesses, or arithmetic operations. These are different models. Saying that a loop takes $n$ steps assumes that the work counted in one iteration has bounded constant cost in the chosen model.
+The word **eventually** means “at every input beyond some fixed **threshold**, a starting input value.” A **cost model** specifies which actions count as work. In a **unit-cost model**, each specified basic action has a fixed cost independent of input size. A cost function might count comparisons, array accesses, or arithmetic operations. These are different models. Saying that a loop takes $n$ steps assumes that the work counted in one iteration has bounded constant cost in the chosen model.
 
 The parameter also needs a meaning. For sorting, $n$ often means the number of array elements. For a graph, two parameters, vertices and edges, may be necessary. For an integer, its numeric value and its number of binary digits are very different input sizes.
 
@@ -20,7 +20,7 @@ Asymptotic notation compares functions. To apply it to an algorithm, first ident
 
 Think of placing a scaled comparison curve above the function after some starting point. The multiplier sets the height of the comparison, and the threshold lets us ignore a finite beginning. Both must then stay fixed while the input continues to grow. This picture explains the two constants in the definition and why choosing a new multiplier for every input would change the claim.
 
-We write $f(n)=O(g(n))$ if there exist constants $c>0$ and an integer $n_0\geq1$ such that
+Let $f$ be the function to bound and $g$ the comparison function. Read $f(n)=O(g(n))$ as “f of n is big O of g of n.” We write $f(n)=O(g(n))$ if there exist constants $c>0$ and an integer $n_0\geq1$ such that
 
 $$
 0\leq f(n)\leq c g(n)\qquad\text{for every integer }n\geq n_0.
@@ -36,15 +36,17 @@ $$
 
 Thus $f(n)=O(n^2)$ with $c=15$ and $n_0=1$.
 
-Big O need not be tight. The same function is also $O(n^3)$, since $n^2\leq n^3$ for $n\geq1$. The statement $f(n)=O(n^3)$ is true but gives less precise information.
+A bound is **tight** when a matching lower bound uses the same comparison function, up to positive constant factors. Big O need not be tight. The same function is also $O(n^3)$, since $n^2\leq n^3$ for $n\geq1$. The statement $f(n)=O(n^3)$ is true but gives less precise information.
 
 The equals sign is conventional shorthand for membership in a class of functions. It does not mean that $O(n^2)$ is one particular function or that algebraic equality can be freely reversed.
+
+![The bound begins at a threshold](figure:growth-eventual-bound)
 
 ## Big Omega and Big Theta
 
 An upper bound says the cost cannot eventually exceed a certain scale, but it may greatly overestimate it. A lower bound supplies a floor. When both bounds use the same growth function, the cost is trapped between fixed positive multiples of that function. Theta records this matching information without claiming an exact formula.
 
-We write $f(n)=\Omega(g(n))$ if there exist $c>0$ and $n_0\geq1$ such that
+The Greek capitals $\Omega$ and $\Theta$ are read “omega” and “theta.” We write $f(n)=\Omega(g(n))$ if there exist $c>0$ and $n_0\geq1$ such that
 
 $$
 0\leq c g(n)\leq f(n)\qquad(n\geq n_0).
@@ -83,7 +85,7 @@ Choosing $c=n$ would make $n^2\leq cn$ true, but it is invalid in the definition
 
 An asymptotic expression summarizes inequalities. To combine two summaries safely, return to their inequalities and choose a threshold beyond both starting points. Addition and multiplication then work because of nonnegativity. Subtraction can erase the very terms that made a lower bound possible, so it requires a different kind of care.
 
-For eventually nonnegative functions, if $f=O(g)$ and $h=O(k)$, then
+In this section $f,g,h,k$ name functions of the same input; $a,b$ name positive real multipliers. Omitting the input means pointwise operations: $(f+h)(n)=f(n)+h(n)$ and $(fh)(n)=f(n)h(n)$. Likewise $\max(g,k)$ selects the larger of $g(n),k(n)$ at each input. For eventually nonnegative functions, if $f=O(g)$ and $h=O(k)$, then
 
 $$
 f+h=O(g+k),\qquad fh=O(gk).
@@ -121,7 +123,7 @@ $$
 \log_a n=\frac{\log_b n}{\log_b a}.
 $$
 
-The denominator is a positive constant, so all such fixed logarithm bases have the same $\Theta$ growth. We use $\log_2$ when counting binary halving steps.
+When no base is displayed, $\log n$ means a logarithm with a fixed base greater than 1. The denominator is a positive constant, so all such fixed logarithm bases have the same $\Theta$ growth. We use $\log_2$ when counting binary halving steps.
 
 This rule does not allow a base depending on $n$: $\log_n n=1$ for $n>1$ is constant. Nor are exponential bases interchangeable; $2^n$ and $3^n$ are not $\Theta$ of each other.
 
@@ -141,20 +143,22 @@ Big O needs one successful positive multiplier; little o requires every positive
 
 But $n$ is not $o(n)$, since the inequality fails for $\varepsilon=1/2$. Equal-order functions generally do not become arbitrarily small multiples of each other.
 
-For fixed positive integer $d$, a useful hierarchy is
+In the following hierarchy, $f\prec g$ means $f=o(g)$, read “f grows strictly more slowly than g”; this use of $\prec$ concerns growth, rather than the order on elements from the relations lesson. For fixed positive integer $d$, a useful hierarchy is
 
 $$
 1\prec\log_2 n\prec n\prec n\log_2 n\prec n^2,
 \qquad n^d\prec2^n,
 $$
 
-where $f\prec g$ means $f=o(g)$. These comparisons concern sufficiently large inputs, not every small value.
+These comparisons concern sufficiently large inputs, not every small value.
+
+![Different shapes on a shared scale](figure:growth-comparison)
 
 ## Why exponentials outrun fixed powers
 
 A graph of a few values can suggest this comparison, but it cannot rule out a reversal much later. The proof uses the binomial theorem to find one sufficiently large positive term inside $2^n$. That one term already gives a lower bound strong enough to force the desired ratio toward arbitrarily small values, without using calculus.
 
-We can justify $n^d=o(2^n)$ without calculus. The binomial theorem gives, for $n\geq d+1$,
+Fix a positive integer exponent $d$. We can justify $n^d=o(2^n)$ without calculus. The binomial theorem gives, for $n\geq d+1$,
 
 $$
 2^n=\sum_{j=0}^n\binom nj\geq\binom n{d+1}.
@@ -237,11 +241,13 @@ has $3n$ executions and linear cost. Counting indentation levels is not a valid 
 
 An inner loop with expensive work also changes the result. If its body copies a length-$n$ array, treating that copy as one constant-cost step understates the actual cost in an element-copy model.
 
+![Each square is one inner-body execution](figure:growth-loop-region)
+
 ## Doubling and halving
 
 Doubling reaches a large size in relatively few steps because each step covers as much new scale as all the previous growth. But the number of outer steps does not tell us the work inside those steps. The two examples below distinguish a constant amount of work at each doubling from an amount that grows with the current value.
 
-Consider
+A `while` loop repeats its body as long as the stated test is true; here `<=` means “less than or equal to.” Consider
 
 ```text
 i = 1
@@ -270,15 +276,15 @@ $$
 
 Because $2^k\leq n<2^{k+1}$, this count is between a positive constant multiple of $n$ and $2n$. Thus the total cost is $\Theta(n)$, even though there are logarithmically many outer iterations. Multiplying the number of iterations by the largest inner cost gives an upper bound $O(n\log n)$, but it misses the tighter bound supplied by the geometric sum.
 
-Repeated halving also explains binary search's number of search steps. The remaining candidate interval shrinks by about a factor of two per comparison. Whether each step has constant cost depends on the representation and access operations.
+**Binary search** locates a target in a sorted list by comparing with a middle item and discarding the half that cannot contain the target. Repeated halving explains its number of search steps. The remaining candidate interval shrinks by about a factor of two per comparison. Whether each step has constant cost depends on the representation and access operations.
 
 ## Worst case is a different axis
 
-First choose which inputs a cost function describes, then ask how that function grows. A worst-case function selects the most expensive input of each size. Big O, Omega, and Theta can then bound that selected function just as they can bound a best-case function. The choice of inputs and the direction of the bound answer different questions.
+First choose which inputs a cost function describes, then ask how that function grows. A worst-case function selects the most expensive input of each size. Big O, Omega, and Theta can then bound that selected function just as they can bound a **best-case** function, which selects the least expensive input of each size. The choice of inputs and the direction of the bound answer different questions.
 
-For a fixed size $n$, an algorithm may run differently on different inputs. The **worst-case cost** is the maximum cost among those inputs; the **best-case cost** is the minimum. Average-case analysis requires a specified probability distribution.
+For a fixed size $n$, an algorithm may run differently on different inputs. The **worst-case cost** is the maximum cost among those inputs; the **best-case cost** is the minimum. **Average-case cost** uses a **probability distribution**, assigning chances to inputs of each size with total probability 1. The **expected cost** is the weighted average of their costs, with each cost weighted by its input probability.
 
-Linear search illustrates the distinction. Searching an array of length $n$ stops after one comparison if the first element matches, but may inspect all $n$ elements. Under unit-cost comparisons, its best-case cost is $\Theta(1)$ and its worst-case cost is $\Theta(n)$.
+**Linear search** checks items in order until finding a match or exhausting the list. It illustrates the distinction. Searching an array of length $n$ stops after one comparison if the first element matches, but may inspect all $n$ elements. Under unit-cost comparisons, its best-case cost is $\Theta(1)$ and its worst-case cost is $\Theta(n)$.
 
 Big O does not mean "worst case," and Omega does not mean "best case." We can give an upper or lower bound for either cost function. Saying the worst-case cost is $\Omega(n)$ means some size-$n$ input requires at least a constant times $n$ work eventually; it does not mean every input does.
 
@@ -296,7 +302,7 @@ The practical habit is to name both the subject and the claim: "this implementat
 
 ## Irregular functions still use the definitions
 
-The phrase “for every sufficiently large input” includes odd inputs, even inputs, and any other infinite subsequence. A function need not increase smoothly to have a useful bound. Conversely, a bound that works on only one subsequence can miss arbitrarily late failures on another.
+The phrase “for every sufficiently large input” includes odd inputs, even inputs, and any other infinite **subsequence**, a selection of terms retaining their original order. A function need not increase smoothly to have a useful bound. Conversely, a bound that works on only one subsequence can miss arbitrarily late failures on another.
 
 Asymptotic notation does not require smooth or steadily increasing functions. Define $f(n)=n$ for even $n$ and $f(n)=2n$ for odd $n$. For every positive integer,
 
@@ -316,9 +322,9 @@ A cost can look small or large depending on what the parameter measures. Countin
 
 The earlier recurrence $T(1)=1$, $T(n)=2T(n/2)+n$ on powers of two has exact solution $n\log_2 n+n$, hence $\Theta(n\log n)$ on that domain. The recurrence $S(n)=S(n/2)+1$ gives $\Theta(\log n)$. Same recursion depth, different total work.
 
-An integer's bit length is approximately its base-2 logarithm: a positive integer $N$ has $b=\lfloor\log_2 N\rfloor+1$ binary digits. A loop running $N$ times is linear in the numeric value $N$, but may require about $2^b$ iterations when measured by bit length $b$. Calling it simply "linear in the input" would hide an essential distinction.
+A **bit** is a binary digit, 0 or 1; the **bit length** counts the digits in the usual representation without leading zeros. An integer's bit length is approximately its base-2 logarithm: a positive integer $N$ has $b=\lfloor\log_2 N\rfloor+1$ binary digits. A loop running $N$ times is linear in the numeric value $N$, but may require about $2^b$ iterations when measured by bit length $b$. Calling it simply "linear in the input" would hide an essential distinction.
 
-Similarly, arbitrary-precision addition is not constant cost in a bit-operation model: longer numbers require processing more digits. A unit-cost arithmetic model can be useful, but its assumptions must be stated when operands grow.
+**Arbitrary-precision arithmetic** stores as many digits as needed rather than using a fixed range. Its **operands** are the numbers supplied to an operation. In a **bit-operation model**, one basic step handles only a bounded number of bits. Accordingly, arbitrary-precision addition is not constant cost in that model: longer numbers require processing more digits. A unit-cost arithmetic model can be useful, but its assumptions must be stated when operands grow.
 
 ## Readiness check
 

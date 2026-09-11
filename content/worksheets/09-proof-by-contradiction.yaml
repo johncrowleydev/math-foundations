@@ -331,7 +331,7 @@ sections:
         answerLines: 4
         answer:
           'The first allows composite numbers: 12 has prime divisors 2 and 3. The second is false because
-          12 also has proper nontrivial divisors. A prime divisor need not equal the original integer.'
+          12 has positive divisors other than 1 and itself. A prime divisor need not equal the original integer.'
       - id: 44
         type: reasoning
         prompt: If $p_1,\ldots,p_k$ were all primes, why does $N=p_1\cdots p_k+1$ exceed 1?
@@ -580,7 +580,7 @@ sections:
         prompt: Prove that if $A\subseteq B$ and $B\subseteq A$, then $A=B$, by ruling out inequality.
         answerLines: 7
         answer:
-          Suppose $A\ne B$. By set extensionality, some element belongs to exactly one set. If in $A$ only,
+          Suppose $A\ne B$. By the definition of set equality, some element belongs to exactly one set. If in $A$ only,
           $A\subseteq B$ is violated; if in $B$ only, $B\subseteq A$ is violated. Both cases contradict the hypotheses.
       - id: 76
         type: reasoning
@@ -618,6 +618,6 @@ sections:
           means $a<b\to f(a)<f(b)$.
         answerLines: 7
         answer:
-          Suppose distinct real $a,b$ have equal outputs. By real trichotomy, either $a<b$ or $b<a$. Strict
+          Suppose distinct real $a,b$ have equal outputs. Since distinct real numbers can be ordered, either $a<b$ or $b<a$. Strict
           increase gives respectively $f(a)<f(b)$ or $f(b)<f(a)$, each contradicting output equality. Therefore
           no collision exists.

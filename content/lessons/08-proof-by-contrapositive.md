@@ -4,13 +4,13 @@ Some implications are difficult to prove by starting from their hypotheses. A co
 
 This lesson builds on [Propositional Logic](../lessons/01-propositional-logic.md), [Predicates and Quantifiers](../lessons/02-predicates-and-quantifiers.md), and [Direct Proof](../lessons/07-direct-proof.md). Keep the earlier definitions of even, odd, rational, and divides. Unless another domain is specified, variables in divisibility and parity claims are integers.
 
-A proof by contrapositive is still a proof of the original implication. It works because two particular logical statements have exactly the same truth value, not because reversing a sentence is usually safe.
+A **proof by contrapositive** establishes an implication by proving its contrapositive: assume that the original conclusion fails and show that the original hypothesis must fail too. It works because two particular logical statements have exactly the same truth value, not because reversing a sentence is usually safe.
 
 ## The equivalence that makes the method work
 
 Contraposition changes the route through an implication while preserving the situation it rules out. Rather than trying to force the promised result directly, we show that its failure makes the starting condition impossible. The equivalence below is the reason this is a proof method, rather than a persuasive analogy.
 
-The **contrapositive** of $P\to Q$ is
+Let $P,Q$ stand for propositions. The **contrapositive** of $P\to Q$ is
 
 $$
 \neg Q\to\neg P.
@@ -39,7 +39,7 @@ The converse and inverse are equivalent to each other, but need not be equivalen
 
 Write the new assumption and new goal in ordinary language first. This gives you a quick check on which part is being negated and which direction the proof travels. Once those are correct, the argument itself is a direct proof of the new implication: start with its hypothesis and reason forward.
 
-To prove
+Let $D$ be the original domain and $P(x),Q(x)$ predicates describing its hypothesis and conclusion. To prove
 
 $$
 \forall x\in D,\quad P(x)\to Q(x)
@@ -75,11 +75,13 @@ Because $2k^2+2k$ is an integer, $n^2$ is odd. We have proved the contrapositive
 
 The domain restriction matters. “Not even” can be replaced by “odd” because $n$ is an integer. Parity is not a classification of all real numbers. The proof must not silently treat a noninteger as odd.
 
+![Start with the negated conclusion](figure:proof-contrapositive-odd)
+
 ## Negate compound conditions carefully
 
 A compound conclusion must fail as a whole. If a theorem promises at least one of two outcomes, denying the promise means ruling out both outcomes, not just one. It is worth doing this logical preparation before touching the numbers; otherwise a perfectly correct calculation can prove the wrong contrapositive.
 
-Suppose a theorem says
+Here $P,Q,R,S$ are propositions, and the connectives have the same meanings as in propositional logic. Suppose a theorem says
 
 $$
 P\to(Q\lor R).
@@ -103,9 +105,9 @@ $$
 \neg Q\to(\neg P\lor\neg R).
 $$
 
-Negation changes the connective as well as the individual clauses. For real numbers, the negation of $x>3$ is $x\leq3$, not $x<3$. Equality is a frequent missing boundary case.
+Negation changes the connective as well as the individual component statements. For real numbers, the negation of $x>3$ is $x\leq3$, not $x<3$. Equality is a frequent missing boundary case.
 
-Useful pairs include:
+The notation $d\nmid n$, read “d does not divide n,” negates divisibility: no integer $k$ satisfies $n=dk$. Useful pairs include:
 
 | Statement               | Negation                     |
 | ----------------------- | ---------------------------- |
@@ -136,13 +138,13 @@ The quantity $2rs+r+s$ is an integer, so $ab$ is odd. Thus, if the product is ev
 
 The theorem does not say exactly one factor is even. Both can be even: $2\cdot4=8$. It also does not say that an even product forces a specific factor to be even. For $3\cdot2$, the first factor is odd.
 
-This is a special divisibility property of the prime number 2. Replacing 2 by an arbitrary positive integer makes a false theorem: $6\mid2\cdot3$, but 6 divides neither factor.
+Recall that a **prime** is an integer greater than 1 whose only positive divisors are 1 and itself. This is a special divisibility property of the prime number 2. Replacing 2 by an arbitrary positive integer makes a false theorem: $6\mid2\cdot3$, but 6 divides neither factor.
 
 ## Divisibility by 3 and remainders
 
 For parity, “not even” had the single form “odd.” For divisibility by three, failure leaves two possible remainders. Contraposition still helps, but we must now carry out two cases. The method does not remove the need for complete coverage; it makes the cases manageable.
 
-Division with remainder says that every integer $n$ can be expressed as $n=3k+r$ with $r\in\{0,1,2\}$. This applies to negative integers too; the remainder is chosen from the same three values.
+The **quotient** is the integer number of whole multiples removed; the **remainder** is what remains. Division with remainder says that every integer $n$ can be expressed as $n=3k+r$ with integer quotient $k$ and remainder $r\in\{0,1,2\}$. This applies to negative integers too; the remainder is chosen from the same three values.
 
 **Claim.** If $3\mid n^2$, then $3\mid n$.
 
@@ -153,15 +155,15 @@ Division with remainder says that every integer $n$ can be expressed as $n=3k+r$
 
 In either case the square has remainder 1 on division by 3, so $3\nmid n^2$. This proves the contrapositive and hence the original claim.
 
-Why does a remainder of 1 rule out divisibility? If the number were also $3t$, subtraction would yield $1=3(t-u)$ for some integer $u$, which is impossible. The uniqueness of remainders packages that argument.
+Why does a remainder of 1 rule out divisibility? A number with remainder 1 has the form $3u+1$ for an integer $u$. If it were also $3t$ for an integer $t$, subtraction would yield $1=3(t-u)$ for some integer $u$, which is impossible. The uniqueness of remainders packages that argument.
 
 This proof illustrates cases inside a contrapositive proof. Methods can be combined: contraposition chooses the logical direction, while cases organize the allowed inputs.
 
 ## Irrationality through a rational contrapositive
 
-Some properties describe the absence of a representation. “Irrational” tells us that no suitable fraction exists, which gives us little to substitute into an expression. Its negation, rationality, supplies exactly such a fraction. This contrast often makes the contrapositive easier to calculate with than the original statement.
+A real number is **irrational** if it is not rational, meaning it has no representation as an integer numerator over a nonzero integer denominator. Some properties describe the absence of a representation. “Irrational” tells us that no suitable fraction exists, which gives us little to substitute into an expression. Its negation, rationality, supplies exactly such a fraction. This contrast often makes the contrapositive easier to calculate with than the original statement.
 
-A real number is **irrational** when it is not rational. Sometimes rationality gives a useful fractional representation while irrationality gives no direct algebraic form.
+Sometimes rationality gives a useful fractional representation while irrationality gives no direct algebraic form.
 
 **Claim.** If $x\in\mathbb{R}$ and $x^2$ is irrational, then $x$ is irrational.
 
@@ -247,6 +249,8 @@ Another attempt says:
 The negation of “at least one factor is even” is **both factors are odd**. Assuming only one odd factor is insufficient: $3\cdot2$ is even. This mistake is a failure to apply De Morgan's law before starting the arithmetic.
 
 Finally, never conclude that a theorem is false because your contrapositive proof attempt stalls. Difficulty with a chosen method says something about the proof attempt, not the truth of the statement.
+
+A related method is **proof by contradiction**: temporarily assume the entire statement is false and derive an impossibility. For $P\to Q$, that means assuming both $P$ and $\neg Q$, then deriving incompatible facts. Contraposition instead assumes $\neg Q$ and aims at $\neg P$; it need not also assume $P$. The next lesson develops contradiction in detail.
 
 ## Readiness checklist
 

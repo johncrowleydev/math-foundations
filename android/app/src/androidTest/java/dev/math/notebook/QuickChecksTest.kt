@@ -49,4 +49,42 @@ class QuickChecksTest {
         rule.onNodeWithTag("reveal:$key").performClick()
         rule.onNodeWithTag("answer:$key").assertDoesNotExist()
     }
+
+    @Test
+    fun choiceTapsSelectAndReferenceControlKeepsTheSelection() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val references = ReferenceController(TeachingLibrary(context))
+        val key = "test:reference-choice"
+        context.getSharedPreferences("quick-checks", 0).edit().remove("$key:choice").commit()
+        rule.setContent {
+            MaterialTheme {
+                androidx.compose.runtime.CompositionLocalProvider(
+                    LocalReferences provides references,
+                    LocalReferenceLesson provides "propositional-logic",
+                ) {
+                    QuickCheckCard(
+                        QuickCheck(
+                            "quick-1",
+                            "Choose a statement.",
+                            listOf("$" + "p" + "$", "A [proposition](ref:proposition)"),
+                            0,
+                            "An ungraded choice.",
+                        ),
+                        key,
+                    )
+                }
+            }
+        }
+        rule
+            .onNodeWithTag("choice:$key:0")
+            .performTouchInput { click(centerRight - androidx.compose.ui.geometry.Offset(25f, 0f)) }
+            .assertIsSelected()
+        org.junit.Assert.assertNull(references.target)
+        rule.onNodeWithTag("choice:$key:1").performClick().assertIsSelected()
+        org.junit.Assert.assertNull(references.target)
+        rule.onNodeWithText("References for this question").performClick()
+        org.junit.Assert.assertEquals("question-reference", references.target)
+        org.junit.Assert.assertEquals("quick:quick-1:option:0", references.studyTexts[1].first)
+        rule.onNodeWithTag("choice:$key:1").assertIsSelected()
+    }
 }

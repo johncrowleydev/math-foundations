@@ -1,0 +1,80 @@
+[
+  {
+    "id": "proof-by-contrapositive",
+    "name": "Proof by contrapositive",
+    "kind": "term",
+    "lesson": "proof-by-contrapositive",
+    "section": "The proof template",
+    "quick": "Prove not Q implies not P to establish P implies Q.",
+    "definition": "Keep the original domain. Assume the negation of the conclusion, deduce the negation of the hypothesis, then invoke logical equivalence.",
+    "example": "To show an even square has an even integer root, show an odd integer has an odd square.",
+    "confusion": "Reversing the implication without negating both sides gives the converse.",
+    "aliases": ["proof by contrapositive", "contraposition"],
+    "related": ["contrapositive", "symbol-logical-equivalence", "direct-proof"]
+  },
+  {
+    "id": "not-divides",
+    "name": "Does not divide",
+    "kind": "symbol",
+    "lesson": "proof-by-contrapositive",
+    "section": "Negate compound conditions carefully",
+    "quick": "$d\\nmid n$ means there is no integer k with n=dk.",
+    "definition": "The slashed divisibility bar negates an integer divisibility proposition. It is not a fraction or an inequality.",
+    "example": "$4\\nmid6$, because no integer multiplied by 4 gives 6.",
+    "confusion": "A nonzero remainder rules out divisibility; a real quotient always existing does not establish it.",
+    "aliases": ["does not divide", "∤", "\\nmid"],
+    "related": ["symbol-divides", "negation", "quotient-remainder"]
+  },
+  {
+    "id": "prime-number",
+    "name": "Prime number",
+    "kind": "term",
+    "lesson": "proof-by-contrapositive",
+    "section": "An even product has an even factor",
+    "quick": "An integer greater than 1 with only positive divisors 1 and itself.",
+    "definition": "A prime cannot be factored into two positive integers both greater than 1. The domain restriction excludes 1, zero, and negative integers.",
+    "example": "2 is prime; 6 is not, since $6=2\\cdot3$.",
+    "confusion": "Divisibility properties demonstrated for 2 do not automatically hold for every positive divisor.",
+    "aliases": ["prime", "primes", "prime number"],
+    "related": ["divisibility", "prime-factorization", "lemma"]
+  },
+  {
+    "id": "quotient-remainder",
+    "name": "Quotient and remainder",
+    "kind": "term",
+    "lesson": "proof-by-contrapositive",
+    "section": "Divisibility by 3 and remainders",
+    "quick": "Write n as a whole multiple of a positive divisor plus a bounded leftover.",
+    "definition": "For positive integer d and any integer n, division with remainder writes $n=dk+r$ with integer quotient k and $0\\leq r<d$.",
+    "example": "$-1=3(-1)+2$ has quotient -1 and remainder 2 on division by 3.",
+    "confusion": "The remainder convention is nonnegative even when the quotient is negative.",
+    "aliases": ["quotient", "remainder", "remainders", "division with remainder"],
+    "related": ["divisibility", "modulus", "symbol-floor"]
+  },
+  {
+    "id": "irrational",
+    "name": "Irrational number",
+    "kind": "term",
+    "lesson": "proof-by-contrapositive",
+    "section": "Irrationality through a rational contrapositive",
+    "quick": "A real number that cannot be an integer fraction with nonzero denominator.",
+    "definition": "Irrationality is the negation of rationality within the real numbers. Rationality often gives a useful representation for a contrapositive proof.",
+    "example": "If $x=a/b$ is rational, $x^2=a^2/b^2$ is rational; therefore irrational $x^2$ forces irrational x.",
+    "confusion": "An irrational input can have a rational square.",
+    "aliases": ["irrational", "irrationality"],
+    "related": ["symbol-rationals", "contradiction-method", "operation-closure"]
+  },
+  {
+    "id": "contradiction-method",
+    "name": "Proof by contradiction",
+    "kind": "term",
+    "lesson": "proof-by-contrapositive",
+    "section": "Diagnose flawed contrapositive proofs",
+    "quick": "Assume the whole claim is false and derive incompatible facts.",
+    "definition": "For a claim S, assume its negation temporarily. A valid impossibility then rules out that assumption in classical logic. For an implication, assume both its hypothesis and its failed conclusion.",
+    "example": "To prove there is no greatest integer, assume M is greatest; the integer M+1 contradicts that property.",
+    "confusion": "Contraposition need only assume not Q; contradiction of P implies Q assumes P as well.",
+    "aliases": ["proof by contradiction", "contradiction proof"],
+    "related": ["classical-logic", "negation", "proof-by-contrapositive"]
+  }
+]

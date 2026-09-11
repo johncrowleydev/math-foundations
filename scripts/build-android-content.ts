@@ -1,4 +1,6 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mathOccurrences, validateFormulaContexts, type FormulaSource } from './formula-context.js';
+import { loadTeaching, teachingBlocks, linkTeachingTerms } from './teaching.js';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { loadContent } from './content.js';
 import { placeNotebookExercises } from './notebook-placements.js';
 import { adaptNotebookQuestion, validateNotebookAdaptations } from './notebook-exercises.js';
@@ -6,6 +8,7 @@ import { adaptInlineQuestion, validateInlinePrerequisites } from './inline-prere
 import { quickChecks, validateQuickChecks } from './quick-checks.js';
 
 const content = await loadContent();
+const teaching = await loadTeaching();
 validateNotebookAdaptations(content.lessons);
 validateInlinePrerequisites(content.lessons);
 validateQuickChecks(content.lessons);
@@ -41,21 +44,115 @@ const lessons = content.lessons.map((lesson) => {
     title: lesson.title,
     eyebrow: lesson.eyebrow || content.course,
     intro,
+    introBlocks: teachingBlocks(linkTeachingTerms(intro, lesson.slug, teaching), teaching),
     sections: sections.map((s, i) => ({
       ...s,
+      id: s.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/-$/, ''),
+      blocks: teachingBlocks(linkTeachingTerms(s.markdown, lesson.slug, teaching), teaching),
       questionIds: sectionQuestionIds[i],
-      quickChecks: quickChecks[lesson.slug].filter((c) => c.after === s.title),
+      quickChecks: quickChecks[lesson.slug]
+        .filter((c) => c.after === s.title)
+        .map((c) => ({
+          ...c,
+          prompt: linkTeachingTerms(c.prompt, lesson.slug, teaching),
+          options: c.options.map((o) => linkTeachingTerms(o, lesson.slug, teaching)),
+          explanation: linkTeachingTerms(c.explanation, lesson.slug, teaching),
+        })),
     })),
-    questions,
+    questions: questions.map((q) => ({
+      ...q,
+      instructions: linkTeachingTerms(q.instructions, lesson.slug, teaching),
+      prompt: linkTeachingTerms(q.prompt || '', lesson.slug, teaching),
+      answer: linkTeachingTerms(q.answer || '', lesson.slug, teaching),
+    })),
     practiceIds,
   };
 });
+const formulaSources: FormulaSource[] = [];
+for (const lesson of lessons) {
+  const add = (source: string, markdown: string) =>
+    formulaSources.push({ lesson: lesson.slug, source, markdown });
+  const blocks = (prefix: string, items: ReturnType<typeof teachingBlocks>) =>
+    items.forEach((b) => {
+      if (b.kind === 'markdown') add(prefix + ':' + b.id, b.markdown!);
+    });
+  blocks('intro', lesson.introBlocks);
+  for (const section of lesson.sections) {
+    blocks('section:' + section.id, section.blocks);
+    for (const check of section.quickChecks) {
+      add(`quick:${check.id}:prompt`, check.prompt);
+      check.options.forEach((o, i) => add(`quick:${check.id}:option:${i}`, o));
+      add(`quick:${check.id}:explanation`, check.explanation);
+    }
+  }
+  for (const q of lesson.questions) {
+    add(`question:${q.id}:instructions`, q.instructions);
+    add(`question:${q.id}:prompt`, q.prompt || '');
+    if (q.math) add(`question:${q.id}:math`, '$$' + q.math + '$$');
+    add(`question:${q.id}:answer`, q.answer || '');
+    q.table?.columns?.forEach((c, i) => add(`question:${q.id}:column:${i}`, '$' + c + '$'));
+  }
+}
+for (const figure of teaching.figures)
+  figure.frames.forEach((f, i) =>
+    formulaSources.push({
+      lesson: figure.lesson,
+      source: `figure:${figure.id}:frame:${i}`,
+      markdown: f.text,
+    }),
+  );
+for (const figure of teaching.figures)
+  for (const [label, latex] of Object.entries(figure.mathLabels))
+    formulaSources.push({
+      lesson: figure.lesson,
+      source: `figure:${figure.id}:label:${label}`,
+      markdown: '$$' + latex + '$$',
+    });
+for (const figure of teaching.figures)
+  for (const field of ['creation', 'limitations'] as const)
+    formulaSources.push({
+      lesson: figure.lesson,
+      source: `figure:${figure.id}:${field}`,
+      markdown: figure[field],
+    });
+// Authoring inventory does not validate or publish assets; the normal build always enforces coverage.
+if (process.argv.includes('--inventory-only')) {
+  const inventory = formulaSources.flatMap((s) =>
+    mathOccurrences(s.markdown).map((latex, ordinal) => ({
+      lesson: s.lesson,
+      source: s.source,
+      ordinal,
+      latex,
+      hasExplanation: false,
+    })),
+  );
+  await mkdir('output', { recursive: true });
+  await writeFile('output/formula-inventory.json', JSON.stringify(inventory, null, 2) + '\n');
+  console.log(
+    `Inventoried ${inventory.length} formula occurrences; no assets written or audit status assigned.`,
+  );
+  process.exit(0);
+}
+const formulaInventory = validateFormulaContexts(formulaSources, teaching);
+const missingFormulaContexts = formulaInventory.filter((f) => !f.hasExplanation);
+if (missingFormulaContexts.length)
+  throw new Error(
+    'Missing contextual formula explanations: ' +
+      JSON.stringify(missingFormulaContexts.slice(0, 10)),
+  );
+await mkdir('output', { recursive: true });
+await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory, null, 2) + '\n');
 const dir = 'android/app/src/main/assets';
 await mkdir(dir, { recursive: true });
 await writeFile(
   `${dir}/notebook.json`,
   JSON.stringify({ currentLesson: content.currentLesson, lessons }),
 );
+await writeFile(`${dir}/teaching.json`, JSON.stringify(teaching));
+await writeFile(`${dir}/reading-order-v7.json`, await readFile('content/reading-order-v7.json'));
 console.log(
   `Android content: ${lessons.length} lessons, ${lessons.reduce((n, l) => n + l.questions.length, 0)} questions, ${lessons.reduce((n, l) => n + l.sections.reduce((s, c) => s + c.questionIds.length, 0), 0)} inline placements.`,
 );

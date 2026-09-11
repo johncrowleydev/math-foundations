@@ -1,40 +1,44 @@
 # Functions
 
-A function makes a promise: every allowed input has exactly one output. That promise is more specific than a general relation, and it does not imply that different inputs have different outputs. Understanding the domain, codomain, and uniqueness conditions makes claims about mappings precise.
+A function makes a promise: every allowed input has exactly one output. That promise is more specific than a general relation, and it does not imply that different inputs have different outputs. The **domain** is the set of allowed inputs; the **codomain** is the declared set of output targets. A **mapping** is another word for a function. Keeping the domain, codomain, and exactly-one condition explicit makes claims about functions precise.
 
-This lesson builds on [Relations](../lessons/04-relations.md) and [Sets and Set Operations](../lessons/03-sets-and-set-operations.md). We will use quantified statements to distinguish existence, uniqueness, and invertibility.
+This lesson builds on [Relations](../lessons/04-relations.md) and [Sets and Set Operations](../lessons/03-sets-and-set-operations.md). We will use quantified statements to distinguish existence, uniqueness, and when a function can be reversed.
 
 ## What a function specifies
 
-Picture assigning each person one seat. Some seats may remain empty, and more than one person might be assigned the same seat; those would be separate concerns. To be a function at all, the assignment must first give each person exactly one seat. We will distinguish this basic promise from the stronger promises that exclude collisions or fill every seat.
+Picture assigning each person one seat. Some seats may remain empty, and more than one person might be assigned the same seat; those would be separate concerns. To be a function at all, the assignment must first give each person exactly one seat. We will distinguish this basic promise from the stronger promises that prevent different people from sharing a seat or fill every seat.
 
-The notation
+Let $A$ be the **domain**, the set of allowed inputs, and $B$ the **codomain**, the declared set of possible output targets. Together these sets specify the function’s **type**. We name the function $f$ and write
 
 $$
-f:A\to B
+f:A\to B.
 $$
 
-describes a function with **domain** $A$ and **codomain** $B$. For every $a\in A$, there must be exactly one $b\in B$ assigned to it. That output is denoted $f(a)$.
+Read this as “f maps A to B.” The arrow specifies the input and target sets, rather than a logical implication. For every $a\in A$, there must be exactly one $b\in B$ assigned to it. That output is denoted $f(a)$, read “f of a.” A rule can also be written $x\mapsto x^2$, read “x maps to x squared.” This barred arrow describes the input-to-output rule; $A\to B$ instead describes the domain and codomain.
 
-Equivalently, a function is a relation $F\subseteq A\times B$ satisfying
+The unique-existence symbol $\exists!$ means “there exists exactly one.” Equivalently, a function is a relation $F\subseteq A\times B$ satisfying
 
 $$
 \forall a\in A,\ \exists!b\in B,\ (a,b)\in F.
 $$
 
-The symbol $\exists!$ means “there exists exactly one.” A missing output violates existence; two different outputs for the same input violate uniqueness. Several inputs sharing one output cause neither problem.
+A missing output violates existence; two different outputs for the same input violate uniqueness. Several inputs sharing one output cause neither problem.
 
 For example, $f:\{1,2,3\}\to\{u,v\}$ given by $f(1)=u$, $f(2)=u$, and $f(3)=v$ is a function. The relation $\{(1,u),(1,v),(2,u),(3,v)\}$ is not, because input 1 has two outputs.
 
 An expression alone is not a complete function specification. The rule $f(x)=x^2$ can define $\mathbb R\to\mathbb R$, $\mathbb R\to[0,\infty)$, or $[0,\infty)\to[0,\infty)$. These have different domains or codomains and different properties. Here $[0,\infty)$ denotes the set of nonnegative real numbers, including zero.
 
-The rule $f(x)=1/x$ does not define a function $\mathbb R\to\mathbb R$ because no real output is specified at zero. It does define one on $\mathbb R\setminus\{0\}$. A partial function permits undefined inputs, but all functions in this lesson are total on their stated domains unless explicitly described otherwise.
+We write $\mathbb Q$ for the **rational numbers**: ratios of integers with a nonzero denominator. For example, dividing an integer by two always gives a rational number, although it need not give an integer. This distinction matters when checking whether a rule really stays inside its declared codomain.
+
+The rule $f(x)=1/x$ does not define a function $\mathbb R\to\mathbb R$ because no real output is specified at zero. It does define one on $\mathbb R\setminus\{0\}$. A **partial function** permits undefined inputs. A **total function** is defined at every input in its stated domain. All functions in this lesson are total unless explicitly described otherwise.
+
+![One output for each input](figure:function-machine)
 
 ## Image and preimage
 
 There are two directions in which we can ask questions about a function. Starting with some inputs, which outputs do they reach? Starting with a collection of possible outputs, which inputs lead into it? Image and preimage name those two questions. They concern sets of values, so a preimage can contain several inputs even though each input has only one output.
 
-For a subset $S\subseteq A$, its **image** under $f$ is
+Keep a function $f:A\to B$ fixed. For a subset $S\subseteq A$, its **image** under $f$ is
 
 $$
 f(S)=\{f(x):x\in S\}\subseteq B.
@@ -50,11 +54,11 @@ $$
 f^{-1}(T)=\{x\in A:f(x)\in T\}.
 $$
 
-The preimage collects inputs, not outputs. It exists for every function; the notation does not assert that $f$ has an inverse function.
+The preimage collects inputs, not outputs, and it exists for every function. An **inverse function**, when one exists, reverses the assignment by returning a single original input for each output. A preimage set can contain several inputs, so its notation does not assert that $f$ has an inverse function.
 
 With $g:\mathbb R\to\mathbb R$ given by $g(x)=x^2$, we obtain $g^{-1}(\{4\})=\{-2,2\}$, $g^{-1}(\{-1\})=\varnothing$, and $g^{-1}([0,4])=[-2,2]$. The last interval includes every real number between $-2$ and 2, not only integers.
 
-Preimages preserve basic set operations:
+Let $T$ and $V$ be subsets of the codomain $B$. Preimages preserve the following set operations:
 
 $$
 \begin{aligned}
@@ -74,11 +78,13 @@ $$
 
 For $g(x)=x^2$, take $S=\{-1\}$ and $W=\{1\}$. Their intersection is empty, but both images are $\{1\}$. A shared output can arise from different inputs. These input subsets are distinct in role from the target subsets $T,V\subseteq B$ used in the preimage identities.
 
+![Follow arrows forward and backward](figure:function-preimage)
+
 ## Injective functions
 
 If an output lets us identify the input that produced it, the function has kept the inputs distinguishable. Injectivity formalizes that idea. In the seating picture, it prevents two different people from receiving the same seat. It does not insist that every seat be occupied.
 
-A function is **injective**, or one-to-one, when equal outputs force equal inputs:
+A function is **injective**, or one-to-one (also called an **injection**), when equal outputs force equal inputs:
 
 $$
 \forall x,y\in A,\ f(x)=f(y)\to x=y.
@@ -88,15 +94,17 @@ Equivalently, distinct inputs have distinct outputs. To disprove injectivity, pr
 
 Consider $f:\mathbb Z\to\mathbb Z$ defined by $f(n)=3n+2$. If $f(a)=f(b)$, then $3a+2=3b+2$. Subtracting 2 and dividing by 3 gives $a=b$. Since $a,b$ were arbitrary integers, this proves injectivity.
 
-For $g:\mathbb R\to\mathbb R$ with $g(x)=x^2$, the inputs $-1$ and 1 are different but have equal outputs, so $g$ is not injective. Restricting the domain to nonnegative reals removes such collisions: if $a^2=b^2$ with $a,b\geq0$, then $(a-b)(a+b)=0$. Either $a=b$, or $a+b=0$, which forces $a=b=0$. Thus the restricted function is injective.
+For $g:\mathbb R\to\mathbb R$ with $g(x)=x^2$, the inputs $-1$ and 1 are different but have equal outputs, so $g$ is not injective. A **restriction** keeps the same function rule and codomain but allows only a subset of the original inputs. Restricting the domain to nonnegative reals removes such collisions: if $a^2=b^2$ with $a,b\geq0$, then $(a-b)(a+b)=0$. Either $a=b$, or $a+b=0$, which forces $a=b=0$. Thus the restricted function is injective.
 
 Injectivity is a property of the function on its specified domain. Showing uniqueness for one output does not prove it for all outputs.
+
+![Distinct inputs stay distinct](figure:function-injection)
 
 ## Surjective functions
 
 Surjectivity asks a coverage question about the declared target set. In the seating picture, every seat must have someone assigned to it. Collisions are a separate issue: several people might still share a seat. Because coverage depends on which targets we promised to cover, the codomain cannot be left out of the question.
 
-A function is **surjective**, or onto, when every element of the codomain is reached:
+A function is **surjective**, or onto (also called a **surjection**), when every element of the codomain is reached:
 
 $$
 \forall b\in B,\ \exists a\in A,\ f(a)=b.
@@ -109,6 +117,8 @@ The function $f:\mathbb Z\to\mathbb Z$ with $f(n)=3n+2$ is not surjective: outpu
 Likewise, $g:\mathbb R\to\mathbb R$, $g(x)=x^2$, is not surjective because negative targets are missed. If its codomain is changed to $[0,\infty)$, it becomes surjective: every allowed target $b$ has the preimage $\sqrt b$. It remains noninjective on its full real domain.
 
 A surjectivity proof must verify that the proposed preimage belongs to the domain. Merely solving an equation formally is insufficient when solutions have a type or domain restriction.
+
+![Every allowed output is reached](figure:function-surjection)
 
 ## Bijections and inverse functions
 
@@ -131,7 +141,7 @@ For $f:\mathbb R\to\mathbb R$, $f(x)=3x+2$, solve $y=3x+2$ for $x$. This gives $
 
 For $g:[0,\infty)\to[0,\infty)$, $g(x)=x^2$, the inverse is $g^{-1}(y)=\sqrt y$. Over all real inputs, writing $\pm\sqrt y$ would assign two outputs for a positive input $y$, so it would not define an inverse function.
 
-An injective function that is not onto its declared codomain still has an inverse from its **image** to its domain. For $f:\mathbb Z\to\mathbb Z$, $f(n)=2n$, this inverse maps even integers to their halves. It is not an inverse defined on every integer.
+An injective function that is not onto its declared codomain still has an inverse from its **image** to its domain. For $f:\mathbb Z\to\mathbb Z$, $f(n)=2n$, this inverse maps even integers to their halves. We may denote the set of even integers by $2\mathbb Z=\{2k:k\in\mathbb Z\}$, read “two times the integers.” It is not an inverse defined on every integer.
 
 Keep the two uses of $f^{-1}$ separate: $f^{-1}(T)$ for a set is always a preimage; $f^{-1}(b)$ as a single inverse-function value requires a suitable bijection.
 
@@ -149,7 +159,7 @@ Read right to left: apply $f$ first, then $g$. More generally, composition is de
 
 Let $f,g:\mathbb R\to\mathbb R$ satisfy $f(x)=x+1$ and $g(x)=x^2$. Then $(g\circ f)(x)=(x+1)^2$, whereas $(f\circ g)(x)=x^2+1$. At $x=1$ these are 4 and 2. Composition is generally not commutative.
 
-Composition is associative when the types permit it: both $h\circ(g\circ f)$ and $(h\circ g)\circ f$ send $a$ to $h(g(f(a)))$. The identity function $\operatorname{id}_A(a)=a$ changes no value, so $f\circ\operatorname{id}_A=f$ and $\operatorname{id}_B\circ f=f$.
+Here a function’s **type** means its stated domain and codomain. If we also have $h:C\to D$ for a set $D$, all three functions fit together. Composition is associative: both $h\circ(g\circ f)$ and $(h\circ g)\circ f$ send $a$ to $h(g(f(a)))$. The **identity function** on $A$ returns each input unchanged. We denote it $\operatorname{id}_A:A\to A$, with $\operatorname{id}_A(a)=a$. Thus $f\circ\operatorname{id}_A=f$ and $\operatorname{id}_B\circ f=f$.
 
 If both functions are injective, their composition is injective. Indeed, $g(f(x))=g(f(y))$ first gives $f(x)=f(y)$ by injectivity of $g$, then $x=y$ by injectivity of $f$.
 
@@ -161,11 +171,13 @@ $$
 
 There are useful one-way deductions too: injectivity of $g\circ f$ forces injectivity of $f$, and surjectivity of $g\circ f$ forces surjectivity of $g$. It does not force the other two properties: an outer function may collide only outside the inner image, or an inner function may miss values unnecessary for reaching the final target.
 
+![One value passes through two functions](figure:function-composition)
+
 ## Restrictions, empty cases, and finite sizes
 
 Changing a function's domain changes which inputs we ask it to handle. This can solve one problem while creating another: removing an input may eliminate a collision, but it may also remove the only way to reach an output. Track the arrows that remain rather than assuming a smaller domain automatically makes every property easier to satisfy.
 
-For $S\subseteq A$, the **restriction** $f|_S:S\to B$ keeps the same rule but permits fewer inputs. Restricting a domain can remove collisions and can lose reached outputs. Changing the codomain to a subset is allowed only if it still contains every output of the specified domain.
+For $S\subseteq A$, the **restriction** of $f$ to $S$ keeps its rule but uses only inputs in $S$. Write $f|_S:S\to B$, read “f restricted to S.” The vertical mark names restriction here; it is not divisibility or cardinality. Restricting a domain can remove collisions and can lose reached outputs. Changing the codomain to a subset is allowed only if it still contains every output of the specified domain.
 
 There is exactly one function from $\varnothing$ to any set $B$: the empty assignment. It is injective. It is surjective exactly when $B=\varnothing$. There is no function from a nonempty set into $\varnothing$, because even one input would need an impossible output.
 
@@ -177,7 +189,7 @@ This last equivalence is specifically finite. The function $f:\mathbb N_0\to\mat
 
 ## Floor and ceiling functions
 
-Rounding to a whole number can mean several different things. When packing objects into boxes, rounding down may leave objects unpacked; when counting complete boxes that fit in a space, rounding up may demand space we do not have. Floor and ceiling make the direction of rounding explicit, including for negative numbers where intuition based on chopping off decimals can mislead us.
+Rounding to a whole number can mean several different things. When packing objects into boxes, rounding down may leave objects unpacked; when counting complete boxes that fit in a space, rounding up may demand space we do not have. Floor rounds down to an integer and ceiling rounds up to an integer, making the direction explicit, including for negative numbers where intuition based on chopping off decimals can mislead us.
 
 The **floor** $\lfloor x\rfloor$ is the greatest integer at most the real number $x$. The **ceiling** $\lceil x\rceil$ is the least integer at least $x$. Thus
 
@@ -187,11 +199,11 @@ $$
 \lceil x\rceil-1<x\leq\lceil x\rceil.
 $$
 
-Examples are $\lfloor2.7\rfloor=2$, $\lceil2.7\rceil=3$, $\lfloor-2.7\rfloor=-3$, and $\lceil-2.7\rceil=-2$. Floor does not mean truncation toward zero. At an integer, both functions return that integer.
+Examples are $\lfloor2.7\rfloor=2$, $\lceil2.7\rceil=3$, $\lfloor-2.7\rfloor=-3$, and $\lceil-2.7\rceil=-2$. Floor does not mean discarding the fractional part toward zero, a procedure called **truncation**: truncating $-2.7$ gives $-2$, but its floor is $-3$. At an integer, both functions return that integer.
 
-Both define surjections $\mathbb R\to\mathbb Z$, but neither is injective. For example, floor sends both 2.1 and 2.9 to 2. The preimage of $\{k\}$ under floor is $[k,k+1)$, including its left endpoint but excluding its right.
+Both define surjections $\mathbb R\to\mathbb Z$, but neither is injective. For example, floor sends both 2.1 and 2.9 to 2. For an integer $k$, the preimage of $\{k\}$ under floor is $[k,k+1)$, including its left endpoint but excluding its right.
 
-If $N\geq0$ items must fit into containers of positive integer capacity $k$, the minimum number of containers is $\lceil N/k\rceil$. Seven items with capacity 3 need three containers, while zero items need zero. To justify the formula, an integer container count $c$ must satisfy $ck\geq N$, equivalently $c\geq N/k$; the ceiling is the smallest such integer.
+If a nonnegative integer number $N$ of items must fit into containers of positive integer capacity $k$, the minimum number of containers is $\lceil N/k\rceil$. Seven items with capacity 3 need three containers, while zero items need zero. To justify the formula, an integer container count $c$ must satisfy $ck\geq N$, equivalently $c\geq N/k$; the ceiling is the smallest such integer.
 
 ## Checking a composed claim carefully
 
@@ -199,7 +211,7 @@ The next example is small enough to trace by hand, but it addresses a general tr
 
 Let $A=\{a,b\}$, $B=\{1,2,3\}$, and $C=\{u,v\}$. Set $f(a)=1$, $f(b)=2$, and $g(1)=u$, $g(2)=v$, $g(3)=u$. The composition sends $a$ to $u$ and $b$ to $v$, so it is a bijection. However, $f$ is not surjective onto $B$, and $g$ is not injective on $B$. What matters for the composition's injectivity is the behavior of $g$ on $f(A)=\{1,2\}$; the collision involving 3 is outside the inner function's image.
 
-This single mapping diagram, written as values, supplies counterexamples to two tempting converse claims. When a theorem says “if both functions have property $P$, then their composition has $P$,” reversing the implication needs a separate proof and may be false. Tiny finite examples are often enough to expose the missing condition.
+These finite assignments supply counterexamples to two tempting converse claims. When a theorem says “if both functions have property $P$, then their composition has $P$,” reversing the implication needs a separate proof and may be false. Tiny finite examples are often enough to expose the missing condition.
 
 The same data lets us check preimages through a pipeline. The target set $\{u\}$ has preimage $\{1,3\}$ under $g$, then preimage $\{a\}$ under $f$. Directly, $(g\circ f)^{-1}(\{u\})=\{a\}$ too. In general, an input reaches a target set under the composition exactly when its intermediate value belongs to the target's preimage under the outer function. This statement concerns sets of inputs and needs no inverse function.
 
