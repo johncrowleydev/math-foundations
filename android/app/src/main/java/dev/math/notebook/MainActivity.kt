@@ -505,6 +505,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                 add("intro" to lesson.intro)
                 lesson.sections.forEachIndexed { i, s ->
                     add("section:$i" to s)
+                    s.quickChecks.forEach { check -> add("quick:${check.id}" to check) }
                     s.questionIds.forEach { id -> add("question:$id" to lesson.question(id)) }
                 }
                 add("end" to "end")
@@ -606,6 +607,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                 RichText(value.markdown, Modifier.fillMaxWidth())
                             }
                         is Question -> QuestionCard(model, value, onFocus)
+                        is QuickCheck -> QuickCheckCard(value, "${lesson.slug}:${value.id}")
                         else ->
                             if (entry.first == "intro")
                                 Column(Modifier.fillMaxWidth().padding(12.dp, 14.dp)) {

@@ -8,6 +8,8 @@ A proof by contrapositive is still a proof of the original implication. It works
 
 ## The equivalence that makes the method work
 
+Contraposition changes the route through an implication while preserving the situation it rules out. Rather than trying to force the promised result directly, we show that its failure makes the starting condition impossible. The equivalence below is the reason this is a proof method, rather than a persuasive analogy.
+
 The **contrapositive** of $P\to Q$ is
 
 $$
@@ -35,6 +37,8 @@ The converse and inverse are equivalent to each other, but need not be equivalen
 
 ## The proof template
 
+Write the new assumption and new goal in ordinary language first. This gives you a quick check on which part is being negated and which direction the proof travels. Once those are correct, the argument itself is a direct proof of the new implication: start with its hypothesis and reason forward.
+
 To prove
 
 $$
@@ -55,6 +59,8 @@ Writing the contrapositive explicitly before doing algebra helps prevent a proof
 
 ## Worked proof: an even square has an even root
 
+Starting from an even square gives us $n^2=2k$, but taking a square root does not immediately reveal the parity of $n$. Starting from an odd $n$ gives a usable expression at once. This is the practical advantage of contraposition here: it replaces an awkward piece of information with a definition we can expand.
+
 **Claim.** For every integer $n$, if $n^2$ is even, then $n$ is even.
 
 The contrapositive is: if $n$ is not even, then $n^2$ is not even. Since every integer is exactly one of even or odd, this becomes: if $n$ is odd, then $n^2$ is odd.
@@ -70,6 +76,8 @@ Because $2k^2+2k$ is an integer, $n^2$ is odd. We have proved the contrapositive
 The domain restriction matters. “Not even” can be replaced by “odd” because $n$ is an integer. Parity is not a classification of all real numbers. The proof must not silently treat a noninteger as odd.
 
 ## Negate compound conditions carefully
+
+A compound conclusion must fail as a whole. If a theorem promises at least one of two outcomes, denying the promise means ruling out both outcomes, not just one. It is worth doing this logical preparation before touching the numbers; otherwise a perfectly correct calculation can prove the wrong contrapositive.
 
 Suppose a theorem says
 
@@ -112,6 +120,8 @@ The last two rows become important when the hypothesis or conclusion is itself q
 
 ## An even product has an even factor
 
+The direct claim leaves us unsure which factor is even. Its contrapositive removes that choice: we assume both factors are odd and calculate their product. This is a common reason to try the method when the conclusion contains an OR.
+
 **Claim.** If $a,b\in\mathbb{Z}$ and $ab$ is even, then $a$ is even or $b$ is even.
 
 The conclusion is an OR. Its negation says that neither factor is even, so both are odd.
@@ -130,6 +140,8 @@ This is a special divisibility property of the prime number 2. Replacing 2 by an
 
 ## Divisibility by 3 and remainders
 
+For parity, “not even” had the single form “odd.” For divisibility by three, failure leaves two possible remainders. Contraposition still helps, but we must now carry out two cases. The method does not remove the need for complete coverage; it makes the cases manageable.
+
 Division with remainder says that every integer $n$ can be expressed as $n=3k+r$ with $r\in\{0,1,2\}$. This applies to negative integers too; the remainder is chosen from the same three values.
 
 **Claim.** If $3\mid n^2$, then $3\mid n$.
@@ -146,6 +158,8 @@ Why does a remainder of 1 rule out divisibility? If the number were also $3t$, s
 This proof illustrates cases inside a contrapositive proof. Methods can be combined: contraposition chooses the logical direction, while cases organize the allowed inputs.
 
 ## Irrationality through a rational contrapositive
+
+Some properties describe the absence of a representation. “Irrational” tells us that no suitable fraction exists, which gives us little to substitute into an expression. Its negation, rationality, supplies exactly such a fraction. This contrast often makes the contrapositive easier to calculate with than the original statement.
 
 A real number is **irrational** when it is not rational. Sometimes rationality gives a useful fractional representation while irrationality gives no direct algebraic form.
 
@@ -164,6 +178,8 @@ The converse is false. The irrational number $\sqrt2$ has rational square 2; the
 The strategy here was to replace a negative property, “not rational,” with its positive definition. A representation such as $a/b$ is usually easier to calculate with than the absence of every such representation.
 
 ## Contraposition in set and function arguments
+
+The method is not tied to number properties. A subset claim is an implication about membership, while injectivity is an implication about equal outputs. Translating those definitions into their contrapositive forms gives us alternative ways to prove the same structural facts.
 
 For sets $A,B$, the claim $A\subseteq B$ is an elementwise implication: if $x\in A$, then $x\in B$. Its contrapositive says that $x\notin B$ implies $x\notin A$.
 
@@ -191,6 +207,8 @@ For $f:\mathbb{Z}\to\mathbb{Z}$ defined by $f(n)=3n+1$, distinct $x,y$ give $f(x
 
 ## Supporting a biconditional
 
+One half of an equivalence may be easy to prove directly while the other half needs a different idea. There is no requirement to make the two proofs look alike. The important thing is that each direction begins with its own hypothesis and ends with the appropriate conclusion.
+
 **Claim.** An integer $n$ is even if and only if $n^2$ is even.
 
 One direction has a short direct proof: if $n=2k$, then $n^2=2(2k^2)$ is even. The reverse direction was proved by contrapositive earlier.
@@ -198,6 +216,8 @@ One direction has a short direct proof: if $n=2k$, then $n^2=2(2k^2)$ is even. T
 A biconditional does not require using the same technique twice. What matters is establishing both directions, with assumptions clearly separated. Label them if there is any chance the reader will confuse which implication is being proved.
 
 ## When to choose this method
+
+Try comparing the information available in the original hypothesis with the information available in the negated conclusion. Which one gives you an equation, a useful case split, or a simple object to work with? This comparison is a practical guide to choosing a route, after checking that the logical transformation itself is correct.
 
 Contraposition is especially useful when:
 
@@ -211,6 +231,8 @@ It is less useful when negating the conclusion introduces a more complicated qua
 The logical transformation must happen before judging convenience. “I will reverse the implication because that is easier” is not a valid strategy unless the reversed statement is separately known to imply the original.
 
 ## Diagnose flawed contrapositive proofs
+
+Before judging any algebra in a claimed contrapositive proof, write down what its first assumption ought to be. Many errors can be located there: the proof starts with the converse, changes the domain, or negates only part of a compound statement. Repairing that first sentence often changes the entire argument that follows.
 
 Consider this attempted proof:
 
@@ -238,4 +260,4 @@ You should now be able to:
 - Recognize equivalent elementwise formulations of inclusion and injectivity.
 - Explain why the method does not change the theorem's domain or outer universal quantifier.
 
-Practice with the [Proof by Contrapositive worksheet](../worksheets/08-proof-by-contrapositive.yaml). Next, [Proof by Contradiction](../lessons/09-proof-by-contradiction.md) studies what happens when assuming the negation of an entire claim leads to an impossibility.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

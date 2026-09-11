@@ -14,6 +14,8 @@ The goal is to read a quantified statement, explain exactly what it promises, an
 
 ## Domains come first
 
+“There is a solution” sounds complete until someone asks what counts as an allowed answer. If we are assigning whole seats on a bus, half a seat will not do; if we are measuring a length, fractions may be perfectly appropriate. Specifying the domain gives a mathematical statement this missing context. It is part of the claim, not a technical detail to add afterward.
+
 A **domain**, or universe of discourse, is the collection of objects a variable is allowed to represent. The same expression can give different mathematical claims over different domains.
 
 For example, consider:
@@ -39,7 +41,7 @@ Unless we explicitly discuss an empty domain, assume the domains in this lesson 
 
 ## Predicates and substitution
 
-A **predicate** is a property or relationship that becomes a proposition when its free variables have values.
+A **predicate** is a property or relationship that becomes a proposition when its unspecified inputs have values. Think of “___ is greater than five” as a sentence with a place to fill. The notation names the sentence and its input together, so we can reuse the same test with different objects.
 
 Let the domain be $\mathbb{Z}$ and define
 
@@ -49,9 +51,7 @@ $$
 
 $P(x)$ is not a complete proposition while $x$ is unspecified. But substituting a particular integer gives one:
 
-- $P(8)$ is true because $8>5$.
-- $P(5)$ is false because $5>5$ is false.
-- $P(-2)$ is false.
+Substituting 8 produces the proposition $8>5$, so $P(8)$ is true. Substituting 5 gives $5>5$, which is false because the inequality is strict. Substituting $-2$ also gives a false proposition. In each case we use the same condition; changing the input changes the statement being tested.
 
 Predicates can have several arguments. For integers $x,y$, define
 
@@ -67,9 +67,11 @@ $$
 E(n)\land(n>10)
 $$
 
-says that $n$ is even and greater than 10. It still has a free variable until we assign or quantify $n$.
+says that $n$ is even and greater than 10. An occurrence of a variable left unspecified in this way is called **free**. Assigning a value is one way to complete the statement. Quantifying it—saying something about every allowed value or about at least one—is the other way we will now develop. Later we will examine exactly which variable occurrences a quantifier controls.
 
 ## Universal quantification: for every
+
+Suppose someone claims that every book on a shelf has a blue cover. To defeat the claim, you need only find one book with a different cover. To establish it by inspection, you must check the entire shelf. Universal statements have this same asymmetry: their promise covers every allowed object, so one exception matters as much as a thousand agreeing examples.
 
 The symbol $\forall$ means **for every** or **for all**. The statement
 
@@ -117,6 +119,8 @@ $$
 
 says that some allowed value makes $P(x)$ true. Such a value is called a **witness**.
 
+The word is useful because the object provides evidence for the claim. If someone says there is a blue book on the shelf, pointing to one blue book and checking its cover finishes the job. You do not need to find all the blue books. In mathematics, giving the object is only the first step: you must also verify that it belongs to the domain and has the stated property.
+
 For example,
 
 $$
@@ -149,6 +153,8 @@ These two quantifiers have opposite proof obligations:
 | $\exists x\,P(x)$ | Give a witness and verify it | Show no allowed $x$ works     |
 
 ## Scope, free variables, and bound variables
+
+When a sentence contains several variables, we need to know which instruction controls each one. The scope of a quantifier is the portion of the formula to which its “for every” or “there exists” applies. Parentheses play the role of boundaries. A repeated letter outside that boundary does not automatically become part of the quantified statement.
 
 A quantifier binds occurrences of its variable **within its scope**. Parentheses make that scope visible.
 
@@ -194,7 +200,7 @@ Let the domain be all people. Let $S(x)$ mean "$x$ is a student" and $C(x)$ mean
 | Some student does not own a computer | $\exists x\,(S(x)\land\neg C(x))$ |
 | Only students own computers          | $\forall x\,(C(x)\to S(x))$       |
 
-The first two translations are worth comparing carefully.
+The first two translations are worth comparing carefully. Imagine checking people one at a time. For “every student owns a computer,” a nonstudent imposes no obligation: the statement is about students. For “some student owns a computer,” a nonstudent is no help at all: we must actually find a student who owns one. This difference determines which connective belongs inside the quantifier.
 
 **Universal restrictions usually use implication.** "Every student owns a computer" imposes a condition on people who are students. It does not claim that every person is a student. Writing $\forall x(S(x)\land C(x))$ would make that much stronger claim.
 
@@ -226,11 +232,7 @@ $$
 
 These are the quantifier versions of De Morgan's laws. On a finite domain, they are exactly the familiar rules for negating conjunctions and disjunctions.
 
-For example:
-
-- "Not every file is encrypted" means that at least one file is not encrypted.
-- "There is no encrypted file" means that every file is unencrypted.
-- "Not every student passed" does **not** mean that every student failed.
+For example, “not every file is encrypted” reports at least one unencrypted file. It does not say that the rest are unencrypted. By contrast, “there is no encrypted file” rules out every possible example of an encrypted file. The same distinction separates “not every student passed” from “every student failed.” A negation says just enough to make the original claim false; it need not assert the most extreme opposite situation.
 
 Keep the domain unchanged when negating. If a statement is about integers, its negation is still about integers.
 
@@ -247,6 +249,8 @@ A counterexample to "Every $P$ is $Q$" must actually be a $P$ and must fail to b
 Also negate comparisons correctly: the negation of $x>3$ is $x\leq3$, not $x<3$.
 
 ## Several variables and quantifier order
+
+Quantifier order tells us when we may make a choice. “Every guest can choose a dish they like” allows different dishes for different guests. “There is one dish every guest likes” requires a single dish to satisfy everyone. The ingredients of the two claims are nearly identical, but the second imposes a much stronger demand. Reading left to right helps us see when the choice must be fixed.
 
 Consider the integer statement
 
@@ -313,7 +317,11 @@ For a finite relationship table, a true entry in row $x$, column $y$ means that 
 
 This gives a useful way to check your reading of a nested formula.
 
+For instance, three true entries scattered across three different rows can satisfy “everyone likes someone” without producing any entirely true row. Drawing a small table separates the two questions visually. It also makes clear why exchanging the two argument positions changes who is doing the liking, even when the quantifiers themselves stay in the same order.
+
 ## Negating nested quantifiers
+
+Ask what a failure of the whole promise would look like before moving any symbols. If every request should have some worker, a failure is one request left without any worker. That gives us both pieces of the negation: an existential choice of the failed request, followed by a universal statement that each worker fails to serve it. The formal rule below records this reasoning.
 
 Move the negation inward one quantifier at a time. Each quantifier switches kind; the order of the variables stays the same.
 
@@ -360,6 +368,8 @@ This describes a particular $P$-object with no related $y$ at all.
 ## Existence, uniqueness, and exactly one
 
 "There is exactly one" combines two claims: **at least one exists** and **at most one exists**.
+
+Think of a system that promises exactly one assigned seat per passenger. An unassigned passenger violates existence; a passenger with two distinct assigned seats violates uniqueness. Preventing double assignments does not by itself guarantee that everyone gets a seat. A mathematical proof of “exactly one” must close both gaps.
 
 The notation
 
@@ -421,9 +431,13 @@ This explains an important qualification: inferring $\exists xP(x)$ from $\foral
 
 Vacuous truth is about the truth conditions of the statement, not whether the statement is informative or whether its wording is useful in ordinary conversation.
 
+A helpful way to read the empty case is to look for a violation. An empty shelf has no book with the wrong cover, so “every book on this shelf is blue” has no counterexample. But the same shelf cannot provide a blue book when asked to exhibit one. This is why the universal and existential statements receive different truth values; we are following their different promises consistently.
+
 ## Which distributions are valid?
 
 Some equivalence laws extend cleanly to quantifiers:
+
+If every attendee both registered and paid, then every attendee registered and every attendee paid. Splitting the conjunction loses nothing because each universal statement still covers the entire domain. Similarly, finding someone who registered or paid gives us at least one of those two kinds of example. The formulas below express these two safe ways to separate a combined statement.
 
 $$
 \forall x\,(P(x)\land Q(x))
@@ -451,11 +465,19 @@ Several basic reasoning steps will appear repeatedly in proofs.
 
 **Universal instantiation:** from $\forall x\in D\,P(x)$, conclude $P(a)$ for any particular $a\in D$.
 
+“Instantiation” means applying a general statement to a particular instance. If every book in a collection is catalogued, and this book belongs to the collection, we may conclude that this book is catalogued. Its membership is essential: the general statement says nothing about an unrelated book elsewhere.
+
 **Existential introduction:** if you have established $P(a)$ for some $a\in D$, conclude $\exists x\in D\,P(x)$.
+
+This moves in a different direction: one verified example supports an existence claim. Showing that 12 is an integer divisible by six establishes that some integer is divisible by six. The existential conclusion deliberately says less than the example; it no longer specifies which integer works.
 
 **Using an existential witness:** from $\exists xP(x)$, you may introduce a fresh name for a witness and reason from its stated property. You may not assume it is a previously chosen object, and you may not assume it has properties beyond those established.
 
+If you know that someone in a room has the key, you can call that person $a$. This is a name for whoever satisfies the claim, not permission to choose your favorite person and announce that they have it. That distinction becomes important when two separate existence statements may refer to different people.
+
 **Universal generalization:** to prove $\forall x\in D\,P(x)$, take an arbitrary element of $D$ and prove $P$ without giving that element any extra assumptions. A proof about one specially selected example does not establish a universal statement.
+
+“Arbitrary” means the argument has to work no matter which allowed object was handed to us. We may use that it belongs to $D$, together with any stated premises, but we cannot quietly choose a convenient value. This is how a finite piece of reasoning can establish a claim about infinitely many objects.
 
 For example, from
 
@@ -501,7 +523,11 @@ Since $2k^2+2k$ is an integer, $n^2$ is odd. This proves the implication for an 
 
 The words "arbitrary," "assume," and "choose" mark different logical roles. Keeping those roles distinct prevents many proof errors.
 
+When drafting your own proof, it can help to write those roles in words before filling in the algebra. Who supplies the input? What conditions may you use? Which object must you construct? The finished proof need not be long, but the reader should be able to answer those questions without guessing.
+
 ## Quantifiers in programs and specifications
+
+Quantifiers are useful outside a mathematics exercise because they force a requirement to say precisely what success means. A software check can inspect a finite list, while a mathematical specification can describe all inputs the program is intended to handle. Keeping these two jobs separate prevents a successful test run from being mistaken for a proof of universal correctness.
 
 For a finite list, universal and existential checks correspond to familiar operations:
 
@@ -544,9 +570,3 @@ You should be able to:
 - use universal statements and existential witnesses correctly in arguments;
 - write a short proof that separates arbitrary inputs from chosen witnesses;
 - read finite checks and simple program requirements as quantified statements.
-
-## Practice
-
-Work through the [Predicates and Quantifiers Worksheet](../worksheets/02-predicates-and-quantifiers.yaml). It progresses from substitution and finite-domain checks to translation, nested negation, countermodels, and short proofs. Try each section before consulting its answer key.
-
-Continue with [Sets and Set Operations](../lessons/03-sets-and-set-operations.md), where domains and properties become collections that we can compare and combine.

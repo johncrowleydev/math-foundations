@@ -32,7 +32,20 @@ data class Question(
     val rows: Int,
 )
 
-data class Section(val title: String, val markdown: String, val questionIds: List<Int>)
+data class QuickCheck(
+    val id: String,
+    val prompt: String,
+    val options: List<String>,
+    val answer: Int,
+    val explanation: String,
+)
+
+data class Section(
+    val title: String,
+    val markdown: String,
+    val questionIds: List<Int>,
+    val quickChecks: List<QuickCheck> = emptyList(),
+)
 
 data class Lesson(
     val slug: String,
@@ -70,6 +83,20 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
                                 s.getJSONArray("questionIds").let { ids ->
                                     ids.mapItems { ids.getInt(it) }
                                 },
+                                s.optJSONArray("quickChecks")?.let { checks ->
+                                    checks.mapItems { k ->
+                                        val c = checks.getJSONObject(k)
+                                        QuickCheck(
+                                            c.getString("id"),
+                                            c.getString("prompt"),
+                                            c.getJSONArray("options").let { options ->
+                                                options.mapItems { options.getString(it) }
+                                            },
+                                            c.getInt("answer"),
+                                            c.getString("explanation"),
+                                        )
+                                    }
+                                } ?: emptyList(),
                             )
                         }
                     },

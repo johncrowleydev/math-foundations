@@ -8,6 +8,8 @@ The method is powerful, but it requires precision: a statement can seem surprisi
 
 ## The logical structure
 
+Imagine temporarily accepting a claim in order to examine what it would force you to accept next. If its consequences conflict with established facts, the temporary claim cannot stand. A contradiction proof uses this idea in a controlled way: the assumption is exactly the negation of the desired statement, and the final conflict must be explicit.
+
 To prove a statement $S$ by contradiction:
 
 1. Assume $\neg S$.
@@ -35,6 +37,8 @@ We may choose such a counterexample under the temporary assumption and then show
 
 ## A first example: there is no greatest integer
 
+The phrase “greatest integer” makes an extremely strong promise: no integer is larger. We can test that promise by constructing a number from the proposed greatest one. The argument needs no search through all integers because adding one gives a way to defeat any proposed candidate.
+
 **Claim.** There is no greatest integer.
 
 **Proof.** Suppose, for contradiction, that a greatest integer $M$ exists. Then every integer is at most $M$. But $M+1$ is an integer and $M+1>M$, contradicting the defining property of $M$. Therefore there is no greatest integer.
@@ -45,6 +49,8 @@ A direct formulation is also possible: for every integer $n$, the integer $n+1$ 
 
 ## Contradiction versus contrapositive
 
+Both methods can begin by supposing the desired conclusion fails, so their presentations sometimes look similar. The difference is what else is assumed and what the proof is trying to reach. Keeping that bookkeeping visible helps the reader understand where the contradiction comes from and which assumptions are temporary.
+
 To prove $P\to Q$, a contrapositive proof assumes $\neg Q$ and derives $\neg P$. A contradiction proof assumes $P$ and $\neg Q$ and derives an impossibility.
 
 These approaches are closely related, but a clean presentation should name the actual structure. If all the work is “an odd integer has an odd square,” call it a contrapositive proof of “an even square has an even root.” There is no need to carry an unused contradictory assumption through the argument.
@@ -52,6 +58,8 @@ These approaches are closely related, but a clean presentation should name the a
 Contradiction is especially natural for assertions of nonexistence, irrationality, uniqueness, and infinitely many objects. Such claims often say that no object with certain properties can exist, so temporarily supposing such an object exists gives something concrete to analyze.
 
 ## Fractions in lowest terms
+
+The number $1/2$ can also be written as $2/4$, $3/6$, and many other fractions. To turn a shared divisor into a contradiction later, we must choose a representation that has already had all common factors removed. Otherwise discovering another shared divisor would merely tell us to simplify the fraction. This section justifies that choice before we rely on it.
 
 We will use a basic integer fact: every rational number can be written as $a/b$ with $a,b\in\mathbb{Z}$, $b>0$, and no common positive divisor of $a,b$ other than 1.
 
@@ -62,6 +70,8 @@ If the reduced numerator and denominator still shared a positive divisor $h>1$, 
 This reduction does not require a theorem about unique prime factorization. It relies only on a greatest element of a finite nonempty set of positive integers.
 
 ## The irrationality of the square root of 2
+
+The plan is to assume a lowest-terms fraction represents $\sqrt2$ and see what its numerator and denominator would have to do. Squaring the equation will first force the numerator to be even. Substituting that information back will force the denominator to be even as well. The conflict is with the chosen representation, not with even numbers themselves.
 
 **Claim.** The real number $\sqrt2$ is irrational.
 
@@ -89,9 +99,11 @@ Therefore $b^2$ is even, and the same parity result shows that $b$ is even. Both
 
 The contradiction is not simply that both numbers are even; many fractions have even numerator and denominator. It is that both are even **despite being chosen in lowest terms**. Omitting that choice leaves a real gap.
 
-We also used a proved lemma rather than assuming that an even square obviously has an even root. Good proofs reveal their dependencies so the reader can distinguish an established fact from the result currently being proved.
+We also used an established supporting fact—that an even integer square has an even integer root—instead of assuming it was obvious. A supporting result of this kind is called a **lemma**. Good proofs reveal their dependencies so the reader can distinguish an established fact from the result currently being proved.
 
 ## Rational and irrational combinations
+
+If adding a rational number to an irrational one somehow produced a rational result, subtracting the same rational number would recover the original irrational number as a rational expression. That reversal is the useful move here. We rely on the closure facts already proved, with their side conditions intact.
 
 **Claim.** If $x$ is irrational and $r$ is rational, then $x+r$ is irrational.
 
@@ -119,6 +131,8 @@ These examples are a reminder to test a proposed claim before investing in a pro
 
 ## A prime-divisor lemma
 
+The next proof about primes needs a smaller fact first: every integer greater than one has some prime divisor. A **lemma** is a proved statement used to support another proof. Giving this step its own argument prevents the later proof from quietly assuming something stronger, such as a complete unique factorization theorem.
+
 A positive integer $p>1$ is **prime** if its only positive divisors are 1 and $p$. A positive integer greater than 1 that is not prime is composite.
 
 **Lemma.** Every integer $N>1$ has a prime divisor.
@@ -128,6 +142,8 @@ A positive integer $p>1$ is **prime** if its only positive divisors are 1 and $p
 Here the eligible divisors form a finite nonempty set, since they lie between 2 and $N$, so choosing the smallest needs only the finite-set fact already used above. More generally, the **well-ordering property** says that every nonempty set of positive integers has a least element, even if the set is infinite. We will explore its relation to induction later. This lemma proves existence of a prime divisor; it does not assert that a number is itself prime or that its entire factorization is unique.
 
 ## There are infinitely many primes
+
+Suppose someone offers a finite list and claims it contains every prime. We will build a number that none of those primes divides. The construction need not itself be prime: it only needs a prime divisor, supplied by the lemma, that the list failed to include. Keeping those two roles separate is the central idea of the proof.
 
 **Claim.** There are infinitely many prime numbers.
 
@@ -156,6 +172,8 @@ The proof needs only a prime divisor missing from the proposed complete list. Th
 
 ## Uniqueness proofs
 
+For uniqueness, begin with two objects that both satisfy the required property and compare them. If the property forces them to be equal, there cannot be two distinct solutions. This argument does not create a solution, so existence remains a separate obligation even when the uniqueness proof is very short.
+
 An **additive inverse** of a real number $x$ is a real number $y$ such that $x+y=0$. For example, $-3$ is an additive inverse of 3. The word inverse here refers to addition, rather than to an inverse function.
 
 To prove that exactly one object has a property, establish existence and at most one. Contradiction can organize the second part: assume two distinct objects have the property and derive that they must be equal.
@@ -169,6 +187,8 @@ To prove that exactly one object has a property, establish existence and at most
 A direct uniqueness argument could simply derive $a=b$ without assuming they are distinct. Either is valid. Crucially, uniqueness alone does not guarantee existence: an equation with no solution also has at most one solution.
 
 ## Common errors and how to repair them
+
+A good final sentence names the two facts that cannot coexist. If you can only say that the result “seems wrong,” there is still work to do. The following errors are worth reading as questions to ask of your own draft: did I negate the whole claim, use only established facts, and keep every algebraic operation within its allowed conditions?
 
 **Assuming something stronger than the negation.** To prove that infinitely many primes exist, assuming “there is exactly one prime” is insufficient. Refuting that assumption only shows that there is not exactly one. The actual negation is that there are finitely many.
 
@@ -192,4 +212,4 @@ You should be able to:
 - Separate existence from uniqueness.
 - Choose direct proof, contraposition, or contradiction according to the statement's structure.
 
-Use the [Proof by Contradiction worksheet](../worksheets/09-proof-by-contradiction.yaml) for proof construction and error analysis. Next, [Mathematical Induction](../lessons/10-mathematical-induction.md) gives a method for proving an infinite sequence of related statements.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

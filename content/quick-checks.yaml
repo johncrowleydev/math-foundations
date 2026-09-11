@@ -1,0 +1,305 @@
+propositional-logic:
+  - id: quick-1
+    after: 'Disjunction: OR'
+    prompt: A rule accepts applicants with teaching OR research experience. Does someone with both satisfy this rule?
+    options:
+      - Yes
+      - No
+    answer: 0
+    explanation: Inclusive OR requires at least one condition. Having both satisfies it too.
+    teachingHash: ed334291669c3ed31f539687f191f436e0871e00872b0a722c93d2f8c29e8c28
+  - id: quick-2
+    after: Common equivalence laws
+    prompt: Which expression is equivalent to $(p\land q)\lor(p\land\neg q)$?
+    options:
+      - $p$
+      - $q$
+      - $p\land q$
+    answer: 0
+    explanation: Both alternatives require $p$. Factoring gives $p\land(q\lor\neg q)$. The parentheses are always true, leaving $p$.
+    teachingHash: b3ba69efcb98515ecfdeaa94dcef3f8a95ea49bbfabad31908dcfaedc93566d2
+predicates-and-quantifiers:
+  - id: quick-1
+    after: 'Existential quantification: there exists'
+    prompt: To establish $\exists x\in\mathbb Z\,(x>10)$, how many verified examples are enough?
+    options:
+      - One
+      - Every integer must be checked
+      - Exactly two
+    answer: 0
+    explanation: 'One allowed integer is enough: 11 belongs to the domain and is greater than 10. Such an example is a witness.'
+    teachingHash: 09b7f369492d408b7a77d4488154e32dc5d1ea43eece02a5f98b08977a6100ae
+  - id: quick-2
+    after: Several variables and quantifier order
+    prompt: In $\forall x\in\mathbb Z\exists y\in\mathbb Z\,(y>x)$, may the chosen $y$ depend on $x$?
+    options:
+      - Yes
+      - No
+    answer: 0
+    explanation: Yes. We receive $x$ before choosing $y$, so $y=x+1$ works. Reversing the quantifiers would require one integer larger than every integer.
+    teachingHash: 16b816fc30b04ed1dcde9893b95eb431b619cd760aca01f7336c35f7a0064f76
+sets-and-set-operations:
+  - id: quick-1
+    after: Membership and subsets are different
+    prompt: Let $A=\{1,2\}$. Which statement is true?
+    options:
+      - $\{1\}\in A$
+      - $\{1\}\subseteq A$
+      - $3\in A$
+    answer: 1
+    explanation: The only element of $\{1\}$ is in $A$, so it is a subset. The elements of $A$ are the numbers 1 and 2, not the set $\{1\}$.
+    teachingHash: 03eb910502ce46a8a060cc5899813360c6252ae83637a2190bfadc55d0d6189c
+  - id: quick-2
+    after: Power sets
+    prompt: How many subsets does $\{a,b\}$ have?
+    options:
+      - '2'
+      - '3'
+      - '4'
+    answer: 2
+    explanation: "There are four: $\\varnothing$, $\\{a\\}$, $\\{b\\}$, and $\\{a,b\\}$. Each element can independently be included or omitted."
+    teachingHash: a516e618fcc028da265272eeebbf86a64da49aa5925a20cdb54bc7819d5f38de
+relations:
+  - id: quick-1
+    after: Four fundamental properties
+    prompt: A symmetric relation must relate every object to itself.
+    options:
+      - 'True'
+      - 'False'
+    answer: 1
+    explanation: Symmetry says that any existing pair can be reversed. Requiring every self-pair is reflexivity, a different property.
+    teachingHash: dc498720c527fea56dd5e7549ebb9f42a63fd102b7b38370166803ab156dc420
+  - id: quick-2
+    after: Partial and total orders
+    prompt: Must every pair of elements in a partial order be comparable?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: No. For example, the subsets {1} and {2} are incomparable under inclusion. A total order adds the requirement that every pair be comparable.
+    teachingHash: b11089b958d3adfef365dbe8ab6c28b1aa63d5c21378bc4c343831fd45a2ab96
+functions:
+  - id: quick-1
+    after: Surjective functions
+    prompt: A function assigns different outputs to different inputs, but misses one element of its codomain. Which description fits?
+    options:
+      - Injective but not surjective
+      - Surjective but not injective
+      - Both injective and surjective
+    answer: 0
+    explanation: Different inputs remain distinguishable, so the function is injective. The missed target prevents surjectivity.
+    teachingHash: 6a1a956ed205439931c6bf4e34392a0d7f838bbeff1b04d113d585d73841e757
+  - id: quick-2
+    after: Floor and ceiling functions
+    prompt: What is $\lfloor-1.2\rfloor$?
+    options:
+      - −1
+      - −2
+      - '0'
+    answer: 1
+    explanation: The floor is the greatest integer no larger than the input. That integer is −2; −1 is larger than −1.2.
+    teachingHash: 6f48868ec4cefd8c52f44896c3b83861702205cf169fffbb658551c80f4afa69
+sequences-and-summations:
+  - id: quick-1
+    after: Summation notation and term counts
+    prompt: How many terms occur in $\sum_{k=0}^{4}a_k$?
+    options:
+      - '4'
+      - '5'
+      - '6'
+    answer: 1
+    explanation: 'Both endpoints are included: the indices are 0, 1, 2, 3, and 4. The starting index is not the number of terms.'
+    teachingHash: 02087e8a7a62442c272776fc219e3edbbbad805bae7deb2f649125b09412a63c
+  - id: quick-2
+    after: Reindexing and telescoping
+    prompt: What remains in $(b_2-b_1)+(b_3-b_2)+(b_4-b_3)$?
+    options:
+      - $b_4-b_1$
+      - $b_4+b_1$
+      - $0$
+    answer: 0
+    explanation: The intermediate terms $b_2$ and $b_3$ cancel. The first negative term and last positive term have no partners, leaving $b_4-b_1$.
+    teachingHash: f50e08d96f1fb158fc70349a50cc278c669b797a004870e56c3a3255a6931c39
+direct-proof:
+  - id: quick-1
+    after: Unpack definitions
+    prompt: Which representation states that an integer n is odd?
+    options:
+      - $n=2k$ for some integer $k$
+      - $n=2k+1$ for some integer $k$
+      - $n=2k+1$ for some real $k$
+    answer: 1
+    explanation: The integer restriction on k is essential. Allowing any real k would make the third description hold for every integer, including even ones.
+    teachingHash: e59402a8bf2f8d77083d1ca4435bd2ae0cda21b75ef47b5827b0764494849838
+  - id: quick-2
+    after: Constructive existence
+    prompt: An existence proof proposes an object with the required property. Must it also check that the object belongs to the allowed domain?
+    options:
+      - Yes
+      - No
+    answer: 0
+    explanation: Yes. A proposed witness must pass both checks. A real number between two consecutive integers does not establish the existence of an integer between them.
+    teachingHash: b677e81b4ef43f89bea04df1aa72af5dcad47f4de86fffa8abcf96545a68f6c3
+proof-by-contrapositive:
+  - id: quick-1
+    after: The proof template
+    prompt: To prove $P\to Q$ by contrapositive, where do you start?
+    options:
+      - Assume $Q$
+      - Assume $\neg P$
+      - Assume $\neg Q$
+    answer: 2
+    explanation: Start with $\neg Q$ and establish $\neg P$. This proves the equivalent implication $\neg Q\to\neg P$.
+    teachingHash: a501ee331219e0b1ccbe0e13bee44278d861cd6ebdf88836565a903ac4ae1d90
+  - id: quick-2
+    after: 'Worked proof: an even square has an even root'
+    prompt: For integer $n$, which assumption starts a contrapositive proof of “if $n^2$ is even, then $n$ is even”?
+    options:
+      - $n$ is odd
+      - $n^2$ is even
+      - $n$ is even
+    answer: 0
+    explanation: 'Negate the conclusion: the integer n is not even, hence odd. Its odd-number representation then lets us show that its square is odd.'
+    teachingHash: fa85c4b0385510e423609753572cd76442e8f6617a560d3b2fff193f129e6634
+proof-by-contradiction:
+  - id: quick-1
+    after: The logical structure
+    prompt: A contradiction proof derives a surprising result. Is surprise alone enough to finish the proof?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: No. The result must conflict with a stated assumption, definition, or established fact. A negative number, for example, is not inherently impossible.
+    teachingHash: 261c9a97508b6b8c71540a72b53f08154d1dfc1163f0806e2457b6efaa015b2c
+  - id: quick-2
+    after: The irrationality of the square root of 2
+    prompt: Why choose $\sqrt2=a/b$ in lowest terms before proving both $a$ and $b$ even?
+    options:
+      - To make the denominator even
+      - To ensure a shared factor of 2 contradicts the chosen representation
+      - To assume the desired conclusion
+    answer: 1
+    explanation: Lowest terms rules out a common positive divisor greater than 1. Without that restriction, two even entries would simply describe a fraction that can be reduced.
+    teachingHash: e8f686a637b07d54a2f871898dc6645160cfada948e761819c8b2b2b4c003f30
+mathematical-induction:
+  - id: quick-1
+    after: The induction principle
+    prompt: An induction has base $P(3)$ and a valid step from $P(k)$ to $P(k+1)$ for every integer $k\geq3$. What does it establish?
+    options:
+      - All integer indices
+      - All integer indices at least 3
+      - Only index 3
+    answer: 1
+    explanation: The base starts the chain at 3 and the step carries it forward. Neither part establishes the earlier indices.
+    teachingHash: 3a3be7d5f5ac9450b8d9efac0e4adf712208bf363716adecdc41b77ffcbc9e74
+  - id: quick-2
+    after: Inequalities require a bridge
+    prompt: A proof aiming for $2^{k+1}\geq(k+1)^2$ has reached $2^{k+1}\geq2k^2$. What remains?
+    options:
+      - Prove $2k^2\geq(k+1)^2$ in the step's range
+      - Nothing; the step is finished
+      - Assume $2^{k+1}=(k+1)^2$
+    answer: 0
+    explanation: The hypothesis supplied an intermediate bound. A further comparison must connect that bound to the target; this is the bridge in the inductive step.
+    teachingHash: 741dba1350470df6987a3c5676096d4dbd80ccedb45bbf9e49e007bb50f5f749
+strong-induction:
+  - id: quick-1
+    after: The strong induction principle
+    prompt: While proving $P(n)$ for integer indices starting at 2, which case may strong induction supply? Assume $n\geq4$.
+    options:
+      - $P(n)$
+      - $P(1)$
+      - $P(n-2)$
+    answer: 2
+    explanation: The index $n-2$ is at least 2 and strictly below $n$. The current case is not available, and index 1 is outside the theorem's range.
+    teachingHash: 54c91930439eba6b7512825f5eb935b36f83bbe7e306e29988608e64126b7844
+  - id: quick-2
+    after: Postage with several base cases
+    prompt: A construction adds 4-unit stamps and aims to cover every amount from 18 onward. Which base block supports that step?
+    options:
+      - 18 alone
+      - 18 and 22
+      - 18, 19, 20, and 21
+    answer: 2
+    explanation: The four consecutive bases start all four chains of amounts separated by steps of four. A base at 18 alone reaches only one of those chains.
+    teachingHash: 3d24453c51a4c689e0d4e9490573d87a6d3fe11b709e118b81523cf0d3701df3
+combinatorics:
+  - id: quick-1
+    after: Unordered selections and combinations
+    prompt: A committee has no named roles. Does swapping the order in which its members are listed create a new committee?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: The members determine the committee. Ordered selection counts each committee repeatedly, which is why the combination formula corrects that overcount.
+    teachingHash: 25c8b07e8a4f72a4933ff7ea65e2e3fa3907d7360c5c50eff84af246875bc8e7
+  - id: quick-2
+    after: The pigeonhole principle
+    prompt: Thirteen people are grouped by their twelve possible birth months. What is guaranteed?
+    options:
+      - Every month has someone
+      - At least two people share a birth month
+      - Exactly two people share one month
+    answer: 1
+    explanation: If every month had at most one person, there could be at most twelve people. Some month therefore has at least two; it may have more.
+    teachingHash: 360aa25c0d4625b90009ccc443911688ac3befc4e3de2499de72bd15b091ee52
+recurrence-relations:
+  - id: quick-1
+    after: A recurrence needs a domain and initial conditions
+    prompt: Does $a_n=a_{n-1}+3$ for integer $n\geq1$ determine a unique sequence without an initial value?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: No. Starting at 0 and starting at 10 produce different sequences obeying the same update rule. The initial data select the sequence.
+    teachingHash: 4c61ad5c1877784cdd9f0ea54d1f42799e7a8bae82ddbcf04274b5110d452ce5
+  - id: quick-2
+    after: Different amounts of branching
+    prompt: Two recurrences halve the input on every recursive step. Must they have the same total work?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: No. One may follow one smaller call while the other follows two. Equal depth does not imply equal numbers of calls across all levels.
+    teachingHash: 81799b4c86a3f4e67dc59b320c04a86e8dfacbf77b26a73b727db19e7e525c89
+graph-theory:
+  - id: quick-1
+    after: Adjacency and degree
+    prompt: In a finite simple undirected graph, what does the sum of the degrees count?
+    options:
+      - Each edge once
+      - Each edge twice
+      - Each vertex twice
+    answer: 1
+    explanation: Each edge has two distinct endpoints and contributes one to the degree at each endpoint. The degree sum is twice the edge count.
+    teachingHash: 862fbe06c2512cb250f7d8fbf7ea21c13c7ca492dd5ee6931f302661f14dadbb
+  - id: quick-2
+    after: Euler trails and Hamiltonian cycles
+    prompt: Which route is required to use every edge exactly once?
+    options:
+      - An Euler trail
+      - A Hamiltonian cycle
+      - Every path
+    answer: 0
+    explanation: An Euler trail is about covering edges. A Hamiltonian cycle visits every vertex exactly once before returning to its start.
+    teachingHash: 424a9d76a0d6d7fe1bc6d96c33a6992baab25deffb733b2a45f02140d7aa9ba4
+asymptotic-growth:
+  - id: quick-1
+    after: 'Big O: an eventual upper bound'
+    prompt: In $f(n)=O(g(n))$, may the comparison constant $c$ be chosen anew for each $n$?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: No. One fixed positive c must work for every input beyond one fixed threshold. Choosing c separately for each n changes the quantifier order.
+    teachingHash: 373edee4792318e843b6b54ac4fac739172be85bad94f6c91d34f9f2a00aa845
+  - id: quick-2
+    after: Big Omega and Big Theta
+    prompt: What does $f(n)=\Theta(g(n))$ assert?
+    options:
+      - The functions are equal at every input
+      - Matching eventual upper and lower bounds by positive constant multiples
+      - Only an eventual upper bound
+    answer: 1
+    explanation: Theta bounds f between two fixed positive multiples of g after a threshold. The functions can differ at every input and still have the same growth scale.
+    teachingHash: 8c6484c389149184f87b18ee59fa661a42bfb27636b9c2c8b5d974dad8d11fe5

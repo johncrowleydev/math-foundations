@@ -20,7 +20,12 @@ internal fun nativeMarkdown(source: String): String {
 }
 
 @Composable
-fun RichText(markdown: String, modifier: Modifier = Modifier, size: Float = 19f) {
+fun RichText(
+    markdown: String,
+    modifier: Modifier = Modifier,
+    size: Float = 19f,
+    onClick: (() -> Unit)? = null,
+) {
     AndroidView(
         modifier = modifier,
         factory = { context ->
@@ -46,6 +51,9 @@ fun RichText(markdown: String, modifier: Modifier = Modifier, size: Float = 19f)
                 view.contentDescription = markdown
                 (view.tag as Markwon).setMarkdown(view, nativeMarkdown(markdown))
             }
+            // Native TextViews receive taps inside their bounds before the Compose
+            // choice row. Forward those taps so the entire answer remains a target.
+            if (onClick != null) view.setOnClickListener { onClick() }
         },
     )
 }

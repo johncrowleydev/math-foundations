@@ -8,6 +8,8 @@ The word _strong_ describes the form of the hypothesis. The method proves no mor
 
 ## The strong induction principle
 
+Suppose solving a problem of size $n$ breaks it into two smaller problems, but their sizes depend on the input. The immediately preceding case may tell us nothing about either piece. Strong induction lets the proof reach back to any earlier allowed size. The price is careful bookkeeping: every size we use must really be smaller and must lie in the range already covered.
+
 Let $P(n)$ be a statement for integers $n\geq n_0$. A familiar strong induction format is:
 
 1. Establish the required initial cases.
@@ -23,6 +25,8 @@ For readable proofs, separate the bases from the general argument, especially wh
 
 ## Why it is equivalent to ordinary induction
 
+We can package “all cases so far are true” as one larger statement. Ordinary induction on that statement automatically carries the whole history forward. This packaging explains how strong induction can offer more assumptions at a step without being a logically stronger principle.
+
 Suppose strong induction would prove a family $P(n)$ for $n\geq n_0$. Define a new statement
 
 $$
@@ -37,6 +41,8 @@ Strong induction is therefore an organized way to prove an accumulating conjunct
 
 ## Well-ordering and a smallest counterexample
 
+If a statement about nonnegative integers fails anywhere, there must be a first place it fails. Before that point, all the earlier cases are available. A valid strong inductive step would then repair the supposed first failure, giving a contradiction. This perspective is often easier to visualize than an indefinitely advancing chain of implications.
+
 The **well-ordering principle** says that every nonempty set of nonnegative integers has a least element. The same holds for integers bounded below by any fixed integer, by shifting the domain.
 
 This explains induction through a smallest-counterexample argument. Suppose a theorem with a valid base and strong inductive step were false. The set of failing indices would have a least member $m$. Every allowed index smaller than $m$ would satisfy the theorem. The strong step would then establish the theorem at $m$, contradicting its failure.
@@ -48,6 +54,8 @@ Conversely, induction can establish well-ordering for subsets of $\mathbb{N}_0$:
 These principles describe the same discrete order structure. They do not extend unchanged to arbitrary sets of real numbers: the positive real numbers have no least element.
 
 ## Prime factorization: existence
+
+To factor a composite number, we break it into smaller factors and continue with each factor. Their sizes are not fixed in advance, which is exactly the situation strong induction handles well. The prime case supplies a stopping point: there is nothing further to split. Watch how the proof checks both factors against the hypothesis's range before using it.
 
 Recall that a prime is a positive integer greater than 1 with no positive divisors other than 1 and itself.
 
@@ -72,6 +80,8 @@ Why is ordinary induction less natural here? Knowing only that $n-1$ factors giv
 This proof establishes **existence**, not **uniqueness**. It does not prove that two prime products representing the same integer have the same factors. That requires an additional argument, commonly using a lemma about a prime dividing a product. Do not claim more than the induction established.
 
 ## Postage with several base cases
+
+The natural way to make a larger amount from a smaller one is to add one available stamp. If we always add a 4-unit stamp, we advance in steps of four and need starting points that cover all four possible positions in that pattern. This explains the block of consecutive base cases below; it is dictated by the construction rather than chosen by a rule of thumb.
 
 Suppose only stamps of values 4 and 7 units are available, with an unlimited supply of each. Values add normally; using zero stamps of one denomination is allowed.
 
@@ -102,6 +112,8 @@ The theorem does not assert that 18 is the first representable amount. It assert
 
 ## A recursive sequence bound
 
+The recurrence tells us that the next value depends on two earlier ones. To bound it, we substitute bounds for both, then compare their sum with the target bound. The domain of the proposed inequality must cover each substituted index, which is why the bases and the start of the general step deserve separate attention.
+
 Define the Fibonacci sequence by
 
 $$
@@ -131,6 +143,8 @@ We did not need every earlier value in this step, only the last two. Strong indu
 
 ## Recursive algorithms: termination and correctness
 
+An algebraically plausible recursive rule can still run forever. We therefore ask two questions: do smaller calls eventually return, and if they return the promised answers, does this call combine them correctly? Strong induction can answer both, but they remain distinct parts of the explanation.
+
 A recursive algorithm needs two different guarantees: its calls eventually stop, and its returned value satisfies the specification. Strong induction fits both when every recursive call has a smaller nonnegative integer measure.
 
 Consider this function on nonnegative integers:
@@ -159,6 +173,8 @@ This reasoning assumes exact integer arithmetic. The algorithm's value may excee
 
 ## A finite construction by splitting
 
+Different ways of splitting a board may look as though they ought to require different amounts of work. The first split separates the problem into two smaller boards, and the induction hypothesis supplies the count for each regardless of its later splitting pattern. Adding the first split then reveals a total that depends only on the original length.
+
 Imagine a straight board consisting of $n\geq1$ unit cells. A construction may either stop with a single cell or split a longer board between cells into two nonempty smaller boards, then recursively split each piece.
 
 **Claim.** Any such complete splitting into unit cells uses exactly $n-1$ splits.
@@ -174,6 +190,8 @@ Thus the count is independent of where the splits occur. The argument covers eve
 This is a small example of reasoning about recursively built objects. More general **structural induction** follows the constructors of an object, such as a finite expression: prove a property for the simplest objects, then show each construction rule preserves it. For this course, induction on an explicit integer size is enough for our examples.
 
 ## Common mistakes
+
+For every appeal to the induction hypothesis, write the index being used and check its bounds. This small habit catches both attempts to use the current case and attempts to reach below the first proved case. Also check the strength of the conclusion: finding one construction is different from proving a claim about every possible construction.
 
 **Using a case outside the range.** In the postage proof, invoking $P(n-4)$ at $n=19$ would require $P(15)$, which the theorem never promised. State the lower bound for the general step and verify the earlier targets separately.
 
@@ -198,4 +216,4 @@ You should now be able to:
 - Establish recursive termination and correctness with a decreasing integer measure.
 - Distinguish an arbitrary recursive decomposition from a specially chosen example.
 
-Use the [Strong Induction worksheet](../worksheets/11-strong-induction.yaml) to practice these proof structures. Next, [Combinatorics](../lessons/12-combinatorics.md) applies careful definitions, cases, and proofs to counting finite collections.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

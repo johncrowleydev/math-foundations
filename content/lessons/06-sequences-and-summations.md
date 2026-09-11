@@ -6,6 +6,8 @@ This lesson builds on [Functions](../lessons/05-functions.md) and [Sets and Set 
 
 ## A sequence is an indexed function
 
+A sequence is more than a bag of values: each value has an address. Daily temperatures, successive account balances, and the terms in a numerical pattern all depend on which position we are asking about. The subscript is that position label. Reading it as an input to a function connects the new notation to the previous lesson.
+
 A sequence $(a_n)$ is a function whose domain is an index set such as $\mathbb N_0=\{0,1,2,\ldots\}$ or $\{1,2,\ldots,N\}$. The notation $a_n$ is the value at position $n$.
 
 Order and repetition matter. The sequences $(2,5,2)$ and $(2,2,5)$ differ, even though their sets of values agree. A finite sequence can be empty, contain one term, or contain repeated terms.
@@ -17,6 +19,8 @@ An **explicit formula** gives a term directly from its index. For example, $a_n=
 A few listed terms do not uniquely determine an infinite sequence. Many rules can agree on an initial segment and diverge later. A claimed pattern needs a stated rule or additional assumptions.
 
 ## Recursive definitions and initial conditions
+
+An explicit formula tells you how to jump directly to a term. A recursive definition instead tells you how to continue from what you already know. A starting point and a continuation rule do different jobs; neither can silently replace the other. Before calculating, check that the first application of the rule uses only values that have actually been defined.
 
 A **recursive definition** gives later terms using earlier ones. For instance,
 
@@ -44,6 +48,8 @@ These checks show that the formula follows the specified generation rule. Later 
 
 ## Arithmetic and geometric sequences
 
+Adding the same amount each time and multiplying by the same factor each time produce very different patterns. An account receiving a fixed deposit grows by addition; an idealized quantity increasing by a fixed percentage grows by multiplication. The formulas below come from counting how many times that repeated operation has happened since the initial term.
+
 An **arithmetic sequence** has a constant difference $d$:
 
 $$
@@ -65,6 +71,8 @@ Interpret the initial term as $c$ even when $r=0$; all later terms are then zero
 Do not divide consecutive terms to test the multiplier if a denominator might be zero. The equation $a_{n+1}=ra_n$ is meaningful in those cases; the quotient may not be.
 
 ## Summation notation and term counts
+
+The large sigma is an instruction to add, with the bounds specifying exactly which terms to visit. Before using a formula, expand a small example: write the first term, the next one, and the last one. This turns an unfamiliar symbol into an ordinary addition problem and catches many indexing mistakes before they spread through the calculation.
 
 For integers $m\leq n$,
 
@@ -91,6 +99,8 @@ We use the convention that a sum over an empty integer index range is 0. Thus $\
 For $n\geq0$, a sequence's **partial sum** $S_n=\sum_{k=0}^{n}a_k$ contains its first $n+1$ terms under zero-based indexing. Another common convention uses $S_n=\sum_{k=1}^{n}a_k$ for the first $n$ terms. State which convention applies instead of assuming the symbol alone determines it.
 
 ## Algebra with finite sums
+
+All the rules here come from ordinary finite addition and multiplication. A constant factor can be taken outside because it appears in every term. A varying factor cannot, because there is no single value to move. When a proposed manipulation feels uncertain, expand a two-term sum and see whether the two sides still describe the same arithmetic.
 
 Finite addition gives linearity:
 
@@ -124,6 +134,8 @@ For $n=0$, both the empty sum and the resulting expression are zero.
 
 ## Deriving arithmetic sums
 
+The useful observation is that pairing the smallest term with the largest produces the same total as pairing the next smallest with the next largest. Instead of handling an odd leftover term separately, we will add two full copies of the sum, one written in reverse. Every position then has a partner, and dividing by two returns the sum we wanted.
+
 Let $S=1+2+\cdots+n$ for an integer $n\geq1$. Write it once forward and once backward, then add corresponding positions:
 
 $$
@@ -146,6 +158,8 @@ $$
 Ten terms starting at 4 with difference 3 end at $4+9\cdot3=31$. Their sum is $10(4+31)/2=175$. Checking the last index before applying the formula prevents confusing ten increments with ten terms.
 
 ## Deriving finite geometric sums
+
+For a geometric sum, reversing the order is less helpful than shifting it. Multiplication by the common ratio turns almost every term into the next term already present. Subtracting the shifted copy cancels the overlap and leaves only two boundary terms. The familiar formula is the result of arranging that cancellation deliberately.
 
 For $N\geq1$, define
 
@@ -182,6 +196,8 @@ There are five terms and the final exponent is 4; the numerator's exponent is th
 
 ## Reindexing and telescoping
 
+Reindexing changes the addresses of terms without changing the terms themselves. It is like renumbering the pages of a document: both the page labels and the references to them must change together. Telescoping is a different maneuver, in which terms cancel. In both cases, writing out the endpoints makes it much easier to see what has actually changed.
+
 **Reindexing** changes the labels of terms without changing which terms occur. If $j=k-2$, then $k=j+2$, and
 
 $$
@@ -215,6 +231,8 @@ The starting index matters: at $k=0$, the original denominator would be zero. Ca
 
 ## Products and factorials
 
+Product notation is read in much the same way as summation notation, except that the visited terms are multiplied. The empty case therefore has a different neutral value. Adding no terms leaves a running total unchanged by adding zero; multiplying no factors leaves a running product unchanged by multiplying by one.
+
 Product notation is the multiplicative counterpart of a sum:
 
 $$
@@ -240,6 +258,8 @@ Cancellation is legitimate because every denominator is nonzero. Unlike a sum, a
 
 ## Nested sums and counting iterations
 
+In a nested sum, hold the outer index fixed while completing the inner sum. Then move to the next outer value and repeat. You can picture rows of a display, with the outer index choosing the row and the inner index choosing entries within it. If the row lengths vary, multiplying two fixed bounds will not count the entries correctly.
+
 A nested sum evaluates the inner sum for each allowed outer index. If $n\geq1$,
 
 $$
@@ -261,6 +281,8 @@ Changing the order without changing the dependent bounds would count a different
 
 ## Bounding sums
 
+Sometimes an estimate answers the question we care about without an exact total. If every box weighs between two and three kilograms, ten boxes weigh between twenty and thirty kilograms. A sum bound applies that same comparison term by term. The more subtle examples choose a useful portion of the terms to obtain a lower bound without calculating all of them.
+
 An exact closed formula is not always necessary. If each of $N$ terms lies between real numbers $L$ and $U$, then
 
 $$
@@ -278,6 +300,8 @@ $$
 Thus the sum lies between constant multiples of $n^3$ without needing its exact formula. This style of estimate will help analyze algorithms later. Dropping terms gives a lower bound when their total is nonnegative. Checking that every dropped term is nonnegative is a convenient sufficient condition; without a sign argument, dropping terms may instead increase the sum.
 
 ## Translating loop bounds into sums
+
+Code can hide a counting problem inside a few short lines. Follow one outer-loop value at a time and ask how many times the inner body runs for that value. Those individual counts are the terms of a sum. Only after identifying the terms should we reach for a summation formula.
 
 Consider this pseudocode, where the upper endpoint of each `for` loop is included:
 
@@ -320,4 +344,4 @@ You should be able to:
 - Reverse finite nested sums by describing their index pairs.
 - Justify useful upper and lower bounds with sign conditions stated.
 
-Practice with the [Sequences and Summations worksheet](../worksheets/06-sequences-and-summations.yaml). Continue to [Direct Proof](../lessons/07-direct-proof.md); the following proof and induction lessons use these foundations to justify general claims and recursive formulas.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

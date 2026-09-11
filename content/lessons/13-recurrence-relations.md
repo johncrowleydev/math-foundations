@@ -6,6 +6,8 @@ This lesson builds on [Sequences and Summations](../lessons/06-sequences-and-sum
 
 ## A recurrence needs a domain and initial conditions
 
+A recurrence is a rule for continuing a sequence, so first ask where the continuation begins. Without a starting value, “add three each time” describes many sequences. Without an index range, even a familiar-looking rule can request a term that has never been defined. These details determine the mathematical object we are trying to solve for.
+
 Consider
 
 $$
@@ -32,6 +34,8 @@ A **closed form** expresses $a_n$ directly in terms of $n$ and fixed constants, 
 
 ## Iteration: unfold the definition
 
+Unfolding means substituting the rule into itself until the pattern of earlier contributions becomes visible. Keep track of two things at once: how far the index has moved and how much has accumulated along the way. Stopping at the actual initial term determines the number of steps.
+
 For the recurrence $a_0=2$, $a_n=a_{n-1}+3$, repeatedly substituting gives
 
 $$
@@ -50,6 +54,8 @@ If $a_0=5$ and $a_n=2a_{n-1}$ for $n\geq1$, each substitution supplies one facto
 These observations can guide a conjecture. A proof by induction verifies it for all allowed indices: check $n=0$, assume the formula at $n-1$, and substitute into the recurrence. Verification matters because an early numerical pattern can be misleading.
 
 ## Differences and telescoping
+
+If a recurrence tells us how much changes at each step, adding those changes should recover the total change. This is exactly what telescoping does. The intermediate sequence values cancel because each appears once as a new value and once as an old value; only the starting and ending values remain.
 
 Suppose
 
@@ -88,6 +94,8 @@ $$
 The recurrence expresses the fact that adding the next odd number grows one square number into the next.
 
 ## First-order linear recurrences
+
+The term **first-order** means the rule reaches back one index. **Linear** means the earlier sequence value appears only to the first power, multiplied by a coefficient that does not depend on that value. In general the coefficient may depend on the index; this section keeps both the coefficient and the added amount fixed. Unfolding shows how the original value and each later addition are multiplied as time passes.
 
 A common form is
 
@@ -135,6 +143,8 @@ That is geometric growth or decay measured from $L$. In the example, $L=-3$, so 
 
 ## A varying nonhomogeneous term
 
+The added contribution need not be the same at every step. An amount introduced early gets multiplied again on every later step, while the most recent contribution has not yet been multiplied at all. Reading the powers of $r$ this way explains the weighted sum below without treating it as a formula to memorize.
+
 The same unfolding idea handles $a_n=ra_{n-1}+f(n)$ for $n\geq1$:
 
 $$
@@ -158,6 +168,8 @@ $$
 $$
 
 ## Second-order homogeneous recurrences
+
+Now two earlier values influence the next one, so we need two starting values and a richer family of candidate solutions. **Homogeneous** means there is no extra term independent of those sequence values. Geometric sequences are useful candidates because shifting an index merely changes a power by a fixed factor, turning the recurrence into an algebraic equation for that factor.
 
 Consider
 
@@ -197,6 +209,8 @@ Substituting verifies the recurrence, and uniqueness finishes the proof.
 
 ## Repeated roots
 
+If the characteristic equation has the same root twice, writing two constant multiples of the same geometric sequence does not give two independent choices: the constants simply combine. The extra factor of $n$ supplies the missing flexibility. Dividing out the common geometric factor explains why that particular form works.
+
 When the characteristic polynomial is $(r-\rho)^2$ with $\rho\neq0$, two usable solutions are $\rho^n$ and $n\rho^n$. The general candidate is
 
 $$
@@ -221,6 +235,8 @@ The nonzero-root assumption was needed for division. If the repeated root is zer
 
 ## Recurrences from counting
 
+To derive a counting recurrence, split larger objects into cases that correspond exactly to smaller objects. Both directions of the correspondence matter: removing an initial piece should produce a valid smaller object, and every valid smaller object should extend back to an object in that case. This is stronger evidence than recognizing a familiar numerical pattern.
+
 Let $F_n$ count binary strings of length $n$ with no adjacent 1s. There is one empty string, so $F_0=1$, and $F_1=2$.
 
 For $n\geq2$, partition valid strings by their beginning. A string beginning with 0 can be followed by any valid length-$(n-1)$ string. A string beginning with 1 must begin with 10, followed by any valid length-$(n-2)$ string. These cases are disjoint and exhaustive, giving
@@ -232,6 +248,8 @@ $$
 Consequently $F_2=3$, $F_3=5$, and $F_4=8$. The recurrence comes from a bijection between smaller valid objects and each case, not merely from noticing the numbers resemble Fibonacci terms.
 
 ## A recurrence for a recursive construction
+
+A recursive strategy tells us how many moves one method uses. A minimum requires an additional argument that every legal strategy needs at least that many. The Tower of Hanoi makes this distinction concrete: the largest disk creates unavoidable work before and after its movement, which is what lets the construction's count become an optimal count.
 
 The Tower of Hanoi puzzle has $n$ disks of distinct sizes on one of three pegs. A legal move transfers one top disk to another peg, and a larger disk may never be placed on a smaller one. Let $H_n$ be the minimum number of moves needed to transfer the whole ordered stack to another peg, with $H_0=0$.
 
@@ -253,6 +271,8 @@ The first-order formula gives $H_n=2^n-1$. Induction verifies the construction's
 
 ## Testing and correcting a proposed formula
 
+Test a candidate against the definition in two separate places: the initial data and the general recurrence. Passing the initial check only shows that the sequence starts correctly. Passing the recurrence check shows that the candidate advances correctly. The uniqueness supplied by the definition is what makes the two checks together decisive.
+
 Suppose someone claims that $a_n=2^n$ solves $a_0=1$ and $a_n=2a_{n-1}+1$. The initial condition passes, but substitution gives $2\cdot2^{n-1}+1=2^n+1$, which differs from the candidate. The recurrence check detects the error for every positive index at once.
 
 Using the correct first-order calculation gives
@@ -266,6 +286,8 @@ Now both checks succeed: at zero the value is 1, and substituting the preceding 
 For a second-order recurrence, checking only one starting value is similarly insufficient. The recurrence $a_n=3a_{n-1}-2a_{n-2}$ admits both the constant sequence $a_n=1$ and the sequence $a_n=2^n$. Both have $a_0=1$, but their values at index 1 differ. Initial data select the intended combination of solutions.
 
 ## Divide-and-conquer recurrences
+
+Some recursive calls reduce size by a factor rather than by one. To follow all the work, organize calls into levels: the original call, its children, their children, and so on. At each level we need both the number of calls and the work per call. A shallow tree can still contain many calls, so depth alone is not the answer.
 
 Some algorithms reduce input size multiplicatively. To avoid hidden rounding assumptions, first define the domain explicitly: let $n=2^k$ for an integer $k\geq0$.
 
@@ -293,6 +315,8 @@ The leaf cost is part of the answer. Multiplying the root cost by the depth and 
 
 ## Proving a recursion-tree formula
 
+The tree suggests a formula, and induction checks that the formula really satisfies the recurrence. Since the allowed sizes double, the natural integer induction variable is the exponent $k$ in $n=2^k$. This choice matches the recurrence's halving step with an ordinary one-step change in the induction index.
+
 Induct on $k$, where $n=2^k$. At $k=0$, the formula gives $T(1)=1\cdot0+1=1$. Assume it holds at size $n/2$. Then
 
 $$
@@ -310,6 +334,8 @@ Merge sort motivates this model: sort two halves and merge the results with work
 
 ## Different amounts of branching
 
+Two algorithms may halve their input at each recursive step and still do very different amounts of work. One may follow only one half, while the other explores both. Compare the total number of calls across each level, not just the length of one route from the root to a leaf.
+
 On the same powers-of-two domain, let $S(1)=1$ and $S(n)=S(n/2)+1$. There is one recursive branch and one unit of work per internal level. Hence
 
 $$
@@ -321,6 +347,8 @@ By contrast, let $U(1)=1$ and $U(n)=2U(n/2)+1$. The recursion tree has $n$ leave
 Both recurrences halve the input, yet their total work differs because one explores a single subproblem and the other explores both. Recursion depth alone does not determine running time.
 
 ## Guessing bounds and proving them
+
+A bound is a promise in one direction, so the induction must preserve that direction. If substitution leaves an extra positive term beyond the proposed upper bound, the proof has not closed. Instead of hiding that term by choosing a vague “large enough” constant, use the failed calculation to diagnose what kind of bound the recurrence needs.
 
 An exact formula is sometimes unnecessary. For example, if a nonnegative cost satisfies $T(1)=1$ and $T(n)\leq2T(n/2)+n$ on powers of two, induction with the same calculation proves
 
@@ -346,4 +374,4 @@ Before continuing, check that you can:
 - Account for both internal work and leaves in a recursion tree.
 - Prove a proposed formula or bound on exactly its stated domain.
 
-The [Recurrence Relations worksheet](../worksheets/13-recurrence-relations.yaml) includes sequence computations, closed forms, counting models, recursion trees, and induction proofs.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

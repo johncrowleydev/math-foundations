@@ -6,6 +6,8 @@ This lesson builds on [Functions](../lessons/05-functions.md), [Sequences and Su
 
 ## State the function and the model
 
+“This takes a long time” is incomplete until we say what work is being counted and how the input size is measured. Sorting a list of a thousand small integers and manipulating one integer with a thousand digits are different tasks. A useful growth claim begins by defining the quantity whose behavior we want to understand.
+
 Let $n\in\mathbb N$ be a positive integer measuring input size. Unless a different domain is specified, the functions compared below are real-valued and nonnegative for all sufficiently large $n$. The comparison function $g(n)$ will be strictly positive for all sufficiently large $n$.
 
 A cost function might count comparisons, array accesses, or arithmetic operations. These are different models. Saying that a loop takes $n$ steps assumes that the work counted in one iteration has bounded constant cost in the chosen model.
@@ -15,6 +17,8 @@ The parameter also needs a meaning. For sorting, $n$ often means the number of a
 Asymptotic notation compares functions. To apply it to an algorithm, first identify which function you are bounding.
 
 ## Big O: an eventual upper bound
+
+Think of placing a scaled comparison curve above the function after some starting point. The multiplier sets the height of the comparison, and the threshold lets us ignore a finite beginning. Both must then stay fixed while the input continues to grow. This picture explains the two constants in the definition and why choosing a new multiplier for every input would change the claim.
 
 We write $f(n)=O(g(n))$ if there exist constants $c>0$ and an integer $n_0\geq1$ such that
 
@@ -38,6 +42,8 @@ The equals sign is conventional shorthand for membership in a class of functions
 
 ## Big Omega and Big Theta
 
+An upper bound says the cost cannot eventually exceed a certain scale, but it may greatly overestimate it. A lower bound supplies a floor. When both bounds use the same growth function, the cost is trapped between fixed positive multiples of that function. Theta records this matching information without claiming an exact formula.
+
 We write $f(n)=\Omega(g(n))$ if there exist $c>0$ and $n_0\geq1$ such that
 
 $$
@@ -58,6 +64,8 @@ A **tight growth bound** uses $\Theta$: the upper and lower comparisons have the
 
 ## Negating an asymptotic claim
 
+To defeat an eventual upper bound, it is not enough to find a large-looking value. Someone could respond by increasing the multiplier or moving the threshold. A proof of failure must handle any such proposed constants and then produce a later input that breaks their bound. This is the quantifier-order lesson appearing in a new setting.
+
 To prove that a nonnegative $f$ is not $O(g)$, show that every proposed constant and threshold eventually fail:
 
 $$
@@ -72,6 +80,8 @@ The threshold and witness indices here are integers. This quantifier order matte
 Choosing $c=n$ would make $n^2\leq cn$ true, but it is invalid in the definition: $c$ must be fixed while $n$ varies.
 
 ## Useful rules, with reasons
+
+An asymptotic expression summarizes inequalities. To combine two summaries safely, return to their inequalities and choose a threshold beyond both starting points. Addition and multiplication then work because of nonnegativity. Subtraction can erase the very terms that made a lower bound possible, so it requires a different kind of care.
 
 For eventually nonnegative functions, if $f=O(g)$ and $h=O(k)$, then
 
@@ -92,6 +102,8 @@ for nonnegative $g,k$, because $\max(g,k)\leq g+k\leq2\max(g,k)$.
 Subtraction requires care. Two functions can both be $\Theta(n^2)$ while their difference is constant: $(n^2+1)-n^2=1$. Cancellation can remove the dominant terms. Do not infer a lower bound for a difference by subtracting unrelated asymptotic descriptions.
 
 ## Polynomials and logarithm bases
+
+The highest power in a polynomial eventually controls its size, but “eventually” still needs an inequality behind it. Lower powers can be bounded in terms of that highest power after a suitable threshold. For logarithms, changing a fixed base introduces a constant multiplier, which is exactly the kind of difference Theta ignores.
 
 For a polynomial with positive leading coefficient and degree $d\geq0$, the eventual growth is $\Theta(n^d)$. Lower-degree terms become bounded by constant multiples of the leading power. If some coefficients are negative, choose the threshold large enough that their combined magnitude is at most, for example, half the positive leading term.
 
@@ -115,6 +127,8 @@ This rule does not allow a base depending on $n$: $\log_n n=1$ for $n>1$ is cons
 
 ## Strictly slower growth
 
+Two functions can share a Big O bound while remaining fixed multiples of one another. Little o asks for something stronger: no matter how small a positive fraction of the comparison function we choose, the first function eventually fits below it. The threshold may depend on that chosen fraction, but must then work for every later input.
+
 The Greek letter $\varepsilon$, pronounced epsilon, will denote a positive real multiplier that can be chosen as small as we wish.
 
 The notation $f(n)=o(g(n))$, read "little o," means that for every $\varepsilon>0$ there is a threshold $n_0$ such that
@@ -137,6 +151,8 @@ $$
 where $f\prec g$ means $f=o(g)$. These comparisons concern sufficiently large inputs, not every small value.
 
 ## Why exponentials outrun fixed powers
+
+A graph of a few values can suggest this comparison, but it cannot rule out a reversal much later. The proof uses the binomial theorem to find one sufficiently large positive term inside $2^n$. That one term already gives a lower bound strong enough to force the desired ratio toward arbitrarily small values, without using calculus.
 
 We can justify $n^d=o(2^n)$ without calculus. The binomial theorem gives, for $n\geq d+1$,
 
@@ -164,6 +180,8 @@ To distinguish $2^n$ from $3^n$, note $(3/2)^n\geq1+n/2$ by the binomial theorem
 
 ## Counting simple and consecutive loops
 
+Separate the number of repetitions from the work done on each repetition. A loop running $n$ times has linear cost only under a model that bounds its per-iteration work by constants. Once that is clear, consecutive phases add their work, while a nested loop repeats an entire phase inside each outer iteration.
+
 The **body** of a loop is the instruction or group of instructions repeated each time the loop runs. One repetition is an **iteration**. An exact body count counts these repetitions; a cost model also specifies the work performed during each repetition.
 
 Assume the indicated body has constant positive cost and the loop runs over the stated integer values.
@@ -188,6 +206,8 @@ for i = 1 to n:
 the body executes $n^2$ times. Each outer iteration runs the complete inner loop. The cost is $\Theta(n^2)$.
 
 ## Dependent loop bounds
+
+When the inner limit depends on the outer index, each row of work can have a different length. Add those row lengths rather than multiplying two bounds as if every row were full. The exact sum may simplify to the same growth class as a rectangular count, but that conclusion comes after the counting argument.
 
 Now consider
 
@@ -218,6 +238,8 @@ has $3n$ executions and linear cost. Counting indentation levels is not a valid 
 An inner loop with expensive work also changes the result. If its body copies a length-$n$ array, treating that copy as one constant-cost step understates the actual cost in an element-copy model.
 
 ## Doubling and halving
+
+Doubling reaches a large size in relatively few steps because each step covers as much new scale as all the previous growth. But the number of outer steps does not tell us the work inside those steps. The two examples below distinguish a constant amount of work at each doubling from an amount that grows with the current value.
 
 Consider
 
@@ -252,6 +274,8 @@ Repeated halving also explains binary search's number of search steps. The remai
 
 ## Worst case is a different axis
 
+First choose which inputs a cost function describes, then ask how that function grows. A worst-case function selects the most expensive input of each size. Big O, Omega, and Theta can then bound that selected function just as they can bound a best-case function. The choice of inputs and the direction of the bound answer different questions.
+
 For a fixed size $n$, an algorithm may run differently on different inputs. The **worst-case cost** is the maximum cost among those inputs; the **best-case cost** is the minimum. Average-case analysis requires a specified probability distribution.
 
 Linear search illustrates the distinction. Searching an array of length $n$ stops after one comparison if the first element matches, but may inspect all $n$ elements. Under unit-cost comparisons, its best-case cost is $\Theta(1)$ and its worst-case cost is $\Theta(n)$.
@@ -259,6 +283,8 @@ Linear search illustrates the distinction. Searching an array of length $n$ stop
 Big O does not mean "worst case," and Omega does not mean "best case." We can give an upper or lower bound for either cost function. Saying the worst-case cost is $\Omega(n)$ means some size-$n$ input requires at least a constant times $n$ work eventually; it does not mean every input does.
 
 ## An upper-bound proof is not an algorithm lower bound
+
+Showing how to solve a task establishes what one method can achieve. Showing that no method can do better requires a reason that applies to every permitted method. An unavoidable output requirement can sometimes supply such a reason, as in the copying example below. An inefficient implementation by itself cannot.
 
 Suppose an implementation sorts an array using at most $n^2$ comparisons. This proves an upper bound for that implementation. It does not show that every sorting algorithm needs quadratic work. A different algorithm may organize the information more efficiently.
 
@@ -269,6 +295,8 @@ For a simple example, copying an $n$-element array into a separate explicitly st
 The practical habit is to name both the subject and the claim: "this implementation has worst-case cost $O(n^2)$" is more informative than an unexplained "$O(n^2)$," and avoids suggesting an unproved optimality result.
 
 ## Irregular functions still use the definitions
+
+The phrase “for every sufficiently large input” includes odd inputs, even inputs, and any other infinite subsequence. A function need not increase smoothly to have a useful bound. Conversely, a bound that works on only one subsequence can miss arbitrarily late failures on another.
 
 Asymptotic notation does not require smooth or steadily increasing functions. Define $f(n)=n$ for even $n$ and $f(n)=2n$ for odd $n$. For every positive integer,
 
@@ -283,6 +311,8 @@ Now define $h(n)=n$ for even $n$ and $h(n)=n^2$ for odd $n$. We have $h=O(n^2)$ 
 Thus neither $\Theta(n)$ nor $\Theta(n^2)$ describes this function. Looking only at one subsequence can suggest a false tight bound. The definition requires the inequality to hold at every index beyond a single threshold.
 
 ## Recurrences and input size
+
+A cost can look small or large depending on what the parameter measures. Counting to a numeric value $N$ requires $N$ steps, but writing that value in binary takes far fewer than $N$ digits. Re-expressing the cost in terms of the actual input length can therefore change its apparent growth class dramatically.
 
 The earlier recurrence $T(1)=1$, $T(n)=2T(n/2)+n$ on powers of two has exact solution $n\log_2 n+n$, hence $\Theta(n\log n)$ on that domain. The recurrence $S(n)=S(n/2)+1$ gives $\Theta(\log n)$. Same recursion depth, different total work.
 
@@ -301,4 +331,4 @@ Before continuing, check that you can:
 - Explain the difference between worst-case selection and asymptotic bounds.
 - State input-size and operation-cost assumptions, especially for large integers.
 
-The [Asymptotic Growth worksheet](../worksheets/15-asymptotic-growth.yaml) combines explicit inequality proofs, loop counts, recurrence comparisons, and cost-model reasoning. This completes the discrete mathematics and proofs sequence; later subjects require separate study rather than extending this lesson's scope.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

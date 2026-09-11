@@ -6,6 +6,8 @@ This lesson builds on [Sets](../lessons/03-sets-and-set-operations.md), [Relatio
 
 ## Vertices, edges, and conventions
 
+A graph deliberately forgets some details. A map may record road lengths, bends, and compass directions, while a simple connectivity question may need only to know which places have a direct road between them. Choosing vertices and edges is a modeling decision about which details matter. The conventions below say exactly what information our graph keeps.
+
 A **finite simple undirected graph** is a pair $G=(V,E)$, where $V$ is a finite set of vertices and $E$ is a set of two-element subsets of $V$. Thus an edge $\{u,v\}$ joins two distinct vertices, has no direction, and appears at most once. Self-loops and parallel edges are excluded.
 
 For example,
@@ -22,6 +24,8 @@ A **directed graph**, or digraph, uses ordered pairs $(u,v)$ called directed edg
 Some applications need loops or multiple edges, but those are different graph models. Unless stated otherwise, an unqualified graph here is simple and undirected. Write $n=|V|$ and $m=|E|$.
 
 ## Adjacency and degree
+
+Degree is a local count: stand at one vertex and count the edges touching it. Adding those local counts over the whole graph counts every edge twice, once from each end. That simple change of viewpoint—from vertices to edges—is a double-counting argument of the kind used in combinatorics.
 
 Two vertices are **adjacent** if an edge joins them. An edge is **incident** to each of its endpoints. The **degree** $\deg(v)$ of an undirected vertex is the number of incident edges.
 
@@ -56,6 +60,8 @@ These are separate counts. A vertex can have large in-degree and zero out-degree
 
 ## Walks, trails, paths, and cycles
 
+Different travel questions permit different kinds of repetition. A traveler may revisit a city while avoiding repeated roads, or may need to avoid revisiting cities altogether. The terms below distinguish those requirements. Before classifying a proposed route, check the more basic point that every requested step is an edge in the graph.
+
 A **walk** is a sequence $v_0,v_1,\ldots,v_k$ in which consecutive vertices are joined by edges. Its length is $k$, the number of traversed edges. Repetitions are allowed.
 
 A **trail** is a walk with no repeated edge. A **simple path**, which we will usually shorten to **path**, has no repeated vertex. A length-0 path consists of a single vertex. Every path is a trail, and every trail is a walk; the converses need not hold.
@@ -68,6 +74,8 @@ In directed walks, every step must follow an arc's direction. A directed cycle h
 
 ## Connectivity and components
 
+Two vertices can be connected without sharing a direct edge: a route through intermediate vertices is enough. A component gathers all vertices that can reach one another in this sense. An isolated vertex is its own component, while a missing edge between two vertices need not separate them if another route remains.
+
 An undirected graph is **connected** if it is nonempty and every pair of vertices is joined by a path. A single vertex is connected by the length-0 path convention. We regard the empty graph as disconnected, with zero components. A **connected component** is a maximal connected group of vertices, together with the edges between them. Here maximal means that no further vertex can be added while preserving this property; it does not mean having the largest number of vertices among all components.
 
 Why can reachability be defined with paths rather than arbitrary walks? If a walk repeats a vertex, remove the part between two occurrences. The remaining sequence is a shorter walk with the same endpoints. Repeating this deletion eventually produces a path. Thus existence of a walk implies existence of a path.
@@ -77,6 +85,8 @@ Reachability in an undirected graph is an equivalence relation on vertices: leng
 Directed reachability need not be symmetric. A nonempty digraph is **strongly connected** if every vertex can reach every other by directed paths. It is **weakly connected** if ignoring directions produces a connected undirected graph. Under our convention the empty digraph is neither strongly nor weakly connected. The digraph $a\to b\to c$ is weakly connected but not strongly connected because $c$ cannot reach $a$.
 
 ## Trees and forests
+
+A tree connects its vertices without retaining a cycle. Every edge is therefore doing indispensable work: removing it separates part of the graph. This balance between enough connection and no redundancy explains several tree properties. The leaf-removal proof below makes that balance precise one vertex at a time.
 
 A **tree** is a nonempty connected undirected graph with no cycles. A **forest** is an undirected graph with no cycles, possibly disconnected or empty. Each nonempty component of a forest is a tree.
 
@@ -96,6 +106,8 @@ For the empty forest, $n=c=m=0$, so the formula still holds.
 
 ## Equivalent characterizations of trees
 
+We can recognize the same structure through paths, cycles, or edge counts, but the conditions must be paired correctly. Having $n-1$ edges alone says how many connections exist, not how they are arranged. The equivalences below explain which additional information makes that count decisive.
+
 For a finite undirected graph with $n\geq1$, the following conditions are equivalent:
 
 1. The graph is connected and acyclic.
@@ -113,6 +125,8 @@ For condition 4, the forest identity gives $n-1=n-c$, hence $c=1$. The graph is 
 
 ## Rooted trees
 
+Choosing a root gives an undirected tree a reference point. “Parent,” “child,” and “depth” then describe positions relative to that choice, rather than new edges. The same underlying tree can have different parent-child relationships if another vertex is chosen as root.
+
 A **rooted tree** is a tree with one distinguished vertex called the root. The unique path from the root to a vertex determines that vertex's parent, unless it is the root. Vertices having a given parent are its children. A vertex's depth is its distance, in edges, from the root.
 
 The root has no parent. Every other vertex has exactly one, which gives another explanation for the $n-1$ edges: associate each edge with its child endpoint. A rooted-tree leaf means a vertex with no children. A one-vertex rooted tree has a leaf root; a root with one child has undirected degree 1 but is not a rooted-tree leaf.
@@ -120,6 +134,8 @@ The root has no parent. Every other vertex has exactly one, which gives another 
 A binary tree has at most two children per vertex; it need not have exactly two. In a **full binary tree**, every nonleaf vertex has exactly two children. If there are $I$ internal vertices and $L$ leaves, counting parent-child edges gives $2I=I+L-1$, so $L=I+1$. This identity does not apply to every binary tree.
 
 ## Directed acyclic graphs and scheduling
+
+Dependencies point in a direction: completing one task permits another to begin. A directed cycle would make a sequential schedule impossible because each task would wait for another in the cycle. Without cycles, there must be somewhere to start. The in-degree-zero argument explains why a finite acyclic dependency graph always provides such a starting task.
 
 A **directed acyclic graph**, or DAG, has no directed cycles. A **topological ordering** lists all vertices so that every arc goes from an earlier vertex to a later one. If $u\to v$ means task $u$ must finish before task $v$ starts, such an ordering gives a valid sequential schedule.
 
@@ -131,6 +147,8 @@ For arcs $a\to c$, $b\to c$, and $c\to d$, both $a,b,c,d$ and $b,a,c,d$ are topo
 
 ## Representing a graph
 
+An adjacency matrix reserves a place for every possible pair, making one specified connection easy to look up. An adjacency list instead records the connections that actually exist, making it convenient to enumerate neighbors. Neither representation changes the graph, but each makes different questions cheaper to answer.
+
 An **adjacency matrix** has one row and column per vertex, with entry 1 for an edge and 0 otherwise. For a simple undirected graph it is symmetric with zeros on the diagonal. It uses $n^2$ entries, and checking a specified pair for adjacency takes constant time with direct array access.
 
 An **adjacency list** stores each vertex's neighbors. Undirected edges appear in two lists, while directed arcs appear once in outgoing-neighbor lists. The storage is proportional to $n+m$. Lists are often preferable for sparse graphs, where relatively few vertex pairs are adjacent. Finding all neighbors takes time proportional to that list's length; testing one specific neighbor in an unsorted list may require scanning it.
@@ -138,6 +156,8 @@ An **adjacency list** stores each vertex's neighbors. Undirected edges appear in
 The representation affects algorithms. A claim about efficiency should name the representation and the operations being counted.
 
 ## Breadth-first and depth-first search
+
+Imagine exploring an unfamiliar network. One strategy finishes checking everything one step away before moving farther out; another follows one route as far as it can before backtracking. These are breadth-first and depth-first search. Marking visited vertices is essential in both, because otherwise a cycle could send the exploration around indefinitely.
 
 **Breadth-first search** (BFS) explores vertices in increasing distance from a starting vertex, using a queue. Mark vertices when first discovered, so they enter the queue once.
 
@@ -159,9 +179,13 @@ All distance-$d$ vertices are processed before distance-$(d+1)$ vertices. If a s
 
 **Depth-first search** (DFS) explores an unvisited neighbor recursively, finishing that branch before returning, or uses an explicit stack. Both searches discover all vertices reachable from their starting vertex. Starting again at an undiscovered vertex finds another undirected component.
 
+A **stack** is last-in, first-out: the most recently added item is the next removed. It records the most recent unfinished branch, whereas the BFS queue records the earliest waiting vertex. If an exercise asks for an exact traversal order, use its stated neighbor order; different tie choices can give different valid orders without changing which vertices are reachable.
+
 With adjacency lists, a full traversal takes time proportional to $n+m$: each vertex is discovered once and each list entry examined once. With an adjacency matrix, scanning all possible neighbors for every vertex takes time proportional to $n^2$. These bounds assume constant-time marking and ordinary array or list operations.
 
 ## Euler trails and Hamiltonian cycles
+
+Delivering along every road and visiting every city are different route-planning questions. The first cares about edges; the second cares about vertices. Distinguishing those goals before applying a theorem prevents a common error: using an edge-count parity rule to decide a question about visiting vertices.
 
 An **Euler trail** uses every edge exactly once. It may revisit vertices. An Euler circuit is a closed Euler trail. A **Hamiltonian cycle** visits every vertex exactly once before returning to its start; it need not use every edge.
 
@@ -170,6 +194,8 @@ For an undirected graph with at least one edge, an Euler circuit exists exactly 
 The parity necessity follows by pairing entries and departures at each vertex. A closed trail pairs all incident uses; an open trail leaves one unpaired use at each endpoint. For sufficiency in the even-degree case, follow unused edges until returning to the start. If edges remain in the connected edge-bearing part, begin another closed trail at a vertex of the existing trail and splice it in. Repeating exhausts the finite edge set. The two-odd-vertex case can be reduced to this by adding a temporary edge joining the odd vertices, allowing a parallel edge for this auxiliary argument, then removing that edge from the resulting circuit.
 
 A square has both an Euler circuit and a Hamiltonian cycle. The complete graph on four vertices has a Hamiltonian cycle, but all four degrees are 3, so it has no Euler trail. Visiting every vertex and traversing every edge are different requirements; the Euler parity test is not a Hamiltonian criterion.
+
+> **From a city walk to an abstract problem.** Euler's work on the seven bridges of Königsberg asked whether a walk could cross every bridge exactly once. The essential information was which land regions the bridges joined, not their lengths or the shape of the river. Some regions had multiple bridges between them, so that historical model permits parallel edges unlike our default simple graphs. It is a memorable example of finding the mathematical structure by deciding which physical details to ignore. See the [Mathematical Association of America's account of Euler's bridge problem](https://old.maa.org/press/periodicals/convergence/leonard-eulers-solution-to-the-konigsberg-bridge-problem).
 
 ## Readiness check
 
@@ -183,4 +209,4 @@ Before continuing, check that you can:
 - Trace BFS and DFS and state the assumptions behind their running times.
 - Distinguish edge-covering Euler questions from vertex-visiting Hamiltonian questions.
 
-The [Graph Theory worksheet](../worksheets/14-graph-theory.yaml) provides explicit vertex and edge sets for computation, traversal, and proof practice.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

@@ -15,6 +15,7 @@ class ContentRenderingTest {
         val lessons = content.getJSONArray("lessons")
         val math = linkedSetOf<String>()
         var count = 0
+        var quickCount = 0
         val tokens = Regex("(?s)\\$\\$(.*?)\\$\\$|(?<!\\$)\\$([^$\\n]+)\\$(?!\\$)")
         fun collect(source: String) {
             tokens.findAll(source).forEach { match ->
@@ -29,6 +30,17 @@ class ContentRenderingTest {
             for (j in 0 until sections.length()) {
                 val s = sections.getJSONObject(j)
                 collect(s.getString("markdown"))
+                s.getJSONArray("quickChecks").let { checks ->
+                    for (k in 0 until checks.length()) {
+                        val c = checks.getJSONObject(k)
+                        collect(c.getString("prompt"))
+                        collect(c.getString("explanation"))
+                        val options = c.getJSONArray("options")
+                        assertTrue(c.getInt("answer") in 0 until options.length())
+                        for (n in 0 until options.length()) collect(options.getString(n))
+                        quickCount++
+                    }
+                }
                 val inline = s.getJSONArray("questionIds")
                 for (k in 0 until inline.length()) assertTrue(ids.add(inline.getInt(k)))
             }
@@ -51,6 +63,7 @@ class ContentRenderingTest {
         }
         assertEquals(15, lessons.length())
         assertEquals(1313, count)
+        assertEquals(30, quickCount)
         val failures = mutableListOf<String>()
         for (formula in math) try {
             JLatexMathDrawable.builder(formula).textSize(40f).build()

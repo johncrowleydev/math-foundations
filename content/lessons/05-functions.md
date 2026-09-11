@@ -6,6 +6,8 @@ This lesson builds on [Relations](../lessons/04-relations.md) and [Sets and Set 
 
 ## What a function specifies
 
+Picture assigning each person one seat. Some seats may remain empty, and more than one person might be assigned the same seat; those would be separate concerns. To be a function at all, the assignment must first give each person exactly one seat. We will distinguish this basic promise from the stronger promises that exclude collisions or fill every seat.
+
 The notation
 
 $$
@@ -29,6 +31,8 @@ An expression alone is not a complete function specification. The rule $f(x)=x^2
 The rule $f(x)=1/x$ does not define a function $\mathbb R\to\mathbb R$ because no real output is specified at zero. It does define one on $\mathbb R\setminus\{0\}$. A partial function permits undefined inputs, but all functions in this lesson are total on their stated domains unless explicitly described otherwise.
 
 ## Image and preimage
+
+There are two directions in which we can ask questions about a function. Starting with some inputs, which outputs do they reach? Starting with a collection of possible outputs, which inputs lead into it? Image and preimage name those two questions. They concern sets of values, so a preimage can contain several inputs even though each input has only one output.
 
 For a subset $S\subseteq A$, its **image** under $f$ is
 
@@ -72,6 +76,8 @@ For $g(x)=x^2$, take $S=\{-1\}$ and $W=\{1\}$. Their intersection is empty, but 
 
 ## Injective functions
 
+If an output lets us identify the input that produced it, the function has kept the inputs distinguishable. Injectivity formalizes that idea. In the seating picture, it prevents two different people from receiving the same seat. It does not insist that every seat be occupied.
+
 A function is **injective**, or one-to-one, when equal outputs force equal inputs:
 
 $$
@@ -88,6 +94,8 @@ Injectivity is a property of the function on its specified domain. Showing uniqu
 
 ## Surjective functions
 
+Surjectivity asks a coverage question about the declared target set. In the seating picture, every seat must have someone assigned to it. Collisions are a separate issue: several people might still share a seat. Because coverage depends on which targets we promised to cover, the codomain cannot be left out of the question.
+
 A function is **surjective**, or onto, when every element of the codomain is reached:
 
 $$
@@ -103,6 +111,8 @@ Likewise, $g:\mathbb R\to\mathbb R$, $g(x)=x^2$, is not surjective because negat
 A surjectivity proof must verify that the proposed preimage belongs to the domain. Merely solving an equation formally is insufficient when solutions have a type or domain restriction.
 
 ## Bijections and inverse functions
+
+Combining the previous two properties gives a perfect pairing: no target is missed, and no target has to choose between competing inputs. Reversing the assignments then gives a function too. This explains why both injectivity and surjectivity are needed for an inverse on the entire codomain.
 
 A **bijection** is both injective and surjective. Every codomain element then has exactly one preimage, so the arrows can be reversed to define an inverse function
 
@@ -126,6 +136,8 @@ An injective function that is not onto its declared codomain still has an invers
 Keep the two uses of $f^{-1}$ separate: $f^{-1}(T)$ for a set is always a preimage; $f^{-1}(b)$ as a single inverse-function value requires a suitable bijection.
 
 ## Composition and types
+
+Composing functions means using one result as the next function's input. Think of converting a temperature from one unit to another and then applying a rule that uses the converted value. Order matters, and the second rule must accept the kind of value the first produces. The notation below records that sequence of operations from the inside outward.
 
 If $f:A\to B$ and $g:B\to C$, their **composition** is
 
@@ -151,6 +163,8 @@ There are useful one-way deductions too: injectivity of $g\circ f$ forces inject
 
 ## Restrictions, empty cases, and finite sizes
 
+Changing a function's domain changes which inputs we ask it to handle. This can solve one problem while creating another: removing an input may eliminate a collision, but it may also remove the only way to reach an output. Track the arrows that remain rather than assuming a smaller domain automatically makes every property easier to satisfy.
+
 For $S\subseteq A$, the **restriction** $f|_S:S\to B$ keeps the same rule but permits fewer inputs. Restricting a domain can remove collisions and can lose reached outputs. Changing the codomain to a subset is allowed only if it still contains every output of the specified domain.
 
 There is exactly one function from $\varnothing$ to any set $B$: the empty assignment. It is injective. It is surjective exactly when $B=\varnothing$. There is no function from a nonempty set into $\varnothing$, because even one input would need an impossible output.
@@ -162,6 +176,8 @@ An injection requires $m\leq n$ because its $m$ distinct outputs must fit in $B$
 This last equivalence is specifically finite. The function $f:\mathbb N_0\to\mathbb N_0$, $f(n)=n+1$, is injective but misses 0, although its domain and codomain are the same infinite set.
 
 ## Floor and ceiling functions
+
+Rounding to a whole number can mean several different things. When packing objects into boxes, rounding down may leave objects unpacked; when counting complete boxes that fit in a space, rounding up may demand space we do not have. Floor and ceiling make the direction of rounding explicit, including for negative numbers where intuition based on chopping off decimals can mislead us.
 
 The **floor** $\lfloor x\rfloor$ is the greatest integer at most the real number $x$. The **ceiling** $\lceil x\rceil$ is the least integer at least $x$. Thus
 
@@ -178,6 +194,8 @@ Both define surjections $\mathbb R\to\mathbb Z$, but neither is injective. For e
 If $N\geq0$ items must fit into containers of positive integer capacity $k$, the minimum number of containers is $\lceil N/k\rceil$. Seven items with capacity 3 need three containers, while zero items need zero. To justify the formula, an integer container count $c$ must satisfy $ck\geq N$, equivalently $c\geq N/k$; the ceiling is the smallest such integer.
 
 ## Checking a composed claim carefully
+
+The next example is small enough to trace by hand, but it addresses a general trap. A composition only uses the intermediate values that the inner function actually reaches. The outer function may behave differently on other values without changing the composition at all. Keep that unused part of the intermediate set visible as you check the example.
 
 Let $A=\{a,b\}$, $B=\{1,2,3\}$, and $C=\{u,v\}$. Set $f(a)=1$, $f(b)=2$, and $g(1)=u$, $g(2)=v$, $g(3)=u$. The composition sends $a$ to $u$ and $b$ to $v$, so it is a bijection. However, $f$ is not surjective onto $B$, and $g$ is not injective on $B$. What matters for the composition's injectivity is the behavior of $g$ on $f(A)=\{1,2\}$; the collision involving 3 is outside the inner function's image.
 
@@ -197,4 +215,4 @@ You should be able to:
 - Explain why finite-size conclusions may fail for infinite sets.
 - Use floor and ceiling correctly for negative values and discrete counts.
 
-Practice with the [Functions worksheet](../worksheets/05-functions.yaml). Continue to [Sequences and Summations](../lessons/06-sequences-and-summations.md).
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

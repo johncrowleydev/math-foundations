@@ -8,7 +8,7 @@ const hash = z.string().regex(/^[a-f0-9]{64}$/);
 const entry = z
   .object({
     after: z.string().min(1),
-    instructions: z.string().min(1),
+    instructions: z.string(),
     prompt: z.string().min(1).optional(),
     answer: z.string().min(1).optional(),
     concepts: z.array(z.string().min(1)).min(1),
@@ -51,11 +51,14 @@ export function adaptInlineQuestion(slug: string, q: Question, audit = inlineAud
   if (!checked) return q;
   const result = {
     ...q,
-    instructions: checked.instructions,
-    prompt: checked.prompt ?? q.prompt,
-    answer: checked.answer ?? q.answer,
     section: checked.after,
   };
+  if (
+    checked.instructions !== q.instructions ||
+    checked.prompt !== q.prompt ||
+    checked.answer !== q.answer
+  )
+    throw new Error(`Re-audit changed inline exercise: ${slug}/${q.id}`);
   assertSelfContained(
     `${result.instructions}\n${result.prompt}\n${result.answer}`,
     `${slug}/${q.id}`,

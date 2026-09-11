@@ -114,7 +114,7 @@ test('all 1313 exercises adapt with valid math, stable IDs, and no printed-conte
 });
 test('proposition classification does not inherit the translation exercise definitions', () => {
   const q = question('propositional-logic', 2);
-  assert.match(q.instructions, /truth value/);
+  assert.match(q.prompt, /truth value/);
   assert.doesNotMatch(q.instructions, /server|database|1-8|9-14/);
   assert.match(question('propositional-logic', 9).instructions, /server is online/);
   assert.doesNotMatch(question('propositional-logic', 36).instructions, /converse/);

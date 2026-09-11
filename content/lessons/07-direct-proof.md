@@ -8,6 +8,8 @@ We use $\mathbb{Z}$ for the integers, $\mathbb{N}_0$ for the nonnegative integer
 
 ## Read the claim before choosing a method
 
+Before asking “what algebra should I do?”, ask what would count as finishing the proof. A statement about every integer, a statement asserting an example exists, and a statement asserting two descriptions are equivalent create different obligations. Reading those obligations correctly often determines the shape of the proof before any calculation begins.
+
 Many elementary theorems have the form
 
 $$
@@ -36,6 +38,8 @@ This is a description of the work owed by a proof, not a guarantee that the stat
 
 ## Unpack definitions
 
+Definitions are the tools that let a proof get started. Knowing that a number is odd may feel like qualitative information, but the definition turns it into an equation with an integer parameter. The same definition also tells us what form to aim for when oddness is the conclusion. Much elementary proof writing consists of moving carefully between those two uses.
+
 For an integer $n$:
 
 - $n$ is **even** if $n=2k$ for some $k\in\mathbb{Z}$.
@@ -51,6 +55,8 @@ Every integer is exactly one of even or odd, as follows from division with remai
 Definitions often turn a verbal hypothesis into usable algebra. The phrase “some integer” also creates an obligation: when you finish, the expression serving as that integer must really be integral.
 
 ## Worked proof: the sum of two odd integers
+
+We know what odd inputs look like, and we know what an even output must look like. The plan is therefore to substitute the two odd-number representations, add them, and look for a factor of two. Watch for the last sentence: the algebra is complete only when the remaining factor is known to be an integer.
 
 **Claim.** If $m,n\in\mathbb{Z}$ are odd, then $m+n$ is even.
 
@@ -74,6 +80,8 @@ Checking $3+5=8$ illustrates the theorem, but does not replace this proof. The s
 
 ## Divisibility and linear combinations
 
+If two quantities are both made from whole bundles of size $d$, taking integer multiples of them and adding the results should still produce whole bundles of size $d$. The expression $ra+sb$ is called an **integer linear combination** of $a$ and $b$. The proof makes the bundle intuition precise and also handles negative coefficients and zero without relying on the picture.
+
 **Claim.** If $d\mid a$ and $d\mid b$, then $d\mid(ra+sb)$ for every pair of integers $r,s$.
 
 **Proof.** Let $d,a,b,r,s\in\mathbb{Z}$, with $d\mid a$ and $d\mid b$. There are integers $u,v$ such that $a=du$ and $b=dv$. Hence
@@ -89,6 +97,8 @@ The proof even handles $d=0$: its hypotheses then force $a=b=0$. It never divide
 Taking $r=1,s=-1$ gives the useful fact that a common divisor of $a,b$ also divides $a-b$. This explains why subtracting multiples is so common in divisibility arguments.
 
 ## Closure claims
+
+A closure question asks whether an operation can take us outside a collection we started in. Adding two integers keeps us among integers, but dividing two integers need not. To prove a closure claim, use the definitions of the allowed inputs and check every part of the definition required for the output.
 
 A collection is **closed under an operation** if applying the operation to allowed inputs always produces an element of that collection.
 
@@ -108,6 +118,8 @@ Similar reasoning shows closure under subtraction and multiplication. Division n
 
 ## Proof by cases
 
+Sometimes the right first step is to organize the inputs, rather than force one formula to handle all of them at once. With consecutive integers, exactly one is even. Splitting according to the parity of the first tells us which factor supplies a two. Each case is short because the split exposes the information the calculation needs.
+
 Sometimes no single convenient algebraic form covers every input. A **proof by cases** divides the possibilities into an exhaustive collection and proves the conclusion in each case.
 
 **Claim.** For every integer $n$, $n(n+1)$ is even.
@@ -122,6 +134,8 @@ The bracketed expressions are integers. Since every integer is even or odd, the 
 Cases must cover the domain. Splitting real numbers into “positive” and “negative” omits zero. Cases may overlap without invalidating a proof, but missing a case leaves a gap.
 
 ## Set inclusion and equality
+
+The same proof habits apply to collections. Membership definitions replace the equations used for parity: belonging to an intersection gives two facts, and belonging to a union gives alternatives to consider. In the following proof, notice how each connective suggests the next sentence of the argument.
 
 Definitions guide proofs about objects other than numbers too. To prove $A\subseteq B$, choose an arbitrary $x\in A$ and show $x\in B$. To prove $A=B$, prove both inclusions.
 
@@ -139,6 +153,8 @@ Both inclusions hold, establishing equality. A picture can help discover this id
 
 ## Biconditionals need both directions
 
+“If and only if” asks for two guarantees. Start a new argument when you turn around: the former conclusion becomes the new hypothesis, and the former hypothesis becomes the new goal. Keeping the directions separate avoids accidentally using something that has not been assumed in the direction currently being proved.
+
 **Claim.** An integer $n$ is odd if and only if $n+1$ is even.
 
 **Forward direction.** If $n=2k+1$ for an integer $k$, then $n+1=2(k+1)$ is even.
@@ -154,6 +170,8 @@ so $n$ is odd.
 Proving one direction does not automatically prove the other. Some calculations are reversible, but a string of unexplained equalities or arrows can conceal an irreversible step such as squaring, division by zero, or dropping a condition. Separate directions make the obligations visible.
 
 ## Constructive existence
+
+An existence proof can sometimes give a recipe for the object it promises. To find a number between two real numbers, the midpoint is a natural candidate. The proof then checks the recipe, rather than relying on a drawing in which the point merely appears to be between the endpoints.
 
 An existential proof can explicitly build a witness. In a statement $\forall x\,\exists y$, that witness may depend on the previously chosen $x$.
 
@@ -173,6 +191,8 @@ The construction alone is not the whole proof; the inequalities verify its promi
 
 ## When the claim is false
 
+An unsuccessful proof attempt can be a signal to test the claim more carefully. A genuine counterexample must pass the hypotheses and fail the conclusion; an example outside the hypotheses tells us nothing about the promise. Once you have such a counterexample, explaining these two checks is a complete mathematical answer.
+
 To refute a universal implication, find an allowed input for which the hypothesis is true and the conclusion is false.
 
 Consider “for all integers $a,b$, if $a\mid b$ then $b\mid a$.” Choose $a=2,b=6$. The hypothesis $2\mid6$ is true, while the conclusion $6\mid2$ is false, so this is a counterexample.
@@ -182,6 +202,8 @@ Choosing $a=2,b=3$ would not work: the hypothesis is already false. A false-hypo
 Similarly, to refute a proposed set identity, supply particular sets and an element that belongs to one side but not the other. A counterexample is a short proof of falsity, not a weaker substitute for a proof.
 
 ## Diagnose and revise a proof
+
+Reading a flawed proof is easier if you separate correct calculations from unjustified conclusions. A line can be arithmetically correct and still fail to establish what the next sentence claims. For each step below, ask what has actually been shown and whether its scope matches the theorem.
 
 Here is a flawed attempt to prove that the square of an even integer is even:
 
@@ -210,4 +232,4 @@ Before moving on, you should be able to:
 - Distinguish a counterexample from an instance with a false hypothesis.
 - Explain why numerical examples and circular reasoning do not establish a universal theorem.
 
-Use the [Direct Proof worksheet](../worksheets/07-direct-proof.yaml) to practice proof planning, complete proofs, and proof repair. Continue with [Proof by Contrapositive](../lessons/08-proof-by-contrapositive.md) when a conclusion is easier to approach through its negation.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

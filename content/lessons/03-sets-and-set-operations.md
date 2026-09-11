@@ -6,6 +6,8 @@ This lesson uses [Predicates and Quantifiers](../lessons/02-predicates-and-quant
 
 ## Elements, descriptions, and equality
 
+Imagine describing the guests invited to dinner. You might list their names, or say “everyone who lives in this apartment.” Those descriptions look different, but they describe the same set if they select exactly the same people. Sets let us separate the collection itself from the particular words or order used to describe it.
+
 We write $x\in A$ when $x$ is an **element** of the set $A$, and $x\notin A$ when it is not. Braces can list a finite set:
 
 $$
@@ -35,6 +37,8 @@ The **empty set**, $\varnothing$, has no elements. Be careful with braces: $\{\v
 
 ## Membership and subsets are different
 
+There are two different questions we can ask about a collection: does this object belong to it, and does this smaller collection fit entirely inside it? The symbols below keep those questions separate. Much early confusion about sets comes from treating an object and a set containing that object as interchangeable, so pause over the braces in the examples.
+
 We write $A\subseteq B$ when every element of $A$ belongs to $B$:
 
 $$
@@ -51,6 +55,8 @@ Every set is a subset of itself. The empty set is a subset of every set because 
 To disprove $A\subseteq B$, find an element of $A$ missing from $B$. For example, $\{2,4\}\nsubseteq\{1,2,3\}$ because $4$ belongs only to the first set.
 
 ## Union, intersection, difference, and complement
+
+Suppose one guest list contains your neighbors and another contains your colleagues. Combining the lists gives everyone invited by either description; comparing their overlap finds people who are both neighbors and colleagues. We can describe both operations by asking a simple yes-or-no membership question about one person at a time. This is the connection between set operations and the logical operators you already know.
 
 For sets $A$ and $B$:
 
@@ -88,6 +94,8 @@ In the example it is $\{1,3\}$. This operation models which permissions changed 
 
 ## Proving inclusions and identities
 
+A drawing can make a set identity feel convincing, but it may hide assumptions about how the sets overlap. An element proof avoids that problem by following one arbitrary object through the definitions. The object is not a special example: every step must work for anyone admitted by the starting condition.
+
 An element proof turns a set statement into logic. To prove $A\cap B\subseteq A$, let $x$ be an arbitrary element of $A\cap B$. By the definition of intersection, $x\in A$ and $x\in B$. In particular $x\in A$. Because this reasoning applies to every element of the intersection, the inclusion follows.
 
 To prove equality, it is often convenient to prove **both inclusions**. Consider
@@ -114,6 +122,8 @@ $$
 This proves one of **De Morgan's laws**. Notice that the middle step is the logical law already studied; the other steps use set definitions.
 
 ## Laws of set operations
+
+This table is a reference for transformations whose meaning you can recover from membership. If a law slips your mind, replace “belongs to a union” by OR and “belongs to an intersection” by AND. You will often recognize an equivalence from the logic lesson. The same reasoning is being written in a language that describes collections instead of propositions.
 
 With all complements taken in the same universe:
 
@@ -152,6 +162,8 @@ A Venn diagram can help discover or remember these facts. An element argument es
 
 ## Power sets
 
+So far, the elements of our examples have mostly been numbers or people. Now the elements will themselves be choices of subsets. If a meal offers two optional extras, a choice might include neither extra, one of them, or both. The power set collects all those possible choices; it is a set of sets, which is why the nested braces below are doing real work.
+
 The **power set** $\mathcal P(A)$ is the set of all subsets of $A$:
 
 $$
@@ -170,6 +182,8 @@ A bit mask with one bit per feature therefore represents a subset of the feature
 
 ## Ordered pairs and Cartesian products
 
+A departure city and an arrival city form a two-part record in which position matters. Paris followed by Rome describes a different trip from Rome followed by Paris. Ordinary sets forget that order, so we need ordered pairs to keep it. A Cartesian product then lists every allowed combination of a first and a second coordinate.
+
 An **ordered pair** $(a,b)$ records two positions. We have $(a,b)=(c,d)$ exactly when $a=c$ and $b=d$. Unlike sets, pairs generally change when their order is reversed.
 
 The **Cartesian product** is
@@ -185,6 +199,8 @@ If either factor is empty, the product is empty because no complete pair can be 
 Products model combinations such as a user and a resource. In the next lesson, a relation will select some pairs from such a product.
 
 ## Counting unions without double-counting
+
+If two clubs report their memberships, adding the two totals may count a person twice. To recover the number of distinct people, follow what happens to someone who belongs to both clubs: they enter the total once through each list. Subtracting the overlap removes the extra copy. This accounting view makes the formula easier to remember and extends to three lists.
 
 For finite sets,
 
@@ -210,6 +226,8 @@ For example, suppose the three sizes are 20, 16, and 12; the pairwise intersecti
 
 ## Partitions and indexed families
 
+A partition is what you get when you sort every object into exactly one group. Sorting books by a single assigned shelf is a useful picture: no book should be missing, no book can occupy two groups in the sorting, and an empty group contributes nothing. These requirements explain each part of the formal definition.
+
 A **partition** of a set $A$ is a collection of nonempty, pairwise disjoint subsets whose union is $A$. The subsets are its **blocks**. Each element of $A$ belongs to exactly one block.
 
 For $A=\{1,2,3,4,5\}$, the blocks $\{1,3,5\}$ and $\{2,4\}$ form a partition. Adding an empty block violates nonemptiness; placing 3 in both blocks violates disjointness; omitting 5 violates coverage. Under this definition, the empty collection of blocks partitions the empty set.
@@ -219,6 +237,8 @@ More generally, a family $(A_i)_{i\in I}$ assigns a set to each index in an inde
 Partitions connect directly to equivalence relations, which organize objects according to whether they are considered the same for a particular purpose.
 
 ## A worked access-policy example
+
+We can now use the notation to check an actual rule rather than merely simplify symbols. Read the policy below once in ordinary language, then trace the fate of an individual user through the corresponding set expression. In particular, an exception must bypass only the requirement it was intended to bypass.
 
 Let $U$ be the set of all users, $E$ the employees, $T$ the users who completed training, and $S$ the suspended users. Suppose a policy permits access exactly to trained employees who are not suspended. Its allowed set is
 
@@ -250,4 +270,4 @@ Before continuing, you should be able to:
 - Apply inclusion-exclusion without confusing pairwise and exact-two overlaps.
 - Test all three requirements for a partition.
 
-Practice with the [Sets and Set Operations worksheet](../worksheets/03-sets-and-set-operations.yaml). Then continue to [Relations](../lessons/04-relations.md).
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

@@ -1,6 +1,6 @@
 # Math Foundations
 
-A native Kotlin mathematics notebook for the Samsung Galaxy Tab S8 Ultra, with portrait and landscape layouts, S Pen handwriting, two-finger scrolling, and locally saved work. Fifteen lessons contain 121 inline exercises and 1,192 focused practice exercises. Answers can be revealed without grading.
+A native Kotlin mathematics notebook for the Samsung Galaxy Tab S8 Ultra, with portrait and landscape layouts, S Pen handwriting, two-finger drag and flick scrolling, and locally saved work. Fifteen lessons contain 121 inline handwriting exercises, 1,192 focused practice exercises, and 30 optional multiple-choice or true/false checks. Answers can be revealed without grading.
 
 ## Install and update
 
@@ -41,4 +41,6 @@ The original website remains in [johncrowleydev/math](https://github.com/johncro
 
 ## Inline learning prerequisites
 
-[The complete exercise audit](docs/inline-prerequisite-audit.md) traces every inline exercise to its preceding explanations. `content/inline-prerequisites.yaml` supplies individual instructions and any prompt/answer corrections, including the topic label used in the expanded workspace. It deliberately replaces shared practice instructions. The build validates coverage, teaching order, and hashes of audited exercise and teaching text. Changes require checking the affected audit entries; updating a hash without examining the content is not a valid audit. Run `npm run audit` to validate and regenerate the human-readable report.
+[The complete exercise audit](docs/inline-prerequisite-audit.md) traces every inline handwriting exercise to its preceding explanations. `content/exercise-copy.yaml` owns the complete app wording for every original exercise; shared worksheet directions are never inherited. `content/inline-prerequisites.yaml` records checked wording, prerequisite sections, and the topic label used in the expanded workspace. The build rejects changed wording or teaching until the affected entries are checked again. Updating a hash without examining the content is not a valid audit. Run `npm run audit` to validate and regenerate the human-readable report.
+
+`content/quick-checks.yaml` contains two additional checks per lesson, anchored to named teaching sections with hash validation. Selections and answer visibility persist independently of handwriting. Quick checks have no grading, score, or completion gate. A two-finger flick uses Android's decelerating scroll physics; a new finger or pen contact stops momentum immediately.

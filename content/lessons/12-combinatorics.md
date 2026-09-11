@@ -6,6 +6,8 @@ This lesson builds on [Sets](../lessons/03-sets-and-set-operations.md), [Functio
 
 ## The sum and product principles
 
+Before counting, describe one finished outcome. Ordering a single lunch item is different from ordering a two-item meal, even if the menu is unchanged. Addition combines separate alternatives; multiplication combines successive choices that together make one outcome. Most counting formulas in this lesson grow from that distinction.
+
 The **sum principle** says that if a finite set of outcomes is split into disjoint categories with sizes $a_1,\ldots,a_k$, the total number is
 
 $$
@@ -28,6 +30,8 @@ When branch sizes differ, partition first. Suppose a route can begin with road A
 
 ## Complementary counting
 
+An “at least one” requirement can create many overlapping possibilities if we try to list all the ways it can succeed. Its failure may be much simpler: none of the required objects appears. Counting everything and subtracting exactly those failures can replace a complicated collection of cases with one short argument.
+
 If $U$ is a finite universe of outcomes and $A$ is the desired subset, then
 
 $$
@@ -47,6 +51,8 @@ $$
 This is about strings, not four-digit positive integers. For integers, the first position cannot be zero, and the counting model must change.
 
 ## Ordered selections and permutations
+
+Choosing people for named offices means the order of selection records information. Alice as president and Bo as secretary is different from Bo as president and Alice as secretary. Think of filling labeled slots one by one, checking how many unused choices remain for each slot.
 
 For $n\geq1$, define the factorial
 
@@ -70,6 +76,8 @@ Assigning president, secretary, and treasurer to three different people from a g
 With repetition allowed, an ordered length-$r$ selection from $n$ symbols instead has $n^r$ possibilities. A five-character code over a 26-letter alphabet has $26^5$ possibilities if letters may repeat. A code without repeated letters has $26\cdot25\cdot24\cdot23\cdot22$ possibilities. State the repetition rule before selecting the formula.
 
 ## Unordered selections and combinations
+
+A committee has members but no first, second, or third position. If we count it by choosing people in order, we repeatedly describe the same committee. The division in the combination formula corrects that repetition. It is justified because every committee has exactly the same number of ordered descriptions.
 
 A **combination** is a subset of a specified size. Let $\binom nr$ denote the number of $r$-element subsets of an $n$-element set. For $0\leq r\leq n$,
 
@@ -103,6 +111,8 @@ These are counting proofs: the two expressions describe the same outcomes from d
 
 ## Combining restrictions
 
+Restrictions often suggest a useful sequence of choices: select the required members of one category, then select the required members of another. Alternatively, divide the outcomes into disjoint cases according to how many members come from each category. The worked examples use both methods so you can see why each addition or multiplication belongs.
+
 **Worked example: a mixed committee.** Choose a four-person committee from disjoint groups of 6 engineers and 5 designers, with exactly two from each group. Choose the engineers in $\binom62$ ways and the designers in $\binom52$ ways. Each pair of selections produces one committee, so the result is
 
 $$
@@ -126,6 +136,8 @@ The sum and complement methods agree because they partition the same set of comm
 
 ## Repeated objects and circular arrangements
 
+Ask what changes an outcome that an observer could distinguish. Swapping two identical letters does not change a visible word. Rotating an unnumbered round table may not change a seating arrangement under the stated convention. These are different reasons for repeated descriptions, so each requires its own explanation of the overcount.
+
 If $n$ positions contain indistinguishable objects of several types, with multiplicities $n_1,\ldots,n_k$ summing to $n$, the number of distinct arrangements is
 
 $$
@@ -146,6 +158,8 @@ If seats are numbered, rotations generally change the seating and the answer is 
 
 ## Repetition without order: distributing identical objects
 
+When tokens are identical, an allocation remembers how many enter each box, not which token went where. Stars and bars records those counts as runs of stars separated by boundaries. Empty runs matter too: two neighboring bars record a box receiving nothing. The picture is useful because it gives a reversible description of each allowed allocation.
+
 How many ways can $r$ identical tokens be placed into $n\geq1$ labeled boxes, allowing empty boxes? An outcome is a solution in nonnegative integers to
 
 $$
@@ -164,6 +178,8 @@ This method does not count allocations of distinguishable tokens. For those, eac
 
 ## The binomial theorem
 
+The coefficients in a power of $(a+b)$ count choices made while multiplying. To obtain a term with three copies of $b$, we choose which three factors contribute their $b$ term; every other factor contributes $a$. Thus an algebraic coefficient becomes a combination count, connecting expansion to the selection problems we have just studied.
+
 For every integer $n\geq0$,
 
 $$
@@ -181,6 +197,8 @@ $$
 Setting $a=b=1$ proves $\sum_{k=0}^n\binom nk=2^n$. Combinatorially, the left side groups all subsets by size, while the right side decides independently whether each element belongs to a subset.
 
 ## Inclusion-exclusion
+
+When categories overlap, adding their sizes counts some outcomes too often. Rather than memorize alternating signs, follow one outcome through the calculation. An outcome in two categories needs one extra copy removed. An outcome in three categories is removed too often by that correction and needs a copy restored.
 
 For two finite sets,
 
@@ -206,6 +224,8 @@ An element in all three sets is initially counted three times and then subtracte
 
 ## The pigeonhole principle
 
+This principle can force a repetition without telling us where it occurs. If thirteen letters are placed in twelve mail slots, at least one slot must receive more than one letter. The power of the method lies in identifying useful “slots” for an abstract problem, such as the possible remainders of integers or the possible outputs of a function.
+
 If more than $k$ objects are placed into $k\geq1$ boxes, some box contains at least two objects. If every box contained at most one, there would be at most $k$ objects, contradicting the assumption.
 
 The generalized form says that placing $N\geq0$ objects into $k\geq1$ boxes forces some box to contain at least
@@ -223,6 +243,8 @@ Among 25 people, at least 3 share a birth month, because $\lceil25/12\rceil=3$. 
 A hash function mapping more than $m$ distinct inputs into $m$ hash values must have a collision. This follows from the same principle, regardless of how cleverly the function is implemented. It does not say that every pair collides or give a probability of collision.
 
 ## A complete counting solution
+
+The following solution combines choices of positions with a complementary count. Read it as a recipe for constructing exactly one allowed code, and then ask whether the finished code uniquely tells us which choices were made. That reverse check is a reliable way to detect accidental duplication.
 
 Consider a length-5 code using the ten digits. Leading zero is allowed, digits may repeat, and the code must contain exactly two zeros and at least one 7. A direct position-by-position product is awkward because the permitted choices depend on how many required symbols have appeared.
 
@@ -244,6 +266,8 @@ The order is introduced only after the two subsets are selected. If leading zero
 
 ## Counting the same set in two ways
 
+An identity can have a counting explanation as well as an algebraic one. We describe one collection of outcomes, count it in two different orders, and equate the totals. The most important sentence identifies the objects being counted; without it, two plausible formulas might count different things.
+
 A **double-counting proof** defines one finite collection of objects and counts it by two methods. Equality follows because the collection is unchanged.
 
 For example, for $n\geq1$, count pairs $(S,x)$ where $S$ is a subset of an $n$-element set and $x\in S$ is a distinguished member. If $|S|=r$, there are $\binom nr$ ways to choose $S$ and then $r$ ways to choose $x$. Summing over sizes gives
@@ -264,6 +288,8 @@ This method also clarifies when division is legitimate. To divide one count by a
 
 ## Choosing a model before a formula
 
+The familiar numbers in a problem are not enough to select a formula. A selection, an ordered list, and an assignment of outputs to inputs may use the same objects but remember different information. Write a sample outcome and decide when two descriptions represent the same outcome before doing arithmetic.
+
 For an $n$-element set, binary membership choices show that there are $2^n$ subsets. For functions from an $r$-element labeled domain to an $n$-element codomain, each input chooses one output, giving $n^r$ functions. Restricting to injective functions gives $P(n,r)$ when $r\leq n$, and zero when $r>n$.
 
 These counts explain why exhaustive testing can grow quickly. Testing every assignment to 20 Boolean inputs requires $2^{20}=1{,}048{,}576$ cases. Counting possibilities is not yet a time estimate: the cost of processing each case also matters.
@@ -281,4 +307,4 @@ Before continuing, check that you can:
 - Explain the binomial theorem and inclusion-exclusion by counting occurrences.
 - Identify the objects and boxes in a pigeonhole argument and prove the forced bound.
 
-The [Combinatorics worksheet](../worksheets/12-combinatorics.yaml) develops these skills through counting models, calculation, and short proofs.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

@@ -33,6 +33,40 @@ class TabletTest {
     }
 
     @Test
+    fun quickChecksWorkInBothTabletOrientations() {
+        rule.runOnIdle { model.select(1) }
+        rule.waitForIdle()
+        rule.runOnIdle {
+            val lesson = model.lessons[0]
+            var index = 1
+            for (section in lesson.sections) {
+                if (section.quickChecks.isNotEmpty()) break
+                index += 1 + section.questionIds.size
+            }
+            model.reading(lesson.slug, index + 1, 0)
+            model.select(0)
+            model.mode(false)
+            rule.activity.requestedOrientation =
+                android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
+        rule.waitUntil(10000) {
+            rule.activity.resources.configuration.orientation ==
+                android.content.res.Configuration.ORIENTATION_PORTRAIT
+        }
+        val key = "propositional-logic:quick-1"
+        rule.onNodeWithTag("quick:$key").assertIsDisplayed()
+        rule.onNodeWithTag("choice:$key:1").performClick().assertIsSelected()
+        if (rule.onAllNodesWithTag("answer:$key").fetchSemanticsNodes().isEmpty())
+            rule.onNodeWithTag("reveal:$key").performClick()
+        rule.onNodeWithTag("answer:$key").assertIsDisplayed()
+        capture("portrait-quick-check.png")
+        landscape()
+        rule.onNodeWithTag("choice:$key:1").assertIsSelected()
+        rule.onNodeWithTag("answer:$key").assertIsDisplayed()
+        capture("landscape-quick-check.png")
+    }
+
+    @Test
     fun portraitReaderKeepsItsSectionOnRotation() {
         rule.runOnIdle {
             model.select(0)

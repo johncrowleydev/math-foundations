@@ -6,6 +6,8 @@ This lesson builds on [Sets and Set Operations](../lessons/03-sets-and-set-opera
 
 ## Relations as sets of ordered pairs
 
+A set tells us which objects are present; a relation tells us which connections are present. Think of a table with users down one side and permissions across the top. Marking a cell records one permission for one user. The set-of-pairs definition is a precise way to store exactly those marked cells, without requiring every user to have the same number of permissions.
+
 A **binary relation from $A$ to $B$** is a subset $R\subseteq A\times B$. We write $aRb$ as an alternative to $(a,b)\in R$. The order of the positions matters.
 
 Let $A=\{\text{Ada},\text{Bo}\}$ be users and $B=\{\text{read},\text{write}\}$ be permissions. The relation
@@ -22,6 +24,8 @@ For finite sets, a relation can be displayed as a Boolean matrix. Rows name firs
 
 ## Four fundamental properties
 
+These properties ask four different questions about a relation's connections. Does each object connect to itself? Can connections be reversed? Can distinct objects connect both ways? Can two consecutive connections be shortened to one? It helps to keep those questions separate instead of trying to classify the relation by its general appearance.
+
 Let $R$ be a relation on $A$.
 
 **Reflexive** means every object relates to itself:
@@ -32,6 +36,8 @@ $$
 
 In a finite matrix every diagonal entry must be 1. A single missing loop disproves reflexivity.
 
+Equality is reflexive because every object equals itself. By contrast, “is strictly smaller than” is not reflexive on a nonempty number domain: no number is strictly smaller than itself. Reflexivity asks for every self-pair, even if some objects have no connections to other objects.
+
 **Symmetric** means every pair can be reversed:
 
 $$
@@ -39,6 +45,8 @@ $$
 $$
 
 To disprove symmetry, exhibit $aRb$ with $bRa$ false. Symmetry does not require any pair to exist in the first place.
+
+“Has the same birthday month as” is symmetric: exchanging the two people cannot change whether their months agree. “Is a parent of” need not be symmetric. The word refers to reversibility of the relationship, not to the physical arrangement of a diagram.
 
 **Antisymmetric** means two distinct objects cannot relate in both directions:
 
@@ -48,6 +56,8 @@ $$
 
 Loops are permitted. If both $aRb$ and $bRa$ hold, antisymmetry forces the objects to be the same. It does not forbid unrelated distinct objects.
 
+The numerical relation $\leq$ gives a familiar example. If $a\leq b$ and $b\leq a$, the two numbers must be equal. This explains the allowance for loops: $a\leq a$ is entirely consistent with antisymmetry.
+
 **Transitive** means every composable two-step connection has the corresponding direct connection:
 
 $$
@@ -56,9 +66,13 @@ $$
 
 The variables may coincide. If $aRb$ and $bRa$, transitivity requires $aRa$ and $bRb$. It is a mistake to test only triples of distinct elements.
 
+For ordinary numbers, $a\leq b$ and $b\leq c$ guarantee $a\leq c$. A friendship relation need not behave this way: your friend's friend is not automatically your friend. Transitivity is a specific mathematical requirement, not a general rule about anything we happen to draw with connecting lines.
+
 Check each property from its definition; their names do not describe opposite alternatives. “Not symmetric” does not mean “antisymmetric.” For example, on $\{1,2,3\}$, the relation $\{(1,2),(2,1),(2,3)\}$ is neither: the pair $(2,3)$ has no reverse, while 1 and 2 form a bidirectional pair of distinct elements. Equality is both symmetric and antisymmetric. Properties can also interact: a relation that is both symmetric and antisymmetric contains only loops, and is therefore transitive.
 
 ## A complete finite check
+
+The example below deliberately satisfies some properties and fails others. For each failed property we will identify the exact pair or chain responsible. For each satisfied property we need a reason that covers all relevant cases. This difference between finding one failure and establishing complete coverage is the same universal-claim distinction used in the earlier lessons.
 
 On $A=\{1,2,3\}$, consider
 
@@ -74,6 +88,8 @@ For a finite relation, a systematic transitivity test chooses every listed pair 
 
 ## Vacuous cases and related properties
 
+Empty relations can feel strange because there is nothing to inspect. Return to the logical form: a property that says “whenever these pairs exist, another condition follows” cannot be violated if the required pairs never exist. Reflexivity is different because it demands pairs outright. Separating demands from conditional demands resolves the apparent paradox.
+
 The empty relation on a nonempty set is symmetric, antisymmetric, and transitive: none of the implications has a true antecedent. It is not reflexive because the required loops are absent. On the empty set, the empty relation is reflexive as well, since there is no element missing its loop.
 
 A relation is **irreflexive** when $\forall a\in A,\ \neg aRa$. Failure to be reflexive only requires one missing loop; irreflexivity requires every loop to be missing. A relation with some but not all loops is neither reflexive nor irreflexive.
@@ -83,6 +99,8 @@ A relation is **asymmetric** when $aRb$ always implies $\neg bRa$. This forbids 
 Use definitions to settle edge cases. Familiar words such as “opposite” or “reverse” are less reliable than the quantified formulas.
 
 ## Equivalence relations
+
+Often we want to ignore differences that are irrelevant to a particular question. Two files may be different objects but have the same contents; two dates may fall in the same month. An equivalence relation makes this chosen sense of sameness consistent. Its three properties ensure that grouping objects by that feature does not produce contradictory overlaps.
 
 An **equivalence relation** is reflexive, symmetric, and transitive. It formalizes “the same with respect to a chosen feature.”
 
@@ -103,6 +121,8 @@ Thus congruence is an equivalence relation. For $m=3$, the integers 1, 4, and $-
 Other examples include strings having the same length and people having the same birthday month. Having a shared friend is generally not an equivalence relation: two people might each share a friend with a third person without sharing a friend with each other.
 
 ## Equivalence classes and partitions
+
+Once a notion of sameness is fixed, choose an object and collect everything equivalent to it. Choosing another object from the resulting group should give you the same group, not a partly overlapping rival. The proof in this section explains why the equivalence-relation properties guarantee exactly that behavior.
 
 For an equivalence relation $R$ on $A$, the **equivalence class** of $a\in A$ is
 
@@ -130,6 +150,8 @@ In software, grouping records by an exact key creates equivalence classes. A “
 
 ## Partial and total orders
 
+Not every sensible comparison puts everything in a single line. One collection of permissions may contain another, while two other collections each have something the other lacks. A partial order allows this incomparability. It still preserves the consistency rules that make “below” and “above” meaningful where comparison is possible.
+
 A **partial order** is reflexive, antisymmetric, and transitive. A set together with a partial order is called a **partially ordered set**, or poset. We often write its relation as $\preceq$ to avoid implying that it is ordinary numerical comparison.
 
 Subset inclusion is a partial order on $\mathcal P(S)$. Every subset contains itself; if $A\subseteq B$ and $B\subseteq A$, then $A=B$; and inclusions compose transitively.
@@ -144,6 +166,8 @@ Antisymmetry guarantees agreement when comparison goes both ways. It does not gu
 
 ## Hasse diagrams and extreme elements
 
+A drawing of every comparison in a finite order quickly becomes cluttered. A Hasse diagram leaves out comparisons we can recover by following upward connections. It is therefore a compressed description, not a new relation. Learning what has been omitted is just as important as reading the connections that remain.
+
 For a finite poset, a **Hasse diagram** displays only the essential upward steps. An element $b$ **covers** $a$ when $a\prec b$ and no element lies strictly between them, where $a\prec b$ means $a\preceq b$ and $a\ne b$. Draw $b$ above $a$ and connect their covers. Omit loops and all edges already implied by a longer upward path.
 
 Under inclusion, $\mathcal P(\{1,2\})$ has $\varnothing$ at the bottom, $\{1\}$ and $\{2\}$ above it, and $\{1,2\}$ at the top. The four cover connections form a diamond. There is no direct cover from $\varnothing$ to $\{1,2\}$ because intermediate subsets exist.
@@ -153,6 +177,8 @@ The upward edges form a directed acyclic graph: a directed cycle among distinct 
 A **least element** is below every element. A **minimal element** has no strictly smaller element. Least implies minimal, but several incomparable elements can all be minimal. Under divisibility on $\{2,3,6\}$, both 2 and 3 are minimal and neither is least; 6 is the greatest element. Greatest and maximal are defined by reversing the comparisons. A least or greatest element, when it exists, is unique by antisymmetry.
 
 ## Inverses and composition of relations
+
+Suppose one relation records which people belong to which clubs, and another records which clubs meet in which rooms. Following the two relationships gives a people-to-rooms relation. There may be several routes to the same final pair, but membership in the resulting relation records only whether at least one route exists. That is the existential condition in composition.
 
 For $R\subseteq A\times B$, its **inverse relation** is
 
@@ -174,6 +200,8 @@ If $R=\{(1,u),(2,u),(2,v)\}$ and $S=\{(u,p),(v,q)\}$, then $S\circ R=\{(1,p),(2,
 For a relation $R$ on $A$, transitivity is exactly $R\circ R\subseteq R$: every two-step connection already belongs to $R$. Adding all pairs connected by one or more steps produces the **transitive closure**. For a finite relation, repeatedly adding missing shortcuts eventually stops because only finitely many pairs are possible. If reachability in zero steps is included as well, also add every loop; that gives the reflexive-transitive closure.
 
 ## Building closures without losing the meaning
+
+A closure adds just enough pairs to enforce a chosen property. Imagine repairing a list of connections while leaving all existing entries in place. The word “smallest” matters: adding every possible pair would often satisfy the property, but would discard the information in the original relation by claiming far more connections than necessary.
 
 Different properties require different repairs. On $A=\{a,b,c\}$, start with $R=\{(a,b),(b,c)\}$.
 
@@ -197,4 +225,4 @@ You should now be able to:
 - Interpret a finite Hasse diagram and recover implied comparisons.
 - Compute a relation composition with its direction stated.
 
-Practice with the [Relations worksheet](../worksheets/04-relations.yaml). Continue to [Functions](../lessons/05-functions.md).
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

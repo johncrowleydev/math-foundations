@@ -3,10 +3,12 @@ import { loadContent } from './content.js';
 import { placeNotebookExercises } from './notebook-placements.js';
 import { adaptNotebookQuestion, validateNotebookAdaptations } from './notebook-exercises.js';
 import { adaptInlineQuestion, validateInlinePrerequisites } from './inline-prerequisites.js';
+import { quickChecks, validateQuickChecks } from './quick-checks.js';
 
 const content = await loadContent();
 validateNotebookAdaptations(content.lessons);
 validateInlinePrerequisites(content.lessons);
+validateQuickChecks(content.lessons);
 function forNotebook(markdown: string) {
   return markdown
     .replace(/\[([^\]]+)\]\(\.\.\/lessons\/[^)]+\)/g, '$1')
@@ -39,7 +41,11 @@ const lessons = content.lessons.map((lesson) => {
     title: lesson.title,
     eyebrow: lesson.eyebrow || content.course,
     intro,
-    sections: sections.map((s, i) => ({ ...s, questionIds: sectionQuestionIds[i] })),
+    sections: sections.map((s, i) => ({
+      ...s,
+      questionIds: sectionQuestionIds[i],
+      quickChecks: quickChecks[lesson.slug].filter((c) => c.after === s.title),
+    })),
     questions,
     practiceIds,
   };

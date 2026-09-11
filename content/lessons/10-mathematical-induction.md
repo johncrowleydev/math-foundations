@@ -8,6 +8,8 @@ Induction is a method for proving statements indexed by integers. It does not me
 
 ## The induction principle
 
+Picture a row of dominoes in which each falling domino is guaranteed to knock over the next. That guarantee alone does not start anything; the first domino must also fall. Induction has these same two ingredients: a verified starting case and a rule that carries truth to the next case. The analogy is useful because it keeps the two obligations distinct, although the proof itself is about statements, not physical dominoes.
+
 This method, which advances from one integer to the next, is called **ordinary induction**.
 
 Let $P(n)$ be a statement for each integer $n\geq n_0$. To prove that $P(n)$ holds for all such $n$, establish:
@@ -23,6 +25,8 @@ This argument depends on the discrete order of the integers. There is no “next
 
 ## Why the hypothesis is not circular
 
+The natural worry is that assuming a case sounds like assuming what we want to prove. The key is that we are proving a conditional connection between two cases, not declaring either one established by fiat. A bridge can be inspected to show that it carries us from one bank to the other without assuming we have already reached the far bank.
+
 In the inductive step, we do not declare the whole theorem true. We prove an implication: **if** the statement is true at one arbitrary index $k$, **then** it is true at the next index.
 
 Assuming the hypothesis of an implication is legitimate, just as in a direct proof. The base case and the induction principle are what ultimately establish the whole family of statements.
@@ -32,6 +36,8 @@ Circular reasoning would assume $P(k+1)$ while attempting to prove $P(k+1)$, or 
 Before calculating, write both $P(k)$ and $P(k+1)$ explicitly. This simple habit prevents many substitution mistakes.
 
 ## Worked proof: the sum of the first positive integers
+
+We already derived this sum by pairing terms. Induction gives a different explanation: increasing the upper bound from $k$ to $k+1$ adds exactly one term. If the old total has the proposed form, adding that term should produce the proposed form for the new total. This is the relationship the inductive step will verify.
 
 **Claim.** For every integer $n\geq1$,
 
@@ -64,6 +70,8 @@ Notice the change from $k+1$ to $k+2$ in the second factor. Replacing only some 
 
 ## Empty sums and a base at zero
 
+The first allowed index and the number of terms are separate questions. A sum starting at zero can contain one term when its upper bound is zero, while a sum starting at one is empty at that same upper bound. Substitute into the actual limits before deciding what the base case says.
+
 An empty sum has value 0. Therefore the preceding formula also makes sense at $n=0$: both sides are zero. We could instead prove it for all $n\in\mathbb{N}_0$ by using that base case and the same step.
 
 Changing the base changes the theorem's stated domain. A proof starting at 1 does not, by itself, establish the case 0 even when that case happens to be true. Either include it as a base or verify it separately.
@@ -86,6 +94,8 @@ This is the required next case, so the identity follows by induction. Here the s
 
 ## Divisibility by induction
 
+In a divisibility proof, the induction hypothesis tells us that a particular expression has a factor. The next step is to rearrange the new expression until that old expression becomes visible inside it. This is proof planning through algebra: we choose the rearrangement because it exposes exactly the information we are allowed to use.
+
 **Claim.** For every integer $n\geq0$, $3\mid(4^n-1)$.
 
 **Base case.** At $n=0$, $4^0-1=0=3\cdot0$, so the divisibility statement is true.
@@ -103,6 +113,8 @@ The useful rearrangement was chosen to expose $4^k-1$, the expression controlled
 Induction does not always provide the shortest divisibility proof, but it provides a reliable way to reason about a growing exponent or recursively changing expression.
 
 ## Inequalities require a bridge
+
+An inductive estimate can move us in the right direction without reaching the destination. Write the desired next bound beside the bound the hypothesis actually supplies, and compare them. The remaining gap is another inequality to prove. Treating that gap as its own task is much safer than assuming that a growing expression will eventually behave as expected.
 
 When proving an equality, substitution and algebra often finish the step. For an inequality, the induction hypothesis may provide only an intermediate bound; another inequality must connect it to the desired next bound.
 
@@ -134,6 +146,8 @@ Multiplying an inequality by a negative quantity reverses its direction. Wheneve
 
 ## A recurrence and a claimed closed form
 
+A few computed values may suggest a formula, but the recurrence supplies the mechanism for verifying it. The base checks that the formula starts in the right place. The step checks that it changes in exactly the way the definition requires. Together they explain why agreement continues beyond the examples we happened to calculate.
+
 Suppose a sequence is defined by
 
 $$
@@ -158,6 +172,8 @@ This is the formula at $k+1$, so induction proves it for all $n\geq0$.
 The recurrence is a definition available at every allowed index. The closed form is the statement being proved. Keeping those roles separate prevents accidentally assuming the desired formula in the step.
 
 ## Strengthening the statement
+
+It can seem backward to make a theorem stronger when the original proof is difficult. In induction, however, a stronger statement also gives a stronger hypothesis at the previous stage. Tracking an extra quantity may supply precisely the information the next step needs. The extra claim must be proved too, so this is useful bookkeeping rather than permission to assume more for free.
 
 Sometimes a hypothesis is too weak to support the next case. Proving a stronger statement can provide exactly the extra information needed.
 
@@ -191,6 +207,8 @@ instead. Both formulas hold at 0. Assuming both at $k$ gives $u_{k+1}=(2^k-1)+2^
 
 ## Induction and repeated computation
 
+A loop repeatedly changes a state, such as the value stored in a running total. Instead of checking only the final output, we can describe what that state means after any number of iterations. If initialization establishes the description and each update preserves it, induction carries the description through the entire computation.
+
 An iterative program often performs one state change per iteration. Induction can prove a **loop invariant**, a property that holds after each allowed number of iterations.
 
 Consider this integer computation for an input $N\geq0$:
@@ -212,6 +230,8 @@ At $k=0$, the initialized total is the empty sum 0. If the invariant holds after
 This proof uses exact integer arithmetic. An implementation with bounded machine integers needs a separate guarantee against overflow. Mathematical correctness of an algorithm and correctness under a particular numeric representation are related but distinct obligations.
 
 ## Common invalid induction arguments
+
+When an induction proof fails, look first for a missing link: the base may not match the theorem, the step may skip some indices, or its algebra may only work beyond an unstated threshold. Checking the earliest transition by hand is often especially revealing. A beautifully simplified general expression cannot repair a transition the proof never established.
 
 **Missing base.** The implication “if $n=n+1$, then $n+1=n+2$” is valid after adding 1, but no integer satisfies the starting equality. A chain with no established starting point proves nothing about its members.
 
@@ -236,4 +256,4 @@ Before proceeding, you should be able to:
 - Strengthen a statement or prove related facts together when the step needs more information.
 - Diagnose missing bases, skipped indices, and circular next-case assumptions.
 
-Practice with the [Mathematical Induction worksheet](../worksheets/10-mathematical-induction.yaml). [Strong Induction](../lessons/11-strong-induction.md) extends the available hypothesis to all earlier cases, which fits recursive decompositions especially well.
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.
