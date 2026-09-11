@@ -33,7 +33,7 @@ New-Item -ItemType Directory -Force C:/Temp | Out-Null
 $env:JAVA_TOOL_OPTIONS = '-Djdk.net.unixdomain.tmpdir=C:/Temp'
 ```
 
-The debug APK is at `app/build/outputs/apk/debug/app-debug.apk`. Install updates with `adb install -r` to preserve your notebook. Uninstalling the app or clearing app data removes local handwriting; cloud sync/export is not implemented.
+The debug APK is at `android/app/build/outputs/apk/debug/app-debug.apk`. Use debug builds on a development device or emulator. The personal tablet now uses the production signing identity; ordinary debug APKs cannot replace it. Use signed release APKs or the in-app update flow there. Install compatible updates with `adb install -r` to preserve your notebook. Uninstalling the app or clearing app data removes local handwriting; cloud sync/export is not implemented.
 
 ## Verification
 
@@ -60,7 +60,7 @@ Physical S Pen feel, hover behavior, and Samsung's system-level palm classificat
 
 `scripts/notebook-placements.ts` attaches inline exercises to named teaching headings and stable worksheet question IDs. Exercises render after the complete section. Missing or ambiguous headings fail the build instead of silently moving problems when sections are inserted or renamed. `scripts/build-android-content.ts` generates the native asset using this plan. `content/notebook-adaptations.yaml` supplies exercise-local assumptions, scopes shared definitions to their applicable IDs, and restates prompts and answers that depended on neighboring exercises. `scripts/notebook-exercises.ts` validates the adaptation rules, rejects printed-context references, and validates the resulting math. The generated asset is not committed. The native rendering test also checks compatibility with JLaTeXMath.
 
-The prerequisite audit covered all 121 inline exercises across all 15 lessons, including adapted instructions and revealed answers. Four placements moved later: lesson 1 exercise 31 follows converse/contrapositive, exercise 46 follows De Morgan's laws, exercise 70 follows invalid argument forms (its answer names affirming the consequent), and lesson 5 exercise 31 follows composition as well as inverse functions. Other placements already follow their required explanations or use material taught in preceding lessons. Regression tests cover these prerequisites, heading insertion/removal/duplication, and complete exercise coverage. Future prompt, answer, or teaching-content changes still require checking the mathematical prerequisites; heading validation cannot infer them from prose.
+The initial placement corrections moved lesson 1 exercises 31, 46, and 70 and lesson 5 exercise 31 after their required concepts. The subsequent complete audit replaced shared instructions for all 121 inline exercises and checked prompts, notation, answers, and expanded-workspace labels as well. See [the prerequisite trace](../docs/inline-prerequisite-audit.md). Individual audit entries in `content/inline-prerequisites.yaml` bind these checks to the actual teaching and exercise text; content changes fail validation until the affected audit is updated. Heading validation alone is not a semantic prerequisite check.
 
 `InkCanvas.kt` embeds `InProgressStrokesView` and eagerly initializes it before layout; this is necessary for the low-latency surface to receive a size inside a Compose `AndroidView`. `NotebookModel.kt` owns ink independently of recycled views and writes immutable snapshots through one background writer. Storage failures are displayed and can be retried without replacing unreadable files.
 

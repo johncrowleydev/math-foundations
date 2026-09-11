@@ -8,6 +8,8 @@ The goal is not merely to memorize symbols or truth tables. The useful skill is 
 
 A **proposition** is a statement with a definite truth value: it is either true or false.
 
+Its **truth value** is that choice, true or false. Letters such as $x$ can stand for numbers whose values have not yet been specified; a sentence containing such a letter may not yet have a definite truth value.
+
 Examples:
 
 - $2+2=4$ is a true proposition.
@@ -153,6 +155,8 @@ p\to q,
 $$
 
 there are three closely related statements.
+
+When a statement claims that every number with one property has another property, a **counterexample** is one number with the first property but without the promised second property. One such number makes the claim false. For example, 6 is even but is not divisible by 4.
 
 The **converse** reverses the implication:
 
@@ -374,6 +378,8 @@ is equivalent to
 Truth tables can establish any propositional equivalence, but repeatedly building them is cumbersome. Once an equivalence has been established, it can be used algebraically as a rewrite rule.
 
 ### Negation laws
+
+Negating a statement twice is called **double negation** and returns the original statement:
 
 $$
 \neg\neg p \equiv p

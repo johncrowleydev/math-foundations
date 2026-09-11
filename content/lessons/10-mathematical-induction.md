@@ -8,6 +8,8 @@ Induction is a method for proving statements indexed by integers. It does not me
 
 ## The induction principle
 
+This method, which advances from one integer to the next, is called **ordinary induction**.
+
 Let $P(n)$ be a statement for each integer $n\geq n_0$. To prove that $P(n)$ holds for all such $n$, establish:
 
 1. **Base case:** $P(n_0)$ is true.

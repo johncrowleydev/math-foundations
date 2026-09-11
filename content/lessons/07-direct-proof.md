@@ -18,6 +18,8 @@ A **direct proof** chooses an arbitrary $x\in D$, assumes $P(x)$, and deduces $Q
 
 The word _arbitrary_ means that no unmentioned property of $x$ will be used. It does not mean that $x$ can change halfway through the proof.
 
+The **hypotheses** are the assumptions supplied by the claim; the **conclusion** is what must follow from them. In an if-then claim, the condition after “if” is a hypothesis and the statement after “then” is the conclusion.
+
 For a claim about two integers $m,n$, choose both arbitrarily. For a claim beginning “if $n$ is positive and even,” both positivity and evenness are available assumptions. A conclusion such as “$n^2$ is even” must then follow from those assumptions and established facts.
 
 A useful planning table is:
@@ -41,6 +43,8 @@ For an integer $n$:
 - For integers $d,n$, $d\mid n$ means that $n=dk$ for some $k\in\mathbb{Z}$.
 
 The vertical bar in $d\mid n$ means “divides”; it is not division notation. For example, $3\mid12$ is a proposition, while $12/3$ is a number.
+
+An **integral** value means an integer value.
 
 Every integer is exactly one of even or odd, as follows from division with remainder by 2. Negative integers and zero are included: $-3=2(-2)+1$ is odd and $0=2\cdot0$ is even.
 

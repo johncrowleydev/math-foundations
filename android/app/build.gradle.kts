@@ -37,6 +37,7 @@ val generateContent by tasks.registering(Exec::class) {
     inputs.file("../../scripts/content.ts")
     inputs.file("../../scripts/notebook-exercises.ts")
     inputs.file("../../scripts/notebook-placements.ts")
+    inputs.file("../../scripts/inline-prerequisites.ts")
     outputs.file("src/main/assets/notebook.json")
 }
 tasks.named("preBuild") { dependsOn(generateContent) }

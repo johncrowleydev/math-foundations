@@ -1,0 +1,2231 @@
+# Every inline exercise has its own instructions and a checked prerequisite trace.
+# Hashes bind the audit to the actual displayed exercise and teaching text.
+propositional-logic:
+  '1':
+    after: Propositions
+    instructions: Give the truth value if the sentence is a proposition. Explain.
+    concepts:
+      - Proposition
+      - definite truth value
+      - equality
+    requires:
+      - lesson: propositional-logic
+        section: Propositions
+        teachingHash: a376fda305d5d9549fab54b5462776b673cef53bb03ee26b8754504f04ff4b01
+    exerciseHash: e97dae2a34acdc9e0133379ce5e73920960ff41b136c31ea6fcb1577fde48265
+  '4':
+    after: Propositions
+    instructions: Explain whether the sentence has a definite truth value as written.
+    concepts:
+      - Proposition
+      - unspecified numerical variable
+    requires:
+      - lesson: propositional-logic
+        section: Propositions
+        teachingHash: a376fda305d5d9549fab54b5462776b673cef53bb03ee26b8754504f04ff4b01
+    exerciseHash: a97baf3c70c36936aa4f37c321192702b9e554b1fc74b62dac5fc3f4ec85764e
+  '9':
+    after: 'Negation: NOT'
+    instructions: Let $p$ mean "The server is online" and $q$ mean "The database is reachable".
+    concepts:
+      - Named propositions
+      - negation
+    requires:
+      - lesson: propositional-logic
+        section: Propositions
+        teachingHash: a376fda305d5d9549fab54b5462776b673cef53bb03ee26b8754504f04ff4b01
+      - lesson: propositional-logic
+        section: 'Negation: NOT'
+        teachingHash: 2d1b9d610d1c0bbdf118d1b7baec07cc7b2d5420d13d0d6a38102c1667bb4eca
+    exerciseHash: 23c2a75f30099be6f3ebbd64dfff1416076a7e68226b45762d6a2654cff278bf
+  '10':
+    after: 'Conjunction: AND'
+    instructions: Let $p$ mean "The server is online" and $q$ mean "The database is reachable".
+    concepts:
+      - Named propositions
+      - conjunction
+    requires:
+      - lesson: propositional-logic
+        section: Propositions
+        teachingHash: a376fda305d5d9549fab54b5462776b673cef53bb03ee26b8754504f04ff4b01
+      - lesson: propositional-logic
+        section: 'Conjunction: AND'
+        teachingHash: 6107c77cb563ea43ce09750d066da05ec98ebcda2d11bd654764bae21fe1630d
+    exerciseHash: 2d9d3c97837fdf76ff485c760cb8003230c6bbc5a53674dba688e84f491cb3e3
+  '11':
+    after: 'Disjunction: OR'
+    instructions: Let $p$ mean "The server is online" and $q$ mean "The database is reachable".
+    concepts:
+      - Named propositions
+      - inclusive disjunction
+    requires:
+      - lesson: propositional-logic
+        section: Propositions
+        teachingHash: a376fda305d5d9549fab54b5462776b673cef53bb03ee26b8754504f04ff4b01
+      - lesson: propositional-logic
+        section: 'Disjunction: OR'
+        teachingHash: dae0683cdb31e28929741a2976624da445ed6e20e1425911343ec8a99411cbc6
+    exerciseHash: 0283de38c951013d7fed7ba3dbd0a4af623156d78cf663da5c0322220a9f6438
+  '31':
+    after: Converse, inverse, and contrapositive
+    instructions:
+      Write the converse and contrapositive. Decide whether each of the three statements is true. For
+      each false statement, give a counterexample.
+    concepts:
+      - Implication
+      - converse
+      - contrapositive
+      - counterexample
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: propositional-logic
+        section: Converse, inverse, and contrapositive
+        teachingHash: 5d3a5e44d5c1d82bf9f67a519038d849808503285b4941230cdb4f67e57639c0
+    exerciseHash: 96d85e8c86333c5d82f28db279bedf2d2f4ab1684321691309c40c464507c8dd
+  '35':
+    after: Converse, inverse, and contrapositive
+    instructions:
+      Write the converse and contrapositive. Decide whether each of the three statements is true. For
+      each false statement, give a counterexample.
+    concepts:
+      - Implication
+      - converse
+      - contrapositive
+      - counterexample
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: propositional-logic
+        section: Converse, inverse, and contrapositive
+        teachingHash: 5d3a5e44d5c1d82bf9f67a519038d849808503285b4941230cdb4f67e57639c0
+    exerciseHash: fe093aac4a4874cf4d6b15dd5db388a77573bd59003852cfbeb4a615742eeb16
+  '46':
+    after: De Morgan's laws
+    instructions: Explain your reasoning.
+    concepts:
+      - Negation of conjunction
+      - equivalence
+      - De Morgan law
+    requires:
+      - lesson: propositional-logic
+        section: 'Negation: NOT'
+        teachingHash: 2d1b9d610d1c0bbdf118d1b7baec07cc7b2d5420d13d0d6a38102c1667bb4eca
+      - lesson: propositional-logic
+        section: 'Conjunction: AND'
+        teachingHash: 6107c77cb563ea43ce09750d066da05ec98ebcda2d11bd654764bae21fe1630d
+      - lesson: propositional-logic
+        section: 'Disjunction: OR'
+        teachingHash: dae0683cdb31e28929741a2976624da445ed6e20e1425911343ec8a99411cbc6
+      - lesson: propositional-logic
+        section: Logical equivalence
+        teachingHash: 3296450ea57b4c1580e3e1ac7244eac75e619c57b9cc69dd4df44c49be5db6ec
+      - lesson: propositional-logic
+        section: De Morgan's laws
+        teachingHash: d12b426f875009c2f3a43ed92ee66117ce2ebfac8f1761ff0a0875a86ec1fd05
+    exerciseHash: 8764aceb90c1153fed004ed34abe30ffd55f82bf52f788d97476ca7dcadcf060
+  '47':
+    after: De Morgan's laws
+    instructions: Explain your reasoning.
+    concepts:
+      - Negation of disjunction
+      - equivalence
+      - De Morgan law
+    requires:
+      - lesson: propositional-logic
+        section: 'Negation: NOT'
+        teachingHash: 2d1b9d610d1c0bbdf118d1b7baec07cc7b2d5420d13d0d6a38102c1667bb4eca
+      - lesson: propositional-logic
+        section: 'Conjunction: AND'
+        teachingHash: 6107c77cb563ea43ce09750d066da05ec98ebcda2d11bd654764bae21fe1630d
+      - lesson: propositional-logic
+        section: 'Disjunction: OR'
+        teachingHash: dae0683cdb31e28929741a2976624da445ed6e20e1425911343ec8a99411cbc6
+      - lesson: propositional-logic
+        section: Logical equivalence
+        teachingHash: 3296450ea57b4c1580e3e1ac7244eac75e619c57b9cc69dd4df44c49be5db6ec
+      - lesson: propositional-logic
+        section: De Morgan's laws
+        teachingHash: d12b426f875009c2f3a43ed92ee66117ce2ebfac8f1761ff0a0875a86ec1fd05
+    exerciseHash: 6cdeafaf80f1273f2e20627199456a5e7cb3bae82731bfd9525bc19057b36503
+  '60':
+    after: Tautologies, contradictions, and contingent statements
+    instructions: Decide whether the formula is a tautology, a contradiction, or contingent. Explain.
+    answer: 'Tautology: $p$ is either true or false, so at least one side of the OR is true.'
+    concepts:
+      - Tautology
+      - contradiction
+      - contingent statement
+      - inclusive OR
+    requires:
+      - lesson: propositional-logic
+        section: 'Negation: NOT'
+        teachingHash: 2d1b9d610d1c0bbdf118d1b7baec07cc7b2d5420d13d0d6a38102c1667bb4eca
+      - lesson: propositional-logic
+        section: 'Disjunction: OR'
+        teachingHash: dae0683cdb31e28929741a2976624da445ed6e20e1425911343ec8a99411cbc6
+      - lesson: propositional-logic
+        section: Tautologies, contradictions, and contingent statements
+        teachingHash: 586dc34bd501fae9130d763fe8794fa38d83c58fac19e3005bfd782b14bfb101
+    exerciseHash: 94b39158c5da50fcf6364411837d3ed85cb0b1abca7b710e30fc5f62d61590b6
+  '70':
+    after: Two common invalid argument forms
+    instructions: Explain your reasoning.
+    concepts:
+      - Argument validity
+      - truth assignments
+      - affirming the consequent
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: propositional-logic
+        section: Logical equivalence
+        teachingHash: 3296450ea57b4c1580e3e1ac7244eac75e619c57b9cc69dd4df44c49be5db6ec
+      - lesson: propositional-logic
+        section: Arguments, premises, and conclusions
+        teachingHash: 7a4c0cb9494c6c1854f333602e3cfb4ac33fa0f99a141292be511114c516e07b
+      - lesson: propositional-logic
+        section: Two common invalid argument forms
+        teachingHash: 52a8dd515ee539934afb6882d39bc034316a7443e9d8353ad7c1d6b5623764ec
+    exerciseHash: 46c42c5fcd574b63ac2e1f62fc164b124739f62a4af332214dd067cdbff314ae
+  '81':
+    after: Necessary and sufficient conditions
+    instructions: Explain your reasoning.
+    concepts:
+      - Sufficient and necessary conditions
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: propositional-logic
+        section: Necessary and sufficient conditions
+        teachingHash: d8d5fd1e562cee70f76b40f6bec2fa004ede590346c46064bd5f7a3f423032dd
+    exerciseHash: ffc051704cb8468041273ce76bb139ab721d63da0980beb91cdbc30b8d4093cd
+  '95':
+    after: Common equivalence laws
+    instructions: Explain your reasoning.
+    concepts:
+      - Double negation as an equivalence law
+    requires:
+      - lesson: propositional-logic
+        section: 'Negation: NOT'
+        teachingHash: 2d1b9d610d1c0bbdf118d1b7baec07cc7b2d5420d13d0d6a38102c1667bb4eca
+      - lesson: propositional-logic
+        section: Logical equivalence
+        teachingHash: 3296450ea57b4c1580e3e1ac7244eac75e619c57b9cc69dd4df44c49be5db6ec
+      - lesson: propositional-logic
+        section: Common equivalence laws
+        teachingHash: bd9fcc94642a47d72a3526157ca1fa70d8f2eaebafe5dcc42f7395d2a75403ac
+    exerciseHash: dfd80232880034e21400984f0a238e7744aab08ebee20658fa3e734da77928c1
+  '111':
+    after: Common rules of inference
+    instructions: Explain your reasoning.
+    prompt:
+      'Identify the premises and conclusion: if it rains, I carry an umbrella. It rains. Therefore I carry
+      an umbrella.'
+    answer: 'Premises: if it rains, I carry an umbrella; it rains. Conclusion: I carry an umbrella.'
+    concepts:
+      - Premises and conclusion of an argument
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: propositional-logic
+        section: Arguments, premises, and conclusions
+        teachingHash: 7a4c0cb9494c6c1854f333602e3cfb4ac33fa0f99a141292be511114c516e07b
+    exerciseHash: 66fafeb4cf3cad95c4ecb8d511357ef60f97e4a55f55490e691d8d66cd44b5c7
+  '127':
+    after: Satisfiability
+    instructions: Explain your reasoning.
+    concepts:
+      - Satisfiable and unsatisfiable formulas
+      - conjunction and negation
+    requires:
+      - lesson: propositional-logic
+        section: 'Negation: NOT'
+        teachingHash: 2d1b9d610d1c0bbdf118d1b7baec07cc7b2d5420d13d0d6a38102c1667bb4eca
+      - lesson: propositional-logic
+        section: 'Conjunction: AND'
+        teachingHash: 6107c77cb563ea43ce09750d066da05ec98ebcda2d11bd654764bae21fe1630d
+      - lesson: propositional-logic
+        section: Satisfiability
+        teachingHash: de92bf07765e22eaa8f411b46f272a9dab6868dffa30159bcf8b1c9568c6b5d1
+    exerciseHash: 62e1037eaf6e2d230676fd5f55bd83d1fafdce1b5298c9e63dcc416355d7ae46
+  '152':
+    after: A first proof by contrapositive
+    instructions: Explain your reasoning.
+    concepts:
+      - Contrapositive proof
+      - odd integer representation
+      - square algebra
+    requires:
+      - lesson: propositional-logic
+        section: Converse, inverse, and contrapositive
+        teachingHash: 5d3a5e44d5c1d82bf9f67a519038d849808503285b4941230cdb4f67e57639c0
+      - lesson: propositional-logic
+        section: A first proof by contrapositive
+        teachingHash: e16f46c5f3c3dcca83fb8a622530231da7711c14fe20676c73882de61d1c002e
+    exerciseHash: 02cdcf9ac2ed94fcc48319926d95176534c29d69b7f9e55b5d3782f5ef1a8121
+predicates-and-quantifiers:
+  '1':
+    after: Predicates and substitution
+    instructions: "Use the integer domain $\\mathbb Z$ and the predicate $P(x): x>3$."
+    concepts:
+      - Integer domain
+      - predicate
+      - substitution
+      - truth value
+    requires:
+      - lesson: propositional-logic
+        section: Propositions
+        teachingHash: a376fda305d5d9549fab54b5462776b673cef53bb03ee26b8754504f04ff4b01
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Predicates and substitution
+        teachingHash: 3a618694725ac883102f7bfc24a36dc19d9eeb5b6c41a88ee444cbf38dc17107
+    exerciseHash: 97bc353a8650b1abad21387f4a3032a48a285312f984b4ef86bccba07a5cb356
+  '11':
+    after: 'Universal quantification: for every'
+    instructions: Use exactly $D=\{-2,-1,0,1,2\}$. Check every allowed value and explain whether the statement is true.
+    concepts:
+      - Finite domain
+      - universal quantifier
+      - exhaustive truth check
+    requires:
+      - lesson: propositional-logic
+        section: Propositions
+        teachingHash: a376fda305d5d9549fab54b5462776b673cef53bb03ee26b8754504f04ff4b01
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Predicates and substitution
+        teachingHash: 3a618694725ac883102f7bfc24a36dc19d9eeb5b6c41a88ee444cbf38dc17107
+      - lesson: predicates-and-quantifiers
+        section: 'Universal quantification: for every'
+        teachingHash: 3776104ab3934d9034771959997b1b1223309dccdfa72d32f296de1674d74b69
+    exerciseHash: 23ead50c96ab32e2d17df427942455dec9fd8aabae82ba9024b990195c6ebfed
+  '21':
+    after: Translating all, some, none, and only
+    instructions:
+      The domain is all people. Let $S(x)$ mean "$x$ is a student" and $C(x)$ mean "$x$ owns a
+      computer." Translate the sentence into a quantified formula.
+    concepts:
+      - People domain
+      - predicates
+      - universal implication
+      - scope
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Predicates and substitution
+        teachingHash: 3a618694725ac883102f7bfc24a36dc19d9eeb5b6c41a88ee444cbf38dc17107
+      - lesson: predicates-and-quantifiers
+        section: 'Universal quantification: for every'
+        teachingHash: 3776104ab3934d9034771959997b1b1223309dccdfa72d32f296de1674d74b69
+      - lesson: predicates-and-quantifiers
+        section: Scope, free variables, and bound variables
+        teachingHash: c2eed2bbfa5d32a5d47f526f44ccb7e79a5df083811d177a8d33f85b7cd3906b
+      - lesson: predicates-and-quantifiers
+        section: Translating all, some, none, and only
+        teachingHash: f6452ca5afd72dd25c2fa5cb3f45693c6b038d7046d7657fc0fed0110e2cc318
+    exerciseHash: 9b18b8d05cd8dda805b6a716af491f55b29354e73d70414fcb1d373b6ebaa771
+  '41':
+    after: Negating quantified statements
+    instructions:
+      Use a nonempty domain. Rewrite so that the negation applies to $P(x)$ rather than to the
+      quantified statement.
+    concepts:
+      - Negation
+      - universal and existential quantification
+      - quantifier negation
+    requires:
+      - lesson: propositional-logic
+        section: 'Negation: NOT'
+        teachingHash: 2d1b9d610d1c0bbdf118d1b7baec07cc7b2d5420d13d0d6a38102c1667bb4eca
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Predicates and substitution
+        teachingHash: 3a618694725ac883102f7bfc24a36dc19d9eeb5b6c41a88ee444cbf38dc17107
+      - lesson: predicates-and-quantifiers
+        section: 'Universal quantification: for every'
+        teachingHash: 3776104ab3934d9034771959997b1b1223309dccdfa72d32f296de1674d74b69
+      - lesson: predicates-and-quantifiers
+        section: 'Existential quantification: there exists'
+        teachingHash: 3b35a80d181f22675d692678efcfcab74291ef1f2e1b495d4fb4476928f70a95
+      - lesson: predicates-and-quantifiers
+        section: Negating quantified statements
+        teachingHash: e0bee773c7ac74765259e8e3513bf1d48d584bd6476b0a7ac55750fa467f7fdf
+    exerciseHash: 7b30d8785ad538fda1babc77237c6f1e10731a7c20979ab093923fcd5729918d
+  '51':
+    after: Several variables and quantifier order
+    instructions: Both variables range over $\mathbb Z$. If the statement is true, explain how to choose $y$ for each $x$.
+    concepts:
+      - Integer domain
+      - nested quantifiers
+      - dependent witness
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Predicates and substitution
+        teachingHash: 3a618694725ac883102f7bfc24a36dc19d9eeb5b6c41a88ee444cbf38dc17107
+      - lesson: predicates-and-quantifiers
+        section: 'Universal quantification: for every'
+        teachingHash: 3776104ab3934d9034771959997b1b1223309dccdfa72d32f296de1674d74b69
+      - lesson: predicates-and-quantifiers
+        section: 'Existential quantification: there exists'
+        teachingHash: 3b35a80d181f22675d692678efcfcab74291ef1f2e1b495d4fb4476928f70a95
+      - lesson: predicates-and-quantifiers
+        section: Several variables and quantifier order
+        teachingHash: 68ef50a5696e6d3bfc553eab9e6fee3529f4bcfe7d94675af0bd23d5e72e1e46
+    exerciseHash: f0c933530cd0f730794dc0df809840b20aacbdd694335ff4e7705cc0d0713239
+  '71':
+    after: Existence, uniqueness, and exactly one
+    instructions: Explain your reasoning.
+    concepts:
+      - Existence and uniqueness of an integer solution
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Existence, uniqueness, and exactly one
+        teachingHash: 7a6caaf8e2a1e5e64b1b7ac49a3c751736069780e4a04e9d4b41c3fac2b95559
+    exerciseHash: a6c333f9c0e19b4d2632c3f080ce86b300284ac5ba95c3c395ae3124ab5e6ecf
+  '81':
+    after: Which distributions are valid?
+    instructions: Use arbitrary predicates $P,Q$ on a nonempty domain. Explain what each side requires of every object.
+    concepts:
+      - Quantified equivalence
+      - conjunction
+      - distribution of universal quantification
+    requires:
+      - lesson: propositional-logic
+        section: 'Conjunction: AND'
+        teachingHash: 6107c77cb563ea43ce09750d066da05ec98ebcda2d11bd654764bae21fe1630d
+      - lesson: propositional-logic
+        section: Logical equivalence
+        teachingHash: 3296450ea57b4c1580e3e1ac7244eac75e619c57b9cc69dd4df44c49be5db6ec
+      - lesson: predicates-and-quantifiers
+        section: 'Universal quantification: for every'
+        teachingHash: 3776104ab3934d9034771959997b1b1223309dccdfa72d32f296de1674d74b69
+      - lesson: predicates-and-quantifiers
+        section: Which distributions are valid?
+        teachingHash: 9fab0b6ad98ab8fec1f2300f841b5502eea5d1d3a1c836a8313f2c8958bb4b75
+    exerciseHash: 0a228437784c66f1eac8c5ea8c413c1f54412f7a951cf4834f8bdfe690050c53
+  '91':
+    after: Valid reasoning with quantifiers
+    instructions: The domain is nonempty and $a$ belongs to it. Explain whether the conclusion follows from the premise.
+    concepts:
+      - Universal instantiation
+      - named domain element
+      - validity
+      - therefore notation
+    requires:
+      - lesson: propositional-logic
+        section: Arguments, premises, and conclusions
+        teachingHash: 7a4c0cb9494c6c1854f333602e3cfb4ac33fa0f99a141292be511114c516e07b
+      - lesson: predicates-and-quantifiers
+        section: 'Universal quantification: for every'
+        teachingHash: 3776104ab3934d9034771959997b1b1223309dccdfa72d32f296de1674d74b69
+      - lesson: predicates-and-quantifiers
+        section: Valid reasoning with quantifiers
+        teachingHash: ddd04979ebd096adda3d68265ca19f63d91699ece463fe4b1503001e0a539478
+    exerciseHash: a7fb66187b610b39264159223332bb47882c68869d2d72953cd530b2852f87ce
+  '101':
+    after: Relationships in ordinary language
+    instructions:
+      Use $D=\{a,b,c\}$, with three distinct objects. The true cases are exactly $R(a,a)$, $R(a,b)$,
+      $R(b,c)$, and $R(c,b)$. Every other choice of inputs makes $R$ false.
+    answer: 'True: $R(a,b)$ is one of the stated true cases.'
+    concepts:
+      - Finite domain
+      - two-input predicate
+      - truth of named cases
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Predicates and substitution
+        teachingHash: 3a618694725ac883102f7bfc24a36dc19d9eeb5b6c41a88ee444cbf38dc17107
+      - lesson: predicates-and-quantifiers
+        section: Relationships in ordinary language
+        teachingHash: db93e067521adbf302992241dbc037247a6aa2d71fc741a2cc7d61c0bd64f108
+    exerciseHash: 77271bab882cac5cc980c288fd02d8f2ea5ecf5cd113e65304ccb1bcb6947561
+  '111':
+    after: Writing a quantified proof
+    instructions: Explain your reasoning.
+    concepts:
+      - Arbitrary integer
+      - chosen witness
+      - quantified proof
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: 'Existential quantification: there exists'
+        teachingHash: 3b35a80d181f22675d692678efcfcab74291ef1f2e1b495d4fb4476928f70a95
+      - lesson: predicates-and-quantifiers
+        section: Valid reasoning with quantifiers
+        teachingHash: ddd04979ebd096adda3d68265ca19f63d91699ece463fe4b1503001e0a539478
+      - lesson: predicates-and-quantifiers
+        section: Writing a quantified proof
+        teachingHash: cff9189df8be648e81ac95540608871507f3dfcc31503f0624904154711cf6cf
+    exerciseHash: 739e54f063d8760ab5e95a5cae28744a184c87291162b1fe9a962768b1a77c30
+sets-and-set-operations:
+  '1':
+    after: Membership and subsets are different
+    instructions: Explain your reasoning.
+    concepts:
+      - Set-builder notation
+      - integer membership
+      - listing a finite set
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: sets-and-set-operations
+        section: Elements, descriptions, and equality
+        teachingHash: 49d192ca278977af1211a6cdf0cdfc23b13af0c338d1cfef94f7aad540107535
+    exerciseHash: f90fb6bbba410cfb828d90d0511840a502cbbe9fe0cf06516e7644aa1902087d
+  '11':
+    after: Union, intersection, difference, and complement
+    instructions: Explain your reasoning.
+    concepts:
+      - Sets
+      - union
+      - universe
+      - membership
+    requires:
+      - lesson: sets-and-set-operations
+        section: Elements, descriptions, and equality
+        teachingHash: 49d192ca278977af1211a6cdf0cdfc23b13af0c338d1cfef94f7aad540107535
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+    exerciseHash: 45c9bec45ba0eb0da4aa66158c1722dedf18e32caecf1b2c6555e49da5adb2e4
+  '21':
+    after: Laws of set operations
+    instructions: Explain your reasoning.
+    concepts:
+      - Intersection
+      - subset
+      - arbitrary-element proof
+    requires:
+      - lesson: sets-and-set-operations
+        section: Membership and subsets are different
+        teachingHash: ae185324ea07063f6bf600266b0ba9381c1da7d61c6b0d2dc046edc08eeb3e5b
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+      - lesson: sets-and-set-operations
+        section: Proving inclusions and identities
+        teachingHash: afd564194407ee6771c7cda9bb5195dd6c089b7d088986c81bdd1786205fb986
+    exerciseHash: 85ab19316bc94447d23f825c31489f94e7beaee0ae1370ca71fd22bb4fa23e2d
+  '31':
+    after: Ordered pairs and Cartesian products
+    instructions: Explain your reasoning.
+    concepts:
+      - Power set
+      - subsets
+      - empty set
+      - nested braces
+    requires:
+      - lesson: sets-and-set-operations
+        section: Elements, descriptions, and equality
+        teachingHash: 49d192ca278977af1211a6cdf0cdfc23b13af0c338d1cfef94f7aad540107535
+      - lesson: sets-and-set-operations
+        section: Membership and subsets are different
+        teachingHash: ae185324ea07063f6bf600266b0ba9381c1da7d61c6b0d2dc046edc08eeb3e5b
+      - lesson: sets-and-set-operations
+        section: Power sets
+        teachingHash: 638602f2bfaa8b5f9038e540633fc99ee5331c3077867670fa5a12e5f6f74bca
+    exerciseHash: a0cd3f9bc7c2caa543259866109c375484f0db71284faef71e7abeb85a2ae793
+  '41':
+    after: Counting unions without double-counting
+    instructions: Explain your reasoning.
+    concepts:
+      - Finite set sizes
+      - union
+      - intersection
+      - inclusion-exclusion
+    requires:
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+      - lesson: sets-and-set-operations
+        section: Ordered pairs and Cartesian products
+        teachingHash: c60560f415339c3d3f0f803dc9a928fa96b39c9dff572d079f78ed6f62ff79b1
+      - lesson: sets-and-set-operations
+        section: Counting unions without double-counting
+        teachingHash: a0ae40fe9c035e47785d08433575ff2c72387783e44537b9013dca027ff73762
+    exerciseHash: 8425f72ec1f1f4cdcee2f423ffa6688c16f1ee8469cdacafa86ff9921c047623
+  '51':
+    after: Partitions and indexed families
+    instructions: Explain your reasoning.
+    concepts:
+      - Partition
+      - nonempty blocks
+      - disjointness
+      - coverage
+    requires:
+      - lesson: sets-and-set-operations
+        section: Elements, descriptions, and equality
+        teachingHash: 49d192ca278977af1211a6cdf0cdfc23b13af0c338d1cfef94f7aad540107535
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+      - lesson: sets-and-set-operations
+        section: Partitions and indexed families
+        teachingHash: f8dc92e8551e180db87a32f58308ced20319e2d4823c28300f487d1b9adab727
+    exerciseHash: c9f6da97bb849903bcf08f3bbdc2621bbe98186766bb081112993d19b2aef395
+  '61':
+    after: A worked access-policy example
+    instructions: Take complements relative to the set $U$ of all users.
+    concepts:
+      - Universe
+      - subset
+      - intersection
+      - complement
+      - access policy
+    requires:
+      - lesson: sets-and-set-operations
+        section: Membership and subsets are different
+        teachingHash: ae185324ea07063f6bf600266b0ba9381c1da7d61c6b0d2dc046edc08eeb3e5b
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+      - lesson: sets-and-set-operations
+        section: A worked access-policy example
+        teachingHash: 0ccb1e686de32d02b08d8bdb8954ab844809a526d1b3da8d2af1ef169dd47b6f
+    exerciseHash: fb94b0b4dabe136bf546547f926b6be7c38a7090c0ad481dc3ad0dba12ad6319
+relations:
+  '1':
+    after: Relations as sets of ordered pairs
+    instructions: Explain your reasoning.
+    concepts:
+      - Ordered pairs
+      - Cartesian product
+      - cardinality
+      - relation
+    requires:
+      - lesson: sets-and-set-operations
+        section: Ordered pairs and Cartesian products
+        teachingHash: c60560f415339c3d3f0f803dc9a928fa96b39c9dff572d079f78ed6f62ff79b1
+      - lesson: relations
+        section: Relations as sets of ordered pairs
+        teachingHash: 07e5fd2db67552690fc16acd38ea6a06fbff33357db19d17df7ef9e045ef3799
+    exerciseHash: 96a2afc203121167768448b320d5ca90ee7fb93b2decb7154fd424fc0ae8382c
+  '11':
+    after: A complete finite check
+    instructions: Explain your reasoning.
+    concepts:
+      - Relation on a set
+      - reflexive
+      - symmetric
+      - antisymmetric
+      - transitive
+    requires:
+      - lesson: relations
+        section: Relations as sets of ordered pairs
+        teachingHash: 07e5fd2db67552690fc16acd38ea6a06fbff33357db19d17df7ef9e045ef3799
+      - lesson: relations
+        section: Four fundamental properties
+        teachingHash: 5f5233750943145bb7b90063f02edd538df4f19627325a675bba74ff1739164e
+      - lesson: relations
+        section: A complete finite check
+        teachingHash: 668a9810490389f5505b84e94b4fe994cf6c12cb32a5e8270dc44021e027b3fa
+    exerciseHash: 6c2b37b4796b45fa0653349e2fc1e0fd578e9694740e27ecddf1fb3dfd4dd7cf
+  '21':
+    after: Vacuous cases and related properties
+    instructions: Explain your reasoning.
+    answer: "Reflexive, antisymmetric, and transitive. Not symmetric: $1\\leq2$ is true but $2\\leq1$ is false."
+    concepts:
+      - Numerical comparison relation
+      - four relation properties
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: relations
+        section: Relations as sets of ordered pairs
+        teachingHash: 07e5fd2db67552690fc16acd38ea6a06fbff33357db19d17df7ef9e045ef3799
+      - lesson: relations
+        section: Four fundamental properties
+        teachingHash: 5f5233750943145bb7b90063f02edd538df4f19627325a675bba74ff1739164e
+      - lesson: relations
+        section: A complete finite check
+        teachingHash: 668a9810490389f5505b84e94b4fe994cf6c12cb32a5e8270dc44021e027b3fa
+      - lesson: relations
+        section: Vacuous cases and related properties
+        teachingHash: 44ffc801b9df3418a63746c2fcf10d6f3f7f26ca71a5106aa452581306ca91d9
+    exerciseHash: cd3f4001b4b9b0ad8bb3f6b6f8704c9ad5dde87a6754f190983340c5a2b412b9
+  '31':
+    after: Equivalence classes and partitions
+    instructions: Explain your reasoning.
+    concepts:
+      - Relation notation
+      - divisibility
+      - congruence criterion
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: relations
+        section: Relations as sets of ordered pairs
+        teachingHash: 07e5fd2db67552690fc16acd38ea6a06fbff33357db19d17df7ef9e045ef3799
+      - lesson: relations
+        section: Equivalence relations
+        teachingHash: 3178145deed828f7b673bee43f5a37e62a64e4281c49849888b1959fdb4e9cff
+    exerciseHash: e6bbeb56cf4c2e06c4ab2dacddc43c72c4be20e034f858420833d7214a4fa453
+  '41':
+    after: Hasse diagrams and extreme elements
+    instructions: Explain your reasoning.
+    concepts:
+      - Power set
+      - subset inclusion
+      - partial order
+      - total order
+      - incomparable
+    requires:
+      - lesson: sets-and-set-operations
+        section: Membership and subsets are different
+        teachingHash: ae185324ea07063f6bf600266b0ba9381c1da7d61c6b0d2dc046edc08eeb3e5b
+      - lesson: sets-and-set-operations
+        section: Power sets
+        teachingHash: 638602f2bfaa8b5f9038e540633fc99ee5331c3077867670fa5a12e5f6f74bca
+      - lesson: relations
+        section: Four fundamental properties
+        teachingHash: 5f5233750943145bb7b90063f02edd538df4f19627325a675bba74ff1739164e
+      - lesson: relations
+        section: Partial and total orders
+        teachingHash: d35ff442ddefebf34166ae9b355aa72589b16f2c3ec6e9173cf2090ae5c0674b
+    exerciseHash: dbd30754b982f2e20240240f659fb6f906dc4550dd4122325e38b962cf37c42d
+  '51':
+    after: Inverses and composition of relations
+    instructions: Explain your reasoning.
+    concepts:
+      - Relation composition
+      - ordered pairs
+      - intermediate object
+    requires:
+      - lesson: sets-and-set-operations
+        section: Ordered pairs and Cartesian products
+        teachingHash: c60560f415339c3d3f0f803dc9a928fa96b39c9dff572d079f78ed6f62ff79b1
+      - lesson: relations
+        section: Relations as sets of ordered pairs
+        teachingHash: 07e5fd2db67552690fc16acd38ea6a06fbff33357db19d17df7ef9e045ef3799
+      - lesson: relations
+        section: Inverses and composition of relations
+        teachingHash: 3b73eaaed4a48d6416b47c674846f7b5ac260967fb6057ea8cf540cafcb30fbc
+    exerciseHash: 504739719d421e52f98e53c673bd34a98d79b8ddb8200c85df7377bb63deb05b
+  '61':
+    after: Building closures without losing the meaning
+    instructions: Explain your reasoning.
+    concepts:
+      - Reflexivity
+      - loops
+      - reflexive closure
+    requires:
+      - lesson: relations
+        section: Relations as sets of ordered pairs
+        teachingHash: 07e5fd2db67552690fc16acd38ea6a06fbff33357db19d17df7ef9e045ef3799
+      - lesson: relations
+        section: Four fundamental properties
+        teachingHash: 5f5233750943145bb7b90063f02edd538df4f19627325a675bba74ff1739164e
+      - lesson: relations
+        section: Building closures without losing the meaning
+        teachingHash: 613fe023f467b46f2600bbe108ab0e363e9f8cdeeff2994af6b0cb05902d2b85
+    exerciseHash: badfcbccb0037fdda6c6d103b7b34873f0c57d291a00af84770890853285a08c
+functions:
+  '1':
+    after: What a function specifies
+    instructions: Explain your reasoning.
+    concepts:
+      - Function
+      - domain
+      - codomain
+      - exactly one output
+    requires:
+      - lesson: sets-and-set-operations
+        section: Ordered pairs and Cartesian products
+        teachingHash: c60560f415339c3d3f0f803dc9a928fa96b39c9dff572d079f78ed6f62ff79b1
+      - lesson: relations
+        section: Relations as sets of ordered pairs
+        teachingHash: 07e5fd2db67552690fc16acd38ea6a06fbff33357db19d17df7ef9e045ef3799
+      - lesson: functions
+        section: What a function specifies
+        teachingHash: cd97f507b4ff8296fce36e2a84e45cf1b403556216783f77b1ed1ff4ab97818e
+    exerciseHash: 9d18f4f6472336ebdfe635757a7839496a80689597b299fc419e16ac343890a1
+  '11':
+    after: Image and preimage
+    instructions: Explain your reasoning.
+    concepts:
+      - Integer function
+      - image of a subset
+      - evaluation
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: sets-and-set-operations
+        section: Elements, descriptions, and equality
+        teachingHash: 49d192ca278977af1211a6cdf0cdfc23b13af0c338d1cfef94f7aad540107535
+      - lesson: functions
+        section: What a function specifies
+        teachingHash: cd97f507b4ff8296fce36e2a84e45cf1b403556216783f77b1ed1ff4ab97818e
+      - lesson: functions
+        section: Image and preimage
+        teachingHash: d47d07cd1a7a538a300d383a887a0cd39bee865569cd6c74cd5ba54cef056789
+    exerciseHash: 943c82c8a07dba4fe65006f2c06310245ee262ae71ac32145d0580c80dc82879
+  '21':
+    after: Surjective functions
+    instructions: Explain your reasoning.
+    concepts:
+      - Domain and codomain
+      - injective
+      - surjective
+      - missing preimage
+    requires:
+      - lesson: functions
+        section: What a function specifies
+        teachingHash: cd97f507b4ff8296fce36e2a84e45cf1b403556216783f77b1ed1ff4ab97818e
+      - lesson: functions
+        section: Image and preimage
+        teachingHash: d47d07cd1a7a538a300d383a887a0cd39bee865569cd6c74cd5ba54cef056789
+      - lesson: functions
+        section: Injective functions
+        teachingHash: c46e38788ef56fc3b54aaa8dc0e052bc2b7ac14aff2a0618e7733664da64e1c1
+      - lesson: functions
+        section: Surjective functions
+        teachingHash: 5d9b4e25bc35fcc2636f3e41b4f00e0c247b55e3e7a596be99f0a80ebc1b3253
+    exerciseHash: 2263d5144fbe4547a9760b301e34d7a69d58f0f4fb87d2237c3001f443f09963
+  '31':
+    after: Composition and types
+    instructions: Explain your reasoning.
+    concepts:
+      - Inverse function
+      - real domain and codomain
+      - both compositions
+    requires:
+      - lesson: functions
+        section: What a function specifies
+        teachingHash: cd97f507b4ff8296fce36e2a84e45cf1b403556216783f77b1ed1ff4ab97818e
+      - lesson: functions
+        section: Bijections and inverse functions
+        teachingHash: d793b5e4eacf39b164502691eb5ca0069119ae27fae40d04fdbdb669b93c7be1
+      - lesson: functions
+        section: Composition and types
+        teachingHash: ecaf6daf8217276fce7c2f0bf7c6f9c0d66d5f6f841610220cb2a994c90712cc
+    exerciseHash: 68c90fc25b358715f104c690b8949f0536a24602104c603b60683a5c236d569c
+  '41':
+    after: Composition and types
+    instructions: Explain your reasoning.
+    concepts:
+      - Function composition
+      - right-to-left evaluation
+      - associativity
+    requires:
+      - lesson: functions
+        section: What a function specifies
+        teachingHash: cd97f507b4ff8296fce36e2a84e45cf1b403556216783f77b1ed1ff4ab97818e
+      - lesson: functions
+        section: Composition and types
+        teachingHash: ecaf6daf8217276fce7c2f0bf7c6f9c0d66d5f6f841610220cb2a994c90712cc
+    exerciseHash: a0425c01b6a73f2ecff3f1642d70cb9bf0fd01f4c0947a4aeaadcb699d4935df
+  '51':
+    after: Restrictions, empty cases, and finite sizes
+    instructions: Explain your reasoning.
+    concepts:
+      - Empty set
+      - empty function
+      - injectivity
+      - collisions
+    requires:
+      - lesson: sets-and-set-operations
+        section: Elements, descriptions, and equality
+        teachingHash: 49d192ca278977af1211a6cdf0cdfc23b13af0c338d1cfef94f7aad540107535
+      - lesson: functions
+        section: What a function specifies
+        teachingHash: cd97f507b4ff8296fce36e2a84e45cf1b403556216783f77b1ed1ff4ab97818e
+      - lesson: functions
+        section: Injective functions
+        teachingHash: c46e38788ef56fc3b54aaa8dc0e052bc2b7ac14aff2a0618e7733664da64e1c1
+      - lesson: functions
+        section: Restrictions, empty cases, and finite sizes
+        teachingHash: 5eed638a7ac3570ac74d741864e282d40257ebc3ec439efb6efe2ac8645463ae
+    exerciseHash: a12986350516096eccf1fed3e6706a76abfe3f48493b30e1d2bdcce120804e23
+  '61':
+    after: Floor and ceiling functions
+    instructions: Explain your reasoning.
+    concepts:
+      - Floor and ceiling notation and definitions
+    requires:
+      - lesson: functions
+        section: Floor and ceiling functions
+        teachingHash: fc4ea26a8e26a1f4efa316cf8e7a594bc007866fcd90e938220204f124945e69
+    exerciseHash: 6433d15f744a91b25c8555f95ba1dd6b2c301bcd1bc18868667c2d7f5ec2c2f2
+sequences-and-summations:
+  '1':
+    after: Recursive definitions and initial conditions
+    instructions: Explain your reasoning.
+    concepts:
+      - Sequence
+      - index
+      - explicit formula
+      - zero-based starting index
+    requires:
+      - lesson: functions
+        section: What a function specifies
+        teachingHash: cd97f507b4ff8296fce36e2a84e45cf1b403556216783f77b1ed1ff4ab97818e
+      - lesson: sequences-and-summations
+        section: A sequence is an indexed function
+        teachingHash: 58f8b17d728c59b8480698bbcfb59b9e79da4e9589c062cd792543fda074566f
+    exerciseHash: 86f4da89e0f9efbfa4d5d239c4cd663b2095d53c6ce10f441e28d568751cc76a
+  '11':
+    after: Arithmetic and geometric sequences
+    instructions: Use nonnegative integer indices.
+    concepts:
+      - Arithmetic sequence
+      - initial term
+      - common difference
+    requires:
+      - lesson: sequences-and-summations
+        section: A sequence is an indexed function
+        teachingHash: 58f8b17d728c59b8480698bbcfb59b9e79da4e9589c062cd792543fda074566f
+      - lesson: sequences-and-summations
+        section: Arithmetic and geometric sequences
+        teachingHash: 434aafa3a9ad658b37007e4e519cfbe9fb85473b60664ee2667e87df04db3b32
+    exerciseHash: 68b382732cc2a99a82284f1491ab2046913072c907667eecf8e2ca6af7465825
+  '21':
+    after: Deriving arithmetic sums
+    instructions: Explain your reasoning.
+    concepts:
+      - Summation symbol
+      - inclusive bounds
+      - expansion
+    requires:
+      - lesson: sequences-and-summations
+        section: A sequence is an indexed function
+        teachingHash: 58f8b17d728c59b8480698bbcfb59b9e79da4e9589c062cd792543fda074566f
+      - lesson: sequences-and-summations
+        section: Summation notation and term counts
+        teachingHash: 9854d0bdd51f4f4f6ec248a384112994ba4e417d81009f284f3b372197d34c0b
+    exerciseHash: 5157a9d0b0603f679ed7246c3f01b2777ba2d27ed79d03c635b3c013e5ba8c92
+  '31':
+    after: Deriving finite geometric sums
+    instructions: Explain your reasoning.
+    concepts:
+      - Summation
+      - finite geometric sum
+      - exponent and term count
+    requires:
+      - lesson: sequences-and-summations
+        section: Arithmetic and geometric sequences
+        teachingHash: 434aafa3a9ad658b37007e4e519cfbe9fb85473b60664ee2667e87df04db3b32
+      - lesson: sequences-and-summations
+        section: Summation notation and term counts
+        teachingHash: 9854d0bdd51f4f4f6ec248a384112994ba4e417d81009f284f3b372197d34c0b
+      - lesson: sequences-and-summations
+        section: Deriving finite geometric sums
+        teachingHash: 32f0a3938661d6c024bebaa1ac700af47c0b502846926283ec7958a10b98ad3e
+    exerciseHash: a4bd510ea0512df3d0316c8a684470078aeee194e6daf2e2afd3f27be483878b
+  '41':
+    after: Reindexing and telescoping
+    instructions: Explain your reasoning.
+    concepts:
+      - Summation bounds
+      - dummy index
+      - reindexing
+    requires:
+      - lesson: sequences-and-summations
+        section: Summation notation and term counts
+        teachingHash: 9854d0bdd51f4f4f6ec248a384112994ba4e417d81009f284f3b372197d34c0b
+      - lesson: sequences-and-summations
+        section: Reindexing and telescoping
+        teachingHash: 05bd005f9bca6d206f28f74aee2d347479875d89638f6e6a8a5fc17b7338ecb2
+    exerciseHash: e523f2a1773695f3618f030190630ee5ee80f4e5a86c787325b28a083ff2da1a
+  '51':
+    after: Products and factorials
+    instructions: Explain your reasoning.
+    concepts:
+      - Finite product
+      - product symbol
+      - factorial
+    requires:
+      - lesson: sequences-and-summations
+        section: Products and factorials
+        teachingHash: 4d78947145b5caf70de94e4dccb17f8364aa4a9b373d9e2ffeb29afda9665787
+    exerciseHash: eeddba4bad9f9b2acfdb3c3b023f1f6a4fc4a81e99fb2ce79452a1be129384f0
+  '61':
+    after: Bounding sums
+    instructions: Explain your reasoning.
+    concepts:
+      - Nested sums
+      - fixed outer index
+      - triangular index pairs
+    requires:
+      - lesson: sets-and-set-operations
+        section: Ordered pairs and Cartesian products
+        teachingHash: c60560f415339c3d3f0f803dc9a928fa96b39c9dff572d079f78ed6f62ff79b1
+      - lesson: sequences-and-summations
+        section: Summation notation and term counts
+        teachingHash: 9854d0bdd51f4f4f6ec248a384112994ba4e417d81009f284f3b372197d34c0b
+      - lesson: sequences-and-summations
+        section: Nested sums and counting iterations
+        teachingHash: 3fee893e6ee7e74579d432f89aa5428ed029ab7dd8a6347ce5e46cac6ca17e23
+    exerciseHash: 2004f32478b19d34e5aa9ac3b6d8e38f9cd97dd4cc142d03fe5e7eb253a5b483
+  '71':
+    after: Translating loop bounds into sums
+    instructions: Explain your reasoning.
+    concepts:
+      - Nested loops
+      - empty index range
+      - arithmetic sum
+      - inclusive bounds
+    requires:
+      - lesson: sequences-and-summations
+        section: Summation notation and term counts
+        teachingHash: 9854d0bdd51f4f4f6ec248a384112994ba4e417d81009f284f3b372197d34c0b
+      - lesson: sequences-and-summations
+        section: Deriving arithmetic sums
+        teachingHash: 167dd7807b1ef535c61cca11cf6d70fab71e8efaabddc1a2a116b1e81c4d6f94
+      - lesson: sequences-and-summations
+        section: Nested sums and counting iterations
+        teachingHash: 3fee893e6ee7e74579d432f89aa5428ed029ab7dd8a6347ce5e46cac6ca17e23
+      - lesson: sequences-and-summations
+        section: Translating loop bounds into sums
+        teachingHash: 71ef091efe2e60de4a78b368c9942e490236d1216042519a8e831c41a3cb2458
+    exerciseHash: d1a3caf83d13f00c363cbc0ceca9d3c6e2f1ae0352adecffb01af0dfb93a89b4
+direct-proof:
+  '1':
+    after: Unpack definitions
+    instructions: Explain your reasoning.
+    concepts:
+      - Arbitrary integers
+      - hypotheses and conclusion
+      - even and odd definitions
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: predicates-and-quantifiers
+        section: Writing a quantified proof
+        teachingHash: cff9189df8be648e81ac95540608871507f3dfcc31503f0624904154711cf6cf
+      - lesson: direct-proof
+        section: Read the claim before choosing a method
+        teachingHash: f170927f6791f74f1d34aeebc62aae1fdf54bfd7b753b63c14436b9d145a0b60
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+    exerciseHash: cea3b9b323b09787a5b20fc85223fd1af983eb6f98ca5f864087e679228bbc08
+  '11':
+    after: 'Worked proof: the sum of two odd integers'
+    instructions: Explain your reasoning.
+    concepts:
+      - Direct proof
+      - separate integer representations
+      - evenness
+    requires:
+      - lesson: direct-proof
+        section: Read the claim before choosing a method
+        teachingHash: f170927f6791f74f1d34aeebc62aae1fdf54bfd7b753b63c14436b9d145a0b60
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: direct-proof
+        section: 'Worked proof: the sum of two odd integers'
+        teachingHash: 2b41fb2979d962c2a91478dc2212cd5123fad26ae1d0e2f84e73bfe2c438d742
+    exerciseHash: c7402dc5ff2cc5ef4d3094744a10c53012eae491caa57ca5d3e0cf86fd56c453
+  '21':
+    after: Closure claims
+    instructions: Let $a,b,c$ be integers. Give a proof for every choice satisfying the assumptions.
+    concepts:
+      - Divisibility
+      - integer witnesses
+      - multiplication
+      - transitivity
+    requires:
+      - lesson: relations
+        section: Equivalence relations
+        teachingHash: 3178145deed828f7b673bee43f5a37e62a64e4281c49849888b1959fdb4e9cff
+      - lesson: direct-proof
+        section: Read the claim before choosing a method
+        teachingHash: f170927f6791f74f1d34aeebc62aae1fdf54bfd7b753b63c14436b9d145a0b60
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: direct-proof
+        section: Divisibility and linear combinations
+        teachingHash: 48f0382a5850b348c980aaa466ad03f667c9a604a60b8ae62b2472c511b305c7
+    exerciseHash: 7b5bd7bfdc94dda89c9169d3624f916c3360a48b74ba2c9df891b1b7e1a97f39
+  '31':
+    after: Biconditionals need both directions
+    instructions: Explain your reasoning.
+    concepts:
+      - Set inclusion
+      - intersection and union
+      - arbitrary-element proof
+    requires:
+      - lesson: sets-and-set-operations
+        section: Membership and subsets are different
+        teachingHash: ae185324ea07063f6bf600266b0ba9381c1da7d61c6b0d2dc046edc08eeb3e5b
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+      - lesson: direct-proof
+        section: Set inclusion and equality
+        teachingHash: 4eca7e2263706552ef39d28756a4ce48265ec62cbe60b44156b85e60c3e22248
+    exerciseHash: 3eccc178053c22fb48e49327d829dc545ab577ae6c74bf0d35c92f9bd2462aba
+  '41':
+    after: Constructive existence
+    instructions: Explain your reasoning.
+    answer:
+      Let $n$ be an arbitrary integer. If $n\geq0$, choose $m=2n+2=2(n+1)$; it is an even integer and
+      $m-n=n+2>0$. If $n<0$, choose $m=2$, which is even and greater than $n$. These cases cover every
+      integer.
+    concepts:
+      - Constructive existence
+      - even integer
+      - sign cases
+    requires:
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: direct-proof
+        section: Proof by cases
+        teachingHash: 872fcd4ea90f87f30dca5ba7b3f5fe74f84c020748210103f94a5c3a296915fb
+      - lesson: direct-proof
+        section: Constructive existence
+        teachingHash: da358fb92d1f97608e913a69fddec59b6aae253e3c5acf21accef1f92892b323
+    exerciseHash: 471ef68ec7b289810f76bec77bce736e98c5f2a5dcad861af42b4972b2752e82
+  '51':
+    after: When the claim is false
+    instructions: Explain your reasoning.
+    concepts:
+      - Refutation
+      - counterexample
+      - evenness
+      - sums of even integers
+    requires:
+      - lesson: propositional-logic
+        section: Counterexamples
+        teachingHash: aebc083a8ed8e96b6efeedbd43a34a7b1781fe0863023e5faf81edb7662bac32
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: direct-proof
+        section: 'Worked proof: the sum of two odd integers'
+        teachingHash: 2b41fb2979d962c2a91478dc2212cd5123fad26ae1d0e2f84e73bfe2c438d742
+      - lesson: direct-proof
+        section: When the claim is false
+        teachingHash: fb96535f1d124caa33272f80e107a014646d07be33b3960c4541bb218e63e118
+    exerciseHash: 588460cebe325a8359f96b3b71441f3894b242319fcf653990e5f144faf0ba43
+  '61':
+    after: Diagnose and revise a proof
+    instructions: Explain your reasoning.
+    concepts:
+      - Universal proof versus example
+      - even square
+      - integer witness
+    requires:
+      - lesson: direct-proof
+        section: Read the claim before choosing a method
+        teachingHash: f170927f6791f74f1d34aeebc62aae1fdf54bfd7b753b63c14436b9d145a0b60
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: direct-proof
+        section: Diagnose and revise a proof
+        teachingHash: dc07bf54d9d2ee406946f42a7da8d993d8580df1249a6f2a256a460c895178a2
+    exerciseHash: 8f4d370ad1645d65351e87d67e0f0860e9d0af8caf905322ac6454f2b1b5057f
+proof-by-contrapositive:
+  '1':
+    after: The proof template
+    instructions: Explain your reasoning.
+    concepts:
+      - Implication
+      - contrapositive
+      - equivalence
+    requires:
+      - lesson: propositional-logic
+        section: 'Implication: IF ... THEN'
+        teachingHash: 80e5f986490f899265991eb1433df10e469edb349ec9312e624cffc90bc25290
+      - lesson: propositional-logic
+        section: Converse, inverse, and contrapositive
+        teachingHash: 5d3a5e44d5c1d82bf9f67a519038d849808503285b4941230cdb4f67e57639c0
+      - lesson: propositional-logic
+        section: Logical equivalence
+        teachingHash: 3296450ea57b4c1580e3e1ac7244eac75e619c57b9cc69dd4df44c49be5db6ec
+      - lesson: proof-by-contrapositive
+        section: The equivalence that makes the method work
+        teachingHash: c56a786fd33ba95fddb4f7b7c12c8b60570cc362f6fe7f53fbccfedb980e43d2
+    exerciseHash: 562ebc13b47ac2ea71240a7c5cc7e955f65c99a9dfc49420e3d5501849f44bed
+  '11':
+    after: Negate compound conditions carefully
+    instructions: Explain your reasoning.
+    answer: $(\neg Q\land\neg R)\to\neg P$. For $Q\lor R$ to be false, both $Q$ and $R$ must be false.
+    concepts:
+      - Compound implication
+      - De Morgan law
+      - contrapositive
+    requires:
+      - lesson: propositional-logic
+        section: De Morgan's laws
+        teachingHash: d12b426f875009c2f3a43ed92ee66117ce2ebfac8f1761ff0a0875a86ec1fd05
+      - lesson: proof-by-contrapositive
+        section: The equivalence that makes the method work
+        teachingHash: c56a786fd33ba95fddb4f7b7c12c8b60570cc362f6fe7f53fbccfedb980e43d2
+      - lesson: proof-by-contrapositive
+        section: Negate compound conditions carefully
+        teachingHash: 1dba3f909c69d74cdd66db44f9fafb54ff19541fd7a2b6d2eec8c2165fb46877
+    exerciseHash: 06108b2db952e107ea5b939f5dafb49ddf2445a901c6de5acbfee3cb9b27cb88
+  '21':
+    after: 'Worked proof: an even square has an even root'
+    instructions: Let $n$ be an integer. Prove the claim by contrapositive.
+    concepts:
+      - Contrapositive proof
+      - odd and even
+      - integer square
+    requires:
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: proof-by-contrapositive
+        section: The proof template
+        teachingHash: 80300105bc65140164d75c1bd97a6d2eb72250b1299da6737c01e6fb6f538e96
+      - lesson: proof-by-contrapositive
+        section: 'Worked proof: an even square has an even root'
+        teachingHash: 379e3c4972507df2a42e6ebe8eb21bb7b7afb2519ef6bb85968139d8bcb924a1
+    exerciseHash: 2a16a703225c4a3f676aedb4d7d8c770c66b34b3e80dee4f0c0ed422726efb67
+  '31':
+    after: Divisibility by 3 and remainders
+    instructions: Let $n$ be an integer. Use the cases for its remainder on division by 3.
+    concepts:
+      - Divisibility notation
+      - remainder
+      - proof by cases inside contraposition
+    requires:
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: direct-proof
+        section: Proof by cases
+        teachingHash: 872fcd4ea90f87f30dca5ba7b3f5fe74f84c020748210103f94a5c3a296915fb
+      - lesson: proof-by-contrapositive
+        section: The proof template
+        teachingHash: 80300105bc65140164d75c1bd97a6d2eb72250b1299da6737c01e6fb6f538e96
+      - lesson: proof-by-contrapositive
+        section: Divisibility by 3 and remainders
+        teachingHash: 07eb54337ddd3712b8c15455c88bdb771c85ef9e9f983a3d3575b289ffad4d25
+    exerciseHash: b20621952465e13e15d94563435038d768f7eb50eb79b461ace04e4edd18bdd5
+  '41':
+    after: Contraposition in set and function arguments
+    instructions: Let $A,B$ be subsets of a fixed universe $U$, and take both complements relative to $U$.
+    concepts:
+      - Subset
+      - complement universe
+      - membership
+      - elementwise contraposition
+    requires:
+      - lesson: sets-and-set-operations
+        section: Membership and subsets are different
+        teachingHash: ae185324ea07063f6bf600266b0ba9381c1da7d61c6b0d2dc046edc08eeb3e5b
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+      - lesson: proof-by-contrapositive
+        section: The proof template
+        teachingHash: 80300105bc65140164d75c1bd97a6d2eb72250b1299da6737c01e6fb6f538e96
+      - lesson: proof-by-contrapositive
+        section: Contraposition in set and function arguments
+        teachingHash: 1a9401946bfcb2005ee42a4696a0f87d3787e49503116e88f3c452cf3c07149e
+    exerciseHash: 7040061d13a02b29d1a7ca2d009fcb8e3d4d65f815578ba1ccb1ca379c56eefb
+  '51':
+    after: Irrationality through a rational contrapositive
+    instructions: Explain your reasoning.
+    concepts:
+      - Rational and irrational real numbers
+      - fractional representation
+      - contraposition
+    requires:
+      - lesson: direct-proof
+        section: Closure claims
+        teachingHash: 64611eab66d1304b1c0499802d81dfa58767ec4d36831156e5933d3d41b4be72
+      - lesson: proof-by-contrapositive
+        section: The proof template
+        teachingHash: 80300105bc65140164d75c1bd97a6d2eb72250b1299da6737c01e6fb6f538e96
+      - lesson: proof-by-contrapositive
+        section: Irrationality through a rational contrapositive
+        teachingHash: 5db2b974f9d646e37215a4d5aff34d08c5b2ea12f6a205cae1d823ad7c9dc7f7
+    exerciseHash: d4f71a6f600d3677c91f187b4657fbff6b76f66a14a7b6d053d1827c56fceb85
+  '61':
+    after: Diagnose flawed contrapositive proofs
+    instructions: The root is an integer. Explain which implication the attempted proof assumes and tries to establish.
+    concepts:
+      - Original implication versus converse
+      - contrapositive proof
+      - parity algebra
+    requires:
+      - lesson: propositional-logic
+        section: Converse, inverse, and contrapositive
+        teachingHash: 5d3a5e44d5c1d82bf9f67a519038d849808503285b4941230cdb4f67e57639c0
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: proof-by-contrapositive
+        section: 'Worked proof: an even square has an even root'
+        teachingHash: 379e3c4972507df2a42e6ebe8eb21bb7b7afb2519ef6bb85968139d8bcb924a1
+      - lesson: proof-by-contrapositive
+        section: Diagnose flawed contrapositive proofs
+        teachingHash: a11666d898dba40b2d5e62b6284b7e2b8ca6ea761c2cbf0d3a1546178322675f
+    exerciseHash: def926da70f1c46afcb9c2d03614caef44443f9e17164e7724a7ee2cb85dc7a3
+proof-by-contradiction:
+  '1':
+    after: The logical structure
+    instructions: Explain your reasoning.
+    concepts:
+      - Negating nested quantifiers
+      - integer domain
+      - temporary contradiction assumption
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Domains come first
+        teachingHash: 73f4b6351bc84c0e897379cde52f24c2f30e4f2e5fdae070c51e056e9e669ff0
+      - lesson: predicates-and-quantifiers
+        section: Negating nested quantifiers
+        teachingHash: 123799f21b18d242c730f2f1679f2892d8fc0c14aedcd60fffe65fd014fbfc60
+      - lesson: proof-by-contradiction
+        section: The logical structure
+        teachingHash: 45584f96669cccb4e5b2350a07e715dea94d644fb8f3bcd5b74554b10bd171ba
+    exerciseHash: efb1eb336c3ac7cd9b701f5265feb36eef084b7c2ab8ab511f455ee74fb73457
+  '11':
+    after: Contradiction versus contrapositive
+    instructions: Explain your reasoning.
+    concepts:
+      - Greatest integer
+      - contradiction
+      - construction of larger integer
+    requires:
+      - lesson: proof-by-contradiction
+        section: The logical structure
+        teachingHash: 45584f96669cccb4e5b2350a07e715dea94d644fb8f3bcd5b74554b10bd171ba
+      - lesson: proof-by-contradiction
+        section: 'A first example: there is no greatest integer'
+        teachingHash: 06b0ce299f1755c8d07951f06be74a484557b3db5fdf271984c7de33dacda1db
+    exerciseHash: 2811af1458cf015694379f8be13f8a3dcf9fa5d664f5f59dc522fb589a68e710
+  '21':
+    after: The irrationality of the square root of 2
+    instructions: Explain your reasoning.
+    concepts:
+      - Rational representation
+      - lowest terms
+      - common divisor
+      - denominator sign
+    requires:
+      - lesson: direct-proof
+        section: Closure claims
+        teachingHash: 64611eab66d1304b1c0499802d81dfa58767ec4d36831156e5933d3d41b4be72
+      - lesson: proof-by-contradiction
+        section: Fractions in lowest terms
+        teachingHash: e81895f41a641abe347859d2d7cda815f71b9101e5e05be9f46802f48c0e7af3
+    exerciseHash: d764f9646ac5e689fb4356c271edfaccf94dc90c25b0d13fd6697e8f755799b5
+  '31':
+    after: Rational and irrational combinations
+    instructions: Explain your reasoning.
+    concepts:
+      - Irrationality
+      - rational closure under subtraction
+      - contradiction
+    requires:
+      - lesson: direct-proof
+        section: Closure claims
+        teachingHash: 64611eab66d1304b1c0499802d81dfa58767ec4d36831156e5933d3d41b4be72
+      - lesson: proof-by-contrapositive
+        section: Irrationality through a rational contrapositive
+        teachingHash: 5db2b974f9d646e37215a4d5aff34d08c5b2ea12f6a205cae1d823ad7c9dc7f7
+      - lesson: proof-by-contradiction
+        section: The logical structure
+        teachingHash: 45584f96669cccb4e5b2350a07e715dea94d644fb8f3bcd5b74554b10bd171ba
+      - lesson: proof-by-contradiction
+        section: Rational and irrational combinations
+        teachingHash: c7bdeade969202e478561ea15d9e640b57c6fd01bb2a2a6a33ee744b19ea0dd5
+    exerciseHash: 89e16fbde21b25ed7765c97ba656879bfb82ee637fa3aa4971b54e860438ece8
+  '41':
+    after: There are infinitely many primes
+    instructions: Explain your reasoning.
+    concepts:
+      - Divisor
+      - finite nonempty set
+      - least element
+    requires:
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: proof-by-contradiction
+        section: Fractions in lowest terms
+        teachingHash: e81895f41a641abe347859d2d7cda815f71b9101e5e05be9f46802f48c0e7af3
+      - lesson: proof-by-contradiction
+        section: A prime-divisor lemma
+        teachingHash: c49f1e71e04877c1b17d3b44de8d3ff45158c8b8827d5a41815921e7da102e86
+    exerciseHash: d83b77d3748feb3d4de7a877e0db8e24d92558df7c9ca7de27f25af5dec31b2a
+  '51':
+    after: Uniqueness proofs
+    instructions: Explain your reasoning.
+    concepts:
+      - Additive inverse
+      - at most one
+      - contradiction uniqueness proof
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Existence, uniqueness, and exactly one
+        teachingHash: 7a6caaf8e2a1e5e64b1b7ac49a3c751736069780e4a04e9d4b41c3fac2b95559
+      - lesson: proof-by-contradiction
+        section: The logical structure
+        teachingHash: 45584f96669cccb4e5b2350a07e715dea94d644fb8f3bcd5b74554b10bd171ba
+      - lesson: proof-by-contradiction
+        section: Uniqueness proofs
+        teachingHash: 23305e60b212d6eb465295ce4802457d726cff08cc23524aea7d0e3e2cab888f
+    exerciseHash: d4c51b82894db45bd6fdac2ece4bc333a94d145ee225fba840c8591e7b9c9f82
+  '61':
+    after: Common errors and how to repair them
+    instructions: Explain your reasoning.
+    concepts:
+      - Irrationality proof
+      - lowest terms
+      - common divisor contradiction
+    requires:
+      - lesson: proof-by-contradiction
+        section: Fractions in lowest terms
+        teachingHash: e81895f41a641abe347859d2d7cda815f71b9101e5e05be9f46802f48c0e7af3
+      - lesson: proof-by-contradiction
+        section: The irrationality of the square root of 2
+        teachingHash: 0612f3366c9d7ed35d000c909ce642227af47adaa576678a916dbd86ccdf7135
+      - lesson: proof-by-contradiction
+        section: Common errors and how to repair them
+        teachingHash: 9f418a529e0bb55ffc21ed70d0e72cbeed20629cad278029e5042cbda68d6889
+    exerciseHash: b50d398b03d32046beb6c9ea909bc8ce7a0a720bed3f5f36b145d7b8d3da3c32
+mathematical-induction:
+  '1':
+    after: Why the hypothesis is not circular
+    instructions: Explain your reasoning.
+    concepts:
+      - Ordinary induction
+      - base case
+      - induction hypothesis
+      - inductive step
+      - starting index
+    requires:
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: mathematical-induction
+        section: Why the hypothesis is not circular
+        teachingHash: bc5d40781dcaa119397f1ebc5080ce51c1ac8aced0af323577ca596b49da8f4e
+    exerciseHash: 045263778969919087fb36f63489925bc683099ad02613e21411911ac7b4e913
+  '11':
+    after: Empty sums and a base at zero
+    instructions: Prove the identity by induction, including the base case and inductive step.
+    concepts:
+      - Summation
+      - induction on identity
+      - base and step
+    requires:
+      - lesson: sequences-and-summations
+        section: Summation notation and term counts
+        teachingHash: 9854d0bdd51f4f4f6ec248a384112994ba4e417d81009f284f3b372197d34c0b
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: mathematical-induction
+        section: 'Worked proof: the sum of the first positive integers'
+        teachingHash: d0187b3998c16c99a9065bd805c17fd4b17e2a1a1246591e32887b23e53a2a85
+    exerciseHash: 4e34b943e8b8b3b2dd1ce1c6b67476ae9cedfdda70324e3ea0067fa0e4e48c25
+  '21':
+    after: Divisibility by induction
+    instructions: Prove the claim by induction.
+    concepts:
+      - Integer divisibility
+      - exponent
+      - induction
+      - integer witness
+    requires:
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: mathematical-induction
+        section: Divisibility by induction
+        teachingHash: ca7b21af831a578bd7857115bc18cf3a83c7ebd2b0d343ebfc585d658ff93e10
+    exerciseHash: d7608c3f2c1f7f4428969c05e39fbd96629ee7a3a1e9a04f35c5fe813ce57699
+  '31':
+    after: Inequalities require a bridge
+    instructions: Prove the bound by induction.
+    concepts:
+      - Induction for inequalities
+      - comparison bridging to next case
+    requires:
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: mathematical-induction
+        section: Inequalities require a bridge
+        teachingHash: fe241f591ab9b96f52830751615a4bef5fdb4ace0b9e9c4418e1900b0015d79f
+    exerciseHash: 95cb9490f809c55e817c150d13e403a817cc31598eebf483c3546a50309060ba
+  '41':
+    after: A recurrence and a claimed closed form
+    instructions: Use the recurrence for integer indices at least zero. Prove the formula by induction.
+    concepts:
+      - Recurrence
+      - initial value
+      - explicit formula
+      - induction
+    requires:
+      - lesson: sequences-and-summations
+        section: A sequence is an indexed function
+        teachingHash: 58f8b17d728c59b8480698bbcfb59b9e79da4e9589c062cd792543fda074566f
+      - lesson: sequences-and-summations
+        section: Recursive definitions and initial conditions
+        teachingHash: cc99798fe29f730a15fe5a2c26511b741b94b213b590a0da5d483c1e81785039
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: mathematical-induction
+        section: A recurrence and a claimed closed form
+        teachingHash: bc1ac65499313f8983387bddf8a3b91d045e5f26e59a885858b0c3610a328228
+    exerciseHash: d0a45a00a09d359b8da94b315e13cc2cf6cdc1a7c72ca5520b5f69fe91ec5fd4
+  '51':
+    after: Induction and repeated computation
+    instructions: Both sequences have nonnegative integer indices. Prove both formulas together by induction.
+    concepts:
+      - Two sequences
+      - recursive definitions
+      - conjunction of induction claims
+    requires:
+      - lesson: propositional-logic
+        section: 'Conjunction: AND'
+        teachingHash: 6107c77cb563ea43ce09750d066da05ec98ebcda2d11bd654764bae21fe1630d
+      - lesson: sequences-and-summations
+        section: Recursive definitions and initial conditions
+        teachingHash: cc99798fe29f730a15fe5a2c26511b741b94b213b590a0da5d483c1e81785039
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: mathematical-induction
+        section: Strengthening the statement
+        teachingHash: 3d1a2de3045279c0d9dba92483ff8d80bef7104f4a788effaa8e2ac9f128f974
+    exerciseHash: e5370157a2234bd2604af1c2bbd8827a79c8f09be37034f47afda58d1dac6b98
+  '61':
+    after: Common invalid induction arguments
+    instructions: Explain your reasoning.
+    concepts:
+      - Base case
+      - inductive implication
+      - false starting case
+    requires:
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: mathematical-induction
+        section: Common invalid induction arguments
+        teachingHash: 3f51e09921111660717779ca2173aca73fdae8b49489e220ccfc889699983ce9
+    exerciseHash: 4956adbe2b8cc8e3ae86084e1ac99606a417dd942edb9cdc8442fd3ec79e3299
+strong-induction:
+  '1':
+    after: Well-ordering and a smallest counterexample
+    instructions: Explain your reasoning.
+    concepts:
+      - Strong induction hypothesis
+      - index domain
+      - earlier cases
+    requires:
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: strong-induction
+        section: The strong induction principle
+        teachingHash: 011f87514bc93daabed43f752f263b16f9fbdbc2038c09793bbde6efc474de38
+    exerciseHash: af34916d0040b88f80d4286ed529bef0636817fd85b0bc5135d6ff3e53d9d7e0
+  '11':
+    after: 'Prime factorization: existence'
+    instructions: Explain your reasoning.
+    concepts:
+      - Primes and composite integers
+      - strong induction
+      - factorization existence
+    requires:
+      - lesson: proof-by-contradiction
+        section: A prime-divisor lemma
+        teachingHash: c49f1e71e04877c1b17d3b44de8d3ff45158c8b8827d5a41815921e7da102e86
+      - lesson: strong-induction
+        section: The strong induction principle
+        teachingHash: 011f87514bc93daabed43f752f263b16f9fbdbc2038c09793bbde6efc474de38
+      - lesson: strong-induction
+        section: 'Prime factorization: existence'
+        teachingHash: b39431408319c2137aed4165d05ed90259fb6860f3a73b9da0b9be4304f64588
+    exerciseHash: 085af90c93c7b83cb4da22997c3da94969f65b0cca6e1a4990c962049273589f
+  '21':
+    after: Postage with several base cases
+    instructions: Use an unlimited supply of 4-unit and 7-unit stamps.
+    concepts:
+      - Stamp representations
+      - multiple consecutive base cases
+    requires:
+      - lesson: strong-induction
+        section: The strong induction principle
+        teachingHash: 011f87514bc93daabed43f752f263b16f9fbdbc2038c09793bbde6efc474de38
+      - lesson: strong-induction
+        section: Postage with several base cases
+        teachingHash: cffb6393425912a3d8147f6fd5e8e5ab1add2e53d16ac97b77f72708822a93fb
+    exerciseHash: c147695404b6ca60397c2b08ace77dea684f0517f75a2f14ab8e57c903ac7953
+  '31':
+    after: A recursive sequence bound
+    instructions:
+      The recurrence applies at integer indices at least 2. Prove the claim by strong induction,
+      checking both starting values.
+    concepts:
+      - Fibonacci recurrence
+      - two initial values
+      - strong induction bound
+    requires:
+      - lesson: sequences-and-summations
+        section: Recursive definitions and initial conditions
+        teachingHash: cc99798fe29f730a15fe5a2c26511b741b94b213b590a0da5d483c1e81785039
+      - lesson: strong-induction
+        section: The strong induction principle
+        teachingHash: 011f87514bc93daabed43f752f263b16f9fbdbc2038c09793bbde6efc474de38
+      - lesson: strong-induction
+        section: A recursive sequence bound
+        teachingHash: e0218fb1501612e90a1a852175baf2dac5f9726471b895c056042bd2492ace98
+    exerciseHash: 621e101dda8b24ad678c6ee36583621d958f6c2e1b8dc97d23f20a94947e6168
+  '41':
+    after: 'Recursive algorithms: termination and correctness'
+    instructions: Explain your reasoning.
+    concepts:
+      - Floor
+      - decreasing nonnegative integer input
+      - recursive termination
+    requires:
+      - lesson: functions
+        section: Floor and ceiling functions
+        teachingHash: fc4ea26a8e26a1f4efa316cf8e7a594bc007866fcd90e938220204f124945e69
+      - lesson: strong-induction
+        section: 'Recursive algorithms: termination and correctness'
+        teachingHash: 1d496c2f70458996e0bfe1f4dfca435f1bceea644806151c179c240aa960ee10
+    exerciseHash: 0d0aa308620929fba1e473b0442f8af5c1498da15f0248913e07283b9d6415b8
+  '51':
+    after: A finite construction by splitting
+    instructions: Let $n$ be a positive integer. Include every permitted choice of the first split in your proof.
+    concepts:
+      - Board size
+      - recursive splitting
+      - arbitrary decomposition
+      - strong induction
+    requires:
+      - lesson: strong-induction
+        section: The strong induction principle
+        teachingHash: 011f87514bc93daabed43f752f263b16f9fbdbc2038c09793bbde6efc474de38
+      - lesson: strong-induction
+        section: A finite construction by splitting
+        teachingHash: 38d3c8264156cde70185ec981079e9540a9b8e678bd6bd8737d431dfe361ffaf
+    exerciseHash: f56225bd666d33004d16f9e0fcc0c2786b169d31137cd50e874e2a19b3492f01
+  '61':
+    after: Common mistakes
+    instructions: Let $P(n)$ mean that amount $n$ can be made with an unlimited supply of 4-unit and 7-unit stamps.
+    concepts:
+      - Postage
+      - strong hypothesis range
+      - multiple bases
+      - missing cases
+    requires:
+      - lesson: strong-induction
+        section: The strong induction principle
+        teachingHash: 011f87514bc93daabed43f752f263b16f9fbdbc2038c09793bbde6efc474de38
+      - lesson: strong-induction
+        section: Postage with several base cases
+        teachingHash: cffb6393425912a3d8147f6fd5e8e5ab1add2e53d16ac97b77f72708822a93fb
+      - lesson: strong-induction
+        section: Common mistakes
+        teachingHash: 9267462dac16b13575a6dec32ff599c1c12184663b0557308c8d5c71522219ae
+    exerciseHash: 223d8627139ad2af5cfc58de8796c1fc69e9b24daf0abc4c3240bb5e54ed5d2b
+combinatorics:
+  '1':
+    after: Complementary counting
+    instructions: Every soup and sandwich is a different menu item.
+    concepts:
+      - Disjoint categories
+      - sum principle
+      - distinct choices
+    requires:
+      - lesson: sets-and-set-operations
+        section: Union, intersection, difference, and complement
+        teachingHash: 802b81232f841abb506d6d3bff14038a0949609d5d1d25630c23821b78bfa5a0
+      - lesson: combinatorics
+        section: The sum and product principles
+        teachingHash: 8f9169136d91697df8b94fcbec88fa46fc38621b95ea1832f12d6728673be151
+    exerciseHash: 1bb42645c16be1ce429f7dea8464d391366407e531759cfebd4fe067a5b844fa
+  '11':
+    after: Unordered selections and combinations
+    instructions: Explain your reasoning.
+    concepts:
+      - Ordered selections
+      - named positions
+      - permutations
+    requires:
+      - lesson: combinatorics
+        section: The sum and product principles
+        teachingHash: 8f9169136d91697df8b94fcbec88fa46fc38621b95ea1832f12d6728673be151
+      - lesson: combinatorics
+        section: Ordered selections and permutations
+        teachingHash: 38c0a801108c70a5d66dd637de9ad8dd138f22d2ca32bb25753860dc29fbfc60
+    exerciseHash: 4a1930579f23405d626a64157857e328a90fa72d4ce4207b9c6c45744432eeeb
+  '21':
+    after: Repeated objects and circular arrangements
+    instructions: Copies of the same letter are indistinguishable; exchanging them does not make a new arrangement.
+    concepts:
+      - Repeated indistinguishable letters
+      - factorial division
+    requires:
+      - lesson: sequences-and-summations
+        section: Products and factorials
+        teachingHash: 4d78947145b5caf70de94e4dccb17f8364aa4a9b373d9e2ffeb29afda9665787
+      - lesson: combinatorics
+        section: Ordered selections and permutations
+        teachingHash: 38c0a801108c70a5d66dd637de9ad8dd138f22d2ca32bb25753860dc29fbfc60
+      - lesson: combinatorics
+        section: Repeated objects and circular arrangements
+        teachingHash: 8b96ceef3a42f5578783c33510b6eca4c61302181dbc9865fa10963c06d65c21
+    exerciseHash: 71c0ecf4d2b3ffc26cb63da5e82043a503b5426a951aa5c4c43052a902503720
+  '31':
+    after: The binomial theorem
+    instructions: Explain your reasoning.
+    concepts:
+      - Combination symbol
+      - factorial
+      - uniform overcount by orders
+    requires:
+      - lesson: combinatorics
+        section: Ordered selections and permutations
+        teachingHash: 38c0a801108c70a5d66dd637de9ad8dd138f22d2ca32bb25753860dc29fbfc60
+      - lesson: combinatorics
+        section: Unordered selections and combinations
+        teachingHash: f888d9342aa67386ed5da621ad7f6b37a713b6927f4165900102cdc1768840a0
+    exerciseHash: 3ebba23f7800e0d8d6be6f36d7757bf982a3dc766ff081e67ca9af49073d667e
+  '41':
+    after: Inclusion-exclusion
+    instructions: Explain your reasoning.
+    concepts:
+      - Inclusion-exclusion
+      - integer multiples
+      - inclusive endpoints
+    requires:
+      - lesson: direct-proof
+        section: Unpack definitions
+        teachingHash: 6d28d8385575cb39625b338e614cb9110752328988e97deeacea2bd1d00177f8
+      - lesson: combinatorics
+        section: Inclusion-exclusion
+        teachingHash: c96087d3a6855540a3e6c9fbfb6d965a838839bf6e6cab1166daea6ce3a578c9
+    exerciseHash: afd5f42c5192d2f2a93f1c716cf753f64286efd6822e955777842ad77d71c7b8
+  '51':
+    after: The pigeonhole principle
+    instructions: Explain your reasoning.
+    concepts:
+      - Pigeonhole principle
+      - ceiling
+      - birth-month boxes
+    requires:
+      - lesson: functions
+        section: Floor and ceiling functions
+        teachingHash: fc4ea26a8e26a1f4efa316cf8e7a594bc007866fcd90e938220204f124945e69
+      - lesson: combinatorics
+        section: The pigeonhole principle
+        teachingHash: d31544c9a4afce851135073db7c91d4d647e78049ef4f3595735a1ef357ab6ad
+    exerciseHash: e9a9aac918e7ecb1877bd8b0dfeed6fde9f8912b1e393970ba84998f0f6df881
+  '71':
+    after: Choosing a model before a formula
+    instructions: Explain your reasoning.
+    concepts:
+      - Nonnegative solutions
+      - identical tokens
+      - stars and bars
+      - combination count
+    requires:
+      - lesson: combinatorics
+        section: Unordered selections and combinations
+        teachingHash: f888d9342aa67386ed5da621ad7f6b37a713b6927f4165900102cdc1768840a0
+      - lesson: combinatorics
+        section: 'Repetition without order: distributing identical objects'
+        teachingHash: 61f82c17d2babe33e20a15519fa59f35549274ea8191612f84cb40f100fec5ad
+    exerciseHash: fa4c872f145a286f57927a27e55b18d4a16cf5efd23c81d1dffa2e91c7f199db
+recurrence-relations:
+  '1':
+    after: A recurrence needs a domain and initial conditions
+    instructions: Explain your reasoning.
+    concepts:
+      - Sequence indices
+      - initial value
+      - recurrence evaluation
+    requires:
+      - lesson: sequences-and-summations
+        section: A sequence is an indexed function
+        teachingHash: 58f8b17d728c59b8480698bbcfb59b9e79da4e9589c062cd792543fda074566f
+      - lesson: sequences-and-summations
+        section: Recursive definitions and initial conditions
+        teachingHash: cc99798fe29f730a15fe5a2c26511b741b94b213b590a0da5d483c1e81785039
+      - lesson: recurrence-relations
+        section: A recurrence needs a domain and initial conditions
+        teachingHash: 6dc883013e557d7820b6e3ff31794b7feb5272169b9837d883cd270d8ad95552
+    exerciseHash: 51c202ab6b66e58c03d6ad50634e37a1eac61f3e81ff54ba4f92c3fdabda8a3e
+  '11':
+    after: Differences and telescoping
+    instructions: Explain your reasoning.
+    concepts:
+      - Iteration and unfolding
+      - recurrence
+      - increments from zero
+    requires:
+      - lesson: recurrence-relations
+        section: A recurrence needs a domain and initial conditions
+        teachingHash: 6dc883013e557d7820b6e3ff31794b7feb5272169b9837d883cd270d8ad95552
+      - lesson: recurrence-relations
+        section: 'Iteration: unfold the definition'
+        teachingHash: f3d8b83cda6783a5e169d512a90d5c031dfc191fc54b74bf8a8927e70439ae15
+    exerciseHash: 7858d24aeb61e871cb51c89f6a608f39442e597704cb73d186c3c18168b97aa2
+  '21':
+    after: First-order linear recurrences
+    instructions: The recurrence applies for integer $n\geq1$. Find an explicit formula for $a_n$.
+    concepts:
+      - First-order linear recurrence
+      - finite geometric sum
+    requires:
+      - lesson: sequences-and-summations
+        section: Deriving finite geometric sums
+        teachingHash: 32f0a3938661d6c024bebaa1ac700af47c0b502846926283ec7958a10b98ad3e
+      - lesson: recurrence-relations
+        section: A recurrence needs a domain and initial conditions
+        teachingHash: 6dc883013e557d7820b6e3ff31794b7feb5272169b9837d883cd270d8ad95552
+      - lesson: recurrence-relations
+        section: First-order linear recurrences
+        teachingHash: 4dd11fc4aa1dbd9f936ed0fca5f2982947e9268d12044476dfa854ed9977beba
+    exerciseHash: 8cf4b6a4c6ddc8bc4d62d3b5c0d0f594cc92afdd5ed2b1909304d80783d6d0f2
+  '31':
+    after: A varying nonhomogeneous term
+    instructions: The recurrence applies for integer $n\geq1$. Find an explicit formula for $a_n$.
+    concepts:
+      - Normalizing an exponential factor
+      - transformed recurrence
+    requires:
+      - lesson: recurrence-relations
+        section: 'Iteration: unfold the definition'
+        teachingHash: f3d8b83cda6783a5e169d512a90d5c031dfc191fc54b74bf8a8927e70439ae15
+      - lesson: recurrence-relations
+        section: A varying nonhomogeneous term
+        teachingHash: ed3a02d7e25a60bbf0f361ab38a47497ef01b6569118b4f232449e370ce496ac
+    exerciseHash: 4824fee71ca739f8e6f2cfc679bdaacacc166df25c1622be0cd85dc5e0672026
+  '41':
+    after: Repeated roots
+    instructions: The recurrence applies for integer $n\geq2$.
+    concepts:
+      - Second-order recurrence
+      - geometric candidate
+      - characteristic equation
+      - roots
+    requires:
+      - lesson: sequences-and-summations
+        section: Arithmetic and geometric sequences
+        teachingHash: 434aafa3a9ad658b37007e4e519cfbe9fb85473b60664ee2667e87df04db3b32
+      - lesson: recurrence-relations
+        section: Second-order homogeneous recurrences
+        teachingHash: 6db1c5a3155b5d08edb9a6f794b2bb986020139aa0e45e0f6e0e277561f86147
+    exerciseHash: 4d2c6946ebc1b875a4f2b603c830a57fbd6641f410ee04b851e8f6ab1d4d4ac7
+  '51':
+    after: A recurrence for a recursive construction
+    instructions: Explain your reasoning.
+    concepts:
+      - Tower of Hanoi
+      - legal moves
+      - recursive construction
+      - minimal count
+    requires:
+      - lesson: recurrence-relations
+        section: A recurrence needs a domain and initial conditions
+        teachingHash: 6dc883013e557d7820b6e3ff31794b7feb5272169b9837d883cd270d8ad95552
+      - lesson: recurrence-relations
+        section: A recurrence for a recursive construction
+        teachingHash: b494bfaf9867bbc01965bdabfe7b0a9c05c0b6e5ef4a4ae24906ed979a0ada97
+    exerciseHash: 34e6a49f424fcb31598f2c26907d3632ad9b61a1a3e400e3d40cf65933324687
+  '61':
+    after: Different amounts of branching
+    instructions: Use $n=2^k$ for integers $k\geq0$. The recurrence applies when $n\geq2$.
+    concepts:
+      - Powers-of-two domain
+      - half-size recurrence
+      - base cost
+    requires:
+      - lesson: recurrence-relations
+        section: A recurrence needs a domain and initial conditions
+        teachingHash: 6dc883013e557d7820b6e3ff31794b7feb5272169b9837d883cd270d8ad95552
+      - lesson: recurrence-relations
+        section: Divide-and-conquer recurrences
+        teachingHash: be836e7aa7811d0124440f4a1025a1924a09e408c0d66549ec06245dffa7c1b4
+    exerciseHash: 0476fbb1b1ac7a54cdfbab2a7cfde729d465c984dae44c7c7bff3523c21b98e7
+  '71':
+    after: Guessing bounds and proving them
+    instructions:
+      Let $T$ be nonnegative on inputs $n=2^k$ for integers $k\geq0$. The recurrence bound applies for
+      $n\geq2$.
+    concepts:
+      - Recurrence inequality
+      - base-2 logarithm
+      - induction on exponent
+    requires:
+      - lesson: mathematical-induction
+        section: The induction principle
+        teachingHash: ec50e122cde633101a244f7b948ec7ca30213272a8319d8b0c6f29c715fbb043
+      - lesson: recurrence-relations
+        section: Divide-and-conquer recurrences
+        teachingHash: be836e7aa7811d0124440f4a1025a1924a09e408c0d66549ec06245dffa7c1b4
+      - lesson: recurrence-relations
+        section: Proving a recursion-tree formula
+        teachingHash: da23edcebc2f0f2554a6c03943a40b881f10da4cad882d68bec62dfa07dbb13e
+      - lesson: recurrence-relations
+        section: Guessing bounds and proving them
+        teachingHash: 528397f8381ad6f3a9aed15b50c4e9bdc5faf5236c6fe1f269f69f43f4e2bba7
+    exerciseHash: 847dd7a717cbba6db33e84675e4637dbe8ccda33d62f8c022289a4ce6b826451
+graph-theory:
+  '1':
+    after: Vertices, edges, and conventions
+    instructions: Explain your reasoning.
+    concepts:
+      - Simple undirected graph
+      - endpoints
+      - unordered pair counting
+    requires:
+      - lesson: sets-and-set-operations
+        section: Elements, descriptions, and equality
+        teachingHash: 49d192ca278977af1211a6cdf0cdfc23b13af0c338d1cfef94f7aad540107535
+      - lesson: combinatorics
+        section: Unordered selections and combinations
+        teachingHash: f888d9342aa67386ed5da621ad7f6b37a713b6927f4165900102cdc1768840a0
+      - lesson: graph-theory
+        section: Vertices, edges, and conventions
+        teachingHash: a6843a4e4dd8097b109284e44f9d012e6cd3f1e4353f9eb8921b3e72c68fa489
+    exerciseHash: 0865afe197127e4a392f4f2f50791c37d9820c075b0f1a792295eed8e0ee0e67
+  '11':
+    after: Adjacency and degree
+    instructions: Use the simple undirected graph $V=\{a,b,c,d,e\}$, $E=\{\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}\}$.
+    concepts:
+      - Explicit graph data
+      - adjacency
+      - neighbor
+      - degree
+    requires:
+      - lesson: graph-theory
+        section: Vertices, edges, and conventions
+        teachingHash: a6843a4e4dd8097b109284e44f9d012e6cd3f1e4353f9eb8921b3e72c68fa489
+      - lesson: graph-theory
+        section: Adjacency and degree
+        teachingHash: b8edc3fda0d4fe36c62436702be07df33db72a1356bab7d787fe3c67e83db146
+    exerciseHash: 2191c5fede56d5f6797749c00cc5eb3a027f34356a44f807704730014bdf6e10
+  '21':
+    after: Walks, trails, paths, and cycles
+    instructions: Use the simple undirected graph $V=\{a,b,c,d,e\}$,
+      $E=\{\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}\}$. List every classification that applies.
+    concepts:
+      - Explicit graph data
+      - walk
+      - trail
+      - path
+      - cycle
+      - length
+    requires:
+      - lesson: graph-theory
+        section: Vertices, edges, and conventions
+        teachingHash: a6843a4e4dd8097b109284e44f9d012e6cd3f1e4353f9eb8921b3e72c68fa489
+      - lesson: graph-theory
+        section: Walks, trails, paths, and cycles
+        teachingHash: 0f4b98797dc3570791be4f5c25301af1f817e9691c00fdb85a98278631529e2a
+    exerciseHash: b69bef0759fb45f7b7fe3d299abe540744d3685d456301d2d9aa20287fda7742
+  '31':
+    after: Connectivity and components
+    instructions: Use a simple undirected graph.
+    concepts:
+      - Vertex and edge sets
+      - connected components
+      - isolated vertex
+    requires:
+      - lesson: graph-theory
+        section: Vertices, edges, and conventions
+        teachingHash: a6843a4e4dd8097b109284e44f9d012e6cd3f1e4353f9eb8921b3e72c68fa489
+      - lesson: graph-theory
+        section: Adjacency and degree
+        teachingHash: b8edc3fda0d4fe36c62436702be07df33db72a1356bab7d787fe3c67e83db146
+      - lesson: graph-theory
+        section: Walks, trails, paths, and cycles
+        teachingHash: 0f4b98797dc3570791be4f5c25301af1f817e9691c00fdb85a98278631529e2a
+      - lesson: graph-theory
+        section: Connectivity and components
+        teachingHash: 3a18bafb7746e4a247afa1d5df1ae2400dbcfbbc17d84f6ef4da864e07231c66
+    exerciseHash: bb1b1da77d06a6e8390b390d96ed489f967801646954d12c288bfd39e8d1efca
+  '41':
+    after: Equivalent characterizations of trees
+    instructions: Explain your reasoning.
+    concepts:
+      - Tree
+      - vertices
+      - edge count n minus one
+    requires:
+      - lesson: graph-theory
+        section: Vertices, edges, and conventions
+        teachingHash: a6843a4e4dd8097b109284e44f9d012e6cd3f1e4353f9eb8921b3e72c68fa489
+      - lesson: graph-theory
+        section: Trees and forests
+        teachingHash: c4ebb491880e3bc3b209f917b7d1adf240532efe8aee389bb55efb00c9517c82
+    exerciseHash: 16f2cb3a766db670879a258bebf5653c4c22562c4939a129c0b4b807af38f8a2
+  '51':
+    after: Directed acyclic graphs and scheduling
+    instructions: Explain your reasoning.
+    answer:
+      The vertices $b$ and $c$ have parent $a$; $d$ and $e$ have parent $b$; $f$ has parent $c$. Each parent
+      is the preceding vertex on the unique path from the root $a$.
+    concepts:
+      - Rooted tree
+      - root
+      - parent
+      - unique path
+    requires:
+      - lesson: graph-theory
+        section: Trees and forests
+        teachingHash: c4ebb491880e3bc3b209f917b7d1adf240532efe8aee389bb55efb00c9517c82
+      - lesson: graph-theory
+        section: Equivalent characterizations of trees
+        teachingHash: 33360310b3922f45c45b300a45e2b4f2b68e66eef8410cf93a798e5cb2384b17
+      - lesson: graph-theory
+        section: Rooted trees
+        teachingHash: 75520e260003332a227c946aca48eebfd48bc9dbd6dbb14b1cb6ed5be12f6bab
+    exerciseHash: 47da481186b53ce13d8da9010abd4c57996233b132fba5a35fc17adfef68f4ce
+  '61':
+    after: Breadth-first and depth-first search
+    instructions: Use the simple undirected graph $V=\{a,b,c,d,e,f\}$ with edges
+      $\{a,b\},\{a,c\},\{b,d\},\{b,e\},\{c,e\},\{e,f\}$. Start at $a$, examine neighbors alphabetically, and
+      mark each vertex when first discovered.
+    concepts:
+      - Graph data
+      - neighbors
+      - BFS
+      - queue
+      - discovery order
+      - alphabetical tie breaking
+    requires:
+      - lesson: graph-theory
+        section: Vertices, edges, and conventions
+        teachingHash: a6843a4e4dd8097b109284e44f9d012e6cd3f1e4353f9eb8921b3e72c68fa489
+      - lesson: graph-theory
+        section: Adjacency and degree
+        teachingHash: b8edc3fda0d4fe36c62436702be07df33db72a1356bab7d787fe3c67e83db146
+      - lesson: graph-theory
+        section: Breadth-first and depth-first search
+        teachingHash: bef484abaa4bc711b015675e56d8b450f47eb8729d37a6e7436a1459d2f59bc3
+    exerciseHash: 42e0f09b5f695ef32e428cb8069ed19f6b573b3126cdf7f013c4fe851aadee2a
+  '71':
+    after: Euler trails and Hamiltonian cycles
+    instructions: Explain your reasoning.
+    concepts:
+      - Euler trail
+      - Hamiltonian cycle
+      - edges versus vertices
+    requires:
+      - lesson: graph-theory
+        section: Vertices, edges, and conventions
+        teachingHash: a6843a4e4dd8097b109284e44f9d012e6cd3f1e4353f9eb8921b3e72c68fa489
+      - lesson: graph-theory
+        section: Walks, trails, paths, and cycles
+        teachingHash: 0f4b98797dc3570791be4f5c25301af1f817e9691c00fdb85a98278631529e2a
+      - lesson: graph-theory
+        section: Euler trails and Hamiltonian cycles
+        teachingHash: b9f308217e1231ab808cd59df9e69e82de4b711bb25fd8384805f15108ab22c1
+    exerciseHash: 8560b37760452acaea21bbaf47e49f0fff800dba0aab86af8da1d38640468c11
+asymptotic-growth:
+  '1':
+    after: Big Omega and Big Theta
+    instructions:
+      Let $n$ be a positive integer. The functions are nonnegative, and $g(n)$ is positive, for all
+      sufficiently large $n$.
+    concepts:
+      - Eventual sign assumptions
+      - big O
+      - constants
+      - thresholds
+      - quantifier order
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Several variables and quantifier order
+        teachingHash: 68ef50a5696e6d3bfc553eab9e6fee3529f4bcfe7d94675af0bd23d5e72e1e46
+      - lesson: asymptotic-growth
+        section: State the function and the model
+        teachingHash: 35591fef15f49e967a892f6bf7b4b8fd08a2a915508bbbfcee343a5dc25ef2f0
+      - lesson: asymptotic-growth
+        section: 'Big O: an eventual upper bound'
+        teachingHash: 6c3e4f0a39809a3659819a60db93f96cc7fa11e51c1ba96b6f55fc5b064ce160
+    exerciseHash: 1d8073c517d5365c54b260bc3fac4c7a14dc22dbe751d57e2eb85119619c5ed2
+  '11':
+    after: Negating an asymptotic claim
+    instructions: Explain your reasoning.
+    concepts:
+      - Negation of big O
+      - arbitrary constants and thresholds
+      - counterexample indices
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Negating nested quantifiers
+        teachingHash: 123799f21b18d242c730f2f1679f2892d8fc0c14aedcd60fffe65fd014fbfc60
+      - lesson: asymptotic-growth
+        section: State the function and the model
+        teachingHash: 35591fef15f49e967a892f6bf7b4b8fd08a2a915508bbbfcee343a5dc25ef2f0
+      - lesson: asymptotic-growth
+        section: 'Big O: an eventual upper bound'
+        teachingHash: 6c3e4f0a39809a3659819a60db93f96cc7fa11e51c1ba96b6f55fc5b064ce160
+      - lesson: asymptotic-growth
+        section: Negating an asymptotic claim
+        teachingHash: 23310e24979955e31ebe9a56219acccefd3c66ea2d1622065cf31bcd730e8c34
+    exerciseHash: e8c0ed46e4154efe7ddaba7e7e46125858e8183398cfdaadb50458232dda228b
+  '21':
+    after: Polynomials and logarithm bases
+    instructions:
+      Use functions that are nonnegative for all sufficiently large positive integer inputs, with
+      positive comparison functions there.
+    concepts:
+      - Big O
+      - eventual bounds
+      - transitivity
+      - fixed constants
+      - larger threshold
+    requires:
+      - lesson: asymptotic-growth
+        section: State the function and the model
+        teachingHash: 35591fef15f49e967a892f6bf7b4b8fd08a2a915508bbbfcee343a5dc25ef2f0
+      - lesson: asymptotic-growth
+        section: 'Big O: an eventual upper bound'
+        teachingHash: 6c3e4f0a39809a3659819a60db93f96cc7fa11e51c1ba96b6f55fc5b064ce160
+      - lesson: asymptotic-growth
+        section: Useful rules, with reasons
+        teachingHash: ba2a481eb686f746f1bdad1a66c73a6b7eb889971a92911fdc69881073e57696
+    exerciseHash: c5173b08ff5e3bfd71a3c22c9c6da026b447bbcc20291f9f4cf020556978d151
+  '31':
+    after: Why exponentials outrun fixed powers
+    instructions: Let $n$ be a positive integer, with $f(n)\geq0$ and $g(n)>0$ for all sufficiently large $n$.
+    concepts:
+      - Little o
+      - epsilon multiplier
+      - threshold
+      - quantifier order
+    requires:
+      - lesson: predicates-and-quantifiers
+        section: Several variables and quantifier order
+        teachingHash: 68ef50a5696e6d3bfc553eab9e6fee3529f4bcfe7d94675af0bd23d5e72e1e46
+      - lesson: asymptotic-growth
+        section: State the function and the model
+        teachingHash: 35591fef15f49e967a892f6bf7b4b8fd08a2a915508bbbfcee343a5dc25ef2f0
+      - lesson: asymptotic-growth
+        section: Strictly slower growth
+        teachingHash: 817c74ee8c8009b2eda963d6d704654a4020771df0d297b90a61f0693348affa
+    exerciseHash: f1b28d7a0acfed1ddbd7c47dc834ef11f74fe13a571f61510d772b53b3c9afd6
+  '41':
+    after: Dependent loop bounds
+    instructions: Let $n$ be a positive integer. Each body execution and loop-control step has constant positive cost.
+    concepts:
+      - Loop body
+      - iterations
+      - constant cost model
+      - exact count
+      - tight Theta bound
+    requires:
+      - lesson: asymptotic-growth
+        section: State the function and the model
+        teachingHash: 35591fef15f49e967a892f6bf7b4b8fd08a2a915508bbbfcee343a5dc25ef2f0
+      - lesson: asymptotic-growth
+        section: Big Omega and Big Theta
+        teachingHash: e414068892418389df9687d11bf72bb625f42edbc3dc448f07fb3321887bcd12
+      - lesson: asymptotic-growth
+        section: Counting simple and consecutive loops
+        teachingHash: fe8c484820aff6ca414ed3b2d386b23e4764b29b923abc19d4d7d0025536af92
+    exerciseHash: 46100b451084494e5fa2a2484e35546dae26a310c7f6a54c25adb3fc231ef064
+  '51':
+    after: Doubling and halving
+    instructions: Let $n\geq1$ be an integer. Each body execution has constant positive cost.
+    concepts:
+      - Doubling loop
+      - powers
+      - floor
+      - logarithm
+      - exact count and Theta
+    requires:
+      - lesson: functions
+        section: Floor and ceiling functions
+        teachingHash: fc4ea26a8e26a1f4efa316cf8e7a594bc007866fcd90e938220204f124945e69
+      - lesson: recurrence-relations
+        section: Divide-and-conquer recurrences
+        teachingHash: be836e7aa7811d0124440f4a1025a1924a09e408c0d66549ec06245dffa7c1b4
+      - lesson: asymptotic-growth
+        section: Big Omega and Big Theta
+        teachingHash: e414068892418389df9687d11bf72bb625f42edbc3dc448f07fb3321887bcd12
+      - lesson: asymptotic-growth
+        section: Counting simple and consecutive loops
+        teachingHash: fe8c484820aff6ca414ed3b2d386b23e4764b29b923abc19d4d7d0025536af92
+      - lesson: asymptotic-growth
+        section: Doubling and halving
+        teachingHash: 1164828fadec2b7c43e569217c67fd6b8c68c19a1f9a5800986495aa00b9030b
+    exerciseHash: ed70d3b25ac6bec51a2828683859a46f9242c8b83583678b5cdf594fa5d43e31
+  '61':
+    after: An upper-bound proof is not an algorithm lower bound
+    instructions: Explain your reasoning.
+    concepts:
+      - Linear search
+      - best case and worst case
+      - comparison count
+      - Theta
+    requires:
+      - lesson: asymptotic-growth
+        section: Big Omega and Big Theta
+        teachingHash: e414068892418389df9687d11bf72bb625f42edbc3dc448f07fb3321887bcd12
+      - lesson: asymptotic-growth
+        section: Worst case is a different axis
+        teachingHash: 0eef26ad213a5a71fe311736effcd9510887b830cf08c3532a3dd295619270dd
+    exerciseHash: 2dc13b1f0029170489509c009bfcc0e3b225a8dd6feda0ef5548708e452be55e
+  '71':
+    after: Recurrences and input size
+    instructions: Let $n$ range over the positive integers.
+    concepts:
+      - Theta
+      - polynomial inequalities
+      - fixed positive constants
+      - threshold
+    requires:
+      - lesson: asymptotic-growth
+        section: State the function and the model
+        teachingHash: 35591fef15f49e967a892f6bf7b4b8fd08a2a915508bbbfcee343a5dc25ef2f0
+      - lesson: asymptotic-growth
+        section: Big Omega and Big Theta
+        teachingHash: e414068892418389df9687d11bf72bb625f42edbc3dc448f07fb3321887bcd12
+      - lesson: asymptotic-growth
+        section: Polynomials and logarithm bases
+        teachingHash: ed4426cc074bc9188ae5e38d027ed396c4ace6edf0da7e096ca836bb7eae939a
+    exerciseHash: 9bc532c87df1102824db91000f7a32bbb75565c24072044cedf0b2d94959d28d

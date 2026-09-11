@@ -6,6 +6,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "audit": "tsx scripts/report-inline-audit.ts",
     "content": "tsx scripts/build-android-content.ts",
     "test": "tsx --test scripts/*.test.ts",
     "typecheck": "tsc --noEmit",

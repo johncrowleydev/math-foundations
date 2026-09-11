@@ -31,10 +31,14 @@ See [Android architecture and device testing](android/README.md) for content ada
 2. Commit and push to `main`, and ensure **Android checks** succeeds.
 3. Run **Publish Android update** from GitHub Actions on `main`, or push a matching `vX.Y.Z` tag.
 
-The workflow tests, builds, signs, verifies, and publishes the APK plus `update.json` and `SHA256SUMS` as the latest GitHub Release. It fails instead of overwriting an existing version. Keep release publication on trusted commits: the workflow has access to signing secrets. The public repository and public binary distribution do not require EC2.
+The workflow tests, builds, signs, verifies, and publishes the APK plus `update.json` and `SHA256SUMS` as the latest GitHub Release. An already published version is left unchanged. Keep release publication on trusted commits: the workflow has access to signing secrets. The public repository and public binary distribution do not require EC2.
 
 GitHub Actions secrets are `FOUNDATIONS_KEYSTORE_BASE64`, `FOUNDATIONS_LINEAGE_BASE64`, and `FOUNDATIONS_PASSWORD`. A dedicated production key replaces the original device development key using Android's signed certificate lineage, allowing an in-place migration with handwriting intact. The signing key, lineage, and password are backed up locally outside this repository under the developer's `.android/math-foundations-signing` directory, restricted to that Windows user and SYSTEM. Back up those files securely; losing the key prevents publishing compatible updates.
 
 For a local signed build, set `FOUNDATIONS_KEYSTORE`, `FOUNDATIONS_LINEAGE`, and `FOUNDATIONS_PASSWORD`, run `assembleRelease`, then `node scripts/package-release.mjs`. Artifacts are written under `output/release/`. Never commit signing credentials or device handwriting.
 
 The original website remains in [johncrowleydev/math](https://github.com/johncrowleydev/math). This repository owns its own copy of lesson and worksheet sources; future content edits are independent.
+
+## Inline learning prerequisites
+
+[The complete exercise audit](docs/inline-prerequisite-audit.md) traces every inline exercise to its preceding explanations. `content/inline-prerequisites.yaml` supplies individual instructions and any prompt/answer corrections, including the topic label used in the expanded workspace. It deliberately replaces shared practice instructions. The build validates coverage, teaching order, and hashes of audited exercise and teaching text. Changes require checking the affected audit entries; updating a hash without examining the content is not a valid audit. Run `npm run audit` to validate and regenerate the human-readable report.

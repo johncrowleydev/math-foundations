@@ -156,6 +156,8 @@ The proof needs only a prime divisor missing from the proposed complete list. Th
 
 ## Uniqueness proofs
 
+An **additive inverse** of a real number $x$ is a real number $y$ such that $x+y=0$. For example, $-3$ is an additive inverse of 3. The word inverse here refers to addition, rather than to an inverse function.
+
 To prove that exactly one object has a property, establish existence and at most one. Contradiction can organize the second part: assume two distinct objects have the property and derive that they must be equal.
 
 **Claim.** For every integer $n$, there is exactly one integer $m$ with $n+m=0$.

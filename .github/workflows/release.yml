@@ -43,4 +43,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           version=$(node -p "JSON.parse(require('fs').readFileSync('output/release/update.json','utf8')).versionName")
+          if gh release view "v$version" >/dev/null 2>&1; then
+            echo "Version $version is already published; leaving its assets unchanged."
+            exit 0
+          fi
           gh release create "v$version" output/release/foundations.apk output/release/update.json output/release/SHA256SUMS --target "$GITHUB_SHA" --title "Foundations $version" --generate-notes --latest

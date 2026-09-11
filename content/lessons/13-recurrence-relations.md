@@ -143,7 +143,7 @@ $$
 
 Each contribution $f(j)$ is multiplied by $r$ once for every later step, explaining the factor $r^{n-j}$. For $j=n$, this factor is the empty product 1, including when $r=0$.
 
-For example, let $a_0=0$ and $a_n=2a_{n-1}+2^n$. Divide both sides by $2^n$ and set $b_n=a_n/2^n$. Then
+For example, let $a_0=0$ and $a_n=2a_{n-1}+2^n$. **Normalizing** here means dividing out the known exponential factor: divide both sides by $2^n$ and set $b_n=a_n/2^n$. Then
 
 $$
 b_n=b_{n-1}+1,\qquad b_0=0.
@@ -268,6 +268,8 @@ For a second-order recurrence, checking only one starting value is similarly ins
 ## Divide-and-conquer recurrences
 
 Some algorithms reduce input size multiplicatively. To avoid hidden rounding assumptions, first define the domain explicitly: let $n=2^k$ for an integer $k\geq0$.
+
+The base-2 logarithm $\log_2 n$ is the exponent $k$ for which $2^k=n$. Thus $\log_2 8=3$, $\log_2 1=0$, and $\log_2(n/2)=\log_2 n-1$ for these positive powers of two.
 
 Suppose
 

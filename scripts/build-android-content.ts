@@ -2,9 +2,11 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { loadContent } from './content.js';
 import { placeNotebookExercises } from './notebook-placements.js';
 import { adaptNotebookQuestion, validateNotebookAdaptations } from './notebook-exercises.js';
+import { adaptInlineQuestion, validateInlinePrerequisites } from './inline-prerequisites.js';
 
 const content = await loadContent();
 validateNotebookAdaptations(content.lessons);
+validateInlinePrerequisites(content.lessons);
 function forNotebook(markdown: string) {
   return markdown
     .replace(/\[([^\]]+)\]\(\.\.\/lessons\/[^)]+\)/g, '$1')
@@ -14,10 +16,12 @@ const lessons = content.lessons.map((lesson) => {
   const chunks = forNotebook(lesson.markdown).split(/^## /m);
   const intro = chunks.shift()!.trim();
   const questions = lesson.worksheetData!.sections.flatMap((section) =>
-    section.questions.map((q) => ({
-      ...adaptNotebookQuestion(lesson.slug, q, section.instructions || ''),
-      section: section.title.replace(/^[A-Z]\. /, ''),
-    })),
+    section.questions.map((q) =>
+      adaptInlineQuestion(lesson.slug, {
+        ...adaptNotebookQuestion(lesson.slug, q, section.instructions || ''),
+        section: section.title.replace(/^[A-Z]\. /, ''),
+      }),
+    ),
   );
   const sections = chunks
     .map((chunk) => {

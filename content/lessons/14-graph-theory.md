@@ -25,6 +25,8 @@ Some applications need loops or multiple edges, but those are different graph mo
 
 Two vertices are **adjacent** if an edge joins them. An edge is **incident** to each of its endpoints. The **degree** $\deg(v)$ of an undirected vertex is the number of incident edges.
 
+A **neighbor** of a vertex is a vertex adjacent to it. In a simple graph, counting a vertex's neighbors gives its degree.
+
 In our example,
 
 $$
@@ -138,6 +140,8 @@ The representation affects algorithms. A claim about efficiency should name the 
 ## Breadth-first and depth-first search
 
 **Breadth-first search** (BFS) explores vertices in increasing distance from a starting vertex, using a queue. Mark vertices when first discovered, so they enter the queue once.
+
+A **queue** is a first-in, first-out list: **enqueue** adds an item at the back, and **dequeue** removes the item that has been waiting at the front the longest. A vertex is **discovered** when it is first marked and enqueued; it is processed later when dequeued. The **discovery order** lists vertices when they are first marked. If several neighbors are available, a stated order such as alphabetical order tells us which to examine first.
 
 ```text
 mark start; distance[start] = 0; enqueue start

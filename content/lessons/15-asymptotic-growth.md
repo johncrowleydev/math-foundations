@@ -54,6 +54,8 @@ For $f(n)=3n^2+5n+7$, the earlier upper bound and the inequality $f(n)\geq3n^2$ 
 
 The symbols describe different claims. An $O(n^2)$ algorithm might have linear cost. An $\Omega(n)$ bound alone permits linear, quadratic, or exponential cost. Only matching bounds justify a $\Theta$ conclusion.
 
+A **tight growth bound** uses $\Theta$: the upper and lower comparisons have the same growth function, differing only by fixed positive multipliers.
+
 ## Negating an asymptotic claim
 
 To prove that a nonnegative $f$ is not $O(g)$, show that every proposed constant and threshold eventually fail:
@@ -113,6 +115,8 @@ This rule does not allow a base depending on $n$: $\log_n n=1$ for $n>1$ is cons
 
 ## Strictly slower growth
 
+The Greek letter $\varepsilon$, pronounced epsilon, will denote a positive real multiplier that can be chosen as small as we wish.
+
 The notation $f(n)=o(g(n))$, read "little o," means that for every $\varepsilon>0$ there is a threshold $n_0$ such that
 
 $$
@@ -159,6 +163,8 @@ The same bound with $d=1$ shows $k/2^k$ becomes arbitrarily small. If $2^k\leq n
 To distinguish $2^n$ from $3^n$, note $(3/2)^n\geq1+n/2$ by the binomial theorem. This ratio exceeds every constant for sufficiently large $n$, so $3^n$ cannot be $O(2^n)$.
 
 ## Counting simple and consecutive loops
+
+The **body** of a loop is the instruction or group of instructions repeated each time the loop runs. One repetition is an **iteration**. An exact body count counts these repetitions; a cost model also specifies the work performed during each repetition.
 
 Assume the indicated body has constant positive cost and the loop runs over the stated integer values.
 
