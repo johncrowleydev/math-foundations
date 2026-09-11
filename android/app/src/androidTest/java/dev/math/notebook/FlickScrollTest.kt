@@ -1,5 +1,6 @@
 package dev.math.notebook
 
+import androidx.compose.foundation.gestures.rememberScrollableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
@@ -17,12 +18,11 @@ class FlickScrollTest {
 
     private fun host() {
         rule.setContent {
-            Box(
-                Modifier.fillMaxSize().testTag("scroll").twoFingerScroll { delta ->
-                    distance += delta
-                    delta
-                }
-            )
+            val state = rememberScrollableState { delta ->
+                distance += delta
+                delta
+            }
+            Box(Modifier.fillMaxSize().testTag("scroll").twoFingerScroll(state))
         }
     }
 

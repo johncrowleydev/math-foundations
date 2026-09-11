@@ -161,8 +161,7 @@ private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
                     LazyColumn(
                         state = railState,
                         userScrollEnabled = false,
-                        modifier =
-                            Modifier.weight(1f).twoFingerScroll { railState.dispatchRawDelta(it) },
+                        modifier = Modifier.weight(1f).twoFingerScroll(railState),
                         verticalArrangement = Arrangement.spacedBy(5.dp),
                     ) {
                         itemsIndexed(model.lessons) { i, l ->
@@ -296,10 +295,7 @@ private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
                 LazyColumn(
                     state = state,
                     userScrollEnabled = false,
-                    modifier =
-                        Modifier.heightIn(max = 620.dp).twoFingerScroll {
-                            state.dispatchRawDelta(it)
-                        },
+                    modifier = Modifier.heightIn(max = 620.dp).twoFingerScroll(state),
                 ) {
                     itemsIndexed(model.lessons) { i, l ->
                         TextButton(
@@ -543,10 +539,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                             LazyColumn(
                                 state = outlineState,
                                 userScrollEnabled = false,
-                                modifier =
-                                    Modifier.height(440.dp).twoFingerScroll {
-                                        outlineState.dispatchRawDelta(it)
-                                    },
+                                modifier = Modifier.height(440.dp).twoFingerScroll(outlineState),
                             ) {
                                 itemsIndexed(lesson.sections) { i, s ->
                                     TextButton(
@@ -579,10 +572,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
         LazyColumn(
             state = state,
             userScrollEnabled = false,
-            modifier =
-                Modifier.weight(1f).fillMaxWidth().testTag("reader").twoFingerScroll {
-                    state.dispatchRawDelta(it)
-                },
+            modifier = Modifier.weight(1f).fillMaxWidth().testTag("reader").twoFingerScroll(state),
             contentPadding = PaddingValues(bottom = 60.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(26.dp),
@@ -933,10 +923,7 @@ private fun Practice(
                             LazyColumn(
                                 state = writingState,
                                 userScrollEnabled = false,
-                                modifier =
-                                    Modifier.fillMaxSize().twoFingerScroll {
-                                        writingState.dispatchRawDelta(it)
-                                    },
+                                modifier = Modifier.fillMaxSize().twoFingerScroll(writingState),
                             ) {
                                 item { PaperCanvas(model, page, q, minimumHeight) }
                             }
@@ -991,8 +978,7 @@ private fun Practice(
                 LazyColumn(
                     state = state,
                     userScrollEnabled = false,
-                    modifier =
-                        Modifier.height(440.dp).twoFingerScroll { state.dispatchRawDelta(it) },
+                    modifier = Modifier.height(440.dp).twoFingerScroll(state),
                 ) {
                     itemsIndexed(lesson.practiceIds) { i, id ->
                         val question = lesson.question(id)
@@ -1043,7 +1029,7 @@ private fun PracticePrompt(q: Question, modifier: Modifier) {
         LazyColumn(
             state = state,
             userScrollEnabled = false,
-            modifier = Modifier.weight(1f).twoFingerScroll { state.dispatchRawDelta(it) },
+            modifier = Modifier.weight(1f).twoFingerScroll(state),
             contentPadding = PaddingValues(24.dp),
         ) {
             item {

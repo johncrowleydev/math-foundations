@@ -1,10 +1,11 @@
 package dev.math.notebook
 
 import android.view.ViewConfiguration
-import android.widget.OverScroller
+import androidx.compose.foundation.MutatePriority
+import androidx.compose.foundation.gestures.ScrollableDefaults
+import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
@@ -14,23 +15,30 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.platform.LocalContext
 import kotlin.math.abs
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
-/** Two fingers drag and flick. Any new contact stops momentum, including a pen. */
-fun Modifier.twoFingerScroll(scroll: (Float) -> Float): Modifier = composed {
-    val latestScroll = rememberUpdatedState(scroll)
+private sealed interface ScrollCommand {
+    data class Drag(val pixels: Float) : ScrollCommand
+
+    data class Release(val velocity: Float) : ScrollCommand
+}
+
+/** Gate input to two fingers; let Compose own the scroll session and fling physics. */
+fun Modifier.twoFingerScroll(state: ScrollableState): Modifier = composed {
+    val flingBehavior = rememberUpdatedState(ScrollableDefaults.flingBehavior())
     val context = LocalContext.current
-    pointerInput(Unit) {
+    pointerInput(state) {
         coroutineScope {
             val scope = this
             val config = ViewConfiguration.get(context)
-            val scroller = OverScroller(context)
-            var fling: Job? = null
+            var scrolling: Job? = null
             awaitEachGesture {
+                var commands: Channel<ScrollCommand>? = null
                 var ids = emptySet<Long>()
-                var previousY = 0f
                 var accumulated = 0f
                 var dragging = false
                 val tracker = VelocityTracker()
@@ -41,8 +49,9 @@ fun Modifier.twoFingerScroll(scroll: (Float) -> Float): Modifier = composed {
                     val event = awaitPointerEvent(PointerEventPass.Initial)
                     val time = event.changes.maxOf { it.uptimeMillis }
                     if (event.changes.any { it.pressed && !it.previousPressed }) {
-                        fling?.cancel()
-                        scroller.forceFinished(true)
+                        scrolling?.cancel()
+                        commands?.close()
+                        commands = null
                         releaseTime = -1L
                         releaseVelocity = 0f
                     }
@@ -57,12 +66,44 @@ fun Modifier.twoFingerScroll(scroll: (Float) -> Float): Modifier = composed {
                     if (fingers.size == 2 && !penDown) {
                         val y = fingers.map { it.position.y }.average().toFloat()
                         if (ids == current) {
-                            val delta = previousY - y
+                            val delta =
+                                fingers
+                                    .sumOf { (it.previousPosition.y - it.position.y).toDouble() }
+                                    .toFloat() / 2f
                             if (delta != 0f) lastMovement = time
                             accumulated += delta
-                            if (!dragging && abs(accumulated) > viewConfiguration.touchSlop)
+                            var dragDelta = delta
+                            if (!dragging && abs(accumulated) > viewConfiguration.touchSlop) {
                                 dragging = true
-                            if (dragging) latestScroll.value(delta)
+                                // Lose only touch slop, never a whole first movement event.
+                                dragDelta =
+                                    accumulated -
+                                        Math.copySign(viewConfiguration.touchSlop, accumulated)
+                                val channel = Channel<ScrollCommand>(Channel.UNLIMITED)
+                                commands = channel
+                                scrolling =
+                                    scope.launch(start = CoroutineStart.UNDISPATCHED) {
+                                        try {
+                                            state.scroll(MutatePriority.UserInput) {
+                                                for (command in channel) {
+                                                    when (command) {
+                                                        is ScrollCommand.Drag ->
+                                                            scrollBy(command.pixels)
+                                                        is ScrollCommand.Release -> {
+                                                            with(flingBehavior.value) {
+                                                                performFling(command.velocity)
+                                                            }
+                                                            break
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } finally {
+                                            channel.cancel()
+                                        }
+                                    }
+                            }
+                            if (dragging) commands?.trySend(ScrollCommand.Drag(dragDelta))
                         } else {
                             accumulated = 0f
                             dragging = false
@@ -71,7 +112,6 @@ fun Modifier.twoFingerScroll(scroll: (Float) -> Float): Modifier = composed {
                         }
                         tracker.addPosition(time, Offset(0f, y))
                         fingers.forEach { it.consume() }
-                        previousY = y
                         ids = current
                     } else {
                         // Preserve the final two-finger velocity across slightly staggered
@@ -100,35 +140,20 @@ fun Modifier.twoFingerScroll(scroll: (Float) -> Float): Modifier = composed {
                         accumulated = 0f
                         dragging = false
                     }
-                    if (
-                        event.changes.none { it.pressed } &&
-                            releaseTime >= 0 &&
-                            time - releaseTime <= 80 &&
-                            abs(releaseVelocity) >= config.scaledMinimumFlingVelocity
-                    ) {
+                    if (event.changes.none { it.pressed }) {
                         val velocity =
-                            releaseVelocity
-                                .coerceIn(
+                            if (
+                                releaseTime >= 0 &&
+                                    time - releaseTime <= 80 &&
+                                    abs(releaseVelocity) >= config.scaledMinimumFlingVelocity
+                            ) {
+                                releaseVelocity.coerceIn(
                                     -config.scaledMaximumFlingVelocity.toFloat(),
                                     config.scaledMaximumFlingVelocity.toFloat(),
                                 )
-                                .toInt()
-                        fling =
-                            scope.launch {
-                                scroller.fling(0, 0, 0, velocity, 0, 0, -1_000_000, 1_000_000)
-                                var previous = 0
-                                while (!scroller.isFinished) {
-                                    withFrameNanos {}
-                                    if (!scroller.computeScrollOffset()) break
-                                    val delta = (scroller.currY - previous).toFloat()
-                                    previous = scroller.currY
-                                    if (
-                                        delta != 0f && abs(latestScroll.value(delta) - delta) > 0.5f
-                                    ) {
-                                        scroller.forceFinished(true)
-                                    }
-                                }
-                            }
+                            } else 0f
+                        commands?.trySend(ScrollCommand.Release(velocity))
+                        commands?.close()
                     }
                 } while (event.changes.any { it.pressed })
             }

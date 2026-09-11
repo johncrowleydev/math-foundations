@@ -92,6 +92,59 @@ class TabletTest {
     }
 
     @Test
+    fun readerTracksSlowDragInBothOrientations() {
+        rule.runOnIdle {
+            model.select(0)
+            model.mode(false)
+        }
+        for (orientation in
+            listOf(
+                android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,
+                android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE,
+            )) {
+            rule.runOnIdle { rule.activity.requestedOrientation = orientation }
+            val expected =
+                if (orientation == android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                    android.content.res.Configuration.ORIENTATION_PORTRAIT
+                else android.content.res.Configuration.ORIENTATION_LANDSCAPE
+            rule.waitUntil(10000) { rule.activity.resources.configuration.orientation == expected }
+            rule.waitForIdle()
+            rule.onNodeWithText("On this page").performClick()
+            rule.onNode(hasText("Propositions") and hasClickAction()).performClick()
+            val reader = rule.onNodeWithTag("reader")
+            reader.performTouchInput {
+                down(0, Offset(centerX - 70, bottom - 100))
+                down(1, Offset(centerX + 70, bottom - 100))
+            }
+            var previous = 0
+            for (step in 1..28) {
+                reader.performTouchInput {
+                    updatePointerTo(0, Offset(centerX - 70, bottom - 100 - step * 8))
+                    updatePointerTo(1, Offset(centerX + 70, bottom - 100 - step * 8))
+                    move(delayMillis = 32)
+                }
+                rule.waitForIdle()
+                val position = rule.runOnIdle { model.reading(model.lesson.slug) }
+                assertEquals(1, position.first)
+                if (step > 8)
+                    assertEquals(
+                        "Reader stopped following at step $step in orientation $orientation",
+                        8,
+                        position.second - previous,
+                    )
+                previous = position.second
+            }
+            reader.performTouchInput {
+                advanceEventTime(200)
+                up(0)
+                up(1)
+            }
+            rule.waitForIdle()
+            assertEquals(previous, rule.runOnIdle { model.reading(model.lesson.slug).second })
+        }
+    }
+
+    @Test
     fun fingersOnlyScrollInPairs() {
         rule.runOnIdle {
             model.select(0)
