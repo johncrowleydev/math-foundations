@@ -1,6 +1,6 @@
 # Visual teaching implementation ledger
 
-Status: implementation and acceptance complete; OTA publication pending.
+Status: complete. Foundations 0.4.0 is published and its public OTA download is verified.
 
 ## Required completion gates
 
@@ -12,7 +12,7 @@ Status: implementation and acceptance complete; OTA publication pending.
 - [x] Every reference and formula explanation checked in context
 - [x] Stable bookmarks migrated; existing handwriting and choices preserved
 - [x] Native interaction, offline, rendering, content, and release checks pass
-- [ ] Signed OTA published and public download verified
+- [x] Signed OTA published and public download verified
 
 ## Editorial rules
 
@@ -120,3 +120,7 @@ The completed edition contains 15 lessons, 1,313 exercises, 30 quick checks, 385
 Final local content suite: 35 tests pass. TypeScript and formatting checks pass. Android debug build, unit tests, and lint pass with zero lint errors. The latest emulator suite passes all 24 tests, including all-math rendering/baseline, quick-check selection and references, bookmark migration, rotation, S Pen/ink persistence, continuous scrolling, flick behavior, formula/reference navigation, and figure Previous/Reset restoration. Physical tablet figure-state inspections, the three reference tests, and confirmed offline tests are recorded above. No production data was changed during validation. The release is version 0.4.0, code 8; signing and public OTA verification are the remaining publication steps.
 
 Production assembleRelease, testReleaseUnitTest, and lintRelease passed (52 seconds). The APK signature verifies with the existing release certificate, package dev.math.notebook, version 0.4.0/code 8. Source publication and public OTA verification remain pending.
+
+## Publication verification
+
+Published [Foundations 0.4.0](https://github.com/johncrowleydev/math-foundations/releases/tag/v0.4.0) from commit `6bae02b50df106cae3c574eeb12061d9911201ed`, after [Android CI passed](https://github.com/johncrowleydev/math-foundations/actions/runs/34634155276). The public `/releases/latest/download/update.json` returned version 0.4.0/code 8. An unauthenticated download of its APK matched the manifest's 51,360,795-byte size and SHA-256 `36fad035987d858c20fd8e563624cf36965fc25bb47f8e51fda60bb9cc8dab8b`. APK signature verification passed with the existing release certificate SHA-256 `e945580aac14d216ff5ad39bf86994c070f79760475d8310a449711620adae7e`. This completes every gate above. Installation remains the normal user-confirmed Android OTA flow.
