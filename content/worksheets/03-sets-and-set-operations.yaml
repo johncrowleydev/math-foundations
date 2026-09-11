@@ -1,0 +1,548 @@
+title: 'Sets and Set Operations'
+instructions:
+  '80 exercises in eight sections. State domains and justify nontrivial conclusions. Give explicit
+  witnesses or counterexamples when requested. Use the blank space for working; the explained answer key follows
+  the student section.'
+sections:
+  - title: 'A. Membership, subsets, and descriptions'
+    questions:
+      - id: 1
+        type: freeform
+        prompt: 'List $\{n\in\mathbb Z:-3\leq n\leq4\text{ and }n\text{ is even}\}$.'
+        answerLines: 2
+        answer: '$\{-2,0,2,4\}$. Each listed integer satisfies both restrictions.'
+      - id: 2
+        type: freeform
+        prompt: 'Are $\{1,1,2,3\}$ and $\{3,2,1\}$ equal? State their cardinality.'
+        answerLines: 2
+        answer: 'Yes. Order and repetitions do not affect membership; both have cardinality 3.'
+      - id: 3
+        type: freeform
+        prompt: 'Let $A=\{1,\{2\},\varnothing\}$. Decide whether $2\in A$ and whether $\{2\}\in A$.'
+        answerLines: 3
+        answer: '$2\notin A$, but $\{2\}\in A$. The listed element is the singleton set, not its element 2.'
+      - id: 4
+        type: freeform
+        prompt:
+          'For $A=\{1,\{2\},\varnothing\}$, decide whether $\varnothing\subseteq A$ and whether $\varnothing\in
+          A$.'
+        answerLines: 3
+        answer: 'Both are true. The empty set is a subset of every set and is also explicitly listed here.'
+      - id: 5
+        type: freeform
+        prompt: 'Distinguish the cardinalities of $\varnothing$, $\{\varnothing\}$, and $\{\varnothing,\{\varnothing\}\}$.'
+        answerLines: 3
+        answer: 'They are 0, 1, and 2. The last set has two different elements, one empty and one nonempty.'
+      - id: 6
+        type: freeform
+        prompt:
+          'Let $A=\{1,3\}$ and $B=\{1,2,3\}$. Which of $A\subseteq B$, $A\subsetneq B$, and $B\subseteq A$
+          hold?'
+        answerLines: 3
+        answer: 'The first two hold. The third fails because $2\in B$ but $2\notin A$.'
+      - id: 7
+        type: freeform
+        prompt: 'Write a set-builder description of all integers divisible by 5.'
+        answerLines: 3
+        answer: '$\{n\in\mathbb Z:\exists k\in\mathbb Z,\ n=5k\}$, equivalently $\{5k:k\in\mathbb Z\}$.'
+      - id: 8
+        type: freeform
+        prompt: 'List the solutions of $x^2=9$ first in $\mathbb Z$, then in the positive integers.'
+        answerLines: 3
+        answer:
+          'In $\mathbb Z$ the set is $\{-3,3\}$. Among positive integers it is $\{3\}$. The domain changes
+          the set.'
+      - id: 9
+        type: freeform
+        prompt: 'Negate $A\subseteq B$ as a statement about an element.'
+        answerLines: 3
+        answer: 'There exists $x$ with $x\in A$ and $x\notin B$. One such witness refutes inclusion.'
+      - id: 10
+        type: reasoning
+        prompt: 'Explain why $A\subseteq A$ holds even when $A$ is empty.'
+        answerLines: 4
+        answer:
+          'Every implication $x\in A\to x\in A$ is true. If $A$ is empty, there are no elements violating
+          it.'
+  - title: 'B. Computing operations in a fixed universe'
+    questions:
+      - id: 11
+        type: freeform
+        prompt:
+          'For this question let $U=\{1,2,3,4,5,6,7,8\}$, $A=\{1,2,4,6\}$, and $B=\{2,3,6,7\}$. Find $A\cup
+          B$.'
+        answerLines: 3
+        answer: '$\{1,2,3,4,6,7\}$, containing each element that belongs to at least one input set.'
+      - id: 12
+        type: freeform
+        prompt: 'Let $A=\{1,2,4,6\}$ and $B=\{2,3,6,7\}$. Find $A\cap B$.'
+        answerLines: 2
+        answer: '$\{2,6\}$; only these elements occur in both.'
+      - id: 13
+        type: freeform
+        prompt: 'Let $A=\{1,2,4,6\}$ and $B=\{2,3,6,7\}$. Find both directional differences.'
+        answerLines: 3
+        answer: '$A\setminus B=\{1,4\}$ and $B\setminus A=\{3,7\}$.'
+      - id: 14
+        type: freeform
+        prompt: 'Let $U=\{1,2,3,4,5,6,7,8\}$ and $A=\{1,2,4,6\}$. Find $A^c$.'
+        answerLines: 2
+        answer: '$\{3,5,7,8\}$, the members of the stated universe missing from $A$.'
+      - id: 15
+        type: freeform
+        prompt: 'Let $A=\{1,2,4,6\}$ and $B=\{2,3,6,7\}$. Find $A\mathbin{\triangle}B$.'
+        answerLines: 3
+        answer: '$\{1,3,4,7\}$; the common elements 2 and 6 are excluded.'
+      - id: 16
+        type: freeform
+        prompt:
+          'With $U=\{1,2,3,4,5,6,7,8\}$, $A=\{1,2,4,6\}$, and $B=\{2,3,6,7\}$, compute $(A\cup B)^c$ and
+          $A^c\cap B^c$.'
+        answerLines: 3
+        answer: 'Both are $\{5,8\}$, illustrating De Morgan''s law.'
+      - id: 17
+        type: freeform
+        prompt:
+          'With the same explicitly specified sets $U=\{1,2,3,4,5,6,7,8\}$, $A=\{1,2,4,6\}$, and $B=\{2,3,6,7\}$,
+          compute $(A\cap B)^c$.'
+        answerLines: 3
+        answer: '$\{1,3,4,5,7,8\}$ because only 2 and 6 are excluded from $U$.'
+      - id: 18
+        type: freeform
+        prompt: 'Let $A=\{1,2,3\}$, $B=\{2,3,4\}$, and $C=\{3,5\}$. Compute $(A\cup B)\setminus C$.'
+        answerLines: 3
+        answer: '$\{1,2,4\}$. First form $\{1,2,3,4\}$, then remove 3.'
+      - id: 19
+        type: reasoning
+        prompt:
+          'Let $A=\{1,2,3\}$, $B=\{2,3,4\}$, and $C=\{3,5\}$. Compute $A\setminus(B\setminus C)$ and $(A\setminus
+          B)\setminus C$.'
+        answerLines: 4
+        answer:
+          'The first is $\{1,3\}$ since $B\setminus C=\{2,4\}$. The second is $\{1\}$. Difference is not
+          associative.'
+      - id: 20
+        type: freeform
+        prompt: 'Is $A=\{2,4\}$ disjoint from $B=\{4,6\}$? Is the empty set disjoint from itself?'
+        answerLines: 3
+        answer:
+          'The first pair is not disjoint because its intersection is $\{4\}$. The empty set is disjoint
+          from itself because its intersection with itself is empty.'
+  - title: 'C. Identities and element proofs'
+    questions:
+      - id: 21
+        type: reasoning
+        prompt: 'Prove $A\cap B\subseteq A$ by choosing an arbitrary element.'
+        answerLines: 5
+        answer:
+          'If $x\in A\cap B$, the definition of intersection gives $x\in A$ and $x\in B$. In particular $x\in
+          A$, proving the inclusion for every such element.'
+      - id: 22
+        type: reasoning
+        prompt: 'Prove $A\subseteq A\cup B$ for arbitrary sets.'
+        answerLines: 5
+        answer:
+          'Let $x\in A$. Then $x\in A$ or $x\in B$ is true, so $x\in A\cup B$. This covers every element
+          of $A$.'
+      - id: 23
+        type: reasoning
+        prompt: 'For $A,B\subseteq U$, prove $A\setminus B=A\cap B^c$.'
+        answerLines: 6
+        answer:
+          'An element is in the left side exactly when it is in $A$ and not in $B$. Since members of $A$
+          lie in $U$, this is exactly membership in both $A$ and $B^c$. The equivalence proves both inclusions.'
+      - id: 24
+        type: reasoning
+        prompt: 'Prove the absorption identity $A\cup(A\cap B)=A$.'
+        answerLines: 6
+        answer:
+          'Every element of the left side is either in $A$ already or in $A\cap B$, hence in $A$. Conversely,
+          every member of $A$ belongs to the union. Both inclusions give equality.'
+      - id: 25
+        type: reasoning
+        prompt: 'For subsets of $U$, prove $(A\cap B)^c=A^c\cup B^c$.'
+        answerLines: 6
+        answer:
+          'For $x\in U$, failure to belong to $A\cap B$ means that $x$ is missing from at least one of $A,B$.
+          This is exactly $x\in A^c$ or $x\in B^c$, hence membership in their union.'
+      - id: 26
+        type: reasoning
+        prompt: 'Prove $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$.'
+        answerLines: 6
+        answer:
+          'Membership in the left means $x\in A$ and at least one of $x\in B,x\in C$. Distributing AND over
+          OR gives membership in $A\cap B$ or in $A\cap C$, exactly the right side. Each step is an equivalence.'
+      - id: 27
+        type: reasoning
+        prompt: 'Simplify $(A\cap B)\cup(A\cap B^c)$ for subsets of one universe, citing laws.'
+        answerLines: 4
+        answer:
+          'By distributivity it is $A\cap(B\cup B^c)=A\cap U=A$. The complement and identity laws justify
+          the last steps.'
+      - id: 28
+        type: reasoning
+        prompt: 'Simplify $A\setminus(A\setminus B)$ and justify the result.'
+        answerLines: 5
+        answer:
+          'It is $A\cap B$. A member must be in $A$ but fail the condition of being in $A$ and outside $B$,
+          so it must also be in $B$; the reverse implication follows directly.'
+      - id: 29
+        type: reasoning
+        prompt: 'Is $A\setminus(B\cup C)=(A\setminus B)\cup(A\setminus C)$ always true? Refute or prove.'
+        answerLines: 5
+        answer:
+          'False. Take $A=\{1,2\}$, $B=\{1\}$, and $C=\{2\}$. The left side is empty; the right is $\{1,2\}$.
+          The correct connective on the right is intersection.'
+      - id: 30
+        type: reasoning
+        prompt: 'Prove that $A\subseteq B$ implies $B^c\subseteq A^c$ when complements use the same $U$.'
+        answerLines: 6
+        answer:
+          'If $x\in B^c$, then $x\in U$ and $x\notin B$. Were $x$ in $A$, the assumed inclusion would put
+          it in $B$. Thus $x\notin A$ and $x\in A^c$.'
+  - title: 'D. Power sets and Cartesian products'
+    questions:
+      - id: 31
+        type: freeform
+        prompt: 'List $\mathcal P(\{a,b\})$.'
+        answerLines: 3
+        answer: '$\{\varnothing,\{a\},\{b\},\{a,b\}\}$. These are the four possible subsets.'
+      - id: 32
+        type: freeform
+        prompt: 'List $\mathcal P(\varnothing)$ and state its size.'
+        answerLines: 3
+        answer: '$\mathcal P(\varnothing)=\{\varnothing\}$ has size 1, since the empty set has exactly one subset.'
+      - id: 33
+        type: freeform
+        prompt: 'If a finite set has five elements, how many subsets does it have? Explain.'
+        answerLines: 3
+        answer: '$2^5=32$. Each element is independently included or excluded.'
+      - id: 34
+        type: freeform
+        prompt: 'Let $A=\{1,2\}$. Decide whether $\{1\}\in\mathcal P(A)$ and whether $1\in\mathcal P(A)$.'
+        answerLines: 3
+        answer:
+          'The first is true because $\{1\}\subseteq A$. The second is false under the ordinary distinction
+          between these numbers and subsets: members of the displayed power set are $\varnothing,\{1\},\{2\},\{1,2\}$.'
+      - id: 35
+        type: freeform
+        prompt: 'List $\{0,1\}\times\{a,b\}$.'
+        answerLines: 3
+        answer: '$\{(0,a),(0,b),(1,a),(1,b)\}$. Each first coordinate is paired with each second coordinate.'
+      - id: 36
+        type: freeform
+        prompt: 'If $|A|=3$ and $|B|=4$, find $|A\times B|$ and $|\mathcal P(A\times B)|$.'
+        answerLines: 3
+        answer: 'The product has $3\cdot4=12$ elements, so its power set has $2^{12}=4096$ elements.'
+      - id: 37
+        type: reasoning
+        prompt: 'Prove $A\times\varnothing=\varnothing$ for every set $A$.'
+        answerLines: 4
+        answer:
+          'A member would need a second coordinate in the empty set, which is impossible. Therefore the product
+          has no members.'
+      - id: 38
+        type: freeform
+        prompt: 'Give nonempty sets for which $A\times B\ne B\times A$ even though both products have equal size.'
+        answerLines: 3
+        answer:
+          'Let $A=\{1\}$ and $B=\{2\}$. The products are $\{(1,2)\}$ and $\{(2,1)\}$, distinct singleton
+          sets.'
+      - id: 39
+        type: reasoning
+        prompt: 'Prove $A\subseteq B$ implies $\mathcal P(A)\subseteq\mathcal P(B)$.'
+        answerLines: 5
+        answer:
+          'If $S\in\mathcal P(A)$, then $S\subseteq A$. Together with $A\subseteq B$, this gives $S\subseteq
+          B$, so $S\in\mathcal P(B)$.'
+      - id: 40
+        type: reasoning
+        prompt: 'Prove $\mathcal P(A\cap B)=\mathcal P(A)\cap\mathcal P(B)$.'
+        answerLines: 6
+        answer:
+          'A set $S$ is a subset of $A\cap B$ exactly when every member of $S$ belongs to both $A$ and $B$.
+          This is exactly $S\subseteq A$ and $S\subseteq B$, the condition for the right side.'
+  - title: 'E. Finite cardinality and inclusion-exclusion'
+    questions:
+      - id: 41
+        type: freeform
+        prompt: 'In a class, 24 use Python, 18 use JavaScript, and 10 use both. How many use at least one?'
+        answerLines: 3
+        answer: '$24+18-10=32$. The overlap must be subtracted once.'
+      - id: 42
+        type: freeform
+        prompt:
+          'For the preceding explicitly stated counts of 24, 18, and overlap 10, how many use exactly one
+          language?'
+        answerLines: 3
+        answer: '$(24-10)+(18-10)=22$, counting the two disjoint exclusive groups.'
+      - id: 43
+        type: freeform
+        prompt:
+          'A universe has 50 members. Sets have sizes 24 and 18, with overlap 10. How many universe members
+          are in neither?'
+        answerLines: 3
+        answer: 'Their union has 32 members, so $50-32=18$ are in neither.'
+      - id: 44
+        type: freeform
+        prompt: 'Finite sets satisfy $|A|=17$, $|B|=14$, and $|A\cup B|=25$. Find $|A\cap B|$.'
+        answerLines: 3
+        answer: '$17+14-25=6$. Rearranging inclusion-exclusion gives the overlap.'
+      - id: 45
+        type: reasoning
+        prompt:
+          'Can subsets of a 20-element universe have sizes 15 and 12 and be disjoint? Explain a lower bound
+          on their intersection.'
+        answerLines: 4
+        answer: 'No. Their union is at most 20, so the intersection is at least $15+12-20=7$.'
+      - id: 46
+        type: freeform
+        prompt:
+          'Three finite sets have sizes 20, 16, 12; pairwise intersections have sizes 8, 5, 4; the triple
+          intersection has size 2. Find the union size.'
+        answerLines: 3
+        answer: '$20+16+12-8-5-4+2=33$. Pairwise counts include the triple members.'
+      - id: 47
+        type: reasoning
+        prompt:
+          'Suppose $|A\cap B|=8$, $|A\cap C|=5$, $|B\cap C|=4$, and the triple overlap has size 2. How many
+          members are in exactly two sets?'
+        answerLines: 4
+        answer: '$(8-2)+(5-2)+(4-2)=11$. Each triple member is removed from each of the three pairwise counts.'
+      - id: 48
+        type: reasoning
+        prompt:
+          'For sizes 20, 16, 12, pairwise intersections 8, 5, 4, and triple intersection 2, how many members
+          are in exactly one set?'
+        answerLines: 4
+        answer: 'The exclusive sizes are $20-8-5+2=9$, $16-8-4+2=6$, and $12-5-4+2=5$. Their sum is 20.'
+      - id: 49
+        type: reasoning
+        prompt:
+          'Explain the coefficient of an element belonging to all three sets in the three-set inclusion-exclusion
+          formula.'
+        answerLines: 4
+        answer:
+          'It is counted three times in individual sizes, subtracted three times in pairwise intersections,
+          and added once in the triple term. Its net coefficient is $3-3+1=1$.'
+      - id: 50
+        type: freeform
+        prompt: 'Explain why equal finite cardinalities do not prove two sets equal, and give an example.'
+        answerLines: 3
+        answer:
+          '$\{1,2\}$ and $\{3,4\}$ both have size 2 but have different members. Equality requires identical
+          membership, not merely matching counts.'
+  - title: 'F. Partitions and indexed families'
+    questions:
+      - id: 51
+        type: reasoning
+        prompt: 'Does $\{\{1,3\},\{2,4\}\}$ partition $\{1,2,3,4\}$? Check every requirement.'
+        answerLines: 4
+        answer: 'Yes. Both blocks are nonempty, their intersection is empty, and their union is the stated set.'
+      - id: 52
+        type: freeform
+        prompt: 'Does $\{\{1,2\},\{2,3\}\}$ partition $\{1,2,3\}$?'
+        answerLines: 3
+        answer: 'No. The blocks overlap at 2, violating pairwise disjointness.'
+      - id: 53
+        type: freeform
+        prompt: 'Does $\{\{1\},\{2\}\}$ partition $\{1,2,3\}$?'
+        answerLines: 3
+        answer: 'No. Their union misses 3, so coverage fails.'
+      - id: 54
+        type: freeform
+        prompt: 'Does $\{\varnothing,\{1,2\}\}$ partition $\{1,2\}$ under the lesson''s definition?'
+        answerLines: 3
+        answer: 'No. A partition has only nonempty blocks; the empty block violates that condition.'
+      - id: 55
+        type: reasoning
+        prompt: "Describe the partition of the empty set under the lesson's convention."
+        answerLines: 4
+        answer:
+          'The empty collection of blocks. It has no empty block; its union is empty, and the nonemptiness
+          and disjointness conditions have no counterexamples.'
+      - id: 56
+        type: reasoning
+        prompt: 'Partition $\mathbb Z$ into even and odd integers, and justify coverage and disjointness.'
+        answerLines: 5
+        answer:
+          'The blocks are $\{2k:k\in\mathbb Z\}$ and $\{2k+1:k\in\mathbb Z\}$. Both are nonempty. Division
+          by 2 gives exactly one remainder 0 or 1, so every integer is in exactly one block.'
+      - id: 57
+        type: freeform
+        prompt: 'Let $A_i=\{1,\ldots,i\}$ for $i=1,2,3,4$. Compute their union and intersection.'
+        answerLines: 3
+        answer:
+          'The union is $\{1,2,3,4\}$ and the intersection is $\{1\}$. The sets are nested, so the largest
+          controls the union and smallest controls the intersection.'
+      - id: 58
+        type: freeform
+        prompt: 'Let $A_i=\{i,i+1\}$ for $i=1,2,3$. Compute their union and intersection.'
+        answerLines: 3
+        answer: 'The union is $\{1,2,3,4\}$. The intersection is empty: no element belongs to all three sets.'
+      - id: 59
+        type: reasoning
+        prompt:
+          'For a fixed universe $U$, what are the union and intersection of an empty indexed family of subsets?
+          Explain.'
+        answerLines: 4
+        answer:
+          'The union is empty since no indexed set can supply a member. The intersection is $U$ since every
+          $x\in U$ satisfies the requirement of belonging to all zero indexed sets.'
+      - id: 60
+        type: reasoning
+        prompt:
+          'Explain why pairwise intersections being nonempty does not force a three-way intersection to be
+          nonempty.'
+        answerLines: 4
+        answer:
+          'Take $A=\{1,2\}$, $B=\{2,3\}$, and $C=\{1,3\}$. Their pairwise intersections are $\{2\},\{1\},\{3\}$,
+          but no element belongs to all three.'
+  - title: 'G. Policies, proofs, and counterexamples'
+    questions:
+      - id: 61
+        type: freeform
+        prompt:
+          'Let $E,T,S\subseteq U$ denote employees, trained users, and suspended users. Express trained employees
+          who are not suspended.'
+        answerLines: 3
+        answer: '$E\cap T\cap S^c$. Each of the three membership conditions must hold.'
+      - id: 62
+        type: freeform
+        prompt: 'For the same roles $E,T,S\subseteq U$, express users denied by the policy $E\cap T\cap S^c$.'
+        answerLines: 3
+        answer: '$E^c\cup T^c\cup S$, by De Morgan''s law. Failing any one requirement causes denial.'
+      - id: 63
+        type: reasoning
+        prompt:
+          'Only employees may enter. Members of $X$ can skip training but never suspension checks. Express
+          the allowed set using $E,T,S,X\subseteq U$.'
+        answerLines: 4
+        answer: '$E\cap(T\cup X)\cap S^c$. The exception changes only the training condition.'
+      - id: 64
+        type: reasoning
+        prompt: 'Refute that $(E\cap T\cap S^c)\cup X$ always excludes suspended users.'
+        answerLines: 4
+        answer:
+          'Take $U=\{u\}$ and $S=X=\{u\}$, with $E=T=\varnothing$. The expression includes $u$ through $X$,
+          although $u$ is suspended.'
+      - id: 65
+        type: reasoning
+        prompt: 'Prove that $A\setminus B$ and $A\cap B$ partition $A$ if both sets are nonempty. Explain the qualification.'
+        answerLines: 6
+        answer:
+          'Every member of $A$ is either in $B$ or outside $B$, so the two sets cover $A$ and are disjoint.
+          They are blocks only if nonempty; otherwise discard an empty piece to obtain a partition.'
+      - id: 66
+        type: reasoning
+        prompt: 'Refute the claim that $A\cup B=A\cup C$ implies $B=C$.'
+        answerLines: 4
+        answer: 'Let $A=\{1\}$, $B=\varnothing$, and $C=\{1\}$. Both unions equal $\{1\}$, but $B\ne C$.'
+      - id: 67
+        type: reasoning
+        prompt: 'Prove that if $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$.'
+        answerLines: 5
+        answer:
+          'Choose $x\in A$. The first inclusion puts $x$ in $B$, and the second puts it in $C$. Hence every
+          member of $A$ belongs to $C$.'
+      - id: 68
+        type: reasoning
+        prompt: 'Is $A\times(B\cap C)=(A\times B)\cap(A\times C)$ always true? Give an element proof.'
+        answerLines: 6
+        answer:
+          'Yes. A pair $(a,b)$ belongs to the left exactly when $a\in A$ and $b$ belongs to both $B,C$. That
+          is exactly membership in both products on the right.'
+      - id: 69
+        type: reasoning
+        prompt: 'Refute $\mathcal P(A\cup B)=\mathcal P(A)\cup\mathcal P(B)$ in general.'
+        answerLines: 4
+        answer:
+          'Let $A=\{1\}$ and $B=\{2\}$. The subset $\{1,2\}$ belongs to the left power set but neither power
+          set on the right.'
+      - id: 70
+        type: reasoning
+        prompt: 'Prove that if $A\mathbin{\triangle}B=\varnothing$, then $A=B$.'
+        answerLines: 6
+        answer:
+          'If an element belonged to $A$ but not $B$, or to $B$ but not $A$, it would belong to the symmetric
+          difference. None does, so both inclusions hold and the sets are equal.'
+  - title: 'H. Mixed reasoning and error diagnosis'
+    questions:
+      - id: 71
+        type: reasoning
+        prompt:
+          'A student claims $\varnothing\in A$ because the empty set is a subset of every set. Identify and
+          repair the mistake.'
+        answerLines: 4
+        answer:
+          'Membership and inclusion were confused. The universally true claim is $\varnothing\subseteq A$.
+          Membership fails, for example, for $A=\{1\}$.'
+      - id: 72
+        type: reasoning
+        prompt: 'A claimed equality proof establishes only $A\subseteq B$. What remains, and why?'
+        answerLines: 4
+        answer:
+          'It must establish $B\subseteq A$. For example, $\{1\}\subseteq\{1,2\}$ holds but equality fails
+          because of the extra element 2.'
+      - id: 73
+        type: reasoning
+        prompt:
+          'Let $A=\{x\in\mathbb Z:x^2<5\}$ and $B=\{x\in\mathbb Z:x\text{ is even}\}$. Compute $A\cap B$
+          and $A\setminus B$.'
+        answerLines: 4
+        answer: '$A=\{-2,-1,0,1,2\}$. The intersection is $\{-2,0,2\}$ and the difference is $\{-1,1\}$.'
+      - id: 74
+        type: freeform
+        prompt: 'Suppose finite disjoint sets have sizes 5 and 7. Find the number of subsets of their union.'
+        answerLines: 3
+        answer:
+          'The union has 12 elements, so it has $2^{12}=4096$ subsets. Disjointness justifies adding the
+          sizes.'
+      - id: 75
+        type: reasoning
+        prompt:
+          'A feature set has six elements. How many subsets must include a particular feature and exclude
+          a different particular feature?'
+        answerLines: 4
+        answer: '$2^4=16$. Two membership choices are fixed, leaving four independent binary choices.'
+      - id: 76
+        type: reasoning
+        prompt: 'Prove $A\cap B=A$ if and only if $A\subseteq B$.'
+        answerLines: 6
+        answer:
+          'If the intersection equals $A$, each $x\in A$ lies in the intersection and hence in $B$. Conversely,
+          if $A\subseteq B$, every member of $A$ is in both sets, while every member of the intersection is already
+          in $A$; equality follows.'
+      - id: 77
+        type: reasoning
+        prompt: 'For finite sets, can $|A\cap B|>|A|$ occur? Explain without a formula.'
+        answerLines: 4
+        answer:
+          'No. The intersection is a subset of $A$, so all its distinct elements are already among the $|A|$
+          members of $A$.'
+      - id: 78
+        type: freeform
+        prompt:
+          'Let a partition of a finite set have nonempty blocks of sizes 3, 4, and 5. Find the set size and
+          explain why overlaps need no correction.'
+        answerLines: 3
+        answer:
+          'The size is $3+4+5=12$. Partition blocks are pairwise disjoint, so each element is counted exactly
+          once.'
+      - id: 79
+        type: reasoning
+        prompt: 'If $A\times B=\varnothing$ and $A\ne\varnothing$, prove $B=\varnothing$.'
+        answerLines: 6
+        answer:
+          'Choose $a\in A$. If some $b\in B$ existed, then $(a,b)$ would belong to the product, contradicting
+          its emptiness. Thus $B$ has no elements.'
+      - id: 80
+        type: reasoning
+        prompt:
+          'Prove that equal complements imply equal sets when both complements use the same universe. Explain
+          why the universe must be fixed.'
+        answerLines: 6
+        answer:
+          'If $A^c=B^c$ in $U$, complementing again gives $A=B$. Different universes can give equal complements
+          for unequal sets: with $U=\{1\}, A=U$ and $V=\{2\}, B=V$, both relative complements are empty but $A\ne
+          B$.'

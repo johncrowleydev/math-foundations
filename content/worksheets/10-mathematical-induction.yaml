@@ -1,0 +1,627 @@
+title: Mathematical Induction
+instructions:
+  80 exercises in eight sections. Give reasons and show the requested proof, including domains
+  and all necessary cases. Integer arithmetic is exact. Blank response space is provided; the answer key follows
+  the student section.
+sections:
+  - title: A. Base, hypothesis, and target
+    instructions: Be explicit about integer index ranges and the proposition being proved.
+    questions:
+      - id: 1
+        type: reasoning
+        prompt: State the two obligations for proving $P(n)$ for every integer $n\geq3$ by ordinary induction.
+        answerLines: 3
+        answer:
+          Prove $P(3)$, then for arbitrary integer $k\geq3$ assume $P(k)$ and prove $P(k+1)$. Conclude all
+          integer cases from 3 onward.
+      - id: 2
+        type: reasoning
+        prompt: For $P(n):\sum_{i=1}^n i=n(n+1)/2$, write $P(k+1)$ exactly.
+        answerLines: 3
+        answer:
+          The target is $\sum_{i=1}^{k+1}i=(k+1)(k+2)/2$. Every occurrence of $n$ is replaced by $k+1$, including
+          the second factor.
+      - id: 3
+        type: reasoning
+        prompt: For $P(n):3\mid4^n-1$, give an algebraic induction hypothesis.
+        answerLines: 3
+        answer:
+          For arbitrary integer $k$ in the induction range, assume $4^k-1=3t$ for some integer $t$. The witness
+          comes from divisibility, not from assuming $4^k$ itself is divisible by 3.
+      - id: 4
+        type: reasoning
+        prompt: Why is assuming $P(k)$ in the inductive step not circular?
+        answerLines: 3
+        answer:
+          The step proves only the conditional $P(k)\to P(k+1)$ for arbitrary $k$. The base and induction
+          principle establish the whole family. Assuming $P(k+1)$ without justification would be circular.
+      - id: 5
+        type: reasoning
+        prompt: Does a proof beginning at $n=2$ establish the case $n=0$? Explain.
+        answerLines: 3
+        answer:
+          No. It establishes only the stated cases $n\geq2$. Earlier cases require separate checks or a proof
+          with an earlier valid base and connecting steps.
+      - id: 6
+        type: reasoning
+        prompt: Why cannot ordinary integer induction establish a claim for all real $x\geq0$ by adding 1?
+        answerLines: 3
+        answer:
+          Starting at 0 and repeatedly adding 1 reaches only nonnegative integers, missing values such as
+          1/2. Real order has no immediate next real value.
+      - id: 7
+        type: reasoning
+        prompt: If the base is $P(0)$ and the step is $P(k)\to P(k+2)$, which indices are reached?
+        answerLines: 3
+        answer:
+          Only even nonnegative indices are reached from 0. A separate base $P(1)$ would seed the odd chain,
+          provided the step is valid there too.
+      - id: 8
+        type: reasoning
+        prompt:
+          For $a_0=5$ and $a_{n+1}=2a_n$ at integer indices $n\geq0$, distinguish the definition from the
+          proposed formula $a_n=5\cdot2^n$.
+        answerLines: 3
+        answer:
+          The initial value and recurrence are given facts defining the sequence. The closed formula is the
+          statement to prove; it may be assumed only at the induction index during the conditional step.
+      - id: 9
+        type: reasoning
+        prompt: Why must an inequality proof justify multiplying by a factor's sign?
+        answerLines: 3
+        answer:
+          Multiplication by a nonnegative factor preserves the inequality, while a negative factor reverses
+          it. An unjustified sign assumption can invalidate the inductive bound.
+      - id: 10
+        type: reasoning
+        prompt: How can a stronger induction statement help even if the original goal is weaker?
+        answerLines: 3
+        answer:
+          Extra information may supply a quantity needed in the next step. Proving a conjunction or exact
+          formula can provide that information and imply the original goal afterward.
+  - title: B. Sums and products
+    instructions: Prove the stated identities by induction, with base and inductive step.
+    questions:
+      - id: 11
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n i=n(n+1)/2$ for integers $n\geq1$.
+        answerLines: 7
+        answer:
+          'Base 1: both sides are 1. Assume the formula at arbitrary $k\geq1$. Adding $k+1$ gives $k(k+1)/2+(k+1)=(k+1)(k+2)/2$,
+          exactly the next formula. Induction proves all cases.'
+      - id: 12
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n(2i-1)=n^2$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the empty sum is 0. Assuming the sum at $k$ is $k^2$, add the next term $2k+1$. The result
+          $k^2+2k+1=(k+1)^2$ proves the step for arbitrary $k\geq0$.'
+      - id: 13
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n2i=n(n+1)$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: both sides are 0. Assuming the identity at $k$, the next sum is $k(k+1)+2(k+1)=(k+1)(k+2)$.
+          This proves the step and all nonnegative cases.'
+      - id: 14
+        type: reasoning
+        prompt: Prove $\sum_{i=0}^n2^i=2^{n+1}-1$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: $1=2^1-1$. Assume the formula at arbitrary $k\geq0$. Adding $2^{k+1}$ gives $(2^{k+1}-1)+2^{k+1}=2^{k+2}-1$,
+          the next case.'
+      - id: 15
+        type: reasoning
+        prompt: Prove $\sum_{i=0}^n3^i=(3^{n+1}-1)/2$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: both sides are 1. Assume the formula at $k$. Adding $3^{k+1}$ gives $(3^{k+1}-1+2\cdot3^{k+1})/2=(3^{k+2}-1)/2$.
+          Thus induction applies.'
+      - id: 16
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n i^2=n(n+1)(2n+1)/6$ for integers $n\geq0$.
+        answerLines: 8
+        answer:
+          'Base 0: both sides vanish. Assume the formula at $k$. Adding $(k+1)^2$ and factoring $k+1$ gives
+          $(k+1)[k(2k+1)+6(k+1)]/6$. The bracket is $2k^2+7k+6=(k+2)(2k+3)$, yielding the required next formula.'
+      - id: 17
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n i^3=n^2(n+1)^2/4$ for integers $n\geq0$.
+        answerLines: 8
+        answer:
+          'Base 0: both sides vanish. Assume the formula at $k$. Add $(k+1)^3$ and factor $(k+1)^2/4$, obtaining
+          $(k+1)^2[k^2+4(k+1)]/4$. Since the bracket is $(k+2)^2$, this is the formula at $k+1$.'
+      - id: 18
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n1/[i(i+1)]=n/(n+1)$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the sum and right side are 0. Assuming the formula at $k$, the next sum is $k/(k+1)+1/[(k+1)(k+2)]$.
+          Combining fractions yields $(k+1)/(k+2)$. Denominators are nonzero for $k\geq0$.'
+      - id: 19
+        type: reasoning
+        prompt: Prove $\prod_{i=1}^n(i+1)/i=n+1$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the empty product is 1. Assume the product at $k$ equals $k+1$. Multiplying by the next
+          factor $(k+2)/(k+1)$ gives $k+2$. The denominator is positive, so cancellation is valid.'
+      - id: 20
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n(3i-1)=n(3n+1)/2$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: both sides are 0. Assuming the formula at $k$, add $3k+2$. The result is $(3k^2+7k+4)/2=(k+1)(3k+4)/2$,
+          which is the required next expression.'
+  - title: C. Divisibility induction
+    instructions: Give an explicit integer witness or use closure of divisibility with a justified rearrangement.
+    questions:
+      - id: 21
+        type: reasoning
+        prompt: Prove $3\mid4^n-1$ for every integer $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the difference is 0. Assume $4^k-1=3t$ with integer $t$. Then $4^{k+1}-1=4(4^k-1)+3=3(4t+1)$.
+          Its witness is integral, so induction proves the claim.'
+      - id: 22
+        type: reasoning
+        prompt: Prove $5\mid6^n-1$ for every integer $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: $6^0-1=0$. Assuming $6^k-1=5t$, the next difference is $6(6^k-1)+5=5(6t+1)$. This integer
+          witness proves the step for arbitrary $k\geq0$.'
+      - id: 23
+        type: reasoning
+        prompt: Prove $7\mid8^n-1$ for every integer $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the difference is 0. If $8^k-1=7t$, then $8^{k+1}-1=8(8^k-1)+7=7(8t+1)$. The coefficient
+          is integer, completing induction.'
+      - id: 24
+        type: reasoning
+        prompt: Prove $3\mid n^3-n$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the expression is 0. The next expression is $(k^3-k)+3k(k+1)$. The first term is divisible
+          by 3 by hypothesis, and the second visibly is too. Their sum is divisible by 3, proving the step.'
+      - id: 25
+        type: reasoning
+        prompt: Prove $6\mid n^3-n$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the expression is 0. The difference between next and current expressions is $3k(k+1)$.
+          The consecutive product $k(k+1)$ is even, making this difference divisible by 6. Adding it to the divisible
+          induction expression proves the step.'
+      - id: 26
+        type: reasoning
+        prompt: Prove $2\mid n(n+1)$ for integers $n\geq0$ by induction.
+        answerLines: 7
+        answer:
+          'Base 0: the product is 0. The next product satisfies $(k+1)(k+2)=k(k+1)+2(k+1)$. The first term
+          is even by hypothesis and the second is even, so their sum is even.'
+      - id: 27
+        type: reasoning
+        prompt: Prove $4\mid5^n-1$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the difference is 0. If $5^k-1=4t$, then $5^{k+1}-1=5(5^k-1)+4=4(5t+1)$, proving the next
+          case with an integer witness.'
+      - id: 28
+        type: reasoning
+        prompt: Prove $3\mid2^{2n}-1$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the difference is 0. Assuming the current difference divisible by 3, write the next as
+          $2^{2(k+1)}-1=4(2^{2k}-1)+3$. Both terms are divisible by 3, so the next case follows.'
+      - id: 29
+        type: reasoning
+        prompt: Prove $9\mid10^n-1$ for integers $n\geq0$ and explain the common pattern.
+        answerLines: 7
+        answer:
+          Base 0 gives 0. If $10^k-1=9t$, the next difference is $10(10^k-1)+9=9(10t+1)$. Generally an integer
+          base one greater than a divisor yields the same rearrangement; this observation explains rather than
+          replaces the proof.
+      - id: 30
+        type: reasoning
+        prompt:
+          A theorem is stated for $n\geq0$. Why does an induction proof of $3\mid n^3-n$ not automatically
+          cover negative integers? Extend it.
+        answerLines: 5
+        answer:
+          The induction chain does not reach negative indices. For negative $n$, let $m=-n>0$. Then $n^3-n=-(m^3-m)$,
+          divisible by 3 by the established positive case and closure under negation. This separately covers negatives.
+  - title: D. Inequalities and threshold conditions
+    instructions: Prove each bound and show the comparison bridging the hypothesis to the next target.
+    questions:
+      - id: 31
+        type: reasoning
+        prompt: Prove $2^n\geq n+1$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: $1\geq1$. Assume $2^k\geq k+1$. Then $2^{k+1}\geq2k+2\geq k+2$, since $k\geq0$. The last
+          expression is the next target, completing induction.'
+      - id: 32
+        type: reasoning
+        prompt: Prove $3^n\geq2n+1$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: both sides are 1. Assuming the bound at $k$, $3^{k+1}\geq6k+3\geq2k+3$, because $4k\geq0$.
+          This is the bound at $k+1$.'
+      - id: 33
+        type: reasoning
+        prompt: Prove $2^n\geq n^2$ for integers $n\geq4$.
+        answerLines: 8
+        answer:
+          'Base 4: $16=16$. Assume the bound at arbitrary $k\geq4$. Then $2^{k+1}\geq2k^2$. Also $2k^2-(k+1)^2=(k-1)^2-2\geq7>0$,
+          so the next square is bounded. Induction completes the proof.'
+      - id: 34
+        type: reasoning
+        prompt: Prove $n!\geq2^{n-1}$ for integers $n\geq1$.
+        answerLines: 7
+        answer:
+          'Base 1: both sides are 1. Assuming the bound at $k\geq1$, $(k+1)!=(k+1)k!\geq2\cdot2^{k-1}=2^k$,
+          since $k+1\geq2$.'
+      - id: 35
+        type: reasoning
+        prompt: Prove $n!\geq n^2$ for integers $n\geq4$.
+        answerLines: 8
+        answer:
+          'Base 4: $24\geq16$. Assume $k!\geq k^2$ at arbitrary $k\geq4$. Then $(k+1)!\geq(k+1)k^2$. The
+          bridge follows from $k^2-k-1=k(k-1)-1\geq11>0$, so $k^2\geq k+1$. Multiplying by positive $k+1$ yields
+          $(k+1)!\geq(k+1)^2$, completing the step.'
+      - id: 36
+        type: reasoning
+        prompt: For fixed real $x\geq0$, prove $(1+x)^n\geq1+nx$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: both sides are 1. Multiply the induction bound by nonnegative $1+x$, obtaining $(1+x)^{k+1}\geq1+(k+1)x+kx^2$.
+          The final term is nonnegative, so dropping it gives the next bound.'
+      - id: 37
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n1/i\leq n$ for integers $n\geq1$ by induction.
+        answerLines: 7
+        answer:
+          'Base 1: equality holds. Assuming the bound at $k\geq1$, the next sum is at most $k+1/(k+1)\leq
+          k+1$, since the new reciprocal is at most 1. This proves the step.'
+      - id: 38
+        type: reasoning
+        prompt: Prove $n^2\geq2n-1$ for integers $n\geq1$ by induction.
+        answerLines: 7
+        answer:
+          'Base 1: equality holds. If $k^2\geq2k-1$, then $(k+1)^2=k^2+2k+1\geq4k\geq2k+1$, since $k\geq1$.
+          The last quantity is the required next bound.'
+      - id: 39
+        type: reasoning
+        prompt: The claim $2^n\geq n^2$ fails at $n=3$. Does this prevent proving it from $n=4$? Explain.
+        answerLines: 5
+        answer:
+          No. Induction from 4 needs the base at 4 and steps for $k\geq4$ only. The failed case 3 is outside
+          that theorem's domain, so no transition from 3 is required.
+      - id: 40
+        type: reasoning
+        prompt: In the bound $2^{k+1}\geq2k^2$, why is the inductive step for $2^n\geq n^2$ not finished?
+        answerLines: 5
+        answer:
+          The target is $(k+1)^2$, not $2k^2$. One must additionally show $2k^2\geq(k+1)^2$ in the permitted
+          range. Without that bridge, the obtained bound may be insufficient.
+  - title: E. Recurrences and claimed formulas
+    instructions: Each sequence is defined for nonnegative integer indices. Prove the claimed closed form.
+    questions:
+      - id: 41
+        type: reasoning
+        prompt: Let $a_0=3$ and $a_{n+1}=a_n+4$. Prove $a_n=3+4n$.
+        answerLines: 7
+        answer:
+          'Base 0: the formula gives 3. Assume $a_k=3+4k$ for arbitrary $k\geq0$. The recurrence gives $a_{k+1}=3+4k+4=3+4(k+1)$,
+          proving the next case.'
+      - id: 42
+        type: reasoning
+        prompt: Let $a_0=5$ and $a_{n+1}=2a_n$. Prove $a_n=5\cdot2^n$.
+        answerLines: 7
+        answer:
+          'Base 0: $5\cdot2^0=5$. Assuming the formula at $k$, the recurrence gives $a_{k+1}=2(5\cdot2^k)=5\cdot2^{k+1}$.
+          Thus induction proves the formula.'
+      - id: 43
+        type: reasoning
+        prompt: Let $a_0=1$ and $a_{n+1}=2a_n+1$. Prove $a_n=2^{n+1}-1$.
+        answerLines: 7
+        answer: 'Base 0: $2^1-1=1$. If $a_k=2^{k+1}-1$, then $a_{k+1}=2(2^{k+1}-1)+1=2^{k+2}-1$, the next formula.'
+      - id: 44
+        type: reasoning
+        prompt: Let $a_0=2$ and $a_{n+1}=3a_n+1$. Prove $a_n=(5\cdot3^n-1)/2$.
+        answerLines: 7
+        answer:
+          'Base 0: the formula gives 2. Assuming it at $k$, substitution yields $a_{k+1}=3(5\cdot3^k-1)/2+1=(5\cdot3^{k+1}-1)/2$.
+          This verifies the step for arbitrary $k\geq0$.'
+      - id: 45
+        type: reasoning
+        prompt: Let $a_0=0$ and $a_{n+1}=a_n+2n+1$. Prove $a_n=n^2$.
+        answerLines: 7
+        answer:
+          'Base 0: $a_0=0^2$. Assume $a_k=k^2$. The recurrence gives $a_{k+1}=k^2+2k+1=(k+1)^2$. Induction
+          establishes all cases.'
+      - id: 46
+        type: reasoning
+        prompt: Let $a_0=0$ and $a_{n+1}=a_n+n+1$. Prove $a_n=n(n+1)/2$.
+        answerLines: 7
+        answer: 'Base 0: both values are 0. Assuming $a_k=k(k+1)/2$, the recurrence yields $a_{k+1}=k(k+1)/2+(k+1)=(k+1)(k+2)/2$.'
+      - id: 47
+        type: reasoning
+        prompt: Let $a_0=1$ and $a_{n+1}=(n+1)a_n$. Prove $a_n=n!$.
+        answerLines: 7
+        answer:
+          'Base 0: $a_0=1=0!$. If $a_k=k!$, then $a_{k+1}=(k+1)k!=(k+1)!$. This uses the defining factorial
+          recurrence and proves the next case.'
+      - id: 48
+        type: reasoning
+        prompt: Let $a_0=2$ and $a_{n+1}=-a_n$. Prove $a_n=2(-1)^n$.
+        answerLines: 7
+        answer:
+          'Base 0: the formula gives 2. Assuming it at $k$, $a_{k+1}=-2(-1)^k=2(-1)^{k+1}$. Hence induction
+          proves the alternating formula.'
+      - id: 49
+        type: reasoning
+        prompt: Let $a_0=0$ and $a_{n+1}=a_n+3\cdot2^n$. Prove $a_n=3(2^n-1)$.
+        answerLines: 7
+        answer:
+          'Base 0: the formula is 0. If it holds at $k$, then $a_{k+1}=3(2^k-1)+3\cdot2^k=3(2^{k+1}-1)$,
+          proving the step.'
+      - id: 50
+        type: reasoning
+        prompt: For $a_0=3,a_{n+1}=a_n+4$, a candidate is $a_n=4n$. What do the initial and recurrence checks show?
+        answerLines: 5
+        answer:
+          The candidate satisfies the recurrence because $4(n+1)=4n+4$, but gives $a_0=0$ instead of 3. Meeting
+          the recurrence alone does not establish the specified sequence.
+  - title: F. Strengthened statements and loop invariants
+    instructions:
+      Sequence indices and iteration counts are nonnegative integers. Pseudocode uses exact integers
+      and a specified nonnegative integer number N of iterations when a finite limit is given.
+    questions:
+      - id: 51
+        type: reasoning
+        prompt: Let $u_0=0,v_0=1$, $u_{n+1}=u_n+v_n$, $v_{n+1}=2v_n$. Prove both $u_n=2^n-1$ and $v_n=2^n$.
+        answerLines: 8
+        answer:
+          Base 0 gives 0 and 1 as claimed. Assume both formulas at arbitrary $k$. Then $u_{k+1}=(2^k-1)+2^k=2^{k+1}-1$,
+          and $v_{k+1}=2\cdot2^k=2^{k+1}$. This proves the conjunction by induction.
+      - id: 52
+        type: reasoning
+        prompt: Why can proving the preceding pair together be more useful than proving only the $u_n$ formula?
+        answerLines: 5
+        answer:
+          The update for $u_{k+1}$ uses $v_k$. The $u_k$ formula alone does not specify that quantity. A
+          conjunction supplies the exact value needed in the step and keeps both claims synchronized.
+      - id: 53
+        type: reasoning
+        prompt:
+          A variable starts at 0 and after iteration $i$ adds $i$, for $i=1,\ldots,N$. Prove its value after
+          $k$ iterations is $k(k+1)/2$.
+        answerLines: 7
+        answer:
+          'Base $k=0$: initialization gives 0. Assume the invariant after $k<N$ iterations. Adding $k+1$
+          gives $k(k+1)/2+k+1=(k+1)(k+2)/2$. Thus it holds through $N$, where the final value is $N(N+1)/2$.'
+      - id: 54
+        type: reasoning
+        prompt:
+          A variable starts at 1 and doubles once per iteration. Prove its value after $k\geq0$ iterations
+          is $2^k$.
+        answerLines: 7
+        answer:
+          'Base 0: initialized 1 equals $2^0$. If the value after $k$ iterations is $2^k$, the next doubling
+          gives $2^{k+1}$. Induction proves the invariant for every allowed iteration count.'
+      - id: 55
+        type: reasoning
+        prompt:
+          A variable starts at 0 and adds $2i-1$ on iteration $i$, for $i=1,\ldots,N$. Prove the final value
+          is $N^2$.
+        answerLines: 7
+        answer:
+          Prove after $k$ iterations the value is $k^2$. Base 0 holds. The next addition is $2k+1$, giving
+          $k^2+2k+1=(k+1)^2$. At termination $k=N$, giving the specified value.
+      - id: 56
+        type: reasoning
+        prompt:
+          A variable starts at 1 and multiplies by $i$ on iteration $i$, for $i=1,\ldots,N$. Prove the output
+          is $N!$, including $N=0$.
+        answerLines: 7
+        answer:
+          The invariant after $k$ iterations is value $k!$. Base 0 holds because the empty product is 1.
+          Multiplying by $k+1$ changes $k!$ to $(k+1)!$. Thus the final value is $N!$, including initialized 1
+          when no iteration runs.
+      - id: 57
+        type: reasoning
+        prompt:
+          Explain what must be checked before an exact-integer induction proof applies to code using bounded
+          machine integers.
+        answerLines: 5
+        answer:
+          The implementation must avoid overflow in every relevant intermediate and final operation, or use
+          a representation with adequate range. Otherwise machine operations may not equal the mathematical integer
+          operations used in the proof.
+      - id: 58
+        type: reasoning
+        prompt: For $a_0=0,a_{n+1}=a_n+2n+1$, prove $a_n\geq0$ by establishing the stronger equality $a_n=n^2$.
+        answerLines: 7
+        answer:
+          At 0 the equality holds. If $a_k=k^2$, the recurrence gives $a_{k+1}=k^2+2k+1=(k+1)^2$. Induction
+          proves the equality; every real square is nonnegative, so the requested bound follows.
+      - id: 59
+        type: reasoning
+        prompt:
+          Let $a_0=1,b_0=2$, $a_{n+1}=a_n+1$, $b_{n+1}=b_n+2$. Prove $b_n=2a_n$ by induction without finding
+          both closed forms.
+        answerLines: 7
+        answer:
+          'Base 0: $2=2\cdot1$. Assume $b_k=2a_k$. Then $b_{k+1}=b_k+2=2a_k+2=2(a_k+1)=2a_{k+1}$. The invariant
+          therefore holds for all nonnegative indices.'
+      - id: 60
+        type: reasoning
+        prompt:
+          An invariant is initialized and preserved whenever a loop executes. Does that alone prove the loop
+          terminates?
+        answerLines: 5
+        answer:
+          No. It proves the property at each reached iteration, conditional on execution. Termination needs
+          a separate argument, such as a finite iteration bound or decreasing nonnegative integer measure.
+  - title: G. Invalid induction and repairs
+    instructions: Locate the precise gap; do not confuse a failed proof with a false statement.
+    questions:
+      - id: 61
+        type: reasoning
+        prompt: A proof establishes $P(k)\to P(k+1)$ but checks no base. Why is it incomplete?
+        answerLines: 5
+        answer:
+          A valid implication does not supply a true starting statement. For example, false equalities $k=k+1$
+          imply the next false equality after adding 1, yet no case is true. A verified base is essential.
+      - id: 62
+        type: reasoning
+        prompt:
+          A sum proof assumes the target formula at $k+1$ and simplifies it to the known case at $k$. What
+          must be added?
+        answerLines: 5
+        answer:
+          Every transformation must be reversible and shown as an equivalence, or the argument must be rewritten
+          forward from the induction hypothesis. Merely deriving a true consequence from the target does not prove
+          the target.
+      - id: 63
+        type: reasoning
+        prompt: A proof uses $P(k-1)$ while stating only the ordinary hypothesis $P(k)$. How can it be repaired?
+        answerLines: 5
+        answer:
+          Supply the extra earlier statement, for example by strong induction with enough bases or ordinary
+          induction on a paired statement. It is not available from the stated hypothesis automatically.
+      - id: 64
+        type: reasoning
+        prompt: A claimed step works only for $k\geq4$, but the proof checks only $P(1)$. What is missing?
+        answerLines: 5
+        answer:
+          The transitions to 2, 3, and 4 are not covered. Verify enough initial cases to reach 4, or provide
+          separate valid steps for the missing transitions, before using the general step.
+      - id: 65
+        type: reasoning
+        prompt: In the all-horses-same-color fallacy, why does the transition from one horse to two fail?
+        answerLines: 5
+        answer:
+          The two one-horse subgroups inside a two-horse group have no shared horse. The argument needs an
+          overlap to transfer color equality, so the first required inductive step is invalid.
+      - id: 66
+        type: reasoning
+        prompt: A proof claims $2^{k+1}\geq2k^2=(k+1)^2$ for $k\geq4$. Correct the faulty equality.
+        answerLines: 5
+        answer:
+          Equality is generally false. The required inequality is $2k^2\geq(k+1)^2$, justified by difference
+          $(k-1)^2-2\geq7$ for $k\geq4$.
+      - id: 67
+        type: reasoning
+        prompt: A proof of $3\mid4^n-1$ substitutes $4^k=3t$. Identify the exact wrong assumption.
+        answerLines: 5
+        answer:
+          The hypothesis is $4^k-1=3t$, so $4^k=3t+1$, not $3t$. Use $4^{k+1}-1=4(4^k-1)+3$ to exploit the
+          correct hypothesis.
+      - id: 68
+        type: reasoning
+        prompt:
+          A zero-based geometric-sum proof checks an empty sum at $n=0$ for $\sum_{i=0}^n2^i$. Repair the
+          base.
+        answerLines: 5
+        answer:
+          At $n=0$ there is one term, $2^0=1$. The right side $2^{n+1}-1$ is also 1. The sum is not empty
+          because its lower and upper bounds coincide.
+      - id: 69
+        type: reasoning
+        prompt: A proof checks $n=1,2,3,4,5$ and calls this induction. What general argument is missing?
+        answerLines: 5
+        answer:
+          It must prove $P(k)\to P(k+1)$ for an arbitrary allowed integer $k$, not only five examples. Finite
+          checks alone leave all later cases unsupported.
+      - id: 70
+        type: reasoning
+        prompt:
+          A valid induction proves a formula for $n\geq1$. Its author concludes it also holds for all negative
+          integers. Explain the gap.
+        answerLines: 5
+        answer:
+          Forward steps from a positive base never reach negatives. Those values need a separate argument
+          or a different reparameterization. A theorem's range must match the cases actually covered.
+  - title: H. Mixed induction proofs
+    instructions: Choose an effective statement and write a complete base-and-step argument.
+    questions:
+      - id: 71
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n i(i+1)=n(n+1)(n+2)/3$ for integers $n\geq0$.
+        answerLines: 8
+        answer:
+          'Base 0: both sides are 0. Assuming the formula at $k$, add $(k+1)(k+2)$. Factoring gives $(k+1)(k+2)(k+3)/3$,
+          exactly the next formula. Thus induction proves every nonnegative case.'
+      - id: 72
+        type: reasoning
+        prompt: Prove $\sum_{i=1}^n(4i-3)=n(2n-1)$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          Base 0 holds. Assume the formula at $k$ and add next term $4k+1$. The result is $2k^2-k+4k+1=2k^2+3k+1=(k+1)(2k+1)$,
+          the target at $k+1$.
+      - id: 73
+        type: reasoning
+        prompt: Prove that the sum of $n$ even integers is even for every $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the empty sum 0 is even. Assume every sum of $k$ even integers is even. For arbitrary
+          $k+1$ even integers, the first $k$ sum to an even integer by hypothesis; adding the last even integer
+          stays even. Thus all finite lengths are covered.'
+      - id: 74
+        type: reasoning
+        prompt:
+          Prove that a composition of $n$ injective functions with compatible domains is injective for every
+          $n\geq1$.
+        answerLines: 7
+        answer:
+          Base 1 is the given injectivity. Assume any compatible composition of $k$ such functions is injective.
+          In a composition of $k+1$, the first $k$ compose injectively by hypothesis, and composing with the last
+          injective function preserves injectivity by the two-function theorem.
+      - id: 75
+        type: reasoning
+        prompt: Prove that a set with $n$ elements has $2^n$ subsets for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the empty set has one subset. For an arbitrary set of size $k+1$, remove an element $a$.
+          By hypothesis the remaining $k$ elements have $2^k$ subsets. Subsets of the original either omit $a$
+          or uniquely add it to one of these subsets, giving two disjoint groups and $2^{k+1}$ total.'
+      - id: 76
+        type: reasoning
+        prompt: Prove that $n$ nonnegative real numbers have nonnegative sum, including $n=0$.
+        answerLines: 7
+        answer:
+          'Base 0: the empty sum is 0. Assume every sum of $k$ nonnegative reals is nonnegative. For arbitrary
+          $k+1$ inputs, the first $k$ sum is nonnegative and so is the last input. Their sum is nonnegative, completing
+          induction.'
+      - id: 77
+        type: reasoning
+        prompt: Prove $2^n>n$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: $1>0$. Assume $2^k>k$. For $k=0$, the next case is $2>1$. For $k\geq1$, doubling gives
+          $2^{k+1}>2k\geq k+1$. Thus every step is valid and induction proves the claim.'
+      - id: 78
+        type: reasoning
+        prompt: Let $a_0=1$ and $a_{n+1}=a_n/(1+a_n)$. Prove $a_n=1/(n+1)$ and that every update is defined.
+        answerLines: 7
+        answer:
+          'Base 0: the value is 1. Assume $a_k=1/(k+1)>0$. Then $1+a_k>0$, so the next update is defined,
+          and substitution gives $a_{k+1}=1/(k+2)$. Induction establishes both formula and positivity.'
+      - id: 79
+        type: reasoning
+        prompt: For a fixed integer $m\geq2$, prove $(m-1)\mid m^n-1$ for integers $n\geq0$.
+        answerLines: 7
+        answer:
+          'Base 0: the difference is 0. If $m^k-1=(m-1)t$ with integer $t$, then $m^{k+1}-1=m(m^k-1)+(m-1)=(m-1)(mt+1)$.
+          The coefficient is integral, proving the step.'
+      - id: 80
+        type: reasoning
+        prompt:
+          Prove the finite De Morgan law $(A_1\cup\cdots\cup A_n)^c=A_1^c\cap\cdots\cap A_n^c$ for $n\geq1$
+          in a fixed universe.
+        answerLines: 8
+        answer:
+          Base 1 is the same set on both sides. Assume the law for any $k$ sets. Apply the two-set De Morgan
+          law to the union of the first $k$ sets and $A_{k+1}$, obtaining the complement of the first union intersected
+          with $A_{k+1}^c$. Substitute the induction identity to get all $k+1$ complements intersected.

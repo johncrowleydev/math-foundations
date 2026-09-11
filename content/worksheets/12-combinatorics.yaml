@@ -1,0 +1,546 @@
+'title': 'Combinatorics'
+'instructions':
+  '80 exercises. State what one outcome records, and justify each count. Objects are distinct
+  unless described as identical. The answer key follows the student section.'
+'sections':
+  - 'title': 'A. Sum, product, and complement'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 1
+        'type': 'reasoning'
+        'prompt': 'A menu has 4 soups and 7 sandwiches. Count choices of exactly one item.'
+        'answerLines': 2
+        'answer': '$4+7=11$: the two item categories are disjoint.'
+      - 'id': 2
+        'type': 'reasoning'
+        'prompt': 'Using that menu, count meals containing one soup and one sandwich.'
+        'answerLines': 2
+        'answer': '$4\cdot7=28$: each soup can accompany each sandwich.'
+      - 'id': 3
+        'type': 'reasoning'
+        'prompt':
+          'A route starts with A or B. A has 3 possible continuations and B has 5. Count complete
+          routes.'
+        'answerLines': 2
+        'answer': '$3+5=8$. The branches are disjoint but have different sizes.'
+      - 'id': 4
+        'type': 'reasoning'
+        'prompt': 'Count length-5 strings over a 4-symbol alphabet when repetition is allowed.'
+        'answerLines': 2
+        'answer': '$4^5=1024$, by four independent choices at each labeled position.'
+      - 'id': 5
+        'type': 'reasoning'
+        'prompt': 'Count length-8 binary strings containing at least one 1.'
+        'answerLines': 2
+        'answer': '$2^8-1=255$. Remove the unique all-zero string.'
+      - 'id': 6
+        'type': 'reasoning'
+        'prompt': 'Count length-4 digit strings with no repeated digit; leading zero is allowed.'
+        'answerLines': 2
+        'answer': '$10\cdot9\cdot8\cdot7=5040$. Each choice removes one available digit.'
+      - 'id': 7
+        'type': 'reasoning'
+        'prompt': 'Count length-4 digit strings with at least one repeated digit; leading zero is allowed.'
+        'answerLines': 2
+        'answer': '$10^4-5040=4960$, subtracting the no-repetition strings from all strings.'
+      - 'id': 8
+        'type': 'reasoning'
+        'prompt': 'Count four-digit positive integers with no repeated digit.'
+        'answerLines': 3
+        'answer':
+          '$9\cdot9\cdot8\cdot7=4536$. The first digit has 9 nonzero choices; zero is available in
+          the second position.'
+      - 'id': 9
+        'type': 'reasoning'
+        'prompt': 'Of 30 students, 18 study French, 15 study German, and 8 study both. How many study neither?'
+        'answerLines': 3
+        'answer': '$30-(18+15-8)=5$. Adding the language totals alone would double-count the intersection.'
+      - 'id': 10
+        'type': 'reasoning'
+        'prompt':
+          'A code is either two letters or three digits. Letters come from 26 symbols; leading zero
+          and repetition are allowed. Count codes.'
+        'answerLines': 3
+        'answer':
+          '$26^2+10^3=1676$. The two formats are disjoint, and positions within each format use the
+          product principle.'
+  - 'title': 'B. Ordered and unordered selections'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 11
+        'type': 'reasoning'
+        'prompt':
+          'Assign three different named offices to people from a group of 9, with nobody holding two
+          offices.'
+        'answerLines': 2
+        'answer': '$P(9,3)=9\cdot8\cdot7=504$. Offices distinguish the positions.'
+      - 'id': 12
+        'type': 'reasoning'
+        'prompt': 'Choose an unordered three-person committee from the same group of 9.'
+        'answerLines': 3
+        'answer': '$\binom93=84$. Every committee appears in $3!$ orders among the 504 ordered selections.'
+      - 'id': 13
+        'type': 'reasoning'
+        'prompt': 'How many orders can six distinct books have on one shelf?'
+        'answerLines': 2
+        'answer': '$6!=720$, choosing the first through sixth positions successively.'
+      - 'id': 14
+        'type': 'reasoning'
+        'prompt': 'Count arrangements of six distinct books in which two specified books are adjacent.'
+        'answerLines': 3
+        'answer':
+          'Treat the pair as a block: $5!$ orders of the block and other books, times 2 internal orders,
+          gives 240.'
+      - 'id': 15
+        'type': 'reasoning'
+        'prompt': 'Count arrangements of six distinct books in which two specified books are not adjacent.'
+        'answerLines': 3
+        'answer': '$6!-2\cdot5!=720-240=480$, removing the adjacent arrangements.'
+      - 'id': 16
+        'type': 'reasoning'
+        'prompt': 'From disjoint groups of 6 engineers and 5 designers, choose exactly two of each for one committee.'
+        'answerLines': 3
+        'answer': '$\binom62\binom52=15\cdot10=150$. The two group selections uniquely determine the committee.'
+      - 'id': 17
+        'type': 'reasoning'
+        'prompt': 'Choose four people from disjoint groups of 6 engineers and 5 designers, with at least one designer.'
+        'answerLines': 3
+        'answer': '$\binom{11}4-\binom64=330-15=315$. Exclude the all-engineer committees.'
+      - 'id': 18
+        'type': 'reasoning'
+        'prompt': 'How many injective functions map a 4-element labeled domain into a 7-element codomain?'
+        'answerLines': 3
+        'answer': '$7\cdot6\cdot5\cdot4=840$. Distinct inputs must receive distinct outputs.'
+      - 'id': 19
+        'type': 'reasoning'
+        'prompt': 'How many injective functions map a 7-element domain into a 4-element codomain? Explain.'
+        'answerLines': 3
+        'answer':
+          'Zero. Seven distinct outputs would be needed but only four exist; the pigeonhole principle
+          forces a repeated output.'
+      - 'id': 20
+        'type': 'reasoning'
+        'prompt': 'Explain both $\binom n0=1$ and $\binom nn=1$ for $n\geq0$.'
+        'answerLines': 3
+        'answer':
+          'The only zero-element subset is the empty set; the only full-size subset is the whole set.
+          This includes $n=0$, when these are the same subset.'
+  - 'title': 'C. Repeated objects and circular arrangements'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 21
+        'type': 'reasoning'
+        'prompt': 'Count distinct arrangements of the letters BANANA.'
+        'answerLines': 3
+        'answer': '$6!/(3!2!1!)=60$, dividing out permutations of identical A and N copies.'
+      - 'id': 22
+        'type': 'reasoning'
+        'prompt': 'Count distinct arrangements of the letters MISSISSIPPI.'
+        'answerLines': 3
+        'answer': '$11!/(4!4!2!)=34650$: there are four I, four S, two P, and one M.'
+      - 'id': 23
+        'type': 'reasoning'
+        'prompt': 'Count length-8 binary strings with exactly three 1s.'
+        'answerLines': 2
+        'answer': '$\binom83=56$, choosing the three positions occupied by 1.'
+      - 'id': 24
+        'type': 'reasoning'
+        'prompt':
+          'Arrange five distinct people around an unnumbered round table. Rotations agree; reflections
+          differ. Count arrangements.'
+        'answerLines': 3
+        'answer': 'Fix one person as an anchor and order the others clockwise: $4!=24$.'
+      - 'id': 25
+        'type': 'reasoning'
+        'prompt':
+          'The same five people instead use five numbered seats. Count arrangements and explain the
+          change.'
+        'answerLines': 3
+        'answer': '$5!=120$. Rotating everyone changes their numbered seats, so those assignments are distinct.'
+      - 'id': 26
+        'type': 'reasoning'
+        'prompt':
+          'Six distinct people sit around an unnumbered round table, rotations identified and reflections
+          distinct. Two specified people must sit together. Count arrangements.'
+        'answerLines': 4
+        'answer':
+          'Collapse the adjacent pair into one block. Five circular units give $4!$ arrangements,
+          with two orders inside the pair: 48.'
+      - 'id': 27
+        'type': 'reasoning'
+        'prompt': 'Distribute seven identical tokens into three labeled boxes, allowing empty boxes.'
+        'answerLines': 3
+        'answer': '$\binom{7+3-1}{3-1}=\binom92=36$ by stars and bars.'
+      - 'id': 28
+        'type': 'reasoning'
+        'prompt': 'Distribute seven identical tokens into three labeled boxes, with every box nonempty.'
+        'answerLines': 3
+        'answer': 'Place one token in each box, then distribute the remaining four: $\binom62=15$.'
+      - 'id': 29
+        'type': 'reasoning'
+        'prompt': 'Distribute seven distinct tokens into three labeled boxes, allowing empty boxes.'
+        'answerLines': 3
+        'answer':
+          '$3^7=2187$. Each labeled token independently chooses a box; stars and bars would lose token
+          identities.'
+      - 'id': 30
+        'type': 'reasoning'
+        'prompt': 'Count nonnegative integer solutions to $x+y+z=8$ with $x\geq2$.'
+        'answerLines': 3
+        'answer': 'Set $u=x-2\geq0$. Then $u+y+z=6$, giving $\binom82=28$ solutions.'
+  - 'title': 'D. Binomial coefficients and counting proofs'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 31
+        'type': 'reasoning'
+        'prompt': 'Compute $\binom{10}3$ and explain its factorial denominator.'
+        'answerLines': 3
+        'answer':
+          '$\binom{10}3=120$. Ordered selections count each three-element subset $3!$ times, so divide
+          $10\cdot9\cdot8$ by 6.'
+      - 'id': 32
+        'type': 'reasoning'
+        'prompt': 'Prove $\binom nr=\binom n{n-r}$ for $0\leq r\leq n$ by a bijection.'
+        'answerLines': 5
+        'answer':
+          'Map each $r$-element subset to its complement in the fixed $n$-element universe. Complementation
+          is its own inverse and gives an $(n-r)$-element subset.'
+      - 'id': 33
+        'type': 'reasoning'
+        'prompt':
+          'Prove Pascal''s identity by partitioning the $r$-subsets of an $n$-element set, where $1\leq
+          r<n$.'
+        'answerLines': 5
+        'answer':
+          'Fix one element. Subsets containing it correspond to $(r-1)$-subsets of the other $n-1$
+          elements; those excluding it correspond to $r$-subsets of them. The cases give $\binom nr=\binom{n-1}{r-1}+\binom{n-1}r$.'
+      - 'id': 34
+        'type': 'reasoning'
+        'prompt': 'Expand $(a+b)^4$.'
+        'answerLines': 3
+        'answer': '$a^4+4a^3b+6a^2b^2+4ab^3+b^4$, using coefficients $\binom4k$.'
+      - 'id': 35
+        'type': 'reasoning'
+        'prompt': 'Find the coefficient of $x^3$ in $(2+x)^5$.'
+        'answerLines': 3
+        'answer': '$\binom53 2^2=40$: choose three factors to supply $x$ and two to supply 2.'
+      - 'id': 36
+        'type': 'reasoning'
+        'prompt': 'Find the coefficient of $x^2$ in $(1-3x)^4$.'
+        'answerLines': 3
+        'answer': '$\binom42(-3)^2=54$. Two selected factors contribute $-3x$.'
+      - 'id': 37
+        'type': 'reasoning'
+        'prompt': 'Prove $\sum_{r=0}^n\binom nr=2^n$ by counting subsets.'
+        'answerLines': 5
+        'answer':
+          'The sum groups all subsets by their cardinality. Alternatively, each of the $n$ elements
+          independently is included or excluded, giving $2^n$ subsets.'
+      - 'id': 38
+        'type': 'reasoning'
+        'prompt':
+          'For $n\geq1$, count pairs $(S,x)$ where $S$ is a subset of an $n$-element set and $x\in
+          S$. Derive an identity.'
+        'answerLines': 6
+        'answer':
+          'By subset size the count is $\sum_{r=1}^n r\binom nr$. Choosing $x$ first gives $n$ choices
+          and leaves $2^{n-1}$ choices for the remaining membership decisions. Hence the sum equals $n2^{n-1}$.'
+      - 'id': 39
+        'type': 'reasoning'
+        'prompt': 'Use Pascal''s identity to compute $\binom73$ from two coefficients in row 6.'
+        'answerLines': 3
+        'answer': '$\binom73=\binom62+\binom63=15+20=35$.'
+      - 'id': 40
+        'type': 'reasoning'
+        'prompt':
+          'Explain why dividing an overcount by a fixed number requires a uniform number of representations
+          per outcome.'
+        'answerLines': 5
+        'answer':
+          'The original count equals a sum of representation counts over desired outcomes. Division
+          by $d$ recovers the number of outcomes when each count equals $d$; varying multiplicities are not
+          generally corrected by one common divisor.'
+  - 'title': 'E. Inclusion-exclusion and restrictions'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 41
+        'type': 'reasoning'
+        'prompt': 'Among integers 1 through 100 inclusive, count those divisible by 2 or 3.'
+        'answerLines': 3
+        'answer': '$50+33-16=67$. Multiples of both are precisely multiples of 6.'
+      - 'id': 42
+        'type': 'reasoning'
+        'prompt': 'Among integers 1 through 120 inclusive, count those divisible by 4 or 6.'
+        'answerLines': 3
+        'answer': '$30+20-10=40$. The intersection consists of multiples of 12.'
+      - 'id': 43
+        'type': 'reasoning'
+        'prompt': 'Among integers 1 through 120 inclusive, count those divisible by neither 4 nor 6.'
+        'answerLines': 3
+        'answer': '$120-40=80$, using the complement of the preceding union.'
+      - 'id': 44
+        'type': 'reasoning'
+        'prompt':
+          'For finite sets, $|A|=20$, $|B|=18$, $|C|=15$, pairwise intersection sizes are 8, 6, 5,
+          and the triple intersection has size 3. Find the union size.'
+        'answerLines': 3
+        'answer': '$20+18+15-8-6-5+3=37$. Pairwise intersections include the triple intersection.'
+      - 'id': 45
+        'type': 'reasoning'
+        'prompt':
+          'Explain why three-set inclusion-exclusion adds the triple intersection after subtracting
+          the pairwise intersections.'
+        'answerLines': 4
+        'answer':
+          'An element in all three sets contributes $3-3=0$ before the final correction. Adding the
+          triple intersection changes its contribution to 1, as required.'
+      - 'id': 46
+        'type': 'reasoning'
+        'prompt':
+          'Count length-5 strings over the symbols A, B, C that contain at least one A and at least
+          one B.'
+        'answerLines': 4
+        'answer':
+          '$3^5-2^5-2^5+1^5=180$. Exclude strings missing A or missing B, then restore the all-C string
+          subtracted twice.'
+      - 'id': 47
+        'type': 'reasoning'
+        'prompt':
+          'Count length-5 digit strings having exactly two zeros and at least one 7; leading zero
+          and repetition are allowed.'
+        'answerLines': 4
+        'answer': 'Choose the zero positions, then fill the others with nonzero digits including a 7: $\binom52(9^3-8^3)=2170$.'
+      - 'id': 48
+        'type': 'reasoning'
+        'prompt':
+          'Count length-5 strings of distinct digits with exactly two even digits; leading zero is
+          allowed.'
+        'answerLines': 4
+        'answer':
+          'Choose two of the five even digits and three of the five odd digits, then arrange them:
+          $\binom52\binom53 5!=12000$.'
+      - 'id': 49
+        'type': 'reasoning'
+        'prompt': 'Count length-6 binary strings with exactly two 1s that are not adjacent.'
+        'answerLines': 4
+        'answer':
+          'All choices number $\binom62=15$. The adjacent pairs can start in positions 1 through 5,
+          so the answer is $15-5=10$.'
+      - 'id': 50
+        'type': 'reasoning'
+        'prompt':
+          'Choose three people from a group of 8, excluding committees containing both of two specified
+          people.'
+        'answerLines': 4
+        'answer':
+          'There are $\binom83=56$ committees. A forbidden committee contains the specified pair and
+          one of the other six people, so $56-6=50$ remain.'
+  - 'title': 'F. Pigeonhole arguments'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 51
+        'type': 'reasoning'
+        'prompt': 'Among 25 people, how many must share a birth month?'
+        'answerLines': 4
+        'answer':
+          'At least $\lceil25/12\rceil=3$. If each month contained at most two birthdays there would
+          be at most 24 people.'
+      - 'id': 52
+        'type': 'reasoning'
+        'prompt': 'How many people guarantee that at least five share a birth month? Show minimality.'
+        'answerLines': 4
+        'answer':
+          '49: twelve months can contain four each for 48 people without forcing five. A 49th person
+          forces one month to have at least five.'
+      - 'id': 53
+        'type': 'reasoning'
+        'prompt': 'Place 37 objects into 8 boxes. What lower bound on the maximum occupancy is guaranteed, and can it be achieved?'
+        'answerLines': 4
+        'answer':
+          'At least $\lceil37/8\rceil=5$. Occupancies $5,5,5,5,5,4,4,4$ achieve maximum 5, so the
+          bound is sharp.'
+      - 'id': 54
+        'type': 'reasoning'
+        'prompt': 'Prove that among any six integers, two have difference divisible by 5.'
+        'answerLines': 5
+        'answer':
+          'Partition by the five possible remainders modulo 5. Two integers have the same remainder,
+          say $5q+r$ and $5s+r$; their difference is $5(q-s)$.'
+      - 'id': 55
+        'type': 'reasoning'
+        'prompt': 'A hash function maps 1001 distinct inputs to 1000 hash values. What must happen?'
+        'answerLines': 4
+        'answer':
+          'At least two inputs receive the same value, since an injective assignment would require
+          1001 distinct outputs. This is a guaranteed collision, not a probability estimate.'
+      - 'id': 56
+        'type': 'reasoning'
+        'prompt': 'A hash function maps 1000 inputs to 1000 values. Must a collision occur?'
+        'answerLines': 3
+        'answer':
+          'No. A bijection assigns a different value to every input. Equal numbers of inputs and outputs
+          do not force a collision.'
+      - 'id': 57
+        'type': 'reasoning'
+        'prompt': 'Choose six distinct integers from 1 through 10. Prove two sum to 11.'
+        'answerLines': 5
+        'answer':
+          'Use five boxes $\{1,10\},\{2,9\},\{3,8\},\{4,7\},\{5,6\}$. Six selected integers force
+          both members of one box, whose sum is 11.'
+      - 'id': 58
+        'type': 'reasoning'
+        'prompt': 'Prove the bound $\lceil N/k\rceil$ for $N>0$ objects in $k\geq1$ boxes.'
+        'answerLines': 6
+        'answer':
+          'If every box held at most $\lceil N/k\rceil-1$, the total would be at most $k(\lceil N/k\rceil-1)<N$,
+          a contradiction. Therefore some box has at least the stated number.'
+      - 'id': 59
+        'type': 'reasoning'
+        'prompt':
+          'Ten students receive integer scores from 0 through 100. Does pigeonhole force two equal
+          scores? Explain.'
+        'answerLines': 3
+        'answer':
+          'No. There are 101 possible scores, more than ten students. Ten different scores are possible,
+          for example 0 through 9.'
+      - 'id': 60
+        'type': 'reasoning'
+        'prompt':
+          'What is the minimum number of distinct integers that guarantees at least four selected integers
+          have the same remainder modulo 7? Justify minimality.'
+        'answerLines': 4
+        'answer':
+          '22. Seven remainder classes can hold three each for 21 integers; a 22nd forces four. Taking
+          three representatives per class shows 21 is insufficient.'
+  - 'title': 'G. Functions, subsets, and test cases'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 61
+        'type': 'reasoning'
+        'prompt': 'A program has 12 independent Boolean inputs. How many complete input assignments exist?'
+        'answerLines': 3
+        'answer': '$2^{12}=4096$, one binary choice per labeled input.'
+      - 'id': 62
+        'type': 'reasoning'
+        'prompt': 'How many functions map a 5-element domain into a 3-element codomain?'
+        'answerLines': 3
+        'answer': '$3^5=243$, since every input has three independently chosen outputs.'
+      - 'id': 63
+        'type': 'reasoning'
+        'prompt': 'How many subsets of an 8-element set contain one specified element?'
+        'answerLines': 3
+        'answer':
+          '$2^7=128$. Include the specified element, then decide membership of each other element
+          independently.'
+      - 'id': 64
+        'type': 'reasoning'
+        'prompt': 'How many subsets of an 8-element set contain exactly one of two specified elements?'
+        'answerLines': 3
+        'answer':
+          '$2\cdot2^6=128$: choose which specified element to include, then choose any subset of the
+          six others.'
+      - 'id': 65
+        'type': 'reasoning'
+        'prompt': 'Count nonempty proper subsets of a 6-element set.'
+        'answerLines': 3
+        'answer': '$2^6-2=62$, excluding the empty set and the full set.'
+      - 'id': 66
+        'type': 'reasoning'
+        'prompt': 'Count length-7 binary strings with at most two 1s.'
+        'answerLines': 3
+        'answer': '$\binom70+\binom71+\binom72=1+7+21=29$. The cases by number of 1s are disjoint.'
+      - 'id': 67
+        'type': 'reasoning'
+        'prompt': 'Count functions from a 4-element domain onto a 2-element codomain.'
+        'answerLines': 3
+        'answer': '$2^4-2=14$. The only non-surjective functions are the two constant functions.'
+      - 'id': 68
+        'type': 'reasoning'
+        'prompt': 'Count bijections between two 5-element sets.'
+        'answerLines': 3
+        'answer': '$5!=120$: order the outputs assigned to the five labeled domain elements.'
+      - 'id': 69
+        'type': 'reasoning'
+        'prompt':
+          'A test uses one browser from 3 choices, one operating system from 4, and one of 2 modes.
+          All combinations are supported. Count tests.'
+        'answerLines': 3
+        'answer': '$3\cdot4\cdot2=24$. One test records a choice in each of three independent categories.'
+      - 'id': 70
+        'type': 'reasoning'
+        'prompt':
+          'In the preceding test design, one browser is supported on only 2 operating systems, while
+          each other browser supports all 4. Both modes work for every supported pair. Count tests.'
+        'answerLines': 4
+        'answer': '$(2+4+4)\cdot2=20$. Partition by browser because operating-system choice counts differ.'
+  - 'title': 'H. Mixed reasoning and model checks'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 71
+        'type': 'reasoning'
+        'prompt': 'Count nonnegative integer solutions to $x_1+x_2+x_3+x_4=6$.'
+        'answerLines': 3
+        'answer': '$\binom{6+4-1}{4-1}=\binom93=84$, by arranging six stars and three separators.'
+      - 'id': 72
+        'type': 'reasoning'
+        'prompt': 'Count positive integer solutions to $x_1+x_2+x_3+x_4=6$.'
+        'answerLines': 3
+        'answer': 'Subtract 1 from each variable. The remaining total is 2, so there are $\binom53=10$ solutions.'
+      - 'id': 73
+        'type': 'reasoning'
+        'prompt': 'How many arrangements of AABBC have the two A copies adjacent?'
+        'answerLines': 4
+        'answer':
+          'Treat AA as one block with B, B, C. There are $4!/2!=12$ arrangements; the A copies have
+          no distinct internal order.'
+      - 'id': 74
+        'type': 'reasoning'
+        'prompt': 'How many arrangements of AABBC have the two A copies separated?'
+        'answerLines': 4
+        'answer':
+          'Total arrangements number $5!/(2!2!)=30$. Subtract the 12 adjacent arrangements to obtain
+          18.'
+      - 'id': 75
+        'type': 'reasoning'
+        'prompt': 'Choose a four-person committee from 10 people and then choose its chair. Count in two ways.'
+        'answerLines': 4
+        'answer':
+          'Choose the committee then chair: $4\binom{10}4=840$. Choose the chair then three companions:
+          $10\binom93=840$. Both count a committee with one distinguished member.'
+      - 'id': 76
+        'type': 'reasoning'
+        'prompt': 'Count length-6 digit strings containing at least one zero; leading zero is allowed.'
+        'answerLines': 3
+        'answer': '$10^6-9^6=468559$. Subtract strings that use only the nine nonzero digits.'
+      - 'id': 77
+        'type': 'reasoning'
+        'prompt': 'Count six-digit positive integers containing at least one zero.'
+        'answerLines': 4
+        'answer':
+          'There are $9\cdot10^5$ six-digit positive integers and $9^6$ with no zero. The difference
+          is $368559$.'
+      - 'id': 78
+        'type': 'reasoning'
+        'prompt':
+          'A proposed solution counts unordered pairs from 6 objects as $6\cdot5$. Diagnose and correct
+          it.'
+        'answerLines': 3
+        'answer': 'Each pair is counted twice, once per order. Divide by 2 to obtain $\binom62=15$.'
+      - 'id': 79
+        'type': 'reasoning'
+        'prompt':
+          'A proposed solution says any five integers contain two with equal remainders modulo 5.
+          Give a counterexample.'
+        'answerLines': 3
+        'answer':
+          'The integers $0,1,2,3,4$ have five different remainders. More objects than boxes are needed
+          to force repetition.'
+      - 'id': 80
+        'type': 'reasoning'
+        'prompt':
+          'Count 4-element subsets of a 10-element set that contain at least one of two specified
+          elements, using two methods.'
+        'answerLines': 5
+        'answer':
+          'Complement: $\binom{10}4-\binom84=210-70=140$. Disjoint cases: exactly one gives $2\binom83=112$,
+          and both give $\binom82=28$; total 140.'

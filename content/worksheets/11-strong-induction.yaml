@@ -1,0 +1,691 @@
+title: Strong Induction
+instructions:
+  80 exercises in eight sections. Give reasons and show the requested proof, including domains
+  and all necessary cases. Integer arithmetic is exact. Blank response space is provided; the answer key follows
+  the student section.
+sections:
+  - title: A. Hypothesis ranges and well-ordering
+    instructions: State precisely which smaller cases may be used.
+    questions:
+      - id: 1
+        type: reasoning
+        prompt: State a strong induction hypothesis for proving $P(n)$ for integers $n\geq2$.
+        answerLines: 3
+        answer:
+          At arbitrary target $n>2$, assume $P(j)$ for every integer $j$ with $2\leq j<n$. Prove $P(n)$ and
+          verify the necessary starting cases separately.
+      - id: 2
+        type: reasoning
+        prompt: How does strong induction differ from ordinary induction in the available hypothesis?
+        answerLines: 3
+        answer:
+          Ordinary induction provides the immediately previous case. Strong induction provides every earlier
+          case within the theorem's domain. It may use only a few of them, but each used index must be smaller
+          than the target.
+      - id: 3
+        type: reasoning
+        prompt: Explain why strong induction is not logically more powerful than ordinary induction.
+        answerLines: 3
+        answer:
+          Define $Q(n)$ as the conjunction of all statements $P(j)$ from the starting index through $n$.
+          Ordinary induction on $Q$ makes the whole earlier collection available, reproducing the strong step.
+      - id: 4
+        type: reasoning
+        prompt: State the well-ordering principle for nonnegative integers.
+        answerLines: 3
+        answer:
+          Every nonempty subset of $\mathbb N_0$ has a least element. It applies also to integer sets bounded
+          below after shifting their indices.
+      - id: 5
+        type: reasoning
+        prompt: Explain why a nonempty set of positive real numbers need not have a least element. Give an example.
+        answerLines: 3
+        answer:
+          'The set of all positive reals has no least element: for any member $r$, the smaller positive number
+          $r/2$ also belongs. The integer well-ordering property does not transfer to this domain.'
+      - id: 6
+        type: reasoning
+        prompt: In a smallest-counterexample proof, why do all smaller allowed indices satisfy the claim?
+        answerLines: 3
+        answer:
+          A failing smaller allowed index would contradict the chosen counterexample's minimality. The hypothesis
+          is justified by that least choice, not by assuming the whole theorem.
+      - id: 7
+        type: reasoning
+        prompt: Can strong induction on $n\geq2$ use $P(1)$? Explain.
+        answerLines: 3
+        answer:
+          Not from its stated hypothesis. Index 1 lies outside the theorem's domain; it must be proved and
+          included separately if the argument needs it.
+      - id: 8
+        type: reasoning
+        prompt: Can the strong step for target $n$ use $P(n)$? Explain.
+        answerLines: 3
+        answer:
+          No. The hypothesis covers only indices strictly smaller than $n$. Using $P(n)$ assumes the target
+          itself and is circular.
+      - id: 9
+        type: reasoning
+        prompt: If a recurrence uses indices $n-1$ and $n-2$, what must be checked before invoking the hypothesis?
+        answerLines: 3
+        answer:
+          Both indices must be in the covered domain and below $n$. Verify enough bases that the general
+          step first runs where both earlier terms are available.
+      - id: 10
+        type: reasoning
+        prompt:
+          Explain how the base appears in the formulation that proves all-smaller-cases imply $P(n)$ for
+          every $n\geq n_0$.
+        answerLines: 3
+        answer:
+          At $n=n_0$ the earlier collection is empty. Therefore that case requires proving $P(n_0)$ with
+          no earlier hypothesis. The base is included rather than omitted.
+  - title: B. Prime factors and representations
+    instructions:
+      A prime is a positive integer greater than 1 whose only positive divisors are 1 and itself.
+      Distinguish existence from uniqueness.
+    questions:
+      - id: 11
+        type: reasoning
+        prompt: Prove every integer $n\geq2$ is a product of primes by strong induction.
+        answerLines: 7
+        answer:
+          Base 2 is prime. For arbitrary $n>2$, assume all integers from 2 to $n-1$ factor. If $n$ is prime,
+          it is a one-factor product. Otherwise $n=ab$ with $2\leq a,b<n$; factor each by hypothesis and concatenate
+          the factors. Thus every case holds.
+      - id: 12
+        type: reasoning
+        prompt:
+          In the preceding proof, explain why composite $n$ has factors $a,b$ both strictly smaller than
+          $n$.
+        answerLines: 5
+        answer:
+          Choose a proper nontrivial divisor $a$ with $1<a<n$ and let $b=n/a$. Both are integers greater
+          than 1. Since each multiplies another integer greater than 1 to give $n$, each is strictly less than
+          $n$.
+      - id: 13
+        type: reasoning
+        prompt: Why is the decomposition $n=1\cdot n$ unusable for that strong induction step?
+        answerLines: 4
+        answer:
+          The factor 1 is outside the claim's domain, while the factor $n$ is not smaller than the target.
+          Neither factor receives the needed factorization claim from the stated hypothesis.
+      - id: 14
+        type: reasoning
+        prompt: Does the prime-factorization induction prove uniqueness of prime factors? Explain.
+        answerLines: 4
+        answer:
+          No. It constructs at least one prime product. Comparing two products and proving their prime multisets
+          equal requires an additional argument, commonly a prime-divides-product lemma.
+      - id: 15
+        type: reasoning
+        prompt: Apply the existence proof's decomposition to 84 and display a prime product.
+        answerLines: 5
+        answer:
+          Split $84=7\cdot12$, then $12=3\cdot4$ and $4=2\cdot2$. This gives $84=7\cdot3\cdot2\cdot2$. Each
+          composite split uses smaller positive factors, and the final factors are prime.
+      - id: 16
+        type: reasoning
+        prompt:
+          Explain why the existence theorem begins at 2 instead of claiming every positive integer is a nonempty
+          product of primes.
+        answerLines: 5
+        answer:
+          The positive integer 1 is not a nonempty prime product because every prime factor exceeds 1. If
+          empty products are allowed, 1 is the empty product, but that is a distinct stated convention.
+      - id: 17
+        type: reasoning
+        prompt: Prove every positive integer is a sum of distinct powers of 2.
+        answerLines: 8
+        answer:
+          Base 1 is $2^0$. For $n\geq2$, write $n=2q+r$ with $r\in\{0,1\}$ and $1\leq q<n$. By hypothesis
+          $q$ is a sum of distinct powers of 2. Doubling shifts each exponent up by 1; if $r=1$, add $2^0$, distinct
+          from all shifted powers. This constructs the required representation.
+      - id: 18
+        type: reasoning
+        prompt: Use the preceding construction to express 23 as distinct powers of 2.
+        answerLines: 5
+        answer:
+          Repeated quotient-and-remainder division gives $23=2\cdot11+1$, $11=2\cdot5+1$, $5=2\cdot2+1$,
+          and $2=2\cdot1$. Therefore $23=16+4+2+1=2^4+2^2+2^1+2^0$.
+      - id: 19
+        type: reasoning
+        prompt: Prove every integer $n\geq2$ has a prime divisor using a smallest-counterexample argument.
+        answerLines: 7
+        answer:
+          Suppose a failing integer exists and choose least $n\geq2$. It is not prime, since a prime divides
+          itself. Thus $n=ab$ with $2\leq a<n$. Minimality gives a prime divisor of $a$, which by transitivity
+          also divides $n$, contradicting failure.
+      - id: 20
+        type: reasoning
+        prompt:
+          A binary-representation proof constructs some representation. What extra issue remains before claiming
+          its uniqueness?
+        answerLines: 5
+        answer:
+          It must show two different collections of distinct exponents cannot yield the same integer. The
+          construction proves existence alone; repeated parity and division can support a separate uniqueness proof,
+          but it is not automatic.
+  - title: C. Postage, coverage, and base design
+    instructions: An unlimited supply of the stated positive integer stamp denominations is available.
+    questions:
+      - id: 21
+        type: reasoning
+        prompt: For stamps of values 4 and 7, verify amounts 18, 19, 20, 21 explicitly.
+        answerLines: 5
+        answer: $18=4+7+7$, $19=4+4+4+7$, $20=4+4+4+4+4$, and $21=7+7+7$. These are four consecutive valid bases.
+      - id: 22
+        type: reasoning
+        prompt: Prove every integer amount $n\geq18$ can be made from 4-unit and 7-unit stamps.
+        answerLines: 7
+        answer:
+          Bases 18 through 21 have the representations above. For $n\geq22$, assume every amount from 18
+          through $n-1$ is representable. Since $18\leq n-4<n$, represent $n-4$ by hypothesis and add one 4-unit
+          stamp. Strong induction proves the claim.
+      - id: 23
+        type: reasoning
+        prompt: Why do a base at 18 and the operation add 4 fail to cover all amounts from 18 onward?
+        answerLines: 5
+        answer:
+          'They reach only amounts congruent to 18 modulo 4: 18, 22, 26, and so on. Bases for the other residue
+          classes are needed; 19, 20, 21 supply them in the valid proof.'
+      - id: 24
+        type: reasoning
+        prompt: Show that 17 cannot be made from stamps of values 4 and 7.
+        answerLines: 5
+        answer:
+          If $4a+7b=17$ with nonnegative integers $a,b$, then $b$ is 0, 1, or 2. The remaining amounts are
+          17, 10, or 3, none divisible by 4. Thus no allowed pair of stamp counts works.
+      - id: 25
+        type: reasoning
+        prompt: Prove every integer amount $n\geq8$ can be made from stamps of values 3 and 5.
+        answerLines: 7
+        answer:
+          'Bases: $8=3+5$, $9=3+3+3$, $10=5+5$. For $n\geq11$, the smaller amount $n-3\geq8$ is representable
+          by the strong hypothesis; add one 3-unit stamp. These bases and step cover all amounts from 8.'
+      - id: 26
+        type: reasoning
+        prompt: Prove every integer amount $n\geq12$ can be made from stamps of values 4 and 5.
+        answerLines: 7
+        answer:
+          'Bases: $12=3\cdot4$, $13=2\cdot4+5$, $14=4+2\cdot5$, $15=3\cdot5$. For $n\geq16$, the hypothesis
+          represents $n-4\geq12$; add a 4-unit stamp. This proves the claim.'
+      - id: 27
+        type: reasoning
+        prompt: Prove every integer amount $n\geq28$ can be made from stamps of values 5 and 8.
+        answerLines: 8
+        answer:
+          'Bases: $28=4\cdot5+8$, $29=5+3\cdot8$, $30=6\cdot5$, $31=3\cdot5+2\cdot8$, $32=4\cdot8$. For $n\geq33$,
+          represent $n-5\geq28$ by hypothesis and add one 5-unit stamp. All used indices are smaller and covered.'
+      - id: 28
+        type: reasoning
+        prompt: Prove every multiple of 3 at least 6 can be made using 6-unit and 9-unit stamps.
+        answerLines: 7
+        answer:
+          'Write the target as $3m$ with $m\geq2$. Prove every $m\geq2$ is $2a+3b$: bases 2 and 3 are immediate;
+          for $m\geq4$, represent $m-2\geq2$ by strong induction and add 2. Multiplying the representation by 3
+          yields stamps totaling $3m$.'
+      - id: 29
+        type: reasoning
+        prompt: Can 6-unit and 9-unit stamps make every integer amount beyond some threshold? Explain.
+        answerLines: 4
+        answer:
+          No. Every resulting amount is divisible by 3, but arbitrarily large integers are not divisible
+          by 3. The preceding theorem correctly restricted its domain to multiples of 3.
+      - id: 30
+        type: reasoning
+        prompt:
+          A strong step subtracts 7 from a target and assumes every amount at least 30 is representable.
+          At what target may this step first be used, and which consecutive bases suffice?
+        answerLines: 5
+        answer:
+          The first usable target is 37, since $n-7\geq30$ is required. Verifying 30 through 36 provides
+          seven consecutive bases for this step, assuming those amounts really are representable.
+  - title: D. Recurrences with multiple dependencies
+    instructions:
+      Each two-term recurrence applies at integer indices n at least 2 unless stated otherwise. State
+      enough bases and check each recursive index against the hypothesis range.
+    questions:
+      - id: 31
+        type: reasoning
+        prompt: For $F_0=0,F_1=1,F_n=F_{n-1}+F_{n-2}$, prove $F_n\geq0$ for $n\geq0$.
+        answerLines: 7
+        answer:
+          Bases 0 and 1 are nonnegative. For $n\geq2$, assume earlier terms nonnegative. Both recursive terms
+          have smaller nonnegative indices, so their sum $F_n$ is nonnegative. Strong induction proves all cases.
+      - id: 32
+        type: reasoning
+        prompt: For the Fibonacci sequence, prove $F_n>0$ for integers $n\geq1$.
+        answerLines: 7
+        answer:
+          'Bases: $F_1=1$ and $F_2=1$ are positive. For $n\geq3$, both $n-1,n-2$ lie at least 1 and below
+          $n$, so the hypothesis makes both summands positive. Their sum is positive.'
+      - id: 33
+        type: reasoning
+        prompt: Prove $F_n\leq2^{n-1}$ for integers $n\geq1$.
+        answerLines: 8
+        answer:
+          Bases 1 and 2 give 1 at most 1 and 2 respectively. For $n\geq3$, use both earlier bounds to get
+          $F_n\leq2^{n-2}+2^{n-3}=3\cdot2^{n-3}\leq2^{n-1}$. The hypothesis applies to both indices, completing
+          induction.
+      - id: 34
+        type: reasoning
+        prompt: Prove $F_n\geq n-1$ for integers $n\geq1$.
+        answerLines: 8
+        answer:
+          Bases 1, 2, 3 give $1\geq0$, $1\geq1$, $2\geq2$. For $n\geq4$, earlier bounds give $F_n\geq(n-2)+(n-3)=2n-5\geq
+          n-1$. Three bases place the step in the range where the final comparison holds.
+      - id: 35
+        type: reasoning
+        prompt: Let $a_0=1,a_1=2,a_n=2a_{n-1}-a_{n-2}$ for $n\geq2$. Prove $a_n=n+1$.
+        answerLines: 7
+        answer:
+          Bases 0 and 1 match 1 and 2. For $n\geq2$, assume the formula at all smaller indices. Substitution
+          gives $a_n=2n-(n-1)=n+1$. Both earlier indices are covered, so strong induction proves the identity.
+      - id: 36
+        type: reasoning
+        prompt: Let $a_0=0,a_1=1,a_n=3a_{n-1}-2a_{n-2}$. Prove $a_n=2^n-1$.
+        answerLines: 7
+        answer:
+          'Bases 0 and 1 give 0 and 1. For $n\geq2$, substitute the earlier formulas: $a_n=3(2^{n-1}-1)-2(2^{n-2}-1)$.
+          Simplifying powers gives $2^n-1$, which completes the strong step.'
+      - id: 37
+        type: reasoning
+        prompt:
+          Let $a_0=2,a_1=3,a_n=a_{n-1}+2a_{n-2}$. Check the proposed formula $a_n=2^{n+1}+(-1)^n$ against
+          its base cases.
+        answerLines: 5
+        answer:
+          At $n=0$, the formula gives $2^1+1=3$, not the specified 2, so it is false for this sequence. At
+          $n=1$, it gives $2^2-1=3$, which does match $a_1$. One failed base is enough to rule out the formula
+          even though the other base agrees.
+      - id: 38
+        type: reasoning
+        prompt: Repair the preceding data by setting $a_0=3,a_1=3$, keeping the recurrence. Prove $a_n=2^{n+1}+(-1)^n$.
+        answerLines: 7
+        answer:
+          Bases 0 and 1 give 3 and 3. At $n\geq2$, the power terms combine as $2^n+2\cdot2^{n-1}=2^{n+1}$.
+          The sign terms give $(-1)^{n-1}+2(-1)^{n-2}=(-1)^n$. Substitution of both earlier formulas therefore
+          proves the next formula.
+      - id: 39
+        type: reasoning
+        prompt: Let $a_0=0,a_1=1,a_n=2a_{n-1}+a_{n-2}$. Prove $a_n\leq3^{n-1}$ for integers $n\geq1$.
+        answerLines: 8
+        answer:
+          Bases 1 and 2 give $1\leq1$ and $2\leq3$. For $n\geq3$, earlier bounds yield $a_n\leq2\cdot3^{n-2}+3^{n-3}=7\cdot3^{n-3}\leq3^{n-1}$.
+          This proves the step.
+      - id: 40
+        type: reasoning
+        prompt:
+          Why can upper bounds not simply be substituted into both terms of $a_n=2a_{n-1}-a_{n-2}$ to obtain
+          an upper bound?
+        answerLines: 5
+        answer:
+          The negative coefficient reverses the useful direction for the second term. An upper bound on $a_{n-2}$
+          gives a lower bound on its negative; an upper bound on $a_n$ needs a lower bound there instead, or exact
+          formulas.
+  - title: E. Recursive termination and correctness
+    instructions: Use an explicit nonnegative integer size measure. Arithmetic is exact.
+    questions:
+      - id: 41
+        type: reasoning
+        prompt: For integer $n\geq1$, prove $0\leq\lfloor n/2\rfloor<n$.
+        answerLines: 5
+        answer:
+          Nonnegative $n/2$ has nonnegative floor. Also $\lfloor n/2\rfloor\leq n/2<n$ because $n>0$. Thus
+          the recursive half-input is a smaller nonnegative integer.
+      - id: 42
+        type: reasoning
+        prompt:
+          A procedure returns immediately at integer input 0. At input $n>0$, it performs finitely many ordinary
+          operations, makes one recursive call on $\lfloor n/2\rfloor$, and returns after finitely many further
+          operations if that call returns. Prove termination for all $n\geq0$.
+        answerLines: 7
+        answer:
+          Base 0 returns. For $n\geq1$, assume all smaller nonnegative calls terminate. Its recursive input
+          is a smaller nonnegative integer by the floor bound, so that call terminates; the finitely many remaining
+          operations then finish. Strong induction proves termination.
+      - id: 43
+        type: reasoning
+        prompt:
+          Define $P(0)=1$. At positive integer $n$, compute $q=\lfloor n/2\rfloor,t=P(q)$ and return $t^2$
+          for even $n$, $2t^2$ for odd $n$. Prove $P(n)=2^n$.
+        answerLines: 8
+        answer:
+          Base 0 returns $1=2^0$. For positive $n$, $q<n$, so the hypothesis gives $t=2^q$. If $n=2q$, the
+          return is $2^{2q}=2^n$; if $n=2q+1$, it is $2^{2q+1}=2^n$. These cases cover all positive inputs; the
+          smaller integer call also ensures termination.
+      - id: 44
+        type: reasoning
+        prompt: Why does repeatedly halving a positive real input and stopping only at zero not establish termination?
+        answerLines: 5
+        answer:
+          A positive real remains positive under any finite number of halvings. The decreasing values need
+          not reach 0; the nonnegative integer measure used in the valid algorithm is absent.
+      - id: 45
+        type: reasoning
+        prompt: Define $S(0)=0$ and $S(n)=n+S(n-1)$ for positive integers. Prove termination and $S(n)=n(n+1)/2$.
+        answerLines: 7
+        answer:
+          Base 0 terminates with 0. For positive $n$, the smaller call terminates and returns $(n-1)n/2$
+          by induction. Adding $n$ gives $n(n+1)/2$. This proves termination and correctness together.
+      - id: 46
+        type: reasoning
+        prompt:
+          Define $L(0)=0$ and $L(n)=1+L(\lfloor n/2\rfloor)$ for positive integers. Prove $L(n)\leq n$ for
+          $n\geq0$.
+        answerLines: 7
+        answer:
+          Base 0 gives 0. For positive $n$, set $q=\lfloor n/2\rfloor<n$. The hypothesis gives $L(q)\leq
+          q$, hence $L(n)\leq1+q\leq n$, since the smaller integer $q$ is at most $n-1$. The same decrease ensures
+          termination.
+      - id: 47
+        type: reasoning
+        prompt:
+          A list procedure removes its first element until the list is empty, returning 0 for empty and 1
+          plus the recursive result otherwise. Prove it returns the list's length.
+        answerLines: 7
+        answer:
+          Induct on nonnegative length. Empty length 0 returns 0. At length $n>0$, removing the first element
+          gives length $n-1$; the hypothesis supplies termination and result $n-1$. Adding 1 returns $n$, so all
+          finite lengths are correct.
+      - id: 48
+        type: reasoning
+        prompt:
+          A recursive sum splits a finite list of at least two real numbers into two nonempty smaller lists
+          that partition its entries, sums each recursively, and adds using exact arithmetic. A singleton returns
+          its element. Prove correctness for every allowed split.
+        answerLines: 7
+        answer:
+          Base length 1 is correct. At length $n\geq2$, any legal split has lengths $a,b$ with $1\leq a,b<n$.
+          By hypothesis both calls return their sublist sums. Adding them gives the whole-list sum because the
+          split partitions its entries. Both calls terminate on smaller sizes.
+      - id: 49
+        type: reasoning
+        prompt:
+          Why must a proof of the preceding algorithm allow arbitrary legal split lengths instead of only
+          equal halves?
+        answerLines: 5
+        answer:
+          The specification permits unequal splits too. A proof for equal halves covers only one strategy
+          and may not cover odd lengths. Correctness for every allowed execution requires all $a,b\geq1$ with $a+b=n$.
+      - id: 50
+        type: reasoning
+        prompt: A procedure on input $n>0$ calls itself on $n$ before returning. Can strong induction justify termination?
+        answerLines: 5
+        answer:
+          No. The call is not on a smaller measure, so the hypothesis does not apply. With no other state
+          change or base reached, this specified call repeats indefinitely.
+  - title: F. Recursive constructions and exact counts
+    instructions: Prove the requested universal claim, including all legal decompositions.
+    questions:
+      - id: 51
+        type: reasoning
+        prompt:
+          A length-$n$ board is split between cells into nonempty pieces until all pieces are unit cells.
+          Prove every such process uses $n-1$ splits.
+        answerLines: 8
+        answer:
+          Base 1 uses 0 splits. For $n\geq2$, the first split gives lengths $a,b\geq1$ below $n$, with $a+b=n$.
+          By hypothesis the two subproblems use $a-1$ and $b-1$ splits. Including the first yields $1+(a-1)+(b-1)=n-1$.
+      - id: 52
+        type: reasoning
+        prompt: Why must the first split be counted in the board-splitting proof?
+        answerLines: 5
+        answer:
+          The recursive counts include only later splits within the two produced pieces. Omitting the initial
+          split would give $a+b-2=n-2$, one less than the actual total.
+      - id: 53
+        type: reasoning
+        prompt:
+          Prove that any expression formed from $n\geq1$ leaves using only binary operations has $n-1$ operation
+          nodes.
+        answerLines: 7
+        answer:
+          Base 1 is a single leaf with 0 operations. A larger expression combines subexpressions with $a,b\geq1$
+          leaves and $a+b=n$. By hypothesis they have $a-1,b-1$ operations. Adding the root operation gives $n-1$,
+          independent of the chosen structure.
+      - id: 54
+        type: reasoning
+        prompt:
+          A finite full binary tree is either one leaf or a root with exactly two full binary subtrees. Prove
+          it has one more leaf than internal nodes.
+        answerLines: 7
+        answer:
+          Induct on total node count. A leaf has 1 leaf and 0 internal nodes. Otherwise each smaller subtree
+          has leaves $I_1+1,I_2+1$ by hypothesis. The whole tree has $I_1+I_2+1$ internal nodes and $I_1+I_2+2$
+          leaves, differing by 1.
+      - id: 55
+        type: reasoning
+        prompt:
+          Explain why the preceding full-binary-tree claim cannot be extended to arbitrary trees with one-child
+          nodes.
+        answerLines: 5
+        answer:
+          A chain consisting of one internal root and one leaf has equal counts 1 and 1, not one extra leaf.
+          The two-child construction rule is essential to the count.
+      - id: 56
+        type: reasoning
+        prompt:
+          Let $t_n$ count tilings of a $2$-by-$n$ rectangle by $2$-by-$1$ dominoes, with rotations allowed.
+          Justify $t_0=1,t_1=1$ and $t_n=t_{n-1}+t_{n-2}$ for $n\geq2$.
+        answerLines: 8
+        answer:
+          The empty rectangle has one empty tiling; width 1 forces one vertical domino. For width $n\geq2$,
+          either the left column is one vertical domino, leaving width $n-1$, or its top cell starts a horizontal
+          domino, forcing a second below it and leaving width $n-2$. These disjoint exhaustive cases give the recurrence.
+      - id: 57
+        type: reasoning
+        prompt: Using the domino recurrence, calculate $t_2,t_3,t_4$ and explain the empty tiling's role.
+        answerLines: 5
+        answer:
+          The values are $2,3,5$. At width 2, the two-horizontal-domino case leaves width 0 and contributes
+          its one empty completion. Setting $t_0=0$ would incorrectly discard that valid tiling.
+      - id: 58
+        type: reasoning
+        prompt:
+          Prove the domino count satisfies $t_n=F_{n+1}$ for every integer $n\geq0$, where $F$ is the Fibonacci
+          sequence with $F_0=0$, $F_1=1$, and $F_n=F_{n-1}+F_{n-2}$ for $n\geq2$.
+        answerLines: 8
+        answer:
+          Bases 0 and 1 give $t_0=1=F_1$ and $t_1=1=F_2$. For $n\geq2$, the earlier identities and recurrence
+          give $t_n=t_{n-1}+t_{n-2}=F_n+F_{n-1}=F_{n+1}$. Strong induction proves all widths.
+      - id: 59
+        type: reasoning
+        prompt:
+          A finite nested object is either an atom of weight 1 or a pair whose weight is the sum of its children's
+          weights. Prove its weight equals its number of atom occurrences.
+        answerLines: 7
+        answer:
+          Induct on the number of construction nodes. For an atom, both quantities are 1. For a pair, both
+          children have fewer nodes; by hypothesis their weights equal their atom counts. Adding gives the pair's
+          total weight and total atom count, so they agree.
+      - id: 60
+        type: reasoning
+        prompt: In the preceding nested-object proof, why count atom occurrences rather than distinct atom labels?
+        answerLines: 5
+        answer:
+          The same label may occur in both children and contributes weight twice. Distinct-label counting
+          would remove duplicates and need not add under pairing; occurrences match the construction's additive
+          definition.
+  - title: G. Diagnosing flawed strong induction
+    instructions: Give a specific missing case, range condition, or invalid inference.
+    questions:
+      - id: 61
+        type: reasoning
+        prompt: A postage proof for amounts at least 18 uses $P(n-4)$ already at $n=19$. What is wrong?
+        answerLines: 5
+        answer:
+          It invokes $P(15)$, outside the promised range. Verify 18 through 21 as bases and start the subtract
+          4 step at 22, where the smaller target is at least 18.
+      - id: 62
+        type: reasoning
+        prompt: A Fibonacci bound proof starts at 1 but uses $F_{n-2}$ in the step at $n=2$. Repair it.
+        answerLines: 5
+        answer:
+          The index 0 lies outside the bound's domain. Verify the bound at 1 and 2 separately, then start
+          the general step at 3 so both required indices are at least 1.
+      - id: 63
+        type: reasoning
+        prompt: A prime-factor proof assumes every integer at most $n$ factors before proving $n$ factors. Explain.
+        answerLines: 5
+        answer:
+          Including $n$ in the hypothesis assumes the target itself. The correct strong hypothesis stops
+          at $n-1$; compositeness then supplies factors strictly below $n$.
+      - id: 64
+        type: reasoning
+        prompt:
+          A proof says strong induction needs no base because all earlier cases are assumed. Why is this
+          false?
+        answerLines: 5
+        answer:
+          At the starting index there are no earlier cases to use. That first case still must be proved directly.
+          More bases may be required before recursive dependencies fall inside the domain.
+      - id: 65
+        type: reasoning
+        prompt:
+          A recursive argument uses input size that decreases but may be any positive real. What condition
+          is missing?
+        answerLines: 5
+        answer:
+          Strict decrease in positive reals does not guarantee termination. Use a well-founded measure, such
+          as a nonnegative integer that strictly decreases on every recursive call.
+      - id: 66
+        type: reasoning
+        prompt:
+          A proof of factorization says the smaller factors are prime, solely because they are smaller. Repair
+          it.
+        answerLines: 5
+        answer:
+          Smaller does not imply prime, as 12 is smaller than 84 but composite. The induction hypothesis
+          says the smaller factors are products of primes; concatenate those products instead.
+      - id: 67
+        type: reasoning
+        prompt:
+          A smallest-counterexample proof chooses a least negative real counterexample without justification.
+          Why is this invalid?
+        answerLines: 5
+        answer:
+          A nonempty set of negative reals need not have a least element. The least-choice step needs a proved
+          minimum property, such as well-ordering for nonnegative integer indices, not nonemptiness alone.
+      - id: 68
+        type: reasoning
+        prompt:
+          A board-split proof uses $n-1$ splits within both subboards regardless of their sizes. Correct
+          it.
+        answerLines: 5
+        answer:
+          The subboards have lengths $a,b<n$, so their counts are $a-1,b-1$ by hypothesis. With the initial
+          split the total is $1+(a-1)+(b-1)=n-1$.
+      - id: 69
+        type: reasoning
+        prompt:
+          A recurrence bound substitutes an upper bound into a term with a negative coefficient. How should
+          the proof be repaired?
+        answerLines: 5
+        answer:
+          Track the inequality direction. A negative coefficient needs a lower bound on the original term
+          to yield an upper bound after multiplication, or use an exact formula. Substituting upper bounds blindly
+          is invalid.
+      - id: 70
+        type: reasoning
+        prompt:
+          A proof establishes that a recursive algorithm returns the right value if it returns, then claims
+          termination follows. Explain the separate obligation.
+        answerLines: 5
+        answer:
+          Conditional correctness does not ensure a return occurs. Prove every recursive call decreases a
+          well-founded measure and reaches covered base cases, then combine that termination argument with correctness.
+  - title: H. Mixed strong induction and proof selection
+    instructions: Use full proofs where asked; identify exactly what each proof establishes.
+    questions:
+      - id: 71
+        type: reasoning
+        prompt: Prove every integer $n\geq12$ is $4a+5b$ for nonnegative integers $a,b$, using a smallest counterexample.
+        answerLines: 8
+        answer:
+          The bases are $12=3\cdot4$, $13=2\cdot4+5$, $14=4+2\cdot5$, and $15=3\cdot5$. Suppose a least failing
+          $n\geq12$ exists. These bases force $n\geq16$. Then $n-4\geq12$ is smaller and thus representable, say
+          $4a+5b$. Adding 4 gives $n=4(a+1)+5b$, contradicting failure.
+      - id: 72
+        type: reasoning
+        prompt: Prove ordinary induction implies strong induction by defining an accumulating statement.
+        answerLines: 8
+        answer:
+          Let $Q(k)$ assert all $P(j)$ from the starting index $n_0$ through $k$. The base $P(n_0)$ gives
+          $Q(n_0)$. Assuming $Q(k)$ supplies all cases needed by the strong step to prove $P(k+1)$; together they
+          give $Q(k+1)$. Ordinary induction proves every $Q$, hence every $P$.
+      - id: 73
+        type: reasoning
+        prompt: Prove well-ordering implies the strong induction principle for integer indices $n\geq n_0$.
+        answerLines: 8
+        answer:
+          Suppose the base and strong step hold but some allowed case fails. The failing indices, after shifting
+          by $n_0$, form a nonempty set of nonnegative integers, so there is a least failing $m$. It is not a verified
+          base; all smaller allowed cases hold. The strong step then proves $P(m)$, contradicting failure.
+      - id: 74
+        type: reasoning
+        prompt:
+          Prove well-ordering of nonnegative integers from ordinary induction by ruling out a nonempty subset
+          with no least element.
+        answerLines: 8
+        answer:
+          Suppose nonempty $S\subseteq\mathbb N_0$ has no least element. Then 0 is absent. If 0 through $k$
+          are absent, $k+1$ must also be absent, or it would be least. Induction says every nonnegative integer
+          is absent, making $S$ empty, a contradiction.
+      - id: 75
+        type: reasoning
+        prompt:
+          Prove every integer $n\geq1$ can be reduced to 1 by repeatedly subtracting 1 from odd values greater
+          than 1 and halving even values.
+        answerLines: 8
+        answer:
+          Base 1 is already reached. For $n>1$, if even, the next value $n/2$ is a positive integer below
+          $n$; if odd, the next value $n-1$ is positive and below $n$. The strong hypothesis supplies a finite
+          reduction from that next value to 1. Prepending one operation completes the proof.
+      - id: 76
+        type: reasoning
+        prompt:
+          Prove that repeatedly splitting a positive integer into two smaller positive summands eventually
+          reaches only 1s, for any sequence of recursive splits.
+        answerLines: 8
+        answer:
+          Induct on the starting integer. At 1 no split is possible. At $n>1$, a split gives $a,b\geq1$ below
+          $n$. By hypothesis each recursive branch finishes with 1s after finitely many splits. Combining their
+          finite processes with the initial split gives termination for every legal first split.
+      - id: 77
+        type: reasoning
+        prompt: Define $a_1=1$ and for $n\geq2$, $a_n=1+\max\{a_1,\ldots,a_{n-1}\}$. Prove $a_n=n$.
+        answerLines: 7
+        answer:
+          Base 1 holds. For $n\geq2$, assume $a_j=j$ for every $1\leq j<n$. The maximum of those values is
+          $n-1$, so $a_n=1+(n-1)=n$. The set is finite and nonempty, justifying its maximum.
+      - id: 78
+        type: reasoning
+        prompt:
+          Prove every integer $n\geq2$ is a sum of 2s and 3s. Then explain why this is an existence theorem
+          only.
+        answerLines: 8
+        answer:
+          'Bases 2 and 3 hold. At $n\geq4$, the smaller integer $n-2\geq2$ has such a sum by hypothesis;
+          append 2. This proves existence for all targets. It does not imply uniqueness: 6 equals $3+3$ and $2+2+2$.'
+      - id: 79
+        type: reasoning
+        prompt: Prove binary representations as sums of distinct nonnegative powers of 2 are unique, given existence.
+        answerLines: 8
+        answer:
+          Use strong induction on the represented nonnegative integer, allowing the empty sum for 0. At 0
+          only the empty sum works since powers are positive. For $n>0$, parity determines whether $2^0$ occurs.
+          Remove that common term if present and divide all remaining powers by 2. The two resulting representations
+          concern $\lfloor n/2\rfloor<n$, so they agree by hypothesis; shifting back proves the originals agree.
+      - id: 80
+        type: reasoning
+        prompt:
+          Explain when to choose ordinary induction, strong induction, or a smallest-counterexample proof,
+          using three examples.
+        answerLines: 7
+        answer:
+          A sum formula naturally adds one new term and uses ordinary induction. Prime-factorization existence
+          uses arbitrary smaller factors, so strong induction fits. A postage theorem can be proved by a least
+          failing amount and subtracting a stamp value into the established range. The methods prove the same integer-indexed
+          claims but organize their dependencies differently.

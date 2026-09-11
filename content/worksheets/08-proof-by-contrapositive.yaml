@@ -1,0 +1,602 @@
+title: Proof by Contrapositive
+instructions:
+  80 exercises in eight sections. Give reasons and show the requested proof, including domains
+  and all necessary cases. Parity and divisibility variables are integers unless another domain is stated.
+  Integer arithmetic is exact. Blank response space is provided; the answer key follows the student section.
+sections:
+  - title: A. Recognizing the logical transformation
+    instructions: State each transformation exactly and explain the requested distinction.
+    questions:
+      - id: 1
+        type: reasoning
+        prompt: Give the contrapositive of $P\to Q$ and explain why it is equivalent.
+        answerLines: 3
+        answer:
+          It is $\neg Q\to\neg P$. Both implications fail exactly when $P$ is true and $Q$ is false, so their
+          truth values agree in every assignment.
+      - id: 2
+        type: reasoning
+        prompt: Give the converse and inverse of $P\to Q$. Are they generally equivalent to the original?
+        answerLines: 3
+        answer:
+          The converse is $Q\to P$ and inverse is $\neg P\to\neg Q$. They are equivalent to each other, but
+          not generally to the original; $P=F,Q=T$ distinguishes the pairs.
+      - id: 3
+        type: reasoning
+        prompt: 'State the contrapositive of: if an integer is divisible by 4, it is even.'
+        answerLines: 3
+        answer:
+          If an integer is not even, it is not divisible by 4. Equivalently, for integers, an odd integer
+          is not divisible by 4.
+      - id: 4
+        type: reasoning
+        prompt: 'State the contrapositive of: if a real number has irrational square, it is irrational.'
+        answerLines: 3
+        answer: If the real number is rational, its square is rational. Both negations stay within the real domain.
+      - id: 5
+        type: reasoning
+        prompt: Distinguish the contrapositive from the negation of $P\to Q$.
+        answerLines: 3
+        answer:
+          The contrapositive is $\neg Q\to\neg P$, equivalent to the original. Its negation is $P\land\neg
+          Q$, true exactly when the original fails.
+      - id: 6
+        type: reasoning
+        prompt: In a contrapositive proof of $\forall x\in D(P(x)\to Q(x))$, does the outer quantifier become existential?
+        answerLines: 3
+        answer:
+          No. Prove $\neg Q(x)\to\neg P(x)$ for arbitrary $x\in D$; the outer quantifier stays universal.
+          An existential appears when negating the whole theorem, a different operation.
+      - id: 7
+        type: reasoning
+        prompt: Why may an integer being not even be replaced by being odd, but not an arbitrary real number?
+        answerLines: 3
+        answer:
+          Every integer has remainder 0 or 1 modulo 2, giving exactly even or odd. Parity is not an exhaustive
+          classification of arbitrary real numbers such as $1/2$.
+      - id: 8
+        type: reasoning
+        prompt: Give a true implication whose converse is false, with a verified counterexample to the converse.
+        answerLines: 3
+        answer:
+          'Divisibility by 4 implies evenness. Its converse fails at 6: $6=2\cdot3$ is even but is not divisible
+          by 4.'
+      - id: 9
+        type: reasoning
+        prompt: Explain the assumptions of a contrapositive proof versus a contradiction proof of $P\to Q$.
+        answerLines: 3
+        answer:
+          Contraposition assumes $\neg Q$ and derives $\neg P$. Contradiction assumes both $P$ and $\neg
+          Q$ and derives an impossibility. Their logical organization differs.
+      - id: 10
+        type: reasoning
+        prompt: Is proving the inverse enough to establish the original implication? Explain.
+        answerLines: 3
+        answer:
+          No. For $P=T,Q=F$, the inverse $\neg P\to\neg Q$ is true, but the original $P\to Q$ is false. Thus
+          establishing the inverse alone does not establish the original.
+  - title: B. Negating compound conclusions
+    instructions: Write the contrapositive with negations pushed inward. Preserve domains and inequality boundaries.
+    questions:
+      - id: 11
+        type: reasoning
+        prompt: Give the contrapositive of $P\to(Q\lor R)$.
+        answerLines: 4
+        answer: $(\neg Q\land\neg R)\to\neg P$. Falsity of the disjunction requires both disjuncts false.
+      - id: 12
+        type: reasoning
+        prompt: Give the contrapositive of $(P\land R)\to Q$.
+        answerLines: 4
+        answer: $\neg Q\to(\neg P\lor\neg R)$. Negating the conjunction in the original hypothesis gives a disjunction.
+      - id: 13
+        type: reasoning
+        prompt: Give the contrapositive of $(P\lor R)\to(Q\land S)$.
+        answerLines: 4
+        answer:
+          $(\neg Q\lor\neg S)\to(\neg P\land\neg R)$. Apply De Morgan's law separately to the original conclusion
+          and hypothesis.
+      - id: 14
+        type: reasoning
+        prompt: 'Give the contrapositive of: for real $x$, if $x>3$ then $x^2>9$.'
+        answerLines: 4
+        answer:
+          For real $x$, if $x^2\leq9$, then $x\leq3$. The weak inequalities include the equality boundary
+          cases.
+      - id: 15
+        type: reasoning
+        prompt: 'Give the contrapositive of: for integers $a,b$, if $ab$ is odd, both $a$ and $b$ are odd.'
+        answerLines: 4
+        answer:
+          If $a$ is even or $b$ is even, then $ab$ is even. Negating both factors odd gives at least one
+          factor even.
+      - id: 16
+        type: reasoning
+        prompt: 'Give the contrapositive of: for integers $a,b$, if $ab$ is even, at least one of $a,b$ is even.'
+        answerLines: 4
+        answer:
+          If both $a$ and $b$ are odd, then $ab$ is odd. Both odd factors are needed; assuming only one does
+          not negate the conclusion.
+      - id: 17
+        type: reasoning
+        prompt: For a fixed real $c$, give the contrapositive of $A\to\forall x\in\mathbb R,\ R(c,x)$.
+        answerLines: 4
+        answer:
+          If $\exists x\in\mathbb R,\neg R(c,x)$, then $\neg A$. The negation of the universal conclusion
+          supplies one failing witness.
+      - id: 18
+        type: reasoning
+        prompt: Give the contrapositive of $(\exists x\in D\,P(x))\to Q$.
+        answerLines: 4
+        answer: $\neg Q\to\forall x\in D,\neg P(x)$. Negating existence says that every allowed candidate fails.
+      - id: 19
+        type: reasoning
+        prompt: Give the contrapositive of $A\to\forall x\in D\exists y\in E\,R(x,y)$.
+        answerLines: 4
+        answer:
+          If $\exists x\in D\forall y\in E,\neg R(x,y)$, then $\neg A$. Quantifier order is retained while
+          each quantifier switches kind.
+      - id: 20
+        type: reasoning
+        prompt: 'Give the contrapositive of: if a user is an administrator and active, access is allowed.'
+        answerLines: 4
+        answer:
+          If access is not allowed, the user is not an administrator or is not active. It need not be the
+          case that both original conditions fail.
+  - title: C. Parity proofs
+    instructions: Use arbitrary integers and provide the contrapositive and its complete proof.
+    questions:
+      - id: 21
+        type: reasoning
+        prompt: 'Prove: if $n^2$ is even, then $n$ is even.'
+        answerLines: 6
+        answer:
+          'Contrapositive: odd $n$ has odd square. Write $n=2k+1$ for integer $k$. Then $n^2=2(2k^2+2k)+1$,
+          which is odd with an integer witness. Contraposition gives the claim.'
+      - id: 22
+        type: reasoning
+        prompt: 'Prove: if $n^2$ is odd, then $n$ is odd.'
+        answerLines: 6
+        answer:
+          'Contrapositive: even $n$ has even square. If $n=2k$ with integer $k$, then $n^2=2(2k^2)$ is even.
+          Since every integer is even or odd, the contrapositive proves the statement.'
+      - id: 23
+        type: reasoning
+        prompt: 'Prove: if $ab$ is even, at least one factor is even.'
+        answerLines: 6
+        answer:
+          'Contrapositive: both factors odd implies odd product. Write $a=2r+1,b=2s+1$. Then $ab=2(2rs+r+s)+1$
+          is odd, with integral coefficient. Thus an even product cannot have two odd factors.'
+      - id: 24
+        type: reasoning
+        prompt: 'Prove: if $ab$ is odd, both factors are odd.'
+        answerLines: 6
+        answer:
+          'Contrapositive: at least one even factor makes the product even. If $a=2r$, then $ab=2(rb)$; if
+          $b=2s$, then $ab=2(as)$. Each witness is integral, and the cases cover the negated conclusion.'
+      - id: 25
+        type: reasoning
+        prompt: 'Prove: if $a+b$ is odd, then $a,b$ have different parity.'
+        answerLines: 6
+        answer:
+          'Contrapositive: same parity gives even sum. For even $a=2r,b=2s$, the sum is $2(r+s)$. For odd
+          $a=2r+1,b=2s+1$, it is $2(r+s+1)$. Thus the original follows.'
+      - id: 26
+        type: reasoning
+        prompt: 'Prove: if $a+b$ is even, then $a,b$ have the same parity.'
+        answerLines: 6
+        answer:
+          'Contrapositive: different parity gives odd sum. Write the even member as $2r$ and odd member as
+          $2s+1$; their sum is $2(r+s)+1$, regardless of order. All witnesses are integers.'
+      - id: 27
+        type: reasoning
+        prompt: 'Prove: if $n^3$ is even, then $n$ is even.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $n=2k+1$ is odd, then $n^3=2(4k^3+6k^2+3k)+1$ is odd. The coefficient is an
+          integer, so contraposition establishes the claim.'
+      - id: 28
+        type: reasoning
+        prompt: 'Prove: if $n^2+1$ is even, then $n$ is odd.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $n=2k$ is even, then $n^2+1=2(2k^2)+1$ is odd. Therefore an even value of $n^2+1$
+          requires odd $n$.'
+      - id: 29
+        type: reasoning
+        prompt: 'Prove: if $3n+2$ is odd, then $n$ is odd.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $n=2k$ is even, then $3n+2=2(3k+1)$ is even. The integer witness proves the
+          contrapositive.'
+      - id: 30
+        type: reasoning
+        prompt: 'Prove: if $5n+1$ is even, then $n$ is odd.'
+        answerLines: 6
+        answer:
+          'Contrapositive: even $n=2k$ gives $5n+1=2(5k)+1$ odd. This covers every even integer and hence
+          proves the original implication.'
+  - title: D. Divisibility and remainders
+    instructions: Every integer has a unique remainder among 0 through m-1 for positive divisor m.
+    questions:
+      - id: 31
+        type: reasoning
+        prompt: Prove by contrapositive that $3\mid n^2$ implies $3\mid n$.
+        answerLines: 6
+        answer:
+          If $3\nmid n$, write $n=3k+1$ or $3k+2$. The squares are respectively $3(3k^2+2k)+1$ and $3(3k^2+4k+1)+1$.
+          Both have remainder 1, so neither is divisible by 3.
+      - id: 32
+        type: reasoning
+        prompt: Prove by contrapositive that $4\mid n^2$ implies $n$ is even.
+        answerLines: 6
+        answer:
+          If $n$ is odd, write $n=2k+1$. Then $n^2=4(k^2+k)+1$ has remainder 1 on division by 4. Thus $4\nmid
+          n^2$, proving the contrapositive.
+      - id: 33
+        type: reasoning
+        prompt: Prove that $6\nmid n$ follows whenever $3\nmid n$, using an equivalent direct statement.
+        answerLines: 6
+        answer:
+          The contrapositive is $6\mid n\to3\mid n$. For arbitrary integer $n=6k$, $n=3(2k)$ with integer
+          witness $2k$. Therefore failure of divisibility by 3 prevents divisibility by 6.
+      - id: 34
+        type: reasoning
+        prompt: 'Prove: if $d\nmid a^2$, then $d\nmid a$ for integers $d,a$.'
+        answerLines: 6
+        answer:
+          'Contrapositive: $d\mid a$ implies $d\mid a^2$. If $a=dk$ with integer $k$, then $a^2=d(ka)$, with
+          integer witness $ka$. No nonzero condition on $d$ is needed.'
+      - id: 35
+        type: reasoning
+        prompt: 'Prove: if $d\nmid(a+b)$, then $d\nmid a$ or $d\nmid b$.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $a=dr$ and $b=ds$ with integer witnesses, then $a+b=d(r+s)$. Thus divisibility
+          of both summands ensures divisibility of the sum, proving the original disjunction.'
+      - id: 36
+        type: reasoning
+        prompt: 'Prove: if $d\nmid(a-b)$, then $d\nmid a$ or $d\nmid b$.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $d\mid a$ and $d\mid b$, write $a=dr,b=ds$. Then $a-b=d(r-s)$ with an integer
+          coefficient, so it is divisible by $d$.'
+      - id: 37
+        type: reasoning
+        prompt: Prove that $3\mid n^2+2$ implies $3\nmid n$.
+        answerLines: 6
+        answer:
+          'Contrapositive: if $n=3k$, then $n^2+2=3(3k^2)+2$, which has nonzero remainder modulo 3. Hence
+          it is not divisible by 3.'
+      - id: 38
+        type: reasoning
+        prompt: Prove that $5\mid n^2$ implies $5\mid n$.
+        answerLines: 6
+        answer:
+          If $5\nmid n$, its remainder is 1, 2, 3, or 4. Squaring these remainders gives remainders 1, 4,
+          4, 1 modulo 5. None is zero; expanding $(5k+r)^2$ shows its remainder equals that of $r^2$. Thus the
+          contrapositive holds.
+      - id: 39
+        type: reasoning
+        prompt:
+          'Refute the proposed generalization: for every positive integer $d$, $d\mid n^2$ implies $d\mid
+          n$.'
+        answerLines: 4
+        answer:
+          Take $d=4,n=2$. Then $4\mid4=n^2$, but $4\nmid2$. The prime-divisor examples do not justify this
+          assertion for arbitrary positive divisors.
+      - id: 40
+        type: reasoning
+        prompt: 'Refute: if $6\mid ab$, then $6\mid a$ or $6\mid b$.'
+        answerLines: 4
+        answer:
+          Choose $a=2,b=3$. The product is 6, but neither factor is divisible by 6. Consequently its proposed
+          contrapositive is false too.
+  - title: E. Sets and functions
+    instructions: Fix a common set universe for complements and respect the stated function domains.
+    questions:
+      - id: 41
+        type: reasoning
+        prompt: Prove $A\subseteq B\to B^c\subseteq A^c$ by elementwise contraposition.
+        answerLines: 6
+        answer:
+          Assume $A\subseteq B$ and choose arbitrary $x\in B^c$. Thus $x\notin B$. The contrapositive of
+          $x\in A\to x\in B$ gives $x\notin A$. Since $x$ is in the universe, $x\in A^c$.
+      - id: 42
+        type: reasoning
+        prompt: Write an elementwise contrapositive formulation of $A\cap B\subseteq C$.
+        answerLines: 4
+        answer:
+          For every ambient $x$, if $x\notin C$, then $x\notin A$ or $x\notin B$. Negating intersection membership
+          gives the disjunction.
+      - id: 43
+        type: reasoning
+        prompt: Write an elementwise contrapositive formulation of $A\cup B\subseteq C$.
+        answerLines: 4
+        answer:
+          If ambient $x\notin C$, then $x\notin A$ and $x\notin B$. Both memberships must fail because the
+          original source is a union.
+      - id: 44
+        type: reasoning
+        prompt: Prove that $f:\mathbb Z\to\mathbb Z$, $f(n)=7n+2$, is injective by distinct inputs.
+        answerLines: 6
+        answer:
+          Let arbitrary integers $a\ne b$. Then $f(a)-f(b)=7(a-b)\ne0$, so $f(a)\ne f(b)$. This is the contrapositive
+          of equal outputs implying equal inputs.
+      - id: 45
+        type: reasoning
+        prompt: Prove injectivity of $f:[0,\infty)\to[0,\infty)$, $f(x)=x^2$, using distinct inputs.
+        answerLines: 6
+        answer:
+          Let nonnegative $a\ne b$. Then $a+b>0$ and $a-b\ne0$, so $a^2-b^2=(a-b)(a+b)\ne0$. Thus distinct
+          allowed inputs have distinct outputs.
+      - id: 46
+        type: reasoning
+        prompt: Why does the preceding square-function proof fail on all real inputs?
+        answerLines: 4
+        answer:
+          Distinct real inputs can satisfy $a+b=0$, for example $a=1,b=-1$. Their square difference is zero,
+          so distinctness alone does not ensure different outputs.
+      - id: 47
+        type: reasoning
+        prompt:
+          For $f:A\to B$ and $g:B\to C$, prove by contrapositive that injectivity of $g\circ f$ implies injectivity
+          of $f$.
+        answerLines: 6
+        answer:
+          If $f$ is not injective, some distinct $a,b$ satisfy $f(a)=f(b)$. Applying $g$ gives equal composite
+          outputs at those same distinct inputs, so $g\circ f$ is not injective. This proves the contrapositive.
+      - id: 48
+        type: reasoning
+        prompt:
+          For $f:A\to B$ and $g:B\to C$, prove by contraposition that surjectivity of $g\circ f$ onto $C$
+          implies surjectivity of $g$.
+        answerLines: 6
+        answer:
+          If $g$ is not surjective, choose $c\in C$ missed by every $b\in B$. Each $f(a)$ belongs to $B$,
+          so $g(f(a))\ne c$ for every $a$. The composition misses $c$ and is not surjective.
+      - id: 49
+        type: reasoning
+        prompt: For $f:A\to B$ and $T\subseteq B$, prove $f(x)\notin T\to x\notin f^{-1}(T)$ for $x\in A$.
+        answerLines: 6
+        answer:
+          The contrapositive is $x\in f^{-1}(T)\to f(x)\in T$, exactly the definition of preimage. Equivalently,
+          assuming $f(x)\notin T$ directly excludes preimage membership.
+      - id: 50
+        type: reasoning
+        prompt: 'Refute: if $g\circ f$ is injective, then $g$ is injective on its entire domain.'
+        answerLines: 4
+        answer:
+          Let $A=\{a\},B=\{1,2\},C=\{u\}$, $f(a)=1$, and $g(1)=g(2)=u$. The singleton-domain composition
+          is injective, but $g$ has a collision.
+  - title: F. Rationality and inequalities
+    instructions: Irrational means real but not rational. State any closure or sign fact used.
+    questions:
+      - id: 51
+        type: reasoning
+        prompt: 'Prove: if $x^2$ is irrational, then real $x$ is irrational.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $x=a/b$ with integers $a,b$ and $b\ne0$, then $x^2=a^2/b^2$ is rational because
+          its denominator is nonzero. Thus the original follows.'
+      - id: 52
+        type: reasoning
+        prompt: 'Prove: if $3x+1$ is irrational, then real $x$ is irrational.'
+        answerLines: 6
+        answer:
+          If $x=a/b$ is rational, with $b\ne0$, then $3x+1=(3a+b)/b$ is rational. This proves the contrapositive
+          for every real $x$.
+      - id: 53
+        type: reasoning
+        prompt: 'Prove: if $x+y$ is irrational and real $y$ is rational, then $x$ is irrational.'
+        answerLines: 6
+        answer:
+          Fix rational $y$. The contrapositive assumes rational $x$; rational closure under addition makes
+          $x+y$ rational. Therefore an irrational sum with rational $y$ forces irrational $x$.
+      - id: 54
+        type: reasoning
+        prompt: 'Prove: if a product $xy$ of real numbers is irrational, at least one factor is irrational.'
+        answerLines: 6
+        answer:
+          'Contrapositive: both rational factors have rational product. Writing $x=a/b,y=c/d$ with nonzero
+          integer denominators gives $xy=ac/(bd)$, a rational number.'
+      - id: 55
+        type: reasoning
+        prompt: 'Refute: if real $x$ is irrational, then $x^2$ is irrational. You may use irrationality of $\sqrt2$.'
+        answerLines: 4
+        answer:
+          Choose $x=\sqrt2$. It is irrational by the supplied fact, but its square is the rational number
+          2.
+      - id: 56
+        type: reasoning
+        prompt: 'Prove by contraposition: for real $x$, $x^2\leq9$ implies $x\leq3$.'
+        answerLines: 6
+        answer:
+          Assume $x>3$. Both $x-3$ and $x+3$ are positive, so $x^2-9=(x-3)(x+3)>0$. Thus $x^2>9$, establishing
+          the contrapositive.
+      - id: 57
+        type: reasoning
+        prompt: 'Prove: if $x+y>0$ for real $x,y$, then $x>0$ or $y>0$.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $x\leq0$ and $y\leq0$, adding gives $x+y\leq0$. These are precisely the negations
+          of the original conclusion and hypothesis.'
+      - id: 58
+        type: reasoning
+        prompt: 'Prove: if real $xy<0$, then $x\ne0$ and $y\ne0$.'
+        answerLines: 6
+        answer:
+          'Contrapositive: if $x=0$ or $y=0$, then $xy=0\geq0$. Either case negates the strict-negative hypothesis,
+          so both factors of a negative product must be nonzero.'
+      - id: 59
+        type: reasoning
+        prompt: 'Prove: if $x^2+y^2=0$ for real $x,y$, then $x=y=0$, using contraposition.'
+        answerLines: 6
+        answer:
+          If $x\ne0$ or $y\ne0$, at least one square is strictly positive and the other is nonnegative. Their
+          sum is strictly positive, hence not zero. This proves the contrapositive.
+      - id: 60
+        type: reasoning
+        prompt: 'Refute: if $x^2>9$ for real $x$, then $x>3$.'
+        answerLines: 4
+        answer:
+          Let $x=-4$. Its square is $16>9$, but $-4>3$ is false. Squaring loses the sign information needed
+          by the claimed conclusion.
+  - title: G. Diagnosing incorrect indirect arguments
+    instructions: Identify the precise logical or mathematical gap and repair it when possible.
+    questions:
+      - id: 61
+        type: reasoning
+        prompt:
+          A proof of even square implies even root assumes the root is even. What statement is it actually
+          proving?
+        answerLines: 5
+        answer:
+          It attempts the converse, even root implies even square. To prove the original by contrapositive,
+          assume an odd root $n=2k+1$ and derive $n^2=2(2k^2+2k)+1$ odd.
+      - id: 62
+        type: reasoning
+        prompt: A proof negates $x>3$ as $x<3$. Explain and correct the error.
+        answerLines: 5
+        answer:
+          The equality case was omitted. The exact negation over reals is $x\leq3$, so any transformed implication
+          must include $x=3$ in that negated condition.
+      - id: 63
+        type: reasoning
+        prompt: A proof negates both factors even as both factors odd. Correct the negation.
+        answerLines: 5
+        answer:
+          The negation is at least one factor not even, hence at least one odd for integers. De Morgan's
+          law changes the conjunction to a disjunction.
+      - id: 64
+        type: reasoning
+        prompt:
+          A proof of even product implies an even factor assumes only that the first factor is odd. Why is
+          that insufficient?
+        answerLines: 5
+        answer:
+          Negating the conclusion requires both factors odd. If only the first is odd, the second could be
+          even, as $3\cdot2=6$ shows; an odd product does not follow.
+      - id: 65
+        type: reasoning
+        prompt: A proof of $3\mid n^2\to3\mid n$ checks only $n=3k+1$. What remains?
+        answerLines: 5
+        answer:
+          The nondivisible case $n=3k+2$ is missing. Its square is $3(3k^2+4k+1)+1$, also not divisible by
+          3. Both nonzero remainders are required.
+      - id: 66
+        type: reasoning
+        prompt: A proof says negative integers cannot be written $3k+1$ or $3k+2$. Correct it with examples.
+        answerLines: 5
+        answer:
+          'Division with nonnegative remainder applies to all integers: $-2=3(-1)+1$ and $-1=3(-1)+2$. The
+          quotient can be negative; the remainder cases still cover the domain.'
+      - id: 67
+        type: reasoning
+        prompt: A rational-square argument writes $x=a/b$ without requiring $b\ne0$. Repair the proof.
+        answerLines: 5
+        answer:
+          Rationality supplies integers $a,b$ with $b\ne0$. Then $x^2=a^2/b^2$ has nonzero denominator. The
+          missing condition must come from the definition, not be ignored.
+      - id: 68
+        type: reasoning
+        prompt:
+          A proof concludes that the original theorem is false because its attempted contrapositive proof
+          stalled. Is this justified?
+        answerLines: 5
+        answer:
+          No. An unsuccessful proof attempt is not a counterexample. Falsity requires an allowed input making
+          the original hypothesis true and conclusion false, or another valid refutation.
+      - id: 69
+        type: reasoning
+        prompt: A proposed contrapositive of $A\to\exists xP(x)$ is $(\exists x\neg P(x))\to\neg A$. Repair it.
+        answerLines: 5
+        answer:
+          The correct form is $(\forall x\neg P(x))\to\neg A$. One failed candidate does not negate existence
+          of a successful candidate.
+      - id: 70
+        type: reasoning
+        prompt: A proof changes the integer domain to the reals after taking the contrapositive. Explain the problem.
+        answerLines: 5
+        answer:
+          Contraposition itself preserves the domain; enlarging it is a separate change. A real-domain statement
+          may introduce invalid parity language or additional cases. A valid proof over a larger domain would imply
+          the original restricted claim, but only if the expressions are meaningful there and every added case
+          is actually proved.
+  - title: H. Choosing methods and proving equivalences
+    instructions: Supply every direction of a biconditional and justify your method choice.
+    questions:
+      - id: 71
+        type: reasoning
+        prompt: Prove that an integer is even if and only if its square is even.
+        answerLines: 7
+        answer:
+          'Forward: $n=2k$ gives $n^2=2(2k^2)$ even. Reverse by contrapositive: $n=2k+1$ gives $n^2=2(2k^2+2k)+1$
+          odd. Integer witnesses prove both directions.'
+      - id: 72
+        type: reasoning
+        prompt: Prove that an integer is odd if and only if its cube is odd.
+        answerLines: 7
+        answer:
+          'Forward: odd $n=2k+1$ gives $n^3=2(4k^3+6k^2+3k)+1$. Reverse by contrapositive: even $n=2k$ gives
+          $n^3=2(4k^3)$ even. Thus both implications hold.'
+      - id: 73
+        type: reasoning
+        prompt: Prove that $3\mid n$ if and only if $3\mid n^2$.
+        answerLines: 7
+        answer:
+          'Forward: $n=3k$ gives $n^2=3(3k^2)$. Reverse: if $n$ has remainder 1 or 2 modulo 3, its square
+          has remainder 1, as expansion of $(3k+r)^2$ shows. This proves the reverse by contrapositive.'
+      - id: 74
+        type: reasoning
+        prompt: For integers $a,b$, prove that $ab$ is odd if and only if both factors are odd.
+        answerLines: 7
+        answer:
+          Two odd factors $(2r+1)(2s+1)$ give $2(2rs+r+s)+1$ odd. Conversely, if either factor is even, its
+          product with an integer is even. Contraposition gives that an odd product has both factors odd.
+      - id: 75
+        type: reasoning
+        prompt: Prove that $A\subseteq B$ if and only if $B^c\subseteq A^c$.
+        answerLines: 7
+        answer:
+          Forward uses the contrapositive of $x\in A\to x\in B$. Reverse applies the same argument to $B^c\subseteq
+          A^c$, obtaining $(A^c)^c\subseteq(B^c)^c$, hence $A\subseteq B$ in the fixed universe.
+      - id: 76
+        type: reasoning
+        prompt: Prove that $f$ is injective if and only if distinct domain inputs have distinct outputs.
+        answerLines: 7
+        answer:
+          Injectivity states $f(x)=f(y)\to x=y$ for every allowed pair. Its contrapositive is $x\ne y\to
+          f(x)\ne f(y)$. The two pointwise implications are equivalent, so their universal statements are equivalent.
+      - id: 77
+        type: reasoning
+        prompt: For real $x,y$, prove $xy\ne0$ if and only if $x\ne0$ and $y\ne0$.
+        answerLines: 7
+        answer:
+          If either factor is zero, the product is zero, proving the forward direction by contrapositive.
+          Conversely, if both are nonzero, their reciprocals exist; a zero product would give $y=0$ after division
+          by $x$. Thus the product is nonzero.
+      - id: 78
+        type: reasoning
+        prompt: For an integer $n$, prove that if $n^2$ is not divisible by 4, then $n$ is odd.
+        answerLines: 7
+        answer:
+          'Contrapositive: even $n=2k$ gives $n^2=4k^2$, divisible by 4. Since not odd means even for integers,
+          this is the exact contrapositive of the proposed statement.'
+      - id: 79
+        type: reasoning
+        prompt: Prove that a real $x$ is rational if and only if $2x+1$ is rational.
+        answerLines: 7
+        answer:
+          If $x$ is rational, closure gives rational $2x+1$. Conversely, if $2x+1=r$ is rational, then $x=(r-1)/2$
+          is rational by closure and nonzero division. Thus both directions hold, and equivalently irrationality
+          is preserved here too.
+      - id: 80
+        type: reasoning
+        prompt:
+          'Choose and carry out a proof of: if $d\nmid(ra+sb)$, then $d\nmid a$ or $d\nmid b$, for integers
+          $d,r,s,a,b$.'
+        answerLines: 7
+        answer:
+          Contraposition exposes defining witnesses. Assume $a=du,b=dv$ for integers $u,v$. Then $ra+sb=d(ru+sv)$,
+          and the coefficient is integral. Thus divisibility of both $a,b$ implies divisibility of the combination,
+          proving the original statement.

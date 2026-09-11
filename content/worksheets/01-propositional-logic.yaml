@@ -1,0 +1,1022 @@
+title: Propositional Logic
+instructions:
+  Work by hand. Show every row for truth tables and give concise reasons for logical claims.
+  An implication is false only when its antecedent is true and its consequent false. The answer key follows
+  all 153 exercises; try the questions before checking it.
+sections:
+  - title: A. Propositions and translation
+    instructions:
+      For 1-8, decide whether the sentence is a proposition and give its truth value when possible.
+      For 9-14, translate into English using $p$ = "The server is online" and $q$ = "The database is reachable".
+    questions:
+      - id: 1
+        type: translation
+        prompt: Decide whether this is a proposition.
+        answerLines: 2
+        answer: Proposition; true.
+        math: 7+5=12
+      - id: 2
+        type: translation
+        prompt: Close the laptop.
+        answerLines: 2
+        answer: 'Not a proposition: a command.'
+      - id: 3
+        type: translation
+        prompt: Every prime number is odd.
+        answerLines: 2
+        answer: Proposition; false. The prime 2 is even.
+      - id: 4
+        type: translation
+        prompt: Decide whether this is a proposition.
+        answerLines: 2
+        answer: Not a proposition as written; its truth depends on the unspecified value of $x$.
+        math: x+3=9
+      - id: 5
+        type: translation
+        prompt: Is 17 prime?
+        answerLines: 2
+        answer: 'Not a proposition: a question.'
+      - id: 6
+        type: translation
+        prompt: There are infinitely many integers.
+        answerLines: 2
+        answer: Proposition; true.
+      - id: 7
+        type: translation
+        prompt: The number 0 is positive.
+        answerLines: 2
+        answer: Proposition; false.
+      - id: 8
+        type: translation
+        prompt: This sentence is written in English.
+        answerLines: 2
+        answer: Proposition; true.
+      - id: 9
+        type: translation
+        prompt: Translate into English.
+        answerLines: 2
+        answer: The server is not online.
+        math: \neg p
+      - id: 10
+        type: translation
+        prompt: Translate into English.
+        answerLines: 2
+        answer: The server is online and the database is reachable.
+        math: p\land q
+      - id: 11
+        type: translation
+        prompt: Translate into English.
+        answerLines: 2
+        answer: The server is online or the database is reachable, or both.
+        math: p\lor q
+      - id: 12
+        type: translation
+        prompt: Translate into English.
+        answerLines: 2
+        answer: If the server is online, then the database is reachable.
+        math: p\to q
+      - id: 13
+        type: translation
+        prompt: Translate into English.
+        answerLines: 2
+        answer: If the database is reachable, then the server is online.
+        math: q\to p
+      - id: 14
+        type: translation
+        prompt: Translate into English.
+        answerLines: 2
+        answer: The server is online if and only if the database is reachable.
+        math: p\leftrightarrow q
+  - title: B. Evaluate compound propositions
+    instructions: Use the stated truth values. Show intermediate work.
+    questions:
+      - id: 15
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=T$.
+        answerLines: 2
+        answer: T.
+        math: \neg p\lor q
+      - id: 16
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$.
+        answerLines: 2
+        answer: T.
+        math: p\land\neg q
+      - id: 17
+        type: truth-value
+        prompt: Evaluate for $p=F$, $q=T$.
+        answerLines: 2
+        answer: F.
+        math: p\lor\neg q
+      - id: 18
+        type: truth-value
+        prompt: Evaluate for $p=F$, $q=F$.
+        answerLines: 2
+        answer: T.
+        math: \neg(p\land q)
+      - id: 19
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$.
+        answerLines: 2
+        answer: F.
+        math: p\to q
+      - id: 20
+        type: truth-value
+        prompt: Evaluate for $p=F$, $q=T$.
+        answerLines: 2
+        answer: T.
+        math: p\to q
+      - id: 21
+        type: truth-value
+        prompt: Evaluate for $p=F$, $q=F$.
+        answerLines: 2
+        answer: T.
+        math: p\to q
+      - id: 22
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$.
+        answerLines: 2
+        answer: T.
+        math: q\to p
+      - id: 23
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=T$.
+        answerLines: 2
+        answer: T.
+        math: p\leftrightarrow q
+      - id: 24
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$.
+        answerLines: 2
+        answer: F.
+        math: p\leftrightarrow q
+      - id: 25
+        type: truth-value
+        prompt: Evaluate for $p=F$, $q=T$.
+        answerLines: 2
+        answer: T.
+        math: \neg p\land(p\lor q)
+      - id: 26
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$.
+        answerLines: 2
+        answer: T.
+        math: \neg(p\to q)\lor q
+      - id: 27
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$, $r=T$.
+        answerLines: 2
+        answer: F.
+        math: (p\land r)\to q
+      - id: 28
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$, $r=T$.
+        answerLines: 2
+        answer: T.
+        math: \neg q\land(p\lor r)
+      - id: 29
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$, $r=T$.
+        answerLines: 2
+        answer: T.
+        math: (p\to q)\lor(q\to r)
+      - id: 30
+        type: truth-value
+        prompt: Evaluate for $p=T$, $q=F$, $r=T$.
+        answerLines: 2
+        answer: T.
+        math: (p\leftrightarrow r)\land\neg q
+  - title: C. Implication and related statements
+    instructions:
+      For 31-35, write the converse and contrapositive. Determine the truth of all three statements;
+      give counterexamples for false universal claims. In integer questions, $n$ is an integer.
+    questions:
+      - id: 31
+        type: reasoning
+        prompt: If an integer is divisible by 10, then it is even.
+        answerLines: 5
+        answer:
+          'Original true. Converse: if even, then divisible by 10; false (6). Contrapositive: if not
+          even, then not divisible by 10; true.'
+      - id: 32
+        type: reasoning
+        prompt: If a shape is a square, then it is a rectangle.
+        answerLines: 5
+        answer:
+          'Original true. Converse: if a rectangle, then a square; false (a 2 by 3 rectangle). Contrapositive:
+          if not a rectangle, then not a square; true.'
+      - id: 33
+        type: reasoning
+        prompt: If an integer is divisible by 3, then it is divisible by 9.
+        answerLines: 5
+        answer:
+          'Original false (6). Converse: if divisible by 9, then divisible by 3; true. Contrapositive:
+          if not divisible by 9, then not divisible by 3; false (6).'
+      - id: 34
+        type: reasoning
+        prompt: If $n$ is odd, then $n^2$ is odd.
+        answerLines: 5
+        answer:
+          'Original true. Converse: if $n^2$ is odd, then $n$ is odd; true. Contrapositive: if $n^2$
+          is even, then $n$ is even; true.'
+      - id: 35
+        type: reasoning
+        prompt: If a number is greater than 100, then it is positive.
+        answerLines: 5
+        answer:
+          'Original true. Converse: if positive, then greater than 100; false (1). Contrapositive: if
+          not positive, then not greater than 100; true.'
+      - id: 36
+        type: reasoning
+        prompt: Explain why $p\to q$ does not mean that $p$ causes $q$.
+        answerLines: 3
+        answer:
+          Implication concerns truth values, not causal mechanisms. Two unrelated true propositions
+          form a true implication.
+      - id: 37
+        type: reasoning
+        prompt: What single truth-value assignment makes $p\to q$ false?
+        answerLines: 3
+        answer: $p=T$, $q=F$.
+      - id: 38
+        type: reasoning
+        prompt: What must hold for $p\leftrightarrow q$ to be true?
+        answerLines: 3
+        answer: $p$ and $q$ must have the same truth value.
+      - id: 39
+        type: reasoning
+        prompt: If $p\to q$ is true, must $q\to p$ also be true? Give a counterexample if not.
+        answerLines: 3
+        answer: 'No. Set $p=F$, $q=T$: $p\to q$ is true, but $q\to p$ is false.'
+  - title: D. Truth tables
+    instructions:
+      Complete every row, including the variable columns. Use TT, TF, FT, FF for two variables
+      and TTT, TTF, TFT, TFF, FTT, FTF, FFT, FFF for three.
+    questions:
+      - id: 40
+        type: truth-table
+        prompt: Complete the truth table.
+        answerLines: 1
+        answer: 'For $\neg p$: F, F, T, T. Final column: T, F, T, T.'
+        math: \neg p\lor q
+        table:
+          columns:
+            - p
+            - q
+            - \neg p
+            - \neg p\lor q
+          rows: 4
+      - id: 41
+        type: truth-table
+        prompt: Complete the truth table.
+        answerLines: 1
+        answer: 'For $p\land q$: T, F, F, F. Final column: F, T, T, T.'
+        math: \neg(p\land q)
+        table:
+          columns:
+            - p
+            - q
+            - p\land q
+            - \neg(p\land q)
+          rows: 4
+      - id: 42
+        type: truth-table
+        prompt: Compare an implication and its converse.
+        answerLines: 1
+        answer: 'For $p\to q$: T, F, T, T. For $q\to p$: T, T, F, T.'
+        math: p\to q\quad\text{and}\quad q\to p
+        table:
+          columns:
+            - p
+            - q
+            - p\to q
+            - q\to p
+          rows: 4
+      - id: 43
+        type: truth-table
+        prompt: Complete the truth table.
+        answerLines: 1
+        answer: 'Final column: T, F, F, T.'
+        math: p\leftrightarrow q
+        table:
+          columns:
+            - p
+            - q
+            - p\leftrightarrow q
+          rows: 4
+      - id: 44
+        type: truth-table
+        prompt: Compare an implication and its contrapositive.
+        answerLines: 1
+        answer: 'Both final columns: T, F, T, T.'
+        math: p\to q\quad\text{and}\quad\neg q\to\neg p
+        table:
+          columns:
+            - p
+            - q
+            - p\to q
+            - \neg q\to\neg p
+          rows: 4
+      - id: 45
+        type: truth-table
+        prompt: Complete the three-variable truth table.
+        answerLines: 1
+        answer: 'For $p\land q$: T, T, F, F, F, F, F, F. Final column: T, F, T, T, T, T, T, T.'
+        math: (p\land q)\to r
+        table:
+          columns:
+            - p
+            - q
+            - r
+            - p\land q
+            - (p\land q)\to r
+          rows: 8
+  - title: E. Equivalence and De Morgan's laws
+    instructions:
+      Rewrite or simplify using laws. For equivalence comparisons, name a law or give an assignment
+      where the expressions differ.
+    questions:
+      - id: 46
+        type: equivalence
+        prompt: Apply De Morgan's law.
+        answerLines: 3
+        answer: $\neg p\lor\neg q$.
+        math: \neg(p\land q)
+      - id: 47
+        type: equivalence
+        prompt: Apply De Morgan's law.
+        answerLines: 3
+        answer: $\neg p\land\neg q$.
+        math: \neg(p\lor q)
+      - id: 48
+        type: equivalence
+        prompt: Apply De Morgan's law.
+        answerLines: 3
+        answer: $\neg p\land q$.
+        math: \neg(p\lor\neg q)
+      - id: 49
+        type: equivalence
+        prompt: Apply De Morgan's law.
+        answerLines: 3
+        answer: $p\lor\neg q$.
+        math: \neg(\neg p\land q)
+      - id: 50
+        type: equivalence
+        prompt: Rewrite without implication.
+        answerLines: 3
+        answer: $\neg p\lor q$.
+        math: p\to q
+      - id: 51
+        type: equivalence
+        prompt: Rewrite without implication.
+        answerLines: 3
+        answer: $\neg p\lor\neg q$.
+        math: p\to\neg q
+      - id: 52
+        type: equivalence
+        prompt: Rewrite without implication.
+        answerLines: 3
+        answer: $p\lor q$.
+        math: \neg p\to q
+      - id: 53
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p\land\neg q$.
+        math: \neg(p\to q)
+      - id: 54
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $\neg p\lor q$.
+        math: \neg(p\land\neg q)
+      - id: 55
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$.
+        math: \neg\neg p
+      - id: 56
+        type: equivalence
+        prompt: Are these equivalent? Justify.
+        answerLines: 3
+        answer: Yes, the implication rewrite law.
+        math: p\to q\quad\text{and}\quad\neg p\lor q
+      - id: 57
+        type: equivalence
+        prompt: Are these equivalent? Justify.
+        answerLines: 3
+        answer: No. At $p=T$, $q=F$, the first is false and the second true.
+        math: p\to q\quad\text{and}\quad q\to p
+      - id: 58
+        type: equivalence
+        prompt: Are these equivalent? Justify.
+        answerLines: 3
+        answer: Yes, De Morgan's law.
+        math: \neg(p\lor q)\quad\text{and}\quad\neg p\land\neg q
+      - id: 59
+        type: equivalence
+        prompt: Are these equivalent? Justify.
+        answerLines: 3
+        answer: Yes, the definition of biconditional.
+        math: p\leftrightarrow q\quad\text{and}\quad(p\to q)\land(q\to p)
+  - title: F. Tautology, contradiction, or contingency?
+    instructions:
+      Classify each formula and explain. A contingency is true on some assignments and false
+      on others.
+    questions:
+      - id: 60
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Tautology: one disjunct is always true.'
+        math: p\lor\neg p
+      - id: 61
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Contradiction: the conjuncts cannot both be true.'
+        math: p\land\neg p
+      - id: 62
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Tautology: the two implications cannot both be false.'
+        math: (p\to q)\lor(q\to p)
+      - id: 63
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Contradiction: requires both $p$ and $\neg p$.'
+        math: (p\land q)\land\neg p
+      - id: 64
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Tautology: never has a true antecedent and false consequent.'
+        math: p\to p
+      - id: 65
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Contradiction: the sides always differ.'
+        math: p\leftrightarrow\neg p
+      - id: 66
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Tautology: a true conjunction guarantees $p$.'
+        math: (p\land q)\to p
+      - id: 67
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Tautology: if $p$ is true the disjunction is true.'
+        math: p\to(p\lor q)
+      - id: 68
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Tautology: modus ponens.'
+        math: (p\land(p\to q))\to q
+      - id: 69
+        type: classification
+        prompt: Classify and justify.
+        answerLines: 3
+        answer: 'Contradiction: $p=T$, $q=F$ makes the implication false.'
+        math: (p\to q)\land p\land\neg q
+  - title: G. Mixed reasoning and counterexamples
+    instructions:
+      Give a short logical argument. A counterexample must satisfy the assumptions and falsify
+      the claim.
+    questions:
+      - id: 70
+        type: reasoning
+        prompt: 'A classmate says: if $p\to q$ is true and $q$ is true, then $p$ must be true. Is this valid?'
+        answerLines: 4
+        answer:
+          'Invalid: affirming the consequent. $p=F$, $q=T$ satisfies the premises but falsifies the
+          conclusion.'
+      - id: 71
+        type: reasoning
+        prompt: 'A classmate says: if $p\to q$ is true and $p$ is true, then $q$ must be true. Is this valid?'
+        answerLines: 4
+        answer: 'Valid: modus ponens. A false $q$ would make the implication false.'
+      - id: 72
+        type: reasoning
+        prompt: 'Disprove: if an integer is even, then it is divisible by 4.'
+        answerLines: 4
+        answer: 6 is even but not divisible by 4.
+      - id: 73
+        type: reasoning
+        prompt: Why is one counterexample enough to disprove "Every X has property Y"?
+        answerLines: 4
+        answer: The universal statement excludes all exceptions; one genuine exception makes it false.
+      - id: 74
+        type: reasoning
+        prompt: 'Write the contrapositive of: if $n^2$ is even, then $n$ is even, for integers $n$.'
+        answerLines: 4
+        answer: If $n$ is odd, then $n^2$ is odd.
+      - id: 75
+        type: reasoning
+        prompt: Assume $p$ and $p\to q$ are true. Without a table, what follows about $q$?
+        answerLines: 4
+        answer: $q$ is true. Otherwise $p\to q$ would be the false case $T\to F$.
+      - id: 76
+        type: reasoning
+        prompt: Can an implication and its converse have different truth values?
+        answerLines: 4
+        answer: 'Yes: $p=T$, $q=F$ makes $p\to q$ false and $q\to p$ true.'
+      - id: 77
+        type: reasoning
+        prompt: Can an implication and its contrapositive have different truth values?
+        answerLines: 4
+        answer: No. They are logically equivalent on every assignment.
+      - id: 78
+        type: reasoning
+        prompt: Without a full truth table, decide whether this is a tautology.
+        answerLines: 5
+        answer:
+          Tautology. If $p$ is true, the premises force $q$ and then $r$. If $p$ is false, $p\to r$
+          already holds.
+        math: ((p\to q)\land(q\to r))\to(p\to r)
+      - id: 79
+        type: reasoning
+        prompt: Does this mean exactly one of $p$ and $q$ is true? Explain.
+        answerLines: 5
+        answer: Yes. The first clause requires at least one true; the second excludes both being true.
+        math: (p\lor q)\land(\neg p\lor\neg q)
+      - id: 80
+        type: reasoning
+        prompt: Rewrite using only NOT, AND, and OR.
+        answerLines: 5
+        answer: $(p\land\neg q)\lor\neg r$, using the implication rewrite and De Morgan's laws.
+        math: \neg((p\to q)\land r)
+  - title: H. Necessary and sufficient conditions; converse and inverse
+    instructions: 'In $p\to q$, $p$ is sufficient for $q$ and $q$ is necessary for $p$.'
+    questions:
+      - id: 81
+        type: translation
+        prompt:
+          If an integer is divisible by 12, then it is divisible by 3. Which condition is sufficient
+          and which is necessary?
+        answerLines: 3
+        answer:
+          Divisible by 12 is sufficient for divisible by 3; divisible by 3 is necessary for divisible
+          by 12.
+      - id: 82
+        type: translation
+        prompt:
+          'Complete: being a square is ___ for being a rectangle; being a rectangle is ___ for being
+          a square.'
+        answerLines: 3
+        answer: Sufficient; necessary.
+      - id: 83
+        type: translation
+        prompt: For $p\to q$, identify a sufficient and a necessary condition.
+        answerLines: 3
+        answer: $p$ is sufficient for $q$; $q$ is necessary for $p$.
+      - id: 84
+        type: translation
+        prompt:
+          'Let $p$ mean a student completes the course and $q$ mean the student passes the final. Translate:
+          passing the final is necessary for completing the course.'
+        answerLines: 3
+        answer: $p\to q$.
+      - id: 85
+        type: translation
+        prompt:
+          'Let $p$ mean an integer is divisible by 4 and $q$ mean it is even. Translate: being divisible
+          by 4 is sufficient for being even.'
+        answerLines: 3
+        answer: $p\to q$.
+      - id: 86
+        type: translation
+        prompt:
+          'Let $p$ mean a user can delete the account and $q$ mean the user has admin permission. Translate:
+          admin permission is necessary for deleting the account.'
+        answerLines: 3
+        answer: $p\to q$.
+      - id: 87
+        type: translation
+        prompt: Write the converse, inverse, and contrapositive.
+        answerLines: 4
+        answer: 'Converse: $q\to p$. Inverse: $\neg p\to\neg q$. Contrapositive: $\neg q\to\neg p$.'
+        math: p\to q
+      - id: 88
+        type: translation
+        prompt: Which two pairs among the original, converse, inverse, and contrapositive are always equivalent?
+        answerLines: 3
+        answer: Original and contrapositive; converse and inverse.
+      - id: 89
+        type: translation
+        prompt: If an integer is divisible by 8, then it is even. Write the inverse and determine its truth.
+        answerLines: 4
+        answer: 'If not divisible by 8, then not even. False: 6 is a counterexample.'
+      - id: 90
+        type: translation
+        prompt: 'Over the real numbers: if $x>2$, then $x^2>4$. Write the inverse and determine its truth.'
+        answerLines: 4
+        answer: 'If $x\leq2$, then $x^2\leq4$. False: $x=-3$ is a counterexample.'
+      - id: 91
+        type: translation
+        prompt: 'Translate into implication language: being even is necessary for being divisible by 6.'
+        answerLines: 3
+        answer: If an integer is divisible by 6, then it is even.
+      - id: 92
+        type: translation
+        prompt: Translate "$p$ only if $q$".
+        answerLines: 3
+        answer: $p\to q$.
+      - id: 93
+        type: translation
+        prompt: Translate "$p$ if $q$".
+        answerLines: 3
+        answer: $q\to p$.
+      - id: 94
+        type: translation
+        prompt: Translate "$p$ if and only if $q$" as two implications.
+        answerLines: 3
+        answer: $(p\to q)\land(q\to p)$.
+  - title: I. Equivalence laws and algebraic simplification
+    instructions: Use known equivalence laws. Name the laws when you can.
+    questions:
+      - id: 95
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$; double negation.
+        math: \neg\neg p
+      - id: 96
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$; identity.
+        math: p\land T
+      - id: 97
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$; identity.
+        math: p\lor F
+      - id: 98
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $T$; domination.
+        math: p\lor T
+      - id: 99
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $F$; domination.
+        math: p\land F
+      - id: 100
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$; idempotence.
+        math: p\lor p
+      - id: 101
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$; idempotence.
+        math: p\land p
+      - id: 102
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$; absorption.
+        math: p\lor(p\land q)
+      - id: 103
+        type: equivalence
+        prompt: Simplify.
+        answerLines: 3
+        answer: $p$; absorption.
+        math: p\land(p\lor q)
+      - id: 104
+        type: equivalence
+        prompt: Distribute.
+        answerLines: 3
+        answer: $(p\land q)\lor(p\land r)$.
+        math: p\land(q\lor r)
+      - id: 105
+        type: equivalence
+        prompt: Distribute.
+        answerLines: 3
+        answer: $(p\lor q)\land(p\lor r)$.
+        math: p\lor(q\land r)
+      - id: 106
+        type: equivalence
+        prompt: Rewrite without the biconditional symbol.
+        answerLines: 3
+        answer: $(p\to q)\land(q\to p)$.
+        math: p\leftrightarrow q
+      - id: 107
+        type: equivalence
+        prompt: Rewrite using only NOT, AND, and OR.
+        answerLines: 3
+        answer: $(\neg p\lor q)\land(\neg q\lor p)$, or $(p\land q)\lor(\neg p\land\neg q)$.
+        math: p\leftrightarrow q
+      - id: 108
+        type: equivalence
+        prompt: Simplify; show the key rewrite.
+        answerLines: 4
+        answer: $p\land(q\lor\neg q)\equiv p\land T\equiv p$.
+        math: (p\land q)\lor(p\land\neg q)
+      - id: 109
+        type: equivalence
+        prompt: Simplify; show the key rewrite.
+        answerLines: 4
+        answer: $p\lor(q\land\neg q)\equiv p\lor F\equiv p$.
+        math: (p\lor q)\land(p\lor\neg q)
+      - id: 110
+        type: equivalence
+        prompt: Show using equivalence laws that the two sides are equivalent.
+        answerLines: 5
+        answer:
+          Rewrite the left side as $\neg p\lor(q\land r)$. Distribute to get $(\neg p\lor q)\land(\neg
+          p\lor r)$; rewrite each disjunction as an implication.
+        math: p\to(q\land r)\equiv(p\to q)\land(p\to r)
+  - title: J. Arguments, validity, and rules of inference
+    instructions:
+      An argument is valid when no assignment makes every premise true and the conclusion false.
+      Give counterassignments for invalid arguments.
+    questions:
+      - id: 111
+        type: argument
+        prompt:
+          'Identify the premises and conclusion: if the build fails, CI is red. The build fails. Therefore
+          CI is red.'
+        answerLines: 3
+        answer: 'Premises: if the build fails, CI is red; the build fails. Conclusion: CI is red.'
+      - id: 112
+        type: argument
+        prompt: Name the inference rule.
+        answerLines: 3
+        answer: Modus ponens.
+        math: p,\quad p\to q\quad\therefore q
+      - id: 113
+        type: argument
+        prompt: Name the inference rule.
+        answerLines: 3
+        answer: Modus tollens.
+        math: p\to q,\quad\neg q\quad\therefore\neg p
+      - id: 114
+        type: argument
+        prompt: Name the inference rule.
+        answerLines: 3
+        answer: Hypothetical syllogism.
+        math: p\to q,\quad q\to r\quad\therefore p\to r
+      - id: 115
+        type: argument
+        prompt: Name the inference rule.
+        answerLines: 3
+        answer: Disjunctive syllogism.
+        math: p\lor q,\quad\neg p\quad\therefore q
+      - id: 116
+        type: argument
+        prompt:
+          'Determine validity: if the server is down, an alert is sent. The server is down. Therefore
+          an alert is sent.'
+        answerLines: 3
+        answer: Valid; modus ponens.
+      - id: 117
+        type: argument
+        prompt: 'Determine validity: if I study, I pass. I passed. Therefore I studied.'
+        answerLines: 3
+        answer: Invalid; affirming the consequent. One may pass without studying.
+      - id: 118
+        type: argument
+        prompt: 'Determine validity: if I study, I pass. I did not study. Therefore I did not pass.'
+        answerLines: 3
+        answer: Invalid; denying the antecedent. One may pass without studying.
+      - id: 119
+        type: argument
+        prompt: Determine validity; explain.
+        answerLines: 4
+        answer: Valid. Hypothetical syllogism gives $p\to r$, then modus ponens gives $r$.
+        math: p\to q,\quad q\to r,\quad p\quad\therefore r
+      - id: 120
+        type: argument
+        prompt: Determine validity.
+        answerLines: 3
+        answer: Valid; disjunctive syllogism.
+        math: p\lor q,\quad\neg p\quad\therefore q
+      - id: 121
+        type: argument
+        prompt: Determine validity.
+        answerLines: 3
+        answer: Valid; modus tollens.
+        math: p\to q,\quad\neg q\quad\therefore\neg p
+      - id: 122
+        type: argument
+        prompt: Determine validity; give a counterassignment if invalid.
+        answerLines: 3
+        answer: Invalid; denying the antecedent. $p=F$, $q=T$.
+        math: p\to q,\quad\neg p\quad\therefore\neg q
+      - id: 123
+        type: argument
+        prompt: Give a counterassignment proving invalidity.
+        answerLines: 3
+        answer: '$p=F$, $q=T$: both premises true, conclusion false.'
+        math: p\to q,\quad q\quad\therefore p
+      - id: 124
+        type: argument
+        prompt: Give a counterassignment proving invalidity.
+        answerLines: 3
+        answer: '$p=F$, $q=T$: both premises true, conclusion false.'
+        math: p\to q,\quad\neg p\quad\therefore\neg q
+      - id: 125
+        type: argument
+        prompt: Determine validity without a full table.
+        answerLines: 5
+        answer: Valid. At least one of $p,q$ is true; its implication forces $r$.
+        math: p\lor q,\quad p\to r,\quad q\to r\quad\therefore r
+      - id: 126
+        type: argument
+        prompt: Determine validity; explain.
+        answerLines: 4
+        answer: Valid. Modus tollens gives $\neg q$, then $\neg p$.
+        math: p\to q,\quad q\to r,\quad\neg r\quad\therefore\neg p
+  - title: K. Satisfiability
+    instructions:
+      A formula is satisfiable if at least one assignment makes it true. Give a model when one
+      exists.
+    questions:
+      - id: 127
+        type: reasoning
+        prompt: Satisfiable or unsatisfiable? Explain.
+        answerLines: 3
+        answer: 'Unsatisfiable: $p$ and $\neg p$ cannot both be true.'
+        math: p\land\neg p
+      - id: 128
+        type: reasoning
+        prompt: Is this satisfiable? Is it stronger than merely satisfiable?
+        answerLines: 3
+        answer: Yes; it is a tautology, satisfied by every assignment.
+        math: p\lor\neg p
+      - id: 129
+        type: reasoning
+        prompt: Is this satisfiable? Give a model.
+        answerLines: 3
+        answer: 'Yes: $p=T$, $q=T$.'
+        math: p\land q
+      - id: 130
+        type: reasoning
+        prompt: Is this satisfiable?
+        answerLines: 3
+        answer: No. The required $p=T$, $q=F$ makes the implication false.
+        math: (p\to q)\land p\land\neg q
+      - id: 131
+        type: reasoning
+        prompt: Is this satisfiable? Give a model.
+        answerLines: 3
+        answer: 'Yes: $p=F$, $q=T$.'
+        math: (p\lor q)\land\neg p
+      - id: 132
+        type: reasoning
+        prompt: Is this satisfiable?
+        answerLines: 3
+        answer: No. The biconditional requires equal values, while $p\land\neg q$ requires different values.
+        math: (p\leftrightarrow q)\land p\land\neg q
+      - id: 133
+        type: reasoning
+        prompt: Is this satisfiable? Explain.
+        answerLines: 4
+        answer: No. $p$ forces $q$, then $r$, contradicting $\neg r$.
+        math: (p\to q)\land(q\to r)\land p\land\neg r
+      - id: 134
+        type: reasoning
+        prompt: Determine satisfiability; give a model if one exists.
+        answerLines: 4
+        answer: 'Satisfiable: $p=T$, $q=F$, $r=T$.'
+        math: (p\lor q)\land(\neg p\lor r)\land\neg q
+      - id: 135
+        type: reasoning
+        prompt: Determine satisfiability.
+        answerLines: 3
+        answer: Unsatisfiable. The first clause needs one true, but the other clauses require both false.
+        math: (p\lor q)\land\neg p\land\neg q
+      - id: 136
+        type: reasoning
+        prompt: Is every tautology satisfiable? Explain.
+        answerLines: 3
+        answer: Yes. True under every assignment implies true under at least one.
+      - id: 137
+        type: reasoning
+        prompt: Can a contradiction be satisfiable? Explain.
+        answerLines: 3
+        answer: No. It is false under every assignment.
+      - id: 138
+        type: reasoning
+        prompt: Is every satisfiable formula a tautology? Give an example.
+        answerLines: 3
+        answer: No. $p$ is satisfiable but false when $p=F$.
+  - title: L. Comprehensive challenges
+    instructions: Mix the ideas from the entire lesson. Show your reasoning.
+    questions:
+      - id: 139
+        type: reasoning
+        prompt:
+          'Translate and assess validity: if the deploy succeeds, tests pass. If tests pass, monitoring
+          is green. The deploy succeeds. Therefore monitoring is green.'
+        answerLines: 5
+        answer:
+          Let $p$ = deploy succeeds, $q$ = tests pass, $r$ = monitoring green. Premises $p\to q$, $q\to
+          r$, $p$; conclusion $r$. Valid by hypothetical syllogism and modus ponens.
+      - id: 140
+        type: reasoning
+        prompt: Are the converse and inverse always equivalent? Show by rewriting.
+        answerLines: 4
+        answer:
+          'Yes. Converse: $q\to p\equiv\neg q\lor p$. Inverse: $\neg p\to\neg q\equiv p\lor\neg q$.
+          Commutativity makes these equal.'
+      - id: 141
+        type: reasoning
+        prompt: Simplify using only NOT, AND, and OR.
+        answerLines: 4
+        answer: $p\land\neg q\land\neg r$.
+        math: \neg(p\to(q\lor r))
+      - id: 142
+        type: reasoning
+        prompt: Simplify using De Morgan's laws.
+        answerLines: 4
+        answer: $(\neg p\lor\neg q)\land\neg r$.
+        math: \neg((p\land q)\lor r)
+      - id: 143
+        type: reasoning
+        prompt: Prove the equivalence using words, a truth table, or laws.
+        answerLines: 5
+        answer: Both are true exactly when $p,q$ are both true or both false.
+        math: p\leftrightarrow q\equiv(p\land q)\lor(\neg p\land\neg q)
+      - id: 144
+        type: reasoning
+        prompt: Classify as tautology, contradiction, or contingency. Explain.
+        answerLines: 4
+        answer: 'Tautology: an implication is equivalent to its contrapositive.'
+        math: (p\to q)\leftrightarrow(\neg q\to\neg p)
+      - id: 145
+        type: reasoning
+        prompt: Classify as tautology, contradiction, or contingency.
+        answerLines: 4
+        answer:
+          'Contingency. Equivalent to $p\leftrightarrow q$: true when the values match, false when they
+          differ.'
+        math: (p\to q)\land(q\to p)
+      - id: 146
+        type: reasoning
+        prompt: Give a satisfying assignment. What familiar relationship does the formula express?
+        answerLines: 4
+        answer: '$p=T$, $q=F$ (or FT). Exclusive OR: exactly one is true.'
+        math: (p\lor q)\land\neg(p\land q)
+      - id: 147
+        type: reasoning
+        prompt: Determine validity; give a counterassignment if invalid.
+        answerLines: 5
+        answer: 'Invalid: $p=F$, $r=F$, $q=T$ makes all premises true and conclusion false.'
+        math: p\to q,\quad r\to q,\quad q\quad\therefore p\lor r
+      - id: 148
+        type: reasoning
+        prompt: Determine validity; explain.
+        answerLines: 4
+        answer: Valid by cases, as in question 125.
+        math: p\lor q,\quad p\to r,\quad q\to r\quad\therefore r
+      - id: 149
+        type: reasoning
+        prompt: Simplify as far as possible.
+        answerLines: 4
+        answer: $\neg p\land\neg q$.
+        math: (p\leftrightarrow q)\land\neg q
+      - id: 150
+        type: reasoning
+        prompt: Find all satisfying assignments.
+        answerLines: 5
+        answer:
+          Exactly TTT and FFF. Any true variable forces all three true; all false also satisfies each
+          implication.
+        math: (p\to q)\land(q\to r)\land(r\to p)
+  - title: M. From laws to proofs
+    instructions: Three additional exercises connect the practice set to the remaining lesson examples.
+    questions:
+      - id: 151
+        type: reasoning
+        prompt: Use associativity and commutativity to put $p$ first and group $q,r$.
+        answerLines: 4
+        answer: $(q\land p)\land r\equiv(p\land q)\land r\equiv p\land(q\land r)$.
+        math: (q\land p)\land r
+      - id: 152
+        type: reasoning
+        prompt: 'For an integer $n$, prove by contrapositive: if $n^2$ is even, then $n$ is even.'
+        answerLines: 6
+        answer:
+          If $n$ is odd, write $n=2k+1$. Then $n^2=2(2k^2+2k)+1$ is odd. This proves the contrapositive
+          and hence the original.
+      - id: 153
+        type: reasoning
+        prompt: Can a valid argument have false premises in the real world? Explain.
+        answerLines: 4
+        answer:
+          Yes. Validity excludes an assignment with all premises true and conclusion false; it does
+          not assert the premises are actually true.

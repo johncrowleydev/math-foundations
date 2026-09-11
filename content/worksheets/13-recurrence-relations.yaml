@@ -1,0 +1,570 @@
+'title': 'Recurrence Relations'
+'instructions':
+  '80 exercises. Indices are nonnegative integers unless restricted further. Unless another range is stated,
+  first-order rules apply for n at least 1 and second-order rules for n at least 2. State initial
+  conditions and the domain of every formula. Show derivations or verification, not only guessed formulas.
+  The answer key follows the student section.'
+'sections':
+  - 'title': 'A. Definitions, initial conditions, and early terms'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 1
+        'type': 'reasoning'
+        'prompt': 'Given $a_0=2$ and $a_n=a_{n-1}+3$ for $n\geq1$, find $a_1,a_2,a_3,a_4$.'
+        'answerLines': 2
+        'answer': '$5,8,11,14$, adding 3 at each step.'
+      - 'id': 2
+        'type': 'reasoning'
+        'prompt': 'Given $a_0=5$ and $a_n=2a_{n-1}$ for $n\geq1$, find $a_1,a_2,a_3$.'
+        'answerLines': 2
+        'answer': '$10,20,40$, doubling the preceding term.'
+      - 'id': 3
+        'type': 'reasoning'
+        'prompt': 'Given $a_0=0,a_1=1$ and $a_n=a_{n-1}+a_{n-2}$ for $n\geq2$, find $a_2$ through $a_6$.'
+        'answerLines': 3
+        'answer': '$1,2,3,5,8$, each the sum of the previous two terms.'
+      - 'id': 4
+        'type': 'reasoning'
+        'prompt': 'Why does $a_n=a_{n-1}+3$ for $n\geq1$ alone not determine a unique sequence?'
+        'answerLines': 3
+        'answer':
+          'The starting value is unspecified. For example, $a_n=3n$ and $a_n=10+3n$ both satisfy the
+          rule.'
+      - 'id': 5
+        'type': 'reasoning'
+        'prompt':
+          'The recurrence $a_n=4a_{n-1}-a_{n-2}$ is intended for nonnegative indices. What initial
+          data and starting index normally suffice?'
+        'answerLines': 3
+        'answer':
+          'Specify $a_0,a_1$ and apply the rule for $n\geq2$. At $n=1$ it would refer to the undefined
+          value $a_{-1}$.'
+      - 'id': 6
+        'type': 'reasoning'
+        'prompt': 'Given $a_0=1$ and $a_n=2a_{n-1}+1$, find $a_1,a_2,a_3$ and conjecture a formula.'
+        'answerLines': 3
+        'answer':
+          'The terms are $3,7,15$, suggesting $a_n=2^{n+1}-1$. Computing these terms suggests but
+          does not prove the formula.'
+      - 'id': 7
+        'type': 'reasoning'
+        'prompt': 'For $a_0=3$ and $a_n=-a_{n-1}$, give the first five terms including $a_0$ and a formula.'
+        'answerLines': 3
+        'answer': '$3,-3,3,-3,3$, with $a_n=3(-1)^n$. Each application changes the sign.'
+      - 'id': 8
+        'type': 'reasoning'
+        'prompt': 'For $a_0=7$ and $a_n=0a_{n-1}+4$ for $n\geq1$, determine every term without using $0^0$.'
+        'answerLines': 3
+        'answer': '$a_0=7$, and $a_n=4$ for every $n\geq1$, directly from the recurrence.'
+      - 'id': 9
+        'type': 'reasoning'
+        'prompt': 'If $a_0=2$ and $a_n=a_{n-1}+n$, find $a_1$ through $a_4$.'
+        'answerLines': 2
+        'answer': '$3,5,8,12$, adding respectively 1, 2, 3, and 4.'
+      - 'id': 10
+        'type': 'reasoning'
+        'prompt':
+          'Explain why a first-order recurrence that explicitly determines each next value from the
+          preceding value has at most one solution for a fixed initial value.'
+        'answerLines': 5
+        'answer':
+          'Two solutions agree at the initial index. Whenever they agree at the preceding index, the
+          same rule forces the same next value. Induction proves agreement at every index.'
+  - 'title': 'B. Iteration and telescoping'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 11
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=4$, $a_n=a_{n-1}+5$ for $n\geq1$ by iteration.'
+        'answerLines': 3
+        'answer': 'After $n$ increments, $a_n=a_0+5n=4+5n$. The formula also gives the specified initial value.'
+      - 'id': 12
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=3$, $a_n=4a_{n-1}$ for $n\geq1$.'
+        'answerLines': 3
+        'answer': '$a_n=3\cdot4^n$, because $n$ substitutions supply $n$ factors of 4.'
+      - 'id': 13
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=1$, $a_n=a_{n-1}+n$ by telescoping.'
+        'answerLines': 4
+        'answer': 'Summing $a_j-a_{j-1}=j$ from 1 to $n$ gives $a_n-1=n(n+1)/2$. Hence $a_n=1+n(n+1)/2$.'
+      - 'id': 14
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=0$, $a_n=a_{n-1}+2n-1$.'
+        'answerLines': 4
+        'answer': '$a_n=\sum_{j=1}^n(2j-1)=n^2$, using the arithmetic-sum formula.'
+      - 'id': 15
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=2$, $a_n=a_{n-1}+2n$.'
+        'answerLines': 3
+        'answer': '$a_n=2+2\sum_{j=1}^n j=2+n(n+1)$.'
+      - 'id': 16
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=0$, $a_n=a_{n-1}+2^n$.'
+        'answerLines': 4
+        'answer': '$a_n=\sum_{j=1}^n2^j=2^{n+1}-2$. At $n=0$, the empty sum is zero and the formula agrees.'
+      - 'id': 17
+        'type': 'reasoning'
+        'prompt': 'Solve $a_1=5$, $a_n=a_{n-1}+3$ for $n\geq2$, on the positive-index domain.'
+        'answerLines': 3
+        'answer': '$a_n=5+3(n-1)=3n+2$ for $n\geq1$. There are $n-1$ increments from index 1, not $n$.'
+      - 'id': 18
+        'type': 'reasoning'
+        'prompt':
+          'For $a_0=0$ and $a_n=a_{n-1}+n(n+1)$, express $a_n$ as a sum and simplify using standard
+          square and arithmetic sums.'
+        'answerLines': 4
+        'answer': '$a_n=\sum_{j=1}^n(j^2+j)=n(n+1)(2n+1)/6+n(n+1)/2=n(n+1)(n+2)/3$.'
+      - 'id': 19
+        'type': 'reasoning'
+        'prompt': 'Prove by induction that $a_0=0$, $a_n=a_{n-1}+2n-1$ gives $a_n=n^2$.'
+        'answerLines': 5
+        'answer':
+          'At zero both sides are zero. Assuming $a_{n-1}=(n-1)^2$, substitute to obtain $a_n=(n-1)^2+2n-1=n^2$.
+          This proves every nonnegative index.'
+      - 'id': 20
+        'type': 'reasoning'
+        'prompt':
+          'A solver telescopes $a_n-a_{n-1}=n$ but concludes $a_n=n(n+1)/2$ regardless of $a_0$. What
+          was omitted?'
+        'answerLines': 3
+        'answer': 'The telescoped left side is $a_n-a_0$, not $a_n$. The correct formula is $a_n=a_0+n(n+1)/2$.'
+  - 'title': 'C. First-order linear recurrences'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 21
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=1$, $a_n=2a_{n-1}+3$.'
+        'answerLines': 4
+        'answer': '$a_n=2^n+3(2^n-1)=4\cdot2^n-3$. This follows by unfolding the geometric sum.'
+      - 'id': 22
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=2$, $a_n=3a_{n-1}+2$.'
+        'answerLines': 4
+        'answer': '$a_n=2\cdot3^n+2(3^n-1)/2=3^{n+1}-1$.'
+      - 'id': 23
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=10$, $a_n=a_{n-1}-4$.'
+        'answerLines': 3
+        'answer':
+          '$a_n=10-4n$. The multiplier is 1, so use an arithmetic increment rather than divide by
+          $r-1$.'
+      - 'id': 24
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=0$, $a_n=2a_{n-1}+1$.'
+        'answerLines': 3
+        'answer': '$a_n=2^n-1$, from the geometric sum of the accumulated constant contributions.'
+      - 'id': 25
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=8$, $a_n=a_{n-1}/2+2$.'
+        'answerLines': 4
+        'answer': 'The equilibrium is 4. Then $a_n-4=(a_{n-1}-4)/2$, so $a_n=4+4(1/2)^n$.'
+      - 'id': 26
+        'type': 'reasoning'
+        'prompt':
+          'Find the equilibrium $L$ for $a_n=3a_{n-1}-8$ and transform the recurrence by subtracting
+          it.'
+        'answerLines': 4
+        'answer': '$L=3L-8$ gives $L=4$. Thus $a_n-4=3(a_{n-1}-4)$, reducing it to a homogeneous recurrence.'
+      - 'id': 27
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=7$ and $a_n=-a_{n-1}+6$.'
+        'answerLines': 4
+        'answer': 'The equilibrium is 3. Hence $a_n-3=-(a_{n-1}-3)$ and $a_n=3+4(-1)^n$.'
+      - 'id': 28
+        'type': 'reasoning'
+        'prompt': 'Why must the case $r=1$ be treated separately in the geometric-sum solution to $a_n=ra_{n-1}+b$?'
+        'answerLines': 3
+        'answer':
+          'The formula involving $(r^n-1)/(r-1)$ has zero denominator at $r=1$. Direct iteration instead
+          gives $a_n=a_0+bn$.'
+      - 'id': 29
+        'type': 'reasoning'
+        'prompt': 'For $a_0=5$, $a_n=0a_{n-1}-2$, give the solution and its equilibrium.'
+        'answerLines': 3
+        'answer':
+          'The equilibrium is $-2$. The sequence is $a_0=5$ and $a_n=-2$ for $n\geq1$. Stating the
+          initial term separately avoids $0^0$.'
+      - 'id': 30
+        'type': 'reasoning'
+        'prompt': 'Verify $a_n=3^{n+1}-1$ for $a_0=2$, $a_n=3a_{n-1}+2$.'
+        'answerLines': 5
+        'answer':
+          'At $n=0$ the value is 2. For $n\geq1$, $3(3^n-1)+2=3^{n+1}-1$. Initial agreement and the
+          recurrence establish the formula by induction.'
+  - 'title': 'D. Varying contributions and counting models'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 31
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=0$, $a_n=2a_{n-1}+2^n$ by normalizing.'
+        'answerLines': 5
+        'answer': 'Set $b_n=a_n/2^n$. Then $b_0=0$ and $b_n=b_{n-1}+1$, so $b_n=n$ and $a_n=n2^n$.'
+      - 'id': 32
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=3$, $a_n=2a_{n-1}+2^n$.'
+        'answerLines': 4
+        'answer': 'Normalization gives $b_0=3$ and $b_n=b_{n-1}+1$, so $a_n=(n+3)2^n$.'
+      - 'id': 33
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=0$, $a_n=3a_{n-1}+3^n$.'
+        'answerLines': 4
+        'answer': 'Divide by $3^n$ to get an increment of 1 and zero initial value. Thus $a_n=n3^n$.'
+      - 'id': 34
+        'type': 'reasoning'
+        'prompt': 'Derive a weighted-sum formula for $a_n=ra_{n-1}+f(n)$ when $r\neq0$ and $n\geq1$.'
+        'answerLines': 5
+        'answer':
+          'Unfolding gives $a_n=r^na_0+\sum_{j=1}^n r^{n-j}f(j)$. The contribution inserted at step
+          $j$ receives one factor of $r$ at each of the $n-j$ later steps.'
+      - 'id': 35
+        'type': 'reasoning'
+        'prompt': 'Use the weighted-sum idea to solve $a_0=0$, $a_n=2a_{n-1}+3^n$.'
+        'answerLines': 5
+        'answer': '$a_n=\sum_{j=1}^n2^{n-j}3^j=3(3^n-2^n)$. Substitution verifies: $2\cdot3(3^{n-1}-2^{n-1})+3^n=3^{n+1}-3\cdot2^n$.'
+      - 'id': 36
+        'type': 'reasoning'
+        'prompt':
+          'Let F(n) count length-n binary strings with no adjacent 1s. Determine F(0), F(1), and a
+          recurrence for n at least 2.'
+        'answerLines': 5
+        'answer':
+          '$F(0)=1$ for the empty string and $F(1)=2$. Valid strings begin with 0 followed by a valid
+          shorter string, or 10 followed by one shorter by two. Thus $F(n)=F(n-1)+F(n-2)$.'
+      - 'id': 37
+        'type': 'reasoning'
+        'prompt': 'Using that binary-string recurrence, compute F(2) through F(6).'
+        'answerLines': 3
+        'answer': '$3,5,8,13,21$, starting from $F(0)=1,F(1)=2$.'
+      - 'id': 38
+        'type': 'reasoning'
+        'prompt':
+          'A staircase has n steps. Moves advance one or two steps. Count ordered ways to reach the
+          top by giving initial conditions and a recurrence.'
+        'answerLines': 5
+        'answer':
+          'Let $W(0)=1$ for the empty move sequence and $W(1)=1$. For $n\geq2$, the final move is
+          1 or 2 steps, giving disjoint cases $W(n)=W(n-1)+W(n-2)$.'
+      - 'id': 39
+        'type': 'reasoning'
+        'prompt': 'For the staircase model, compute W(5) and explain why order matters.'
+        'answerLines': 3
+        'answer':
+          '$W(2)=2,W(3)=3,W(4)=5,W(5)=8$. For example, moves $1,2$ and $2,1$ are different ordered
+          sequences even though their step sizes form the same multiset.'
+      - 'id': 40
+        'type': 'reasoning'
+        'prompt':
+          'Explain why matching a few Fibonacci-like initial counts is insufficient to derive a counting
+          recurrence.'
+        'answerLines': 4
+        'answer':
+          'Finite agreement does not force every later count. A recurrence requires a disjoint, exhaustive
+          decomposition of each counted object into smaller objects, with a bijection or equivalent justification
+          for each case.'
+  - 'title': 'E. Second-order homogeneous equations'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 41
+        'type': 'reasoning'
+        'prompt': 'Find the characteristic equation for $a_n=5a_{n-1}-6a_{n-2}$.'
+        'answerLines': 3
+        'answer': 'The characteristic equation is $r^2-5r+6=(r-2)(r-3)=0$, obtained by substituting a geometric candidate.'
+      - 'id': 42
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=2,a_1=5$, $a_n=5a_{n-1}-6a_{n-2}$ for $n\geq2$.'
+        'answerLines': 5
+        'answer': 'Try $A2^n+B3^n$. The equations $A+B=2$, $2A+3B=5$ give $A=B=1$, hence $a_n=2^n+3^n$.'
+      - 'id': 43
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=1,a_1=4$, $a_n=3a_{n-1}-2a_{n-2}$.'
+        'answerLines': 5
+        'answer': 'Roots are 1 and 2. From $A+B=1$ and $A+2B=4$, get $A=-2,B=3$. Thus $a_n=-2+3\cdot2^n$.'
+      - 'id': 44
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=2,a_1=0$, $a_n=a_{n-2}$ for $n\geq2$.'
+        'answerLines': 4
+        'answer':
+          'Roots are 1 and $-1$. The solution is $a_n=1+(-1)^n$: even indices have value 2 and odd
+          indices value 0.'
+      - 'id': 45
+        'type': 'reasoning'
+        'prompt': 'Find and factor the characteristic polynomial for $a_n=4a_{n-1}-4a_{n-2}$.'
+        'answerLines': 3
+        'answer': '$r^2-4r+4=(r-2)^2$, so 2 is a repeated root.'
+      - 'id': 46
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=1,a_1=6$, $a_n=4a_{n-1}-4a_{n-2}$.'
+        'answerLines': 5
+        'answer': 'Try $(A+Bn)2^n$. Initial data give $A=1$ and $2(1+B)=6$, so $B=2$. Hence $a_n=(1+2n)2^n$.'
+      - 'id': 47
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=3,a_1=5$, $a_n=2a_{n-1}-a_{n-2}$.'
+        'answerLines': 4
+        'answer':
+          'The repeated root is 1. Consecutive differences are constant: $a_n-a_{n-1}=a_{n-1}-a_{n-2}=2$.
+          Thus $a_n=3+2n$.'
+      - 'id': 48
+        'type': 'reasoning'
+        'prompt':
+          'Justify the factor $n$ in the repeated-root candidate for $a_n=2\rho a_{n-1}-\rho^2a_{n-2}$,
+          assuming $\rho\neq0$.'
+        'answerLines': 6
+        'answer':
+          'Writing $b_n=a_n/\rho^n$ gives $b_n=2b_{n-1}-b_{n-2}$. Its first differences are constant,
+          so $b_n=A+Bn$ and $a_n=(A+Bn)\rho^n$.'
+      - 'id': 49
+        'type': 'reasoning'
+        'prompt':
+          'For $a_0=4,a_1=9$, $a_n=0a_{n-1}+0a_{n-2}$ for $n\geq2$, give all terms and explain why
+          the nonzero repeated-root derivation does not apply.'
+        'answerLines': 4
+        'answer':
+          '$a_0=4,a_1=9$, and every later term is zero. Dividing by $\rho^n$ is invalid when the repeated
+          root $\rho$ is zero; the recurrence itself gives the answer.'
+      - 'id': 50
+        'type': 'reasoning'
+        'prompt':
+          'Prove that two solutions of the same explicit second-order recurrence agreeing at indices
+          0 and 1 agree everywhere.'
+        'answerLines': 5
+        'answer':
+          'The initial two values agree. If agreement holds at the two preceding indices, the identical
+          recurrence forces agreement at the next index. Induction from index 2 proves equality at all nonnegative
+          indices.'
+  - 'title': 'F. Recursive constructions and optimality'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 51
+        'type': 'reasoning'
+        'prompt':
+          'For the three-peg Tower of Hanoi puzzle, state H(0) and the recurrence for the minimum
+          move count H(n).'
+        'answerLines': 4
+        'answer':
+          '$H(0)=0$ and $H(n)=2H(n-1)+1$ for $n\geq1$: move the smaller stack aside, move the largest
+          disk, then restore the smaller stack on top.'
+      - 'id': 52
+        'type': 'reasoning'
+        'prompt': 'Compute the minimum Hanoi move counts for 1 through 5 disks.'
+        'answerLines': 3
+        'answer': '$1,3,7,15,31$, successively doubling the preceding count and adding 1.'
+      - 'id': 53
+        'type': 'reasoning'
+        'prompt': 'Prove by induction that the recurrence $H(0)=0$, $H(n)=2H(n-1)+1$ gives $H(n)=2^n-1$.'
+        'answerLines': 5
+        'answer': 'The base gives $0=2^0-1$. Assuming the formula for $n-1$, substitute: $H(n)=2(2^{n-1}-1)+1=2^n-1$.'
+      - 'id': 54
+        'type': 'reasoning'
+        'prompt':
+          'Why does describing a Hanoi strategy with a specified move count prove only an upper bound
+          on the optimum?'
+        'answerLines': 4
+        'answer':
+          'It exhibits one legal solution using that many moves. A shorter strategy is not ruled out
+          until a lower-bound argument shows every legal solution needs at least that many.'
+      - 'id': 55
+        'type': 'reasoning'
+        'prompt': 'Give the lower-bound argument that completes the Hanoi minimum-move recurrence.'
+        'answerLines': 7
+        'answer':
+          'Before the largest disk first moves, all smaller disks must be transferred to the third
+          peg, requiring at least $H(n-1)$ moves. After its last move to the target, transferring the smaller
+          stack onto it requires at least another $H(n-1)$. These disjoint portions plus at least one largest-disk
+          move force $2H(n-1)+1$.'
+      - 'id': 56
+        'type': 'reasoning'
+        'prompt':
+          'How many disks can be transferred in at most 100 moves using an optimal three-peg Hanoi
+          solution?'
+        'answerLines': 4
+        'answer': 'Six disks: $H(6)=63\leq100$, while $H(7)=127>100$. The count increases with disk number.'
+      - 'id': 57
+        'type': 'reasoning'
+        'prompt':
+          'A proposed formula $a_n=2^n$ is offered for $a_0=1$, $a_n=2a_{n-1}+1$. Test both defining
+          conditions.'
+        'answerLines': 4
+        'answer':
+          'The base condition passes, but substitution gives $2\cdot2^{n-1}+1=2^n+1$, not $2^n$. The
+          recurrence condition fails for every positive index.'
+      - 'id': 58
+        'type': 'reasoning'
+        'prompt': 'Correct the formula in the preceding problem and verify it.'
+        'answerLines': 5
+        'answer': '$a_n=2^{n+1}-1$. It gives $a_0=1$, and $2(2^n-1)+1=2^{n+1}-1$ verifies the step.'
+      - 'id': 59
+        'type': 'reasoning'
+        'prompt':
+          'Both $a_n=1$ and $a_n=2^n$ satisfy $a_n=3a_{n-1}-2a_{n-2}$. Explain why specifying only
+          $a_0=1$ cannot select between them.'
+        'answerLines': 3
+        'answer':
+          'Both have the same value at zero but different values at one. A second initial value is
+          needed to select the intended solution of this second-order recurrence.'
+      - 'id': 60
+        'type': 'reasoning'
+        'prompt':
+          'A recurrence models the work of a particular recursive program exactly. Does solving it
+          prove that the program is optimal among all programs for that task?'
+        'answerLines': 4
+        'answer':
+          "No. It determines that program's work in the specified model. Optimality requires a lower
+          bound applying to every permitted algorithm, not merely to that recurrence."
+  - 'title': 'G. Divide-and-conquer on powers of two'
+    'instructions':
+      'For this section, n is a power of two and recurrences apply for n at least 2. Count
+      all leaf work.'
+    'questions':
+      - 'id': 61
+        'type': 'reasoning'
+        'prompt': 'For $T(1)=1$, $T(n)=2T(n/2)+n$, compute $T(2),T(4),T(8)$.'
+        'answerLines': 3
+        'answer': '$4,12,32$, using respectively $2\cdot1+2$, $2\cdot4+4$, and $2\cdot12+8$.'
+      - 'id': 62
+        'type': 'reasoning'
+        'prompt':
+          'In that recurrence, give the node count, subproblem size, and total nonrecursive work at
+          internal level $j$.'
+        'answerLines': 4
+        'answer':
+          'There are $2^j$ nodes of size $n/2^j$, so their total nonrecursive work is $2^j(n/2^j)=n$,
+          for $0\leq j<\log_2 n$.'
+      - 'id': 63
+        'type': 'reasoning'
+        'prompt': 'Derive the exact solution to $T(1)=1$, $T(n)=2T(n/2)+n$ using a recursion tree.'
+        'answerLines': 5
+        'answer':
+          'There are $\log_2 n$ internal levels, each costing $n$, followed by $n$ leaves of cost
+          1. Thus $T(n)=n\log_2 n+n$.'
+      - 'id': 64
+        'type': 'reasoning'
+        'prompt': 'Prove that exact solution by induction on $k$ where $n=2^k$.'
+        'answerLines': 6
+        'answer':
+          'At $k=0$ the formula gives 1. The induction step is $2[(n/2)\log_2(n/2)+n/2]+n=n(\log_2
+          n-1)+2n=n\log_2 n+n$.'
+      - 'id': 65
+        'type': 'reasoning'
+        'prompt': 'Solve $S(1)=1$, $S(n)=S(n/2)+1$.'
+        'answerLines': 4
+        'answer':
+          'There are $\log_2 n$ single-branch internal steps plus the final unit leaf cost. Hence
+          $S(n)=\log_2 n+1$.'
+      - 'id': 66
+        'type': 'reasoning'
+        'prompt': 'Solve $U(1)=1$, $U(n)=2U(n/2)+1$.'
+        'answerLines': 4
+        'answer':
+          'The full binary recursion tree has $n$ leaves and $n-1$ internal nodes, all costing 1.
+          Thus $U(n)=2n-1$; substitution gives $2(n-1)+1=2n-1$.'
+      - 'id': 67
+        'type': 'reasoning'
+        'prompt': 'Solve $V(1)=3$, $V(n)=2V(n/2)+n$.'
+        'answerLines': 4
+        'answer':
+          'Each internal level costs $n$, and the $n$ leaves cost 3 each. Therefore $V(n)=n\log_2
+          n+3n$.'
+      - 'id': 68
+        'type': 'reasoning'
+        'prompt': 'Solve $W(1)=1$, $W(n)=W(n/2)+n$.'
+        'answerLines': 4
+        'answer': 'Along the one branch, costs sum to $n+n/2+\cdots+1=2n-1$. The last term is the leaf cost.'
+      - 'id': 69
+        'type': 'reasoning'
+        'prompt': 'Why can two halving recurrences have the same recursion depth but different total work?'
+        'answerLines': 4
+        'answer':
+          'One may explore a single child while another explores multiple children. Depth counts levels,
+          while total work sums the work of all nodes at those levels.'
+      - 'id': 70
+        'type': 'reasoning'
+        'prompt':
+          'Why does an exact formula proved only for powers of two not automatically apply to arbitrary
+          integer input sizes?'
+        'answerLines': 4
+        'answer':
+          'Other sizes may generate floor and ceiling subproblems rather than equal integer halves.
+          Those are different recurrence equations; a separate proof or suitable bounds must handle the rounding.'
+  - 'title': 'H. Bounds and mixed verification'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 71
+        'type': 'reasoning'
+        'prompt':
+          'Assume nonnegative $T(1)=1$ and $T(n)\leq2T(n/2)+n$ on powers of two. Prove $T(n)\leq n\log_2
+          n+n$.'
+        'answerLines': 6
+        'answer':
+          'Induct on $\log_2 n$. The base is equality. Substituting the preceding bound gives $T(n)\leq2[(n/2)\log_2(n/2)+n/2]+n=n\log_2
+          n+n$.'
+      - 'id': 72
+        'type': 'reasoning'
+        'prompt':
+          'Does the inequality in the preceding problem also prove a matching lower bound? Give an
+          example showing why not.'
+        'answerLines': 4
+        'answer':
+          'No. The constant function $T(n)=1$ satisfies $1\leq2\cdot1+n$ and the base condition, but
+          does not grow like $n\log n$.'
+      - 'id': 73
+        'type': 'reasoning'
+        'prompt': 'For $T(n)=2T(n/2)+n$, explain why the induction guess $T(n)\leq cn$ does not close.'
+        'answerLines': 4
+        'answer':
+          'Substitution yields only $T(n)\leq cn+n$, which exceeds the target $cn$. Changing the constant
+          within that same argument does not absorb the extra positive $n$ at every step.'
+      - 'id': 74
+        'type': 'reasoning'
+        'prompt': 'Solve $a_0=2$, $a_n=2a_{n-1}+n$ and verify the candidate $a_n=4\cdot2^n-n-2$.'
+        'answerLines': 5
+        'answer':
+          'At zero it gives 2. For $n\geq1$, $2[4\cdot2^{n-1}-(n-1)-2]+n=4\cdot2^n-n-2$. Uniqueness
+          therefore establishes the candidate.'
+      - 'id': 75
+        'type': 'reasoning'
+        'prompt': 'For $a_0=1,a_1=3$ and $a_n=2a_{n-1}-a_{n-2}$, compute $a_5$ using a justified formula.'
+        'answerLines': 4
+        'answer': 'First differences are constant with value 2, so $a_n=1+2n$ and $a_5=11$.'
+      - 'id': 76
+        'type': 'reasoning'
+        'prompt':
+          'For $a_0=1,a_1=2$ and $a_n=5a_{n-1}-6a_{n-2}$, solve and explain why one characteristic
+          component disappears.'
+        'answerLines': 5
+        'answer':
+          'Writing $a_n=A2^n+B3^n$ gives $A+B=1$, $2A+3B=2$, hence $A=1,B=0$. Thus $a_n=2^n$; initial
+          data eliminate the other component.'
+      - 'id': 77
+        'type': 'reasoning'
+        'prompt': 'For $a_0=1,a_1=4$ and $a_n=4a_{n-1}-4a_{n-2}$, solve using the repeated root.'
+        'answerLines': 5
+        'answer': '$a_n=(A+Bn)2^n$, with $A=1$ and $2(1+B)=4$, gives $B=1$. Thus $a_n=(n+1)2^n$.'
+      - 'id': 78
+        'type': 'reasoning'
+        'prompt':
+          'A merge-sort analysis assigns exactly n merge operations to every size-n call. What must
+          be checked before treating this as an exact cost recurrence for an implementation?'
+        'answerLines': 5
+        'answer':
+          'The chosen operation count, base cost, actual merge behavior, and subproblem sizes must
+          match the equation. Real merge costs may only be bounded by constants times $n$, leading to bounds
+          rather than that exact formula.'
+      - 'id': 79
+        'type': 'reasoning'
+        'prompt': 'For powers of two, verify $R(n)=3n-2$ solves $R(1)=1$, $R(n)=2R(n/2)+2$.'
+        'answerLines': 5
+        'answer':
+          'The base gives $3-2=1$. Substitution gives $2[3n/2-2]+2=3n-2$, proving the formula by induction
+          on the exponent.'
+      - 'id': 80
+        'type': 'reasoning'
+        'prompt':
+          'Describe a complete workflow for solving and proving a new recurrence, including what to
+          do if no exact formula is needed.'
+        'answerLines': 5
+        'answer':
+          'State its domain and initial conditions, compute a few terms, derive a candidate by iteration,
+          sums, or a structural method, then verify the initial data and recurrence by induction. If only
+          growth is needed, conjecture bounds and prove the inequalities with valid constants on the stated
+          domain.'

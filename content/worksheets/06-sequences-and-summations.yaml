@@ -1,0 +1,514 @@
+title: 'Sequences and Summations'
+instructions:
+  '80 exercises in eight sections. State domains and justify nontrivial conclusions. Give explicit
+  witnesses or counterexamples when requested. Use the blank space for working; the explained answer key follows
+  the student section.'
+sections:
+  - title: 'A. Indexing and recursive definitions'
+    questions:
+      - id: 1
+        type: freeform
+        prompt: 'For $a_n=3n-2$ with $n\geq0$, list the first five terms.'
+        answerLines: 3
+        answer: '$-2,1,4,7,10$, corresponding to indices 0 through 4.'
+      - id: 2
+        type: freeform
+        prompt:
+          'For $a_n=3n-2$ with $n\geq1$, list the first five terms and explain the difference from zero-based
+          indexing.'
+        answerLines: 3
+        answer: '$1,4,7,10,13$. The starting index is now 1, so the term at index 0 is excluded.'
+      - id: 3
+        type: freeform
+        prompt: 'For $a_n=(-1)^n(n+2)$ with $n\geq0$, compute $a_0,a_1,a_2,a_5$.'
+        answerLines: 3
+        answer: 'They are $2,-3,4,-7$. Even indices give a positive sign and odd indices a negative sign.'
+      - id: 4
+        type: freeform
+        prompt: 'The sequence satisfies $a_0=2$ and $a_{n+1}=3a_n+1$ for $n\geq0$. Compute through $a_3$.'
+        answerLines: 3
+        answer: '$a_0=2$, $a_1=7$, $a_2=22$, and $a_3=67$. Each new value uses the immediately previous value.'
+      - id: 5
+        type: freeform
+        prompt: 'Let $b_1=5$ and $b_{n+1}=b_n-2$ for $n\geq1$. Find $b_4$ and an explicit formula.'
+        answerLines: 3
+        answer: '$b_4=-1$ and $b_n=5-2(n-1)=7-2n$. There are $n-1$ steps after the initial term.'
+      - id: 6
+        type: reasoning
+        prompt: 'Why does the recurrence $a_{n+1}=a_n+3$ alone fail to specify a unique sequence? Give two possibilities.'
+        answerLines: 4
+        answer:
+          'Its initial value is missing. Both $a_n=3n$ and $a_n=1+3n$ for $n\geq0$ satisfy the recurrence
+          but differ at every index.'
+      - id: 7
+        type: freeform
+        prompt: 'Define $F_0=0$, $F_1=1$, and $F_{n+2}=F_{n+1}+F_n$ for $n\geq0$. Find $F_6$.'
+        answerLines: 3
+        answer: 'The terms are $0,1,1,2,3,5,8$, so $F_6=8$.'
+      - id: 8
+        type: reasoning
+        prompt:
+          'A recurrence is $a_{n+2}=a_{n+1}+a_n$ for $n\geq0$, with only $a_0=1$ supplied. Explain the missing
+          information.'
+        answerLines: 4
+        answer: 'The value $a_1$ is also needed. Choosing $a_1=0$ gives $1,0,1,1,\ldots$, while $a_1=1$ gives $1,1,2,3,\ldots$.'
+      - id: 9
+        type: freeform
+        prompt: 'Are the finite sequences $(1,2,1)$ and $(1,1,2)$ equal? Compare their sets of values.'
+        answerLines: 3
+        answer:
+          'The sequences differ at positions 2 and 3 under one-based indexing. Their sets of values are both
+          $\{1,2\}$, which forget order and repetitions.'
+      - id: 10
+        type: reasoning
+        prompt: 'Give two explicit rules for $n\geq0$ that agree at indices 0,1,2 but differ later.'
+        answerLines: 4
+        answer:
+          '$a_n=n$ and $b_n=n+n(n-1)(n-2)$ agree at those indices because the added product is zero. At index
+          3 they give 3 and 9.'
+  - title: 'B. Arithmetic and geometric sequences'
+    questions:
+      - id: 11
+        type: freeform
+        prompt: 'An arithmetic sequence has $a_0=7$ and difference 4. Find $a_n$ and $a_{10}$.'
+        answerLines: 3
+        answer: '$a_n=7+4n$ and $a_{10}=47$. The index counts increments from the zero-based initial value.'
+      - id: 12
+        type: freeform
+        prompt: 'An arithmetic sequence has $a_1=7$ and difference 4. Find $a_n$ and $a_{10}$.'
+        answerLines: 3
+        answer: '$a_n=7+4(n-1)$ and $a_{10}=43$. There are nine increments before the tenth term.'
+      - id: 13
+        type: reasoning
+        prompt: 'An arithmetic sequence has $a_3=11$ and $a_8=31$. Find its difference and $a_0$.'
+        answerLines: 4
+        answer: 'Five increments total $31-11=20$, so the difference is 4. Then $a_0=11-3\cdot4=-1$.'
+      - id: 14
+        type: freeform
+        prompt: 'Find the sum of the first seven terms starting at 10 with arithmetic difference $-2$.'
+        answerLines: 3
+        answer: 'The last term is $10+6(-2)=-2$. The sum is $7(10-2)/2=28$.'
+      - id: 15
+        type: freeform
+        prompt: 'Sum $a_n=5+2n$ over indices 3 through 8.'
+        answerLines: 3
+        answer: 'There are six terms, from 11 through 21. Their sum is $6(11+21)/2=96$.'
+      - id: 16
+        type: freeform
+        prompt: 'A geometric sequence has $a_0=3$ and multiplier $-2$. Find $a_5$.'
+        answerLines: 3
+        answer: '$a_5=3(-2)^5=-96$. The odd exponent gives a negative sign.'
+      - id: 17
+        type: freeform
+        prompt: 'A geometric sequence has $a_1=64$ and multiplier $1/2$. Find $a_7$.'
+        answerLines: 3
+        answer: '$a_7=64(1/2)^6=1$, since six multiplications follow the first term.'
+      - id: 18
+        type: freeform
+        prompt: 'A geometric recurrence has $a_0=9$ and $a_{n+1}=0a_n$. Describe all terms without relying on $0^0$.'
+        answerLines: 3
+        answer: 'The initial term is 9 by definition, and every term with index at least 1 is 0 by the recurrence.'
+      - id: 19
+        type: freeform
+        prompt: 'Give a recurrence and initial value for $a_n=2\cdot5^n$ on $n\geq0$.'
+        answerLines: 3
+        answer: '$a_0=2$ and $a_{n+1}=5a_n$. Multiplying the explicit formula by 5 raises its exponent by one.'
+      - id: 20
+        type: freeform
+        prompt:
+          'Determine whether $2,4,8,16$ can be the first four terms of an arithmetic sequence or a geometric
+          sequence.'
+        answerLines: 3
+        answer:
+          'It is geometric with multiplier 2. It is not arithmetic because successive differences are 2,4,8
+          rather than constant.'
+  - title: 'C. Summation notation and arithmetic sums'
+    questions:
+      - id: 21
+        type: freeform
+        prompt: 'Expand and evaluate $\sum_{k=2}^{5}(2k-1)$.'
+        answerLines: 3
+        answer: '$3+5+7+9=24$. The inclusive bounds give four terms.'
+      - id: 22
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=4}^{9}3$ and state the term count.'
+        answerLines: 3
+        answer: 'There are $9-4+1=6$ terms, so the sum is $6\cdot3=18$.'
+      - id: 23
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=1}^{0}(k+5)$ using the lesson''s convention.'
+        answerLines: 2
+        answer: 'Zero. The index range is empty, so no values are added.'
+      - id: 24
+        type: freeform
+        prompt: 'Write $5+8+11+14+17$ as a sum with lower index 0.'
+        answerLines: 3
+        answer: '$\sum_{k=0}^{4}(5+3k)$. There are five terms with four increments after the first.'
+      - id: 25
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=1}^{20}k$.'
+        answerLines: 2
+        answer: '$20\cdot21/2=210$, by the arithmetic-sum formula.'
+      - id: 26
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=1}^{20}(2k-1)$.'
+        answerLines: 3
+        answer: '$2(20\cdot21/2)-20=400$. Linearity separates the varying term from the twenty copies of 1.'
+      - id: 27
+        type: reasoning
+        prompt: 'For $n\geq0$, simplify $\sum_{k=1}^{n}(4k+3)$.'
+        answerLines: 4
+        answer: 'It is $4n(n+1)/2+3n=2n^2+5n$. At $n=0$, both the empty sum and formula are zero.'
+      - id: 28
+        type: freeform
+        prompt: 'For $n\geq5$, split $\sum_{k=1}^{n}a_k$ immediately after the fourth term.'
+        answerLines: 3
+        answer: '$\sum_{k=1}^{4}a_k+\sum_{k=5}^{n}a_k$. Starting the second sum at 4 would count $a_4$ twice.'
+      - id: 29
+        type: reasoning
+        prompt: 'A student writes $\sum_{k=1}^{n}k=nk$. Explain why this is not a valid use of a constant-sum rule.'
+        answerLines: 4
+        answer:
+          'The index $k$ changes from term to term and is not a constant that can be pulled out. The correct
+          value is $n(n+1)/2$; at $n=3$ the terms are 1,2,3 and sum to 6.'
+      - id: 30
+        type: reasoning
+        prompt: 'Derive $\sum_{k=1}^{n}k=n(n+1)/2$ for $n\geq1$ by reversing a copy of the sum.'
+        answerLines: 6
+        answer:
+          'Let the sum be $S$. Adding forward and reversed copies pairs 1 with $n$, 2 with $n-1$, and so
+          on. Each of the $n$ pairs is $n+1$, giving $2S=n(n+1)$ and the formula.'
+  - title: 'D. Finite geometric sums'
+    questions:
+      - id: 31
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=0}^{6}2^k$.'
+        answerLines: 3
+        answer: '$2^7-1=127$. There are seven terms, from exponent 0 through 6.'
+      - id: 32
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=2}^{5}3^k$.'
+        answerLines: 3
+        answer: '$9+27+81+243=360$, equivalently $9(3^4-1)/(3-1)$.'
+      - id: 33
+        type: freeform
+        prompt: 'Find $3+6+12+24+48+96$ using a finite geometric formula.'
+        answerLines: 3
+        answer: 'There are six terms with initial value 3 and multiplier 2. The sum is $3(2^6-1)/(2-1)=189$.'
+      - id: 34
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=1}^{4}(1/2)^k$.'
+        answerLines: 3
+        answer: '$1/2+1/4+1/8+1/16=15/16$. The initial term is $1/2$, not 1.'
+      - id: 35
+        type: reasoning
+        prompt: 'For a real $r\ne1$ and integer $N\geq1$, derive the sum $1+r+\cdots+r^{N-1}$.'
+        answerLines: 6
+        answer:
+          'Writing this sum as $S$ and subtracting $rS$ cancels all interior powers, giving $(1-r)S=1-r^N$.
+          Dividing by nonzero $1-r$ gives $S=(1-r^N)/(1-r)$.'
+      - id: 36
+        type: freeform
+        prompt: 'What is $1+r+\cdots+r^{N-1}$ when $r=1$ and $N\geq1$? Why is the usual quotient unavailable?'
+        answerLines: 3
+        answer:
+          'The sum is $N$, since every term is 1. The quotient has denominator $1-r=0$, so direct substitution
+          into it is invalid.'
+      - id: 37
+        type: freeform
+        prompt:
+          'Evaluate the five-term expression $1+r+r^2+r^3+r^4$ when $r=0$, and separately state the value
+          of a zero-term sum.'
+        answerLines: 3
+        answer:
+          'The five-term expression is 1. Its explicitly written initial term is 1 and all positive powers
+          vanish. A zero-term sum is 0.'
+      - id: 38
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=0}^{6}(-1)^k$.'
+        answerLines: 3
+        answer: 'The sum is 1: the first six terms form three cancelling pairs, leaving the final $+1$.'
+      - id: 39
+        type: freeform
+        prompt: 'For $n\geq0$, simplify $\sum_{k=0}^{n}5\cdot2^k$.'
+        answerLines: 3
+        answer: '$5(2^{n+1}-1)$. The constant factor 5 multiplies the sum of $n+1$ powers of 2.'
+      - id: 40
+        type: reasoning
+        prompt:
+          'Why does a finite geometric-sum derivation alone not justify assigning a value to an infinite
+          series?'
+        answerLines: 4
+        answer:
+          'It evaluates only a specified finite number of terms. Passing to infinitely many terms needs an
+          additional definition and a convergence argument, neither supplied by the finite cancellation.'
+  - title: 'E. Reindexing and telescoping'
+    questions:
+      - id: 41
+        type: reasoning
+        prompt: 'Reindex $\sum_{k=3}^{7}(k+2)$ using $j=k-3$, and evaluate.'
+        answerLines: 4
+        answer: 'It becomes $\sum_{j=0}^{4}(j+5)=5+6+7+8+9=35$. Both bounds and the summand change.'
+      - id: 42
+        type: freeform
+        prompt: 'For $n\geq2$, reindex $\sum_{k=2}^{n}a_k$ using $j=k-2$.'
+        answerLines: 3
+        answer: '$\sum_{j=0}^{n-2}a_{j+2}$. The original first and last terms remain $a_2$ and $a_n$.'
+      - id: 43
+        type: reasoning
+        prompt: 'For $n\geq1$, reindex $\sum_{k=1}^{n}k^2$ using $j=n+1-k$.'
+        answerLines: 4
+        answer:
+          '$\sum_{j=1}^{n}(n+1-j)^2$. The new index visits the same terms in reverse order; finite addition
+          permits the reversal.'
+      - id: 44
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=1}^{5}((k+1)^2-k^2)$ by telescoping.'
+        answerLines: 3
+        answer: 'The interior squares cancel, leaving $6^2-1^2=35$.'
+      - id: 45
+        type: freeform
+        prompt: 'For integers $m\leq n$, simplify $\sum_{k=m}^{n}(b_{k+1}-b_k)$.'
+        answerLines: 3
+        answer: '$b_{n+1}-b_m$. Every intermediate value appears once with each sign.'
+      - id: 46
+        type: freeform
+        prompt: 'Evaluate $\sum_{k=1}^{4}1/(k(k+1))$.'
+        answerLines: 3
+        answer: 'Rewrite each term as $1/k-1/(k+1)$. The sum is $1-1/5=4/5$.'
+      - id: 47
+        type: reasoning
+        prompt: 'For $n\geq2$, simplify $\sum_{k=2}^{n}1/(k(k+1))$.'
+        answerLines: 4
+        answer: 'Telescoping gives $1/2-1/(n+1)$. The surviving first term corresponds to index 2.'
+      - id: 48
+        type: freeform
+        prompt: 'Why can the identity $1/(k(k+1))=1/k-1/(k+1)$ not justify a sum that includes $k=0$?'
+        answerLines: 3
+        answer:
+          'Both sides are undefined at 0 because of division by zero. Formal cancellation cannot supply a
+          value to an undefined original term.'
+      - id: 49
+        type: reasoning
+        prompt: 'For $n\geq1$, simplify $\sum_{k=1}^{n}(3^{k+1}-3^k)$ in two ways.'
+        answerLines: 5
+        answer:
+          'Telescoping gives $3^{n+1}-3$. Alternatively each term is $2\cdot3^k$, whose geometric sum is
+          $2\cdot3(3^n-1)/(3-1)=3^{n+1}-3$.'
+      - id: 50
+        type: reasoning
+        prompt:
+          'A student reindexes $\sum_{k=2}^{5}a_k$ by setting $j=k-2$ but writes $\sum_{j=0}^{3}a_j$. Repair
+          it.'
+        answerLines: 4
+        answer:
+          'The correct summand is $a_{j+2}$, so the result is $\sum_{j=0}^{3}a_{j+2}$. The student''s expression
+          sums $a_0$ through $a_3$ instead.'
+  - title: 'F. Products and factorials'
+    questions:
+      - id: 51
+        type: freeform
+        prompt: 'Evaluate $\prod_{k=1}^{4}k$.'
+        answerLines: 2
+        answer: '$1\cdot2\cdot3\cdot4=24=4!$.'
+      - id: 52
+        type: freeform
+        prompt: 'Evaluate $\prod_{k=2}^{5}k$.'
+        answerLines: 2
+        answer: '$2\cdot3\cdot4\cdot5=120$. This is $5!/1!$.'
+      - id: 53
+        type: freeform
+        prompt:
+          'Evaluate the empty product $\prod_{k=1}^{0}(k+3)$ and compare it with the corresponding empty
+          sum.'
+        answerLines: 3
+        answer: 'The product is 1 and the sum is 0, the respective multiplicative and additive identities.'
+      - id: 54
+        type: freeform
+        prompt: 'Explain why $0!=1$ under the product definition of factorial.'
+        answerLines: 3
+        answer:
+          '$0!$ is the product over the empty range from 1 to 0. Its value is therefore the empty-product
+          value 1.'
+      - id: 55
+        type: freeform
+        prompt: 'Evaluate $\prod_{k=1}^{4}(2k)$.'
+        answerLines: 3
+        answer: '$2\cdot4\cdot6\cdot8=384$, equivalently $2^4\cdot4!$.'
+      - id: 56
+        type: reasoning
+        prompt: 'For $n\geq1$, simplify $\prod_{k=1}^{n}\frac{k+1}{k}$.'
+        answerLines: 4
+        answer: '$(2/1)(3/2)\cdots((n+1)/n)=n+1$. All nonzero interior factors cancel.'
+      - id: 57
+        type: freeform
+        prompt: 'For $n\geq2$, simplify $\prod_{k=2}^{n}\frac{k-1}{k}$.'
+        answerLines: 3
+        answer: '$(1/2)(2/3)\cdots((n-1)/n)=1/n$.'
+      - id: 58
+        type: freeform
+        prompt: 'Evaluate $\prod_{k=-2}^{2}k$, and explain which fact makes a long multiplication unnecessary.'
+        answerLines: 3
+        answer: 'Zero, because the factor for $k=0$ is zero. Any finite product containing a zero factor is zero.'
+      - id: 59
+        type: reasoning
+        prompt: 'Refute the claim $\prod_{k=1}^{2}(a_k+b_k)=\prod_{k=1}^{2}a_k+\prod_{k=1}^{2}b_k$ in general.'
+        answerLines: 4
+        answer:
+          'Set all four input values to 1. The left side is $2\cdot2=4$, while the right is $1+1=2$. Expansion
+          has mixed terms the proposed rule omits.'
+      - id: 60
+        type: reasoning
+        prompt: 'For integers $n\geq1$, prove $n!=n(n-1)!$ from the product definition.'
+        answerLines: 5
+        answer:
+          'Separate the last factor $n$ from the product of 1 through $n$. The remaining product is $(n-1)!$.
+          For $n=1$, that remaining product is empty and equals 1, so the identity still holds.'
+  - title: 'G. Nested sums and bounds'
+    questions:
+      - id: 61
+        type: freeform
+        prompt: 'Evaluate $\sum_{i=1}^{4}\sum_{j=1}^{i}1$.'
+        answerLines: 3
+        answer: 'The inner counts are 1,2,3,4, giving 10. The index pairs form a triangular region.'
+      - id: 62
+        type: freeform
+        prompt: 'Evaluate $\sum_{i=1}^{3}\sum_{j=1}^{i}j$.'
+        answerLines: 3
+        answer:
+          'The inner sums are 1,3,6, so the total is 10. Here the inner summand varies, unlike an iteration
+          count of 1.'
+      - id: 63
+        type: reasoning
+        prompt: 'Evaluate $\sum_{i=1}^{2}\sum_{j=1}^{3}(i+j)$.'
+        answerLines: 4
+        answer: 'For $i=1$, the row sum is $2+3+4=9$. For $i=2$, it is $3+4+5=12$. Total 21.'
+      - id: 64
+        type: reasoning
+        prompt: 'For $n\geq1$, reverse the order in $\sum_{i=1}^{n}\sum_{j=1}^{i}a_{i,j}$.'
+        answerLines: 5
+        answer:
+          '$\sum_{j=1}^{n}\sum_{i=j}^{n}a_{i,j}$. Both expressions visit exactly the pairs with $1\leq j\leq
+          i\leq n$.'
+      - id: 65
+        type: reasoning
+        prompt: 'For $n\geq2$, reverse the order in $\sum_{i=2}^{n}\sum_{j=1}^{i-1}a_{i,j}$.'
+        answerLines: 5
+        answer: '$\sum_{j=1}^{n-1}\sum_{i=j+1}^{n}a_{i,j}$. The same pairs satisfy $1\leq j<i\leq n$.'
+      - id: 66
+        type: freeform
+        prompt: 'If each of twelve real terms lies between $-2$ and 5, bound their sum.'
+        answerLines: 3
+        answer: 'The sum lies between $12(-2)=-24$ and $12(5)=60$. Add the twelve individual lower and upper inequalities.'
+      - id: 67
+        type: reasoning
+        prompt: 'For $n\geq1$, prove $\sum_{k=1}^{n}k^2\leq n^3$.'
+        answerLines: 5
+        answer: 'Each of the $n$ terms is at most $n^2$. Adding these upper bounds gives at most $n\cdot n^2=n^3$.'
+      - id: 68
+        type: reasoning
+        prompt:
+          'For $n\geq2$, prove $\sum_{k=1}^{n}k^2\geq n^3/8$ by using only the indices from $\lceil n/2\rceil$
+          to $n$.'
+        answerLines: 6
+        answer:
+          'There are at least $n/2$ selected terms, each at least $(n/2)^2$. Their sum is at least $n^3/8$.
+          All omitted squares are nonnegative, so keeping only these terms gives a valid lower bound.'
+      - id: 69
+        type: reasoning
+        prompt:
+          'Is discarding terms always a valid lower-bound operation on a sum of real numbers? Give a counterexample
+          if not.'
+        answerLines: 4
+        answer:
+          'No. In $-5+2=-3$, discarding the negative term leaves 2, which is larger than the original sum.
+          Discarding terms gives a lower bound exactly when their total is nonnegative. Requiring each
+          discarded term to be nonnegative is a sufficient condition.'
+      - id: 70
+        type: reasoning
+        prompt: 'For $n\geq1$, give simple bounds on $\sum_{k=1}^{n}1/k$ using the smallest and largest terms.'
+        answerLines: 4
+        answer:
+          'Each term lies between $1/n$ and 1, so the sum lies between 1 and $n$. These are valid finite
+          bounds, though not usually sharp.'
+  - title: 'H. Mixed derivations and loop reasoning'
+    questions:
+      - id: 71
+        type: reasoning
+        prompt:
+          'A loop uses outer indices $i=0,\ldots,n-1$ and inner indices $j=0,\ldots,i-1$, adding 1 each time.
+          For integer $n\geq0$, find the total.'
+        answerLines: 5
+        answer:
+          'The inner count is $i$, including zero at $i=0$. The total is $\sum_{i=0}^{n-1}i=n(n-1)/2$, also
+          zero for $n=0$.'
+      - id: 72
+        type: reasoning
+        prompt: 'How does the preceding loop count change if the inner indices instead run from 0 through $i$ inclusive?'
+        answerLines: 4
+        answer:
+          'The inner count becomes $i+1$. Summing over $i=0,\ldots,n-1$ gives $n(n+1)/2$, an increase of
+          $n$ executions.'
+      - id: 73
+        type: reasoning
+        prompt: 'For fixed integer $i\geq1$, evaluate $\sum_{j=0}^{i-1}(i+j)$ in terms of $i$.'
+        answerLines: 4
+        answer:
+          'The fixed outer value contributes $i$ copies of $i$, or $i^2$. The varying part sums to $i(i-1)/2$,
+          so the total is $(3i^2-i)/2$.'
+      - id: 74
+        type: reasoning
+        prompt: 'Verify that $a_n=4+3n$ satisfies $a_0=4$ and $a_{n+1}=a_n+3$ for $n\geq0$.'
+        answerLines: 5
+        answer:
+          'At zero the formula gives 4. Also $a_{n+1}=4+3(n+1)=(4+3n)+3=a_n+3$. Both the initial condition
+          and recurrence agree.'
+      - id: 75
+        type: reasoning
+        prompt: 'For $n\geq0$, derive $\sum_{k=1}^{n}(2k-1)=n^2$ from linearity and the arithmetic-sum formula.'
+        answerLines: 5
+        answer:
+          'The sum equals $2\sum_{k=1}^{n}k-\sum_{k=1}^{n}1=n(n+1)-n=n^2$. At zero both constituent sums
+          are empty, so the same expression is valid.'
+      - id: 76
+        type: reasoning
+        prompt:
+          'A student uses $N(c+Nd)/2$ to sum $N\geq1$ arithmetic terms starting at $c$ with difference $d$.
+          Give the correct formula and identify both issues.'
+        answerLines: 5
+        answer:
+          'The final term is $c+(N-1)d$, not $Nd$. Twice the average is first plus last, so the correct sum
+          is $N(2c+(N-1)d)/2$. The proposed expression loses one copy of $c$ and miscounts the increments.'
+      - id: 77
+        type: reasoning
+        prompt:
+          'A student claims $\sum_{k=0}^{n}2^k=2^n-1$. Find a smallest allowed counterexample and repair
+          the formula.'
+        answerLines: 4
+        answer:
+          'At $n=0$, the left side is 1 but the proposed right side is 0. There are $n+1$ terms, so the correct
+          result is $2^{n+1}-1$.'
+      - id: 78
+        type: reasoning
+        prompt: 'For $n\geq1$, simplify $\sum_{k=1}^{n}(a_{k+2}-a_k)$ by cancellation.'
+        answerLines: 5
+        answer:
+          'The result is $a_{n+1}+a_{n+2}-a_1-a_2$. Interior terms cancel. At $n=1$, the displayed $a_2$
+          terms cancel as well, leaving the correct $a_3-a_1$.'
+      - id: 79
+        type: reasoning
+        prompt:
+          'Let $a_0=1$ and $a_{n+1}=2a_n$ for $n\geq0$. Find the sum of terms indexed 0 through 9, and explain
+          why there are not nine terms.'
+        answerLines: 4
+        answer:
+          'There are $9-0+1=10$ terms. Since $a_n=2^n$, the sum is $2^{10}-1=1023$. Inclusive endpoints determine
+          the count.'
+      - id: 80
+        type: reasoning
+        prompt: 'For $n\geq1$, show that $\sum_{i=1}^{n}\sum_{j=1}^{n}ij$ equals the square of $\sum_{k=1}^{n}k$.'
+        answerLines: 6
+        answer:
+          'For fixed $i$, factor it out to get $i\sum_{j=1}^{n}j$. The inner sum is independent of $i$, so
+          the outer sum gives $(\sum_{i=1}^{n}i)(\sum_{j=1}^{n}j)=[n(n+1)/2]^2$. The product of sums appears because
+          every pair of terms is included.'

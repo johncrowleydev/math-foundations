@@ -1,0 +1,816 @@
+title: Predicates and Quantifiers
+instructions:
+  120 exercises in twelve sections. Unless specified otherwise, domains are nonempty. Show
+  witnesses, genuine counterexamples, and short reasons; a truth value alone is usually not enough. Use
+  the blank space for working. The answer key follows the student section.
+sections:
+  - title: A. Predicates, substitution, and scope
+    instructions:
+      'For 1-3 use integer domain $\mathbb{Z}$ and $P(x): x>3$. For 4-5 use $R(x,y): x+2y=7$
+      over integers. For 6-10, treat $P,Q,R$ as arbitrary predicates; identify free variables by occurrence,
+      not just by name.'
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Evaluate and explain.
+        answerLines: 2
+        answer: True, since $5>3$.
+        math: P(5)
+      - id: 2
+        type: freeform
+        prompt: Evaluate and explain.
+        answerLines: 2
+        answer: False, since $3>3$ is false.
+        math: P(3)
+      - id: 3
+        type: freeform
+        prompt: Evaluate and explain.
+        answerLines: 2
+        answer: False, since $-4>3$ is false.
+        math: P(-4)
+      - id: 4
+        type: freeform
+        prompt: Evaluate and explain.
+        answerLines: 2
+        answer: 'True: $1+2(3)=7$.'
+        math: R(1,3)
+      - id: 5
+        type: freeform
+        prompt: Evaluate and explain.
+        answerLines: 2
+        answer: 'False: $3+2(1)=5$, not 7.'
+        math: R(3,1)
+      - id: 6
+        type: freeform
+        prompt: Identify the free and bound variables.
+        answerLines: 3
+        answer: The occurrence of $x$ is bound; $y$ is free.
+        math: \forall x\,(P(x)\to Q(y))
+      - id: 7
+        type: freeform
+        prompt: Is this formula open or closed? Explain.
+        answerLines: 3
+        answer: 'Closed: both variables are bound.'
+        math: \forall x\exists y\,R(x,y)
+      - id: 8
+        type: freeform
+        prompt: Identify the free variable.
+        answerLines: 3
+        answer: $y$ is free; $x$ is bound by the existential quantifier.
+        math: \exists x\,R(x,y)
+      - id: 9
+        type: freeform
+        prompt: Which occurrences of $x$ are bound and which are free?
+        answerLines: 3
+        answer:
+          The $x$ in $P(x)$ is bound; the $x$ in $Q(x)$ is free because it lies outside the quantifier's
+          scope.
+        math: (\forall x\,P(x))\land Q(x)
+      - id: 10
+        type: freeform
+        prompt: Rename the bound variable safely. Why would replacing it with $y$ be wrong?
+        answerLines: 4
+        answer:
+          Use $\forall t\,R(t,y)$ with fresh $t$. Using $y$ would capture the formerly free $y$, changing
+          the meaning.
+        math: \forall x\,R(x,y)
+  - title: B. Finite-domain truth values
+    instructions:
+      For 11-18 use exactly $D=\{-2,-1,0,1,2\}$. State truth or falsity and give a witness,
+      counterexample, or exhaustive reason. In 19-20 the domain is instead $\{a,b,c\}$.
+    questions:
+      - id: 11
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: True. Every element has square 0, 1, or 4.
+        math: \forall x\in D,\ x^2\geq0
+      - id: 12
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: False. The only square values on $D$ are 0, 1, and 4.
+        math: \exists x\in D,\ x^2=2
+      - id: 13
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: 'False: $x=0$ is a counterexample.'
+        math: \forall x\in D,\ x^2>0
+      - id: 14
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: 'True: $x=-2$ is a witness.'
+        math: \exists x\in D,\ x+2=0
+      - id: 15
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: True. The largest element of $D$ is 2.
+        math: \forall x\in D,\ x<3
+      - id: 16
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: False. No element exceeds 2.
+        math: \exists x\in D,\ x>2
+      - id: 17
+        type: truth-value
+        prompt: Is every element of $D$ odd or even?
+        answerLines: 3
+        answer: Yes. Each integer in $D$ has one of those two parities.
+      - id: 18
+        type: truth-value
+        prompt: Is some element of $D$ both odd and even?
+        answerLines: 3
+        answer: No. An integer cannot have both parities.
+      - id: 19
+        type: truth-value
+        prompt: Expand without quantifiers over $\{a,b,c\}$.
+        answerLines: 3
+        answer: $P(a)\land P(b)\land P(c)$.
+        math: \forall x\,P(x)
+      - id: 20
+        type: truth-value
+        prompt: Expand without quantifiers over $\{a,b,c\}$.
+        answerLines: 3
+        answer: $P(a)\lor P(b)\lor P(c)$.
+        math: \exists x\,P(x)
+  - title: C. Translate English into logic
+    instructions:
+      The domain is all people. Let $S(x)$ mean "$x$ is a student" and $C(x)$ mean "$x$ owns
+      a computer." Use explicit parentheses around quantifier scopes.
+    questions:
+      - id: 21
+        type: translation
+        prompt: Every student owns a computer.
+        answerLines: 3
+        answer: $\forall x\,(S(x)\to C(x))$.
+      - id: 22
+        type: translation
+        prompt: Some student owns a computer.
+        answerLines: 3
+        answer: $\exists x\,(S(x)\land C(x))$.
+      - id: 23
+        type: translation
+        prompt: No student owns a computer.
+        answerLines: 3
+        answer: $\forall x\,(S(x)\to\neg C(x))$, equivalently $\neg\exists x\,(S(x)\land C(x))$.
+      - id: 24
+        type: translation
+        prompt: Some student does not own a computer.
+        answerLines: 3
+        answer: $\exists x\,(S(x)\land\neg C(x))$.
+      - id: 25
+        type: translation
+        prompt: Only students own computers.
+        answerLines: 3
+        answer: $\forall x\,(C(x)\to S(x))$.
+      - id: 26
+        type: translation
+        prompt: Not every student owns a computer.
+        answerLines: 3
+        answer: $\exists x\,(S(x)\land\neg C(x))$.
+      - id: 27
+        type: translation
+        prompt: Everyone is a student and owns a computer.
+        answerLines: 3
+        answer: $\forall x\,(S(x)\land C(x))$.
+      - id: 28
+        type: translation
+        prompt: Someone is not a student but owns a computer.
+        answerLines: 3
+        answer: $\exists x\,(\neg S(x)\land C(x))$.
+      - id: 29
+        type: translation
+        prompt: A person is a student if and only if that person owns a computer.
+        answerLines: 3
+        answer: $\forall x\,(S(x)\leftrightarrow C(x))$.
+      - id: 30
+        type: translation
+        prompt: There is a student, and every student owns a computer.
+        answerLines: 4
+        answer:
+          $(\exists x\,S(x))\land\forall y\,(S(y)\to C(y))$. The two quantifiers can use different bound-variable
+          names.
+  - title: D. Read quantified statements
+    instructions:
+      For 31-34 all variables are integers. For 35-38, $r$ ranges over requests and $w$ over
+      workers; $A(r,w)$ means worker $w$ is assigned to request $r$. For 39-40, variables range over people
+      and $L(x,y)$ means $x$ likes $y$. Translate, without deciding truth.
+    questions:
+      - id: 31
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: Every positive integer has a positive square.
+        math: \forall n\,(n>0\to n^2>0)
+      - id: 32
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: Some negative integer has square 4.
+        math: \exists n\,(n<0\land n^2=4)
+      - id: 33
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: Every integer has an integer one greater than it.
+        math: \forall n\exists m\,(m=n+1)
+      - id: 34
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: There is an integer at least as large as every integer; there is a greatest integer.
+        math: \exists m\forall n\,(m\geq n)
+      - id: 35
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: Every request has at least one assigned worker; the worker may vary by request.
+        math: \forall r\exists w\,A(r,w)
+      - id: 36
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: There is a worker who is assigned to every request.
+        math: \exists w\forall r\,A(r,w)
+      - id: 37
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: Every worker is assigned to at least one request.
+        math: \forall w\exists r\,A(r,w)
+      - id: 38
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: There is a request to which every worker is assigned.
+        math: \exists r\forall w\,A(r,w)
+      - id: 39
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: Everyone likes someone other than themself.
+        math: \forall x\exists y\,(y\ne x\land L(x,y))
+      - id: 40
+        type: translation
+        prompt: Translate into ordinary English.
+        answerLines: 3
+        answer: There is a person whom everyone likes. This is not the same as saying someone likes everyone.
+        math: \exists y\forall x\,L(x,y)
+  - title: E. Negating quantifiers
+    instructions:
+      Push each outer negation all the way inward, leaving negations only on predicates or comparisons.
+      Keep the domain and variable order unchanged. Variables range over an arbitrary nonempty domain except
+      $n$, which ranges over $\mathbb{Z}$.
+    questions:
+      - id: 41
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\exists x\,\neg P(x)$.
+        math: \neg\forall x\,P(x)
+      - id: 42
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\forall x\,\neg P(x)$.
+        math: \neg\exists x\,P(x)
+      - id: 43
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\exists n\,(n\leq0)$.
+        math: \neg\forall n\,(n>0)
+      - id: 44
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\forall n\,(n\geq0\lor\neg P(n))$.
+        math: \neg\exists n\,(n<0\land P(n))
+      - id: 45
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\exists x\,(P(x)\land\neg Q(x))$.
+        math: \neg\forall x\,(P(x)\to Q(x))
+      - id: 46
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\forall x\,(\neg P(x)\lor\neg Q(x))$.
+        math: \neg\exists x\,(P(x)\land Q(x))
+      - id: 47
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\exists x\forall y\,\neg R(x,y)$.
+        math: \neg\forall x\exists y\,R(x,y)
+      - id: 48
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 3
+        answer: $\forall x\exists y\,\neg R(x,y)$.
+        math: \neg\exists x\forall y\,R(x,y)
+      - id: 49
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 4
+        answer: $\exists x\,(P(x)\land\forall y\,\neg R(x,y))$.
+        math: \neg\forall x\,(P(x)\to\exists y\,R(x,y))
+      - id: 50
+        type: equivalence
+        prompt: Simplify the displayed negation.
+        answerLines: 4
+        answer: $\forall x\exists y\,(R(x,y)\land\neg S(y))$.
+        math: \neg\exists x\forall y\,(R(x,y)\to S(y))
+  - title: F. Quantifier order and witness dependence
+    instructions:
+      For 51-56 use $\mathbb{Z}$. For 57-58 use exactly $D=\{0,1\}$. Give witnesses or explain
+      why a proposed witness cannot work. For 59-60, compare arbitrary predicates over nonempty domains.
+    questions:
+      - id: 51
+        type: reasoning
+        prompt: Determine truth and justify.
+        answerLines: 3
+        answer: True. Given $x$, choose $y=x+1$.
+        math: \forall x\exists y\,(y>x)
+      - id: 52
+        type: reasoning
+        prompt: Determine truth and justify.
+        answerLines: 3
+        answer: False. For any proposed $y$, choosing $x=y$ makes the inequality false.
+        math: \exists y\forall x\,(y>x)
+      - id: 53
+        type: reasoning
+        prompt: Determine truth and justify.
+        answerLines: 3
+        answer: True. Choose $y=-x$ for each given $x$.
+        math: \forall x\exists y\,(x+y=0)
+      - id: 54
+        type: reasoning
+        prompt: Determine truth and justify.
+        answerLines: 3
+        answer: False. For any fixed $y$, choose $x=1-y$; the sum is 1.
+        math: \exists y\forall x\,(x+y=0)
+      - id: 55
+        type: reasoning
+        prompt: Determine truth and justify.
+        answerLines: 3
+        answer:
+          True. Choose $y=1$ for every $x$. An allowed dependence on $x$ does not require an actual
+          dependence.
+        math: \forall x\exists y\,(xy=x)
+      - id: 56
+        type: reasoning
+        prompt: Determine truth and justify.
+        answerLines: 3
+        answer: True. The single witness $y=1$ works for every integer $x$.
+        math: \exists y\forall x\,(xy=x)
+      - id: 57
+        type: reasoning
+        prompt: Determine truth over $D$.
+        answerLines: 3
+        answer: True. Choose $y=1$ when $x=0$, and $y=0$ when $x=1$.
+        math: \forall x\exists y\,(x\ne y)
+      - id: 58
+        type: reasoning
+        prompt: Determine truth over $D$.
+        answerLines: 3
+        answer: False. Choosing $x=y$ defeats either candidate.
+        math: \exists y\forall x\,(x\ne y)
+      - id: 59
+        type: reasoning
+        prompt: 'Which is stronger: $\exists y\forall x\,R(x,y)$ or $\forall x\exists y\,R(x,y)$? Explain.'
+        answerLines: 4
+        answer:
+          'The first is stronger: its fixed witness works for every $x$, so it implies the second. The
+          reverse fails, as in 57-58.'
+      - id: 60
+        type: reasoning
+        prompt: May you swap two adjacent universal quantifiers? Two adjacent existential quantifiers? Explain.
+        answerLines: 4
+        answer:
+          Yes in both cases. The universal statement covers all ordered pairs; the existential statement
+          asks for some ordered pair. Changing search order does not change either claim.
+  - title: G. Domains and genuine counterexamples
+    instructions:
+      Pay attention to the domain specified in each question. $\mathbb{N}_0=\{0,1,2,\ldots\}$.
+      A counterexample to an implication must make its antecedent true and consequent false.
+    questions:
+      - id: 61
+        type: reasoning
+        prompt: Determine truth over $\mathbb{Z}$, then over $\mathbb{R}$.
+        answerLines: 3
+        answer: False over integers; true over reals, with witness $\sqrt{2}$.
+        math: \exists x\,(x^2=2)
+      - id: 62
+        type: reasoning
+        prompt: Determine truth over $\mathbb{Z}$, then over $\mathbb{R}$; justify.
+        answerLines: 5
+        answer:
+          'True over integers: $x(x-1)\geq0$ when $x\leq0$ or $x\geq1$, covering every integer. False
+          over reals: $x=1/2$ gives $1/4<1/2$.'
+        math: \forall x\,(x^2\geq x)
+      - id: 63
+        type: reasoning
+        prompt: Is $x^2>0$ true for every nonzero real number $x$?
+        answerLines: 3
+        answer: Yes. A nonzero real square is positive.
+      - id: 64
+        type: reasoning
+        prompt: Determine truth when both variables range over $\mathbb{R}$.
+        answerLines: 3
+        answer: False. The input $x=0$ has no witness $y$.
+        math: \forall x\exists y\,(xy=1)
+      - id: 65
+        type: reasoning
+        prompt:
+          Require $x$ to be a nonzero real and let $y$ range over all reals. Is there a $y$ with $xy=1$
+          for every $x$?
+        answerLines: 3
+        answer: Yes. Choose $y=1/x$, which is defined because $x\ne0$.
+      - id: 66
+        type: reasoning
+        prompt: Determine truth with both variables in $\mathbb{N}_0$.
+        answerLines: 3
+        answer: False. At $n=0$, no nonnegative integer is smaller.
+        math: \forall n\exists m\,(m<n)
+      - id: 67
+        type: reasoning
+        prompt: Determine truth with both variables in $\mathbb{Z}$.
+        answerLines: 3
+        answer: True. Choose $m=n-1$.
+        math: \forall n\exists m\,(m<n)
+      - id: 68
+        type: reasoning
+        prompt: Does $n=3$ refute "For every integer $n$, if $n^2$ is even, then $n$ is even"? Explain.
+        answerLines: 3
+        answer:
+          No. Its square 9 is not even, so the antecedent is false. A counterexample would need an even
+          square and an odd integer.
+      - id: 69
+        type: reasoning
+        prompt: Disprove "Every prime integer is odd." Why is 1 not a suitable counterexample?
+        answerLines: 3
+        answer: 2 is prime and even. The number 1 is not prime, so it does not satisfy the antecedent.
+      - id: 70
+        type: reasoning
+        prompt: Disprove this universal statement over $\mathbb{R}$.
+        answerLines: 3
+        answer: 'Use $x=-3$: its square is 9, but $-3$ is not greater than 2.'
+        math: \forall x\,(x^2>4\to x>2)
+  - title: H. Uniqueness and vacuous truth
+    instructions:
+      For 71-73 use integer solutions. In 74-76, $P$ is an arbitrary predicate. Empty domains
+      are allowed only where explicitly stated.
+    questions:
+      - id: 71
+        type: reasoning
+        prompt: Does $n+3=5$ have exactly one integer solution?
+        answerLines: 3
+        answer: Yes. $n=2$ is a solution, and rearranging forces every solution to equal 2.
+      - id: 72
+        type: reasoning
+        prompt: Does $n^2=4$ have exactly one integer solution?
+        answerLines: 3
+        answer: No. $n=2$ and $n=-2$ are distinct solutions.
+      - id: 73
+        type: reasoning
+        prompt: Is it true that $n^2=-1$ has at most one integer solution? Explain.
+        answerLines: 3
+        answer: 'Yes: it has zero solutions, and zero is at most one. It does not have exactly one solution.'
+      - id: 74
+        type: reasoning
+        prompt: Expand using ordinary quantifiers and equality.
+        answerLines: 4
+        answer: $\exists x\,(P(x)\land\forall y\,(P(y)\to y=x))$.
+        math: \exists!x\,P(x)
+      - id: 75
+        type: reasoning
+        prompt: Express "At most one object satisfies $P$" without the uniqueness symbol.
+        answerLines: 4
+        answer: $\forall x\forall y\,((P(x)\land P(y))\to x=y)$. It does not assert existence.
+      - id: 76
+        type: reasoning
+        prompt: What are the two different ways a claim of exactly one witness can fail?
+        answerLines: 3
+        answer: There may be no witness, or there may be at least two distinct witnesses.
+      - id: 77
+        type: reasoning
+        prompt: Let $D$ be empty. Give the truth values of $\forall x\in D\,P(x)$ and $\exists x\in D\,P(x)$.
+        answerLines: 3
+        answer:
+          The universal is true because there is no counterexample. The existential is false because
+          there is no witness.
+      - id: 78
+        type: reasoning
+        prompt: Does $\forall x\,P(x)$ always imply $\exists x\,P(x)$? State the domain condition.
+        answerLines: 3
+        answer:
+          'Yes for a nonempty domain. No if an empty domain is allowed: the universal is then true and
+          the existential false.'
+      - id: 79
+        type: reasoning
+        prompt:
+          Let $L(x)$ mean a file is large and $A(x)$ mean it is archived. If there are no large files,
+          is $\forall x(L(x)\to A(x))$ true? Does it assert that a large file exists?
+        answerLines: 3
+        answer: It is vacuously true because every antecedent is false. It asserts no existence.
+      - id: 80
+        type: reasoning
+        prompt:
+          On $D=\{a\}$, let $P(a)=F$ and $Q(a)=F$. Compare $\exists x(P(x)\to Q(x))$ with $\exists x(P(x)\land
+          Q(x))$.
+        answerLines: 4
+        answer:
+          'The implication formula is true: $F\to F$ is true. The conjunction formula is false. Existential
+          restrictions generally require conjunction.'
+  - title: I. Equivalence laws and countermodels
+    instructions:
+      Determine whether each equivalence or inference is valid for arbitrary predicates over
+      nonempty domains. If it fails, give a domain and predicate meanings that demonstrate the failure.
+      Question 90 also asks about an empty domain.
+    questions:
+      - id: 81
+        type: equivalence
+        prompt: Is the equivalence valid?
+        answerLines: 4
+        answer: Yes. Both require every element to satisfy both predicates.
+        math: \forall x\,(P(x)\land Q(x))\equiv(\forall x\,P(x))\land(\forall x\,Q(x))
+      - id: 82
+        type: equivalence
+        prompt: Is the equivalence valid?
+        answerLines: 4
+        answer: Yes. A witness for either predicate establishes the disjunction.
+        math: \exists x\,(P(x)\lor Q(x))\equiv(\exists x\,P(x))\lor(\exists x\,Q(x))
+      - id: 83
+        type: equivalence
+        prompt: Does $\forall x(P(x)\lor Q(x))$ imply $(\forall xP(x))\lor(\forall xQ(x))$?
+        answerLines: 4
+        answer:
+          No. On $D=\{1,2\}$, let $P$ mean odd and $Q$ mean even. Each element satisfies one predicate,
+          but neither predicate holds for every element.
+      - id: 84
+        type: equivalence
+        prompt: Does $(\exists xP(x))\land(\exists xQ(x))$ imply $\exists x(P(x)\land Q(x))$?
+        answerLines: 4
+        answer:
+          No. On $D=\{1,2\}$ with $P$ odd and $Q$ even, the separate existentials have different witnesses
+          and no element satisfies both.
+      - id: 85
+        type: equivalence
+        prompt: Does $(\forall xP(x))\lor(\forall xQ(x))$ imply $\forall x(P(x)\lor Q(x))$?
+        answerLines: 4
+        answer: Yes. Whichever predicate holds for every element makes each element's disjunction true.
+      - id: 86
+        type: equivalence
+        prompt: Does $\exists x(P(x)\land Q(x))$ imply $(\exists xP(x))\land(\exists xQ(x))$?
+        answerLines: 4
+        answer: Yes. The common witness supplies a witness for each separate existential.
+      - id: 87
+        type: equivalence
+        prompt: Are $\forall x(P(x)\to Q(x))$ and $(\forall xP(x))\to(\forall xQ(x))$ equivalent?
+        answerLines: 5
+        answer:
+          No. Take $D=\{a,b\}$, with $P$ true only at $a$ and $Q$ nowhere true. The first formula is
+          false at $a$; the second is true because its antecedent is false.
+      - id: 88
+        type: equivalence
+        prompt: Is "There is no $P$-object" equivalent to "Every object is not $P$"?
+        answerLines: 4
+        answer: 'Yes: $\neg\exists xP(x)\equiv\forall x\neg P(x)$.'
+      - id: 89
+        type: equivalence
+        prompt: Are "Not every object is $P$" and "No object is $P$" equivalent?
+        answerLines: 4
+        answer: No. If $P$ holds only at $a$ in $D=\{a,b\}$, not every object is $P$, but some object is $P$.
+      - id: 90
+        type: equivalence
+        prompt:
+          Let $B$ be a closed proposition independent of $x$. Are $\forall x(B\land P(x))$ and $B\land\forall
+          xP(x)$ equivalent? What if the domain is empty?
+        answerLines: 5
+        answer:
+          Equivalent on a nonempty domain. On an empty domain with $B=F$, the universal on the left
+          is true, but the conjunction on the right is false.
+  - title: J. Valid and invalid quantified arguments
+    instructions:
+      Domains are nonempty, and any named object $a$ belongs to its domain. An existential witness
+      is not automatically a previously named object. For invalid arguments, give a countermodel or identify
+      the unjustified step.
+    questions:
+      - id: 91
+        type: argument
+        prompt: Determine validity.
+        answerLines: 4
+        answer: 'Valid: universal instantiation at the domain element $a$.'
+        math: \forall x\,P(x)\quad\therefore P(a)
+      - id: 92
+        type: argument
+        prompt: Determine validity.
+        answerLines: 4
+        answer: 'Valid: $a$ is a witness; existential introduction.'
+        math: P(a)\quad\therefore\exists x\,P(x)
+      - id: 93
+        type: argument
+        prompt: Determine validity for a previously fixed $a$.
+        answerLines: 4
+        answer:
+          Invalid. On $D=\{a,b\}$, let $P$ hold only at $b$. The existential is true, but $P(a)$ is
+          false.
+        math: \exists x\,P(x)\quad\therefore P(a)
+      - id: 94
+        type: argument
+        prompt: Determine validity.
+        answerLines: 4
+        answer: Valid. A witness for $P$ also satisfies $Q$ by the universal implication and modus ponens.
+        math: \forall x\,(P(x)\to Q(x)),\quad\exists x\,P(x)\quad\therefore\exists x\,Q(x)
+      - id: 95
+        type: argument
+        prompt: Determine validity.
+        answerLines: 4
+        answer: Invalid. On $D=\{a\}$ take $P(a)=F$, $Q(a)=T$. Both premises are true; no $P$-witness exists.
+        math: \forall x\,(P(x)\to Q(x)),\quad\exists x\,Q(x)\quad\therefore\exists x\,P(x)
+      - id: 96
+        type: argument
+        prompt: Determine validity.
+        answerLines: 4
+        answer: Invalid. Use two objects, with $P$ true only at one and $Q$ true only at the other.
+        math: \exists x\,P(x),\quad\exists x\,Q(x)\quad\therefore\exists x\,(P(x)\land Q(x))
+      - id: 97
+        type: argument
+        prompt: From $\forall x(P(x)\lor Q(x))$ and $\forall x\neg P(x)$, may we conclude $\forall xQ(x)$?
+        answerLines: 4
+        answer:
+          Yes. For an arbitrary element, disjunctive syllogism gives $Q$; since the element was arbitrary,
+          the conclusion is universal.
+      - id: 98
+        type: argument
+        prompt: From $\forall x(P(x)\to Q(x))$ and $\forall x\neg Q(x)$, may we conclude $\forall x\neg P(x)$?
+        answerLines: 4
+        answer: Yes. Apply modus tollens to an arbitrary element, then universally generalize.
+      - id: 99
+        type: argument
+        prompt:
+          A student verifies $P(0)$, $P(1)$, and $P(2)$ and concludes $\forall n\in\mathbb{Z}\,P(n)$.
+          Is the inference valid?
+        answerLines: 4
+        answer: 'No. For example, $P(n): n\geq0$ holds at all three tested values but fails at $n=-1$.'
+      - id: 100
+        type: argument
+        prompt:
+          A proof selects witness $n=3$ for $\exists n\in\mathbb{Z}(n^2=9)$ and concludes $\forall n\in\mathbb{Z}(n^2=9)$.
+          What went wrong?
+        answerLines: 4
+        answer: The witness is specially chosen, not arbitrary. The universal conclusion is false at $n=0$.
+  - title: K. A finite relationship
+    instructions:
+      Use $D=\{a,b,c\}$, where $a,b,c$ are distinct. The true ordered pairs for $R$ are exactly
+      $(a,a),(a,b),(b,c),(c,b)$; all other pairs are false. The first coordinate is the row and the second
+      the column. Give a witness or counterexample where appropriate.
+    questions:
+      - id: 101
+        type: truth-value
+        prompt: Evaluate.
+        answerLines: 2
+        answer: 'True: $(a,b)$ is a listed pair.'
+        math: R(a,b)
+      - id: 102
+        type: truth-value
+        prompt: Evaluate.
+        answerLines: 2
+        answer: 'False: $(b,a)$ is not listed.'
+        math: R(b,a)
+      - id: 103
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: 'True. Witnesses: for $a$ choose $a$ (or $b$); for $b$ choose $c$; for $c$ choose $b$.'
+        math: \forall x\exists y\,R(x,y)
+      - id: 104
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer:
+          'False. No column is all true: column $a$ fails at $b$, column $b$ fails at $b$, and column
+          $c$ fails at $a$.'
+        math: \exists y\forall x\,R(x,y)
+      - id: 105
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: True. For column $a$ choose row $a$; for $b$ choose $a$ or $c$; for $c$ choose $b$.
+        math: \forall y\exists x\,R(x,y)
+      - id: 106
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: False. Row $a$ lacks $c$, row $b$ lacks $a$, and row $c$ lacks $a$.
+        math: \exists x\forall y\,R(x,y)
+      - id: 107
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: False. Row $a$ has two distinct witnesses, $a$ and $b$.
+        math: \forall x\exists!y\,R(x,y)
+      - id: 108
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: 'True: $x=a$ is a witness. The other two diagonal entries are false.'
+        math: \exists x\,R(x,x)
+      - id: 109
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: 'False: $R(a,b)$ is true but $R(b,a)$ is false.'
+        math: \forall x\forall y\,(R(x,y)\to R(y,x))
+      - id: 110
+        type: truth-value
+        prompt: Determine truth.
+        answerLines: 3
+        answer: True. Use $a\mapsto b$, $b\mapsto c$, and $c\mapsto b$ as the distinct witnesses.
+        math: \forall x\exists y\,(y\ne x\land R(x,y))
+  - title: L. Proofs and specifications
+    instructions:
+      Write complete short arguments. Separate arbitrary inputs from chosen witnesses, verify
+      that witnesses belong to the stated domain, and state exactly what a counterexample falsifies.
+    questions:
+      - id: 111
+        type: reasoning
+        prompt: Prove that every integer has a larger integer.
+        answerLines: 5
+        answer:
+          Let $n$ be an arbitrary integer and choose $m=n+1$. Then $m$ is an integer and $m>n$, proving
+          $\forall n\in\mathbb{Z}\exists m\in\mathbb{Z}(m>n)$.
+      - id: 112
+        type: reasoning
+        prompt: 'Prove: for every integer $n$, if $n$ is even, then $n^2$ is even.'
+        answerLines: 5
+        answer:
+          Take arbitrary integer $n$ and assume $n=2k$ for integer $k$. Then $n^2=4k^2=2(2k^2)$ is even.
+          This proves the required universal implication.
+      - id: 113
+        type: reasoning
+        prompt: 'Prove: for every integer $n$, if $n$ is odd, then $n^2$ is odd.'
+        answerLines: 6
+        answer:
+          Write the arbitrary odd integer as $n=2k+1$. Then $n^2=2(2k^2+2k)+1$ is odd, since $2k^2+2k$
+          is an integer.
+      - id: 114
+        type: reasoning
+        prompt: Prove that for every real $x$ there is a real $y$ with $y>x^2$.
+        answerLines: 5
+        answer: Given arbitrary real $x$, choose $y=x^2+1$. It is real and exceeds $x^2$ by 1.
+      - id: 115
+        type: reasoning
+        prompt: Refute the claim that there is a smallest integer.
+        answerLines: 5
+        answer: For any candidate $n$, the integer $m=n-1$ violates $n\leq m$. Thus no candidate works.
+        math: \exists n\in\mathbb{Z}\forall m\in\mathbb{Z},\ n\leq m
+      - id: 116
+        type: reasoning
+        prompt:
+          Let $A(r,w)$ mean worker $w$ is assigned to request $r$. Express "Every request has exactly
+          one worker." Does this forbid one worker from serving two requests?
+        answerLines: 5
+        answer:
+          '$\forall r\in R\exists!w\in W\,A(r,w)$. No: uniqueness is per request. The same worker may
+          be the unique worker for several requests.'
+      - id: 117
+        type: reasoning
+        prompt: Negate and interpret "Every request has an assigned worker," using $A(r,w)$ as in 116.
+        answerLines: 5
+        answer:
+          $\exists r\in R\forall w\in W\,\neg A(r,w)$. There is at least one request with no assigned
+          worker.
+      - id: 118
+        type: reasoning
+        prompt:
+          For an empty array, what do JavaScript's every and some return? Does checking every element
+          of a finite sample prove a statement about all integers?
+        answerLines: 4
+        answer:
+          The every method returns true and some returns false. A finite exhaustive check proves the
+          property only for the elements in that array; it does not establish an infinite universal claim.
+      - id: 119
+        type: reasoning
+        prompt:
+          A specification says every valid input produces a correct output. What would refute it? Would
+          an incorrect output on an invalid input suffice?
+        answerLines: 4
+        answer:
+          A valid input producing an incorrect output refutes the implication. An invalid input does
+          not satisfy its antecedent and therefore is not a counterexample.
+      - id: 120
+        type: reasoning
+        prompt:
+          Prove that each integer $n$ has exactly one integer $m$ with $n+m=0$. Does one fixed $m$ work
+          for every $n$?
+        answerLines: 6
+        answer:
+          'Existence: choose $m=-n$. Uniqueness: any solution of $n+m=0$ must satisfy $m=-n$. There
+          is no global witness: $n=0$ requires $m=0$, whereas $n=1$ requires $m=-1$.'

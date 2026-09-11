@@ -1,0 +1,604 @@
+'title': 'Graph Theory'
+'instructions':
+  '80 exercises. Undirected graphs are finite and simple; directed graphs have no loops
+  or repeated arcs but may have opposite arcs. Paths have no repeated vertices. Empty graphs are disconnected;
+  the empty forest is allowed. Follow any stated traversal order. The answer key follows the student section.'
+'sections':
+  - 'title': 'A. Modeling and elementary deductions'
+    'instructions': 'Make the graph conventions explicit.'
+    'questions':
+      - 'id': 1
+        'type': 'reasoning'
+        'prompt': 'How many possible edges can a simple undirected graph on five labeled vertices have?'
+        'answerLines': 3
+        'answer': '$\binom52=10$, choosing an unordered pair of distinct endpoints.'
+      - 'id': 2
+        'type': 'reasoning'
+        'prompt': 'How many possible arcs can a loop-free digraph on five labeled vertices have?'
+        'answerLines': 3
+        'answer': '$5\cdot4=20$. The initial endpoint and distinct terminal endpoint are ordered choices.'
+      - 'id': 3
+        'type': 'reasoning'
+        'prompt': 'A simple undirected graph has degree list 3,3,2,2,2. How many edges would it have?'
+        'answerLines': 3
+        'answer': 'The sum is 12, so handshaking gives 6 edges.'
+      - 'id': 4
+        'type': 'reasoning'
+        'prompt': 'Can degree list 3,3,3,2,2 belong to an undirected graph? Explain.'
+        'answerLines': 3
+        'answer':
+          'No. The degree sum is 13, which is odd and therefore cannot equal twice an integer edge
+          count.'
+      - 'id': 5
+        'type': 'reasoning'
+        'prompt':
+          'If two drawn edges cross without a marked vertex, does that crossing become a vertex of
+          the abstract graph?'
+        'answerLines': 3
+        'answer':
+          'No. The vertex set and incidence data define the graph. A geometric crossing alone introduces
+          no additional vertex or adjacency.'
+      - 'id': 6
+        'type': 'reasoning'
+        'prompt':
+          'A graph on five vertices has all degrees 4. Identify its edge set structurally and count
+          edges.'
+        'answerLines': 3
+        'answer':
+          'Every vertex is adjacent to all four others, so it is the complete graph on five vertices.
+          It has $5\cdot4/2=10$ edges.'
+      - 'id': 7
+        'type': 'reasoning'
+        'prompt':
+          'Can a simple graph on four vertices contain two different edges with the same unordered
+          pair of endpoints?'
+        'answerLines': 3
+        'answer':
+          'No. Its edge collection is a set of two-element vertex sets, so a given pair occurs at
+          most once. Parallel edges require a different graph model.'
+      - 'id': 8
+        'type': 'reasoning'
+        'prompt': 'Can a loop-free digraph contain both (a,b) and (b,a)? Explain.'
+        'answerLines': 3
+        'answer':
+          'Yes. They are distinct ordered pairs representing opposite directions; the no-loop rule
+          only excludes arcs whose two endpoints are equal.'
+      - 'id': 9
+        'type': 'reasoning'
+        'prompt': 'In a digraph, the sum of out-degrees is 17. What is the sum of in-degrees, and why?'
+        'answerLines': 3
+        'answer':
+          'It is also 17. Each of the 17 arcs contributes one outgoing incidence and one incoming
+          incidence.'
+      - 'id': 10
+        'type': 'reasoning'
+        'prompt':
+          'An undirected graph has 7 vertices, all of degree 2. How many edges does it have? Does
+          this alone establish connectivity?'
+        'answerLines': 4
+        'answer':
+          'The degree sum is 14, so there are 7 edges. It need not be connected: a disjoint triangle
+          and four-cycle have these degrees.'
+  - 'title': 'B. Graph models and degree counts'
+    'instructions': 'For 11-16 use $V=\{a,b,c,d,e\}$ and $E=\{\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}\}$.'
+    'questions':
+      - 'id': 11
+        'type': 'reasoning'
+        'prompt': 'List the neighbors of c and its degree.'
+        'answerLines': 2
+        'answer': 'The neighbors are $a,b,d$, so $\deg(c)=3$.'
+      - 'id': 12
+        'type': 'reasoning'
+        'prompt': 'Give every vertex degree and the number of edges.'
+        'answerLines': 3
+        'answer': 'Degrees at $a,b,c,d,e$ are $2,2,3,2,1$. There are 5 edges.'
+      - 'id': 13
+        'type': 'reasoning'
+        'prompt': 'Verify the handshaking lemma numerically for this graph.'
+        'answerLines': 3
+        'answer': 'The degree sum is $2+2+3+2+1=10=2\cdot5$, twice the edge count.'
+      - 'id': 14
+        'type': 'reasoning'
+        'prompt': 'Identify the odd-degree vertices and check the parity conclusion.'
+        'answerLines': 3
+        'answer': 'The odd-degree vertices are $c,e$, exactly two. The number of odd-degree vertices is even.'
+      - 'id': 15
+        'type': 'reasoning'
+        'prompt': 'Does this graph have an isolated vertex? Identify its degree-1 vertices.'
+        'answerLines': 2
+        'answer': 'No vertex is isolated. The only degree-1 vertex is $e$.'
+      - 'id': 16
+        'type': 'reasoning'
+        'prompt': 'Write the adjacency-matrix row for c with column order a,b,c,d,e.'
+        'answerLines': 3
+        'answer': '$1,1,0,1,0$. There are edges from $c$ to $a,b,d$, and no loop at $c$.'
+      - 'id': 17
+        'type': 'reasoning'
+        'prompt': 'Can a simple undirected graph on five vertices have a vertex of degree 5? Explain.'
+        'answerLines': 3
+        'answer':
+          'No. A vertex can have at most the other four vertices as neighbors, so its degree is at
+          most 4.'
+      - 'id': 18
+        'type': 'reasoning'
+        'prompt': 'Can an undirected graph have exactly three odd-degree vertices? Prove your answer.'
+        'answerLines': 5
+        'answer':
+          'No. Its degree sum is even by handshaking. Even-degree terms contribute an even sum, while
+          three odd terms contribute an odd sum, a contradiction.'
+      - 'id': 19
+        'type': 'reasoning'
+        'prompt': 'Explain the difference between a simple undirected edge and a directed arc.'
+        'answerLines': 3
+        'answer':
+          'An undirected edge is a two-element set $\{u,v\}$, unchanged when endpoints are exchanged.
+          An arc is an ordered pair $(u,v)$, whose reverse is a distinct possible arc.'
+      - 'id': 20
+        'type': 'reasoning'
+        'prompt': 'For a digraph with arcs $(a,b),(a,c),(b,c),(c,a)$, list in- and out-degrees for $a,b,c$.'
+        'answerLines': 3
+        'answer':
+          'At $a$: in 1, out 2; at $b$: in 1, out 1; at $c$: in 2, out 1. Each total equals the four
+          arcs.'
+  - 'title': 'C. Walks, trails, paths, and cycles'
+    'instructions': 'For 21-26 use $V=\{a,b,c,d,e\}$ and $E=\{\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}\}$.'
+    'questions':
+      - 'id': 21
+        'type': 'reasoning'
+        'prompt': 'Classify $a,b,c,d,e$ as a walk, trail, path, or cycle, and give its length.'
+        'answerLines': 3
+        'answer': 'It is a walk, trail, and path of length 4. It is not a cycle because its endpoints differ.'
+      - 'id': 22
+        'type': 'reasoning'
+        'prompt': 'Classify $a,b,c,a$ under the same terms.'
+        'answerLines': 3
+        'answer':
+          'It is a closed walk, a trail, and a cycle of length 3. It is not a path because the start
+          vertex repeats.'
+      - 'id': 23
+        'type': 'reasoning'
+        'prompt': 'Classify $a,c,a,c,d$.'
+        'answerLines': 3
+        'answer': 'It is a walk of length 4. The edge $\{a,c\}$ repeats, so it is not a trail, path, or cycle.'
+      - 'id': 24
+        'type': 'reasoning'
+        'prompt': 'Is $a,b,d,e$ a walk? Explain.'
+        'answerLines': 2
+        'answer': 'No. The consecutive pair $b,d$ is not an edge.'
+      - 'id': 25
+        'type': 'reasoning'
+        'prompt': 'Is $c,d,e,d,c$ a cycle? Explain.'
+        'answerLines': 3
+        'answer':
+          'No. It is a closed walk, but it repeats edges $\{c,d\}$ and $\{d,e\}$ and repeats the interior
+          vertex $d$.'
+      - 'id': 26
+        'type': 'reasoning'
+        'prompt': 'Give two different paths from a to c, and explain what their existence reveals.'
+        'answerLines': 3
+        'answer':
+          '$a,c$ and $a,b,c$ are different paths. Their union contains the cycle $a,b,c,a$, so the
+          connected graph is not a tree.'
+      - 'id': 27
+        'type': 'reasoning'
+        'prompt': 'Why is traversing one undirected edge out and back not a cycle under the lesson convention?'
+        'answerLines': 3
+        'answer':
+          'It uses the same edge twice and has length 2. An undirected cycle here has length at least
+          3 and distinct vertices except the repeated start.'
+      - 'id': 28
+        'type': 'reasoning'
+        'prompt': 'In the digraph with arcs $(a,b),(b,a)$, is $a,b,a$ a directed cycle?'
+        'answerLines': 3
+        'answer':
+          'Yes. The two opposite arcs are distinct, and the closed directed walk has two distinct
+          vertices before returning to its start. Directed cycles of length 2 are allowed.'
+      - 'id': 29
+        'type': 'reasoning'
+        'prompt': 'Prove that whenever a finite walk connects two vertices, some path connects them.'
+        'answerLines': 5
+        'answer':
+          'If the walk repeats a vertex, delete the portion between two occurrences. This gives a
+          shorter walk with the same endpoints. Repeated deletion terminates, leaving no repeated vertices
+          and hence a path.'
+      - 'id': 30
+        'type': 'reasoning'
+        'prompt': 'What is the length-0 path at a vertex, and why is it useful?'
+        'answerLines': 3
+        'answer':
+          'It consists of that vertex alone and traverses zero edges. It establishes that every vertex
+          can reach itself without requiring a loop.'
+  - 'title': 'D. Connectivity and reachability'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 31
+        'type': 'reasoning'
+        'prompt': 'For $V=\{a,b,c,d,e,f\}$ and edges $\{a,b\},\{b,c\},\{d,e\}$, list the components.'
+        'answerLines': 3
+        'answer':
+          'The components have vertex sets $\{a,b,c\}$, $\{d,e\}$, and $\{f\}$. The isolated vertex
+          forms its own component.'
+      - 'id': 32
+        'type': 'reasoning'
+        'prompt': 'For that graph, what minimum number of new edges makes it connected? Give suitable edges.'
+        'answerLines': 4
+        'answer':
+          'Two edges suffice, for example $\{c,d\}$ and $\{e,f\}$. Three components require at least
+          two joining edges because one edge can reduce the component count by at most one.'
+      - 'id': 33
+        'type': 'reasoning'
+        'prompt': 'Explain why undirected reachability is reflexive and symmetric.'
+        'answerLines': 4
+        'answer':
+          'A length-0 path reaches the starting vertex, proving reflexivity. Reversing an undirected
+          path gives a path in the opposite direction, proving symmetry.'
+      - 'id': 34
+        'type': 'reasoning'
+        'prompt':
+          'Explain why undirected reachability is transitive even when concatenating paths repeats
+          vertices.'
+        'answerLines': 4
+        'answer':
+          'Concatenation gives a walk from the first vertex to the third. Removing repeated-vertex
+          portions produces a path with the same endpoints, proving transitivity.'
+      - 'id': 35
+        'type': 'reasoning'
+        'prompt': 'Classify the digraph $a\to b\to c$ as strongly connected, weakly connected, both, or neither.'
+        'answerLines': 3
+        'answer':
+          'It is weakly connected because its underlying undirected graph is a path. It is not strongly
+          connected because $c$ cannot reach $a$.'
+      - 'id': 36
+        'type': 'reasoning'
+        'prompt': 'Classify the digraph with arcs $(a,b),(b,c),(c,a)$.'
+        'answerLines': 3
+        'answer':
+          'It is both strongly and weakly connected. Following the directed cycle reaches any vertex
+          from any other.'
+      - 'id': 37
+        'type': 'reasoning'
+        'prompt': 'A digraph has $V=\{a,b,c,d\}$ and arcs $(a,b),(b,a),(c,d)$. Is it weakly connected?'
+        'answerLines': 3
+        'answer':
+          'No. Ignoring directions leaves two components, $\{a,b\}$ and $\{c,d\}$. It is consequently
+          not strongly connected either.'
+      - 'id': 38
+        'type': 'reasoning'
+        'prompt':
+          'Under this lesson convention, classify a one-vertex edgeless graph and an empty graph for
+          connectivity.'
+        'answerLines': 3
+        'answer':
+          'The one-vertex graph is connected using its length-0 path. The empty graph is defined to
+          be disconnected and has zero components.'
+      - 'id': 39
+        'type': 'reasoning'
+        'prompt':
+          'Under this lesson convention, is an empty digraph strongly or weakly connected? What about
+          one vertex with no arcs?'
+        'answerLines': 3
+        'answer':
+          'The empty digraph is neither strongly nor weakly connected. The singleton is both: its
+          only required reachability is supplied by a length-0 path.'
+      - 'id': 40
+        'type': 'reasoning'
+        'prompt':
+          'Does weak connectivity imply strong connectivity? Give a counterexample. Does strong connectivity
+          imply weak connectivity?'
+        'answerLines': 4
+        'answer':
+          'Weak does not imply strong: $a\to b$ is a counterexample. Strong implies weak because every
+          directed path remains an undirected path when directions are ignored.'
+  - 'title': 'E. Trees, forests, and spanning trees'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 41
+        'type': 'reasoning'
+        'prompt': 'A tree has 12 vertices. How many edges does it have?'
+        'answerLines': 2
+        'answer': '11, since every finite nonempty tree has $n-1$ edges.'
+      - 'id': 42
+        'type': 'reasoning'
+        'prompt': 'A forest has 14 vertices and 4 components. How many edges does it have?'
+        'answerLines': 3
+        'answer': '$14-4=10$, using $m=n-c$.'
+      - 'id': 43
+        'type': 'reasoning'
+        'prompt': 'An acyclic graph has 9 vertices and 8 edges. Must it be a tree?'
+        'answerLines': 3
+        'answer': 'Yes. The forest identity gives $c=n-m=1$, so it is connected and acyclic.'
+      - 'id': 44
+        'type': 'reasoning'
+        'prompt': 'A connected graph has 9 vertices and 8 edges. Must it be a tree?'
+        'answerLines': 4
+        'answer':
+          'Yes. A connected graph contains a spanning tree with 8 edges. All of its edges must belong
+          to that tree, so it is acyclic.'
+      - 'id': 45
+        'type': 'reasoning'
+        'prompt': 'Does having n-1 edges alone characterize an n-vertex tree? Give a counterexample.'
+        'answerLines': 4
+        'answer':
+          'No. A triangle plus an isolated vertex has 4 vertices and 3 edges, but it is disconnected
+          and contains a cycle.'
+      - 'id': 46
+        'type': 'reasoning'
+        'prompt': 'Prove that a finite tree with at least two vertices has two leaves.'
+        'answerLines': 6
+        'answer':
+          'Take a longest path. An endpoint has its path neighbor; another neighbor on the path would
+          create a cycle, and one outside it would extend the path. Both are impossible, so both endpoints
+          have degree 1.'
+      - 'id': 47
+        'type': 'reasoning'
+        'prompt': 'Prove by induction that a tree on n vertices has n-1 edges.'
+        'answerLines': 6
+        'answer':
+          'The one-vertex tree has zero edges. For an arbitrary larger tree, the leaf lemma supplies
+          a leaf to remove with its incident edge. Deletion cannot create a cycle, and a leaf cannot be
+          an interior vertex of a path between remaining vertices, so connectivity remains. The smaller
+          tree has $n-2$ edges by induction; restoring the edge gives $n-1$.'
+      - 'id': 48
+        'type': 'reasoning'
+        'prompt':
+          'Explain why deleting an edge lying on a cycle preserves connectivity in a connected undirected
+          graph.'
+        'answerLines': 4
+        'answer':
+          "The remainder of that cycle supplies an alternate path between the deleted edge's endpoints.
+          Any walk using the removed edge can replace it with that path, so reachability is preserved."
+      - 'id': 49
+        'type': 'reasoning'
+        'prompt': 'Find a spanning tree of $V=\{a,b,c,d\}$ with edges $\{a,b\},\{b,c\},\{c,a\},\{c,d\}$.'
+        'answerLines': 3
+        'answer':
+          'Delete $\{a,c\}$. The remaining edges $\{a,b\},\{b,c\},\{c,d\}$ form a connected path on
+          all four vertices.'
+      - 'id': 50
+        'type': 'reasoning'
+        'prompt': 'Classify the empty graph as a tree or forest, and check the forest edge-count formula.'
+        'answerLines': 3
+        'answer':
+          'It is a forest because it has no cycles, but not a tree because trees are nonempty and
+          connected. It has $n=c=m=0$, so $m=n-c$ holds.'
+  - 'title': 'F. Rooted trees and DAGs'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 51
+        'type': 'reasoning'
+        'prompt':
+          'Root the tree with edges $\{a,b\},\{a,c\},\{b,d\},\{b,e\},\{c,f\}$ at $a$. Give every nonroot
+          parent.'
+        'answerLines': 3
+        'answer':
+          'The parents are $b:a$, $c:a$, $d:b$, $e:b$, and $f:c$, determined by the unique paths from
+          $a$.'
+      - 'id': 52
+        'type': 'reasoning'
+        'prompt': 'For that rooted tree, give the depths of a through f and its rooted leaves.'
+        'answerLines': 3
+        'answer': 'Depths are $0,1,1,2,2,2$. Vertices $d,e,f$ have no children and are the rooted leaves.'
+      - 'id': 53
+        'type': 'reasoning'
+        'prompt': 'Is that rooted tree binary? Is it full binary?'
+        'answerLines': 3
+        'answer':
+          'It is binary because each vertex has at most two children. It is not full binary because
+          $c$ has exactly one child, $f$.'
+      - 'id': 54
+        'type': 'reasoning'
+        'prompt':
+          'A full binary rooted tree has 7 internal vertices. How many leaves and total vertices does
+          it have?'
+        'answerLines': 3
+        'answer': '$L=I+1=8$, so the total is $7+8=15$.'
+      - 'id': 55
+        'type': 'reasoning'
+        'prompt': 'Prove the leaf identity for a finite full binary rooted tree.'
+        'answerLines': 5
+        'answer':
+          'If there are $I$ internal vertices and $L$ leaves, each internal vertex has two children,
+          so there are $2I$ edges. The tree count also gives $I+L-1$ edges. Equating gives $L=I+1$.'
+      - 'id': 56
+        'type': 'reasoning'
+        'prompt':
+          'A root has one child and no other incident edges. Is it an undirected degree-1 vertex?
+          Is it a rooted-tree leaf?'
+        'answerLines': 3
+        'answer':
+          'It has undirected degree 1, but is not a rooted-tree leaf because it has a child. The two
+          uses of leaf differ at the root.'
+      - 'id': 57
+        'type': 'reasoning'
+        'prompt': 'For arcs $(a,c),(b,c),(c,d),(c,e),(d,e)$ on $a,b,c,d,e$, list all topological orderings.'
+        'answerLines': 4
+        'answer':
+          '$a,b,c,d,e$ and $b,a,c,d,e$. Both $a,b$ must precede $c$, which must precede $d$, which
+          must precede $e$.'
+      - 'id': 58
+        'type': 'reasoning'
+        'prompt': 'Add arc (d,a) to the preceding digraph. Can a topological ordering still exist?'
+        'answerLines': 3
+        'answer':
+          'No. The arcs $a\to c\to d\to a$ form a directed cycle, which cannot be placed consistently
+          in any topological order.'
+      - 'id': 59
+        'type': 'reasoning'
+        'prompt': 'Prove that every nonempty finite DAG has a vertex of in-degree zero.'
+        'answerLines': 6
+        'answer':
+          'Otherwise repeatedly follow an incoming arc backward from any vertex. Finiteness forces
+          a repeated vertex, and the resulting closed directed segment contains a directed cycle, contradicting
+          acyclicity.'
+      - 'id': 60
+        'type': 'reasoning'
+        'prompt': 'Explain how repeatedly removing an in-degree-zero vertex constructs a topological ordering.'
+        'answerLines': 5
+        'answer':
+          'Place the removed vertex next in the order. No remaining arc enters it, so all prerequisites
+          were already removed. The remaining graph is still a DAG; induction continues until all vertices
+          are ordered.'
+  - 'title': 'G. Representation and traversal'
+    'instructions':
+      'For 61-65 use $V=\{a,b,c,d,e,f\}$ and edges $\{a,b\},\{a,c\},\{b,d\},\{b,e\},\{c,e\},\{e,f\}$.
+      Start at $a$ and inspect neighbors alphabetically. Mark on discovery.'
+    'questions':
+      - 'id': 61
+        'type': 'reasoning'
+        'prompt': 'Give the BFS discovery order using a queue.'
+        'answerLines': 4
+        'answer':
+          '$a,b,c,d,e,f$. Processing $a$ discovers $b,c$; processing $b$ discovers $d,e$; processing
+          $e$ later discovers $f$.'
+      - 'id': 62
+        'type': 'reasoning'
+        'prompt': 'Give the BFS distance from a to every vertex.'
+        'answerLines': 3
+        'answer': 'Distances at $a,b,c,d,e,f$ are $0,1,1,2,2,3$. These count edges in shortest paths.'
+      - 'id': 63
+        'type': 'reasoning'
+        'prompt': 'Give the BFS parent of each nonroot vertex with the stated neighbor order.'
+        'answerLines': 4
+        'answer':
+          'Parents are $b:a$, $c:a$, $d:b$, $e:b$, and $f:e$. Although $c$ also neighbors $e$, $e$
+          was already discovered from $b$.'
+      - 'id': 64
+        'type': 'reasoning'
+        'prompt': 'Give the discovery order for recursive DFS with the stated alphabetical neighbor order.'
+        'answerLines': 4
+        'answer':
+          '$a,b,d,e,c,f$. From $b$, DFS finishes leaf $d$ before exploring $e$; from $e$, it explores
+          $c$ before $f$.'
+      - 'id': 65
+        'type': 'reasoning'
+        'prompt': 'Write the adjacency list for each vertex and count its total neighbor entries.'
+        'answerLines': 4
+        'answer':
+          '$a:b,c$; $b:a,d,e$; $c:a,e$; $d:b$; $e:b,c,f$; $f:e$. There are 12 entries, twice the six
+          undirected edges.'
+      - 'id': 66
+        'type': 'reasoning'
+        'prompt': 'For a graph with n vertices and m edges, compare adjacency-matrix and adjacency-list storage.'
+        'answerLines': 3
+        'answer':
+          'A matrix uses $n^2$ entries. Lists use storage proportional to $n+m$, with two neighbor
+          entries per undirected edge and vertex-list overhead.'
+      - 'id': 67
+        'type': 'reasoning'
+        'prompt':
+          'Under direct array indexing, what is the cost of checking one specified matrix adjacency
+          entry? Contrast an unsorted neighbor list.'
+        'answerLines': 3
+        'answer':
+          'Matrix lookup has constant cost. An unsorted list may require scanning every neighbor of
+          the queried vertex, taking time proportional to its degree in the worst case.'
+      - 'id': 68
+        'type': 'reasoning'
+        'prompt': 'Explain the full-traversal time bound using adjacency lists and constant-cost marking.'
+        'answerLines': 4
+        'answer':
+          'Each vertex is discovered once and each neighbor-list entry scanned once. Thus the work
+          is proportional to $n+m$; undirected edges are scanned twice, changing only the constant.'
+      - 'id': 69
+        'type': 'reasoning'
+        'prompt':
+          'Why does scanning an adjacency matrix for all vertices give a quadratic full-traversal
+          bound?'
+        'answerLines': 3
+        'answer':
+          'For each of $n$ vertices, the algorithm scans $n$ possible neighbors, giving $n^2$ entry
+          inspections even when few edges exist.'
+      - 'id': 70
+        'type': 'reasoning'
+        'prompt': 'Does BFS minimize total edge weight in every weighted graph? Give a concrete counterexample.'
+        'answerLines': 4
+        'answer':
+          'No. Let edges $a-b$ have weight 10, $a-c$ weight 1, and $c-b$ weight 1. BFS favors the
+          one-edge route to $b$, but the two-edge route has smaller total weight 2.'
+  - 'title': 'H. Euler, Hamiltonian, and mixed reasoning'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 71
+        'type': 'reasoning'
+        'prompt':
+          'Explain what an Euler trail uses exactly once and what a Hamiltonian cycle visits exactly
+          once before returning.'
+        'answerLines': 3
+        'answer':
+          'An Euler trail uses every edge once but may revisit vertices. A Hamiltonian cycle visits
+          every vertex once before returning to the start, but need not use every edge.'
+      - 'id': 72
+        'type': 'reasoning'
+        'prompt':
+          'For the graph with edges $\{a,b\},\{b,c\},\{c,d\},\{d,a\}$, exhibit an Euler circuit and
+          a Hamiltonian cycle.'
+        'answerLines': 3
+        'answer':
+          '$a,b,c,d,a$ serves as both: it uses every edge once and visits every vertex once before
+          returning.'
+      - 'id': 73
+        'type': 'reasoning'
+        'prompt':
+          'Does the complete graph on four vertices have an Euler trail? Does it have a Hamiltonian
+          cycle?'
+        'answerLines': 4
+        'answer':
+          'It has no Euler trail: all four vertices have odd degree 3, whereas an Euler trail permits
+          zero or two odd vertices. It has a Hamiltonian cycle, for example any cyclic ordering of the four
+          vertices.'
+      - 'id': 74
+        'type': 'reasoning'
+        'prompt': 'For edges $\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}$, find an Euler trail and its endpoints.'
+        'answerLines': 4
+        'answer':
+          '$c,a,b,c,d,e$ traverses each edge exactly once. Its endpoints are the two odd-degree vertices,
+          $c,e$.'
+      - 'id': 75
+        'type': 'reasoning'
+        'prompt': 'Can the preceding graph have a Hamiltonian cycle? Explain.'
+        'answerLines': 3
+        'answer':
+          'No. Vertex $e$ has degree 1, so a cycle cannot both enter and leave it using two distinct
+          incident edges.'
+      - 'id': 76
+        'type': 'reasoning'
+        'prompt':
+          'Two disjoint triangles have every degree even. Do they have one Euler circuit using all
+          edges?'
+        'answerLines': 3
+        'answer':
+          'No. Their edge-bearing vertices are disconnected. The even-degree condition must be accompanied
+          by connectivity of all non-isolated vertices.'
+      - 'id': 77
+        'type': 'reasoning'
+        'prompt':
+          'A triangle plus one isolated vertex: is there an Euler circuit using every edge? Is there
+          a Hamiltonian cycle using every vertex?'
+        'answerLines': 4
+        'answer':
+          'An Euler circuit can traverse the triangle, since isolated vertices do not contribute edges.
+          A Hamiltonian cycle covering all vertices is impossible because it cannot include the isolated vertex.'
+      - 'id': 78
+        'type': 'reasoning'
+        'prompt': 'Explain the parity necessity for an open Euler trail with distinct endpoints.'
+        'answerLines': 5
+        'answer':
+          'At every internal visit, an arrival pairs with a departure. All incident edge uses pair
+          except one at the start and one at the end. Exactly those endpoints have odd degree.'
+      - 'id': 79
+        'type': 'reasoning'
+        'prompt':
+          'Outline why a connected edge-bearing undirected graph with all even degrees admits an Euler
+          circuit.'
+        'answerLines': 6
+        'answer':
+          'Follow unused edges until returning to the start; even degrees prevent getting stuck elsewhere.
+          If edges remain, connectivity supplies a vertex on the current closed trail with unused incident
+          edges. Build and splice another closed trail there. Finitely many repetitions exhaust all edges.'
+      - 'id': 80
+        'type': 'reasoning'
+        'prompt': 'Does an Euler-degree test decide whether a graph has a Hamiltonian cycle? Give evidence.'
+        'answerLines': 4
+        'answer':
+          'No. The complete graph on four vertices has a Hamiltonian cycle but fails the Euler odd-degree
+          criterion. Euler tests concern covering edges, whereas Hamiltonian questions concern visiting vertices.'

@@ -1,0 +1,638 @@
+'title': 'Asymptotic Growth and Algorithmic Reasoning'
+'instructions':
+  '80 exercises. Unless stated otherwise, n is a positive integer, functions are eventually
+  nonnegative, and comparison functions are eventually positive. Constants and thresholds must not depend
+  on n. Loop bodies have constant positive cost unless specified otherwise. The answer key follows the
+  student section.'
+'sections':
+  - 'title': 'A. Definitions and explicit bounds'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 1
+        'type': 'reasoning'
+        'prompt': 'State the definition of $f(n)=O(g(n))$, including the order of the quantifiers.'
+        'answerLines': 4
+        'answer':
+          'There exist $c>0$ and an integer $n_0\geq1$ such that for every integer $n\geq n_0$, $0\leq
+          f(n)\leq cg(n)$. The same constants work for every later index.'
+      - 'id': 2
+        'type': 'reasoning'
+        'prompt': 'State the definition of $f(n)=\Omega(g(n))$.'
+        'answerLines': 4
+        'answer':
+          'There exist $c>0$ and an integer $n_0\geq1$ such that $0\leq cg(n)\leq f(n)$ for every
+          integer $n\geq n_0$. It is an eventual lower bound.'
+      - 'id': 3
+        'type': 'reasoning'
+        'prompt': 'State the definition of $f(n)=\Theta(g(n))$.'
+        'answerLines': 4
+        'answer':
+          'There exist $c_1,c_2>0$ and an integer $n_0\geq1$ such that $0\leq c_1g(n)\leq f(n)\leq
+          c_2g(n)$ for every integer $n\geq n_0$.'
+      - 'id': 4
+        'type': 'reasoning'
+        'prompt': 'Prove $3n+5=O(n)$ with specific constants.'
+        'answerLines': 3
+        'answer': 'For $n\geq1$, $3n+5\leq8n$. Choose $c=8,n_0=1$.'
+      - 'id': 5
+        'type': 'reasoning'
+        'prompt': 'Prove $4n^2+2n+9=O(n^2)$ with specific constants.'
+        'answerLines': 3
+        'answer':
+          'For $n\geq1$, both $n\leq n^2$ and $1\leq n^2$, so the expression is at most $15n^2$. Choose
+          $c=15,n_0=1$.'
+      - 'id': 6
+        'type': 'reasoning'
+        'prompt': 'Give matching bounds proving $4n^2+2n+9=\Theta(n^2)$.'
+        'answerLines': 3
+        'answer': 'For $n\geq1$, $4n^2\leq4n^2+2n+9\leq15n^2$. Thus $c_1=4,c_2=15,n_0=1$ work.'
+      - 'id': 7
+        'type': 'reasoning'
+        'prompt': 'Prove $2n^2-5n=\Theta(n^2)$ using a valid threshold.'
+        'answerLines': 4
+        'answer':
+          'For $n\geq5$, $n^2\leq2n^2-5n\leq2n^2$. Choose $c_1=1,c_2=2,n_0=5$. Small negative values
+          do not affect eventual growth.'
+      - 'id': 8
+        'type': 'reasoning'
+        'prompt': 'Is $n=O(n^2)$? Is this a tight upper bound? Explain.'
+        'answerLines': 4
+        'answer':
+          'Yes: $n\leq n^2$ for $n\geq1$. It is not a tight order description, since $n$ cannot have
+          a positive constant quadratic lower bound eventually.'
+      - 'id': 9
+        'type': 'reasoning'
+        'prompt': 'Prove the constant function 7 is $\Theta(1)$.'
+        'answerLines': 3
+        'answer': 'For every positive integer, $7\cdot1\leq7\leq7\cdot1$. Take $c_1=c_2=7,n_0=1$.'
+      - 'id': 10
+        'type': 'reasoning'
+        'prompt': 'Can choosing $c=n$ prove $n^2=O(n)$? Explain.'
+        'answerLines': 3
+        'answer':
+          'No. The multiplier must be fixed independently of the varying input size. Choosing a new
+          multiplier for each index does not satisfy the definition.'
+  - 'title': 'B. Counterexamples and quantified negation'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 11
+        'type': 'reasoning'
+        'prompt':
+          'Negate the claim $f=O(g)$ for eventually nonnegative $f$ and positive $g$, working beyond
+          any threshold where their signs are valid.'
+        'answerLines': 5
+        'answer':
+          'For every $c>0$ and every sufficiently large integer threshold $n_0$, there exists an integer
+          $n\geq n_0$ with $f(n)>cg(n)$. Every proposed eventual upper multiplier must fail.'
+      - 'id': 12
+        'type': 'reasoning'
+        'prompt': 'Prove $n^2$ is not $O(n)$.'
+        'answerLines': 5
+        'answer':
+          'Given arbitrary $c>0,n_0\geq1$, choose an integer $n>\max(c,n_0)$. Then $n^2>cn$, defeating
+          every proposed constant and threshold.'
+      - 'id': 13
+        'type': 'reasoning'
+        'prompt': 'Prove $n$ is not $\Omega(n^2)$.'
+        'answerLines': 5
+        'answer':
+          'Given any proposed $c>0,n_0$, choose an integer $n>\max(1/c,n_0)$. Then $cn^2>n$, so the
+          required lower-bound inequality fails.'
+      - 'id': 14
+        'type': 'reasoning'
+        'prompt': 'Prove $n^3$ is not $O(n^2)$.'
+        'answerLines': 5
+        'answer':
+          'For arbitrary $c>0,n_0$, choose an integer $n>\max(c,n_0)$. Then $n^3>cn^2$. No fixed multiplier
+          works eventually.'
+      - 'id': 15
+        'type': 'reasoning'
+        'prompt':
+          'A function equals 1000000 at $n=1$ and equals $n$ for $n\geq2$. Is it $\Theta(n)$? Give
+          constants.'
+        'answerLines': 3
+        'answer':
+          'Yes. For $n\geq2$, it equals $n$, so $c_1=c_2=1,n_0=2$ work. A finite initial exception
+          does not change the class.'
+      - 'id': 16
+        'type': 'reasoning'
+        'prompt': 'Let $f(n)=n$ for even $n$ and $2n$ for odd $n$. Prove a tight bound.'
+        'answerLines': 3
+        'answer':
+          'For every $n\geq1$, $n\leq f(n)\leq2n$. Hence $f=\Theta(n)$ with constants 1 and 2 and
+          threshold 1.'
+      - 'id': 17
+        'type': 'reasoning'
+        'prompt':
+          'Let $h(n)=n$ for even $n$ and $n^2$ for odd $n$. Give a quadratic upper bound and a linear
+          lower bound.'
+        'answerLines': 3
+        'answer':
+          'For every $n\geq1$, $n\leq h(n)\leq n^2$. Thus $h=\Omega(n)$ and $h=O(n^2)$, both with
+          multiplier 1 and threshold 1.'
+      - 'id': 18
+        'type': 'reasoning'
+        'prompt': 'For that function $h$, prove $h$ is not $O(n)$.'
+        'answerLines': 5
+        'answer':
+          'Given any $c>0,n_0$, choose an odd integer $n>\max(c,n_0)$. Then $h(n)=n^2>cn$, so a linear
+          upper bound fails.'
+      - 'id': 19
+        'type': 'reasoning'
+        'prompt': 'For that function $h$, prove $h$ is not $\Omega(n^2)$.'
+        'answerLines': 5
+        'answer':
+          'Given any $c>0,n_0$, choose an even integer $n>\max(1/c,n_0)$. Then $h(n)=n<cn^2$, so a
+          quadratic lower bound fails.'
+      - 'id': 20
+        'type': 'reasoning'
+        'prompt':
+          'Why does checking an inequality at the first million input sizes fail to prove an asymptotic
+          bound on an infinite domain?'
+        'answerLines': 4
+        'answer':
+          'The definition requires every sufficiently large index, including all untested ones. A
+          function can match the tested data and grow differently afterward; finite evidence alone does not
+          control its tail.'
+  - 'title': 'C. Rules and cancellation'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 21
+        'type': 'reasoning'
+        'prompt': 'Prove transitivity: $f=O(g)$ and $g=O(h)$ imply $f=O(h)$.'
+        'answerLines': 5
+        'answer':
+          'Above the larger threshold, let $f\leq ag$ and $g\leq bh$ for fixed positive $a,b$. Then
+          $f\leq ab h$, which is the required eventual upper bound.'
+      - 'id': 22
+        'type': 'reasoning'
+        'prompt':
+          'If $f\leq ag$ and $u\leq bv$ eventually, with all functions nonnegative, give a bound for
+          $f+u$.'
+        'answerLines': 4
+        'answer': 'Above both thresholds, $f+u\leq ag+bv\leq\max(a,b)(g+v)$. Thus $f+u=O(g+v)$.'
+      - 'id': 23
+        'type': 'reasoning'
+        'prompt': 'Under those same hypotheses, give a bound for $fu$.'
+        'answerLines': 4
+        'answer':
+          'Multiplication preserves the inequalities because quantities are nonnegative: $fu\leq abgv$.
+          Thus $fu=O(gv)$ above the larger threshold.'
+      - 'id': 24
+        'type': 'reasoning'
+        'prompt': 'Prove $g+h=\Theta(\max(g,h))$ for nonnegative functions whose maximum is eventually positive.'
+        'answerLines': 4
+        'answer':
+          'Pointwise, $\max(g,h)\leq g+h\leq2\max(g,h)$. Constants 1 and 2 give both bounds wherever
+          the comparison is positive.'
+      - 'id': 25
+        'type': 'reasoning'
+        'prompt': 'Give a tight bound for $5n^3+7n^2+2$ with explicit constants.'
+        'answerLines': 3
+        'answer':
+          'For $n\geq1$, $5n^3\leq5n^3+7n^2+2\leq14n^3$. Thus it is $\Theta(n^3)$ with constants 5
+          and 14.'
+      - 'id': 26
+        'type': 'reasoning'
+        'prompt':
+          'Both $n^2+1$ and $n^2$ are $\Theta(n^2)$. What is the growth of their difference, and what
+          mistake does this illustrate?'
+        'answerLines': 4
+        'answer':
+          'The difference is 1, hence $\Theta(1)$. Subtracting asymptotic descriptions does not preserve
+          a quadratic lower bound because dominant terms can cancel.'
+      - 'id': 27
+        'type': 'reasoning'
+        'prompt': 'For fixed $a,b>1$, prove $\log_a n=\Theta(\log_b n)$.'
+        'answerLines': 4
+        'answer':
+          'Change of base gives $\log_a n=(1/\log_b a)\log_b n$. The multiplier is a fixed positive
+          constant, so choose it for both bounds and use $n_0=2$.'
+      - 'id': 28
+        'type': 'reasoning'
+        'prompt': 'Why does that argument not imply $\log_n n=\Theta(\log_2 n)$?'
+        'answerLines': 4
+        'answer':
+          'The base now varies with $n$, so the multiplier is not fixed. In fact $\log_n n=1$ for
+          $n>1$, while $\log_2 n$ grows without bound.'
+      - 'id': 29
+        'type': 'reasoning'
+        'prompt': 'If $f=O(n)$, must $f=O(n^2)$? Must $f=\Theta(n)$?'
+        'answerLines': 4
+        'answer':
+          'The quadratic upper bound follows from $n\leq n^2$ eventually and transitivity. A linear
+          tight bound does not follow: the constant function 1 is $O(n)$ but not $\Theta(n)$.'
+      - 'id': 30
+        'type': 'reasoning'
+        'prompt': 'If $f=\Theta(g)$ and $g=\Theta(h)$, prove $f=\Theta(h)$.'
+        'answerLines': 5
+        'answer':
+          'Above all thresholds, suppose $a_1g\leq f\leq a_2g$ and $b_1h\leq g\leq b_2h$. Then $a_1b_1h\leq
+          f\leq a_2b_2h$, giving positive fixed bounds.'
+  - 'title': 'D. Little o and growth comparisons'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 31
+        'type': 'reasoning'
+        'prompt': 'State the epsilon definition of $f=o(g)$.'
+        'answerLines': 4
+        'answer':
+          'For every $\varepsilon>0$, there exists an integer $n_0\geq1$ such that $0\leq f(n)\leq\varepsilon
+          g(n)$ for every integer $n\geq n_0$.'
+      - 'id': 32
+        'type': 'reasoning'
+        'prompt': 'Prove $n=o(n^2)$ by giving a threshold in terms of $\varepsilon$.'
+        'answerLines': 5
+        'answer':
+          'Choose an integer $n_0\geq\max(1,1/\varepsilon)$. Then for $n\geq n_0$, $1\leq\varepsilon
+          n$, hence $n\leq\varepsilon n^2$.'
+      - 'id': 33
+        'type': 'reasoning'
+        'prompt': 'Prove $1=o(n)$.'
+        'answerLines': 4
+        'answer':
+          'For any $\varepsilon>0$, choose an integer $n_0\geq\max(1,1/\varepsilon)$. Then $1\leq\varepsilon
+          n$ for every $n\geq n_0$.'
+      - 'id': 34
+        'type': 'reasoning'
+        'prompt': 'Is $n=o(n)$? Use one epsilon to decide.'
+        'answerLines': 3
+        'answer': 'No. With $\varepsilon=1/2$, the inequality $n\leq n/2$ fails at every positive index.'
+      - 'id': 35
+        'type': 'reasoning'
+        'prompt': 'For fixed positive integer $d$, explain why $2^n\geq\binom n{d+1}$ when $n\geq d+1$.'
+        'answerLines': 4
+        'answer':
+          'The binomial theorem expresses $2^n$ as the sum of all nonnegative coefficients $\binom
+          nj$. One term of a nonnegative sum cannot exceed the sum.'
+      - 'id': 36
+        'type': 'reasoning'
+        'prompt': 'For $n\geq2(d+1)$, bound $\binom n{d+1}$ below using $n/2$.'
+        'answerLines': 4
+        'answer': 'Each of the $d+1$ factors in $n(n-1)\cdots(n-d)$ is at least $n/2$. Therefore $\binom n{d+1}\geq(n/2)^{d+1}/(d+1)!$.'
+      - 'id': 37
+        'type': 'reasoning'
+        'prompt': 'Use the previous two bounds to prove $n^d=o(2^n)$ for fixed positive integer $d$.'
+        'answerLines': 6
+        'answer':
+          'They give $n^d/2^n\leq C/n$, where $C=2^{d+1}(d+1)!$. For any $\varepsilon>0$, choose an
+          integer threshold at least $2(d+1)$ and $C/\varepsilon$. Then the ratio is at most $\varepsilon$.'
+      - 'id': 38
+        'type': 'reasoning'
+        'prompt': 'Prove $3^n$ is not $O(2^n)$ using $(3/2)^n\geq1+n/2$.'
+        'answerLines': 5
+        'answer':
+          'Given $c>0,n_0$, choose an integer $n>\max(n_0,2c)$. Then $3^n/2^n\geq1+n/2>c$, so $3^n>c2^n$.
+          Every proposed constant fails.'
+      - 'id': 39
+        'type': 'reasoning'
+        'prompt':
+          'Order $n^2,1,2^n,n,\log_2 n,n\log_2 n$ from strictly slower to strictly faster eventual
+          growth.'
+        'answerLines': 4
+        'answer':
+          '$1$, $\log_2 n$, $n$, $n\log_2 n$, $n^2$, $2^n$. Adjacent ratios become arbitrarily small
+          in the forward direction; constants and finitely many small values do not alter this ordering.'
+      - 'id': 40
+        'type': 'reasoning'
+        'prompt': 'Explain how $\log_2 n=o(n)$ implies $n\log_2 n=o(n^2)$.'
+        'answerLines': 4
+        'answer':
+          'The ratio $(n\log_2 n)/n^2$ equals $(\log_2 n)/n$. Thus the same epsilon threshold proving
+          the latter comparison proves the former.'
+  - 'title': 'E. Loop counts and finite sums'
+    'instructions':
+      'All loops include both endpoints. The measured body operation has constant positive
+      cost; use an elementary array and loop-control model.'
+    'questions':
+      - 'id': 41
+        'type': 'reasoning'
+        'prompt':
+          'A loop performs one body operation for i from 1 through n. Give its exact body count and
+          tight growth.'
+        'answerLines': 3
+        'answer':
+          'There are $n$ body executions, hence $\Theta(n)$ work when loop control also has constant
+          cost per iteration.'
+      - 'id': 42
+        'type': 'reasoning'
+        'prompt':
+          'Two consecutive loops perform one operation per iteration, the first n times and the second
+          3n times. Count and classify.'
+        'answerLines': 3
+        'answer': 'The total body count is $n+3n=4n$, hence $\Theta(n)$. Sequential phases add.'
+      - 'id': 43
+        'type': 'reasoning'
+        'prompt': 'Two consecutive loops have lengths n and n squared. Count and classify.'
+        'answerLines': 3
+        'answer':
+          'The body count is $n+n^2$. For $n\geq1$, it lies between $n^2$ and $2n^2$, so the total
+          is $\Theta(n^2)$.'
+      - 'id': 44
+        'type': 'reasoning'
+        'prompt':
+          'An outer loop runs i from 1 through n; for each i, an inner loop runs j from 1 through
+          n. Count the inner body.'
+        'answerLines': 3
+        'answer':
+          'The count is $n\cdot n=n^2$, hence $\Theta(n^2)$ because the full inner loop runs for each
+          outer iteration.'
+      - 'id': 45
+        'type': 'reasoning'
+        'prompt':
+          'An outer loop runs i from 1 through n; the inner loop runs j from 1 through 3. Count and
+          classify.'
+        'answerLines': 3
+        'answer':
+          'The body executes $3n$ times, giving $\Theta(n)$. Two nested loops do not automatically
+          imply quadratic growth.'
+      - 'id': 46
+        'type': 'reasoning'
+        'prompt':
+          'An outer loop runs i from 1 through n; the inner loop runs j from 1 through i. Give the
+          exact body count.'
+        'answerLines': 4
+        'answer': '$\sum_{i=1}^n i=n(n+1)/2$. This lies between $n^2/2$ and $n^2$ for $n\geq1$, hence is $\Theta(n^2)$.'
+      - 'id': 47
+        'type': 'reasoning'
+        'prompt':
+          'An outer loop runs i from 1 through n; the inner loop runs j from i through n. Give the
+          exact body count.'
+        'answerLines': 4
+        'answer':
+          '$\sum_{i=1}^n(n-i+1)=n(n+1)/2$, since the inner lengths are $n,n-1,\ldots,1$. Thus the
+          growth is quadratic.'
+      - 'id': 48
+        'type': 'reasoning'
+        'prompt':
+          'An outer loop runs i from 1 through n; the inner loop runs j from 1 through twice i. Count
+          and classify.'
+        'answerLines': 4
+        'answer': '$\sum_{i=1}^n2i=n(n+1)$, between $n^2$ and $2n^2$ for positive $n$, so $\Theta(n^2)$.'
+      - 'id': 49
+        'type': 'reasoning'
+        'prompt':
+          'An outer loop runs i from 1 through n. Each iteration copies an n-element array element
+          by element. Classify element-copy work.'
+        'answerLines': 4
+        'answer':
+          'Each of the $n$ iterations copies $n$ elements, totaling $n^2$ writes and quadratic work.
+          Treating the entire array copy as a unit step would change the cost model.'
+      - 'id': 50
+        'type': 'reasoning'
+        'prompt':
+          'Why does multiplying maximum inner-loop length by outer-loop count give an upper bound
+          but not always a tight one?'
+        'answerLines': 4
+        'answer':
+          'It replaces every actual inner length by the maximum, possibly overestimating most iterations.
+          A tight bound requires summing actual lengths or a matching lower-bound argument.'
+  - 'title': 'F. Doubling, halving, and recurrences'
+    'instructions':
+      'Loop bodies have constant positive cost. Recurrences in 56-60 are defined only for
+      powers of two, with the stated unit base cost.'
+    'questions':
+      - 'id': 51
+        'type': 'reasoning'
+        'prompt':
+          'Start i at 1 and repeatedly execute a body and double i while i is at most n. Count executions
+          exactly.'
+        'answerLines': 4
+        'answer':
+          'The values are $2^0$ through $2^k$, where $k=\lfloor\log_2 n\rfloor$. There are $\lfloor\log_2
+          n\rfloor+1$ executions, hence $\Theta(\log n)$ for $n\geq2$.'
+      - 'id': 52
+        'type': 'reasoning'
+        'prompt': 'For n equal to 16, list the i values in the preceding doubling loop and its body count.'
+        'answerLines': 3
+        'answer':
+          'The values are $1,2,4,8,16$, so there are five executions. Including the endpoint contributes
+          the final execution.'
+      - 'id': 53
+        'type': 'reasoning'
+        'prompt':
+          'Start i at 1; while i is at most n, execute an inner body i times, then double i. Give
+          an exact sum and tight bound.'
+        'answerLines': 5
+        'answer':
+          'With $k=\lfloor\log_2 n\rfloor$, the count is $\sum_{j=0}^k2^j=2^{k+1}-1$. It is at least
+          $n/2$ and less than $2n$ for $n\geq1$, hence $\Theta(n)$.'
+      - 'id': 54
+        'type': 'reasoning'
+        'prompt':
+          'In the preceding loop, a solver reports logarithmic outer count times maximum inner count
+          n, obtaining n log n. Assess this result.'
+        'answerLines': 4
+        'answer':
+          'It is a valid upper bound, but not tight. The geometric sum of actual inner lengths is
+          $\Theta(n)$, so the product bound overestimates the total by a logarithmic factor.'
+      - 'id': 55
+        'type': 'reasoning'
+        'prompt':
+          'For n a power of two, start i at n and halve it exactly while i is at least 1, doing one
+          body operation each time. Count executions.'
+        'answerLines': 3
+        'answer':
+          'The values are $n,n/2,\ldots,1$, giving $\log_2 n+1$ executions and logarithmic growth
+          on the stated domain.'
+      - 'id': 56
+        'type': 'reasoning'
+        'prompt':
+          'For $T(1)=1$, $T(n)=2T(n/2)+n$, use the known exact formula to give a tight asymptotic
+          bound with constants.'
+        'answerLines': 4
+        'answer':
+          '$T(n)=n\log_2 n+n$. For powers of two $n\geq2$, $n\log_2 n\leq T(n)\leq2n\log_2 n$. Thus
+          $T=\Theta(n\log n)$ with constants 1 and 2.'
+      - 'id': 57
+        'type': 'reasoning'
+        'prompt': 'For $S(1)=1$, $S(n)=S(n/2)+1$, give an exact and tight asymptotic solution.'
+        'answerLines': 4
+        'answer':
+          '$S(n)=\log_2 n+1$. For powers of two $n\geq2$, it lies between $\log_2 n$ and $2\log_2
+          n$, so $S=\Theta(\log n)$.'
+      - 'id': 58
+        'type': 'reasoning'
+        'prompt': 'For $U(1)=1$, $U(n)=2U(n/2)+1$, give an exact and tight asymptotic solution.'
+        'answerLines': 4
+        'answer': '$U(n)=2n-1$. For powers of two $n\geq1$, $n\leq U(n)\leq2n$, so $U=\Theta(n)$.'
+      - 'id': 59
+        'type': 'reasoning'
+        'prompt':
+          'Why can the preceding single-child and two-child recurrences have equal depth but different
+          asymptotic total work?'
+        'answerLines': 4
+        'answer':
+          'Both halve the argument each level, but the two-child recurrence processes all nodes in
+          a branching tree. Depth counts only levels; total work also counts how many nodes occupy them.'
+      - 'id': 60
+        'type': 'reasoning'
+        'prompt':
+          'A nonnegative cost satisfies only T(1)=1 and T(n) at most 2T(n/2)+n on powers of two. Is
+          Theta(n log n) justified?'
+        'answerLines': 4
+        'answer':
+          'Only the corresponding upper bound is justified. The constant function $T(n)=1$ satisfies
+          these inequalities, so a matching lower bound does not follow.'
+  - 'title': 'G. Cases, parameters, and cost models'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 61
+        'type': 'reasoning'
+        'prompt': 'For linear search in a nonempty n-element array, give best- and worst-case comparison counts.'
+        'answerLines': 4
+        'answer':
+          'The best case is 1 when the first item matches. The worst case is $n$, for example when
+          the target is absent. Hence the respective bounds are $\Theta(1)$ and $\Theta(n)$.'
+      - 'id': 62
+        'type': 'reasoning'
+        'prompt': 'Does Big O mean worst case and Omega mean best case? Explain.'
+        'answerLines': 4
+        'answer':
+          'No. O and Omega specify upper and lower bounds on a chosen function. Best-case and worst-case
+          functions can each receive either type of bound.'
+      - 'id': 63
+        'type': 'reasoning'
+        'prompt': 'If the worst-case cost is Omega(n), does every size-n input eventually require linear work?'
+        'answerLines': 4
+        'answer':
+          'No. The maximum over size-$n$ inputs is bounded below, so some input incurs that much cost.
+          Other inputs can be faster, as linear search demonstrates.'
+      - 'id': 64
+        'type': 'reasoning'
+        'prompt': 'What extra information is needed to define average-case running time?'
+        'answerLines': 3
+        'answer':
+          'A probability distribution over inputs of each size is needed, so the expected cost is
+          well defined. An unspecified average over possible inputs is not a complete model.'
+      - 'id': 65
+        'type': 'reasoning'
+        'prompt':
+          'Why does an implementation using at most n squared comparisons not prove that every algorithm
+          for its task needs quadratic work?'
+        'answerLines': 4
+        'answer':
+          'It establishes an upper bound for one implementation. A problem-wide lower bound must quantify
+          over every permitted algorithm in a specified model.'
+      - 'id': 66
+        'type': 'reasoning'
+        'prompt':
+          'Under a model where one operation writes at most one output element, prove a lower bound
+          for copying an n-element array into a separate explicit array.'
+        'answerLines': 5
+        'answer':
+          'The output requires $n$ element writes, so at least $n$ operations are necessary: $\Omega(n)$.
+          Writing each element once also gives an $O(n)$ algorithm, yielding $\Theta(n)$.'
+      - 'id': 67
+        'type': 'reasoning'
+        'prompt':
+          'Why does creating a shared reference to an existing array not inherit the preceding copying
+          lower bound?'
+        'answerLines': 4
+        'answer':
+          'The required output is now a reference rather than $n$ separately written elements. The
+          argument counted required element writes, which are not part of this changed task.'
+      - 'id': 68
+        'type': 'reasoning'
+        'prompt': 'Find the binary bit length of the positive integer $N=1000$.'
+        'answerLines': 3
+        'answer': '$2^9=512\leq1000<1024=2^{10}$, so its bit length is $\lfloor\log_2 1000\rfloor+1=10$.'
+      - 'id': 69
+        'type': 'reasoning'
+        'prompt':
+          'An algorithm loops N times for a positive integer input N. Express the possible iteration
+          magnitude in terms of its bit length b.'
+        'answerLines': 4
+        'answer':
+          '$2^{b-1}\leq N<2^b$. Thus the iteration count is $\Theta(2^b)$ as a function of bit length,
+          despite being linear in the numeric value $N$.'
+      - 'id': 70
+        'type': 'reasoning'
+        'prompt':
+          'Why can arbitrary-precision arithmetic invalidate a unit-cost assumption for additions
+          inside a loop?'
+        'answerLines': 4
+        'answer':
+          'The operands may gain digits as execution proceeds. In a bit-operation model, adding longer
+          numbers requires processing more bits, so one addition need not have bounded constant cost.'
+  - 'title': 'H. Mixed proofs and interpretation'
+    'instructions': 'Show your reasoning.'
+    'questions':
+      - 'id': 71
+        'type': 'reasoning'
+        'prompt': 'Prove $n^3+100n=\Theta(n^3)$ with explicit constants.'
+        'answerLines': 3
+        'answer': 'For $n\geq1$, $n^3\leq n^3+100n\leq101n^3$. Constants 1 and 101 and threshold 1 suffice.'
+      - 'id': 72
+        'type': 'reasoning'
+        'prompt': 'Prove $n^2/(n+1)=\Theta(n)$ with explicit constants.'
+        'answerLines': 4
+        'answer':
+          'For $n\geq1$, $n\leq n+1\leq2n$. Therefore $n/2\leq n^2/(n+1)\leq n$, giving constants
+          $1/2$ and 1.'
+      - 'id': 73
+        'type': 'reasoning'
+        'prompt': 'Is $2^n+n^4=\Theta(2^n)$? Justify both bounds using the fixed-power growth result.'
+        'answerLines': 5
+        'answer':
+          'The expression is at least $2^n$. Since $n^4=o(2^n)$, choose its epsilon-1 threshold so
+          $n^4\leq2^n$ afterward. Then the sum is at most $2\cdot2^n$, proving both bounds.'
+      - 'id': 74
+        'type': 'reasoning'
+        'prompt': 'Is $n\log_2 n=O(n^2)$? Is it $\Theta(n^2)$?'
+        'answerLines': 4
+        'answer':
+          'The upper bound holds since $\log_2 n\leq n$ for positive integers. It is not a quadratic
+          tight bound because $\log_2 n=o(n)$ gives $n\log_2 n=o(n^2)$.'
+      - 'id': 75
+        'type': 'reasoning'
+        'prompt':
+          'A complete adjacency-list graph traversal examines each vertex once and each undirected
+          edge twice. State a tight bound in n vertices and m edges under constant-cost inspections.'
+        'answerLines': 4
+        'answer':
+          'The count is $n+2m$, between $n+m$ and $2(n+m)$. Thus the traversal is $\Theta(n+m)$ when
+          all vertices and adjacency entries are included.'
+      - 'id': 76
+        'type': 'reasoning'
+        'prompt':
+          'Why can replacing an adjacency list by an adjacency matrix change full graph traversal
+          cost from n+m to n squared?'
+        'answerLines': 4
+        'answer':
+          'A matrix traversal may inspect all $n$ possible neighbors for each vertex, including nonedges,
+          giving $n^2$ inspections. Lists inspect only stored neighbor entries plus vertex overhead.'
+      - 'id': 77
+        'type': 'reasoning'
+        'prompt': 'Give nonnegative functions $f,g$ such that $f=O(g)$ but $g$ is not $O(f)$, and justify.'
+        'answerLines': 5
+        'answer':
+          'Take $f(n)=n,g(n)=n^2$. The first inequality holds with multiplier 1 for $n\geq1$. For
+          any proposed multiplier $c>0$ and threshold $n_0$, choose an integer $n>\max(c,n_0)$.
+          Then $n^2>cn$, so the reverse bound fails beyond every proposed threshold.'
+      - 'id': 78
+        'type': 'reasoning'
+        'prompt': 'If $f=o(g)$, prove $f=O(g)$. Does the converse hold?'
+        'answerLines': 5
+        'answer':
+          'Apply the little-o definition with $\varepsilon=1$ to get an eventual upper bound. The
+          converse fails for $f=g=n$: it is $O(n)$ but fails little o at $\varepsilon=1/2$.'
+      - 'id': 79
+        'type': 'reasoning'
+        'prompt':
+          'An algorithm has a worst-case upper bound O(n log n). A benchmark on one input takes linear
+          work. Does that contradict the bound?'
+        'answerLines': 4
+        'answer':
+          'No. An upper bound allows smaller costs, and a single input need not realize the worst
+          case. Neither observation proves a matching worst-case lower bound.'
+      - 'id': 80
+        'type': 'reasoning'
+        'prompt':
+          'Outline the steps needed to make a defensible asymptotic claim about a program with nested
+          loops and growing integer operands.'
+        'answerLines': 5
+        'answer':
+          'Define the input-size parameter and the chosen best, worst, or expected cost function.
+          State the operation model, count actual loop iterations with sums, include operand-size-dependent
+          costs, and prove upper and any claimed lower bounds with constants and thresholds.'

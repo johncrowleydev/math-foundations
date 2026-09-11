@@ -1,0 +1,623 @@
+title: Proof by Contradiction
+instructions:
+  80 exercises in eight sections. Give reasons and show the requested proof, including domains
+  and all necessary cases. Integer arithmetic is exact. Blank response space is provided; the answer key follows
+  the student section.
+sections:
+  - title: A. Negating the whole claim
+    instructions: Write the temporary assumption required for a contradiction proof.
+    questions:
+      - id: 1
+        type: reasoning
+        prompt: 'Negate: every integer has a larger integer.'
+        answerLines: 3
+        answer:
+          There exists an integer $n$ such that every integer $m$ satisfies $m\leq n$. This asserts a greatest
+          integer, not merely two equal integers.
+      - id: 2
+        type: reasoning
+        prompt: 'Negate: no rational number has square 2.'
+        answerLines: 3
+        answer:
+          There exists a rational number $x$ with $x^2=2$. Choose such a witness only within the temporary
+          contradiction assumption.
+      - id: 3
+        type: reasoning
+        prompt: 'Negate: for every integer $n$, if $n^2$ is even then $n$ is even.'
+        answerLines: 3
+        answer:
+          There exists an integer $n$ whose square is even but which is not even, hence odd. The hypothesis
+          and failed conclusion must concern the same integer.
+      - id: 4
+        type: reasoning
+        prompt: 'Negate: there are infinitely many primes.'
+        answerLines: 3
+        answer:
+          There are finitely many primes. The negation does not assert that there is exactly one prime or
+          that no primes exist.
+      - id: 5
+        type: reasoning
+        prompt: 'Negate: a given equation has at most one integer solution.'
+        answerLines: 3
+        answer:
+          There exist two distinct integers that both solve the equation. A single solution does not contradict
+          at-most-one.
+      - id: 6
+        type: reasoning
+        prompt: 'Negate: a given equation has exactly one integer solution.'
+        answerLines: 3
+        answer:
+          Either it has no integer solution, or it has at least two distinct integer solutions. Exactly one
+          combines existence and at most one, so either component may fail.
+      - id: 7
+        type: reasoning
+        prompt: Negate $A\subseteq B$ using a witness.
+        answerLines: 3
+        answer: There exists $x\in A$ with $x\notin B$. An object outside $A$ cannot witness the failed inclusion.
+      - id: 8
+        type: reasoning
+        prompt: Negate injectivity of $f:A\to B$.
+        answerLines: 3
+        answer:
+          There exist distinct $a,b\in A$ such that $f(a)=f(b)$. A contradiction proof may temporarily choose
+          these colliding inputs.
+      - id: 9
+        type: reasoning
+        prompt: Negate surjectivity of $f:A\to B$.
+        answerLines: 3
+        answer:
+          There exists $b\in B$ such that $f(a)\ne b$ for every $a\in A$. The missing output must belong
+          to the declared codomain.
+      - id: 10
+        type: reasoning
+        prompt: Explain why deriving a negative number is not automatically a contradiction.
+        answerLines: 3
+        answer:
+          Negative numbers exist. It is contradictory only if the same number was also proved nonnegative
+          or otherwise forbidden by the assumptions. State the incompatible pair explicitly.
+  - title: B. Short contradiction arguments
+    instructions: Write an explicit temporary assumption and identify the final incompatible facts.
+    questions:
+      - id: 11
+        type: reasoning
+        prompt: Prove there is no greatest integer.
+        answerLines: 6
+        answer:
+          Suppose integer $M$ is greatest. The integer $M+1$ is then at most $M$, but arithmetic gives $M+1>M$.
+          This contradiction rules out a greatest integer.
+      - id: 12
+        type: reasoning
+        prompt: Prove there is no least positive real number.
+        answerLines: 6
+        answer:
+          Suppose $r>0$ is least positive. Then $r/2>0$ but $r/2<r$, contradicting leastness. Thus no such
+          positive real exists.
+      - id: 13
+        type: reasoning
+        prompt:
+          Prove that no integer is both even and odd. You may use that no integer lies strictly between 0
+          and 1.
+        answerLines: 6
+        answer:
+          Suppose $n=2a=2b+1$ for integers $a,b$. Then $a-b=1/2$, an integer strictly between 0 and 1, impossible.
+          Thus no integer has both parities.
+      - id: 14
+        type: reasoning
+        prompt: Prove that a positive integer greater than 1 cannot divide 1.
+        answerLines: 6
+        answer: Suppose $d>1$ and $1=dk$ for integer $k$. Positivity forces $k\geq1$, so $1=dk\geq d>1$, a contradiction.
+      - id: 15
+        type: reasoning
+        prompt: Prove that if $a<b$ are real, then $b\leq a$ is false.
+        answerLines: 6
+        answer:
+          Suppose $a<b$ and $b\leq a$. Combining gives $a<b\leq a$, hence $a<a$, impossible for real order.
+          Thus the proposed reverse weak comparison cannot hold.
+      - id: 16
+        type: reasoning
+        prompt: Prove that no real number satisfies $x^2+1=0$.
+        answerLines: 6
+        answer:
+          Suppose real $x$ satisfies it. Then $x^2=-1$, while every real square is nonnegative. These incompatible
+          facts contradict the assumption.
+      - id: 17
+        type: reasoning
+        prompt: Prove that if $x,y>0$, then $x+y\ne0$.
+        answerLines: 6
+        answer:
+          Suppose positive $x,y$ satisfy $x+y=0$. Adding their positivity gives $x+y>0$, contradicting equality
+          to zero. Hence the sum cannot vanish.
+      - id: 18
+        type: reasoning
+        prompt: Prove that $A\subseteq B$ and $B\subseteq C$ preclude an element of $A$ outside $C$.
+        answerLines: 6
+        answer:
+          Suppose such an $x$ exists. Since $x\in A$, the first inclusion gives $x\in B$; the second gives
+          $x\in C$. This contradicts its chosen nonmembership in $C$.
+      - id: 19
+        type: reasoning
+        prompt: Prove that an injective function cannot send three distinct inputs to one output.
+        answerLines: 6
+        answer:
+          Suppose three distinct inputs share an output. In particular the first two have equal outputs;
+          injectivity forces them equal, contradicting their stipulated distinctness.
+      - id: 20
+        type: reasoning
+        prompt: Prove that a nonempty finite set cannot be disjoint from itself.
+        answerLines: 6
+        answer:
+          Suppose nonempty $A$ has $A\cap A=\varnothing$. Choose $a\in A$. Then $a$ lies in both copies,
+          hence in the empty intersection, a contradiction. Finiteness is not needed for this argument.
+  - title: C. Lowest terms and irrational square roots
+    instructions:
+      'Use the established facts: even square implies even root; 3 dividing an integer square implies
+      3 divides its root.'
+    questions:
+      - id: 21
+        type: reasoning
+        prompt:
+          What does choosing a rational representation in lowest terms mean, and why can the denominator
+          be positive?
+        answerLines: 4
+        answer:
+          Choose integers $a,b$ with $b>0$, $x=a/b$, and no common positive divisor greater than 1. If a
+          denominator is negative, negating both entries preserves the value and makes it positive.
+      - id: 22
+        type: reasoning
+        prompt:
+          Explain why dividing numerator and denominator by their greatest positive common divisor leaves
+          no common divisor greater than 1.
+        answerLines: 5
+        answer:
+          If the reduced entries shared $h>1$, then the original entries would share $gh>g$, contradicting
+          that $g$ was greatest. The common-divisor set is nonempty and finite because its positive members divide
+          the positive denominator.
+      - id: 23
+        type: reasoning
+        prompt: Prove $\sqrt2$ is irrational.
+        answerLines: 7
+        answer:
+          'Suppose $\sqrt2=a/b$ in lowest terms with integers $a,b$ and $b>0$. Then $a^2=2b^2$, so $a$ is
+          even: $a=2k$. Substitution yields $b^2=2k^2$, so $b$ is even too. Both share divisor 2, contradicting
+          lowest terms.'
+      - id: 24
+        type: reasoning
+        prompt:
+          In the square-root-of-2 proof, why is the statement that both numerator and denominator are even
+          a contradiction?
+        answerLines: 4
+        answer:
+          They were chosen in lowest terms, which forbids a common positive divisor greater than 1. Evenness
+          of both gives common divisor 2. Without the lowest-terms condition there would be no contradiction.
+      - id: 25
+        type: reasoning
+        prompt: Prove $\sqrt3$ is irrational using the stated square-divisibility lemma.
+        answerLines: 7
+        answer:
+          Suppose $\sqrt3=a/b$ in lowest terms, $b>0$. Then $a^2=3b^2$, so $a=3k$. Substitution gives $b^2=3k^2$,
+          so 3 divides $b$ as well. The common divisor 3 contradicts lowest terms.
+      - id: 26
+        type: reasoning
+        prompt: Prove $\sqrt6$ is irrational using parity.
+        answerLines: 7
+        answer:
+          Suppose $\sqrt6=a/b$ in lowest terms, $b>0$. Then $a^2=6b^2$ is even, so $a=2k$. Thus $2k^2=3b^2$.
+          If $b$ were odd, $3b^2$ would be odd, contradicting its evenness. Hence both $a,b$ are even, contradicting
+          lowest terms.
+      - id: 27
+        type: reasoning
+        prompt: Prove $\sqrt8$ is irrational, using irrationality of $\sqrt2$.
+        answerLines: 6
+        answer:
+          Since $\sqrt8=2\sqrt2$, suppose $\sqrt8=r$ were rational. Then $\sqrt2=r/2$ would be rational by
+          nonzero rational division, contradicting the established irrationality.
+      - id: 28
+        type: reasoning
+        prompt: Prove $\sqrt{12}$ is irrational, using irrationality of $\sqrt3$.
+        answerLines: 6
+        answer:
+          We have $\sqrt{12}=2\sqrt3$. If it equaled rational $r$, then $\sqrt3=r/2$ would be rational, contradicting
+          irrationality of $\sqrt3$.
+      - id: 29
+        type: reasoning
+        prompt: Why does the lowest-terms proof pattern fail to show $\sqrt4$ irrational?
+        answerLines: 4
+        answer:
+          'The number is rational: $\sqrt4=2/1$. From $a^2=4b^2$ we get even $a$, but substitution $a=2k$
+          gives $k^2=b^2$, which does not force even $b$.'
+      - id: 30
+        type: reasoning
+        prompt: State what additional lemma is needed to extend the standard proof to $\sqrt p$ for prime $p$.
+        answerLines: 5
+        answer:
+          'One needs: if prime $p$ divides an integer square $a^2$, then $p\mid a$. With it, $a^2=pb^2$ forces
+          $a=pk$ and then $b^2=pk^2$, so both entries share $p$. Calling $p$ prime alone does not replace this
+          lemma''s proof.'
+  - title: D. Rational and irrational combinations
+    instructions: You may use rational closure under addition, subtraction, multiplication, and nonzero division.
+    questions:
+      - id: 31
+        type: reasoning
+        prompt: Prove that irrational $x$ plus rational $r$ is irrational.
+        answerLines: 6
+        answer:
+          Suppose $x+r$ is rational. Subtracting rational $r$ makes $x=(x+r)-r$ rational, contradicting the
+          hypothesis. Thus the sum is irrational.
+      - id: 32
+        type: reasoning
+        prompt: Prove that irrational $x$ minus rational $r$ is irrational.
+        answerLines: 6
+        answer:
+          Suppose $x-r$ is rational. Then $x=(x-r)+r$ is a sum of rationals, contradicting irrationality
+          of $x$.
+      - id: 33
+        type: reasoning
+        prompt: Prove that nonzero rational $r$ times irrational $x$ is irrational.
+        answerLines: 6
+        answer:
+          Suppose $rx$ is rational. Since $r\ne0$, rational closure under division makes $x=(rx)/r$ rational,
+          a contradiction. The nonzero hypothesis justifies division.
+      - id: 34
+        type: reasoning
+        prompt: Give a counterexample if the preceding multiplier is allowed to be zero.
+        answerLines: 4
+        answer:
+          Take $r=0,x=\sqrt2$. Then $rx=0$ is rational, despite irrational $x$. Thus the nonzero restriction
+          is necessary.
+      - id: 35
+        type: reasoning
+        prompt: Prove that the reciprocal of an irrational real is irrational.
+        answerLines: 6
+        answer:
+          An irrational $x$ is nonzero because 0 is rational. Suppose $1/x=r$ were rational. It is nonzero,
+          so $x=1/r$ would be rational, contradicting the hypothesis.
+      - id: 36
+        type: reasoning
+        prompt: Prove $5-2\sqrt2$ irrational.
+        answerLines: 6
+        answer:
+          If $5-2\sqrt2=r$ were rational, then $\sqrt2=(5-r)/2$ would be rational by closure, contradicting
+          its established irrationality.
+      - id: 37
+        type: reasoning
+        prompt: Prove that $\sqrt2+\sqrt3$ is irrational, using irrationality of $\sqrt6$.
+        answerLines: 6
+        answer:
+          Suppose its value $r$ is rational. Squaring gives $r^2=5+2\sqrt6$, hence $\sqrt6=(r^2-5)/2$ is
+          rational, a contradiction.
+      - id: 38
+        type: reasoning
+        prompt: Prove that $\sqrt3-\sqrt2$ is irrational, using irrationality of $\sqrt6$.
+        answerLines: 6
+        answer:
+          Suppose its value $r$ is rational. Then $r^2=5-2\sqrt6$, so $\sqrt6=(5-r^2)/2$ is rational, contradicting
+          the stated fact.
+      - id: 39
+        type: reasoning
+        prompt: Give irrational numbers whose sum is rational, and justify each input's irrationality.
+        answerLines: 4
+        answer:
+          Use $\sqrt2$ and $-\sqrt2$, summing to 0. The first is established irrational; if the second were
+          rational, its negative $\sqrt2$ would be rational too, a contradiction.
+      - id: 40
+        type: reasoning
+        prompt: Give irrational numbers whose product is rational and irrational numbers whose product is irrational.
+        answerLines: 4
+        answer:
+          $\sqrt2\cdot\sqrt2=2$ is rational. $\sqrt2\cdot\sqrt3=\sqrt6$ is irrational by the established
+          square-root results. All inputs in both examples are irrational.
+  - title: E. Prime divisors and infinitely many primes
+    instructions: A prime is an integer greater than 1 with only positive divisors 1 and itself.
+    questions:
+      - id: 41
+        type: reasoning
+        prompt: Explain why an integer $N>1$ has a smallest positive divisor greater than 1.
+        answerLines: 5
+        answer:
+          The candidate set contains $N$ and lies within the finite set $\{2,\ldots,N\}$. Therefore it is
+          nonempty and finite, so it has a least member.
+      - id: 42
+        type: reasoning
+        prompt: Prove that the smallest divisor $d>1$ of $N>1$ is prime.
+        answerLines: 7
+        answer:
+          If $d$ were composite, some integer $a$ with $1<a<d$ would divide $d$. Since $d\mid N$, divisibility
+          transitivity gives $a\mid N$. This contradicts minimality of $d$, so it is prime.
+      - id: 43
+        type: reasoning
+        prompt:
+          Distinguish the claims that every integer greater than 1 has a prime divisor and that every such
+          integer is prime.
+        answerLines: 4
+        answer:
+          'The first allows composite numbers: 12 has prime divisors 2 and 3. The second is false because
+          12 also has proper nontrivial divisors. A prime divisor need not equal the original integer.'
+      - id: 44
+        type: reasoning
+        prompt: If $p_1,\ldots,p_k$ were all primes, why does $N=p_1\cdots p_k+1$ exceed 1?
+        answerLines: 5
+        answer:
+          The list is nonempty because 2 is prime, and its product is a positive integer at least 2. Adding
+          1 gives $N\geq3>1$, so the prime-divisor lemma applies.
+      - id: 45
+        type: reasoning
+        prompt: Prove that no listed prime $p_i$ divides $N=p_1\cdots p_k+1$.
+        answerLines: 6
+        answer:
+          Each $p_i$ divides the product. If it also divided $N$, it would divide their difference 1. A prime
+          is greater than 1 and cannot divide 1, so this is impossible.
+      - id: 46
+        type: reasoning
+        prompt: Give the full contradiction proof that there are infinitely many primes.
+        answerLines: 7
+        answer:
+          Suppose all primes form a finite list $p_1,\ldots,p_k$. The number $N=p_1\cdots p_k+1>1$ has a
+          prime divisor $q$. Completeness puts $q$ on the list, so it divides both $N$ and the product, hence their
+          difference 1. This contradicts $q>1$.
+      - id: 47
+        type: reasoning
+        prompt:
+          Compute the product plus 1 for primes 2, 3, 5. What does this example illustrate, and what does
+          it not prove?
+        answerLines: 4
+        answer:
+          $2\cdot3\cdot5+1=31$, which has no divisor 2, 3, or 5 and is prime. It illustrates the construction
+          but does not prove that every such product-plus-one is prime or that every possible finite list fails
+          without the general argument.
+      - id: 48
+        type: reasoning
+        prompt: Verify $30031=59\cdot509$ and explain its role in correcting a common proof claim.
+        answerLines: 4
+        answer:
+          Multiplication gives $59\cdot509=30031=2\cdot3\cdot5\cdot7\cdot11\cdot13+1$. Thus the constructed
+          number need not be prime. The infinitude proof uses a prime divisor absent from the list.
+      - id: 49
+        type: reasoning
+        prompt:
+          Prove that for every positive integer $M$, there is a prime greater than $M$, using infinitely
+          many primes.
+        answerLines: 6
+        answer:
+          Suppose for some positive $M$ every prime were at most $M$. Then all primes would lie in the finite
+          set $\{2,\ldots,M\}$, making them finite, contrary to infinitude. Thus a larger prime exists.
+      - id: 50
+        type: reasoning
+        prompt: Why would assuming exactly two primes be insufficient to prove infinitely many primes by contradiction?
+        answerLines: 5
+        answer:
+          Refuting exactly two rules out only that count. There could still be 3, 4, or another finite number.
+          The needed assumption is an arbitrary finite complete list, whose length is not fixed in advance.
+  - title: F. Uniqueness and incompatible properties
+    instructions: For exactly-one claims, prove existence separately from uniqueness.
+    questions:
+      - id: 51
+        type: reasoning
+        prompt: Prove that a real number has at most one additive inverse by contradiction.
+        answerLines: 6
+        answer:
+          Suppose distinct real $a,b$ both satisfy $x+a=x+b=0$. Subtracting $x$ gives $a=b$, contradicting
+          distinctness. Thus at most one inverse exists.
+      - id: 52
+        type: reasoning
+        prompt: Prove every nonzero real $x$ has exactly one reciprocal.
+        answerLines: 6
+        answer:
+          'Existence: $1/x$ satisfies $x(1/x)=1$. If distinct $a,b$ both satisfied $xa=xb=1$, division by
+          nonzero $x$ would give $a=b$, a contradiction. Thus the reciprocal is unique.'
+      - id: 53
+        type: reasoning
+        prompt: Prove that a partially ordered set has at most one least element.
+        answerLines: 6
+        answer:
+          Suppose distinct elements $a,b$ are both least. Leastness gives $a\preceq b$ and $b\preceq a$.
+          Antisymmetry forces $a=b$, a contradiction.
+      - id: 54
+        type: reasoning
+        prompt: Prove that two different equivalence classes cannot overlap.
+        answerLines: 6
+        answer:
+          Suppose $[a]\ne[b]$ share $z$. Then $zRa,zRb$; symmetry and transitivity give $aRb$. Any $xRa$
+          then gives $xRb$, and the reverse follows likewise. Thus the classes are equal, contradicting their assumed
+          difference.
+      - id: 55
+        type: reasoning
+        prompt: Prove that an injective function cannot have an output with two distinct preimages.
+        answerLines: 6
+        answer:
+          Suppose output $b$ has distinct preimages $x,y$. Then $f(x)=b=f(y)$, and injectivity forces $x=y$,
+          contradicting distinctness. This covers any output in the codomain.
+      - id: 56
+        type: reasoning
+        prompt: Prove that the equation $2x+3=7$ has exactly one real solution.
+        answerLines: 6
+        answer:
+          'Existence: $x=2$ gives 7. If distinct $a,b$ both solved it, then $2a+3=2b+3$, so $a=b$ after subtraction
+          and division by 2, a contradiction.'
+      - id: 57
+        type: reasoning
+        prompt: Prove that no set is a proper subset of itself.
+        answerLines: 6
+        answer:
+          Suppose $A\subsetneq A$. Proper inclusion requires both $A\subseteq A$ and $A\ne A$. The second
+          contradicts reflexivity of equality, so no such set exists.
+      - id: 58
+        type: reasoning
+        prompt: Prove that two disjoint sets have no shared element by contradiction.
+        answerLines: 6
+        answer:
+          Suppose $A\cap B=\varnothing$ but some $x$ belongs to both. By the definition of intersection,
+          $x\in A\cap B=\varnothing$, impossible.
+      - id: 59
+        type: reasoning
+        prompt: Prove that if real $x>0$ and $xy=0$, then $y=0$.
+        answerLines: 6
+        answer:
+          Suppose instead $y\ne0$. Since $x>0$, $x\ne0$; dividing the equality by $x$ gives $y=0$, contradicting
+          the temporary assumption. Thus $y=0$.
+      - id: 60
+        type: reasoning
+        prompt: Does proving at most one solution establish that a solution exists? Give a counterexample.
+        answerLines: 4
+        answer:
+          No. The real equation $x^2=-1$ has no solutions and therefore at most one, but not exactly one.
+          Existence is a separate obligation.
+  - title: G. Finding proof errors
+    instructions: Identify the first unsupported step and give a valid repair or counterexample.
+    questions:
+      - id: 61
+        type: reasoning
+        prompt:
+          A square-root-of-2 proof chooses an arbitrary fraction and ends with both entries even. Why is
+          that insufficient?
+        answerLines: 5
+        answer:
+          Even entries are possible in an unreduced fraction. Choose the representation in lowest terms first;
+          then common divisor 2 contradicts the defining choice.
+      - id: 62
+        type: reasoning
+        prompt:
+          A proof of infinitely many primes asserts the constructed product plus 1 must itself be prime.
+          Repair it.
+        answerLines: 5
+        answer:
+          Replace that assertion with the proved lemma that every integer greater than 1 has a prime divisor.
+          Any such divisor cannot be on the proposed complete list, because it would then divide 1.
+      - id: 63
+        type: reasoning
+        prompt:
+          A proof of $P\to Q$ assumes only $\neg P$ and derives a contradiction. What is wrong with its planned
+          negation?
+        answerLines: 5
+        answer:
+          The negation of the implication is $P\land\neg Q$, not $\neg P$. Refuting $\neg P$ would establish
+          $P$, which alone does not establish $Q$ or the implication.
+      - id: 64
+        type: reasoning
+        prompt: A proof of no least positive real chooses $r-1$ as a smaller positive real. Repair it.
+        answerLines: 5
+        answer:
+          $r-1$ may not be positive when $r\leq1$. Choose $r/2$ instead; for every positive $r$, it is positive
+          and strictly smaller.
+      - id: 65
+        type: reasoning
+        prompt: A proof of irrational $rx$ divides by rational $r$ without knowing it is nonzero. Repair the statement.
+        answerLines: 5
+        answer:
+          Require $r\ne0$. Then rational $rx$ would give rational $x=(rx)/r$, a contradiction. With $r=0$,
+          the conclusion is false since the product is 0.
+      - id: 66
+        type: reasoning
+        prompt:
+          A proof says $a$ is even and $b$ is odd, therefore a contradiction. When would a contradiction
+          follow?
+        answerLines: 5
+        answer:
+          Those facts about different integers are compatible. A contradiction would follow if it also established
+          $a=b$, or that one same integer is both even and odd.
+      - id: 67
+        type: reasoning
+        prompt:
+          A proof of irrationality cites that the same number is irrational as its key lemma. Explain the
+          failure.
+        answerLines: 5
+        answer:
+          It assumes the conclusion it is meant to prove, giving circular reasoning. Replace the citation
+          with independently established facts such as parity and lowest-term representation.
+      - id: 68
+        type: reasoning
+        prompt: A proof starts with $a=b=1$, then divides by $a-b$ to derive $2=1$. Identify the invalid step.
+        answerLines: 5
+        answer:
+          Here $a-b=0$, so division by $a-b$ is undefined. The apparent contradiction comes from an invalid
+          algebraic operation, not from a legitimate contradiction proof.
+      - id: 69
+        type: reasoning
+        prompt: A proof negates every request has a worker as no request has a worker. Repair the assumption.
+        answerLines: 5
+        answer:
+          'The negation is that at least one request has no worker: $\exists r\forall w\neg A(r,w)$. The
+          proposed assumption is stronger and may fail even when the original claim is false.'
+      - id: 70
+        type: reasoning
+        prompt: A uniqueness argument proves two solutions equal, then concludes there are no solutions. Explain.
+        answerLines: 5
+        answer:
+          Equality of arbitrary solutions establishes at most one, not zero. It contradicts an assumption
+          of two distinct solutions; it does not contradict existence of a single solution.
+  - title: H. Mixed complete proofs
+    instructions: Use the lesson lemmas explicitly, and do not assume the conclusion.
+    questions:
+      - id: 71
+        type: reasoning
+        prompt: Prove that $1+\sqrt2$ cannot be rational.
+        answerLines: 7
+        answer:
+          Suppose it equals rational $r$. Then $\sqrt2=r-1$ is rational by subtraction closure, contradicting
+          established irrationality of $\sqrt2$. Hence the proposed rationality is impossible.
+      - id: 72
+        type: reasoning
+        prompt: Prove that if $r$ is rational and $x$ irrational, then $r-x$ is irrational.
+        answerLines: 7
+        answer:
+          Suppose $r-x=s$ were rational. Then $x=r-s$ would be rational by closure, contradicting the given
+          irrationality. This works for every rational $r$ and irrational $x$.
+      - id: 73
+        type: reasoning
+        prompt: Prove that no odd integer has a square divisible by 4.
+        answerLines: 7
+        answer:
+          Suppose odd $n=2k+1$ has $n^2=4t$ with integers $k,t$. Expanding gives $n^2=4(k^2+k)+1$, hence
+          $1=4(t-k^2-k)$. This says 4 divides 1, impossible.
+      - id: 74
+        type: reasoning
+        prompt: Prove that an integer and its successor cannot both be divisible by a positive integer $d>1$.
+        answerLines: 7
+        answer:
+          Suppose $n=da$ and $n+1=db$ for integer witnesses. Subtracting gives $1=d(b-a)$, so $d\mid1$, contradicting
+          $d>1$. Thus no such consecutive multiples exist.
+      - id: 75
+        type: reasoning
+        prompt: Prove that if $A\subseteq B$ and $B\subseteq A$, then $A=B$, by ruling out inequality.
+        answerLines: 7
+        answer:
+          Suppose $A\ne B$. By set extensionality, some element belongs to exactly one set. If in $A$ only,
+          $A\subseteq B$ is violated; if in $B$ only, $B\subseteq A$ is violated. Both cases contradict the hypotheses.
+      - id: 76
+        type: reasoning
+        prompt: Prove that if $f:A\to B$ has a left inverse $g:B\to A$ with $g(f(a))=a$, then $f$ is injective.
+        answerLines: 7
+        answer:
+          Suppose $f$ is not injective. Choose distinct $a,b\in A$ with equal outputs. Applying $g$ gives
+          $g(f(a))=g(f(b))$, hence $a=b$ by the left-inverse identities. This contradicts distinctness.
+      - id: 77
+        type: reasoning
+        prompt: Prove that if $f:A\to B$ has a right inverse $g:B\to A$ with $f(g(b))=b$, then $f$ is surjective.
+        answerLines: 7
+        answer:
+          Suppose some $b\in B$ has no preimage under $f$. But $g(b)\in A$ and $f(g(b))=b$, supplying exactly
+          such a preimage and contradicting its absence.
+      - id: 78
+        type: reasoning
+        prompt: Prove that no rational number $x$ satisfies $x^2=2$, without assuming $x$ positive.
+        answerLines: 7
+        answer:
+          Suppose rational $x=a/b$ in lowest terms, with integers $a,b$ and $b>0$, satisfies it. Then $a^2=2b^2$.
+          The parity lemma makes $a$ even; substituting $a=2k$ makes $b^2=2k^2$ and hence $b$ even. Lowest terms
+          is contradicted regardless of the sign of $a$.
+      - id: 79
+        type: reasoning
+        prompt: Prove that there is no largest rational number less than 1.
+        answerLines: 7
+        answer:
+          Suppose rational $r<1$ were the largest. Set $s=(r+1)/2$, which is rational. Since $s-r=(1-r)/2>0$
+          and $1-s=(1-r)/2>0$, we have $r<s<1$, contradicting largestness.
+      - id: 80
+        type: reasoning
+        prompt:
+          Prove that a strictly increasing function $f:\mathbb R\to\mathbb R$ is injective. Strictly increasing
+          means $a<b\to f(a)<f(b)$.
+        answerLines: 7
+        answer:
+          Suppose distinct real $a,b$ have equal outputs. By real trichotomy, either $a<b$ or $b<a$. Strict
+          increase gives respectively $f(a)<f(b)$ or $f(b)<f(a)$, each contradicting output equality. Therefore
+          no collision exists.

@@ -1,0 +1,403 @@
+# Exercise-local context for the native notebook. Printed worksheets keep their
+# original layout; every notebook question receives its own applicable assumptions.
+defaults:
+  predicates-and-quantifiers: Unless stated otherwise, domains are nonempty. Give a witness, counterexample, or short justification.
+  sets-and-set-operations: Complements are relative to the stated universe. Justify nontrivial conclusions.
+  relations: State the underlying set and justify your conclusion.
+  functions: Respect the stated domain and codomain. Justify your conclusion.
+  sequences-and-summations: Indices are integers. An empty sum is 0; an empty product is 1.
+  direct-proof: Give a complete argument, including domains and necessary cases. Integer arithmetic is exact.
+  proof-by-contrapositive: Parity and divisibility variables are integers unless another domain is stated. Give a complete argument.
+  proof-by-contradiction: Give a complete argument, including domains and necessary cases. Integer arithmetic is exact.
+  mathematical-induction: Include the base case, the induction hypothesis with its index range, and the inductive step when proving a claim.
+  strong-induction: State the allowed indices and which smaller cases the induction hypothesis supplies.
+  combinatorics: Objects are distinct unless described as identical. Describe one outcome and justify your count.
+  recurrence-relations: Indices are nonnegative integers unless restricted further. Unless another range is stated, first-order rules apply for indices at least 1 and second-order rules for indices at least 2. Show your derivation or verification.
+  graph-theory: Undirected graphs are finite and simple. Directed graphs have no loops or repeated arcs; opposite arcs are allowed. Paths have no repeated vertices. Empty graphs are disconnected, and the empty forest is allowed.
+  asymptotic-growth: Unless stated otherwise, $n$ is a positive integer, functions are eventually nonnegative, and comparison functions are eventually positive. Constants and thresholds are independent of $n$.
+rules:
+  propositional-logic:
+    - from: 1
+      to: 8
+      context: Decide whether the sentence is a proposition. Give its truth value when possible, and explain.
+    - from: 9
+      to: 14
+      context: Translate the formula into English. Let $p$ mean "The server is online" and $q$ mean "The database is reachable".
+    - from: 31
+      to: 35
+      context: Write the converse and contrapositive. Determine the truth of the original, converse, and contrapositive. Give a counterexample for each false universal claim. In an integer statement, $n$ is an integer.
+    - from: 36
+      to: 39
+      context: Explain your reasoning.
+    - from: 40
+      to: 45
+      context: Complete every row, including the variable columns. Use the row order shown with the writing space.
+    - from: 151
+      to: 153
+      context: Show your reasoning.
+    - from: 139
+      to: 150
+      context: Show your reasoning.
+  predicates-and-quantifiers:
+    - from: 1
+      to: 3
+      context: 'Use the integer domain $\mathbb{Z}$ and predicate $P(x): x>3$.'
+    - from: 4
+      to: 5
+      context: 'Use integer variables and predicate $R(x,y): x+2y=7$.'
+    - from: 6
+      to: 10
+      context: Treat $P,Q,R$ as arbitrary predicates. Identify free variables by occurrence, not just by name.
+    - from: 11
+      to: 18
+      context: Use exactly $D=\{-2,-1,0,1,2\}$. State whether the formula is true or false, with a witness, counterexample, or exhaustive reason.
+    - from: 19
+      to: 20
+      context: Use exactly $D=\{a,b,c\}$. State whether the formula is true or false and justify it.
+    - from: 31
+      to: 34
+      context: All variables are integers. Translate into ordinary English without deciding truth.
+    - from: 35
+      to: 38
+      context: Let $r$ range over requests and $w$ over workers. $A(r,w)$ means worker $w$ is assigned to request $r$. Translate without deciding truth.
+    - from: 39
+      to: 40
+      context: Variables range over people. $L(x,y)$ means $x$ likes $y$. Translate without deciding truth.
+    - from: 51
+      to: 56
+      context: Use the integer domain $\mathbb{Z}$. Give a witness or explain why a proposed witness cannot work.
+    - from: 57
+      to: 58
+      context: Use exactly $D=\{0,1\}$. Give a witness or explain why no witness can work.
+    - from: 59
+      to: 60
+      context: Compare arbitrary predicates over nonempty domains. Justify any implication or failure of equivalence.
+    - from: 71
+      to: 73
+      context: Use integer solutions.
+    - from: 74
+      to: 76
+      context: Treat $P$ as an arbitrary predicate. Empty domains are allowed only when explicitly stated.
+    - from: 77
+      to: 80
+      context: Empty domains are allowed only when explicitly stated.
+    - from: 81
+      to: 89
+      context: Determine whether the equivalence or inference is valid for arbitrary predicates over nonempty domains. If it fails, give a domain and predicate meanings that demonstrate the failure.
+    - from: 90
+      to: 90
+      context: Compare the formulas on a nonempty domain, then on an empty domain. Give a counterexample if they differ.
+  proof-by-contradiction:
+    - from: 71
+      to: 80
+      context: State any lemma you use and justify its application. Do not assume the conclusion.
+  recurrence-relations:
+    - from: 61
+      to: 70
+      context: Here $n$ is a positive power of two, and the recurrence applies for $n\geq2$. Include the work at every leaf.
+  graph-theory:
+    - from: 11
+      to: 16
+      context: Use the undirected graph with $V=\{a,b,c,d,e\}$ and $E=\{\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}\}$.
+    - from: 17
+      to: 20
+      context: Make your reasoning and graph conventions explicit.
+    - from: 21
+      to: 26
+      context: Use the undirected graph with $V=\{a,b,c,d,e\}$ and $E=\{\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}\}$.
+    - from: 27
+      to: 30
+      context: An undirected cycle has at least three edges, with distinct vertices except for its repeated start. A directed cycle may have two edges.
+    - from: 61
+      to: 65
+      context: Use $V=\{a,b,c,d,e,f\}$ and undirected edges $\{a,b\},\{a,c\},\{b,d\},\{b,e\},\{c,e\},\{e,f\}$. Start at $a$, inspect neighbors alphabetically, and mark each vertex when discovered.
+    - from: 66
+      to: 70
+      context: Explain your reasoning.
+  asymptotic-growth:
+    - from: 41
+      to: 50
+      context: Loop ranges include both endpoints. Each measured body operation has constant positive cost; use an elementary array and loop-control model.
+    - from: 51
+      to: 55
+      context: Loop bodies have constant positive cost.
+    - from: 56
+      to: 60
+      context: Recurrences are defined on positive powers of two and apply for $n\geq2$, with the specified unit base cost.
+overrides:
+  propositional-logic:
+    140:
+      prompt: Are the converse $q\to p$ and inverse $\neg p\to\neg q$ of an implication $p\to q$ always equivalent? Show this by rewriting.
+    148:
+      answer: >-
+        Valid by cases. The premise $p\lor q$ makes at least one of $p,q$ true.
+        If $p$ is true, $p\to r$ forces $r$; if $q$ is true, $q\to r$ forces $r$.
+        Thus all premises cannot be true with a false conclusion.
+  predicates-and-quantifiers:
+    59:
+      answer: >-
+        $\exists y\forall x\,R(x,y)$ is stronger: one fixed witness works for every $x$,
+        so it implies $\forall x\exists y\,R(x,y)$. The reverse fails on $D=\{0,1\}$
+        with $R(x,y)$ meaning $x\ne y$: each $x$ has a different $y$, but no single
+        $y$ differs from every $x$.
+    116:
+      prompt: >-
+        Let $R$ be the set of requests, $W$ the set of workers, and $A(r,w)$ mean
+        worker $w$ is assigned to request $r$. Express "Every request has exactly
+        one worker." Does this forbid one worker from serving two requests?
+    117:
+      prompt: >-
+        Let $R$ be the set of requests, $W$ the set of workers, and $A(r,w)$ mean
+        worker $w$ is assigned to request $r$. Negate and interpret
+        "Every request has an assigned worker."
+  sets-and-set-operations:
+    17:
+      prompt: >-
+        Let $U=\{1,2,3,4,5,6,7,8\}$, $A=\{1,2,4,6\}$, and $B=\{2,3,6,7\}$.
+        Compute $(A\cap B)^c$ relative to $U$.
+    42:
+      prompt: In a class, 24 students use Python, 18 use JavaScript, and 10 use both. How many use exactly one of these languages?
+    54:
+      prompt: >-
+        A partition consists of nonempty, pairwise disjoint blocks whose union is
+        the set being partitioned. Does $\{\varnothing,\{1,2\}\}$ partition $\{1,2\}$?
+    55:
+      prompt: A partition is a collection of nonempty, pairwise disjoint blocks whose union is the set being partitioned. Describe the partition of the empty set.
+    62:
+      prompt: >-
+        Let $U$ be all users, with $E,T,S\subseteq U$ denoting employees, trained users,
+        and suspended users. A policy permits exactly $E\cap T\cap S^c$.
+        Express the set of denied users using unions and complements relative to $U$.
+  functions:
+    60:
+      prompt: For finite sets of equal size, every injective function between them is surjective. Show that the analogous assertion fails for infinite sets by giving an injection from an infinite set to itself that is not surjective.
+    68:
+      prompt: >-
+        Containers each hold at most $k$ items, where $k$ is a positive integer.
+        For $n$ items, the usual container count is $\lceil n/k\rceil$.
+        How many containers are needed when $n=0$, and why does the formula still apply?
+    74:
+      prompt: >-
+        Let $f:A\to B$ be injective and let $S,W\subseteq A$.
+        Prove $f(S\cap W)=f(S)\cap f(W)$ by proving both inclusions.
+  sequences-and-summations:
+    23:
+      prompt: An empty sum is defined to be 0. Evaluate $\sum_{k=1}^{0}(k+5)$ and explain why it is empty.
+    72:
+      prompt: >-
+        For an integer $n\geq0$, a loop uses outer indices $i=0,\ldots,n-1$ and inner
+        indices $j=0,\ldots,i$, executing its body once for each pair.
+        Find its total body count. How much larger is it than the count $n(n-1)/2$
+        obtained with inner indices $j=0,\ldots,i-1$?
+  proof-by-contrapositive:
+    46:
+      prompt: >-
+        For distinct nonnegative $a,b$, the argument $a+b>0$ and $a-b\ne0$ gives
+        $a^2-b^2=(a-b)(a+b)\ne0$, proving that squaring is injective on $[0,\infty)$.
+        Why does this argument fail for $f:\mathbb R\to\mathbb R$, $f(x)=x^2$?
+        Give explicit inputs.
+  proof-by-contradiction:
+    24:
+      prompt: >-
+        A contradiction proof assumes $\sqrt2=a/b$ for integers $a,b$ with $b\ne0$
+        and $\gcd(a,b)=1$. From $a^2=2b^2$ it deduces that both $a$ and $b$ are even.
+        Why does that contradict the assumption?
+    29:
+      prompt: >-
+        To prove $\sqrt2$ irrational, one assumes $\sqrt2=a/b$ in lowest terms and
+        derives that both $a,b$ are even from $a^2=2b^2$.
+        Why can this pattern not prove $\sqrt4$ irrational? Examine $a^2=4b^2$.
+    30:
+      prompt: >-
+        For a prime $p$, suppose $\sqrt p=a/b$ in lowest terms, so $a^2=pb^2$.
+        What divisibility lemma would let you conclude that both $a,b$ are
+        divisible by $p$, giving a contradiction?
+    34:
+      prompt: >-
+        The product of a nonzero rational number $r$ and an irrational real number
+        $x$ is irrational. Show why the restriction $r\ne0$ is necessary by giving
+        a counterexample with $r=0$.
+  mathematical-induction:
+    52:
+      prompt: >-
+        Define $u_0=0,v_0=1$ and $u_{n+1}=u_n+v_n$, $v_{n+1}=2v_n$ for integers
+        $n\geq0$. Why is an induction proving $u_n=2^n-1$ and $v_n=2^n$ together
+        more useful than a hypothesis containing only the formula for $u_n$?
+  strong-induction:
+    12:
+      prompt: >-
+        A strong-induction proof of prime-factorization existence treats a composite
+        integer $n\geq2$ by writing $n=ab$ with integers $a,b>1$.
+        Explain why both factors are strictly smaller than $n$ and therefore
+        eligible for the induction hypothesis.
+    15:
+      prompt: Express 84 as a product of primes by repeatedly decomposing a composite factor into smaller factors. Show the decomposition.
+    16:
+      prompt: The prime-factorization existence theorem says every integer at least 2 is a nonempty product of primes. Why can its domain not be extended to include 1?
+    18:
+      prompt: Express 23 as a sum of distinct powers of 2. Use repeated division by 2, recording each remainder to construct the representation.
+    22:
+      answer: >-
+        Bases: $18=4+7+7$, $19=4+4+4+7$, $20=4+4+4+4+4$, and $21=7+7+7$.
+        For $n\geq22$, assume every amount from 18 through $n-1$ is representable.
+        Since $18\leq n-4<n$, represent $n-4$ by hypothesis and add one 4-unit stamp.
+        Strong induction proves the claim.
+    29:
+      answer: No. Every amount made from 6-unit and 9-unit stamps is divisible by 3. Arbitrarily large integers are not divisible by 3, so no threshold can make every integer amount representable.
+    32:
+      prompt: Define $F_0=0,F_1=1$ and $F_n=F_{n-1}+F_{n-2}$ for integers $n\geq2$. Prove $F_n>0$ for integers $n\geq1$.
+    33:
+      prompt: Define $F_0=0,F_1=1$ and $F_n=F_{n-1}+F_{n-2}$ for integers $n\geq2$. Prove $F_n\leq2^{n-1}$ for integers $n\geq1$.
+    34:
+      prompt: Define $F_0=0,F_1=1$ and $F_n=F_{n-1}+F_{n-2}$ for integers $n\geq2$. Prove $F_n\geq n-1$ for integers $n\geq1$.
+    38:
+      prompt: Define $a_0=3,a_1=3$ and $a_n=a_{n-1}+2a_{n-2}$ for integers $n\geq2$. Prove $a_n=2^{n+1}+(-1)^n$ for every integer $n\geq0$.
+    49:
+      prompt: A recursive sum returns the element of a singleton list. For any longer finite list of real numbers, it may partition the entries into any two nonempty smaller lists, sum each recursively, and add the results using exact arithmetic. Why must a correctness proof allow arbitrary legal split lengths rather than only equal halves?
+    52:
+      prompt: >-
+        A length-$n$ board is split between cells until every piece is a unit cell.
+        If the first split produces lengths $a,b\geq1$ with $a+b=n$, the two smaller
+        pieces require $a-1$ and $b-1$ further splits. Why must the total also
+        include the first split?
+    55:
+      prompt: A finite full binary tree has exactly two children at each internal node, and it has one more leaf than internal nodes. Give a tree with a one-child node showing why this identity does not extend to arbitrary rooted trees.
+    57:
+      prompt: >-
+        Let $t_n$ count tilings of a $2$-by-$n$ rectangle by $2$-by-$1$ dominoes,
+        with rotations allowed. Use $t_0=t_1=1$ and $t_n=t_{n-1}+t_{n-2}$ for
+        $n\geq2$ to calculate $t_2,t_3,t_4$. Explain why the empty rectangle
+        contributes one tiling.
+    58:
+      prompt: >-
+        Let $t_n$ count tilings of a $2$-by-$n$ rectangle by $2$-by-$1$ dominoes,
+        with rotations allowed, so $t_0=t_1=1$ and $t_n=t_{n-1}+t_{n-2}$ for $n\geq2$.
+        Define $F_0=0,F_1=1$ and $F_n=F_{n-1}+F_{n-2}$ for $n\geq2$.
+        Prove $t_n=F_{n+1}$ for every integer $n\geq0$.
+    60:
+      prompt: A finite nested object is either an atom of weight 1 or a pair whose weight is the sum of its children's weights. Why does its total weight equal the number of atom occurrences rather than the number of distinct atom labels? Give an example with a repeated label.
+      answer: >-
+        An atom label may occur in both children and contributes weight once per
+        occurrence. For example, a pair consisting of two atoms both labeled $a$
+        has weight $1+1=2$ and two atom occurrences, but only one distinct label.
+        Counting occurrences matches addition under pairing; counting distinct
+        labels would discard duplicates.
+  combinatorics:
+    12:
+      prompt: How many unordered three-person committees can be chosen from 9 distinct people? No person can be chosen more than once.
+      answer: $\binom93=84$. There are $9\cdot8\cdot7=504$ ordered selections, and each committee appears in $3!=6$ orders.
+    25:
+      prompt: Arrange five distinct people in five numbered seats around a table. Count the arrangements. Explain why this differs from seating them at an unnumbered round table where rotations agree and reflections differ.
+    43:
+      answer: >-
+        There are $30$ multiples of 4, $20$ multiples of 6, and $10$ multiples of 12
+        among 1 through 120. Thus $30+20-10=40$ integers are divisible by 4 or 6,
+        leaving $120-40=80$ divisible by neither.
+    70:
+      prompt: A test selects one of 3 browsers, one of 4 operating systems, and one of 2 modes. One browser supports only 2 operating systems; each other browser supports all 4. Both modes work for every supported browser/system pair. How many supported tests are there?
+  recurrence-relations:
+    39:
+      prompt: >-
+        A staircase has $n$ steps, and each move advances one or two steps.
+        Let $W(n)$ count ordered move sequences that reach the top exactly,
+        with $W(0)=W(1)=1$ and $W(n)=W(n-1)+W(n-2)$ for $n\geq2$.
+        Compute $W(5)$ and explain why order matters.
+    51:
+      prompt: >-
+        In the three-peg Tower of Hanoi puzzle, move a stack of $n$ differently sized
+        disks to another peg. Move one exposed disk at a time and never place a
+        larger disk on a smaller one. Let $H(n)$ be the minimum number of moves.
+        State $H(0)$ and derive a recurrence for $H(n)$.
+    52:
+      prompt: >-
+        In the three-peg Tower of Hanoi puzzle, one exposed disk moves at a time and
+        no larger disk may rest on a smaller one. The minimum move count satisfies
+        $H(0)=0$ and $H(n)=2H(n-1)+1$ for $n\geq1$. Compute $H(1)$ through $H(5)$.
+    58:
+      prompt: >-
+        A sequence has $a_0=1$ and $a_n=2a_{n-1}+1$ for integers $n\geq1$.
+        The proposed formula $a_n=2^n$ satisfies the base condition but fails
+        the recurrence. Find a correct formula and verify both defining conditions.
+    71:
+      answer: >-
+        Induct on $\log_2 n$. At $n=1$ the proposed bound is equality.
+        At $n\geq2$, the induction hypothesis gives
+        $T(n/2)\leq(n/2)\log_2(n/2)+n/2$. Therefore
+        $T(n)\leq2[(n/2)\log_2(n/2)+n/2]+n=n\log_2 n+n$.
+    72:
+      prompt: >-
+        Let $T$ be nonnegative on positive powers of two, with $T(1)=1$ and
+        $T(n)\leq2T(n/2)+n$ for $n\geq2$.
+        These assumptions give $T(n)\leq n\log_2 n+n$.
+        Do they also force a matching $\Omega(n\log n)$ lower bound?
+        Give a counterexample if not.
+    73:
+      prompt: >-
+        On positive powers of two, define $T(1)=1$ and $T(n)=2T(n/2)+n$ for $n\geq2$.
+        Explain why an induction attempting to prove $T(n)\leq cn$, with a fixed
+        positive constant $c$, does not close.
+  graph-theory:
+    22:
+      prompt: Classify the vertex sequence $a,b,c,a$ as a walk, trail, path, or cycle in the specified graph, and give its length.
+    27:
+      prompt: An undirected cycle has at least three edges, with distinct vertices except for its repeated start. Explain why traversing one undirected edge out and back is not a cycle.
+    36:
+      prompt: Classify the digraph on vertices $\{a,b,c\}$ with arcs $(a,b),(b,c),(c,a)$ as strongly connected, weakly connected, both, or neither.
+    38:
+      prompt: A connected undirected graph is nonempty and has a path between every pair of vertices; a length-zero path from a vertex to itself is allowed. Classify a one-vertex edgeless graph and an empty graph for connectivity.
+    39:
+      prompt: Strong connectivity requires a nonempty digraph with a directed path between every ordered pair of vertices. Weak connectivity requires its underlying undirected graph to be connected. Length-zero paths are allowed. Classify the empty digraph and a one-vertex digraph with no arcs under both notions.
+    55:
+      prompt: A finite full binary rooted tree has exactly two children at each internal node. Prove that the number of leaves is one more than the number of internal nodes.
+    58:
+      prompt: >-
+        A digraph has vertices $\{a,b,c,d,e\}$ and arcs $(a,c),(b,c),(c,d),(c,e),(d,e)$.
+        Add the arc $(d,a)$. Can the resulting digraph have a topological ordering?
+        Explain.
+    75:
+      prompt: >-
+        Consider the undirected graph with $V=\{a,b,c,d,e\}$ and
+        $E=\{\{a,b\},\{a,c\},\{b,c\},\{c,d\},\{d,e\}\}$.
+        Can it have a Hamiltonian cycle? Explain.
+  asymptotic-growth:
+    23:
+      prompt: >-
+        Suppose $f(n)\leq a g(n)$ and $u(n)\leq b v(n)$ eventually, where all
+        functions are nonnegative and $a,b$ are fixed positive constants.
+        Give an eventual bound for $f(n)u(n)$ in terms of $g(n)v(n)$ and state
+        the corresponding big-O conclusion.
+    36:
+      prompt: Fix a positive integer $d$. For integers $n\geq2(d+1)$, bound $\binom n{d+1}$ below by bounding each numerator factor using $n/2$.
+    37:
+      prompt: >-
+        Fix a positive integer $d$. For $n\geq2(d+1)$, you may use
+        $2^n\geq\binom n{d+1}$ and $\binom n{d+1}\geq(n/2)^{d+1}/(d+1)!$.
+        Use these bounds and the epsilon definition to prove $n^d=o(2^n)$.
+    52:
+      prompt: Start $i$ at 1. While $i\leq16$, execute the loop body once and then replace $i$ by $2i$. List the values of $i$ at which the body executes and give the total execution count.
+    54:
+      prompt: >-
+        Start $i$ at 1. While $i\leq n$, execute an inner body $i$ times, then double
+        $i$. A solver multiplies the logarithmic number of outer iterations by
+        the maximum inner count $n$ and reports $\Theta(n\log n)$.
+        Is that bound tight? Give the actual growth rate and justify it.
+      answer: >-
+        The claimed $\Theta(n\log n)$ bound is not tight. $O(n\log n)$ is a valid
+        upper bound, but summing the actual inner lengths gives
+        $\sum_{j=0}^{\lfloor\log_2 n\rfloor}2^j=2^{\lfloor\log_2 n\rfloor+1}-1=\Theta(n)$.
+    56:
+      prompt: >-
+        For positive powers of two, let $T(1)=1$ and $T(n)=2T(n/2)+n$ for $n\geq2$.
+        You may use the exact formula $T(n)=n\log_2 n+n$.
+        Give a tight asymptotic bound with explicit constants and a threshold.
+    59:
+      prompt: >-
+        On positive powers of two, define $S(1)=U(1)=1$, $S(n)=S(n/2)+1$, and
+        $U(n)=2U(n/2)+1$ for $n\geq2$. Why do their recursion trees have the same
+        depth but different asymptotic total work?
+    67:
+      prompt: >-
+        Copying an $n$-element array into a separate explicit array requires
+        $\Omega(n)$ operations when one operation writes at most one output
+        element. Why does creating a shared reference to the existing array
+        not require the same lower bound?

@@ -1,0 +1,563 @@
+title: 'Functions'
+instructions:
+  '80 exercises in eight sections. State domains and justify nontrivial conclusions. Give explicit
+  witnesses or counterexamples when requested. Use the blank space for working; the explained answer key follows
+  the student section.'
+sections:
+  - title: 'A. Functions and their specifications'
+    questions:
+      - id: 1
+        type: freeform
+        prompt: 'Does $\{(1,a),(2,a),(3,b)\}$ define a function from $\{1,2,3\}$ to $\{a,b\}$? Explain.'
+        answerLines: 3
+        answer:
+          'Yes. Every domain element has exactly one output. Sharing output $a$ does not violate the function
+          definition.'
+      - id: 2
+        type: freeform
+        prompt: 'Does $\{(1,a),(1,b),(2,a)\}$ define a function from $\{1,2\}$ to $\{a,b\}$?'
+        answerLines: 3
+        answer: 'No. Input 1 has two different outputs, violating uniqueness.'
+      - id: 3
+        type: freeform
+        prompt: 'Does $\{(1,a),(2,b)\}$ define a total function from $\{1,2,3\}$ to $\{a,b\}$?'
+        answerLines: 3
+        answer: 'No. Input 3 has no output, violating existence for every domain element.'
+      - id: 4
+        type: freeform
+        prompt: 'Does $f:\mathbb Z\to\mathbb Z$, $f(n)=n/2$, define a function with the specified codomain?'
+        answerLines: 3
+        answer:
+          'No. For odd inputs such as 1, the output $1/2$ is not an integer. Changing the codomain to $\mathbb
+          Q$ would fix this issue.'
+      - id: 5
+        type: freeform
+        prompt: 'Give the largest real domain on which $f(x)=1/(x-3)$ defines a real-valued function.'
+        answerLines: 3
+        answer: '$\mathbb R\setminus\{3\}$, because exactly at 3 the denominator is zero.'
+      - id: 6
+        type: freeform
+        prompt: 'Give the largest real domain for the real-valued rule $f(x)=\sqrt{x-2}$.'
+        answerLines: 3
+        answer: '$[2,\infty)$, since $x-2$ must be nonnegative.'
+      - id: 7
+        type: freeform
+        prompt: 'For $f:\mathbb Z\to\mathbb Z$, $f(n)=2n+1$, identify the domain, codomain, and image.'
+        answerLines: 3
+        answer: 'Domain and codomain are both $\mathbb Z$. The image is the odd integers $\{2k+1:k\in\mathbb Z\}$.'
+      - id: 8
+        type: reasoning
+        prompt:
+          'Why are $f:\mathbb R\to\mathbb R$, $f(x)=x^2$, and $g:\mathbb R\to[0,\infty)$, $g(x)=x^2$, different
+          specifications?'
+        answerLines: 4
+        answer:
+          'Their output rule and domain agree, but their declared codomains differ. Consequently $g$ is onto
+          while $f$ is not.'
+      - id: 9
+        type: freeform
+        prompt:
+          'Write the quantified existence-and-uniqueness condition for a relation $F\subseteq A\times B$
+          to be a function.'
+        answerLines: 3
+        answer:
+          '$\forall a\in A,\ \exists!b\in B,\ (a,b)\in F$. Each allowed input must have one and only one
+          related output.'
+      - id: 10
+        type: freeform
+        prompt:
+          'Define the identity function on $A=\{a,b,c\}$ by listing its pairs. For any function $f:A\to B$,
+          explain why $f\circ\operatorname{id}_A=f$ and $\operatorname{id}_B\circ f=f$.'
+        answerLines: 5
+        answer:
+          'The pairs are $\{(a,a),(b,b),(c,c)\}$. For every $x\in A$, $f(\operatorname{id}_A(x))=f(x)$ and
+          $\operatorname{id}_B(f(x))=f(x)$. The domains, codomains, and values agree in each identity.'
+  - title: 'B. Images and preimages'
+    questions:
+      - id: 11
+        type: freeform
+        prompt: 'Let $f:\mathbb Z\to\mathbb Z$ satisfy $f(n)=2n+1$. Find $f(\{-2,0,3\})$.'
+        answerLines: 3
+        answer: '$\{-3,1,7\}$, obtained by evaluating the rule at each input.'
+      - id: 12
+        type: freeform
+        prompt: 'For $f(n)=2n+1$ on $\mathbb Z$, find $f^{-1}(\{1,5,8\})$.'
+        answerLines: 3
+        answer: '$\{0,2\}$. Targets 1 and 5 come from 0 and 2; 8 would require the noninteger input $7/2$.'
+      - id: 13
+        type: freeform
+        prompt: 'For $g:\mathbb R\to\mathbb R$, $g(x)=x^2$, find $g^{-1}(\{9\})$.'
+        answerLines: 2
+        answer: '$\{-3,3\}$, since both real inputs square to 9.'
+      - id: 14
+        type: freeform
+        prompt: 'For $g:\mathbb R\to\mathbb R$, $g(x)=x^2$, find $g^{-1}(\{-4\})$.'
+        answerLines: 2
+        answer: 'The empty set, because no real square is negative.'
+      - id: 15
+        type: freeform
+        prompt: 'For $g:\mathbb R\to\mathbb R$, $g(x)=x^2$, find $g^{-1}([1,4])$.'
+        answerLines: 3
+        answer: '$[-2,-1]\cup[1,2]$. The condition $1\leq x^2\leq4$ means $1\leq|x|\leq2$.'
+      - id: 16
+        type: reasoning
+        prompt: 'For $g:\mathbb R\to\mathbb R$, $g(x)=x^2$, find $g([-2,3])$.'
+        answerLines: 4
+        answer:
+          '$[0,9]$. Zero is achieved, and every target $y\in[0,9]$ has input $\sqrt y\in[0,3]$. No larger
+          square occurs in the input interval.'
+      - id: 17
+        type: freeform
+        prompt: 'For an arbitrary function $f:A\to B$, find $f(\varnothing)$ and $f^{-1}(\varnothing)$.'
+        answerLines: 3
+        answer:
+          'Both are empty. The first has no inputs supplying outputs; the second has no outputs in the target
+          set.'
+      - id: 18
+        type: reasoning
+        prompt: 'For $f:A\to B$, prove $f^{-1}(B)=A$.'
+        answerLines: 5
+        answer:
+          'Every $a\in A$ has output in $B$, so every domain element belongs to the preimage. A preimage
+          contains only domain elements, giving the reverse inclusion.'
+      - id: 19
+        type: freeform
+        prompt:
+          'For $f:\{a,b,c\}\to\{1,2,3\}$ with $f(a)=1$, $f(b)=1$, $f(c)=3$, find the preimages of $\{1\}$,
+          $\{2\}$, and $\{1,3\}$.'
+        answerLines: 3
+        answer:
+          'They are respectively $\{a,b\}$, $\varnothing$, and $\{a,b,c\}$. The unused codomain value 2 has
+          no preimage.'
+      - id: 20
+        type: reasoning
+        prompt: 'Explain why the notation $f^{-1}(T)$ for a target set does not require an inverse function.'
+        answerLines: 4
+        answer:
+          'It means the set of all domain inputs whose outputs belong to $T$. That set is well-defined even
+          when a target has zero or multiple preimages, as with the square function.'
+  - title: 'C. Injectivity and surjectivity'
+    questions:
+      - id: 21
+        type: reasoning
+        prompt: 'Classify $f:\mathbb Z\to\mathbb Z$, $f(n)=3n+1$, as injective and/or surjective.'
+        answerLines: 4
+        answer:
+          'Injective: equal outputs imply $3a+1=3b+1$, hence $a=b$. Not surjective: 0 would require $n=-1/3$,
+          outside the domain.'
+      - id: 22
+        type: reasoning
+        prompt: 'Classify $f:\mathbb R\to\mathbb R$, $f(x)=3x+1$.'
+        answerLines: 4
+        answer: 'Bijective. Equal outputs give equal inputs, and every target $y$ has real preimage $(y-1)/3$.'
+      - id: 23
+        type: freeform
+        prompt: 'Classify $f:\mathbb R\to\mathbb R$, $f(x)=x^2$.'
+        answerLines: 3
+        answer: 'Neither injective nor surjective. Inputs $-1,1$ collide, and the codomain target $-1$ is missed.'
+      - id: 24
+        type: freeform
+        prompt: 'Classify $f:\mathbb R\to[0,\infty)$, $f(x)=x^2$.'
+        answerLines: 3
+        answer:
+          'Surjective but not injective. Each target $y\geq0$ is reached by $\sqrt y$, but $-1$ and 1 still
+          collide.'
+      - id: 25
+        type: reasoning
+        prompt: 'Classify $f:[0,\infty)\to[0,\infty)$, $f(x)=x^2$.'
+        answerLines: 4
+        answer:
+          'Bijective. Nonnegative equal-square inputs are equal, and every nonnegative target has its nonnegative
+          square root as preimage.'
+      - id: 26
+        type: freeform
+        prompt: 'Classify $f:\mathbb N_0\to\mathbb N_0$, $f(n)=n+1$.'
+        answerLines: 3
+        answer: 'Injective, since cancellation gives equal inputs; not surjective, since 0 is missed.'
+      - id: 27
+        type: freeform
+        prompt: 'Classify $f:\mathbb Z\to\mathbb N_0$, $f(n)=|n|$.'
+        answerLines: 3
+        answer: 'Surjective because target $k\geq0$ is reached at input $k$. Not injective because 1 and $-1$ collide.'
+      - id: 28
+        type: freeform
+        prompt: 'Classify the constant function $f:A\to\{0\}$ when $A$ has exactly three elements.'
+        answerLines: 3
+        answer:
+          'Surjective because its sole target is reached. Not injective because distinct inputs share output
+          0.'
+      - id: 29
+        type: freeform
+        prompt: 'Negate the assertion that $f:A\to B$ is injective.'
+        answerLines: 3
+        answer:
+          'There exist $x,y\in A$ with $x\ne y$ and $f(x)=f(y)$. Both distinctness and equal outputs are
+          required for a collision.'
+      - id: 30
+        type: freeform
+        prompt: 'Negate the assertion that $f:A\to B$ is surjective.'
+        answerLines: 3
+        answer:
+          'There exists $b\in B$ such that every $a\in A$ satisfies $f(a)\ne b$. This is a target with no
+          preimage.'
+  - title: 'D. Inverses and restrictions'
+    questions:
+      - id: 31
+        type: reasoning
+        prompt: 'Find the inverse of $f:\mathbb R\to\mathbb R$, $f(x)=5x-2$, and verify both compositions.'
+        answerLines: 5
+        answer: '$f^{-1}(y)=(y+2)/5$. Then $f^{-1}(f(x))=(5x-2+2)/5=x$, and $f(f^{-1}(y))=5(y+2)/5-2=y$.'
+      - id: 32
+        type: freeform
+        prompt: 'Find the inverse of $f:\mathbb Z\to\mathbb Z$, $f(n)=n-7$.'
+        answerLines: 3
+        answer: '$f^{-1}(m)=m+7$. Addition and subtraction by 7 undo each other on integers.'
+      - id: 33
+        type: reasoning
+        prompt:
+          'The function $f:\mathbb Z\to\mathbb Z$, $f(n)=2n$, is injective. Restrict its codomain to its image,
+          then specify the resulting bijection''s inverse domain, codomain, and formula.'
+        answerLines: 4
+        answer:
+          'With codomain restricted to the even integers $2\mathbb Z$, the bijection has inverse
+          $h:2\mathbb Z\to\mathbb Z$, $h(m)=m/2$. The original specification has no inverse on all of
+          $\mathbb Z$ because odd targets are missed.'
+      - id: 34
+        type: reasoning
+        prompt: 'Why does $g:\mathbb R\to[0,\infty)$, $g(x)=x^2$, have no inverse function into $\mathbb R$?'
+        answerLines: 4
+        answer:
+          'A positive target has two different preimages. An inverse undoing $g$ on every real input would
+          need to return both 1 and $-1$ at target 1, violating uniqueness.'
+      - id: 35
+        type: reasoning
+        prompt:
+          'Restrict the domain of the real square function to obtain a bijection onto $[0,\infty)$, and give
+          its inverse.'
+        answerLines: 4
+        answer:
+          'Choose domain $[0,\infty)$. The resulting bijection has inverse $y\mapsto\sqrt y$. A restriction
+          to nonpositive reals with inverse $-\sqrt y$ also works.'
+      - id: 36
+        type: reasoning
+        prompt:
+          'For $f:\mathbb R\to\mathbb R$, $f(x)=x$, restrict the domain to $[0,1]$ but retain codomain $\mathbb
+          R$. Which property is lost?'
+        answerLines: 4
+        answer:
+          'Surjectivity is lost: values such as 2 are no longer reached. Injectivity remains because restricting
+          inputs cannot introduce a new collision.'
+      - id: 37
+        type: freeform
+        prompt:
+          'Can the codomain of $f:\mathbb R\to\mathbb R$, $f(x)=x^2$, be changed to $[1,\infty)$ without
+          changing its domain or rule?'
+        answerLines: 3
+        answer:
+          'No. Input 0 still gives output 0, which is outside the proposed codomain. A codomain must contain
+          every output.'
+      - id: 38
+        type: reasoning
+        prompt: 'Prove that a restriction of an injective function remains injective.'
+        answerLines: 5
+        answer:
+          'Equal outputs of two inputs in the restricted domain are also equal outputs in the original domain.
+          Original injectivity forces those inputs equal.'
+      - id: 39
+        type: freeform
+        prompt: 'Let $f:\{a,b\}\to\{1,2\}$ satisfy $f(a)=2$ and $f(b)=1$. List the inverse pairs.'
+        answerLines: 3
+        answer: '$\{(2,a),(1,b)\}$. Each codomain element has one preimage, so reversing the pairs is a function.'
+      - id: 40
+        type: reasoning
+        prompt:
+          'Explain why $f^{-1}(f(x))=x$ alone for all inputs does not prove a proposed inverse is an inverse
+          on the entire codomain.'
+        answerLines: 4
+        answer:
+          'It shows the proposed reverse rule undoes $f$ on reached outputs. One must also verify $f(f^{-1}(y))=y$
+          for every codomain $y$; otherwise missed targets may remain.'
+  - title: 'E. Composition and compatible domains'
+    questions:
+      - id: 41
+        type: freeform
+        prompt: 'Let $f,g,h:\mathbb R\to\mathbb R$ satisfy $f(x)=x+2$, $g(x)=3x$, and $h(x)=x-1$.
+          Compute $g\circ f$, then verify $h\circ(g\circ f)=(h\circ g)\circ f$.'
+        answerLines: 5
+        answer: 'The first composite is $(g\circ f)(x)=3x+6$. Then $h(g(f(x)))=3x+5$.
+          Also $(h\circ g)(y)=3y-1$, so substituting $y=f(x)=x+2$ gives $3(x+2)-1=3x+5$.
+          Both groupings have the same values and types.'
+      - id: 42
+        type: freeform
+        prompt: 'For $f(x)=x+2$ and $g(x)=3x$ on $\mathbb R$, compute $f\circ g$ and compare it with $g\circ f$.'
+        answerLines: 3
+        answer:
+          '$(f\circ g)(x)=3x+2$, whereas $(g\circ f)(x)=3x+6$. They are different, so composition is not
+          commutative.'
+      - id: 43
+        type: freeform
+        prompt:
+          'Let $f:\mathbb R\to[0,\infty)$, $f(x)=x^2$, and $g:[0,\infty)\to[0,\infty)$, $g(y)=\sqrt y$. Find
+          $g(f(x))$.'
+        answerLines: 3
+        answer: '$\sqrt{x^2}=|x|$. It is not always $x$, since negative inputs become nonnegative.'
+      - id: 44
+        type: freeform
+        prompt: 'With $f(x)=x^2$ on $\mathbb R$ and $g(y)=\sqrt y$ on $[0,\infty)$, find $f(g(y))$ for $y\geq0$.'
+        answerLines: 3
+        answer: '$(\sqrt y)^2=y$. This identity holds for every allowed nonnegative target.'
+      - id: 45
+        type: reasoning
+        prompt:
+          'Let $f:\mathbb R\to\mathbb R$, $f(x)=x-2$, and $g:[0,\infty)\to\mathbb R$, $g(y)=\sqrt y$. Is
+          $g\circ f$ defined on all reals? Give its largest real domain.'
+        answerLines: 4
+        answer:
+          'No. The intermediate value must satisfy $x-2\geq0$. Its largest real domain is $[2,\infty)$, where
+          the composite is $\sqrt{x-2}$.'
+      - id: 46
+        type: freeform
+        prompt: 'Let $f:\{a,b\}\to\{1,2,3\}$ have values 1,2 respectively. Let
+          $g:\{1,2,3\}\to\{u,v\}$ satisfy $g(1)=u$, $g(2)=v$, $g(3)=u$. Find the pairs of $g\circ f$.'
+        answerLines: 3
+        answer: '$\{(a,u),(b,v)\}$. The unused intermediate value 3 does not appear in any composite evaluation.'
+      - id: 47
+        type: reasoning
+        prompt:
+          'Prove that composing two injective functions gives an injective function, assuming their domains
+          and codomains match.'
+        answerLines: 6
+        answer: 'If $g(f(x))=g(f(y))$, injectivity of $g$ gives $f(x)=f(y)$, and injectivity of $f$ gives $x=y$.'
+      - id: 48
+        type: reasoning
+        prompt:
+          'Prove that composing two surjective functions gives a surjective function, with matching types
+          $f:A\to B$, $g:B\to C$.'
+        answerLines: 6
+        answer:
+          'Given any $c\in C$, choose $b\in B$ with $g(b)=c$, then $a\in A$ with $f(a)=b$. The composite
+          sends that $a$ to $c$.'
+      - id: 49
+        type: reasoning
+        prompt: 'For bijections $f:A\to B$ and $g:B\to C$, state the inverse of $g\circ f$ and explain the order.'
+        answerLines: 5
+        answer:
+          'It is $f^{-1}\circ g^{-1}:C\to A$. First undo the final step $g$, then undo the initial step $f$.
+          Both inverse identities follow by cancelling these adjacent inverse pairs.'
+      - id: 50
+        type: reasoning
+        prompt: 'Prove that if $g\circ f$ is injective, then $f$ is injective.'
+        answerLines: 5
+        answer:
+          'Assume $f(x)=f(y)$. Applying $g$ gives equal composite outputs, so composite injectivity forces
+          $x=y$.'
+  - title: 'F. Empty cases and finite counting'
+    questions:
+      - id: 51
+        type: freeform
+        prompt: 'How many functions exist from $\varnothing$ to $\{1,2,3\}$, and is such a function injective?'
+        answerLines: 3
+        answer: 'Exactly one, the empty function. It is injective because no two distinct domain elements can collide.'
+      - id: 52
+        type: freeform
+        prompt: 'Is the empty function $\varnothing\to\{1\}$ surjective?'
+        answerLines: 3
+        answer: 'No. Codomain element 1 has no domain preimage.'
+      - id: 53
+        type: freeform
+        prompt: 'Describe the function $\varnothing\to\varnothing$ and classify it.'
+        answerLines: 3
+        answer:
+          'The unique empty function is bijective: injectivity and surjectivity both hold without counterexamples.
+          It is its own inverse.'
+      - id: 54
+        type: freeform
+        prompt: 'Can a function exist from $\{a\}$ to $\varnothing$?'
+        answerLines: 3
+        answer: 'No. The sole input would require an output in the empty codomain, which is impossible.'
+      - id: 55
+        type: freeform
+        prompt: 'How many functions exist from a three-element set to a four-element set?'
+        answerLines: 3
+        answer: '$4^3=64$. Each of the three inputs independently chooses one of four targets.'
+      - id: 56
+        type: reasoning
+        prompt:
+          'How many injective functions exist from a three-element set to a four-element set? Explain the
+          count.'
+        answerLines: 4
+        answer: '$4\cdot3\cdot2=24$. After each output choice, later inputs must avoid the used outputs.'
+      - id: 57
+        type: freeform
+        prompt: 'Can a function from a five-element set to a three-element set be injective?'
+        answerLines: 3
+        answer:
+          'No. Five distinct outputs cannot fit among three codomain elements. At least two inputs must share
+          a target.'
+      - id: 58
+        type: freeform
+        prompt: 'Can a function from a three-element set to a five-element set be surjective?'
+        answerLines: 3
+        answer: 'No. Three inputs can reach at most three distinct targets, so at least two targets are missed.'
+      - id: 59
+        type: reasoning
+        prompt: 'Prove that an injective function between two finite sets of the same size is surjective.'
+        answerLines: 5
+        answer:
+          'If both sizes are $n$, injectivity gives $n$ distinct outputs in an $n$-element codomain. Those
+          outputs exhaust the codomain, so every target is reached.'
+      - id: 60
+        type: reasoning
+        prompt:
+          'Refute the same-size finite conclusion for an infinite set by giving an injection from a set to
+          itself that is not onto.'
+        answerLines: 4
+        answer:
+          'On $\mathbb N_0$, $f(n)=n+1$ is injective by cancellation but misses 0. Having the same infinite
+          domain and codomain does not force surjectivity.'
+  - title: 'G. Floor, ceiling, and discrete models'
+    questions:
+      - id: 61
+        type: freeform
+        prompt: 'Compute $\lfloor3.8\rfloor$ and $\lceil3.8\rceil$.'
+        answerLines: 2
+        answer: 'They are 3 and 4, the surrounding integers below and above 3.8.'
+      - id: 62
+        type: freeform
+        prompt: 'Compute $\lfloor-3.8\rfloor$ and $\lceil-3.8\rceil$.'
+        answerLines: 3
+        answer: 'They are $-4$ and $-3$. Floor moves to the greatest integer at most the input, not toward zero.'
+      - id: 63
+        type: freeform
+        prompt: 'Compute floor and ceiling of the integer $-5$.'
+        answerLines: 2
+        answer: 'Both equal $-5$. An integer is already an eligible closest bound in both directions.'
+      - id: 64
+        type: freeform
+        prompt: 'For an integer $k$, describe all real $x$ with $\lfloor x\rfloor=k$.'
+        answerLines: 3
+        answer: '$x\in[k,k+1)$. The left endpoint is included and the right is excluded.'
+      - id: 65
+        type: freeform
+        prompt: 'For an integer $k$, describe all real $x$ with $\lceil x\rceil=k$.'
+        answerLines: 3
+        answer: '$x\in(k-1,k]$. The right endpoint is included and the left is excluded.'
+      - id: 66
+        type: freeform
+        prompt: 'Classify floor as a function $\mathbb R\to\mathbb Z$.'
+        answerLines: 3
+        answer:
+          'Surjective because every integer $k$ maps to itself. Not injective because, for example,
+          2.1 and 2.9 both map to 2.'
+      - id: 67
+        type: freeform
+        prompt: 'How many containers of capacity 6 are needed for 25 items, assuming items can be assigned freely?'
+        answerLines: 3
+        answer: '$\lceil25/6\rceil=5$. Four containers hold only 24 items; five suffice.'
+      - id: 68
+        type: freeform
+        prompt:
+          "For a positive integer capacity $k$, how many containers are needed for zero items? Explain the
+          formula's edge case."
+        answerLines: 3
+        answer: 'Zero: $\lceil0/k\rceil=0$. No container is needed when there are no items.'
+      - id: 69
+        type: reasoning
+        prompt: 'Prove $\lceil x\rceil=-\lfloor-x\rfloor$ for every real $x$.'
+        answerLines: 6
+        answer:
+          'Let $m=\lfloor-x\rfloor$, so $m\leq-x<m+1$. Negating gives $-m-1<x\leq-m$, exactly the characterization
+          of $\lceil x\rceil=-m$.'
+      - id: 70
+        type: reasoning
+        prompt: 'For $f:\mathbb N_0\to\mathbb N_0$, $f(n)=\lfloor n/2\rfloor$, classify injectivity and surjectivity.'
+        answerLines: 4
+        answer:
+          'Surjective because target $k$ is reached at $n=2k$. Not injective because $2k$ and $2k+1$ both
+          map to $k$.'
+  - title: 'H. Proofs, counterexamples, and mixed reasoning'
+    questions:
+      - id: 71
+        type: reasoning
+        prompt:
+          'For $f:A\to B$ and $T,V\subseteq B$, prove that preimages preserve intersections and unions.
+          Also prove $f^{-1}(B\setminus T)=A\setminus f^{-1}(T)$.'
+        answerLines: 8
+        answer:
+          'For $x\in A$, having $f(x)$ in both $T,V$ is equivalent to $x$ belonging to both preimages,
+          so $f^{-1}(T\cap V)=f^{-1}(T)\cap f^{-1}(V)$. Replacing both with at least one gives
+          $f^{-1}(T\cup V)=f^{-1}(T)\cup f^{-1}(V)$. Finally, $f(x)\in B$ always, so
+          $f(x)\in B\setminus T$ holds exactly when $f(x)\notin T$, equivalent to
+          $x\in A\setminus f^{-1}(T)$. Each membership equivalence proves equality.'
+      - id: 72
+        type: reasoning
+        prompt: 'For $f:A\to B$ and $S,W\subseteq A$, prove $f(S\cup W)=f(S)\cup f(W)$.'
+        answerLines: 6
+        answer:
+          'Any output from $S\cup W$ has a witnessing input in at least one of $S,W$, hence belongs to the
+          corresponding image. Conversely, an output from either image has its witness in the union.'
+      - id: 73
+        type: reasoning
+        prompt: 'Refute $f(S\cap W)=f(S)\cap f(W)$ for arbitrary functions.'
+        answerLines: 4
+        answer:
+          'Take the real square function with $S=\{-1\}$ and $W=\{1\}$. The left side is empty, but the right
+          is $\{1\}$. Equal outputs need not have the same input.'
+      - id: 74
+        type: reasoning
+        prompt: 'Prove the intersection identity in the previous question when $f$ is injective.'
+        answerLines: 6
+        answer:
+          'If $y=f(x)$ for some $x\in S\cap W$, that same input witnesses $y\in f(S)$ and $y\in f(W)$,
+          proving the forward inclusion. For the reverse, an output in both images has witnesses $s\in
+          S$, $w\in W$ with $f(s)=f(w)$. Injectivity gives $s=w\in S\cap W$, so that output belongs to the intersection''s
+          image.'
+      - id: 75
+        type: reasoning
+        prompt: 'If $g\circ f$ is surjective, prove that $g$ is surjective, with types $f:A\to B$ and $g:B\to C$.'
+        answerLines: 5
+        answer:
+          'Given $c\in C$, composite surjectivity supplies $a\in A$ with $g(f(a))=c$. Then $b=f(a)\in B$
+          is a preimage under $g$.'
+      - id: 76
+        type: reasoning
+        prompt:
+          'Give finite $f:A\to B$ and $g:B\to C$ with a bijective composite even though $f$ is not onto and
+          $g$ is not injective.'
+        answerLines: 5
+        answer:
+          'Let $A=\{a,b\}$, $B=\{1,2,3\}$, $C=\{u,v\}$. Set $f(a)=1,f(b)=2$ and $g(1)=u,g(2)=v,g(3)=u$. The
+          composite is a bijection, but 3 is missed by $f$ and 1,3 collide under $g$.'
+      - id: 77
+        type: reasoning
+        prompt:
+          'A student solves $2n=y$ as $n=y/2$ and concludes $n\mapsto2n$ is onto $\mathbb Z$. Identify the
+          missing condition.'
+        answerLines: 4
+        answer:
+          'The proposed preimage must be an integer. For odd targets such as 1, $y/2$ is not in the domain,
+          so the function is not onto $\mathbb Z$.'
+      - id: 78
+        type: reasoning
+        prompt:
+          'For $f:A\to B$ and $S\subseteq A$, prove $S\subseteq f^{-1}(f(S))$. Give a case where equality
+          fails.'
+        answerLines: 6
+        answer:
+          'Every $s\in S$ has output in $f(S)$, proving inclusion. For the real square function and $S=\{1\}$,
+          the preimage of its image is $\{-1,1\}$, strictly larger.'
+      - id: 79
+        type: reasoning
+        prompt: 'For $f:A\to B$ and $T\subseteq B$, prove $f(f^{-1}(T))=T\cap f(A)$.'
+        answerLines: 6
+        answer:
+          'An output on the left is reached by an input whose output lies in $T$, so it is in both $T$ and
+          the image. Conversely, a member of $T\cap f(A)$ has a witnessing input that lies in $f^{-1}(T)$, proving
+          the other inclusion.'
+      - id: 80
+        type: reasoning
+        prompt: 'Let $f:\mathbb Z\to\mathbb Z$ be $f(n)=-n$. Prove that it is a bijection and its own inverse.'
+        answerLines: 5
+        answer:
+          'Applying it twice gives $f(f(n))=-(-n)=n$. Equal outputs imply equal inputs by negation, and any
+          target $m$ is reached at $-m$. Thus it is bijective with $f^{-1}=f$.'
