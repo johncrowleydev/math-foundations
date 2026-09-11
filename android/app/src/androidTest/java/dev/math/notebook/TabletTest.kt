@@ -22,6 +22,9 @@ class TabletTest {
     @Before
     fun landscape() {
         rule.runOnIdle {
+            model.input.pen("show")
+            model.input.typing(false)
+            if (!model.input.twoFinger) model.input.toggleScroll()
             rule.activity.requestedOrientation =
                 android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         }
@@ -180,7 +183,9 @@ class TabletTest {
         val q = rule.runOnIdle { model.lesson.practiceIds[model.position(model.lesson.slug)] }
         val key = "propositional-logic-$q"
         val page = rule.runOnIdle { model.page(key) }
-        rule.waitUntil(10000) { !page.loading }
+        val draft = rule.runOnIdle { model.answers.draft(key, false) }
+        rule.waitUntil(10000) { !page.loading && !draft.loading }
+        rule.runOnIdle { draft.mode("write") }
         val original = rule.runOnIdle { page.strokes }
         val canvas = rule.onNodeWithTag("ink:$key")
         canvas.assertIsDisplayed()
@@ -267,7 +272,9 @@ class TabletTest {
         val q = rule.runOnIdle { model.lesson.practiceIds[model.position(model.lesson.slug)] }
         val key = "propositional-logic-$q"
         val page = rule.runOnIdle { model.page(key) }
-        rule.waitUntil(10000) { !page.loading }
+        val draft = rule.runOnIdle { model.answers.draft(key, false) }
+        rule.waitUntil(10000) { !page.loading && !draft.loading }
+        rule.runOnIdle { draft.mode("write") }
         val size = rule.runOnIdle { page.strokes.size }
         val node = rule.onNodeWithTag("ink:$key")
         node.performTouchInput { swipe(Offset(100f, 150f), Offset(500f, 250f)) }

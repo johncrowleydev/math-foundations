@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
 import kotlin.math.*
 import org.json.JSONObject
 
@@ -94,6 +95,7 @@ internal fun MathematicalDrawing(figure: JSONObject, frame: JSONObject) {
                 center: Boolean = true,
                 font: Float = 22f,
             ) {
+                val readableFont = maxOf(font, 14.dp.toPx() / factor)
                 if (mathLabels.has(value) || value.matches(Regex("-?[0-9]+(\\.[0-9]+)?"))) {
                     val bounds =
                         FigureTex.draw(
@@ -101,7 +103,7 @@ internal fun MathematicalDrawing(figure: JSONObject, frame: JSONObject) {
                             mathLabels.optString(value, value),
                             x,
                             y,
-                            font,
+                            readableFont,
                             center,
                         )
                     hit(value, bounds)
@@ -110,7 +112,7 @@ internal fun MathematicalDrawing(figure: JSONObject, frame: JSONObject) {
                 val paint =
                     Paint(Paint.ANTI_ALIAS_FLAG).apply {
                         color = dark.toArgb()
-                        textSize = font
+                        textSize = readableFont
                         textAlign = if (center) Paint.Align.CENTER else Paint.Align.LEFT
                     }
                 drawContext.canvas.nativeCanvas.drawText(value, x, y, paint)
@@ -181,7 +183,12 @@ internal fun MathematicalDrawing(figure: JSONObject, frame: JSONObject) {
                     val w = 380f / columns.size
                     val h = 210f / rows.size
                     label(figure.getString("columnLabel"), 365f, 30f, font = 20f)
-                    label(figure.getString("rowLabel"), 75f, 135f, font = 20f)
+                    label(
+                        figure.getString("rowLabel"),
+                        75f,
+                        if (14.dp.toPx() / factor > 20f) 75f else 135f,
+                        font = 20f,
+                    )
                     columns.forEachIndexed { i, name ->
                         label(name, 175f + (i + 0.5f) * w, 75f, font = 20f)
                     }
@@ -398,7 +405,11 @@ internal fun MathematicalDrawing(figure: JSONObject, frame: JSONObject) {
                         1f,
                         pathEffect = PathEffect.dashPathEffect(floatArrayOf(3f, 4f)),
                     )
-                    label("Solid boundaries separate numbered pieces", 300f, 330f, font = 20f)
+                    if (14.dp.toPx() / factor > 20f) {
+                        label("Solid boundaries separate", 300f, 330f, font = 20f)
+                        label("numbered pieces", 300f, 370f, font = 20f)
+                    } else
+                        label("Solid boundaries separate numbered pieces", 300f, 330f, font = 20f)
                 }
                 "sum" -> {
                     val n = frame.getInt("n")

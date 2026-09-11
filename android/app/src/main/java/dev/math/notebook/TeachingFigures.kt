@@ -1,13 +1,18 @@
 package dev.math.notebook
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -22,6 +27,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlin.math.*
 import org.json.JSONObject
 
@@ -36,56 +42,92 @@ internal fun TeachingFigure(figure: JSONObject) {
         Modifier.fillMaxWidth()
             .testTag("figure:$id")
             .background(Color(0xffedf3ef), RoundedCornerShape(14.dp))
-            .padding(20.dp)
+            .padding(
+                if (
+                    androidx.compose.ui.platform.LocalConfiguration.current.screenWidthDp < 600 ||
+                        androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp < 480
+                )
+                    12.dp
+                else 20.dp
+            )
     ) {
         Text(figure.getString("title"), style = MaterialTheme.typography.titleLarge)
         Spacer(Modifier.height(12.dp))
-        if (figure.getString("kind") == "graph" && frame.optString("representation") == "matrix") {
-            val nodes =
-                figure.getJSONArray("nodes").let { a ->
-                    a.mapItems { a.getJSONObject(it).getString("id") }
-                }
-            val edges =
-                figure.getJSONArray("edges").let { a ->
-                    a.mapItems { a.getJSONArray(it).let { e -> e.getString(0) to e.getString(1) } }
-                }
-            val matrix =
-                JSONObject()
-                    .put("kind", "predicate-table")
-                    .put("id", id)
-                    .put("lesson", figure.getString("lesson"))
-                    .put("title", figure.getString("title"))
-                    .put("rows", org.json.JSONArray(nodes))
-                    .put("columns", org.json.JSONArray(nodes))
-                    .put("rowLabel", "From")
-                    .put("columnLabel", "To")
-                    .put("format", "binary")
-                    .put(
-                        "mathLabels",
-                        JSONObject(figure.getJSONObject("mathLabels").toString())
-                            .put("0", "0")
-                            .put("1", "1"),
+        var expanded by remember { mutableStateOf(false) }
+        BoxWithConstraints(Modifier.fillMaxWidth()) {
+            val availableWidth = maxWidth
+            val narrow = availableWidth < 500.dp
+            val fits = figure.getString("kind") != "plot"
+            val pan = narrow && !fits
+            Column {
+                if (pan)
+                    Text(
+                        "Swipe across the figure to inspect its labels.",
+                        style = MaterialTheme.typography.bodySmall,
                     )
-                    .put(
-                        "values",
-                        org.json.JSONArray(
-                            nodes.map { a ->
-                                nodes.map { b ->
-                                    (a to b) in edges ||
-                                        !figure.getBoolean("directed") && (b to a) in edges
+                Box(
+                    Modifier.fillMaxWidth()
+                        .testTag("figure-viewport:$id")
+                        .horizontalScroll(rememberScrollState(), enabled = pan)
+                ) {
+                    Box(if (pan) Modifier.width(560.dp) else Modifier.width(availableWidth)) {
+                        if (narrow && figure.getString("kind") == "flow")
+                            CompactReasoningFigure(figure, frame)
+                        else FigureDrawing(figure, frame)
+                    }
+                }
+                TextButton(onClick = { expanded = true }) { Text("Expand figure") }
+            }
+        }
+        if (expanded)
+            androidx.compose.ui.window.Dialog(
+                onDismissRequest = { expanded = false },
+                properties =
+                    androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false),
+            ) {
+                Surface(Modifier.fillMaxSize().systemBarsPadding()) {
+                    Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp)) {
+                        TextButton(onClick = { expanded = false }) { Text("Close figure") }
+                        Text(figure.getString("title"), style = MaterialTheme.typography.titleLarge)
+                        BoxWithConstraints(Modifier.fillMaxWidth()) {
+                            val drawingWidth = maxWidth.coerceAtLeast(560.dp)
+                            Box(Modifier.horizontalScroll(rememberScrollState())) {
+                                Box(Modifier.width(drawingWidth)) { FigureDrawing(figure, frame) }
+                            }
+                        }
+                        RichText(frame.getString("text"), source = "figure:$id:frame:$step")
+                        if (frames.length() > 1)
+                            FlowRow {
+                                TextButton(onClick = { step-- }, enabled = step > 0) {
+                                    Text("Previous")
+                                }
+                                Text("${step + 1} / ${frames.length()}", Modifier.padding(12.dp))
+                                TextButton(
+                                    onClick = { step++ },
+                                    enabled = step < frames.length() - 1,
+                                ) {
+                                    Text("Next")
+                                }
+                                TextButton(onClick = { step = 0 }, enabled = step != 0) {
+                                    Text("Reset")
                                 }
                             }
-                        ),
-                    )
-            val tableFrame =
-                JSONObject(frame.toString())
-                    .put(
-                        "highlight",
-                        org.json.JSONArray(frame.strings("highlight").map { "row:$it" }),
-                    )
-            MathematicalDrawing(matrix, tableFrame)
-        } else if (figure.getString("kind") == "graph") GraphDrawing(figure, frame)
-        else MathematicalDrawing(figure, frame)
+                        TextButton(onClick = { about = !about }) { Text("About this figure") }
+                        if (about) {
+                            RichText(
+                                figure.getString("creation"),
+                                size = 14f,
+                                source = "figure:$id:creation",
+                            )
+                            RichText(
+                                figure.getString("limitations"),
+                                size = 14f,
+                                source = "figure:$id:limitations",
+                            )
+                        }
+                    }
+                }
+            }
         Spacer(Modifier.height(12.dp))
         RichText(
             frame.getString("text"),
@@ -94,7 +136,7 @@ internal fun TeachingFigure(figure: JSONObject) {
             source = "figure:$id:frame:$step",
         )
         if (frames.length() > 1)
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 TextButton(
                     onClick = { step-- },
                     enabled = step > 0,
@@ -121,6 +163,137 @@ internal fun TeachingFigure(figure: JSONObject) {
             RichText(figure.getString("limitations"), size = 14f, source = "figure:$id:limitations")
         }
     }
+}
+
+@Composable
+private fun CompactReasoningFigure(figure: JSONObject, frame: JSONObject) {
+    val steps = frame.strings("steps").ifEmpty { figure.strings("steps") }
+    val labels = figure.getJSONObject("mathLabels")
+    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+        steps.forEachIndexed { index, text ->
+            val active = index == frame.optInt("active", -1)
+            Surface(
+                Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(10.dp),
+                color = if (active) Color(0xffd2e6d7) else Color(0xfffffef9),
+                border = if (active) BorderStroke(2.dp, Color(0xff253a36)) else null,
+            ) {
+                if (labels.has(text)) CompactFigureFormula(figure, text)
+                else Text(text, Modifier.padding(12.dp), style = MaterialTheme.typography.bodyLarge)
+            }
+            if (index < steps.lastIndex)
+                Text("↓", Modifier.padding(4.dp), style = MaterialTheme.typography.titleLarge)
+        }
+    }
+}
+
+@Composable
+private fun CompactFigureFormula(figure: JSONObject, label: String) {
+    val latex = figure.getJSONObject("mathLabels").getString(label)
+    val density = androidx.compose.ui.platform.LocalDensity.current
+    val pixels = with(density) { 18.sp.toPx() }
+    val drawable = remember(latex, pixels) { FigureTex.drawable(latex, pixels) }
+    val references = LocalReferences.current
+    var origin by remember { mutableStateOf(Offset.Zero) }
+    BoxWithConstraints(Modifier.fillMaxWidth().padding(12.dp)) {
+        val width = with(density) { drawable.intrinsicWidth.toDp() }.coerceAtLeast(maxWidth)
+        val height = with(density) { drawable.intrinsicHeight.toDp() }.coerceAtLeast(28.dp)
+        val overflow = with(density) { drawable.intrinsicWidth.toDp() } > maxWidth
+        Column {
+            if (overflow)
+                Text(
+                    "Swipe to read the full expression",
+                    style = MaterialTheme.typography.labelSmall,
+                )
+            Box(Modifier.horizontalScroll(rememberScrollState())) {
+                Canvas(
+                    Modifier.width(width)
+                        .height(height)
+                        .onGloballyPositioned { origin = it.positionInWindow() }
+                        .semantics { contentDescription = latex }
+                        .pointerInput(latex) {
+                            detectTapGestures { tap ->
+                                references
+                                    ?.library
+                                    ?.formulaAt(
+                                        figure.getString("lesson"),
+                                        "figure:${figure.getString("id")}:label:$label",
+                                        0,
+                                        latex,
+                                    )
+                                    ?.let {
+                                        references.open(
+                                            "formula:${it.getString("id")}",
+                                            IntOffset(
+                                                (origin.x + tap.x).toInt(),
+                                                (origin.y + tap.y).toInt(),
+                                            ),
+                                        )
+                                    }
+                            }
+                        }
+                ) {
+                    FigureTex.draw(
+                        drawContext.canvas.nativeCanvas,
+                        latex,
+                        0f,
+                        size.height / 2f,
+                        pixels,
+                        center = false,
+                        verticalCenter = true,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FigureDrawing(figure: JSONObject, frame: JSONObject) {
+    val id = figure.getString("id")
+    if (figure.getString("kind") == "graph" && frame.optString("representation") == "matrix") {
+        val nodes =
+            figure.getJSONArray("nodes").let { a ->
+                a.mapItems { a.getJSONObject(it).getString("id") }
+            }
+        val edges =
+            figure.getJSONArray("edges").let { a ->
+                a.mapItems { a.getJSONArray(it).let { e -> e.getString(0) to e.getString(1) } }
+            }
+        val matrix =
+            JSONObject()
+                .put("kind", "predicate-table")
+                .put("id", id)
+                .put("lesson", figure.getString("lesson"))
+                .put("title", figure.getString("title"))
+                .put("rows", org.json.JSONArray(nodes))
+                .put("columns", org.json.JSONArray(nodes))
+                .put("rowLabel", "From")
+                .put("columnLabel", "To")
+                .put("format", "binary")
+                .put(
+                    "mathLabels",
+                    JSONObject(figure.getJSONObject("mathLabels").toString())
+                        .put("0", "0")
+                        .put("1", "1"),
+                )
+                .put(
+                    "values",
+                    org.json.JSONArray(
+                        nodes.map { a ->
+                            nodes.map { b ->
+                                (a to b) in edges ||
+                                    !figure.getBoolean("directed") && (b to a) in edges
+                            }
+                        }
+                    ),
+                )
+        val tableFrame =
+            JSONObject(frame.toString())
+                .put("highlight", org.json.JSONArray(frame.strings("highlight").map { "row:$it" }))
+        MathematicalDrawing(matrix, tableFrame)
+    } else if (figure.getString("kind") == "graph") GraphDrawing(figure, frame)
+    else MathematicalDrawing(figure, frame)
 }
 
 @Composable
@@ -180,11 +353,12 @@ private fun GraphDrawing(figure: JSONObject, frame: JSONObject) {
             .semantics { contentDescription = description }
     ) {
         val scale = size.width / 600f
+        val labelSize = maxOf(24f * scale, 14.dp.toPx())
         fun position(id: String) = nodes.getValue(id) * scale
         fun radius(id: String) =
             maxOf(
                 19f * scale,
-                FigureTex.width(mathLabels.getString(id), 24f) * scale / 2f + 8f * scale,
+                FigureTex.width(mathLabels.getString(id), labelSize) / 2f + 8f * scale,
             )
         fun arrowhead(finish: Offset, unit: Offset, color: Color) {
             val side = Offset(-unit.y, unit.x)
@@ -265,7 +439,7 @@ private fun GraphDrawing(figure: JSONObject, frame: JSONObject) {
                 mathLabels.getString(id),
                 p.x,
                 p.y,
-                24f * scale,
+                labelSize,
                 verticalCenter = true,
             )
         }

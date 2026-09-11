@@ -1,6 +1,7 @@
 package dev.math.notebook
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -77,5 +78,47 @@ class FigureInteractionTest {
             click(Offset(width * (175f + 3.5f * 95f) / 600f, height * 68f / 360f))
         }
         assertEquals(first, references.target)
+    }
+
+    @Test
+    fun expandedFigureKeepsAuthoredStepsAndReturnsToItsPlace() {
+        val references =
+            ReferenceController(
+                TeachingLibrary(InstrumentationRegistry.getInstrumentation().targetContext)
+            )
+        val figure = references.library.figures.getValue("graph-first")
+        rule.setContent {
+            MaterialTheme {
+                CompositionLocalProvider(
+                    LocalReferences provides references,
+                    LocalReferenceLesson provides "graph-theory",
+                ) {
+                    androidx.compose.foundation.layout.Box(
+                        Modifier.width(304.dp).height(600.dp).then(Modifier)
+                    ) {
+                        androidx.compose.foundation.layout.Column(
+                            Modifier.then(Modifier)
+                                .verticalScroll(androidx.compose.foundation.rememberScrollState())
+                        ) {
+                            TeachingFigure(figure)
+                        }
+                    }
+                }
+            }
+        }
+        rule.onNodeWithText("Expand figure").performScrollTo().performClick()
+        rule.onNode(hasText("Next") and hasAnyAncestor(isDialog())).performScrollTo().performClick()
+        rule.onNode(hasText("2 / 2") and hasAnyAncestor(isDialog())).assertExists()
+        rule
+            .onNode(hasText("Reset") and hasAnyAncestor(isDialog()))
+            .performScrollTo()
+            .performClick()
+        rule.onNode(hasText("1 / 2") and hasAnyAncestor(isDialog())).assertExists()
+        rule
+            .onNode(hasText("About this figure") and hasAnyAncestor(isDialog()))
+            .performScrollTo()
+            .performClick()
+        rule.onNodeWithText("Close figure").performScrollTo().performClick()
+        rule.onNodeWithTag("figure-back:graph-first").assertIsNotEnabled()
     }
 }

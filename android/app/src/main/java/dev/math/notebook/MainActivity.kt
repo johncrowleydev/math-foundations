@@ -49,6 +49,12 @@ private val Line = Color(0xffdde2d8)
 
 class MainActivity : ComponentActivity() {
     private var updateRequest by mutableIntStateOf(0)
+    private var inputPreferences: InputPreferences? = null
+
+    override fun dispatchTouchEvent(event: android.view.MotionEvent): Boolean {
+        inputPreferences?.observe(event)
+        return super.dispatchTouchEvent(event)
+    }
 
     private fun consumeUpdateIntent(incoming: android.content.Intent) {
         if (incoming.getBooleanExtra("showUpdates", false)) {
@@ -106,7 +112,9 @@ class MainActivity : ComponentActivity() {
                         outline = Line,
                     )
             ) {
-                Notebook(viewModel(), updateRequest)
+                val model: NotebookModel = viewModel()
+                inputPreferences = model.input
+                Notebook(model, updateRequest)
             }
         }
     }
@@ -115,15 +123,22 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
     val controller = model.references
+    DisposableEffect(model.input) {
+        model.input.start()
+        onDispose { model.input.stop() }
+    }
+    val config = LocalConfiguration.current
+    val compact = config.screenWidthDp < 600 || config.screenHeightDp < 480
     val portrait =
-        LocalConfiguration.current.orientation ==
-            android.content.res.Configuration.ORIENTATION_PORTRAIT
+        compact ||
+            config.screenWidthDp < 840 ||
+            config.orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT
     CompositionLocalProvider(
         LocalReferences provides controller,
         LocalReferenceLesson provides model.lesson.slug,
     ) {
         BackHandler(controller.full || controller.target != null) { controller.back() }
-        Row(Modifier.fillMaxSize()) {
+        Row(Modifier.fillMaxSize().imePadding()) {
             if (controller.standalone) ReferencePanel(model, controller, Modifier.fillMaxSize())
             else {
                 Box(Modifier.weight(1f)) { NotebookLayout(model, showUpdates) }
@@ -137,19 +152,38 @@ private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
                 properties =
                     androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false),
             ) {
-                ReferencePanel(model, controller, Modifier.fillMaxWidth(0.9f).fillMaxHeight(0.86f))
+                ReferencePanel(
+                    model,
+                    controller,
+                    if (compact) Modifier.fillMaxSize().systemBarsPadding().imePadding()
+                    else Modifier.fillMaxWidth(0.9f).fillMaxHeight(0.86f),
+                )
             }
         } else if (!controller.full && controller.target != null) QuickReference(model, controller)
+        FocusedAnswerEditor(model)
     }
 }
 
 @Composable
 private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
     var focusId by rememberSaveable { mutableStateOf<Int?>(null) }
+    LaunchedEffect(model.answerFocus) {
+        model.answerFocus?.let {
+            focusId = it
+            model.mode(false)
+            model.answerFocus = null
+        }
+    }
     var library by rememberSaveable { mutableStateOf(false) }
+    val config = LocalConfiguration.current
+    val editingOnCompact =
+        (config.screenWidthDp < 600 || config.screenHeightDp < 480) &&
+            WindowInsets.ime.getBottom(androidx.compose.ui.platform.LocalDensity.current) > 0
+    val compact = config.screenWidthDp < 600 || config.screenHeightDp < 480
     val portrait =
-        LocalConfiguration.current.orientation ==
-            android.content.res.Configuration.ORIENTATION_PORTRAIT
+        compact ||
+            config.screenWidthDp < 840 ||
+            config.orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT
     BackHandler(model.practice || focusId != null) {
         if (focusId != null) focusId = null else model.mode(false)
     }
@@ -191,8 +225,8 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                     val railState = rememberLazyListState()
                     LazyColumn(
                         state = railState,
-                        userScrollEnabled = false,
-                        modifier = Modifier.weight(1f).twoFingerScroll(railState),
+                        userScrollEnabled = true,
+                        modifier = Modifier.weight(1f),
                         verticalArrangement = Arrangement.spacedBy(5.dp),
                     ) {
                         itemsIndexed(model.lessons) { i, l ->
@@ -234,10 +268,15 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                             modifier = Modifier.size(18.dp),
                         )
                         Spacer(Modifier.width(8.dp))
-                        Text("Made for your S Pen", fontSize = 12.sp, color = Forest)
+                        Text(
+                            if (model.input.showPen) "Pen and keyboard ready"
+                            else "Your learning notebook",
+                            fontSize = 12.sp,
+                            color = Forest,
+                        )
                     }
                     Text(
-                        "Two fingers to scroll\nYour handwriting saves here",
+                        "Your answers save on this device",
                         fontSize = 11.sp,
                         lineHeight = 18.sp,
                         color = Muted,
@@ -245,71 +284,157 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                     )
                 }
             Column(Modifier.weight(1f).fillMaxHeight()) {
-                Row(
-                    Modifier.fillMaxWidth().height(82.dp).padding(horizontal = 32.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    if (portrait) {
-                        IconButton(
-                            onClick = { library = true },
-                            modifier = Modifier.padding(end = 14.dp),
-                        ) {
-                            Icon(
-                                Icons.AutoMirrored.Outlined.MenuBook,
-                                "Choose chapter",
-                                tint = Forest,
-                            )
+                if (editingOnCompact) {} else if (config.screenHeightDp < 480) {
+                    Row(
+                        Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        IconButton(onClick = { library = true }) {
+                            Icon(Icons.AutoMirrored.Outlined.MenuBook, "Choose chapter")
                         }
-                    }
-                    Column(Modifier.weight(1f)) {
-                        Label("CHAPTER %02d / 15".format(model.selected + 1))
                         Text(
                             model.lesson.title,
-                            fontSize = 17.sp,
-                            fontWeight = FontWeight.Medium,
+                            Modifier.weight(1f),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.padding(top = 4.dp),
+                            fontSize = 14.sp,
                         )
+                        TextButton(
+                            onClick = {
+                                model.mode(false)
+                                focusId = null
+                            }
+                        ) {
+                            Text("Read")
+                        }
+                        TextButton(
+                            onClick = {
+                                model.mode(true)
+                                focusId = null
+                            }
+                        ) {
+                            Text("Practice")
+                        }
+                        TextButton(
+                            onClick = model.references::browse,
+                            modifier = Modifier.testTag("open-reference"),
+                        ) {
+                            Text("Reference")
+                        }
+                        InputSettingsButton(model.input)
+                        UpdateButton(showUpdates, model.pendingSaves)
                     }
+                } else if (compact) {
+                    Column(Modifier.fillMaxWidth().padding(horizontal = 8.dp)) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            IconButton(onClick = { library = true }) {
+                                Icon(Icons.AutoMirrored.Outlined.MenuBook, "Choose chapter")
+                            }
+                            Text(
+                                model.lesson.title,
+                                Modifier.weight(1f),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                            InputSettingsButton(model.input)
+                            UpdateButton(showUpdates, model.pendingSaves)
+                        }
+                        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
+                            TextButton(
+                                onClick = {
+                                    model.mode(false)
+                                    focusId = null
+                                }
+                            ) {
+                                Text("Read")
+                            }
+                            TextButton(
+                                onClick = {
+                                    model.mode(true)
+                                    focusId = null
+                                }
+                            ) {
+                                Text("Practice")
+                            }
+                            TextButton(
+                                onClick = model.references::browse,
+                                modifier = Modifier.testTag("open-reference"),
+                            ) {
+                                Text("Reference")
+                            }
+                        }
+                    }
+                } else
                     Row(
-                        Modifier.clip(RoundedCornerShape(50))
-                            .background(Color(0xffe6e9e1))
-                            .padding(4.dp)
+                        Modifier.fillMaxWidth().height(82.dp).padding(horizontal = 32.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        ModeButton(
-                            "Read & write",
-                            !model.practice && focusId == null,
-                            Icons.AutoMirrored.Outlined.MenuBook,
-                        ) {
-                            model.mode(false)
-                            focusId = null
+                        if (portrait) {
+                            IconButton(
+                                onClick = { library = true },
+                                modifier = Modifier.padding(end = 14.dp),
+                            ) {
+                                Icon(
+                                    Icons.AutoMirrored.Outlined.MenuBook,
+                                    "Choose chapter",
+                                    tint = Forest,
+                                )
+                            }
                         }
-                        ModeButton(
-                            "Practice",
-                            model.practice || focusId != null,
-                            Icons.Outlined.EditNote,
-                        ) {
-                            model.mode(true)
-                            focusId = null
+                        Column(Modifier.weight(1f)) {
+                            Label("CHAPTER %02d / 15".format(model.selected + 1))
+                            Text(
+                                model.lesson.title,
+                                fontSize = 17.sp,
+                                fontWeight = FontWeight.Medium,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.padding(top = 4.dp),
+                            )
                         }
+                        Row(
+                            Modifier.clip(RoundedCornerShape(50))
+                                .background(Color(0xffe6e9e1))
+                                .padding(4.dp)
+                        ) {
+                            ModeButton(
+                                "Read & write",
+                                !model.practice && focusId == null,
+                                Icons.AutoMirrored.Outlined.MenuBook,
+                            ) {
+                                model.mode(false)
+                                focusId = null
+                            }
+                            ModeButton(
+                                "Practice",
+                                model.practice || focusId != null,
+                                Icons.Outlined.EditNote,
+                            ) {
+                                model.mode(true)
+                                focusId = null
+                            }
+                        }
+                        TextButton(
+                            onClick = model.references::browse,
+                            modifier = Modifier.testTag("open-reference"),
+                        ) {
+                            Text("Reference")
+                        }
+                        InputSettingsButton(model.input)
+                        UpdateButton(showUpdates, model.pendingSaves)
                     }
-                    TextButton(
-                        onClick = model.references::browse,
-                        modifier = Modifier.testTag("open-reference"),
-                    ) {
-                        Text("Reference")
-                    }
-                    UpdateButton(showUpdates, model.pendingSaves)
-                }
                 HorizontalDivider(color = Line)
-                if (model.saveError != null)
+                if (model.saveError != null || model.answers.error != null)
                     Surface(color = Color(0xffffe8de)) {
                         Row(
                             Modifier.fillMaxWidth().padding(horizontal = 24.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Text(model.saveError!!, Modifier.weight(1f), fontSize = 13.sp)
+                            Text(
+                                (model.saveError ?: model.answers.error)!!,
+                                Modifier.weight(1f),
+                                fontSize = 13.sp,
+                            )
                             TextButton(onClick = model::retrySaves) { Text("Retry saving") }
                         }
                     }
@@ -319,9 +444,27 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                     else Reader(model) { focusId = it }
                 }
             }
-            if (!portrait) Tools(model)
+            if (!portrait && model.input.showPen) Tools(model, !model.practice && focusId == null)
         }
-        if (portrait) PortraitTools(model)
+        if (
+            editingOnCompact || (config.screenHeightDp < 480 && (model.practice || focusId != null))
+        ) {} else if (portrait && model.input.showPen && !compact)
+            PortraitTools(model, !model.practice && focusId == null)
+        else if (compact && model.input.showPen) {
+            var palette by rememberSaveable { mutableStateOf(false) }
+            Column {
+                if (palette) CompactPenTools(model)
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    TextButton(onClick = { palette = !palette }) {
+                        Text(if (palette) "Hide pen tools" else "Pen tools")
+                    }
+                    ScrollPreference(model.input, !model.practice && focusId == null)
+                }
+            }
+        } else if (!model.input.showPen)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                ScrollPreference(model.input, !model.practice && focusId == null)
+            }
     }
     if (library)
         AlertDialog(
@@ -331,8 +474,8 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                 val state = rememberLazyListState(model.selected)
                 LazyColumn(
                     state = state,
-                    userScrollEnabled = false,
-                    modifier = Modifier.heightIn(max = 620.dp).twoFingerScroll(state),
+                    userScrollEnabled = true,
+                    modifier = Modifier.heightIn(max = 620.dp),
                 ) {
                     itemsIndexed(model.lessons) { i, l ->
                         TextButton(
@@ -358,7 +501,35 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
 }
 
 @Composable
-private fun PortraitTools(model: NotebookModel) {
+internal fun CompactPenTools(model: NotebookModel) {
+    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
+        TextButton(onClick = { model.eraser = false }) {
+            Text(if (!model.eraser) "Pen ✓" else "Pen")
+        }
+        TextButton(onClick = { model.eraser = true }) {
+            Text(if (model.eraser) "Eraser ✓" else "Eraser")
+        }
+        listOf(
+                "Ink" to 0xff253a43.toInt(),
+                "Green" to 0xff286f5d.toInt(),
+                "Blue" to 0xff346fb0.toInt(),
+                "Red" to 0xffad534a.toInt(),
+            )
+            .forEach { (name, color) ->
+                TextButton(onClick = { model.color(color) }) {
+                    Text(name + if (model.penColor == color) " ✓" else "", color = Color(color))
+                }
+            }
+        listOf("Fine" to 1.4f, "Medium" to 2.4f, "Broad" to 4f).forEach { (name, width) ->
+            TextButton(onClick = { model.width(width) }) {
+                Text(name + if (model.penWidth == width) " ✓" else "")
+            }
+        }
+    }
+}
+
+@Composable
+private fun PortraitTools(model: NotebookModel, lessonScrolling: Boolean) {
     HorizontalDivider(color = Line)
     Row(
         Modifier.fillMaxWidth().height(82.dp).background(Paper).padding(horizontal = 28.dp),
@@ -403,7 +574,7 @@ private fun PortraitTools(model: NotebookModel) {
         }
         Spacer(Modifier.weight(1f))
         Icon(Icons.Outlined.TouchApp, null, tint = Muted, modifier = Modifier.size(18.dp))
-        Text("2 fingers to scroll", fontSize = 11.sp, color = Muted)
+        ScrollPreference(model.input, lessonScrolling)
     }
 }
 
@@ -439,7 +610,7 @@ private fun ModeButton(text: String, selected: Boolean, icon: ImageVector, onCli
 }
 
 @Composable
-private fun Tools(model: NotebookModel) {
+private fun Tools(model: NotebookModel, lessonScrolling: Boolean) {
     Column(
         Modifier.width(78.dp).fillMaxHeight().background(Paper).padding(vertical = 26.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -487,13 +658,7 @@ private fun Tools(model: NotebookModel) {
         }
         Spacer(Modifier.weight(1f))
         Icon(Icons.Outlined.TouchApp, null, tint = Muted, modifier = Modifier.size(21.dp))
-        Text(
-            "2 fingers\nto scroll",
-            fontSize = 10.sp,
-            lineHeight = 16.sp,
-            color = Muted,
-            modifier = Modifier.padding(top = 10.dp),
-        )
+        ScrollPreference(model.input, lessonScrolling)
     }
 }
 
@@ -584,8 +749,8 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                             val outlineState = rememberLazyListState()
                             LazyColumn(
                                 state = outlineState,
-                                userScrollEnabled = false,
-                                modifier = Modifier.height(440.dp).twoFingerScroll(outlineState),
+                                userScrollEnabled = true,
+                                modifier = Modifier.height(440.dp),
                             ) {
                                 itemsIndexed(lesson.sections) { i, s ->
                                     TextButton(
@@ -617,20 +782,44 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
         }
         LazyColumn(
             state = state,
-            userScrollEnabled = false,
-            modifier = Modifier.weight(1f).fillMaxWidth().testTag("reader").twoFingerScroll(state),
+            userScrollEnabled = !model.input.twoFinger,
+            modifier =
+                Modifier.weight(1f)
+                    .fillMaxWidth()
+                    .testTag("reader")
+                    .then(if (model.input.twoFinger) Modifier.twoFingerScroll(state) else Modifier),
             contentPadding = PaddingValues(bottom = 60.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(26.dp),
         ) {
             itemsIndexed(entries, key = { _, entry -> entry.first }) { _, entry ->
-                Box(Modifier.widthIn(max = 960.dp).fillMaxWidth().padding(horizontal = 28.dp)) {
+                Box(
+                    Modifier.widthIn(max = 960.dp)
+                        .fillMaxWidth()
+                        .padding(
+                            horizontal =
+                                if (
+                                    LocalConfiguration.current.screenWidthDp < 600 ||
+                                        LocalConfiguration.current.screenHeightDp < 480
+                                )
+                                    12.dp
+                                else 28.dp
+                        )
+                ) {
                     when (val value = entry.second) {
                         is Section ->
                             Column(
                                 Modifier.fillMaxWidth()
                                     .background(Paper, RoundedCornerShape(16.dp))
-                                    .padding(38.dp, 32.dp)
+                                    .padding(
+                                        if (
+                                            LocalConfiguration.current.screenWidthDp < 600 ||
+                                                LocalConfiguration.current.screenHeightDp < 480
+                                        )
+                                            16.dp
+                                        else 38.dp,
+                                        32.dp,
+                                    )
                             ) {
                                 Text(
                                     value.title,
@@ -647,6 +836,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                         source = "section:${value.id}",
                                     )
                                 else RichText(value.markdown, Modifier.fillMaxWidth())
+                                TypingBlock(model, value.id)
                             }
                         is Question -> QuestionCard(model, value, onFocus)
                         is QuickCheck -> QuickCheckCard(value, "${lesson.slug}:${value.id}")
@@ -663,8 +853,14 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                     Text(
                                         lesson.title,
                                         fontFamily = FontFamily.Serif,
-                                        fontSize = 46.sp,
-                                        lineHeight = 53.sp,
+                                        fontSize =
+                                            if (LocalConfiguration.current.screenWidthDp < 600)
+                                                32.sp
+                                            else 46.sp,
+                                        lineHeight =
+                                            if (LocalConfiguration.current.screenWidthDp < 600)
+                                                39.sp
+                                            else 53.sp,
                                         color = Ink,
                                         modifier = Modifier.padding(top = 14.dp, bottom = 20.dp),
                                     )
@@ -675,6 +871,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                             source = "intro",
                                         )
                                     else RichText(lesson.intro, Modifier.fillMaxWidth(), 18f)
+                                    TypingGuide(model)
                                     Row(
                                         Modifier.padding(top = 23.dp),
                                         verticalAlignment = Alignment.CenterVertically,
@@ -759,18 +956,7 @@ private fun QuestionCard(model: NotebookModel, q: Question, onFocus: (Int) -> Un
             }
         }
         Column(Modifier.padding(26.dp, 22.dp)) { Prompt(q, compact = true) }
-        PaperCanvas(model, page, q)
-        Row(
-            Modifier.fillMaxWidth().padding(16.dp, 6.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            InkActions(page)
-            Spacer(Modifier.weight(1f))
-            TextButton(onClick = page::moreSpace) {
-                Icon(Icons.Outlined.Add, null, Modifier.size(17.dp))
-                Text("More space", fontSize = 12.sp)
-            }
-        }
+        ExerciseInput(model, q)
         Answer(q, Modifier.padding(26.dp, 0.dp, 26.dp, 20.dp))
     }
 }
@@ -804,11 +990,13 @@ private fun Prompt(q: Question, compact: Boolean = false) {
 }
 
 @Composable
-private fun PaperCanvas(
+internal fun PaperCanvas(
     model: NotebookModel,
     page: InkPage,
     q: Question,
     minimumHeight: androidx.compose.ui.unit.Dp = 0.dp,
+    fingerDrawing: Boolean = false,
+    penEnabled: Boolean = true,
 ) {
     Column {
         if (q.columns.isNotEmpty())
@@ -829,11 +1017,16 @@ private fun PaperCanvas(
                 if (!page.loading)
                     AndroidView(
                         factory = { context ->
-                            InkCanvas(context, page, model, q.columns.size, q.rows)
+                            InkCanvas(context, page, model, q.columns.size, q.rows).apply {
+                                this.fingerDrawing = fingerDrawing
+                                inputEnabled = penEnabled
+                            }
                         },
                         modifier = Modifier.fillMaxSize().testTag("ink:${page.key}"),
                         update = {
                             page.strokes
+                            it.fingerDrawing = fingerDrawing
+                            it.inputEnabled = penEnabled
                             it.refresh()
                         },
                     )
@@ -845,7 +1038,8 @@ private fun PaperCanvas(
                     )
                 else if (page.strokes.isEmpty())
                     Text(
-                        "Your S Pen goes here",
+                        if (fingerDrawing) "Draw here"
+                        else if (penEnabled) "Your pen goes here" else "Your saved handwriting",
                         Modifier.align(Alignment.BottomEnd).padding(20.dp),
                         fontFamily = FontFamily.Serif,
                         fontSize = 16.sp,
@@ -857,7 +1051,7 @@ private fun PaperCanvas(
 }
 
 @Composable
-private fun InkActions(page: InkPage) {
+internal fun InkActions(page: InkPage) {
     Tool(Icons.AutoMirrored.Outlined.Undo, "Undo", enabled = page.canUndo, onClick = page::undo)
     Tool(Icons.AutoMirrored.Outlined.Redo, "Redo", enabled = page.canRedo, onClick = page::redo)
     var clear by remember { mutableStateOf(false) }
@@ -926,112 +1120,120 @@ private fun Practice(
     exitFocus: () -> Unit,
 ) {
     val lesson = model.lesson
+    val config = LocalConfiguration.current
+    val keyboardVisible =
+        WindowInsets.ime.getBottom(androidx.compose.ui.platform.LocalDensity.current) > 0
+    val compact = config.screenWidthDp < 600 || config.screenHeightDp < 480
     var index by
         rememberSaveable(lesson.slug) {
             mutableIntStateOf(model.position(lesson.slug).coerceIn(0, lesson.practiceIds.lastIndex))
         }
     var picker by remember { mutableStateOf(false) }
     val q = lesson.question(focusId ?: lesson.practiceIds[index])
-    Column(Modifier.fillMaxSize().padding(26.dp, 20.dp)) {
-        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f)) {
-                Label(if (focusId == null) "ONE PROBLEM. ROOM TO THINK." else "FROM YOUR LESSON")
-                Text(
-                    q.section,
-                    fontSize = 18.sp,
-                    fontFamily = FontFamily.Serif,
-                    modifier = Modifier.padding(top = 6.dp),
-                )
+    Column(
+        Modifier.fillMaxSize().padding(if (compact) 12.dp else 26.dp, if (compact) 8.dp else 20.dp)
+    ) {
+        if (!compact || !keyboardVisible)
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    if (config.screenHeightDp >= 480)
+                        Label(
+                            if (focusId == null) "ONE PROBLEM. ROOM TO THINK."
+                            else "FROM YOUR LESSON"
+                        )
+                    Text(
+                        q.section,
+                        fontSize = 18.sp,
+                        fontFamily = FontFamily.Serif,
+                        modifier = Modifier.padding(top = 6.dp),
+                    )
+                }
+                if (focusId != null)
+                    TextButton(onClick = exitFocus) {
+                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, null, Modifier.size(18.dp))
+                        Text("Back to reading")
+                    }
+                else
+                    OutlinedButton(onClick = { picker = true }) {
+                        Icon(Icons.Outlined.GridView, null, Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text("${index+1} / ${lesson.practiceIds.size}")
+                    }
             }
-            if (focusId != null)
-                TextButton(onClick = exitFocus) {
-                    Icon(Icons.AutoMirrored.Outlined.ArrowBack, null, Modifier.size(18.dp))
-                    Text("Back to reading")
-                }
-            else
-                OutlinedButton(onClick = { picker = true }) {
-                    Icon(Icons.Outlined.GridView, null, Modifier.size(18.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text("${index+1} / ${lesson.practiceIds.size}")
-                }
-        }
-        Spacer(Modifier.height(22.dp))
+        if (!compact || !keyboardVisible)
+            Spacer(Modifier.height(if (config.screenHeightDp < 480) 6.dp else 22.dp))
         key(q.id) {
             val page = remember { model.page("${lesson.slug}-${q.id}") }
-            PracticePanels(
-                portrait,
-                Modifier.weight(1f),
-                prompt = { paneModifier -> PracticePrompt(q, paneModifier) },
-                writing = { paneModifier ->
-                    Column(
-                        paneModifier
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(Paper)
-                            .border(1.dp, Line, RoundedCornerShape(16.dp))
-                    ) {
-                        Row(
-                            Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 5.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            InkActions(page)
-                            Spacer(Modifier.weight(1f))
-                            TextButton(onClick = page::moreSpace) {
-                                Icon(Icons.Outlined.Add, null, Modifier.size(17.dp))
-                                Text("More space", fontSize = 12.sp)
-                            }
-                        }
-                        HorizontalDivider(color = Line)
-                        val writingState = rememberLazyListState()
-                        BoxWithConstraints(Modifier.weight(1f)) {
-                            val minimumHeight = maxHeight
-                            LazyColumn(
-                                state = writingState,
-                                userScrollEnabled = false,
-                                modifier = Modifier.fillMaxSize().twoFingerScroll(writingState),
-                            ) {
-                                item { PaperCanvas(model, page, q, minimumHeight) }
-                            }
-                        }
+            if (compact)
+                LazyColumn(
+                    Modifier.weight(1f).fillMaxWidth().testTag("practice-scroll"),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                ) {
+                    item {
+                        Prompt(q, compact = true)
+                        Answer(q)
                     }
-                },
-            )
-        }
-        Row(
-            Modifier.fillMaxWidth().padding(top = 18.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                "No score. No timer. Just you and the idea.",
-                fontSize = 12.sp,
-                color = Muted,
-                modifier = Modifier.weight(1f),
-            )
-            if (focusId == null) {
-                OutlinedButton(
-                    onClick = {
-                        index--
-                        model.position(lesson.slug, index)
-                    },
-                    enabled = index > 0,
-                ) {
-                    Icon(Icons.AutoMirrored.Outlined.ArrowBack, null, Modifier.size(18.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text("Previous")
+                    item { ExerciseInput(model, q) }
                 }
-                Spacer(Modifier.width(12.dp))
-                Button(
-                    onClick = {
-                        index++
-                        model.position(lesson.slug, index)
+            else
+                PracticePanels(
+                    portrait,
+                    Modifier.weight(1f),
+                    prompt = { paneModifier -> PracticePrompt(q, paneModifier) },
+                    writing = { paneModifier ->
+                        Column(
+                            paneModifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(Paper)
+                                .border(1.dp, Line, RoundedCornerShape(16.dp))
+                        ) {
+                            val writingState = rememberLazyListState()
+                            LazyColumn(state = writingState, modifier = Modifier.fillMaxSize()) {
+                                item { ExerciseInput(model, q) }
+                            }
+                        }
                     },
-                    enabled = index < lesson.practiceIds.lastIndex,
-                ) {
-                    Text("Next problem")
+                )
+        }
+        if (!compact || !keyboardVisible)
+            Row(
+                Modifier.fillMaxWidth()
+                    .padding(top = if (config.screenHeightDp < 480) 6.dp else 18.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                if (!compact)
+                    Text(
+                        "No score. No timer. Just you and the idea.",
+                        fontSize = 12.sp,
+                        color = Muted,
+                        modifier = Modifier.weight(1f),
+                    )
+                if (focusId == null) {
+                    OutlinedButton(
+                        onClick = {
+                            index--
+                            model.position(lesson.slug, index)
+                        },
+                        enabled = index > 0,
+                    ) {
+                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, null, Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text("Previous")
+                    }
                     Spacer(Modifier.width(12.dp))
-                    Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp))
+                    Button(
+                        onClick = {
+                            index++
+                            model.position(lesson.slug, index)
+                        },
+                        enabled = index < lesson.practiceIds.lastIndex,
+                    ) {
+                        Text(if (compact) "Next" else "Next problem")
+                        Spacer(Modifier.width(12.dp))
+                        Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp))
+                    }
                 }
             }
-        }
     }
     if (picker)
         AlertDialog(
@@ -1041,8 +1243,8 @@ private fun Practice(
                 val state = rememberLazyListState()
                 LazyColumn(
                     state = state,
-                    userScrollEnabled = false,
-                    modifier = Modifier.height(440.dp).twoFingerScroll(state),
+                    userScrollEnabled = true,
+                    modifier = Modifier.height(440.dp),
                 ) {
                     itemsIndexed(lesson.practiceIds) { i, id ->
                         val question = lesson.question(id)
@@ -1092,8 +1294,8 @@ private fun PracticePrompt(q: Question, modifier: Modifier) {
         HorizontalDivider(color = Line)
         LazyColumn(
             state = state,
-            userScrollEnabled = false,
-            modifier = Modifier.weight(1f).twoFingerScroll(state),
+            userScrollEnabled = true,
+            modifier = Modifier.weight(1f),
             contentPadding = PaddingValues(24.dp),
         ) {
             item {

@@ -209,7 +209,9 @@ class TeachingTest {
         }
         rule.onNodeWithText("Summation notation").assertExists()
         rule.onNodeWithText("Back", useUnmergedTree = true).performClick()
-        search.performTextReplacement("Σ")
+        search.performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.SetText) {
+            it(androidx.compose.ui.text.AnnotatedString("Σ"))
+        }
         rule.onNodeWithTag("reference:summation").assertIsDisplayed()
         rule.onNodeWithText("Lesson: All lessons").performClick()
         rule.onNodeWithText("Propositional Logic", useUnmergedTree = true).performClick()
@@ -217,7 +219,9 @@ class TeachingTest {
         rule
             .onNodeWithText("No matching entries. Try a symbol name or another lesson.")
             .assertIsDisplayed()
-        search.performTextReplacement("")
+        search.performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.SetText) {
+            it(androidx.compose.ui.text.AnnotatedString(""))
+        }
         rule.onNodeWithText("Terms", useUnmergedTree = true).performClick()
         rule.onNodeWithText("Lesson: Propositional Logic").assertIsDisplayed()
         rule.runOnIdle {

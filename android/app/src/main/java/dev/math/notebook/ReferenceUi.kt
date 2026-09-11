@@ -18,6 +18,8 @@ internal fun ReferencePanel(
     modifier: Modifier = Modifier,
 ) {
     val state = rememberLazyListState()
+    val detailState = rememberLazyListState()
+    val focusManager = androidx.compose.ui.platform.LocalFocusManager.current
     var filters by remember { mutableStateOf(false) }
     Surface(modifier.testTag("reference-panel"), tonalElevation = 3.dp) {
         Column(Modifier.fillMaxSize().padding(22.dp)) {
@@ -74,9 +76,9 @@ internal fun ReferencePanel(
                                 (controller.lessonFilter == null ||
                                     e.lesson == controller.lessonFilter) &&
                                 (query.isEmpty() ||
-                                    (listOf(e.name, e.quick) + e.aliases).any {
-                                        it.contains(query, ignoreCase = true)
-                                    })
+                                    (listOf(e.name, e.quick, model.texTeaching.searchText(e.id)) +
+                                            e.aliases)
+                                        .any { it.contains(query, ignoreCase = true) })
                         }
                         .sortedWith(
                             compareBy<ReferenceEntry> {
@@ -93,8 +95,8 @@ internal fun ReferencePanel(
                         )
                 LazyColumn(
                     state = state,
-                    userScrollEnabled = false,
-                    modifier = Modifier.weight(1f).twoFingerScroll(state),
+                    userScrollEnabled = true,
+                    modifier = Modifier.weight(1f),
                 ) {
                     if (entries.isEmpty())
                         item {
@@ -105,7 +107,10 @@ internal fun ReferencePanel(
                         }
                     items(entries, key = { it.id }) { e ->
                         TextButton(
-                            onClick = { controller.open("term:${e.id}") },
+                            onClick = {
+                                focusManager.clearFocus()
+                                controller.open("term:${e.id}")
+                            },
                             modifier = Modifier.fillMaxWidth().testTag("reference:${e.id}"),
                         ) {
                             Column(Modifier.fillMaxWidth().padding(vertical = 10.dp)) {
@@ -117,7 +122,10 @@ internal fun ReferencePanel(
                                         e.quick,
                                         Modifier.fillMaxWidth(),
                                         16f,
-                                        onClick = { controller.open("term:${e.id}") },
+                                        onClick = {
+                                            focusManager.clearFocus()
+                                            controller.open("term:${e.id}")
+                                        },
                                     )
                                 }
                             }
@@ -127,13 +135,13 @@ internal fun ReferencePanel(
                 }
             } else {
                 LazyColumn(
-                    state = state,
-                    userScrollEnabled = false,
-                    modifier = Modifier.weight(1f).twoFingerScroll(state),
+                    state = detailState,
+                    userScrollEnabled = true,
+                    modifier = Modifier.weight(1f),
                 ) {
                     item(key = target) { ReferenceDetails(model, controller, target, true) }
                 }
-                LaunchedEffect(target) { state.scrollToItem(0) }
+                LaunchedEffect(target) { detailState.scrollToItem(0) }
             }
         }
     }
@@ -145,8 +153,8 @@ internal fun ReferencePanel(
                 val filterState = rememberLazyListState()
                 LazyColumn(
                     state = filterState,
-                    userScrollEnabled = false,
-                    modifier = Modifier.heightIn(max = 500.dp).twoFingerScroll(filterState),
+                    userScrollEnabled = true,
+                    modifier = Modifier.heightIn(max = 500.dp),
                 ) {
                     item {
                         TextButton(
@@ -199,6 +207,7 @@ private fun ReferenceDetails(
             CompositionLocalProvider(LocalReferenceLinksEnabled provides false) {
                 RichText(entry.quick, Modifier.fillMaxWidth(), 18f)
             }
+            ReferenceTex(model, entry.id, full)
             if (full) {
                 CompositionLocalProvider(LocalReferenceLinksEnabled provides false) {
                     RichText(entry.definition, Modifier.fillMaxWidth(), 18f)
@@ -229,6 +238,7 @@ private fun ReferenceDetails(
             CompositionLocalProvider(LocalReferenceLinksEnabled provides false) {
                 RichText("$$${formula.getString("latex")}$$", Modifier.fillMaxWidth(), 20f)
             }
+            TexSource(formula.getString("latex"), displayPreview = false)
             Text(formula.getString("reading"), style = MaterialTheme.typography.bodyLarge)
             val bindings = formula.getJSONArray("bindings")
             for (i in 0 until bindings.length()) {
@@ -291,7 +301,20 @@ internal fun QuickReference(model: NotebookModel, controller: ReferenceControlle
         properties = PopupProperties(focusable = true),
     ) {
         Surface(
-            Modifier.width(420.dp).heightIn(max = 520.dp).testTag("quick-reference"),
+            Modifier.widthIn(max = 420.dp)
+                .width(
+                    (androidx.compose.ui.platform.LocalConfiguration.current.screenWidthDp - 24)
+                        .coerceAtLeast(240)
+                        .dp
+                )
+                .heightIn(
+                    max =
+                        (androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp -
+                                40)
+                            .coerceIn(180, 520)
+                            .dp
+                )
+                .testTag("quick-reference"),
             shape = MaterialTheme.shapes.large,
             shadowElevation = 12.dp,
         ) {
@@ -299,8 +322,8 @@ internal fun QuickReference(model: NotebookModel, controller: ReferenceControlle
                 val state = rememberLazyListState()
                 LazyColumn(
                     state = state,
-                    userScrollEnabled = false,
-                    modifier = Modifier.weight(1f, fill = false).twoFingerScroll(state),
+                    userScrollEnabled = true,
+                    modifier = Modifier.weight(1f, fill = false),
                 ) {
                     item { ReferenceDetails(model, controller, target, false) }
                 }

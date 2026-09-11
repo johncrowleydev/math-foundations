@@ -13,11 +13,20 @@ import io.noties.markwon.inlineparser.MarkwonInlineParserPlugin
 
 // Markwon's inline math delimiter is $$; the source curriculum uses $.
 internal fun nativeMarkdown(source: String): String {
-    val tokens = Regex("(?s)\\$\\$.*?\\$\\$|`[^`]*`|(?<!\\$)\\$([^$\\n]+)\\$(?!\\$)")
-    return tokens.replace(source) { m ->
-        if (m.value.startsWith("$$") || m.value.startsWith("`")) m.value
-        else "$$${m.groupValues[1]}$$"
+    val document = TexSyntax.parse(source, emptySet(), skipCode = true)
+    val result = StringBuilder()
+    var position = 0
+    for (block in document.blocks) {
+        result.append(source.substring(position, block.start))
+        if (block.closed && !block.display)
+            result
+                .append("$$")
+                .append(source.substring(block.contentStart, block.contentEnd))
+                .append("$$")
+        else result.append(source.substring(block.start, block.end))
+        position = block.end
     }
+    return result.append(source.substring(position)).toString()
 }
 
 @Composable

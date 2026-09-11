@@ -11,6 +11,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.unit.dp
@@ -76,6 +77,9 @@ class FigureGalleryTest {
                                 LocalReferenceLesson provides figure.getString("lesson"),
                             ) {
                                 Surface {
+                                    val compact =
+                                        LocalConfiguration.current.screenWidthDp < 600 ||
+                                            LocalConfiguration.current.screenHeightDp < 480
                                     LazyColumn(
                                         state = state,
                                         userScrollEnabled = false,
@@ -86,7 +90,10 @@ class FigureGalleryTest {
                                             Box(
                                                 Modifier.widthIn(max = 960.dp)
                                                     .fillMaxWidth()
-                                                    .padding(horizontal = 66.dp, vertical = 24.dp)
+                                                    .padding(
+                                                        horizontal = if (compact) 28.dp else 66.dp,
+                                                        vertical = 24.dp,
+                                                    )
                                             ) {
                                                 key("$id:$name") { TeachingFigure(figure) }
                                             }
@@ -103,6 +110,17 @@ class FigureGalleryTest {
                     rule.runOnIdle { state.requestScrollToItem(0, 0) }
                     rule.waitForIdle()
                     capture("$id-$name-$step-top")
+                    if (rule.activity.resources.configuration.screenWidthDp < 600) {
+                        // Android's overscroll effect can keep the automatic test clock busy
+                        // after a completed swipe. Advance a bounded interval explicitly.
+                        rule.mainClock.autoAdvance = false
+                        rule.onNodeWithTag("figure-viewport:$id").performTouchInput { swipeLeft() }
+                        rule.mainClock.advanceTimeBy(2000)
+                        capture("$id-$name-$step-right")
+                        rule.onNodeWithTag("figure-viewport:$id").performTouchInput { swipeRight() }
+                        rule.mainClock.advanceTimeBy(2000)
+                        rule.mainClock.autoAdvance = true
+                    }
                     rule.runOnIdle { state.requestScrollToItem(0, 10000) }
                     rule.waitForIdle()
                     capture("$id-$name-$step-bottom")

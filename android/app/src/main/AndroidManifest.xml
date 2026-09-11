@@ -11,6 +11,11 @@
             android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/update_paths" />
         </provider>
+        <provider android:name=".AnswerFileProvider"
+            android:authorities="${applicationId}.answers" android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/answer_paths" />
+        </provider>
         <activity android:name=".MainActivity" android:exported="true"
             android:screenOrientation="fullSensor">
             <intent-filter>

@@ -156,3 +156,7 @@ await writeFile(`${dir}/reading-order-v7.json`, await readFile('content/reading-
 console.log(
   `Android content: ${lessons.length} lessons, ${lessons.reduce((n, l) => n + l.questions.length, 0)} questions, ${lessons.reduce((n, l) => n + l.sections.reduce((s, c) => s + c.questionIds.length, 0), 0)} inline placements.`,
 );
+
+await writeFile(`${dir}/tex-syntax.json`, await readFile('content/tex-syntax.json'));
+
+await writeFile(`${dir}/tex-teaching.json`, await readFile('content/tex-teaching.json'));

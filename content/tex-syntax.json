@@ -1,0 +1,607 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "tex-command-neg",
+      "command": "neg",
+      "group": "logic",
+      "example": "\\neg P",
+      "explanation": "Write a backslash followed by neg for negation."
+    },
+    {
+      "id": "tex-command-land",
+      "command": "land",
+      "group": "logic",
+      "example": "P\\land Q",
+      "explanation": "Use land between the two statements joined by and."
+    },
+    {
+      "id": "tex-command-lor",
+      "command": "lor",
+      "group": "logic",
+      "example": "P\\lor Q",
+      "explanation": "Use lor between statements joined by or."
+    },
+    {
+      "id": "tex-command-to",
+      "command": "to",
+      "group": "logic",
+      "example": "P\\to Q",
+      "explanation": "Use to for a right-pointing implication arrow."
+    },
+    {
+      "id": "tex-command-leftrightarrow",
+      "command": "leftrightarrow",
+      "group": "logic",
+      "example": "P\\leftrightarrow Q",
+      "explanation": "Use leftrightarrow for the two-direction arrow."
+    },
+    {
+      "id": "tex-command-equiv",
+      "command": "equiv",
+      "group": "logic",
+      "example": "P\\equiv Q",
+      "explanation": "Use equiv for the equivalence symbol."
+    },
+    {
+      "id": "tex-command-therefore",
+      "command": "therefore",
+      "group": "logic",
+      "example": "\\therefore Q",
+      "explanation": "Use therefore for the three-dot therefore symbol."
+    },
+    {
+      "id": "tex-command-vdash",
+      "command": "vdash",
+      "group": "logic",
+      "example": "P\\vdash Q",
+      "explanation": "Use vdash for the turnstile symbol."
+    },
+    {
+      "id": "tex-command-Rightarrow",
+      "command": "Rightarrow",
+      "group": "logic",
+      "example": "p\\Rightarrow q",
+      "explanation": "Rightarrow draws a double implication arrow, another way to write “if p, then q.” This is a typography variant of the implication arrow used above, not the two-way biconditional. The capital R matters."
+    },
+    {
+      "id": "tex-command-Longrightarrow",
+      "command": "Longrightarrow",
+      "group": "logic",
+      "example": "P\\Longrightarrow Q",
+      "explanation": "Use Longrightarrow for this arrow variant; capitalization matters. Its meaning follows the lesson convention."
+    },
+    {
+      "id": "tex-command-Longleftrightarrow",
+      "command": "Longleftrightarrow",
+      "group": "logic",
+      "example": "P\\Longleftrightarrow Q",
+      "explanation": "Use Longleftrightarrow for this arrow variant; capitalization matters. Its meaning follows the lesson convention."
+    },
+    {
+      "id": "tex-command-forall",
+      "command": "forall",
+      "group": "quantifiers",
+      "example": "\\forall x",
+      "explanation": "Use forall for the upside-down A."
+    },
+    {
+      "id": "tex-command-exists",
+      "command": "exists",
+      "group": "quantifiers",
+      "example": "\\exists x",
+      "explanation": "Use exists for the backward E."
+    },
+    {
+      "id": "tex-command-in",
+      "command": "in",
+      "group": "quantifiers",
+      "example": "x\\in A",
+      "explanation": "Use in for membership."
+    },
+    {
+      "id": "tex-command-mathbb",
+      "command": "mathbb",
+      "group": "quantifiers",
+      "example": "\\mathbb{Z}",
+      "explanation": "Put the letter inside braces after mathbb to make a blackboard-bold letter. A single-letter argument may omit braces, as in \\mathbb Z, but using braces consistently makes the grouping clearer."
+    },
+    {
+      "id": "tex-command-notin",
+      "command": "notin",
+      "group": "sets",
+      "example": "x\\notin A",
+      "explanation": "Use notin for nonmembership."
+    },
+    {
+      "id": "tex-command-subseteq",
+      "command": "subseteq",
+      "group": "sets",
+      "example": "A\\subseteq B",
+      "explanation": "Use subseteq for the subset-or-equal symbol."
+    },
+    {
+      "id": "tex-command-subset",
+      "command": "subset",
+      "group": "sets",
+      "example": "A\\subset B",
+      "explanation": "Use subset for the subset symbol; follow the mathematical convention stated in the lesson."
+    },
+    {
+      "id": "tex-command-subsetneq",
+      "command": "subsetneq",
+      "group": "sets",
+      "example": "A\\subsetneq B",
+      "explanation": "Use subsetneq for proper containment."
+    },
+    {
+      "id": "tex-command-nsubseteq",
+      "command": "nsubseteq",
+      "group": "sets",
+      "example": "A\\nsubseteq B",
+      "explanation": "Use nsubseteq for not a subset."
+    },
+    {
+      "id": "tex-command-cup",
+      "command": "cup",
+      "group": "sets",
+      "example": "A\\cup B",
+      "explanation": "Use cup for union."
+    },
+    {
+      "id": "tex-command-cap",
+      "command": "cap",
+      "group": "sets",
+      "example": "A\\cap B",
+      "explanation": "Use cap for intersection."
+    },
+    {
+      "id": "tex-command-setminus",
+      "command": "setminus",
+      "group": "sets",
+      "example": "A\\setminus B",
+      "explanation": "Use setminus for set difference."
+    },
+    {
+      "id": "tex-command-varnothing",
+      "command": "varnothing",
+      "group": "sets",
+      "example": "\\varnothing",
+      "explanation": "Use varnothing for the empty-set symbol."
+    },
+    {
+      "id": "tex-command-mathcal",
+      "command": "mathcal",
+      "group": "sets",
+      "example": "\\mathcal{P}",
+      "explanation": "Put a capital letter inside braces after mathcal for a calligraphic letter. A single capital letter can omit braces, as in \\mathcal P; braces are recommended for clarity."
+    },
+    {
+      "id": "tex-command-bigcup",
+      "command": "bigcup",
+      "group": "sets",
+      "example": "\\bigcup_{i=1}^{n} A_i",
+      "explanation": "Use bigcup with underscore and caret groups for the indexed union limits."
+    },
+    {
+      "id": "tex-command-bigcap",
+      "command": "bigcap",
+      "group": "sets",
+      "example": "\\bigcap_{i=1}^{n} A_i",
+      "explanation": "Use bigcap with underscore and caret groups for the indexed intersection limits."
+    },
+    {
+      "id": "tex-command-mid",
+      "command": "mid",
+      "group": "relations",
+      "example": "a\\mid b",
+      "explanation": "Use mid for the divisibility bar."
+    },
+    {
+      "id": "tex-command-nmid",
+      "command": "nmid",
+      "group": "relations",
+      "example": "a\\nmid b",
+      "explanation": "Use nmid for the crossed divisibility bar."
+    },
+    {
+      "id": "tex-command-pmod",
+      "command": "pmod",
+      "group": "relations",
+      "example": "a\\equiv b\\pmod{m}",
+      "explanation": "Put the modulus inside braces after pmod; it adds the parenthesized mod label. A single-character modulus can omit braces, as in \\pmod4. A multi-digit modulus needs braces, as in \\pmod{12}."
+    },
+    {
+      "id": "tex-command-preceq",
+      "command": "preceq",
+      "group": "relations",
+      "example": "a\\preceq b",
+      "explanation": "Use preceq for the curved order symbol with an equality bar."
+    },
+    {
+      "id": "tex-command-prec",
+      "command": "prec",
+      "group": "relations",
+      "example": "a\\prec b",
+      "explanation": "Use prec for the strict curved order symbol."
+    },
+    {
+      "id": "tex-command-mapsto",
+      "command": "mapsto",
+      "group": "functions",
+      "example": "x\\mapsto x+1",
+      "explanation": "Use mapsto for the arrow with a vertical bar at its tail."
+    },
+    {
+      "id": "tex-command-circ",
+      "command": "circ",
+      "group": "functions",
+      "example": "S\\circ R",
+      "explanation": "Use circ for the composition symbol. Here S and R name relations: S after R, in the order explained above. Later, the same command also types function composition."
+    },
+    {
+      "id": "tex-command-lfloor",
+      "command": "lfloor",
+      "group": "functions",
+      "example": "\\lfloor x\\rfloor",
+      "explanation": "Pair lfloor with rfloor for floor brackets."
+    },
+    {
+      "id": "tex-command-rfloor",
+      "command": "rfloor",
+      "group": "functions",
+      "example": "\\lfloor x\\rfloor",
+      "explanation": "Use rfloor to close the floor brackets."
+    },
+    {
+      "id": "tex-command-lceil",
+      "command": "lceil",
+      "group": "functions",
+      "example": "\\lceil x\\rceil",
+      "explanation": "Pair lceil with rceil for ceiling brackets."
+    },
+    {
+      "id": "tex-command-rceil",
+      "command": "rceil",
+      "group": "functions",
+      "example": "\\lceil x\\rceil",
+      "explanation": "Use rceil to close the ceiling brackets."
+    },
+    {
+      "id": "tex-command-sum",
+      "command": "sum",
+      "group": "sequences",
+      "example": "\\sum_{i=1}^{n} a_i",
+      "explanation": "Use sum followed by a lower group after underscore and an upper group after caret."
+    },
+    {
+      "id": "tex-command-prod",
+      "command": "prod",
+      "group": "sequences",
+      "example": "\\prod_{i=1}^{n} a_i",
+      "explanation": "Use prod with lower and upper groups for a product."
+    },
+    {
+      "id": "tex-command-ldots",
+      "command": "ldots",
+      "group": "sequences",
+      "example": "a_1,\\ldots,a_n",
+      "explanation": "Use ldots for three baseline dots."
+    },
+    {
+      "id": "tex-command-cdots",
+      "command": "cdots",
+      "group": "sequences",
+      "example": "1+2+\\cdots+n",
+      "explanation": "Use cdots for three centered dots."
+    },
+    {
+      "id": "tex-command-frac",
+      "command": "frac",
+      "group": "arithmetic",
+      "example": "\\frac{a}{b}",
+      "explanation": "Give frac two brace groups: numerator first, denominator second."
+    },
+    {
+      "id": "tex-command-sqrt",
+      "command": "sqrt",
+      "group": "arithmetic",
+      "example": "\\sqrt{x}",
+      "explanation": "Put the expression under the radical inside braces after sqrt; an optional [3] before the group makes a cube root. A single-character argument can omit braces, as in \\sqrt y. Use braces to put a whole sum under the radical, as in \\sqrt{y+1}."
+    },
+    {
+      "id": "tex-command-cdot",
+      "command": "cdot",
+      "group": "arithmetic",
+      "example": "a\\cdot b",
+      "explanation": "Use cdot for a centered multiplication dot."
+    },
+    {
+      "id": "tex-command-times",
+      "command": "times",
+      "group": "arithmetic",
+      "example": "A\\times B",
+      "explanation": "Use times for the cross. Here A and B are sets and the cross means their Cartesian product, as defined above. Between numbers it can instead mean multiplication; the command draws the symbol, while the surrounding objects determine its meaning."
+    },
+    {
+      "id": "tex-command-leq",
+      "command": "leq",
+      "group": "arithmetic",
+      "example": "a\\leq b",
+      "explanation": "Use leq for less than or equal to."
+    },
+    {
+      "id": "tex-command-geq",
+      "command": "geq",
+      "group": "arithmetic",
+      "example": "a\\geq b",
+      "explanation": "Use geq for greater than or equal to."
+    },
+    {
+      "id": "tex-command-ne",
+      "command": "ne",
+      "group": "arithmetic",
+      "example": "a\\ne b",
+      "explanation": "Use ne for not equal."
+    },
+    {
+      "id": "tex-command-neq",
+      "command": "neq",
+      "group": "arithmetic",
+      "example": "a\\neq b",
+      "explanation": "neq is an alternative spelling of ne."
+    },
+    {
+      "id": "tex-command-pm",
+      "command": "pm",
+      "group": "arithmetic",
+      "example": "a\\pm b",
+      "explanation": "Use pm for plus-or-minus."
+    },
+    {
+      "id": "tex-command-infty",
+      "command": "infty",
+      "group": "arithmetic",
+      "example": "\\infty",
+      "explanation": "Use infty for the infinity symbol."
+    },
+    {
+      "id": "tex-command-log",
+      "command": "log",
+      "group": "arithmetic",
+      "example": "\\log_2 n",
+      "explanation": "Use log for an upright function name and underscore for its base. Type \\log_2 n for log base two of n, or \\log_{10}(n+1) for a multi-character base and a compound argument. Keep the entire base in its subscript group and put the argument after it. Writing log without a backslash would display three separate italic letters."
+    },
+    {
+      "id": "tex-command-max",
+      "command": "max",
+      "group": "arithmetic",
+      "example": "\\max\\{a,b\\}",
+      "explanation": "Use max for an upright function name."
+    },
+    {
+      "id": "tex-command-gcd",
+      "command": "gcd",
+      "group": "arithmetic",
+      "example": "\\gcd(a,b)",
+      "explanation": "Use gcd for an upright function name."
+    },
+    {
+      "id": "tex-command-binom",
+      "command": "binom",
+      "group": "counting",
+      "example": "\\binom{n}{k}",
+      "explanation": "Give binom two brace groups: the top entry first and the bottom entry second. For example, \\binom{10}{3} prints ten choose three. Each group may be omitted only for a single character, which is why the text may show \\binom93 for nine choose three. Keep braces for multi-digit numbers and expressions such as n-1; \\binom103 would use 1 and 0 as its two entries and leave 3 outside."
+    },
+    {
+      "id": "tex-command-rho",
+      "command": "rho",
+      "group": "letters",
+      "example": "\\rho",
+      "explanation": "Use rho for the lowercase Greek letter rho."
+    },
+    {
+      "id": "tex-command-ell",
+      "command": "ell",
+      "group": "letters",
+      "example": "\\ell",
+      "explanation": "Use ell for the script-style lowercase l."
+    },
+    {
+      "id": "tex-command-varepsilon",
+      "command": "varepsilon",
+      "group": "letters",
+      "example": "\\varepsilon",
+      "explanation": "Use varepsilon for the curly epsilon form."
+    },
+    {
+      "id": "tex-command-Theta",
+      "command": "Theta",
+      "group": "letters",
+      "example": "\\Theta",
+      "explanation": "Capitalization matters: Theta produces capital theta."
+    },
+    {
+      "id": "tex-command-Omega",
+      "command": "Omega",
+      "group": "letters",
+      "example": "\\Omega",
+      "explanation": "Capitalization matters: Omega produces capital omega."
+    },
+    {
+      "id": "tex-command-star",
+      "command": "star",
+      "group": "letters",
+      "example": "x^{\\star}",
+      "explanation": "star prints a star. It can be a superscript label, as in x^{\\star}. A star has no fixed mathematical meaning here: an author must explain what a starred label denotes."
+    },
+    {
+      "id": "tex-command-triangle",
+      "command": "triangle",
+      "group": "letters",
+      "example": "A\\triangle B",
+      "explanation": "Use triangle for the triangle symbol; its meaning comes from the lesson."
+    },
+    {
+      "id": "tex-command-text",
+      "command": "text",
+      "group": "formatting",
+      "example": "\\text{total}",
+      "explanation": "Put ordinary words inside braces after text. Spaces inside that group are retained, so a label can appear within a mathematical expression."
+    },
+    {
+      "id": "tex-command-mathrm",
+      "command": "mathrm",
+      "group": "formatting",
+      "example": "\\mathrm{T}",
+      "explanation": "Put letters in braces after mathrm to make them upright, as in the truth-value label T. This changes lettering, not mathematical meaning."
+    },
+    {
+      "id": "tex-command-operatorname",
+      "command": "operatorname",
+      "group": "formatting",
+      "example": "\\operatorname{id}_A(x)",
+      "explanation": "Put a custom function name inside braces after operatorname."
+    },
+    {
+      "id": "tex-command-mathbin",
+      "command": "mathbin",
+      "group": "formatting",
+      "example": "A\\mathbin{\\triangle}B",
+      "explanation": "Put a symbol inside mathbin to give it binary-operator spacing."
+    },
+    {
+      "id": "tex-command-deg",
+      "command": "deg",
+      "group": "formatting",
+      "example": "\\deg(v)",
+      "explanation": "Use deg for the upright degree label."
+    },
+    {
+      "id": "tex-command-left",
+      "command": "left",
+      "group": "formatting",
+      "example": "\\left(\\frac{a}{b}\\right)",
+      "explanation": "Use left before an opening delimiter and right before its closing partner to size them together."
+    },
+    {
+      "id": "tex-command-right",
+      "command": "right",
+      "group": "formatting",
+      "example": "\\left(\\frac{a}{b}\\right)",
+      "explanation": "Use right before the closing delimiter paired with left."
+    },
+    {
+      "id": "tex-command-bigl",
+      "command": "bigl",
+      "group": "formatting",
+      "example": "\\bigl(a+b\\bigr)",
+      "explanation": "Use bigl before the opening delimiter of a manually enlarged pair."
+    },
+    {
+      "id": "tex-command-bigr",
+      "command": "bigr",
+      "group": "formatting",
+      "example": "\\bigl(a+b\\bigr)",
+      "explanation": "Use bigr before the closing delimiter of a manually enlarged pair."
+    },
+    {
+      "id": "tex-command-quad",
+      "command": "quad",
+      "group": "formatting",
+      "example": "a\\quad b",
+      "explanation": "quad inserts a visible space in math."
+    },
+    {
+      "id": "tex-command-qquad",
+      "command": "qquad",
+      "group": "formatting",
+      "example": "a\\qquad b",
+      "explanation": "qquad inserts twice the space of quad."
+    },
+    {
+      "id": "tex-formatting-11",
+      "command": ",",
+      "group": "formatting",
+      "example": "a\\,b",
+      "explanation": "A backslash followed by a comma inserts a thin space."
+    },
+    {
+      "id": "tex-formatting-12",
+      "command": "{",
+      "group": "formatting",
+      "example": "\\{a,b\\}",
+      "explanation": "Escape a brace with a backslash when you want it printed rather than used for grouping."
+    },
+    {
+      "id": "tex-formatting-13",
+      "command": "}",
+      "group": "formatting",
+      "example": "\\{a,b\\}",
+      "explanation": "Escape the closing brace with a backslash when you want it printed."
+    },
+    {
+      "id": "tex-formatting-14",
+      "command": "\\",
+      "group": "formatting",
+      "example": "\\begin{matrix}a&b\\\\c&d\\end{matrix}",
+      "explanation": "Two backslashes start a new row inside a supported multirow environment."
+    },
+    {
+      "id": "tex-command-begin",
+      "command": "begin",
+      "group": "formatting",
+      "example": "\\begin{matrix}a&b\\\\c&d\\end{matrix}",
+      "explanation": "Start an environment with begin and its name in braces; use ampersands between columns."
+    },
+    {
+      "id": "tex-command-end",
+      "command": "end",
+      "group": "formatting",
+      "example": "\\begin{matrix}a&b\\\\c&d\\end{matrix}",
+      "explanation": "Close an environment with end and the same name in braces."
+    },
+    {
+      "id": "tex-formatting-17",
+      "command": "$",
+      "group": "formatting",
+      "example": "\\text{cost }\\$5",
+      "explanation": "Escape a dollar sign to print it without opening or closing math."
+    },
+    {
+      "id": "tex-formatting-18",
+      "command": "%",
+      "group": "formatting",
+      "example": "50\\%",
+      "explanation": "Escape percent to print a percent sign."
+    },
+    {
+      "id": "tex-formatting-19",
+      "command": "_",
+      "group": "formatting",
+      "example": "\\text{file}\\_1",
+      "explanation": "Escape an underscore to print it instead of starting a subscript."
+    },
+    {
+      "id": "tex-formatting-20",
+      "command": "&",
+      "group": "formatting",
+      "example": "A\\&B",
+      "explanation": "Escape an ampersand to print it instead of separating columns."
+    },
+    {
+      "id": "tex-formatting-21",
+      "command": "#",
+      "group": "formatting",
+      "example": "\\#1",
+      "explanation": "Escape a hash sign to print it, for example as an ordinary item-number label. It has no special counting meaning in this example."
+    },
+    {
+      "id": "tex-control-space",
+      "command": " ",
+      "group": "formatting",
+      "example": "a\\ b",
+      "explanation": "A backslash followed by a space inserts an explicit space in mathematics. Ordinary spaces usually do not affect mathematical spacing."
+    }
+  ]
+}

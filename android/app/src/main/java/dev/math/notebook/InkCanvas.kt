@@ -24,6 +24,8 @@ class InkCanvas(
     private val tableColumns: Int = 0,
     private val tableRows: Int = 0,
 ) : FrameLayout(context) {
+    var fingerDrawing = false
+    var inputEnabled = true
     private val renderer = CanvasStrokeRenderer.create()
     private val inProgress = InProgressStrokesView(context)
     private val predictor = MotionEventPredictor.newInstance(this)
@@ -105,15 +107,18 @@ class InkCanvas(
                 "action=${event.actionMasked} tool=${event.getToolType(event.actionIndex)} loading=${page.loading}",
             )
         if (page.loading) return true
+        if (!inputEnabled) return false
         predictor.record(event)
         val index = event.actionIndex
         val pen =
             event.getToolType(index) == MotionEvent.TOOL_TYPE_STYLUS ||
                 event.getToolType(index) == MotionEvent.TOOL_TYPE_ERASER
+        if (!pen && !fingerDrawing && pointer == -1) return false
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN,
             MotionEvent.ACTION_POINTER_DOWN ->
-                if (pen && pointer == -1) {
+                if ((pen || fingerDrawing) && pointer == -1) {
+                    parent?.requestDisallowInterceptTouchEvent(true)
                     requestUnbufferedDispatch(event)
                     pointer = event.getPointerId(index)
                     erasing =
@@ -171,16 +176,19 @@ class InkCanvas(
                         }
                     active = null
                     pointer = -1
+                    parent?.requestDisallowInterceptTouchEvent(false)
                 }
             MotionEvent.ACTION_CANCEL -> {
                 active?.let { inProgress.cancelStroke(it, event) }
                 active = null
                 pointer = -1
+                parent?.requestDisallowInterceptTouchEvent(false)
                 erased = emptySet()
                 background.invalidate()
             }
         }
-        // Fingers are accepted but never draw; ancestor gesture handling owns scrolling.
+        // Only active ink gestures are consumed; ordinary fingers scroll through the native
+        // ancestors.
         return true
     }
 

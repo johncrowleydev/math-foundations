@@ -65,13 +65,21 @@ data class Lesson(
 fun <T> JSONArray.mapItems(block: (Int) -> T): List<T> = (0 until length()).map(block)
 
 class NotebookModel(app: Application) : AndroidViewModel(app) {
+    val input = InputPreferences(app)
+    val answers = AnswerStore(app)
+    val tex = TexLibrary(app)
+    val texTeaching = TexTeaching(app)
     internal val references = ReferenceController(TeachingLibrary(app))
+    val editorStates = mutableMapOf<String, android.os.Parcelable>()
+    var answerFocus by mutableStateOf<Int?>(null)
+    var focusedEditor by mutableStateOf<Pair<String, Int>?>(null)
     var teachingJump by mutableStateOf<Pair<Int, String>?>(null)
         private set
 
     private var jumpSequence = 0
 
     fun openTeaching(slug: String, section: String) {
+        focusedEditor = null
         val index = lessons.indexOfFirst { it.slug == slug }
         if (index < 0) return
         mode(false)
@@ -162,7 +170,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     var saveError by mutableStateOf<String?>(null)
     private val pages = androidx.compose.runtime.mutableStateMapOf<String, InkPage>()
     val pendingSaves
-        get() = pages.values.any { it.saving || it.error != null }
+        get() = answers.pending || pages.values.any { it.saving || it.error != null }
 
     val lesson
         get() = lessons[selected]
@@ -212,12 +220,13 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
         val lesson = lessons.first { it.slug == slug }
         val text =
             when {
-                key == "intro" -> lesson.intro
+                key == "intro" -> lesson.intro + texTeaching.primerSignature()
                 key.startsWith("section:") ->
                     lesson.sections
                         .find { "section:${it.id}" == key }
                         ?.let { section ->
                             section.markdown +
+                                texTeaching.signature(slug, section.id) +
                                 section.blocks?.toString().orEmpty() +
                                 references.library.figures.values
                                     .filter {
@@ -357,12 +366,14 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun retrySaves() {
+        answers.retry()
         saveError = null
         pages.values.filter { it.error != null }.forEach { if (it.loading) load(it) else save(it) }
     }
 
     override fun onCleared() {
         writer.shutdown()
+        answers.close()
     }
 }
 

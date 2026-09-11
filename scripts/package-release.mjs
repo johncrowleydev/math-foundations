@@ -3,6 +3,12 @@ import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 
+const texAudit = spawnSync(process.execPath, ['--import', 'tsx', 'scripts/check-tex-release.ts'], {
+  stdio: 'inherit',
+});
+if (texAudit.error || texAudit.status !== 0)
+  throw new Error('The TeX teaching audit is incomplete or stale; do not publish this edition.');
+
 const properties = Object.fromEntries(
   readFileSync('version.properties', 'utf8')
     .trim()

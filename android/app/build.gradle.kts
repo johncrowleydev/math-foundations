@@ -41,9 +41,13 @@ val generateContent by tasks.registering(Exec::class) {
     inputs.file("../../scripts/quick-checks.ts")
     inputs.file("../../scripts/teaching.ts")
     inputs.file("../../scripts/formula-context.ts")
+    inputs.file("../../scripts/tex-teaching.ts")
     outputs.file("src/main/assets/notebook.json")
     outputs.file("src/main/assets/teaching.json")
+    outputs.file("src/main/assets/tex-syntax.json")
+    outputs.file("src/main/assets/tex-teaching.json")
     outputs.file("src/main/assets/reading-order-v7.json")
+    outputs.file("src/main/assets/reading-order-v8.json")
 }
 tasks.named("preBuild") { dependsOn(generateContent) }
 dependencies {
