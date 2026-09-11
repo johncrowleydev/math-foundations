@@ -37,6 +37,7 @@ fun RichText(markdown: String, modifier: Modifier = Modifier, size: Float = 19f)
                         .usePlugin(TablePlugin.create(context))
                         .usePlugin(MarkwonInlineParserPlugin.create())
                         .usePlugin(JLatexMathPlugin.create(textSize) { it.inlinesEnabled(true) })
+                        .usePlugin(InlineMathBaselinePlugin())
                         .build()
             }
         },
