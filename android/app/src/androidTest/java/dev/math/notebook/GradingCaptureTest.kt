@@ -11,6 +11,62 @@ class GradingCaptureTest {
     @get:Rule val rule = createAndroidComposeRule<MainActivity>()
 
     @Test
+    fun croppedInkBelowOriginIsVisibleInEverySubmittedPage() {
+        check(rule.activity.packageName.endsWith(".validation"))
+        val model = ViewModelProvider(rule.activity)[NotebookModel::class.java]
+        rule.waitUntil(10000) { !model.grading.loading }
+        val q =
+            rule.runOnIdle {
+                model.select(0)
+                model.lesson.questions.first {
+                    it.id > 40 &&
+                        model.grading.forExercise("propositional-logic-${it.id}").isEmpty()
+                }
+            }
+        val key = "propositional-logic-${q.id}"
+        val draft = rule.runOnIdle { model.answers.draft(key, false) }
+        val page = rule.runOnIdle { model.page(key) }
+        rule.waitUntil(10000) { !draft.loading && !page.loading }
+        val brush =
+            androidx.ink.brush.Brush.createWithColorIntArgb(
+                androidx.ink.brush.StockBrushes.pressurePen(),
+                0xff253a43.toInt(),
+                3f,
+                0.1f,
+            )
+        val strokes =
+            listOf(500f, 1500f, 2500f).map { y ->
+                val inputs =
+                    androidx.ink.strokes.MutableStrokeInputBatch().apply {
+                        add(androidx.ink.brush.InputToolType.STYLUS, 100f, y, 0L)
+                        add(androidx.ink.brush.InputToolType.STYLUS, 300f, y + 20f, 100L)
+                    }
+                androidx.ink.strokes.Stroke(brush, inputs)
+            }
+        rule.runOnIdle {
+            page.replace(strokes)
+            draft.mode("write")
+        }
+        rule.waitUntil(10000) { !draft.saving && !page.saving }
+        rule.runOnIdle { model.grading.submit(model, q) }
+        rule.waitUntil(10000) { model.grading.forExercise(key).isNotEmpty() }
+        val images = rule.runOnIdle { model.grading.forExercise(key).last().getJSONArray("images") }
+        assertEquals(3, images.length())
+        for (i in 0 until images.length()) {
+            val bitmap =
+                android.graphics.BitmapFactory.decodeFile(
+                    File(rule.activity.filesDir, "cloud-media/${images.getString(i)}").path
+                )
+            var inkPixels = 0
+            for (y in 0 until bitmap.height) for (x in 0 until bitmap.width) {
+                if (android.graphics.Color.red(bitmap.getPixel(x, y)) < 150) inkPixels++
+            }
+            assertTrue("Submission page $i must contain the captured stroke", inkPixels > 200)
+            bitmap.recycle()
+        }
+    }
+
+    @Test
     fun penPagesAndOriginalPhotosAreFrozenIndependently() {
         check(rule.activity.packageName.endsWith(".validation"))
         val model = ViewModelProvider(rule.activity)[NotebookModel::class.java]

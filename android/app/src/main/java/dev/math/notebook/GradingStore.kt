@@ -265,7 +265,12 @@ class GradingStore internal constructor(private val context: Context) {
                                 paint,
                             )
                         }
+                        // Ink's renderer uses this matrix for brush detail, but draws in
+                        // stroke coordinates. Apply the same transform to the canvas too.
+                        canvas.save()
+                        canvas.concat(matrix)
                         strokes.forEach { renderer.draw(canvas, it, matrix) }
+                        canvas.restore()
                         images.put(storeBitmap(bitmap))
                         bitmap.recycle()
                         y += height
