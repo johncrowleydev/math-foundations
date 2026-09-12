@@ -19,7 +19,7 @@ import (
 )
 
 const gradingModel = "z-ai/glm-5.3-flash"
-const promptVersion = "foundations-grading-1"
+const promptVersion = "foundations-grading-2"
 
 type Submission struct {
 	ID             string           `json:"id"`
@@ -332,7 +332,14 @@ Return only the requested JSON: verdict (correct, incorrect, or not_graded), fee
 
 func (g *Grading) evaluate(ctx context.Context, a Attempt, teaching, reason string) (Grade, error) {
 	var result Grade
-	contextData := map[string]any{"exercise": json.RawMessage(teaching), "format": a.Mode, "answer_revealed": a.Revealed, "recheck_explanation": reason, "previous_grades": a.Grades}
+	assessmentType := "initial"
+	instruction := graderInstruction
+	if strings.TrimSpace(reason) != "" || len(a.Grades) > 0 {
+		assessmentType = "recheck"
+		instruction += `
+This is a RECHECK, not a first assessment. In feedback, directly address the student's recheck_explanation: identify their specific clarification or objection, evaluate its mathematical and task-relevance merits, and explicitly explain why it changes or does not change the verdict. Do not merely repeat the original grading feedback. Acknowledge valid parts of their objection even if the verdict stays the same. If they dispute strictness, distinguish an actual error in a requested result from optional rigor or style; do not invent requirements. Consider clarifications when interpreting the original response, but do not treat newly supplied work as if it appeared in that immutable response. Explain that distinction only if it matters here. Previous assessments may be mistaken; independently verify them. Preserve the usual no-answer-revealing policy while giving a concrete response to the objection. Put this explanation in feedback, which the app displays; do not leave it only in issue or improvement.`
+	}
+	contextData := map[string]any{"assessment_type": assessmentType, "exercise": json.RawMessage(teaching), "format": a.Mode, "answer_revealed": a.Revealed, "recheck_explanation": reason, "previous_grades": a.Grades}
 	raw, _ := json.Marshal(contextData)
 	parts := []map[string]any{{"type": "text", "text": string(raw)}}
 	if a.Mode == "type" {
@@ -356,7 +363,7 @@ func (g *Grading) evaluate(ctx context.Context, a Attempt, teaching, reason stri
 		props[k] = map[string]any{"type": "string"}
 	}
 	props["verdict"] = map[string]any{"type": "string", "enum": []string{"correct", "incorrect", "not_graded"}}
-	body := map[string]any{"model": gradingModel, "max_tokens": 8192, "temperature": 0.1, "provider": map[string]any{"require_parameters": true}, "messages": []map[string]any{{"role": "system", "content": graderInstruction}, {"role": "user", "content": parts}}, "response_format": map[string]any{"type": "json_schema", "json_schema": map[string]any{"name": "grade", "strict": true, "schema": map[string]any{"type": "object", "properties": props, "required": []string{"verdict", "feedback", "issue", "improvement", "transcription"}, "additionalProperties": false}}}}
+	body := map[string]any{"model": gradingModel, "max_tokens": 8192, "temperature": 0.1, "provider": map[string]any{"require_parameters": true}, "messages": []map[string]any{{"role": "system", "content": instruction}, {"role": "user", "content": parts}}, "response_format": map[string]any{"type": "json_schema", "json_schema": map[string]any{"name": "grade", "strict": true, "schema": map[string]any{"type": "object", "properties": props, "required": []string{"verdict", "feedback", "issue", "improvement", "transcription"}, "additionalProperties": false}}}}
 	b, _ := json.Marshal(body)
 	req, e := http.NewRequestWithContext(ctx, "POST", g.endpoint, bytes.NewReader(b))
 	if e != nil {

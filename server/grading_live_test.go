@@ -72,3 +72,20 @@ func TestLiveGradingSyntheticResponses(t *testing.T) {
 		}
 	})
 }
+
+func TestLiveRecheckAddressesClarification(t *testing.T) {
+	key := os.Getenv("FOUNDATIONS_LIVE_TEST_KEY")
+	if key == "" {
+		t.Skip("live grading not requested")
+	}
+	g := &Grading{server: fixture(t), key: key, endpoint: "https://openrouter.ai/api/v1/chat/completions", client: &http.Client{Timeout: 120 * time.Second}}
+	a := Attempt{Submission: Submission{Mode: "type", Text: "Yes, it is a proposition, and it is true because all even numbers are composite."}, Grades: []Grade{{Verdict: "incorrect", Feedback: "The truth value you assigned is incorrect. Test your claim about even numbers."}}}
+	grade, e := g.evaluate(context.Background(), a, `{"prompt":"Is every prime number odd a proposition? Give its truth value and explain.","officialAnswer":"It is a false proposition: 2 is prime and even."}`, "I agree that my definition of prime might be imprecise, but this exercise is about propositions, not rigorous number theory. Shouldn't recognizing that it is a proposition be enough for a correct result?")
+	if e != nil {
+		t.Fatal(e)
+	}
+	if grade.Verdict != "incorrect" {
+		t.Fatalf("unexpected verdict: %+v", grade)
+	}
+	t.Logf("Recheck feedback: %s", grade.Feedback)
+}
