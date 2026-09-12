@@ -141,6 +141,19 @@ internal class TexEditView(context: Context) : EditText(context) {
         }
     }
 
+    fun showSource(value: String) {
+        if (text.toString() == value) return
+        val selection = selectionStart.coerceIn(0, value.length)
+        applying = true
+        try {
+            setText(value)
+            setSelection(selection)
+        } finally {
+            applying = false
+        }
+        colorize()
+    }
+
     fun snapshot(): android.os.Parcelable? = onSaveInstanceState()
 
     fun restoreSnapshot(state: android.os.Parcelable) {
@@ -298,7 +311,11 @@ private fun TypedAnswerBody(
     }
     DisposableEffect(editor, draft.key) {
         val view = editor
-        onDispose { view?.snapshot()?.let { model.editorStates[draft.key] = it } }
+        onDispose {
+            view?.snapshot()?.let { model.editorStates[draft.key] = it }
+            view?.onFocusChangeListener = null
+            if (view?.hasFocus() == true) model.cloud.release("text/${draft.key}")
+        }
     }
     val source = draft.text
     var renderingProblems by
@@ -409,6 +426,10 @@ private fun TypedAnswerBody(
                                     onFocusChangeListener =
                                         android.view.View.OnFocusChangeListener { _, focused ->
                                             editorFocused = focused
+                                            if (focused) {
+                                                showSource(draft.text)
+                                                model.cloud.hold("text/${draft.key}")
+                                            } else model.cloud.release("text/${draft.key}")
                                         }
                                     editor = this
                                 }
@@ -421,9 +442,7 @@ private fun TypedAnswerBody(
                             update = { view ->
                                 view.isEnabled = !draft.loading
                                 if (view.text.toString() != source) {
-                                    val selection = view.selectionStart.coerceIn(0, source.length)
-                                    view.setText(source)
-                                    view.setSelection(selection)
+                                    view.showSource(source)
                                 }
                                 if (view.renderingProblems != renderingProblems) {
                                     view.renderingProblems = renderingProblems

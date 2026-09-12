@@ -44,6 +44,7 @@ class CloudSyncTest {
     private lateinit var process: Process
     private lateinit var endpoint: String
     private val clients = mutableListOf<CloudSync>()
+    private val stores = mutableListOf<AnswerStore>()
     private lateinit var root: File
     private val token = "integration-test-key"
 
@@ -100,6 +101,8 @@ class CloudSyncTest {
 
     @After
     fun stop() {
+        stores.forEach { it.close() }
+        org.robolectric.Shadows.shadowOf(android.os.Looper.getMainLooper()).idle()
         clients.forEach { it.closeForTest() }
         if (::process.isInitialized) {
             process.destroy()
@@ -110,15 +113,10 @@ class CloudSyncTest {
 
     private fun device(name: String) = Device(RuntimeEnvironment.getApplication(), File(root, name))
 
-    private fun client(context: Context) =
-        CloudSync(context, endpoint, token, false).also {
-            context
-                .getSharedPreferences("cloud-sync", 0)
-                .edit()
-                .putBoolean("connected", true)
-                .commit()
-            clients.add(it)
-        }
+    private fun client(context: Context): CloudSync {
+        context.getSharedPreferences("cloud-sync", 0).edit().putBoolean("connected", true).commit()
+        return CloudSync(context, endpoint, token, false).also { clients.add(it) }
+    }
 
     private fun answer(context: Context, text: String, mode: String = "type") {
         File(context.filesDir, "answers/logic-1.json").apply {
@@ -135,7 +133,9 @@ class CloudSyncTest {
     }
 
     private fun sync(c: CloudSync) {
+        org.robolectric.Shadows.shadowOf(android.os.Looper.getMainLooper()).idle()
         val ok = c.backgroundSync()
+        org.robolectric.Shadows.shadowOf(android.os.Looper.getMainLooper()).idle()
         assertTrue(c.lastFailure?.stackTraceToString(), ok)
     }
 
@@ -195,10 +195,10 @@ class CloudSyncTest {
         val ca = client(a)
         val cb = client(b)
         sync(ca)
-        cb.hold("logic-1")
+        cb.hold("text/logic-1")
         sync(cb)
         assertEquals("", text(b))
-        cb.release("logic-1")
+        cb.release("text/logic-1")
         sync(cb)
         assertEquals(cb.journalForTest("text/logic-1"), "important work", text(b))
         answer(b, "")
@@ -366,7 +366,7 @@ class CloudSyncTest {
         val b = client(phone)
         sync(a)
         sync(b)
-        a.hold("logic-1")
+        a.hold("text/logic-1")
         answer(phone, "phone's new explanation")
         sync(b)
         sync(a)
@@ -383,5 +383,101 @@ class CloudSyncTest {
         assertTrue(
             texts.containsAll(listOf("phone's new explanation", "tablet's independent explanation"))
         )
+    }
+
+    private fun drainUntil(condition: () -> Boolean) {
+        val end = System.currentTimeMillis() + 5000
+        while (!condition() && System.currentTimeMillis() < end) {
+            org.robolectric.Shadows.shadowOf(android.os.Looper.getMainLooper()).idle()
+            Thread.sleep(10)
+        }
+        assertTrue("Local answer writer did not settle", condition())
+    }
+
+    @Test
+    fun cachedVisibleAnswersRefreshAndModeChangesCannotOverwriteRemoteTextOrPhotos() {
+        val tablet = device("cached-tablet")
+        val phone = device("cached-phone")
+        answer(tablet, "", "write")
+        answer(phone, "Phone explanation")
+        val a = client(tablet)
+        val b = client(phone)
+        val store = AnswerStore(tablet, a).also { stores.add(it) }
+        val draft = store.draft("logic-1", false)
+        drainUntil { !draft.loading }
+        // An exercise is visible, but only actual ink input is protected. Text/photos
+        // still arrive while the user writes with the pen.
+        a.hold("ink/logic-1")
+        sync(b)
+        sync(a)
+        assertEquals("Phone explanation", draft.text)
+        assertEquals("write", draft.mode)
+        assertEquals(0, a.incomingCount)
+        draft.mode("type")
+        drainUntil { !draft.saving }
+        assertEquals("Phone explanation", text(tablet))
+
+        // A different representation arriving while typing must not reset the text.
+        a.hold("text/logic-1")
+        draft.edit("Tablet draft")
+        drainUntil { !draft.saving }
+        File(phone.filesDir, "answer-photos/remote.jpg").apply {
+            parentFile!!.mkdirs()
+            writeBytes(ByteArray(64) { it.toByte() })
+        }
+        val f = File(phone.filesDir, "answers/logic-1.json")
+        f.writeText(
+            JSONObject(f.readText())
+                .put("photos", org.json.JSONArray("""[{"id":"remote","rotation":90}]"""))
+                .toString()
+        )
+        sync(b)
+        sync(a)
+        assertEquals("Tablet draft", draft.text)
+        assertEquals(listOf(AnswerPhoto("remote", 90)), draft.photos)
+        draft.edit("Tablet final")
+        draft.mode("write")
+        drainUntil { !draft.saving }
+        a.release("text/logic-1")
+        a.release("ink/logic-1")
+        sync(a)
+        sync(b)
+        assertEquals("Tablet final", text(phone))
+        assertEquals(
+            "remote",
+            JSONObject(File(tablet.filesDir, "answers/logic-1.json").readText())
+                .getJSONArray("photos")
+                .getJSONObject(0)
+                .getString("id"),
+        )
+        assertEquals(0, a.versions("text/logic-1")!!.getJSONArray("conflicts").length())
+    }
+
+    @Test
+    fun incomingStatusIsHonestAndDownloadedTextAppliesOfflineAfterEditingEnds() {
+        val tablet = device("offline-tablet")
+        val phone = device("offline-phone")
+        answer(tablet, "Original")
+        val a = client(tablet)
+        val b = client(phone)
+        sync(a)
+        sync(b)
+        val store = AnswerStore(tablet, a).also { stores.add(it) }
+        val draft = store.draft("logic-1", true)
+        drainUntil { !draft.loading }
+        a.hold("text/logic-1")
+        answer(phone, "New explanation")
+        sync(b)
+        sync(a)
+        assertEquals("Original", draft.text)
+        assertEquals(1, a.incomingCount)
+        assertEquals("Downloaded changes waiting for editing to finish", a.status)
+        process.destroy()
+        process.waitFor()
+        a.release("text/logic-1")
+        org.robolectric.Shadows.shadowOf(android.os.Looper.getMainLooper()).idle()
+        assertEquals("New explanation", draft.text)
+        assertEquals("New explanation", text(tablet))
+        assertEquals(0, a.incomingCount)
     }
 }

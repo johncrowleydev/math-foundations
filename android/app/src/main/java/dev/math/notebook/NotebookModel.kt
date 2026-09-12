@@ -172,9 +172,15 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     private val pages = androidx.compose.runtime.mutableStateMapOf<String, InkPage>()
     private val cloudListener: (String) -> Unit = { key ->
         when (key.substringBefore('/')) {
-            "text",
-            "photos" -> answers.refresh(key.substringAfter('/'))
-            "ink" -> pages[key.substringAfter('/')]?.let { load(it) }
+            "text" -> editorStates.remove(key.substringAfter('/'))
+            "ink" ->
+                pages[key.substringAfter('/')]?.let { page ->
+                    val result =
+                        InkFiles.read(
+                            File(getApplication<Application>().filesDir, "ink/${page.key}.json")
+                        )
+                    page.restore(result.first, result.second)
+                }
             "preference" -> texTeaching.refresh()
         }
     }
@@ -356,6 +362,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     private fun load(page: InkPage) {
         page.error = null
         val revision = page.revision
+        cloud.hold("ink/${page.key}")
         viewModelScope.launch {
             try {
                 val result =
@@ -372,6 +379,8 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
             } catch (e: Exception) {
                 page.error = "Could not open saved handwriting. Your saved file has been kept."
                 saveError = page.error
+            } finally {
+                cloud.release("ink/${page.key}")
             }
         }
     }
@@ -384,6 +393,10 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
         val strokes = page.strokes.toList()
         val height = page.height
         val revision = ++page.revision
+        if (!page.dirty) {
+            page.dirty = true
+            cloud.hold("ink/${page.key}")
+        }
         page.saving = true
         writer.execute {
             try {
@@ -399,13 +412,17 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
                     if (revision == page.revision) {
                         page.saving = false
                         page.error = null
+                        page.dirty = false
+                        cloud.release("ink/${page.key}")
                     }
                 }
             } catch (e: Exception) {
                 main.post {
-                    page.error = "Handwriting could not be saved. Free some storage and retry."
-                    saveError = page.error
-                    page.saving = false
+                    if (revision == page.revision) {
+                        page.error = "Handwriting could not be saved. Free some storage and retry."
+                        saveError = page.error
+                        page.saving = false
+                    }
                 }
             }
         }
@@ -431,6 +448,18 @@ class InkPage(val key: String, private val persist: (InkPage) -> Unit) {
     var saving by mutableStateOf(false)
     var error by mutableStateOf<String?>(null)
     var revision = 0
+    internal var dirty = false
+
+    internal fun restore(value: List<Stroke>, paperHeight: Float) {
+        strokes = value
+        height = paperHeight
+        loading = false
+        error = null
+        revision++
+        undo.clear()
+        redo.clear()
+    }
+
     private val undo = mutableStateListOf<List<Stroke>>()
     private val redo = mutableStateListOf<List<Stroke>>()
     val canUndo

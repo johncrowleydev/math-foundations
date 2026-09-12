@@ -32,6 +32,8 @@ class InkCanvas(
     private val paperToView = Matrix()
     private var active: InProgressStrokeId? = null
     private var pointer = -1
+    private val pendingStrokes = mutableSetOf<InProgressStrokeId>()
+    private var eraseLease = false
     private var erasing = false
     private var erased = emptySet<Stroke>()
     private val background =
@@ -87,6 +89,9 @@ class InkCanvas(
                     page.replace(page.strokes + strokes.values)
                     background.invalidate()
                     inProgress.removeFinishedStrokes(strokes.keys)
+                    strokes.keys.forEach {
+                        if (pendingStrokes.remove(it)) model.cloud.release("ink/${page.key}")
+                    }
                 }
             }
         )
@@ -125,7 +130,9 @@ class InkCanvas(
                         model.eraser ||
                             event.getToolType(index) == MotionEvent.TOOL_TYPE_ERASER ||
                             event.isButtonPressed(MotionEvent.BUTTON_STYLUS_PRIMARY)
+                    model.cloud.hold("ink/${page.key}")
                     if (erasing) {
+                        eraseLease = true
                         erased = emptySet()
                         eraseAt(event.getX(index), event.getY(index))
                     } else {
@@ -138,6 +145,7 @@ class InkCanvas(
                                 0.1f,
                             )
                         active = inProgress.startStroke(event, pointer, brush, inverse)
+                        pendingStrokes.add(active!!)
                     }
                 }
             MotionEvent.ACTION_MOVE ->
@@ -169,17 +177,25 @@ class InkCanvas(
                         if (!canceled) page.replace(page.strokes.filterNot { it in erased })
                         erased = emptySet()
                         background.invalidate()
+                        endErase()
                     } else
                         active?.let {
-                            if (canceled) inProgress.cancelStroke(it, event)
-                            else inProgress.finishStroke(event, pointer, it)
+                            if (canceled) {
+                                inProgress.cancelStroke(it, event)
+                                if (pendingStrokes.remove(it))
+                                    model.cloud.release("ink/${page.key}")
+                            } else inProgress.finishStroke(event, pointer, it)
                         }
                     active = null
                     pointer = -1
                     parent?.requestDisallowInterceptTouchEvent(false)
                 }
             MotionEvent.ACTION_CANCEL -> {
-                active?.let { inProgress.cancelStroke(it, event) }
+                active?.let {
+                    inProgress.cancelStroke(it, event)
+                    if (pendingStrokes.remove(it)) model.cloud.release("ink/${page.key}")
+                }
+                endErase()
                 active = null
                 pointer = -1
                 parent?.requestDisallowInterceptTouchEvent(false)
@@ -190,6 +206,24 @@ class InkCanvas(
         // Only active ink gestures are consumed; ordinary fingers scroll through the native
         // ancestors.
         return true
+    }
+
+    private fun endErase() {
+        if (eraseLease) {
+            eraseLease = false
+            model.cloud.release("ink/${page.key}")
+        }
+    }
+
+    override fun onDetachedFromWindow() {
+        active?.let {
+            inProgress.cancelStroke(it)
+            if (pendingStrokes.remove(it)) model.cloud.release("ink/${page.key}")
+        }
+        active = null
+        pointer = -1
+        endErase()
+        super.onDetachedFromWindow()
     }
 
     private fun eraseAt(viewX: Float, viewY: Float) {

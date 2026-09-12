@@ -144,6 +144,9 @@ internal constructor(
     var pendingCount by mutableIntStateOf(0)
         private set
 
+    var incomingCount by mutableIntStateOf(0)
+        private set
+
     var conflicts by mutableStateOf<List<JSONObject>>(emptyList())
         private set
 
@@ -214,6 +217,17 @@ internal constructor(
         synchronized(NotebookDisk.lock) {
             val n = (leases[key] ?: 1) - 1
             if (n <= 0) leases.remove(key) else leases[key] = n
+        }
+        // Downloaded work can be applied when editing ends, even without a network.
+        main.post {
+            if (db.isOpen) {
+                try {
+                    projectAll()
+                    refreshStatus()
+                } catch (e: Exception) {
+                    showError(e)
+                }
+            }
         }
         changed()
     }
@@ -418,56 +432,18 @@ internal constructor(
     private fun scan() =
         synchronized(NotebookDisk.lock) {
             snapshots("answers").forEach { f ->
-                val a = read(f)
-                val text = JSONObject().put("text", a.optString("text"))
-                capture("text/${f.nameWithoutExtension}", text, a.optString("text").isNotEmpty())
-                val photos = JSONArray()
-                a.optJSONArray("photos")?.let { ps ->
-                    for (i in 0 until ps.length()) {
-                        val p = ps.getJSONObject(i)
-                        val file = File(context.filesDir, "answer-photos/${p.getString("id")}.jpg")
-                        check(file.exists()) {
-                            "A saved photo is missing; its attachment has been kept."
-                        }
-                        photos.put(
-                            JSONObject()
-                                .put("id", p.getString("id"))
-                                .put("rotation", p.optInt("rotation"))
-                                .put("hash", fileHash(file))
-                        )
-                    }
-                }
-                capture(
-                    "photos/${f.nameWithoutExtension}",
-                    JSONObject().put("photos", photos),
-                    photos.length() > 0,
-                )
+                scanRecord("text/${f.nameWithoutExtension}")
+                scanRecord("photos/${f.nameWithoutExtension}")
             }
-            snapshots("ink").forEach { f ->
-                val ink = read(f)
-                capture(
-                    "ink/${f.nameWithoutExtension}",
-                    ink,
-                    ink.optJSONArray("strokes")?.length() != 0,
-                )
-            }
+            snapshots("ink").forEach { f -> scanRecord("ink/${f.nameWithoutExtension}") }
             quick.all.keys
                 .map { it.substringBeforeLast(':') }
                 .distinct()
-                .forEach { k ->
-                    capture(
-                        "quick/$k",
-                        JSONObject()
-                            .put("choice", quick.getInt("$k:choice", -1))
-                            .put("revealed", quick.getBoolean("$k:revealed", false)),
-                    )
-                }
-            notebook.all.forEach { (k, v) ->
+                .forEach { scanRecord("quick/$it") }
+            notebook.all.keys.forEach { k ->
                 when {
-                    k.startsWith("tex:visible:v2:") ->
-                        capture("preference/$k", JSONObject().put("value", v))
-                    k.startsWith("position:") ->
-                        capture("practice/$k", JSONObject().put("value", v))
+                    k.startsWith("tex:visible:v2:") -> scanRecord("preference/$k")
+                    k.startsWith("position:") -> scanRecord("practice/$k")
                 }
             }
             notebook.all.keys
@@ -487,6 +463,65 @@ internal constructor(
                     capture("reading/$device:$slug", activity)
                 }
         }
+
+    /**
+     * Recheck only a candidate's local file before integrating it; never rescan the whole notebook
+     * on the UI thread when a keystroke or stroke finishes.
+     */
+    private fun scanRecord(key: String) {
+        val kind = key.substringBefore('/')
+        val id = key.substringAfter('/')
+        when (kind) {
+            "text",
+            "photos",
+            "ink" -> {
+                val file =
+                    File(context.filesDir, "${if (kind == "ink") "ink" else "answers"}/$id.json")
+                if (!file.exists() && !File(file.path + ".bak").exists()) return
+                val data = read(file)
+                when (kind) {
+                    "text" ->
+                        capture(
+                            key,
+                            JSONObject().put("text", data.optString("text")),
+                            data.optString("text").isNotEmpty(),
+                        )
+                    "ink" -> capture(key, data, data.optJSONArray("strokes")?.length() != 0)
+                    else -> {
+                        val items = JSONArray()
+                        photos(data).forEach { p ->
+                            val image =
+                                File(context.filesDir, "answer-photos/${p.getString("id")}.jpg")
+                            check(image.exists()) {
+                                "A saved photo is missing; its attachment has been kept."
+                            }
+                            items.put(
+                                JSONObject()
+                                    .put("id", p.getString("id"))
+                                    .put("rotation", p.optInt("rotation"))
+                                    .put("hash", fileHash(image))
+                            )
+                        }
+                        capture(key, JSONObject().put("photos", items), items.length() > 0)
+                    }
+                }
+            }
+            "quick" ->
+                if (quick.contains("$id:choice") || quick.contains("$id:revealed"))
+                    capture(
+                        key,
+                        JSONObject()
+                            .put("choice", quick.getInt("$id:choice", -1))
+                            .put("revealed", quick.getBoolean("$id:revealed", false)),
+                    )
+            "preference" ->
+                if (notebook.contains(id))
+                    capture(key, JSONObject().put("value", notebook.getBoolean(id, false)))
+            "practice" ->
+                if (notebook.contains(id))
+                    capture(key, JSONObject().put("value", notebook.getInt(id, 0)))
+        }
+    }
 
     private fun snapshots(directory: String): List<File> =
         File(context.filesDir, directory)
@@ -562,7 +597,8 @@ internal constructor(
     private fun project(key: String, payload: JSONObject, force: Boolean = false): Boolean {
         val id = key.substringAfter('/')
         val kind = key.substringBefore('/')
-        if (!force && kind in listOf("text", "ink", "photos") && (leases[id] ?: 0) > 0) return false
+        if (!force && kind in listOf("text", "ink", "photos") && (leases[key] ?: 0) > 0)
+            return false
         when (kind) {
             "text",
             "photos" -> {
@@ -612,28 +648,32 @@ internal constructor(
                 check(notebook.edit().putBoolean(id, payload.getBoolean("value")).commit())
             "practice" -> check(notebook.edit().putInt(id, payload.getInt("value")).commit())
         }
-        val callbacks = listeners.toList()
-        main.post {
-            generation++
-            callbacks.forEach { it(key) }
-        }
+        // File, cached answer, and integrated revision change in one main-thread turn.
+        // No keystroke/stroke can use an old screen with the new server revision.
+        check(Looper.myLooper() == Looper.getMainLooper())
+        generation++
+        listeners.toList().forEach { it(key) }
         return true
     }
 
     private fun projectAll() =
         synchronized(NotebookDisk.lock) {
-            scan()
             states().forEach { (key, s) ->
                 if (
                     !s.optString("pending").isNullOrEmpty() || s.optString("record").isNullOrEmpty()
                 )
                     return@forEach
                 val payload = JSONObject(s.getString("record")).getJSONObject("payload")
-                if (s.optString("baseline") == payload.toString() || project(key, payload))
-                    db.execSQL(
-                        "UPDATE state SET baseline=?,base=? WHERE key=?",
-                        arrayOf(payload.toString(), s.getLong("revision"), key),
-                    )
+                if (s.optString("baseline") != payload.toString()) {
+                    if ((leases[key] ?: 0) > 0) return@forEach
+                    scanRecord(key)
+                    if (!state(key)?.optString("pending").isNullOrEmpty()) return@forEach
+                    if (!project(key, payload)) return@forEach
+                }
+                db.execSQL(
+                    "UPDATE state SET baseline=?,base=? WHERE key=?",
+                    arrayOf<Any>(payload.toString(), s.getLong("revision"), key),
+                )
             }
         }
 
@@ -643,11 +683,14 @@ internal constructor(
         }
 
     fun choose(key: String, version: JSONObject) {
-        executor.execute {
+        main.post {
             try {
                 synchronized(NotebookDisk.lock) {
                     scan()
-                    val s = state(key) ?: return@execute
+                    val s = state(key) ?: return@post
+                    check((leases[key] ?: 0) == 0) {
+                        "Finish editing this answer before choosing a version."
+                    }
                     val payload = version.getJSONObject("payload")
                     check(s.optString("pending").isNullOrEmpty()) {
                         "Sync your latest changes before choosing a version."
@@ -668,7 +711,7 @@ internal constructor(
                     )
                     project(key, payload, true)
                 }
-                runSync()
+                executor.execute { runSync() }
             } catch (e: Exception) {
                 showError(e)
             }
@@ -682,6 +725,13 @@ internal constructor(
                     s.optString("record").takeIf { it.isNotEmpty() }?.let { JSONObject(it) }
                 }
                 .filter { it.getJSONArray("conflicts").length() > 0 }
+        val incoming =
+            all.count { (_, s) ->
+                s.optString("pending").isEmpty() &&
+                    s.optString("record").isNotEmpty() &&
+                    s.optString("baseline") !=
+                        JSONObject(s.getString("record")).getJSONObject("payload").toString()
+            }
         val n = all.count { it.second.optString("pending").isNotEmpty() }
         val local = prefs.getString("activity", null)?.let { JSONObject(it).optLong("at") } ?: 0
         val remote =
@@ -705,7 +755,16 @@ internal constructor(
             conflicts = unresolved
             histories = history
             pendingCount = n
+            incomingCount = incoming
             resume = remote
+            if (connected && lastFailure == null)
+                status =
+                    when {
+                        n > 0 -> "Changes waiting to sync"
+                        incoming > 0 -> "Downloaded changes waiting for editing to finish"
+                        unresolved.isNotEmpty() -> "Answer versions need your attention"
+                        else -> "Up to date"
+                    }
         }
     }
 
@@ -759,13 +818,18 @@ internal constructor(
                 check(prefs.edit().putLong("cursor", result.getLong("cursor")).commit())
                 more = result.getBoolean("more")
             } while (more)
-            projectAll()
-            refreshStatus()
             val now = System.currentTimeMillis()
             prefs.edit().putLong("last", now).commit()
             main.post {
-                lastSync = now
-                status = if (pendingCount > 0) "Changes waiting to sync" else "Up to date"
+                if (db.isOpen)
+                    try {
+                        projectAll()
+                        lastFailure = null
+                        lastSync = now
+                        refreshStatus()
+                    } catch (e: Exception) {
+                        showError(e)
+                    }
             }
             return true
         } catch (e: Exception) {

@@ -38,10 +38,6 @@ fun ExerciseInput(
     minimumHeight: androidx.compose.ui.unit.Dp = 0.dp,
 ) {
     val key = "${model.lesson.slug}-${q.id}"
-    DisposableEffect(key) {
-        model.cloud.hold(key)
-        onDispose { model.cloud.release(key) }
-    }
     val draft = remember(key) { model.answers.draft(key, model.input.preferTyping) }
     val page = remember(key) { model.page(key) }
     var expanded by rememberSaveable(key) { mutableStateOf(false) }
@@ -107,7 +103,21 @@ fun ExerciseInput(
                         listOf("type" to "Type", "write" to "Pen", "photo" to "Photo").forEach {
                             (mode, label) ->
                             DropdownMenuItem(
-                                text = { Text(label, fontSize = 13.sp) },
+                                text = {
+                                    Text(
+                                        label +
+                                            if (
+                                                when (mode) {
+                                                    "type" -> draft.text.isNotBlank()
+                                                    "write" -> page.strokes.isNotEmpty()
+                                                    else -> draft.photos.isNotEmpty()
+                                                }
+                                            )
+                                                " � saved answer"
+                                            else "",
+                                        fontSize = 13.sp,
+                                    )
+                                },
                                 onClick = {
                                     modes = false
                                     draft.mode(mode)
@@ -121,6 +131,16 @@ fun ExerciseInput(
                     if (model.input.showPen) SketchPenTools(model)
                     InkActions(page)
                 }
+                val otherAnswers =
+                    listOfNotNull(
+                        "Type".takeIf { draft.mode != "type" && draft.text.isNotBlank() },
+                        "Pen".takeIf { draft.mode != "write" && page.strokes.isNotEmpty() },
+                        "Photo".takeIf { draft.mode != "photo" && draft.photos.isNotEmpty() },
+                    )
+                if (otherAnswers.isNotEmpty())
+                    WorkspaceAction("Also saved: " + otherAnswers.joinToString(", ")) {
+                        modes = true
+                    }
                 Spacer(Modifier.weight(1f))
                 if (draft.mode != "photo")
                     QuietIcon(Icons.Outlined.OpenInFull, "Expand answer") {
