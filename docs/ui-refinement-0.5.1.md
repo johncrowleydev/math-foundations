@@ -35,3 +35,6 @@ Ink is pinned to 1.1.0-alpha08, which contains upstream authoring concurrency an
 Pressure tests dispatch through the activity with the real Samsung input device and its combined touchscreen/stylus source, retaining the capability metadata used by the newer library. The eraser target is derived from saved stroke coordinates after resizing. Compact reference tests scroll the requested controls into view and account for system rotation.
 
 Upstream release notes: [AndroidX Ink](https://developer.android.com/jetpack/androidx/releases/ink).
+
+The final stable Android 15 emulator run passed all 19 offline input, recovery, and reference tests at 360dp (
+efined-offline-acceptance.log). Its Wi-Fi and cellular data were disabled during validation. The final signed APK was installed in place on the S8 Ultra, retaining the production app's data.
