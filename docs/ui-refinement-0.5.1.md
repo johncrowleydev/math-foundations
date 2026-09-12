@@ -36,5 +36,4 @@ Pressure tests dispatch through the activity with the real Samsung input device 
 
 Upstream release notes: [AndroidX Ink](https://developer.android.com/jetpack/androidx/releases/ink).
 
-The final stable Android 15 emulator run passed all 19 offline input, recovery, and reference tests at 360dp (
-efined-offline-acceptance.log). Its Wi-Fi and cellular data were disabled during validation. The final signed APK was installed in place on the S8 Ultra, retaining the production app's data.
+The final stable Android 15 emulator run passed all 19 offline input, recovery, and reference tests at 360dp (refined-offline-acceptance.log). Its Wi-Fi and cellular data were disabled during validation. The final signed APK was installed in place on the S8 Ultra, retaining the production app's data.
