@@ -1057,6 +1057,8 @@ hr {
   box-shadow: inset 2px 0 var(--green);
 }
 .progress-state {
+  display: inline-flex;
+  flex-shrink: 0;
   color: #78828c;
   font-size: 0.69rem;
 }
@@ -1083,4 +1085,8 @@ hr {
   .exercise-nav-toggle {
     display: inline-flex;
   }
+}
+
+.progress-state.incorrect {
+  color: #b34e4e;
 }

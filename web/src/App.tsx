@@ -1,5 +1,17 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { BookOpen, Menu, Settings as SettingsIcon, WifiOff } from 'lucide-react';
+import {
+  BookOpen,
+  Menu,
+  Settings as SettingsIcon,
+  WifiOff,
+  Check,
+  X,
+  Circle,
+  Clock3,
+  Pencil,
+  CircleAlert,
+} from 'lucide-react';
+import { readRoute, routeHash, type AppRoute } from './routing';
 import { registerSW } from 'virtual:pwa-register';
 import type {
   Curriculum,
@@ -18,16 +30,22 @@ import { all, get, put, useRevision, exportData } from './storage';
 import { connect, connected, disconnect, initializeSync, mutation, sync, syncStatus } from './sync';
 export function App({ data }: { data: Curriculum }) {
   const [quickAnchor, setQuickAnchor] = useState<{ x: number; y: number }>();
-  const [slug, setSlug] = useState(localStorage.getItem('lesson') || data.lessons[0].slug),
-    [tab, setTab] = useState('read'),
-    [drawer, setDrawer] = useState(false),
+  const [route, setRoute] = useState(() =>
+    readRoute(location.hash, data.lessons, localStorage.getItem('lesson')),
+  );
+  const { slug, tab } = route;
+  const navigate = (next: AppRoute, replace = false) => {
+    const hash = routeHash(next);
+    if (location.hash !== hash) history[replace ? 'replaceState' : 'pushState'](null, '', hash);
+    setRoute(next);
+  };
+  const [drawer, setDrawer] = useState(false),
     [outline, setOutline] = useState(false),
     [settings, setSettings] = useState(false),
     [reference, setReference] = useState<string[]>([]),
     [quickRef, setQuickRef] = useState<string | null>(null),
     [formula, setFormula] = useState<Formula | null>(null),
     [active, setActive] = useState(''),
-    [practice, setPractice] = useState(0),
     [two, setTwo] = useState(localStorage.getItem('two-finger') === 'true'),
     [tutorials, setTutorials] = useState(false),
     [update, setUpdate] = useState<(() => Promise<void>) | null>(null);
@@ -36,7 +54,30 @@ export function App({ data }: { data: Curriculum }) {
   const revision = useRevision();
   const [exerciseNav, setExerciseNav] = useState(false);
   const [progress, setProgress] = useState<{ status: string; at: number }[]>([]);
-  const initializedPractice = useRef('');
+  const practice = Math.max(
+    0,
+    lesson.questions.findIndex((q) => String(q.id) === route.exercise),
+  );
+  useEffect(() => {
+    const restore = () => {
+      const next = readRoute(location.hash, data.lessons, localStorage.getItem('lesson'));
+      setRoute(next);
+      setOutline(false);
+      setDrawer(false);
+      setExerciseNav(false);
+      setReference([]);
+    };
+    const canonical = routeHash(
+      readRoute(location.hash, data.lessons, localStorage.getItem('lesson')),
+    );
+    if (location.hash !== canonical) history.replaceState(null, '', canonical);
+    window.addEventListener('popstate', restore);
+    window.addEventListener('hashchange', restore);
+    return () => {
+      window.removeEventListener('popstate', restore);
+      window.removeEventListener('hashchange', restore);
+    };
+  }, [data.lessons]);
   const positionKey = lesson.slug + ':' + tab;
   const positions = useRef<Record<string, number>>({});
   useLayoutEffect(() => {
@@ -88,8 +129,7 @@ export function App({ data }: { data: Curriculum }) {
         };
       });
       setProgress(states);
-      if (tab === 'practice' && initializedPractice.current !== lesson.slug) {
-        initializedPractice.current = lesson.slug;
+      if (tab === 'practice' && !route.exercise) {
         let index = Math.min(
           lesson.questions.length - 1,
           Math.max(0, Number(saved?.payload.value) || 0),
@@ -106,13 +146,16 @@ export function App({ data }: { data: Curriculum }) {
             0,
             states.findIndex((s) => s.status !== 'Correct'),
           );
-        setPractice(index);
+        navigate(
+          { slug: lesson.slug, tab: 'practice', exercise: String(lesson.questions[index].id) },
+          true,
+        );
       }
     })();
     return () => {
       live = false;
     };
-  }, [lesson, revision, tab]);
+  }, [lesson, revision, tab, route.exercise]);
   useEffect(() => {
     void initializeSync();
     const updater = registerSW({
@@ -196,8 +239,7 @@ export function App({ data }: { data: Curriculum }) {
     };
   }, [two, tab]);
   const choose = (l: string) => {
-    setSlug(l);
-    setTab('read');
+    navigate({ slug: l, tab: 'read' });
     setDrawer(false);
     setOutline(false);
   };
@@ -252,8 +294,7 @@ export function App({ data }: { data: Curriculum }) {
     </>
   );
   const selectExercise = (index: number) => {
-    setPractice(index);
-    initializedPractice.current = lesson.slug;
+    navigate({ slug: lesson.slug, tab: 'practice', exercise: String(lesson.questions[index].id) });
     setExerciseNav(false);
     reader.current!.scrollTop = 0;
     void mutation('practice/position:' + lesson.slug, { value: index });
@@ -276,13 +317,7 @@ export function App({ data }: { data: Curriculum }) {
               onClick={() => selectExercise(i)}
             >
               <span>Exercise {q.id}</span>
-              <small
-                className={
-                  'progress-state ' + (progress[i]?.status === 'Correct' ? 'complete' : '')
-                }
-              >
-                {progress[i]?.status || 'Not attempted'}
-              </small>
+              <PracticeStatus status={progress[i]?.status || 'Not attempted'} />
             </button>
           </div>
         ))}
@@ -329,8 +364,7 @@ export function App({ data }: { data: Curriculum }) {
                   className={tab === t ? 'selected' : ''}
                   key={t}
                   onClick={() => {
-                    if (t === 'practice' && tab !== 'practice') initializedPractice.current = '';
-                    setTab(t);
+                    if (t !== tab) navigate({ slug: lesson.slug, tab: t as AppRoute['tab'] });
                   }}
                 >
                   {t === 'read' ? 'Learn' : t[0].toUpperCase() + t.slice(1)}
@@ -915,5 +949,26 @@ function Settings({
         Export local work
       </button>
     </Modal>
+  );
+}
+
+function PracticeStatus({ status }: { status: string }) {
+  const Icon =
+    status === 'Correct'
+      ? Check
+      : status === 'Try again'
+        ? X
+        : status === 'Grading'
+          ? Clock3
+          : status === 'Draft'
+            ? Pencil
+            : status === 'Needs attention'
+              ? CircleAlert
+              : Circle;
+  const tone = status === 'Correct' ? 'complete' : status === 'Try again' ? 'incorrect' : '';
+  return (
+    <span className={'progress-state ' + tone} role="img" aria-label={status} title={status}>
+      <Icon size={14} strokeWidth={status === 'Not attempted' ? 1.5 : 2} aria-hidden="true" />
+    </span>
   );
 }
