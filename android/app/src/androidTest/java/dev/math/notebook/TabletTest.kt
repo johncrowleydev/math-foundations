@@ -112,7 +112,8 @@ class TabletTest {
                 else android.content.res.Configuration.ORIENTATION_LANDSCAPE
             rule.waitUntil(10000) { rule.activity.resources.configuration.orientation == expected }
             rule.waitForIdle()
-            rule.onNodeWithText("On this page").performClick()
+            if (rule.onAllNodesWithTag("pinned-outline").fetchSemanticsNodes().isEmpty())
+                rule.onNodeWithText("On this page").performClick()
             rule.onNode(hasText("Propositions") and hasClickAction()).performClick()
             val reader = rule.onNodeWithTag("reader")
             reader.performTouchInput {

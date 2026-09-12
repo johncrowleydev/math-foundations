@@ -140,8 +140,6 @@ For example:
 
 The promise is broken only if I win the lottery and do not buy you a car. If I never win, the statement has not been falsified.
 
-![Evaluate the implication on each truth assignment](figure:logic-implication)
-
 ### Implication does not mean causation
 
 Logic describes truth relationships, not causal relationships.
@@ -489,8 +487,6 @@ Notice that propositional logic has distribution in both directions: AND distrib
 
 For the first law, let $p$ mean “you have a ticket,” $q$ mean “you have a passport,” and $r$ mean “you have a driving licence.” Requiring a ticket together with either kind of identification gives two ways to qualify: ticket and passport, or ticket and driving licence. The ticket appears in both alternatives because it is required whichever identification you use. Merely writing $(p\land q)\lor r$ would wrongly allow a driving licence without a ticket.
 
-![Track the shared ticket requirement](figure:logic-distribution)
-
 The second law deserves its own explanation. Suppose $p$ means “you have a guest pass,” $q$ means “you are a member,” and $r$ means “your membership is paid up.” The rule $p\lor(q\land r)$ allows either a guest pass or both membership conditions. In the rewritten rule $(p\lor q)\land(p\lor r)$, a guest pass satisfies both requirements at once. Without a guest pass, the first requirement forces membership and the second forces payment. The two versions therefore admit exactly the same cases. This reasoning checks both possibilities for $p$, rather than borrowing a rule from numerical algebra.
 
 Distribution works backward as well. If two alternatives share a requirement, we can pull that requirement out:
@@ -558,8 +554,6 @@ $$
 $$
 
 The reason for choosing the first step was not simply that distribution was available. It exposed a part whose truth value no longer depended on any variable. Read the original in words as a final check: it allows $p$ together with either possibility for $q$, so $p$ is the only genuine requirement.
-
-![Follow the simplification one justified step at a time](figure:logic-simplification)
 
 ### A worked simplification: remove a false alternative
 

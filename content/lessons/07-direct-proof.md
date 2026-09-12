@@ -78,8 +78,6 @@ The witnesses $a$ and $b$ have different names because the two odd integers need
 
 Checking $3+5=8$ illustrates the theorem, but does not replace this proof. The symbolic argument covers all odd integers, including negative ones.
 
-![From odd inputs to an even sum](figure:proof-direct-odd)
-
 ## Divisibility and linear combinations
 
 If two quantities are both made from whole bundles of size $d$, taking integer multiples of them and adding the results should still produce whole bundles of size $d$. The expression $ra+sb$ is called an **integer linear combination** of $a$ and $b$. The proof makes the bundle intuition precise and also handles negative coefficients and zero without relying on the picture.

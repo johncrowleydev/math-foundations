@@ -23,8 +23,6 @@ The base supplies $P(n_0)$. The step then supplies $P(n_0+1)$, then $P(n_0+2)$, 
 
 This argument depends on the **discrete** order of the integers: each integer has an immediate successor, the next integer, one unit larger. There is no “next real number” after 0, so the same principle cannot cover a real interval by incrementing one unit at a time.
 
-![A base and a repeatable implication](figure:induction-chain)
-
 ## Why the hypothesis is not circular
 
 The natural worry is that assuming a case sounds like assuming what we want to prove. The key is that we are proving a conditional connection between two cases, not declaring either one established by fiat. A bridge can be inspected to show that it carries us from one bank to the other without assuming we have already reached the far bank.

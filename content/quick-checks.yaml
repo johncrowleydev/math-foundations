@@ -17,7 +17,7 @@ propositional-logic:
       - $p\land q$
     answer: 0
     explanation: Both alternatives require $p$. Factoring gives $p\land(q\lor\neg q)$. The parentheses are always true, leaving $p$.
-    teachingHash: dedd7b42c6aef6fb9edbb95feb8f36acebdbf914f0b021f7d4ae9181ecd1f695
+    teachingHash: f820fed523590f53ca5ef0e68909754320a2225aa848167d8fa71da857e6b695
 predicates-and-quantifiers:
   - id: quick-1
     after: 'Existential quantification: there exists'
@@ -119,7 +119,7 @@ sequences-and-summations:
       - $0$
     answer: 0
     explanation: The intermediate terms $b_2$ and $b_3$ cancel. The first negative term and last positive term have no partners, leaving $b_4-b_1$.
-    teachingHash: 855fd8cbb86c4722ae48c25470379ae661cc49e7fec8abb1edb825d7c2cf459d
+    teachingHash: 7e6cab4b50f952d27b969704b741ccc995c81d4354f9eff25a94daec67716633
 direct-proof:
   - id: quick-1
     after: Unpack definitions
@@ -160,7 +160,7 @@ proof-by-contrapositive:
       - $n$ is even
     answer: 0
     explanation: 'Negate the conclusion: the integer n is not even, hence odd. Its odd-number representation then lets us show that its square is odd.'
-    teachingHash: 012ded88dd98f495046db0c5be5431265495c94e7f96b64bda9b78329ac11814
+    teachingHash: fa85c4b0385510e423609753572cd76442e8f6617a560d3b2fff193f129e6634
 proof-by-contradiction:
   - id: quick-1
     after: The logical structure
@@ -191,7 +191,7 @@ mathematical-induction:
       - Only index 3
     answer: 1
     explanation: The base starts the chain at 3 and the step carries it forward. Neither part establishes the earlier indices.
-    teachingHash: 4d0ec95be28e0706fc456290fff9922a82029d1f6207f90a5c652737d74857c8
+    teachingHash: 686a3d2f69aa33c83e72d3c0596af2457bdbd8d0e7b3d7d09ebe82f76e0f73ad
   - id: quick-2
     after: Inequalities require a bridge
     prompt: A proof aiming for $2^{k+1}\geq(k+1)^2$ has reached $2^{k+1}\geq2k^2$. What remains?
@@ -212,7 +212,7 @@ strong-induction:
       - $P(n-2)$
     answer: 2
     explanation: The index $n-2$ is at least 2 and strictly below $n$. The current case is not available, and index 1 is outside the theorem's range.
-    teachingHash: 68cf593fd926673744ff1e8c5e9dce47127a196d8ae45fd34d59bc8bb523161b
+    teachingHash: f723473a7a83ef9d036f16a091ac8ccfc7c04116aead278d0211e1d7c0ff913d
   - id: quick-2
     after: Postage with several base cases
     prompt: A construction adds 4-unit stamps and aims to cover every amount from 18 onward. Which base block supports that step?
@@ -232,7 +232,7 @@ combinatorics:
       - No
     answer: 1
     explanation: The members determine the committee. Ordered selection counts each committee repeatedly, which is why the combination formula corrects that overcount.
-    teachingHash: 2e30274052d37d42c811849acff6ba34956e3fe50b6ef520f560bb51b4910cca
+    teachingHash: 9d6ffdd173769b411a267afb8f00f0bd488da588a86703d5e1cd7f9bb51f6732
   - id: quick-2
     after: The pigeonhole principle
     prompt: Thirteen people are grouped by their twelve possible birth months. What is guaranteed?

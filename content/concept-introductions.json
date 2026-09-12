@@ -237,8 +237,8 @@
     "concept": "factoring",
     "lesson": "propositional-logic",
     "section": "Common equivalence laws",
-    "start": 3617,
-    "end": 4150,
+    "start": 3550,
+    "end": 4083,
     "quote": "Distribution works backward as well. If two alternatives share a requirement, we can pull that requirement out:\n\n$$\n(p\\land q)\\lor(p\\land r)\\equiv p\\land(q\\lor r).\n$$\n\nThis is often called **factoring**, by analogy with factoring a common multiplier in algebra. Expanding makes the separate routes visible; factoring makes the shared requirement visible. Neither direction is automatically the best simplification. Choose the direction that exposes something useful, such as a repeated term or a statement together with its negation.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
@@ -246,8 +246,8 @@
     "concept": "absorption",
     "lesson": "propositional-logic",
     "section": "Common equivalence laws",
-    "start": 4152,
-    "end": 4983,
+    "start": 4085,
+    "end": 4916,
     "quote": "### Absorption laws\n\nIn $p\\lor(p\\land q)$, the second alternative cannot rescue a situation in which $p$ is false, because it too requires $p$. If $p$ is true, the first alternative already settles the matter. The extra expression is therefore absorbed. For the AND version, once $p$ is required, the additional requirement “$p$ or $q$” is automatically met.\n\n$$\np\\lor(p\\land q)\\equiv p\n$$\n\n$$\np\\land(p\\lor q)\\equiv p\n$$\n\nIn ordinary language, “you must have a ticket, and you must have a ticket or a pass” still requires just a ticket. The second requirement adds nothing after the first has been met. Compare this with “a ticket or a pass,” which genuinely offers an alternative. Absorption applies because $p$ appears both on its own and inside the larger part; it does not allow us to remove any condition we find inconvenient.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },

@@ -171,8 +171,6 @@ $$
 
 There are useful one-way deductions too: injectivity of $g\circ f$ forces injectivity of $f$, and surjectivity of $g\circ f$ forces surjectivity of $g$. It does not force the other two properties: an outer function may collide only outside the inner image, or an inner function may miss values unnecessary for reaching the final target.
 
-![One value passes through two functions](figure:function-composition)
-
 ## Restrictions, empty cases, and finite sizes
 
 Changing a function's domain changes which inputs we ask it to handle. This can solve one problem while creating another: removing an input may eliminate a collision, but it may also remove the only way to reach an output. Track the arrows that remain rather than assuming a smaller domain automatically makes every property easier to satisfy.

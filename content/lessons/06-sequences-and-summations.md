@@ -225,8 +225,6 @@ $$
 
 The starting index matters: at $k=0$, the original denominator would be zero. Cancellation cannot make an undefined original expression valid.
 
-![Watch the middle values cancel](figure:sum-telescope)
-
 ## Products and factorials
 
 Product notation is read in much the same way as summation notation, except that the visited terms are multiplied. The empty case therefore has a different neutral value. Adding no terms leaves a running total unchanged by adding zero; multiplying no factors leaves a running product unchanged by multiplying by one.

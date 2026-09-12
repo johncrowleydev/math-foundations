@@ -47,8 +47,6 @@ The conclusion contradicts the assumption because the newly constructed integer 
 
 A direct formulation is also possible: for every integer $n$, the integer $n+1$ is larger. The two presentations make the same arithmetic observation with different logical organization.
 
-![The assumed maximum defeats itself](figure:proof-contradiction-largest)
-
 ## Contradiction versus contrapositive
 
 Both methods can begin by supposing the desired conclusion fails, so their presentations sometimes look similar. The difference is what else is assumed and what the proof is trying to reach. Keeping that bookkeeping visible helps the reader understand where the contradiction comes from and which assumptions are temporary.

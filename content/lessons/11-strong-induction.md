@@ -23,8 +23,6 @@ An equivalent formulation proves, for each $n\geq n_0$, that if all earlier case
 
 For readable proofs, separate the bases from the general argument, especially when several initial values are necessary.
 
-![More earlier statements are available](figure:strong-hypotheses)
-
 ## Why it is equivalent to ordinary induction
 
 We can package “all cases so far are true” as one larger statement. Ordinary induction on that statement automatically carries the whole history forward. This packaging explains how strong induction can offer more assumptions at a step without being a logically stronger principle.

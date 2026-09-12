@@ -113,8 +113,6 @@ $$
 
 These are counting proofs: the two expressions describe the same outcomes from different perspectives.
 
-![Six orders describe one committee](figure:count-order)
-
 ## Combining restrictions
 
 Restrictions often suggest a useful sequence of choices: select the required members of one category, then select the required members of another. Alternatively, divide the outcomes into disjoint cases according to how many members come from each category. The worked examples use both methods so you can see why each addition or multiplication belongs.

@@ -64,9 +64,11 @@ class RefinedUiTest {
             }
             rule.onNodeWithTag("reader").performScrollToIndex(0)
             capture("$name-reader")
-            rule.onNodeWithText("On this page").performClick()
-            capture("$name-outline")
-            rule.onNodeWithText("Close").performClick()
+            if (rule.onAllNodesWithTag("pinned-outline").fetchSemanticsNodes().isEmpty()) {
+                rule.onNodeWithText("On this page").performClick()
+                capture("$name-outline")
+                rule.onNodeWithText("Close").performClick()
+            } else capture("$name-outline")
             if (name == "portrait") {
                 rule.onNodeWithContentDescription("Choose chapter").performClick()
                 capture("$name-chapters")

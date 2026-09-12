@@ -53,8 +53,6 @@ If $a_0=5$ and $a_n=2a_{n-1}$ for $n\geq1$, each substitution supplies one facto
 
 These observations can guide a **conjecture**, a proposed statement whose truth has not yet been established. A proof by induction verifies it for all allowed indices: check $n=0$, assume the formula at $n-1$, and substitute into the recurrence. Verification matters because an early numerical pattern can be misleading.
 
-![Substitute until the initial value](figure:recurrence-unfold)
-
 ## Differences and telescoping
 
 If a recurrence tells us how much changes at each step, adding those changes should recover the total change. This is exactly what telescoping does. The intermediate sequence values cancel because each appears once as a new value and once as an old value; only the starting and ending values remain.

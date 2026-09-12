@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.*
@@ -614,170 +615,239 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
             .distinctUntilChanged()
             .collect { model.reading(lesson.slug, it.first, it.second) }
     }
-    Column(Modifier.fillMaxSize()) {
-        Row(
-            Modifier.fillMaxWidth().padding(20.dp, 2.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Spacer(Modifier.weight(1f))
-            Box {
-                TextButton(onClick = { outline = true }) {
-                    Icon(Icons.AutoMirrored.Outlined.List, null, Modifier.size(18.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text("On this page", fontSize = 12.sp)
+    val sectionStarts =
+        remember(entries) {
+            listOf(0) +
+                lesson.sections.map { section ->
+                    entries.indexOfFirst { it.first == "section:${section.id}" }
                 }
-                if (outline)
+        }
+    val activeSection by
+        remember(state, sectionStarts) {
+            derivedStateOf {
+                sectionStarts.indexOfLast { it <= state.firstVisibleItemIndex }.coerceAtLeast(0)
+            }
+        }
+    val titles = remember(lesson.slug) { listOf("Introduction") + lesson.sections.map { it.title } }
+    val navigate: (Int) -> Unit = { index ->
+        outline = false
+        scope.launch { state.scrollToItem(sectionStarts[index]) }
+    }
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+        val pinnedOutline = maxWidth >= 1080.dp && maxHeight >= 480.dp && maxWidth > maxHeight
+        Row(Modifier.fillMaxSize()) {
+            Column(Modifier.weight(1f).fillMaxHeight()) {
+                if (!pinnedOutline)
+                    Row(
+                        Modifier.fillMaxWidth().padding(20.dp, 2.dp),
+                        horizontalArrangement = Arrangement.End,
+                    ) {
+                        TextButton(onClick = { outline = true }) {
+                            Icon(Icons.AutoMirrored.Outlined.List, null, Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text("On this page", fontSize = 12.sp)
+                        }
+                    }
+                if (outline && !pinnedOutline)
                     AlertDialog(
                         onDismissRequest = { outline = false },
                         title = { Text("On this page") },
                         text = {
-                            val outlineState = rememberLazyListState()
-                            LazyColumn(
-                                state = outlineState,
-                                userScrollEnabled = true,
-                                modifier = Modifier.height(440.dp),
-                            ) {
-                                itemsIndexed(lesson.sections) { i, s ->
-                                    TextButton(
-                                        onClick = {
-                                            outline = false
-                                            scope.launch {
-                                                state.scrollToItem(
-                                                    entries.indexOfFirst {
-                                                        it.first == "section:${s.id}"
-                                                    }
-                                                )
-                                            }
-                                        }
-                                    ) {
-                                        Text(
-                                            s.title,
-                                            fontSize = 14.sp,
-                                            modifier = Modifier.fillMaxWidth(),
-                                        )
-                                    }
-                                }
-                            }
+                            PageOutline(
+                                titles,
+                                activeSection,
+                                Modifier.heightIn(max = 440.dp),
+                                navigate,
+                            )
                         },
                         confirmButton = {
                             TextButton(onClick = { outline = false }) { Text("Close") }
                         },
                     )
-            }
-        }
-        LazyColumn(
-            state = state,
-            userScrollEnabled = !model.input.twoFinger,
-            modifier =
-                Modifier.weight(1f)
-                    .fillMaxWidth()
-                    .testTag("reader")
-                    .then(if (model.input.twoFinger) Modifier.twoFingerScroll(state) else Modifier),
-            contentPadding = PaddingValues(bottom = 60.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(18.dp),
-        ) {
-            itemsIndexed(entries, key = { _, entry -> entry.first }) { _, entry ->
-                Box(
-                    Modifier.widthIn(max = 840.dp)
-                        .fillMaxWidth()
-                        .padding(
-                            horizontal =
-                                if (
-                                    LocalConfiguration.current.screenWidthDp < 600 ||
-                                        LocalConfiguration.current.screenHeightDp < 480
-                                )
-                                    12.dp
-                                else 28.dp
-                        )
+                LazyColumn(
+                    state = state,
+                    userScrollEnabled = !model.input.twoFinger,
+                    modifier =
+                        Modifier.weight(1f)
+                            .fillMaxWidth()
+                            .testTag("reader")
+                            .then(
+                                if (model.input.twoFinger) Modifier.twoFingerScroll(state)
+                                else Modifier
+                            ),
+                    contentPadding = PaddingValues(bottom = 60.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(18.dp),
                 ) {
-                    when (val value = entry.second) {
-                        is Section ->
-                            Column(
-                                Modifier.fillMaxWidth()
-                                    .background(Paper, RoundedCornerShape(16.dp))
-                                    .padding(
+                    itemsIndexed(entries, key = { _, entry -> entry.first }) { _, entry ->
+                        Box(
+                            Modifier.widthIn(max = 840.dp)
+                                .fillMaxWidth()
+                                .padding(
+                                    horizontal =
                                         if (
                                             LocalConfiguration.current.screenWidthDp < 600 ||
                                                 LocalConfiguration.current.screenHeightDp < 480
                                         )
-                                            16.dp
-                                        else 26.dp,
-                                        24.dp,
-                                    )
-                            ) {
-                                Text(
-                                    value.title,
-                                    fontFamily = FontFamily.Serif,
-                                    fontSize = 24.sp,
-                                    lineHeight = 30.sp,
-                                    color = Ink,
+                                            12.dp
+                                        else 28.dp
                                 )
-                                Spacer(Modifier.height(8.dp))
-                                if (value.blocks != null)
-                                    TeachingBlocks(
-                                        value.blocks,
-                                        Modifier.fillMaxWidth(),
-                                        source = "section:${value.id}",
-                                    )
-                                else RichText(value.markdown, Modifier.fillMaxWidth())
-                                TypingBlock(model, value.id)
-                            }
-                        is Question -> QuestionCard(model, value, onFocus)
-                        is QuickCheck -> QuickCheckCard(value, "${lesson.slug}:${value.id}")
-                        else ->
-                            if (entry.first == "intro")
-                                Column(Modifier.fillMaxWidth().padding(12.dp, 14.dp)) {
-                                    Text(
-                                        lesson.eyebrow.uppercase(),
-                                        fontSize = 11.sp,
-                                        letterSpacing = 2.sp,
-                                        color = Forest,
-                                        fontWeight = FontWeight.SemiBold,
-                                    )
-                                    Text(
-                                        lesson.title,
-                                        fontFamily = FontFamily.Serif,
-                                        fontSize =
-                                            if (LocalConfiguration.current.screenWidthDp < 600)
-                                                32.sp
-                                            else 34.sp,
-                                        lineHeight =
-                                            if (LocalConfiguration.current.screenWidthDp < 600)
-                                                39.sp
-                                            else 41.sp,
-                                        color = Ink,
-                                        modifier = Modifier.padding(top = 14.dp, bottom = 20.dp),
-                                    )
-                                    if (lesson.introBlocks != null)
-                                        TeachingBlocks(
-                                            lesson.introBlocks,
-                                            Modifier.fillMaxWidth(),
-                                            source = "intro",
-                                        )
-                                    else RichText(lesson.intro, Modifier.fillMaxWidth(), 16f)
-                                    TypingGuide(model)
-                                }
-                            else
-                                Row(
-                                    Modifier.fillMaxWidth().padding(vertical = 12.dp),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                ) {
-                                    Text(
-                                        "${lesson.practiceIds.size} more practice problems",
-                                        Modifier.weight(1f),
-                                        color = Muted,
-                                        fontSize = 13.sp,
-                                    )
-                                    WorkspaceAction(
-                                        "Open practice",
-                                        Icons.AutoMirrored.Outlined.ArrowForward,
+                        ) {
+                            when (val value = entry.second) {
+                                is Section ->
+                                    Column(
+                                        Modifier.fillMaxWidth()
+                                            .background(Paper, RoundedCornerShape(16.dp))
+                                            .padding(
+                                                if (
+                                                    LocalConfiguration.current.screenWidthDp <
+                                                        600 ||
+                                                        LocalConfiguration.current.screenHeightDp <
+                                                            480
+                                                )
+                                                    16.dp
+                                                else 26.dp,
+                                                24.dp,
+                                            )
                                     ) {
-                                        model.mode(true)
+                                        Text(
+                                            value.title,
+                                            fontFamily = FontFamily.Serif,
+                                            fontSize = 24.sp,
+                                            lineHeight = 30.sp,
+                                            color = Ink,
+                                        )
+                                        Spacer(Modifier.height(8.dp))
+                                        if (value.blocks != null)
+                                            TeachingBlocks(
+                                                value.blocks,
+                                                Modifier.fillMaxWidth(),
+                                                source = "section:${value.id}",
+                                            )
+                                        else RichText(value.markdown, Modifier.fillMaxWidth())
+                                        TypingBlock(model, value.id)
                                     }
-                                }
+                                is Question -> QuestionCard(model, value, onFocus)
+                                is QuickCheck -> QuickCheckCard(value, "${lesson.slug}:${value.id}")
+                                else ->
+                                    if (entry.first == "intro")
+                                        Column(Modifier.fillMaxWidth().padding(12.dp, 14.dp)) {
+                                            Text(
+                                                lesson.eyebrow.uppercase(),
+                                                fontSize = 11.sp,
+                                                letterSpacing = 2.sp,
+                                                color = Forest,
+                                                fontWeight = FontWeight.SemiBold,
+                                            )
+                                            Text(
+                                                lesson.title,
+                                                fontFamily = FontFamily.Serif,
+                                                fontSize =
+                                                    if (
+                                                        LocalConfiguration.current.screenWidthDp <
+                                                            600
+                                                    )
+                                                        32.sp
+                                                    else 34.sp,
+                                                lineHeight =
+                                                    if (
+                                                        LocalConfiguration.current.screenWidthDp <
+                                                            600
+                                                    )
+                                                        39.sp
+                                                    else 41.sp,
+                                                color = Ink,
+                                                modifier =
+                                                    Modifier.padding(top = 14.dp, bottom = 20.dp),
+                                            )
+                                            if (lesson.introBlocks != null)
+                                                TeachingBlocks(
+                                                    lesson.introBlocks,
+                                                    Modifier.fillMaxWidth(),
+                                                    source = "intro",
+                                                )
+                                            else
+                                                RichText(lesson.intro, Modifier.fillMaxWidth(), 16f)
+                                            TypingGuide(model)
+                                        }
+                                    else
+                                        Row(
+                                            Modifier.fillMaxWidth().padding(vertical = 12.dp),
+                                            verticalAlignment = Alignment.CenterVertically,
+                                        ) {
+                                            Text(
+                                                "${lesson.practiceIds.size} more practice problems",
+                                                Modifier.weight(1f),
+                                                color = Muted,
+                                                fontSize = 13.sp,
+                                            )
+                                            WorkspaceAction(
+                                                "Open practice",
+                                                Icons.AutoMirrored.Outlined.ArrowForward,
+                                            ) {
+                                                model.mode(true)
+                                            }
+                                        }
+                            }
+                        }
                     }
                 }
+            }
+            if (pinnedOutline)
+                Column(Modifier.width(208.dp).fillMaxHeight().padding(top = 20.dp, end = 16.dp)) {
+                    Text(
+                        "ON THIS PAGE",
+                        fontSize = 10.sp,
+                        letterSpacing = 1.sp,
+                        color = Muted,
+                        modifier = Modifier.padding(start = 12.dp, bottom = 10.dp),
+                    )
+                    PageOutline(
+                        titles,
+                        activeSection,
+                        Modifier.weight(1f).testTag("pinned-outline"),
+                        navigate,
+                    )
+                }
+        }
+    }
+}
+
+@Composable
+private fun PageOutline(
+    titles: List<String>,
+    active: Int,
+    modifier: Modifier,
+    onNavigate: (Int) -> Unit,
+) {
+    val state = rememberLazyListState()
+    LaunchedEffect(active) {
+        if (state.layoutInfo.visibleItemsInfo.none { it.index == active })
+            state.animateScrollToItem(active)
+    }
+    LazyColumn(state = state, modifier = modifier, contentPadding = PaddingValues(bottom = 16.dp)) {
+        itemsIndexed(titles) { index, title ->
+            val current = index == active
+            Row(
+                Modifier.fillMaxWidth()
+                    .testTag("outline-entry:$index")
+                    .selectable(selected = current, onClick = { onNavigate(index) })
+                    .padding(vertical = 7.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Box(
+                    Modifier.width(2.dp)
+                        .height(18.dp)
+                        .background(if (current) Forest else Color.Transparent)
+                )
+                Text(
+                    title,
+                    Modifier.padding(start = 10.dp, end = 4.dp),
+                    fontSize = 12.sp,
+                    lineHeight = 17.sp,
+                    color = if (current) Forest else Muted,
+                    fontWeight = if (current) FontWeight.SemiBold else FontWeight.Normal,
+                )
             }
         }
     }

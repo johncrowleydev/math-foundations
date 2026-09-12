@@ -75,8 +75,6 @@ Because $2k^2+2k$ is an integer, $n^2$ is odd. We have proved the contrapositive
 
 The domain restriction matters. “Not even” can be replaced by “odd” because $n$ is an integer. Parity is not a classification of all real numbers. The proof must not silently treat a noninteger as odd.
 
-![Start with the negated conclusion](figure:proof-contrapositive-odd)
-
 ## Negate compound conditions carefully
 
 A compound conclusion must fail as a whole. If a theorem promises at least one of two outcomes, denying the promise means ruling out both outcomes, not just one. It is worth doing this logical preparation before touching the numbers; otherwise a perfectly correct calculation can prove the wrong contrapositive.
