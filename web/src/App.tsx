@@ -1,7 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { BookOpen, Menu, Settings as SettingsIcon, WifiOff } from 'lucide-react';
 import { registerSW } from 'virtual:pwa-register';
-import type { Curriculum, Block, Lesson, Quick, RecordData, Formula } from './types';
+import type {
+  Curriculum,
+  Block,
+  Lesson,
+  Quick,
+  RecordData,
+  Formula,
+  Attempt,
+  Draft,
+} from './types';
 import { ContentContext, Rich, MathText, Modal, Copy } from './Rich';
 import { Figure } from './Figure';
 import { Exercise } from './Exercise';
@@ -24,7 +33,86 @@ export function App({ data }: { data: Curriculum }) {
     [update, setUpdate] = useState<(() => Promise<void>) | null>(null);
   const reader = useRef<HTMLElement>(null);
   const lesson = data.lessons.find((l) => l.slug === slug) || data.lessons[0];
-  useRevision();
+  const revision = useRevision();
+  const [exerciseNav, setExerciseNav] = useState(false);
+  const [progress, setProgress] = useState<{ status: string; at: number }[]>([]);
+  const initializedPractice = useRef('');
+  const positionKey = lesson.slug + ':' + tab;
+  const positions = useRef<Record<string, number>>({});
+  useLayoutEffect(() => {
+    reader.current!.scrollTop =
+      positions.current[positionKey] ??
+      (Number(localStorage.getItem('scroll:' + positionKey)) || 0);
+  }, [positionKey]);
+  useEffect(() => {
+    if (tab !== 'practice') return;
+    const selected = document.querySelector<HTMLElement>(
+      exerciseNav ? '.practice-sheet .selected' : '.practice-sidebar .selected',
+    );
+    const container = selected?.closest<HTMLElement>(exerciseNav ? '.modal' : '.practice-sidebar');
+    if (selected && container) {
+      const item = selected.getBoundingClientRect(),
+        bounds = container.getBoundingClientRect();
+      if (item.top < bounds.top || item.bottom > bounds.bottom)
+        container.scrollTop += item.top - bounds.top - 80;
+    }
+  }, [practice, tab, exerciseNav]);
+  useEffect(() => {
+    let live = true;
+    void (async () => {
+      const [attempts, drafts, saved] = await Promise.all([
+        all<Attempt>('attempts'),
+        Promise.all(lesson.questions.map((q) => get<Draft>('drafts', lesson.slug + '-' + q.id))),
+        get<RecordData>('records', 'practice/position:' + lesson.slug),
+      ]);
+      if (!live) return;
+      const states = lesson.questions.map((q, i) => {
+        const history = attempts.filter((a) => a.exercise === lesson.slug + '-' + q.id);
+        const draft = drafts[i];
+        const hasDraft =
+          draft && (draft.text.trim() || draft.strokes.length || draft.photos.length);
+        const status = history.some((a) => a.verdict === 'correct')
+          ? 'Correct'
+          : history.some((a) => ['queued', 'pending', 'grading', 'rechecking'].includes(a.status))
+            ? 'Grading'
+            : history.some((a) => a.verdict === 'incorrect')
+              ? 'Try again'
+              : history.length
+                ? 'Needs attention'
+                : hasDraft
+                  ? 'Draft'
+                  : 'Not attempted';
+        return {
+          status,
+          at: Math.max(0, ...history.map((a) => a.submitted), hasDraft ? draft.updated : 0),
+        };
+      });
+      setProgress(states);
+      if (tab === 'practice' && initializedPractice.current !== lesson.slug) {
+        initializedPractice.current = lesson.slug;
+        let index = Math.min(
+          lesson.questions.length - 1,
+          Math.max(0, Number(saved?.payload.value) || 0),
+        );
+        let newest = saved?.updated || 0;
+        states.forEach((s, i) => {
+          if (s.at > newest) {
+            index = i;
+            newest = s.at;
+          }
+        });
+        if (!newest)
+          index = Math.max(
+            0,
+            states.findIndex((s) => s.status !== 'Correct'),
+          );
+        setPractice(index);
+      }
+    })();
+    return () => {
+      live = false;
+    };
+  }, [lesson, revision, tab]);
   useEffect(() => {
     void initializeSync();
     const updater = registerSW({
@@ -37,14 +125,6 @@ export function App({ data }: { data: Curriculum }) {
   useEffect(() => {
     localStorage.setItem('lesson', lesson.slug);
     setActive('');
-    void get<{ anchor: string }>('settings', 'bookmark:' + lesson.slug).then((b) => {
-      requestAnimationFrame(() =>
-        document.getElementById(b?.anchor || 'lesson-start')?.scrollIntoView(),
-      );
-    });
-    void get<RecordData>('records', 'practice/position:' + lesson.slug).then((r) => {
-      setPractice(Math.max(0, Number(r?.payload.value) || 0));
-    });
     void get<RecordData>('records', 'preference/tex:visible:v2:' + lesson.slug).then((r) =>
       setTutorials(r?.payload.value === true || r?.payload.value === 'true'),
     );
@@ -122,7 +202,12 @@ export function App({ data }: { data: Curriculum }) {
     setOutline(false);
   };
   const jump = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById(id);
+    const container = reader.current;
+    if (target && container)
+      container.scrollTop +=
+        target.getBoundingClientRect().top - container.getBoundingClientRect().top - 12;
+    setActive(id);
     setOutline(false);
   };
   const blocks = (bs: Block[], prefix: string) =>
@@ -166,6 +251,44 @@ export function App({ data }: { data: Curriculum }) {
       </small>
     </>
   );
+  const selectExercise = (index: number) => {
+    setPractice(index);
+    initializedPractice.current = lesson.slug;
+    setExerciseNav(false);
+    reader.current!.scrollTop = 0;
+    void mutation('practice/position:' + lesson.slug, { value: index });
+  };
+  const practiceList = (
+    <>
+      <span className="eyebrow">Exercises</span>
+      <p className="practice-summary">
+        {progress.filter((s) => s.status === 'Correct').length} / {lesson.questions.length} correct
+      </p>
+      <nav aria-label="Practice exercises">
+        {lesson.questions.map((q, i) => (
+          <div key={q.id}>
+            {(i === 0 || q.section !== lesson.questions[i - 1].section) && (
+              <h3 className="exercise-group">{q.section}</h3>
+            )}
+            <button
+              className={'exercise-link ' + (practice === i ? 'selected' : '')}
+              aria-current={practice === i ? 'step' : undefined}
+              onClick={() => selectExercise(i)}
+            >
+              <span>Exercise {q.id}</span>
+              <small
+                className={
+                  'progress-state ' + (progress[i]?.status === 'Correct' ? 'complete' : '')
+                }
+              >
+                {progress[i]?.status || 'Not attempted'}
+              </small>
+            </button>
+          </div>
+        ))}
+      </nav>
+    </>
+  );
   const q = data.lessons.find((l) => l.slug === lesson.slug)!.questions[
     Math.min(practice, lesson.questions.length - 1)
   ];
@@ -205,9 +328,12 @@ export function App({ data }: { data: Curriculum }) {
                   aria-current={tab === t ? 'page' : undefined}
                   className={tab === t ? 'selected' : ''}
                   key={t}
-                  onClick={() => setTab(t)}
+                  onClick={() => {
+                    if (t === 'practice' && tab !== 'practice') initializedPractice.current = '';
+                    setTab(t);
+                  }}
                 >
-                  {t === 'read' ? 'Read & write' : t[0].toUpperCase() + t.slice(1)}
+                  {t === 'read' ? 'Learn' : t[0].toUpperCase() + t.slice(1)}
                 </button>
               ))}
             </nav>
@@ -227,93 +353,88 @@ export function App({ data }: { data: Curriculum }) {
             </div>
           )}
           <div className="body-layout">
-            <main ref={reader} className="reader" id="reader">
-              {tab === 'read' ? (
-                <div className="reading-column">
-                  <div className="lesson-intro" id="lesson-start">
-                    <span className="eyebrow">{lesson.eyebrow}</span>
-                    <h1>{lesson.title}</h1>
-                    {blocks(lesson.introBlocks, 'intro')}
-                  </div>
-                  {lesson.sections.map((s, i) => (
-                    <section key={s.id} id={'section-' + s.id} data-section data-title={s.title}>
-                      <div className="teaching">
-                        <h2>{s.title}</h2>
-                        {blocks(s.blocks, 'section:' + s.id)}
-                      </div>
-                      <Typing
-                        data={data}
-                        lesson={lesson.slug}
-                        section={s.id}
-                        show={tutorials}
-                        first={i === 0}
-                      />
-                      {s.quickChecks.map((c) => (
-                        <QuickCheck key={c.id} check={c} lesson={lesson.slug} />
-                      ))}
-                      {s.questionIds.map((id) => (
-                        <Exercise
-                          key={id}
-                          q={lesson.questions.find((q) => q.id === id)!}
-                          lesson={lesson.slug}
-                          data={data}
-                        />
-                      ))}
-                    </section>
-                  ))}
-                  <footer>
-                    <button
-                      disabled={data.lessons.indexOf(lesson) === 14}
-                      onClick={() => choose(data.lessons[data.lessons.indexOf(lesson) + 1].slug)}
-                    >
-                      Next chapter →
-                    </button>
-                  </footer>
+            <main
+              ref={reader}
+              className="reader"
+              id="reader"
+              onScroll={() => {
+                const top = reader.current!.scrollTop;
+                positions.current[positionKey] = top;
+                localStorage.setItem('scroll:' + positionKey, String(top));
+              }}
+            >
+              <div
+                className="reading-column"
+                style={{ display: tab === 'read' ? undefined : 'none' }}
+              >
+                <div className="lesson-intro" id="lesson-start">
+                  <span className="eyebrow">{lesson.eyebrow}</span>
+                  <h1>{lesson.title}</h1>
+                  {blocks(lesson.introBlocks, 'intro')}
                 </div>
-              ) : tab === 'practice' ? (
+                {lesson.sections.map((s, i) => (
+                  <section key={s.id} id={'section-' + s.id} data-section data-title={s.title}>
+                    <div className="teaching">
+                      <h2>{s.title}</h2>
+                      {blocks(s.blocks, 'section:' + s.id)}
+                    </div>
+                    <Typing
+                      data={data}
+                      lesson={lesson.slug}
+                      section={s.id}
+                      show={tutorials}
+                      first={i === 0}
+                    />
+                    {s.quickChecks.map((c) => (
+                      <QuickCheck key={c.id} check={c} lesson={lesson.slug} />
+                    ))}
+                    {s.questionIds.map((id) => (
+                      <Exercise
+                        key={id}
+                        q={lesson.questions.find((q) => q.id === id)!}
+                        lesson={lesson.slug}
+                        data={data}
+                      />
+                    ))}
+                  </section>
+                ))}
+                <footer>
+                  <button
+                    disabled={data.lessons.indexOf(lesson) === 14}
+                    onClick={() => choose(data.lessons[data.lessons.indexOf(lesson) + 1].slug)}
+                  >
+                    Next chapter →
+                  </button>
+                </footer>
+              </div>
+              {tab === 'practice' ? (
                 <div className="reading-column">
-                  <div className="practice-nav">
-                    <button
-                      disabled={practice === 0}
-                      onClick={() => {
-                        setPractice(practice - 1);
-                        void mutation('practice/position:' + lesson.slug, { value: practice - 1 });
-                      }}
-                    >
-                      ← Previous
-                    </button>
-                    <select
-                      aria-label="Practice exercise"
-                      value={practice}
-                      onChange={(e) => {
-                        setPractice(+e.target.value);
-                        void mutation('practice/position:' + lesson.slug, {
-                          value: +e.target.value,
-                        });
-                      }}
-                    >
-                      {lesson.questions.map((q, i) => (
-                        <option key={q.id} value={i}>
-                          Exercise {q.id} · {q.section}
-                        </option>
-                      ))}
-                    </select>
-                    <button
-                      disabled={practice >= lesson.questions.length - 1}
-                      onClick={() => {
-                        setPractice(practice + 1);
-                        void mutation('practice/position:' + lesson.slug, { value: practice + 1 });
-                      }}
-                    >
-                      Next →
+                  <div className="practice-heading">
+                    <span className="muted">
+                      Exercise {q.id} · {practice + 1} of {lesson.questions.length}
+                    </span>
+                    <button className="exercise-nav-toggle" onClick={() => setExerciseNav(true)}>
+                      Exercises
                     </button>
                   </div>
                   <Exercise key={q.id} q={q} lesson={lesson.slug} data={data} />
+                  <nav className="practice-nav" aria-label="Exercise navigation">
+                    <button disabled={practice === 0} onClick={() => selectExercise(practice - 1)}>
+                      ← Previous
+                    </button>
+                    <button
+                      disabled={practice >= lesson.questions.length - 1}
+                      onClick={() => selectExercise(practice + 1)}
+                    >
+                      Next →
+                    </button>
+                  </nav>
                 </div>
-              ) : (
+              ) : tab === 'reference' ? (
                 <Library data={data} onOpen={(id) => setReference([id])} />
-              )}
+              ) : null}
             </main>
+            {tab === 'practice' && <aside className="practice-sidebar">{practiceList}</aside>}
             {tab === 'read' && (
               <aside className="page-outline">
                 <span className="eyebrow">On this page</span>
@@ -392,6 +513,11 @@ export function App({ data }: { data: Curriculum }) {
           </div>
         </div>
       </div>
+      {exerciseNav && (
+        <Modal title="Exercises" onClose={() => setExerciseNav(false)}>
+          <div className="practice-sheet">{practiceList}</div>
+        </Modal>
+      )}
       {drawer && (
         <Modal title="Chapters" onClose={() => setDrawer(false)}>
           {nav}

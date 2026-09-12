@@ -18,7 +18,7 @@ export default defineConfig({
         short_name: 'Foundations',
         description: 'A place to read, think, and practise mathematics.',
         theme_color: '#286657',
-        background_color: '#f3f2ec',
+        background_color: '#f5f6f8',
         display: 'standalone',
         start_url: '/',
         icons: [
