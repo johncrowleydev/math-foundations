@@ -113,7 +113,7 @@ fun ExerciseInput(
                                                     else -> draft.photos.isNotEmpty()
                                                 }
                                             )
-                                                " � saved answer"
+                                                " (saved answer)"
                                             else "",
                                         fontSize = 13.sp,
                                     )

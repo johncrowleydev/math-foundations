@@ -222,7 +222,7 @@ class CloudUiTest {
             )
         }
         rule.onNodeWithText("Also saved: Type").assertIsDisplayed().performClick()
-        rule.onNodeWithText("Type � saved answer").performClick()
+        rule.onNodeWithText("Type (saved answer)").performClick()
         rule.onNodeWithTag("typed:$key").assertIsDisplayed()
 
         fun findEditor(view: android.view.View): TexEditView? {
