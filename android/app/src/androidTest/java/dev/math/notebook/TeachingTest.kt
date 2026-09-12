@@ -141,7 +141,7 @@ class TeachingTest {
             model.references.open("term:vertex", androidx.compose.ui.unit.IntOffset(400, 300))
         }
         rule.onNodeWithTag("quick-reference").assertIsDisplayed()
-        rule.onNodeWithTag("full-reference").performScrollTo().performClick()
+        rule.onNodeWithTag("full-reference").performClick()
         rule.onNodeWithTag("reference-panel").assertIsDisplayed()
         rule.onNodeWithTag("reader").assertIsDisplayed()
         capture("reference-panel-landscape.png")
@@ -194,7 +194,7 @@ class TeachingTest {
             }
         assertEquals("asymptotic-growth", formula.getString("lesson"))
         assertTrue(formula.getString("source").startsWith("section:big-o-an-eventual-upper-bound:"))
-        rule.onNodeWithTag("full-reference").performScrollTo().performClick()
+        rule.onNodeWithTag("full-reference").performClick()
         rule.onNodeWithTag("reference-panel").assertIsDisplayed()
         rule.onAllNodesWithText("Full reference").onFirst().performScrollTo().performClick()
         assertTrue(rule.runOnIdle { model.references.target!!.startsWith("term:") })

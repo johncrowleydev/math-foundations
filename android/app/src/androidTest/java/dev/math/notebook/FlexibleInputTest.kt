@@ -406,22 +406,55 @@ class FlexibleInputTest {
             model.mode(true)
         }
         rule.waitUntil(10000) { !draft.loading && !page.loading }
-        rule.runOnIdle { draft.mode("type") }
+        rule.runOnIdle { draft.mode("write") }
         val original = page.strokes
         val scroll = model.input.twoFinger
-        rule.onNodeWithText("Sketch").performScrollTo().performClick()
-        rule.onNodeWithTag("ink:${draft.key}").performTouchInput {
-            swipe(center, center + androidx.compose.ui.geometry.Offset(80f, 20f), 500)
-        }
+        rule.onNodeWithContentDescription("Expand answer").performScrollTo().performClick()
+        rule.onNodeWithContentDescription("Writing options").performClick()
+        rule.onNodeWithText("Draw with finger").performClick()
+        rule
+            .onNode(hasTestTag("ink:${draft.key}") and hasAnyAncestor(isDialog()))
+            .performTouchInput {
+                swipe(center, center + androidx.compose.ui.geometry.Offset(80f, 20f), 500)
+            }
         rule.waitUntil(10000) { page.strokes.size == original.size + 1 }
-        rule.onNodeWithText("Move", substring = false).performClick()
-        rule.onNodeWithTag("ink:${draft.key}").performTouchInput { swipeUp() }
+        rule.onNodeWithText("Finger drawing on", substring = false).performClick()
+        rule
+            .onNode(hasTestTag("ink:${draft.key}") and hasAnyAncestor(isDialog()))
+            .performTouchInput { swipeUp() }
         rule.runOnIdle { assertEquals(original.size + 1, page.strokes.size) }
         rule.onNodeWithText("Done", substring = false).performClick()
         rule.runOnIdle {
             assertEquals(scroll, model.input.twoFinger)
-            assertEquals("type", draft.mode)
+            assertEquals("write", draft.mode)
             page.replace(original)
+        }
+    }
+
+    @Test
+    fun symbolPickerInsertsOnlyTheChosenCommand() {
+        lateinit var draft: AnswerDraft
+        rule.runOnIdle {
+            model.select(0)
+            model.position(model.lesson.slug, 0)
+            model.mode(true)
+            draft =
+                model.answers.draft("propositional-logic-${model.lesson.practiceIds.first()}", true)
+        }
+        rule.waitUntil(10000) { !draft.loading }
+        val savedText = draft.text
+        val savedMode = draft.mode
+        rule.runOnIdle {
+            draft.mode("type")
+            draft.edit("")
+        }
+        rule.onNodeWithText("Insert symbol").performScrollTo().performClick()
+        rule.onNodeWithText("Find a symbol or TeX command").performTextInput("lor")
+        rule.onNodeWithText("\\lor", substring = false).performClick()
+        rule.runOnIdle { assertEquals("$\\lor $", draft.text) }
+        rule.runOnIdle {
+            draft.edit(savedText)
+            draft.mode(savedMode)
         }
     }
 }

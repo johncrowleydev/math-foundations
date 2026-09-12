@@ -91,8 +91,18 @@ class ResponsiveFlowTest {
             rule.waitForIdle()
             capture("practice")
             if (rule.onAllNodesWithTag("practice-scroll").fetchSemanticsNodes().isNotEmpty())
-                rule.onNodeWithTag("practice-scroll").performScrollToIndex(1)
-            rule.onNodeWithText("Expand").performScrollTo().performClick()
+                rule.onNodeWithTag("practice-scroll").performScrollToIndex(0)
+            // The answer toolbar scrolls horizontally; scroll the containing practice pane
+            // vertically before tapping a control below a long answer and its preview.
+            repeat(6) {
+                if (!rule.onNodeWithContentDescription("Expand answer").isDisplayed()) {
+                    rule.onNodeWithTag("practice-scroll").performTouchInput { swipeUp() }
+                    rule.waitForIdle()
+                }
+            }
+            rule.onNodeWithContentDescription("Expand answer").assertIsDisplayed().performClick()
+            capture("after-expand")
+            rule.waitUntil(10000) { model.focusedEditor != null }
             rule.waitForIdle()
             rule.runOnIdle {
                 val v = editor()

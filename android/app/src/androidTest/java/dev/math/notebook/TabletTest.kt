@@ -231,18 +231,28 @@ class TabletTest {
         rule.onNodeWithContentDescription("Redo").performClick()
         rule.runOnIdle { assertEquals(original.size + 1, page.strokes.size) }
         // The selected stroke eraser must remove ink and remain undoable.
-        rule.onNodeWithText("Eraser").performClick()
-        val eraserBounds = rule.onNodeWithTag("ink:$key").fetchSemanticsNode().boundsInWindow
+        rule.onNodeWithContentDescription("Eraser").performClick()
+        fun findInk(view: android.view.View): InkCanvas? {
+            if (view is InkCanvas && view.page.key == key) return view
+            if (view is android.view.ViewGroup)
+                for (i in 0 until view.childCount) findInk(view.getChildAt(i))?.let {
+                    return it
+                }
+            return null
+        }
+        val nativeInk = rule.runOnIdle { findInk(rule.activity.window.decorView)!! }
+        val origin = IntArray(2)
+        rule.runOnIdle { nativeInk.getLocationOnScreen(origin) }
         val eraserTime = SystemClock.uptimeMillis()
         val midpoint = stroke.inputs[stroke.inputs.size / 2]
-        val eraseX = eraserBounds.left + midpoint.x * eraserBounds.width / 900f
-        val eraseY = eraserBounds.top + midpoint.y * eraserBounds.width / 900f
+        val eraseX = origin[0] + midpoint.x * nativeInk.width / 900f
+        val eraseY = origin[1] + midpoint.y * nativeInk.width / 900f
         inject(eraserTime, MotionEvent.ACTION_DOWN, eraseX, eraseY, 0.5f)
         inject(eraserTime, MotionEvent.ACTION_UP, eraseX, eraseY, 0.5f)
         rule.waitUntil(10000) { page.strokes.size == original.size }
         rule.onNodeWithContentDescription("Undo").performClick()
         rule.runOnIdle { assertEquals(original.size + 1, page.strokes.size) }
-        rule.onAllNodesWithText("Pen").onLast().performClick()
+        rule.onNodeWithContentDescription("Eraser").performClick()
         rule.onNodeWithText("Reveal answer").performClick()
         rule.onNodeWithText("Hide answer").assertIsDisplayed()
         rule.onNodeWithText("Hide answer").performClick()

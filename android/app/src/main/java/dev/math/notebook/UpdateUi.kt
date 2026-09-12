@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.SystemUpdate
 import androidx.compose.material3.*
@@ -52,7 +54,12 @@ fun UpdateButton(openRequest: Int = 0, saving: Boolean = false) {
         rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
     IconButton(onClick = { open = true }) {
         BadgedBox(badge = { if (release != null) Badge() }) {
-            Icon(Icons.Outlined.SystemUpdate, "App updates")
+            Icon(
+                Icons.Outlined.SystemUpdate,
+                "App updates",
+                Modifier.size(18.dp),
+                tint = WorkspaceMuted,
+            )
         }
     }
     if (open)
@@ -60,7 +67,10 @@ fun UpdateButton(openRequest: Int = 0, saving: Boolean = false) {
             onDismissRequest = { open = false },
             title = { Text("Foundations updates") },
             text = {
-                Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                Column(
+                    Modifier.verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
                     Text("Installed version ${BuildConfig.VERSION_NAME}")
                     Text(
                         when {

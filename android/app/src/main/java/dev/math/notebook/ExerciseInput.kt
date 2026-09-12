@@ -16,7 +16,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -41,157 +40,171 @@ fun ExerciseInput(
     val key = "${model.lesson.slug}-${q.id}"
     val draft = remember(key) { model.answers.draft(key, model.input.preferTyping) }
     val page = remember(key) { model.page(key) }
-    var sketch by rememberSaveable(key) { mutableStateOf(false) }
+    var expanded by rememberSaveable(key) { mutableStateOf(false) }
+    var modes by remember { mutableStateOf(false) }
     AnswerPhotos(draft) { capture ->
         Column(
-            Modifier.fillMaxWidth().padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            Surface(
-                color = WorkspaceGround,
-                shape = RoundedCornerShape(12.dp),
-                border = BorderStroke(1.dp, WorkspaceBorder),
-            ) {
-                Row(
-                    Modifier.fillMaxWidth().padding(4.dp).horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                ) {
-                    AnswerMode(
-                        "Type",
-                        Icons.Outlined.Keyboard,
-                        draft.mode == "type",
-                        !draft.loading,
-                    ) {
-                        draft.mode("type")
-                    }
-                    AnswerMode(
-                        "Pen",
-                        Icons.Outlined.Edit,
-                        draft.mode == "write" && !sketch,
-                        !draft.loading,
-                    ) {
-                        draft.mode("write")
-                    }
-                    AnswerMode("Sketch", Icons.Outlined.Gesture, sketch, !draft.loading) {
-                        sketch = true
-                    }
-                    AnswerMode(
-                        "Photo",
-                        Icons.Outlined.PhotoCamera,
-                        draft.mode == "photo",
-                        !draft.loading,
-                    ) {
-                        draft.mode("photo")
-                        if (draft.photos.isEmpty()) capture()
-                    }
-                }
-            }
-            draft.error?.let { error ->
-                Text(error, color = MaterialTheme.colorScheme.error, fontSize = 13.sp)
+            draft.error?.let {
+                Text(it, color = MaterialTheme.colorScheme.error, fontSize = 12.sp)
                 WorkspaceAction("Retry", onClick = draft::retry)
             }
             if (draft.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
             else if (draft.mode == "type") key(key) { TypedAnswer(model, draft, q) }
             else if (draft.mode == "write") {
-                if (model.input.showPen) SketchPenTools(model)
-                Surface(
-                    shape = RoundedCornerShape(10.dp),
-                    border = BorderStroke(1.dp, WorkspaceBorder),
+                val inkScroll = rememberScrollState()
+                var positioned by rememberSaveable(key) { mutableStateOf(false) }
+                val density = androidx.compose.ui.platform.LocalDensity.current
+                BoxWithConstraints(
+                    Modifier.fillMaxWidth()
+                        .heightIn(max = if (minimumHeight > 0.dp) minimumHeight else 140.dp)
+                        .border(1.dp, WorkspaceBorder)
                 ) {
-                    Box(
-                        Modifier.heightIn(
-                                max =
-                                    if (minimumHeight > 0.dp) minimumHeight.coerceAtLeast(280.dp)
-                                    else 230.dp
+                    val width = maxWidth
+                    LaunchedEffect(page.loading, width) {
+                        if (!page.loading && !positioned && width > 0.dp) {
+                            val firstInk =
+                                page.strokes.minOfOrNull { stroke ->
+                                    (0 until stroke.inputs.size).minOfOrNull { stroke.inputs[it].y }
+                                        ?: 0f
+                                } ?: 0f
+                            inkScroll.scrollTo(
+                                with(density) { (width * (firstInk / 900f) - 20.dp).roundToPx() }
+                                    .coerceAtLeast(0)
                             )
-                            .verticalScroll(rememberScrollState())
-                    ) {
+                            positioned = true
+                        }
+                    }
+                    Box(Modifier.verticalScroll(inkScroll)) {
                         PaperCanvas(model, page, q, penEnabled = model.input.showPen)
                     }
                 }
-                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    if (model.input.showPen) InkActions(page)
-                    Spacer(Modifier.weight(1f))
-                    WorkspaceAction("Expand", Icons.Outlined.OpenInFull) { sketch = true }
-                }
             }
-            if (draft.saving) Text("Saving…", color = WorkspaceMuted, fontSize = 11.sp)
+            Row(
+                Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Box(Modifier.testTag("answer-mode:$key")) {
+                    WorkspaceAction(
+                        when (draft.mode) {
+                            "type" -> "Type"
+                            "photo" -> "Photo"
+                            else -> "Pen"
+                        },
+                        Icons.Outlined.ExpandMore,
+                        !draft.loading,
+                    ) {
+                        modes = true
+                    }
+                    DropdownMenu(modes, { modes = false }) {
+                        listOf("type" to "Type", "write" to "Pen", "photo" to "Photo").forEach {
+                            (mode, label) ->
+                            DropdownMenuItem(
+                                text = { Text(label, fontSize = 13.sp) },
+                                onClick = {
+                                    modes = false
+                                    draft.mode(mode)
+                                    if (mode == "photo" && draft.photos.isEmpty()) capture()
+                                },
+                            )
+                        }
+                    }
+                }
+                if (draft.mode == "write") {
+                    if (model.input.showPen) SketchPenTools(model)
+                    InkActions(page)
+                }
+                Spacer(Modifier.weight(1f))
+                if (draft.mode != "photo")
+                    QuietIcon(Icons.Outlined.OpenInFull, "Expand answer") {
+                        if (draft.mode == "type") model.focusedEditor = model.lesson.slug to q.id
+                        else expanded = true
+                    }
+            }
+            if (draft.saving) Text("Saving...", color = WorkspaceMuted, fontSize = 10.sp)
         }
     }
-    if (sketch)
+    if (expanded)
         Dialog(
-            onDismissRequest = { sketch = false },
+            onDismissRequest = { expanded = false },
             properties = DialogProperties(usePlatformDefaultWidth = false),
         ) {
-            var draw by remember { mutableStateOf(true) }
+            var finger by rememberSaveable { mutableStateOf(false) }
+            var options by remember { mutableStateOf(false) }
             Surface(Modifier.fillMaxSize().systemBarsPadding(), color = WorkspaceGround) {
                 Column {
-                    WorkspaceHeader(
-                        "Sketch",
-                        "Exercise ${q.id} · saved automatically",
-                        { sketch = false },
-                    )
-                    Row(
+                    WorkspaceHeader("Exercise ${q.id}", "", { expanded = false })
+                    Column(
                         Modifier.widthIn(max = 900.dp)
                             .fillMaxWidth()
                             .align(Alignment.CenterHorizontally)
-                            .padding(horizontal = 8.dp, vertical = 8.dp)
-                            .horizontalScroll(rememberScrollState()),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            .padding(horizontal = 20.dp)
+                            .heightIn(max = 140.dp)
+                            .verticalScroll(rememberScrollState())
                     ) {
-                        Surface(
-                            shape = RoundedCornerShape(10.dp),
-                            color = MaterialTheme.colorScheme.surface,
-                        ) {
-                            Row(Modifier.padding(4.dp)) {
-                                AnswerMode("Draw", Icons.Outlined.Edit, draw) { draw = true }
-                                AnswerMode("Move", Icons.Outlined.PanTool, !draw) { draw = false }
-                            }
-                        }
-                        InkActions(page)
-                        WorkspaceAction("Add space", Icons.Outlined.Add, onClick = page::moreSpace)
+                        Prompt(q, compact = true)
                     }
-                    Box(
-                        Modifier.widthIn(max = 900.dp)
-                            .fillMaxWidth()
-                            .align(Alignment.CenterHorizontally)
-                            .padding(horizontal = 8.dp)
-                    ) {
-                        SketchPenTools(model)
-                    }
-                    Text(
-                        if (draw) "Draw with a finger or pen. Select Move to pan the paper."
-                        else "Drag to move the paper. Select Draw to continue writing.",
-                        Modifier.widthIn(max = 900.dp)
-                            .fillMaxWidth()
-                            .align(Alignment.CenterHorizontally)
-                            .padding(horizontal = 8.dp, vertical = 8.dp),
-                        color = WorkspaceMuted,
-                        fontSize = 12.sp,
-                    )
                     BoxWithConstraints(
                         Modifier.weight(1f)
                             .fillMaxWidth()
-                            .padding(horizontal = 24.dp, vertical = 12.dp),
+                            .padding(horizontal = 20.dp, vertical = 8.dp),
                         contentAlignment = Alignment.TopCenter,
                     ) {
                         val paperWidth = maxWidth.coerceAtMost(900.dp)
                         val paperHeight = maxHeight
-                        Surface(
-                            shape = RoundedCornerShape(12.dp),
-                            shadowElevation = 2.dp,
-                            color = Color.White,
-                            modifier = Modifier.width(paperWidth).fillMaxHeight(),
+                        val scroll = rememberScrollState()
+                        Box(
+                            Modifier.width(paperWidth)
+                                .fillMaxHeight()
+                                .verticalScroll(scroll, enabled = !finger)
                         ) {
-                            Box(Modifier.verticalScroll(rememberScrollState(), enabled = !draw)) {
-                                PaperCanvas(
-                                    model,
-                                    page,
-                                    q,
-                                    minimumHeight = paperHeight,
-                                    fingerDrawing = draw,
-                                    penEnabled = draw,
+                            PaperCanvas(
+                                model,
+                                page,
+                                q,
+                                minimumHeight = paperHeight,
+                                fingerDrawing = finger,
+                                penEnabled = true,
+                            )
+                        }
+                    }
+                    Row(
+                        Modifier.widthIn(max = 900.dp)
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .padding(horizontal = 12.dp, vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        SketchPenTools(model)
+                        InkActions(page)
+                        Spacer(Modifier.weight(1f))
+                        if (finger) WorkspaceAction("Finger drawing on") { finger = false }
+                        Box {
+                            QuietIcon(Icons.Outlined.MoreHoriz, "Writing options") {
+                                options = true
+                            }
+                            DropdownMenu(options, { options = false }) {
+                                DropdownMenuItem(
+                                    text = {
+                                        Text(
+                                            if (finger) "Turn off finger drawing"
+                                            else "Draw with finger",
+                                            fontSize = 13.sp,
+                                        )
+                                    },
+                                    onClick = {
+                                        finger = !finger
+                                        options = false
+                                    },
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Add writing space", fontSize = 13.sp) },
+                                    onClick = {
+                                        page.moreSpace()
+                                        options = false
+                                    },
                                 )
                             }
                         }
@@ -264,14 +277,13 @@ private fun AnswerPhotos(draft: AnswerDraft, content: @Composable (() -> Unit) -
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
                         Text("Photos of your work", style = MaterialTheme.typography.titleSmall)
-                        Text("Saved on this device", color = WorkspaceMuted, fontSize = 12.sp)
                     }
                     Box(Modifier.testTag("take-photo:${draft.key}")) {
                         WorkspaceAction(
                             if (draft.photos.isEmpty()) "Take photo" else "Add photo",
                             Icons.Outlined.PhotoCamera,
                             pending == null,
-                            ::capture,
+                            onClick = ::capture,
                         )
                     }
                 }
@@ -279,19 +291,20 @@ private fun AnswerPhotos(draft: AnswerDraft, content: @Composable (() -> Unit) -
                 if (draft.photos.isEmpty())
                     Surface(
                         color = WorkspaceGround,
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(4.dp),
                         border = BorderStroke(1.dp, WorkspaceBorder),
                     ) {
                         Text(
                             "Photograph your written work. Confirm it in the camera to save it here.",
-                            Modifier.fillMaxWidth().padding(20.dp),
+                            Modifier.fillMaxWidth().padding(12.dp),
                             color = WorkspaceMuted,
                             fontSize = 14.sp,
                         )
                     }
                 draft.photos.forEachIndexed { index, photo ->
                     Surface(
-                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.widthIn(max = 360.dp).fillMaxWidth(),
+                        shape = RoundedCornerShape(4.dp),
                         border = BorderStroke(1.dp, WorkspaceBorder),
                         color = WorkspaceGround,
                     ) {
@@ -299,9 +312,10 @@ private fun AnswerPhotos(draft: AnswerDraft, content: @Composable (() -> Unit) -
                             PhotoImage(
                                 file(photo.id),
                                 photo.rotation,
-                                Modifier.fillMaxWidth().height(180.dp).clickable {
-                                    expandedId = photo.id
-                                },
+                                Modifier.widthIn(max = 320.dp)
+                                    .fillMaxWidth()
+                                    .height(140.dp)
+                                    .clickable { expandedId = photo.id },
                             )
                             FlowRow(
                                 Modifier.fillMaxWidth(),
@@ -381,14 +395,17 @@ private fun AnswerPhotos(draft: AnswerDraft, content: @Composable (() -> Unit) -
 private fun PhotoImage(file: File, rotation: Int, modifier: Modifier, zoomable: Boolean = false) {
     var bitmap by remember(file.path) { mutableStateOf<android.graphics.Bitmap?>(null) }
     var failed by remember(file.path) { mutableStateOf(false) }
-    LaunchedEffect(file.path, rotation) {
+    LaunchedEffect(file.path, rotation, zoomable) {
         bitmap =
             withContext(Dispatchers.IO) {
                 runCatching {
                         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
                         BitmapFactory.decodeFile(file.path, bounds)
                         var sample = 1
-                        while (maxOf(bounds.outWidth, bounds.outHeight) / sample > 2400) sample *= 2
+                        val previewLimit = if (zoomable) 2400 else 720
+                        while (
+                            maxOf(bounds.outWidth, bounds.outHeight) / sample > previewLimit
+                        ) sample *= 2
                         val raw =
                             BitmapFactory.decodeFile(
                                 file.path,

@@ -41,18 +41,11 @@ internal fun TeachingFigure(figure: JSONObject) {
     Column(
         Modifier.fillMaxWidth()
             .testTag("figure:$id")
-            .background(Color(0xffedf3ef), RoundedCornerShape(14.dp))
-            .padding(
-                if (
-                    androidx.compose.ui.platform.LocalConfiguration.current.screenWidthDp < 600 ||
-                        androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp < 480
-                )
-                    12.dp
-                else 16.dp
-            )
+            .background(Color(0xfffafaf6), RoundedCornerShape(4.dp))
+            .padding(12.dp)
     ) {
         Text(figure.getString("title"), style = MaterialTheme.typography.titleMedium)
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(6.dp))
         var expanded by remember { mutableStateOf(false) }
         BoxWithConstraints(Modifier.fillMaxWidth()) {
             val availableWidth =
@@ -80,7 +73,6 @@ internal fun TeachingFigure(figure: JSONObject) {
                         else FigureDrawing(figure, frame)
                     }
                 }
-                WorkspaceAction("Expand figure", onClick = { expanded = true })
             }
         }
         if (expanded)
@@ -114,26 +106,26 @@ internal fun TeachingFigure(figure: JSONObject) {
                                 }
                             }
                             RichText(frame.getString("text"), source = "figure:$id:frame:$step")
-                            if (frames.length() > 1)
-                                FlowRow {
-                                    TextButton(onClick = { step-- }, enabled = step > 0) {
-                                        Text("Previous")
-                                    }
+                            FlowRow {
+                                if (frames.length() > 1) {
+                                    WorkspaceAction("Previous", enabled = step > 0) { step-- }
                                     Text(
                                         "${step + 1} / ${frames.length()}",
-                                        Modifier.padding(12.dp),
+                                        Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
+                                        fontSize = 11.sp,
+                                        color = WorkspaceMuted,
                                     )
-                                    TextButton(
-                                        onClick = { step++ },
-                                        enabled = step < frames.length() - 1,
-                                    ) {
-                                        Text("Next")
+                                    WorkspaceAction("Next", enabled = step < frames.length() - 1) {
+                                        step++
                                     }
-                                    TextButton(onClick = { step = 0 }, enabled = step != 0) {
-                                        Text("Reset")
-                                    }
+                                    WorkspaceAction("Reset", enabled = step != 0) { step = 0 }
                                 }
-                            TextButton(onClick = { about = !about }) { Text("About this figure") }
+                                WorkspaceAction(
+                                    if (about) "Hide figure notes" else "About this figure"
+                                ) {
+                                    about = !about
+                                }
+                            }
                             if (about) {
                                 RichText(
                                     figure.getString("creation"),
@@ -150,34 +142,45 @@ internal fun TeachingFigure(figure: JSONObject) {
                     }
                 }
             }
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(6.dp))
         RichText(
             frame.getString("text"),
             Modifier.fillMaxWidth(),
             15f,
             source = "figure:$id:frame:$step",
         )
-        if (frames.length() > 1)
-            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                TextButton(
-                    onClick = { step-- },
+        FlowRow(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            if (frames.length() > 1) {
+                WorkspaceAction(
+                    "Previous",
                     enabled = step > 0,
                     modifier = Modifier.testTag("figure-back:$id"),
                 ) {
-                    Text("Previous")
+                    step--
                 }
-                Text("${step+1} / ${frames.length()}", Modifier.padding(top = 16.dp))
-                TextButton(
-                    onClick = { step++ },
+                Text(
+                    "${step + 1} / ${frames.length()}",
+                    Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
+                    fontSize = 11.sp,
+                    color = WorkspaceMuted,
+                )
+                WorkspaceAction(
+                    "Next",
                     enabled = step < frames.length() - 1,
                     modifier = Modifier.testTag("figure-next:$id"),
                 ) {
-                    Text("Next")
+                    step++
                 }
-                TextButton(onClick = { step = 0 }, enabled = step != 0) { Text("Reset") }
+                WorkspaceAction("Reset", enabled = step != 0) { step = 0 }
             }
-        TextButton(onClick = { about = !about }) {
-            Text(if (about) "Hide figure notes" else "About this figure")
+            WorkspaceAction("Expand figure") { expanded = true }
+            WorkspaceAction(if (about) "Hide figure notes" else "About this figure") {
+                about = !about
+            }
         }
         if (about) {
             RichText(figure.getString("creation"), size = 14f, source = "figure:$id:creation")

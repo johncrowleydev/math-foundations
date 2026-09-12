@@ -33,12 +33,12 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
         Modifier.fillMaxWidth()
             .testTag("quick:$storageKey")
             .background(Color(0xffeef3e9), RoundedCornerShape(16.dp))
-            .padding(30.dp)
+            .padding(16.dp)
     ) {
         Text(
             "Quick check",
             fontFamily = FontFamily.Serif,
-            fontSize = 25.sp,
+            fontSize = 18.sp,
             color = Color(0xff266655),
         )
         Spacer(Modifier.height(16.dp))
@@ -54,10 +54,10 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
                 }
                 Row(
                     Modifier.fillMaxWidth()
-                        .heightIn(min = 60.dp)
+                        .heightIn(min = 40.dp)
                         .background(
-                            if (selected == index) Color(0xffdce9d9) else Color(0xfffffef9),
-                            RoundedCornerShape(12.dp),
+                            if (selected == index) Color(0xffedf1e9) else Color(0xfffffef9),
+                            RoundedCornerShape(4.dp),
                         )
                         .selectable(
                             selected = selected == index,
@@ -69,8 +69,8 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     RadioButton(selected = selected == index, onClick = null)
-                    Spacer(Modifier.width(12.dp))
-                    RichText(option, Modifier.weight(1f), 17f, onClick = choose)
+                    Spacer(Modifier.width(6.dp))
+                    RichText(option, Modifier.weight(1f), 16f, onClick = choose)
                 }
             }
         }
@@ -103,14 +103,14 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
                 RichText(
                     "**Answer:** ${check.options[check.answer]}",
                     Modifier.fillMaxWidth(),
-                    17f,
+                    16f,
                     source = "quick:${check.id}:option:${check.answer}",
                 )
                 Spacer(Modifier.height(10.dp))
                 RichText(
                     check.explanation,
                     Modifier.fillMaxWidth(),
-                    17f,
+                    16f,
                     source = "quick:${check.id}:explanation",
                 )
             }

@@ -7,9 +7,12 @@ import android.view.MotionEvent
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -114,7 +117,11 @@ class InputPreferences(context: Context) : InputManager.InputDeviceListener {
 @Composable
 fun ScrollPreference(input: InputPreferences, lessonScrolling: Boolean = true) {
     if (!lessonScrolling) {
-        Text("Standard scrolling", Modifier.padding(12.dp), fontSize = 11.sp)
+        Text(
+            "Standard scrolling",
+            Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+            fontSize = 11.sp,
+        )
         return
     }
     val haptic = LocalHapticFeedback.current
@@ -125,7 +132,7 @@ fun ScrollPreference(input: InputPreferences, lessonScrolling: Boolean = true) {
     }
     Text(
         if (input.twoFinger) "2 fingers to scroll" else "1 finger to scroll",
-        Modifier.sizeIn(minWidth = 48.dp, minHeight = 48.dp)
+        Modifier.sizeIn(minWidth = 48.dp, minHeight = 28.dp)
             .testTag("scroll-preference")
             .semantics {
                 stateDescription =
@@ -140,7 +147,7 @@ fun ScrollPreference(input: InputPreferences, lessonScrolling: Boolean = true) {
                     )
             }
             .combinedClickable(onClick = { hint = true }, onLongClick = toggle)
-            .padding(12.dp),
+            .padding(horizontal = 8.dp, vertical = 4.dp),
         fontSize = 11.sp,
     )
     if (hint)
@@ -160,7 +167,7 @@ fun ScrollPreference(input: InputPreferences, lessonScrolling: Boolean = true) {
 fun InputSettingsButton(input: InputPreferences) {
     var open by remember { mutableStateOf(false) }
     TextButton(onClick = { open = true }, modifier = Modifier.testTag("input-settings")) {
-        Text("Input")
+        Text("Settings")
     }
     if (open)
         AlertDialog(
@@ -169,11 +176,21 @@ fun InputSettingsButton(input: InputPreferences) {
             text = {
                 Column(Modifier.verticalScroll(rememberScrollState())) {
                     Text("Lesson scrolling", style = MaterialTheme.typography.titleSmall)
-                    Row {
-                        Checkbox(input.twoFinger, { input.toggleScroll() })
-                        Text("Require two fingers", Modifier.padding(top = 12.dp))
+                    Row(
+                        Modifier.fillMaxWidth()
+                            .heightIn(min = 36.dp)
+                            .toggleable(
+                                input.twoFinger,
+                                role = Role.Checkbox,
+                                onValueChange = { input.toggleScroll() },
+                            ),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Checkbox(input.twoFinger, null)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Require two fingers")
                     }
-                    HorizontalDivider(Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(Modifier.padding(vertical = 6.dp))
                     Text("Pen tools", style = MaterialTheme.typography.titleSmall)
                     listOf(
                             "auto" to "Automatic",
@@ -181,9 +198,19 @@ fun InputSettingsButton(input: InputPreferences) {
                             "hide" to "Hide pen tools",
                         )
                         .forEach { (key, label) ->
-                            Row {
-                                RadioButton(input.penOverride == key, { input.pen(key) })
-                                Text(label, Modifier.padding(top = 12.dp))
+                            Row(
+                                Modifier.fillMaxWidth()
+                                    .heightIn(min = 36.dp)
+                                    .selectable(
+                                        input.penOverride == key,
+                                        role = Role.RadioButton,
+                                        onClick = { input.pen(key) },
+                                    ),
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                RadioButton(input.penOverride == key, null)
+                                Spacer(Modifier.width(8.dp))
+                                Text(label)
                             }
                         }
                     Text(
@@ -192,9 +219,20 @@ fun InputSettingsButton(input: InputPreferences) {
                         style = MaterialTheme.typography.bodySmall,
                         color = WorkspaceMuted,
                     )
-                    Row {
-                        Checkbox(input.preferTyping, { input.typing(it) })
-                        Text("Prefer typed answers", Modifier.padding(top = 12.dp))
+                    Row(
+                        Modifier.fillMaxWidth()
+                            .heightIn(min = 36.dp)
+                            .padding(top = 6.dp)
+                            .toggleable(
+                                input.preferTyping,
+                                role = Role.Checkbox,
+                                onValueChange = { input.typing(it) },
+                            ),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Checkbox(input.preferTyping, null)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Prefer typed answers")
                     }
                     Text(
                         "Existing answers keep their selected mode. Hiding pen tools never removes your handwriting.",

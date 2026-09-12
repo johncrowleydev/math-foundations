@@ -27,9 +27,9 @@ internal fun ReferencePanel(
     var filters by remember { mutableStateOf(false) }
     Surface(modifier.testTag("reference-panel"), color = MaterialTheme.colorScheme.surface) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
-            Column(Modifier.widthIn(max = 820.dp).fillMaxSize().padding(20.dp)) {
+            Column(Modifier.widthIn(max = 820.dp).fillMaxSize().padding(12.dp)) {
                 Row(
-                    Modifier.fillMaxWidth().padding(bottom = 12.dp),
+                    Modifier.fillMaxWidth().padding(bottom = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     IconButton(
@@ -52,10 +52,10 @@ internal fun ReferencePanel(
                         controller.query,
                         { controller.query = it },
                         label = { Text("Search names, symbols, or TeX") },
-                        modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp),
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
                         singleLine = true,
                     )
-                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                         FilterChip(
                             controller.kind == "term",
                             { controller.kind = "term" },
@@ -125,7 +125,7 @@ internal fun ReferencePanel(
                                 },
                                 modifier = Modifier.fillMaxWidth().testTag("reference:${e.id}"),
                             ) {
-                                Column(Modifier.fillMaxWidth().padding(vertical = 10.dp)) {
+                                Column(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
                                     Text(e.name, style = MaterialTheme.typography.titleMedium)
                                     CompositionLocalProvider(
                                         LocalReferenceLinksEnabled provides false
@@ -203,8 +203,8 @@ private fun ReferenceDetails(
     full: Boolean,
 ) {
     Column(
-        Modifier.fillMaxWidth().padding(vertical = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        Modifier.fillMaxWidth().padding(vertical = 4.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         if (target == "question-reference") {
             Text("Question references", style = MaterialTheme.typography.titleLarge)
@@ -238,11 +238,13 @@ private fun ReferenceDetails(
                 }
                 if (entry.related.isNotEmpty())
                     Text("Related entries", style = MaterialTheme.typography.titleMedium)
-                for (id in entry.related) controller.library.entries
-                    .find { it.id == id }
-                    ?.let { related ->
-                        TextButton(onClick = { controller.open("term:$id") }) { Text(related.name) }
-                    }
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    for (id in entry.related) controller.library.entries
+                        .find { it.id == id }
+                        ?.let { related ->
+                            WorkspaceAction(related.name) { controller.open("term:$id") }
+                        }
+                }
             }
             ReferenceTex(model, entry.id, full)
         } else if (target.startsWith("formula:")) {
@@ -258,13 +260,22 @@ private fun ReferenceDetails(
             val bindings = formula.getJSONArray("bindings")
             for (i in 0 until bindings.length()) {
                 val binding = bindings.getJSONObject(i)
-                CompositionLocalProvider(LocalReferenceLinksEnabled provides false) {
-                    RichText(
-                        "$" + binding.getString("symbol") + "$ — " + binding.getString("meaning"),
-                        Modifier.fillMaxWidth(),
-                        15f,
-                    )
-                }
+                val repeatsReading =
+                    bindings.length() == 1 &&
+                        binding.getString("symbol").trim() == formula.getString("latex").trim() &&
+                        binding.getString("meaning").trim().trimEnd('.') ==
+                            formula.getString("reading").trim().trimEnd('.')
+                if (!repeatsReading)
+                    CompositionLocalProvider(LocalReferenceLinksEnabled provides false) {
+                        RichText(
+                            "$" +
+                                binding.getString("symbol") +
+                                "$ \u2014 " +
+                                binding.getString("meaning"),
+                            Modifier.fillMaxWidth(),
+                            15f,
+                        )
+                    }
                 TextButton(
                     onClick = {
                         controller.full = true
@@ -275,14 +286,6 @@ private fun ReferenceDetails(
                 }
             }
         }
-        if (!full)
-            Button(
-                shape = RoundedCornerShape(8.dp),
-                onClick = { controller.full = true },
-                modifier = Modifier.testTag("full-reference"),
-            ) {
-                Text("Full explanation")
-            }
     }
 }
 
@@ -331,10 +334,10 @@ internal fun QuickReference(model: NotebookModel, controller: ReferenceControlle
                             .dp
                 )
                 .testTag("quick-reference"),
-            shape = MaterialTheme.shapes.large,
-            shadowElevation = 12.dp,
+            shape = RoundedCornerShape(6.dp),
+            shadowElevation = 4.dp,
         ) {
-            Column(Modifier.padding(20.dp)) {
+            Column(Modifier.padding(12.dp)) {
                 val state = rememberLazyListState()
                 LazyColumn(
                     state = state,
@@ -343,7 +346,16 @@ internal fun QuickReference(model: NotebookModel, controller: ReferenceControlle
                 ) {
                     item { ReferenceDetails(model, controller, target, false) }
                 }
-                TextButton(onClick = controller::close) { Text("Close") }
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    WorkspaceAction(
+                        "Full explanation",
+                        modifier = Modifier.testTag("full-reference"),
+                    ) {
+                        controller.full = true
+                    }
+                    Spacer(Modifier.weight(1f))
+                    WorkspaceAction("Close", onClick = controller::close)
+                }
             }
         }
     }

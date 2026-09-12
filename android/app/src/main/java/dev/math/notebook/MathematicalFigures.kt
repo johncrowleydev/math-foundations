@@ -32,7 +32,10 @@ internal fun MathematicalDrawing(figure: JSONObject, frame: JSONObject) {
     val mathLabels = figure.optJSONObject("mathLabels") ?: JSONObject()
     val height =
         if (kind == "flow") figure.getJSONArray("steps").length() * 110f + 10f
-        else if (kind == "collections") 440f else 360f
+        else if (kind == "collections")
+            ((figure.getJSONArray("collections").length() + 1) / 2) * 220f + 10f
+        else if (kind == "board") 400f
+        else 360f
     Canvas(
         Modifier.fillMaxWidth()
             .aspectRatio(600f / height)

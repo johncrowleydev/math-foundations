@@ -102,6 +102,52 @@ class MainActivity : ComponentActivity() {
             window.attributes = window.attributes.apply { preferredDisplayModeId = mode.modeId }
         setContent {
             MaterialTheme(
+                typography =
+                    Typography(
+                        headlineSmall =
+                            androidx.compose.ui.text.TextStyle(
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Medium,
+                            ),
+                        bodyLarge =
+                            androidx.compose.ui.text.TextStyle(
+                                fontSize = 14.sp,
+                                lineHeight = 20.sp,
+                            ),
+                        bodyMedium =
+                            androidx.compose.ui.text.TextStyle(
+                                fontSize = 13.sp,
+                                lineHeight = 19.sp,
+                            ),
+                        bodySmall =
+                            androidx.compose.ui.text.TextStyle(
+                                fontSize = 11.sp,
+                                lineHeight = 16.sp,
+                            ),
+                        labelLarge = androidx.compose.ui.text.TextStyle(fontSize = 12.sp),
+                        titleLarge =
+                            androidx.compose.ui.text.TextStyle(
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Medium,
+                            ),
+                        titleMedium =
+                            androidx.compose.ui.text.TextStyle(
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Medium,
+                            ),
+                        titleSmall =
+                            androidx.compose.ui.text.TextStyle(
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Medium,
+                            ),
+                    ),
+                shapes =
+                    Shapes(
+                        small = RoundedCornerShape(4.dp),
+                        medium = RoundedCornerShape(6.dp),
+                        large = RoundedCornerShape(8.dp),
+                        extraLarge = RoundedCornerShape(10.dp),
+                    ),
                 colorScheme =
                     lightColorScheme(
                         primary = Forest,
@@ -112,15 +158,20 @@ class MainActivity : ComponentActivity() {
                         surface = Paper,
                         surfaceContainerHigh = Color(0xfff2f5ef),
                         surfaceContainer = Color(0xffeef2eb),
-                        surfaceVariant = Color(0xffe5ebe2),
+                        surfaceVariant = Color(0xfff0f1ec),
                         onSurfaceVariant = Color(0xff536057),
                         onSurface = Ink,
                         outline = Line,
-                    )
+                    ),
             ) {
                 val model: NotebookModel = viewModel()
                 inputPreferences = model.input
-                Notebook(model, updateRequest)
+                CompositionLocalProvider(
+                    LocalMinimumInteractiveComponentSize provides
+                        if (LocalConfiguration.current.screenWidthDp >= 600) 32.dp else 40.dp
+                ) {
+                    Notebook(model, updateRequest)
+                }
             }
         }
     }
@@ -200,7 +251,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                     Modifier.width(228.dp)
                         .fillMaxHeight()
                         .background(Color(0xffe9eee6))
-                        .padding(22.dp, 28.dp)
+                        .padding(16.dp, 18.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
@@ -212,14 +263,14 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                         Spacer(Modifier.width(10.dp))
                         Text(
                             "foundations",
-                            fontSize = 24.sp,
+                            fontSize = 20.sp,
                             fontFamily = FontFamily.Serif,
                             color = Ink,
                         )
                     }
-                    Spacer(Modifier.height(38.dp))
+                    Spacer(Modifier.height(20.dp))
                     Label("YOUR NOTEBOOK")
-                    Spacer(Modifier.height(14.dp))
+                    Spacer(Modifier.height(8.dp))
                     Text("Discrete mathematics", fontSize = 16.sp, fontWeight = FontWeight.Medium)
                     Text(
                         "15 lessons · a place to think",
@@ -227,7 +278,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                         color = Muted,
                         modifier = Modifier.padding(top = 6.dp),
                     )
-                    Spacer(Modifier.height(16.dp))
+                    Spacer(Modifier.height(8.dp))
                     val railState = rememberLazyListState()
                     LazyColumn(
                         state = railState,
@@ -240,12 +291,12 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                             Row(
                                 Modifier.fillMaxWidth()
                                     .clip(RoundedCornerShape(10.dp))
-                                    .background(if (selected) Paper else Color.Transparent)
+                                    .background(Color.Transparent)
                                     .clickable {
                                         model.select(i)
                                         focusId = null
                                     }
-                                    .padding(10.dp, 13.dp),
+                                    .padding(8.dp, 8.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
                                 Text(
@@ -265,29 +316,6 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                             }
                         }
                     }
-                    HorizontalDivider(color = Line, modifier = Modifier.padding(vertical = 18.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            Icons.Outlined.Gesture,
-                            null,
-                            tint = Forest,
-                            modifier = Modifier.size(18.dp),
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text(
-                            if (model.input.showPen) "Pen and keyboard ready"
-                            else "Your learning notebook",
-                            fontSize = 12.sp,
-                            color = Forest,
-                        )
-                    }
-                    Text(
-                        "Your answers save on this device",
-                        fontSize = 11.sp,
-                        lineHeight = 18.sp,
-                        color = Muted,
-                        modifier = Modifier.padding(top = 9.dp),
-                    )
                 }
             Column(Modifier.weight(1f).fillMaxHeight()) {
                 if (editingOnCompact) {} else if (config.screenHeightDp < 480) {
@@ -372,7 +400,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                     }
                 } else
                     Row(
-                        Modifier.fillMaxWidth().height(64.dp).padding(horizontal = 32.dp),
+                        Modifier.fillMaxWidth().height(48.dp).padding(horizontal = 20.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         if (portrait) {
@@ -400,7 +428,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                         }
                         Row(
                             Modifier.clip(RoundedCornerShape(50))
-                                .background(Color(0xffe6e9e1))
+                                .background(Color.Transparent)
                                 .padding(4.dp)
                         ) {
                             ModeButton(
@@ -453,7 +481,9 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
         }
         if (!editingOnCompact && !model.practice && focusId == null)
             Row(
-                Modifier.fillMaxWidth().height(40.dp).padding(horizontal = 16.dp),
+                Modifier.fillMaxWidth()
+                    .height(if (compact) 40.dp else 32.dp)
+                    .padding(horizontal = 12.dp),
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -463,7 +493,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
     if (library)
         AlertDialog(
             onDismissRequest = { library = false },
-            title = { Text("Your notebook", fontFamily = FontFamily.Serif) },
+            title = { Text("Chapters") },
             text = {
                 val state = rememberLazyListState(model.selected)
                 LazyColumn(
@@ -482,9 +512,9 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                         ) {
                             Text(
                                 "%02d   %s".format(i + 1, l.title),
-                                fontSize = 16.sp,
+                                fontSize = 14.sp,
                                 color = if (i == model.selected) Forest else Ink,
-                                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 3.dp),
                             )
                         }
                     }
@@ -509,13 +539,11 @@ private fun Label(text: String) {
 private fun ModeButton(text: String, selected: Boolean, icon: ImageVector, onClick: () -> Unit) {
     Row(
         Modifier.clip(RoundedCornerShape(50))
-            .background(if (selected) Paper else Color.Transparent)
+            .background(Color.Transparent)
             .clickable(onClick = onClick)
-            .padding(18.dp, 10.dp),
+            .padding(10.dp, 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(icon, null, Modifier.size(19.dp), tint = if (selected) Forest else Muted)
-        Spacer(Modifier.width(8.dp))
         Text(
             text,
             fontSize = 13.sp,
@@ -537,7 +565,7 @@ private fun Tool(
         onClick = onClick,
         enabled = enabled,
         modifier =
-            Modifier.size(46.dp)
+            Modifier.size(32.dp)
                 .background(
                     if (selected) Color(0xffe0eddf) else Color.Transparent,
                     RoundedCornerShape(12.dp),
@@ -588,16 +616,10 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
     }
     Column(Modifier.fillMaxSize()) {
         Row(
-            Modifier.fillMaxWidth().padding(30.dp, 12.dp),
+            Modifier.fillMaxWidth().padding(20.dp, 2.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                "LEARN AT YOUR OWN PACE",
-                fontSize = 10.sp,
-                letterSpacing = 1.8.sp,
-                color = Muted,
-                modifier = Modifier.weight(1f),
-            )
+            Spacer(Modifier.weight(1f))
             Box {
                 TextButton(onClick = { outline = true }) {
                     Icon(Icons.AutoMirrored.Outlined.List, null, Modifier.size(18.dp))
@@ -691,7 +713,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                     lineHeight = 30.sp,
                                     color = Ink,
                                 )
-                                Spacer(Modifier.height(16.dp))
+                                Spacer(Modifier.height(8.dp))
                                 if (value.blocks != null)
                                     TeachingBlocks(
                                         value.blocks,
@@ -735,44 +757,23 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                         )
                                     else RichText(lesson.intro, Modifier.fillMaxWidth(), 16f)
                                     TypingGuide(model)
-                                    Row(
-                                        Modifier.padding(top = 23.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                    ) {
-                                        Icon(
-                                            Icons.Outlined.Draw,
-                                            null,
-                                            Modifier.size(18.dp),
-                                            tint = Forest,
-                                        )
-                                        Spacer(Modifier.width(9.dp))
-                                        Text(
-                                            "Read a little. Try it by hand. Keep going.",
-                                            fontSize = 13.sp,
-                                            color = Forest,
-                                        )
-                                    }
                                 }
                             else
-                                Column(
-                                    Modifier.fillMaxWidth()
-                                        .background(Color(0xffe4eddf), RoundedCornerShape(16.dp))
-                                        .padding(32.dp)
+                                Row(
+                                    Modifier.fillMaxWidth().padding(vertical = 12.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
                                 ) {
                                     Text(
-                                        "Make it your own.",
-                                        fontFamily = FontFamily.Serif,
-                                        fontSize = 24.sp,
-                                    )
-                                    Text(
-                                        "${lesson.practiceIds.size} more problems, with room to work through each one.",
-                                        modifier = Modifier.padding(vertical = 14.dp),
+                                        "${lesson.practiceIds.size} more practice problems",
+                                        Modifier.weight(1f),
                                         color = Muted,
+                                        fontSize = 13.sp,
                                     )
-                                    Button(onClick = { model.mode(true) }) {
-                                        Text("Open practice")
-                                        Spacer(Modifier.width(10.dp))
-                                        Icon(Icons.AutoMirrored.Outlined.ArrowForward, null)
+                                    WorkspaceAction(
+                                        "Open practice",
+                                        Icons.AutoMirrored.Outlined.ArrowForward,
+                                    ) {
+                                        model.mode(true)
                                     }
                                 }
                     }
@@ -787,45 +788,24 @@ private fun QuestionCard(model: NotebookModel, q: Question, onFocus: (Int) -> Un
     val page = remember(q.id, model.lesson.slug) { model.page("${model.lesson.slug}-${q.id}") }
     Column(
         Modifier.fillMaxWidth()
-            .border(1.dp, Color(0xffcbdac9), RoundedCornerShape(16.dp))
-            .clip(RoundedCornerShape(16.dp))
+            .border(1.dp, Line, RoundedCornerShape(6.dp))
+            .clip(RoundedCornerShape(6.dp))
             .background(Paper)
     ) {
-        Row(
-            Modifier.fillMaxWidth().background(Color(0xffedf3e8)).padding(26.dp, 13.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Icon(Icons.Outlined.EditNote, null, tint = Forest, modifier = Modifier.size(23.dp))
-            Spacer(Modifier.width(10.dp))
-            Text(
-                "TRY IT HERE",
-                fontSize = 10.sp,
-                letterSpacing = 1.7.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Forest,
-                modifier = Modifier.weight(1f),
-            )
-            Text("Exercise ${q.id}", fontSize = 12.sp, color = Muted)
-            IconButton(
-                onClick = { onFocus(q.id) },
-                modifier = Modifier.padding(start = 10.dp).size(36.dp),
-            ) {
-                Icon(
-                    Icons.Outlined.OpenInFull,
-                    "Open full writing workspace",
-                    Modifier.size(19.dp),
-                    tint = Forest,
-                )
-            }
-        }
-        Column(Modifier.padding(26.dp, 22.dp)) { Prompt(q, compact = true) }
+        Text(
+            "Exercise ${q.id}",
+            Modifier.padding(start = 16.dp, top = 10.dp, bottom = 4.dp),
+            fontSize = 11.sp,
+            color = Muted,
+        )
+        Column(Modifier.padding(horizontal = 16.dp, vertical = 4.dp)) { Prompt(q, compact = true) }
         ExerciseInput(model, q)
-        Answer(q, Modifier.padding(26.dp, 0.dp, 26.dp, 20.dp))
+        Answer(q, Modifier.padding(start = 10.dp, end = 16.dp, bottom = 6.dp))
     }
 }
 
 @Composable
-private fun Prompt(q: Question, compact: Boolean = false) {
+internal fun Prompt(q: Question, compact: Boolean = false) {
     if (q.instructions.isNotBlank()) {
         RichText(
             q.instructions,
@@ -833,7 +813,7 @@ private fun Prompt(q: Question, compact: Boolean = false) {
             if (compact) 14f else 15f,
             source = "question:${q.id}:instructions",
         )
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(8.dp))
     }
     RichText(
         q.prompt,
@@ -842,7 +822,7 @@ private fun Prompt(q: Question, compact: Boolean = false) {
         source = "question:${q.id}:prompt",
     )
     if (q.math.isNotBlank()) {
-        Spacer(Modifier.height(14.dp))
+        Spacer(Modifier.height(8.dp))
         RichText(
             "$$\n${q.math}\n$$",
             Modifier.fillMaxWidth(),
@@ -901,8 +881,8 @@ internal fun PaperCanvas(
                     )
                 else if (page.strokes.isEmpty())
                     Text(
-                        if (fingerDrawing) "Draw here"
-                        else if (penEnabled) "Your pen goes here" else "Your saved handwriting",
+                        if (fingerDrawing) "Write here"
+                        else if (penEnabled) "" else "Saved handwriting",
                         Modifier.align(Alignment.BottomEnd).padding(20.dp),
                         fontFamily = FontFamily.Serif,
                         fontSize = 16.sp,
@@ -915,20 +895,24 @@ internal fun PaperCanvas(
 
 @Composable
 internal fun InkActions(page: InkPage) {
-    Tool(Icons.AutoMirrored.Outlined.Undo, "Undo", enabled = page.canUndo, onClick = page::undo)
-    Tool(Icons.AutoMirrored.Outlined.Redo, "Redo", enabled = page.canRedo, onClick = page::redo)
+    QuietIcon(
+        Icons.AutoMirrored.Outlined.Undo,
+        "Undo",
+        enabled = page.canUndo,
+        onClick = page::undo,
+    )
+    QuietIcon(
+        Icons.AutoMirrored.Outlined.Redo,
+        "Redo",
+        enabled = page.canRedo,
+        onClick = page::redo,
+    )
     var clear by remember { mutableStateOf(false) }
-    Tool(Icons.Outlined.DeleteOutline, "Clear writing", enabled = page.strokes.isNotEmpty()) {
+    QuietIcon(Icons.Outlined.DeleteOutline, "Clear writing", enabled = page.strokes.isNotEmpty()) {
         clear = true
     }
-    Text(
-        if (page.loading) "Loading"
-        else if (page.error != null) "Save failed"
-        else if (page.saving) "Saving…" else "Saved on tablet",
-        fontSize = 11.sp,
-        color = if (page.error != null) Color(0xffb04c39) else Muted,
-        modifier = Modifier.padding(start = 8.dp),
-    )
+    if (page.error != null)
+        Text("Save failed", fontSize = 11.sp, color = MaterialTheme.colorScheme.error)
     if (clear)
         AlertDialog(
             onDismissRequest = { clear = false },
@@ -952,7 +936,10 @@ internal fun InkActions(page: InkPage) {
 private fun Answer(q: Question, modifier: Modifier = Modifier) {
     var revealed by rememberSaveable(q.id) { mutableStateOf(false) }
     Column(modifier) {
-        OutlinedButton(onClick = { revealed = !revealed }) {
+        TextButton(
+            onClick = { revealed = !revealed },
+            contentPadding = PaddingValues(horizontal = 6.dp, vertical = 2.dp),
+        ) {
             Icon(
                 if (revealed) Icons.Outlined.VisibilityOff else Icons.Outlined.Visibility,
                 null,
@@ -970,7 +957,7 @@ private fun Answer(q: Question, modifier: Modifier = Modifier) {
             ) {
                 Label("ANSWER")
                 Spacer(Modifier.height(12.dp))
-                RichText(q.answer, Modifier.fillMaxWidth(), 17f, source = "question:${q.id}:answer")
+                RichText(q.answer, Modifier.fillMaxWidth(), 16f, source = "question:${q.id}:answer")
             }
     }
 }
@@ -993,112 +980,78 @@ private fun Practice(
         }
     var picker by remember { mutableStateOf(false) }
     val q = lesson.question(focusId ?: lesson.practiceIds[index])
-    Column(
-        Modifier.fillMaxSize().padding(if (compact) 12.dp else 26.dp, if (compact) 8.dp else 20.dp)
-    ) {
-        if (!compact || !keyboardVisible)
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    if (config.screenHeightDp >= 480)
-                        Label(
-                            if (focusId == null) "ONE PROBLEM. ROOM TO THINK."
-                            else "FROM YOUR LESSON"
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+        Column(
+            Modifier.widthIn(max = 900.dp)
+                .fillMaxSize()
+                .padding(horizontal = if (compact) 12.dp else 24.dp, vertical = 8.dp)
+        ) {
+            if (!compact || !keyboardVisible)
+                Row(
+                    Modifier.fillMaxWidth().padding(bottom = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(q.section, Modifier.weight(1f), fontSize = 14.sp, color = Muted)
+                    if (focusId != null)
+                        WorkspaceAction(
+                            "Back to reading",
+                            Icons.AutoMirrored.Outlined.ArrowBack,
+                            onClick = exitFocus,
                         )
-                    Text(
-                        q.section,
-                        fontSize = 18.sp,
-                        fontFamily = FontFamily.Serif,
-                        modifier = Modifier.padding(top = 6.dp),
-                    )
+                    else
+                        WorkspaceAction(
+                            "${index + 1} / ${lesson.practiceIds.size}",
+                            Icons.Outlined.ExpandMore,
+                        ) {
+                            picker = true
+                        }
                 }
-                if (focusId != null)
-                    TextButton(onClick = exitFocus) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, null, Modifier.size(18.dp))
-                        Text("Back to reading")
-                    }
-                else
-                    OutlinedButton(onClick = { picker = true }) {
-                        Icon(Icons.Outlined.GridView, null, Modifier.size(18.dp))
-                        Spacer(Modifier.width(8.dp))
-                        Text("${index+1} / ${lesson.practiceIds.size}")
-                    }
-            }
-        if (!compact || !keyboardVisible)
-            Spacer(Modifier.height(if (config.screenHeightDp < 480) 6.dp else 22.dp))
-        key(q.id) {
-            val page = remember { model.page("${lesson.slug}-${q.id}") }
-            if (compact)
+            key(q.id) {
                 LazyColumn(
                     Modifier.weight(1f).fillMaxWidth().testTag("practice-scroll"),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    contentPadding = PaddingValues(bottom = 12.dp),
                 ) {
                     item {
-                        Prompt(q, compact = true)
-                        Answer(q)
-                    }
-                    item { ExerciseInput(model, q) }
-                }
-            else
-                PracticePanels(
-                    portrait,
-                    Modifier.weight(1f),
-                    prompt = { paneModifier -> PracticePrompt(q, paneModifier) },
-                    writing = { paneModifier ->
-                        Box(paneModifier) {
-                            val writingState = rememberLazyListState()
-                            LazyColumn(
-                                state = writingState,
-                                modifier =
-                                    Modifier.fillMaxWidth()
-                                        .clip(RoundedCornerShape(16.dp))
-                                        .background(Paper)
-                                        .border(1.dp, Line, RoundedCornerShape(16.dp)),
-                            ) {
-                                item { ExerciseInput(model, q) }
+                        Column(
+                            Modifier.fillMaxWidth()
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(Paper)
+                                .border(1.dp, Line, RoundedCornerShape(6.dp))
+                        ) {
+                            Text(
+                                "Exercise ${q.id}",
+                                Modifier.padding(start = 16.dp, top = 12.dp, bottom = 4.dp),
+                                fontSize = 11.sp,
+                                color = Muted,
+                            )
+                            Column(Modifier.padding(horizontal = 16.dp, vertical = 4.dp)) {
+                                Prompt(q, compact = true)
+                            }
+                            ExerciseInput(model, q, minimumHeight = if (compact) 200.dp else 260.dp)
+                            Column(Modifier.padding(start = 10.dp, end = 16.dp, bottom = 6.dp)) {
+                                Answer(q)
                             }
                         }
-                    },
-                )
-        }
-        if (!compact || !keyboardVisible)
-            Row(
-                Modifier.fillMaxWidth()
-                    .padding(top = if (config.screenHeightDp < 480) 6.dp else 18.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                if (!compact)
-                    Text(
-                        "No score. No timer. Just you and the idea.",
-                        fontSize = 12.sp,
-                        color = Muted,
-                        modifier = Modifier.weight(1f),
-                    )
-                if (focusId == null) {
-                    OutlinedButton(
-                        onClick = {
-                            index--
-                            model.position(lesson.slug, index)
-                        },
-                        enabled = index > 0,
-                    ) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, null, Modifier.size(18.dp))
-                        Spacer(Modifier.width(8.dp))
-                        Text("Previous")
-                    }
-                    Spacer(Modifier.width(12.dp))
-                    Button(
-                        onClick = {
-                            index++
-                            model.position(lesson.slug, index)
-                        },
-                        enabled = index < lesson.practiceIds.lastIndex,
-                    ) {
-                        Text(if (compact) "Next" else "Next problem")
-                        Spacer(Modifier.width(12.dp))
-                        Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp))
                     }
                 }
             }
+            if ((!compact || !keyboardVisible) && focusId == null)
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    WorkspaceAction("Previous", Icons.AutoMirrored.Outlined.ArrowBack, index > 0) {
+                        index--
+                        model.position(lesson.slug, index)
+                    }
+                    Spacer(Modifier.weight(1f))
+                    WorkspaceAction(
+                        "Next problem",
+                        Icons.AutoMirrored.Outlined.ArrowForward,
+                        index < lesson.practiceIds.lastIndex,
+                    ) {
+                        index++
+                        model.position(lesson.slug, index)
+                    }
+                }
+        }
     }
     if (picker)
         AlertDialog(
@@ -1133,69 +1086,4 @@ private fun Practice(
             },
             confirmButton = { TextButton(onClick = { picker = false }) { Text("Close") } },
         )
-}
-
-@Composable
-private fun PracticePrompt(q: Question, modifier: Modifier) {
-    var revealed by rememberSaveable(q.id) { mutableStateOf(false) }
-    val state = rememberLazyListState()
-    val scope = rememberCoroutineScope()
-    Column(modifier.clip(RoundedCornerShape(16.dp)).background(Paper)) {
-        Row(
-            Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 10.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Label("EXERCISE ${q.id}")
-            Spacer(Modifier.weight(1f))
-            TextButton(
-                onClick = {
-                    revealed = !revealed
-                    scope.launch { state.scrollToItem(0) }
-                }
-            ) {
-                Text(if (revealed) "Hide answer" else "Reveal answer", fontSize = 12.sp)
-            }
-        }
-        HorizontalDivider(color = Line)
-        LazyColumn(
-            state = state,
-            userScrollEnabled = true,
-            modifier = Modifier.weight(1f),
-            contentPadding = PaddingValues(24.dp),
-        ) {
-            item {
-                if (revealed) {
-                    Label("ANSWER")
-                    Spacer(Modifier.height(14.dp))
-                    RichText(
-                        q.answer,
-                        Modifier.fillMaxWidth(),
-                        16f,
-                        source = "question:${q.id}:answer",
-                    )
-                    HorizontalDivider(Modifier.padding(vertical = 24.dp), color = Line)
-                }
-                Prompt(q)
-            }
-        }
-    }
-}
-
-@Composable
-private fun PracticePanels(
-    portrait: Boolean,
-    modifier: Modifier,
-    prompt: @Composable (Modifier) -> Unit,
-    writing: @Composable (Modifier) -> Unit,
-) {
-    if (portrait)
-        Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(22.dp)) {
-            prompt(Modifier.fillMaxWidth().height(230.dp))
-            writing(Modifier.fillMaxWidth().weight(1f))
-        }
-    else
-        Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(22.dp)) {
-            prompt(Modifier.width(300.dp).fillMaxHeight())
-            writing(Modifier.weight(1f).fillMaxHeight())
-        }
 }
