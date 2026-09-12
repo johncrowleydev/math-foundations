@@ -1,10 +1,25 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-const proxy = {
+const apiTarget = process.env.FOUNDATIONS_API_TARGET || 'https://foundations.johncrowley.dev';
+const proxy: Record<string, ProxyOptions> = {
   '/api': {
-    target: process.env.FOUNDATIONS_API_TARGET || 'https://foundations.johncrowley.dev',
+    target: apiTarget,
     changeOrigin: true,
+    configure(server) {
+      server.on('proxyReq', (outgoing, incoming) => {
+        // The loopback preview is a trusted same-origin development bridge.
+        // Never translate a cross-site Origin into an authorized one.
+        const origin = incoming.headers.origin;
+        if (
+          apiTarget === 'https://foundations.johncrowley.dev' &&
+          origin &&
+          (origin === 'http://' + incoming.headers.host ||
+            origin === 'https://' + incoming.headers.host)
+        )
+          outgoing.setHeader('Origin', apiTarget);
+      });
+    },
   },
 };
 export default defineConfig({
