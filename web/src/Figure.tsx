@@ -1,9 +1,9 @@
 import { useId, useState } from 'react';
 import type { Figure as Definition } from './types';
 import { MathText, Rich, Modal } from './Rich';
-const green = '#286657',
-  ink = '#354942',
-  light = '#dfebe0';
+const accent = '#315fa0',
+  ink = '#35404a',
+  light = '#e5edf8';
 export function Figure({ figure: f }: { figure: Definition }) {
   const [step, set] = useState(0),
     [expanded, expand] = useState(false);
@@ -62,7 +62,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
               key={i}
               d={`M${u.x - 8},${u.y - 12}c-70,-90 85,-90 16,0`}
               fill="none"
-              stroke={green}
+              stroke={accent}
             />
           ) : (
             <line
@@ -71,7 +71,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
               y1={u.y + (dy / len) * 19}
               x2={v.x - (dx / len) * 23}
               y2={v.y - (dy / len) * 23}
-              stroke={selected ? green : ink}
+              stroke={selected ? accent : ink}
               strokeWidth={selected ? 5 : 2}
               markerEnd={mapping || f.directed ? `url(#${uid}-arrow)` : undefined}
             />
@@ -84,7 +84,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
               cy={n.y}
               r={19}
               fill={frame.highlight.includes(n.text) ? light : 'white'}
-              stroke={green}
+              stroke={accent}
               strokeWidth={frame.highlight.includes(n.text) ? 4 : 1.5}
             />
             {label(n.text, n.x, n.y, 60)}
@@ -168,20 +168,20 @@ export function Figure({ figure: f }: { figure: Definition }) {
           cy="158"
           r="115"
           fill={chosen(true, false) ? light : 'white'}
-          stroke={green}
+          stroke={accent}
         />
         <circle
           cx="375"
           cy="158"
           r="115"
           fill={chosen(false, true) ? light : 'white'}
-          stroke={green}
+          stroke={accent}
         />
         <g clipPath={`url(#${uid}-a)`}>
           <circle cx="375" cy="158" r="115" fill={chosen(true, true) ? light : 'white'} />
         </g>
-        <circle cx="245" cy="158" r="115" fill="none" stroke={green} />
-        <circle cx="375" cy="158" r="115" fill="none" stroke={green} />
+        <circle cx="245" cy="158" r="115" fill="none" stroke={accent} />
+        <circle cx="375" cy="158" r="115" fill="none" stroke={accent} />
         {label('A', 210, 60)}
         {label('B', 410, 60)}
         {label('U', 55, 35)}
@@ -197,7 +197,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
                     width="34"
                     height="30"
                     fill="none"
-                    stroke={green}
+                    stroke={accent}
                     strokeWidth="2"
                   />
                 )}
@@ -224,7 +224,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
                 width="55"
                 height={h}
                 fill={light}
-                stroke={green}
+                stroke={accent}
                 strokeWidth={frame.active === i ? 4 : 1}
               />
               {label(String(v), x + 28, 245 - h)}
@@ -263,7 +263,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
             width={w * unit - 6}
             height={h * unit - 6}
             fill="none"
-            stroke={green}
+            stroke={accent}
             strokeWidth="3"
           />
         ))}
@@ -274,7 +274,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
       <>
         {f.counts!.map((n, i) => (
           <g key={i}>
-            <rect x={45 + i * 180} y="50" width="150" height="190" fill="none" stroke={green} />
+            <rect x={45 + i * 180} y="50" width="150" height="190" fill="none" stroke={accent} />
             <text x={65 + i * 180} y="35">
               Box {i + 1}
             </text>
@@ -285,7 +285,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
                 cy={85 + Math.floor(j / 3) * 40}
                 r="12"
                 fill={light}
-                stroke={green}
+                stroke={accent}
               />
             ))}
             {label(String(n), 120 + i * 180, 270)}
@@ -304,7 +304,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
               width="170"
               height="210"
               fill="none"
-              stroke={green}
+              stroke={accent}
               strokeWidth={frame.highlight.includes(c.label) ? 3 : 1}
             />
             {label(c.label, 120 + i * 195, 35)}
@@ -317,7 +317,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
                     width="110"
                     height="45"
                     fill={light}
-                    stroke={green}
+                    stroke={accent}
                   />
                 )}
                 {label(
@@ -365,7 +365,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
                 return `${50 + (n / xm) * 510},${280 - (Math.min(ym, calc(s, n)) / ym) * 250}`;
               }).join(' ')}
               fill="none"
-              stroke={i % 2 ? '#956d35' : green}
+              stroke={i % 2 ? '#956d35' : accent}
               strokeWidth="2.5"
               strokeDasharray={i % 2 ? '7 5' : undefined}
             />
@@ -401,7 +401,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
         </marker>
         <pattern id={uid + '-stripe'} patternUnits="userSpaceOnUse" width="9" height="9">
           <rect width="9" height="9" fill={light} />
-          <path d="M0 9L9 0" stroke={green} />
+          <path d="M0 9L9 0" stroke={accent} />
         </pattern>
       </defs>
       {drawing}

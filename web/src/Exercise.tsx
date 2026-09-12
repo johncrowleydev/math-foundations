@@ -215,7 +215,6 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
             'Submit'
           )}
         </button>
-        <span className="muted">Draft stays on this device</span>
         {last && <button onClick={() => update({ editing: false })}>Back to latest attempt</button>}
       </div>
     </>

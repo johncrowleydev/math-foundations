@@ -272,7 +272,6 @@ export function App({ data }: { data: Curriculum }) {
       <div className="course">
         <span className="eyebrow">Your notebook</span>
         <h3>Discrete mathematics</h3>
-        <p className="muted">15 lessons · a place to think</p>
       </div>
       <nav className="chapters">
         {data.lessons.map((l, i) => (
@@ -286,11 +285,6 @@ export function App({ data }: { data: Curriculum }) {
           </button>
         ))}
       </nav>
-      <small>
-        Your drafts stay on this device.
-        <br />
-        Submitted attempts sync when connected.
-      </small>
     </>
   );
   const selectExercise = (index: number) => {
@@ -521,8 +515,7 @@ export function App({ data }: { data: Curriculum }) {
           </div>
           <div className="statusbar">
             <span>
-              {!navigator.onLine && <WifiOff size={12} />}{' '}
-              {connected() ? syncStatus : 'Local notebook'}
+              {!navigator.onLine && <WifiOff size={12} />} {connected() ? syncStatus : ''}
             </span>
             {tab === 'read' && (
               <>
