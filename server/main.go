@@ -3,14 +3,11 @@ package main
 
 import (
 	"context"
-	"crypto/rand"
 	"crypto/sha256"
-	"crypto/subtle"
 	"database/sql"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"log"
 	_ "modernc.org/sqlite"
@@ -80,10 +77,10 @@ func (d DiskMedia) Put(id string, r io.Reader) error {
 }
 
 type Server struct {
-	db        *sql.DB
-	media     MediaStore
-	tokenHash []byte
-	grading   *Grading
+	db      *sql.DB
+	media   MediaStore
+	auth    *Auth
+	grading *Grading
 }
 
 func openDB(path string) (*sql.DB, error) {
@@ -336,27 +333,11 @@ func (s *Server) handler() http.Handler {
 			w.WriteHeader(405)
 		}
 	})
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("X-Content-Type-Options", "nosniff")
-		w.Header().Set("Cache-Control", "no-store")
-		token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
-		h := sha256.Sum256([]byte(token))
-		if subtle.ConstantTimeCompare(h[:], s.tokenHash) != 1 {
-			http.Error(w, "Unauthorized", 401)
-			return
-		}
-		mux.ServeHTTP(w, r)
-	})
+	return s.authHandler(mux)
 }
 func main() {
-	if len(os.Args) > 1 && os.Args[1] == "keygen" {
-		b := make([]byte, 32)
-		if _, e := rand.Read(b); e != nil {
-			log.Fatal(e)
-		}
-		key := hex.EncodeToString(b)
-		h := sha256.Sum256([]byte(key))
-		fmt.Printf("%s\n%s\n", key, hex.EncodeToString(h[:]))
+	if len(os.Args) > 1 && os.Args[1] == "hash-password" {
+		hashPasswordCommand()
 		return
 	}
 	root := os.Getenv("FOUNDATIONS_DATA")
@@ -378,15 +359,15 @@ func main() {
 		}
 		return
 	}
-	h, e := hex.DecodeString(os.Getenv("FOUNDATIONS_KEY_HASH"))
-	if e != nil || len(h) != 32 {
-		log.Fatal("Set FOUNDATIONS_KEY_HASH to a SHA-256 key hash")
-	}
+
 	addr := os.Getenv("FOUNDATIONS_ADDR")
 	if addr == "" {
 		addr = "127.0.0.1:18084"
 	}
-	api := &Server{db: db, media: DiskMedia{filepath.Join(root, "media")}, tokenHash: h}
+	api := &Server{db: db, media: DiskMedia{filepath.Join(root, "media")}}
+	if e = api.configureAuth(os.Getenv("FOUNDATIONS_EMAIL"), os.Getenv("FOUNDATIONS_PASSWORD_HASH"), os.Getenv("FOUNDATIONS_ORIGIN")); e != nil {
+		log.Fatal(e)
+	}
 	api.grading, e = configureGrading(api)
 	if e != nil {
 		log.Fatal(e)

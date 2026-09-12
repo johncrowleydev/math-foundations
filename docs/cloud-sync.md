@@ -1,6 +1,8 @@
+> Historical Android-era implementation notes. See [PWA deployment](pwa-deployment.md) for current authentication and operation.
+
 # Cloud sync (0.6.2)
 
-Open **Settings → Cloud sync**, enter the same private API key on both devices, and choose **Connect**. Existing answers save locally first and import automatically. Photos transfer on Wi-Fi or mobile data. **Disconnect** removes the credential without deleting local or server work.
+Open **Settings â†’ Cloud sync**, enter the same private API key on both devices, and choose **Connect**. Existing answers save locally first and import automatically. Photos transfer on Wi-Fi or mobile data. **Disconnect** removes the credential without deleting local or server work.
 
 The single-user Go/SQLite API is `https://foundations.johncrowley.dev`, hosted on `jc-dev`. There are no accounts, public photo URLs, or web dashboard. APK distribution continues through GitHub Releases.
 
@@ -17,7 +19,7 @@ The single-user Go/SQLite API is `https://foundations.johncrowley.dev`, hosted o
 
 Empty text, empty stroke lists, and empty photo lists are explicit clearing records (tombstones). The server keeps them so an older offline edit cannot silently resurrect cleared work. Initial empty defaults cannot overwrite existing answers. The **Versions** action beside an answer compares copies using the existing native text/math, ink, and photo renderers. Choosing a copy retains alternatives for later access.
 
-Sync runs after a two-second edit debounce, on foreground entry, every 30 seconds while open, and through best-effort Android background work at a 15-minute interval. Android may delay background work. **Sync now** retries immediately. Authentication errors pause automatic retries. An idle exercise updates immediately, even while it stays visible. Only the representation being edited is protected: focused text, an in-progress ink stroke/eraser gesture, or an unfinished save. Other representations continue to arrive. Downloaded changes deferred during editing apply when editing ends, including offline. Settings reports deferred incoming changes instead of saying �Up to date.� The input menu marks saved representations, and �Also saved� opens the other formats without changing the local input preference.
+Sync runs after a two-second edit debounce, on foreground entry, every 30 seconds while open, and through best-effort Android background work at a 15-minute interval. Android may delay background work. **Sync now** retries immediately. Authentication errors pause automatic retries. An idle exercise updates immediately, even while it stays visible. Only the representation being edited is protected: focused text, an in-progress ink stroke/eraser gesture, or an unfinished save. Other representations continue to arrive. Downloaded changes deferred during editing apply when editing ends, including offline. Settings reports deferred incoming changes instead of saying “Up to date.” The input menu marks saved representations, and “Also saved” opens the other formats without changing the local input preference.
 
 Files and cached answers integrate in the same UI turn before advancing the integrated server revision; text focus and pending writes preserve the old revision until edits can be reconciled. Answer writes merge only the edited field. Remote ink resets local undo/redo history so undo cannot resurrect an obsolete remote canvas. Full notebook scans stay in the sync worker; the UI handoff rechecks only incoming candidates.
 

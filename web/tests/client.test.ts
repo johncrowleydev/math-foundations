@@ -81,7 +81,7 @@ test('drafts never become outgoing attempts until submitted; revisions are monot
   assert.equal((await get<{ verdict: string }>('attempts', a.id))?.verdict, 'correct');
   assert.equal((await get<{ text: string }>('drafts', 'logic-1'))?.text, 'Unsubmitted');
 });
-test('all content, figures and inline targets are bundled from Android', async () => {
+test('all content, figures and inline targets are bundled from the shared curriculum', async () => {
   const n = JSON.parse(await readFile('public/notebook.json', 'utf8')),
     t = JSON.parse(await readFile('public/teaching.json', 'utf8'));
   assert.equal(n.lessons.length, 15);

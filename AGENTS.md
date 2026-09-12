@@ -1,7 +1,9 @@
 # Project instructions
 
-- Never request, trigger, or rerun code review unless the user explicitly asks for a new review in the current request.
-- Use semantic branch prefixes such as feat/, fix/, chore/, docs/, or refactor/. Never use agent/ or codex/ unless explicitly requested.
-- This native Kotlin app targets the Galaxy Tab S8 Ultra in both orientations. Preserve S Pen input, two-finger-only scrolling, and saved handwriting.
-- Inline exercises must follow all required teaching concepts. Audit instructions, prompts, and answers when editing placements or lesson text.
-- Never commit signing keys, passwords, tokens, or device handwriting. Release signing credentials live outside the repository or in GitHub Actions secrets.
+- Never request, trigger, or rerun code review unless explicitly requested in the current user request.
+- Use semantic branch prefixes; never agent/ or codex/ unless explicitly requested.
+- The React/TypeScript PWA is the primary client. Preserve the compact responsive UI, URL routing, offline work, and existing handwriting compatibility. Android is retired.
+- Inline exercises must follow required teaching concepts. Preserve lesson slugs, exercise IDs, grading history, and saved work.
+- Shared content is generated into output/content; the grading catalog is output/grading-catalog.json.
+- Never commit credentials, secret.txt, signing material, or personal answers. Never print passwords, provider keys, cookies, or session tokens.
+- Server data stays under /var/lib/math-foundations; retain weekly backups and rollback deployments.

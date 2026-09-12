@@ -1,6 +1,6 @@
 # Foundations web client
 
-A local React/TypeScript PWA sharing the Android client's authored curriculum and existing Go API. Nothing is deployed by these commands. The Android app and production server are unchanged.
+The primary React/TypeScript PWA, with shared authored curriculum and the Go synchronization and grading API. Production is https://foundations.johncrowley.dev; local commands below do not deploy.
 
 ## Run locally
 
@@ -43,7 +43,7 @@ This is a functional client port, not an Android emulation layer. Browser camera
 
 Browsers do not guarantee Android-style periodic background jobs when the app is closed. Sync runs while open, on reconnect, and on returning to the app; offline submissions remain queued until that happens. API calls and credentials are not cached by the service worker. Only use the installable preview build when testing offline reload, and remember that clearing site data removes unsynced drafts. Export local work before deliberately clearing it.
 
-Auth remains the existing personal API-key arrangement for this local evaluation. There is no new login flow, public deployment, or provider key in the web bundle.
+Email/password authentication and trusted-device offline sessions are documented in [PWA deployment](pwa-deployment.md). Provider keys never enter the web bundle.
 
 ## Checks
 
@@ -60,4 +60,4 @@ Node tests cover escaped/incomplete math syntax, unsupported commands, native pe
 - Symbol insertion without solved examples, reference navigation, pen capture, photo rotation/removal/undo/submission, and landscape phones.
 - Production PWA offline reload, cached assets, and queued-attempt recovery.
 
-The signed Android release is untouched. Local browser artifacts and screenshots are under the ignored `output/` directory.
+Android releases are retired. Local browser artifacts and screenshots are under the ignored `output/` directory.

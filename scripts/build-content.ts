@@ -146,7 +146,7 @@ if (missingFormulaContexts.length)
   );
 await mkdir('output', { recursive: true });
 await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory, null, 2) + '\n');
-const dir = 'android/app/src/main/assets';
+const dir = 'output/content';
 await mkdir(dir, { recursive: true });
 await writeFile(
   `${dir}/notebook.json`,
@@ -155,7 +155,7 @@ await writeFile(
 await writeFile(`${dir}/teaching.json`, JSON.stringify(teaching));
 await writeFile(`${dir}/reading-order-v7.json`, await readFile('content/reading-order-v7.json'));
 console.log(
-  `Android content: ${lessons.length} lessons, ${lessons.reduce((n, l) => n + l.questions.length, 0)} questions, ${lessons.reduce((n, l) => n + l.sections.reduce((s, c) => s + c.questionIds.length, 0), 0)} inline placements.`,
+  `Curriculum: ${lessons.length} lessons, ${lessons.reduce((n, l) => n + l.questions.length, 0)} questions, ${lessons.reduce((n, l) => n + l.sections.reduce((s, c) => s + c.questionIds.length, 0), 0)} inline placements.`,
 );
 
 await writeFile(`${dir}/tex-syntax.json`, await readFile('content/tex-syntax.json'));

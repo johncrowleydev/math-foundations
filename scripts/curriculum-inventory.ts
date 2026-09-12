@@ -4,8 +4,8 @@ import { inlineAudit } from './inline-prerequisites.js';
 
 // This inventory records authored dependencies and reading units. It does not infer
 // that a keyword match is an adequate introduction or assign manual audit approval.
-const notebook = JSON.parse(await readFile('android/app/src/main/assets/notebook.json', 'utf8'));
-const teaching = JSON.parse(await readFile('android/app/src/main/assets/teaching.json', 'utf8'));
+const notebook = JSON.parse(await readFile('output/content/notebook.json', 'utf8'));
+const teaching = JSON.parse(await readFile('output/content/teaching.json', 'utf8'));
 const hash = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const units: any[] = [];
 const introductions = JSON.parse(await readFile('content/concept-introductions.json', 'utf8'));

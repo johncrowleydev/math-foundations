@@ -56,8 +56,8 @@ export function textFields(value: unknown): string {
 export async function inspectTexTeaching(requireComplete = false) {
   const registry = JSON.parse(await readFile('content/tex-syntax.json', 'utf8'));
   const teaching = JSON.parse(await readFile('content/tex-teaching.json', 'utf8'));
-  const notebook = JSON.parse(await readFile('android/app/src/main/assets/notebook.json', 'utf8'));
-  const refs = JSON.parse(await readFile('android/app/src/main/assets/teaching.json', 'utf8'));
+  const notebook = JSON.parse(await readFile('output/content/notebook.json', 'utf8'));
+  const refs = JSON.parse(await readFile('output/content/teaching.json', 'utf8'));
   const failures: string[] = [];
   const ids = new Set<string>([
     ...registry.entries.map((e: TexEntry) => e.id),

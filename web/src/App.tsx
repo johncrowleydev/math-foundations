@@ -1,3 +1,4 @@
+import { authSession, signOut } from './auth';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   BookOpen,
@@ -26,8 +27,17 @@ import type {
 import { ContentContext, Rich, MathText, Modal, Copy } from './Rich';
 import { Figure } from './Figure';
 import { Exercise } from './Exercise';
-import { all, get, put, useRevision, exportData } from './storage';
-import { connect, connected, disconnect, initializeSync, mutation, sync, syncStatus } from './sync';
+import {
+  all,
+  get,
+  put,
+  useRevision,
+  exportData,
+  importData,
+  clearLocalWork,
+  type ImportArchive,
+} from './storage';
+import { connected, initializeSync, mutation, sync, syncStatus } from './sync';
 export function App({ data }: { data: Curriculum }) {
   const [quickAnchor, setQuickAnchor] = useState<{ x: number; y: number }>();
   const [route, setRoute] = useState(() =>
@@ -843,59 +853,27 @@ function Settings({
       ),
     );
   }, [revision]);
-  const [key, setKey] = useState(''),
-    [remember, setRemember] = useState(false),
-    [error, setError] = useState(''),
-    [working, setWorking] = useState(false);
+  const [error, setError] = useState('');
+  const [importMessage, setImportMessage] = useState('');
+  const [archives, setArchives] = useState<ImportArchive[]>([]);
+  useEffect(() => {
+    void all<ImportArchive>('imports').then(setArchives);
+  }, [revision]);
+  const downloadBackup = (blob: Blob, name: string) => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
   return (
     <Modal title="Settings" onClose={onClose}>
-      <h3>Cloud sync</h3>
-      <p className="muted">
-        {syncStatus}. Uses the existing Foundations API. No deployment or new account is required
-        for local testing.
-      </p>
-      {connected() ? (
-        <div className="toolbar">
-          <button onClick={() => void sync()}>Sync now</button>
-          <button onClick={() => void disconnect()}>Disconnect</button>
-        </div>
-      ) : (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setWorking(true);
-            void connect(key, remember)
-              .then(() => setKey(''))
-              .catch((e) => setError(String(e)))
-              .finally(() => setWorking(false));
-          }}
-        >
-          <label>
-            API key
-            <input
-              type="password"
-              autoComplete="off"
-              value={key}
-              onChange={(e) => setKey(e.target.value)}
-            />
-          </label>
-          <label className="check">
-            <input
-              type="checkbox"
-              checked={remember}
-              onChange={(e) => setRemember(e.target.checked)}
-            />
-            Remember on this browser
-          </label>
-          <p className="muted">
-            Otherwise the key lasts for this browser session. Remembered keys are stored in this
-            browser, not in the app bundle.
-          </p>
-          <button className="primary" disabled={!key.trim() || working}>
-            {working ? 'Connecting…' : 'Connect'}
-          </button>
-        </form>
-      )}
+      <h3>Account</h3>
+      <p>{authSession()?.email}</p>
+      <div className="toolbar">
+        <button onClick={() => void sync()}>Sync now</button>
+        <button onClick={() => void signOut()}>Sign out</button>
+      </div>
       {error && <p role="alert">{error}</p>}
       <hr />
       <h3>Reading</h3>
@@ -941,6 +919,63 @@ function Settings({
       >
         Export local work
       </button>
+      <label className="button">
+        Import local work
+        <input
+          type="file"
+          accept="application/json,.json"
+          hidden
+          onChange={async (e) => {
+            const file = e.target.files?.[0];
+            e.target.value = '';
+            if (!file) return;
+            setError('');
+            try {
+              const result = await importData(file, file.name);
+              setImportMessage(
+                `Imported ${result.imported} entries. ${result.conflicts ? result.conflicts + ' existing entries kept; the original backup is retained below.' : 'No conflicts.'}`,
+              );
+              void sync();
+            } catch (e) {
+              setError(String(e));
+            }
+          }}
+        />
+      </label>
+      {importMessage && <p role="status">{importMessage}</p>}
+      {!!archives.length && (
+        <details>
+          <summary>Retained imports</summary>
+          {archives.map((a, i) => (
+            <p key={i}>
+              <button onClick={() => downloadBackup(a.blob, a.name)}>{a.name}</button> ·{' '}
+              {a.conflicts} conflicts preserved in backup
+            </p>
+          ))}
+        </details>
+      )}
+      <details>
+        <summary>Remove local work</summary>
+        <p>
+          This removes drafts, queued submissions, and downloaded work from this browser. Server
+          work is kept. Export anything you need first.
+        </p>
+        <button
+          onClick={async () => {
+            if (
+              !confirm(
+                'Remove all local work from this browser? Unsynced drafts and submissions will be deleted.',
+              )
+            )
+              return;
+            await signOut();
+            await clearLocalWork();
+            location.reload();
+          }}
+        >
+          Remove local work and sign out
+        </button>
+      </details>
     </Modal>
   );
 }

@@ -10,8 +10,10 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 	"testing"
+	"time"
 )
 
 func fixture(t *testing.T) *Server {
@@ -22,8 +24,14 @@ func fixture(t *testing.T) *Server {
 		t.Fatal(e)
 	}
 	t.Cleanup(func() { db.Close() })
-	h := sha256.Sum256([]byte("test-key"))
-	return &Server{db: db, media: DiskMedia{root}, tokenHash: h[:]}
+	s := &Server{db: db, media: DiskMedia{root}}
+	if e := s.configureAuth("test@example.test", "argon2id-v1$unused$unused", "https://example.test"); e != nil {
+		t.Fatal(e)
+	}
+	if _, e := db.Exec("INSERT INTO sessions(hash,expires) VALUES(?,?)", tokenHash(strings.Repeat("a", 64)), time.Now().Add(sessionLife).UnixMilli()); e != nil {
+		t.Fatal(e)
+	}
+	return s
 }
 func edit(id, key, text string, base int64) Mutation {
 	p, _ := json.Marshal(map[string]string{"text": text})
@@ -90,8 +98,9 @@ func TestConcurrentOfflineDevices(t *testing.T) {
 }
 func call(s *Server, method, path string, body []byte, auth bool) *httptest.ResponseRecorder {
 	r := httptest.NewRequest(method, path, bytes.NewReader(body))
+	r.Header.Set("Origin", "https://example.test")
 	if auth {
-		r.Header.Set("Authorization", "Bearer test-key")
+		r.AddCookie(&http.Cookie{Name: cookieName, Value: strings.Repeat("a", 64)})
 	}
 	w := httptest.NewRecorder()
 	s.handler().ServeHTTP(w, r)

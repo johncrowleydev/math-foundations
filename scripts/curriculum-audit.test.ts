@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 const audit = JSON.parse(await readFile('content/curriculum-audit.json', 'utf8'));
 const inventory = JSON.parse(await readFile('output/curriculum-inventory.json', 'utf8'));
-const teaching = JSON.parse(await readFile('android/app/src/main/assets/teaching.json', 'utf8'));
+const teaching = JSON.parse(await readFile('output/content/teaching.json', 'utf8'));
 const hash = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
 test('the manually audited edition covers every current unit, reference, formula and figure', () => {

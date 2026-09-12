@@ -1,10 +1,10 @@
 import { openDB } from 'idb';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
-const db = openDB('foundations-web', 1, {
+const db = openDB('foundations-web', 2, {
   upgrade(d) {
-    for (const s of ['drafts', 'attempts', 'media', 'records', 'outbox', 'settings'])
-      d.createObjectStore(s);
+    for (const s of ['drafts', 'attempts', 'media', 'records', 'outbox', 'settings', 'imports'])
+      if (!d.objectStoreNames.contains(s)) d.createObjectStore(s);
   },
 });
 let revision = 0;
@@ -82,7 +82,7 @@ export async function integrate(records: RecordData[], cursor: number) {
   changed();
 }
 export async function exportData() {
-  const data: Record<string, unknown> = {};
+  const data: Record<string, unknown> = { version: 1 };
   const d = await db;
   for (const name of ['drafts', 'attempts', 'records', 'outbox']) {
     const tx = d.transaction(name);
@@ -98,4 +98,155 @@ export async function exportData() {
     }),
   );
   return new Blob([JSON.stringify(data)], { type: 'application/json' });
+}
+
+export async function clearLocalWork() {
+  const d = await db;
+  const tx = d.transaction(
+    ['drafts', 'attempts', 'media', 'records', 'outbox', 'settings', 'imports'],
+    'readwrite',
+  );
+  for (const name of tx.objectStoreNames) await tx.objectStore(name).clear();
+  await tx.done;
+  changed();
+}
+export type ImportArchive = { name: string; at: number; conflicts: number; blob: Blob };
+export async function importData(file: Blob, name: string) {
+  if (file.size > 100 * 1024 * 1024) throw Error('Backup exceeds 100 MB.');
+  const data = JSON.parse(await file.text()) as Record<string, unknown>;
+  if (!data || typeof data !== 'object' || (data.version !== undefined && data.version !== 1))
+    throw Error('Unsupported backup format.');
+  const names = ['drafts', 'attempts', 'records', 'outbox'] as const;
+  const object = (v: unknown): v is Record<string, any> =>
+    Boolean(v) && typeof v === 'object' && !Array.isArray(v);
+  const finite = (n: unknown) => typeof n === 'number' && Number.isFinite(n);
+  const hashKey = (s: unknown) => typeof s === 'string' && /^[a-f0-9]{64}$/.test(s);
+  const photos = (v: unknown) =>
+    Array.isArray(v) &&
+    v.every((p) => object(p) && hashKey(p.hash) && finite(p.rotation) && p.rotation % 90 === 0);
+  const attempt = (v: Record<string, any>) =>
+    typeof v.id === 'string' &&
+    typeof v.exercise === 'string' &&
+    finite(v.submitted) &&
+    typeof v.text === 'string' &&
+    ['type', 'write', 'photo'].includes(v.mode) &&
+    Array.isArray(v.images) &&
+    v.images.every(hashKey) &&
+    Array.isArray(v.grades) &&
+    (v.photos === undefined || photos(v.photos));
+  const parsed: Record<string, [string, Record<string, any>][]> = {};
+  for (const store of names) {
+    const rows = data[store];
+    if (!Array.isArray(rows) || rows.length > 50000) throw Error('Invalid ' + store + ' data.');
+    const seen = new Set<string>();
+    parsed[store] = rows.map((row) => {
+      if (
+        !Array.isArray(row) ||
+        row.length !== 2 ||
+        typeof row[0] !== 'string' ||
+        !row[0] ||
+        row[0].length > 300 ||
+        !object(row[1]) ||
+        seen.has(row[0])
+      )
+        throw Error('Invalid or duplicate backup entry.');
+      const [key, v] = row;
+      seen.add(key);
+      if (
+        store === 'drafts' &&
+        !(
+          typeof v.text === 'string' &&
+          ['type', 'pen', 'photo'].includes(v.mode) &&
+          finite(v.updated) &&
+          typeof v.revealed === 'boolean' &&
+          photos(v.photos) &&
+          Array.isArray(v.strokes) &&
+          v.strokes.every(
+            (s: any) =>
+              object(s) &&
+              typeof s.color === 'string' &&
+              finite(s.width) &&
+              Array.isArray(s.points) &&
+              s.points.every((p: any) => object(p) && finite(p.x) && finite(p.y) && finite(p.p)),
+          )
+        )
+      )
+        throw Error('Invalid draft.');
+      if (store === 'attempts' && (!attempt(v) || v.id !== key)) throw Error('Invalid attempt.');
+      if (
+        store === 'records' &&
+        !(
+          v.key === key &&
+          finite(v.revision) &&
+          object(v.payload) &&
+          Array.isArray(v.versions) &&
+          Array.isArray(v.conflicts)
+        )
+      )
+        throw Error('Invalid record.');
+      if (
+        store === 'outbox' &&
+        !(
+          v.id === key &&
+          ['attempt', 'mutation', 'recheck'].includes(v.kind) &&
+          object(v.data) &&
+          (v.kind !== 'attempt' || attempt(v.data)) &&
+          (v.kind !== 'recheck' ||
+            (typeof v.attempt === 'string' && /^[a-zA-Z0-9-]+$/.test(v.attempt))) &&
+          (v.kind !== 'mutation' || (typeof v.data.key === 'string' && object(v.data.payload)))
+        )
+      )
+        throw Error('Invalid pending operation.');
+      return [key, v];
+    });
+  }
+  if (!Array.isArray(data.media)) throw Error('Missing media list.');
+  const media: [string, Blob][] = [];
+  for (const row of data.media) {
+    if (
+      !Array.isArray(row) ||
+      row.length !== 3 ||
+      !hashKey(row[0]) ||
+      typeof row[1] !== 'string' ||
+      !row[1].startsWith('image/') ||
+      !Array.isArray(row[2]) ||
+      !row[2].every((n: unknown) => Number.isInteger(n) && Number(n) >= 0 && Number(n) <= 255)
+    )
+      throw Error('Invalid image.');
+    const blob = new Blob([new Uint8Array(row[2])], { type: row[1] });
+    if ((await hash(blob)) !== row[0]) throw Error('Image integrity check failed.');
+    media.push([row[0], blob]);
+  }
+  const d = await db;
+  const available = new Set([...(await d.getAllKeys('media')), ...media.map(([h]) => h)]);
+  for (const [, v] of [
+    ...parsed.drafts,
+    ...parsed.attempts,
+    ...parsed.outbox
+      .filter(([, v]) => v.kind === 'attempt')
+      .map(([k, v]) => [k, v.data] as [string, Record<string, any>]),
+  ]) {
+    for (const h of [...(v.images || []), ...(v.photos || []).map((p: any) => p.hash)])
+      if (!available.has(h)) throw Error('Backup is missing an attached image.');
+  }
+  const id = await hash(file);
+  let conflicts = 0,
+    imported = 0;
+  const tx = d.transaction([...names, 'media', 'imports'], 'readwrite');
+  for (const store of names)
+    for (const [key, value] of parsed[store]) {
+      const old = await tx.objectStore(store).get(key);
+      if (old === undefined) {
+        await tx.objectStore(store).put(value, key);
+        imported++;
+      } else if (JSON.stringify(old) !== JSON.stringify(value)) conflicts++;
+    }
+  for (const [key, blob] of media)
+    if (!(await tx.objectStore('media').get(key))) await tx.objectStore('media').put(blob, key);
+  await tx
+    .objectStore('imports')
+    .put({ name, at: Date.now(), conflicts, blob: file } satisfies ImportArchive, id);
+  await tx.done;
+  changed();
+  return { imported, conflicts };
 }

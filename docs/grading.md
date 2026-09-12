@@ -1,3 +1,5 @@
+> Historical Android-era implementation notes. See [PWA deployment](pwa-deployment.md) for current authentication and operation.
+
 # Grading and attempts (0.7.0)
 
 Open responses use **Submit** to save a timestamped attempt and request grading. Only the selected Type, Pen, or Photo response is submitted. Photo includes all attached pictures. Recovery drafts stay on their device; submitted attempts and grades sync through the existing notebook connection. The 30 quick checks are unchanged.

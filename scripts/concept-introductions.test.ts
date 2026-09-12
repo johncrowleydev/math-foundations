@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { loadTeaching } from './teaching.js';
 
-const notebook = JSON.parse(await readFile('android/app/src/main/assets/notebook.json', 'utf8'));
+const notebook = JSON.parse(await readFile('output/content/notebook.json', 'utf8'));
 const evidence = JSON.parse(await readFile('content/concept-introductions.json', 'utf8'));
 const teaching = await loadTeaching();
 

@@ -1095,3 +1095,51 @@ hr {
 .progress-state.incorrect {
   color: #b34e4e;
 }
+
+.auth-page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.auth-card {
+  width: min(100%, 360px);
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.auth-card h1 {
+  font: 600 1.25rem system-ui;
+  margin: 28px 0 20px;
+}
+.auth-card label {
+  display: block;
+  font-size: 0.85rem;
+  margin: 16px 0;
+}
+.auth-card input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+}
+.password-field {
+  position: relative;
+}
+.password-field input {
+  padding-right: 44px;
+}
+.password-field button {
+  position: absolute;
+  right: 5px;
+  top: 11px;
+  border: 0;
+  background: transparent;
+}
+.auth-card > .primary {
+  width: 100%;
+  margin-top: 8px;
+}
+.auth-card .brand {
+  font-size: 1.6rem;
+}

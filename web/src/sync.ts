@@ -1,9 +1,10 @@
+import { authSession, authGeneration, lockSession, verifySession } from './auth';
 import { all, get, put, remove, integrate, changed, hash } from './storage';
 import type { Attempt, RecordData } from './types';
 export let syncStatus = 'Not connected';
-let credential = sessionStorage.getItem('foundations-key') || '';
+
 let busy = false;
-export const connected = () => Boolean(credential);
+export const connected = () => Boolean(authSession());
 class HttpError extends Error {
   constructor(
     public status: number,
@@ -13,15 +14,19 @@ class HttpError extends Error {
   }
 }
 async function request(path: string, method = 'GET', body?: unknown) {
+  if (!authSession()) throw Error('Sign in required');
+  const epoch = authGeneration();
   const response = await fetch('/api/v1' + path, {
     method,
+    credentials: 'same-origin',
     headers: {
-      Authorization: `Bearer ${credential}`,
       ...(body instanceof Blob ? {} : body ? { 'Content-Type': 'application/json' } : {}),
     },
     body: body instanceof Blob ? body : body ? JSON.stringify(body) : undefined,
     signal: AbortSignal.timeout(120000),
   });
+  if (epoch !== authGeneration()) throw Error('Session changed');
+  if (response.status === 401) lockSession();
   if (!response.ok)
     throw new HttpError(
       response.status,
@@ -29,28 +34,15 @@ async function request(path: string, method = 'GET', body?: unknown) {
     );
   return response;
 }
-export async function connect(key: string, remember = false) {
-  credential = key.trim();
-  try {
-    await request('/status');
-    sessionStorage.setItem('foundations-key', credential);
-    await put('settings', 'key', remember ? credential : '');
-    await sync();
-  } catch (e) {
-    credential = '';
-    throw e;
-  }
-}
-export async function disconnect() {
-  credential = '';
-  sessionStorage.removeItem('foundations-key');
-  await put('settings', 'key', '');
-  syncStatus = 'Not connected';
-  changed();
-}
+let initialized = false;
 export async function initializeSync() {
-  credential = credential || (await get<string>('settings', 'key')) || '';
-  if (credential) void sync();
+  await put('settings', 'key', '');
+  if (initialized) {
+    void sync();
+    return;
+  }
+  initialized = true;
+  void sync();
   window.addEventListener('online', () => void sync());
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) void sync();
@@ -105,11 +97,15 @@ async function upload(h: string) {
 }
 type Operation = { id: string; kind: string; attempt?: string; data: Record<string, unknown> };
 export async function sync() {
-  if (busy || !credential) return;
+  if (busy || !authSession()) return;
   busy = true;
   syncStatus = 'Syncing';
   changed();
   try {
+    if (!(await verifySession())) {
+      syncStatus = authSession() ? 'Offline' : 'Sign in required';
+      return;
+    }
     for (const op of await all<Operation>('outbox')) {
       try {
         if (op.kind === 'attempt') {
@@ -161,8 +157,7 @@ export async function sync() {
     syncStatus = 'Up to date';
   } catch (e) {
     syncStatus = e instanceof Error ? e.message : 'Sync failed';
-    if (e instanceof HttpError && e.status === 401)
-      syncStatus = 'API key rejected — reconnect in Settings';
+    if (e instanceof HttpError && e.status === 401) syncStatus = 'Sign in required';
   } finally {
     busy = false;
     changed();
