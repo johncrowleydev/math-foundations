@@ -43,6 +43,8 @@ val generateContent by tasks.registering(Exec::class) {
     inputs.file("../../scripts/formula-context.ts")
     inputs.file("../../scripts/tex-teaching.ts")
     outputs.file("src/main/assets/notebook.json")
+    outputs.file("src/main/assets/grading-version.json")
+    outputs.file("../../output/grading-catalog.json")
     outputs.file("src/main/assets/teaching.json")
     outputs.file("src/main/assets/tex-syntax.json")
     outputs.file("src/main/assets/tex-teaching.json")

@@ -267,7 +267,10 @@ fun FocusedAnswerEditor(model: NotebookModel) {
                         ) {
                             Prompt(question, compact = true)
                         }
-                        key(draft.key) { TypedAnswerBody(model, draft, question, expanded = true) }
+                        key(draft.key) {
+                            TypedAnswerBody(model, draft, question, expanded = true)
+                            SubmissionActions(model, question)
+                        }
                     }
                 }
             }
@@ -614,12 +617,14 @@ internal fun AnswerPreview(
     source: String,
     library: TexLibrary,
     minimumHeight: androidx.compose.ui.unit.Dp = 166.dp,
+    label: String = "PREVIEW",
+    debounce: Boolean = true,
     diagnostics: (List<TexSyntax.Problem>) -> Unit,
 ) {
     var preview by remember { mutableStateOf("") }
     var errors by remember { mutableStateOf<List<String>>(emptyList()) }
     LaunchedEffect(source) {
-        delay(180)
+        if (debounce) delay(180)
         val result =
             withContext(Dispatchers.Default) {
                 val doc = TexSyntax.parse(source, library.commands)
@@ -681,7 +686,7 @@ internal fun AnswerPreview(
             Modifier.fillMaxWidth().heightIn(min = minimumHeight).padding(14.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            Text("PREVIEW", color = WorkspaceMuted, fontSize = 10.sp, letterSpacing = 1.sp)
+            Text(label, color = WorkspaceMuted, fontSize = 10.sp, letterSpacing = 1.sp)
             if (source.isBlank())
                 Text(
                     "Your formatted answer will appear here as you type.",

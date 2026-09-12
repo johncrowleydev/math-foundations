@@ -90,7 +90,10 @@ class InkCanvas(
                     background.invalidate()
                     inProgress.removeFinishedStrokes(strokes.keys)
                     strokes.keys.forEach {
-                        if (pendingStrokes.remove(it)) model.cloud.release("ink/${page.key}")
+                        if (pendingStrokes.remove(it)) {
+                            model.cloud.release("ink/${page.key}")
+                            page.activeInputs = (page.activeInputs - 1).coerceAtLeast(0)
+                        }
                     }
                 }
             }
@@ -131,6 +134,7 @@ class InkCanvas(
                             event.getToolType(index) == MotionEvent.TOOL_TYPE_ERASER ||
                             event.isButtonPressed(MotionEvent.BUTTON_STYLUS_PRIMARY)
                     model.cloud.hold("ink/${page.key}")
+                    page.activeInputs++
                     if (erasing) {
                         eraseLease = true
                         erased = emptySet()
@@ -182,8 +186,10 @@ class InkCanvas(
                         active?.let {
                             if (canceled) {
                                 inProgress.cancelStroke(it, event)
-                                if (pendingStrokes.remove(it))
+                                if (pendingStrokes.remove(it)) {
                                     model.cloud.release("ink/${page.key}")
+                                    page.activeInputs = (page.activeInputs - 1).coerceAtLeast(0)
+                                }
                             } else inProgress.finishStroke(event, pointer, it)
                         }
                     active = null
@@ -193,7 +199,10 @@ class InkCanvas(
             MotionEvent.ACTION_CANCEL -> {
                 active?.let {
                     inProgress.cancelStroke(it, event)
-                    if (pendingStrokes.remove(it)) model.cloud.release("ink/${page.key}")
+                    if (pendingStrokes.remove(it)) {
+                        model.cloud.release("ink/${page.key}")
+                        page.activeInputs = (page.activeInputs - 1).coerceAtLeast(0)
+                    }
                 }
                 endErase()
                 active = null
@@ -211,6 +220,7 @@ class InkCanvas(
     private fun endErase() {
         if (eraseLease) {
             eraseLease = false
+            page.activeInputs = (page.activeInputs - 1).coerceAtLeast(0)
             model.cloud.release("ink/${page.key}")
         }
     }
@@ -218,7 +228,10 @@ class InkCanvas(
     override fun onDetachedFromWindow() {
         active?.let {
             inProgress.cancelStroke(it)
-            if (pendingStrokes.remove(it)) model.cloud.release("ink/${page.key}")
+            if (pendingStrokes.remove(it)) {
+                model.cloud.release("ink/${page.key}")
+                page.activeInputs = (page.activeInputs - 1).coerceAtLeast(0)
+            }
         }
         active = null
         pointer = -1

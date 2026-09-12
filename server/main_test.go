@@ -23,7 +23,7 @@ func fixture(t *testing.T) *Server {
 	}
 	t.Cleanup(func() { db.Close() })
 	h := sha256.Sum256([]byte("test-key"))
-	return &Server{db, DiskMedia{root}, h[:]}
+	return &Server{db: db, media: DiskMedia{root}, tokenHash: h[:]}
 }
 func edit(id, key, text string, base int64) Mutation {
 	p, _ := json.Marshal(map[string]string{"text": text})

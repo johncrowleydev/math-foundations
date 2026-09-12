@@ -108,6 +108,10 @@ internal constructor(
             }
     }
 
+    internal var attemptStore: GradingStore? = null
+
+    private fun grading() = attemptStore ?: GradingStore.get(context)
+
     private val executor = Executors.newSingleThreadScheduledExecutor()
     private val main = Handler(Looper.getMainLooper())
     private val prefs = context.getSharedPreferences("cloud-sync", 0)
@@ -164,7 +168,7 @@ internal constructor(
     @Volatile private var foreground = false
     @Volatile private var pausedAuth = false
     private var ticks = 0
-    private var running = false
+    @Volatile private var running = false
     @Volatile internal var lastFailure: Exception? = null
     private val mediaHashes = mutableMapOf<String, Pair<String, String>>()
     private val prefListener =
@@ -269,6 +273,7 @@ internal constructor(
     }
 
     fun syncNow() {
+        if (running) return
         executor.execute {
             pausedAuth = false
             runSync()
@@ -279,7 +284,7 @@ internal constructor(
 
     private class AuthError : Exception("API key was rejected. Re-enter it in Cloud sync settings.")
 
-    private fun request(
+    internal fun request(
         method: String,
         path: String,
         bytes: ByteArray? = null,
@@ -302,14 +307,19 @@ internal constructor(
             val code = c.responseCode
             if (code == 401) throw AuthError()
             if (method == "HEAD" && code == 404) return byteArrayOf(0)
-            check(code in 200..299) { "Cloud sync returned HTTP $code. Your local work is safe." }
+            if (code !in 200..299)
+                throw CloudHttpError(
+                    code,
+                    c.errorStream?.bufferedReader()?.use { it.readText().take(1000) }
+                        ?: "Cloud request failed",
+                )
             return if (method == "HEAD") byteArrayOf(1) else c.inputStream.use { it.readBytes() }
         } finally {
             c.disconnect()
         }
     }
 
-    private fun mediaTransfer(id: String, source: File? = null): File {
+    internal fun mediaTransfer(id: String, source: File? = null): File {
         require(id.matches(Regex("[a-f0-9]{64}")))
         val cache = File(context.filesDir, "cloud-media/$id")
         if (source == null && cache.exists()) return cache
@@ -570,6 +580,16 @@ internal constructor(
     }
 
     private fun downloadPhotos(record: JSONObject) {
+        if (record.getString("key").startsWith("attempt/")) {
+            val payload = record.getJSONObject("payload")
+            val images = payload.optJSONArray("images") ?: JSONArray()
+            for (i in 0 until images.length()) mediaTransfer(images.getString(i))
+            val originals = payload.optJSONArray("photos") ?: JSONArray()
+            for (i in 0 until originals.length()) mediaTransfer(
+                originals.getJSONObject(i).getString("hash")
+            )
+            return
+        }
         if (!record.getString("key").startsWith("photos/")) return
         val versions = record.getJSONArray("versions")
         for (i in 0 until versions.length()) photos(
@@ -600,6 +620,7 @@ internal constructor(
         if (!force && kind in listOf("text", "ink", "photos") && (leases[key] ?: 0) > 0)
             return false
         when (kind) {
+            "attempt" -> grading().receive(payload)
             "text",
             "photos" -> {
                 val f = File(context.filesDir, "answers/$id.json")
@@ -775,6 +796,26 @@ internal constructor(
         try {
             // Reconcile even if a process died between a local save and its journal notification.
             scan()
+            if (testKey == null || attemptStore != null) {
+                grading().sync(this)
+                states()
+                    .filter { it.first.startsWith("attempt/") }
+                    .forEach { (_, s) ->
+                        if (s.optString("record").isNotBlank()) {
+                            val r = JSONObject(s.getString("record"))
+                            if (
+                                !File(
+                                        context.filesDir,
+                                        "attempts/received/${r.getJSONObject("payload").getString("id")}.json",
+                                    )
+                                    .exists()
+                            ) {
+                                downloadPhotos(r)
+                                grading().receive(r.getJSONObject("payload"))
+                            }
+                        }
+                    }
+            }
             states().forEach { (_, s) ->
                 val p = s.optString("pending")
                 if (p.isNotEmpty()) {
@@ -874,3 +915,5 @@ class CloudWorker(context: Context, params: WorkerParameters) : Worker(context, 
             Result.retry()
         }
 }
+
+internal class CloudHttpError(val code: Int, message: String) : java.io.IOException(message)

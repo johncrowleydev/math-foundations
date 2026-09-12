@@ -83,6 +83,7 @@ type Server struct {
 	db        *sql.DB
 	media     MediaStore
 	tokenHash []byte
+	grading   *Grading
 }
 
 func openDB(path string) (*sql.DB, error) {
@@ -97,6 +98,9 @@ func openDB(path string) (*sql.DB, error) {
  CREATE INDEX IF NOT EXISTS version_keys ON versions(key);
  CREATE TABLE IF NOT EXISTS changes(seq INTEGER PRIMARY KEY AUTOINCREMENT,key TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS operations(id TEXT PRIMARY KEY, request TEXT NOT NULL, response TEXT NOT NULL);`)
+	if e == nil {
+		e = gradingSchema(db)
+	}
 	return db, e
 }
 
@@ -214,8 +218,14 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 }
 func (s *Server) handler() http.Handler {
 	mux := http.NewServeMux()
+	s.gradingRoutes(mux)
 	mux.HandleFunc("GET /api/v1/status", func(w http.ResponseWriter, r *http.Request) {
-		writeJSON(w, 200, map[string]any{"api": 1, "status": "ok"})
+		status := map[string]any{"api": 1, "status": "ok", "grading": s.grading != nil}
+		if s.grading != nil {
+			status["model"] = gradingModel
+			status["contentVersion"] = s.grading.catalog.Version
+		}
+		writeJSON(w, 200, status)
 	})
 	mux.HandleFunc("POST /api/v1/mutations", func(w http.ResponseWriter, r *http.Request) {
 		var m Mutation
@@ -376,9 +386,17 @@ func main() {
 	if addr == "" {
 		addr = "127.0.0.1:18084"
 	}
-	server := &http.Server{Addr: addr, Handler: (&Server{db, DiskMedia{filepath.Join(root, "media")}, h}).handler(), ReadHeaderTimeout: 10 * time.Second, ReadTimeout: 120 * time.Second, WriteTimeout: 120 * time.Second, IdleTimeout: 60 * time.Second}
+	api := &Server{db: db, media: DiskMedia{filepath.Join(root, "media")}, tokenHash: h}
+	api.grading, e = configureGrading(api)
+	if e != nil {
+		log.Fatal(e)
+	}
+	server := &http.Server{Addr: addr, Handler: api.handler(), ReadHeaderTimeout: 10 * time.Second, ReadTimeout: 120 * time.Second, WriteTimeout: 120 * time.Second, IdleTimeout: 60 * time.Second}
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
+	if api.grading != nil {
+		go api.grading.run(ctx)
+	}
 	go func() {
 		<-ctx.Done()
 		c, cancel := context.WithTimeout(context.Background(), 10*time.Second)

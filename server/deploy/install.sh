@@ -9,6 +9,7 @@ install -d -o foundations -g foundations -m 700 /var/lib/math-foundations
 install -d -m 700 /etc/math-foundations
 install -d -m 755 "/opt/math-foundations/releases/$release" /var/www/foundations
 install -m 755 foundations-server backup.sh rotate-key.sh "/opt/math-foundations/releases/$release/"
+install -m 644 grading-catalog.json "/opt/math-foundations/releases/$release/"
 ln -sfn "/opt/math-foundations/releases/$release" /opt/math-foundations/current
 if [[ ! -f /etc/math-foundations/server.env ]]; then install -m 600 server.env /etc/math-foundations/server.env; fi
 install -m 644 foundations.service foundations-backup.service foundations-backup.timer /etc/systemd/system/

@@ -2,6 +2,7 @@ import { mathOccurrences, validateFormulaContexts, type FormulaSource } from './
 import { loadTeaching, teachingBlocks, linkTeachingTerms } from './teaching.js';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { loadContent } from './content.js';
+import { createHash } from 'node:crypto';
 import { placeNotebookExercises } from './notebook-placements.js';
 import { adaptNotebookQuestion, validateNotebookAdaptations } from './notebook-exercises.js';
 import { adaptInlineQuestion, validateInlinePrerequisites } from './inline-prerequisites.js';
@@ -160,3 +161,44 @@ console.log(
 await writeFile(`${dir}/tex-syntax.json`, await readFile('content/tex-syntax.json'));
 
 await writeFile(`${dir}/tex-teaching.json`, await readFile('content/tex-teaching.json'));
+
+// The grader sees precisely the adapted questions shipped in the app, not worksheet originals.
+const gradingVersion = createHash('sha256').update(JSON.stringify(lessons)).digest('hex');
+const gradingExercises = Object.fromEntries(
+  lessons.flatMap((lesson) =>
+    lesson.questions.map((q) => {
+      const placement = lesson.sections.findIndex((s) => s.questionIds.includes(q.id));
+      const preceding = placement < 0 ? lesson.sections : lesson.sections.slice(0, placement + 1);
+      const blocks = [...(lesson.introBlocks || []), ...preceding.flatMap((s) => s.blocks)];
+      const figureIds = new Set(blocks.filter((b) => b.kind === 'figure').map((b) => b.figureId));
+      const referenced = JSON.stringify({ q, blocks });
+      const referenceIds = new Set([...referenced.matchAll(/ref:([a-z0-9-]+)/g)].map((m) => m[1]));
+      return [
+        `${lesson.slug}-${q.id}`,
+        {
+          lesson: lesson.title,
+          question: {
+            instructions: q.instructions,
+            prompt: q.prompt,
+            math: q.math,
+            officialAnswer: q.answer,
+            table: q.table,
+          },
+          introduction: lesson.intro,
+          teaching: preceding.map((s) => ({
+            title: s.title,
+            markdown: s.markdown,
+            blocks: s.blocks,
+          })),
+          figures: teaching.figures.filter((f) => figureIds.has(f.id)),
+          definitions: teaching.references.filter((r) => referenceIds.has(r.id)),
+        },
+      ];
+    }),
+  ),
+);
+await writeFile(
+  'output/grading-catalog.json',
+  JSON.stringify({ version: gradingVersion, exercises: gradingExercises }),
+);
+await writeFile(`${dir}/grading-version.json`, JSON.stringify({ version: gradingVersion }));

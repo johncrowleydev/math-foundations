@@ -86,7 +86,8 @@ class AnswerDraft(val key: String, private val store: AnswerStore, typing: Boole
 data class AnswerPhoto(val id: String, val rotation: Int = 0)
 
 class AnswerStore(context: Context, private val cloud: CloudSync = CloudSync.get(context)) {
-    private val root = File(context.filesDir, "answers")
+    private val root = File(context.filesDir, "draft-answers")
+    private val legacy = File(context.filesDir, "answers")
     private val worker = Executors.newSingleThreadExecutor()
     private val main = android.os.Handler(android.os.Looper.getMainLooper())
     private val drafts = mutableStateMapOf<String, AnswerDraft>()
@@ -118,13 +119,43 @@ class AnswerStore(context: Context, private val cloud: CloudSync = CloudSync.get
         drafts[key]?.let { draft ->
             // Called synchronously with cloud projection on the UI thread. Only this field
             // changes; a remote photo never resets a typed draft, local mode, or cursor.
-            synchronized(NotebookDisk.lock) { draft.restore(read(key), field) }
+            synchronized(NotebookDisk.lock) {
+                val current = read(key)
+                val touched = current.optJSONArray("draftFields")
+                if (
+                    touched != null &&
+                        (0 until touched.length()).any { touched.getString(it) == field }
+                )
+                    return@let
+                val oldFile = File(legacy, "$key.json")
+                if (oldFile.exists()) {
+                    val old =
+                        JSONObject(
+                            AtomicFile(oldFile).openRead().bufferedReader().use { it.readText() }
+                        )
+                    draft.restore(old, field)
+                    if (file(key).exists() && old.has(field)) {
+                        current.put(field, old.get(field))
+                        val target = AtomicFile(file(key))
+                        val stream = target.startWrite()
+                        try {
+                            stream.write(current.toString().toByteArray(Charsets.UTF_8))
+                            target.finishWrite(stream)
+                        } catch (e: Exception) {
+                            target.failWrite(stream)
+                            throw e
+                        }
+                    }
+                }
+            }
         }
     }
 
     private fun read(key: String): JSONObject =
         try {
-            AtomicFile(file(key)).openRead().bufferedReader().use { JSONObject(it.readText()) }
+            AtomicFile(sourceFile(key)).openRead().bufferedReader().use {
+                JSONObject(it.readText())
+            }
         } catch (e: java.io.FileNotFoundException) {
             if (file(key).exists() || File(file(key).path + ".bak").exists()) throw e
             JSONObject().put("version", 1)
@@ -132,6 +163,12 @@ class AnswerStore(context: Context, private val cloud: CloudSync = CloudSync.get
 
     internal fun retry(draft: AnswerDraft) {
         dirty.keys.filter { it.first == draft.key }.map { it.second }.forEach { save(draft, it) }
+    }
+
+    private fun sourceFile(key: String): File {
+        val draft = file(key)
+        return if (draft.exists() || File(draft.path + ".bak").exists()) draft
+        else File(legacy, "$key.json")
     }
 
     private fun file(key: String): File {
@@ -146,7 +183,7 @@ class AnswerStore(context: Context, private val cloud: CloudSync = CloudSync.get
         cloud.hold("photos/${draft.key}")
         worker.execute {
             try {
-                val f = AtomicFile(file(draft.key))
+                val f = AtomicFile(sourceFile(draft.key))
                 val json =
                     synchronized(NotebookDisk.lock) {
                         try {
@@ -205,6 +242,10 @@ class AnswerStore(context: Context, private val cloud: CloudSync = CloudSync.get
                             // Merge only the edited field into the latest file. A mode change or
                             // photo attachment must never write an obsolete text snapshot back.
                             val json = read(draft.key).put(field, value)
+                            val fields = json.optJSONArray("draftFields") ?: JSONArray()
+                            if ((0 until fields.length()).none { fields.getString(it) == field })
+                                fields.put(field)
+                            json.put("draftFields", fields)
                             val target = AtomicFile(file(draft.key))
                             val stream = target.startWrite()
                             try {

@@ -9,6 +9,7 @@ Group=foundations
 WorkingDirectory=/var/lib/math-foundations
 Environment=FOUNDATIONS_DATA=/var/lib/math-foundations
 Environment=FOUNDATIONS_ADDR=127.0.0.1:18084
+Environment=FOUNDATIONS_CATALOG=/opt/math-foundations/current/grading-catalog.json
 EnvironmentFile=/etc/math-foundations/server.env
 ExecStart=/opt/math-foundations/current/foundations-server
 Restart=on-failure

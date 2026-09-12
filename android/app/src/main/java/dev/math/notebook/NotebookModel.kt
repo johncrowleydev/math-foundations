@@ -66,6 +66,7 @@ fun <T> JSONArray.mapItems(block: (Int) -> T): List<T> = (0 until length()).map(
 
 class NotebookModel(app: Application) : AndroidViewModel(app) {
     val cloud = CloudSync.get(app)
+    val grading = GradingStore.get(app)
     val input = InputPreferences(app)
     val answers = AnswerStore(app)
     val tex = TexLibrary(app)
@@ -174,13 +175,16 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
         when (key.substringBefore('/')) {
             "text" -> editorStates.remove(key.substringAfter('/'))
             "ink" ->
-                pages[key.substringAfter('/')]?.let { page ->
-                    val result =
-                        InkFiles.read(
-                            File(getApplication<Application>().filesDir, "ink/${page.key}.json")
-                        )
-                    page.restore(result.first, result.second)
-                }
+                pages[key.substringAfter('/')]
+                    ?.takeIf { !prefs.getBoolean("draft-ink-edited:${it.key}", false) }
+                    ?.let { page ->
+                        val result = InkFiles.read(draftInkFile(page.key, reading = true))
+                        page.restore(result.first, result.second)
+                        // Keep a migrated blank recovery file from masking newly received legacy
+                        // ink on restart.
+                        val draft = draftInkFile(page.key)
+                        if (draft.exists()) InkFiles.write(draft, result.first, result.second)
+                    }
             "preference" -> texTeaching.refresh()
         }
     }
@@ -359,6 +363,13 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     fun page(key: String): InkPage =
         pages.getOrPut(key) { InkPage(key) { page -> save(page) }.also(::load) }
 
+    private fun draftInkFile(key: String, reading: Boolean = false): File {
+        val draft = File(getApplication<Application>().filesDir, "draft-ink/$key.json")
+        return if (reading && !draft.exists() && !File(draft.path + ".bak").exists())
+            File(getApplication<Application>().filesDir, "ink/$key.json")
+        else draft
+    }
+
     private fun load(page: InkPage) {
         page.error = null
         val revision = page.revision
@@ -367,9 +378,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
             try {
                 val result =
                     withContext(Dispatchers.IO) {
-                        InkFiles.read(
-                            File(getApplication<Application>().filesDir, "ink/${page.key}.json")
-                        )
+                        InkFiles.read(draftInkFile(page.key, reading = true))
                     }
                 if (revision == page.revision) {
                     page.strokes = result.first
@@ -390,6 +399,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     private val main = android.os.Handler(android.os.Looper.getMainLooper())
 
     private fun save(page: InkPage) {
+        if (page.userEdited) prefs.edit().putBoolean("draft-ink-edited:${page.key}", true).apply()
         val strokes = page.strokes.toList()
         val height = page.height
         val revision = ++page.revision
@@ -401,11 +411,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
         writer.execute {
             try {
                 synchronized(NotebookDisk.lock) {
-                    InkFiles.write(
-                        File(getApplication<Application>().filesDir, "ink/${page.key}.json"),
-                        strokes,
-                        height,
-                    )
+                    InkFiles.write(draftInkFile(page.key), strokes, height)
                 }
                 cloud.changed()
                 main.post {
@@ -449,6 +455,8 @@ class InkPage(val key: String, private val persist: (InkPage) -> Unit) {
     var error by mutableStateOf<String?>(null)
     var revision = 0
     internal var dirty = false
+    internal var userEdited = false
+    var activeInputs by mutableIntStateOf(0)
 
     internal fun restore(value: List<Stroke>, paperHeight: Float) {
         strokes = value
@@ -470,6 +478,7 @@ class InkPage(val key: String, private val persist: (InkPage) -> Unit) {
 
     fun replace(next: List<Stroke>) {
         if (loading || next == strokes) return
+        userEdited = true
         undo.add(strokes)
         if (undo.size > 60) undo.removeAt(0)
         redo.clear()
@@ -479,6 +488,7 @@ class InkPage(val key: String, private val persist: (InkPage) -> Unit) {
 
     fun undo() {
         if (canUndo) {
+            userEdited = true
             redo.add(strokes)
             strokes = undo.removeAt(undo.lastIndex)
             persist(this)
@@ -487,6 +497,7 @@ class InkPage(val key: String, private val persist: (InkPage) -> Unit) {
 
     fun redo() {
         if (canRedo) {
+            userEdited = true
             undo.add(strokes)
             strokes = redo.removeAt(redo.lastIndex)
             persist(this)

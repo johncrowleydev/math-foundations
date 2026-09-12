@@ -23,6 +23,7 @@ jobs:
           go test -race ./...
           go build -o "$RUNNER_TEMP/foundations-test" .
           echo "CLOUD_TEST_SERVER=$RUNNER_TEMP/foundations-test" >> "$GITHUB_ENV"
+          echo "CLOUD_TEST_CATALOG=$GITHUB_WORKSPACE/output/grading-catalog.json" >> "$GITHUB_ENV"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

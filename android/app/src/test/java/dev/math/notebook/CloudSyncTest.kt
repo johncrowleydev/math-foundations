@@ -41,6 +41,8 @@ class CloudSyncTest {
         }
     }
 
+    private lateinit var provider: ServerSocket
+    private val gradingStores = mutableListOf<GradingStore>()
     private lateinit var process: Process
     private lateinit var endpoint: String
     private val clients = mutableListOf<CloudSync>()
@@ -67,6 +69,62 @@ class CloudSyncTest {
             binary != null,
         )
         root = kotlin.io.path.createTempDirectory("cloud-contract").toFile()
+        provider = ServerSocket(0)
+        Thread {
+                while (!provider.isClosed) {
+                    try {
+                        provider.accept().use { socket ->
+                            val input = socket.getInputStream().buffered()
+                            val header = StringBuilder()
+                            while (!header.endsWith("\r\n\r\n")) {
+                                val v = input.read()
+                                if (v < 0) break
+                                header.append(v.toChar())
+                            }
+                            val length =
+                                Regex("Content-Length: ([0-9]+)", RegexOption.IGNORE_CASE)
+                                    .find(header)
+                                    ?.groupValues
+                                    ?.get(1)
+                                    ?.toInt() ?: 0
+                            input.readNBytes(length)
+                            val body =
+                                JSONObject()
+                                    .put("model", "z-ai/glm-5.3-flash")
+                                    .put(
+                                        "choices",
+                                        org.json
+                                            .JSONArray()
+                                            .put(
+                                                JSONObject()
+                                                    .put(
+                                                        "message",
+                                                        JSONObject()
+                                                            .put(
+                                                                "content",
+                                                                """{"verdict":"correct","feedback":"Synthetic fixture accepted.","issue":"","improvement":"","transcription":""}""",
+                                                            ),
+                                                    )
+                                            ),
+                                    )
+                                    .toString()
+                                    .toByteArray()
+                            socket.getOutputStream().apply {
+                                write(
+                                    "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: ${body.size}\r\nConnection: close\r\n\r\n"
+                                        .toByteArray()
+                                )
+                                write(body)
+                                flush()
+                            }
+                        }
+                    } catch (_: java.io.IOException) {}
+                }
+            }
+            .apply {
+                isDaemon = true
+                start()
+            }
         val port = ServerSocket(0).use { it.localPort }
         endpoint = "http://127.0.0.1:$port"
         process =
@@ -74,6 +132,12 @@ class CloudSyncTest {
                 .apply {
                     environment()["FOUNDATIONS_DATA"] = File(root, "server").path
                     environment()["FOUNDATIONS_ADDR"] = "127.0.0.1:$port"
+                    System.getenv("CLOUD_TEST_CATALOG")?.let {
+                        environment()["FOUNDATIONS_CATALOG"] = it
+                    }
+                    environment()["OPENROUTER_API_KEY"] = "synthetic-key"
+                    environment()["FOUNDATIONS_GRADING_URL"] =
+                        "http://127.0.0.1:${provider.localPort}/"
                     environment()["FOUNDATIONS_KEY_HASH"] = CloudSync.hash(token.toByteArray())
                     redirectErrorStream(true)
                     redirectOutput(File(root, "server.log"))
@@ -102,6 +166,8 @@ class CloudSyncTest {
     @After
     fun stop() {
         stores.forEach { it.close() }
+        gradingStores.forEach { it.closeForTest() }
+        if (::provider.isInitialized) provider.close()
         org.robolectric.Shadows.shadowOf(android.os.Looper.getMainLooper()).idle()
         clients.forEach { it.closeForTest() }
         if (::process.isInitialized) {
@@ -395,7 +461,7 @@ class CloudSyncTest {
     }
 
     @Test
-    fun cachedVisibleAnswersRefreshAndModeChangesCannotOverwriteRemoteTextOrPhotos() {
+    fun legacyAnswersImportButNewRecoveryDraftsNeverSync() {
         val tablet = device("cached-tablet")
         val phone = device("cached-phone")
         answer(tablet, "", "write")
@@ -442,7 +508,12 @@ class CloudSyncTest {
         a.release("ink/logic-1")
         sync(a)
         sync(b)
-        assertEquals("Tablet final", text(phone))
+        assertEquals("Phone explanation", text(phone))
+        assertEquals(
+            "Tablet final",
+            JSONObject(File(tablet.filesDir, "draft-answers/logic-1.json").readText())
+                .getString("text"),
+        )
         assertEquals(
             "remote",
             JSONObject(File(tablet.filesDir, "answers/logic-1.json").readText())
@@ -479,5 +550,78 @@ class CloudSyncTest {
         assertEquals("New explanation", draft.text)
         assertEquals("New explanation", text(tablet))
         assertEquals(0, a.incomingCount)
+    }
+
+    @Test
+    fun submittedAttemptsAndGradesSyncWhileUnsubmittedDraftsStayLocal() {
+        Assume.assumeTrue(System.getenv("CLOUD_TEST_CATALOG") != null)
+        val tablet = device("attempt-tablet")
+        val phone = device("attempt-phone")
+        val a = client(tablet)
+        val b = client(phone)
+        val ga =
+            GradingStore(tablet).also {
+                gradingStores.add(it)
+                a.attemptStore = it
+            }
+        val gb =
+            GradingStore(phone).also {
+                gradingStores.add(it)
+                b.attemptStore = it
+            }
+        drainUntil { !ga.loading && !gb.loading }
+        val key = "propositional-logic-1"
+        val local = AnswerStore(tablet, a).also { stores.add(it) }.draft(key, true)
+        drainUntil { !local.loading }
+        local.edit("Do not upload this recovery draft.")
+        drainUntil { !local.saving }
+        sync(a)
+        sync(b)
+        assertFalse(File(phone.filesDir, "answers/$key.json").exists())
+        assertNull(a.versions("text/$key"))
+        val id = UUID.randomUUID().toString()
+        val payload =
+            JSONObject()
+                .put("id", id)
+                .put("exercise", key)
+                .put("submitted", System.currentTimeMillis())
+                .put("contentVersion", ga.contentVersion)
+                .put("mode", "type")
+                .put("text", "A submitted synthetic response.")
+                .put("images", org.json.JSONArray())
+                .put("revealed", false)
+        File(tablet.filesDir, "attempts/outbox/$id.json").apply {
+            parentFile!!.mkdirs()
+            writeText(payload.toString())
+        }
+        sync(a)
+        sync(b)
+        drainUntil { gb.forExercise(key).isNotEmpty() }
+        assertEquals(payload.getString("text"), gb.forExercise(key).single().getString("text"))
+        assertFalse(File(tablet.filesDir, "attempts/outbox/$id.json").exists())
+        val deadline = System.currentTimeMillis() + 8000
+        while (!gb.correct(key) && System.currentTimeMillis() < deadline) {
+            Thread.sleep(250)
+            sync(b)
+        }
+        assertTrue("Server grade did not arrive", gb.correct(key))
+        sync(a)
+        assertTrue(ga.correct(key))
+        val rejected =
+            JSONObject(payload.toString())
+                .put("id", UUID.randomUUID().toString())
+                .put("text", "Offline work submitted after completion")
+        File(phone.filesDir, "attempts/outbox/${rejected.getString("id")}.json").apply {
+            parentFile!!.mkdirs()
+            writeText(rejected.toString())
+        }
+        sync(b)
+        assertEquals(1, gb.forExercise(key).size)
+        assertTrue(
+            File(phone.filesDir, "attempts/rejected/$key.json")
+                .readText()
+                .contains("Offline work submitted after completion")
+        )
+        assertEquals("Do not upload this recovery draft.", local.text)
     }
 }

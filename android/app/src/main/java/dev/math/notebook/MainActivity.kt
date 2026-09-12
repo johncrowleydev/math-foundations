@@ -191,6 +191,22 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
+    LaunchedEffect(
+        model.grading.attempts.any {
+            it.optString("status") in setOf("queued", "pending", "grading", "rechecking")
+        },
+        model.cloud.connected,
+    ) {
+        while (
+            model.cloud.connected &&
+                model.grading.attempts.any {
+                    it.optString("status") in setOf("queued", "pending", "grading", "rechecking")
+                }
+        ) {
+            kotlinx.coroutines.delay(5000)
+            model.cloud.syncNow()
+        }
+    }
     var settingsOpen by rememberSaveable { mutableStateOf(false) }
     val controller = model.references
     DisposableEffect(model.input) {
@@ -883,7 +899,7 @@ private fun QuestionCard(model: NotebookModel, q: Question, onFocus: (Int) -> Un
     val page = remember(q.id, model.lesson.slug) { model.page("${model.lesson.slug}-${q.id}") }
     Column(
         Modifier.fillMaxWidth()
-            .border(1.dp, Line, RoundedCornerShape(6.dp))
+            .border(1.dp, attemptBorder(model, q), RoundedCornerShape(6.dp))
             .clip(RoundedCornerShape(6.dp))
             .background(Paper)
     ) {
@@ -894,8 +910,8 @@ private fun QuestionCard(model: NotebookModel, q: Question, onFocus: (Int) -> Un
             color = Muted,
         )
         Column(Modifier.padding(horizontal = 16.dp, vertical = 4.dp)) { Prompt(q, compact = true) }
-        ExerciseInput(model, q)
-        Answer(q, Modifier.padding(start = 10.dp, end = 16.dp, bottom = 6.dp))
+        GradedExerciseInput(model, q)
+        Answer(model, q, Modifier.padding(start = 10.dp, end = 16.dp, bottom = 6.dp))
     }
 }
 
@@ -1028,11 +1044,14 @@ internal fun InkActions(page: InkPage) {
 }
 
 @Composable
-private fun Answer(q: Question, modifier: Modifier = Modifier) {
+private fun Answer(model: NotebookModel, q: Question, modifier: Modifier = Modifier) {
     var revealed by rememberSaveable(q.id) { mutableStateOf(false) }
     Column(modifier) {
         TextButton(
-            onClick = { revealed = !revealed },
+            onClick = {
+                revealed = !revealed
+                if (revealed) model.grading.revealed("${model.lesson.slug}-${q.id}")
+            },
             contentPadding = PaddingValues(horizontal = 6.dp, vertical = 2.dp),
         ) {
             Icon(
@@ -1111,7 +1130,7 @@ private fun Practice(
                             Modifier.fillMaxWidth()
                                 .clip(RoundedCornerShape(6.dp))
                                 .background(Paper)
-                                .border(1.dp, Line, RoundedCornerShape(6.dp))
+                                .border(1.dp, attemptBorder(model, q), RoundedCornerShape(6.dp))
                         ) {
                             Text(
                                 "Exercise ${q.id}",
@@ -1122,9 +1141,13 @@ private fun Practice(
                             Column(Modifier.padding(horizontal = 16.dp, vertical = 4.dp)) {
                                 Prompt(q, compact = true)
                             }
-                            ExerciseInput(model, q, minimumHeight = if (compact) 200.dp else 260.dp)
+                            GradedExerciseInput(
+                                model,
+                                q,
+                                minimumHeight = if (compact) 200.dp else 260.dp,
+                            )
                             Column(Modifier.padding(start = 10.dp, end = 16.dp, bottom = 6.dp)) {
-                                Answer(q)
+                                Answer(model, q)
                             }
                         }
                     }
