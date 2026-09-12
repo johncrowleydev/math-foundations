@@ -13,6 +13,49 @@ class CloudUiTest {
     @get:Rule val rule = createAndroidComposeRule<MainActivity>()
 
     @Test
+    fun apiKeyFocusTypingAndRotationKeepSettingsOpen() {
+        val model = ViewModelProvider(rule.activity)[NotebookModel::class.java]
+        rule.runOnIdle {
+            model.mode(false)
+            model.references.close()
+            rule.activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
+        rule.waitUntil(10000) { rule.activity.resources.configuration.orientation == 1 }
+        rule.onNodeWithTag("input-settings").performClick()
+        rule.onNodeWithTag("cloud-api-key").performClick()
+        rule.waitUntil(10000) {
+            androidx.core.view.ViewCompat.getRootWindowInsets(rule.activity.window.decorView)
+                ?.isVisible(androidx.core.view.WindowInsetsCompat.Type.ime()) == true
+        }
+        rule.onNodeWithTag("settings-dialog").assertIsDisplayed()
+        rule.onNodeWithTag("cloud-api-key").assertIsFocused().performTextInput("1234abcd")
+        rule.onNodeWithText("Connect", substring = false).performScrollTo().assertIsEnabled()
+        rule.runOnIdle {
+            rule.activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        }
+        rule.waitUntil(10000) { rule.activity.resources.configuration.orientation == 2 }
+        rule.onNodeWithTag("settings-dialog").assertIsDisplayed()
+        rule.onNodeWithText("Connect", substring = false).performScrollTo().assertIsEnabled()
+        rule
+            .onNodeWithTag("cloud-api-key")
+            .performScrollTo()
+            .performClick()
+            .performTextInput("5678")
+        rule.mainClock.advanceTimeBy(500)
+        android.os.SystemClock.sleep(500)
+        rule.waitForIdle()
+        val image = InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot()
+        val file = File(rule.activity.getExternalFilesDir(null), "cloud/settings-keyboard.png")
+        file.parentFile!!.mkdirs()
+        file.outputStream().use {
+            image.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it)
+        }
+        image.recycle()
+        rule.onNodeWithText("Done", substring = false).performClick()
+        rule.onNodeWithTag("settings-dialog").assertDoesNotExist()
+    }
+
+    @Test
     fun settingsStayCompactAndScrollingStillWorks() {
         val model = ViewModelProvider(rule.activity)[NotebookModel::class.java]
         for ((orientation, name) in

@@ -164,84 +164,86 @@ fun ScrollPreference(input: InputPreferences, lessonScrolling: Boolean = true) {
 }
 
 @Composable
-fun InputSettingsButton(input: InputPreferences) {
-    var open by remember { mutableStateOf(false) }
-    TextButton(onClick = { open = true }, modifier = Modifier.testTag("input-settings")) {
+fun InputSettingsButton(onClick: () -> Unit) {
+    TextButton(onClick = onClick, modifier = Modifier.testTag("input-settings")) {
         Text("Settings")
     }
-    if (open)
-        AlertDialog(
-            onDismissRequest = { open = false },
-            title = { Text("Settings") },
-            text = {
-                Column(Modifier.verticalScroll(rememberScrollState())) {
-                    CloudSettings()
-                    Text("Lesson scrolling", style = MaterialTheme.typography.titleSmall)
-                    Row(
-                        Modifier.fillMaxWidth()
-                            .heightIn(min = 36.dp)
-                            .toggleable(
-                                input.twoFinger,
-                                role = Role.Checkbox,
-                                onValueChange = { input.toggleScroll() },
-                            ),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Checkbox(input.twoFinger, null)
-                        Spacer(Modifier.width(8.dp))
-                        Text("Require two fingers")
-                    }
-                    HorizontalDivider(Modifier.padding(vertical = 6.dp))
-                    Text("Pen tools", style = MaterialTheme.typography.titleSmall)
-                    listOf(
-                            "auto" to "Automatic",
-                            "show" to "Show pen tools",
-                            "hide" to "Hide pen tools",
-                        )
-                        .forEach { (key, label) ->
-                            Row(
-                                Modifier.fillMaxWidth()
-                                    .heightIn(min = 36.dp)
-                                    .selectable(
-                                        input.penOverride == key,
-                                        role = Role.RadioButton,
-                                        onClick = { input.pen(key) },
-                                    ),
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-                                RadioButton(input.penOverride == key, null)
-                                Spacer(Modifier.width(8.dp))
-                                Text(label)
-                            }
-                        }
-                    Text(
-                        if (input.detected) "Stylus input detected"
-                        else "No stylus currently detected",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = WorkspaceMuted,
-                    )
-                    Row(
-                        Modifier.fillMaxWidth()
-                            .heightIn(min = 36.dp)
-                            .padding(top = 6.dp)
-                            .toggleable(
-                                input.preferTyping,
-                                role = Role.Checkbox,
-                                onValueChange = { input.typing(it) },
-                            ),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Checkbox(input.preferTyping, null)
-                        Spacer(Modifier.width(8.dp))
-                        Text("Prefer typed answers")
-                    }
-                    Text(
-                        "Existing answers keep their selected mode. Hiding pen tools never removes your handwriting.",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = WorkspaceMuted,
-                    )
+}
+
+@Composable
+fun InputSettingsDialog(input: InputPreferences, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        modifier = Modifier.testTag("settings-dialog"),
+        title = { Text("Settings") },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                CloudSettings()
+                Text("Lesson scrolling", style = MaterialTheme.typography.titleSmall)
+                Row(
+                    Modifier.fillMaxWidth()
+                        .heightIn(min = 36.dp)
+                        .toggleable(
+                            input.twoFinger,
+                            role = Role.Checkbox,
+                            onValueChange = { input.toggleScroll() },
+                        ),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Checkbox(input.twoFinger, null)
+                    Spacer(Modifier.width(8.dp))
+                    Text("Require two fingers")
                 }
-            },
-            confirmButton = { TextButton(onClick = { open = false }) { Text("Done") } },
-        )
+                HorizontalDivider(Modifier.padding(vertical = 6.dp))
+                Text("Pen tools", style = MaterialTheme.typography.titleSmall)
+                listOf(
+                        "auto" to "Automatic",
+                        "show" to "Show pen tools",
+                        "hide" to "Hide pen tools",
+                    )
+                    .forEach { (key, label) ->
+                        Row(
+                            Modifier.fillMaxWidth()
+                                .heightIn(min = 36.dp)
+                                .selectable(
+                                    input.penOverride == key,
+                                    role = Role.RadioButton,
+                                    onClick = { input.pen(key) },
+                                ),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            RadioButton(input.penOverride == key, null)
+                            Spacer(Modifier.width(8.dp))
+                            Text(label)
+                        }
+                    }
+                Text(
+                    if (input.detected) "Stylus input detected" else "No stylus currently detected",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = WorkspaceMuted,
+                )
+                Row(
+                    Modifier.fillMaxWidth()
+                        .heightIn(min = 36.dp)
+                        .padding(top = 6.dp)
+                        .toggleable(
+                            input.preferTyping,
+                            role = Role.Checkbox,
+                            onValueChange = { input.typing(it) },
+                        ),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Checkbox(input.preferTyping, null)
+                    Spacer(Modifier.width(8.dp))
+                    Text("Prefer typed answers")
+                }
+                Text(
+                    "Existing answers keep their selected mode. Hiding pen tools never removes your handwriting.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = WorkspaceMuted,
+                )
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text("Done") } },
+    )
 }

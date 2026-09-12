@@ -2,13 +2,17 @@ package dev.math.notebook
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -24,8 +28,8 @@ import org.json.JSONObject
 @Composable
 internal fun CloudSettings() {
     val cloud = CloudSync.get(LocalContext.current)
-    var key by remember { mutableStateOf("") }
-    var editing by remember { mutableStateOf(!cloud.connected) }
+    var key by rememberSaveable { mutableStateOf("") }
+    var editing by rememberSaveable { mutableStateOf(!cloud.connected) }
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Text("Cloud sync", style = MaterialTheme.typography.titleSmall)
         Text(
@@ -56,8 +60,13 @@ internal fun CloudSettings() {
                 { key = it.trim() },
                 label = { Text("API key") },
                 visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions =
+                    KeyboardOptions(
+                        keyboardType = KeyboardType.Password,
+                        autoCorrectEnabled = false,
+                    ),
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("cloud-api-key"),
                 supportingText = {
                     Text("Enter the same key on each device. Your existing work stays here.")
                 },

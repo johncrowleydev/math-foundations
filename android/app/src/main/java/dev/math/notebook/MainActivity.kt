@@ -191,6 +191,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
+    var settingsOpen by rememberSaveable { mutableStateOf(false) }
     val controller = model.references
     DisposableEffect(model.input) {
         model.input.start()
@@ -210,7 +211,9 @@ private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
         Row(Modifier.fillMaxSize().imePadding()) {
             if (controller.standalone) ReferencePanel(model, controller, Modifier.fillMaxSize())
             else {
-                Box(Modifier.weight(1f)) { NotebookLayout(model, showUpdates) }
+                Box(Modifier.weight(1f)) {
+                    NotebookLayout(model, showUpdates) { settingsOpen = true }
+                }
                 if (controller.full && !portrait)
                     ReferencePanel(model, controller, Modifier.width(420.dp).fillMaxHeight())
             }
@@ -230,11 +233,13 @@ private fun Notebook(model: NotebookModel, showUpdates: Int = 0) {
             }
         } else if (!controller.full && controller.target != null) QuickReference(model, controller)
         FocusedAnswerEditor(model)
+        // This must outlive navigation bars hidden or replaced when the IME opens.
+        if (settingsOpen) InputSettingsDialog(model.input) { settingsOpen = false }
     }
 }
 
 @Composable
-private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
+private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0, openSettings: () -> Unit) {
     var focusId by rememberSaveable { mutableStateOf<Int?>(null) }
     LaunchedEffect(model.answerFocus) {
         model.answerFocus?.let {
@@ -367,7 +372,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                         ) {
                             Text("Reference")
                         }
-                        InputSettingsButton(model.input)
+                        InputSettingsButton(openSettings)
                         UpdateButton(showUpdates, model.pendingSaves)
                     }
                 } else if (compact) {
@@ -382,7 +387,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                             )
-                            InputSettingsButton(model.input)
+                            InputSettingsButton(openSettings)
                             UpdateButton(showUpdates, model.pendingSaves)
                         }
                         Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
@@ -466,7 +471,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                         ) {
                             Text("Reference")
                         }
-                        InputSettingsButton(model.input)
+                        InputSettingsButton(openSettings)
                         UpdateButton(showUpdates, model.pendingSaves)
                     }
                 HorizontalDivider(color = Line)
