@@ -10,11 +10,17 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -78,13 +84,28 @@ internal class TexEditView(context: Context) : EditText(context) {
                 android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI or
                 android.view.inputmethod.EditorInfo.IME_FLAG_NO_FULLSCREEN
         setSingleLine(false)
-        minLines = 5
-        maxLines = 14
-        textSize = 18f
+        minLines = 4
+        maxLines = 12
+        textSize = 16f
         typeface = Typeface.create("sans-serif", Typeface.NORMAL)
         setTextColor(0xff253a36.toInt())
-        setBackgroundColor(0xfffffef9.toInt())
-        setPadding(20, 16, 20, 16)
+        setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        hint = "Write your answer…"
+        setHintTextColor(0xff89938d.toInt())
+        val density = resources.displayMetrics.density
+        textCursorDrawable =
+            android.graphics.drawable.GradientDrawable().apply {
+                setColor(0xff286354.toInt())
+                setSize((2 * density).toInt().coerceAtLeast(2), (22 * density).toInt())
+            }
+        pointerIcon =
+            android.view.PointerIcon.getSystemIcon(context, android.view.PointerIcon.TYPE_TEXT)
+        setPadding(
+            (14 * density).toInt(),
+            (12 * density).toInt(),
+            (14 * density).toInt(),
+            (12 * density).toInt(),
+        )
         if (android.os.Build.VERSION.SDK_INT >= 34) setAutoHandwritingEnabled(false)
         freezesText = true
         ready = true
@@ -181,15 +202,22 @@ internal class TexEditView(context: Context) : EditText(context) {
 @Composable
 fun TypedAnswer(model: NotebookModel, draft: AnswerDraft, question: Question) {
     val focused = model.focusedEditor?.let { "${it.first}-${it.second}" == draft.key } == true
-    Column {
-        TextButton(onClick = { model.focusedEditor = model.lesson.slug to question.id }) {
-            Text(if (focused) "Editor is open" else "Focus editor")
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                "Your answer",
+                style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.weight(1f),
+            )
+            WorkspaceAction(if (focused) "Editor open" else "Expand", Icons.Outlined.OpenInFull) {
+                model.focusedEditor = model.lesson.slug to question.id
+            }
         }
         if (!focused) TypedAnswerBody(model, draft, question)
     }
 }
 
-/** Lives outside every lazy reader/practice item, so IME resizing cannot recycle the dialog. */
+/** Hosted outside virtualized reader items, preserving the editor while the keyboard resizes. */
 @Composable
 fun FocusedAnswerEditor(model: NotebookModel) {
     val target = model.focusedEditor ?: return
@@ -200,11 +228,23 @@ fun FocusedAnswerEditor(model: NotebookModel) {
         onDismissRequest = { model.focusedEditor = null },
         properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false),
     ) {
-        Surface(Modifier.fillMaxSize().systemBarsPadding().imePadding()) {
+        Surface(Modifier.fillMaxSize().systemBarsPadding().imePadding(), color = WorkspaceGround) {
             Column {
-                TextButton(onClick = { model.focusedEditor = null }) { Text("Done editing") }
-                Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(12.dp)) {
-                    key(draft.key) { TypedAnswerBody(model, draft, question) }
+                WorkspaceHeader(
+                    "Your answer",
+                    "Exercise ${question.id} · saved automatically",
+                    { model.focusedEditor = null },
+                )
+                Box(
+                    Modifier.weight(1f)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                        .padding(20.dp),
+                    contentAlignment = Alignment.TopCenter,
+                ) {
+                    Column(Modifier.widthIn(max = 1120.dp).fillMaxWidth()) {
+                        key(draft.key) { TypedAnswerBody(model, draft, question, expanded = true) }
+                    }
                 }
             }
         }
@@ -212,10 +252,16 @@ fun FocusedAnswerEditor(model: NotebookModel) {
 }
 
 @Composable
-private fun TypedAnswerBody(model: NotebookModel, draft: AnswerDraft, question: Question) {
+private fun TypedAnswerBody(
+    model: NotebookModel,
+    draft: AnswerDraft,
+    question: Question,
+    expanded: Boolean = false,
+) {
     val library = model.tex
     var editor by remember { mutableStateOf<TexEditView?>(null) }
     var help by remember { mutableStateOf(false) }
+    var symbols by remember { mutableStateOf(false) }
     var caret by remember { mutableIntStateOf(0) }
     DisposableEffect(editor, draft.key) {
         val view = editor
@@ -230,11 +276,13 @@ private fun TypedAnswerBody(model: NotebookModel, draft: AnswerDraft, question: 
         if (inMath)
             Regex("\\\\[A-Za-z]*$").find(source.take(caret.coerceIn(0, source.length)))?.value
         else null
-    Column(Modifier.fillMaxWidth()) {
-        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
-            TextButton(
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            OutlinedButton(
+                shape = RoundedCornerShape(8.dp),
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
                 onClick = {
-                    val v = editor ?: return@TextButton
+                    val v = editor ?: return@OutlinedButton
                     val selected =
                         v.text
                             ?.substring(
@@ -243,12 +291,14 @@ private fun TypedAnswerBody(model: NotebookModel, draft: AnswerDraft, question: 
                             )
                             .orEmpty()
                     v.insert("$" + selected + "$", 1 + selected.length)
-                }
+                },
             ) {
-                Text("Insert math")
+                Text("Insert math", fontSize = 12.sp)
             }
             if (question.columns.isNotEmpty())
-                TextButton(
+                OutlinedButton(
+                    shape = RoundedCornerShape(8.dp),
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
                     onClick = {
                         val rows =
                             listOf(question.columns.joinToString(" & ")) +
@@ -258,16 +308,25 @@ private fun TypedAnswerBody(model: NotebookModel, draft: AnswerDraft, question: 
                         val template =
                             "\\begin{matrix}" + rows.joinToString(" \\\\ ") + "\\end{matrix}"
                         editor?.insert(if (inMath) template else "$$\n$template\n$$")
-                    }
+                    },
                 ) {
-                    Text("Table template")
+                    Text("Table", fontSize = 12.sp)
                 }
-            TextButton(onClick = { help = true }) { Text("Syntax help") }
-            TextButton(onClick = { editor?.onTextContextMenuItem(android.R.id.undo) }) {
-                Text("Undo")
+            WorkspaceAction("Symbols", Icons.Outlined.Functions) { symbols = !symbols }
+            WorkspaceAction("Help", Icons.Outlined.HelpOutline) { help = true }
+            OutlinedButton(
+                shape = RoundedCornerShape(8.dp),
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
+                onClick = { editor?.onTextContextMenuItem(android.R.id.undo) },
+            ) {
+                Icon(Icons.Outlined.Undo, "Undo", Modifier.size(16.dp))
             }
-            TextButton(onClick = { editor?.onTextContextMenuItem(android.R.id.redo) }) {
-                Text("Redo")
+            OutlinedButton(
+                shape = RoundedCornerShape(8.dp),
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
+                onClick = { editor?.onTextContextMenuItem(android.R.id.redo) },
+            ) {
+                Icon(Icons.Outlined.Redo, "Redo", Modifier.size(16.dp))
             }
         }
         val required =
@@ -275,18 +334,20 @@ private fun TypedAnswerBody(model: NotebookModel, draft: AnswerDraft, question: 
                 .exercise(model.lesson.slug, draft.key.substringAfterLast('-').toInt())
                 ?.optJSONArray("requires")
         val relevant = required?.let { a -> a.mapItems { a.getString(it) } }.orEmpty()
-        if (relevant.isNotEmpty())
+        if (symbols && relevant.isNotEmpty())
             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
                 library.entries
                     .filter { it.id in relevant }
                     .take(8)
                     .forEach { entry ->
-                        TextButton(
+                        OutlinedButton(
+                            shape = RoundedCornerShape(8.dp),
+                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
                             onClick = {
                                 editor?.insert(
                                     if (inMath) entry.example else "$" + entry.example + "$"
                                 )
-                            }
+                            },
                         ) {
                             Text("\\" + entry.command)
                         }
@@ -298,14 +359,16 @@ private fun TypedAnswerBody(model: NotebookModel, draft: AnswerDraft, question: 
                     .filter { ("\\" + it.command).startsWith(prefix) }
                     .take(8)
                     .forEach { entry ->
-                        TextButton(
+                        OutlinedButton(
+                            shape = RoundedCornerShape(8.dp),
+                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
                             onClick = {
                                 editor?.let { v ->
                                     val end = v.selectionStart
                                     v.setSelection((end - prefix.length).coerceAtLeast(0), end)
                                     v.insert("\\" + entry.command + " ")
                                 }
-                            }
+                            },
                         ) {
                             Text("\\" + entry.command)
                         }
@@ -313,46 +376,74 @@ private fun TypedAnswerBody(model: NotebookModel, draft: AnswerDraft, question: 
             }
         BoxWithConstraints(Modifier.fillMaxWidth()) {
             val input: @Composable (Modifier) -> Unit = { modifier ->
-                AndroidView(
-                    factory = { context ->
-                        TexEditView(context).apply {
-                            commands = library.commands
-                            setText(source)
-                            setSelection(text.length)
-                            model.editorStates[draft.key]?.let { saved ->
-                                restoreSnapshot(saved)
-                                if (text.toString() != source) {
+                Surface(
+                    modifier,
+                    color = Color.White,
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, WorkspaceBorder),
+                ) {
+                    Column {
+                        Text(
+                            "ANSWER",
+                            Modifier.padding(start = 14.dp, top = 12.dp),
+                            color = WorkspaceMuted,
+                            fontSize = 10.sp,
+                            letterSpacing = 1.sp,
+                        )
+                        AndroidView(
+                            factory = { context ->
+                                TexEditView(context).apply {
+                                    commands = library.commands
                                     setText(source)
                                     setSelection(text.length)
+                                    model.editorStates[draft.key]?.let { saved ->
+                                        restoreSnapshot(saved)
+                                        if (text.toString() != source) {
+                                            setText(source)
+                                            setSelection(text.length)
+                                        }
+                                    }
+                                    caret = selectionStart
+                                    changed = draft::edit
+                                    cursorChanged = { caret = it }
+                                    editor = this
                                 }
-                            }
-                            caret = selectionStart
-                            changed = draft::edit
-                            cursorChanged = { caret = it }
-                            editor = this
-                        }
-                    },
-                    modifier = modifier.testTag("typed:${draft.key}"),
-                    update = { view ->
-                        view.isEnabled = !draft.loading
-                        if (view.renderingProblems != renderingProblems) {
-                            view.renderingProblems = renderingProblems
-                            view.colorize()
-                        }
-                    },
-                )
+                            },
+                            modifier =
+                                Modifier.fillMaxWidth()
+                                    .heightIn(min = if (expanded) 420.dp else 132.dp)
+                                    .testTag("typed:${draft.key}"),
+                            update = { view ->
+                                view.isEnabled = !draft.loading
+                                if (view.text.toString() != source) {
+                                    val selection = view.selectionStart.coerceIn(0, source.length)
+                                    view.setText(source)
+                                    view.setSelection(selection)
+                                }
+                                if (view.renderingProblems != renderingProblems) {
+                                    view.renderingProblems = renderingProblems
+                                    view.colorize()
+                                }
+                            },
+                        )
+                    }
+                }
             }
-            if (maxWidth >= 760.dp)
+            if (maxWidth >= 660.dp)
                 Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     input(Modifier.weight(1f))
                     Column(Modifier.weight(1f)) {
-                        AnswerPreview(source, library) { renderingProblems = it }
+                        AnswerPreview(source, library, if (expanded) 452.dp else 166.dp) {
+                            renderingProblems = it
+                        }
                     }
                 }
             else
-                Column {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     input(Modifier.fillMaxWidth())
-                    AnswerPreview(source, library) { renderingProblems = it }
+                    AnswerPreview(source, library, if (expanded) 452.dp else 166.dp) {
+                        renderingProblems = it
+                    }
                 }
         }
     }
@@ -389,9 +480,11 @@ fun SyntaxHelp(model: NotebookModel, onClose: () -> Unit, insert: (String) -> Un
         onDismissRequest = onClose,
         title = { Text("TeX syntax") },
         text = {
-            Column {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
-                    "Inside math, commands are blue, braces brown, operators green, and scripts purple. Underlines indicate syntax to check, not incorrect mathematics."
+                    "Inside math, commands are blue, braces brown, operators green, and scripts purple. Underlines indicate syntax to check, not incorrect mathematics.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = WorkspaceMuted,
                 )
                 OutlinedTextField(
                     query,
@@ -423,9 +516,7 @@ fun SyntaxHelp(model: NotebookModel, onClose: () -> Unit, insert: (String) -> Un
                                     template,
                                     fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
                                 )
-                                TextButton(onClick = { insert(template) }) {
-                                    Text("Insert template")
-                                }
+                                WorkspaceAction("Insert template", onClick = { insert(template) })
                             }
                             model.texTeaching.location(construction.getString("id"))?.let {
                                 (lesson, section) ->
@@ -458,9 +549,10 @@ fun SyntaxHelp(model: NotebookModel, onClose: () -> Unit, insert: (String) -> Un
                                 entry.example,
                                 fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
                             )
-                            TextButton(onClick = { insert("$" + entry.example + "$") }) {
-                                Text("Insert example")
-                            }
+                            WorkspaceAction(
+                                "Insert example",
+                                onClick = { insert("$" + entry.example + "$") },
+                            )
                         }
                     }
                 }
@@ -474,6 +566,7 @@ fun SyntaxHelp(model: NotebookModel, onClose: () -> Unit, insert: (String) -> Un
 private fun AnswerPreview(
     source: String,
     library: TexLibrary,
+    minimumHeight: androidx.compose.ui.unit.Dp = 166.dp,
     diagnostics: (List<TexSyntax.Problem>) -> Unit,
 ) {
     var preview by remember { mutableStateOf("") }
@@ -531,19 +624,34 @@ private fun AnswerPreview(
         errors = result.second
         diagnostics(result.third)
     }
-    Column(Modifier.fillMaxWidth().padding(12.dp).testTag("answer-preview")) {
-        Text("Preview", style = MaterialTheme.typography.labelLarge)
-        if (source.isBlank()) Text("Your text and mathematics will appear here.")
-        else
-            CompositionLocalProvider(LocalReferenceLinksEnabled provides false) {
-                RichText(preview, Modifier.fillMaxWidth(), 18f)
+    Surface(
+        Modifier.fillMaxWidth().testTag("answer-preview"),
+        color = Color(0xfff7f8f4),
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.dp, WorkspaceBorder),
+    ) {
+        Column(
+            Modifier.fillMaxWidth().heightIn(min = minimumHeight).padding(14.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            Text("PREVIEW", color = WorkspaceMuted, fontSize = 10.sp, letterSpacing = 1.sp)
+            if (source.isBlank())
+                Text(
+                    "Your formatted answer will appear here as you type.",
+                    color = Color(0xff89938d),
+                    fontSize = 13.sp,
+                )
+            else
+                CompositionLocalProvider(LocalReferenceLinksEnabled provides false) {
+                    RichText(preview, Modifier.fillMaxWidth(), 16f)
+                }
+            errors.forEach {
+                Text(
+                    it,
+                    color = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.padding(top = 8.dp),
+                )
             }
-        errors.forEach {
-            Text(
-                it,
-                color = MaterialTheme.colorScheme.error,
-                modifier = Modifier.padding(top = 8.dp),
-            )
         }
     }
 }

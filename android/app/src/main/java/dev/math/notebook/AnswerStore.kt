@@ -123,7 +123,9 @@ class AnswerStore(context: Context) {
                         JSONObject()
                     }
                 require(json.optInt("version", 1) == 1) { "Unsupported answer version" }
-                require(!json.has("mode") || json.getString("mode") in setOf("type", "write"))
+                require(
+                    !json.has("mode") || json.getString("mode") in setOf("type", "write", "photo")
+                )
                 json.optJSONArray("photos")?.let { photos ->
                     for (i in 0 until photos.length()) {
                         val photo = photos.getJSONObject(i)

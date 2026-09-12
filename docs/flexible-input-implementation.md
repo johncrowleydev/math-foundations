@@ -21,3 +21,5 @@ Acceptance evidence (September 11, 2026):
 Saved work retains existing lesson slugs, exercise IDs, ink coordinates, and handwriting filenames. Typed/photo saves are versioned and atomic. Previous reading order is bundled for stable-anchor migration. Audit fingerprints are updated only after reinspection. Test captures and private camera images remain excluded from source and release artifacts.
 
 To use the new features, choose **Type** on an exercise or use **Input** to change defaults. **Insert math** adds editable delimiters; **Syntax help** and the lesson's **Typing this math** blocks teach the supported syntax. Long-press the scrolling label to switch the lesson reader's gesture mode.
+
+Version 0.5.1 refines these workspaces and hides typing tutorials by default; see [UI refinement](ui-refinement-0.5.1.md).

@@ -146,7 +146,7 @@ fun ScrollPreference(input: InputPreferences, lessonScrolling: Boolean = true) {
     if (hint)
         AlertDialog(
             onDismissRequest = { hint = false },
-            title = { Text("Lesson scrolling") },
+            title = { Text("Lesson scrolling", style = MaterialTheme.typography.titleSmall) },
             text = {
                 Text(
                     "Long press this label to switch between two-finger and standard scrolling. Other lists always scroll normally."
@@ -168,12 +168,13 @@ fun InputSettingsButton(input: InputPreferences) {
             title = { Text("Input settings") },
             text = {
                 Column(Modifier.verticalScroll(rememberScrollState())) {
-                    Text("Lesson scrolling")
+                    Text("Lesson scrolling", style = MaterialTheme.typography.titleSmall)
                     Row {
                         Checkbox(input.twoFinger, { input.toggleScroll() })
                         Text("Require two fingers", Modifier.padding(top = 12.dp))
                     }
-                    Text("Pen tools")
+                    HorizontalDivider(Modifier.padding(vertical = 12.dp))
+                    Text("Pen tools", style = MaterialTheme.typography.titleSmall)
                     listOf(
                             "auto" to "Automatic",
                             "show" to "Show pen tools",
@@ -187,14 +188,18 @@ fun InputSettingsButton(input: InputPreferences) {
                         }
                     Text(
                         if (input.detected) "Stylus input detected"
-                        else "No stylus currently detected"
+                        else "No stylus currently detected",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = WorkspaceMuted,
                     )
                     Row {
                         Checkbox(input.preferTyping, { input.typing(it) })
                         Text("Prefer typed answers", Modifier.padding(top = 12.dp))
                     }
                     Text(
-                        "Existing answers keep their selected mode. Hiding pen tools never removes your handwriting."
+                        "Existing answers keep their selected mode. Hiding pen tools never removes your handwriting.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = WorkspaceMuted,
                     )
                 }
             },

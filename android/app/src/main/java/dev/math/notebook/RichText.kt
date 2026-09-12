@@ -33,7 +33,7 @@ internal fun nativeMarkdown(source: String): String {
 fun RichText(
     markdown: String,
     modifier: Modifier = Modifier,
-    size: Float = 19f,
+    size: Float = 16f,
     onClick: (() -> Unit)? = null,
     source: String = "",
 ) {
@@ -53,12 +53,23 @@ fun RichText(
                 textSize = size
                 setTextColor(0xff2c3836.toInt())
                 typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-                setLineSpacing(7f * resources.displayMetrics.density, 1.12f)
+                setLineSpacing(3f * resources.displayMetrics.density, 1.10f)
                 includeFontPadding = false
                 setTextIsSelectable(false)
                 if (android.os.Build.VERSION.SDK_INT >= 34) setAutoHandwritingEnabled(false)
                 tag =
                     Markwon.builder(context)
+                        .usePlugin(
+                            object : io.noties.markwon.AbstractMarkwonPlugin() {
+                                override fun configureTheme(
+                                    builder: io.noties.markwon.core.MarkwonTheme.Builder
+                                ) {
+                                    builder.bulletWidth(
+                                        (4 * resources.displayMetrics.density).toInt()
+                                    )
+                                }
+                            }
+                        )
                         .usePlugin(TablePlugin.create(context))
                         .usePlugin(MarkwonInlineParserPlugin.create())
                         .usePlugin(JLatexMathPlugin.create(textSize) { it.inlinesEnabled(true) })

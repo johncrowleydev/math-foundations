@@ -186,6 +186,8 @@ class TabletTest {
         val draft = rule.runOnIdle { model.answers.draft(key, false) }
         rule.waitUntil(10000) { !page.loading && !draft.loading }
         rule.runOnIdle { draft.mode("write") }
+        val previousWork = rule.runOnIdle { page.strokes }
+        rule.runOnIdle { page.replace(emptyList()) }
         val original = rule.runOnIdle { page.strokes }
         val canvas = rule.onNodeWithTag("ink:$key")
         canvas.assertIsDisplayed()
@@ -229,27 +231,18 @@ class TabletTest {
         rule.onNodeWithContentDescription("Redo").performClick()
         rule.runOnIdle { assertEquals(original.size + 1, page.strokes.size) }
         // The selected stroke eraser must remove ink and remain undoable.
-        rule.onNodeWithContentDescription("Stroke eraser").performClick()
+        rule.onNodeWithText("Eraser").performClick()
         val eraserBounds = rule.onNodeWithTag("ink:$key").fetchSemanticsNode().boundsInWindow
         val eraserTime = SystemClock.uptimeMillis()
-        inject(
-            eraserTime,
-            MotionEvent.ACTION_DOWN,
-            eraserBounds.left + 204,
-            eraserBounds.top + 174,
-            0.5f,
-        )
-        inject(
-            eraserTime,
-            MotionEvent.ACTION_UP,
-            eraserBounds.left + 204,
-            eraserBounds.top + 174,
-            0.5f,
-        )
+        val midpoint = stroke.inputs[stroke.inputs.size / 2]
+        val eraseX = eraserBounds.left + midpoint.x * eraserBounds.width / 900f
+        val eraseY = eraserBounds.top + midpoint.y * eraserBounds.width / 900f
+        inject(eraserTime, MotionEvent.ACTION_DOWN, eraseX, eraseY, 0.5f)
+        inject(eraserTime, MotionEvent.ACTION_UP, eraseX, eraseY, 0.5f)
         rule.waitUntil(10000) { page.strokes.size == original.size }
         rule.onNodeWithContentDescription("Undo").performClick()
         rule.runOnIdle { assertEquals(original.size + 1, page.strokes.size) }
-        rule.onNodeWithContentDescription("Pen").performClick()
+        rule.onAllNodesWithText("Pen").onLast().performClick()
         rule.onNodeWithText("Reveal answer").performClick()
         rule.onNodeWithText("Hide answer").assertIsDisplayed()
         rule.onNodeWithText("Hide answer").performClick()
@@ -259,7 +252,7 @@ class TabletTest {
             original.size + 1,
             InkFiles.read(File(rule.activity.filesDir, "ink/$key.json")).first.size,
         )
-        rule.runOnIdle { page.replace(original) }
+        rule.runOnIdle { page.replace(previousWork) }
         rule.waitUntil(10000) { !page.saving }
     }
 
@@ -289,6 +282,12 @@ class TabletTest {
     }
 
     private fun inject(start: Long, action: Int, x: Float, y: Float, pressure: Float) {
+        val stylusDeviceId =
+            InputDevice.getDeviceIds().firstOrNull { id ->
+                val device = InputDevice.getDevice(id)
+                device?.supportsSource(InputDevice.SOURCE_STYLUS) == true &&
+                    device.getMotionRange(MotionEvent.AXIS_PRESSURE) != null
+            } ?: error("Pressure test requires the connected tablet's stylus input device")
         val properties =
             MotionEvent.PointerProperties().apply {
                 id = 0
@@ -313,17 +312,16 @@ class TabletTest {
                 0,
                 1f,
                 1f,
+                stylusDeviceId,
                 0,
-                0,
-                InputDevice.SOURCE_STYLUS,
+                InputDevice.getDevice(stylusDeviceId)!!.getMotionRange(MotionEvent.AXIS_PRESSURE)
+                    .source,
                 0,
             )
         try {
-            assertTrue(
-                InstrumentationRegistry.getInstrumentation()
-                    .uiAutomation
-                    .injectInputEvent(event, true)
-            )
+            // UIAutomation rewrites injected device IDs to the virtual device. Dispatch through
+            // the activity to retain the real stylus pressure range for Ink's capability lookup.
+            rule.runOnIdle { rule.activity.dispatchTouchEvent(event) }
         } finally {
             event.recycle()
         }

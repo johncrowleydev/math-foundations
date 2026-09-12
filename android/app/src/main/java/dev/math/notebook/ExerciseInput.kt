@@ -8,16 +8,22 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.FileProvider
@@ -36,47 +42,81 @@ fun ExerciseInput(
     val draft = remember(key) { model.answers.draft(key, model.input.preferTyping) }
     val page = remember(key) { model.page(key) }
     var sketch by rememberSaveable(key) { mutableStateOf(false) }
-    Column(Modifier.fillMaxWidth()) {
-        Row(
-            Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+    AnswerPhotos(draft) { capture ->
+        Column(
+            Modifier.fillMaxWidth().padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            FilterChip(
-                draft.mode == "type",
-                {
-                    draft.mode("type")
-                    model.input.typing(true)
-                },
-                { Text("Type") },
-                enabled = !draft.loading,
-            )
-            FilterChip(
-                draft.mode == "write",
-                {
-                    draft.mode("write")
-                    model.input.typing(false)
-                },
-                { Text(if (model.input.showPen) "Write" else "Saved writing") },
-                enabled = !draft.loading,
-            )
-            TextButton(onClick = { sketch = true }) { Text("Sketch with finger") }
-        }
-        if (draft.error != null)
-            Row {
-                Text(draft.error!!, Modifier.weight(1f), color = MaterialTheme.colorScheme.error)
-                TextButton(onClick = draft::retry) { Text("Retry") }
+            Surface(
+                color = WorkspaceGround,
+                shape = RoundedCornerShape(12.dp),
+                border = BorderStroke(1.dp, WorkspaceBorder),
+            ) {
+                Row(
+                    Modifier.fillMaxWidth().padding(4.dp).horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    AnswerMode(
+                        "Type",
+                        Icons.Outlined.Keyboard,
+                        draft.mode == "type",
+                        !draft.loading,
+                    ) {
+                        draft.mode("type")
+                    }
+                    AnswerMode(
+                        "Pen",
+                        Icons.Outlined.Edit,
+                        draft.mode == "write" && !sketch,
+                        !draft.loading,
+                    ) {
+                        draft.mode("write")
+                    }
+                    AnswerMode("Sketch", Icons.Outlined.Gesture, sketch, !draft.loading) {
+                        sketch = true
+                    }
+                    AnswerMode(
+                        "Photo",
+                        Icons.Outlined.PhotoCamera,
+                        draft.mode == "photo",
+                        !draft.loading,
+                    ) {
+                        draft.mode("photo")
+                        if (draft.photos.isEmpty()) capture()
+                    }
+                }
             }
-        if (draft.loading) Text("Opening your answer…")
-        else if (draft.mode == "type") key(key) { TypedAnswer(model, draft, q) }
-        else {
-            PaperCanvas(model, page, q, minimumHeight, penEnabled = model.input.showPen)
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                if (model.input.showPen) InkActions(page)
-                TextButton(onClick = page::moreSpace) { Text("More space") }
+            draft.error?.let { error ->
+                Text(error, color = MaterialTheme.colorScheme.error, fontSize = 13.sp)
+                WorkspaceAction("Retry", onClick = draft::retry)
             }
+            if (draft.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
+            else if (draft.mode == "type") key(key) { TypedAnswer(model, draft, q) }
+            else if (draft.mode == "write") {
+                if (model.input.showPen) SketchPenTools(model)
+                Surface(
+                    shape = RoundedCornerShape(10.dp),
+                    border = BorderStroke(1.dp, WorkspaceBorder),
+                ) {
+                    Box(
+                        Modifier.heightIn(
+                                max =
+                                    if (minimumHeight > 0.dp) minimumHeight.coerceAtLeast(280.dp)
+                                    else 230.dp
+                            )
+                            .verticalScroll(rememberScrollState())
+                    ) {
+                        PaperCanvas(model, page, q, penEnabled = model.input.showPen)
+                    }
+                }
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    if (model.input.showPen) InkActions(page)
+                    Spacer(Modifier.weight(1f))
+                    WorkspaceAction("Expand", Icons.Outlined.OpenInFull) { sketch = true }
+                }
+            }
+            if (draft.saving) Text("Saving…", color = WorkspaceMuted, fontSize = 11.sp)
         }
-        AnswerPhotos(draft)
-        if (draft.saving) Text("Saving…", style = MaterialTheme.typography.labelSmall)
     }
     if (sketch)
         Dialog(
@@ -84,28 +124,76 @@ fun ExerciseInput(
             properties = DialogProperties(usePlatformDefaultWidth = false),
         ) {
             var draw by remember { mutableStateOf(true) }
-            Surface(Modifier.fillMaxSize().systemBarsPadding()) {
+            Surface(Modifier.fillMaxSize().systemBarsPadding(), color = WorkspaceGround) {
                 Column {
-                    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
-                        FilterChip(draw, { draw = true }, { Text("Draw") })
-                        FilterChip(!draw, { draw = false }, { Text("Move") })
-                        InkActions(page)
-                        TextButton(onClick = { page.moreSpace() }) { Text("More space") }
-                        TextButton(onClick = { sketch = false }) { Text("Done") }
-                    }
-                    CompactPenTools(model)
-                    Text(
-                        if (draw) "Draw with a finger or pen. Switch to Move to pan the paper."
-                        else "Drag to move the paper. Switch to Draw to add ink.",
-                        Modifier.padding(12.dp),
+                    WorkspaceHeader(
+                        "Sketch",
+                        "Exercise ${q.id} · saved automatically",
+                        { sketch = false },
                     )
-                    Box(
-                        Modifier.weight(1f)
-                            .verticalScroll(rememberScrollState(), enabled = !draw)
-                            .horizontalScroll(rememberScrollState(), enabled = !draw)
+                    Row(
+                        Modifier.widthIn(max = 900.dp)
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .padding(horizontal = 8.dp, vertical = 8.dp)
+                            .horizontalScroll(rememberScrollState()),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
                     ) {
-                        Box(Modifier.width(700.dp)) {
-                            PaperCanvas(model, page, q, fingerDrawing = draw, penEnabled = draw)
+                        Surface(
+                            shape = RoundedCornerShape(10.dp),
+                            color = MaterialTheme.colorScheme.surface,
+                        ) {
+                            Row(Modifier.padding(4.dp)) {
+                                AnswerMode("Draw", Icons.Outlined.Edit, draw) { draw = true }
+                                AnswerMode("Move", Icons.Outlined.PanTool, !draw) { draw = false }
+                            }
+                        }
+                        InkActions(page)
+                        WorkspaceAction("Add space", Icons.Outlined.Add, onClick = page::moreSpace)
+                    }
+                    Box(
+                        Modifier.widthIn(max = 900.dp)
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .padding(horizontal = 8.dp)
+                    ) {
+                        SketchPenTools(model)
+                    }
+                    Text(
+                        if (draw) "Draw with a finger or pen. Select Move to pan the paper."
+                        else "Drag to move the paper. Select Draw to continue writing.",
+                        Modifier.widthIn(max = 900.dp)
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .padding(horizontal = 8.dp, vertical = 8.dp),
+                        color = WorkspaceMuted,
+                        fontSize = 12.sp,
+                    )
+                    BoxWithConstraints(
+                        Modifier.weight(1f)
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp, vertical = 12.dp),
+                        contentAlignment = Alignment.TopCenter,
+                    ) {
+                        val paperWidth = maxWidth.coerceAtMost(900.dp)
+                        val paperHeight = maxHeight
+                        Surface(
+                            shape = RoundedCornerShape(12.dp),
+                            shadowElevation = 2.dp,
+                            color = Color.White,
+                            modifier = Modifier.width(paperWidth).fillMaxHeight(),
+                        ) {
+                            Box(Modifier.verticalScroll(rememberScrollState(), enabled = !draw)) {
+                                PaperCanvas(
+                                    model,
+                                    page,
+                                    q,
+                                    minimumHeight = paperHeight,
+                                    fingerDrawing = draw,
+                                    penEnabled = draw,
+                                )
+                            }
                         }
                     }
                 }
@@ -114,13 +202,11 @@ fun ExerciseInput(
 }
 
 @Composable
-private fun AnswerPhotos(draft: AnswerDraft) {
+private fun AnswerPhotos(draft: AnswerDraft, content: @Composable (() -> Unit) -> Unit) {
     val context = LocalContext.current
     var pending by rememberSaveable(draft.key) { mutableStateOf<String?>(null) }
-    var preview by rememberSaveable(draft.key) { mutableStateOf<String?>(null) }
-    var rotation by rememberSaveable(draft.key) { mutableIntStateOf(0) }
+    var confirmedId by rememberSaveable(draft.key) { mutableStateOf<String?>(null) }
     var expandedId by rememberSaveable(draft.key) { mutableStateOf<String?>(null) }
-    val expanded = draft.photos.find { it.id == expandedId }
     var removedId by rememberSaveable(draft.key) { mutableStateOf<String?>(null) }
     var removedIndex by rememberSaveable(draft.key) { mutableIntStateOf(0) }
     var removedRotation by rememberSaveable(draft.key) { mutableIntStateOf(0) }
@@ -133,19 +219,24 @@ private fun AnswerPhotos(draft: AnswerDraft) {
                 val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
                 BitmapFactory.decodeFile(file(id).path, bounds)
                 if (bounds.outWidth > 0 && bounds.outHeight > 0) {
-                    preview = id
-                    rotation = 0
+                    confirmedId = id
                 } else {
                     file(id).delete()
-                    pending = null
-                    error = "The camera did not return a readable photo. Please retake it."
+                    error = "The camera returned an unreadable photo. Please try again."
                 }
-            } else {
-                if (id != null) file(id).delete()
-                pending = null
-            }
+            } else if (id != null) file(id).delete()
+            pending = null
         }
+    LaunchedEffect(confirmedId, draft.loading) {
+        val id = confirmedId
+        if (id != null && !draft.loading) {
+            if (draft.photos.none { it.id == id }) draft.photos(draft.photos + AnswerPhoto(id, 0))
+            draft.mode("photo")
+            confirmedId = null
+        }
+    }
     fun capture() {
+        if (pending != null) return
         error = null
         try {
             val id = UUID.randomUUID().toString()
@@ -157,139 +248,133 @@ private fun AnswerPhotos(draft: AnswerDraft) {
                 FileProvider.getUriForFile(context, "${context.packageName}.answers", target)
             )
         } catch (e: Exception) {
-            android.util.Log.w("FoundationsCapture", "Camera capture could not start", e)
             pending?.let { file(it).delete() }
             pending = null
             error =
                 "Could not open a camera. Check that a camera app is installed and storage is available."
         }
     }
-    Column(Modifier.fillMaxWidth().padding(8.dp)) {
-        TextButton(
-            onClick = { capture() },
-            enabled = !draft.loading && pending == null,
-            modifier = Modifier.testTag("take-photo:${draft.key}"),
-        ) {
-            Text("Take photo")
-        }
-        error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
-        draft.photos.forEachIndexed { index, photo ->
-            Column {
-                PhotoImage(
-                    file(photo.id),
-                    photo.rotation,
-                    Modifier.fillMaxWidth().height(200.dp).clickable { expandedId = photo.id },
-                )
-                FlowRow(Modifier.fillMaxWidth()) {
-                    Text("Page ${index + 1}", Modifier.padding(12.dp))
-                    TextButton(onClick = { expandedId = photo.id }) { Text("Enlarge") }
-                    TextButton(
-                        onClick = {
-                            draft.photos(
-                                draft.photos.map {
-                                    if (it.id == photo.id)
-                                        it.copy(rotation = (it.rotation + 90) % 360)
-                                    else it
-                                }
-                            )
-                        }
-                    ) {
-                        Text("Rotate")
-                    }
-                    TextButton(
-                        onClick = {
-                            removedId = photo.id
-                            removedIndex = index
-                            removedRotation = photo.rotation
-                            draft.photos(draft.photos.filterNot { it.id == photo.id })
-                        }
-                    ) {
-                        Text("Remove")
-                    }
-                }
-            }
-        }
-        removedId?.let { id ->
-            TextButton(
-                onClick = {
-                    draft.photos(
-                        draft.photos.toMutableList().apply {
-                            add(removedIndex.coerceAtMost(size), AnswerPhoto(id, removedRotation))
-                        }
-                    )
-                    removedId = null
-                }
+    Column {
+        content(::capture)
+        if (draft.mode == "photo")
+            Column(
+                Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                Text("Undo photo removal")
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text("Photos of your work", style = MaterialTheme.typography.titleSmall)
+                        Text("Saved on this device", color = WorkspaceMuted, fontSize = 12.sp)
+                    }
+                    Box(Modifier.testTag("take-photo:${draft.key}")) {
+                        WorkspaceAction(
+                            if (draft.photos.isEmpty()) "Take photo" else "Add photo",
+                            Icons.Outlined.PhotoCamera,
+                            pending == null,
+                            ::capture,
+                        )
+                    }
+                }
+                error?.let { Text(it, color = MaterialTheme.colorScheme.error, fontSize = 13.sp) }
+                if (draft.photos.isEmpty())
+                    Surface(
+                        color = WorkspaceGround,
+                        shape = RoundedCornerShape(10.dp),
+                        border = BorderStroke(1.dp, WorkspaceBorder),
+                    ) {
+                        Text(
+                            "Photograph your written work. Confirm it in the camera to save it here.",
+                            Modifier.fillMaxWidth().padding(20.dp),
+                            color = WorkspaceMuted,
+                            fontSize = 14.sp,
+                        )
+                    }
+                draft.photos.forEachIndexed { index, photo ->
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, WorkspaceBorder),
+                        color = WorkspaceGround,
+                    ) {
+                        Column(Modifier.padding(12.dp)) {
+                            PhotoImage(
+                                file(photo.id),
+                                photo.rotation,
+                                Modifier.fillMaxWidth().height(180.dp).clickable {
+                                    expandedId = photo.id
+                                },
+                            )
+                            FlowRow(
+                                Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
+                                if (draft.photos.size > 1)
+                                    Text(
+                                        "Photo ${index + 1}",
+                                        Modifier.padding(vertical = 12.dp),
+                                        color = WorkspaceMuted,
+                                        fontSize = 12.sp,
+                                    )
+                                WorkspaceAction("Enlarge", Icons.Outlined.OpenInFull) {
+                                    expandedId = photo.id
+                                }
+                                WorkspaceAction("Rotate", Icons.Outlined.RotateRight) {
+                                    draft.photos(
+                                        draft.photos.map {
+                                            if (it.id == photo.id)
+                                                it.copy(rotation = (it.rotation + 90) % 360)
+                                            else it
+                                        }
+                                    )
+                                }
+                                WorkspaceAction("Remove", Icons.Outlined.DeleteOutline) {
+                                    removedId = photo.id
+                                    removedIndex = index
+                                    removedRotation = photo.rotation
+                                    draft.photos(draft.photos.filterNot { it.id == photo.id })
+                                }
+                            }
+                        }
+                    }
+                }
+                removedId?.let { id ->
+                    WorkspaceAction("Undo photo removal", Icons.Outlined.Undo) {
+                        draft.photos(
+                            draft.photos.toMutableList().apply {
+                                add(
+                                    removedIndex.coerceAtMost(size),
+                                    AnswerPhoto(id, removedRotation),
+                                )
+                            }
+                        )
+                        removedId = null
+                    }
+                }
             }
-        }
     }
-    if (preview != null)
-        Dialog(
-            onDismissRequest = {
-                file(preview!!).delete()
-                preview = null
-                pending = null
-            },
-            properties = DialogProperties(usePlatformDefaultWidth = false),
-        ) {
-            Surface(Modifier.fillMaxWidth().fillMaxHeight(0.94f)) {
-                Column {
-                    PhotoImage(file(preview!!), rotation, Modifier.weight(1f).fillMaxWidth())
-                    Row(Modifier.horizontalScroll(rememberScrollState())) {
-                        TextButton(onClick = { rotation = (rotation + 90) % 360 }) {
-                            Text("Rotate")
-                        }
-                        TextButton(
-                            onClick = {
-                                file(preview!!).delete()
-                                preview = null
-                                pending = null
-                                capture()
-                            }
-                        ) {
-                            Text("Retake")
-                        }
-                        TextButton(
-                            onClick = {
-                                draft.photos(draft.photos + AnswerPhoto(preview!!, rotation))
-                                preview = null
-                                pending = null
-                            }
-                        ) {
-                            Text("Attach")
-                        }
-                        TextButton(
-                            onClick = {
-                                file(preview!!).delete()
-                                preview = null
-                                pending = null
-                            }
-                        ) {
-                            Text("Cancel")
-                        }
+    draft.photos
+        .find { it.id == expandedId }
+        ?.let { photo ->
+            Dialog(
+                onDismissRequest = { expandedId = null },
+                properties = DialogProperties(usePlatformDefaultWidth = false),
+            ) {
+                Surface(Modifier.fillMaxSize().systemBarsPadding(), color = WorkspaceGround) {
+                    Column {
+                        WorkspaceHeader(
+                            "Your photo",
+                            "Pinch to zoom · drag to pan",
+                            { expandedId = null },
+                        )
+                        PhotoImage(
+                            file(photo.id),
+                            photo.rotation,
+                            Modifier.weight(1f).fillMaxWidth().padding(24.dp),
+                            zoomable = true,
+                        )
                     }
                 }
             }
         }
-    expanded?.let { photo ->
-        Dialog(
-            onDismissRequest = { expandedId = null },
-            properties = DialogProperties(usePlatformDefaultWidth = false),
-        ) {
-            Surface(Modifier.fillMaxSize().systemBarsPadding()) {
-                Column {
-                    TextButton(onClick = { expandedId = null }) { Text("Close photo") }
-                    PhotoImage(
-                        file(photo.id),
-                        photo.rotation,
-                        Modifier.weight(1f).fillMaxWidth(),
-                        zoomable = true,
-                    )
-                }
-            }
-        }
-    }
 }
 
 @Composable

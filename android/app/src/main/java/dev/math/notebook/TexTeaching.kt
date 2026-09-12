@@ -81,12 +81,13 @@ class TexTeaching(context: Context) {
 
     fun expanded(lesson: String, typing: Boolean): Boolean =
         overrides[lesson]
-            ?: if (prefs.contains("tex:show:$lesson")) prefs.getBoolean("tex:show:$lesson", typing)
-            else typing
+            ?: if (prefs.contains("tex:visible:v2:$lesson"))
+                prefs.getBoolean("tex:visible:v2:$lesson", false)
+            else false
 
     fun setExpanded(lesson: String, value: Boolean) {
         overrides[lesson] = value
-        prefs.edit().putBoolean("tex:show:$lesson", value).apply()
+        prefs.edit().putBoolean("tex:visible:v2:$lesson", value).apply()
     }
 
     fun available(lesson: String, section: String, lessons: List<Lesson>): Set<String> {
@@ -117,12 +118,18 @@ fun TexSource(
                 source,
                 Modifier.fillMaxWidth()
                     .horizontalScroll(rememberScrollState())
-                    .padding(vertical = 8.dp),
+                    .background(
+                        WorkspaceGround,
+                        androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
+                    )
+                    .padding(12.dp),
                 fontFamily = FontFamily.Monospace,
+                fontSize =
+                    androidx.compose.ui.unit.TextUnit(13f, androidx.compose.ui.unit.TextUnitType.Sp),
             )
         }
         Row(Modifier.horizontalScroll(rememberScrollState())) {
-            TextButton(onClick = { clipboard.setText(AnnotatedString(source)) }) {
+            OutlinedButton(onClick = { clipboard.setText(AnnotatedString(source)) }) {
                 Text("Copy TeX")
             }
             if (onInsert != null) TextButton(onClick = onInsert) { Text("Insert into answer") }
@@ -142,11 +149,11 @@ fun TypingGuide(model: NotebookModel) {
     var primer by rememberSaveable(slug) { mutableStateOf(false) }
     var insertion by remember { mutableStateOf<String?>(null) }
     Column(Modifier.fillMaxWidth().padding(vertical = 12.dp)) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            TextButton(onClick = { teaching.setExpanded(slug, !expanded) }) {
-                Text(if (expanded) "Collapse typing help" else "Expand typing help")
+        FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            WorkspaceAction(if (expanded) "Collapse typing help" else "Expand typing help") {
+                teaching.setExpanded(slug, !expanded)
             }
-            TextButton(onClick = { primer = !primer }) { Text("Typing guide") }
+            WorkspaceAction("Typing guide") { primer = !primer }
         }
         if (primer || (model.selected == 0 && expanded)) {
             Text("Typing mathematics", style = MaterialTheme.typography.titleLarge)
@@ -178,6 +185,7 @@ fun TypingGuide(model: NotebookModel) {
 fun TypingBlock(model: NotebookModel, section: String) {
     val block = model.texTeaching.block(model.lesson.slug, section) ?: return
     val expandedDefault = model.texTeaching.expanded(model.lesson.slug, model.input.preferTyping)
+    if (!expandedDefault) return
     var override by
         rememberSaveable(block.getString("id"), expandedDefault) { mutableStateOf<Boolean?>(null) }
     val expanded = override ?: expandedDefault
@@ -286,8 +294,10 @@ fun ReferenceTex(model: NotebookModel, reference: String, full: Boolean) {
     val record = model.texTeaching.reference(reference) ?: return
     val examples = record.getJSONArray("examples").let { a -> a.mapItems { a.getString(it) } }
     if (examples.isEmpty() && record.getJSONArray("requires").length() == 0) return
+    var shown by remember(reference) { mutableStateOf(false) }
     Column {
-        Text("TeX syntax", style = MaterialTheme.typography.titleMedium)
+        WorkspaceAction(if (shown) "Hide TeX syntax" else "TeX syntax") { shown = !shown }
+        if (!shown) return@Column
         if (record.optString("note").isNotBlank()) Text(record.getString("note"))
         (if (full) examples else examples.take(1)).forEach { TexSource(it, displayPreview = false) }
         if (full)

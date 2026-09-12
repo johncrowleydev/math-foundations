@@ -214,7 +214,7 @@ class FlexibleRecoveryTest {
                 model.answers.draft("propositional-logic-${model.lesson.practiceIds.first()}", true)
         }
         rule.waitUntil(10000) { !draft.loading }
-        rule.runOnIdle { draft.mode("type") }
+        rule.runOnIdle { draft.mode("photo") }
         val original = draft.photos
         val instrumentation =
             androidx.test.platform.app.InstrumentationRegistry.getInstrumentation()
@@ -252,7 +252,7 @@ class FlexibleRecoveryTest {
             rule.waitUntil(10000) {
                 rule
                     .onAllNodesWithText(
-                        "The camera did not return a readable photo.",
+                        "The camera returned an unreadable photo.",
                         substring = true,
                     )
                     .fetchSemanticsNodes()

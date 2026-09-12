@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.*
@@ -106,8 +105,15 @@ class MainActivity : ComponentActivity() {
                 colorScheme =
                     lightColorScheme(
                         primary = Forest,
+                        secondary = Forest,
+                        secondaryContainer = Color(0xffe0ebe2),
+                        onSecondaryContainer = Forest,
                         background = Ground,
                         surface = Paper,
+                        surfaceContainerHigh = Color(0xfff2f5ef),
+                        surfaceContainer = Color(0xffeef2eb),
+                        surfaceVariant = Color(0xffe5ebe2),
+                        onSurfaceVariant = Color(0xff536057),
                         onSurface = Ink,
                         outline = Line,
                     )
@@ -221,7 +227,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                         color = Muted,
                         modifier = Modifier.padding(top = 6.dp),
                     )
-                    Spacer(Modifier.height(22.dp))
+                    Spacer(Modifier.height(16.dp))
                     val railState = rememberLazyListState()
                     LazyColumn(
                         state = railState,
@@ -366,7 +372,7 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                     }
                 } else
                     Row(
-                        Modifier.fillMaxWidth().height(82.dp).padding(horizontal = 32.dp),
+                        Modifier.fillMaxWidth().height(64.dp).padding(horizontal = 32.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         if (portrait) {
@@ -444,26 +450,14 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
                     else Reader(model) { focusId = it }
                 }
             }
-            if (!portrait && model.input.showPen) Tools(model, !model.practice && focusId == null)
         }
-        if (
-            editingOnCompact || (config.screenHeightDp < 480 && (model.practice || focusId != null))
-        ) {} else if (portrait && model.input.showPen && !compact)
-            PortraitTools(model, !model.practice && focusId == null)
-        else if (compact && model.input.showPen) {
-            var palette by rememberSaveable { mutableStateOf(false) }
-            Column {
-                if (palette) CompactPenTools(model)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    TextButton(onClick = { palette = !palette }) {
-                        Text(if (palette) "Hide pen tools" else "Pen tools")
-                    }
-                    ScrollPreference(model.input, !model.practice && focusId == null)
-                }
-            }
-        } else if (!model.input.showPen)
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                ScrollPreference(model.input, !model.practice && focusId == null)
+        if (!editingOnCompact && !model.practice && focusId == null)
+            Row(
+                Modifier.fillMaxWidth().height(40.dp).padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                ScrollPreference(model.input, true)
             }
     }
     if (library)
@@ -501,84 +495,6 @@ private fun NotebookLayout(model: NotebookModel, showUpdates: Int = 0) {
 }
 
 @Composable
-internal fun CompactPenTools(model: NotebookModel) {
-    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
-        TextButton(onClick = { model.eraser = false }) {
-            Text(if (!model.eraser) "Pen ✓" else "Pen")
-        }
-        TextButton(onClick = { model.eraser = true }) {
-            Text(if (model.eraser) "Eraser ✓" else "Eraser")
-        }
-        listOf(
-                "Ink" to 0xff253a43.toInt(),
-                "Green" to 0xff286f5d.toInt(),
-                "Blue" to 0xff346fb0.toInt(),
-                "Red" to 0xffad534a.toInt(),
-            )
-            .forEach { (name, color) ->
-                TextButton(onClick = { model.color(color) }) {
-                    Text(name + if (model.penColor == color) " ✓" else "", color = Color(color))
-                }
-            }
-        listOf("Fine" to 1.4f, "Medium" to 2.4f, "Broad" to 4f).forEach { (name, width) ->
-            TextButton(onClick = { model.width(width) }) {
-                Text(name + if (model.penWidth == width) " ✓" else "")
-            }
-        }
-    }
-}
-
-@Composable
-private fun PortraitTools(model: NotebookModel, lessonScrolling: Boolean) {
-    HorizontalDivider(color = Line)
-    Row(
-        Modifier.fillMaxWidth().height(82.dp).background(Paper).padding(horizontal = 28.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Tool(Icons.Outlined.Edit, "Pen", !model.eraser) { model.eraser = false }
-        Tool(Icons.AutoMirrored.Outlined.Backspace, "Stroke eraser", model.eraser) {
-            model.eraser = true
-        }
-        VerticalDivider(Modifier.height(30.dp).padding(horizontal = 6.dp), color = Line)
-        listOf(0xff253a43.toInt(), 0xff286f5d.toInt(), 0xff346fb0.toInt(), 0xffad534a.toInt())
-            .forEach { color ->
-                Box(
-                    Modifier.size(44.dp)
-                        .clip(CircleShape)
-                        .border(
-                            2.dp,
-                            if (model.penColor == color && !model.eraser) Color(color)
-                            else Color.Transparent,
-                            CircleShape,
-                        )
-                        .clickable { model.color(color) },
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Box(Modifier.size(24.dp).background(Color(color), CircleShape))
-                }
-            }
-        VerticalDivider(Modifier.height(30.dp).padding(horizontal = 6.dp), color = Line)
-        listOf(1.4f, 2.4f, 4f).forEach { width ->
-            Box(
-                Modifier.size(46.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(
-                        if (model.penWidth == width) Color(0xffe9f0e8) else Color.Transparent
-                    )
-                    .clickable { model.width(width) },
-                contentAlignment = Alignment.Center,
-            ) {
-                Box(Modifier.width(23.dp).height(width.dp).background(Ink, CircleShape))
-            }
-        }
-        Spacer(Modifier.weight(1f))
-        Icon(Icons.Outlined.TouchApp, null, tint = Muted, modifier = Modifier.size(18.dp))
-        ScrollPreference(model.input, lessonScrolling)
-    }
-}
-
-@Composable
 private fun Label(text: String) {
     Text(
         text,
@@ -606,59 +522,6 @@ private fun ModeButton(text: String, selected: Boolean, icon: ImageVector, onCli
             color = if (selected) Forest else Muted,
             fontWeight = FontWeight.Medium,
         )
-    }
-}
-
-@Composable
-private fun Tools(model: NotebookModel, lessonScrolling: Boolean) {
-    Column(
-        Modifier.width(78.dp).fillMaxHeight().background(Paper).padding(vertical = 26.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Label("TOOLS")
-        Spacer(Modifier.height(24.dp))
-        Tool(Icons.Outlined.Edit, "Pen", !model.eraser) { model.eraser = false }
-        Spacer(Modifier.height(8.dp))
-        Tool(Icons.AutoMirrored.Outlined.Backspace, "Stroke eraser", model.eraser) {
-            model.eraser = true
-        }
-        HorizontalDivider(Modifier.padding(18.dp), color = Line)
-        listOf(0xff253a43.toInt(), 0xff286f5d.toInt(), 0xff346fb0.toInt(), 0xffad534a.toInt())
-            .forEach { color ->
-                Box(
-                    Modifier.padding(vertical = 7.dp)
-                        .size(42.dp)
-                        .clip(CircleShape)
-                        .border(
-                            if (model.penColor == color && !model.eraser) 2.dp else 0.dp,
-                            if (model.penColor == color && !model.eraser) Color(color)
-                            else Color.Transparent,
-                            CircleShape,
-                        )
-                        .clickable { model.color(color) },
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Box(Modifier.size(24.dp).background(Color(color), CircleShape))
-                }
-            }
-        HorizontalDivider(Modifier.padding(18.dp), color = Line)
-        listOf(1.4f, 2.4f, 4f).forEach { width ->
-            Box(
-                Modifier.padding(vertical = 3.dp)
-                    .size(46.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(
-                        if (model.penWidth == width) Color(0xffe9f0e8) else Color.Transparent
-                    )
-                    .clickable { model.width(width) },
-                contentAlignment = Alignment.Center,
-            ) {
-                Box(Modifier.width(23.dp).height(width.dp).background(Ink, CircleShape))
-            }
-        }
-        Spacer(Modifier.weight(1f))
-        Icon(Icons.Outlined.TouchApp, null, tint = Muted, modifier = Modifier.size(21.dp))
-        ScrollPreference(model.input, lessonScrolling)
     }
 }
 
@@ -790,11 +653,11 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                     .then(if (model.input.twoFinger) Modifier.twoFingerScroll(state) else Modifier),
             contentPadding = PaddingValues(bottom = 60.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(26.dp),
+            verticalArrangement = Arrangement.spacedBy(18.dp),
         ) {
             itemsIndexed(entries, key = { _, entry -> entry.first }) { _, entry ->
                 Box(
-                    Modifier.widthIn(max = 960.dp)
+                    Modifier.widthIn(max = 840.dp)
                         .fillMaxWidth()
                         .padding(
                             horizontal =
@@ -817,18 +680,18 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                                 LocalConfiguration.current.screenHeightDp < 480
                                         )
                                             16.dp
-                                        else 38.dp,
-                                        32.dp,
+                                        else 26.dp,
+                                        24.dp,
                                     )
                             ) {
                                 Text(
                                     value.title,
                                     fontFamily = FontFamily.Serif,
-                                    fontSize = 30.sp,
-                                    lineHeight = 37.sp,
+                                    fontSize = 24.sp,
+                                    lineHeight = 30.sp,
                                     color = Ink,
                                 )
-                                Spacer(Modifier.height(22.dp))
+                                Spacer(Modifier.height(16.dp))
                                 if (value.blocks != null)
                                     TeachingBlocks(
                                         value.blocks,
@@ -856,11 +719,11 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                         fontSize =
                                             if (LocalConfiguration.current.screenWidthDp < 600)
                                                 32.sp
-                                            else 46.sp,
+                                            else 34.sp,
                                         lineHeight =
                                             if (LocalConfiguration.current.screenWidthDp < 600)
                                                 39.sp
-                                            else 53.sp,
+                                            else 41.sp,
                                         color = Ink,
                                         modifier = Modifier.padding(top = 14.dp, bottom = 20.dp),
                                     )
@@ -870,7 +733,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                             Modifier.fillMaxWidth(),
                                             source = "intro",
                                         )
-                                    else RichText(lesson.intro, Modifier.fillMaxWidth(), 18f)
+                                    else RichText(lesson.intro, Modifier.fillMaxWidth(), 16f)
                                     TypingGuide(model)
                                     Row(
                                         Modifier.padding(top = 23.dp),
@@ -899,7 +762,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
                                     Text(
                                         "Make it your own.",
                                         fontFamily = FontFamily.Serif,
-                                        fontSize = 30.sp,
+                                        fontSize = 24.sp,
                                     )
                                     Text(
                                         "${lesson.practiceIds.size} more problems, with room to work through each one.",
@@ -975,7 +838,7 @@ private fun Prompt(q: Question, compact: Boolean = false) {
     RichText(
         q.prompt,
         Modifier.fillMaxWidth(),
-        if (compact) 19f else 21f,
+        if (compact) 16f else 17f,
         source = "question:${q.id}:prompt",
     )
     if (q.math.isNotBlank()) {
@@ -983,7 +846,7 @@ private fun Prompt(q: Question, compact: Boolean = false) {
         RichText(
             "$$\n${q.math}\n$$",
             Modifier.fillMaxWidth(),
-            22f,
+            18f,
             source = "question:${q.id}:math",
         )
     }
@@ -1181,14 +1044,16 @@ private fun Practice(
                     Modifier.weight(1f),
                     prompt = { paneModifier -> PracticePrompt(q, paneModifier) },
                     writing = { paneModifier ->
-                        Column(
-                            paneModifier
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(Paper)
-                                .border(1.dp, Line, RoundedCornerShape(16.dp))
-                        ) {
+                        Box(paneModifier) {
                             val writingState = rememberLazyListState()
-                            LazyColumn(state = writingState, modifier = Modifier.fillMaxSize()) {
+                            LazyColumn(
+                                state = writingState,
+                                modifier =
+                                    Modifier.fillMaxWidth()
+                                        .clip(RoundedCornerShape(16.dp))
+                                        .background(Paper)
+                                        .border(1.dp, Line, RoundedCornerShape(16.dp)),
+                            ) {
                                 item { ExerciseInput(model, q) }
                             }
                         }
@@ -1305,7 +1170,7 @@ private fun PracticePrompt(q: Question, modifier: Modifier) {
                     RichText(
                         q.answer,
                         Modifier.fillMaxWidth(),
-                        19f,
+                        16f,
                         source = "question:${q.id}:answer",
                     )
                     HorizontalDivider(Modifier.padding(vertical = 24.dp), color = Line)
@@ -1325,7 +1190,7 @@ private fun PracticePanels(
 ) {
     if (portrait)
         Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(22.dp)) {
-            prompt(Modifier.fillMaxWidth().height(300.dp))
+            prompt(Modifier.fillMaxWidth().height(230.dp))
             writing(Modifier.fillMaxWidth().weight(1f))
         }
     else

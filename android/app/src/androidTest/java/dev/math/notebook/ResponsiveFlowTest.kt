@@ -92,7 +92,7 @@ class ResponsiveFlowTest {
             capture("practice")
             if (rule.onAllNodesWithTag("practice-scroll").fetchSemanticsNodes().isNotEmpty())
                 rule.onNodeWithTag("practice-scroll").performScrollToIndex(1)
-            rule.onNodeWithText("Focus editor").performScrollTo().performClick()
+            rule.onNodeWithText("Expand").performScrollTo().performClick()
             rule.waitForIdle()
             rule.runOnIdle {
                 val v = editor()
@@ -123,7 +123,7 @@ class ResponsiveFlowTest {
                 keyboard.hideSoftInputFromWindow(v.windowToken, 0)
             }
             SystemClock.sleep(400)
-            rule.onNodeWithText("Done editing").performClick()
+            rule.onNodeWithText("Done").performClick()
             rule.waitForIdle()
             rule.runOnIdle { assertTrue(draft.text.contains("\\frac")) }
         }

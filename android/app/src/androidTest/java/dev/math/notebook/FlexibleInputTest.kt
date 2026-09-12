@@ -138,7 +138,16 @@ class FlexibleInputTest {
         rule.runOnIdle {
             model.mode(false)
             model.input.pen("hide")
+            model.references.close()
+            model.focusedEditor = null
         }
+        rule
+            .onNodeWithText(
+                if (rule.onAllNodesWithText("Read & write").fetchSemanticsNodes().isNotEmpty())
+                    "Read & write"
+                else "Read"
+            )
+            .performClick()
         val before = model.input.twoFinger
         rule.onNodeWithTag("scroll-preference").performTouchInput { longClick() }
         rule.runOnIdle {
@@ -278,7 +287,7 @@ class FlexibleInputTest {
     }
 
     @Test
-    fun cameraContractSupportsCancelRetakeRotateAttachAndUndo() {
+    fun cameraConfirmationAttachesDirectlyAndPreservesOtherAnswers() {
         lateinit var draft: AnswerDraft
         rule.runOnIdle {
             model.select(0)
@@ -289,7 +298,7 @@ class FlexibleInputTest {
         }
         rule.waitUntil(10000) { !draft.loading }
         val original = draft.photos
-        rule.runOnIdle { draft.mode("type") }
+        rule.runOnIdle { draft.mode("photo") }
         var captures = 0
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val monitor =
@@ -342,16 +351,10 @@ class FlexibleInputTest {
             assertEquals(original, draft.photos)
             take()
             assertEquals("Camera contract requests", 2, captures)
-            rule.waitUntil(10000) {
-                rule.onAllNodesWithText("Retake").fetchSemanticsNodes().isNotEmpty()
-            }
-            rule.onNodeWithText("Retake").performClick()
-            rule.waitUntil(10000) {
-                rule.onAllNodesWithText("Attach").fetchSemanticsNodes().isNotEmpty()
-            }
-            rule.onNode(hasText("Rotate") and hasAnyAncestor(isDialog())).performClick()
-            rule.onNodeWithText("Attach").performClick()
             rule.waitUntil(10000) { draft.photos.size == original.size + 1 && !draft.saving }
+            rule.onAllNodesWithText("Attach").assertCountEquals(0)
+            rule.onAllNodesWithText("Retake").assertCountEquals(0)
+            rule.onAllNodesWithText("Rotate").onLast().performScrollTo().performClick()
             android.os.SystemClock.sleep(
                 400
             ) // Let the platform camera-preview window finish dismissing.
@@ -365,14 +368,23 @@ class FlexibleInputTest {
             rule.waitForIdle()
             rule.onAllNodesWithText("Enlarge").onLast().performClick()
             rule.waitUntil(10000) {
-                rule.onAllNodesWithText("Close photo").fetchSemanticsNodes().isNotEmpty()
+                rule.onAllNodesWithText("Done").fetchSemanticsNodes().isNotEmpty()
             }
-            rule.onNodeWithText("Close photo").performClick()
+            rule.onNodeWithText("Done").performClick()
             rule.onAllNodesWithText("Remove").onLast().performScrollTo().performClick()
             rule.runOnIdle { assertEquals(original, draft.photos) }
             rule.onNodeWithText("Undo photo removal").performScrollTo().performClick()
             rule.runOnIdle { assertEquals(attached, draft.photos.last()) }
+            take()
+            rule.waitUntil(10000) { draft.photos.size == original.size + 2 && !draft.saving }
             assertEquals(3, captures)
+            assertEquals("photo", draft.mode)
+            rule.activityRule.scenario.recreate()
+            rule.waitForIdle()
+            val restored = rule.runOnIdle { model.answers.draft(draft.key, true) }
+            rule.waitUntil(10000) { !restored.loading }
+            assertEquals("photo", restored.mode)
+            assertEquals(original.size + 2, restored.photos.size)
         } finally {
             instrumentation.removeMonitor(monitor)
             rule.runOnIdle { draft.photos(original) }
@@ -397,7 +409,7 @@ class FlexibleInputTest {
         rule.runOnIdle { draft.mode("type") }
         val original = page.strokes
         val scroll = model.input.twoFinger
-        rule.onNodeWithText("Sketch with finger").performScrollTo().performClick()
+        rule.onNodeWithText("Sketch").performScrollTo().performClick()
         rule.onNodeWithTag("ink:${draft.key}").performTouchInput {
             swipe(center, center + androidx.compose.ui.geometry.Offset(80f, 20f), 500)
         }

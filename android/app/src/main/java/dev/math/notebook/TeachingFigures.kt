@@ -48,14 +48,17 @@ internal fun TeachingFigure(figure: JSONObject) {
                         androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp < 480
                 )
                     12.dp
-                else 20.dp
+                else 16.dp
             )
     ) {
-        Text(figure.getString("title"), style = MaterialTheme.typography.titleLarge)
+        Text(figure.getString("title"), style = MaterialTheme.typography.titleMedium)
         Spacer(Modifier.height(12.dp))
         var expanded by remember { mutableStateOf(false) }
         BoxWithConstraints(Modifier.fillMaxWidth()) {
-            val availableWidth = maxWidth
+            val availableWidth =
+                maxWidth.coerceAtMost(
+                    if (figure.getString("kind") in listOf("plot", "flow")) 560.dp else 400.dp
+                )
             val narrow = availableWidth < 500.dp
             val fits = figure.getString("kind") != "plot"
             val pan = narrow && !fits
@@ -68,7 +71,8 @@ internal fun TeachingFigure(figure: JSONObject) {
                 Box(
                     Modifier.fillMaxWidth()
                         .testTag("figure-viewport:$id")
-                        .horizontalScroll(rememberScrollState(), enabled = pan)
+                        .horizontalScroll(rememberScrollState(), enabled = pan),
+                    contentAlignment = Alignment.Center,
                 ) {
                     Box(if (pan) Modifier.width(560.dp) else Modifier.width(availableWidth)) {
                         if (narrow && figure.getString("kind") == "flow")
@@ -76,7 +80,7 @@ internal fun TeachingFigure(figure: JSONObject) {
                         else FigureDrawing(figure, frame)
                     }
                 }
-                TextButton(onClick = { expanded = true }) { Text("Expand figure") }
+                WorkspaceAction("Expand figure", onClick = { expanded = true })
             }
         }
         if (expanded)
@@ -85,45 +89,63 @@ internal fun TeachingFigure(figure: JSONObject) {
                 properties =
                     androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false),
             ) {
-                Surface(Modifier.fillMaxSize().systemBarsPadding()) {
-                    Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp)) {
-                        TextButton(onClick = { expanded = false }) { Text("Close figure") }
-                        Text(figure.getString("title"), style = MaterialTheme.typography.titleLarge)
-                        BoxWithConstraints(Modifier.fillMaxWidth()) {
-                            val drawingWidth = maxWidth.coerceAtLeast(560.dp)
-                            Box(Modifier.horizontalScroll(rememberScrollState())) {
-                                Box(Modifier.width(drawingWidth)) { FigureDrawing(figure, frame) }
-                            }
+                Surface(Modifier.fillMaxSize().systemBarsPadding(), color = WorkspaceGround) {
+                    Column {
+                        WorkspaceHeader(figure.getString("title"), "Explore the figure") {
+                            expanded = false
                         }
-                        RichText(frame.getString("text"), source = "figure:$id:frame:$step")
-                        if (frames.length() > 1)
-                            FlowRow {
-                                TextButton(onClick = { step-- }, enabled = step > 0) {
-                                    Text("Previous")
-                                }
-                                Text("${step + 1} / ${frames.length()}", Modifier.padding(12.dp))
-                                TextButton(
-                                    onClick = { step++ },
-                                    enabled = step < frames.length() - 1,
+                        Column(
+                            Modifier.weight(1f)
+                                .verticalScroll(rememberScrollState())
+                                .widthIn(max = 900.dp)
+                                .fillMaxWidth()
+                                .align(Alignment.CenterHorizontally)
+                                .padding(24.dp)
+                        ) {
+                            BoxWithConstraints(Modifier.fillMaxWidth()) {
+                                val drawingWidth = maxWidth.coerceIn(560.dp, 720.dp)
+                                Box(
+                                    Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                                    contentAlignment = Alignment.Center,
                                 ) {
-                                    Text("Next")
-                                }
-                                TextButton(onClick = { step = 0 }, enabled = step != 0) {
-                                    Text("Reset")
+                                    Box(Modifier.width(drawingWidth)) {
+                                        FigureDrawing(figure, frame)
+                                    }
                                 }
                             }
-                        TextButton(onClick = { about = !about }) { Text("About this figure") }
-                        if (about) {
-                            RichText(
-                                figure.getString("creation"),
-                                size = 14f,
-                                source = "figure:$id:creation",
-                            )
-                            RichText(
-                                figure.getString("limitations"),
-                                size = 14f,
-                                source = "figure:$id:limitations",
-                            )
+                            RichText(frame.getString("text"), source = "figure:$id:frame:$step")
+                            if (frames.length() > 1)
+                                FlowRow {
+                                    TextButton(onClick = { step-- }, enabled = step > 0) {
+                                        Text("Previous")
+                                    }
+                                    Text(
+                                        "${step + 1} / ${frames.length()}",
+                                        Modifier.padding(12.dp),
+                                    )
+                                    TextButton(
+                                        onClick = { step++ },
+                                        enabled = step < frames.length() - 1,
+                                    ) {
+                                        Text("Next")
+                                    }
+                                    TextButton(onClick = { step = 0 }, enabled = step != 0) {
+                                        Text("Reset")
+                                    }
+                                }
+                            TextButton(onClick = { about = !about }) { Text("About this figure") }
+                            if (about) {
+                                RichText(
+                                    figure.getString("creation"),
+                                    size = 14f,
+                                    source = "figure:$id:creation",
+                                )
+                                RichText(
+                                    figure.getString("limitations"),
+                                    size = 14f,
+                                    source = "figure:$id:limitations",
+                                )
+                            }
                         }
                     }
                 }
@@ -132,11 +154,11 @@ internal fun TeachingFigure(figure: JSONObject) {
         RichText(
             frame.getString("text"),
             Modifier.fillMaxWidth(),
-            17f,
+            15f,
             source = "figure:$id:frame:$step",
         )
         if (frames.length() > 1)
-            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 TextButton(
                     onClick = { step-- },
                     enabled = step > 0,
@@ -182,7 +204,7 @@ private fun CompactReasoningFigure(figure: JSONObject, frame: JSONObject) {
                 else Text(text, Modifier.padding(12.dp), style = MaterialTheme.typography.bodyLarge)
             }
             if (index < steps.lastIndex)
-                Text("↓", Modifier.padding(4.dp), style = MaterialTheme.typography.titleLarge)
+                Text("↓", Modifier.padding(4.dp), style = MaterialTheme.typography.titleMedium)
         }
     }
 }

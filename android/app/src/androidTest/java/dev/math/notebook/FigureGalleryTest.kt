@@ -88,10 +88,10 @@ class FigureGalleryTest {
                                     ) {
                                         item {
                                             Box(
-                                                Modifier.widthIn(max = 960.dp)
+                                                Modifier.widthIn(max = 840.dp)
                                                     .fillMaxWidth()
                                                     .padding(
-                                                        horizontal = if (compact) 28.dp else 66.dp,
+                                                        horizontal = if (compact) 28.dp else 26.dp,
                                                         vertical = 24.dp,
                                                     )
                                             ) {

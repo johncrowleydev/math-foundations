@@ -131,7 +131,9 @@ class TeachingTest {
         rule.onNodeWithTag("open-reference").performClick()
         rule.onNodeWithText("Reference library").assertIsDisplayed()
         rule.onNodeWithText("Search names, symbols, or TeX").performTextInput("vertex")
-        rule.onNodeWithTag("reference:vertex").performClick()
+        rule.onNodeWithTag("reference:vertex").performScrollTo().performClick()
+        rule.waitForIdle()
+        capture("reference-entry-check.png")
         rule.onNodeWithText("Watch for this").assertExists()
         capture("reference-library-landscape.png")
         rule.runOnIdle {
@@ -139,7 +141,7 @@ class TeachingTest {
             model.references.open("term:vertex", androidx.compose.ui.unit.IntOffset(400, 300))
         }
         rule.onNodeWithTag("quick-reference").assertIsDisplayed()
-        rule.onNodeWithTag("full-reference").performClick()
+        rule.onNodeWithTag("full-reference").performScrollTo().performClick()
         rule.onNodeWithTag("reference-panel").assertIsDisplayed()
         rule.onNodeWithTag("reader").assertIsDisplayed()
         capture("reference-panel-landscape.png")
@@ -166,7 +168,23 @@ class TeachingTest {
             model.openTeaching("asymptotic-growth", "Big O: an eventual upper bound")
         }
         rule.waitForIdle()
+        rule.waitUntil(10000) {
+            rule.activity.resources.configuration.orientation ==
+                android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        }
+        android.os.SystemClock.sleep(
+            800
+        ) // Wait for the system rotation animation before screen-coordinate input.
+        if (rule.activity.resources.configuration.screenHeightDp < 500) {
+            rule.onNodeWithTag("reader").performSemanticsAction(
+                androidx.compose.ui.semantics.SemanticsActions.ScrollBy
+            ) {
+                it(0f, 400f)
+            }
+            rule.waitForIdle()
+        }
         tapLinkedWord("<formula>")
+        capture("formula-popover-check.png")
         rule.onNodeWithTag("quick-reference").assertIsDisplayed()
         val formulaTarget = rule.runOnIdle { model.references.target!! }
         assertTrue(formulaTarget.startsWith("formula:"))
@@ -176,11 +194,11 @@ class TeachingTest {
             }
         assertEquals("asymptotic-growth", formula.getString("lesson"))
         assertTrue(formula.getString("source").startsWith("section:big-o-an-eventual-upper-bound:"))
-        rule.onNodeWithTag("full-reference").performClick()
+        rule.onNodeWithTag("full-reference").performScrollTo().performClick()
         rule.onNodeWithTag("reference-panel").assertIsDisplayed()
-        rule.onAllNodesWithText("Full reference").onFirst().performClick()
+        rule.onAllNodesWithText("Full reference").onFirst().performScrollTo().performClick()
         assertTrue(rule.runOnIdle { model.references.target!!.startsWith("term:") })
-        rule.onNodeWithText("Back", useUnmergedTree = true).performClick()
+        rule.onNodeWithContentDescription("Back", useUnmergedTree = true).performClick()
         assertEquals(formulaTarget, rule.runOnIdle { model.references.target })
         rule.onNodeWithText("Close", useUnmergedTree = true).performClick()
         rule.onNodeWithTag("reader").assertIsDisplayed()
@@ -208,7 +226,7 @@ class TeachingTest {
             keyboard.hideSoftInputFromWindow(rule.activity.window.decorView.windowToken, 0)
         }
         rule.onNodeWithText("Summation notation").assertExists()
-        rule.onNodeWithText("Back", useUnmergedTree = true).performClick()
+        rule.onNodeWithContentDescription("Back", useUnmergedTree = true).performClick()
         search.performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.SetText) {
             it(androidx.compose.ui.text.AnnotatedString("Σ"))
         }

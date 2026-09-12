@@ -118,7 +118,7 @@ class FigureInteractionTest {
             .onNode(hasText("About this figure") and hasAnyAncestor(isDialog()))
             .performScrollTo()
             .performClick()
-        rule.onNodeWithText("Close figure").performScrollTo().performClick()
+        rule.onNodeWithText("Done").performClick()
         rule.onNodeWithTag("figure-back:graph-first").assertIsNotEnabled()
     }
 }
