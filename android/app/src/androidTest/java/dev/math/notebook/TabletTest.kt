@@ -83,7 +83,7 @@ class TabletTest {
         }
         rule.waitForIdle()
         rule.onNodeWithText("On this page").performClick()
-        rule.onNode(hasText("Propositions") and hasClickAction()).performClick()
+        rule.onNodeWithTag("outline-entry:1").performScrollTo().performClick()
         rule.waitForIdle()
         assertEquals(1, rule.runOnIdle { model.reading(model.lesson.slug).first })
         capture("portrait-reader.png")
@@ -114,7 +114,7 @@ class TabletTest {
             rule.waitForIdle()
             if (rule.onAllNodesWithTag("pinned-outline").fetchSemanticsNodes().isEmpty())
                 rule.onNodeWithText("On this page").performClick()
-            rule.onNode(hasText("Propositions") and hasClickAction()).performClick()
+            rule.onNodeWithTag("outline-entry:1").performScrollTo().performClick()
             val reader = rule.onNodeWithTag("reader")
             reader.performTouchInput {
                 down(0, Offset(centerX - 70, bottom - 100))

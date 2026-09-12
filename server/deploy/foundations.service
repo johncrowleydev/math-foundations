@@ -1,0 +1,25 @@
+[Unit]
+Description=Foundations notebook sync API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=foundations
+Group=foundations
+WorkingDirectory=/var/lib/math-foundations
+Environment=FOUNDATIONS_DATA=/var/lib/math-foundations
+Environment=FOUNDATIONS_ADDR=127.0.0.1:18084
+EnvironmentFile=/etc/math-foundations/server.env
+ExecStart=/opt/math-foundations/current/foundations-server
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/math-foundations
+
+[Install]
+WantedBy=multi-user.target

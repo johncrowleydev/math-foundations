@@ -28,6 +28,12 @@ class TexTeaching(context: Context) {
     private val exercises =
         data.getJSONArray("exercises").let { a -> a.mapItems { a.getJSONObject(it) } }
     private val overrides = mutableStateMapOf<String, Boolean>()
+    private var refreshGeneration by mutableIntStateOf(0)
+
+    fun refresh() {
+        overrides.clear()
+        refreshGeneration++
+    }
 
     fun block(lesson: String, section: String) =
         placements.firstOrNull {
@@ -79,11 +85,13 @@ class TexTeaching(context: Context) {
             it.getString("lesson") == lesson && it.optInt("exercise", -1) == id
         }
 
-    fun expanded(lesson: String, typing: Boolean): Boolean =
-        overrides[lesson]
+    fun expanded(lesson: String, typing: Boolean): Boolean {
+        refreshGeneration
+        return overrides[lesson]
             ?: if (prefs.contains("tex:visible:v2:$lesson"))
                 prefs.getBoolean("tex:visible:v2:$lesson", false)
             else false
+    }
 
     fun setExpanded(lesson: String, value: Boolean) {
         overrides[lesson] = value

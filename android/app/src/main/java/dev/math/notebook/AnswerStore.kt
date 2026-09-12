@@ -85,6 +85,7 @@ class AnswerDraft(val key: String, private val store: AnswerStore, typing: Boole
 data class AnswerPhoto(val id: String, val rotation: Int = 0)
 
 class AnswerStore(context: Context) {
+    private val cloud = CloudSync.get(context)
     private val root = File(context.filesDir, "answers")
     private val worker = Executors.newSingleThreadExecutor()
     private val main = android.os.Handler(android.os.Looper.getMainLooper())
@@ -102,6 +103,10 @@ class AnswerStore(context: Context) {
     fun draft(key: String, typing: Boolean): AnswerDraft =
         drafts.getOrPut(key) { AnswerDraft(key, this, typing).also { load(it) } }
 
+    fun refresh(key: String) {
+        drafts[key]?.let { load(it) }
+    }
+
     private fun file(key: String): File {
         require(key.matches(Regex("[a-z0-9-]+")))
         return File(root, "$key.json")
@@ -109,18 +114,22 @@ class AnswerStore(context: Context) {
 
     internal fun load(draft: AnswerDraft) {
         draft.error = null
+        val revision = draft.revision
         worker.execute {
             try {
                 val f = AtomicFile(file(draft.key))
                 val json =
-                    try {
-                        f.openRead().bufferedReader().use { JSONObject(it.readText()) }
-                    } catch (e: java.io.FileNotFoundException) {
-                        if (
-                            file(draft.key).exists() || File(file(draft.key).path + ".bak").exists()
-                        )
-                            throw e
-                        JSONObject()
+                    synchronized(NotebookDisk.lock) {
+                        try {
+                            f.openRead().bufferedReader().use { JSONObject(it.readText()) }
+                        } catch (e: java.io.FileNotFoundException) {
+                            if (
+                                file(draft.key).exists() ||
+                                    File(file(draft.key).path + ".bak").exists()
+                            )
+                                throw e
+                            JSONObject()
+                        }
                     }
                 require(json.optInt("version", 1) == 1) { "Unsupported answer version" }
                 require(
@@ -134,8 +143,10 @@ class AnswerStore(context: Context) {
                     }
                 }
                 main.post {
-                    draft.restore(json)
-                    draft.loading = false
+                    if (draft.revision == revision) {
+                        draft.restore(json)
+                        draft.loading = false
+                    }
                 }
             } catch (e: Exception) {
                 main.post {
@@ -151,16 +162,19 @@ class AnswerStore(context: Context) {
         draft.saving = true
         worker.execute {
             try {
-                root.mkdirs()
-                val target = AtomicFile(file(draft.key))
-                val stream = target.startWrite()
-                try {
-                    stream.write(bytes)
-                    target.finishWrite(stream)
-                } catch (e: Exception) {
-                    target.failWrite(stream)
-                    throw e
+                synchronized(NotebookDisk.lock) {
+                    root.mkdirs()
+                    val target = AtomicFile(file(draft.key))
+                    val stream = target.startWrite()
+                    try {
+                        stream.write(bytes)
+                        target.finishWrite(stream)
+                    } catch (e: Exception) {
+                        target.failWrite(stream)
+                        throw e
+                    }
                 }
+                cloud.changed()
                 main.post {
                     if (draft.revision == revision) {
                         draft.saving = false

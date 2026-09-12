@@ -29,6 +29,15 @@ internal fun QuickCheckCard(check: QuickCheck, storageKey: String) {
         rememberSaveable(storageKey) {
             mutableStateOf(prefs.getBoolean("$storageKey:revealed", false))
         }
+    DisposableEffect(prefs, storageKey) {
+        val listener =
+            android.content.SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+                if (key == "$storageKey:choice") selected = prefs.getInt(key, -1)
+                if (key == "$storageKey:revealed") revealed = prefs.getBoolean(key, false)
+            }
+        prefs.registerOnSharedPreferenceChangeListener(listener)
+        onDispose { prefs.unregisterOnSharedPreferenceChangeListener(listener) }
+    }
     Column(
         Modifier.fillMaxWidth()
             .testTag("quick:$storageKey")

@@ -1,5 +1,7 @@
 # Math Foundations
 
+Cloud sync is available at `foundations.johncrowley.dev`. Connect devices with the same private key in **Settings → Cloud sync**. See [cloud setup and maintenance](docs/cloud-sync.md) for synced data, conflicts, weekly backups, and the REST contract.
+
 A native Kotlin mathematics notebook for the Samsung Galaxy Tab S8 Ultra, with portrait and landscape layouts, S Pen handwriting, two-finger drag and flick scrolling, and locally saved work. Fifteen lessons contain 121 inline handwriting exercises, 1,192 focused practice exercises, and 30 optional multiple-choice or true/false checks. Answers can be revealed without grading.
 
 ## Install and update

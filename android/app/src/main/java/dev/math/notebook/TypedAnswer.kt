@@ -591,7 +591,7 @@ fun SyntaxHelp(model: NotebookModel, onClose: () -> Unit, insert: (String) -> Un
 }
 
 @Composable
-private fun AnswerPreview(
+internal fun AnswerPreview(
     source: String,
     library: TexLibrary,
     minimumHeight: androidx.compose.ui.unit.Dp = 166.dp,

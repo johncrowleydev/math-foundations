@@ -38,6 +38,10 @@ fun ExerciseInput(
     minimumHeight: androidx.compose.ui.unit.Dp = 0.dp,
 ) {
     val key = "${model.lesson.slug}-${q.id}"
+    DisposableEffect(key) {
+        model.cloud.hold(key)
+        onDispose { model.cloud.release(key) }
+    }
     val draft = remember(key) { model.answers.draft(key, model.input.preferTyping) }
     val page = remember(key) { model.page(key) }
     var expanded by rememberSaveable(key) { mutableStateOf(false) }
@@ -47,6 +51,7 @@ fun ExerciseInput(
             Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
+            CloudVersionsAction(model, key)
             draft.error?.let {
                 Text(it, color = MaterialTheme.colorScheme.error, fontSize = 12.sp)
                 WorkspaceAction("Retry", onClick = draft::retry)
@@ -392,7 +397,7 @@ private fun AnswerPhotos(draft: AnswerDraft, content: @Composable (() -> Unit) -
 }
 
 @Composable
-private fun PhotoImage(file: File, rotation: Int, modifier: Modifier, zoomable: Boolean = false) {
+internal fun PhotoImage(file: File, rotation: Int, modifier: Modifier, zoomable: Boolean = false) {
     var bitmap by remember(file.path) { mutableStateOf<android.graphics.Bitmap?>(null) }
     var failed by remember(file.path) { mutableStateOf(false) }
     LaunchedEffect(file.path, rotation, zoomable) {

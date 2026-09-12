@@ -31,6 +31,7 @@ class PageOutlineTest {
             model.select(0)
             model.mode(false)
             model.references.close()
+            if (model.input.twoFinger) model.input.toggleScroll()
         }
         rule.waitUntil(10000) { rule.activity.resources.configuration.orientation == 2 }
         rule.onNodeWithTag("reader").performScrollToIndex(0)

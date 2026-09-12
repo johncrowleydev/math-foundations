@@ -172,9 +172,10 @@ fun InputSettingsButton(input: InputPreferences) {
     if (open)
         AlertDialog(
             onDismissRequest = { open = false },
-            title = { Text("Input settings") },
+            title = { Text("Settings") },
             text = {
                 Column(Modifier.verticalScroll(rememberScrollState())) {
+                    CloudSettings()
                     Text("Lesson scrolling", style = MaterialTheme.typography.titleSmall)
                     Row(
                         Modifier.fillMaxWidth()

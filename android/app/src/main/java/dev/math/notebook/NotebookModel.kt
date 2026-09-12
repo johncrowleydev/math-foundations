@@ -65,6 +65,7 @@ data class Lesson(
 fun <T> JSONArray.mapItems(block: (Int) -> T): List<T> = (0 until length()).map(block)
 
 class NotebookModel(app: Application) : AndroidViewModel(app) {
+    val cloud = CloudSync.get(app)
     val input = InputPreferences(app)
     val answers = AnswerStore(app)
     val tex = TexLibrary(app)
@@ -169,6 +170,44 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     var eraser by mutableStateOf(false)
     var saveError by mutableStateOf<String?>(null)
     private val pages = androidx.compose.runtime.mutableStateMapOf<String, InkPage>()
+    private val cloudListener: (String) -> Unit = { key ->
+        when (key.substringBefore('/')) {
+            "text",
+            "photos" -> answers.refresh(key.substringAfter('/'))
+            "ink" -> pages[key.substringAfter('/')]?.let { load(it) }
+            "preference" -> texTeaching.refresh()
+        }
+    }
+
+    init {
+        cloud.listen(cloudListener)
+    }
+
+    var resumeJump by mutableStateOf<Pair<Int, String>?>(null)
+        private set
+
+    fun resumeCloud() {
+        val target = cloud.resume ?: return
+        val slug = target.optString("slug")
+        val index = lessons.indexOfFirst { it.slug == slug }
+        if (index < 0) return
+        val keys = readingKeys(slug)
+        val anchor =
+            target.optString("anchor").takeIf { it in keys }
+                ?: target.optString("section").takeIf { it in keys }
+                ?: "intro"
+        focusedEditor = null
+        answerFocus = null
+        select(index)
+        mode(false)
+        resumeJump = (++jumpSequence) to anchor
+        cloud.dismissResume()
+    }
+
+    fun consumeResume() {
+        resumeJump = null
+    }
+
     val pendingSaves
         get() = answers.pending || pages.values.any { it.saving || it.error != null }
 
@@ -294,7 +333,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
         return index to offset
     }
 
-    fun reading(slug: String, index: Int, offset: Int) {
+    fun reading(slug: String, index: Int, offset: Int, activity: Boolean = false) {
         val keys = readingKeys(slug)
         val key = keys.getOrNull(index) ?: "intro"
         val section =
@@ -308,6 +347,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
             .putInt("reading:$slug", index)
             .putInt("offset:$slug", offset)
             .apply()
+        if (activity) cloud.reading(slug, key, section)
     }
 
     fun page(key: String): InkPage =
@@ -315,6 +355,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
 
     private fun load(page: InkPage) {
         page.error = null
+        val revision = page.revision
         viewModelScope.launch {
             try {
                 val result =
@@ -323,9 +364,11 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
                             File(getApplication<Application>().filesDir, "ink/${page.key}.json")
                         )
                     }
-                page.strokes = result.first
-                page.height = result.second
-                page.loading = false
+                if (revision == page.revision) {
+                    page.strokes = result.first
+                    page.height = result.second
+                    page.loading = false
+                }
             } catch (e: Exception) {
                 page.error = "Could not open saved handwriting. Your saved file has been kept."
                 saveError = page.error
@@ -344,11 +387,14 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
         page.saving = true
         writer.execute {
             try {
-                InkFiles.write(
-                    File(getApplication<Application>().filesDir, "ink/${page.key}.json"),
-                    strokes,
-                    height,
-                )
+                synchronized(NotebookDisk.lock) {
+                    InkFiles.write(
+                        File(getApplication<Application>().filesDir, "ink/${page.key}.json"),
+                        strokes,
+                        height,
+                    )
+                }
+                cloud.changed()
                 main.post {
                     if (revision == page.revision) {
                         page.saving = false
@@ -372,6 +418,7 @@ class NotebookModel(app: Application) : AndroidViewModel(app) {
     }
 
     override fun onCleared() {
+        cloud.unlisten(cloudListener)
         writer.shutdown()
         answers.close()
     }

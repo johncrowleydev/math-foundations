@@ -13,6 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: server/go.mod
+          cache-dependency-path: server/go.sum
+      - name: Build and test sync API
+        working-directory: server
+        run: |
+          go test -race ./...
+          go build -o "$RUNNER_TEMP/foundations-test" .
+          echo "CLOUD_TEST_SERVER=$RUNNER_TEMP/foundations-test" >> "$GITHUB_ENV"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

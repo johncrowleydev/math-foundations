@@ -1,0 +1,13 @@
+[Unit]
+Description=Consistent weekly Foundations SQLite backup
+
+[Service]
+Type=oneshot
+User=foundations
+Group=foundations
+Environment=FOUNDATIONS_DATA=/var/lib/math-foundations
+ExecStart=/opt/math-foundations/current/backup.sh
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/math-foundations

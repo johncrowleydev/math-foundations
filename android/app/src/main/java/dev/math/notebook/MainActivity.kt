@@ -38,6 +38,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch
 
 private val Forest = Color(0xff266655)
@@ -48,6 +49,16 @@ private val Ground = Color(0xfff2f1eb)
 private val Line = Color(0xffdde2d8)
 
 class MainActivity : ComponentActivity() {
+    override fun onStart() {
+        super.onStart()
+        CloudSync.get(this).foreground(true)
+    }
+
+    override fun onStop() {
+        CloudSync.get(this).foreground(false)
+        super.onStop()
+    }
+
     private var updateRequest by mutableIntStateOf(0)
     private var inputPreferences: InputPreferences? = null
 
@@ -610,10 +621,18 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
         if (index >= 0) state.scrollToItem(index)
         model.consumeTeachingJump(jump)
     }
+    LaunchedEffect(model.resumeJump) {
+        model.resumeJump?.let { jump ->
+            val index = entries.indexOfFirst { it.first == jump.second }
+            if (index >= 0) state.scrollToItem(index)
+            model.consumeResume()
+        }
+    }
     LaunchedEffect(state) {
         snapshotFlow { state.firstVisibleItemIndex to state.firstVisibleItemScrollOffset }
             .distinctUntilChanged()
-            .collect { model.reading(lesson.slug, it.first, it.second) }
+            .drop(1)
+            .collect { model.reading(lesson.slug, it.first, it.second, activity = true) }
     }
     val sectionStarts =
         remember(entries) {
@@ -637,6 +656,7 @@ private fun Reader(model: NotebookModel, onFocus: (Int) -> Unit) {
         val pinnedOutline = maxWidth >= 1080.dp && maxHeight >= 480.dp && maxWidth > maxHeight
         Row(Modifier.fillMaxSize()) {
             Column(Modifier.weight(1f).fillMaxHeight()) {
+                CloudResume(model)
                 if (!pinnedOutline)
                     Row(
                         Modifier.fillMaxWidth().padding(20.dp, 2.dp),
