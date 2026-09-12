@@ -171,3 +171,28 @@ func TestWeeklyBackupCanRestore(t *testing.T) {
 		t.Fatal(e)
 	}
 }
+
+func TestAttemptInventoryAndSnapshot(t *testing.T) {
+	s := fixture(t)
+	for _, id := range []string{"attempt-1", "attempt-2"} {
+		must(t, s, Mutation{ID: "version-" + id, Key: "attempt/" + id, Payload: json.RawMessage(`{"id":"` + id + `","verdict":"correct"}`), Device: "server"})
+	}
+	w := call(s, "GET", "/api/v1/status", nil, true)
+	var status struct {
+		Attempts []struct {
+			Key      string
+			Revision int64
+		}
+	}
+	if json.Unmarshal(w.Body.Bytes(), &status) != nil || len(status.Attempts) != 2 {
+		t.Fatal("Incomplete attempt inventory")
+	}
+	w = call(s, "GET", "/api/v1/attempts", nil, true)
+	var snapshot struct{ Records []Record }
+	if json.Unmarshal(w.Body.Bytes(), &snapshot) != nil || len(snapshot.Records) != 2 {
+		t.Fatal("Incomplete attempt snapshot")
+	}
+	if call(s, "GET", "/api/v1/attempts", nil, false).Code != 401 {
+		t.Fatal("Snapshot is not protected")
+	}
+}

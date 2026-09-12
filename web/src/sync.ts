@@ -1,7 +1,8 @@
 import { authSession, authGeneration, lockSession, verifySession } from './auth';
-import { all, get, put, remove, integrate, changed, hash } from './storage';
+import { all, get, put, remove, integrate, changed, hash, attemptsMatch } from './storage';
 import type { Attempt, RecordData } from './types';
 export let syncStatus = 'Not connected';
+export let initialSyncComplete = false;
 
 let busy = false;
 export const connected = () => Boolean(authSession());
@@ -36,6 +37,7 @@ async function request(path: string, method = 'GET', body?: unknown) {
 }
 let initialized = false;
 export async function initializeSync() {
+  initialSyncComplete = Boolean(await get('settings', 'initial-sync-complete'));
   await put('settings', 'key', '');
   if (initialized) {
     void sync();
@@ -106,6 +108,7 @@ export async function sync() {
       syncStatus = authSession() ? 'Offline' : 'Sign in required';
       return;
     }
+    let outgoingError = '';
     for (const op of await all<Operation>('outbox')) {
       try {
         if (op.kind === 'attempt') {
@@ -128,7 +131,11 @@ export async function sync() {
           }
           await put('settings', 'rejected:' + op.id, { ...op, error: e.message });
           await remove('outbox', op.id);
-        } else throw e;
+        } else {
+          if (e instanceof HttpError && e.status === 401) throw e;
+          outgoingError = e instanceof Error ? e.message : 'Upload failed';
+          break;
+        }
       }
     }
     let cursor = (await get<number>('settings', 'cursor')) || 0;
@@ -139,22 +146,41 @@ export async function sync() {
         cursor: number;
         more: boolean;
       };
-      for (const r of batch.records) {
-        const p = r.payload;
-        if (r.key.startsWith('attempt/')) {
-          const a = p as unknown as Attempt;
-          for (const h of [...a.images, ...(a.photos || []).map((x) => x.hash)]) await download(h);
-        } else if (r.key.startsWith('photos/')) {
-          for (const version of [r, ...(r.versions || [])])
-            for (const p of (version.payload.photos || []) as { hash: string }[])
-              await download(p.hash);
-        }
-      }
       await integrate(batch.records, batch.cursor);
       cursor = batch.cursor;
       more = batch.more;
     }
-    syncStatus = 'Up to date';
+    const status = (await (await request('/status')).json()) as {
+      attempts: { key: string; revision: number }[];
+    };
+    if (!Array.isArray(status.attempts)) throw Error('Could not verify saved attempts');
+    if (!(await attemptsMatch(status.attempts))) {
+      const snapshot = (await (await request('/attempts')).json()) as { records: RecordData[] };
+      await integrate(snapshot.records, cursor);
+      if (!(await attemptsMatch(status.attempts)))
+        throw Error('Some attempts are missing; retrying sync');
+    }
+    initialSyncComplete = true;
+    await put('settings', 'initial-sync-complete', true);
+    // Stored records are the durable download queue. A failed image must never
+    // prevent grades or later change pages from reaching a new device.
+    const hashes = referencedMedia(await all<RecordData>('records'));
+    let missing = 0;
+    syncStatus = 'Answers synced · downloading images';
+    changed();
+    for (const h of hashes) {
+      try {
+        await download(h);
+      } catch (e) {
+        if (e instanceof HttpError && e.status === 401) throw e;
+        missing++;
+      }
+    }
+    syncStatus = outgoingError
+      ? 'Answers synced · upload pending: ' + outgoingError
+      : missing
+        ? `Answers synced · ${missing} image${missing === 1 ? '' : 's'} pending; retrying automatically`
+        : 'Up to date';
   } catch (e) {
     syncStatus = e instanceof Error ? e.message : 'Sync failed';
     if (e instanceof HttpError && e.status === 401) syncStatus = 'Sign in required';
@@ -162,4 +188,18 @@ export async function sync() {
     busy = false;
     changed();
   }
+}
+
+export function referencedMedia(records: RecordData[]): Set<string> {
+  const hashes = new Set<string>();
+  for (const record of records) {
+    for (const version of [record, ...(record.versions || [])]) {
+      const p = version.payload;
+      if (record.key.startsWith('attempt/'))
+        for (const h of (p.images || []) as string[]) hashes.add(h);
+      if (record.key.startsWith('attempt/') || record.key.startsWith('photos/'))
+        for (const photo of (p.photos || []) as { hash: string }[]) hashes.add(photo.hash);
+    }
+  }
+  return hashes;
 }

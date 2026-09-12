@@ -9,7 +9,17 @@ const db = openDB('foundations-web', 2, {
 });
 let revision = 0;
 const listeners = new Set<() => void>();
+const updates =
+  typeof window !== 'undefined' && typeof BroadcastChannel !== 'undefined'
+    ? new BroadcastChannel('foundations-data')
+    : null;
+if (updates)
+  updates.onmessage = () => {
+    revision++;
+    listeners.forEach((f) => f());
+  };
 export function changed() {
+  updates?.postMessage('changed');
   revision++;
   listeners.forEach((f) => f());
 }
@@ -249,4 +259,35 @@ export async function importData(file: Blob, name: string) {
   await tx.done;
   changed();
   return { imported, conflicts };
+}
+
+export async function lessonProgress(slug: string, ids: (number | string)[]) {
+  const d = await db;
+  const tx = d.transaction(['attempts', 'drafts', 'records']);
+  const [attempts, drafts, saved] = await Promise.all([
+    tx.objectStore('attempts').getAll() as Promise<Attempt[]>,
+    Promise.all(ids.map((id) => tx.objectStore('drafts').get(slug + '-' + id))) as Promise<
+      (Draft | undefined)[]
+    >,
+    tx.objectStore('records').get('practice/position:' + slug) as Promise<RecordData | undefined>,
+  ]);
+  await tx.done;
+  return { attempts, drafts, saved };
+}
+export async function attemptsMatch(manifest: { key: string; revision: number }[]) {
+  const d = await db;
+  const tx = d.transaction(['attempts', 'records']);
+  const checks = await Promise.all(
+    manifest.map(async (item) => {
+      const [r, a] = await Promise.all([
+        tx.objectStore('records').get(item.key),
+        tx.objectStore('attempts').get(item.key.slice('attempt/'.length)),
+      ]);
+      return (
+        r && r.revision >= item.revision && a && JSON.stringify(a) === JSON.stringify(r.payload)
+      );
+    }),
+  );
+  await tx.done;
+  return checks.every(Boolean);
 }

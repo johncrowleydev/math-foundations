@@ -33,3 +33,37 @@ test('imports preserve conflicts, queued write attempts and media; corrupt impor
   await importData(new Blob([JSON.stringify(data)]), 'pen.json');
   assert.equal((await get<any>('outbox', 'pen-test')).data.mode, 'write');
 });
+
+test('attempt reconciliation detects missing derived rows despite an advanced cursor', async () => {
+  const { attemptsMatch, integrate, remove } = await import('../src/storage');
+  const a = {
+    id: 'repair-1',
+    exercise: 'logic-1',
+    submitted: 1,
+    contentVersion: 'v',
+    mode: 'type',
+    text: 'Saved',
+    images: [],
+    revealed: false,
+    status: 'graded',
+    verdict: 'correct',
+    grades: [],
+  };
+  const r = {
+    key: 'attempt/repair-1',
+    revision: 9,
+    id: 'version-9',
+    payload: a,
+    device: 'server',
+    updated: 1,
+    versions: [],
+    conflicts: [],
+  };
+  await integrate([r], 900);
+  assert.equal(await attemptsMatch([{ key: r.key, revision: 9 }]), true);
+  await remove('attempts', a.id);
+  assert.equal(await attemptsMatch([{ key: r.key, revision: 9 }]), false);
+  await integrate([r], 900);
+  assert.equal(await attemptsMatch([{ key: r.key, revision: 9 }]), true);
+  assert.equal((await get<any>('attempts', a.id)).verdict, 'correct');
+});

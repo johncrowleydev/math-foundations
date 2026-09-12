@@ -29,6 +29,7 @@ import { Figure } from './Figure';
 import { Exercise } from './Exercise';
 import {
   all,
+  lessonProgress,
   get,
   put,
   useRevision,
@@ -37,7 +38,7 @@ import {
   clearLocalWork,
   type ImportArchive,
 } from './storage';
-import { connected, initializeSync, mutation, sync, syncStatus } from './sync';
+import { connected, initializeSync, initialSyncComplete, mutation, sync, syncStatus } from './sync';
 export function App({ data }: { data: Curriculum }) {
   const [quickAnchor, setQuickAnchor] = useState<{ x: number; y: number }>();
   const [route, setRoute] = useState(() =>
@@ -111,11 +112,10 @@ export function App({ data }: { data: Curriculum }) {
   useEffect(() => {
     let live = true;
     void (async () => {
-      const [attempts, drafts, saved] = await Promise.all([
-        all<Attempt>('attempts'),
-        Promise.all(lesson.questions.map((q) => get<Draft>('drafts', lesson.slug + '-' + q.id))),
-        get<RecordData>('records', 'practice/position:' + lesson.slug),
-      ]);
+      const { attempts, drafts, saved } = await lessonProgress(
+        lesson.slug,
+        lesson.questions.map((q) => q.id),
+      );
       if (!live) return;
       const states = lesson.questions.map((q, i) => {
         const history = attempts.filter((a) => a.exercise === lesson.slug + '-' + q.id);
@@ -132,7 +132,9 @@ export function App({ data }: { data: Curriculum }) {
                 ? 'Needs attention'
                 : hasDraft
                   ? 'Draft'
-                  : 'Not attempted';
+                  : initialSyncComplete
+                    ? 'Not attempted'
+                    : 'Syncing';
         return {
           status,
           at: Math.max(0, ...history.map((a) => a.submitted), hasDraft ? draft.updated : 0),
@@ -986,7 +988,7 @@ function PracticeStatus({ status }: { status: string }) {
       ? Check
       : status === 'Try again'
         ? X
-        : status === 'Grading'
+        : status === 'Grading' || status === 'Syncing'
           ? Clock3
           : status === 'Draft'
             ? Pencil

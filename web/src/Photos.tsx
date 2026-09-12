@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { get, saveMedia } from './storage';
+import { get, saveMedia, useRevision } from './storage';
 import type { Photo } from './types';
 import { Modal } from './Rich';
 export function Media({ hash, rotation = 0 }: { hash: string; rotation?: number }) {
+  const revision = useRevision();
   const [url, set] = useState('');
   useEffect(() => {
     let live = true,
@@ -22,7 +23,7 @@ export function Media({ hash, rotation = 0 }: { hash: string; rotation?: number 
       live = false;
       if (u) URL.revokeObjectURL(u);
     };
-  }, [hash, rotation]);
+  }, [hash, rotation, revision]);
   return url ? (
     <img className="response-image" src={url} alt="Submitted written work" />
   ) : (

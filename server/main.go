@@ -222,7 +222,69 @@ func (s *Server) handler() http.Handler {
 			status["model"] = gradingModel
 			status["contentVersion"] = s.grading.catalog.Version
 		}
+		rows, e := s.db.Query("SELECT key,revision FROM records WHERE key LIKE 'attempt/%' ORDER BY key")
+		if e != nil {
+			http.Error(w, "Database unavailable", 503)
+			return
+		}
+		attempts := []map[string]any{}
+		for rows.Next() {
+			var key string
+			var revision int64
+			if e = rows.Scan(&key, &revision); e != nil {
+				rows.Close()
+				http.Error(w, "Database unavailable", 503)
+				return
+			}
+			attempts = append(attempts, map[string]any{"key": key, "revision": revision})
+		}
+		e = rows.Err()
+		rows.Close()
+		if e != nil {
+			http.Error(w, "Database unavailable", 503)
+			return
+		}
+		status["attempts"] = attempts
 		writeJSON(w, 200, status)
+	})
+	mux.HandleFunc("GET /api/v1/attempts", func(w http.ResponseWriter, r *http.Request) {
+		tx, e := s.db.Begin()
+		if e != nil {
+			http.Error(w, "Database unavailable", 503)
+			return
+		}
+		defer tx.Rollback()
+		rows, e := tx.Query("SELECT key FROM records WHERE key LIKE 'attempt/%' ORDER BY key")
+		if e != nil {
+			http.Error(w, "Database unavailable", 503)
+			return
+		}
+		keys := []string{}
+		for rows.Next() {
+			var key string
+			if e = rows.Scan(&key); e != nil {
+				rows.Close()
+				http.Error(w, "Database unavailable", 503)
+				return
+			}
+			keys = append(keys, key)
+		}
+		e = rows.Err()
+		rows.Close()
+		if e != nil {
+			http.Error(w, "Database unavailable", 503)
+			return
+		}
+		records := []Record{}
+		for _, key := range keys {
+			v, e := record(tx, key)
+			if e != nil {
+				http.Error(w, "Database unavailable", 503)
+				return
+			}
+			records = append(records, v)
+		}
+		writeJSON(w, 200, map[string]any{"records": records})
 	})
 	mux.HandleFunc("POST /api/v1/mutations", func(w http.ResponseWriter, r *http.Request) {
 		var m Mutation
