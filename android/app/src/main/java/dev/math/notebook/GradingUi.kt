@@ -2,9 +2,11 @@ package dev.math.notebook
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
@@ -60,7 +62,13 @@ internal fun GradedExerciseInput(
             ExerciseInput(model, q, minimumHeight)
             SubmissionActions(model, q)
             if (editing) WorkspaceAction("Back to latest attempt") { store.stopEditing(key) }
-        } else AttemptPanel(model, attempts.last())
+        } else
+            AttemptPanel(
+                model,
+                attempts.last(),
+                previousCount = attempts.size - 1,
+                onHistory = { history = true },
+            )
         store.errors[key]?.let {
             Text(
                 it,
@@ -77,10 +85,6 @@ internal fun GradedExerciseInput(
                 fontSize = 12.sp,
             )
         }
-        if (attempts.size > 1)
-            Row(Modifier.padding(horizontal = 10.dp)) {
-                WorkspaceAction("Previous attempts (${attempts.size - 1})") { history = true }
-            }
     }
     if (history)
         Dialog(
@@ -124,10 +128,14 @@ internal fun SubmissionActions(model: NotebookModel, q: Question) {
     val draft = model.answers.draft(key, model.input.preferTyping)
     val page = model.page(key)
     Row(
-        Modifier.fillMaxWidth().padding(horizontal = 10.dp).horizontalScroll(rememberScrollState())
+        Modifier.fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 4.dp)
+            .horizontalScroll(rememberScrollState()),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        WorkspaceAction(
+        GradeButton(
             "Submit",
+            primary = true,
             enabled =
                 !draft.loading &&
                     !draft.saving &&
@@ -147,7 +155,7 @@ internal fun SubmissionActions(model: NotebookModel, q: Question) {
         }
         Text(
             "Draft stays on this device",
-            Modifier.padding(12.dp),
+            Modifier.padding(start = 10.dp),
             color = WorkspaceMuted,
             fontSize = 11.sp,
         )
@@ -155,7 +163,13 @@ internal fun SubmissionActions(model: NotebookModel, q: Question) {
 }
 
 @Composable
-private fun AttemptPanel(model: NotebookModel, attempt: JSONObject, history: Boolean = false) {
+private fun AttemptPanel(
+    model: NotebookModel,
+    attempt: JSONObject,
+    history: Boolean = false,
+    previousCount: Int = 0,
+    onHistory: () -> Unit = {},
+) {
     val store = model.grading
     val key = attempt.getString("exercise")
     val id = attempt.getString("id")
@@ -173,6 +187,8 @@ private fun AttemptPanel(model: NotebookModel, attempt: JSONObject, history: Boo
     var recheck by rememberSaveable(id) { mutableStateOf(false) }
     var previousGrades by rememberSaveable(id) { mutableStateOf(false) }
     var expanded by rememberSaveable(id) { mutableStateOf(false) }
+    var more by remember { mutableStateOf(false) }
+    var source by rememberSaveable(id) { mutableStateOf(false) }
     val label =
         when (status) {
             "queued" -> "Saved - waiting to upload"
@@ -189,23 +205,33 @@ private fun AttemptPanel(model: NotebookModel, attempt: JSONObject, history: Boo
         Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Text(
-            label,
-            color =
-                when (verdict) {
-                    "correct" -> Color(0xff326c48)
-                    "incorrect" -> Color(0xff9d4f43)
-                    else -> WorkspaceMuted
-                },
-            fontSize = 13.sp,
-            modifier = Modifier.testTag("attempt-status:$id"),
-        )
-        Text(
-            DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
-                .format(Date(attempt.getLong("submitted"))),
-            color = WorkspaceMuted,
-            fontSize = 11.sp,
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            if (status in setOf("pending", "grading", "rechecking"))
+                CircularProgressIndicator(
+                    Modifier.size(14.dp).testTag("grading-activity"),
+                    strokeWidth = 1.5.dp,
+                )
+            Text(
+                label,
+                color =
+                    when (verdict) {
+                        "correct" -> Color(0xff326c48)
+                        "incorrect" -> Color(0xff9d4f43)
+                        else -> WorkspaceMuted
+                    },
+                fontSize = 12.sp,
+                modifier = Modifier.testTag("attempt-status:$id"),
+            )
+            Text(
+                DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT)
+                    .format(Date(attempt.getLong("submitted"))),
+                color = WorkspaceMuted,
+                fontSize = 10.sp,
+            )
+        }
         if (attempt.optBoolean("revealed"))
             Text(
                 "Official answer viewed before submission",
@@ -213,51 +239,119 @@ private fun AttemptPanel(model: NotebookModel, attempt: JSONObject, history: Boo
                 fontSize = 11.sp,
             )
         AttemptResponse(model, attempt, expanded = false)
-        if (attempt.getString("mode") != "type")
-            WorkspaceAction("Expand response") { expanded = true }
+
         attempt
             .optString("error")
             .takeIf { it.isNotBlank() }
             ?.let { Text(it, fontSize = 12.sp, color = WorkspaceMuted) }
-        if (grade != null) {
-            WorkspaceAction(if (feedback) "Hide feedback" else "Show feedback") {
-                feedback = !feedback
-            }
-            if (feedback) {
-                RichText(grade.optString("feedback"), Modifier.fillMaxWidth(), 15f)
-                grade
-                    .optString("issue")
-                    .takeIf { it.isNotBlank() }
-                    ?.let { RichText("Where to look: $it", Modifier.fillMaxWidth(), 15f) }
-                grade
-                    .optString("improvement")
-                    .takeIf { it.isNotBlank() }
-                    ?.let { RichText(it, Modifier.fillMaxWidth(), 15f) }
-            }
-            if (grade.optString("transcription").isNotBlank()) {
-                WorkspaceAction(if (transcript) "Hide transcription" else "What the grader read") {
-                    transcript = !transcript
+        Row(
+            Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            if (grade != null)
+                GradeButton(if (feedback) "Hide feedback" else "Show feedback") {
+                    feedback = !feedback
                 }
-                if (transcript)
-                    RichText(grade.getString("transcription"), Modifier.fillMaxWidth(), 15f)
-            }
-        }
-        Row(Modifier.horizontalScroll(rememberScrollState())) {
             if (!history && !store.correct(key) && !store.pending(key))
-                WorkspaceAction(
+                GradeButton(
                     if (store.hasRecoveryDraft(key)) "Continue draft" else "Try again",
                     enabled = !draft.loading && !page.loading,
                 ) {
                     if (store.hasRecoveryDraft(key)) store.edit(key)
                     else store.copyForRetry(model, attempt)
                 }
-            if (status !in setOf("queued", "pending", "grading", "rechecking")) {
-                if (status == "error" && verdict.isEmpty())
-                    WorkspaceAction("Retry grading") { store.recheck(model.cloud, attempt, "") }
-                else WorkspaceAction("Request recheck") { recheck = true }
+            Box {
+                GradeButton("More") { more = true }
+                DropdownMenu(expanded = more, onDismissRequest = { more = false }) {
+                    if (attempt.getString("mode") != "type")
+                        DropdownMenuItem(
+                            text = { Text("Expand response") },
+                            onClick = {
+                                expanded = true
+                                more = false
+                            },
+                        )
+                    else
+                        DropdownMenuItem(
+                            text = { Text(if (source) "Hide source" else "View source") },
+                            onClick = {
+                                source = !source
+                                more = false
+                            },
+                        )
+                    if (grade?.optString("transcription")?.isNotBlank() == true)
+                        DropdownMenuItem(
+                            text = {
+                                Text(
+                                    if (transcript) "Hide transcription" else "What the grader read"
+                                )
+                            },
+                            onClick = {
+                                transcript = !transcript
+                                more = false
+                            },
+                        )
+                    if (previousCount > 0)
+                        DropdownMenuItem(
+                            text = { Text("Previous attempts ($previousCount)") },
+                            onClick = {
+                                onHistory()
+                                more = false
+                            },
+                        )
+                    if (!store.pending(key))
+                        DropdownMenuItem(
+                            text = {
+                                Text(
+                                    if (status == "error" && verdict.isEmpty()) "Retry grading"
+                                    else "Request recheck"
+                                )
+                            },
+                            onClick = {
+                                more = false
+                                if (status == "error" && verdict.isEmpty())
+                                    store.recheck(model.cloud, attempt, "")
+                                else recheck = true
+                            },
+                        )
+                    if ((grades?.length() ?: 0) > 1)
+                        DropdownMenuItem(
+                            text = { Text("Previous assessments") },
+                            onClick = {
+                                previousGrades = !previousGrades
+                                more = false
+                            },
+                        )
+                }
             }
-            if ((grades?.length() ?: 0) > 1)
-                WorkspaceAction("Previous assessments") { previousGrades = !previousGrades }
+        }
+        if (source)
+            androidx.compose.foundation.text.selection.SelectionContainer {
+                Text(
+                    attempt.optString("text"),
+                    fontSize = 12.sp,
+                    fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
+                )
+            }
+        if (grade != null && feedback) {
+            Surface(color = Color(0xfff3f5f0), shape = RoundedCornerShape(4.dp)) {
+                Column(Modifier.fillMaxWidth().padding(10.dp)) {
+                    RichText(grade.optString("feedback"), Modifier.fillMaxWidth(), 14f)
+                    grade
+                        .optString("issue")
+                        .takeIf { it.isNotBlank() }
+                        ?.let { RichText("Where to look: $it", Modifier.fillMaxWidth(), 14f) }
+                    grade
+                        .optString("improvement")
+                        .takeIf { it.isNotBlank() }
+                        ?.let { RichText(it, Modifier.fillMaxWidth(), 14f) }
+                }
+            }
+        }
+        if (grade != null && transcript) {
+            Text("What the grader read", fontSize = 11.sp, color = WorkspaceMuted)
+            RichText(grade.optString("transcription"), Modifier.fillMaxWidth(), 14f)
         }
         if (previousGrades && grades != null)
             for (i in grades.length() - 2 downTo 0) {
@@ -329,7 +423,6 @@ private fun AttemptPanel(model: NotebookModel, attempt: JSONObject, history: Boo
 @Composable
 private fun AttemptResponse(model: NotebookModel, attempt: JSONObject, expanded: Boolean) {
     if (attempt.getString("mode") == "type") {
-        var source by rememberSaveable(attempt.getString("id")) { mutableStateOf(false) }
         AnswerPreview(
             attempt.getString("text"),
             model.tex,
@@ -338,15 +431,6 @@ private fun AttemptResponse(model: NotebookModel, attempt: JSONObject, expanded:
             label = "SUBMITTED RESPONSE",
             debounce = false,
         )
-        WorkspaceAction(if (source) "Hide source" else "View source") { source = !source }
-        if (source)
-            androidx.compose.foundation.text.selection.SelectionContainer {
-                Text(
-                    attempt.getString("text"),
-                    fontSize = 13.sp,
-                    fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
-                )
-            }
     } else {
         val context = androidx.compose.ui.platform.LocalContext.current
         val images = attempt.getJSONArray("images")
@@ -355,22 +439,67 @@ private fun AttemptResponse(model: NotebookModel, attempt: JSONObject, expanded:
             Modifier.fillMaxWidth()
                 .then(
                     if (!expanded)
-                        Modifier.heightIn(max = 180.dp).verticalScroll(rememberScrollState())
+                        Modifier.heightIn(max = 140.dp).verticalScroll(rememberScrollState())
                     else Modifier
                 )
         ) {
             for (i in 0 until images.length()) {
                 val original = originals?.optJSONObject(i)
-                PhotoImage(
-                    File(
-                        context.filesDir,
-                        "cloud-media/${original?.getString("hash") ?: images.getString(i)}",
-                    ),
-                    original?.optInt("rotation") ?: 0,
-                    Modifier.fillMaxWidth().height(if (expanded) 600.dp else 180.dp),
-                    zoomable = expanded,
-                )
+                BoxWithConstraints(Modifier.fillMaxWidth()) {
+                    val bounds =
+                        remember(images.getString(i)) {
+                            android.graphics.BitmapFactory.Options().apply {
+                                inJustDecodeBounds = true
+                                android.graphics.BitmapFactory.decodeFile(
+                                    File(context.filesDir, "cloud-media/${images.getString(i)}")
+                                        .path,
+                                    this,
+                                )
+                            }
+                        }
+                    val imageHeight =
+                        if (expanded) 600.dp
+                        else
+                            (maxWidth *
+                                    (bounds.outHeight.toFloat() / bounds.outWidth.coerceAtLeast(1)))
+                                .coerceIn(48.dp, 140.dp)
+                    PhotoImage(
+                        File(
+                            context.filesDir,
+                            "cloud-media/${original?.getString("hash") ?: images.getString(i)}",
+                        ),
+                        original?.optInt("rotation") ?: 0,
+                        Modifier.fillMaxWidth().height(imageHeight),
+                        zoomable = expanded,
+                    )
+                }
             }
+        }
+    }
+}
+
+@Composable
+private fun GradeButton(
+    label: String,
+    enabled: Boolean = true,
+    primary: Boolean = false,
+    onClick: () -> Unit,
+) {
+    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 32.dp) {
+        OutlinedButton(
+            onClick = onClick,
+            enabled = enabled,
+            modifier = Modifier.height(32.dp),
+            shape = RoundedCornerShape(5.dp),
+            border = BorderStroke(1.dp, Color(0xffd5ddd6)),
+            colors =
+                ButtonDefaults.outlinedButtonColors(
+                    containerColor = if (primary) Color(0xff286657) else Color(0xfff3f5f0),
+                    contentColor = if (primary) Color.White else Color(0xff36594e),
+                ),
+            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp),
+        ) {
+            Text(label, fontSize = 11.sp, maxLines = 1)
         }
     }
 }

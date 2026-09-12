@@ -60,6 +60,15 @@ class GradingUiTest {
         val first = rule.runOnIdle { JSONObject(model.grading.forExercise(key).last().toString()) }
         assertEquals("queued", first.getString("status"))
         assertEquals("My first synthetic response.", first.getString("text"))
+        rule.runOnIdle {
+            android.util
+                .AtomicFile(
+                    File(rule.activity.filesDir, "attempts/outbox/${first.getString("id")}.json")
+                )
+                .delete()
+            model.grading.receive(JSONObject(first.toString()).put("status", "pending"))
+        }
+        rule.onNodeWithTag("grading-activity").assertExists()
         fun deliver(a: JSONObject, verdict: String, feedback: String) {
             val result =
                 JSONObject(a.toString())
@@ -104,7 +113,8 @@ class GradingUiTest {
         deliver(second, "correct", "Your revision handles the negation correctly.")
         rule.onNodeWithText("Try again").assertDoesNotExist()
         rule.onNodeWithText("Submit", substring = false).assertDoesNotExist()
-        rule.onNodeWithText("Previous attempts (1)").performScrollTo().performClick()
+        rule.onNodeWithText("More").performScrollTo().performClick()
+        rule.onNodeWithText("Previous attempts (1)").performClick()
         rule.onNodeWithText("Exercise $qid - attempts").assertIsDisplayed()
         rule.onNodeWithContentDescription("Back").performClick()
         for (orientation in
@@ -123,7 +133,8 @@ class GradingUiTest {
             if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
                 rule.onNodeWithTag("practice-scroll").performTouchInput { swipeUp() }
             }
-            rule.onNodeWithText("Request recheck").performScrollTo().performClick()
+            rule.onNodeWithText("More").performScrollTo().performClick()
+            rule.onNodeWithText("Request recheck").performClick()
             rule
                 .onNodeWithText("What should be reconsidered?")
                 .performScrollTo()

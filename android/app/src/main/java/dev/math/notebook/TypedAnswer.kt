@@ -460,7 +460,11 @@ private fun TypedAnswerBody(
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     input(Modifier.weight(1f))
                     Column(Modifier.weight(1f)) {
-                        AnswerPreview(source, library, if (expanded) 330.dp else 116.dp) {
+                        AnswerPreview(
+                            source,
+                            library,
+                            if (expanded) 330.dp else if (source.isBlank()) 40.dp else 80.dp,
+                        ) {
                             renderingProblems = it
                         }
                     }
@@ -468,7 +472,11 @@ private fun TypedAnswerBody(
             else
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     input(Modifier.fillMaxWidth())
-                    AnswerPreview(source, library, if (expanded) 330.dp else 116.dp) {
+                    AnswerPreview(
+                        source,
+                        library,
+                        if (expanded) 330.dp else if (source.isBlank()) 40.dp else 80.dp,
+                    ) {
                         renderingProblems = it
                     }
                 }
