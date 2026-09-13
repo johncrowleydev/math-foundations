@@ -21,7 +21,6 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
     [expanded, setExpanded] = useState(false),
     [versions, setVersions] = useState<RecordData[]>([]),
     [showVersions, setShowVersions] = useState(false);
-  const [choiceReference, setChoiceReference] = useState<number | null>(null);
   const latestDraft = useRef<Draft | null>(null);
   const writes = useRef(Promise.resolve());
   const saveError = useRef('');
@@ -211,28 +210,20 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
   const editor = draft && (
     <>
       {q.choice ? (
-        <div className="choices" role="group" aria-label="Answer choices">
-          {q.choice.options.map((o, i) => (
-            <div className="choice-row" key={o.id}>
+        <>
+          <div className="choices" role="group" aria-label="Answer choices">
+            {q.choice.options.map((o) => (
               <button
+                key={o.id}
                 aria-pressed={draft.choiceId === o.id}
                 className={draft.choiceId === o.id ? 'selected' : ''}
                 onClick={() => update({ choiceId: o.id })}
               >
                 <Rich text={o.text.replace(/\[([^\]]+)\]\(ref:[^)]+\)/g, '$1')} />
               </button>
-              {/ref:|\$/.test(o.text) && (
-                <button
-                  className="choice-reference"
-                  aria-label={`References for option ${i + 1}`}
-                  onClick={() => setChoiceReference(i)}
-                >
-                  ⓘ
-                </button>
-              )}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       ) : (
         <>
           <div className="toolbar modes">
@@ -268,8 +259,9 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         </>
       )}
       <div className="toolbar submit">
+        {last && <button onClick={() => update({ editing: false })}>Back to latest attempt</button>}
         <button
-          className="primary"
+          className="primary push"
           disabled={saving || (!!q.choice && !draft.choiceId)}
           onClick={() => void submit()}
         >
@@ -282,7 +274,6 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
             'Submit'
           )}
         </button>
-        {last && <button onClick={() => update({ editing: false })}>Back to latest attempt</button>}
       </div>
     </>
   );
@@ -304,14 +295,6 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         text={q.prompt}
         source={q.quickSource ? `quick:${q.quickSource}:prompt` : `question:${q.id}:prompt`}
       />
-      {choiceReference !== null && q.choice && (
-        <Modal title="Choice references" onClose={() => setChoiceReference(null)}>
-          <Rich
-            text={q.choice.options[choiceReference].text}
-            source={q.quickSource ? `quick:${q.quickSource}:option:${choiceReference}` : ''}
-          />
-        </Modal>
-      )}
       {q.math && <Rich text={'$$' + q.math + '$$'} source={`question:${q.id}:math`} />}
       {q.table && (
         <table>
