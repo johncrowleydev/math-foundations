@@ -1,0 +1,899 @@
+[
+  {
+    "lesson": "propositional-logic",
+    "id": 76,
+    "sourceHash": "4033025c03677f48f4a8fa80dedd175cf18a7eb6b02f075c164691b798023899",
+    "responses": {
+      "option-1": "Yes. Reversing an implication changes which statement supplies the condition and which must follow from it. For example, when $p$ is true and $q$ is false, $p\\to q$ is false but $q\\to p$ is true: the latter has a false antecedent. This one assignment establishes that their truth values can differ.",
+      "option-2": "This treats reversing an implication as if it preserved its meaning. Test the assignment where the original antecedent is true and the consequent is false, then evaluate the reversed implication separately. A promise in one direction need not be a promise in the other."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 77,
+    "sourceHash": "41e589457ea2d34650ecb508ecaeb399f268b17e24b3b078e0d34eccd418c959",
+    "responses": {
+      "option-1": "The contrapositive does more than reverse the statements: it also negates both of them. Compare the only way $p\\to q$ can be false with the only way $\\neg q\\to\\neg p$ can be false. You will find that both fail on the same assignment.",
+      "option-2": "No. An implication and its contrapositive have the same truth value on every assignment. The original $p\\to q$ is false exactly when $p$ is true and $q$ is false. Those same values make the antecedent of $\\neg q\\to\\neg p$ true and its consequent false; in every other case both implications are true."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 70,
+    "sourceHash": "ab792dc25c9f61cd774e3e5f5524ebd36ca0100a86cb0c4c77a054c84cf854be",
+    "responses": {
+      "option-1": "This assumes that the consequent can be true only because the antecedent is true. An implication does not say that. Try $p=F$ and $q=T$: evaluate both premises and then the claimed conclusion. A valid argument cannot have true premises and a false conclusion.",
+      "option-2": "Invalid. This is affirming the consequent: the argument tries to infer the condition from a result that could have another cause. With $p=F$ and $q=T$, both $p\\to q$ and $q$ are true, yet the conclusion $p$ is false. That counterexample is enough to establish invalidity."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 71,
+    "sourceHash": "2ceb2dd3a53fe14de0ae5a01309a7d26b582fa8512171e737ea9e54eaf30f9f7",
+    "responses": {
+      "option-1": "Valid. This is modus ponens: the implication supplies a rule, and the second premise establishes that its condition holds. If $q$ were false while $p$ were true, $p\\to q$ would be false, contrary to the first premise. Thus true premises force the conclusion $q$ to be true.",
+      "option-2": "Check whether you can actually make the conclusion false while keeping both premises true. The second premise requires $p$ to be true. If you also set $q$ false, what happens to the implication in the first premise?"
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 116,
+    "sourceHash": "61e4222eea62b058f779839297d1d46577162aceeca308e0092d7732b21beb2e",
+    "responses": {
+      "option-1": "Valid. The first premise says that whenever the server is down, an alert is sent. The second premise establishes that the server is down, so the promised consequence follows. This is modus ponens. The argument does not need to establish that server downtime is the only possible cause of an alert.",
+      "option-2": "The argument starts with the condition of the rule, not merely its consequence. Ask whether an alert could fail to be sent while both “if the server is down, an alert is sent” and “the server is down” remained true."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 82,
+    "sourceHash": "50eea13ce45cde08057edf80b4f321997dde812bd9088ba0b481bb297fc19976",
+    "responses": {
+      "option-1": "Being a square is sufficient for being a rectangle because every square satisfies the requirements for a rectangle: knowing it is a square guarantees it is a rectangle. Being a rectangle is necessary for being a square because a shape cannot be a square without also being a rectangle.\n\nThe useful distinction is “enough to guarantee” versus “required.” A rectangle with unequal adjacent sides shows why being a rectangle is not enough to guarantee a square.",
+      "option-2": "The two directions are reversed. A square guarantees a rectangle, whereas being a rectangle is a requirement that every square meets. Use “enough to guarantee” for sufficient and “cannot happen without” for necessary, and test each blank separately.",
+      "option-3": "The second blank works, but the first makes too strong a claim: it would require every rectangle to be a square. Consider a rectangle with unequal adjacent sides. Does it have to be a square in order to remain a rectangle?",
+      "option-4": "The first blank works, but the second says that being a rectangle guarantees a square. A rectangle with unequal adjacent sides does not meet that guarantee. Think instead about the property that a shape must have before it can qualify as a square."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 63,
+    "sourceHash": "a4cf9b937d0bed216d448436ea6c33bd718dc6a9eeb35ae2428e42beab358f7a",
+    "responses": {
+      "option-1": "Yes. A nonzero real number is either positive or negative. Multiplying two positive numbers gives a positive result, and multiplying two negative numbers also gives a positive result. Squaring therefore gives a strictly positive number in both cases. The restriction “nonzero” matters: zero squared is zero, not positive.",
+      "option-2": "A negative input does not produce a negative square: the two negative factors multiply to a positive number. Separate the positive and negative input cases, and remember that the question explicitly excludes zero."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 65,
+    "sourceHash": "919f628106fcba622645cf801a888a59325f7d7b811b4f1afa03ccc84f650a4b",
+    "responses": {
+      "option-1": "Yes. For each allowed $x$, choose $y=1/x$. This is a real number because $x$ is nonzero, and $x(1/x)=1$. The chosen $y$ may vary with $x$; the question does not demand one fixed number that works for all inputs. Excluding zero removes the one input for which this reciprocal construction fails.",
+      "option-2": "You do not need one fixed $y$ that works for every $x$. The question permits a choice for each nonzero input. Consider the real number that undoes multiplication by that particular $x$, and check why the nonzero restriction matters."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 71,
+    "sourceHash": "bdf81dcc3009bbf5843df785f6d86ffa41ff864c44621ac108b300b7b428428c",
+    "responses": {
+      "option-1": "Yes. The integer 2 satisfies the equation because $2+3=5$. To check uniqueness, subtract 3 from both sides of $n+3=5$: any solution must be 2. These are the two parts of “exactly one”: a solution exists, and no different solution is possible.",
+      "option-2": "“Exactly one” requires both existence and uniqueness. Try subtracting 3 from both sides. Does that leave a choice among several integers, or does it force one value? Then substitute the forced value into the original equation."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 72,
+    "sourceHash": "6329c61255fe8d20e7abea914daddc2da691280e50ee31d8e902fe47f282cf49",
+    "responses": {
+      "option-1": "Finding one solution does not establish that it is unique. Squaring removes the distinction between a number and its negative. Check both integer signs before deciding whether exactly one integer satisfies the equation.",
+      "option-2": "No. Both 2 and −2 are integer solutions: each has square 4. They are distinct, so the existence of these two solutions already disproves “exactly one.” The positive square root gives one solution, but solving the equation requires considering the negative value as well."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 97,
+    "sourceHash": "f68131a7d71bd787c73b58e4ead28dfccba8b4c9deb89ac1e49f89a116b59e2c",
+    "responses": {
+      "option-1": "Yes. Take any element of the domain. The first premise says that at least one of $P$ and $Q$ holds for it; the second rules out $P$. Therefore $Q$ must hold for that element. Since the element was arbitrary, the conclusion holds throughout the domain. This is disjunctive syllogism applied element by element.",
+      "option-2": "Apply both premises to the same arbitrary element. One says that at least one of its two properties holds; the other eliminates the first property. Ask whether the second property could then be false without contradicting the first premise."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 98,
+    "sourceHash": "8e2c17f02f506e0238c15ca7d7f05b1901426dddfc7360860e5f09a6843080cf",
+    "responses": {
+      "option-1": "Yes. For any element, the first premise says that $P$ would imply $Q$, while the second says $Q$ is false. If $P$ were true, those premises would conflict, so $P$ must be false. This is modus tollens. Applying it to an arbitrary element gives the universal conclusion.",
+      "option-2": "The inference uses the negation of the consequent, not the negation of the antecedent. For an arbitrary element, suppose $P$ were true. Follow the first premise and compare its consequence with the second premise."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 99,
+    "sourceHash": "a23cf3299970f8587d40310d2c9c417fcb833d7f9e900d1e445e0ce149113085",
+    "responses": {
+      "option-1": "The conclusion concerns every integer, but the student checked only three. Those cases may support a guess without establishing the universal statement. Try a property that holds for the three tested integers but fails for a negative integer.",
+      "option-2": "No. Checking 0, 1, and 2 leaves all other integers untested. For example, the property “is nonnegative” holds in those three cases but fails at −1. Thus the observations can all be true while the universal conclusion is false. A general argument is needed to move from examples to every integer."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 52,
+    "sourceHash": "23cd503c72d5703884809e7ad7b8bfd7562b44076384f71f2593f8ed951e1470",
+    "responses": {
+      "option-1": "Covering the whole set is not enough for a partition. Distinct blocks must also be disjoint. Look specifically at the element 2 and count how many blocks contain it.",
+      "option-2": "No. The element 2 belongs to both blocks, so the blocks overlap. A partition places every element into exactly one block: these blocks are nonempty and cover the set, but they fail the disjointness requirement. Passing some of the requirements does not compensate for failing another."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 53,
+    "sourceHash": "195cbd0d7046eaa5600e2812eedc273b406ea10baf9ade31920daedd9d98bb48",
+    "responses": {
+      "option-1": "These blocks are disjoint, but a partition must also cover the entire stated set. Check each of 1, 2, and 3 against the union of the proposed blocks.",
+      "option-2": "No. The union of the two blocks is just the set containing 1 and 2, so 3 is missing. The blocks are nonempty and disjoint, but a partition must account for every element of the original set. Adding a block containing 3 would address this missing-coverage issue."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 3,
+    "sourceHash": "8f456573dc36886aa2c038540c6dba6c3c54eaea56223ad90a79d1b305439475",
+    "responses": {
+      "option-1": "The set lists the number 1, the set containing 2, and the empty set. It does not separately list the number 2. A set containing an object is not the same object as its contents; inspect the braces around 2.",
+      "option-2": "This reverses the distinction between the number 2 and the set containing 2. The displayed element has braces. Compare each membership claim literally with the three listed elements.",
+      "option-3": "The first statement is false and the second is true. The listed element is the set containing 2, not the number 2 itself. Membership asks whether the whole object on the left is an element of the set on the right; it does not automatically look inside an element that happens to be a set.",
+      "option-4": "The number 2 is indeed absent as an element, but the set containing 2 is explicitly listed. The braces are part of that element, so they change which object the second statement asks about."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 4,
+    "sourceHash": "06942266fb6b0c581112fd8d95ead9bc670ed9a174a7ea9c85c49589144ff81a",
+    "responses": {
+      "option-1": "Both statements are true, for different reasons. The empty set is a subset of every set because it has no elements that could violate the subset condition. It is also an element of this particular set because it is explicitly listed. The first fact is universal; the second depends on the displayed list.",
+      "option-2": "You correctly recognized the subset statement. For the membership statement, look at the actual list: is the empty set itself one of the listed objects? Membership here is not determined by a general rule about all sets.",
+      "option-3": "You correctly recognized that the empty set is listed as an element. For the subset statement, ask whether the empty set contains any element outside the stated set. A failed subset claim would need such an element.",
+      "option-4": "Treat the statements separately. For subset membership, look for an element of the empty set that could violate the condition. For ordinary membership, check whether the empty set is explicitly listed among the elements."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 34,
+    "sourceHash": "0c1c5ac23ce604be49579c80a6f7f8c1b9ba451e75060cc282c46b54d4e004f0",
+    "responses": {
+      "option-1": "The power set contains subsets as its elements. The set containing 1 is a subset of the original set, but the number 1 itself is not one of the displayed subsets. Do not drop the braces when comparing objects.",
+      "option-2": "The first statement is true and the second is false. The power set contains the empty set, the set containing 1, the set containing 2, and the original set containing both numbers. Thus the set containing 1 appears, but the number 1 on its own does not. A power set collects subsets, not the original elements themselves.",
+      "option-3": "This reverses which objects belong to a power set. Its elements must be subsets of the original set. Compare the set containing 1 with the number 1: only the former is one of those subsets.",
+      "option-4": "The number 1 is not an element of this power set, but the set containing 1 is. To test that first claim, check whether every element of the set containing 1 belongs to the original set."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 26,
+    "sourceHash": "4169be61de5c9cdfbcb4966ef603fbb1c1d1c252b26d6fa93743559f21458d17",
+    "responses": {
+      "option-1": "Being within distance 1 for each of two consecutive steps does not ensure that the endpoints are within distance 1. Try three real numbers spaced one unit apart, and test all three required relation statements.",
+      "option-2": "No. Take 0, 1, and 2. The first two numbers are related and the last two are related, since each pair is one unit apart. But 0 and 2 are not related, since they are two units apart. This is exactly a failure of transitivity: a two-step connection lacks the required direct connection."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 47,
+    "sourceHash": "872e0dae86c5fbe7bbf54f7bf20812f98f01ea9b4ff74d3fae8316120f3600bf",
+    "responses": {
+      "option-1": "Yes. Divisibility is already a partial order on these positive integers, and these four numbers form a chain: 1 divides 2, 2 divides 4, and 4 divides 8. Consequently any two distinct elements are comparable by divisibility. A total order requires comparability, not merely the numerical ordering of the displayed labels.",
+      "option-2": "Divisibility is not a total order on every collection of positive integers, but the question asks about this particular collection. Check whether each pair has one element dividing the other; powers of 2 behave differently from a pair such as 2 and 3."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 68,
+    "sourceHash": "60936d880953c996940ffae95eca889b7139766ea88593c8082c2ce808c6c9d7",
+    "responses": {
+      "option-1": "Adding pairs does not remove either of the two pairs that already violate antisymmetry. Recheck the definition: it forbids having both directions between distinct elements, even if many other pairs are also present.",
+      "option-2": "No. An antisymmetry violation is already witnessed by the two opposite pairs between distinct elements. Adding more pairs leaves that witness intact. This differs from repairing a missing transitive pair: that kind of defect can be repaired by addition, whereas an existing forbidden pattern cannot."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 70,
+    "sourceHash": "d153b51d0e22b6387921fe94a862cf4002ed7e103ac185c24e6c6524904d3d84",
+    "responses": {
+      "option-1": "The edges describe immediate prerequisites, not every prerequisite relationship. A missing direct edge does not erase a chain of prerequisites through another course. Follow the two given edges before interpreting the missing third edge.",
+      "option-2": "No. The chain says that A must precede B and B must precede C, so A must precede C through B. The graph records immediate dependencies; a direct edge from A to C is not required to express this indirect requirement. Direct adjacency and reachability answer different questions."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 20,
+    "sourceHash": "9bf8b0eac649b2ffdc9f3e8a63a0157c3e3e969cda8c07df739c0c96a7e78492",
+    "responses": {
+      "option-1": "Reflexivity requires a self-pair for every element, not just one of them. Check whether the pair for 2 is present. The pair for 1 alone cannot establish reflexivity on a two-element set.",
+      "option-2": "Irreflexivity forbids every self-pair. The relation already contains the self-pair for 1, even though the self-pair for 2 is absent. Missing one loop does not make the entire relation irreflexive.",
+      "option-3": "On this nonempty set, the two properties demand incompatible conditions on each self-pair: reflexivity requires it, and irreflexivity forbids it. Inspect the present loop at 1 and the absent loop at 2 separately.",
+      "option-4": "Neither. Reflexivity fails because the self-pair for 2 is missing. Irreflexivity fails because the self-pair for 1 is present. These properties are not simple opposites: a relation can have some loops but not all of them, as this example does."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 2,
+    "sourceHash": "e2b9b3fd74c43644239320c824d0b5db0f08debaa52f29ae973e74d4d67fcfe4",
+    "responses": {
+      "option-1": "Every domain element having an output is only part of the function requirement. Each input must have exactly one output. Look at the two ordered pairs beginning with 1 and compare their second entries.",
+      "option-2": "No. The input 1 is paired with both a and b, which are different outputs. A function may send different inputs to the same output, but it may not assign two different outputs to one input. This relation fails that uniqueness requirement."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 3,
+    "sourceHash": "3005649d9db789c535e0d171e3f3d4a8924e5e17c6fad7d955f0577d6493e8b4",
+    "responses": {
+      "option-1": "The displayed pairs give unambiguous outputs for 1 and 2, but the stated domain also includes 3. A total function must assign an output to every member of that domain.",
+      "option-2": "No. The input 3 belongs to the declared domain but has no output in the pair list. There is no ambiguity at inputs 1 and 2; the failure is missing coverage of the domain. A total function requires exactly one output for every allowed input."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 4,
+    "sourceHash": "5083bd0102f580c880eb69712b327a521c4dc72f5cec8371ad1560d17944627c",
+    "responses": {
+      "option-1": "The rule gives a unique real value for each integer input, but the declared codomain is the integers. Test an odd input and check whether its output belongs to that codomain.",
+      "option-2": "No. For the integer input 1, the rule gives one half, which is not an integer. A function with the stated domain and codomain must send every allowed input into the stated codomain. The formula itself is usable, but its declared target set is too small; rational outputs would accommodate it."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 52,
+    "sourceHash": "721fc7ef029d6b1d7e9dac805574a9a69f9ea78dd651a57d5a5526e9db9435d1",
+    "responses": {
+      "option-1": "Surjectivity asks whether every codomain element is reached. It is not a statement about whether the rule has any conflicting assignments. Focus on the codomain element 1 and ask which domain element could map to it.",
+      "option-2": "No. The codomain contains 1, but the empty domain supplies no input that can map to it. The empty rule is a legitimate function, yet it is not surjective onto a nonempty codomain. Being a function and reaching the entire codomain are separate requirements."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 54,
+    "sourceHash": "1eccb698798338f5f7ab6b9ae28a6a84a73eb3db05a3c2eda7b236230aa7b8e2",
+    "responses": {
+      "option-1": "A function must assign an output to the input a. An empty codomain contains no candidate output, so leaving a unassigned would not meet the function definition.",
+      "option-2": "No. The domain contains the input a, and a function would need to assign it exactly one output in the codomain. The empty codomain offers none. This is different from a function with an empty domain, where there are no inputs needing assignments."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 57,
+    "sourceHash": "737b73c1be8c2f0d3e4dc434f24a2d45c6e3aa7efadfaa008de326ef372fe10a",
+    "responses": {
+      "option-1": "Injectivity requires five different outputs for five different inputs. Count how many output values the codomain makes available before trying to assign them.",
+      "option-2": "No. An injective function would need five distinct outputs, one for each input, but the codomain has only three elements. At least two inputs must therefore share an output. The obstruction is the number of available targets, regardless of how the rule is chosen."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 58,
+    "sourceHash": "f99a87a75fdb5b27aa2c9255fed5a761b7b4f40df55294961481de9745d04f77",
+    "responses": {
+      "option-1": "Each input supplies only one output. With three inputs, count the largest possible number of distinct codomain elements that can be reached, then compare it with five.",
+      "option-2": "No. Three inputs can reach at most three distinct outputs, whereas surjectivity would require reaching all five codomain elements. Even if the three outputs are all different, at least two targets remain unhit. Sending multiple inputs to the same output would reduce coverage further."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 21,
+    "sourceHash": "9472b62e21ba7439062791330d40ac343f3687311e20e024547f95550da9dcea",
+    "responses": {
+      "option-1": "Injective but not surjective. If two inputs have equal outputs, subtracting 1 and dividing by 3 forces the inputs to be equal, so there are no collisions. But zero is not reached: solving for an input that produces zero gives negative one third, outside the integer domain. The domain restriction matters even though the same formula reaches every real value when used on the reals.",
+      "option-2": "Check the two properties independently. Equal outputs force equal inputs for this rule, while reaching a target requires the corresponding input to be an integer. Try the codomain target zero.",
+      "option-3": "Injectivity holds, but surjectivity would require every integer target to have an integer preimage. Solve the equation for an input producing zero, and check whether that input lies in the declared domain.",
+      "option-4": "There is indeed a missed target, but a missed target does not imply a collision. Set two outputs equal and simplify; consider whether two different integer inputs can produce the same result."
+    }
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 20,
+    "sourceHash": "39fdabe28a10ef073200aa0225c51ad9f5bb01c93cd8cc29496b93a55c8d05b1",
+    "responses": {
+      "option-1": "An arithmetic sequence needs a constant difference. Here the consecutive differences are 2, 4, and 8, so the arithmetic requirement is not met. Compare successive ratios as a separate check.",
+      "option-2": "Geometric only. Each term is twice the preceding term, so the ratio stays at 2. The differences are 2, 4, and 8, so they are not constant and the sequence is not arithmetic. A constant multiplier and a constant increment are different patterns.",
+      "option-3": "The ratio is constant, but the differences are not. Being geometric does not automatically make a sequence arithmetic; each property has its own defining test.",
+      "option-4": "The changing differences rule out arithmetic behavior, but do not rule out geometric behavior. Divide each term after the first by its predecessor and compare those ratios."
+    }
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 6,
+    "sourceHash": "511cbac4a240cff9285be5260a9a6b4b85b8145c3189f26b43d6a2196df8d8dc",
+    "responses": {
+      "option-1": "Changing the outer quantifier would negate a universal claim rather than replace each implication with its equivalent contrapositive. Keep the arbitrary element of the domain fixed and transform only the implication about that element.",
+      "option-2": "No. The claim still needs to hold for every element of the domain. For an arbitrary element, replace “P implies Q” with “not Q implies not P”; those statements are equivalent for that same element. An existential quantifier appears when negating the entire universal theorem, which is a different operation."
+    }
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 68,
+    "sourceHash": "827aea384a0f54876373b34582939978d19f19fa0df9ff0256b908c42bc6cf9c",
+    "responses": {
+      "option-1": "A stalled proof tells you that this attempted argument has not succeeded. It does not establish that the theorem is false. Distinguish a gap in an argument from an actual allowed example where the claim fails.",
+      "option-2": "No. Failing to find a proof is not a refutation. The theorem may be true even though the chosen approach is unhelpful or incomplete. To establish falsity of the implication, one needs a valid counterexample with a true hypothesis and false conclusion, or another sound refutation—not just an unsuccessful proof attempt."
+    }
+  },
+  {
+    "lesson": "combinatorics",
+    "id": 56,
+    "sourceHash": "f577760fa530380f09ab0517ee20964795861dfd056d8a65222dc54655d4bfa7",
+    "responses": {
+      "option-1": "A collision is forced when there are more inputs than available output values. Here the counts are equal. Consider whether assigning a different value to every input would fit within the available values.",
+      "option-2": "No. With exactly as many output values as inputs, a one-to-one assignment is possible. The pigeonhole principle forces a collision only when the number of inputs exceeds the number of available values. This does not say collisions cannot occur; it says these counts alone do not guarantee one."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 5,
+    "sourceHash": "eda4b7207dc6b1e47fbe16f56a3e30b4550000b61b7c800297e83cd4f40c7976",
+    "responses": {
+      "option-1": "A drawing can make edges cross without specifying a connection. Look for a vertex in the graph's actual vertex and edge data rather than treating every geometric intersection as an additional object.",
+      "option-2": "No. Vertices and edge endpoints are specified by the graph, not created by accidental crossings in a drawing. If no vertex is marked at the crossing, the edges pass across the page without joining there. The picture's geometry and the graph's connectivity are distinct."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 7,
+    "sourceHash": "c077bf730416bf6388461c6604064133a78d74f048a5fd66d1bc036dc7f79fe0",
+    "responses": {
+      "option-1": "A simple graph records an unordered endpoint pair at most once. Drawing the same pair with a second curve does not create a second member of that edge set. Distinct parallel edges require a different graph model.",
+      "option-2": "No. In a simple graph, an edge is determined by its unordered pair of distinct endpoints, and each such pair occurs at most once. Two distinct edges with those same endpoints would be parallel edges, which simple graphs exclude. The number of available vertices does not change this rule."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 28,
+    "sourceHash": "d51d18900caa48135110f60791f726f7678017fd3d73d9b8b154970be411d1e6",
+    "responses": {
+      "option-1": "Yes. The route follows an arc from a to b and a different arc from b to a. It returns to its start without repeating another vertex. Under the directed-cycle convention used here, a cycle of length two is allowed. The reverse arc is a different directed edge, not a second use of the first arc.",
+      "option-2": "Do not apply the minimum length of an undirected simple cycle to this directed graph. The arcs from a to b and from b to a are distinct. Check the route against the directed-cycle definition and the convention allowing length two."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 37,
+    "sourceHash": "17ed5f5df73da430722a5a6b7966c4c16d4f3d0a41a27cd51ea221585e493c5c",
+    "responses": {
+      "option-1": "Weak connectivity ignores arrow directions, but it does not add missing edges. After removing the arrows, look for any connection joining the a,b pair to the c,d pair.",
+      "option-2": "No. Ignoring directions leaves one component containing a and b and another containing c and d. There is no edge connecting those groups, so the underlying undirected graph is disconnected. Having paths inside each group does not make the whole digraph weakly connected."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 43,
+    "sourceHash": "88dd19510e470d5d631e25976983595e3e0ba18ef43c098fd7a7c1fabac446c0",
+    "responses": {
+      "option-1": "Yes. An acyclic graph is a forest, and a forest has number of components equal to vertices minus edges. Here that difference is $9-8=1$, so the graph is connected. Connectedness together with acyclicity makes it a tree. The acyclicity assumption is essential; the edge count alone would not establish the conclusion.",
+      "option-2": "Use the acyclic assumption as well as the counts. For a forest, each additional component accounts for one fewer edge relative to its vertices. Calculate the number of components from the given counts."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 44,
+    "sourceHash": "3d497a1aed1f2592becd1a35909e8114792db672a99f3e56cd22e11ea3be9690",
+    "responses": {
+      "option-1": "Yes. A connected graph on nine vertices has a spanning tree with eight edges. The entire graph has only eight edges, so there are no extra edges beyond that tree. Thus the graph itself is a tree. Both connectedness and the edge count are doing work in this argument.",
+      "option-2": "A connected graph always contains a spanning tree. Compare the number of edges that spanning tree must have with the total number of edges available here. Is there room for an extra edge creating a cycle?"
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 76,
+    "sourceHash": "8f8a06001409716499ce36487029688617ae8c306a230a00170552f69afab94f",
+    "responses": {
+      "option-1": "Even degrees are not the only requirement for an Euler circuit using every edge. Starting in one triangle, ask how the route could reach an edge in the other triangle without any connection between the components.",
+      "option-2": "No. Each triangle has its own Euler circuit, but a single route cannot cross between disconnected components. For one Euler circuit to cover every edge, all vertices incident to edges must belong to one connected component, in addition to having even degree. This example satisfies the degree condition but fails connectivity."
+    }
+  },
+  {
+    "lesson": "asymptotic-growth",
+    "id": 63,
+    "sourceHash": "da909668053582197a42fffd03e89ed412451b35f3bd01deeb2979c4015f86b6",
+    "responses": {
+      "option-1": "The worst-case cost is the maximum over inputs of a given size. A lower bound on that maximum does not give the same lower bound for every input. Think about a search that finds its target immediately on one input but only at the end on another.",
+      "option-2": "No. A worst-case lower bound says that the most expensive inputs require at least a constant multiple of linear work for sufficiently large sizes. Other inputs may be cheaper. Linear search illustrates the distinction: finding the target first can be quick even though finding it last takes linear work."
+    }
+  },
+  {
+    "lesson": "asymptotic-growth",
+    "id": 79,
+    "sourceHash": "2efe510f9d4c1b88521b2a1c1fcabe2fac3355a0853757b56a2dbe285430068c",
+    "responses": {
+      "option-1": "An upper bound allows costs below the bound; it does not require every run to attain it. Also, one observed input does not establish the maximum cost among all inputs of that size. Check these two distinctions separately.",
+      "option-2": "No. A worst-case upper bound limits how large the cost can grow; it does not require every input to take that much work. A linear-time run is compatible with an upper bound of order n log n. A single benchmark also cannot establish a matching bound on the worst case."
+    }
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 67,
+    "sourceHash": "55b4546a8dfbc17ab9d7326a9948c002e3d181cbf473473fed01d3762ccd5f3b",
+    "responses": {
+      "option-1": "Preserving straight lines is weaker than preserving vector addition and scalar multiplication. Consider shifting every point by the same nonzero vector. What happens to lines, and what happens to the zero vector?",
+      "option-2": "No. A nonzero translation sends straight lines to straight lines but sends zero to a nonzero point. A linear transformation must send zero to zero and preserve vector addition and scalar multiplication. Thus preserving lines alone is insufficient. A translation is an affine transformation, not a linear one in this sense."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 154,
+    "sourceHash": "deb2ed570a602b5b124fa309692b23f534b7ee24b218103df6851a1c4580ed37",
+    "responses": {
+      "option-1": "Yes. Mathematical OR is inclusive: the rule requires at least one of the two qualifications, and having both meets that requirement. Someone with teaching experience alone, research experience alone, or both qualifies. An exclusive “one or the other, but not both” rule would need to say so explicitly.",
+      "option-2": "This reads OR as “exactly one.” The logical OR used here requires at least one condition, not exactly one. Check whether possessing a second qualification takes away the first qualification or violates anything the rule actually states."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 155,
+    "sourceHash": "e5ad55ae690aef85cbbed9d2415bb260b9732ed25657ca7e7d5822623fdcdb20",
+    "responses": {
+      "option-1": "Both alternatives require $p$, while one allows $q$ and the other allows its negation. Factoring gives $p\\land(q\\lor\\neg q)$. The parentheses are true regardless of $q$, so the whole expression has exactly the truth value of $p$. The key is that the alternatives cover both possibilities for $q$ while retaining the common requirement.",
+      "option-2": "This loses the common requirement $p$. Try making $p$ false and $q$ true: both original alternatives fail, even though your selected expression is true. Look for the condition present in both alternatives.",
+      "option-3": "This keeps only the first alternative and discards the second. Try making $p$ true and $q$ false: the second alternative then makes the original expression true. A correct simplification must retain that case as well."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 121,
+    "sourceHash": "64a1858dd64da4d71b471c7488bd41dc57dd72d1ee50c61327bc63aecac7ad93",
+    "responses": {
+      "option-1": "One verified example is enough. The existential statement claims that at least one allowed integer is greater than 10, and 11 supplies such a witness. You must check both parts: it is in the integer domain and it satisfies the inequality. Additional examples are welcome, but they are not required to establish existence.",
+      "option-2": "Checking every integer would address a universal requirement, but this statement only claims existence. Focus on what one verified example can establish, rather than trying to show the property holds throughout the domain.",
+      "option-3": "An existential claim does not specify exactly two successful objects. Once one allowed object has been verified, existence has already been established. Think about whether finding a second would add anything necessary to that conclusion."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 122,
+    "sourceHash": "a85608618db3d27608aeda72724b0476e4694ca679d4b637591cadc6ce1ca0ce",
+    "responses": {
+      "option-1": "Yes. The universal quantifier introduces an arbitrary $x$ before the existential quantifier asks you to choose $y$. You may therefore choose $y=x+1$, which is an integer larger than that particular $x$. Reversing the quantifiers would instead require a single fixed integer larger than every integer.",
+      "option-2": "This imposes the requirement of choosing one fixed $y$ before seeing $x$. Read the quantifiers from left to right: which variable is supplied first, and which choice is made afterward? That order determines which choices may depend on earlier variables."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 81,
+    "sourceHash": "a0161a578a3fcae9438a19dbe3a724466b0bc790a8ba4ae57a84fc67411a3ed0",
+    "responses": {
+      "option-1": "The elements of A are the numbers 1 and 2, not the set containing 1. Your option asks for that entire set to be one listed element. Compare the membership symbol with the subset symbol: they ask different questions.",
+      "option-2": "The set containing 1 is a subset of A because its only element, 1, belongs to A. This does not make that smaller set an element of A: A lists two numbers, not a set containing one of them. Subset membership checks the smaller set's elements; ordinary membership checks the whole object on the left.",
+      "option-3": "The number 3 is not among the two listed elements. Check the alternatives by distinguishing a claim about one listed object from a claim that every element of a smaller set belongs to A."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 82,
+    "sourceHash": "668a1d56c2c293b4fdffa03c13a9b8b61651b92ceeacf7f4c07f2d799566dedd",
+    "responses": {
+      "option-1": "Two counts the elements of the original set, not its subsets. For each of a and b, there are separate decisions to include or exclude it. Remember that neither selected and both selected are also legitimate subsets.",
+      "option-2": "This count leaves out one subset. A subset may contain neither element, exactly one of the two, or both. List those possibilities, including the empty set, before counting them.",
+      "option-3": "There are four subsets: the empty set, the set containing a, the set containing b, and the set containing both. Equivalently, each of the two elements has two independent choices—include it or leave it out—giving $2\\times2=4$. The empty set and the whole original set both count."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 81,
+    "sourceHash": "c24f7d336bc84ee3c0d1f1f3c6c145324f50d24c41b6d2bd8d44e8c2af593a5c",
+    "responses": {
+      "option-1": "This confuses symmetry with reflexivity. Symmetry concerns reversing a pair that is already present; reflexivity requires every self-pair. Ask whether a relation with no pairs could satisfy the reversal requirement without relating anything to itself.",
+      "option-2": "False. Symmetry says that whenever one direction of a pair is present, the reverse is also present. It does not require any self-pairs to exist. For example, the empty relation on a nonempty set is symmetric but not reflexive. Reversing existing pairs and requiring loops are separate properties."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 82,
+    "sourceHash": "a50b985523c98eb617fb87a9e10fc7d6860b20d4807afc84ccf9abf441a15a1d",
+    "responses": {
+      "option-1": "Comparability of every pair is the extra requirement for a total order. A partial order may leave some pairs unrelated in either direction. Recall the subset order: two different singleton subsets need not contain one another.",
+      "option-2": "No. A partial order must be reflexive, antisymmetric, and transitive, but need not compare every pair. For instance, two different singleton sets are incomparable under inclusion: neither contains the other. Requiring every pair to be comparable would make the order total."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 81,
+    "sourceHash": "893b03c195b5a2d96c6d304f8b5e66e8715514ea511d8bc86d5ddec49c4e9f42",
+    "responses": {
+      "option-1": "Different inputs having different outputs is exactly injectivity. Missing a codomain element violates surjectivity, which requires every declared target to be reached. These are independent questions: one asks about collisions among inputs, and the other asks about gaps among targets.",
+      "option-2": "Both properties are reversed. “Different outputs for different inputs” rules out collisions; a missed codomain element means the output coverage is incomplete. Match each observation to its definition separately.",
+      "option-3": "The injectivity part fits, but “both” would also require every codomain element to be reached. The prompt explicitly supplies a missed target, so check the surjectivity requirement again."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 82,
+    "sourceHash": "cdf4af33b7d6aecf97cb4f3c64034aa5490f472b5ce4c09dabeddcf3db89d44e",
+    "responses": {
+      "option-1": "Negative one lies above negative 1.2, so it does not meet the “less than or equal to” part of the floor definition. Floor is not truncation toward zero. Locate the two neighboring integers on a number line.",
+      "option-2": "The floor is −2: it is the greatest integer that is less than or equal to −1.2. The next integer, −1, is too large. For negative numbers, taking the floor moves left on the number line, which differs from simply dropping the fractional part.",
+      "option-3": "Zero is greater than negative 1.2 and therefore cannot be its floor. The floor must be an integer at or below the given number. Start with the neighboring negative integers rather than moving toward zero."
+    }
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 81,
+    "sourceHash": "d2ce33a705e39d928fa3c9d8f2a0fde1cb611e2f140cded1c8ff81d8d590c8d5",
+    "responses": {
+      "option-1": "Four is the upper index, not the number of included indices. The sum starts at zero and includes both endpoints. List the indices before counting the terms.",
+      "option-2": "There are five terms, corresponding to indices 0, 1, 2, 3, and 4. For consecutive integer indices, the count is upper bound minus lower bound plus one. Here that gives $4-0+1=5$; the extra one accounts for including both endpoints.",
+      "option-3": "Check the endpoints carefully. Starting at zero gives one more term than starting at one, but the last allowed index is still four. Listing the indices avoids adding an extra endpoint twice."
+    }
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 82,
+    "sourceHash": "04c92ff0fcdfd84cfa9f04e7247f248f313733f97fe5f20bb5a089f67be438a7",
+    "responses": {
+      "option-1": "The middle terms cancel: $+b_2$ cancels with $-b_2$, and $+b_3$ with $-b_3$. The first negative term and final positive term have no partners, leaving $b_4-b_1$. This is the basic telescoping pattern: interior terms disappear while the boundary terms remain.",
+      "option-2": "You identified the two surviving terms, but the first one entered the expression with a minus sign. Cancellation removes matching pairs; it does not change the signs of the unmatched boundary terms.",
+      "option-3": "Only the interior terms have opposite-sign partners. The first negative term and last positive term do not cancel in general. Cross out only terms that actually have matching opposites in the displayed expression."
+    }
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 81,
+    "sourceHash": "ce39fe82571b401702fb29bb646a1a63ccd74095b5f194dfbc99e8536284606f",
+    "responses": {
+      "option-1": "This representation describes an even integer: a multiple of 2. An odd integer lies one integer step beyond such a multiple. Check whether the proposed form can represent an odd example such as 3 with an integer value of k.",
+      "option-2": "An odd integer has the form $n=2k+1$ for some integer $k$. The multiple $2k$ is even, and adding one gives the neighboring odd integer. The integer restriction on k is essential: without it, this form could also represent even integers.",
+      "option-3": "The formula has the right shape, but the domain of k is too broad. For example, an even value of n can satisfy this equation using a noninteger real k. The representation must distinguish odd integers, so the witness k must be restricted appropriately."
+    }
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 82,
+    "sourceHash": "3c552fa73aaaadb5e484c0a93007a752ca88fc1472062015e0c6162bc92adce8",
+    "responses": {
+      "option-1": "Yes. A witness must satisfy the property and belong to the domain over which existence is claimed. A real solution does not establish the existence of an integer solution if it is not an integer. Checking the domain is part of proving the actual statement, not an optional formality.",
+      "option-2": "An object outside the allowed domain cannot serve as a witness, even if it has the desired property. Think of a question asking for an integer solution: a noninteger real solution would answer a different existence question."
+    }
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 81,
+    "sourceHash": "25173e2e53b83e8f6f09b3b4c47ab7a093e7e3b55b3be3c5679aadc76e13aa2a",
+    "responses": {
+      "option-1": "Assuming Q starts from the original conclusion. That does not establish the original implication, because the conclusion may hold without its hypothesis. Write the contrapositive explicitly and identify its antecedent.",
+      "option-2": "Assuming not P starts the inverse, not the contrapositive. The contrapositive reverses the roles of hypothesis and conclusion while negating both. Check which negated statement becomes its starting assumption.",
+      "option-3": "Start by assuming $\\neg Q$, the negation of the original conclusion, and aim to prove $\\neg P$. This proves the contrapositive $\\neg Q\\to\\neg P$, which is equivalent to the original implication. The starting point is the failed conclusion, not the failed hypothesis."
+    }
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 82,
+    "sourceHash": "03997769ef6a183ce41051ac4b5a5fff2722e178d28c5c26ee16547a7e4bfa7b",
+    "responses": {
+      "option-1": "Start by assuming n is odd, the negation of the original conclusion that n is even. Then prove its square is odd, which negates the original hypothesis. For integers, odd is precisely the alternative to even, so this establishes the contrapositive.",
+      "option-2": "Assuming the square is even starts a direct proof of the original statement. For a contrapositive proof, instead negate the original conclusion about n itself and work toward negating the hypothesis about its square.",
+      "option-3": "Assuming n is even assumes the original conclusion rather than establishing it. A contrapositive proof starts from that conclusion's negation. Identify the alternative to evenness within the integer domain."
+    }
+  },
+  {
+    "lesson": "proof-by-contradiction",
+    "id": 81,
+    "sourceHash": "2755bbb4a66e330473c153e4a06dac450295bd2710853e71aae3503425472b35",
+    "responses": {
+      "option-1": "A surprising result may still be true. To finish a contradiction proof, identify a logical impossibility: for example, a statement and its negation about the same object, or a conflict with an established assumption. Surprise is a reaction, not that logical condition.",
+      "option-2": "No. A contradiction requires incompatible claims, not merely an unexpected consequence. The proof must show exactly which established fact or assumption conflicts with the derived result. Naming that conflict is what allows you to reject the temporary assumption."
+    }
+  },
+  {
+    "lesson": "proof-by-contradiction",
+    "id": 82,
+    "sourceHash": "2ec1c49d906d7c520cd42b7180a0b99a02878a0b3d763f3f87eb3ecb85cfee16",
+    "responses": {
+      "option-1": "Choosing lowest terms does not assert that the denominator is even. It says the numerator and denominator have no common factor greater than one. The later derivation of evenness must come from the equation, not from this choice.",
+      "option-2": "Lowest terms means that a and b have no common factor greater than one. If the argument then forces both to be even, they share a factor of 2, contradicting that chosen representation. Without lowest terms, an even numerator and denominator would merely describe a fraction that could be reduced.",
+      "option-3": "The choice of lowest terms does not assume irrationality. Under the temporary assumption of rationality, any rational representation can be reduced. The contradiction arises later, when the equation forces a common factor that the reduced representation cannot have."
+    }
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 81,
+    "sourceHash": "15233e2792d1d12ccd63e29fdef9071ac6c908c1586ef20cce553048959ed4aa",
+    "responses": {
+      "option-1": "The step moves forward from a proved starting case; it does not move backward to earlier indices. Starting at 3 gives no justification for indices below 3 unless separate arguments establish them.",
+      "option-2": "It establishes every integer index at least 3. The base gives the first case, and repeated use of the step gives 4, then 5, and so on. The step's stated range supports that entire forward chain, but makes no claim about smaller indices.",
+      "option-3": "The base is only the start. Applying the valid step to the proved case at 3 gives the case at 4; that in turn gives 5, and the chain continues. Induction is what turns the starting case into a conclusion about all subsequent indices."
+    }
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 82,
+    "sourceHash": "73def46cdb0d38a0e50a2af32ed4d611db21052208b94c5c373418506cef8b8d",
+    "responses": {
+      "option-1": "You still need to connect the intermediate lower bound to the actual target by proving $2k^2\\geq(k+1)^2$ throughout the step's range. Then the two inequalities form a complete chain. Reaching a convenient intermediate expression is progress, but the induction step finishes only when that expression is shown to be large enough.",
+      "option-2": "The current lower bound is not yet the target lower bound. Compare the expression you have reached with the expression required on the right-hand side of the desired inequality. A final bridge inequality is still needed.",
+      "option-3": "An inequality proof cannot simply assume equality with its target; that would add an unjustified condition and is stronger than what is requested. Use the lower bound already established and work out what comparison would connect it to the target."
+    }
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 81,
+    "sourceHash": "7cbf027be876b3158c08098bf1c3e44d080dca7b42c875a9d7aca2c865837a46",
+    "responses": {
+      "option-1": "Using the very case being proved would be circular. Strong induction supplies earlier cases in the stated range, not the current case itself. Check both the lower starting index and the requirement of being smaller than n.",
+      "option-2": "The hypothesis starts at index 2, so it does not include the case at 1. Strong induction supplies all earlier allowed cases, not cases outside the theorem's domain.",
+      "option-3": "The case at n−2 is available: when n is at least 4, n−2 is at least 2 and is strictly smaller than n. Both conditions matter. Strong induction permits any earlier case in the proved range, while the current case remains the one you must establish."
+    }
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 82,
+    "sourceHash": "fd85b96344c974d7493206daaa8a186b353b3f480d1db0070169a6629fe8caa9",
+    "responses": {
+      "option-1": "Starting from 18 and repeatedly adding 4 only reaches 18, 22, 26, and so on. It misses the other possible remainders after division by 4. To cover every amount, the base block needs starting points for those other chains too.",
+      "option-2": "These two base amounts lie on the same add-4 chain, so 22 adds no coverage of the missing chains. Check what happens to the remainder after division by 4 whenever another 4-unit stamp is added.",
+      "option-3": "The four consecutive bases 18, 19, 20, and 21 cover all four possible remainders after division by 4. Every later amount can be reached from one of those bases by repeatedly adding 4. This identifies a sufficient base block; each amount in that block still needs its own valid stamp construction."
+    }
+  },
+  {
+    "lesson": "combinatorics",
+    "id": 81,
+    "sourceHash": "c3f34e29ef343d88e4e2894d8f465bacb62aa6d8fd7e35defaa0aae2b673fe99",
+    "responses": {
+      "option-1": "The committee is determined by its members, not the order of their names. Listing the same people differently does not change membership or assign any new roles. Count the objects described by the problem rather than their written representations.",
+      "option-2": "No. A committee with no named roles is an unordered selection: the same people form the same committee however their names are listed. Counting different orders separately would overcount. If members instead filled distinct offices, their assignments to those roles would matter."
+    }
+  },
+  {
+    "lesson": "combinatorics",
+    "id": 82,
+    "sourceHash": "9467b6e8f6702e322f2b9251e536a783cff9461598020715781a51432eeaa98d",
+    "responses": {
+      "option-1": "The pigeonhole principle does not require every group to be occupied. All thirteen people could even share one birth month. Look for the weaker statement that must hold simply because there are more people than months.",
+      "option-2": "At least two people must share a birth month. If every month contained at most one person, twelve months could hold at most twelve people, contradicting the count of thirteen. This guarantees a repeated month but does not identify it or limit the number sharing it.",
+      "option-3": "The guarantee is a lower bound, not an exact count. Three people, or all thirteen, could share a month. Ask what must happen, rather than specifying how many people share the repeated month."
+    }
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 81,
+    "sourceHash": "6d65b40c419ebc5b59a5cdda09464cca69037e8cef0f19a1244e69e7e8c4802d",
+    "responses": {
+      "option-1": "The recurrence tells you how to move from one term to the next, but not where to start. Try two different initial values; each can generate a sequence satisfying the same add-3 rule.",
+      "option-2": "No. The rule fixes the difference between consecutive terms but leaves the initial value free. Starting at 0 gives 0, 3, 6, …, while starting at 1 gives 1, 4, 7, …. Both satisfy the recurrence. An initial condition selects one sequence from this family."
+    }
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 82,
+    "sourceHash": "cb8f50962622f82938a28dbccbd062ea150d9057db6257f585c38f950a0f4394",
+    "responses": {
+      "option-1": "Halving determines the size of each subproblem, but not how many subproblems are created or how much other work each step performs. Compare a step that makes one recursive call with a step that makes two.",
+      "option-2": "No. Total work also depends on the number of recursive calls and the work performed outside them. One call on half the input and two calls on half the input have different dependency patterns, even though each branch shrinks at the same rate. The shrink factor alone does not determine the cost."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 81,
+    "sourceHash": "8fcad2ff1d2871cf9363a9b7caded7221ae9f8313e00b3f62c76382530fe12e0",
+    "responses": {
+      "option-1": "An undirected edge contributes to the degree of both its endpoints. Counting it only once overlooks one endpoint's contribution. Picture a graph containing a single edge and add its two vertex degrees.",
+      "option-2": "Each edge is counted twice, once at each endpoint. Adding all vertex degrees therefore gives twice the number of edges. For a single edge, the two endpoints each contribute one; the same endpoint-counting argument applies to every edge in the graph.",
+      "option-3": "Degrees count incident edges, not vertices themselves. A vertex may contribute zero, one, or many to the sum depending on its connections. Track the two endpoint contributions of one edge instead."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 82,
+    "sourceHash": "92a3892136325b843e5f79e4fc9b79957193fb911d93d502a400d25a91bf780d",
+    "responses": {
+      "option-1": "An Euler trail uses every edge exactly once. Vertices may be revisited, since the requirement concerns edges. If the trail also ends at its starting vertex, it is an Euler circuit. A Hamiltonian condition instead concerns visiting every vertex once, so the two route requirements should not be interchanged.",
+      "option-2": "A Hamiltonian cycle is a condition on visiting vertices, not on using every edge. It can leave many graph edges unused. Identify whether the question is asking you to cover connections or objects.",
+      "option-3": "A path need not cover the graph. It can use only a small subset of the available edges. The question asks for a route that covers every edge exactly once, which adds a specific global requirement."
+    }
+  },
+  {
+    "lesson": "asymptotic-growth",
+    "id": 81,
+    "sourceHash": "b64ab944aa817e665b84bd983282f723dab02e6ea5b44d4a40bfea49ede3e8cf",
+    "responses": {
+      "option-1": "Allowing a new comparison constant for every input would remove the requirement of one uniform bound. The constant must work for all sufficiently large inputs after it is chosen. Separate choosing the constant from choosing the threshold where the bound begins.",
+      "option-2": "No. One fixed positive constant must bound the comparison for every sufficiently large input. It may depend on the functions being compared, but not on the varying input n. A separate threshold allows finitely many small-input exceptions; changing the constant at each input is not permitted."
+    }
+  },
+  {
+    "lesson": "asymptotic-growth",
+    "id": 82,
+    "sourceHash": "7cecfeb7d7885fc52dc826856f1b309a62c03e62df9348f85f22cee779298f47",
+    "responses": {
+      "option-1": "Theta describes comparable eventual growth, not pointwise equality. Functions can differ by constant factors or smaller-order terms and still satisfy the relation. Think of bounds around the function rather than an equation holding at each input.",
+      "option-2": "Theta asserts both an eventual upper bound and an eventual lower bound by positive constant multiples of the comparison function. The constants remain fixed as n varies, and the bounds need only hold beyond a threshold. The functions need not be equal, even for large inputs.",
+      "option-3": "An eventual upper bound alone is the Big-O condition. Theta also requires a positive constant multiple as a lower bound, so the function cannot grow arbitrarily smaller than the comparison function."
+    }
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 75,
+    "sourceHash": "3f20c7cdcf3dcab5a828271277c95cd7f8b957be12a31b9e4f6c87224eee4f5e",
+    "responses": {
+      "option-1": "The zero vector has all components zero, so its length is zero and it has no direction. It represents no displacement. A direction is associated with a nonzero displacement; the zero vector is not a tiny arrow pointing along some preferred axis.",
+      "option-2": "The zero vector has no nonzero component selecting an axis. An arrow pointing along the first coordinate axis would need a nonzero first component to have a direction.",
+      "option-3": "Multiplying any vector by the scalar zero produces the zero vector. Its special feature is not that it cannot be produced, but that zero displacement has no direction."
+    }
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 76,
+    "sourceHash": "272c932aaf9150ccaeec523fea4e8208ba5746110a7b85254a6a8d55e06aa6a6",
+    "responses": {
+      "option-1": "The number of listed vectors does not determine the number of directions they provide. One vector can be a scalar multiple of another, or the same vector can be listed twice. Compare their components before counting different directions.",
+      "option-2": "False. For example, the vectors (1,2) and (2,4) point in the same direction; the second is twice the first. Listing two vectors therefore does not guarantee two different directions. Their relationship matters, not just the number of entries in the list."
+    }
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 75,
+    "sourceHash": "2130ef747dc9c015dc32f0985d8b50a8e249f97bb6f0a7ea581a860b079499ad",
+    "responses": {
+      "option-1": "The zero vector has norm zero, so the proposed operation divides by zero. Normalization also seeks a unit vector with the original direction, and the zero vector has no direction to preserve.",
+      "option-2": "No. Normalization divides a vector by its norm, and the zero vector's norm is zero. That division is undefined. Geometrically, normalization chooses a unit-length vector in the same direction, but zero has no direction, so there is no corresponding unit vector to select."
+    }
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 76,
+    "sourceHash": "666876e5514efa1a8ca43971b2d5d906efd3a2b7cb6ced1c47c25a87f7e69e39",
+    "responses": {
+      "option-1": "A dot product of one is not the orthogonality condition. It may arise when taking a unit vector's dot product with itself. For perpendicular nonzero vectors, consider the angle factor in the dot-product formula.",
+      "option-2": "The dot product is zero. Perpendicular nonzero vectors meet at a right angle, whose cosine is zero, so their lengths multiplied by that cosine give zero. Their individual lengths do not need to be one: orthogonality and unit length are separate properties.",
+      "option-3": "Adding lengths does not measure the directional relationship between vectors. The dot product combines lengths with the angle between them. Check what that angle contributes when the vectors are perpendicular."
+    }
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 69,
+    "sourceHash": "64eacc5f0860e38335b2ec748b6aa835419af686105f3adbe6ac6ffb6f947734",
+    "responses": {
+      "option-1": "Two is the required number of input components, corresponding to the matrix's columns. The number of output components is determined separately by its rows: each row produces one output entry.",
+      "option-2": "The output has four components. Each of the four rows combines the two input components to produce one number, so four rows produce four numbers. In a matrix's shape, the column count matches the input dimension and the row count gives the output dimension.",
+      "option-3": "Eight counts the matrix's entries, not the output components. Entries within each row are combined with the input into a single result. Count the rows after grouping the computation that way."
+    }
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 70,
+    "sourceHash": "7bc4ed7aab908dac31296270b61feed26f215a049689302e129a5ce727d4aa46",
+    "responses": {
+      "option-1": "Both products existing only establishes that their dimensions are compatible. Matrix multiplication represents composition, and changing the order can change what the transformations do. Recall that a stretch followed by another transformation need not match doing those operations in reverse.",
+      "option-2": "False. Matrix multiplication is generally not commutative. Both products can be defined and still describe different compositions; for instance, scaling one coordinate and then swapping coordinates differs from swapping first and scaling afterward. Compatible dimensions allow a product, but do not make reversed products equal."
+    }
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 69,
+    "sourceHash": "d369c5472de1b3a5f467739f4e7f758474f8fae2099cc4be2376d2cea9a4926b",
+    "responses": {
+      "option-1": "An equation of zero with itself is true, not contradictory. It contributes no additional restriction on the unknowns. Compare it with a row asserting that zero equals a nonzero number.",
+      "option-2": "False. The row 0=0 is always satisfied, so it imposes no new condition. Inconsistency requires an impossible equation such as 0=1. A redundant row alone also does not decide how many solutions the full system has; the other rows and remaining variables still matter."
+    }
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 70,
+    "sourceHash": "63fc4d0b5a6d86abd78194863b55d183acbf9a76fece8640c7fa462f30e776b4",
+    "responses": {
+      "option-1": "True. In a homogeneous system, every right-hand side is zero. Setting every unknown to zero makes every left-hand side zero too, so the zero vector is always a solution. There may be additional solutions, but at least this one is guaranteed.",
+      "option-2": "Try assigning zero to every unknown. Since the right-hand sides of a homogeneous system are all zero, evaluate what each equation becomes under that assignment. The number of other solutions is a separate issue."
+    }
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 73,
+    "sourceHash": "96c4b9c2b57ff875d6eec0ce1c8e73c18de07dac916ef9149e8d462ad7cdb742",
+    "responses": {
+      "option-1": "The zero vector immediately gives a nontrivial combination equal to zero: give it coefficient 1 and give every other vector coefficient 0. Independence requires that only the all-zero coefficients can produce zero.",
+      "option-2": "False. Assign coefficient 1 to the zero vector and 0 to every other vector. The resulting combination is zero even though the coefficients are not all zero. This violates linear independence. Including additional vectors cannot remove that existing dependence."
+    }
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 74,
+    "sourceHash": "a1946d6b74fac06867395d3ae9b676f5389ef00dfef779140e631117ac70d753",
+    "responses": {
+      "option-1": "Every subspace contains the zero vector. A subspace is nonempty and closed under scalar multiplication; multiplying any of its vectors by zero supplies the zero vector. The subspace consisting only of zero shows that no nonzero vector is required in every subspace.",
+      "option-2": "A subspace may be a single line or even just the zero vector. It need not contain all coordinate directions. Look for the vector forced by multiplying any allowed vector by zero.",
+      "option-3": "Having positive components is not a subspace requirement. A subspace can be a line that contains none of those vectors, or consist only of zero. Use the defining closure properties to identify what is unavoidable."
+    }
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 72,
+    "sourceHash": "da0dfd11d61b0b8b8731aef3ebace4e0a9dcd94c256440776c5bc7a017f5deda",
+    "responses": {
+      "option-1": "Rank plus nullity equals the number of columns, which is the number of input variables. In elimination, each input variable is either a pivot variable or a free variable. Rank counts the pivot variables and nullity counts the independent free parameters, so together they account for the entire input dimension.",
+      "option-2": "Rows count equations or output coordinates. The rank-nullity relationship accounts for input directions instead: those represented by pivots and those free to vary in the homogeneous solution. Check which matrix dimension counts the inputs.",
+      "option-3": "The number of entries counts coefficients, not independent variables or directions. Rank and nullity partition the input dimension; they do not count every individual coefficient in the matrix."
+    }
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 73,
+    "sourceHash": "7a05e67ed6706c7b3371fdf3e0d6e76533bc3864b46d0457997d94e65b046785",
+    "responses": {
+      "option-1": "Entrywise reciprocals use scalar inversion separately at each position, but a matrix inverse must undo the whole matrix product. Matrix multiplication combines rows with columns, so its inverse is not generally obtained by treating entries independently.",
+      "option-2": "False. A matrix inverse must multiply with the original matrix to give the identity. Entrywise reciprocals do not generally achieve that because matrix multiplication mixes entries across rows and columns. Even an invertible matrix may contain zero entries, for which the suggested reciprocals would be undefined."
+    }
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 69,
+    "sourceHash": "e4f67499db9c2045b2846ef632dbb6ea18725ed7eb0abffdb7f31281c444cfed",
+    "responses": {
+      "option-1": "Sending zero to zero is necessary, but it does not establish preservation of addition and scalar multiplication. Consider the real function that squares its input: it sends zero to zero, yet doubling an input does not generally double its output.",
+      "option-2": "False. Sending zero to zero is only a necessary condition. For example, the squaring function sends zero to zero but is not linear: at input 1 its output is 1, while at input 2 its output is 4 rather than twice 1. Linearity requires the full addition and scalar-multiplication rules."
+    }
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 70,
+    "sourceHash": "fc1d9eb087f17eccebbdee46934ae52aa80140b358c06e141d3f525922a5cb39",
+    "responses": {
+      "option-1": "True. Surjectivity asks whether the outputs cover the declared codomain, so the codomain is part of the question. Squaring real numbers reaches all nonnegative reals but not negative reals: it is surjective onto the nonnegative reals, but not onto all reals. The rule is unchanged; the coverage requirement changes.",
+      "option-2": "A rule determines which outputs occur, but surjectivity compares those outputs with the declared target set. A target set may contain extra elements that are never reached. Consider a valid codomain consisting exactly of the outputs versus a larger one."
+    }
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 69,
+    "sourceHash": "d8ba23a872dc01b882d2f68fa119f37b6ec9f92cf11afe33bc83eb06534ebb42",
+    "responses": {
+      "option-1": "True. The residual is the original vector minus its projection, and it is perpendicular to the permitted line. If it had a component along that line, moving the proposed projection in that direction would reduce the remaining distance. Perpendicularity expresses that no further along-line adjustment improves the approximation.",
+      "option-2": "Separate the projected vector from the residual: the projection lies on the permitted line, while the residual measures what remains. Think about whether a remaining component along the line could be removed by adjusting the projected point."
+    }
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 70,
+    "sourceHash": "018a5aa764301436bb3d01cd152f1a9d011414dca4b2e6cdb51889c616dde271",
+    "responses": {
+      "option-1": "Here “normal” means perpendicular. The normal equations require the residual to be perpendicular to every column direction available for the approximation. They identify a least-squares fit by making the remaining error orthogonal to those directions, even when the original equations cannot all be satisfied exactly.",
+      "option-2": "The word has a different meaning here from “normal distribution.” These equations arise from geometry: the residual must be perpendicular to the available column directions. No probability distribution is required.",
+      "option-3": "Normal equations are useful precisely when the original system need not have an exact solution. They characterize a best least-squares approximation through a perpendicular-residual condition, rather than asserting exact solvability of the original system."
+    }
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 63,
+    "sourceHash": "645a6b9dec8757c9ed13f00eb157f29496faf951bfccb710a51b5784911f39ab",
+    "responses": {
+      "option-1": "Multiplication by −2 reverses direction and doubles length. The negative sign controls the reversal, while the absolute value 2 gives the length scale. The eigenvector stays on the same line through zero, which is the defining geometric behavior of an eigenvector.",
+      "option-2": "Vector length cannot be negative. A negative scalar reverses direction; its absolute value controls the length change. Separate what the sign does from what the magnitude does.",
+      "option-3": "Only multiplication by zero sends a nonzero eigenvector to zero. Here the scale factor has magnitude 2, so it changes both direction and length without erasing the vector."
+    }
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 64,
+    "sourceHash": "c2d468af8548752c38d6f68ebef9743b3a84e047980554b5aed132af549abf9f",
+    "responses": {
+      "option-1": "Some real matrices have no real eigenvectors, and others do not have enough independent eigenvectors to form a basis. A right-angle rotation in the plane is one example to consider: does any nonzero vector remain on its own line?",
+      "option-2": "False. A right-angle rotation of the real plane has no real eigenvectors: it sends each nonzero vector to a perpendicular direction rather than a scalar multiple of itself. Other matrices may have real eigenvectors but not enough independent ones for a basis. An eigenbasis requires additional conditions; it is not automatic."
+    }
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 73,
+    "sourceHash": "b70dc2334fe7e7707c28a46179521df2f86587fbaa39291eb1a347edd902f6b2",
+    "responses": {
+      "option-1": "Singular values are defined as nonnegative scale factors. Sign changes or reflections belong in the orthogonal factors of an SVD. Do not transfer the possibility of negative eigenvalues to singular values.",
+      "option-2": "False. Singular values are nonnegative by definition. They describe length scales, while the orthogonal factors handle directional changes, including reflections. A singular value may be zero, representing a lost direction, but it is not negative."
+    }
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 74,
+    "sourceHash": "f342041f93010d667d502dee530509cb0ea1cedba2412092ec7e64a404cdb5d7",
+    "responses": {
+      "option-1": "Each positive singular value contributes a separate surviving direction to the image. There are three such directions in the prompt; rank counts them individually, not the mere existence of at least one positive value.",
+      "option-2": "The rank is three. Each positive singular value corresponds to one independent direction that survives the transformation, while zero singular values contribute none to the image. Thus counting positive singular values gives the rank. Additional zero values or unused rectangular dimensions do not change that count.",
+      "option-3": "The number of rows only limits how large the rank can be; it does not determine the rank by itself. Count the independent directions retained by the positive singular values rather than all available output coordinates."
+    }
+  }
+]

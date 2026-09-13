@@ -18,6 +18,16 @@ export const choiceExercises = z
 export const knowledgeExercises = z
   .array(z.object({ lesson: z.string(), quick: z.string(), exercise: z.number().int().positive() }))
   .parse(JSON.parse(await readFile('content/knowledge-check-exercises.json', 'utf8')));
+const feedbackEntries = z
+  .array(
+    z.object({
+      lesson: z.string(),
+      id: z.number().int(),
+      sourceHash: z.string(),
+      responses: z.record(z.string(), z.string().min(1)),
+    }),
+  )
+  .parse(JSON.parse(await readFile('content/choice-feedback.json', 'utf8')));
 export type ChoiceAssessment = { options: z.infer<typeof option>[]; correctOption: string };
 type Q = {
   id: number;
@@ -43,6 +53,7 @@ export function promoteChoices<
   L extends { slug: string; questions: Q[]; sections: S[]; practiceIds: number[] },
 >(lessons: L[]): (Omit<L, 'questions'> & { questions: Q[] })[] {
   const seen = new Set<string>();
+  const seenFeedback = new Set<string>();
   const result = lessons.map((l) => {
     const questions: Q[] = l.questions.map((q) => {
       const c = choiceExercises.find((c) => c.lesson === l.slug && c.id === q.id);
@@ -102,11 +113,43 @@ export function promoteChoices<
     return {
       ...l,
       sections,
-      questions: ordered,
+      questions: ordered.map((q) => {
+        if (!q.choice) return q;
+        const key = l.slug + '/' + q.id;
+        const authored = feedbackEntries.find((e) => e.lesson === l.slug && e.id === q.id);
+        const sourceHash = createHash('sha256')
+          .update(
+            JSON.stringify([
+              q.instructions,
+              q.prompt,
+              q.math,
+              q.answer,
+              q.choice.options.map((o) => o.text),
+            ]),
+          )
+          .digest('hex');
+        if (!authored || authored.sourceHash !== sourceHash)
+          throw Error('Reinspect choice feedback: ' + key);
+        if (Object.keys(authored.responses).length !== q.choice.options.length)
+          throw Error('Choice feedback coverage: ' + key);
+        const choice = {
+          ...q.choice,
+          options: q.choice.options.map((o) => {
+            const feedback = authored.responses[o.id];
+            if (!feedback) throw Error('Missing option feedback: ' + key + '/' + o.id);
+            return { ...o, feedback };
+          }),
+        };
+        validateChoice(choice);
+        seenFeedback.add(key);
+        return { ...q, choice };
+      }),
       practiceIds: [...l.practiceIds, ...promoted.map((q) => q.id)],
     };
   });
   if (seen.size !== choiceExercises.length) throw Error('Unknown or duplicate converted exercise');
+  if (seenFeedback.size !== feedbackEntries.length)
+    throw Error('Unknown or duplicate choice feedback');
   if (
     result.reduce((n, l) => n + l.questions.filter((q) => q.quickSource).length, 0) !==
     knowledgeExercises.length

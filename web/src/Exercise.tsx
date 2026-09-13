@@ -1,13 +1,13 @@
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
 import { useEffect, useRef, useState } from 'react';
-import type { Attempt, Curriculum, Draft, Question, RecordData } from './types';
+import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
 import { all, emptyDraft, get, put, saveAttempt, saveMedia, useRevision } from './storage';
 import { connected, recheck, sync } from './sync';
 import { Rich, Modal } from './Rich';
 import { TexEditor } from './TexEditor';
 import { Ink, inkImage } from './Ink';
 import { Media, Photos, normalizedPhoto } from './Photos';
-import { gradeChoice } from './choiceGrading';
+import { gradeChoice, currentChoiceFeedback } from './choiceGrading';
 import { questionLabel } from './types';
 export function Exercise({ q, lesson, data }: { q: Question; lesson: string; data: Curriculum }) {
   const key = lesson + '-' + q.id;
@@ -334,6 +334,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         last && (
           <AttemptPanel
             attempt={last}
+            choice={q.choice}
             onRetry={() => void retry(last)}
             resumeDraft={draft?.recovery}
             canRetry={!correct && !pending}
@@ -424,7 +425,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         >
           {[...attempts].reverse().map((a) => (
             <div className="history-item" key={a.id}>
-              <AttemptPanel attempt={a} />
+              <AttemptPanel attempt={a} choice={q.choice} />
             </div>
           ))}
         </Modal>
@@ -446,8 +447,10 @@ function AttemptPanel({
   onRetry,
   canRetry,
   onHistory,
+  choice,
 }: {
   attempt: Attempt;
+  choice?: ChoiceAssessment;
   resumeDraft?: boolean;
   onRetry?: () => void;
   canRetry?: boolean;
@@ -544,7 +547,7 @@ function AttemptPanel({
       </div>
       {g && feedback && (
         <div className="feedback">
-          <Rich text={g.feedback} />
+          <Rich text={currentChoiceFeedback(a, choice) ?? g.feedback} />
           {g.issue && <Rich text={'Where to look: ' + g.issue} />}
           {g.improvement && <Rich text={g.improvement} />}
         </div>
