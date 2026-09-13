@@ -907,6 +907,9 @@ hr {
   .editor-columns {
     grid-template-columns: 1fr;
   }
+  .editor-columns > .preview {
+    grid-row: 1;
+  }
   .reference-panel {
     position: fixed;
     inset: 0;
