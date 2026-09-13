@@ -431,6 +431,13 @@ details > .rich {
   margin: 8px 0;
   font-size: 0.93rem;
 }
+.transcription p,
+.transcription li {
+  white-space: pre-line;
+}
+.transcription .katex {
+  white-space: normal;
+}
 .submitted-images {
   max-height: 165px;
   overflow: auto;

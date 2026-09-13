@@ -485,7 +485,7 @@ function AttemptPanel({
           <p className="eyebrow">
             {a.mode === 'photo' ? 'Transcribed from photo' : 'Transcribed from handwriting'}
           </p>
-          <Rich text={a.transcription} />
+          <Rich text={a.transcription} className="transcription" />
         </div>
       ) : a.mode === 'type' || a.mode === 'choice' ? (
         <div className="submitted">
@@ -573,7 +573,7 @@ function AttemptPanel({
               {error && <p role="alert">{error}</p>}
             </>
           ) : panel === 'What the grader read' ? (
-            <Rich text={g?.transcription} />
+            <Rich text={g?.transcription} className="transcription" />
           ) : panel === 'Previous assessments' ? (
             a.grades.map((old, i) => (
               <article key={i}>
@@ -589,7 +589,7 @@ function AttemptPanel({
               <p className="eyebrow">
                 {a.mode === 'photo' ? 'Transcribed from photo' : 'Transcribed from handwriting'}
               </p>
-              <Rich text={a.transcription} />
+              <Rich text={a.transcription} className="transcription" />
             </>
           ) : a.mode === 'type' || a.mode === 'choice' ? (
             <>
