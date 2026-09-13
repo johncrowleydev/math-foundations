@@ -154,6 +154,18 @@ func TestGradingUnreadableAndInvalidResponsesAreNotIncorrect(t *testing.T) {
 	if result.Status != "error" || result.Verdict != "" || len(result.Grades) != 1 {
 		t.Fatalf("provider failure lost result %+v", result)
 	}
+	if result.RecheckReason != "Please inspect the variable again." {
+		t.Fatal("Failed recheck lost its clarification")
+	}
+	if e := g.recheck(a.ID, newID(), result.RecheckReason); e != nil {
+		t.Fatal("Cannot retry failed recheck", e)
+	}
+	reply = `{"verdict":"correct","feedback":"Accepted after reconsidering the clarification.","issue":"","improvement":"","transcription":""}`
+	g.step(context.Background())
+	result, _ = loadAttempt(g.server.db, a.ID)
+	if result.Verdict != "correct" || len(result.Grades) != 2 || result.Grades[1].Reason != "Please inspect the variable again." {
+		t.Fatal("Retry did not preserve attempt and clarification")
+	}
 }
 func TestGradingConcurrentSubmissionsAndCatalogValidation(t *testing.T) {
 	reply := `{}`

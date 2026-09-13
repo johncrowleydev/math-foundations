@@ -79,10 +79,10 @@ export async function mutation(key: string, payload: Record<string, unknown>, re
   void sync();
 }
 export async function recheck(a: Attempt, reason: string) {
-  if (!reason.trim()) throw Error('Explain what should be reconsidered.');
+  if (a.verdict && !reason.trim()) throw Error('Explain what should be reconsidered.');
   const id = crypto.randomUUID();
   await put('outbox', id, { id, kind: 'recheck', attempt: a.id, data: { id, reason } });
-  await put('attempts', a.id, { ...a, status: 'rechecking' });
+  await put('attempts', a.id, { ...a, status: 'rechecking', error: '', recheckReason: reason });
   void sync();
 }
 async function download(h: string) {
@@ -125,7 +125,7 @@ export async function sync() {
         if (op.kind === 'attempt') {
           const a = op.data as unknown as Attempt;
           for (const h of [...a.images, ...(a.photos || []).map((p) => p.hash)]) await upload(h);
-          const { status, verdict, error, grades, transcription, ...submission } = a;
+          const { status, verdict, error, grades, transcription, recheckReason, ...submission } = a;
           const saved = await (await request('/attempts', 'POST', submission)).json();
           await put('attempts', a.id, saved);
         } else if (op.kind === 'recheck')

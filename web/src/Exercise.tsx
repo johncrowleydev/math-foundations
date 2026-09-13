@@ -262,6 +262,18 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         </>
       )}
       <div className="toolbar submit">
+        {last?.status === 'error' && !q.choice && (
+          <button
+            onClick={() => {
+              update({ editing: false });
+              void recheck(last, last.recheckReason || last.grades.at(-1)?.reason || '').catch(
+                (e) => setError(String(e)),
+              );
+            }}
+          >
+            {last.verdict ? 'Retry recheck' : 'Retry grading'}
+          </button>
+        )}
         {last && <button onClick={() => update({ editing: false })}>Back to latest attempt</button>}
         <button
           className="primary push"
@@ -446,7 +458,7 @@ function AttemptPanel({
   const [feedback, setFeedback] = useState(a.verdict === 'correct'),
     [more, setMore] = useState(false),
     [panel, setPanel] = useState(''),
-    [reason, setReason] = useState(''),
+    [reason, setReason] = useState(a.recheckReason || ''),
     [error, setError] = useState('');
   useEffect(() => {
     setFeedback(a.verdict === 'correct');
@@ -499,13 +511,28 @@ function AttemptPanel({
         </div>
       )}
       {a.error && <p className="error">{a.error}</p>}
+      {error && !panel && (
+        <p className="error" role="alert">
+          {error}
+        </p>
+      )}
       <div className="toolbar">
+        {a.status === 'error' && a.mode !== 'choice' && (
+          <button
+            className="primary"
+            onClick={() =>
+              void recheck(a, a.recheckReason || g?.reason || '').catch((e) => setError(String(e)))
+            }
+          >
+            {a.verdict ? 'Retry recheck' : 'Retry grading'}
+          </button>
+        )}
         {g && (
           <button onClick={() => setFeedback(!feedback)}>
             {feedback ? 'Hide feedback' : 'Show feedback'}
           </button>
         )}
-        {canRetry && onRetry && (
+        {a.status !== 'error' && canRetry && onRetry && (
           <button onClick={onRetry}>{resumeDraft ? 'Continue draft' : 'Try again'}</button>
         )}
         <div className="menu-anchor">
