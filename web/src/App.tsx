@@ -399,6 +399,13 @@ export function App({ data }: { data: Curriculum }) {
               <button onClick={() => void update()}>Reload</button>
             </div>
           )}
+          {tab === 'read' && (
+            <div className="reader-outline-bar">
+              <button className="outline-toggle" onClick={() => setOutline(true)}>
+                On this page
+              </button>
+            </div>
+          )}
           <div className="body-layout">
             <main
               ref={reader}
@@ -536,9 +543,6 @@ export function App({ data }: { data: Curriculum }) {
             </span>
             {tab === 'read' && (
               <>
-                <button className="outline-toggle" onClick={() => setOutline(true)}>
-                  On this page
-                </button>
                 <button
                   onContextMenu={(e) => {
                     e.preventDefault();

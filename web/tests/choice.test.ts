@@ -34,7 +34,7 @@ test('every authored choice option produces its deterministic verdict and feedba
         assert.throws(() => gradeChoice({ ...a, choiceId: 'invalid' }, q.choice!));
       }
     }
-  assert.equal(count, 177);
+  assert.equal(count, 179);
 });
 test('all knowledge checks share an exercise identity in Learn and Practice', () => {
   let count = 0;
@@ -95,5 +95,5 @@ test('all option explanations are distinct and the server ships the same authore
         options++;
       }
     }
-  assert.equal(options, 488);
+  assert.equal(options, 492);
 });

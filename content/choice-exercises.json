@@ -2941,5 +2941,43 @@
       }
     ],
     "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 117,
+    "sourceHash": "e760bf2c57c15162ffa70d0918d161b4f85648f5ee6287062b5e220f423136ab",
+    "rationale": "Determine validity only, matching the adjacent modus ponens question; no written explanation is requested.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Valid",
+        "feedback": "The conditional guarantees passing when studying occurs. Does it also guarantee studying whenever passing occurs? Check whether passing could have another explanation."
+      },
+      {
+        "id": "option-2",
+        "text": "Invalid",
+        "feedback": "Passing is the consequence of studying, but the premise does not say studying is the only way to pass. Someone who did not study could still pass, making both premises true and the conclusion false. This is affirming the consequent: reversing a one-way guarantee is not valid."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 118,
+    "sourceHash": "584d67b462286543119630b24e29c58ef99776e9495c3f72100c6890c1e841ce",
+    "rationale": "Determine validity only, matching the adjacent modus ponens question; no written explanation is requested.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Valid",
+        "feedback": "Not satisfying the condition of a guarantee is different from satisfying a guarantee of failure. Check what the premise actually says about someone who does not study."
+      },
+      {
+        "id": "option-2",
+        "text": "Invalid",
+        "feedback": "The conditional promises a pass when studying occurs; it makes no promise about what happens without studying. A person who did not study but still passed makes both premises true and the conclusion false. This is denying the antecedent: removing a sufficient condition does not rule out the result."
+      }
+    ],
+    "correctOption": "option-2"
   }
 ]

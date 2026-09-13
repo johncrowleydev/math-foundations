@@ -316,6 +316,9 @@ code {
 .math-inline .katex {
   font-size: 1.08em;
 }
+.reader-outline-bar {
+  display: none;
+}
 .page-outline {
   width: 210px;
   flex-shrink: 0;
@@ -845,6 +848,11 @@ hr {
   }
 }
 @media (max-width: 1250px) {
+  .reader-outline-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px 16px;
+  }
   .page-outline {
     display: none;
   }
@@ -873,6 +881,11 @@ hr {
   }
 }
 @media (max-width: 839px), (max-height: 480px) {
+  .reader-outline-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px 16px;
+  }
   .sidebar {
     display: none;
   }
