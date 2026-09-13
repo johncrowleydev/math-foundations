@@ -88,8 +88,13 @@ export async function saveAttempt(a: Attempt) {
 }
 export async function integrate(records: RecordData[], cursor: number) {
   const d = await db;
-  const tx = d.transaction(['records', 'attempts', 'outbox', 'settings'], 'readwrite');
+  const tx = d.transaction(
+    ['records', 'attempts', 'outbox', 'settings', 'drafts', 'media'],
+    'readwrite',
+  );
   let updated = false;
+  const retired = new Set<string>();
+  const changedDrafts = new Set<string>();
   for (const r of records) {
     const old = await tx.objectStore('records').get(r.key);
     const latest = old && old.revision >= r.revision ? old : r;
@@ -100,6 +105,41 @@ export async function integrate(records: RecordData[], cursor: number) {
     if (r.key.startsWith('attempt/')) {
       const a = latest.payload as Attempt;
       const saved = await tx.objectStore('attempts').get(a.id);
+      if (a.transcription) {
+        for (const h of [
+          ...(saved?.images || []),
+          ...(saved?.photos || []).map((p: any) => p.hash),
+        ])
+          retired.add(h);
+        const draft = await tx.objectStore('drafts').get(a.exercise);
+        const newer = (await tx.objectStore('attempts').getAll()).some(
+          (other: Attempt) =>
+            other.exercise === a.exercise &&
+            (other.submitted > a.submitted ||
+              (other.id !== a.id && ['queued', 'pending', 'grading'].includes(other.status))),
+        );
+        if (
+          !newer &&
+          draft &&
+          draft.editing === false &&
+          !draft.recovery &&
+          (draft.strokes.length || draft.photos.length)
+        ) {
+          for (const p of draft.photos) retired.add(p.hash);
+          await tx
+            .objectStore('drafts')
+            .put(
+              {
+                ...draft,
+                strokes: [],
+                photos: [],
+                updated: Math.max(Date.now(), draft.updated + 1),
+              },
+              a.exercise,
+            );
+          changedDrafts.add(a.exercise);
+        }
+      }
       if (JSON.stringify(saved) !== JSON.stringify(a)) {
         await tx.objectStore('attempts').put(a, a.id);
         updated = true;
@@ -107,9 +147,23 @@ export async function integrate(records: RecordData[], cursor: number) {
       await tx.objectStore('outbox').delete(a.id);
     }
   }
+  if (retired.size) {
+    // Do not remove a blob still used by another draft or queued submission.
+    const retained = (
+      await Promise.all(
+        ['records', 'attempts', 'outbox', 'drafts', 'settings'].map((s) =>
+          tx.objectStore(s).getAll(),
+        ),
+      )
+    )
+      .map((rows) => JSON.stringify(rows))
+      .join('\n');
+    for (const h of retired) if (!retained.includes(h)) await tx.objectStore('media').delete(h);
+  }
   const previous = (await tx.objectStore('settings').get('cursor')) || 0;
   if (cursor > previous) await tx.objectStore('settings').put(cursor, 'cursor');
   await tx.done;
+  for (const key of changedDrafts) changed('draft:' + key);
   if (updated) changed();
 }
 export async function exportData() {
@@ -160,6 +214,7 @@ export async function importData(file: Blob, name: string) {
     typeof v.exercise === 'string' &&
     finite(v.submitted) &&
     typeof v.text === 'string' &&
+    (v.transcription === undefined || typeof v.transcription === 'string') &&
     ['type', 'write', 'photo', 'choice'].includes(v.mode) &&
     (v.mode !== 'choice' || (typeof v.choiceId === 'string' && v.choiceId.length > 0)) &&
     Array.isArray(v.images) &&

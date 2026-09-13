@@ -125,7 +125,7 @@ export async function sync() {
         if (op.kind === 'attempt') {
           const a = op.data as unknown as Attempt;
           for (const h of [...a.images, ...(a.photos || []).map((p) => p.hash)]) await upload(h);
-          const { status, verdict, error, grades, ...submission } = a;
+          const { status, verdict, error, grades, transcription, ...submission } = a;
           const saved = await (await request('/attempts', 'POST', submission)).json();
           await put('attempts', a.id, saved);
         } else if (op.kind === 'recheck')

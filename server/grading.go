@@ -52,10 +52,11 @@ type Grade struct {
 }
 type Attempt struct {
 	Submission
-	Status  string  `json:"status"`
-	Verdict string  `json:"verdict"`
-	Error   string  `json:"error"`
-	Grades  []Grade `json:"grades"`
+	Transcription string  `json:"transcription,omitempty"`
+	Status        string  `json:"status"`
+	Verdict       string  `json:"verdict"`
+	Error         string  `json:"error"`
+	Grades        []Grade `json:"grades"`
 }
 type Catalog struct {
 	Version   string                     `json:"version"`
@@ -81,7 +82,9 @@ func gradingSchema(db *sql.DB) error {
 	_, e := db.Exec(`CREATE TABLE IF NOT EXISTS attempts(id TEXT PRIMARY KEY,exercise TEXT NOT NULL,submitted INTEGER NOT NULL,data TEXT NOT NULL,context TEXT NOT NULL,status TEXT NOT NULL,verdict TEXT NOT NULL DEFAULT '',error TEXT NOT NULL DEFAULT '',grades TEXT NOT NULL DEFAULT '[]');
  CREATE INDEX IF NOT EXISTS attempt_exercise ON attempts(exercise,submitted);
  CREATE TABLE IF NOT EXISTS grading_jobs(id TEXT PRIMARY KEY,attempt TEXT NOT NULL,reason TEXT NOT NULL,status TEXT NOT NULL,tries INTEGER NOT NULL DEFAULT 0,next INTEGER NOT NULL DEFAULT 0);
- CREATE INDEX IF NOT EXISTS grading_pending ON grading_jobs(status,next);`)
+ CREATE INDEX IF NOT EXISTS grading_pending ON grading_jobs(status,next);
+ CREATE TABLE IF NOT EXISTS attempt_transcriptions(id TEXT PRIMARY KEY,text TEXT NOT NULL,source_hash TEXT NOT NULL);
+ CREATE TABLE IF NOT EXISTS retired_attempt_media(hash TEXT PRIMARY KEY);`)
 	return e
 }
 func newID() string {
@@ -94,7 +97,7 @@ func newID() string {
 func loadAttempt(q querier, id string) (Attempt, error) {
 	var a Attempt
 	var data, grades string
-	e := q.QueryRow("SELECT data,status,verdict,error,grades FROM attempts WHERE id=?", id).Scan(&data, &a.Status, &a.Verdict, &a.Error, &grades)
+	e := q.QueryRow("SELECT data,status,verdict,error,grades,COALESCE((SELECT text FROM attempt_transcriptions WHERE id=attempts.id),'') FROM attempts WHERE id=?", id).Scan(&data, &a.Status, &a.Verdict, &a.Error, &grades, &a.Transcription)
 	if e != nil {
 		return a, e
 	}
@@ -137,8 +140,21 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 	if old, e := loadAttempt(g.server.db, a.ID); e == nil {
 		x, _ := json.Marshal(old.Submission)
 		y, _ := json.Marshal(a)
-		if !bytes.Equal(x, y) {
+		var originalHash string
+		g.server.db.QueryRow("SELECT source_hash FROM attempt_transcriptions WHERE id=?", a.ID).Scan(&originalHash)
+		if !bytes.Equal(x, y) && (originalHash == "" || originalHash != contentHash(y)) {
 			return old, 409, errors.New("Submission ID reused")
+		}
+		if old.Transcription != "" {
+			hashes := append([]string{}, a.Images...)
+			for _, photo := range a.Photos {
+				hashes = append(hashes, photo.Hash)
+			}
+			for _, hash := range hashes {
+				if _, err := g.server.db.Exec("INSERT OR IGNORE INTO retired_attempt_media(hash) VALUES(?)", hash); err != nil {
+					return old, 500, err
+				}
+			}
 		}
 		return old, 200, nil
 	}
@@ -388,7 +404,9 @@ This is a RECHECK, not a first assessment. In feedback, directly address the stu
 	contextData := map[string]any{"assessment_type": assessmentType, "exercise": json.RawMessage(teaching), "format": a.Mode, "answer_revealed": a.Revealed, "recheck_explanation": reason, "previous_grades": a.Grades}
 	raw, _ := json.Marshal(contextData)
 	parts := []map[string]any{{"type": "text", "text": string(raw)}}
-	if a.Mode == "type" {
+	if a.Transcription != "" {
+		parts = append(parts, map[string]any{"type": "text", "text": "SAVED TRANSCRIPTION OF THE ORIGINAL IMAGE RESPONSE:\n" + a.Transcription + "\nThe original image is no longer retained. Reassess this transcription, addressing any recheck clarification; do not claim to have inspected the original image."})
+	} else if a.Mode == "type" {
 		parts = append(parts, map[string]any{"type": "text", "text": "STUDENT RESPONSE:\n" + a.Text})
 	} else {
 		for _, id := range a.Images {
@@ -509,6 +527,9 @@ func (g *Grading) step(ctx context.Context) bool {
 		}
 		_, e2 = tx.Exec("UPDATE attempts SET grades=?,verdict=?,status=?,error='' WHERE id=?", string(b), verdict, status, attempt)
 		if e2 == nil {
+			e2 = retainTranscription(tx, a)
+		}
+		if e2 == nil {
 			_, e2 = tx.Exec("UPDATE grading_jobs SET status='done' WHERE id=?", id)
 		}
 	}
@@ -521,6 +542,10 @@ func (g *Grading) step(ctx context.Context) bool {
 	return true
 }
 func (g *Grading) run(ctx context.Context) {
+	if err := g.retainExistingTranscriptions(); err != nil {
+		// Retry migration on the next startup; never discard an uncommitted image.
+		fmt.Println("Image transcription retention migration failed:", err)
+	}
 	g.server.db.Exec("UPDATE grading_jobs SET status='pending' WHERE status='running'")
 	ticker := time.NewTicker(2 * time.Second)
 	defer ticker.Stop()
@@ -530,6 +555,7 @@ func (g *Grading) run(ctx context.Context) {
 			return
 		case <-ticker.C:
 			g.step(ctx)
+			g.removeRetiredMedia()
 		}
 	}
 }

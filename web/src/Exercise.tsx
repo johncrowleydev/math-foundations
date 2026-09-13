@@ -190,7 +190,10 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       update({ editing: true });
       return;
     }
-    if (a.mode === 'type') update({ text: a.text, mode: 'type', editing: true, recovery: true });
+    if (a.transcription)
+      update({ text: a.transcription, mode: 'type', editing: true, recovery: true });
+    else if (a.mode === 'type')
+      update({ text: a.text, mode: 'type', editing: true, recovery: true });
     else if (a.ink)
       update({
         mode: 'pen',
@@ -477,7 +480,14 @@ function AttemptPanel({
           })}
         </time>
       </div>
-      {a.mode === 'type' || a.mode === 'choice' ? (
+      {a.transcription ? (
+        <div className="submitted">
+          <p className="eyebrow">
+            {a.mode === 'photo' ? 'Transcribed from photo' : 'Transcribed from handwriting'}
+          </p>
+          <Rich text={a.transcription} />
+        </div>
+      ) : a.mode === 'type' || a.mode === 'choice' ? (
         <div className="submitted">
           <Rich text={a.text} />
         </div>
@@ -506,7 +516,7 @@ function AttemptPanel({
             <div className="menu">
               {[
                 'Expand response',
-                ...(g?.transcription ? ['What the grader read'] : []),
+                ...(!a.transcription && g?.transcription ? ['What the grader read'] : []),
                 ...(onHistory ? ['Previous attempts'] : []),
                 ...(!active && a.status !== 'queued' && a.mode !== 'choice'
                   ? ['Request recheck']
@@ -574,6 +584,13 @@ function AttemptPanel({
                 <Rich text={old.feedback} />
               </article>
             ))
+          ) : a.transcription ? (
+            <>
+              <p className="eyebrow">
+                {a.mode === 'photo' ? 'Transcribed from photo' : 'Transcribed from handwriting'}
+              </p>
+              <Rich text={a.transcription} />
+            </>
           ) : a.mode === 'type' || a.mode === 'choice' ? (
             <>
               <Rich text={a.text} />

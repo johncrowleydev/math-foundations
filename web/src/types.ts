@@ -149,6 +149,7 @@ export type Grade = {
   at: number;
 };
 export type Attempt = {
+  transcription?: string;
   id: string;
   exercise: string;
   submitted: number;
