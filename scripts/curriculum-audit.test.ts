@@ -7,7 +7,7 @@ const inventory = JSON.parse(await readFile('output/curriculum-inventory.json', 
 const teaching = JSON.parse(await readFile('output/content/teaching.json', 'utf8'));
 const hash = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
-test('the manually audited edition covers every current unit, reference, formula and figure', () => {
+test('inspection records match every current unit, reference, formula and figure', () => {
   assert.deepEqual(audit.counts, inventory.counts);
   assert.equal(audit.units.length, inventory.units.length);
   const units = new Map(audit.units.map((u: any) => [u.lesson + '/' + u.source, u.hash]));

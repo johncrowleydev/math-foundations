@@ -4,47 +4,377 @@ sections:
     questions:
       - id: 1
         type: freeform
-        prompt: An arrow starts at (2,-1) and ends at (5,3). Give its displacement vector and explain whether moving its starting point changes the vector.
+        prompt: An arrow starts at (2,-1) and ends at (5,3). Give its displacement vector. Explain whether translating both endpoints by the same amount changes that vector, and whether moving only the starting point would do so.
         answerLines: 5
-        answer: 'The displacement is (3,4): subtract the starting coordinates from the ending coordinates. Translating both endpoints by the same amount preserves these differences and therefore represents the same vector.'
+        answer: 'The displacement is (3,4): subtract the starting coordinates from the ending coordinates. Translating both endpoints by the same amount preserves these differences. Moving only the starting point while fixing the endpoint changes the displacement.'
       - id: 2
         type: freeform
         prompt: A data vector lists (hours studied, exercises attempted). Explain why (2,5) and (5,2) are different observations, and state the number of components.
         answerLines: 5
         answer: There are two components. The first observation records two hours and five attempts; the second records five hours and two attempts. Coordinates are ordered and have assigned meanings, so exchanging them changes the observation.
+      - id: 3
+        type: freeform
+        prompt: An arrow runs from (2, -1) to (3, 4). Find its displacement. Then translate both endpoints by (2, 2) and check that the displacement is unchanged.
+        answerLines: 5
+        answer: Subtract start from finish to obtain (1, 5). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.
+      - id: 4
+        type: freeform
+        prompt: An arrow runs from (0, 3) to (-2, 1). Find its displacement. Then translate both endpoints by (2, 2) and check that the displacement is unchanged.
+        answerLines: 5
+        answer: Subtract start from finish to obtain (-2, -2). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.
+      - id: 5
+        type: freeform
+        prompt: An arrow runs from (-3, 2) to (1, -4). Find its displacement. Then translate both endpoints by (2, 2) and check that the displacement is unchanged.
+        answerLines: 5
+        answer: Subtract start from finish to obtain (4, -6). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.
+      - id: 6
+        type: freeform
+        prompt: An arrow runs from (1, 0, 2) to (0, -3, 1). Find its displacement. Then translate both endpoints by (2, 2, 2) and check that the displacement is unchanged.
+        answerLines: 5
+        answer: Subtract start from finish to obtain (-1, -3, -1). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.
+      - id: 7
+        type: freeform
+        prompt: An arrow runs from (2, -1, 0) to (-1, 2, 3). Find its displacement. Then translate both endpoints by (2, 2, 2) and check that the displacement is unchanged.
+        answerLines: 5
+        answer: Subtract start from finish to obtain (-3, 3, 3). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.
+      - id: 8
+        type: freeform
+        prompt: An arrow runs from (1, 2, -2, 0) to (3, 0, 1, -1). Find its displacement. Then translate both endpoints by (2, 2, 2, 2) and check that the displacement is unchanged.
+        answerLines: 5
+        answer: Subtract start from finish to obtain (2, -2, 3, -1). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.
+      - id: 9
+        type: freeform
+        prompt: A record uses coordinate order east displacement, north displacement and has value (-2, 3). State its dimension, interpret each component, and explain what changes if the first two entries are exchanged.
+        answerLines: 5
+        answer: "It has 2 components. east displacement: -2; north displacement: 3. Exchanging just the first two values assigns them to different measurements; coordinate order is part of the record's meaning."
+      - id: 10
+        type: freeform
+        prompt: A record uses coordinate order height, width, depth and has value (2, 4, 1). State its dimension, interpret each component, and explain what changes if the first two entries are exchanged.
+        answerLines: 5
+        answer: "It has 3 components. height: 2; width: 4; depth: 1. Exchanging just the first two values assigns them to different measurements; coordinate order is part of the record's meaning."
+      - id: 11
+        type: freeform
+        prompt: A record uses coordinate order Monday sales, Tuesday sales, Wednesday sales and has value (0, 3, 2). State its dimension, interpret each component, and explain what changes if the first two entries are exchanged.
+        answerLines: 5
+        answer: "It has 3 components. Monday sales: 0; Tuesday sales: 3; Wednesday sales: 2. Exchanging just the first two values assigns them to different measurements; coordinate order is part of the record's meaning."
+      - id: 12
+        type: freeform
+        prompt: A record uses coordinate order temperature change, pressure change and has value (-3, 0). State its dimension, interpret each component, and explain what changes if the first two entries are exchanged.
+        answerLines: 5
+        answer: "It has 2 components. temperature change: -3; pressure change: 0. Exchanging just the first two values assigns them to different measurements; coordinate order is part of the record's meaning."
+      - id: 13
+        type: freeform
+        prompt: A record uses coordinate order red intensity, green intensity, blue intensity and has value (1, 0, 1). State its dimension, interpret each component, and explain what changes if the first two entries are exchanged.
+        answerLines: 5
+        answer: "It has 3 components. red intensity: 1; green intensity: 0; blue intensity: 1. Exchanging just the first two values assigns them to different measurements; coordinate order is part of the record's meaning."
+      - id: 14
+        type: freeform
+        prompt: A record uses coordinate order hours reading, hours practicing and has value (2, 5). State its dimension, interpret each component, and explain what changes if the first two entries are exchanged.
+        answerLines: 5
+        answer: "It has 2 components. hours reading: 2; hours practicing: 5. Exchanging just the first two values assigns them to different measurements; coordinate order is part of the record's meaning."
   - title: Adding and scaling
     questions:
-      - id: 3
+      - id: 15
         type: freeform
         prompt: For u=(2,-3) and v=(-1,4), find u+v, u-v, and -2u. Explain the geometric effect of the negative scalar.
         answerLines: 5
         answer: The sum is (1,1), the difference is (3,-7), and -2u=(-4,6). A negative factor reverses direction; its magnitude two doubles the length.
-      - id: 4
+      - id: 16
         type: freeform
         prompt: A traveler moves (4,1), then (-2,3), then (0,-1). Find the total displacement. Does it determine the distance traveled? Explain.
         answerLines: 5
         answer: The total displacement is (2,3). It gives the change from start to finish, not the distance along the three parts of the route. Different routes can have the same total displacement.
+      - id: 17
+        type: freeform
+        prompt: For u=(2, -1) and v=(3, 4), calculate 3u-2v. Check by adding 2v to your result.
+        answerLines: 5
+        answer: Three u is (6, -3); negative two v is (-6, -8). Their sum is (0, -11). Adding (6, 8) recovers (6, -3), as required.
+      - id: 18
+        type: freeform
+        prompt: For u=(0, 3) and v=(-2, 1), calculate 3u-2v. Check by adding 2v to your result.
+        answerLines: 5
+        answer: Three u is (0, 9); negative two v is (4, -2). Their sum is (4, 7). Adding (-4, 2) recovers (0, 9), as required.
+      - id: 19
+        type: freeform
+        prompt: For u=(-3, 2) and v=(1, -4), calculate 3u-2v. Check by adding 2v to your result.
+        answerLines: 5
+        answer: Three u is (-9, 6); negative two v is (-2, 8). Their sum is (-11, 14). Adding (2, -8) recovers (-9, 6), as required.
+      - id: 20
+        type: freeform
+        prompt: For u=(1, 0, 2) and v=(0, -3, 1), calculate 3u-2v. Check by adding 2v to your result.
+        answerLines: 5
+        answer: Three u is (3, 0, 6); negative two v is (0, 6, -2). Their sum is (3, 6, 4). Adding (0, -6, 2) recovers (3, 0, 6), as required.
+      - id: 21
+        type: freeform
+        prompt: For u=(2, -1, 0) and v=(-1, 2, 3), calculate 3u-2v. Check by adding 2v to your result.
+        answerLines: 5
+        answer: Three u is (6, -3, 0); negative two v is (2, -4, -6). Their sum is (8, -7, -6). Adding (-2, 4, 6) recovers (6, -3, 0), as required.
+      - id: 22
+        type: freeform
+        prompt: For u=(1, 2, -2, 0) and v=(3, 0, 1, -1), calculate 3u-2v. Check by adding 2v to your result.
+        answerLines: 5
+        answer: Three u is (3, 6, -6, 0); negative two v is (-6, 0, -2, 2). Their sum is (-3, 6, -8, 2). Adding (6, 0, 2, -2) recovers (3, 6, -6, 0), as required.
+      - id: 23
+        type: freeform
+        prompt: Solve 2u+w=b for the unknown vector w, where u=(2, -1) and b=(3, 4). Explain why the equation determines every component of w.
+        answerLines: 5
+        answer: 'Subtract 2u component by component: w=(-1, 6). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.'
+      - id: 24
+        type: freeform
+        prompt: Solve 2u+w=b for the unknown vector w, where u=(0, 3) and b=(-2, 1). Explain why the equation determines every component of w.
+        answerLines: 5
+        answer: 'Subtract 2u component by component: w=(-2, -5). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.'
+      - id: 25
+        type: freeform
+        prompt: Solve 2u+w=b for the unknown vector w, where u=(-3, 2) and b=(1, -4). Explain why the equation determines every component of w.
+        answerLines: 5
+        answer: 'Subtract 2u component by component: w=(7, -8). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.'
+      - id: 26
+        type: freeform
+        prompt: Solve 2u+w=b for the unknown vector w, where u=(1, 0, 2) and b=(0, -3, 1). Explain why the equation determines every component of w.
+        answerLines: 5
+        answer: 'Subtract 2u component by component: w=(-2, -3, -3). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.'
+      - id: 27
+        type: freeform
+        prompt: Solve 2u+w=b for the unknown vector w, where u=(2, -1, 0) and b=(-1, 2, 3). Explain why the equation determines every component of w.
+        answerLines: 5
+        answer: 'Subtract 2u component by component: w=(-5, 4, 3). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.'
+      - id: 28
+        type: freeform
+        prompt: Solve 2u+w=b for the unknown vector w, where u=(1, 2, -2, 0) and b=(3, 0, 1, -1). Explain why the equation determines every component of w.
+        answerLines: 5
+        answer: 'Subtract 2u component by component: w=(1, -4, 5, -1). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.'
+      - id: 29
+        type: freeform
+        prompt: A path moves (1, 0), then (0, 2), then (-1, 0). Find its total displacement and its distance traveled. Explain the difference.
+        answerLines: 5
+        answer: The displacement is (0, 2); the horizontal movements cancel. Distance traveled is 1+2+1=4 units. The length of the final displacement is only 2; cancellation of displacement does not cancel distance traveled.
+      - id: 30
+        type: freeform
+        prompt: A path moves (2, 0), then (0, 3), then (-2, 0). Find its total displacement and its distance traveled. Explain the difference.
+        answerLines: 5
+        answer: The displacement is (0, 3); the horizontal movements cancel. Distance traveled is 2+3+2=7 units. The length of the final displacement is only 3; cancellation of displacement does not cancel distance traveled.
+      - id: 31
+        type: freeform
+        prompt: A path moves (3, 0), then (0, 1), then (-3, 0). Find its total displacement and its distance traveled. Explain the difference.
+        answerLines: 5
+        answer: The displacement is (0, 1); the horizontal movements cancel. Distance traveled is 3+1+3=7 units. The length of the final displacement is only 1; cancellation of displacement does not cancel distance traveled.
+      - id: 32
+        type: freeform
+        prompt: A path moves (4, 0), then (0, 2), then (-4, 0). Find its total displacement and its distance traveled. Explain the difference.
+        answerLines: 5
+        answer: The displacement is (0, 2); the horizontal movements cancel. Distance traveled is 4+2+4=10 units. The length of the final displacement is only 2; cancellation of displacement does not cancel distance traveled.
+      - id: 33
+        type: freeform
+        prompt: A path moves (2, 0), then (0, 5), then (-2, 0). Find its total displacement and its distance traveled. Explain the difference.
+        answerLines: 5
+        answer: The displacement is (0, 5); the horizontal movements cancel. Distance traveled is 2+5+2=9 units. The length of the final displacement is only 5; cancellation of displacement does not cancel distance traveled.
+      - id: 34
+        type: freeform
+        prompt: A path moves (3, 0), then (0, 4), then (-3, 0). Find its total displacement and its distance traveled. Explain the difference.
+        answerLines: 5
+        answer: The displacement is (0, 4); the horizontal movements cancel. Distance traveled is 3+4+3=10 units. The length of the final displacement is only 4; cancellation of displacement does not cancel distance traveled.
+      - id: 35
+        type: freeform
+        prompt: Prove for arbitrary real coordinate vectors u,v that u+v=v+u. Do not use a single numerical example.
+        answerLines: 5
+        answer: In every coordinate, the entries are ui+vi and vi+ui. Real addition commutes, so corresponding entries agree in every position and the vectors are equal.
+      - id: 36
+        type: freeform
+        prompt: A student writes -2(1,-3,2)=(-2,-3,2). Identify and repair the error.
+        answerLines: 5
+        answer: The scalar must multiply every component, giving (-2,6,-4). Scaling only the first entry is not vector scalar multiplication.
+      - id: 37
+        type: freeform
+        prompt: If cu=0 for a real scalar c and a nonzero vector u, prove c=0.
+        answerLines: 5
+        answer: Some component of u is nonzero. In that coordinate, c times a nonzero real number equals zero, forcing c=0.
+      - id: 38
+        type: freeform
+        prompt: Can a two-component displacement be added directly to a three-component displacement? Explain what additional modeling choice would be needed.
+        answerLines: 5
+        answer: 'Not as currently specified: addition requires the same coordinate space. One could explicitly embed the plane in a chosen three-dimensional plane, such as by appending a zero third component, but that is an extra interpretation.'
   - title: Building linear combinations
     questions:
-      - id: 5
+      - id: 39
         type: freeform
         prompt: Let u=(1,2) and v=(2,-1). Find 3u-2v, showing the component arithmetic.
         answerLines: 5
         answer: Three u is (3,6), and negative two v is (-4,2). Adding gives (-1,8). Both components must be scaled before the vectors are added.
-      - id: 6
+      - id: 40
         type: freeform
         prompt: Can (3,1) be expressed as a linear combination of (1,1) and (2,2)? Justify your answer without testing only a few coefficients.
         answerLines: 5
         answer: No. With arbitrary coefficients a and b, every combination has the form (a+2b,a+2b), so its two components agree. The target's components differ; no coefficient choice can produce it.
+      - id: 41
+        type: freeform
+        prompt: Express (4, 1) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.
+        answerLines: 5
+        answer: Writing coefficients c,d gives c+2d=4 and c-d=1. Subtracting the second equation from the first gives 3d=3, so d=1 and c=2. Thus the coefficients are (2, 1); rebuilding gives (4, 1).
+      - id: 42
+        type: freeform
+        prompt: Express (5, -4) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.
+        answerLines: 5
+        answer: Writing coefficients c,d gives c+2d=5 and c-d=-4. Subtracting the second equation from the first gives 3d=9, so d=3 and c=-1. Thus the coefficients are (-1, 3); rebuilding gives (5, -4).
+      - id: 43
+        type: freeform
+        prompt: Express (8, -4) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.
+        answerLines: 5
+        answer: Writing coefficients c,d gives c+2d=8 and c-d=-4. Subtracting the second equation from the first gives 3d=12, so d=4 and c=0. Thus the coefficients are (0, 4); rebuilding gives (8, -4).
+      - id: 44
+        type: freeform
+        prompt: Express (-1, 5) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.
+        answerLines: 5
+        answer: Writing coefficients c,d gives c+2d=-1 and c-d=5. Subtracting the second equation from the first gives 3d=-6, so d=-2 and c=3. Thus the coefficients are (3, -2); rebuilding gives (-1, 5).
+      - id: 45
+        type: freeform
+        prompt: Express (1, 1) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.
+        answerLines: 5
+        answer: Writing coefficients c,d gives c+2d=1 and c-d=1. Subtracting the second equation from the first gives 3d=0, so d=0 and c=1. Thus the coefficients are (1, 0); rebuilding gives (1, 1).
+      - id: 46
+        type: freeform
+        prompt: Express (-4, -1) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.
+        answerLines: 5
+        answer: Writing coefficients c,d gives c+2d=-4 and c-d=-1. Subtracting the second equation from the first gives 3d=-3, so d=-1 and c=-2. Thus the coefficients are (-2, -1); rebuilding gives (-4, -1).
+      - id: 47
+        type: freeform
+        prompt: Using only scalar multiples of u=(1, 2), determine which targets (3, 6) and (4, 6) can be reached. Justify the impossible case with components.
+        answerLines: 5
+        answer: '(3, 6) equals 3u and is reachable. (4, 6) is not: a nonzero component after the first forces the scalar to be 3, but that scalar gives first component 3, not 4.'
+      - id: 48
+        type: freeform
+        prompt: Using only scalar multiples of u=(2, -1), determine which targets (-4, 2) and (-3, 2) can be reached. Justify the impossible case with components.
+        answerLines: 5
+        answer: '(-4, 2) equals -2u and is reachable. (-3, 2) is not: a nonzero component after the first forces the scalar to be -2, but that scalar gives first component -4, not -3.'
+      - id: 49
+        type: freeform
+        prompt: Using only scalar multiples of u=(0, 1), determine which targets (0, 4) and (1, 4) can be reached. Justify the impossible case with components.
+        answerLines: 5
+        answer: '(0, 4) equals 4u and is reachable. (1, 4) is not: a nonzero component after the first forces the scalar to be 4, but that scalar gives first component 0, not 1.'
+      - id: 50
+        type: freeform
+        prompt: Using only scalar multiples of u=(1, 1, 2), determine which targets (2, 2, 4) and (3, 2, 4) can be reached. Justify the impossible case with components.
+        answerLines: 5
+        answer: '(2, 2, 4) equals 2u and is reachable. (3, 2, 4) is not: a nonzero component after the first forces the scalar to be 2, but that scalar gives first component 2, not 3.'
+      - id: 51
+        type: freeform
+        prompt: Using only scalar multiples of u=(2, 0, -1), determine which targets (-2, 0, 1) and (-1, 0, 1) can be reached. Justify the impossible case with components.
+        answerLines: 5
+        answer: '(-2, 0, 1) equals -1u and is reachable. (-1, 0, 1) is not: a nonzero component after the first forces the scalar to be -1, but that scalar gives first component -2, not -1.'
+      - id: 52
+        type: freeform
+        prompt: Using only scalar multiples of u=(1, -2, 3), determine which targets (0, 0, 0) and (1, 0, 0) can be reached. Justify the impossible case with components.
+        answerLines: 5
+        answer: '(0, 0, 0) equals 0u and is reachable. (1, 0, 0) is not: a nonzero component after the first forces the scalar to be 0, but that scalar gives first component 0, not 1.'
+      - id: 53
+        type: freeform
+        prompt: Show that every combination of u and 2u is a multiple of u. Does the converse hold?
+        answerLines: 5
+        answer: With coefficients a,b the combination is (a+2b)u. Conversely every cu is obtained by choosing a=c,b=0. Thus the two ways of describing the reachable set agree.
+      - id: 54
+        type: freeform
+        prompt: If p+q=r, give two different coefficient lists using p,q,r that both produce r, without assuming any coordinates.
+        answerLines: 5
+        answer: The lists (1,1,0) and (0,0,1) both produce r. They are different coefficient lists even if some supplied vectors happen to agree.
+      - id: 55
+        type: freeform
+        prompt: Prove that the zero vector is a linear combination of any nonempty supplied collection.
+        answerLines: 5
+        answer: Choose zero for every coefficient. Each scaled vector is zero, and their sum is zero.
+      - id: 56
+        type: freeform
+        prompt: For real a,b, express (a,b) using (1,1) and (1,-1), and explain why the result works for every target.
+        answerLines: 5
+        answer: Use coefficients (a+b)/2 and (a-b)/2. Their sum is a and their difference is b, so the two coordinates match for arbitrary real a,b.
   - title: Linear models and their limits
     questions:
-      - id: 7
+      - id: 57
         type: freeform
         prompt: A product uses (3,2) units of wood and metal, in that order. A second product uses (1,4). Find the resources for two of the first and three of the second, and name one assumption of this calculation.
         answerLines: 5
         answer: The resource vector is two times (3,2) plus three times (1,4), or (9,16). The model assumes additive resource use proportional to production, with no extra setup use or changing waste rate.
-      - id: 8
+      - id: 58
         type: freeform
         prompt: The resource model for products u and v allows a mathematical combination -u+2v. Explain why this need not describe a feasible production plan.
         answerLines: 5
         answer: Real linear combinations permit negative coefficients. A negative number of manufactured products is not ordinarily feasible. Physical feasibility imposes additional constraints, such as nonnegative whole-number quantities, that are not part of vector addition itself.
+      - id: 59
+        type: freeform
+        prompt: Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 1 of P and 2 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?
+        answerLines: 5
+        answer: 'Without startup the total is (4, 7). Including startup gives (6, 11). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.'
+      - id: 60
+        type: freeform
+        prompt: Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 3 of P and 1 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?
+        answerLines: 5
+        answer: 'Without startup the total is (7, 6). Including startup gives (9, 10). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.'
+      - id: 61
+        type: freeform
+        prompt: Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 2 of P and 4 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?
+        answerLines: 5
+        answer: 'Without startup the total is (8, 14). Including startup gives (10, 18). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.'
+      - id: 62
+        type: freeform
+        prompt: Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 0 of P and 5 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?
+        answerLines: 5
+        answer: 'Without startup the total is (5, 15). Including startup gives (7, 19). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.'
+      - id: 63
+        type: freeform
+        prompt: Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 4 of P and 3 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?
+        answerLines: 5
+        answer: 'Without startup the total is (11, 13). Including startup gives (13, 17). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.'
+      - id: 64
+        type: freeform
+        prompt: Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 5 of P and 0 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?
+        answerLines: 5
+        answer: 'Without startup the total is (10, 5). Including startup gives (12, 9). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.'
+      - id: 65
+        type: freeform
+        prompt: Two observations with matching coordinate meanings are (2, -1) and (3, 4). Find their componentwise average. Explain why the average need not be an actually observed record.
+        answerLines: 5
+        answer: 'Add first, then multiply every component by one half: (5/2, 3/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.'
+      - id: 66
+        type: freeform
+        prompt: Two observations with matching coordinate meanings are (0, 3) and (-2, 1). Find their componentwise average. Explain why the average need not be an actually observed record.
+        answerLines: 5
+        answer: 'Add first, then multiply every component by one half: (-1, 2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.'
+      - id: 67
+        type: freeform
+        prompt: Two observations with matching coordinate meanings are (-3, 2) and (1, -4). Find their componentwise average. Explain why the average need not be an actually observed record.
+        answerLines: 5
+        answer: 'Add first, then multiply every component by one half: (-1, -1). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.'
+      - id: 68
+        type: freeform
+        prompt: Two observations with matching coordinate meanings are (1, 0, 2) and (0, -3, 1). Find their componentwise average. Explain why the average need not be an actually observed record.
+        answerLines: 5
+        answer: 'Add first, then multiply every component by one half: (1/2, -3/2, 3/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.'
+      - id: 69
+        type: freeform
+        prompt: Two observations with matching coordinate meanings are (2, -1, 0) and (-1, 2, 3). Find their componentwise average. Explain why the average need not be an actually observed record.
+        answerLines: 5
+        answer: 'Add first, then multiply every component by one half: (1/2, 1/2, 3/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.'
+      - id: 70
+        type: freeform
+        prompt: Two observations with matching coordinate meanings are (1, 2, -2, 0) and (3, 0, 1, -1). Find their componentwise average. Explain why the average need not be an actually observed record.
+        answerLines: 5
+        answer: 'Add first, then multiply every component by one half: (2, 1, -1/2, -1/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.'
+      - id: 71
+        type: freeform
+        prompt: A model doubles its output when production doubles in one experiment. Has proportionality for all production amounts been proved? Explain.
+        answerLines: 5
+        answer: No. One successful test is evidence for one input pair, not a universal property. Setup thresholds or changing waste rates could still make other amounts fail.
+      - id: 72
+        type: freeform
+        prompt: A mixture recipe uses coefficients one half and one half. Why can fractional coefficients be meaningful here even if they were disallowed for numbers of finished products?
+        answerLines: 5
+        answer: The coefficients can denote fractions of an amount of mixture. Feasibility comes from the application; it is not a universal restriction to integer coefficients.
+      - id: 73
+        type: freeform
+        prompt: Explain why adding a vector of temperatures to a vector of prices is not made meaningful merely by their having the same length.
+        answerLines: 5
+        answer: Matching component counts makes the formal operation defined, but the coordinates have incompatible quantities and units. The application has not specified a meaningful combined measurement.
+      - id: 74
+        type: freeform
+        prompt: A traveler ends where they started after a long walk. What can you conclude about displacement and distance?
+        answerLines: 5
+        answer: Displacement is zero because the endpoints agree. Distance can be positive; it records the total lengths of the traveled pieces.

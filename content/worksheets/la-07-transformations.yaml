@@ -12,39 +12,339 @@ sections:
         prompt: The rule T(x,y)=(x squared,y) takes zero to zero. Is it linear? Give a decisive argument.
         answerLines: 5
         answer: No. T(2,0)=(4,0), while twice T(1,0)=(2,0), so scalar multiplication is not preserved. The zero test is necessary but not sufficient.
+      - id: 3
+        type: freeform
+        prompt: Define T(x)=Ax for A with rows (1, 2), (0, 1). State the input and output coordinate spaces and prove both linearity properties for arbitrary compatible vectors.
+        answerLines: 5
+        answer: Inputs have 2 components and outputs 2. Each row dot product distributes across u+v, so A(u+v)=Au+Av. Scalar factors can be taken outside each row's sum, so A(cu)=cAu. Both identities hold for every real c and every input pair.
+      - id: 4
+        type: freeform
+        prompt: Define T(x)=Ax for A with rows (2, -1), (1, 3). State the input and output coordinate spaces and prove both linearity properties for arbitrary compatible vectors.
+        answerLines: 5
+        answer: Inputs have 2 components and outputs 2. Each row dot product distributes across u+v, so A(u+v)=Au+Av. Scalar factors can be taken outside each row's sum, so A(cu)=cAu. Both identities hold for every real c and every input pair.
+      - id: 5
+        type: freeform
+        prompt: Define T(x)=Ax for A with rows (0, 1, 2), (2, -1, 0). State the input and output coordinate spaces and prove both linearity properties for arbitrary compatible vectors.
+        answerLines: 5
+        answer: Inputs have 3 components and outputs 2. Each row dot product distributes across u+v, so A(u+v)=Au+Av. Scalar factors can be taken outside each row's sum, so A(cu)=cAu. Both identities hold for every real c and every input pair.
+      - id: 6
+        type: freeform
+        prompt: Define T(x)=Ax for A with rows (1, 0), (0, 2), (1, -1). State the input and output coordinate spaces and prove both linearity properties for arbitrary compatible vectors.
+        answerLines: 5
+        answer: Inputs have 2 components and outputs 3. Each row dot product distributes across u+v, so A(u+v)=Au+Av. Scalar factors can be taken outside each row's sum, so A(cu)=cAu. Both identities hold for every real c and every input pair.
+      - id: 7
+        type: freeform
+        prompt: Define T(x)=Ax for A with rows (2, 0, -1), (0, 1, 3). State the input and output coordinate spaces and prove both linearity properties for arbitrary compatible vectors.
+        answerLines: 5
+        answer: Inputs have 3 components and outputs 2. Each row dot product distributes across u+v, so A(u+v)=Au+Av. Scalar factors can be taken outside each row's sum, so A(cu)=cAu. Both identities hold for every real c and every input pair.
+      - id: 8
+        type: freeform
+        prompt: Define T(x)=Ax for A with rows (1, 2, 0), (-1, 0, 1), (0, 1, 1). State the input and output coordinate spaces and prove both linearity properties for arbitrary compatible vectors.
+        answerLines: 5
+        answer: Inputs have 3 components and outputs 3. Each row dot product distributes across u+v, so A(u+v)=Au+Av. Scalar factors can be taken outside each row's sum, so A(cu)=cAu. Both identities hold for every real c and every input pair.
+      - id: 9
+        type: freeform
+        prompt: Is T(x,y)=(x squared, 1y) linear? Check the zero test and give a decisive argument.
+        answerLines: 5
+        answer: Zero maps to zero, but T(1,0)+T(1,0)=(2,0) while T(2,0)=(4,0). Additivity fails regardless of the second coefficient 1. The zero test alone is insufficient.
+      - id: 10
+        type: freeform
+        prompt: Is T(x,y)=(x squared, 2y) linear? Check the zero test and give a decisive argument.
+        answerLines: 5
+        answer: Zero maps to zero, but T(1,0)+T(1,0)=(2,0) while T(2,0)=(4,0). Additivity fails regardless of the second coefficient 2. The zero test alone is insufficient.
+      - id: 11
+        type: freeform
+        prompt: Is T(x,y)=(x squared, -1y) linear? Check the zero test and give a decisive argument.
+        answerLines: 5
+        answer: Zero maps to zero, but T(1,0)+T(1,0)=(2,0) while T(2,0)=(4,0). Additivity fails regardless of the second coefficient -1. The zero test alone is insufficient.
+      - id: 12
+        type: freeform
+        prompt: Is T(x,y)=(x squared, 3y) linear? Check the zero test and give a decisive argument.
+        answerLines: 5
+        answer: Zero maps to zero, but T(1,0)+T(1,0)=(2,0) while T(2,0)=(4,0). Additivity fails regardless of the second coefficient 3. The zero test alone is insufficient.
+      - id: 13
+        type: freeform
+        prompt: Is T(x,y)=(x squared, -2y) linear? Check the zero test and give a decisive argument.
+        answerLines: 5
+        answer: Zero maps to zero, but T(1,0)+T(1,0)=(2,0) while T(2,0)=(4,0). Additivity fails regardless of the second coefficient -2. The zero test alone is insufficient.
+      - id: 14
+        type: freeform
+        prompt: Is T(x,y)=(x squared, 4y) linear? Check the zero test and give a decisive argument.
+        answerLines: 5
+        answer: Zero maps to zero, but T(1,0)+T(1,0)=(2,0) while T(2,0)=(4,0). Additivity fails regardless of the second coefficient 4. The zero test alone is insufficient.
   - title: Read the matrix from its columns
     questions:
-      - id: 3
+      - id: 15
         type: freeform
         prompt: A linear transformation sends (1,0) to (2,1) and (0,1) to (-1,3). State its matrix rows and its output on (3,2).
         answerLines: 5
         answer: The matrix has rows (2,-1),(1,3), placing the given outputs in columns. The output is three times (2,1) plus two times (-1,3), or (4,9).
-      - id: 4
+      - id: 16
         type: freeform
         prompt: Find the image of (3,-2) under a right-angle counterclockwise rotation, using its action on the two standard basis vectors.
         answerLines: 5
         answer: The basis vectors go to (0,1) and (-1,0). Thus the input goes to three times (0,1) minus two times (-1,0), or (2,3).
+      - id: 17
+        type: freeform
+        prompt: A linear map sends successive standard basis inputs to (1, 0), (2, 1). Write its matrix and compute its output on (1, 2).
+        answerLines: 5
+        answer: Use the given output vectors as columns, giving rows (1, 2), (0, 1). The output on (1, 2) is (5, 2), the corresponding column combination.
+      - id: 18
+        type: freeform
+        prompt: A linear map sends successive standard basis inputs to (2, 1), (-1, 3). Write its matrix and compute its output on (1, 2).
+        answerLines: 5
+        answer: Use the given output vectors as columns, giving rows (2, -1), (1, 3). The output on (1, 2) is (0, 7), the corresponding column combination.
+      - id: 19
+        type: freeform
+        prompt: A linear map sends successive standard basis inputs to (0, 2), (1, -1), (2, 0). Write its matrix and compute its output on (1, 2, 3).
+        answerLines: 5
+        answer: Use the given output vectors as columns, giving rows (0, 1, 2), (2, -1, 0). The output on (1, 2, 3) is (8, 0), the corresponding column combination.
+      - id: 20
+        type: freeform
+        prompt: A linear map sends successive standard basis inputs to (1, 0, 1), (0, 2, -1). Write its matrix and compute its output on (1, 2).
+        answerLines: 5
+        answer: Use the given output vectors as columns, giving rows (1, 0), (0, 2), (1, -1). The output on (1, 2) is (1, 4, -1), the corresponding column combination.
+      - id: 21
+        type: freeform
+        prompt: A linear map sends successive standard basis inputs to (2, 0), (0, 1), (-1, 3). Write its matrix and compute its output on (1, 2, 3).
+        answerLines: 5
+        answer: Use the given output vectors as columns, giving rows (2, 0, -1), (0, 1, 3). The output on (1, 2, 3) is (-1, 11), the corresponding column combination.
+      - id: 22
+        type: freeform
+        prompt: A linear map sends successive standard basis inputs to (1, -1, 0), (2, 0, 1), (0, 1, 1). Write its matrix and compute its output on (1, 2, 3).
+        answerLines: 5
+        answer: Use the given output vectors as columns, giving rows (1, 2, 0), (-1, 0, 1), (0, 1, 1). The output on (1, 2, 3) is (5, 2, 5), the corresponding column combination.
+      - id: 23
+        type: freeform
+        prompt: Find the matrix of reflection across the horizontal axis by tracking the two standard basis vectors. Apply it to (2,3).
+        answerLines: 5
+        answer: The standard inputs go to (1, 0), (0, -1), so the rows are (1, 0), (0, -1). Applying it to (2,3) gives (2, -3).
+      - id: 24
+        type: freeform
+        prompt: Find the matrix of reflection across the vertical axis by tracking the two standard basis vectors. Apply it to (2,3).
+        answerLines: 5
+        answer: The standard inputs go to (-1, 0), (0, 1), so the rows are (-1, 0), (0, 1). Applying it to (2,3) gives (-2, 3).
+      - id: 25
+        type: freeform
+        prompt: Find the matrix of counterclockwise right-angle rotation by tracking the two standard basis vectors. Apply it to (2,3).
+        answerLines: 5
+        answer: The standard inputs go to (0, 1), (-1, 0), so the rows are (0, -1), (1, 0). Applying it to (2,3) gives (-3, 2).
+      - id: 26
+        type: freeform
+        prompt: Find the matrix of clockwise right-angle rotation by tracking the two standard basis vectors. Apply it to (2,3).
+        answerLines: 5
+        answer: The standard inputs go to (0, -1), (1, 0), so the rows are (0, 1), (-1, 0). Applying it to (2,3) gives (3, -2).
+      - id: 27
+        type: freeform
+        prompt: Find the matrix of projection onto the horizontal axis by tracking the two standard basis vectors. Apply it to (2,3).
+        answerLines: 5
+        answer: The standard inputs go to (1, 0), (0, 0), so the rows are (1, 0), (0, 0). Applying it to (2,3) gives (2, 0).
+      - id: 28
+        type: freeform
+        prompt: Find the matrix of projection onto the vertical axis by tracking the two standard basis vectors. Apply it to (2,3).
+        answerLines: 5
+        answer: The standard inputs go to (0, 0), (0, 1), so the rows are (0, 0), (0, 1). Applying it to (2,3) gives (0, 3).
   - title: Kernel, image, and information loss
     questions:
-      - id: 5
+      - id: 29
         type: freeform
         prompt: For T(x,y,z)=(x,y), find the kernel and image. State whether T is injective and surjective when its codomain is the coordinate plane.
         answerLines: 5
         answer: The kernel is all (0,0,t), with real t; the image is the whole plane. It is not injective because the third coordinate is lost, but it is surjective onto the stated codomain.
-      - id: 6
+      - id: 30
         type: freeform
         prompt: A linear transformation has a nonzero vector v in its kernel. Prove that it cannot be injective.
         answerLines: 5
         answer: Both v and the zero vector have zero output. These are distinct inputs since v is nonzero, contradicting injectivity.
+      - id: 31
+        type: freeform
+        prompt: For T(x,y,z)=(x+1z,y+2z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?
+        answerLines: 5
+        answer: The kernel is all multiples of (-1, -2, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.
+      - id: 32
+        type: freeform
+        prompt: For T(x,y,z)=(x+2z,y- 1z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?
+        answerLines: 5
+        answer: The kernel is all multiples of (-2, 1, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.
+      - id: 33
+        type: freeform
+        prompt: For T(x,y,z)=(x- 1z,y+3z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?
+        answerLines: 5
+        answer: The kernel is all multiples of (1, -3, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.
+      - id: 34
+        type: freeform
+        prompt: For T(x,y,z)=(x+0z,y+2z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?
+        answerLines: 5
+        answer: The kernel is all multiples of (0, -2, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.
+      - id: 35
+        type: freeform
+        prompt: For T(x,y,z)=(x+3z,y+0z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?
+        answerLines: 5
+        answer: The kernel is all multiples of (-3, 0, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.
+      - id: 36
+        type: freeform
+        prompt: For T(x,y,z)=(x- 2z,y- 1z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?
+        answerLines: 5
+        answer: The kernel is all multiples of (2, 1, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.
+      - id: 37
+        type: freeform
+        prompt: For T(x,y)=(x,y,1x+2y), find the kernel and image. Compare surjectivity when the codomain is three-dimensional space versus the image plane.
+        answerLines: 5
+        answer: The first two coordinates force zero-only kernel, so the map is injective. Its image is the plane with third coordinate 1 times the first plus 2 times the second. It is not onto the full three-dimensional space but is onto that plane if the plane is declared as codomain.
+      - id: 38
+        type: freeform
+        prompt: For T(x,y)=(x,y,2x- 1y), find the kernel and image. Compare surjectivity when the codomain is three-dimensional space versus the image plane.
+        answerLines: 5
+        answer: The first two coordinates force zero-only kernel, so the map is injective. Its image is the plane with third coordinate 2 times the first plus -1 times the second. It is not onto the full three-dimensional space but is onto that plane if the plane is declared as codomain.
+      - id: 39
+        type: freeform
+        prompt: For T(x,y)=(x,y,-1x+3y), find the kernel and image. Compare surjectivity when the codomain is three-dimensional space versus the image plane.
+        answerLines: 5
+        answer: The first two coordinates force zero-only kernel, so the map is injective. Its image is the plane with third coordinate -1 times the first plus 3 times the second. It is not onto the full three-dimensional space but is onto that plane if the plane is declared as codomain.
+      - id: 40
+        type: freeform
+        prompt: For T(x,y)=(x,y,0x+2y), find the kernel and image. Compare surjectivity when the codomain is three-dimensional space versus the image plane.
+        answerLines: 5
+        answer: The first two coordinates force zero-only kernel, so the map is injective. Its image is the plane with third coordinate 0 times the first plus 2 times the second. It is not onto the full three-dimensional space but is onto that plane if the plane is declared as codomain.
+      - id: 41
+        type: freeform
+        prompt: For T(x,y)=(x,y,3x+0y), find the kernel and image. Compare surjectivity when the codomain is three-dimensional space versus the image plane.
+        answerLines: 5
+        answer: The first two coordinates force zero-only kernel, so the map is injective. Its image is the plane with third coordinate 3 times the first plus 0 times the second. It is not onto the full three-dimensional space but is onto that plane if the plane is declared as codomain.
+      - id: 42
+        type: freeform
+        prompt: For T(x,y)=(x,y,-2x- 1y), find the kernel and image. Compare surjectivity when the codomain is three-dimensional space versus the image plane.
+        answerLines: 5
+        answer: The first two coordinates force zero-only kernel, so the map is injective. Its image is the plane with third coordinate -2 times the first plus -1 times the second. It is not onto the full three-dimensional space but is onto that plane if the plane is declared as codomain.
   - title: Coordinates, composition, and affine rules
     questions:
-      - id: 7
+      - id: 43
         type: freeform
         prompt: Is T(x,y)=(x+2,y-1) linear or affine but not linear? Explain using its value at zero.
         answerLines: 5
         answer: It is affine but not linear. Its value at (0,0) is (2,-1), whereas a linear transformation must preserve zero. It is the identity linear rule plus a fixed nonzero offset.
-      - id: 8
+      - id: 44
         type: freeform
-        prompt: P converts coordinates in a new basis to standard coordinates, and A represents a linear rule in standard coordinates. Explain the order of operations in the new-basis matrix P inverse times A times P.
+        prompt: A represents a linear map from a coordinate space to itself. P converts coordinates in one chosen new basis to standard coordinates; use that same basis for input and output. Explain the order of operations in the new-basis matrix P inverse times A times P.
         answerLines: 5
         answer: First P converts the input to standard coordinates; then A applies the rule; finally P inverse converts the output back. Matrix products act right to left, giving that order without changing the underlying transformation.
+      - id: 45
+        type: freeform
+        prompt: A multiplies the first standard coordinate by 2 and the second by 1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.
+        answerLines: 5
+        answer: The first basis vector goes to (2,1), whose basis coordinates are (3/2, 1/2). The second goes to (2,-1), whose basis coordinates are (1/2, 3/2). These are the columns, so the new rows are (3/2, 1/2), (1/2, 3/2).
+      - id: 46
+        type: freeform
+        prompt: A multiplies the first standard coordinate by 3 and the second by -1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.
+        answerLines: 5
+        answer: The first basis vector goes to (3,-1), whose basis coordinates are (1, 2). The second goes to (3,1), whose basis coordinates are (2, 1). These are the columns, so the new rows are (1, 2), (2, 1).
+      - id: 47
+        type: freeform
+        prompt: A multiplies the first standard coordinate by 0 and the second by 2. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.
+        answerLines: 5
+        answer: The first basis vector goes to (0,2), whose basis coordinates are (1, -1). The second goes to (0,-2), whose basis coordinates are (-1, 1). These are the columns, so the new rows are (1, -1), (-1, 1).
+      - id: 48
+        type: freeform
+        prompt: A multiplies the first standard coordinate by -2 and the second by 4. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.
+        answerLines: 5
+        answer: The first basis vector goes to (-2,4), whose basis coordinates are (1, -3). The second goes to (-2,-4), whose basis coordinates are (-3, 1). These are the columns, so the new rows are (1, -3), (-3, 1).
+      - id: 49
+        type: freeform
+        prompt: A multiplies the first standard coordinate by 1 and the second by 1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.
+        answerLines: 5
+        answer: The first basis vector goes to (1,1), whose basis coordinates are (1, 0). The second goes to (1,-1), whose basis coordinates are (0, 1). These are the columns, so the new rows are (1, 0), (0, 1).
+      - id: 50
+        type: freeform
+        prompt: A multiplies the first standard coordinate by -1 and the second by -1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.
+        answerLines: 5
+        answer: The first basis vector goes to (-1,-1), whose basis coordinates are (-1, 0). The second goes to (-1,1), whose basis coordinates are (0, -1). These are the columns, so the new rows are (-1, 0), (0, -1).
+      - id: 51
+        type: freeform
+        prompt: Consider T(x,y)=(2x+y, y)+(1, 0). Is it linear or only affine? Explain using the defining distinction.
+        answerLines: 5
+        answer: 'It is affine but not linear: T(0,0)=(1, 0) is nonzero. An affine rule is a linear matrix rule plus a fixed offset.'
+      - id: 52
+        type: freeform
+        prompt: Consider T(x,y)=(2x+y, y)+(0, 2). Is it linear or only affine? Explain using the defining distinction.
+        answerLines: 5
+        answer: 'It is affine but not linear: T(0,0)=(0, 2) is nonzero. An affine rule is a linear matrix rule plus a fixed offset.'
+      - id: 53
+        type: freeform
+        prompt: Consider T(x,y)=(2x+y, y)+(-1, 3). Is it linear or only affine? Explain using the defining distinction.
+        answerLines: 5
+        answer: 'It is affine but not linear: T(0,0)=(-1, 3) is nonzero. An affine rule is a linear matrix rule plus a fixed offset.'
+      - id: 54
+        type: freeform
+        prompt: Consider T(x,y)=(2x+y, y)+(2, 2). Is it linear or only affine? Explain using the defining distinction.
+        answerLines: 5
+        answer: 'It is affine but not linear: T(0,0)=(2, 2) is nonzero. An affine rule is a linear matrix rule plus a fixed offset.'
+      - id: 55
+        type: freeform
+        prompt: Consider T(x,y)=(2x+y, y)+(0, 0). Is it linear or only affine? Explain using the defining distinction.
+        answerLines: 5
+        answer: It is linear because the offset is zero and the remaining rule is a matrix rule. An affine rule is a linear matrix rule plus a fixed offset.
+      - id: 56
+        type: freeform
+        prompt: Consider T(x,y)=(2x+y, y)+(-3, -1). Is it linear or only affine? Explain using the defining distinction.
+        answerLines: 5
+        answer: 'It is affine but not linear: T(0,0)=(-3, -1) is nonzero. An affine rule is a linear matrix rule plus a fixed offset.'
+      - id: 57
+        type: freeform
+        prompt: Prove any linear map sends zero to zero using additivity.
+        answerLines: 5
+        answer: T(0)=T(0+0)=T(0)+T(0). Subtract T(0) to obtain T(0)=0.
+      - id: 58
+        type: freeform
+        prompt: Prove that a linear map with zero-only kernel is injective.
+        answerLines: 5
+        answer: If T(u)=T(v), then T(u-v)=0. The kernel condition forces u-v=0, so u=v.
+      - id: 59
+        type: freeform
+        prompt: Prove that a nonzero kernel vector disproves injectivity.
+        answerLines: 5
+        answer: That nonzero vector and zero are distinct inputs with the same output zero.
+      - id: 60
+        type: freeform
+        prompt: Can changing a map’s codomain remove a nonzero kernel? Explain.
+        answerLines: 5
+        answer: No. The kernel depends on which inputs the unchanged rule sends to zero. Changing the declared output set can affect surjectivity but does not restore lost inputs.
+      - id: 61
+        type: freeform
+        prompt: Explain why an endomorphism with the same new basis on both sides uses P inverse A P rather than P A P inverse.
+        answerLines: 5
+        answer: New input coordinates first convert to standard coordinates through P, A acts next, and P inverse converts the standard output back. Products act from right to left.
+      - id: 62
+        type: freeform
+        prompt: For a rectangular map with separate new input and output bases, which basis matrix goes on each side?
+        answerLines: 5
+        answer: The input basis matrix goes on the right to convert input coordinates into standard coordinates. The inverse output basis matrix goes on the left to convert the result into the new output coordinates.
+      - id: 63
+        type: freeform
+        prompt: Give a linear map that changes angles.
+        answerLines: 5
+        answer: A shear (x,y) mapped to (x+y,y) sends perpendicular standard directions to (1,0) and (1,1), which are not perpendicular. It is a matrix rule and hence linear.
+      - id: 64
+        type: freeform
+        prompt: Give a linear map that loses information and explain exactly what is lost.
+        answerLines: 5
+        answer: Projection (x,y) mapped to (x,0) erases y. All inputs with the same x have the same output; the vertical axis is its kernel.
+      - id: 65
+        type: freeform
+        prompt: Prove that composing two linear maps gives a linear map.
+        answerLines: 5
+        answer: Apply the first map’s additivity and then the second’s to the sum, and likewise apply homogeneity successively. Both defining identities survive composition.
+      - id: 66
+        type: freeform
+        prompt: Why can a linear map be specified by its values on a basis?
+        answerLines: 5
+        answer: Every input has a unique basis-coordinate combination. Linearity forces its output to be the same combination of the specified basis outputs.
+      - id: 67
+        type: freeform
+        prompt: A function preserves straight lines. Must it be linear in the linear-algebra sense?
+        answerLines: 5
+        answer: No. A nonzero translation preserves straight lines but sends zero to a nonzero point and is therefore affine, not linear.
+      - id: 68
+        type: freeform
+        prompt: Why can a change of coordinates create off-diagonal entries without changing the underlying transformation?
+        answerLines: 5
+        answer: The new basis directions can each have components along several of the old scaling directions. Expressing their images in the new basis then mixes coordinate coefficients even though the geometric rule is unchanged.

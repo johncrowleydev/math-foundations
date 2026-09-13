@@ -12,39 +12,369 @@ sections:
         prompt: Let u=(1,2), v=(3,0), and w=(-1,4). Verify distributivity by calculating u dot (v+w) and (u dot v)+(u dot w) separately.
         answerLines: 5
         answer: The sum v+w is (2,4), so u dot (v+w) is 2+8=10. The separate dot products are 3 and -1+8=7, which add to 10.
+      - id: 3
+        type: freeform
+        prompt: Compute the dot product of (2, -1) and (3, 4). Show each component product and state the type of the result.
+        answerLines: 5
+        answer: The component products are 6, -4. Adding gives 2, a real scalar.
+      - id: 4
+        type: freeform
+        prompt: Compute the dot product of (0, 3) and (-2, 1). Show each component product and state the type of the result.
+        answerLines: 5
+        answer: The component products are 0, 3. Adding gives 3, a real scalar.
+      - id: 5
+        type: freeform
+        prompt: Compute the dot product of (-3, 2) and (1, -4). Show each component product and state the type of the result.
+        answerLines: 5
+        answer: The component products are -3, -8. Adding gives -11, a real scalar.
+      - id: 6
+        type: freeform
+        prompt: Compute the dot product of (1, 0, 2) and (0, -3, 1). Show each component product and state the type of the result.
+        answerLines: 5
+        answer: The component products are 0, 0, 2. Adding gives 2, a real scalar.
+      - id: 7
+        type: freeform
+        prompt: Compute the dot product of (2, -1, 0) and (-1, 2, 3). Show each component product and state the type of the result.
+        answerLines: 5
+        answer: The component products are -2, -2, 0. Adding gives -4, a real scalar.
+      - id: 8
+        type: freeform
+        prompt: Compute the dot product of (1, 2, -2, 0) and (3, 0, 1, -1). Show each component product and state the type of the result.
+        answerLines: 5
+        answer: The component products are 3, 0, -2, 0. Adding gives 1, a real scalar.
+      - id: 9
+        type: freeform
+        prompt: For u=(2, -1) and v=(3, 4), compute u dot (u+v) directly and by distribution.
+        answerLines: 5
+        answer: The sum is (5, 3), giving dot product 7. Distribution gives u dot u plus u dot v = 5 + (2) = 7.
+      - id: 10
+        type: freeform
+        prompt: For u=(0, 3) and v=(-2, 1), compute u dot (u+v) directly and by distribution.
+        answerLines: 5
+        answer: The sum is (-2, 4), giving dot product 12. Distribution gives u dot u plus u dot v = 9 + (3) = 12.
+      - id: 11
+        type: freeform
+        prompt: For u=(-3, 2) and v=(1, -4), compute u dot (u+v) directly and by distribution.
+        answerLines: 5
+        answer: The sum is (-2, -2), giving dot product 2. Distribution gives u dot u plus u dot v = 13 + (-11) = 2.
+      - id: 12
+        type: freeform
+        prompt: For u=(1, 0, 2) and v=(0, -3, 1), compute u dot (u+v) directly and by distribution.
+        answerLines: 5
+        answer: The sum is (1, -3, 3), giving dot product 7. Distribution gives u dot u plus u dot v = 5 + (2) = 7.
+      - id: 13
+        type: freeform
+        prompt: For u=(2, -1, 0) and v=(-1, 2, 3), compute u dot (u+v) directly and by distribution.
+        answerLines: 5
+        answer: The sum is (1, 1, 3), giving dot product 1. Distribution gives u dot u plus u dot v = 5 + (-4) = 1.
+      - id: 14
+        type: freeform
+        prompt: For u=(1, 2, -2, 0) and v=(3, 0, 1, -1), compute u dot (u+v) directly and by distribution.
+        answerLines: 5
+        answer: The sum is (4, 2, -1, -1), giving dot product 10. Distribution gives u dot u plus u dot v = 9 + (1) = 10.
   - title: Length and unit vectors
     questions:
-      - id: 3
+      - id: 15
         type: freeform
         prompt: Find the norm of (6,8) and a unit vector in its direction. Explain why your normalized vector has length one.
         answerLines: 5
         answer: The norm is the square root of 36+64, or 10. Dividing gives (3/5,4/5). The sum of its squared components is 9/25+16/25=1, so its norm is one.
-      - id: 4
+      - id: 16
         type: freeform
         prompt: Find the distance between the points (1,-1) and (4,3). Explain why either subtraction order gives the same distance.
         answerLines: 5
         answer: Their difference is (3,4), with norm 5. Reversing the order gives (-3,-4); squaring the components gives the same norm, so distance does not depend on the subtraction order.
+      - id: 17
+        type: freeform
+        prompt: Find the Euclidean norm of (3, 4) and the unit vector in its direction. Verify unit length.
+        answerLines: 5
+        answer: The squared length is 25, so the norm is 5. Dividing every component gives (3/5, 4/5); its squared components sum to one.
+      - id: 18
+        type: freeform
+        prompt: Find the Euclidean norm of (-5, 12) and the unit vector in its direction. Verify unit length.
+        answerLines: 5
+        answer: The squared length is 169, so the norm is 13. Dividing every component gives (-5/13, 12/13); its squared components sum to one.
+      - id: 19
+        type: freeform
+        prompt: Find the Euclidean norm of (0, -7) and the unit vector in its direction. Verify unit length.
+        answerLines: 5
+        answer: The squared length is 49, so the norm is 7. Dividing every component gives (0, -1); its squared components sum to one.
+      - id: 20
+        type: freeform
+        prompt: Find the Euclidean norm of (1, 2, 2) and the unit vector in its direction. Verify unit length.
+        answerLines: 5
+        answer: The squared length is 9, so the norm is 3. Dividing every component gives (1/3, 2/3, 2/3); its squared components sum to one.
+      - id: 21
+        type: freeform
+        prompt: Find the Euclidean norm of (-2, 1, 2) and the unit vector in its direction. Verify unit length.
+        answerLines: 5
+        answer: The squared length is 9, so the norm is 3. Dividing every component gives (-2/3, 1/3, 2/3); its squared components sum to one.
+      - id: 22
+        type: freeform
+        prompt: Find the Euclidean norm of (1, -1, 1, -1) and the unit vector in its direction. Verify unit length.
+        answerLines: 5
+        answer: The squared length is 4, so the norm is 2. Dividing every component gives (1/2, -1/2, 1/2, -1/2); its squared components sum to one.
+      - id: 23
+        type: freeform
+        prompt: Find the exact distance between (2, -1) and (3, 4). Explain why reversing the subtraction does not change it.
+        answerLines: 5
+        answer: The difference is (1, 5) with squared length 26, so the distance is square root of 26. Reversing subtraction negates every component but leaves all squares unchanged.
+      - id: 24
+        type: freeform
+        prompt: Find the exact distance between (0, 3) and (-2, 1). Explain why reversing the subtraction does not change it.
+        answerLines: 5
+        answer: The difference is (-2, -2) with squared length 8, so the distance is square root of 8. Reversing subtraction negates every component but leaves all squares unchanged.
+      - id: 25
+        type: freeform
+        prompt: Find the exact distance between (-3, 2) and (1, -4). Explain why reversing the subtraction does not change it.
+        answerLines: 5
+        answer: The difference is (4, -6) with squared length 52, so the distance is square root of 52. Reversing subtraction negates every component but leaves all squares unchanged.
+      - id: 26
+        type: freeform
+        prompt: Find the exact distance between (1, 0, 2) and (0, -3, 1). Explain why reversing the subtraction does not change it.
+        answerLines: 5
+        answer: The difference is (-1, -3, -1) with squared length 11, so the distance is square root of 11. Reversing subtraction negates every component but leaves all squares unchanged.
+      - id: 27
+        type: freeform
+        prompt: Find the exact distance between (2, -1, 0) and (-1, 2, 3). Explain why reversing the subtraction does not change it.
+        answerLines: 5
+        answer: The difference is (-3, 3, 3) with squared length 27, so the distance is square root of 27. Reversing subtraction negates every component but leaves all squares unchanged.
+      - id: 28
+        type: freeform
+        prompt: Find the exact distance between (1, 2, -2, 0) and (3, 0, 1, -1). Explain why reversing the subtraction does not change it.
+        answerLines: 5
+        answer: The difference is (2, -2, 3, -1) with squared length 18, so the distance is square root of 18. Reversing subtraction negates every component but leaves all squares unchanged.
+      - id: 29
+        type: freeform
+        prompt: A vector (3,t) has norm 5. Find every possible real t, and explain why a length does not normally determine its sign.
+        answerLines: 5
+        answer: Squaring gives 9+t squared=25, hence t squared=16. Thus t=4 or t=-4. Both signs give the same square and therefore the same length.
+      - id: 30
+        type: freeform
+        prompt: A vector (5,t) has norm 13. Find every possible real t, and explain why a length does not normally determine its sign.
+        answerLines: 5
+        answer: Squaring gives 25+t squared=169, hence t squared=144. Thus t=12 or t=-12. Both signs give the same square and therefore the same length.
+      - id: 31
+        type: freeform
+        prompt: A vector (8,t) has norm 17. Find every possible real t, and explain why a length does not normally determine its sign.
+        answerLines: 5
+        answer: Squaring gives 64+t squared=289, hence t squared=225. Thus t=15 or t=-15. Both signs give the same square and therefore the same length.
+      - id: 32
+        type: freeform
+        prompt: A vector (7,t) has norm 25. Find every possible real t, and explain why a length does not normally determine its sign.
+        answerLines: 5
+        answer: Squaring gives 49+t squared=625, hence t squared=576. Thus t=24 or t=-24. Both signs give the same square and therefore the same length.
+      - id: 33
+        type: freeform
+        prompt: A vector (0,t) has norm 6. Find every possible real t, and explain why a length does not normally determine its sign.
+        answerLines: 5
+        answer: Squaring gives 0+t squared=36, hence t squared=36. Thus t=6 or t=-6. Both signs give the same square and therefore the same length.
+      - id: 34
+        type: freeform
+        prompt: A vector (4,t) has norm 5. Find every possible real t, and explain why a length does not normally determine its sign.
+        answerLines: 5
+        answer: Squaring gives 16+t squared=25, hence t squared=9. Thus t=3 or t=-3. Both signs give the same square and therefore the same length.
   - title: Angle and orthogonality
     questions:
-      - id: 5
+      - id: 35
         type: freeform
         prompt: Determine whether u=(2,3) and v=(3,-2) are orthogonal. Does their orthogonality imply they are unit vectors?
         answerLines: 5
         answer: Their dot product is 6-6=0, so they are orthogonal. Each has norm the square root of 13, not one. Perpendicularity and unit length are separate conditions.
-      - id: 6
+      - id: 36
         type: freeform
-        prompt: The dot product of two nonzero vectors is negative. Is their angle acute, right, or obtuse? Explain using the angle identity.
+        prompt: Two nonzero real vectors have a negative dot product. Describe the possible angle between them, including the case of exactly opposite directions, and justify your answer using the angle identity.
         answerLines: 5
-        answer: It is obtuse. The product of the two positive norms is positive, so a negative dot product requires a negative cosine. For an angle between zero and 180 degrees, that occurs strictly above 90 degrees.
+        answer: Its angle is greater than 90 degrees and at most 180 degrees. The two positive norms make their product positive, so a negative dot product requires negative cosine. The angle is strictly obtuse unless the vectors point in exactly opposite directions, when it is 180 degrees.
+      - id: 37
+        type: freeform
+        prompt: Find a nonzero vector perpendicular to (1, 2) and explain why your construction works without estimating an angle.
+        answerLines: 5
+        answer: One choice is (-2, 1). The dot product is 1 times -2 plus 2 times 1, or zero. The vector is nonzero because the given vector is nonzero.
+      - id: 38
+        type: freeform
+        prompt: Find a nonzero vector perpendicular to (2, -3) and explain why your construction works without estimating an angle.
+        answerLines: 5
+        answer: One choice is (3, 2). The dot product is 2 times 3 plus -3 times 2, or zero. The vector is nonzero because the given vector is nonzero.
+      - id: 39
+        type: freeform
+        prompt: Find a nonzero vector perpendicular to (-3, -1) and explain why your construction works without estimating an angle.
+        answerLines: 5
+        answer: One choice is (1, -3). The dot product is -3 times 1 plus -1 times -3, or zero. The vector is nonzero because the given vector is nonzero.
+      - id: 40
+        type: freeform
+        prompt: Find a nonzero vector perpendicular to (0, 4) and explain why your construction works without estimating an angle.
+        answerLines: 5
+        answer: One choice is (-4, 0). The dot product is 0 times -4 plus 4 times 0, or zero. The vector is nonzero because the given vector is nonzero.
+      - id: 41
+        type: freeform
+        prompt: Find a nonzero vector perpendicular to (5, 0) and explain why your construction works without estimating an angle.
+        answerLines: 5
+        answer: One choice is (0, 5). The dot product is 5 times 0 plus 0 times 5, or zero. The vector is nonzero because the given vector is nonzero.
+      - id: 42
+        type: freeform
+        prompt: Find a nonzero vector perpendicular to (3, 4) and explain why your construction works without estimating an angle.
+        answerLines: 5
+        answer: One choice is (-4, 3). The dot product is 3 times -4 plus 4 times 3, or zero. The vector is nonzero because the given vector is nonzero.
+      - id: 43
+        type: freeform
+        prompt: Find the angle between (1, 0) and (1, 0), including whether it is a parallel endpoint case.
+        answerLines: 5
+        answer: Divide dot product 1 by the positive product of norms. The resulting cosine gives 0 degrees. The vectors point in the same direction.
+      - id: 44
+        type: freeform
+        prompt: Find the angle between (1, 0) and (-1, 0), including whether it is a parallel endpoint case.
+        answerLines: 5
+        answer: Divide dot product -1 by the positive product of norms. The resulting cosine gives 180 degrees. They point in opposite directions.
+      - id: 45
+        type: freeform
+        prompt: Find the angle between (1, 0) and (0, 2), including whether it is a parallel endpoint case.
+        answerLines: 5
+        answer: Divide dot product 0 by the positive product of norms. The resulting cosine gives 90 degrees. They are perpendicular.
+      - id: 46
+        type: freeform
+        prompt: Find the angle between (1, 0) and (1, 1), including whether it is a parallel endpoint case.
+        answerLines: 5
+        answer: Divide dot product 1 by the positive product of norms. The resulting cosine gives 45 degrees. This is strictly acute.
+      - id: 47
+        type: freeform
+        prompt: Find the angle between (1, 0) and (-1, 1), including whether it is a parallel endpoint case.
+        answerLines: 5
+        answer: Divide dot product -1 by the positive product of norms. The resulting cosine gives 135 degrees. This is strictly obtuse.
+      - id: 48
+        type: freeform
+        prompt: Find the angle between (0, 2) and (2, 0), including whether it is a parallel endpoint case.
+        answerLines: 5
+        answer: Divide dot product 0 by the positive product of norms. The resulting cosine gives 90 degrees. They are perpendicular.
+      - id: 49
+        type: freeform
+        prompt: Prove that nonzero orthogonal vectors cannot be nonzero scalar multiples of one another.
+        answerLines: 5
+        answer: If v=cu with c nonzero and u nonzero, then u dot v=c times the positive quantity u dot u, which cannot be zero.
+      - id: 50
+        type: freeform
+        prompt: Is the zero vector orthogonal to itself? Is the angle between zero and itself defined? Distinguish the answers.
+        answerLines: 5
+        answer: Its dot product with itself is zero, so it is orthogonal algebraically. The angle is undefined because the angle formula would divide by zero lengths.
+      - id: 51
+        type: freeform
+        prompt: If u and v have the same norm, prove that u+v and u-v are orthogonal.
+        answerLines: 5
+        answer: Their dot product expands to u dot u minus v dot v; the mixed terms cancel. Equal squared norms make the result zero.
+      - id: 52
+        type: freeform
+        prompt: If nonzero u and v satisfy u dot v=0, prove the Pythagorean identity for their sum.
+        answerLines: 5
+        answer: Expand (u+v) dot (u+v). The two cross terms vanish, leaving the sum of u dot u and v dot v, which are the squared lengths.
+      - id: 53
+        type: freeform
+        prompt: A student says a positive dot product always means a strictly acute angle. Give a counterexample.
+        answerLines: 5
+        answer: For u=v=(1,0), the dot product is one but the angle is zero, not strictly acute.
+      - id: 54
+        type: freeform
+        prompt: Can two unequal vectors have cosine similarity one? Give an example and explain.
+        answerLines: 5
+        answer: 'Yes: (1,0) and (2,0) have the same direction and cosine one but different lengths.'
   - title: Weighted totals and similarity
     questions:
-      - id: 7
+      - id: 55
         type: freeform
         prompt: Prices are (3,2,5) and quantities are (2,4,1), paired in the same order. Compute the total cost and explain the role of the dot product.
         answerLines: 5
         answer: The cost is 3 times 2 plus 2 times 4 plus 5 times 1, or 19. The dot product pairs each price with its own quantity and adds those item costs.
-      - id: 8
+      - id: 56
         type: freeform
         prompt: Compare u=(1,2) and v=(2,4). Find their cosine similarity and explain why a value of one does not make the vectors equal.
         answerLines: 5
         answer: Their dot product is 10 and the product of their norms is also 10, so cosine similarity is one. They have the same direction, but v has twice u's length and different components.
+      - id: 57
+        type: freeform
+        prompt: Unit prices are (2, 3) and quantities are (4, 1) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.
+        answerLines: 5
+        answer: The item costs are (8, 3); sum them to get 11. The dot product includes this final addition, producing one total rather than a list.
+      - id: 58
+        type: freeform
+        prompt: Unit prices are (1, 5, 2) and quantities are (3, 0, 4) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.
+        answerLines: 5
+        answer: The item costs are (3, 0, 8); sum them to get 11. The dot product includes this final addition, producing one total rather than a list.
+      - id: 59
+        type: freeform
+        prompt: Unit prices are (3, 2, 4) and quantities are (2, 5, 1) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.
+        answerLines: 5
+        answer: The item costs are (6, 10, 4); sum them to get 20. The dot product includes this final addition, producing one total rather than a list.
+      - id: 60
+        type: freeform
+        prompt: Unit prices are (4, 1) and quantities are (0, 7) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.
+        answerLines: 5
+        answer: The item costs are (0, 7); sum them to get 7. The dot product includes this final addition, producing one total rather than a list.
+      - id: 61
+        type: freeform
+        prompt: Unit prices are (2, 2, 3) and quantities are (3, 1, 2) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.
+        answerLines: 5
+        answer: The item costs are (6, 2, 6); sum them to get 14. The dot product includes this final addition, producing one total rather than a list.
+      - id: 62
+        type: freeform
+        prompt: Unit prices are (1, 2, 3, 4) and quantities are (4, 3, 2, 1) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.
+        answerLines: 5
+        answer: The item costs are (4, 6, 6, 4); sum them to get 20. The dot product includes this final addition, producing one total rather than a list.
+      - id: 63
+        type: freeform
+        prompt: Let u=(1, 2) and v=2u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.
+        answerLines: 5
+        answer: The dot product is 10 and the norm product is 10. Their ratio is 1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.
+      - id: 64
+        type: freeform
+        prompt: Let u=(2, -1) and v=3u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.
+        answerLines: 5
+        answer: The dot product is 15 and the norm product is 15. Their ratio is 1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.
+      - id: 65
+        type: freeform
+        prompt: Let u=(1, 0) and v=-4u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.
+        answerLines: 5
+        answer: The dot product is -4 and the norm product is 4. Their ratio is -1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.
+      - id: 66
+        type: freeform
+        prompt: Let u=(0, 3) and v=-2u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.
+        answerLines: 5
+        answer: The dot product is -18 and the norm product is 18. Their ratio is -1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.
+      - id: 67
+        type: freeform
+        prompt: Let u=(1, 2, 2) and v=5u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.
+        answerLines: 5
+        answer: The dot product is 45 and the norm product is 45. Their ratio is 1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.
+      - id: 68
+        type: freeform
+        prompt: Let u=(-2, 1, 2) and v=-1u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.
+        answerLines: 5
+        answer: The dot product is -9 and the norm product is 9. Their ratio is -1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.
+      - id: 69
+        type: freeform
+        prompt: Can cosine similarity be used for a zero record without an additional convention? Explain.
+        answerLines: 5
+        answer: No. Its denominator contains the zero record’s norm, so the formula is undefined. Software may choose a convention but must identify it as such.
+      - id: 70
+        type: freeform
+        prompt: Explain why changing only one coordinate’s units can change cosine similarity, even though multiplying every coordinate of one vector by a positive constant cannot.
+        answerLines: 5
+        answer: Changing one coordinate changes the vector’s direction in general. Uniform positive scaling preserves its direction, and the scaling cancels between numerator and denominator.
+      - id: 71
+        type: freeform
+        prompt: Give two different vectors with equal Euclidean norm and explain why equal norm does not imply equal direction.
+        answerLines: 5
+        answer: For example (1,0) and (0,1) both have length one but are perpendicular. Length describes size, not the complete vector.
+      - id: 72
+        type: freeform
+        prompt: Prove that the dot product of a real vector with itself cannot be negative.
+        answerLines: 5
+        answer: It is a sum of squares of real components. Each term is nonnegative, so the sum is nonnegative.
+      - id: 73
+        type: freeform
+        prompt: A vector has components (1,1,1). Is it a unit vector? Give the exact reason.
+        answerLines: 5
+        answer: No. Its squared norm is three, so its norm is square root of three rather than one.
+      - id: 74
+        type: freeform
+        prompt: Why should price and quantity vectors use the same product ordering in a cost calculation?
+        answerLines: 5
+        answer: Otherwise the dot product pairs some prices with quantities of different products. The arithmetic remains defined but no longer computes the intended total.

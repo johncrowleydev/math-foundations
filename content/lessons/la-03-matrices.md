@@ -8,7 +8,13 @@ An m by n matrix has m rows and n columns, where m and n are positive integers. 
 
 For example, $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$ has two rows and two columns, and its entry in row two, column one is 3. A square matrix has the same number of rows and columns. A column vector is an n by one matrix when we use matrix notation.
 
-The transpose exchanges rows and columns. The notation $A^T$ is read “A transpose”; T is a label for this operation, not an exponent. The example's transpose has rows (1,3) and (2,4). Transposing an m by n matrix produces an n by m matrix. Adding matrices requires equal shapes and adds corresponding entries; scalar multiplication scales every entry.
+The [transpose](ref:la-term-transpose) exchanges rows and columns. The notation $A^T$ is read “A transpose”; T is a label for this operation, not an exponent. The example's transpose has rows (1,3) and (2,4). Transposing an m by n matrix produces an n by m matrix. Adding matrices requires equal shapes and adds corresponding entries; scalar multiplication scales every entry.
+
+### Rectangular arrays are ordinary matrices
+
+Consider a table with rows (1,2,0) and (-1,3,4). It has two rows and three columns, so it can multiply a three-component input. Its transpose has rows (1,-1), (2,3), and (0,4). Transposing twice restores the original table. A row and a column can contain the same entries but have different shapes, which changes what they can multiply.
+
+A matrix is symmetric when it equals its transpose. This requires a square shape and matching entries across the main diagonal. For example, rows (2,-1),(-1,5) give a [symmetric matrix](ref:la-term-symmetric-matrix); a square matrix with rows (2,0),(-1,5) is not symmetric.
 
 ## A matrix acting on a vector
 
@@ -16,7 +22,13 @@ For the matrix A above and x=(2,1), $Ax=\begin{pmatrix}4\\10\end{pmatrix}$. The 
 
 There is an equally useful column reading. Multiply the first column of A by the first component of x and the second column by the second component, then add. Here two copies of (1,3) plus one copy of (2,4) give (4,10). The row reading calculates each output; the column reading explains how the output is built.
 
-An [identity matrix](ref:linear-algebra-matrices-2) leaves every compatible vector unchanged. In two dimensions it has rows (1,0) and (0,1). It is written $I_2$, with the subscript giving its size. More generally, an identity matrix has ones on its main diagonal, the entries whose row and column numbers agree, and zeros elsewhere.
+An [identity matrix](ref:linear-algebra-matrices-2) leaves every compatible vector unchanged. In two dimensions it has rows (1,0) and (0,1). It is written $I_2$, with the subscript giving its size. More generally, an [identity matrix](ref:la-term-identity-matrix) has ones on its main diagonal, the entries whose row and column numbers agree, and zeros elsewhere.
+
+### One calculation, two explanations
+
+Apply the two-by-three matrix with rows (1,2,0),(-1,3,4) to (2,-1,3). Row dot products give zero and seven. As columns, the calculation is twice (1,-1), minus (2,3), plus three times (0,4), again (0,7). The three input entries are coefficients; the two output entries report the resulting measurements.
+
+For a workshop, the columns might give each product's resource requirements and the input its production quantities. For a dataset, each row might instead describe one observation and the input a list of weights used to predict an output. The same multiplication has different interpretations; always say what rows, columns, and entries mean in the application.
 
 ## Composition determines the product
 
@@ -25,6 +37,16 @@ Suppose B first transforms an input vector and A then transforms the result. The
 Each column of AB is A applied to the corresponding column of B. Equivalently, each entry is the dot product of a row of A with a column of B. This rule is not an arbitrary complication: it makes $A(Bx)=(AB)x$ hold for every compatible input x. Parentheses can change the order in which we carry out the calculation without changing which transformation acts first.
 
 For A with rows (1,2),(3,4) and B with rows (2,0),(0,1), AB has rows (2,2),(6,4). The first column of A is doubled because B doubles the first input coordinate. BA instead has rows (2,4),(3,4): applying B afterward doubles the first output coordinate. These are different operations, so [matrix multiplication](ref:linear-algebra-matrices-3) is generally not commutative.
+
+### Building a product one column at a time
+
+Let A have rows (1,2,0),(-1,3,4), and let B have rows (1,0),(0,1),(1,-1). The first column of B is (1,0,1), which A sends to (1,3). The second is (0,1,-1), which A sends to (2,-1). Therefore AB has rows (1,2),(3,-1). This is a two-by-two product even though neither original matrix is two by two.
+
+$
+\begin{pmatrix}1&2&0\\-1&3&4\end{pmatrix}\begin{pmatrix}1&0\\0&1\\1&-1\end{pmatrix}=\begin{pmatrix}1&2\\3&-1\end{pmatrix}
+$
+
+Transposition reverses a product's order: the transpose of AB is B transpose times A transpose. The shape check already suggests why: transposing changes the output-by-input shape into input-by-output. Entry by entry, both sides pair the same row-column numbers. Keeping the original order after transposition is a common error.
 
 ## Checking a matrix calculation
 
@@ -35,3 +57,9 @@ Then check a strategically chosen input. The first standard coordinate vector ex
 Matrix multiplication distributes over addition when the shapes match, but familiar scalar shortcuts need care. A product of two nonzero matrices can be the zero matrix, and an equation involving a matrix factor does not automatically permit [cancellation](ref:linear-algebra-matrices-4). We will explain exactly when a matrix can be undone in the lesson on bases and inverses.
 
 When typing matrices, use `\begin{pmatrix}` and `\end{pmatrix}`, separate entries in a row with `&`, and separate rows with `\\`. Check the preview's shape as well as its entries. A missing row separator can turn a correct list of numbers into the wrong mathematical object.
+
+### A useful counterexample to cancellation
+
+Let A keep the first coordinate and erase the second, so its rows are (1,0),(0,0). Inputs (3,1) and (3,8) both give (3,0). Thus equal outputs under A do not imply equal inputs. The same lost direction makes it possible to have AB=AC with B different from C.
+
+Testing one input can disprove a claimed matrix equality, but usually cannot prove it. Testing every standard basis input does prove equality of two linear matrix rules: these inputs recover all columns, and every vector is a combination of the standard basis. Explain which kind of check you are performing. The zero input alone tells you nothing, since every matrix sends it to zero.

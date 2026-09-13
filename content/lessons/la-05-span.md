@@ -10,6 +10,12 @@ The span of a single nonzero vector is a line through the origin. The span of (1
 
 To test whether b lies in a given span, place the supplied vectors in the columns of a matrix A and solve Ax=b. A solution provides coefficients that build b. An inconsistent system proves that no such combination exists. This turns a geometric reachability question into a calculation you already know.
 
+### Describing an entire set
+
+The span of (1,0,2) and (0,1,-1) consists of vectors (a,b,2a-b) for arbitrary real a,b. This description gives both a way to build members and a membership test: the third coordinate must equal twice the first minus the second. The vector (2,3,1) belongs, while (2,3,0) does not. A few plotted arrows cannot replace this all-coefficients argument.
+
+The span of an empty collection is defined to be the zero-only subspace: the empty sum is zero. Adding the zero vector to a spanning collection changes nothing, and adding any vector already in its span changes nothing. To show two collections have equal spans, show each supplied vector in either collection can be built from the other collection.
+
 ## Independence means no redundant direction
 
 A collection is [linearly independent](ref:linear-algebra-span-2) if the only linear combination producing the zero vector has every coefficient zero. It is linearly dependent if a zero combination exists with at least one nonzero coefficient. “Nonzero combination” here refers to the coefficients; the resulting vector is zero.
@@ -18,13 +24,27 @@ Why test combinations that give zero? If two different coefficient lists produce
 
 For u=(1,1) and v=(2,2), $2u-v=0$ exhibits dependence. For the standard vectors (1,0) and (0,1), a zero combination forces each coordinate coefficient to zero, so they are independent. Any collection containing the zero vector is dependent: put coefficient one on that vector and zero on all the others.
 
+### Pairwise tests do not settle a whole collection
+
+The vectors (1,0), (0,1), and (1,1) are dependent although no pair is a scalar multiple. The third equals the sum of the first two. Dependence concerns the whole list, not just pairs. More generally, more than n vectors in real n-dimensional coordinate space must be dependent: the homogeneous coefficient system has more unknowns than rows.
+
+![Pairwise tests miss dependence](figure:la-pairwise-dependence)
+
+Conversely, deleting vectors from an independent collection preserves independence. Any nontrivial zero combination among the shorter list would extend to one among the original list by placing zeros on the omitted vectors. Adding a vector outside the old span preserves independence: a nonzero coefficient on the new vector in a zero combination would express it using the old ones, a contradiction.
+
 ## Subspaces and the origin
 
 A [subspace](ref:linear-algebra-span-3) of a real coordinate space is a subset that contains zero and is closed under vector addition and real scalar multiplication. Closed means that performing the operation on members stays inside the subset. These conditions let the subset function as a vector space with the inherited operations.
 
 Every span is a subspace. Adding two combinations adds their coefficients, and scaling a combination scales its coefficients, so neither operation escapes the span. A line through the origin is an example; the line of points satisfying x+y=1 is not, because it does not contain zero.
 
-The null space of A is the set of solutions of Ax=0. It is a subspace of the input space: zero solves the equation, sums of solutions solve it, and scalar multiples solve it. The column space of A is the span of its columns, hence the set of possible outputs. It is a subspace of the output space. These spaces need not have the same ambient dimension when A is rectangular.
+The [null space](ref:la-term-null-space) of A is the set of solutions of Ax=0. It is a subspace of the input space: zero solves the equation, sums of solutions solve it, and scalar multiples solve it. The [column space](ref:la-term-column-space) of A is the span of its columns, hence the set of possible outputs. It is a subspace of the output space. These spaces need not have the same ambient dimension when A is rectangular.
+
+### Closing under both operations
+
+Containing zero is necessary but not sufficient. The union of the two coordinate axes contains zero and is closed under scaling, but adding (1,0) and (0,1) leaves the union. The intersection of two subspaces is a subspace: zero lies in both, and addition and scaling stay in both at once. An intersection means common members; a union means members of either set.
+
+The [row space](ref:la-term-row-space) of a matrix is the span of its rows, viewed as vectors with one component per column. It belongs to the input coordinate space, unlike the column space. Row operations preserve the row space because each new row is a combination of old rows and the operations are reversible. They need not preserve the actual column space.
 
 ## Reading independence from elimination
 
@@ -35,3 +55,13 @@ Those two independent vectors do not span all three-dimensional space. Their com
 If you seek a target in this plane, its coefficients are unique. A target outside it has no representation. If you add a redundant third vector to the collection, some targets can have many representations without expanding the plane at all. The next lesson uses a basis to retain both coverage and uniqueness.
 
 When presenting a dependence argument, give actual coefficients or an explicit expression of one vector through the others. When presenting independence, explain why every zero combination forces all coefficients to vanish. A drawing can suggest the answer, but the component argument establishes it.
+
+### Turning a dependence into a useful explanation
+
+For columns u=(1,0,1), v=(0,1,1), and w=(2,3,5), the relation w=2u+3v displays the redundant direction. Equivalently, coefficient vector (-2,-3,1) solves the homogeneous system. Both statements describe the same dependence. If a target has one representation, adding any multiple of this coefficient vector gives another representation of that same target.
+
+$
+\begin{pmatrix}1&0&2\\0&1&3\\1&1&5\end{pmatrix}\begin{pmatrix}-2\\-3\\1\end{pmatrix}=\begin{pmatrix}0\\0\\0\end{pmatrix}
+$
+
+The null space consists of coefficient lists, not combinations in the output space. With three supplied vectors in the plane, a dependence witness has three components even though each supplied vector has only two. Keeping these spaces separate prevents a common dimensional error when interpreting elimination.

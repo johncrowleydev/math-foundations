@@ -313,7 +313,7 @@ linear-algebra-vectors:
       - It cannot result from scalar multiplication.
     answer: 0
     explanation: All components are zero. Multiplying any vector by zero produces it, but there is no nonzero displacement to specify a direction.
-    teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+    teachingHash: 288db7cf36e7897a71445f43bb5b02397329a12865d3df1415e7469c0490b665
   - id: quick-2
     after: Building linear combinations
     prompt: Two listed vectors must always provide two different directions.
@@ -322,7 +322,7 @@ linear-algebra-vectors:
       - 'False'
     answer: 1
     explanation: One vector can be a scalar multiple of the other. For example, (1,1) and (2,2) only provide combinations along one line.
-    teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+    teachingHash: e24dfa1d7a30551aebaff1d4bbdb0fcd9f6c397d334e05624fe2a30c1d5c2a51
 linear-algebra-dot-products:
   - id: quick-1
     after: Length and unit vectors
@@ -332,7 +332,7 @@ linear-algebra-dot-products:
       - No
     answer: 1
     explanation: Its norm is zero, so the proposed division is undefined. The zero vector also has no direction to retain.
-    teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+    teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
   - id: quick-2
     after: Angle and orthogonality
     prompt: Orthogonal nonzero vectors have which dot product?
@@ -342,7 +342,7 @@ linear-algebra-dot-products:
       - Their combined length
     answer: 1
     explanation: Orthogonality is defined by a zero dot product; neither vector needs to have unit length.
-    teachingHash: b7f038d6f76cc83a80b3eb09de14ad0bbd5977a9508d0a286955104627021d05
+    teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
 linear-algebra-matrices:
   - id: quick-1
     after: A matrix acting on a vector
@@ -353,7 +353,7 @@ linear-algebra-matrices:
       - Eight
     answer: 1
     explanation: There is one output for each of the four rows.
-    teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+    teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
   - id: quick-2
     after: Composition determines the product
     prompt: When both AB and BA exist, they must be equal.
@@ -362,7 +362,7 @@ linear-algebra-matrices:
       - 'False'
     answer: 1
     explanation: 'Order matters: the products represent different orders of applying the transformations.'
-    teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
 linear-algebra-systems:
   - id: quick-1
     after: No solution or a family of solutions
@@ -372,7 +372,7 @@ linear-algebra-systems:
       - 'False'
     answer: 1
     explanation: It gives no new restriction. A row representing zero equal to a nonzero constant proves inconsistency.
-    teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+    teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
   - id: quick-2
     after: Homogeneous systems and verification
     prompt: A real homogeneous linear system always has at least one solution.
@@ -381,7 +381,7 @@ linear-algebra-systems:
       - 'False'
     answer: 0
     explanation: The zero vector always solves it, even if no nontrivial solution exists.
-    teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+    teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
 linear-algebra-span:
   - id: quick-1
     after: Independence means no redundant direction
@@ -391,7 +391,7 @@ linear-algebra-span:
       - 'False'
     answer: 1
     explanation: Coefficient one on the zero vector and zero on the others gives a nontrivial zero combination.
-    teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+    teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
   - id: quick-2
     after: Subspaces and the origin
     prompt: Which must belong to every subspace?
@@ -401,7 +401,7 @@ linear-algebra-span:
       - Every vector with positive components
     answer: 0
     explanation: Containing zero is part of the subspace definition. A proper subspace need not contain the standard basis vectors.
-    teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+    teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
 linear-algebra-bases:
   - id: quick-1
     after: Rank and nullity
@@ -412,7 +412,7 @@ linear-algebra-bases:
       - The number of entries
     answer: 0
     explanation: The input variables, one per column, split into pivot variables and free variables.
-    teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+    teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
   - id: quick-2
     after: Invertible matrices
     prompt: Taking the reciprocal of every entry gives a matrix inverse.
@@ -421,7 +421,7 @@ linear-algebra-bases:
       - 'False'
     answer: 1
     explanation: An inverse is defined by matrix multiplication producing identity. Entrywise reciprocals do not generally do this.
-    teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+    teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
 linear-algebra-transformations:
   - id: quick-1
     after: What linearity requires
@@ -431,7 +431,7 @@ linear-algebra-transformations:
       - 'False'
     answer: 1
     explanation: Coordinate squaring preserves zero but fails the defining addition and scaling properties.
-    teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+    teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
   - id: quick-2
     after: Kernel, image, and information loss
     prompt: Changing the declared codomain can change whether a rule is surjective.
@@ -440,7 +440,7 @@ linear-algebra-transformations:
       - 'False'
     answer: 0
     explanation: Surjectivity compares the actual image with the declared codomain. Projection reaches an entire axis but not the entire plane.
-    teachingHash: bfb353d1e9bc551b11967a3538feb0273269aaed99024a8527e13618e426cff4
+    teachingHash: 6c7c1b73eb1560ce28eda3359654c211cfce6a52b3b556ff4955068a350b1aca
 linear-algebra-projections:
   - id: quick-1
     after: Projecting onto a line
@@ -450,7 +450,7 @@ linear-algebra-projections:
       - 'False'
     answer: 0
     explanation: This orthogonality is what makes the projected point the closest one, by the Pythagorean theorem.
-    teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+    teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
   - id: quick-2
     after: Least squares and the normal equations
     prompt: In 'normal equations,' normal refers to what?
@@ -460,7 +460,7 @@ linear-algebra-projections:
       - An exactly solvable original system
     answer: 0
     explanation: The residual must be perpendicular to every column of the model matrix.
-    teachingHash: 5cf1109131072db2caca3c99cf5ac373fd26cd4b5a930652985c6eedfb480e2a
+    teachingHash: 0e8cfc91e167b0aad240695572abc257b45f59005dc8f2ffb9dddec3b8eb4bbe
 linear-algebra-eigenvalues:
   - id: quick-1
     after: Directions that are only scaled
@@ -471,7 +471,7 @@ linear-algebra-eigenvalues:
       - The vector becomes zero
     answer: 0
     explanation: The negative sign reverses direction, while the magnitude two is the length factor.
-    teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+    teachingHash: f421f35209c07aeed14acd9845f68d30f03fc6693329d84fefb5c1b03b800933
   - id: quick-2
     after: Limits and interpretation
     prompt: Every real square matrix has a basis of real eigenvectors.
@@ -480,7 +480,7 @@ linear-algebra-eigenvalues:
       - 'False'
     answer: 1
     explanation: Some matrices lack enough independent eigenvectors; a right-angle rotation has no real eigenvectors at all.
-    teachingHash: dff0433e5979135e542eaf4721b570bc62cb2424b4385d78368c35355c95e87c
+    teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
 linear-algebra-svd:
   - id: quick-1
     after: A small example you can verify
@@ -490,7 +490,7 @@ linear-algebra-svd:
       - 'False'
     answer: 1
     explanation: By the SVD convention they are nonnegative length scale factors. Direction changes are represented by the orthogonal factors.
-    teachingHash: ba2c59cd23f40d8a8334f28d96b2e351bc1a65ab4ec28fcd1cbdbdc869e2c1b5
+    teachingHash: 897259a6af50b0a75eaf5d2d419afa4a32254f57752800e6b351fca18fa2adde
   - id: quick-2
     after: Connection to rank and eigenvalues
     prompt: A matrix has three positive singular values. What is its rank?
@@ -500,4 +500,4 @@ linear-algebra-svd:
       - The number of rows, regardless of values
     answer: 1
     explanation: Rank counts positive singular values, one for each independent output direction.
-    teachingHash: 130f70047facef68e9fb2fd6303b5ec9880f22a138530aab15cadf54bf65f4e4
+    teachingHash: 570b008fe28d422bbc96063ba5b37af9bd350658316d8f97f3ba63dc99b539b7

@@ -23,11 +23,11 @@ function displayed(slug: string, id: number) {
     section: section.title,
   });
 }
-test('every one of the 161 inline exercises has a current audit with preceding teaching evidence', () => {
+test('every inline exercise has a current audit with preceding teaching evidence', () => {
   validateInlinePrerequisites(content.lessons);
   assert.equal(
     Object.values(inlineAudit).reduce((n, entries) => n + Object.keys(entries).length, 0),
-    161,
+    226,
   );
 });
 test('inline instructions cannot inherit witness, complements, empty products, or graph concepts early', () => {

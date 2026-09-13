@@ -1865,13 +1865,13 @@
     "ellipses": [],
     "frames": [
       {
-        "text": "The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+        "text": "The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2). Translating both endpoints together preserves the displacement v.",
         "route": [],
         "highlight": []
       }
     ],
     "requires": ["linear-algebra-vectors-2"],
-    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"u\",[0,0],[3,2]],[\"v\",[3,2],[2,3],true],[\"u+v\",[0,0],[2,3]]],\"ellipses\":[]}",
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale.",
     "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
     "mathLabels": {
       "u": "u",
@@ -1909,7 +1909,7 @@
       }
     ],
     "requires": ["linear-algebra-dot-products-3"],
-    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"u\",[0,0],[1,2]],[\"v\",[0,0],[2,-1]]],\"ellipses\":[]}",
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale.",
     "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
     "mathLabels": {
       "u": "u",
@@ -1952,7 +1952,7 @@
       }
     ],
     "requires": ["linear-algebra-transformations-2"],
-    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"e_1\",[0,0],[1,0]],[\"e_2\",[0,0],[0,1],true],[\"T(e_2)\",[0,0],[1,1]]],\"ellipses\":[]}",
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale.",
     "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
     "mathLabels": {
       "e_1": "e_1",
@@ -1996,7 +1996,7 @@
       }
     ],
     "requires": ["linear-algebra-projections-1"],
-    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"b\",[0,0],[3,1]],[\"p\",[0,0],[3,0]],[\"r\",[3,0],[3,1],true]],\"ellipses\":[]}",
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale.",
     "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
     "mathLabels": {
       "b": "b",
@@ -2037,11 +2037,100 @@
       }
     ],
     "requires": ["linear-algebra-svd-2"],
-    "creation": "Original SVG drawn from the listed coordinate endpoints and ellipse semiaxes. Both axes use the same scale. {\"arrows\":[[\"2u_1\",[0,0],[2,0]],[\"u_2\",[0,0],[0,1]]],\"ellipses\":[[1,1],[2,1]]}",
+    "creation": "Original SVG drawn from the listed coordinate endpoints and ellipse semiaxes. Both axes use the same scale.",
     "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
     "mathLabels": {
       "2u_1": "2u_1",
       "u_2": "u_2"
+    }
+  },
+  {
+    "id": "la-pairwise-dependence",
+    "title": "Three directions, but a dependent collection",
+    "lesson": "linear-algebra-span",
+    "section": "Independence means no redundant direction",
+    "extent": 2,
+    "arrows": [
+      {
+        "label": "u",
+        "from": [0, 0],
+        "to": [1, 0],
+        "dashed": false
+      },
+      {
+        "label": "v",
+        "from": [0, 0],
+        "to": [0, 1],
+        "dashed": false
+      },
+      {
+        "label": "w",
+        "from": [0, 0],
+        "to": [1, 1],
+        "dashed": true
+      }
+    ],
+    "frames": [
+      {
+        "text": "The vectors u=(1,0), v=(0,1), and w=(1,1) are pairwise nonparallel, but w=u+v. The dashed diagonal is reachable from the other two, so the three-vector collection is dependent. Independence tests the whole collection, not just pairs.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["linear-algebra-span-2"],
+    "creation": "Original coordinate drawing from the three explicit endpoints. Horizontal and vertical coordinates use identical units. The equality w=u+v is checked component by component: (1,0)+(0,1)=(1,1).",
+    "limitations": "Only three representative arrows are shown. Their spans include arbitrary real combinations and are not limited to these finite arrow lengths.",
+    "kind": "coordinates",
+    "ellipses": [],
+    "mathLabels": {
+      "u": "u",
+      "v": "v",
+      "w": "w"
+    }
+  },
+  {
+    "id": "la-eigen-directions",
+    "title": "Two directions that stay on their own lines",
+    "lesson": "linear-algebra-eigenvalues",
+    "section": "Directions that are only scaled",
+    "extent": 4,
+    "arrows": [
+      {
+        "label": "Au",
+        "from": [0, 0],
+        "to": [3, 3],
+        "dashed": true
+      },
+      {
+        "label": "u",
+        "from": [0, 0],
+        "to": [1, 1],
+        "dashed": false
+      },
+      {
+        "label": "v=Av",
+        "from": [0, 0],
+        "to": [1, -1],
+        "dashed": false,
+        "labelOffset": [65, 20]
+      }
+    ],
+    "frames": [
+      {
+        "text": "For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["linear-algebra-eigenvalues-1"],
+    "creation": "Original coordinate SVG with input arrows (1,1),(1,-1) and computed output (3,3). Multiplication by rows (2,1),(1,2) independently gives Au=(3,3) and Av=(1,-1). Both axes use equal units.",
+    "limitations": "The drawing verifies these particular directions for this matrix. It does not claim every input is an eigenvector; for example (2,0) maps to (4,2), off its original line.",
+    "kind": "coordinates",
+    "ellipses": [],
+    "mathLabels": {
+      "Au": "Au",
+      "u": "u",
+      "v=Av": "v=Av"
     }
   }
 ]

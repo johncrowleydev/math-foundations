@@ -34,7 +34,7 @@ test('all inline exercises attach to an existing teaching heading and preserve q
       ids.sort((a, b) => a - b),
     );
   }
-  assert.equal(inlineCount, 161);
+  assert.equal(inlineCount, 226);
 });
 
 test('exercises wait for their prerequisite concepts, including terminology used in answers', () => {
@@ -117,7 +117,7 @@ test('all curriculum exercises adapt with valid math, stable IDs, and no printed
         assert.equal(adapted.math, source.math);
         count++;
       }
-  assert.equal(count, 1393);
+  assert.equal(count, 2010);
 });
 test('proposition classification does not inherit the translation exercise definitions', () => {
   const q = question('propositional-logic', 2);

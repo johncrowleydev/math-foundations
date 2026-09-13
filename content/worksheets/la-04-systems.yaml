@@ -12,39 +12,339 @@ sections:
         prompt: Using variable order x then y, state the rows of the augmented matrix for 2x+3y=7 and -x+y=4.
         answerLines: 5
         answer: The augmented rows are (2,3,7) and (-1,1,4). The first two columns contain coefficients, and the last column contains the right-hand-side constants.
+      - id: 3
+        type: freeform
+        prompt: A system has coefficient matrix with rows (1, 2), (0, 1) and right-hand side (5, 2). Write the augmented rows in variable order x1, x2, and check whether (1, 2) solves it.
+        answerLines: 5
+        answer: The augmented rows are (1, 2, 5), (0, 1, 2). Substitution of (1, 2) gives (5, 2), so this one vector satisfies every equation simultaneously.
+      - id: 4
+        type: freeform
+        prompt: A system has coefficient matrix with rows (2, -1), (1, 3) and right-hand side (0, 7). Write the augmented rows in variable order x1, x2, and check whether (1, 2) solves it.
+        answerLines: 5
+        answer: The augmented rows are (2, -1, 0), (1, 3, 7). Substitution of (1, 2) gives (0, 7), so this one vector satisfies every equation simultaneously.
+      - id: 5
+        type: freeform
+        prompt: A system has coefficient matrix with rows (0, 1, 2), (2, -1, 0) and right-hand side (8, 0). Write the augmented rows in variable order x1, x2, x3, and check whether (1, 2, 3) solves it.
+        answerLines: 5
+        answer: The augmented rows are (0, 1, 2, 8), (2, -1, 0, 0). Substitution of (1, 2, 3) gives (8, 0), so this one vector satisfies every equation simultaneously.
+      - id: 6
+        type: freeform
+        prompt: A system has coefficient matrix with rows (1, 0), (0, 2), (1, -1) and right-hand side (1, 4, -1). Write the augmented rows in variable order x1, x2, and check whether (1, 2) solves it.
+        answerLines: 5
+        answer: The augmented rows are (1, 0, 1), (0, 2, 4), (1, -1, -1). Substitution of (1, 2) gives (1, 4, -1), so this one vector satisfies every equation simultaneously.
+      - id: 7
+        type: freeform
+        prompt: A system has coefficient matrix with rows (2, 0, -1), (0, 1, 3) and right-hand side (-1, 11). Write the augmented rows in variable order x1, x2, x3, and check whether (1, 2, 3) solves it.
+        answerLines: 5
+        answer: The augmented rows are (2, 0, -1, -1), (0, 1, 3, 11). Substitution of (1, 2, 3) gives (-1, 11), so this one vector satisfies every equation simultaneously.
+      - id: 8
+        type: freeform
+        prompt: A system has coefficient matrix with rows (1, 2, 0), (-1, 0, 1), (0, 1, 1) and right-hand side (5, 2, 5). Write the augmented rows in variable order x1, x2, x3, and check whether (1, 2, 3) solves it.
+        answerLines: 5
+        answer: The augmented rows are (1, 2, 0, 5), (-1, 0, 1, 2), (0, 1, 1, 5). Substitution of (1, 2, 3) gives (5, 2, 5), so this one vector satisfies every equation simultaneously.
   - title: Elimination preserves solutions
     questions:
-      - id: 3
+      - id: 9
         type: freeform
         prompt: Solve x+2y=4 and 3x+5y=11 by replacing the second equation with the second minus three times the first. Show the resulting equation.
         answerLines: 5
         answer: The new second equation is -y=-1, so y=1. Substitution into the first gives x=2. The original equations check as 2+2=4 and 6+5=11.
-      - id: 4
+      - id: 10
         type: freeform
         prompt: Why is multiplying a row by zero not an allowed solution-preserving elementary row operation? Give a one-equation example.
         answerLines: 5
         answer: It cannot be undone and may erase a restriction. For example, replacing x=1 with 0=0 turns a one-value solution set into all real values of x.
+      - id: 11
+        type: freeform
+        prompt: Solve x+2y=5 and 3x+5y=13 by elimination, and check the original equations.
+        answerLines: 5
+        answer: 'Subtract three times row one from row two: -y=-2, hence y=2. Back substitution gives x=1. The original left sides are 5 and 13.'
+      - id: 12
+        type: freeform
+        prompt: Solve x+2y=0 and 3x+5y=1 by elimination, and check the original equations.
+        answerLines: 5
+        answer: 'Subtract three times row one from row two: -y=1, hence y=-1. Back substitution gives x=2. The original left sides are 0 and 1.'
+      - id: 13
+        type: freeform
+        prompt: Solve x+2y=5 and 3x+5y=12 by elimination, and check the original equations.
+        answerLines: 5
+        answer: 'Subtract three times row one from row two: -y=-3, hence y=3. Back substitution gives x=-1. The original left sides are 5 and 12.'
+      - id: 14
+        type: freeform
+        prompt: Solve x+2y=4 and 3x+5y=10 by elimination, and check the original equations.
+        answerLines: 5
+        answer: 'Subtract three times row one from row two: -y=-2, hence y=2. Back substitution gives x=0. The original left sides are 4 and 10.'
+      - id: 15
+        type: freeform
+        prompt: Solve x+2y=3 and 3x+5y=9 by elimination, and check the original equations.
+        answerLines: 5
+        answer: 'Subtract three times row one from row two: -y=0, hence y=0. Back substitution gives x=3. The original left sides are 3 and 9.'
+      - id: 16
+        type: freeform
+        prompt: Solve x+2y=-4 and 3x+5y=-11 by elimination, and check the original equations.
+        answerLines: 5
+        answer: 'Subtract three times row one from row two: -y=1, hence y=-1. Back substitution gives x=-2. The original left sides are -4 and -11.'
+      - id: 17
+        type: freeform
+        prompt: Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (6, 11, 14). Show elimination and back substitution.
+        answerLines: 5
+        answer: Subtract twice the first row from the second and the first from the third. The new equations are y-z=-1 and y+2z=8. Subtraction gives 3z=9; then z=3, y=2, x=1. Substitution gives (6, 11, 14).
+      - id: 18
+        type: freeform
+        prompt: Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 1, 0). Show elimination and back substitution.
+        answerLines: 5
+        answer: Subtract twice the first row from the second and the first from the third. The new equations are y-z=-1 and y+2z=-1. Subtraction gives 3z=0; then z=0, y=-1, x=2. Substitution gives (1, 1, 0).
+      - id: 19
+        type: freeform
+        prompt: Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 0, 5). Show elimination and back substitution.
+        answerLines: 5
+        answer: Subtract twice the first row from the second and the first from the third. The new equations are y-z=-2 and y+2z=4. Subtraction gives 3z=6; then z=2, y=0, x=-1. Substitution gives (1, 0, 5).
+      - id: 20
+        type: freeform
+        prompt: Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 7, 0). Show elimination and back substitution.
+        answerLines: 5
+        answer: Subtract twice the first row from the second and the first from the third. The new equations are y-z=5 and y+2z=-1. Subtraction gives 3z=-6; then z=-2, y=3, x=0. Substitution gives (1, 7, 0).
+      - id: 21
+        type: freeform
+        prompt: Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (3, 8, 2). Show elimination and back substitution.
+        answerLines: 5
+        answer: Subtract twice the first row from the second and the first from the third. The new equations are y-z=2 and y+2z=-1. Subtraction gives 3z=-3; then z=-1, y=1, x=3. Substitution gives (3, 8, 2).
+      - id: 22
+        type: freeform
+        prompt: Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 3, 5). Show elimination and back substitution.
+        answerLines: 5
+        answer: Subtract twice the first row from the second and the first from the third. The new equations are y-z=1 and y+2z=4. Subtraction gives 3z=3; then z=1, y=2, x=-2. Substitution gives (1, 3, 5).
+      - id: 23
+        type: freeform
+        prompt: Solve 2y=4 and 3x-y=1. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.
+        answerLines: 5
+        answer: Put the second equation first to obtain a nonzero x pivot. The equation 2y=4 gives y=2; then 3x=3, so x=1. Swapping entire equations preserves the solution set.
+      - id: 24
+        type: freeform
+        prompt: Solve 2y=-2 and 3x-y=7. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.
+        answerLines: 5
+        answer: Put the second equation first to obtain a nonzero x pivot. The equation 2y=-2 gives y=-1; then 3x=6, so x=2. Swapping entire equations preserves the solution set.
+      - id: 25
+        type: freeform
+        prompt: Solve 2y=6 and 3x-y=-6. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.
+        answerLines: 5
+        answer: Put the second equation first to obtain a nonzero x pivot. The equation 2y=6 gives y=3; then 3x=-3, so x=-1. Swapping entire equations preserves the solution set.
+      - id: 26
+        type: freeform
+        prompt: Solve 2y=4 and 3x-y=-2. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.
+        answerLines: 5
+        answer: Put the second equation first to obtain a nonzero x pivot. The equation 2y=4 gives y=2; then 3x=0, so x=0. Swapping entire equations preserves the solution set.
+      - id: 27
+        type: freeform
+        prompt: Solve 2y=0 and 3x-y=9. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.
+        answerLines: 5
+        answer: Put the second equation first to obtain a nonzero x pivot. The equation 2y=0 gives y=0; then 3x=9, so x=3. Swapping entire equations preserves the solution set.
+      - id: 28
+        type: freeform
+        prompt: Solve 2y=-2 and 3x-y=-5. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.
+        answerLines: 5
+        answer: Put the second equation first to obtain a nonzero x pivot. The equation 2y=-2 gives y=-1; then 3x=-6, so x=-2. Swapping entire equations preserves the solution set.
   - title: No solution or a family of solutions
     questions:
-      - id: 5
+      - id: 29
         type: freeform
         prompt: Classify the system x+y=2 and 2x+2y=5 as having no solution, one solution, or infinitely many. Justify using elimination.
         answerLines: 5
         answer: There is no solution. Subtracting twice the first equation from the second yields 0=1, which is impossible.
-      - id: 6
+      - id: 30
         type: freeform
         prompt: Describe every real solution of x+2y=4 and 2x+4y=8 using a parameter. Identify the free variable.
         answerLines: 5
         answer: The second equation is twice the first. Let y=t for arbitrary real t; then x=4-2t. The free variable is y, and every such pair satisfies both equations.
+      - id: 31
+        type: freeform
+        prompt: Classify x+2y=2, 2x+4y=4. If consistent, describe every real solution; otherwise display a contradiction.
+        answerLines: 5
+        answer: Subtract twice row one from row two to get 0=0. This adds no restriction. With y=t arbitrary, x=2-2t; there are infinitely many solutions.
+      - id: 32
+        type: freeform
+        prompt: Classify x+2y=2, 2x+4y=5. If consistent, describe every real solution; otherwise display a contradiction.
+        answerLines: 5
+        answer: Subtract twice row one from row two to get 0=1. This is impossible, so there is no solution.
+      - id: 33
+        type: freeform
+        prompt: Classify x+2y=-1, 2x+4y=-2. If consistent, describe every real solution; otherwise display a contradiction.
+        answerLines: 5
+        answer: Subtract twice row one from row two to get 0=0. This adds no restriction. With y=t arbitrary, x=-1-2t; there are infinitely many solutions.
+      - id: 34
+        type: freeform
+        prompt: Classify x+2y=-1, 2x+4y=3. If consistent, describe every real solution; otherwise display a contradiction.
+        answerLines: 5
+        answer: Subtract twice row one from row two to get 0=5. This is impossible, so there is no solution.
+      - id: 35
+        type: freeform
+        prompt: Classify x+2y=0, 2x+4y=0. If consistent, describe every real solution; otherwise display a contradiction.
+        answerLines: 5
+        answer: Subtract twice row one from row two to get 0=0. This adds no restriction. With y=t arbitrary, x=0-2t; there are infinitely many solutions.
+      - id: 36
+        type: freeform
+        prompt: Classify x+2y=0, 2x+4y=2. If consistent, describe every real solution; otherwise display a contradiction.
+        answerLines: 5
+        answer: Subtract twice row one from row two to get 0=2. This is impossible, so there is no solution.
+      - id: 37
+        type: freeform
+        prompt: For the fixed values k=2 and c=4, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.
+        answerLines: 5
+        answer: Elimination gives (2-2)y=0. The equation is 0=0; choose y=t and x=2-t for arbitrary real t.
+      - id: 38
+        type: freeform
+        prompt: For the fixed values k=2 and c=7, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.
+        answerLines: 5
+        answer: Elimination gives (2-2)y=3. The equation is a contradiction, so no solution exists.
+      - id: 39
+        type: freeform
+        prompt: For the fixed values k=3 and c=4, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.
+        answerLines: 5
+        answer: Elimination gives (3-2)y=0. The coefficient is nonzero, so y=0 and x=2.
+      - id: 40
+        type: freeform
+        prompt: For the fixed values k=0 and c=2, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.
+        answerLines: 5
+        answer: Elimination gives (0-2)y=-2. The coefficient is nonzero, so y=1 and x=1.
+      - id: 41
+        type: freeform
+        prompt: For the fixed values k=-1 and c=7, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.
+        answerLines: 5
+        answer: Elimination gives (-1-2)y=3. The coefficient is nonzero, so y=-1 and x=3.
+      - id: 42
+        type: freeform
+        prompt: For the fixed values k=4 and c=0, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.
+        answerLines: 5
+        answer: Elimination gives (4-2)y=-4. The coefficient is nonzero, so y=-2 and x=4.
+      - id: 43
+        type: freeform
+        prompt: Describe every solution of x+2z-w=1 and y-z=2. Identify both free variables and write a particular solution plus homogeneous directions.
+        answerLines: 5
+        answer: Let z=s and w=t independently. Then x=1-2s+t and y=2+s. The vector is (1, 2, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.
+      - id: 44
+        type: freeform
+        prompt: Describe every solution of x+2z-w=2 and y-z=-1. Identify both free variables and write a particular solution plus homogeneous directions.
+        answerLines: 5
+        answer: Let z=s and w=t independently. Then x=2-2s+t and y=-1+s. The vector is (2, -1, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.
+      - id: 45
+        type: freeform
+        prompt: Describe every solution of x+2z-w=-1 and y-z=3. Identify both free variables and write a particular solution plus homogeneous directions.
+        answerLines: 5
+        answer: Let z=s and w=t independently. Then x=-1-2s+t and y=3+s. The vector is (-1, 3, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.
+      - id: 46
+        type: freeform
+        prompt: Describe every solution of x+2z-w=0 and y-z=2. Identify both free variables and write a particular solution plus homogeneous directions.
+        answerLines: 5
+        answer: Let z=s and w=t independently. Then x=0-2s+t and y=2+s. The vector is (0, 2, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.
+      - id: 47
+        type: freeform
+        prompt: Describe every solution of x+2z-w=3 and y-z=0. Identify both free variables and write a particular solution plus homogeneous directions.
+        answerLines: 5
+        answer: Let z=s and w=t independently. Then x=3-2s+t and y=0+s. The vector is (3, 0, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.
+      - id: 48
+        type: freeform
+        prompt: Describe every solution of x+2z-w=-2 and y-z=-1. Identify both free variables and write a particular solution plus homogeneous directions.
+        answerLines: 5
+        answer: Let z=s and w=t independently. Then x=-2-2s+t and y=-1+s. The vector is (-2, -1, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.
   - title: Homogeneous systems and verification
     questions:
-      - id: 7
+      - id: 49
         type: freeform
         prompt: Find all solutions of x+y=0. Give one nontrivial solution and explain why the system must also have the zero solution.
         answerLines: 5
         answer: Every solution is (-t,t) for real t. For instance (-1,1) is nontrivial. All homogeneous systems admit zero because multiplying zero inputs gives a zero output.
-      - id: 8
+      - id: 50
         type: freeform
         prompt: A matrix A satisfies Ap=b and Az=0, with z nonzero. Prove that p+3z is another solution of Ax=b and is different from p.
         answerLines: 5
         answer: Distributivity gives A(p+3z)=Ap+3Az=b+0=b. Since z is nonzero, 3z is nonzero over the real numbers, so p+3z differs from p.
+      - id: 51
+        type: freeform
+        prompt: Find all real solutions of x+1y+2z=0. Give a nontrivial solution and explain why your parameterization is complete.
+        answerLines: 5
+        answer: Let y=s and z=t. Then x=-(1)s-(2)t, giving s(-1, 1, 0)+t(-2, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.
+      - id: 52
+        type: freeform
+        prompt: Find all real solutions of x+2y- 1z=0. Give a nontrivial solution and explain why your parameterization is complete.
+        answerLines: 5
+        answer: Let y=s and z=t. Then x=-(2)s-(-1)t, giving s(-2, 1, 0)+t(1, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.
+      - id: 53
+        type: freeform
+        prompt: Find all real solutions of x- 1y+3z=0. Give a nontrivial solution and explain why your parameterization is complete.
+        answerLines: 5
+        answer: Let y=s and z=t. Then x=-(-1)s-(3)t, giving s(1, 1, 0)+t(-3, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.
+      - id: 54
+        type: freeform
+        prompt: Find all real solutions of x+0y+2z=0. Give a nontrivial solution and explain why your parameterization is complete.
+        answerLines: 5
+        answer: Let y=s and z=t. Then x=-(0)s-(2)t, giving s(0, 1, 0)+t(-2, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.
+      - id: 55
+        type: freeform
+        prompt: Find all real solutions of x+3y+0z=0. Give a nontrivial solution and explain why your parameterization is complete.
+        answerLines: 5
+        answer: Let y=s and z=t. Then x=-(3)s-(0)t, giving s(-3, 1, 0)+t(0, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.
+      - id: 56
+        type: freeform
+        prompt: Find all real solutions of x- 2y- 1z=0. Give a nontrivial solution and explain why your parameterization is complete.
+        answerLines: 5
+        answer: Let y=s and z=t. Then x=-(-2)s-(-1)t, giving s(2, 1, 0)+t(1, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.
+      - id: 57
+        type: freeform
+        prompt: Prove that the difference of any two solutions of Ax=b solves Ax=0.
+        answerLines: 5
+        answer: If Ap=b and Aq=b, distributivity gives A(p-q)=b-b=0.
+      - id: 58
+        type: freeform
+        prompt: Prove that adding any homogeneous solution to a particular solution preserves the right-hand side.
+        answerLines: 5
+        answer: If Ap=b and Az=0, then A(p+z)=Ap+Az=b.
+      - id: 59
+        type: freeform
+        prompt: Why does a homogeneous real system with five unknowns and three equations have a nonzero solution?
+        answerLines: 5
+        answer: It is consistent because zero solves it, and at most three variable columns can have pivots. At least two variables are free; choosing one nonzero yields a nonzero solution.
+      - id: 60
+        type: freeform
+        prompt: Can a real linear system have exactly two solutions? Prove your answer.
+        answerLines: 5
+        answer: No. If p and q are distinct solutions, p+t(q-p) is a solution for every real t. Their nonzero difference makes these infinitely many distinct vectors.
+      - id: 61
+        type: freeform
+        prompt: A reduced augmented matrix contains a row (0,0,1). What does this mean for a two-variable system?
+        answerLines: 5
+        answer: It means 0x+0y=1, a contradiction. The last column is the right-hand side, not another unknown.
+      - id: 62
+        type: freeform
+        prompt: Does an all-zero row prove a system has infinitely many solutions? Give a counterexample if not.
+        answerLines: 5
+        answer: No. The equations x=1, y=2, 0=0 have one solution. A zero row only indicates a redundant equation; free variables determine nonuniqueness in a consistent system.
+      - id: 63
+        type: freeform
+        prompt: Explain why assigning the same parameter to two free variables can omit solutions.
+        answerLines: 5
+        answer: The variables are allowed to vary independently. Equating them adds a restriction not present in the original system. For example y and z free may take values one and two, which one shared parameter would exclude.
+      - id: 64
+        type: freeform
+        prompt: Why is a reversible row operation sufficient to preserve all solutions in both directions?
+        answerLines: 5
+        answer: The forward operation sends every old solution to a solution of the rewritten equations, and its inverse sends every new solution back. Thus neither set contains extra solutions.
+      - id: 65
+        type: freeform
+        prompt: Can an inconsistent system have a free variable column? Explain.
+        answerLines: 5
+        answer: Yes. A contradiction row can occur even when some coefficient columns lack pivots. Free parameters are assigned only after consistency is established.
+      - id: 66
+        type: freeform
+        prompt: A proposed family passes substitution. What further argument is needed to show it is the complete solution set?
+        answerLines: 5
+        answer: Show that every solution must have the displayed form, typically by solving pivot variables in terms of all independently free variables. Substitution alone only proves inclusion in the solution set.
+      - id: 67
+        type: freeform
+        prompt: Is exchanging two variable columns the same operation as exchanging two equations? Explain.
+        answerLines: 5
+        answer: No. Row exchange reorders equations. Column exchange changes which coefficient belongs to which unknown, so it requires an explicit corresponding relabeling of variables.
+      - id: 68
+        type: freeform
+        prompt: Explain why a nontrivial homogeneous solution is a nonzero vector, not merely a solution found by a difficult calculation.
+        answerLines: 5
+        answer: 'Nontrivial is a definition here: at least one component is nonzero. The word does not assess the difficulty of the method.'

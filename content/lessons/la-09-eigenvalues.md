@@ -10,6 +10,14 @@ For the diagonal matrix with entries 2 and 3, the first standard vector is scale
 
 A negative eigenvalue reverses the vector as well as changing its length. A zero eigenvalue sends a nonzero vector to zero, so a matrix with zero as an eigenvalue is not invertible. Multiplying an eigenvector by any nonzero scalar produces another eigenvector for the same eigenvalue. An eigendirection therefore has many representative vectors.
 
+### Verifying a candidate before solving a polynomial
+
+Let A have rows (2,1),(1,2). It sends (1,1) to (3,3), so that direction has eigenvalue three. It sends (1,-1) to (1,-1), so that direction has eigenvalue one. The vectors are independent and perpendicular. For (2,0), the output (4,2) is not a scalar multiple, so this particular vector is not an eigenvector even though A has an eigenbasis.
+
+The word eigen comes from German usage for something's own or characteristic quantity. The terminology points to directions adapted to this particular transformation. There is no preferred eigenvector length: after finding a direction you may normalize it, but normalization cannot turn a non-eigenvector into an eigenvector.
+
+![Eigenvectors remain on their lines](figure:la-eigen-directions)
+
 ## Finding eigenvalues in two dimensions
 
 Rearrange the defining equation to $(A-\lambda I)v=0$. The identity has the same size as A. To have a nonzero solution v, the matrix A minus lambda times identity must be singular, meaning not invertible. For two by two matrices, its determinant must therefore be zero.
@@ -18,6 +26,16 @@ Take A with rows (2,1),(0,3). Its determinant condition is $(2-\lambda)(3-\lambd
 
 For a fixed eigenvalue, the [eigenspace](ref:linear-algebra-eigenvalues-2) is the null space of A minus lambda times identity. It includes zero so that it is a subspace, although zero itself is not an eigenvector. The determinant equation identifies candidate scalars; solving a homogeneous system identifies their vectors. Do not stop after finding the eigenvalues if the question also asks for directions.
 
+### From the polynomial back to directions
+
+For the symmetric matrix with rows (2,1),(1,2), subtract lambda from both diagonal entries and compute the determinant. It is (2-lambda) squared minus one, which factors into (1-lambda)(3-lambda). These roots recover one and three. For lambda three, the homogeneous equations say y=x. For lambda one, they say y=-x. Thus each eigenspace is an entire line including zero.
+
+$
+\det\begin{pmatrix}2-\lambda&1\\1&2-\lambda\end{pmatrix}=(1-\lambda)(3-\lambda)
+$
+
+The determinant expression is called the [characteristic polynomial](ref:la-term-characteristic-polynomial). A root's [algebraic multiplicity](ref:la-term-algebraic-multiplicity) is the number of times its factor repeats in that polynomial. Its [geometric multiplicity](ref:la-term-geometric-multiplicity) is the dimension of its eigenspace. A repeated root does not tell you its eigenspace dimension; solving the homogeneous system is still necessary. Here both roots occur once.
+
 ## An eigenbasis simplifies repeated action
 
 A matrix is [diagonalizable](ref:linear-algebra-eigenvalues-3) over the real numbers if it has a basis of real eigenvectors. Put those basis vectors in the columns of P and their matching eigenvalues on the diagonal of D. The equation $AP=PD$ records all the eigenvector equations at once. Since P is invertible, this gives $A=PDP^{-1}$.
@@ -25,6 +43,12 @@ A matrix is [diagonalizable](ref:linear-algebra-eigenvalues-3) over the real num
 This factorization has an operational reading: change from standard coordinates to eigenvector coordinates, scale each coordinate separately with D, then change back. Repeating A repeatedly cancels adjacent inverse changes of basis. For a positive integer k, $A^k=PD^kP^{-1}$. Powers of a diagonal matrix simply raise its diagonal entries to the corresponding powers.
 
 For the triangular example above, (2,1) equals one copy of (1,0) plus one copy of (1,1). Applying A twice gives four copies of the first eigenvector plus nine copies of the second, or (13,9). This explains the repeated transformation without multiplying out A squared first.
+
+### Repeated action can include alternating signs
+
+If an input is three u minus two v, with Au=2u and Av=-v, then after k applications its u coefficient is three times 2 to the k, and its v coefficient is negative two times (-1) to the k. The second component alternates sign instead of growing. For k=2 the output is twelve u minus two v. This follows by applying the same scaling at each step, not by assuming that ordinary component positions are eigenvector coordinates.
+
+Eigenvectors with distinct eigenvalues are independent. For two vectors, if one were a nonzero multiple of the other, applying A would force their eigenvalues to agree. More generally the result extends to any finite list of distinct eigenvalues. Consequently a two-by-two real matrix with two distinct real eigenvalues has an eigenbasis. Repeated eigenvalues need an eigenspace calculation.
 
 ## Limits and interpretation
 
@@ -35,3 +59,9 @@ A right-angle rotation has no real eigenvectors: every nonzero real direction tu
 A real symmetric matrix, meaning A transpose equals A, has an orthonormal eigenbasis. This [spectral theorem](ref:linear-algebra-eigenvalues-4) is a structural result we use without proving it here. It will underpin the next lesson's SVD. General matrices need not have perpendicular eigenvectors; the two directions in our triangular example are not perpendicular.
 
 Eigenvalues can reveal growth or decay under repeated transformations when an eigenbasis is available. A component in a direction with eigenvalue two doubles each time; one with eigenvalue one half shrinks. Whether a particular input exhibits a direction's behavior depends on whether it has a nonzero component in that direction. Avoid inferring every trajectory from the largest eigenvalue alone without checking the assumptions.
+
+### Comparing two repeated-eigenvalue matrices
+
+The identity has eigenvalue one twice and its eigenspace is the whole plane, so it is diagonalizable. The shear with rows (1,1),(0,1) also has eigenvalue one twice, but its eigenspace is just the horizontal axis, so it is not. Algebraic multiplicity is two in both examples; geometric multiplicity distinguishes them. In general, diagonalization requires enough independent eigenvectors to span the whole space.
+
+For a symmetric matrix, eigenvectors belonging to different eigenvalues are perpendicular. To see the mechanism, compare u dot Av with Au dot v. Symmetry makes these equal; the eigenvector equations then give the difference of the eigenvalues times u dot v equal to zero. Distinct eigenvalues force a zero dot product. The stronger spectral theorem also handles repeated eigenspaces and guarantees a complete orthonormal basis; its full proof is beyond this lesson.

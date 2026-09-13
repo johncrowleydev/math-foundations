@@ -69,7 +69,13 @@ export type Syntax = {
 };
 export type Figure = {
   extent?: number;
-  arrows?: { label: string; from: [number, number]; to: [number, number]; dashed: boolean }[];
+  arrows?: {
+    label: string;
+    from: [number, number];
+    to: [number, number];
+    dashed: boolean;
+    labelOffset?: [number, number];
+  }[];
   ellipses?: [number, number][];
   id: string;
   kind: string;

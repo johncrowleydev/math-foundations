@@ -12,39 +12,339 @@ sections:
         prompt: Let A have rows (1,-1),(2,0) and B have rows (3,2),(0,4). Find the rows of 2A+B.
         answerLines: 5
         answer: Twice A has rows (2,-2),(4,0). Adding corresponding entries of B gives rows (5,0),(4,4). Equal shapes make the addition defined.
+      - id: 3
+        type: freeform
+        prompt: For the matrix with rows (1, 2), (0, 1), state its shape, its last-row first-column entry, and the rows of its transpose.
+        answerLines: 5
+        answer: The shape is 2 by 2; the requested entry is 0. The transpose has rows (1, 0), (2, 1), with the shape reversed.
+      - id: 4
+        type: freeform
+        prompt: For the matrix with rows (2, -1), (1, 3), state its shape, its last-row first-column entry, and the rows of its transpose.
+        answerLines: 5
+        answer: The shape is 2 by 2; the requested entry is 1. The transpose has rows (2, 1), (-1, 3), with the shape reversed.
+      - id: 5
+        type: freeform
+        prompt: For the matrix with rows (0, 1, 2), (2, -1, 0), state its shape, its last-row first-column entry, and the rows of its transpose.
+        answerLines: 5
+        answer: The shape is 2 by 3; the requested entry is 2. The transpose has rows (0, 2), (1, -1), (2, 0), with the shape reversed.
+      - id: 6
+        type: freeform
+        prompt: For the matrix with rows (1, 0), (0, 2), (1, -1), state its shape, its last-row first-column entry, and the rows of its transpose.
+        answerLines: 5
+        answer: The shape is 3 by 2; the requested entry is 1. The transpose has rows (1, 0, 1), (0, 2, -1), with the shape reversed.
+      - id: 7
+        type: freeform
+        prompt: For the matrix with rows (2, 0, -1), (0, 1, 3), state its shape, its last-row first-column entry, and the rows of its transpose.
+        answerLines: 5
+        answer: The shape is 2 by 3; the requested entry is 0. The transpose has rows (2, 0), (0, 1), (-1, 3), with the shape reversed.
+      - id: 8
+        type: freeform
+        prompt: For the matrix with rows (1, 2, 0), (-1, 0, 1), (0, 1, 1), state its shape, its last-row first-column entry, and the rows of its transpose.
+        answerLines: 5
+        answer: The shape is 3 by 3; the requested entry is 0. The transpose has rows (1, -1, 0), (2, 0, 1), (0, 1, 1), with the shape reversed.
+      - id: 9
+        type: freeform
+        prompt: A has rows (1, 2), (0, 1) and B has rows (1, 0), (2, 1). Compute 2A-B and explain the shape condition.
+        answerLines: 5
+        answer: Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (1, 4), (-2, 1).
+      - id: 10
+        type: freeform
+        prompt: A has rows (2, -1), (1, 3) and B has rows (1, 0), (2, 1). Compute 2A-B and explain the shape condition.
+        answerLines: 5
+        answer: Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (3, -2), (0, 5).
+      - id: 11
+        type: freeform
+        prompt: A has rows (0, 1, 2), (2, -1, 0) and B has rows (1, 0, -1), (2, 1, 0). Compute 2A-B and explain the shape condition.
+        answerLines: 5
+        answer: Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (-1, 2, 5), (2, -3, 0).
+      - id: 12
+        type: freeform
+        prompt: A has rows (1, 0), (0, 2), (1, -1) and B has rows (1, 0), (2, 1), (3, 2). Compute 2A-B and explain the shape condition.
+        answerLines: 5
+        answer: Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (1, 0), (-2, 3), (-1, -4).
+      - id: 13
+        type: freeform
+        prompt: A has rows (2, 0, -1), (0, 1, 3) and B has rows (1, 0, -1), (2, 1, 0). Compute 2A-B and explain the shape condition.
+        answerLines: 5
+        answer: Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (3, 0, -1), (-2, 1, 6).
+      - id: 14
+        type: freeform
+        prompt: A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1) and B has rows (1, 0, -1), (2, 1, 0), (3, 2, 1). Compute 2A-B and explain the shape condition.
+        answerLines: 5
+        answer: Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (1, 4, 1), (-4, -1, 2), (-3, 0, 1).
   - title: A matrix acting on a vector
     questions:
-      - id: 3
+      - id: 15
         type: freeform
         prompt: Let A have rows (1,2),(3,-1). Compute Ax for x=(2,3) using both the row-dot-product and column-combination readings.
         answerLines: 5
         answer: Row dot products give 2+6=8 and 6-3=3. The column reading gives two times (1,3) plus three times (2,-1), again (8,3).
-      - id: 4
+      - id: 16
         type: freeform
         prompt: A three by two matrix has columns (1,0,2) and (-1,3,1). Find its output on (0,1) and explain why no full row calculation is necessary.
         answerLines: 5
         answer: The output is its second column, (-1,3,1). The input selects zero copies of the first column and one copy of the second.
+      - id: 17
+        type: freeform
+        prompt: A has rows (1, 2), (0, 1). Find its output on x=(2, -1) using row dot products, then explain the matching column combination.
+        answerLines: 5
+        answer: The output is (0, -1). Row i computes its dot product with x. Equivalently use coefficients (2, -1) on A's columns and add; the ith entry of that sum is exactly the same row calculation.
+      - id: 18
+        type: freeform
+        prompt: A has rows (2, -1), (1, 3). Find its output on x=(2, -1) using row dot products, then explain the matching column combination.
+        answerLines: 5
+        answer: The output is (5, -1). Row i computes its dot product with x. Equivalently use coefficients (2, -1) on A's columns and add; the ith entry of that sum is exactly the same row calculation.
+      - id: 19
+        type: freeform
+        prompt: A has rows (0, 1, 2), (2, -1, 0). Find its output on x=(2, -1, 2) using row dot products, then explain the matching column combination.
+        answerLines: 5
+        answer: The output is (3, 5). Row i computes its dot product with x. Equivalently use coefficients (2, -1, 2) on A's columns and add; the ith entry of that sum is exactly the same row calculation.
+      - id: 20
+        type: freeform
+        prompt: A has rows (1, 0), (0, 2), (1, -1). Find its output on x=(2, -1) using row dot products, then explain the matching column combination.
+        answerLines: 5
+        answer: The output is (2, -2, 3). Row i computes its dot product with x. Equivalently use coefficients (2, -1) on A's columns and add; the ith entry of that sum is exactly the same row calculation.
+      - id: 21
+        type: freeform
+        prompt: A has rows (2, 0, -1), (0, 1, 3). Find its output on x=(2, -1, 2) using row dot products, then explain the matching column combination.
+        answerLines: 5
+        answer: The output is (2, 5). Row i computes its dot product with x. Equivalently use coefficients (2, -1, 2) on A's columns and add; the ith entry of that sum is exactly the same row calculation.
+      - id: 22
+        type: freeform
+        prompt: A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1). Find its output on x=(2, -1, 2) using row dot products, then explain the matching column combination.
+        answerLines: 5
+        answer: The output is (0, 0, 1). Row i computes its dot product with x. Equivalently use coefficients (2, -1, 2) on A's columns and add; the ith entry of that sum is exactly the same row calculation.
+      - id: 23
+        type: freeform
+        prompt: A has rows (1, 2), (0, 1). Find A applied to (0, 1) without a full row-by-row multiplication. Why does this input select one column?
+        answerLines: 5
+        answer: The output is the last column, (2, 1). All other input coefficients are zero and the last is one.
+      - id: 24
+        type: freeform
+        prompt: A has rows (2, -1), (1, 3). Find A applied to (0, 1) without a full row-by-row multiplication. Why does this input select one column?
+        answerLines: 5
+        answer: The output is the last column, (-1, 3). All other input coefficients are zero and the last is one.
+      - id: 25
+        type: freeform
+        prompt: A has rows (0, 1, 2), (2, -1, 0). Find A applied to (0, 0, 1) without a full row-by-row multiplication. Why does this input select one column?
+        answerLines: 5
+        answer: The output is the last column, (2, 0). All other input coefficients are zero and the last is one.
+      - id: 26
+        type: freeform
+        prompt: A has rows (1, 0), (0, 2), (1, -1). Find A applied to (0, 1) without a full row-by-row multiplication. Why does this input select one column?
+        answerLines: 5
+        answer: The output is the last column, (0, 2, -1). All other input coefficients are zero and the last is one.
+      - id: 27
+        type: freeform
+        prompt: A has rows (2, 0, -1), (0, 1, 3). Find A applied to (0, 0, 1) without a full row-by-row multiplication. Why does this input select one column?
+        answerLines: 5
+        answer: The output is the last column, (-1, 3). All other input coefficients are zero and the last is one.
+      - id: 28
+        type: freeform
+        prompt: A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1). Find A applied to (0, 0, 1) without a full row-by-row multiplication. Why does this input select one column?
+        answerLines: 5
+        answer: The output is the last column, (0, 1, 1). All other input coefficients are zero and the last is one.
   - title: Composition determines the product
     questions:
-      - id: 5
+      - id: 29
         type: freeform
         prompt: Let A have rows (1,1),(0,1), and let B have rows (2,0),(0,1). Compute AB and BA and state which transformation acts first in ABx.
         answerLines: 5
         answer: AB has rows (2,1),(0,1), while BA has rows (2,2),(0,1). In ABx, B acts first and A acts on B's output. The two products are unequal.
-      - id: 6
+      - id: 30
         type: freeform
         prompt: A is two by three and B is three by four. State the shape of AB and explain whether BA is defined.
         answerLines: 5
         answer: 'AB is two by four: the inner sizes three and three match. BA is not defined because B has four columns but A has two rows.'
+      - id: 31
+        type: freeform
+        prompt: A has rows (1, 2), (0, 1) and B has rows (1, 1), (2, 0). Compute AB, state its shape, and identify which matrix acts first on an input.
+        answerLines: 5
+        answer: Each output column is A times the corresponding column of B. The product has rows (5, 1), (2, 0) and shape 2 by two. B acts first, followed by A.
+      - id: 32
+        type: freeform
+        prompt: A has rows (2, -1), (1, 3) and B has rows (1, 1), (2, 0). Compute AB, state its shape, and identify which matrix acts first on an input.
+        answerLines: 5
+        answer: Each output column is A times the corresponding column of B. The product has rows (0, 2), (7, 1) and shape 2 by two. B acts first, followed by A.
+      - id: 33
+        type: freeform
+        prompt: A has rows (0, 1, 2), (2, -1, 0) and B has rows (1, 1), (2, 0), (3, -1). Compute AB, state its shape, and identify which matrix acts first on an input.
+        answerLines: 5
+        answer: Each output column is A times the corresponding column of B. The product has rows (8, -2), (0, 2) and shape 2 by two. B acts first, followed by A.
+      - id: 34
+        type: freeform
+        prompt: A has rows (1, 0), (0, 2), (1, -1) and B has rows (1, 1), (2, 0). Compute AB, state its shape, and identify which matrix acts first on an input.
+        answerLines: 5
+        answer: Each output column is A times the corresponding column of B. The product has rows (1, 1), (4, 0), (-1, 1) and shape 3 by two. B acts first, followed by A.
+      - id: 35
+        type: freeform
+        prompt: A has rows (2, 0, -1), (0, 1, 3) and B has rows (1, 1), (2, 0), (3, -1). Compute AB, state its shape, and identify which matrix acts first on an input.
+        answerLines: 5
+        answer: Each output column is A times the corresponding column of B. The product has rows (-1, 3), (11, -3) and shape 2 by two. B acts first, followed by A.
+      - id: 36
+        type: freeform
+        prompt: A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1) and B has rows (1, 1), (2, 0), (3, -1). Compute AB, state its shape, and identify which matrix acts first on an input.
+        answerLines: 5
+        answer: Each output column is A times the corresponding column of B. The product has rows (5, 1), (2, -2), (5, -1) and shape 3 by two. B acts first, followed by A.
+      - id: 37
+        type: freeform
+        prompt: Let A have rows (1, 1), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.
+        answerLines: 5
+        answer: AB has rows (2, 3), (0, 3), while BA has rows (2, 2), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.
+      - id: 38
+        type: freeform
+        prompt: Let A have rows (1, 2), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.
+        answerLines: 5
+        answer: AB has rows (2, 6), (0, 3), while BA has rows (2, 4), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.
+      - id: 39
+        type: freeform
+        prompt: Let A have rows (1, -1), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.
+        answerLines: 5
+        answer: AB has rows (2, -3), (0, 3), while BA has rows (2, -2), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.
+      - id: 40
+        type: freeform
+        prompt: Let A have rows (1, 3), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.
+        answerLines: 5
+        answer: AB has rows (2, 9), (0, 3), while BA has rows (2, 6), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.
+      - id: 41
+        type: freeform
+        prompt: Let A have rows (1, -2), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.
+        answerLines: 5
+        answer: AB has rows (2, -6), (0, 3), while BA has rows (2, -4), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.
+      - id: 42
+        type: freeform
+        prompt: Let A have rows (1, 4), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.
+        answerLines: 5
+        answer: AB has rows (2, 12), (0, 3), while BA has rows (2, 8), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.
+      - id: 43
+        type: freeform
+        prompt: A is 2 by 3 and B is 3 by 4. Give the shape of AB. Is BA defined? If so, give its shape; do not assume it equals AB.
+        answerLines: 5
+        answer: AB is 2 by 4. BA is undefined because its inner dimensions 4 and 2 differ.
+      - id: 44
+        type: freeform
+        prompt: A is 3 by 2 and B is 2 by 3. Give the shape of AB. Is BA defined? If so, give its shape; do not assume it equals AB.
+        answerLines: 5
+        answer: AB is 3 by 3. BA is defined and has shape 2 by 2. Existence alone says nothing about equality.
+      - id: 45
+        type: freeform
+        prompt: A is 1 by 4 and B is 4 by 2. Give the shape of AB. Is BA defined? If so, give its shape; do not assume it equals AB.
+        answerLines: 5
+        answer: AB is 1 by 2. BA is undefined because its inner dimensions 2 and 1 differ.
+      - id: 46
+        type: freeform
+        prompt: A is 4 by 1 and B is 1 by 3. Give the shape of AB. Is BA defined? If so, give its shape; do not assume it equals AB.
+        answerLines: 5
+        answer: AB is 4 by 3. BA is undefined because its inner dimensions 3 and 4 differ.
+      - id: 47
+        type: freeform
+        prompt: A is 2 by 2 and B is 2 by 2. Give the shape of AB. Is BA defined? If so, give its shape; do not assume it equals AB.
+        answerLines: 5
+        answer: AB is 2 by 2. BA is defined and has shape 2 by 2. Existence alone says nothing about equality.
+      - id: 48
+        type: freeform
+        prompt: A is 3 by 4 and B is 4 by 3. Give the shape of AB. Is BA defined? If so, give its shape; do not assume it equals AB.
+        answerLines: 5
+        answer: AB is 3 by 3. BA is defined and has shape 4 by 4. Existence alone says nothing about equality.
   - title: Checking a matrix calculation
     questions:
-      - id: 7
+      - id: 49
         type: freeform
         prompt: A has rows (1,0),(0,0), and B has rows (0,0),(0,1). Compute AB. What scalar-style inference does this example disprove?
         answerLines: 5
         answer: AB is the two by two zero matrix even though neither factor is zero. A zero product of matrices does not imply that at least one factor is the zero matrix.
-      - id: 8
+      - id: 50
         type: freeform
         prompt: A proposed matrix C has columns (2,3) and (5,7). What outputs should C give on (1,0) and (0,1), and how could these tests help check a claimed product?
         answerLines: 5
         answer: The outputs should be (2,3) and (5,7), respectively. Apply the claimed component transformations in order to these standard inputs and compare the results with C's columns.
+      - id: 51
+        type: freeform
+        prompt: A has rows (1, 2), (0, 1), B has rows (1, 0), (1, 1), and a claimed product C has rows (3, 2), (1, 1). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.
+        answerLines: 5
+        answer: The first standard input is sent by B to (1, 1), then by A to (3, 1). The second similarly reaches (2, 1). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.
+      - id: 52
+        type: freeform
+        prompt: A has rows (2, -1), (1, 3), B has rows (1, 0), (1, 1), and a claimed product C has rows (1, -1), (4, 3). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.
+        answerLines: 5
+        answer: The first standard input is sent by B to (1, 1), then by A to (1, 4). The second similarly reaches (-1, 3). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.
+      - id: 53
+        type: freeform
+        prompt: A has rows (0, 1, 2), (2, -1, 0), B has rows (1, 0), (1, 1), (1, 2), and a claimed product C has rows (3, 5), (1, -1). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.
+        answerLines: 5
+        answer: The first standard input is sent by B to (1, 1, 1), then by A to (3, 1). The second similarly reaches (5, -1). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.
+      - id: 54
+        type: freeform
+        prompt: A has rows (1, 0), (0, 2), (1, -1), B has rows (1, 0), (1, 1), and a claimed product C has rows (1, 0), (2, 2), (0, -1). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.
+        answerLines: 5
+        answer: The first standard input is sent by B to (1, 1), then by A to (1, 2, 0). The second similarly reaches (0, 2, -1). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.
+      - id: 55
+        type: freeform
+        prompt: A has rows (2, 0, -1), (0, 1, 3), B has rows (1, 0), (1, 1), (1, 2), and a claimed product C has rows (1, -2), (4, 7). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.
+        answerLines: 5
+        answer: The first standard input is sent by B to (1, 1, 1), then by A to (1, 4). The second similarly reaches (-2, 7). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.
+      - id: 56
+        type: freeform
+        prompt: A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1), B has rows (1, 0), (1, 1), (1, 2), and a claimed product C has rows (3, 2), (0, 2), (2, 3). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.
+        answerLines: 5
+        answer: The first standard input is sent by B to (1, 1, 1), then by A to (3, 0, 2). The second similarly reaches (2, 2, 3). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.
+      - id: 57
+        type: freeform
+        prompt: Give nonzero two-by-two matrices A and B with AB=0 and show the product.
+        answerLines: 5
+        answer: Use A with rows (1,0),(0,0) and B with rows (0,0),(0,1). A erases every output B can produce, so every product entry is zero, although each factor is nonzero.
+      - id: 58
+        type: freeform
+        prompt: Give matrices A,B,C with AB=AC but B different from C.
+        answerLines: 5
+        answer: Take A with rows (1,0),(0,0), B=identity, and C with rows (1,0),(0,2). Both products have rows (1,0),(0,0), but B and C have different second diagonal entries.
+      - id: 59
+        type: freeform
+        prompt: Why is testing only the zero input useless for proving two matrices equal?
+        answerLines: 5
+        answer: Every matrix sends zero to zero. Agreement at that single input places no restriction on their columns.
+      - id: 60
+        type: freeform
+        prompt: Explain why (AB) transpose reverses the order of the factors.
+        answerLines: 5
+        answer: A row-column product entry becomes a column-row entry under transpose. B transpose times A transpose pairs the same entries, with compatible reversed shapes. Keeping the original factor order generally computes different entries or is undefined.
+      - id: 61
+        type: freeform
+        prompt: If A is two by three, compare the shapes of A transpose A and A A transpose.
+        answerLines: 5
+        answer: A transpose A is three by three and acts in the input coordinate space. A A transpose is two by two and acts in the output coordinate space. They cannot be the same matrix because their shapes differ.
+      - id: 62
+        type: freeform
+        prompt: Must a square matrix be symmetric? Give a counterexample.
+        answerLines: 5
+        answer: No. Rows (1,2),(0,1) make a square matrix, but its transpose has rows (1,0),(2,1), which differ.
+      - id: 63
+        type: freeform
+        prompt: For compatible matrices, justify A(B+C)=AB+AC using columns or entries.
+        answerLines: 5
+        answer: Each column of B+C is the sum of the corresponding columns. Multiplication by A distributes over that vector sum, producing the matching columns of AB+AC.
+      - id: 64
+        type: freeform
+        prompt: Why is a matrix-vector product generally not componentwise multiplication producing a matrix of the original shape?
+        answerLines: 5
+        answer: Each row forms one dot product and sums over the input components. The result has one entry per row, not one entry for each original matrix position.
+      - id: 65
+        type: freeform
+        prompt: If two linear matrix rules agree on every standard basis vector, prove they agree on every input.
+        answerLines: 5
+        answer: Write any input as the sum of its components times those standard vectors. Linearity lets both rules act on that combination, and their corresponding basis outputs agree term by term.
+      - id: 66
+        type: freeform
+        prompt: Can AB exist while BA does not? Give dimensions demonstrating this.
+        answerLines: 5
+        answer: Yes. A two-by-three matrix times a three-by-four matrix produces a two-by-four matrix. The reverse has inner dimensions four and two, so it is not defined.
+      - id: 67
+        type: freeform
+        prompt: A student computes each entry of AB by multiplying entries in the same position. What operation was missed?
+        answerLines: 5
+        answer: Matrix multiplication requires row-column dot products, including a sum over the matching inner dimension. Positionwise products are a different operation and do not in general represent composition.
+      - id: 68
+        type: freeform
+        prompt: Explain how matrix columns encode the per-product resource requirements of a workshop.
+        answerLines: 5
+        answer: Column j gives all resources required for one unit of product j. Multiplying by production counts scales each such column by its count and adds them into the total resource vector.

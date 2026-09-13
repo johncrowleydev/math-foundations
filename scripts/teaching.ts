@@ -80,6 +80,7 @@ const figureSchema = z.discriminatedUnion('kind', [
             from: z.tuple([z.number(), z.number()]),
             to: z.tuple([z.number(), z.number()]),
             dashed: z.boolean().default(false),
+            labelOffset: z.tuple([z.number(), z.number()]).optional(),
           })
           .strict(),
       ),
@@ -387,23 +388,27 @@ export function teachingBlocks(markdown: string, teaching: TeachingData) {
   }
   const after = markdown.slice(start).trim();
   if (after) blocks.push({ id: 'text-end', kind: 'markdown', markdown: after });
+  if (blocks.some((b) => b.markdown && /!\[[^\]]*\]\(figure:/.test(b.markdown)))
+    throw Error('A figure declaration must occupy its own line');
   return blocks;
 }
 
 // Match only aliases authored for this lesson. Cross-lesson links are explicit in the source.
 // Do not touch TeX, code, existing links, or figure declarations.
 export function linkTeachingTerms(markdown: string, lesson: string, teaching: TeachingData) {
+  if (/ref:[^)]*\[/.test(markdown)) throw Error('Malformed nested reference target');
   const seen = new Set<string>();
   const aliases = teaching.references
     .filter((r) => r.lesson === lesson && r.kind === 'term')
     .flatMap((r) => (r.linkAliases ?? r.aliases).map((alias) => ({ alias, id: r.id })))
     .sort((a, b) => b.alias.length - a.alias.length);
-  if (!aliases.length) return markdown;
   const escaped = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const pattern = new RegExp(
-    '(?<![a-zA-Z])(' + aliases.map((a) => escaped(a.alias)).join('|') + ')(?![a-zA-Z])',
-    'gi',
-  );
+  const pattern = aliases.length
+    ? new RegExp(
+        '(?<![a-zA-Z])(' + aliases.map((a) => escaped(a.alias)).join('|') + ')(?![a-zA-Z])',
+        'gi',
+      )
+    : null;
   const protectedParts =
     /(^#{1,6} .*$|\$\$[\s\S]*?\$\$|\$[^$\n]+\$|```[\s\S]*?```|`[^`]*`|!?\[[^\]]*\]\([^)]*\))/gm;
   return markdown
@@ -415,12 +420,14 @@ export function linkTeachingTerms(markdown: string, lesson: string, teaching: Te
             seen.add(id);
             return '[' + word + '](ref:' + id + (repeat ? '?repeat' : '') + ')';
           })
-        : part.replace(pattern, (word: string) => {
-            const entry = aliases.find((a) => a.alias.toLowerCase() === word.toLowerCase())!;
-            const repeated = seen.has(entry.id);
-            seen.add(entry.id);
-            return '[' + word + '](ref:' + entry.id + (repeated ? '?repeat' : '') + ')';
-          }),
+        : pattern
+          ? part.replace(pattern, (word: string) => {
+              const entry = aliases.find((a) => a.alias.toLowerCase() === word.toLowerCase())!;
+              const repeated = seen.has(entry.id);
+              seen.add(entry.id);
+              return '[' + word + '](ref:' + entry.id + (repeated ? '?repeat' : '') + ')';
+            })
+          : part,
     )
     .join('');
 }

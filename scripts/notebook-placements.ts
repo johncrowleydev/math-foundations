@@ -1,5 +1,5 @@
 // Each exercise follows the complete named teaching section, including its H3 subsections.
-// Audited against the adapted prompt, instructions, and answer across all 15 lessons.
+// Placements follow named teaching sections; both subjects have explicit records.
 // Use teaching headings rather than ordinal positions: inserted sections must not shift exercises.
 import { readFileSync } from 'node:fs';
 export const inlinePlacements: Record<string, Record<string, number[]>> = {

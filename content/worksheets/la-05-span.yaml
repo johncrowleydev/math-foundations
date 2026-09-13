@@ -12,39 +12,359 @@ sections:
         prompt: Describe the span of (2,-1) geometrically and decide whether (6,-3) and (1,1) belong to it.
         answerLines: 5
         answer: 'The span is the line through the origin in direction (2,-1). The first target is three times that vector and belongs. The second cannot be a scalar multiple: its first coordinate would require scalar one half, producing second coordinate negative one half rather than one.'
+      - id: 3
+        type: freeform
+        prompt: Determine whether (1, 2, 0) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.
+        answerLines: 5
+        answer: 'The coefficients are 1,2, producing third component 0. Changing only that component to 1 makes a target unreachable: every combination has third coordinate twice the first minus the second.'
+      - id: 4
+        type: freeform
+        prompt: Determine whether (2, -1, 5) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.
+        answerLines: 5
+        answer: 'The coefficients are 2,-1, producing third component 5. Changing only that component to 6 makes a target unreachable: every combination has third coordinate twice the first minus the second.'
+      - id: 5
+        type: freeform
+        prompt: Determine whether (-1, 3, -5) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.
+        answerLines: 5
+        answer: 'The coefficients are -1,3, producing third component -5. Changing only that component to -4 makes a target unreachable: every combination has third coordinate twice the first minus the second.'
+      - id: 6
+        type: freeform
+        prompt: Determine whether (0, 2, -2) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.
+        answerLines: 5
+        answer: 'The coefficients are 0,2, producing third component -2. Changing only that component to -1 makes a target unreachable: every combination has third coordinate twice the first minus the second.'
+      - id: 7
+        type: freeform
+        prompt: Determine whether (3, 0, 6) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.
+        answerLines: 5
+        answer: 'The coefficients are 3,0, producing third component 6. Changing only that component to 7 makes a target unreachable: every combination has third coordinate twice the first minus the second.'
+      - id: 8
+        type: freeform
+        prompt: Determine whether (-2, -1, -3) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.
+        answerLines: 5
+        answer: 'The coefficients are -2,-1, producing third component -3. Changing only that component to -2 makes a target unreachable: every combination has third coordinate twice the first minus the second.'
+      - id: 9
+        type: freeform
+        prompt: Let u=(1,0), v=(0,1), and w=u+1v. Prove that u,w and u,v have the same span, rather than only showing one inclusion.
+        answerLines: 5
+        answer: w is a combination of u,v, so the first span is contained in the second. Conversely v=(w-u)/1, since 1 is nonzero, so both u and v lie in the first span. Every combination can therefore be rebuilt in either collection.
+      - id: 10
+        type: freeform
+        prompt: Let u=(1,0), v=(0,1), and w=u+2v. Prove that u,w and u,v have the same span, rather than only showing one inclusion.
+        answerLines: 5
+        answer: w is a combination of u,v, so the first span is contained in the second. Conversely v=(w-u)/2, since 2 is nonzero, so both u and v lie in the first span. Every combination can therefore be rebuilt in either collection.
+      - id: 11
+        type: freeform
+        prompt: Let u=(1,0), v=(0,1), and w=u- 1v. Prove that u,w and u,v have the same span, rather than only showing one inclusion.
+        answerLines: 5
+        answer: w is a combination of u,v, so the first span is contained in the second. Conversely v=(w-u)/-1, since -1 is nonzero, so both u and v lie in the first span. Every combination can therefore be rebuilt in either collection.
+      - id: 12
+        type: freeform
+        prompt: Let u=(1,0), v=(0,1), and w=u+3v. Prove that u,w and u,v have the same span, rather than only showing one inclusion.
+        answerLines: 5
+        answer: w is a combination of u,v, so the first span is contained in the second. Conversely v=(w-u)/3, since 3 is nonzero, so both u and v lie in the first span. Every combination can therefore be rebuilt in either collection.
+      - id: 13
+        type: freeform
+        prompt: Let u=(1,0), v=(0,1), and w=u- 2v. Prove that u,w and u,v have the same span, rather than only showing one inclusion.
+        answerLines: 5
+        answer: w is a combination of u,v, so the first span is contained in the second. Conversely v=(w-u)/-2, since -2 is nonzero, so both u and v lie in the first span. Every combination can therefore be rebuilt in either collection.
+      - id: 14
+        type: freeform
+        prompt: Let u=(1,0), v=(0,1), and w=u+4v. Prove that u,w and u,v have the same span, rather than only showing one inclusion.
+        answerLines: 5
+        answer: w is a combination of u,v, so the first span is contained in the second. Conversely v=(w-u)/4, since 4 is nonzero, so both u and v lie in the first span. Every combination can therefore be rebuilt in either collection.
   - title: Independence means no redundant direction
     questions:
-      - id: 3
+      - id: 15
         type: freeform
         prompt: Determine whether u=(1,2), v=(2,4) are linearly independent. Give a zero combination that supports your conclusion.
         answerLines: 5
         answer: They are dependent because 2u-v=0 has coefficients 2 and -1, not both zero. The vector v supplies no direction beyond u.
-      - id: 4
+      - id: 16
         type: freeform
         prompt: Prove that (1,0,1) and (0,1,1) are linearly independent.
         answerLines: 5
         answer: An arbitrary combination with coefficients a and b is (a,b,a+b). If it equals zero, its first two coordinates force a=0 and b=0. Thus the only zero combination is the trivial one.
+      - id: 17
+        type: freeform
+        prompt: For u=(1,0,1), v=(0,1,1), and w=(1, 2, 3), exhibit a nontrivial zero combination and identify a redundant vector.
+        answerLines: 5
+        answer: w=1u+2v, hence coefficient list (-1, -2, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.
+      - id: 18
+        type: freeform
+        prompt: For u=(1,0,1), v=(0,1,1), and w=(2, -1, 1), exhibit a nontrivial zero combination and identify a redundant vector.
+        answerLines: 5
+        answer: w=2u- 1v, hence coefficient list (-2, 1, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.
+      - id: 19
+        type: freeform
+        prompt: For u=(1,0,1), v=(0,1,1), and w=(-1, 3, 2), exhibit a nontrivial zero combination and identify a redundant vector.
+        answerLines: 5
+        answer: w=-1u+3v, hence coefficient list (1, -3, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.
+      - id: 20
+        type: freeform
+        prompt: For u=(1,0,1), v=(0,1,1), and w=(0, 2, 2), exhibit a nontrivial zero combination and identify a redundant vector.
+        answerLines: 5
+        answer: w=0u+2v, hence coefficient list (0, -2, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.
+      - id: 21
+        type: freeform
+        prompt: For u=(1,0,1), v=(0,1,1), and w=(3, 0, 3), exhibit a nontrivial zero combination and identify a redundant vector.
+        answerLines: 5
+        answer: w=3u+0v, hence coefficient list (-3, 0, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.
+      - id: 22
+        type: freeform
+        prompt: For u=(1,0,1), v=(0,1,1), and w=(-2, -1, -3), exhibit a nontrivial zero combination and identify a redundant vector.
+        answerLines: 5
+        answer: w=-2u- 1v, hence coefficient list (2, 1, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.
+      - id: 23
+        type: freeform
+        prompt: Prove that (1,0,1) and (0,1,2) are independent, then describe precisely what they span.
+        answerLines: 5
+        answer: A combination with coefficients s,t is (s,t,1s+(2)t). If it is zero, the first two coordinates force s=t=0. The span consists exactly of vectors with third coordinate 1 times the first plus 2 times the second. It is a plane, not the whole three-dimensional space.
+      - id: 24
+        type: freeform
+        prompt: Prove that (1,0,2) and (0,1,-1) are independent, then describe precisely what they span.
+        answerLines: 5
+        answer: A combination with coefficients s,t is (s,t,2s+(-1)t). If it is zero, the first two coordinates force s=t=0. The span consists exactly of vectors with third coordinate 2 times the first plus -1 times the second. It is a plane, not the whole three-dimensional space.
+      - id: 25
+        type: freeform
+        prompt: Prove that (1,0,-1) and (0,1,3) are independent, then describe precisely what they span.
+        answerLines: 5
+        answer: A combination with coefficients s,t is (s,t,-1s+(3)t). If it is zero, the first two coordinates force s=t=0. The span consists exactly of vectors with third coordinate -1 times the first plus 3 times the second. It is a plane, not the whole three-dimensional space.
+      - id: 26
+        type: freeform
+        prompt: Prove that (1,0,0) and (0,1,2) are independent, then describe precisely what they span.
+        answerLines: 5
+        answer: A combination with coefficients s,t is (s,t,0s+(2)t). If it is zero, the first two coordinates force s=t=0. The span consists exactly of vectors with third coordinate 0 times the first plus 2 times the second. It is a plane, not the whole three-dimensional space.
+      - id: 27
+        type: freeform
+        prompt: Prove that (1,0,3) and (0,1,0) are independent, then describe precisely what they span.
+        answerLines: 5
+        answer: A combination with coefficients s,t is (s,t,3s+(0)t). If it is zero, the first two coordinates force s=t=0. The span consists exactly of vectors with third coordinate 3 times the first plus 0 times the second. It is a plane, not the whole three-dimensional space.
+      - id: 28
+        type: freeform
+        prompt: Prove that (1,0,-2) and (0,1,-1) are independent, then describe precisely what they span.
+        answerLines: 5
+        answer: A combination with coefficients s,t is (s,t,-2s+(-1)t). If it is zero, the first two coordinates force s=t=0. The span consists exactly of vectors with third coordinate -2 times the first plus -1 times the second. It is a plane, not the whole three-dimensional space.
   - title: Subspaces and the origin
     questions:
-      - id: 5
+      - id: 29
         type: freeform
         prompt: Is the set of plane vectors (x,y) satisfying x+y=0 a subspace? Check zero, addition, and scalar multiplication.
         answerLines: 5
         answer: Yes. Zero satisfies the equation. Adding two pairs whose coordinate sums are zero gives another with sum zero. Scaling such a pair multiplies its zero coordinate sum by the scalar, leaving zero.
-      - id: 6
+      - id: 30
         type: freeform
         prompt: Is the set of plane vectors with x at least zero a subspace? Give a decisive justification.
         answerLines: 5
         answer: No. It contains (1,0), but multiplying this vector by -1 gives (-1,0), which is outside the set. Closure under every real scalar fails.
+      - id: 31
+        type: freeform
+        prompt: Determine whether the vectors (x,y,z) satisfying x+1y+2z=0 form a subspace. Check all defining requirements.
+        answerLines: 5
+        answer: Zero satisfies the equation. Adding two satisfying equations gives the same zero constraint for the sum; scaling a satisfying equation by any real number gives zero again. Thus addition and scalar multiplication stay inside. The set is a subspace.
+      - id: 32
+        type: freeform
+        prompt: Determine whether the vectors (x,y,z) satisfying x+2y- 1z=0 form a subspace. Check all defining requirements.
+        answerLines: 5
+        answer: Zero satisfies the equation. Adding two satisfying equations gives the same zero constraint for the sum; scaling a satisfying equation by any real number gives zero again. Thus addition and scalar multiplication stay inside. The set is a subspace.
+      - id: 33
+        type: freeform
+        prompt: Determine whether the vectors (x,y,z) satisfying x- 1y+3z=0 form a subspace. Check all defining requirements.
+        answerLines: 5
+        answer: Zero satisfies the equation. Adding two satisfying equations gives the same zero constraint for the sum; scaling a satisfying equation by any real number gives zero again. Thus addition and scalar multiplication stay inside. The set is a subspace.
+      - id: 34
+        type: freeform
+        prompt: Determine whether the vectors (x,y,z) satisfying x+0y+2z=0 form a subspace. Check all defining requirements.
+        answerLines: 5
+        answer: Zero satisfies the equation. Adding two satisfying equations gives the same zero constraint for the sum; scaling a satisfying equation by any real number gives zero again. Thus addition and scalar multiplication stay inside. The set is a subspace.
+      - id: 35
+        type: freeform
+        prompt: Determine whether the vectors (x,y,z) satisfying x+3y+0z=0 form a subspace. Check all defining requirements.
+        answerLines: 5
+        answer: Zero satisfies the equation. Adding two satisfying equations gives the same zero constraint for the sum; scaling a satisfying equation by any real number gives zero again. Thus addition and scalar multiplication stay inside. The set is a subspace.
+      - id: 36
+        type: freeform
+        prompt: Determine whether the vectors (x,y,z) satisfying x- 2y- 1z=0 form a subspace. Check all defining requirements.
+        answerLines: 5
+        answer: Zero satisfies the equation. Adding two satisfying equations gives the same zero constraint for the sum; scaling a satisfying equation by any real number gives zero again. Thus addition and scalar multiplication stay inside. The set is a subspace.
+      - id: 37
+        type: freeform
+        prompt: Is the set of vectors (x,y,z) satisfying x+2y-z=1 a subspace of real three-dimensional space? Give a decisive reason.
+        answerLines: 5
+        answer: No. The zero vector makes the left side zero, not 1. Every subspace must contain zero. This nonzero offset cannot be ignored.
+      - id: 38
+        type: freeform
+        prompt: Is the set of vectors (x,y,z) satisfying x+2y-z=2 a subspace of real three-dimensional space? Give a decisive reason.
+        answerLines: 5
+        answer: No. The zero vector makes the left side zero, not 2. Every subspace must contain zero. This nonzero offset cannot be ignored.
+      - id: 39
+        type: freeform
+        prompt: Is the set of vectors (x,y,z) satisfying x+2y-z=-1 a subspace of real three-dimensional space? Give a decisive reason.
+        answerLines: 5
+        answer: No. The zero vector makes the left side zero, not -1. Every subspace must contain zero. This nonzero offset cannot be ignored.
+      - id: 40
+        type: freeform
+        prompt: Is the set of vectors (x,y,z) satisfying x+2y-z=3 a subspace of real three-dimensional space? Give a decisive reason.
+        answerLines: 5
+        answer: No. The zero vector makes the left side zero, not 3. Every subspace must contain zero. This nonzero offset cannot be ignored.
+      - id: 41
+        type: freeform
+        prompt: Is the set of vectors (x,y,z) satisfying x+2y-z=-2 a subspace of real three-dimensional space? Give a decisive reason.
+        answerLines: 5
+        answer: No. The zero vector makes the left side zero, not -2. Every subspace must contain zero. This nonzero offset cannot be ignored.
+      - id: 42
+        type: freeform
+        prompt: Is the set of vectors (x,y,z) satisfying x+2y-z=4 a subspace of real three-dimensional space? Give a decisive reason.
+        answerLines: 5
+        answer: No. The zero vector makes the left side zero, not 4. Every subspace must contain zero. This nonzero offset cannot be ignored.
+      - id: 43
+        type: freeform
+        prompt: Prove that the intersection of two subspaces of the same real coordinate space is a subspace.
+        answerLines: 5
+        answer: Zero belongs to both. Sums and scalar multiples of vectors belonging to both stay in both by each subspace’s closure properties. Therefore they stay in the intersection.
+      - id: 44
+        type: freeform
+        prompt: Show that the union of two subspaces need not be a subspace.
+        answerLines: 5
+        answer: The coordinate axes are each subspaces, but their union contains (1,0) and (0,1) without their sum (1,1). Closure under addition fails.
+      - id: 45
+        type: freeform
+        prompt: Is the set consisting only of zero a subspace? Check the operations.
+        answerLines: 5
+        answer: Yes. It contains zero, adding its only vector to itself gives zero, and scaling it by any real scalar gives zero.
+      - id: 46
+        type: freeform
+        prompt: Show that vectors with nonnegative coordinates need not form a subspace even though their sums remain nonnegative.
+        answerLines: 5
+        answer: The vector (1,0) is included, but its scalar multiple (-1,0) is not. Closure under all real scalars fails.
+      - id: 47
+        type: freeform
+        prompt: Prove the null space of a matrix is closed under addition.
+        answerLines: 5
+        answer: If Au=0 and Av=0, then A(u+v)=Au+Av=0, so the sum is in the null space.
+      - id: 48
+        type: freeform
+        prompt: Why is the column space a subspace without checking its entries one target at a time?
+        answerLines: 5
+        answer: It is the span of the columns. Zero coefficients produce zero; adding and scaling combinations produces more combinations.
+      - id: 49
+        type: freeform
+        prompt: Why do row operations preserve row space?
+        answerLines: 5
+        answer: New rows are combinations of old rows, giving one inclusion of spans. Invertibility of each row operation gives the reverse inclusion.
+      - id: 50
+        type: freeform
+        prompt: For a two-by-four matrix, in which coordinate spaces do its row space, column space, and null space lie?
+        answerLines: 5
+        answer: The row space and null space lie in real four-dimensional input space. The column space lies in real two-dimensional output space.
   - title: Reading independence from elimination
     questions:
-      - id: 7
+      - id: 51
         type: freeform
         prompt: A matrix has three columns and its homogeneous system has one free variable. Are the columns independent? Explain using a nontrivial homogeneous solution.
         answerLines: 5
         answer: They are dependent. Choosing a nonzero value for the free variable and solving for the pivot variables gives a nonzero coefficient vector sent to zero, a nontrivial zero combination of the columns.
-      - id: 8
+      - id: 52
         type: freeform
         prompt: Do the independent vectors (1,0,1) and (0,1,1) span all of three-dimensional space? Identify a condition on every vector they span and give an unreachable target.
         answerLines: 5
         answer: No. Every combination is (a,b,a+b), so the third coordinate must equal the first plus the second. The target (0,0,1) violates that condition. Independence does not imply coverage of the entire ambient space.
+      - id: 53
+        type: freeform
+        prompt: An 3-by-2 matrix has 2 pivot columns after elimination. Are its columns independent? How many free variables occur in the homogeneous coefficient system?
+        answerLines: 5
+        answer: There are 0 free variables. No variable is free, so the zero solution is the only homogeneous solution and the columns are independent.
+      - id: 54
+        type: freeform
+        prompt: An 2-by-3 matrix has 2 pivot columns after elimination. Are its columns independent? How many free variables occur in the homogeneous coefficient system?
+        answerLines: 5
+        answer: There are 1 free variables. A free variable can be chosen nonzero, giving a nontrivial zero combination; the columns are dependent.
+      - id: 55
+        type: freeform
+        prompt: An 4-by-3 matrix has 2 pivot columns after elimination. Are its columns independent? How many free variables occur in the homogeneous coefficient system?
+        answerLines: 5
+        answer: There are 1 free variables. A free variable can be chosen nonzero, giving a nontrivial zero combination; the columns are dependent.
+      - id: 56
+        type: freeform
+        prompt: An 3-by-3 matrix has 3 pivot columns after elimination. Are its columns independent? How many free variables occur in the homogeneous coefficient system?
+        answerLines: 5
+        answer: There are 0 free variables. No variable is free, so the zero solution is the only homogeneous solution and the columns are independent.
+      - id: 57
+        type: freeform
+        prompt: An 2-by-2 matrix has 1 pivot columns after elimination. Are its columns independent? How many free variables occur in the homogeneous coefficient system?
+        answerLines: 5
+        answer: There are 1 free variables. A free variable can be chosen nonzero, giving a nontrivial zero combination; the columns are dependent.
+      - id: 58
+        type: freeform
+        prompt: An 4-by-4 matrix has 0 pivot columns after elimination. Are its columns independent? How many free variables occur in the homogeneous coefficient system?
+        answerLines: 5
+        answer: There are 4 free variables. A free variable can be chosen nonzero, giving a nontrivial zero combination; the columns are dependent.
+      - id: 59
+        type: freeform
+        prompt: You place 3 vectors from real 2-dimensional space into matrix columns. State the size of the matrix, the number of components in a dependence coefficient list, and the number of components in the resulting combination.
+        answerLines: 5
+        answer: The matrix is 2 by 3. A coefficient list has 3 components, one per supplied vector. The combination has 2 components in the output space. A dependence equation asks a nonzero coefficient list to produce the 2-component zero vector.
+      - id: 60
+        type: freeform
+        prompt: You place 2 vectors from real 3-dimensional space into matrix columns. State the size of the matrix, the number of components in a dependence coefficient list, and the number of components in the resulting combination.
+        answerLines: 5
+        answer: The matrix is 3 by 2. A coefficient list has 2 components, one per supplied vector. The combination has 3 components in the output space. A dependence equation asks a nonzero coefficient list to produce the 3-component zero vector.
+      - id: 61
+        type: freeform
+        prompt: You place 3 vectors from real 4-dimensional space into matrix columns. State the size of the matrix, the number of components in a dependence coefficient list, and the number of components in the resulting combination.
+        answerLines: 5
+        answer: The matrix is 4 by 3. A coefficient list has 3 components, one per supplied vector. The combination has 4 components in the output space. A dependence equation asks a nonzero coefficient list to produce the 4-component zero vector.
+      - id: 62
+        type: freeform
+        prompt: You place 4 vectors from real 2-dimensional space into matrix columns. State the size of the matrix, the number of components in a dependence coefficient list, and the number of components in the resulting combination.
+        answerLines: 5
+        answer: The matrix is 2 by 4. A coefficient list has 4 components, one per supplied vector. The combination has 2 components in the output space. A dependence equation asks a nonzero coefficient list to produce the 2-component zero vector.
+      - id: 63
+        type: freeform
+        prompt: You place 3 vectors from real 1-dimensional space into matrix columns. State the size of the matrix, the number of components in a dependence coefficient list, and the number of components in the resulting combination.
+        answerLines: 5
+        answer: The matrix is 1 by 3. A coefficient list has 3 components, one per supplied vector. The combination has 1 components in the output space. A dependence equation asks a nonzero coefficient list to produce the 1-component zero vector.
+      - id: 64
+        type: freeform
+        prompt: You place 4 vectors from real 3-dimensional space into matrix columns. State the size of the matrix, the number of components in a dependence coefficient list, and the number of components in the resulting combination.
+        answerLines: 5
+        answer: The matrix is 3 by 4. A coefficient list has 4 components, one per supplied vector. The combination has 3 components in the output space. A dependence equation asks a nonzero coefficient list to produce the 3-component zero vector.
+      - id: 65
+        type: freeform
+        prompt: Give three plane vectors that are pairwise nonparallel but collectively dependent.
+        answerLines: 5
+        answer: Use (1,0),(0,1),(1,1). No pair is parallel, but the third is the sum of the first two.
+      - id: 66
+        type: freeform
+        prompt: Prove that a subset of an independent collection is independent.
+        answerLines: 5
+        answer: Any nontrivial zero combination in the subset would extend to the whole collection by giving omitted vectors coefficient zero, contradicting independence.
+      - id: 67
+        type: freeform
+        prompt: Prove that adding a vector outside the span of an independent list preserves independence.
+        answerLines: 5
+        answer: In a zero combination, a nonzero coefficient on the new vector would express it using the old list, contradicting the outside-span assumption. Its coefficient is therefore zero, and independence forces all the old coefficients to vanish.
+      - id: 68
+        type: freeform
+        prompt: Why must four vectors in real three-dimensional space be dependent?
+        answerLines: 5
+        answer: Their homogeneous coefficient system has four unknown coefficients but at most three pivots. It has a nontrivial solution, which is a dependence relation.
+      - id: 69
+        type: freeform
+        prompt: If a list is dependent, does deleting an arbitrary one of its vectors always preserve its span? Give a counterexample.
+        answerLines: 5
+        answer: No. From (1,0),(2,0),(0,1), deleting (0,1) loses the vertical direction. One must delete a vector expressible through the retained ones.
+      - id: 70
+        type: freeform
+        prompt: Explain why adding a vector already in the span does not enlarge that span.
+        answerLines: 5
+        answer: Substitute its existing combination whenever it occurs in a new combination. Every new output is still a combination of the old list; the reverse inclusion is immediate.
+      - id: 71
+        type: freeform
+        prompt: Can an independent list fail to span the intended space? Give a specific example with the space named.
+        answerLines: 5
+        answer: Yes. The single vector (1,0) is independent but does not span the real coordinate plane, since it cannot produce (0,1).
+      - id: 72
+        type: freeform
+        prompt: Explain why two different representations of one output imply dependence of the supplied vectors.
+        answerLines: 5
+        answer: Subtract the representations. Their different coefficient lists give a nonzero difference list producing zero, which is exactly dependence.

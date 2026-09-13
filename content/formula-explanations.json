@@ -173683,6 +173683,21 @@
     ]
   },
   {
+    "id": "formula-la-b1e73b5af394b7669b17",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:building-linear-combinations:text-end",
+    "ordinal": 5,
+    "latex": "3\\begin{pmatrix}1\\\\1\\end{pmatrix}+2\\begin{pmatrix}2\\\\-1\\end{pmatrix}=\\begin{pmatrix}7\\\\1\\end{pmatrix}",
+    "reading": "Three times the column (1,1) plus two times the column (2,-1) gives the target (7,1). This display records the coefficients just solved for; the two rows check the two coordinates.",
+    "bindings": [
+      {
+        "symbol": "3\\begin{pmatrix}1\\\\1\\end{pmatrix}+2\\begin{pmatrix}2\\\\-1\\end{pmatrix}=\\begin{pmatrix}7\\\\1\\end{pmatrix}",
+        "meaning": "Three times the column (1,1) plus two times the column (2,-1) gives the target (7,1). This display records the coefficients just solved for; the two rows check the two coordinates.",
+        "reference": "linear-algebra-vectors-3"
+      }
+    ]
+  },
+  {
     "id": "formula-la-44a867705f5cedfd6988",
     "lesson": "linear-algebra-dot-products",
     "source": "section:a-scalar-from-two-vectors:text-end",
@@ -173708,6 +173723,21 @@
       {
         "symbol": "\\|u\\|=\\sqrt{u\\cdot u}",
         "meaning": "The norm of the real vector u equals the square root of u dot itself. Double bars denote Euclidean length, and the square root is the nonnegative root.",
+        "reference": "linear-algebra-dot-products-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-1db2390df6497b302289",
+    "lesson": "linear-algebra-dot-products",
+    "source": "section:length-and-unit-vectors:text-end",
+    "ordinal": 1,
+    "latex": "\\frac{1}{3}\\begin{pmatrix}-2\\\\1\\\\2\\end{pmatrix}=\\begin{pmatrix}-2/3\\\\1/3\\\\2/3\\end{pmatrix}",
+    "reading": "Divide all three components of the nonzero vector by its length three to obtain the unit vector with components negative two thirds, one third, and two thirds.",
+    "bindings": [
+      {
+        "symbol": "\\frac{1}{3}\\begin{pmatrix}-2\\\\1\\\\2\\end{pmatrix}=\\begin{pmatrix}-2/3\\\\1/3\\\\2/3\\end{pmatrix}",
+        "meaning": "Divide all three components of the nonzero vector by its length three to obtain the unit vector with components negative two thirds, one third, and two thirds.",
         "reference": "linear-algebra-dot-products-2"
       }
     ]
@@ -173818,6 +173848,21 @@
     ]
   },
   {
+    "id": "formula-la-ae9c14b9a504dfc37632",
+    "lesson": "linear-algebra-matrices",
+    "source": "section:composition-determines-the-product:text-end",
+    "ordinal": 1,
+    "latex": "\\begin{pmatrix}1&2&0\\\\-1&3&4\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&1\\\\1&-1\\end{pmatrix}=\\begin{pmatrix}1&2\\\\3&-1\\end{pmatrix}",
+    "reading": "The two-by-three matrix A multiplies the three-by-two matrix B to produce the two-by-two product AB. Each result column is A applied to the corresponding column of B; B acts first on an input.",
+    "bindings": [
+      {
+        "symbol": "\\begin{pmatrix}1&2&0\\\\-1&3&4\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&1\\\\1&-1\\end{pmatrix}=\\begin{pmatrix}1&2\\\\3&-1\\end{pmatrix}",
+        "meaning": "The two-by-three matrix A multiplies the three-by-two matrix B to produce the two-by-two product AB. Each result column is A applied to the corresponding column of B; B acts first on an input.",
+        "reference": "linear-algebra-matrices-3"
+      }
+    ]
+  },
+  {
     "id": "formula-la-0f9ede4ceed80501a58a",
     "lesson": "linear-algebra-systems",
     "source": "section:constraints-and-augmented-matrices:text-end",
@@ -173859,6 +173904,21 @@
         "symbol": "Ax=b",
         "meaning": "The coefficient matrix A times the column of unknowns x equals the specified right-hand-side column b. Here x is a vector, unlike the scalar x in the preceding two-equation example.",
         "reference": "linear-algebra-systems-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-d5b531bd6d4748cb5740",
+    "lesson": "linear-algebra-systems",
+    "source": "section:elimination-preserves-solutions:text-end",
+    "ordinal": 0,
+    "latex": "\\begin{pmatrix}1&1&1&6\\\\0&1&-1&-1\\\\0&0&3&9\\end{pmatrix}",
+    "reading": "The echelon augmented matrix has variable columns x, y, z and a final right-hand-side column. Its bottom row reads three z equals nine; the middle reads y minus z equals negative one; the top reads x plus y plus z equals six.",
+    "bindings": [
+      {
+        "symbol": "\\begin{pmatrix}1&1&1&6\\\\0&1&-1&-1\\\\0&0&3&9\\end{pmatrix}",
+        "meaning": "The echelon augmented matrix has variable columns x, y, z and a final right-hand-side column. Its bottom row reads three z equals nine; the middle reads y minus z equals negative one; the top reads x plus y plus z equals six.",
+        "reference": "linear-algebra-systems-2"
       }
     ]
   },
@@ -173910,7 +173970,7 @@
   {
     "id": "formula-la-79b7eddb63e5e5f3cfdf",
     "lesson": "linear-algebra-span",
-    "source": "section:independence-means-no-redundant-direction:text-end",
+    "source": "section:independence-means-no-redundant-direction:text-before-la-pairwise-dependence",
     "ordinal": 0,
     "latex": "2u-v=0",
     "reading": "Twice u minus v is the zero vector, where u=(1,1) and v=(2,2). The nonzero coefficient list (2,-1) exhibits linear dependence.",
@@ -173919,6 +173979,21 @@
         "symbol": "2u-v=0",
         "meaning": "Twice u minus v is the zero vector, where u=(1,1) and v=(2,2). The nonzero coefficient list (2,-1) exhibits linear dependence.",
         "reference": "linear-algebra-span-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-54ea383926cf9c87cacd",
+    "lesson": "linear-algebra-span",
+    "source": "section:reading-independence-from-elimination:text-end",
+    "ordinal": 0,
+    "latex": "\\begin{pmatrix}1&0&2\\\\0&1&3\\\\1&1&5\\end{pmatrix}\\begin{pmatrix}-2\\\\-3\\\\1\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}",
+    "reading": "The three columns are u, v, w. The nonzero coefficient list negative two, negative three, one gives zero, so w equals two u plus three v and the three-column collection is dependent.",
+    "bindings": [
+      {
+        "symbol": "\\begin{pmatrix}1&0&2\\\\0&1&3\\\\1&1&5\\end{pmatrix}\\begin{pmatrix}-2\\\\-3\\\\1\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}",
+        "meaning": "The three columns are u, v, w. The nonzero coefficient list negative two, negative three, one gives zero, so w equals two u plus three v and the three-column collection is dependent.",
+        "reference": "linear-algebra-span-4"
       }
     ]
   },
@@ -173933,6 +174008,21 @@
       {
         "symbol": "\\operatorname{rank}(A)+\\operatorname{nullity}(A)=n",
         "meaning": "Rank of A plus nullity of A equals n, the number of input columns. Pivot variables account for rank and free variables account for nullity.",
+        "reference": "linear-algebra-bases-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-2938cdd1a97fdbd691cf",
+    "lesson": "linear-algebra-bases",
+    "source": "section:rank-and-nullity:text-end",
+    "ordinal": 1,
+    "latex": "\\begin{pmatrix}1&2&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}",
+    "reading": "The two-by-three matrix sends the three-component null direction negative two, one, zero to the two-component zero output. Its two pivot columns give rank two, while this one independent null direction gives nullity one.",
+    "bindings": [
+      {
+        "symbol": "\\begin{pmatrix}1&2&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}",
+        "meaning": "The two-by-three matrix sends the three-component null direction negative two, one, zero to the two-component zero output. Its two pivot columns give rank two, while this one independent null direction gives nullity one.",
         "reference": "linear-algebra-bases-2"
       }
     ]
@@ -174013,6 +174103,21 @@
     ]
   },
   {
+    "id": "formula-la-05b6493985a1d66fe69e",
+    "lesson": "linear-algebra-transformations",
+    "source": "section:coordinates-composition-and-affine-rules:text-end",
+    "ordinal": 1,
+    "latex": "\\begin{pmatrix}3/2&1/2\\\\1/2&3/2\\end{pmatrix}",
+    "reading": "The matrix represents doubling the first standard coordinate in the ordered input and output basis p=(1,1), q=(1,-1). Its first and second columns are the new-basis coordinates of the images of p and q, respectively.",
+    "bindings": [
+      {
+        "symbol": "\\begin{pmatrix}3/2&1/2\\\\1/2&3/2\\end{pmatrix}",
+        "meaning": "The matrix represents doubling the first standard coordinate in the ordered input and output basis p=(1,1), q=(1,-1). Its first and second columns are the new-basis coordinates of the images of p and q, respectively.",
+        "reference": "linear-algebra-transformations-4"
+      }
+    ]
+  },
+  {
     "id": "formula-la-ce521a8766734d1cf307",
     "lesson": "linear-algebra-projections",
     "source": "section:projecting-onto-a-line:text-before-la-projection",
@@ -174088,9 +174193,24 @@
     ]
   },
   {
+    "id": "formula-la-3b9dddd255cae596649f",
+    "lesson": "linear-algebra-projections",
+    "source": "section:least-squares-and-the-normal-equations:text-end",
+    "ordinal": 2,
+    "latex": "\\begin{pmatrix}3&3\\\\3&5\\end{pmatrix}\\begin{pmatrix}c\\\\d\\end{pmatrix}=\\begin{pmatrix}5\\\\6\\end{pmatrix}",
+    "reading": "These are the normal equations for fitting c plus d times t at t=0,1,2 to values 1,2,2. The scalar c is the intercept and d the slope; the two equations are three c plus three d equals five and three c plus five d equals six.",
+    "bindings": [
+      {
+        "symbol": "\\begin{pmatrix}3&3\\\\3&5\\end{pmatrix}\\begin{pmatrix}c\\\\d\\end{pmatrix}=\\begin{pmatrix}5\\\\6\\end{pmatrix}",
+        "meaning": "These are the normal equations for fitting c plus d times t at t=0,1,2 to values 1,2,2. The scalar c is the intercept and d the slope; the two equations are three c plus three d equals five and three c plus five d equals six.",
+        "reference": "linear-algebra-projections-3"
+      }
+    ]
+  },
+  {
     "id": "formula-la-15d474ce08c60c6b1ab5",
     "lesson": "linear-algebra-eigenvalues",
-    "source": "section:directions-that-are-only-scaled:text-end",
+    "source": "section:directions-that-are-only-scaled:text-before-la-eigen-directions",
     "ordinal": 0,
     "latex": "Av=\\lambda v",
     "reading": "A times nonzero vector v equals lambda times v. The square real matrix A only scales this eigenvector; lambda is its real eigenvalue in the present lesson.",
@@ -174128,6 +174248,21 @@
       {
         "symbol": "(2-\\lambda)(3-\\lambda)=0",
         "meaning": "Two minus lambda times three minus lambda equals zero. This determinant condition for the worked triangular matrix gives eigenvalue candidates lambda equal to two or three.",
+        "reference": "linear-algebra-eigenvalues-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-e6b9817d104725e6ccef",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "section:finding-eigenvalues-in-two-dimensions:text-end",
+    "ordinal": 2,
+    "latex": "\\det\\begin{pmatrix}2-\\lambda&1\\\\1&2-\\lambda\\end{pmatrix}=(1-\\lambda)(3-\\lambda)",
+    "reading": "The determinant of A minus lambda times identity is the characteristic polynomial for the symmetric matrix with diagonal entries two and off-diagonal entries one. Lambda is a candidate real eigenvalue. Setting this product to zero gives one and three.",
+    "bindings": [
+      {
+        "symbol": "\\det\\begin{pmatrix}2-\\lambda&1\\\\1&2-\\lambda\\end{pmatrix}=(1-\\lambda)(3-\\lambda)",
+        "meaning": "The determinant of A minus lambda times identity is the characteristic polynomial for the symmetric matrix with diagonal entries two and off-diagonal entries one. Lambda is a candidate real eigenvalue. Setting this product to zero gives one and three.",
         "reference": "linear-algebra-eigenvalues-2"
       }
     ]
@@ -174193,6 +174328,21 @@
     ]
   },
   {
+    "id": "formula-la-fa97a67c1bd25fd1759c",
+    "lesson": "linear-algebra-svd",
+    "source": "section:perpendicular-directions-and-scale-factors:text-end",
+    "ordinal": 1,
+    "latex": "\\sigma_i",
+    "reading": "Sigma sub i is the ith individual nonnegative singular value. The integer i labels one of min(m,n) diagonal positions for an m-by-n matrix; lowercase sigma is one scalar, while uppercase Sigma is the entire diagonal factor.",
+    "bindings": [
+      {
+        "symbol": "\\sigma_i",
+        "meaning": "Sigma sub i is the ith individual nonnegative singular value. The integer i labels one of min(m,n) diagonal positions for an m-by-n matrix; lowercase sigma is one scalar, while uppercase Sigma is the entire diagonal factor.",
+        "reference": "la-symbol-sigma-value"
+      }
+    ]
+  },
+  {
     "id": "formula-la-b5dcb92fecb070c54572",
     "lesson": "linear-algebra-svd",
     "source": "section:connection-to-rank-and-eigenvalues:text-end",
@@ -174203,6 +174353,21 @@
       {
         "symbol": "x^TA^TAx=\\|Ax\\|^2\\geq0",
         "meaning": "X transpose A transpose A x equals the squared Euclidean norm of Ax, which is nonnegative. Here A is a real matrix and x is any compatible real column. This establishes that A transpose A is positive semidefinite.",
+        "reference": "linear-algebra-svd-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-4e1fe82e24cb10122a2f",
+    "lesson": "linear-algebra-svd",
+    "source": "section:connection-to-rank-and-eigenvalues:text-end",
+    "ordinal": 1,
+    "latex": "A^TA=\\begin{pmatrix}9&0&0\\\\0&4&0\\\\0&0&0\\end{pmatrix},\\quad AA^T=\\begin{pmatrix}9&0\\\\0&4\\end{pmatrix}",
+    "reading": "For the two-by-three matrix A with nonzero diagonal entries three and two, A transpose A acts on three-dimensional input space and has an extra zero direction. A A transpose acts on two-dimensional output space. Their positive eigenvalues nine and four agree; their zero counts need not.",
+    "bindings": [
+      {
+        "symbol": "A^TA=\\begin{pmatrix}9&0&0\\\\0&4&0\\\\0&0&0\\end{pmatrix},\\quad AA^T=\\begin{pmatrix}9&0\\\\0&4\\end{pmatrix}",
+        "meaning": "For the two-by-three matrix A with nonzero diagonal entries three and two, A transpose A acts on three-dimensional input space and has an extra zero direction. A A transpose acts on two-dimensional output space. Their positive eigenvalues nine and four agree; their zero counts need not.",
         "reference": "linear-algebra-svd-3"
       }
     ]
@@ -174399,6 +174564,96 @@
         "symbol": "u_2",
         "meaning": "The labeled displacement runs from (0,0) to (0,1), with components (0,1). The dashed unit circle maps to the solid ellipse under the matrix with rows (0,2),(1,0). Its semiaxes have lengths two and one. The arrows identify output directions, not the path traveled by one point. Here u sub one is (1,0), and u sub two is (0,1), the unit output directions.",
         "reference": "linear-algebra-svd-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-0be7b0b9bc6d598a552d",
+    "lesson": "linear-algebra-span",
+    "source": "figure:la-pairwise-dependence:label:u",
+    "ordinal": 0,
+    "latex": "u",
+    "reading": "The label identifies the arrow from (0,0) to (1,0). The vectors u=(1,0), v=(0,1), and w=(1,1) are pairwise nonparallel, but w=u+v. The dashed diagonal is reachable from the other two, so the three-vector collection is dependent. Independence tests the whole collection, not just pairs.",
+    "bindings": [
+      {
+        "symbol": "u",
+        "meaning": "The label identifies the arrow from (0,0) to (1,0). The vectors u=(1,0), v=(0,1), and w=(1,1) are pairwise nonparallel, but w=u+v. The dashed diagonal is reachable from the other two, so the three-vector collection is dependent. Independence tests the whole collection, not just pairs.",
+        "reference": "linear-algebra-span-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-712b7c6d78c7fcc45859",
+    "lesson": "linear-algebra-span",
+    "source": "figure:la-pairwise-dependence:label:v",
+    "ordinal": 0,
+    "latex": "v",
+    "reading": "The label identifies the arrow from (0,0) to (0,1). The vectors u=(1,0), v=(0,1), and w=(1,1) are pairwise nonparallel, but w=u+v. The dashed diagonal is reachable from the other two, so the three-vector collection is dependent. Independence tests the whole collection, not just pairs.",
+    "bindings": [
+      {
+        "symbol": "v",
+        "meaning": "The label identifies the arrow from (0,0) to (0,1). The vectors u=(1,0), v=(0,1), and w=(1,1) are pairwise nonparallel, but w=u+v. The dashed diagonal is reachable from the other two, so the three-vector collection is dependent. Independence tests the whole collection, not just pairs.",
+        "reference": "linear-algebra-span-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-a7794761f5807f0499ad",
+    "lesson": "linear-algebra-span",
+    "source": "figure:la-pairwise-dependence:label:w",
+    "ordinal": 0,
+    "latex": "w",
+    "reading": "The label identifies the arrow from (0,0) to (1,1). The vectors u=(1,0), v=(0,1), and w=(1,1) are pairwise nonparallel, but w=u+v. The dashed diagonal is reachable from the other two, so the three-vector collection is dependent. Independence tests the whole collection, not just pairs.",
+    "bindings": [
+      {
+        "symbol": "w",
+        "meaning": "The label identifies the arrow from (0,0) to (1,1). The vectors u=(1,0), v=(0,1), and w=(1,1) are pairwise nonparallel, but w=u+v. The dashed diagonal is reachable from the other two, so the three-vector collection is dependent. Independence tests the whole collection, not just pairs.",
+        "reference": "linear-algebra-span-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-06e5fd4fc772fa1e5b2d",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "figure:la-eigen-directions:label:Au",
+    "ordinal": 0,
+    "latex": "Au",
+    "reading": "The label identifies the arrow from (0,0) to (3,3). For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
+    "bindings": [
+      {
+        "symbol": "Au",
+        "meaning": "The label identifies the arrow from (0,0) to (3,3). For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
+        "reference": "linear-algebra-eigenvalues-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-77eb11e7e0071663146e",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "figure:la-eigen-directions:label:u",
+    "ordinal": 0,
+    "latex": "u",
+    "reading": "The label identifies the arrow from (0,0) to (1,1). For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
+    "bindings": [
+      {
+        "symbol": "u",
+        "meaning": "The label identifies the arrow from (0,0) to (1,1). For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
+        "reference": "linear-algebra-eigenvalues-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-f4993e93c4f058d21c1d",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "figure:la-eigen-directions:label:v=Av",
+    "ordinal": 0,
+    "latex": "v=Av",
+    "reading": "The label identifies the arrow from (0,0) to (1,-1). For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
+    "bindings": [
+      {
+        "symbol": "v=Av",
+        "meaning": "The label identifies the arrow from (0,0) to (1,-1). For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
+        "reference": "linear-algebra-eigenvalues-1"
       }
     ]
   }

@@ -1,0 +1,822 @@
+[
+  {
+    "slug": "linear-algebra-vectors",
+    "title": "Vectors and Linear Combinations",
+    "sections": [
+      {
+        "title": "Coordinates and vectors",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "An arrow starts at (2,-1) and ends at (5,3). Give its displacement vector. Explain whether translating both endpoints by the same amount changes that vector, and whether moving only the starting point would do so.",
+            "answerLines": 5,
+            "answer": "The displacement is (3,4): subtract the starting coordinates from the ending coordinates. Translating both endpoints by the same amount preserves these differences. Moving only the starting point while fixing the endpoint changes the displacement."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "A data vector lists (hours studied, exercises attempted). Explain why (2,5) and (5,2) are different observations, and state the number of components.",
+            "answerLines": 5,
+            "answer": "There are two components. The first observation records two hours and five attempts; the second records five hours and two attempts. Coordinates are ordered and have assigned meanings, so exchanging them changes the observation."
+          }
+        ]
+      },
+      {
+        "title": "Adding and scaling",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "For u=(2,-3) and v=(-1,4), find u+v, u-v, and -2u. Explain the geometric effect of the negative scalar.",
+            "answerLines": 5,
+            "answer": "The sum is (1,1), the difference is (3,-7), and -2u=(-4,6). A negative factor reverses direction; its magnitude two doubles the length."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "A traveler moves (4,1), then (-2,3), then (0,-1). Find the total displacement. Does it determine the distance traveled? Explain.",
+            "answerLines": 5,
+            "answer": "The total displacement is (2,3). It gives the change from start to finish, not the distance along the three parts of the route. Different routes can have the same total displacement."
+          }
+        ]
+      },
+      {
+        "title": "Building linear combinations",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Let u=(1,2) and v=(2,-1). Find 3u-2v, showing the component arithmetic.",
+            "answerLines": 5,
+            "answer": "Three u is (3,6), and negative two v is (-4,2). Adding gives (-1,8). Both components must be scaled before the vectors are added."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "Can (3,1) be expressed as a linear combination of (1,1) and (2,2)? Justify your answer without testing only a few coefficients.",
+            "answerLines": 5,
+            "answer": "No. With arbitrary coefficients a and b, every combination has the form (a+2b,a+2b), so its two components agree. The target's components differ; no coefficient choice can produce it."
+          }
+        ]
+      },
+      {
+        "title": "Linear models and their limits",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "A product uses (3,2) units of wood and metal, in that order. A second product uses (1,4). Find the resources for two of the first and three of the second, and name one assumption of this calculation.",
+            "answerLines": 5,
+            "answer": "The resource vector is two times (3,2) plus three times (1,4), or (9,16). The model assumes additive resource use proportional to production, with no extra setup use or changing waste rate."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "The resource model for products u and v allows a mathematical combination -u+2v. Explain why this need not describe a feasible production plan.",
+            "answerLines": 5,
+            "answer": "Real linear combinations permit negative coefficients. A negative number of manufactured products is not ordinarily feasible. Physical feasibility imposes additional constraints, such as nonnegative whole-number quantities, that are not part of vector addition itself."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-dot-products",
+    "title": "Dot Products, Length, and Angle",
+    "sections": [
+      {
+        "title": "A scalar from two vectors",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "Compute the dot product of (1,-2,3) and (4,0,-1). Is the result a scalar or a vector?",
+            "answerLines": 5,
+            "answer": "The component products are 4, 0, and -3; their sum is 1. The result is a scalar, not a list of three products."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Let u=(1,2), v=(3,0), and w=(-1,4). Verify distributivity by calculating u dot (v+w) and (u dot v)+(u dot w) separately.",
+            "answerLines": 5,
+            "answer": "The sum v+w is (2,4), so u dot (v+w) is 2+8=10. The separate dot products are 3 and -1+8=7, which add to 10."
+          }
+        ]
+      },
+      {
+        "title": "Length and unit vectors",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "Find the norm of (6,8) and a unit vector in its direction. Explain why your normalized vector has length one.",
+            "answerLines": 5,
+            "answer": "The norm is the square root of 36+64, or 10. Dividing gives (3/5,4/5). The sum of its squared components is 9/25+16/25=1, so its norm is one."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "Find the distance between the points (1,-1) and (4,3). Explain why either subtraction order gives the same distance.",
+            "answerLines": 5,
+            "answer": "Their difference is (3,4), with norm 5. Reversing the order gives (-3,-4); squaring the components gives the same norm, so distance does not depend on the subtraction order."
+          }
+        ]
+      },
+      {
+        "title": "Angle and orthogonality",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Determine whether u=(2,3) and v=(3,-2) are orthogonal. Does their orthogonality imply they are unit vectors?",
+            "answerLines": 5,
+            "answer": "Their dot product is 6-6=0, so they are orthogonal. Each has norm the square root of 13, not one. Perpendicularity and unit length are separate conditions."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "Two nonzero real vectors have a negative dot product. Describe the possible angle between them, including the case of exactly opposite directions, and justify your answer using the angle identity.",
+            "answerLines": 5,
+            "answer": "Its angle is greater than 90 degrees and at most 180 degrees. The two positive norms make their product positive, so a negative dot product requires negative cosine. The angle is strictly obtuse unless the vectors point in exactly opposite directions, when it is 180 degrees."
+          }
+        ]
+      },
+      {
+        "title": "Weighted totals and similarity",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "Prices are (3,2,5) and quantities are (2,4,1), paired in the same order. Compute the total cost and explain the role of the dot product.",
+            "answerLines": 5,
+            "answer": "The cost is 3 times 2 plus 2 times 4 plus 5 times 1, or 19. The dot product pairs each price with its own quantity and adds those item costs."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "Compare u=(1,2) and v=(2,4). Find their cosine similarity and explain why a value of one does not make the vectors equal.",
+            "answerLines": 5,
+            "answer": "Their dot product is 10 and the product of their norms is also 10, so cosine similarity is one. They have the same direction, but v has twice u's length and different components."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-matrices",
+    "title": "Matrices and Matrix Multiplication",
+    "sections": [
+      {
+        "title": "Shape, entries, and transpose",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "A matrix has rows (1,2,3) and (4,5,6). State its shape, its entry in row two column three, and the rows of its transpose.",
+            "answerLines": 5,
+            "answer": "Its shape is two by three, and the specified entry is 6. Its transpose is three by two with rows (1,4), (2,5), and (3,6)."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Let A have rows (1,-1),(2,0) and B have rows (3,2),(0,4). Find the rows of 2A+B.",
+            "answerLines": 5,
+            "answer": "Twice A has rows (2,-2),(4,0). Adding corresponding entries of B gives rows (5,0),(4,4). Equal shapes make the addition defined."
+          }
+        ]
+      },
+      {
+        "title": "A matrix acting on a vector",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "Let A have rows (1,2),(3,-1). Compute Ax for x=(2,3) using both the row-dot-product and column-combination readings.",
+            "answerLines": 5,
+            "answer": "Row dot products give 2+6=8 and 6-3=3. The column reading gives two times (1,3) plus three times (2,-1), again (8,3)."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "A three by two matrix has columns (1,0,2) and (-1,3,1). Find its output on (0,1) and explain why no full row calculation is necessary.",
+            "answerLines": 5,
+            "answer": "The output is its second column, (-1,3,1). The input selects zero copies of the first column and one copy of the second."
+          }
+        ]
+      },
+      {
+        "title": "Composition determines the product",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Let A have rows (1,1),(0,1), and let B have rows (2,0),(0,1). Compute AB and BA and state which transformation acts first in ABx.",
+            "answerLines": 5,
+            "answer": "AB has rows (2,1),(0,1), while BA has rows (2,2),(0,1). In ABx, B acts first and A acts on B's output. The two products are unequal."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "A is two by three and B is three by four. State the shape of AB and explain whether BA is defined.",
+            "answerLines": 5,
+            "answer": "AB is two by four: the inner sizes three and three match. BA is not defined because B has four columns but A has two rows."
+          }
+        ]
+      },
+      {
+        "title": "Checking a matrix calculation",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "A has rows (1,0),(0,0), and B has rows (0,0),(0,1). Compute AB. What scalar-style inference does this example disprove?",
+            "answerLines": 5,
+            "answer": "AB is the two by two zero matrix even though neither factor is zero. A zero product of matrices does not imply that at least one factor is the zero matrix."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "A proposed matrix C has columns (2,3) and (5,7). What outputs should C give on (1,0) and (0,1), and how could these tests help check a claimed product?",
+            "answerLines": 5,
+            "answer": "The outputs should be (2,3) and (5,7), respectively. Apply the claimed component transformations in order to these standard inputs and compare the results with C's columns."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-systems",
+    "title": "Systems of Linear Equations",
+    "sections": [
+      {
+        "title": "Constraints and augmented matrices",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "Solve x+y=5 and x-y=1. Verify the same pair in both original equations.",
+            "answerLines": 5,
+            "answer": "Adding gives 2x=6, so x=3 and y=2. The checks are 3+2=5 and 3-2=1. A solution must use the same values in both equations."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Using variable order x then y, state the rows of the augmented matrix for 2x+3y=7 and -x+y=4.",
+            "answerLines": 5,
+            "answer": "The augmented rows are (2,3,7) and (-1,1,4). The first two columns contain coefficients, and the last column contains the right-hand-side constants."
+          }
+        ]
+      },
+      {
+        "title": "Elimination preserves solutions",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "Solve x+2y=4 and 3x+5y=11 by replacing the second equation with the second minus three times the first. Show the resulting equation.",
+            "answerLines": 5,
+            "answer": "The new second equation is -y=-1, so y=1. Substitution into the first gives x=2. The original equations check as 2+2=4 and 6+5=11."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "Why is multiplying a row by zero not an allowed solution-preserving elementary row operation? Give a one-equation example.",
+            "answerLines": 5,
+            "answer": "It cannot be undone and may erase a restriction. For example, replacing x=1 with 0=0 turns a one-value solution set into all real values of x."
+          }
+        ]
+      },
+      {
+        "title": "No solution or a family of solutions",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Classify the system x+y=2 and 2x+2y=5 as having no solution, one solution, or infinitely many. Justify using elimination.",
+            "answerLines": 5,
+            "answer": "There is no solution. Subtracting twice the first equation from the second yields 0=1, which is impossible."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "Describe every real solution of x+2y=4 and 2x+4y=8 using a parameter. Identify the free variable.",
+            "answerLines": 5,
+            "answer": "The second equation is twice the first. Let y=t for arbitrary real t; then x=4-2t. The free variable is y, and every such pair satisfies both equations."
+          }
+        ]
+      },
+      {
+        "title": "Homogeneous systems and verification",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "Find all solutions of x+y=0. Give one nontrivial solution and explain why the system must also have the zero solution.",
+            "answerLines": 5,
+            "answer": "Every solution is (-t,t) for real t. For instance (-1,1) is nontrivial. All homogeneous systems admit zero because multiplying zero inputs gives a zero output."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "A matrix A satisfies Ap=b and Az=0, with z nonzero. Prove that p+3z is another solution of Ax=b and is different from p.",
+            "answerLines": 5,
+            "answer": "Distributivity gives A(p+3z)=Ap+3Az=b+0=b. Since z is nonzero, 3z is nonzero over the real numbers, so p+3z differs from p."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-span",
+    "title": "Span and Linear Independence",
+    "sections": [
+      {
+        "title": "Span is everything you can build",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "Does (3,4) lie in the span of u=(1,0) and v=(1,2)? Find coefficients or prove none exist.",
+            "answerLines": 5,
+            "answer": "Yes. The second coordinate forces the coefficient of v to be 2. The first then forces the coefficient of u to be 1, so u+2v=(3,4)."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Describe the span of (2,-1) geometrically and decide whether (6,-3) and (1,1) belong to it.",
+            "answerLines": 5,
+            "answer": "The span is the line through the origin in direction (2,-1). The first target is three times that vector and belongs. The second cannot be a scalar multiple: its first coordinate would require scalar one half, producing second coordinate negative one half rather than one."
+          }
+        ]
+      },
+      {
+        "title": "Independence means no redundant direction",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "Determine whether u=(1,2), v=(2,4) are linearly independent. Give a zero combination that supports your conclusion.",
+            "answerLines": 5,
+            "answer": "They are dependent because 2u-v=0 has coefficients 2 and -1, not both zero. The vector v supplies no direction beyond u."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "Prove that (1,0,1) and (0,1,1) are linearly independent.",
+            "answerLines": 5,
+            "answer": "An arbitrary combination with coefficients a and b is (a,b,a+b). If it equals zero, its first two coordinates force a=0 and b=0. Thus the only zero combination is the trivial one."
+          }
+        ]
+      },
+      {
+        "title": "Subspaces and the origin",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Is the set of plane vectors (x,y) satisfying x+y=0 a subspace? Check zero, addition, and scalar multiplication.",
+            "answerLines": 5,
+            "answer": "Yes. Zero satisfies the equation. Adding two pairs whose coordinate sums are zero gives another with sum zero. Scaling such a pair multiplies its zero coordinate sum by the scalar, leaving zero."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "Is the set of plane vectors with x at least zero a subspace? Give a decisive justification.",
+            "answerLines": 5,
+            "answer": "No. It contains (1,0), but multiplying this vector by -1 gives (-1,0), which is outside the set. Closure under every real scalar fails."
+          }
+        ]
+      },
+      {
+        "title": "Reading independence from elimination",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "A matrix has three columns and its homogeneous system has one free variable. Are the columns independent? Explain using a nontrivial homogeneous solution.",
+            "answerLines": 5,
+            "answer": "They are dependent. Choosing a nonzero value for the free variable and solving for the pivot variables gives a nonzero coefficient vector sent to zero, a nontrivial zero combination of the columns."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "Do the independent vectors (1,0,1) and (0,1,1) span all of three-dimensional space? Identify a condition on every vector they span and give an unreachable target.",
+            "answerLines": 5,
+            "answer": "No. Every combination is (a,b,a+b), so the third coordinate must equal the first plus the second. The target (0,0,1) violates that condition. Independence does not imply coverage of the entire ambient space."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-bases",
+    "title": "Bases, Dimension, Rank, and Inverses",
+    "sections": [
+      {
+        "title": "A basis gives unique coordinates",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "For the ordered basis p=(1,1), q=(1,-1), find the coordinates of (5,1). Distinguish them from standard coordinates.",
+            "answerLines": 5,
+            "answer": "Solving a+b=5 and a-b=1 gives a=3, b=2. The coordinates in the ordered basis (p,q) are (3,2); standard coordinates remain (5,1)."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Give a basis and dimension for the subspace consisting of all multiples of (2,-1,3). Explain why one vector suffices.",
+            "answerLines": 5,
+            "answer": "The one-vector list containing (2,-1,3) is a basis. It spans by the definition of the subspace and is independent because that vector is nonzero. The dimension is one."
+          }
+        ]
+      },
+      {
+        "title": "Rank and nullity",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?",
+            "answerLines": 5,
+            "answer": "Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "A has columns (1,0), (0,1), and (1,1). Give a column-space basis using original columns and a null-space basis.",
+            "answerLines": 5,
+            "answer": "The first two columns form a column-space basis. Solving x1+x3=0 and x2+x3=0 gives all multiples of (-1,-1,1), so that one nonzero vector is a null-space basis."
+          }
+        ]
+      },
+      {
+        "title": "Invertible matrices",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.",
+            "answerLines": 5,
+            "answer": "The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "Is the matrix with rows (1,2),(2,4) invertible? Justify using both its determinant and its columns.",
+            "answerLines": 5,
+            "answer": "No. Its determinant is 4-4=0, and its second column is twice its first. Its rank is only one, so it loses an input direction and cannot be undone."
+          }
+        ]
+      },
+      {
+        "title": "Solving without unnecessary inverses",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "A three by two matrix has two independent columns. Can every three-component target have a solution? Can a target have two different solutions? Explain.",
+            "answerLines": 5,
+            "answer": "Its column space has dimension two, so it cannot reach every three-component target. Its null space is zero, so any reachable target has exactly one solution. Existence and uniqueness are different questions."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "Why should a column-space basis be selected from the original matrix's pivot-indexed columns, rather than directly from its row-reduced columns?",
+            "answerLines": 5,
+            "answer": "Row operations preserve which columns depend on which others, so pivot indices identify an independent spanning selection. They can change the actual output vectors and hence the column space, so the corresponding original columns are needed."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-transformations",
+    "title": "Linear Transformations",
+    "sections": [
+      {
+        "title": "What linearity requires",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "Prove that T(x,y)=(2x-y,3y) is linear by checking addition and scalar multiplication for arbitrary inputs.",
+            "answerLines": 5,
+            "answer": "For inputs (x,y),(a,b), T(x+a,y+b)=(2x+2a-y-b,3y+3b), equal to the sum of their outputs. For any real c, T(cx,cy)=(c(2x-y),c(3y))=cT(x,y). Both required properties hold."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "The rule T(x,y)=(x squared,y) takes zero to zero. Is it linear? Give a decisive argument.",
+            "answerLines": 5,
+            "answer": "No. T(2,0)=(4,0), while twice T(1,0)=(2,0), so scalar multiplication is not preserved. The zero test is necessary but not sufficient."
+          }
+        ]
+      },
+      {
+        "title": "Read the matrix from its columns",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "A linear transformation sends (1,0) to (2,1) and (0,1) to (-1,3). State its matrix rows and its output on (3,2).",
+            "answerLines": 5,
+            "answer": "The matrix has rows (2,-1),(1,3), placing the given outputs in columns. The output is three times (2,1) plus two times (-1,3), or (4,9)."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "Find the image of (3,-2) under a right-angle counterclockwise rotation, using its action on the two standard basis vectors.",
+            "answerLines": 5,
+            "answer": "The basis vectors go to (0,1) and (-1,0). Thus the input goes to three times (0,1) minus two times (-1,0), or (2,3)."
+          }
+        ]
+      },
+      {
+        "title": "Kernel, image, and information loss",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "For T(x,y,z)=(x,y), find the kernel and image. State whether T is injective and surjective when its codomain is the coordinate plane.",
+            "answerLines": 5,
+            "answer": "The kernel is all (0,0,t), with real t; the image is the whole plane. It is not injective because the third coordinate is lost, but it is surjective onto the stated codomain."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "A linear transformation has a nonzero vector v in its kernel. Prove that it cannot be injective.",
+            "answerLines": 5,
+            "answer": "Both v and the zero vector have zero output. These are distinct inputs since v is nonzero, contradicting injectivity."
+          }
+        ]
+      },
+      {
+        "title": "Coordinates, composition, and affine rules",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "Is T(x,y)=(x+2,y-1) linear or affine but not linear? Explain using its value at zero.",
+            "answerLines": 5,
+            "answer": "It is affine but not linear. Its value at (0,0) is (2,-1), whereas a linear transformation must preserve zero. It is the identity linear rule plus a fixed nonzero offset."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "A represents a linear map from a coordinate space to itself. P converts coordinates in one chosen new basis to standard coordinates; use that same basis for input and output. Explain the order of operations in the new-basis matrix P inverse times A times P.",
+            "answerLines": 5,
+            "answer": "First P converts the input to standard coordinates; then A applies the rule; finally P inverse converts the output back. Matrix products act right to left, giving that order without changing the underlying transformation."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-projections",
+    "title": "Orthogonality, Projections, and Least Squares",
+    "sections": [
+      {
+        "title": "Projecting onto a line",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "Project b=(4,2) onto the line spanned by u=(1,1). Find the residual and check its perpendicularity to u.",
+            "answerLines": 5,
+            "answer": "The coefficient is (4+2)/(1+1)=3. The projection is (3,3), and the residual is (1,-1). Its dot product with u is 1-1=0."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Why does replacing a nonzero line direction u by 2u leave the projection of a target onto that line unchanged?",
+            "answerLines": 5,
+            "answer": "In the projection formula the numerator doubles, the denominator quadruples, and the final direction vector doubles. These factors cancel. Geometrically, u and 2u span the same line."
+          }
+        ]
+      },
+      {
+        "title": "Orthonormal directions",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "Use Gram–Schmidt on u=(1,0) followed by v=(1,1). Give the resulting orthonormal vectors and show the subtraction step.",
+            "answerLines": 5,
+            "answer": "The first normalized direction is (1,0). The projection of v onto it is (1,0); subtracting leaves (0,1), already unit length. The resulting ordered list is (1,0),(0,1)."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "Q has the single column (1,0). Compute Q transpose times Q and Q times Q transpose. Explain why only one is an identity matrix of its size.",
+            "answerLines": 5,
+            "answer": "Q transpose Q is the one by one matrix containing 1, an identity. Q Q transpose has rows (1,0),(0,0), a projection onto the horizontal axis, not the two by two identity."
+          }
+        ]
+      },
+      {
+        "title": "Least squares and the normal equations",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Find the least-squares constant fit c to observations 2,4,9. Give the fitted output and the residual b minus the fitted output.",
+            "answerLines": 5,
+            "answer": "The normal equation is 3c=15, giving c=5. The fitted output is (5,5,5), and the residual is (-3,-1,4). Its components sum to zero, making it perpendicular to the column of ones."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "A has one column (1,2) and b=(1,1). Solve the scalar normal equation for the coefficient, then give the fitted output.",
+            "answerLines": 5,
+            "answer": "A transpose A is 5 and A transpose b is 3, so the coefficient is 3/5. The fitted output is (3/5,6/5). The residual (2/5,-1/5) has zero dot product with (1,2)."
+          }
+        ]
+      },
+      {
+        "title": "What a best fit does and does not say",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "A least-squares calculation returns a nonzero residual. Does that alone mean the calculation is wrong? Explain.",
+            "answerLines": 5,
+            "answer": "No. If the target lies outside the column space, no exact fit exists and the closest permitted output has a nonzero residual. The residual should be orthogonal to the column space at a least-squares solution."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "Why might two different coefficient vectors give the same unique closest output in a least-squares problem?",
+            "answerLines": 5,
+            "answer": "Dependent columns give a nonzero null-space direction. Adding such a direction to a coefficient vector does not change its output. The projection output can therefore be unique even when its coefficient representation is not."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-eigenvalues",
+    "title": "Eigenvalues and Eigenvectors",
+    "sections": [
+      {
+        "title": "Directions that are only scaled",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "A has diagonal entries 2 and -1, with zeros off the diagonal. Which of (1,0), (0,1), and (1,1) are eigenvectors? Give each corresponding eigenvalue.",
+            "answerLines": 5,
+            "answer": "The first vector is an eigenvector with eigenvalue 2, and the second with eigenvalue -1. The third goes to (2,-1), which is not a single scalar multiple of (1,1), so it is not an eigenvector."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Explain why the zero vector is excluded from the definition of eigenvector, while zero is allowed as an eigenvalue.",
+            "answerLines": 5,
+            "answer": "Zero input satisfies A0=lambda times 0 for every scalar, so it identifies no special direction. Eigenvalue zero is meaningful when a nonzero input is sent to zero, indicating a nontrivial kernel."
+          }
+        ]
+      },
+      {
+        "title": "Finding eigenvalues in two dimensions",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "Find the eigenvalues and a nonzero eigenvector for each for A with rows (4,1),(0,2). Show how the determinant condition and homogeneous equations are used.",
+            "answerLines": 5,
+            "answer": "The determinant of A-lambda I is (4-lambda)(2-lambda), giving eigenvalues 4 and 2. For 4, the second component is zero, so (1,0) works. For 2, 2x+y=0, so (1,-2) works. Direct multiplication confirms both."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "For A with rows (3,0),(0,3), describe the eigenspace for eigenvalue 3 and identify which members are eigenvectors.",
+            "answerLines": 5,
+            "answer": "A-3I is zero, so the eigenspace is the entire coordinate plane. Every nonzero vector in it is an eigenvector; zero belongs to the eigenspace but is not an eigenvector."
+          }
+        ]
+      },
+      {
+        "title": "An eigenbasis simplifies repeated action",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "Independent vectors u and v form a basis, with Au=2u and Av=3v. Find A applied three times to the input u-2v, expressed in that basis.",
+            "answerLines": 5,
+            "answer": "Each application scales the u coefficient by 2 and the v coefficient by 3. After three applications the result is 8u-54v. Linearity lets the two basis components be tracked separately."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "P has eigenvectors of A as its columns, and D has their eigenvalues in the matching order. Explain why AP=PD and why independence of the columns is needed for diagonalization.",
+            "answerLines": 5,
+            "answer": "Column by column, both products contain the corresponding eigenvector multiplied by its eigenvalue. Independence makes P invertible, so the relation can be rewritten as A=P D P inverse and used as a coordinate change."
+          }
+        ]
+      },
+      {
+        "title": "Limits and interpretation",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "A has rows (1,1),(0,1). Determine its eigenvectors' directions and explain why it is not diagonalizable over the real numbers.",
+            "answerLines": 5,
+            "answer": "Its only eigenvalue is one. Solving (A-I)v=0 forces the second component to zero, so all eigenvectors lie on the horizontal axis. There cannot be two independent eigenvectors to form a plane basis."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "Why does a right-angle rotation of the real coordinate plane have no real eigenvector?",
+            "answerLines": 5,
+            "answer": "It turns every nonzero vector to a perpendicular direction, which cannot be a real scalar multiple of the original nonzero vector. This claim concerns real eigenvectors, not the theory over complex numbers."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "linear-algebra-svd",
+    "title": "Singular Value Decomposition",
+    "sections": [
+      {
+        "title": "Perpendicular directions and scale factors",
+        "questions": [
+          {
+            "id": 1,
+            "type": "freeform",
+            "prompt": "For a three by two matrix, state the shapes of U, Sigma, and V in the full SVD. Explain which factor contains the length scale factors.",
+            "answerLines": 5,
+            "answer": "U is three by three, Sigma is three by two, and V is two by two. Sigma contains nonnegative singular values on its diagonal; the orthogonal U and V factors preserve length."
+          },
+          {
+            "id": 2,
+            "type": "freeform",
+            "prompt": "Does an orthogonal factor in an SVD have to be a rotation rather than a reflection? Explain what property is actually required.",
+            "answerLines": 5,
+            "answer": "No. Reflections are allowed. The required property is an orthonormal basis of columns, equivalently transpose times the matrix equals identity; this preserves lengths and angles."
+          }
+        ]
+      },
+      {
+        "title": "A small example you can verify",
+        "questions": [
+          {
+            "id": 3,
+            "type": "freeform",
+            "prompt": "Let U be identity, Sigma have diagonal entries 3 and 1, and V swap the two standard basis vectors. Compute the rows of U Sigma V transpose and its output on (2,4).",
+            "answerLines": 5,
+            "answer": "V transpose also swaps coordinates. The product has rows (0,3),(1,0), sending (2,4) to (12,2). The scale factors are 3 and 1 along the chosen right singular directions."
+          },
+          {
+            "id": 4,
+            "type": "freeform",
+            "prompt": "A diagonal matrix has diagonal entries 5 and 2. Describe the image of the unit circle and identify the greatest and least output lengths for unit inputs.",
+            "answerLines": 5,
+            "answer": "The image is an ellipse with horizontal semiaxis five and vertical semiaxis two. The greatest output length is five along the horizontal input direction, and the least is two along the vertical direction."
+          }
+        ]
+      },
+      {
+        "title": "Connection to rank and eigenvalues",
+        "questions": [
+          {
+            "id": 5,
+            "type": "freeform",
+            "prompt": "A real matrix has singular values 4,2,0 and has three columns. Find its rank and nullity, and give the eigenvalues of A transpose A.",
+            "answerLines": 5,
+            "answer": "Rank is two because two singular values are positive. Nullity is one by rank plus nullity equals three. The eigenvalues of A transpose A are 16,4,0, the squares of the singular values."
+          },
+          {
+            "id": 6,
+            "type": "freeform",
+            "prompt": "Why is it invalid to construct a left singular vector by dividing Av by sigma when sigma is zero? What does Av equal in that case?",
+            "answerLines": 5,
+            "answer": "Division by zero is undefined. A zero singular value corresponds to a right direction in the null space, so Av is zero. The remaining output basis directions must be completed separately."
+          }
+        ]
+      },
+      {
+        "title": "Approximation and responsible interpretation",
+        "questions": [
+          {
+            "id": 7,
+            "type": "freeform",
+            "prompt": "A diagonal matrix has entries 6,3,1. Form a rank-one truncated SVD approximation and give its Frobenius error exactly.",
+            "answerLines": 5,
+            "answer": "Keep only the entry six, giving diagonal entries (6,0,0). The discarded squared singular values sum to 9+1=10, so the Frobenius error is the square root of ten."
+          },
+          {
+            "id": 8,
+            "type": "freeform",
+            "prompt": "Does discarding a small singular value prove the discarded information is scientifically unimportant? Explain the distinction between the approximation theorem and interpretation.",
+            "answerLines": 5,
+            "answer": "No. The theorem concerns an error norm and a rank limit, not scientific importance. A small component can carry meaningful information, and rescaling data can change singular values. Interpretation requires knowledge of the data and purpose."
+          }
+        ]
+      }
+    ]
+  }
+]

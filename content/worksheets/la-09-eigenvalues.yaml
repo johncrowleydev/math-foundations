@@ -12,39 +12,309 @@ sections:
         prompt: Explain why the zero vector is excluded from the definition of eigenvector, while zero is allowed as an eigenvalue.
         answerLines: 5
         answer: Zero input satisfies A0=lambda times 0 for every scalar, so it identifies no special direction. Eigenvalue zero is meaningful when a nonzero input is sent to zero, indicating a nontrivial kernel.
+      - id: 3
+        type: freeform
+        prompt: A is diagonal with entries 2,3. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.
+        answerLines: 5
+        answer: The standard vectors have eigenvalues 2 and 3. The vector (1,1) goes to (2,3); the two scale factors differ, so it is not an eigenvector.
+      - id: 4
+        type: freeform
+        prompt: A is diagonal with entries -1,2. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.
+        answerLines: 5
+        answer: The standard vectors have eigenvalues -1 and 2. The vector (1,1) goes to (-1,2); the two scale factors differ, so it is not an eigenvector.
+      - id: 5
+        type: freeform
+        prompt: A is diagonal with entries 0,4. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.
+        answerLines: 5
+        answer: The standard vectors have eigenvalues 0 and 4. The vector (1,1) goes to (0,4); the two scale factors differ, so it is not an eigenvector.
+      - id: 6
+        type: freeform
+        prompt: A is diagonal with entries 3,3. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.
+        answerLines: 5
+        answer: The standard vectors have eigenvalues 3 and 3. The vector (1,1) goes to (3,3); it is an eigenvector with eigenvalue 3.
+      - id: 7
+        type: freeform
+        prompt: A is diagonal with entries -2,-2. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.
+        answerLines: 5
+        answer: The standard vectors have eigenvalues -2 and -2. The vector (1,1) goes to (-2,-2); it is an eigenvector with eigenvalue -2.
+      - id: 8
+        type: freeform
+        prompt: A is diagonal with entries 1,-1. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.
+        answerLines: 5
+        answer: The standard vectors have eigenvalues 1 and -1. The vector (1,1) goes to (1,-1); the two scale factors differ, so it is not an eigenvector.
   - title: Finding eigenvalues in two dimensions
     questions:
-      - id: 3
+      - id: 9
         type: freeform
         prompt: Find the eigenvalues and a nonzero eigenvector for each for A with rows (4,1),(0,2). Show how the determinant condition and homogeneous equations are used.
         answerLines: 5
         answer: The determinant of A-lambda I is (4-lambda)(2-lambda), giving eigenvalues 4 and 2. For 4, the second component is zero, so (1,0) works. For 2, 2x+y=0, so (1,-2) works. Direct multiplication confirms both.
-      - id: 4
+      - id: 10
         type: freeform
         prompt: For A with rows (3,0),(0,3), describe the eigenspace for eigenvalue 3 and identify which members are eigenvectors.
         answerLines: 5
         answer: A-3I is zero, so the eigenspace is the entire coordinate plane. Every nonzero vector in it is an eigenvector; zero belongs to the eigenspace but is not an eigenvector.
+      - id: 11
+        type: freeform
+        prompt: Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (2, 1), (0, 3). Use the determinant equation and verify the vectors in A.
+        answerLines: 5
+        answer: The characteristic polynomial is (2-lambda)(3-lambda), giving distinct roots 2,3. For 2, use (1,0). For 3, use (1, 1) because (2-3)x+1y=0. Each eigenspace is the line spanned by its listed vector.
+      - id: 12
+        type: freeform
+        prompt: Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (4, 1), (0, 2). Use the determinant equation and verify the vectors in A.
+        answerLines: 5
+        answer: The characteristic polynomial is (4-lambda)(2-lambda), giving distinct roots 4,2. For 4, use (1,0). For 2, use (1, -2) because (4-2)x+1y=0. Each eigenspace is the line spanned by its listed vector.
+      - id: 13
+        type: freeform
+        prompt: Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (-1, 2), (0, 2). Use the determinant equation and verify the vectors in A.
+        answerLines: 5
+        answer: The characteristic polynomial is (-1-lambda)(2-lambda), giving distinct roots -1,2. For -1, use (1,0). For 2, use (2, 3) because (-1-2)x+2y=0. Each eigenspace is the line spanned by its listed vector.
+      - id: 14
+        type: freeform
+        prompt: Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (0, -1), (0, 3). Use the determinant equation and verify the vectors in A.
+        answerLines: 5
+        answer: The characteristic polynomial is (0-lambda)(3-lambda), giving distinct roots 0,3. For 0, use (1,0). For 3, use (-1, 3) because (0-3)x- 1y=0. Each eigenspace is the line spanned by its listed vector.
+      - id: 15
+        type: freeform
+        prompt: Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (3, 1), (0, -2). Use the determinant equation and verify the vectors in A.
+        answerLines: 5
+        answer: The characteristic polynomial is (3-lambda)(-2-lambda), giving distinct roots 3,-2. For 3, use (1,0). For -2, use (1, -5) because (3--2)x+1y=0. Each eigenspace is the line spanned by its listed vector.
+      - id: 16
+        type: freeform
+        prompt: Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (1, -2), (0, 4). Use the determinant equation and verify the vectors in A.
+        answerLines: 5
+        answer: The characteristic polynomial is (1-lambda)(4-lambda), giving distinct roots 1,4. For 1, use (1,0). For 4, use (-2, 3) because (1-4)x- 2y=0. Each eigenspace is the line spanned by its listed vector.
+      - id: 17
+        type: freeform
+        prompt: Find the eigenvalues and eigenspaces for A with rows (2, 1), (1, 2). Show why the two displayed directions can be chosen perpendicular.
+        answerLines: 5
+        answer: The vectors (1,1) and (1,-1) have respective eigenvalues 3 and 1. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.
+      - id: 18
+        type: freeform
+        prompt: Find the eigenvalues and eigenspaces for A with rows (3, 2), (2, 3). Show why the two displayed directions can be chosen perpendicular.
+        answerLines: 5
+        answer: The vectors (1,1) and (1,-1) have respective eigenvalues 5 and 1. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.
+      - id: 19
+        type: freeform
+        prompt: Find the eigenvalues and eigenspaces for A with rows (1, -2), (-2, 1). Show why the two displayed directions can be chosen perpendicular.
+        answerLines: 5
+        answer: The vectors (1,1) and (1,-1) have respective eigenvalues -1 and 3. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.
+      - id: 20
+        type: freeform
+        prompt: Find the eigenvalues and eigenspaces for A with rows (0, 3), (3, 0). Show why the two displayed directions can be chosen perpendicular.
+        answerLines: 5
+        answer: The vectors (1,1) and (1,-1) have respective eigenvalues 3 and -3. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.
+      - id: 21
+        type: freeform
+        prompt: Find the eigenvalues and eigenspaces for A with rows (-1, 1), (1, -1). Show why the two displayed directions can be chosen perpendicular.
+        answerLines: 5
+        answer: The vectors (1,1) and (1,-1) have respective eigenvalues 0 and -2. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.
+      - id: 22
+        type: freeform
+        prompt: Find the eigenvalues and eigenspaces for A with rows (4, -1), (-1, 4). Show why the two displayed directions can be chosen perpendicular.
+        answerLines: 5
+        answer: The vectors (1,1) and (1,-1) have respective eigenvalues 3 and 5. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.
+      - id: 23
+        type: freeform
+        prompt: For A with rows (1,0),(0,1), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.
+        answerLines: 5
+        answer: The characteristic polynomial is (1-lambda) squared, so algebraic multiplicity is two. A is scalar identity, so every vector lies in the eigenspace, its dimension is two, and a basis of eigenvectors exists.
+      - id: 24
+        type: freeform
+        prompt: For A with rows (1,2),(0,1), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.
+        answerLines: 5
+        answer: The characteristic polynomial is (1-lambda) squared, so algebraic multiplicity is two. The equation 2y=0 forces y=0. The eigenspace is the horizontal line with dimension one, so A is not diagonalizable.
+      - id: 25
+        type: freeform
+        prompt: For A with rows (2,0),(0,2), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.
+        answerLines: 5
+        answer: The characteristic polynomial is (2-lambda) squared, so algebraic multiplicity is two. A is scalar identity, so every vector lies in the eigenspace, its dimension is two, and a basis of eigenvectors exists.
+      - id: 26
+        type: freeform
+        prompt: For A with rows (2,-1),(0,2), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.
+        answerLines: 5
+        answer: The characteristic polynomial is (2-lambda) squared, so algebraic multiplicity is two. The equation -1y=0 forces y=0. The eigenspace is the horizontal line with dimension one, so A is not diagonalizable.
+      - id: 27
+        type: freeform
+        prompt: For A with rows (0,3),(0,0), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.
+        answerLines: 5
+        answer: The characteristic polynomial is (0-lambda) squared, so algebraic multiplicity is two. The equation 3y=0 forces y=0. The eigenspace is the horizontal line with dimension one, so A is not diagonalizable.
+      - id: 28
+        type: freeform
+        prompt: For A with rows (-2,0),(0,-2), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.
+        answerLines: 5
+        answer: The characteristic polynomial is (-2-lambda) squared, so algebraic multiplicity is two. A is scalar identity, so every vector lies in the eigenspace, its dimension is two, and a basis of eigenvectors exists.
   - title: An eigenbasis simplifies repeated action
     questions:
-      - id: 5
+      - id: 29
         type: freeform
         prompt: Independent vectors u and v form a basis, with Au=2u and Av=3v. Find A applied three times to the input u-2v, expressed in that basis.
         answerLines: 5
         answer: Each application scales the u coefficient by 2 and the v coefficient by 3. After three applications the result is 8u-54v. Linearity lets the two basis components be tracked separately.
-      - id: 6
+      - id: 30
         type: freeform
         prompt: P has eigenvectors of A as its columns, and D has their eigenvalues in the matching order. Explain why AP=PD and why independence of the columns is needed for diagonalization.
         answerLines: 5
         answer: Column by column, both products contain the corresponding eigenvector multiplied by its eigenvalue. Independence makes P invertible, so the relation can be rewritten as A=P D P inverse and used as a coordinate change.
+      - id: 31
+        type: freeform
+        prompt: Independent vectors u,v form a basis with Au=2u and Av=3v. Find A applied 2 times to 1u+(1)v and explain the coordinate calculation.
+        answerLines: 5
+        answer: After 2 applications the coefficients are 1 times (2) to power 2 and 1 times (3) to power 2. The output is 4u+(9)v. This uses the eigenvector basis, not an assumption about standard coordinates.
+      - id: 32
+        type: freeform
+        prompt: Independent vectors u,v form a basis with Au=2u and Av=-1v. Find A applied 3 times to 3u+(-2)v and explain the coordinate calculation.
+        answerLines: 5
+        answer: After 3 applications the coefficients are 3 times (2) to power 3 and -2 times (-1) to power 3. The output is 24u+(2)v. This uses the eigenvector basis, not an assumption about standard coordinates.
+      - id: 33
+        type: freeform
+        prompt: Independent vectors u,v form a basis with Au=1u and Av=0v. Find A applied 4 times to 2u+(3)v and explain the coordinate calculation.
+        answerLines: 5
+        answer: After 4 applications the coefficients are 2 times (1) to power 4 and 3 times (0) to power 4. The output is 2u+(0)v. This uses the eigenvector basis, not an assumption about standard coordinates.
+      - id: 34
+        type: freeform
+        prompt: Independent vectors u,v form a basis with Au=-1u and Av=-2v. Find A applied 2 times to 1u+(-1)v and explain the coordinate calculation.
+        answerLines: 5
+        answer: After 2 applications the coefficients are 1 times (-1) to power 2 and -1 times (-2) to power 2. The output is 1u+(-4)v. This uses the eigenvector basis, not an assumption about standard coordinates.
+      - id: 35
+        type: freeform
+        prompt: Independent vectors u,v form a basis with Au=3u and Av=1v. Find A applied 3 times to -1u+(2)v and explain the coordinate calculation.
+        answerLines: 5
+        answer: After 3 applications the coefficients are -1 times (3) to power 3 and 2 times (1) to power 3. The output is -27u+(2)v. This uses the eigenvector basis, not an assumption about standard coordinates.
+      - id: 36
+        type: freeform
+        prompt: Independent vectors u,v form a basis with Au=2u and Av=1v. Find A applied 4 times to 0u+(5)v and explain the coordinate calculation.
+        answerLines: 5
+        answer: After 4 applications the coefficients are 0 times (2) to power 4 and 5 times (1) to power 4. The output is 0u+(5)v. This uses the eigenvector basis, not an assumption about standard coordinates.
+      - id: 37
+        type: freeform
+        prompt: P has columns (1,1),(1,-1), and D is diagonal with entries 2,3. Compute A=P D P inverse and verify both eigenvector equations.
+        answerLines: 5
+        answer: P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (2.5, -0.5), (-0.5, 2.5). Its outputs on P's columns are 2(1,1) and 3(1,-1), matching the diagonal entries in order.
+      - id: 38
+        type: freeform
+        prompt: P has columns (1,1),(1,-1), and D is diagonal with entries 3,-1. Compute A=P D P inverse and verify both eigenvector equations.
+        answerLines: 5
+        answer: P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, 2), (2, 1). Its outputs on P's columns are 3(1,1) and -1(1,-1), matching the diagonal entries in order.
+      - id: 39
+        type: freeform
+        prompt: P has columns (1,1),(1,-1), and D is diagonal with entries 0,2. Compute A=P D P inverse and verify both eigenvector equations.
+        answerLines: 5
+        answer: P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, -1), (-1, 1). Its outputs on P's columns are 0(1,1) and 2(1,-1), matching the diagonal entries in order.
+      - id: 40
+        type: freeform
+        prompt: P has columns (1,1),(1,-1), and D is diagonal with entries -2,4. Compute A=P D P inverse and verify both eigenvector equations.
+        answerLines: 5
+        answer: P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, -3), (-3, 1). Its outputs on P's columns are -2(1,1) and 4(1,-1), matching the diagonal entries in order.
+      - id: 41
+        type: freeform
+        prompt: P has columns (1,1),(1,-1), and D is diagonal with entries 1,1. Compute A=P D P inverse and verify both eigenvector equations.
+        answerLines: 5
+        answer: P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, 0), (0, 1). Its outputs on P's columns are 1(1,1) and 1(1,-1), matching the diagonal entries in order.
+      - id: 42
+        type: freeform
+        prompt: P has columns (1,1),(1,-1), and D is diagonal with entries -1,-1. Compute A=P D P inverse and verify both eigenvector equations.
+        answerLines: 5
+        answer: P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (-1, 0), (0, -1). Its outputs on P's columns are -1(1,1) and -1(1,-1), matching the diagonal entries in order.
   - title: Limits and interpretation
     questions:
-      - id: 7
+      - id: 43
         type: freeform
         prompt: A has rows (1,1),(0,1). Determine its eigenvectors' directions and explain why it is not diagonalizable over the real numbers.
         answerLines: 5
         answer: Its only eigenvalue is one. Solving (A-I)v=0 forces the second component to zero, so all eigenvectors lie on the horizontal axis. There cannot be two independent eigenvectors to form a plane basis.
-      - id: 8
+      - id: 44
         type: freeform
         prompt: Why does a right-angle rotation of the real coordinate plane have no real eigenvector?
         answerLines: 5
         answer: It turns every nonzero vector to a perpendicular direction, which cannot be a real scalar multiple of the original nonzero vector. This claim concerns real eigenvectors, not the theory over complex numbers.
+      - id: 45
+        type: freeform
+        prompt: An eigenbasis u,v has scale factors 2,0.5. The initial input is 1u+(1)v. Describe each component after k positive integer steps and whether the largest-magnitude scale factor must dominate this particular input.
+        answerLines: 5
+        answer: The components are 1(2)^k u and 1(0.5)^k v. A zero initial coefficient stays zero, regardless of its eigenvalue. Nonzero components grow if the magnitude exceeds one, decay if below one, and remain constant in magnitude if it equals one; negative factors alternate sign. Dominance cannot be inferred from a direction absent from the initial input.
+      - id: 46
+        type: freeform
+        prompt: An eigenbasis u,v has scale factors 3,0.5. The initial input is 0u+(1)v. Describe each component after k positive integer steps and whether the largest-magnitude scale factor must dominate this particular input.
+        answerLines: 5
+        answer: The components are 0(3)^k u and 1(0.5)^k v. A zero initial coefficient stays zero, regardless of its eigenvalue. Nonzero components grow if the magnitude exceeds one, decay if below one, and remain constant in magnitude if it equals one; negative factors alternate sign. Dominance cannot be inferred from a direction absent from the initial input.
+      - id: 47
+        type: freeform
+        prompt: An eigenbasis u,v has scale factors 1,-1. The initial input is 2u+(3)v. Describe each component after k positive integer steps and whether the largest-magnitude scale factor must dominate this particular input.
+        answerLines: 5
+        answer: The components are 2(1)^k u and 3(-1)^k v. A zero initial coefficient stays zero, regardless of its eigenvalue. Nonzero components grow if the magnitude exceeds one, decay if below one, and remain constant in magnitude if it equals one; negative factors alternate sign. Dominance cannot be inferred from a direction absent from the initial input.
+      - id: 48
+        type: freeform
+        prompt: An eigenbasis u,v has scale factors -2,0. The initial input is 1u+(4)v. Describe each component after k positive integer steps and whether the largest-magnitude scale factor must dominate this particular input.
+        answerLines: 5
+        answer: The components are 1(-2)^k u and 4(0)^k v. A zero initial coefficient stays zero, regardless of its eigenvalue. Nonzero components grow if the magnitude exceeds one, decay if below one, and remain constant in magnitude if it equals one; negative factors alternate sign. Dominance cannot be inferred from a direction absent from the initial input.
+      - id: 49
+        type: freeform
+        prompt: An eigenbasis u,v has scale factors 0.5,0.25. The initial input is 1u+(1)v. Describe each component after k positive integer steps and whether the largest-magnitude scale factor must dominate this particular input.
+        answerLines: 5
+        answer: The components are 1(0.5)^k u and 1(0.25)^k v. A zero initial coefficient stays zero, regardless of its eigenvalue. Nonzero components grow if the magnitude exceeds one, decay if below one, and remain constant in magnitude if it equals one; negative factors alternate sign. Dominance cannot be inferred from a direction absent from the initial input.
+      - id: 50
+        type: freeform
+        prompt: An eigenbasis u,v has scale factors 2,1. The initial input is 0u+(2)v. Describe each component after k positive integer steps and whether the largest-magnitude scale factor must dominate this particular input.
+        answerLines: 5
+        answer: The components are 0(2)^k u and 2(1)^k v. A zero initial coefficient stays zero, regardless of its eigenvalue. Nonzero components grow if the magnitude exceeds one, decay if below one, and remain constant in magnitude if it equals one; negative factors alternate sign. Dominance cannot be inferred from a direction absent from the initial input.
+      - id: 51
+        type: freeform
+        prompt: Why can zero be an eigenvalue but not an eigenvector?
+        answerLines: 5
+        answer: A nonzero vector sent to zero supplies meaningful evidence of a kernel direction and eigenvalue zero. The zero vector satisfies every scalar eigenvector equation and identifies no distinguished direction.
+      - id: 52
+        type: freeform
+        prompt: Prove that nonzero scalar multiples of an eigenvector have the same eigenvalue.
+        answerLines: 5
+        answer: If Av=lambda v and c is nonzero, then A(cv)=cAv=lambda(cv). The new vector remains nonzero.
+      - id: 53
+        type: freeform
+        prompt: Prove two eigenvectors with distinct eigenvalues cannot be scalar multiples.
+        answerLines: 5
+        answer: If v=cu with c nonzero, applying A gives both c lambda u and c mu u. Since c and u are nonzero, the scalars must agree, contradicting distinctness.
+      - id: 54
+        type: freeform
+        prompt: Why does zero as an eigenvalue imply noninvertibility?
+        answerLines: 5
+        answer: Its nonzero eigenvector lies in the null space, contradicting the zero-only null space required for invertibility.
+      - id: 55
+        type: freeform
+        prompt: Does a repeated eigenvalue automatically prevent diagonalization? Give a counterexample.
+        answerLines: 5
+        answer: No. A scalar identity matrix has the repeated scalar eigenvalue but every standard vector is an eigenvector, forming a basis.
+      - id: 56
+        type: freeform
+        prompt: Does a real two-by-two matrix always have a real eigenvalue? Give an example supporting your answer.
+        answerLines: 5
+        answer: No. A right-angle rotation has characteristic polynomial lambda squared plus one, with no real roots. Every nonzero direction rotates off its own line.
+      - id: 57
+        type: freeform
+        prompt: Why is the zero vector included in an eigenspace?
+        answerLines: 5
+        answer: An eigenspace is a null space and therefore a subspace, so it includes zero. Eigenvectors are precisely its nonzero members.
+      - id: 58
+        type: freeform
+        prompt: Prove eigenvectors of a real symmetric matrix belonging to different eigenvalues are perpendicular.
+        answerLines: 5
+        answer: Symmetry makes u dot Av equal Au dot v. Substitution gives mu times u dot v equal lambda times u dot v. Distinct eigenvalues force u dot v=0.
+      - id: 59
+        type: freeform
+        prompt: If a matrix is diagonalizable, must its eigenvectors be perpendicular? Give a counterexample.
+        answerLines: 5
+        answer: No. Rows (2,1),(0,3) have independent eigenvectors (1,0),(1,1), whose dot product is one. They form an eigenbasis without being orthogonal.
+      - id: 60
+        type: freeform
+        prompt: What mistake occurs if P’s eigenvector columns and D’s eigenvalues are placed in different orders?
+        answerLines: 5
+        answer: Column equations AP=PD pair each column with the diagonal entry at the same position. A mismatched order generally scales a vector by the wrong eigenvalue and reconstructs a different matrix.
+      - id: 61
+        type: freeform
+        prompt: Why does checking one arbitrary vector that fails to be an eigenvector not prove the matrix has no eigenvectors?
+        answerLines: 5
+        answer: It only rules out that direction. Other directions may still satisfy their own eigenvalue equations.
+      - id: 62
+        type: freeform
+        prompt: Can a matrix with all eigenvalues one still fail to be identity? Give an example.
+        answerLines: 5
+        answer: Yes. The shear with rows (1,1),(0,1) has only eigenvalue one but sends (0,1) to (1,1), so it is not identity.

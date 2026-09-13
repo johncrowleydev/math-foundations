@@ -1,0 +1,4972 @@
+[
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 3,
+    "prompt": "An arrow runs from (2, -1) to (3, 4). Find its displacement. Then translate both endpoints by (2, 2) and check that the displacement is unchanged.",
+    "answer": "Subtract start from finish to obtain (1, 5). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.",
+    "kind": "difference",
+    "a": [2, -1],
+    "b": [3, 4],
+    "expected": [1, 5]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 4,
+    "prompt": "An arrow runs from (0, 3) to (-2, 1). Find its displacement. Then translate both endpoints by (2, 2) and check that the displacement is unchanged.",
+    "answer": "Subtract start from finish to obtain (-2, -2). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.",
+    "kind": "difference",
+    "a": [0, 3],
+    "b": [-2, 1],
+    "expected": [-2, -2]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 5,
+    "prompt": "An arrow runs from (-3, 2) to (1, -4). Find its displacement. Then translate both endpoints by (2, 2) and check that the displacement is unchanged.",
+    "answer": "Subtract start from finish to obtain (4, -6). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.",
+    "kind": "difference",
+    "a": [-3, 2],
+    "b": [1, -4],
+    "expected": [4, -6]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 6,
+    "prompt": "An arrow runs from (1, 0, 2) to (0, -3, 1). Find its displacement. Then translate both endpoints by (2, 2, 2) and check that the displacement is unchanged.",
+    "answer": "Subtract start from finish to obtain (-1, -3, -1). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.",
+    "kind": "difference",
+    "a": [1, 0, 2],
+    "b": [0, -3, 1],
+    "expected": [-1, -3, -1]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 7,
+    "prompt": "An arrow runs from (2, -1, 0) to (-1, 2, 3). Find its displacement. Then translate both endpoints by (2, 2, 2) and check that the displacement is unchanged.",
+    "answer": "Subtract start from finish to obtain (-3, 3, 3). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.",
+    "kind": "difference",
+    "a": [2, -1, 0],
+    "b": [-1, 2, 3],
+    "expected": [-3, 3, 3]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 8,
+    "prompt": "An arrow runs from (1, 2, -2, 0) to (3, 0, 1, -1). Find its displacement. Then translate both endpoints by (2, 2, 2, 2) and check that the displacement is unchanged.",
+    "answer": "Subtract start from finish to obtain (2, -2, 3, -1). Adding two to each corresponding endpoint cancels in the subtraction, so the translated arrow has the same displacement.",
+    "kind": "difference",
+    "a": [1, 2, -2, 0],
+    "b": [3, 0, 1, -1],
+    "expected": [2, -2, 3, -1]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 17,
+    "prompt": "For u=(2, -1) and v=(3, 4), calculate 3u-2v. Check by adding 2v to your result.",
+    "answer": "Three u is (6, -3); negative two v is (-6, -8). Their sum is (0, -11). Adding (6, 8) recovers (6, -3), as required.",
+    "kind": "combination",
+    "vectors": [
+      [2, -1],
+      [3, 4]
+    ],
+    "coefficients": [3, -2],
+    "expected": [0, -11]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 18,
+    "prompt": "For u=(0, 3) and v=(-2, 1), calculate 3u-2v. Check by adding 2v to your result.",
+    "answer": "Three u is (0, 9); negative two v is (4, -2). Their sum is (4, 7). Adding (-4, 2) recovers (0, 9), as required.",
+    "kind": "combination",
+    "vectors": [
+      [0, 3],
+      [-2, 1]
+    ],
+    "coefficients": [3, -2],
+    "expected": [4, 7]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 19,
+    "prompt": "For u=(-3, 2) and v=(1, -4), calculate 3u-2v. Check by adding 2v to your result.",
+    "answer": "Three u is (-9, 6); negative two v is (-2, 8). Their sum is (-11, 14). Adding (2, -8) recovers (-9, 6), as required.",
+    "kind": "combination",
+    "vectors": [
+      [-3, 2],
+      [1, -4]
+    ],
+    "coefficients": [3, -2],
+    "expected": [-11, 14]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 20,
+    "prompt": "For u=(1, 0, 2) and v=(0, -3, 1), calculate 3u-2v. Check by adding 2v to your result.",
+    "answer": "Three u is (3, 0, 6); negative two v is (0, 6, -2). Their sum is (3, 6, 4). Adding (0, -6, 2) recovers (3, 0, 6), as required.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, -3, 1]
+    ],
+    "coefficients": [3, -2],
+    "expected": [3, 6, 4]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 21,
+    "prompt": "For u=(2, -1, 0) and v=(-1, 2, 3), calculate 3u-2v. Check by adding 2v to your result.",
+    "answer": "Three u is (6, -3, 0); negative two v is (2, -4, -6). Their sum is (8, -7, -6). Adding (-2, 4, 6) recovers (6, -3, 0), as required.",
+    "kind": "combination",
+    "vectors": [
+      [2, -1, 0],
+      [-1, 2, 3]
+    ],
+    "coefficients": [3, -2],
+    "expected": [8, -7, -6]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 22,
+    "prompt": "For u=(1, 2, -2, 0) and v=(3, 0, 1, -1), calculate 3u-2v. Check by adding 2v to your result.",
+    "answer": "Three u is (3, 6, -6, 0); negative two v is (-6, 0, -2, 2). Their sum is (-3, 6, -8, 2). Adding (6, 0, 2, -2) recovers (3, 6, -6, 0), as required.",
+    "kind": "combination",
+    "vectors": [
+      [1, 2, -2, 0],
+      [3, 0, 1, -1]
+    ],
+    "coefficients": [3, -2],
+    "expected": [-3, 6, -8, 2]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 23,
+    "prompt": "Solve 2u+w=b for the unknown vector w, where u=(2, -1) and b=(3, 4). Explain why the equation determines every component of w.",
+    "answer": "Subtract 2u component by component: w=(-1, 6). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.",
+    "kind": "combination",
+    "vectors": [
+      [3, 4],
+      [2, -1]
+    ],
+    "coefficients": [1, -2],
+    "expected": [-1, 6]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 24,
+    "prompt": "Solve 2u+w=b for the unknown vector w, where u=(0, 3) and b=(-2, 1). Explain why the equation determines every component of w.",
+    "answer": "Subtract 2u component by component: w=(-2, -5). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.",
+    "kind": "combination",
+    "vectors": [
+      [-2, 1],
+      [0, 3]
+    ],
+    "coefficients": [1, -2],
+    "expected": [-2, -5]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 25,
+    "prompt": "Solve 2u+w=b for the unknown vector w, where u=(-3, 2) and b=(1, -4). Explain why the equation determines every component of w.",
+    "answer": "Subtract 2u component by component: w=(7, -8). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.",
+    "kind": "combination",
+    "vectors": [
+      [1, -4],
+      [-3, 2]
+    ],
+    "coefficients": [1, -2],
+    "expected": [7, -8]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 26,
+    "prompt": "Solve 2u+w=b for the unknown vector w, where u=(1, 0, 2) and b=(0, -3, 1). Explain why the equation determines every component of w.",
+    "answer": "Subtract 2u component by component: w=(-2, -3, -3). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.",
+    "kind": "combination",
+    "vectors": [
+      [0, -3, 1],
+      [1, 0, 2]
+    ],
+    "coefficients": [1, -2],
+    "expected": [-2, -3, -3]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 27,
+    "prompt": "Solve 2u+w=b for the unknown vector w, where u=(2, -1, 0) and b=(-1, 2, 3). Explain why the equation determines every component of w.",
+    "answer": "Subtract 2u component by component: w=(-5, 4, 3). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.",
+    "kind": "combination",
+    "vectors": [
+      [-1, 2, 3],
+      [2, -1, 0]
+    ],
+    "coefficients": [1, -2],
+    "expected": [-5, 4, 3]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 28,
+    "prompt": "Solve 2u+w=b for the unknown vector w, where u=(1, 2, -2, 0) and b=(3, 0, 1, -1). Explain why the equation determines every component of w.",
+    "answer": "Subtract 2u component by component: w=(1, -4, 5, -1). Each component has coefficient one, so there is exactly one value for it. Adding 2u back gives b.",
+    "kind": "combination",
+    "vectors": [
+      [3, 0, 1, -1],
+      [1, 2, -2, 0]
+    ],
+    "coefficients": [1, -2],
+    "expected": [1, -4, 5, -1]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 41,
+    "prompt": "Express (4, 1) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.",
+    "answer": "Writing coefficients c,d gives c+2d=4 and c-d=1. Subtracting the second equation from the first gives 3d=3, so d=1 and c=2. Thus the coefficients are (2, 1); rebuilding gives (4, 1).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [2, -1]
+    ],
+    "coefficients": [2, 1],
+    "expected": [4, 1]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 42,
+    "prompt": "Express (5, -4) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.",
+    "answer": "Writing coefficients c,d gives c+2d=5 and c-d=-4. Subtracting the second equation from the first gives 3d=9, so d=3 and c=-1. Thus the coefficients are (-1, 3); rebuilding gives (5, -4).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [2, -1]
+    ],
+    "coefficients": [-1, 3],
+    "expected": [5, -4]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 43,
+    "prompt": "Express (8, -4) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.",
+    "answer": "Writing coefficients c,d gives c+2d=8 and c-d=-4. Subtracting the second equation from the first gives 3d=12, so d=4 and c=0. Thus the coefficients are (0, 4); rebuilding gives (8, -4).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [2, -1]
+    ],
+    "coefficients": [0, 4],
+    "expected": [8, -4]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 44,
+    "prompt": "Express (-1, 5) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.",
+    "answer": "Writing coefficients c,d gives c+2d=-1 and c-d=5. Subtracting the second equation from the first gives 3d=-6, so d=-2 and c=3. Thus the coefficients are (3, -2); rebuilding gives (-1, 5).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [2, -1]
+    ],
+    "coefficients": [3, -2],
+    "expected": [-1, 5]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 45,
+    "prompt": "Express (1, 1) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.",
+    "answer": "Writing coefficients c,d gives c+2d=1 and c-d=1. Subtracting the second equation from the first gives 3d=0, so d=0 and c=1. Thus the coefficients are (1, 0); rebuilding gives (1, 1).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [2, -1]
+    ],
+    "coefficients": [1, 0],
+    "expected": [1, 1]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 46,
+    "prompt": "Express (-4, -1) as a linear combination of p=(1,1) and q=(2,-1). Derive the coefficients by matching components, then rebuild the target.",
+    "answer": "Writing coefficients c,d gives c+2d=-4 and c-d=-1. Subtracting the second equation from the first gives 3d=-3, so d=-1 and c=-2. Thus the coefficients are (-2, -1); rebuilding gives (-4, -1).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [2, -1]
+    ],
+    "coefficients": [-2, -1],
+    "expected": [-4, -1]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 47,
+    "prompt": "Using only scalar multiples of u=(1, 2), determine which targets (3, 6) and (4, 6) can be reached. Justify the impossible case with components.",
+    "answer": "(3, 6) equals 3u and is reachable. (4, 6) is not: a nonzero component after the first forces the scalar to be 3, but that scalar gives first component 3, not 4.",
+    "kind": "span-pair",
+    "u": [1, 2],
+    "yes": [3, 6],
+    "no": [4, 6]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 48,
+    "prompt": "Using only scalar multiples of u=(2, -1), determine which targets (-4, 2) and (-3, 2) can be reached. Justify the impossible case with components.",
+    "answer": "(-4, 2) equals -2u and is reachable. (-3, 2) is not: a nonzero component after the first forces the scalar to be -2, but that scalar gives first component -4, not -3.",
+    "kind": "span-pair",
+    "u": [2, -1],
+    "yes": [-4, 2],
+    "no": [-3, 2]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 49,
+    "prompt": "Using only scalar multiples of u=(0, 1), determine which targets (0, 4) and (1, 4) can be reached. Justify the impossible case with components.",
+    "answer": "(0, 4) equals 4u and is reachable. (1, 4) is not: a nonzero component after the first forces the scalar to be 4, but that scalar gives first component 0, not 1.",
+    "kind": "span-pair",
+    "u": [0, 1],
+    "yes": [0, 4],
+    "no": [1, 4]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 50,
+    "prompt": "Using only scalar multiples of u=(1, 1, 2), determine which targets (2, 2, 4) and (3, 2, 4) can be reached. Justify the impossible case with components.",
+    "answer": "(2, 2, 4) equals 2u and is reachable. (3, 2, 4) is not: a nonzero component after the first forces the scalar to be 2, but that scalar gives first component 2, not 3.",
+    "kind": "span-pair",
+    "u": [1, 1, 2],
+    "yes": [2, 2, 4],
+    "no": [3, 2, 4]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 51,
+    "prompt": "Using only scalar multiples of u=(2, 0, -1), determine which targets (-2, 0, 1) and (-1, 0, 1) can be reached. Justify the impossible case with components.",
+    "answer": "(-2, 0, 1) equals -1u and is reachable. (-1, 0, 1) is not: a nonzero component after the first forces the scalar to be -1, but that scalar gives first component -2, not -1.",
+    "kind": "span-pair",
+    "u": [2, 0, -1],
+    "yes": [-2, 0, 1],
+    "no": [-1, 0, 1]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 52,
+    "prompt": "Using only scalar multiples of u=(1, -2, 3), determine which targets (0, 0, 0) and (1, 0, 0) can be reached. Justify the impossible case with components.",
+    "answer": "(0, 0, 0) equals 0u and is reachable. (1, 0, 0) is not: a nonzero component after the first forces the scalar to be 0, but that scalar gives first component 0, not 1.",
+    "kind": "span-pair",
+    "u": [1, -2, 3],
+    "yes": [0, 0, 0],
+    "no": [1, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 59,
+    "prompt": "Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 1 of P and 2 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?",
+    "answer": "Without startup the total is (4, 7). Including startup gives (6, 11). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.",
+    "kind": "combination",
+    "vectors": [
+      [2, 1],
+      [1, 3]
+    ],
+    "coefficients": [1, 2],
+    "expected": [4, 7]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 60,
+    "prompt": "Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 3 of P and 1 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?",
+    "answer": "Without startup the total is (7, 6). Including startup gives (9, 10). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.",
+    "kind": "combination",
+    "vectors": [
+      [2, 1],
+      [1, 3]
+    ],
+    "coefficients": [3, 1],
+    "expected": [7, 6]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 61,
+    "prompt": "Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 2 of P and 4 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?",
+    "answer": "Without startup the total is (8, 14). Including startup gives (10, 18). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.",
+    "kind": "combination",
+    "vectors": [
+      [2, 1],
+      [1, 3]
+    ],
+    "coefficients": [2, 4],
+    "expected": [8, 14]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 62,
+    "prompt": "Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 0 of P and 5 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?",
+    "answer": "Without startup the total is (5, 15). Including startup gives (7, 19). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.",
+    "kind": "combination",
+    "vectors": [
+      [2, 1],
+      [1, 3]
+    ],
+    "coefficients": [0, 5],
+    "expected": [5, 15]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 63,
+    "prompt": "Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 4 of P and 3 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?",
+    "answer": "Without startup the total is (11, 13). Including startup gives (13, 17). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.",
+    "kind": "combination",
+    "vectors": [
+      [2, 1],
+      [1, 3]
+    ],
+    "coefficients": [4, 3],
+    "expected": [11, 13]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 64,
+    "prompt": "Products P and Q consume water and power in vectors (2,1) and (1,3) per item. Find total resources for 5 of P and 0 of Q, then include a once-only startup cost (2,4). Is the complete rule proportional to production?",
+    "answer": "Without startup the total is (10, 5). Including startup gives (12, 9). The fixed cost breaks proportionality: zero production would still have the startup cost if the machine is started. Resource units and product counts must use the stated coordinate order.",
+    "kind": "combination",
+    "vectors": [
+      [2, 1],
+      [1, 3]
+    ],
+    "coefficients": [5, 0],
+    "expected": [10, 5]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 65,
+    "prompt": "Two observations with matching coordinate meanings are (2, -1) and (3, 4). Find their componentwise average. Explain why the average need not be an actually observed record.",
+    "answer": "Add first, then multiply every component by one half: (5/2, 3/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.",
+    "kind": "combination",
+    "vectors": [
+      [2, -1],
+      [3, 4]
+    ],
+    "coefficients": ["1/2", "1/2"],
+    "expected": ["5/2", "3/2"]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 66,
+    "prompt": "Two observations with matching coordinate meanings are (0, 3) and (-2, 1). Find their componentwise average. Explain why the average need not be an actually observed record.",
+    "answer": "Add first, then multiply every component by one half: (-1, 2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.",
+    "kind": "combination",
+    "vectors": [
+      [0, 3],
+      [-2, 1]
+    ],
+    "coefficients": ["1/2", "1/2"],
+    "expected": ["-1", "2"]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 67,
+    "prompt": "Two observations with matching coordinate meanings are (-3, 2) and (1, -4). Find their componentwise average. Explain why the average need not be an actually observed record.",
+    "answer": "Add first, then multiply every component by one half: (-1, -1). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.",
+    "kind": "combination",
+    "vectors": [
+      [-3, 2],
+      [1, -4]
+    ],
+    "coefficients": ["1/2", "1/2"],
+    "expected": ["-1", "-1"]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 68,
+    "prompt": "Two observations with matching coordinate meanings are (1, 0, 2) and (0, -3, 1). Find their componentwise average. Explain why the average need not be an actually observed record.",
+    "answer": "Add first, then multiply every component by one half: (1/2, -3/2, 3/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, -3, 1]
+    ],
+    "coefficients": ["1/2", "1/2"],
+    "expected": ["1/2", "-3/2", "3/2"]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 69,
+    "prompt": "Two observations with matching coordinate meanings are (2, -1, 0) and (-1, 2, 3). Find their componentwise average. Explain why the average need not be an actually observed record.",
+    "answer": "Add first, then multiply every component by one half: (1/2, 1/2, 3/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.",
+    "kind": "combination",
+    "vectors": [
+      [2, -1, 0],
+      [-1, 2, 3]
+    ],
+    "coefficients": ["1/2", "1/2"],
+    "expected": ["1/2", "1/2", "3/2"]
+  },
+  {
+    "lesson": "linear-algebra-vectors",
+    "id": 70,
+    "prompt": "Two observations with matching coordinate meanings are (1, 2, -2, 0) and (3, 0, 1, -1). Find their componentwise average. Explain why the average need not be an actually observed record.",
+    "answer": "Add first, then multiply every component by one half: (2, 1, -1/2, -1/2). The calculation summarizes the two records; it does not assert that an object with these values was observed or is physically feasible.",
+    "kind": "combination",
+    "vectors": [
+      [1, 2, -2, 0],
+      [3, 0, 1, -1]
+    ],
+    "coefficients": ["1/2", "1/2"],
+    "expected": ["2", "1", "-1/2", "-1/2"]
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 3,
+    "prompt": "Compute the dot product of (2, -1) and (3, 4). Show each component product and state the type of the result.",
+    "answer": "The component products are 6, -4. Adding gives 2, a real scalar.",
+    "kind": "dot",
+    "a": [2, -1],
+    "b": [3, 4],
+    "expected": 2
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 4,
+    "prompt": "Compute the dot product of (0, 3) and (-2, 1). Show each component product and state the type of the result.",
+    "answer": "The component products are 0, 3. Adding gives 3, a real scalar.",
+    "kind": "dot",
+    "a": [0, 3],
+    "b": [-2, 1],
+    "expected": 3
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 5,
+    "prompt": "Compute the dot product of (-3, 2) and (1, -4). Show each component product and state the type of the result.",
+    "answer": "The component products are -3, -8. Adding gives -11, a real scalar.",
+    "kind": "dot",
+    "a": [-3, 2],
+    "b": [1, -4],
+    "expected": -11
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 6,
+    "prompt": "Compute the dot product of (1, 0, 2) and (0, -3, 1). Show each component product and state the type of the result.",
+    "answer": "The component products are 0, 0, 2. Adding gives 2, a real scalar.",
+    "kind": "dot",
+    "a": [1, 0, 2],
+    "b": [0, -3, 1],
+    "expected": 2
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 7,
+    "prompt": "Compute the dot product of (2, -1, 0) and (-1, 2, 3). Show each component product and state the type of the result.",
+    "answer": "The component products are -2, -2, 0. Adding gives -4, a real scalar.",
+    "kind": "dot",
+    "a": [2, -1, 0],
+    "b": [-1, 2, 3],
+    "expected": -4
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 8,
+    "prompt": "Compute the dot product of (1, 2, -2, 0) and (3, 0, 1, -1). Show each component product and state the type of the result.",
+    "answer": "The component products are 3, 0, -2, 0. Adding gives 1, a real scalar.",
+    "kind": "dot",
+    "a": [1, 2, -2, 0],
+    "b": [3, 0, 1, -1],
+    "expected": 1
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 9,
+    "prompt": "For u=(2, -1) and v=(3, 4), compute u dot (u+v) directly and by distribution.",
+    "answer": "The sum is (5, 3), giving dot product 7. Distribution gives u dot u plus u dot v = 5 + (2) = 7.",
+    "kind": "dot",
+    "a": [2, -1],
+    "b": [5, 3],
+    "expected": 7
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 10,
+    "prompt": "For u=(0, 3) and v=(-2, 1), compute u dot (u+v) directly and by distribution.",
+    "answer": "The sum is (-2, 4), giving dot product 12. Distribution gives u dot u plus u dot v = 9 + (3) = 12.",
+    "kind": "dot",
+    "a": [0, 3],
+    "b": [-2, 4],
+    "expected": 12
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 11,
+    "prompt": "For u=(-3, 2) and v=(1, -4), compute u dot (u+v) directly and by distribution.",
+    "answer": "The sum is (-2, -2), giving dot product 2. Distribution gives u dot u plus u dot v = 13 + (-11) = 2.",
+    "kind": "dot",
+    "a": [-3, 2],
+    "b": [-2, -2],
+    "expected": 2
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 12,
+    "prompt": "For u=(1, 0, 2) and v=(0, -3, 1), compute u dot (u+v) directly and by distribution.",
+    "answer": "The sum is (1, -3, 3), giving dot product 7. Distribution gives u dot u plus u dot v = 5 + (2) = 7.",
+    "kind": "dot",
+    "a": [1, 0, 2],
+    "b": [1, -3, 3],
+    "expected": 7
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 13,
+    "prompt": "For u=(2, -1, 0) and v=(-1, 2, 3), compute u dot (u+v) directly and by distribution.",
+    "answer": "The sum is (1, 1, 3), giving dot product 1. Distribution gives u dot u plus u dot v = 5 + (-4) = 1.",
+    "kind": "dot",
+    "a": [2, -1, 0],
+    "b": [1, 1, 3],
+    "expected": 1
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 14,
+    "prompt": "For u=(1, 2, -2, 0) and v=(3, 0, 1, -1), compute u dot (u+v) directly and by distribution.",
+    "answer": "The sum is (4, 2, -1, -1), giving dot product 10. Distribution gives u dot u plus u dot v = 9 + (1) = 10.",
+    "kind": "dot",
+    "a": [1, 2, -2, 0],
+    "b": [4, 2, -1, -1],
+    "expected": 10
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 17,
+    "prompt": "Find the Euclidean norm of (3, 4) and the unit vector in its direction. Verify unit length.",
+    "answer": "The squared length is 25, so the norm is 5. Dividing every component gives (3/5, 4/5); its squared components sum to one.",
+    "kind": "normalize",
+    "a": [3, 4],
+    "expected": ["3/5", "4/5"],
+    "norm": 5
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 18,
+    "prompt": "Find the Euclidean norm of (-5, 12) and the unit vector in its direction. Verify unit length.",
+    "answer": "The squared length is 169, so the norm is 13. Dividing every component gives (-5/13, 12/13); its squared components sum to one.",
+    "kind": "normalize",
+    "a": [-5, 12],
+    "expected": ["-5/13", "12/13"],
+    "norm": 13
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 19,
+    "prompt": "Find the Euclidean norm of (0, -7) and the unit vector in its direction. Verify unit length.",
+    "answer": "The squared length is 49, so the norm is 7. Dividing every component gives (0, -1); its squared components sum to one.",
+    "kind": "normalize",
+    "a": [0, -7],
+    "expected": ["0", "-1"],
+    "norm": 7
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 20,
+    "prompt": "Find the Euclidean norm of (1, 2, 2) and the unit vector in its direction. Verify unit length.",
+    "answer": "The squared length is 9, so the norm is 3. Dividing every component gives (1/3, 2/3, 2/3); its squared components sum to one.",
+    "kind": "normalize",
+    "a": [1, 2, 2],
+    "expected": ["1/3", "2/3", "2/3"],
+    "norm": 3
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 21,
+    "prompt": "Find the Euclidean norm of (-2, 1, 2) and the unit vector in its direction. Verify unit length.",
+    "answer": "The squared length is 9, so the norm is 3. Dividing every component gives (-2/3, 1/3, 2/3); its squared components sum to one.",
+    "kind": "normalize",
+    "a": [-2, 1, 2],
+    "expected": ["-2/3", "1/3", "2/3"],
+    "norm": 3
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 22,
+    "prompt": "Find the Euclidean norm of (1, -1, 1, -1) and the unit vector in its direction. Verify unit length.",
+    "answer": "The squared length is 4, so the norm is 2. Dividing every component gives (1/2, -1/2, 1/2, -1/2); its squared components sum to one.",
+    "kind": "normalize",
+    "a": [1, -1, 1, -1],
+    "expected": ["1/2", "-1/2", "1/2", "-1/2"],
+    "norm": 2
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 23,
+    "prompt": "Find the exact distance between (2, -1) and (3, 4). Explain why reversing the subtraction does not change it.",
+    "answer": "The difference is (1, 5) with squared length 26, so the distance is square root of 26. Reversing subtraction negates every component but leaves all squares unchanged.",
+    "kind": "squared-distance",
+    "a": [2, -1],
+    "b": [3, 4],
+    "expected": 26
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 24,
+    "prompt": "Find the exact distance between (0, 3) and (-2, 1). Explain why reversing the subtraction does not change it.",
+    "answer": "The difference is (-2, -2) with squared length 8, so the distance is square root of 8. Reversing subtraction negates every component but leaves all squares unchanged.",
+    "kind": "squared-distance",
+    "a": [0, 3],
+    "b": [-2, 1],
+    "expected": 8
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 25,
+    "prompt": "Find the exact distance between (-3, 2) and (1, -4). Explain why reversing the subtraction does not change it.",
+    "answer": "The difference is (4, -6) with squared length 52, so the distance is square root of 52. Reversing subtraction negates every component but leaves all squares unchanged.",
+    "kind": "squared-distance",
+    "a": [-3, 2],
+    "b": [1, -4],
+    "expected": 52
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 26,
+    "prompt": "Find the exact distance between (1, 0, 2) and (0, -3, 1). Explain why reversing the subtraction does not change it.",
+    "answer": "The difference is (-1, -3, -1) with squared length 11, so the distance is square root of 11. Reversing subtraction negates every component but leaves all squares unchanged.",
+    "kind": "squared-distance",
+    "a": [1, 0, 2],
+    "b": [0, -3, 1],
+    "expected": 11
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 27,
+    "prompt": "Find the exact distance between (2, -1, 0) and (-1, 2, 3). Explain why reversing the subtraction does not change it.",
+    "answer": "The difference is (-3, 3, 3) with squared length 27, so the distance is square root of 27. Reversing subtraction negates every component but leaves all squares unchanged.",
+    "kind": "squared-distance",
+    "a": [2, -1, 0],
+    "b": [-1, 2, 3],
+    "expected": 27
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 28,
+    "prompt": "Find the exact distance between (1, 2, -2, 0) and (3, 0, 1, -1). Explain why reversing the subtraction does not change it.",
+    "answer": "The difference is (2, -2, 3, -1) with squared length 18, so the distance is square root of 18. Reversing subtraction negates every component but leaves all squares unchanged.",
+    "kind": "squared-distance",
+    "a": [1, 2, -2, 0],
+    "b": [3, 0, 1, -1],
+    "expected": 18
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 37,
+    "prompt": "Find a nonzero vector perpendicular to (1, 2) and explain why your construction works without estimating an angle.",
+    "answer": "One choice is (-2, 1). The dot product is 1 times -2 plus 2 times 1, or zero. The vector is nonzero because the given vector is nonzero.",
+    "kind": "dot",
+    "a": [1, 2],
+    "b": [-2, 1],
+    "expected": 0
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 38,
+    "prompt": "Find a nonzero vector perpendicular to (2, -3) and explain why your construction works without estimating an angle.",
+    "answer": "One choice is (3, 2). The dot product is 2 times 3 plus -3 times 2, or zero. The vector is nonzero because the given vector is nonzero.",
+    "kind": "dot",
+    "a": [2, -3],
+    "b": [3, 2],
+    "expected": 0
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 39,
+    "prompt": "Find a nonzero vector perpendicular to (-3, -1) and explain why your construction works without estimating an angle.",
+    "answer": "One choice is (1, -3). The dot product is -3 times 1 plus -1 times -3, or zero. The vector is nonzero because the given vector is nonzero.",
+    "kind": "dot",
+    "a": [-3, -1],
+    "b": [1, -3],
+    "expected": 0
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 40,
+    "prompt": "Find a nonzero vector perpendicular to (0, 4) and explain why your construction works without estimating an angle.",
+    "answer": "One choice is (-4, 0). The dot product is 0 times -4 plus 4 times 0, or zero. The vector is nonzero because the given vector is nonzero.",
+    "kind": "dot",
+    "a": [0, 4],
+    "b": [-4, 0],
+    "expected": 0
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 41,
+    "prompt": "Find a nonzero vector perpendicular to (5, 0) and explain why your construction works without estimating an angle.",
+    "answer": "One choice is (0, 5). The dot product is 5 times 0 plus 0 times 5, or zero. The vector is nonzero because the given vector is nonzero.",
+    "kind": "dot",
+    "a": [5, 0],
+    "b": [0, 5],
+    "expected": 0
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 42,
+    "prompt": "Find a nonzero vector perpendicular to (3, 4) and explain why your construction works without estimating an angle.",
+    "answer": "One choice is (-4, 3). The dot product is 3 times -4 plus 4 times 3, or zero. The vector is nonzero because the given vector is nonzero.",
+    "kind": "dot",
+    "a": [3, 4],
+    "b": [-4, 3],
+    "expected": 0
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 43,
+    "prompt": "Find the angle between (1, 0) and (1, 0), including whether it is a parallel endpoint case.",
+    "answer": "Divide dot product 1 by the positive product of norms. The resulting cosine gives 0 degrees. The vectors point in the same direction.",
+    "kind": "angle",
+    "a": [1, 0],
+    "b": [1, 0],
+    "expected": 0
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 44,
+    "prompt": "Find the angle between (1, 0) and (-1, 0), including whether it is a parallel endpoint case.",
+    "answer": "Divide dot product -1 by the positive product of norms. The resulting cosine gives 180 degrees. They point in opposite directions.",
+    "kind": "angle",
+    "a": [1, 0],
+    "b": [-1, 0],
+    "expected": 180
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 45,
+    "prompt": "Find the angle between (1, 0) and (0, 2), including whether it is a parallel endpoint case.",
+    "answer": "Divide dot product 0 by the positive product of norms. The resulting cosine gives 90 degrees. They are perpendicular.",
+    "kind": "angle",
+    "a": [1, 0],
+    "b": [0, 2],
+    "expected": 90
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 46,
+    "prompt": "Find the angle between (1, 0) and (1, 1), including whether it is a parallel endpoint case.",
+    "answer": "Divide dot product 1 by the positive product of norms. The resulting cosine gives 45 degrees. This is strictly acute.",
+    "kind": "angle",
+    "a": [1, 0],
+    "b": [1, 1],
+    "expected": 45
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 47,
+    "prompt": "Find the angle between (1, 0) and (-1, 1), including whether it is a parallel endpoint case.",
+    "answer": "Divide dot product -1 by the positive product of norms. The resulting cosine gives 135 degrees. This is strictly obtuse.",
+    "kind": "angle",
+    "a": [1, 0],
+    "b": [-1, 1],
+    "expected": 135
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 48,
+    "prompt": "Find the angle between (0, 2) and (2, 0), including whether it is a parallel endpoint case.",
+    "answer": "Divide dot product 0 by the positive product of norms. The resulting cosine gives 90 degrees. They are perpendicular.",
+    "kind": "angle",
+    "a": [0, 2],
+    "b": [2, 0],
+    "expected": 90
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 57,
+    "prompt": "Unit prices are (2, 3) and quantities are (4, 1) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.",
+    "answer": "The item costs are (8, 3); sum them to get 11. The dot product includes this final addition, producing one total rather than a list.",
+    "kind": "dot",
+    "a": [2, 3],
+    "b": [4, 1],
+    "expected": 11
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 58,
+    "prompt": "Unit prices are (1, 5, 2) and quantities are (3, 0, 4) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.",
+    "answer": "The item costs are (3, 0, 8); sum them to get 11. The dot product includes this final addition, producing one total rather than a list.",
+    "kind": "dot",
+    "a": [1, 5, 2],
+    "b": [3, 0, 4],
+    "expected": 11
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 59,
+    "prompt": "Unit prices are (3, 2, 4) and quantities are (2, 5, 1) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.",
+    "answer": "The item costs are (6, 10, 4); sum them to get 20. The dot product includes this final addition, producing one total rather than a list.",
+    "kind": "dot",
+    "a": [3, 2, 4],
+    "b": [2, 5, 1],
+    "expected": 20
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 60,
+    "prompt": "Unit prices are (4, 1) and quantities are (0, 7) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.",
+    "answer": "The item costs are (0, 7); sum them to get 7. The dot product includes this final addition, producing one total rather than a list.",
+    "kind": "dot",
+    "a": [4, 1],
+    "b": [0, 7],
+    "expected": 7
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 61,
+    "prompt": "Unit prices are (2, 2, 3) and quantities are (3, 1, 2) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.",
+    "answer": "The item costs are (6, 2, 6); sum them to get 14. The dot product includes this final addition, producing one total rather than a list.",
+    "kind": "dot",
+    "a": [2, 2, 3],
+    "b": [3, 1, 2],
+    "expected": 14
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 62,
+    "prompt": "Unit prices are (1, 2, 3, 4) and quantities are (4, 3, 2, 1) in matching product order. Find the total cost and explain why ordinary componentwise multiplication alone is not yet the total.",
+    "answer": "The item costs are (4, 6, 6, 4); sum them to get 20. The dot product includes this final addition, producing one total rather than a list.",
+    "kind": "dot",
+    "a": [1, 2, 3, 4],
+    "b": [4, 3, 2, 1],
+    "expected": 20
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 63,
+    "prompt": "Let u=(1, 2) and v=2u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.",
+    "answer": "The dot product is 10 and the norm product is 10. Their ratio is 1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.",
+    "kind": "cosine",
+    "a": [1, 2],
+    "b": [2, 4],
+    "expected": 1
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 64,
+    "prompt": "Let u=(2, -1) and v=3u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.",
+    "answer": "The dot product is 15 and the norm product is 15. Their ratio is 1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.",
+    "kind": "cosine",
+    "a": [2, -1],
+    "b": [6, -3],
+    "expected": 1
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 65,
+    "prompt": "Let u=(1, 0) and v=-4u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.",
+    "answer": "The dot product is -4 and the norm product is 4. Their ratio is -1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.",
+    "kind": "cosine",
+    "a": [1, 0],
+    "b": [-4, 0],
+    "expected": -1
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 66,
+    "prompt": "Let u=(0, 3) and v=-2u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.",
+    "answer": "The dot product is -18 and the norm product is 18. Their ratio is -1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.",
+    "kind": "cosine",
+    "a": [0, 3],
+    "b": [0, -6],
+    "expected": -1
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 67,
+    "prompt": "Let u=(1, 2, 2) and v=5u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.",
+    "answer": "The dot product is 45 and the norm product is 45. Their ratio is 1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.",
+    "kind": "cosine",
+    "a": [1, 2, 2],
+    "b": [5, 10, 10],
+    "expected": 1
+  },
+  {
+    "lesson": "linear-algebra-dot-products",
+    "id": 68,
+    "prompt": "Let u=(-2, 1, 2) and v=-1u. Find their cosine similarity and explain the roles of the sign and magnitude of the scale factor.",
+    "answer": "The dot product is -9 and the norm product is 9. Their ratio is -1. A positive factor preserves direction, a negative factor reverses it, and its nonzero magnitude cancels from the ratio.",
+    "kind": "cosine",
+    "a": [-2, 1, 2],
+    "b": [2, -1, -2],
+    "expected": -1
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 3,
+    "prompt": "For the matrix with rows (1, 2), (0, 1), state its shape, its last-row first-column entry, and the rows of its transpose.",
+    "answer": "The shape is 2 by 2; the requested entry is 0. The transpose has rows (1, 0), (2, 1), with the shape reversed.",
+    "kind": "transpose",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "expected": [
+      [1, 0],
+      [2, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 4,
+    "prompt": "For the matrix with rows (2, -1), (1, 3), state its shape, its last-row first-column entry, and the rows of its transpose.",
+    "answer": "The shape is 2 by 2; the requested entry is 1. The transpose has rows (2, 1), (-1, 3), with the shape reversed.",
+    "kind": "transpose",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "expected": [
+      [2, 1],
+      [-1, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 5,
+    "prompt": "For the matrix with rows (0, 1, 2), (2, -1, 0), state its shape, its last-row first-column entry, and the rows of its transpose.",
+    "answer": "The shape is 2 by 3; the requested entry is 2. The transpose has rows (0, 2), (1, -1), (2, 0), with the shape reversed.",
+    "kind": "transpose",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "expected": [
+      [0, 2],
+      [1, -1],
+      [2, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 6,
+    "prompt": "For the matrix with rows (1, 0), (0, 2), (1, -1), state its shape, its last-row first-column entry, and the rows of its transpose.",
+    "answer": "The shape is 3 by 2; the requested entry is 1. The transpose has rows (1, 0, 1), (0, 2, -1), with the shape reversed.",
+    "kind": "transpose",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "expected": [
+      [1, 0, 1],
+      [0, 2, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 7,
+    "prompt": "For the matrix with rows (2, 0, -1), (0, 1, 3), state its shape, its last-row first-column entry, and the rows of its transpose.",
+    "answer": "The shape is 2 by 3; the requested entry is 0. The transpose has rows (2, 0), (0, 1), (-1, 3), with the shape reversed.",
+    "kind": "transpose",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "expected": [
+      [2, 0],
+      [0, 1],
+      [-1, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 8,
+    "prompt": "For the matrix with rows (1, 2, 0), (-1, 0, 1), (0, 1, 1), state its shape, its last-row first-column entry, and the rows of its transpose.",
+    "answer": "The shape is 3 by 3; the requested entry is 0. The transpose has rows (1, -1, 0), (2, 0, 1), (0, 1, 1), with the shape reversed.",
+    "kind": "transpose",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "expected": [
+      [1, -1, 0],
+      [2, 0, 1],
+      [0, 1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 9,
+    "prompt": "A has rows (1, 2), (0, 1) and B has rows (1, 0), (2, 1). Compute 2A-B and explain the shape condition.",
+    "answer": "Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (1, 4), (-2, 1).",
+    "kind": "matrix-combination",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "b": [
+      [1, 0],
+      [2, 1]
+    ],
+    "expected": [
+      [1, 4],
+      [-2, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 10,
+    "prompt": "A has rows (2, -1), (1, 3) and B has rows (1, 0), (2, 1). Compute 2A-B and explain the shape condition.",
+    "answer": "Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (3, -2), (0, 5).",
+    "kind": "matrix-combination",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "b": [
+      [1, 0],
+      [2, 1]
+    ],
+    "expected": [
+      [3, -2],
+      [0, 5]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 11,
+    "prompt": "A has rows (0, 1, 2), (2, -1, 0) and B has rows (1, 0, -1), (2, 1, 0). Compute 2A-B and explain the shape condition.",
+    "answer": "Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (-1, 2, 5), (2, -3, 0).",
+    "kind": "matrix-combination",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "b": [
+      [1, 0, -1],
+      [2, 1, 0]
+    ],
+    "expected": [
+      [-1, 2, 5],
+      [2, -3, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 12,
+    "prompt": "A has rows (1, 0), (0, 2), (1, -1) and B has rows (1, 0), (2, 1), (3, 2). Compute 2A-B and explain the shape condition.",
+    "answer": "Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (1, 0), (-2, 3), (-1, -4).",
+    "kind": "matrix-combination",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "b": [
+      [1, 0],
+      [2, 1],
+      [3, 2]
+    ],
+    "expected": [
+      [1, 0],
+      [-2, 3],
+      [-1, -4]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 13,
+    "prompt": "A has rows (2, 0, -1), (0, 1, 3) and B has rows (1, 0, -1), (2, 1, 0). Compute 2A-B and explain the shape condition.",
+    "answer": "Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (3, 0, -1), (-2, 1, 6).",
+    "kind": "matrix-combination",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "b": [
+      [1, 0, -1],
+      [2, 1, 0]
+    ],
+    "expected": [
+      [3, 0, -1],
+      [-2, 1, 6]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 14,
+    "prompt": "A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1) and B has rows (1, 0, -1), (2, 1, 0), (3, 2, 1). Compute 2A-B and explain the shape condition.",
+    "answer": "Both matrices have the same shape. Scale all entries of A and subtract corresponding entries of B, giving rows (1, 4, 1), (-4, -1, 2), (-3, 0, 1).",
+    "kind": "matrix-combination",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "b": [
+      [1, 0, -1],
+      [2, 1, 0],
+      [3, 2, 1]
+    ],
+    "expected": [
+      [1, 4, 1],
+      [-4, -1, 2],
+      [-3, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 17,
+    "prompt": "A has rows (1, 2), (0, 1). Find its output on x=(2, -1) using row dot products, then explain the matching column combination.",
+    "answer": "The output is (0, -1). Row i computes its dot product with x. Equivalently use coefficients (2, -1) on A's columns and add; the ith entry of that sum is exactly the same row calculation.",
+    "kind": "mv",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "x": [2, -1],
+    "expected": [0, -1]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 18,
+    "prompt": "A has rows (2, -1), (1, 3). Find its output on x=(2, -1) using row dot products, then explain the matching column combination.",
+    "answer": "The output is (5, -1). Row i computes its dot product with x. Equivalently use coefficients (2, -1) on A's columns and add; the ith entry of that sum is exactly the same row calculation.",
+    "kind": "mv",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "x": [2, -1],
+    "expected": [5, -1]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 19,
+    "prompt": "A has rows (0, 1, 2), (2, -1, 0). Find its output on x=(2, -1, 2) using row dot products, then explain the matching column combination.",
+    "answer": "The output is (3, 5). Row i computes its dot product with x. Equivalently use coefficients (2, -1, 2) on A's columns and add; the ith entry of that sum is exactly the same row calculation.",
+    "kind": "mv",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "x": [2, -1, 2],
+    "expected": [3, 5]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 20,
+    "prompt": "A has rows (1, 0), (0, 2), (1, -1). Find its output on x=(2, -1) using row dot products, then explain the matching column combination.",
+    "answer": "The output is (2, -2, 3). Row i computes its dot product with x. Equivalently use coefficients (2, -1) on A's columns and add; the ith entry of that sum is exactly the same row calculation.",
+    "kind": "mv",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "x": [2, -1],
+    "expected": [2, -2, 3]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 21,
+    "prompt": "A has rows (2, 0, -1), (0, 1, 3). Find its output on x=(2, -1, 2) using row dot products, then explain the matching column combination.",
+    "answer": "The output is (2, 5). Row i computes its dot product with x. Equivalently use coefficients (2, -1, 2) on A's columns and add; the ith entry of that sum is exactly the same row calculation.",
+    "kind": "mv",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "x": [2, -1, 2],
+    "expected": [2, 5]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 22,
+    "prompt": "A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1). Find its output on x=(2, -1, 2) using row dot products, then explain the matching column combination.",
+    "answer": "The output is (0, 0, 1). Row i computes its dot product with x. Equivalently use coefficients (2, -1, 2) on A's columns and add; the ith entry of that sum is exactly the same row calculation.",
+    "kind": "mv",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "x": [2, -1, 2],
+    "expected": [0, 0, 1]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 23,
+    "prompt": "A has rows (1, 2), (0, 1). Find A applied to (0, 1) without a full row-by-row multiplication. Why does this input select one column?",
+    "answer": "The output is the last column, (2, 1). All other input coefficients are zero and the last is one.",
+    "kind": "mv",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "x": [0, 1],
+    "expected": [2, 1]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 24,
+    "prompt": "A has rows (2, -1), (1, 3). Find A applied to (0, 1) without a full row-by-row multiplication. Why does this input select one column?",
+    "answer": "The output is the last column, (-1, 3). All other input coefficients are zero and the last is one.",
+    "kind": "mv",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "x": [0, 1],
+    "expected": [-1, 3]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 25,
+    "prompt": "A has rows (0, 1, 2), (2, -1, 0). Find A applied to (0, 0, 1) without a full row-by-row multiplication. Why does this input select one column?",
+    "answer": "The output is the last column, (2, 0). All other input coefficients are zero and the last is one.",
+    "kind": "mv",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "x": [0, 0, 1],
+    "expected": [2, 0]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 26,
+    "prompt": "A has rows (1, 0), (0, 2), (1, -1). Find A applied to (0, 1) without a full row-by-row multiplication. Why does this input select one column?",
+    "answer": "The output is the last column, (0, 2, -1). All other input coefficients are zero and the last is one.",
+    "kind": "mv",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "x": [0, 1],
+    "expected": [0, 2, -1]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 27,
+    "prompt": "A has rows (2, 0, -1), (0, 1, 3). Find A applied to (0, 0, 1) without a full row-by-row multiplication. Why does this input select one column?",
+    "answer": "The output is the last column, (-1, 3). All other input coefficients are zero and the last is one.",
+    "kind": "mv",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "x": [0, 0, 1],
+    "expected": [-1, 3]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 28,
+    "prompt": "A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1). Find A applied to (0, 0, 1) without a full row-by-row multiplication. Why does this input select one column?",
+    "answer": "The output is the last column, (0, 1, 1). All other input coefficients are zero and the last is one.",
+    "kind": "mv",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "x": [0, 0, 1],
+    "expected": [0, 1, 1]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 31,
+    "prompt": "A has rows (1, 2), (0, 1) and B has rows (1, 1), (2, 0). Compute AB, state its shape, and identify which matrix acts first on an input.",
+    "answer": "Each output column is A times the corresponding column of B. The product has rows (5, 1), (2, 0) and shape 2 by two. B acts first, followed by A.",
+    "kind": "mm",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "b": [
+      [1, 1],
+      [2, 0]
+    ],
+    "expected": [
+      [5, 1],
+      [2, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 32,
+    "prompt": "A has rows (2, -1), (1, 3) and B has rows (1, 1), (2, 0). Compute AB, state its shape, and identify which matrix acts first on an input.",
+    "answer": "Each output column is A times the corresponding column of B. The product has rows (0, 2), (7, 1) and shape 2 by two. B acts first, followed by A.",
+    "kind": "mm",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "b": [
+      [1, 1],
+      [2, 0]
+    ],
+    "expected": [
+      [0, 2],
+      [7, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 33,
+    "prompt": "A has rows (0, 1, 2), (2, -1, 0) and B has rows (1, 1), (2, 0), (3, -1). Compute AB, state its shape, and identify which matrix acts first on an input.",
+    "answer": "Each output column is A times the corresponding column of B. The product has rows (8, -2), (0, 2) and shape 2 by two. B acts first, followed by A.",
+    "kind": "mm",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "b": [
+      [1, 1],
+      [2, 0],
+      [3, -1]
+    ],
+    "expected": [
+      [8, -2],
+      [0, 2]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 34,
+    "prompt": "A has rows (1, 0), (0, 2), (1, -1) and B has rows (1, 1), (2, 0). Compute AB, state its shape, and identify which matrix acts first on an input.",
+    "answer": "Each output column is A times the corresponding column of B. The product has rows (1, 1), (4, 0), (-1, 1) and shape 3 by two. B acts first, followed by A.",
+    "kind": "mm",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "b": [
+      [1, 1],
+      [2, 0]
+    ],
+    "expected": [
+      [1, 1],
+      [4, 0],
+      [-1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 35,
+    "prompt": "A has rows (2, 0, -1), (0, 1, 3) and B has rows (1, 1), (2, 0), (3, -1). Compute AB, state its shape, and identify which matrix acts first on an input.",
+    "answer": "Each output column is A times the corresponding column of B. The product has rows (-1, 3), (11, -3) and shape 2 by two. B acts first, followed by A.",
+    "kind": "mm",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "b": [
+      [1, 1],
+      [2, 0],
+      [3, -1]
+    ],
+    "expected": [
+      [-1, 3],
+      [11, -3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 36,
+    "prompt": "A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1) and B has rows (1, 1), (2, 0), (3, -1). Compute AB, state its shape, and identify which matrix acts first on an input.",
+    "answer": "Each output column is A times the corresponding column of B. The product has rows (5, 1), (2, -2), (5, -1) and shape 3 by two. B acts first, followed by A.",
+    "kind": "mm",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "b": [
+      [1, 1],
+      [2, 0],
+      [3, -1]
+    ],
+    "expected": [
+      [5, 1],
+      [2, -2],
+      [5, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 37,
+    "prompt": "Let A have rows (1, 1), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.",
+    "answer": "AB has rows (2, 3), (0, 3), while BA has rows (2, 2), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.",
+    "kind": "two-products",
+    "a": [
+      [1, 1],
+      [0, 1]
+    ],
+    "b": [
+      [2, 0],
+      [0, 3]
+    ],
+    "ab": [
+      [2, 3],
+      [0, 3]
+    ],
+    "ba": [
+      [2, 2],
+      [0, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 38,
+    "prompt": "Let A have rows (1, 2), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.",
+    "answer": "AB has rows (2, 6), (0, 3), while BA has rows (2, 4), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.",
+    "kind": "two-products",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "b": [
+      [2, 0],
+      [0, 3]
+    ],
+    "ab": [
+      [2, 6],
+      [0, 3]
+    ],
+    "ba": [
+      [2, 4],
+      [0, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 39,
+    "prompt": "Let A have rows (1, -1), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.",
+    "answer": "AB has rows (2, -3), (0, 3), while BA has rows (2, -2), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.",
+    "kind": "two-products",
+    "a": [
+      [1, -1],
+      [0, 1]
+    ],
+    "b": [
+      [2, 0],
+      [0, 3]
+    ],
+    "ab": [
+      [2, -3],
+      [0, 3]
+    ],
+    "ba": [
+      [2, -2],
+      [0, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 40,
+    "prompt": "Let A have rows (1, 3), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.",
+    "answer": "AB has rows (2, 9), (0, 3), while BA has rows (2, 6), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.",
+    "kind": "two-products",
+    "a": [
+      [1, 3],
+      [0, 1]
+    ],
+    "b": [
+      [2, 0],
+      [0, 3]
+    ],
+    "ab": [
+      [2, 9],
+      [0, 3]
+    ],
+    "ba": [
+      [2, 6],
+      [0, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 41,
+    "prompt": "Let A have rows (1, -2), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.",
+    "answer": "AB has rows (2, -6), (0, 3), while BA has rows (2, -4), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.",
+    "kind": "two-products",
+    "a": [
+      [1, -2],
+      [0, 1]
+    ],
+    "b": [
+      [2, 0],
+      [0, 3]
+    ],
+    "ab": [
+      [2, -6],
+      [0, 3]
+    ],
+    "ba": [
+      [2, -4],
+      [0, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 42,
+    "prompt": "Let A have rows (1, 4), (0, 1) and B have rows (2, 0), (0, 3). Compute AB and BA. Explain which coordinate is stretched before versus after the shear.",
+    "answer": "AB has rows (2, 12), (0, 3), while BA has rows (2, 8), (0, 3). In AB the input coordinates are stretched before the shear; in BA the shear's output coordinates are stretched afterward. The differing off-diagonal entries show these are different rules.",
+    "kind": "two-products",
+    "a": [
+      [1, 4],
+      [0, 1]
+    ],
+    "b": [
+      [2, 0],
+      [0, 3]
+    ],
+    "ab": [
+      [2, 12],
+      [0, 3]
+    ],
+    "ba": [
+      [2, 8],
+      [0, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 51,
+    "prompt": "A has rows (1, 2), (0, 1), B has rows (1, 0), (1, 1), and a claimed product C has rows (3, 2), (1, 1). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.",
+    "answer": "The first standard input is sent by B to (1, 1), then by A to (3, 1). The second similarly reaches (2, 1). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.",
+    "kind": "mm",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "b": [
+      [1, 0],
+      [1, 1]
+    ],
+    "expected": [
+      [3, 2],
+      [1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 52,
+    "prompt": "A has rows (2, -1), (1, 3), B has rows (1, 0), (1, 1), and a claimed product C has rows (1, -1), (4, 3). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.",
+    "answer": "The first standard input is sent by B to (1, 1), then by A to (1, 4). The second similarly reaches (-1, 3). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.",
+    "kind": "mm",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "b": [
+      [1, 0],
+      [1, 1]
+    ],
+    "expected": [
+      [1, -1],
+      [4, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 53,
+    "prompt": "A has rows (0, 1, 2), (2, -1, 0), B has rows (1, 0), (1, 1), (1, 2), and a claimed product C has rows (3, 5), (1, -1). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.",
+    "answer": "The first standard input is sent by B to (1, 1, 1), then by A to (3, 1). The second similarly reaches (5, -1). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.",
+    "kind": "mm",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "b": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "expected": [
+      [3, 5],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 54,
+    "prompt": "A has rows (1, 0), (0, 2), (1, -1), B has rows (1, 0), (1, 1), and a claimed product C has rows (1, 0), (2, 2), (0, -1). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.",
+    "answer": "The first standard input is sent by B to (1, 1), then by A to (1, 2, 0). The second similarly reaches (0, 2, -1). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.",
+    "kind": "mm",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "b": [
+      [1, 0],
+      [1, 1]
+    ],
+    "expected": [
+      [1, 0],
+      [2, 2],
+      [0, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 55,
+    "prompt": "A has rows (2, 0, -1), (0, 1, 3), B has rows (1, 0), (1, 1), (1, 2), and a claimed product C has rows (1, -2), (4, 7). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.",
+    "answer": "The first standard input is sent by B to (1, 1, 1), then by A to (1, 4). The second similarly reaches (-2, 7). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.",
+    "kind": "mm",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "b": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "expected": [
+      [1, -2],
+      [4, 7]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-matrices",
+    "id": 56,
+    "prompt": "A has rows (1, 2, 0), (-1, 0, 1), (0, 1, 1), B has rows (1, 0), (1, 1), (1, 2), and a claimed product C has rows (3, 2), (0, 2), (2, 3). Verify C=AB by using both standard inputs of the two-dimensional input space. Explain why these checks suffice.",
+    "answer": "The first standard input is sent by B to (1, 1, 1), then by A to (3, 0, 2). The second similarly reaches (2, 2, 3). These are C's two columns. Every input is a combination of the standard inputs, so linearity establishes the full equality.",
+    "kind": "mm",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "b": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "expected": [
+      [3, 2],
+      [0, 2],
+      [2, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 3,
+    "prompt": "A system has coefficient matrix with rows (1, 2), (0, 1) and right-hand side (5, 2). Write the augmented rows in variable order x1, x2, and check whether (1, 2) solves it.",
+    "answer": "The augmented rows are (1, 2, 5), (0, 1, 2). Substitution of (1, 2) gives (5, 2), so this one vector satisfies every equation simultaneously.",
+    "kind": "mv",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "x": [1, 2],
+    "expected": [5, 2]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 4,
+    "prompt": "A system has coefficient matrix with rows (2, -1), (1, 3) and right-hand side (0, 7). Write the augmented rows in variable order x1, x2, and check whether (1, 2) solves it.",
+    "answer": "The augmented rows are (2, -1, 0), (1, 3, 7). Substitution of (1, 2) gives (0, 7), so this one vector satisfies every equation simultaneously.",
+    "kind": "mv",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "x": [1, 2],
+    "expected": [0, 7]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 5,
+    "prompt": "A system has coefficient matrix with rows (0, 1, 2), (2, -1, 0) and right-hand side (8, 0). Write the augmented rows in variable order x1, x2, x3, and check whether (1, 2, 3) solves it.",
+    "answer": "The augmented rows are (0, 1, 2, 8), (2, -1, 0, 0). Substitution of (1, 2, 3) gives (8, 0), so this one vector satisfies every equation simultaneously.",
+    "kind": "mv",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "x": [1, 2, 3],
+    "expected": [8, 0]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 6,
+    "prompt": "A system has coefficient matrix with rows (1, 0), (0, 2), (1, -1) and right-hand side (1, 4, -1). Write the augmented rows in variable order x1, x2, and check whether (1, 2) solves it.",
+    "answer": "The augmented rows are (1, 0, 1), (0, 2, 4), (1, -1, -1). Substitution of (1, 2) gives (1, 4, -1), so this one vector satisfies every equation simultaneously.",
+    "kind": "mv",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "x": [1, 2],
+    "expected": [1, 4, -1]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 7,
+    "prompt": "A system has coefficient matrix with rows (2, 0, -1), (0, 1, 3) and right-hand side (-1, 11). Write the augmented rows in variable order x1, x2, x3, and check whether (1, 2, 3) solves it.",
+    "answer": "The augmented rows are (2, 0, -1, -1), (0, 1, 3, 11). Substitution of (1, 2, 3) gives (-1, 11), so this one vector satisfies every equation simultaneously.",
+    "kind": "mv",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "x": [1, 2, 3],
+    "expected": [-1, 11]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 8,
+    "prompt": "A system has coefficient matrix with rows (1, 2, 0), (-1, 0, 1), (0, 1, 1) and right-hand side (5, 2, 5). Write the augmented rows in variable order x1, x2, x3, and check whether (1, 2, 3) solves it.",
+    "answer": "The augmented rows are (1, 2, 0, 5), (-1, 0, 1, 2), (0, 1, 1, 5). Substitution of (1, 2, 3) gives (5, 2, 5), so this one vector satisfies every equation simultaneously.",
+    "kind": "mv",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "x": [1, 2, 3],
+    "expected": [5, 2, 5]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 11,
+    "prompt": "Solve x+2y=5 and 3x+5y=13 by elimination, and check the original equations.",
+    "answer": "Subtract three times row one from row two: -y=-2, hence y=2. Back substitution gives x=1. The original left sides are 5 and 13.",
+    "kind": "unique-system",
+    "a": [
+      [1, 2],
+      [3, 5]
+    ],
+    "b": [5, 13],
+    "expected": [1, 2]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 12,
+    "prompt": "Solve x+2y=0 and 3x+5y=1 by elimination, and check the original equations.",
+    "answer": "Subtract three times row one from row two: -y=1, hence y=-1. Back substitution gives x=2. The original left sides are 0 and 1.",
+    "kind": "unique-system",
+    "a": [
+      [1, 2],
+      [3, 5]
+    ],
+    "b": [0, 1],
+    "expected": [2, -1]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 13,
+    "prompt": "Solve x+2y=5 and 3x+5y=12 by elimination, and check the original equations.",
+    "answer": "Subtract three times row one from row two: -y=-3, hence y=3. Back substitution gives x=-1. The original left sides are 5 and 12.",
+    "kind": "unique-system",
+    "a": [
+      [1, 2],
+      [3, 5]
+    ],
+    "b": [5, 12],
+    "expected": [-1, 3]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 14,
+    "prompt": "Solve x+2y=4 and 3x+5y=10 by elimination, and check the original equations.",
+    "answer": "Subtract three times row one from row two: -y=-2, hence y=2. Back substitution gives x=0. The original left sides are 4 and 10.",
+    "kind": "unique-system",
+    "a": [
+      [1, 2],
+      [3, 5]
+    ],
+    "b": [4, 10],
+    "expected": [0, 2]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 15,
+    "prompt": "Solve x+2y=3 and 3x+5y=9 by elimination, and check the original equations.",
+    "answer": "Subtract three times row one from row two: -y=0, hence y=0. Back substitution gives x=3. The original left sides are 3 and 9.",
+    "kind": "unique-system",
+    "a": [
+      [1, 2],
+      [3, 5]
+    ],
+    "b": [3, 9],
+    "expected": [3, 0]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 16,
+    "prompt": "Solve x+2y=-4 and 3x+5y=-11 by elimination, and check the original equations.",
+    "answer": "Subtract three times row one from row two: -y=1, hence y=-1. Back substitution gives x=-2. The original left sides are -4 and -11.",
+    "kind": "unique-system",
+    "a": [
+      [1, 2],
+      [3, 5]
+    ],
+    "b": [-4, -11],
+    "expected": [-2, -1]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 17,
+    "prompt": "Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (6, 11, 14). Show elimination and back substitution.",
+    "answer": "Subtract twice the first row from the second and the first from the third. The new equations are y-z=-1 and y+2z=8. Subtraction gives 3z=9; then z=3, y=2, x=1. Substitution gives (6, 11, 14).",
+    "kind": "unique-system",
+    "a": [
+      [1, 1, 1],
+      [2, 3, 1],
+      [1, 2, 3]
+    ],
+    "b": [6, 11, 14],
+    "expected": [1, 2, 3]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 18,
+    "prompt": "Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 1, 0). Show elimination and back substitution.",
+    "answer": "Subtract twice the first row from the second and the first from the third. The new equations are y-z=-1 and y+2z=-1. Subtraction gives 3z=0; then z=0, y=-1, x=2. Substitution gives (1, 1, 0).",
+    "kind": "unique-system",
+    "a": [
+      [1, 1, 1],
+      [2, 3, 1],
+      [1, 2, 3]
+    ],
+    "b": [1, 1, 0],
+    "expected": [2, -1, 0]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 19,
+    "prompt": "Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 0, 5). Show elimination and back substitution.",
+    "answer": "Subtract twice the first row from the second and the first from the third. The new equations are y-z=-2 and y+2z=4. Subtraction gives 3z=6; then z=2, y=0, x=-1. Substitution gives (1, 0, 5).",
+    "kind": "unique-system",
+    "a": [
+      [1, 1, 1],
+      [2, 3, 1],
+      [1, 2, 3]
+    ],
+    "b": [1, 0, 5],
+    "expected": [-1, 0, 2]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 20,
+    "prompt": "Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 7, 0). Show elimination and back substitution.",
+    "answer": "Subtract twice the first row from the second and the first from the third. The new equations are y-z=5 and y+2z=-1. Subtraction gives 3z=-6; then z=-2, y=3, x=0. Substitution gives (1, 7, 0).",
+    "kind": "unique-system",
+    "a": [
+      [1, 1, 1],
+      [2, 3, 1],
+      [1, 2, 3]
+    ],
+    "b": [1, 7, 0],
+    "expected": [0, 3, -2]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 21,
+    "prompt": "Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (3, 8, 2). Show elimination and back substitution.",
+    "answer": "Subtract twice the first row from the second and the first from the third. The new equations are y-z=2 and y+2z=-1. Subtraction gives 3z=-3; then z=-1, y=1, x=3. Substitution gives (3, 8, 2).",
+    "kind": "unique-system",
+    "a": [
+      [1, 1, 1],
+      [2, 3, 1],
+      [1, 2, 3]
+    ],
+    "b": [3, 8, 2],
+    "expected": [3, 1, -1]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 22,
+    "prompt": "Solve the three-variable system with coefficient rows (1, 1, 1), (2, 3, 1), (1, 2, 3) and right-hand side (1, 3, 5). Show elimination and back substitution.",
+    "answer": "Subtract twice the first row from the second and the first from the third. The new equations are y-z=1 and y+2z=4. Subtraction gives 3z=3; then z=1, y=2, x=-2. Substitution gives (1, 3, 5).",
+    "kind": "unique-system",
+    "a": [
+      [1, 1, 1],
+      [2, 3, 1],
+      [1, 2, 3]
+    ],
+    "b": [1, 3, 5],
+    "expected": [-2, 2, 1]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 23,
+    "prompt": "Solve 2y=4 and 3x-y=1. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.",
+    "answer": "Put the second equation first to obtain a nonzero x pivot. The equation 2y=4 gives y=2; then 3x=3, so x=1. Swapping entire equations preserves the solution set.",
+    "kind": "unique-system",
+    "a": [
+      [0, 2],
+      [3, -1]
+    ],
+    "b": [4, 1],
+    "expected": [1, 2]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 24,
+    "prompt": "Solve 2y=-2 and 3x-y=7. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.",
+    "answer": "Put the second equation first to obtain a nonzero x pivot. The equation 2y=-2 gives y=-1; then 3x=6, so x=2. Swapping entire equations preserves the solution set.",
+    "kind": "unique-system",
+    "a": [
+      [0, 2],
+      [3, -1]
+    ],
+    "b": [-2, 7],
+    "expected": [2, -1]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 25,
+    "prompt": "Solve 2y=6 and 3x-y=-6. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.",
+    "answer": "Put the second equation first to obtain a nonzero x pivot. The equation 2y=6 gives y=3; then 3x=-3, so x=-1. Swapping entire equations preserves the solution set.",
+    "kind": "unique-system",
+    "a": [
+      [0, 2],
+      [3, -1]
+    ],
+    "b": [6, -6],
+    "expected": [-1, 3]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 26,
+    "prompt": "Solve 2y=4 and 3x-y=-2. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.",
+    "answer": "Put the second equation first to obtain a nonzero x pivot. The equation 2y=4 gives y=2; then 3x=0, so x=0. Swapping entire equations preserves the solution set.",
+    "kind": "unique-system",
+    "a": [
+      [0, 2],
+      [3, -1]
+    ],
+    "b": [4, -2],
+    "expected": [0, 2]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 27,
+    "prompt": "Solve 2y=0 and 3x-y=9. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.",
+    "answer": "Put the second equation first to obtain a nonzero x pivot. The equation 2y=0 gives y=0; then 3x=9, so x=3. Swapping entire equations preserves the solution set.",
+    "kind": "unique-system",
+    "a": [
+      [0, 2],
+      [3, -1]
+    ],
+    "b": [0, 9],
+    "expected": [3, 0]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 28,
+    "prompt": "Solve 2y=-2 and 3x-y=-5. If you use x as the first pivot variable, explain the row swap instead of dividing by a zero coefficient.",
+    "answer": "Put the second equation first to obtain a nonzero x pivot. The equation 2y=-2 gives y=-1; then 3x=-6, so x=-2. Swapping entire equations preserves the solution set.",
+    "kind": "unique-system",
+    "a": [
+      [0, 2],
+      [3, -1]
+    ],
+    "b": [-2, -5],
+    "expected": [-2, -1]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 31,
+    "prompt": "Classify x+2y=2, 2x+4y=4. If consistent, describe every real solution; otherwise display a contradiction.",
+    "answer": "Subtract twice row one from row two to get 0=0. This adds no restriction. With y=t arbitrary, x=2-2t; there are infinitely many solutions.",
+    "kind": "classification",
+    "a": [
+      [1, 2],
+      [2, 4]
+    ],
+    "b": [2, 4],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 32,
+    "prompt": "Classify x+2y=2, 2x+4y=5. If consistent, describe every real solution; otherwise display a contradiction.",
+    "answer": "Subtract twice row one from row two to get 0=1. This is impossible, so there is no solution.",
+    "kind": "classification",
+    "a": [
+      [1, 2],
+      [2, 4]
+    ],
+    "b": [2, 5],
+    "consistent": false
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 33,
+    "prompt": "Classify x+2y=-1, 2x+4y=-2. If consistent, describe every real solution; otherwise display a contradiction.",
+    "answer": "Subtract twice row one from row two to get 0=0. This adds no restriction. With y=t arbitrary, x=-1-2t; there are infinitely many solutions.",
+    "kind": "classification",
+    "a": [
+      [1, 2],
+      [2, 4]
+    ],
+    "b": [-1, -2],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 34,
+    "prompt": "Classify x+2y=-1, 2x+4y=3. If consistent, describe every real solution; otherwise display a contradiction.",
+    "answer": "Subtract twice row one from row two to get 0=5. This is impossible, so there is no solution.",
+    "kind": "classification",
+    "a": [
+      [1, 2],
+      [2, 4]
+    ],
+    "b": [-1, 3],
+    "consistent": false
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 35,
+    "prompt": "Classify x+2y=0, 2x+4y=0. If consistent, describe every real solution; otherwise display a contradiction.",
+    "answer": "Subtract twice row one from row two to get 0=0. This adds no restriction. With y=t arbitrary, x=0-2t; there are infinitely many solutions.",
+    "kind": "classification",
+    "a": [
+      [1, 2],
+      [2, 4]
+    ],
+    "b": [0, 0],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 36,
+    "prompt": "Classify x+2y=0, 2x+4y=2. If consistent, describe every real solution; otherwise display a contradiction.",
+    "answer": "Subtract twice row one from row two to get 0=2. This is impossible, so there is no solution.",
+    "kind": "classification",
+    "a": [
+      [1, 2],
+      [2, 4]
+    ],
+    "b": [0, 2],
+    "consistent": false
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 37,
+    "prompt": "For the fixed values k=2 and c=4, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.",
+    "answer": "Elimination gives (2-2)y=0. The equation is 0=0; choose y=t and x=2-t for arbitrary real t.",
+    "kind": "classification",
+    "a": [
+      [1, 1],
+      [2, 2]
+    ],
+    "b": [2, 4],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 38,
+    "prompt": "For the fixed values k=2 and c=7, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.",
+    "answer": "Elimination gives (2-2)y=3. The equation is a contradiction, so no solution exists.",
+    "kind": "classification",
+    "a": [
+      [1, 1],
+      [2, 2]
+    ],
+    "b": [2, 7],
+    "consistent": false
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 39,
+    "prompt": "For the fixed values k=3 and c=4, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.",
+    "answer": "Elimination gives (3-2)y=0. The coefficient is nonzero, so y=0 and x=2.",
+    "kind": "classification",
+    "a": [
+      [1, 1],
+      [2, 3]
+    ],
+    "b": [2, 4],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 40,
+    "prompt": "For the fixed values k=0 and c=2, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.",
+    "answer": "Elimination gives (0-2)y=-2. The coefficient is nonzero, so y=1 and x=1.",
+    "kind": "classification",
+    "a": [
+      [1, 1],
+      [2, 0]
+    ],
+    "b": [2, 2],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 41,
+    "prompt": "For the fixed values k=-1 and c=7, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.",
+    "answer": "Elimination gives (-1-2)y=3. The coefficient is nonzero, so y=-1 and x=3.",
+    "kind": "classification",
+    "a": [
+      [1, 1],
+      [2, -1]
+    ],
+    "b": [2, 7],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 42,
+    "prompt": "For the fixed values k=4 and c=0, solve x+y=2 and 2x+ky=c. Explain which division is legal or which exceptional case applies.",
+    "answer": "Elimination gives (4-2)y=-4. The coefficient is nonzero, so y=-2 and x=4.",
+    "kind": "classification",
+    "a": [
+      [1, 1],
+      [2, 4]
+    ],
+    "b": [2, 0],
+    "consistent": true
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 43,
+    "prompt": "Describe every solution of x+2z-w=1 and y-z=2. Identify both free variables and write a particular solution plus homogeneous directions.",
+    "answer": "Let z=s and w=t independently. Then x=1-2s+t and y=2+s. The vector is (1, 2, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.",
+    "kind": "affine-family",
+    "a": [
+      [1, 0, 2, -1],
+      [0, 1, -1, 0]
+    ],
+    "b": [1, 2],
+    "particular": [1, 2, 0, 0],
+    "directions": [
+      [-2, 1, 1, 0],
+      [1, 0, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 44,
+    "prompt": "Describe every solution of x+2z-w=2 and y-z=-1. Identify both free variables and write a particular solution plus homogeneous directions.",
+    "answer": "Let z=s and w=t independently. Then x=2-2s+t and y=-1+s. The vector is (2, -1, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.",
+    "kind": "affine-family",
+    "a": [
+      [1, 0, 2, -1],
+      [0, 1, -1, 0]
+    ],
+    "b": [2, -1],
+    "particular": [2, -1, 0, 0],
+    "directions": [
+      [-2, 1, 1, 0],
+      [1, 0, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 45,
+    "prompt": "Describe every solution of x+2z-w=-1 and y-z=3. Identify both free variables and write a particular solution plus homogeneous directions.",
+    "answer": "Let z=s and w=t independently. Then x=-1-2s+t and y=3+s. The vector is (-1, 3, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.",
+    "kind": "affine-family",
+    "a": [
+      [1, 0, 2, -1],
+      [0, 1, -1, 0]
+    ],
+    "b": [-1, 3],
+    "particular": [-1, 3, 0, 0],
+    "directions": [
+      [-2, 1, 1, 0],
+      [1, 0, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 46,
+    "prompt": "Describe every solution of x+2z-w=0 and y-z=2. Identify both free variables and write a particular solution plus homogeneous directions.",
+    "answer": "Let z=s and w=t independently. Then x=0-2s+t and y=2+s. The vector is (0, 2, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.",
+    "kind": "affine-family",
+    "a": [
+      [1, 0, 2, -1],
+      [0, 1, -1, 0]
+    ],
+    "b": [0, 2],
+    "particular": [0, 2, 0, 0],
+    "directions": [
+      [-2, 1, 1, 0],
+      [1, 0, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 47,
+    "prompt": "Describe every solution of x+2z-w=3 and y-z=0. Identify both free variables and write a particular solution plus homogeneous directions.",
+    "answer": "Let z=s and w=t independently. Then x=3-2s+t and y=0+s. The vector is (3, 0, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.",
+    "kind": "affine-family",
+    "a": [
+      [1, 0, 2, -1],
+      [0, 1, -1, 0]
+    ],
+    "b": [3, 0],
+    "particular": [3, 0, 0, 0],
+    "directions": [
+      [-2, 1, 1, 0],
+      [1, 0, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 48,
+    "prompt": "Describe every solution of x+2z-w=-2 and y-z=-1. Identify both free variables and write a particular solution plus homogeneous directions.",
+    "answer": "Let z=s and w=t independently. Then x=-2-2s+t and y=-1+s. The vector is (-2, -1, 0, 0)+s(-2,1,1,0)+t(1,0,0,1). Every solution has some third and fourth coordinates s,t, and the equations force the others.",
+    "kind": "affine-family",
+    "a": [
+      [1, 0, 2, -1],
+      [0, 1, -1, 0]
+    ],
+    "b": [-2, -1],
+    "particular": [-2, -1, 0, 0],
+    "directions": [
+      [-2, 1, 1, 0],
+      [1, 0, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 51,
+    "prompt": "Find all real solutions of x+1y+2z=0. Give a nontrivial solution and explain why your parameterization is complete.",
+    "answer": "Let y=s and z=t. Then x=-(1)s-(2)t, giving s(-1, 1, 0)+t(-2, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.",
+    "kind": "affine-family",
+    "a": [[1, 1, 2]],
+    "b": [0],
+    "particular": [0, 0, 0],
+    "directions": [
+      [-1, 1, 0],
+      [-2, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 52,
+    "prompt": "Find all real solutions of x+2y- 1z=0. Give a nontrivial solution and explain why your parameterization is complete.",
+    "answer": "Let y=s and z=t. Then x=-(2)s-(-1)t, giving s(-2, 1, 0)+t(1, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.",
+    "kind": "affine-family",
+    "a": [[1, 2, -1]],
+    "b": [0],
+    "particular": [0, 0, 0],
+    "directions": [
+      [-2, 1, 0],
+      [1, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 53,
+    "prompt": "Find all real solutions of x- 1y+3z=0. Give a nontrivial solution and explain why your parameterization is complete.",
+    "answer": "Let y=s and z=t. Then x=-(-1)s-(3)t, giving s(1, 1, 0)+t(-3, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.",
+    "kind": "affine-family",
+    "a": [[1, -1, 3]],
+    "b": [0],
+    "particular": [0, 0, 0],
+    "directions": [
+      [1, 1, 0],
+      [-3, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 54,
+    "prompt": "Find all real solutions of x+0y+2z=0. Give a nontrivial solution and explain why your parameterization is complete.",
+    "answer": "Let y=s and z=t. Then x=-(0)s-(2)t, giving s(0, 1, 0)+t(-2, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.",
+    "kind": "affine-family",
+    "a": [[1, 0, 2]],
+    "b": [0],
+    "particular": [0, 0, 0],
+    "directions": [
+      [0, 1, 0],
+      [-2, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 55,
+    "prompt": "Find all real solutions of x+3y+0z=0. Give a nontrivial solution and explain why your parameterization is complete.",
+    "answer": "Let y=s and z=t. Then x=-(3)s-(0)t, giving s(-3, 1, 0)+t(0, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.",
+    "kind": "affine-family",
+    "a": [[1, 3, 0]],
+    "b": [0],
+    "particular": [0, 0, 0],
+    "directions": [
+      [-3, 1, 0],
+      [0, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-systems",
+    "id": 56,
+    "prompt": "Find all real solutions of x- 2y- 1z=0. Give a nontrivial solution and explain why your parameterization is complete.",
+    "answer": "Let y=s and z=t. Then x=-(-2)s-(-1)t, giving s(2, 1, 0)+t(1, 0, 1). The first direction is nonzero. Every solution is determined by its freely chosen y,z coordinates.",
+    "kind": "affine-family",
+    "a": [[1, -2, -1]],
+    "b": [0],
+    "particular": [0, 0, 0],
+    "directions": [
+      [2, 1, 0],
+      [1, 0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 3,
+    "prompt": "Determine whether (1, 2, 0) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.",
+    "answer": "The coefficients are 1,2, producing third component 0. Changing only that component to 1 makes a target unreachable: every combination has third coordinate twice the first minus the second.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "coefficients": [1, 2],
+    "expected": [1, 2, 0]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 4,
+    "prompt": "Determine whether (2, -1, 5) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.",
+    "answer": "The coefficients are 2,-1, producing third component 5. Changing only that component to 6 makes a target unreachable: every combination has third coordinate twice the first minus the second.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "coefficients": [2, -1],
+    "expected": [2, -1, 5]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 5,
+    "prompt": "Determine whether (-1, 3, -5) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.",
+    "answer": "The coefficients are -1,3, producing third component -5. Changing only that component to -4 makes a target unreachable: every combination has third coordinate twice the first minus the second.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "coefficients": [-1, 3],
+    "expected": [-1, 3, -5]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 6,
+    "prompt": "Determine whether (0, 2, -2) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.",
+    "answer": "The coefficients are 0,2, producing third component -2. Changing only that component to -1 makes a target unreachable: every combination has third coordinate twice the first minus the second.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "coefficients": [0, 2],
+    "expected": [0, 2, -2]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 7,
+    "prompt": "Determine whether (3, 0, 6) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.",
+    "answer": "The coefficients are 3,0, producing third component 6. Changing only that component to 7 makes a target unreachable: every combination has third coordinate twice the first minus the second.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "coefficients": [3, 0],
+    "expected": [3, 0, 6]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 8,
+    "prompt": "Determine whether (-2, -1, -3) lies in the span of (1,0,2) and (0,1,-1), and find coefficients. Give one nearby target with the same first two coordinates that is unreachable.",
+    "answer": "The coefficients are -2,-1, producing third component -3. Changing only that component to -2 makes a target unreachable: every combination has third coordinate twice the first minus the second.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "coefficients": [-2, -1],
+    "expected": [-2, -1, -3]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 17,
+    "prompt": "For u=(1,0,1), v=(0,1,1), and w=(1, 2, 3), exhibit a nontrivial zero combination and identify a redundant vector.",
+    "answer": "w=1u+2v, hence coefficient list (-1, -2, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 1],
+      [0, 1, 1],
+      [1, 2, 3]
+    ],
+    "coefficients": [-1, -2, 1],
+    "expected": [0, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 18,
+    "prompt": "For u=(1,0,1), v=(0,1,1), and w=(2, -1, 1), exhibit a nontrivial zero combination and identify a redundant vector.",
+    "answer": "w=2u- 1v, hence coefficient list (-2, 1, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 1],
+      [0, 1, 1],
+      [2, -1, 1]
+    ],
+    "coefficients": [-2, 1, 1],
+    "expected": [0, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 19,
+    "prompt": "For u=(1,0,1), v=(0,1,1), and w=(-1, 3, 2), exhibit a nontrivial zero combination and identify a redundant vector.",
+    "answer": "w=-1u+3v, hence coefficient list (1, -3, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 1],
+      [0, 1, 1],
+      [-1, 3, 2]
+    ],
+    "coefficients": [1, -3, 1],
+    "expected": [0, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 20,
+    "prompt": "For u=(1,0,1), v=(0,1,1), and w=(0, 2, 2), exhibit a nontrivial zero combination and identify a redundant vector.",
+    "answer": "w=0u+2v, hence coefficient list (0, -2, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 1],
+      [0, 1, 1],
+      [0, 2, 2]
+    ],
+    "coefficients": [0, -2, 1],
+    "expected": [0, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 21,
+    "prompt": "For u=(1,0,1), v=(0,1,1), and w=(3, 0, 3), exhibit a nontrivial zero combination and identify a redundant vector.",
+    "answer": "w=3u+0v, hence coefficient list (-3, 0, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 1],
+      [0, 1, 1],
+      [3, 0, 3]
+    ],
+    "coefficients": [-3, 0, 1],
+    "expected": [0, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-span",
+    "id": 22,
+    "prompt": "For u=(1,0,1), v=(0,1,1), and w=(-2, -1, -3), exhibit a nontrivial zero combination and identify a redundant vector.",
+    "answer": "w=-2u- 1v, hence coefficient list (2, 1, 1) gives zero. Its last coefficient is one, so it is nontrivial. The vector w adds no direction beyond u,v.",
+    "kind": "combination",
+    "vectors": [
+      [1, 0, 1],
+      [0, 1, 1],
+      [-2, -1, -3]
+    ],
+    "coefficients": [2, 1, 1],
+    "expected": [0, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 3,
+    "prompt": "Find the coordinates of (3, -1) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.",
+    "answer": "The coefficients c,d satisfy c+d=3, c-d=-1, so c=1,d=2. The basis-coordinate list is (1, 2); its reconstruction 1p+(2)q is (3, -1).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ],
+    "coefficients": [1, 2],
+    "expected": [3, -1]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 4,
+    "prompt": "Find the coordinates of (1, 3) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.",
+    "answer": "The coefficients c,d satisfy c+d=1, c-d=3, so c=2,d=-1. The basis-coordinate list is (2, -1); its reconstruction 2p+(-1)q is (1, 3).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ],
+    "coefficients": [2, -1],
+    "expected": [1, 3]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 5,
+    "prompt": "Find the coordinates of (2, -4) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.",
+    "answer": "The coefficients c,d satisfy c+d=2, c-d=-4, so c=-1,d=3. The basis-coordinate list is (-1, 3); its reconstruction -1p+(3)q is (2, -4).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ],
+    "coefficients": [-1, 3],
+    "expected": [2, -4]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 6,
+    "prompt": "Find the coordinates of (2, -2) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.",
+    "answer": "The coefficients c,d satisfy c+d=2, c-d=-2, so c=0,d=2. The basis-coordinate list is (0, 2); its reconstruction 0p+(2)q is (2, -2).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ],
+    "coefficients": [0, 2],
+    "expected": [2, -2]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 7,
+    "prompt": "Find the coordinates of (3, 3) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.",
+    "answer": "The coefficients c,d satisfy c+d=3, c-d=3, so c=3,d=0. The basis-coordinate list is (3, 0); its reconstruction 3p+(0)q is (3, 3).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ],
+    "coefficients": [3, 0],
+    "expected": [3, 3]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 8,
+    "prompt": "Find the coordinates of (-3, -1) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.",
+    "answer": "The coefficients c,d satisfy c+d=-3, c-d=-1, so c=-2,d=-1. The basis-coordinate list is (-2, -1); its reconstruction -2p+(-1)q is (-3, -1).",
+    "kind": "combination",
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ],
+    "coefficients": [-2, -1],
+    "expected": [-3, -1]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 23,
+    "prompt": "For A with rows (1, 0, 1), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.",
+    "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(1)z and y=-(2)z, so (-1, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 1],
+      [0, 1, 2]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[-1, -2, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 24,
+    "prompt": "For A with rows (1, 0, 2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.",
+    "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(2)z and y=-(-1)z, so (-2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[-2, 1, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 25,
+    "prompt": "For A with rows (1, 0, -1), (0, 1, 3), give a basis of its column space and a basis of its null space. Verify both dimensions.",
+    "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-1)z and y=-(3)z, so (1, -3, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, -1],
+      [0, 1, 3]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[1, -3, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 26,
+    "prompt": "For A with rows (1, 0, 0), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.",
+    "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(0)z and y=-(2)z, so (0, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 0],
+      [0, 1, 2]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[0, -2, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 27,
+    "prompt": "For A with rows (1, 0, 3), (0, 1, 0), give a basis of its column space and a basis of its null space. Verify both dimensions.",
+    "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(3)z and y=-(0)z, so (-3, 0, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 3],
+      [0, 1, 0]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[-3, 0, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 28,
+    "prompt": "For A with rows (1, 0, -2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.",
+    "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-2)z and y=-(-1)z, so (2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, -2],
+      [0, 1, -1]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[2, 1, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 29,
+    "prompt": "A has rows (1, 2), (1, 2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
+    "answer": "Subtract 1 times row one from row two. The first column is the pivot column, so the original vector (1,1) is a basis. Reduced column (1,0) points along a different line because 1 is nonzero; it describes the reduced matrix's column space, not A's.",
+    "kind": "spaces",
+    "a": [
+      [1, 2],
+      [1, 2]
+    ],
+    "columnBasis": [[1, 1]],
+    "nullBasis": [[-2, 1]],
+    "rank": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 30,
+    "prompt": "A has rows (1, 2), (2, 4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
+    "answer": "Subtract 2 times row one from row two. The first column is the pivot column, so the original vector (1,2) is a basis. Reduced column (1,0) points along a different line because 2 is nonzero; it describes the reduced matrix's column space, not A's.",
+    "kind": "spaces",
+    "a": [
+      [1, 2],
+      [2, 4]
+    ],
+    "columnBasis": [[1, 2]],
+    "nullBasis": [[-2, 1]],
+    "rank": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 31,
+    "prompt": "A has rows (1, 2), (-1, -2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
+    "answer": "Subtract -1 times row one from row two. The first column is the pivot column, so the original vector (1,-1) is a basis. Reduced column (1,0) points along a different line because -1 is nonzero; it describes the reduced matrix's column space, not A's.",
+    "kind": "spaces",
+    "a": [
+      [1, 2],
+      [-1, -2]
+    ],
+    "columnBasis": [[1, -1]],
+    "nullBasis": [[-2, 1]],
+    "rank": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 32,
+    "prompt": "A has rows (1, 2), (3, 6). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
+    "answer": "Subtract 3 times row one from row two. The first column is the pivot column, so the original vector (1,3) is a basis. Reduced column (1,0) points along a different line because 3 is nonzero; it describes the reduced matrix's column space, not A's.",
+    "kind": "spaces",
+    "a": [
+      [1, 2],
+      [3, 6]
+    ],
+    "columnBasis": [[1, 3]],
+    "nullBasis": [[-2, 1]],
+    "rank": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 33,
+    "prompt": "A has rows (1, 2), (-2, -4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
+    "answer": "Subtract -2 times row one from row two. The first column is the pivot column, so the original vector (1,-2) is a basis. Reduced column (1,0) points along a different line because -2 is nonzero; it describes the reduced matrix's column space, not A's.",
+    "kind": "spaces",
+    "a": [
+      [1, 2],
+      [-2, -4]
+    ],
+    "columnBasis": [[1, -2]],
+    "nullBasis": [[-2, 1]],
+    "rank": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 34,
+    "prompt": "A has rows (1, 2), (4, 8). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
+    "answer": "Subtract 4 times row one from row two. The first column is the pivot column, so the original vector (1,4) is a basis. Reduced column (1,0) points along a different line because 4 is nonzero; it describes the reduced matrix's column space, not A's.",
+    "kind": "spaces",
+    "a": [
+      [1, 2],
+      [4, 8]
+    ],
+    "columnBasis": [[1, 4]],
+    "nullBasis": [[-2, 1]],
+    "rank": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 37,
+    "prompt": "Find the inverse of A with rows (1, 2), (0, 1). Compute its determinant and verify the proposed inverse by multiplication.",
+    "answer": "The determinant is 1 times 1 minus (2) times (0) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -2), (0, 1). Both products give the identity.",
+    "kind": "inverse",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "expected": [
+      ["1", "-2"],
+      ["0", "1"]
+    ],
+    "det": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 38,
+    "prompt": "Find the inverse of A with rows (2, 1), (1, 1). Compute its determinant and verify the proposed inverse by multiplication.",
+    "answer": "The determinant is 2 times 1 minus (1) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -1), (-1, 2). Both products give the identity.",
+    "kind": "inverse",
+    "a": [
+      [2, 1],
+      [1, 1]
+    ],
+    "expected": [
+      ["1", "-1"],
+      ["-1", "2"]
+    ],
+    "det": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 39,
+    "prompt": "Find the inverse of A with rows (1, -1), (2, 1). Compute its determinant and verify the proposed inverse by multiplication.",
+    "answer": "The determinant is 1 times 1 minus (-1) times (2) = 3, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 3, giving rows (1/3, 1/3), (-2/3, 1/3). Both products give the identity.",
+    "kind": "inverse",
+    "a": [
+      [1, -1],
+      [2, 1]
+    ],
+    "expected": [
+      ["1/3", "1/3"],
+      ["-2/3", "1/3"]
+    ],
+    "det": 3
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 40,
+    "prompt": "Find the inverse of A with rows (0, 1), (1, 0). Compute its determinant and verify the proposed inverse by multiplication.",
+    "answer": "The determinant is 0 times 0 minus (1) times (1) = -1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by -1, giving rows (0, 1), (1, 0). Both products give the identity.",
+    "kind": "inverse",
+    "a": [
+      [0, 1],
+      [1, 0]
+    ],
+    "expected": [
+      ["0", "1"],
+      ["1", "0"]
+    ],
+    "det": -1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 41,
+    "prompt": "Find the inverse of A with rows (3, 0), (0, 2). Compute its determinant and verify the proposed inverse by multiplication.",
+    "answer": "The determinant is 3 times 2 minus (0) times (0) = 6, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 6, giving rows (1/3, 0), (0, 1/2). Both products give the identity.",
+    "kind": "inverse",
+    "a": [
+      [3, 0],
+      [0, 2]
+    ],
+    "expected": [
+      ["1/3", "0"],
+      ["0", "1/2"]
+    ],
+    "det": 6
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 42,
+    "prompt": "Find the inverse of A with rows (2, 3), (1, 2). Compute its determinant and verify the proposed inverse by multiplication.",
+    "answer": "The determinant is 2 times 2 minus (3) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (2, -3), (-1, 2). Both products give the identity.",
+    "kind": "inverse",
+    "a": [
+      [2, 3],
+      [1, 2]
+    ],
+    "expected": [
+      ["2", "-3"],
+      ["-1", "2"]
+    ],
+    "det": 1
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 43,
+    "prompt": "A has plane columns (2, -1) and (3, 4). Find its determinant, the area of their parallelogram, and whether A is invertible.",
+    "answer": "The determinant is 11; the area is its absolute value, 11. Nonzero area means two independent directions and an inverse.",
+    "kind": "determinant",
+    "a": [
+      [2, 3],
+      [-1, 4]
+    ],
+    "expected": 11
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 44,
+    "prompt": "A has plane columns (0, 3) and (-2, 1). Find its determinant, the area of their parallelogram, and whether A is invertible.",
+    "answer": "The determinant is 6; the area is its absolute value, 6. Nonzero area means two independent directions and an inverse.",
+    "kind": "determinant",
+    "a": [
+      [0, -2],
+      [3, 1]
+    ],
+    "expected": 6
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 45,
+    "prompt": "A has plane columns (-3, 2) and (1, -4). Find its determinant, the area of their parallelogram, and whether A is invertible.",
+    "answer": "The determinant is 10; the area is its absolute value, 10. Nonzero area means two independent directions and an inverse.",
+    "kind": "determinant",
+    "a": [
+      [-3, 1],
+      [2, -4]
+    ],
+    "expected": 10
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 54,
+    "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(4, 3) using that inverse and check the result in A.",
+    "answer": "Multiplying the inverse by the right-hand side gives (1, 2). Applying A returns (4, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
+    "kind": "unique-system",
+    "a": [
+      [2, 1],
+      [1, 1]
+    ],
+    "b": [4, 3],
+    "expected": [1, 2]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 55,
+    "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(3, 1) using that inverse and check the result in A.",
+    "answer": "Multiplying the inverse by the right-hand side gives (2, -1). Applying A returns (3, 1). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
+    "kind": "unique-system",
+    "a": [
+      [2, 1],
+      [1, 1]
+    ],
+    "b": [3, 1],
+    "expected": [2, -1]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 56,
+    "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(1, 2) using that inverse and check the result in A.",
+    "answer": "Multiplying the inverse by the right-hand side gives (-1, 3). Applying A returns (1, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
+    "kind": "unique-system",
+    "a": [
+      [2, 1],
+      [1, 1]
+    ],
+    "b": [1, 2],
+    "expected": [-1, 3]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 57,
+    "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(2, 2) using that inverse and check the result in A.",
+    "answer": "Multiplying the inverse by the right-hand side gives (0, 2). Applying A returns (2, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
+    "kind": "unique-system",
+    "a": [
+      [2, 1],
+      [1, 1]
+    ],
+    "b": [2, 2],
+    "expected": [0, 2]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 58,
+    "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(6, 3) using that inverse and check the result in A.",
+    "answer": "Multiplying the inverse by the right-hand side gives (3, 0). Applying A returns (6, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
+    "kind": "unique-system",
+    "a": [
+      [2, 1],
+      [1, 1]
+    ],
+    "b": [6, 3],
+    "expected": [3, 0]
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 59,
+    "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(-5, -3) using that inverse and check the result in A.",
+    "answer": "Multiplying the inverse by the right-hand side gives (-2, -1). Applying A returns (-5, -3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
+    "kind": "unique-system",
+    "a": [
+      [2, 1],
+      [1, 1]
+    ],
+    "b": [-5, -3],
+    "expected": [-2, -1]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 17,
+    "prompt": "A linear map sends successive standard basis inputs to (1, 0), (2, 1). Write its matrix and compute its output on (1, 2).",
+    "answer": "Use the given output vectors as columns, giving rows (1, 2), (0, 1). The output on (1, 2) is (5, 2), the corresponding column combination.",
+    "kind": "mv",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "x": [1, 2],
+    "expected": [5, 2]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 18,
+    "prompt": "A linear map sends successive standard basis inputs to (2, 1), (-1, 3). Write its matrix and compute its output on (1, 2).",
+    "answer": "Use the given output vectors as columns, giving rows (2, -1), (1, 3). The output on (1, 2) is (0, 7), the corresponding column combination.",
+    "kind": "mv",
+    "a": [
+      [2, -1],
+      [1, 3]
+    ],
+    "x": [1, 2],
+    "expected": [0, 7]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 19,
+    "prompt": "A linear map sends successive standard basis inputs to (0, 2), (1, -1), (2, 0). Write its matrix and compute its output on (1, 2, 3).",
+    "answer": "Use the given output vectors as columns, giving rows (0, 1, 2), (2, -1, 0). The output on (1, 2, 3) is (8, 0), the corresponding column combination.",
+    "kind": "mv",
+    "a": [
+      [0, 1, 2],
+      [2, -1, 0]
+    ],
+    "x": [1, 2, 3],
+    "expected": [8, 0]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 20,
+    "prompt": "A linear map sends successive standard basis inputs to (1, 0, 1), (0, 2, -1). Write its matrix and compute its output on (1, 2).",
+    "answer": "Use the given output vectors as columns, giving rows (1, 0), (0, 2), (1, -1). The output on (1, 2) is (1, 4, -1), the corresponding column combination.",
+    "kind": "mv",
+    "a": [
+      [1, 0],
+      [0, 2],
+      [1, -1]
+    ],
+    "x": [1, 2],
+    "expected": [1, 4, -1]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 21,
+    "prompt": "A linear map sends successive standard basis inputs to (2, 0), (0, 1), (-1, 3). Write its matrix and compute its output on (1, 2, 3).",
+    "answer": "Use the given output vectors as columns, giving rows (2, 0, -1), (0, 1, 3). The output on (1, 2, 3) is (-1, 11), the corresponding column combination.",
+    "kind": "mv",
+    "a": [
+      [2, 0, -1],
+      [0, 1, 3]
+    ],
+    "x": [1, 2, 3],
+    "expected": [-1, 11]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 22,
+    "prompt": "A linear map sends successive standard basis inputs to (1, -1, 0), (2, 0, 1), (0, 1, 1). Write its matrix and compute its output on (1, 2, 3).",
+    "answer": "Use the given output vectors as columns, giving rows (1, 2, 0), (-1, 0, 1), (0, 1, 1). The output on (1, 2, 3) is (5, 2, 5), the corresponding column combination.",
+    "kind": "mv",
+    "a": [
+      [1, 2, 0],
+      [-1, 0, 1],
+      [0, 1, 1]
+    ],
+    "x": [1, 2, 3],
+    "expected": [5, 2, 5]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 23,
+    "prompt": "Find the matrix of reflection across the horizontal axis by tracking the two standard basis vectors. Apply it to (2,3).",
+    "answer": "The standard inputs go to (1, 0), (0, -1), so the rows are (1, 0), (0, -1). Applying it to (2,3) gives (2, -3).",
+    "kind": "mv",
+    "a": [
+      [1, 0],
+      [0, -1]
+    ],
+    "x": [2, 3],
+    "expected": [2, -3]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 24,
+    "prompt": "Find the matrix of reflection across the vertical axis by tracking the two standard basis vectors. Apply it to (2,3).",
+    "answer": "The standard inputs go to (-1, 0), (0, 1), so the rows are (-1, 0), (0, 1). Applying it to (2,3) gives (-2, 3).",
+    "kind": "mv",
+    "a": [
+      [-1, 0],
+      [0, 1]
+    ],
+    "x": [2, 3],
+    "expected": [-2, 3]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 25,
+    "prompt": "Find the matrix of counterclockwise right-angle rotation by tracking the two standard basis vectors. Apply it to (2,3).",
+    "answer": "The standard inputs go to (0, 1), (-1, 0), so the rows are (0, -1), (1, 0). Applying it to (2,3) gives (-3, 2).",
+    "kind": "mv",
+    "a": [
+      [0, -1],
+      [1, 0]
+    ],
+    "x": [2, 3],
+    "expected": [-3, 2]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 26,
+    "prompt": "Find the matrix of clockwise right-angle rotation by tracking the two standard basis vectors. Apply it to (2,3).",
+    "answer": "The standard inputs go to (0, -1), (1, 0), so the rows are (0, 1), (-1, 0). Applying it to (2,3) gives (3, -2).",
+    "kind": "mv",
+    "a": [
+      [0, 1],
+      [-1, 0]
+    ],
+    "x": [2, 3],
+    "expected": [3, -2]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 27,
+    "prompt": "Find the matrix of projection onto the horizontal axis by tracking the two standard basis vectors. Apply it to (2,3).",
+    "answer": "The standard inputs go to (1, 0), (0, 0), so the rows are (1, 0), (0, 0). Applying it to (2,3) gives (2, 0).",
+    "kind": "mv",
+    "a": [
+      [1, 0],
+      [0, 0]
+    ],
+    "x": [2, 3],
+    "expected": [2, 0]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 28,
+    "prompt": "Find the matrix of projection onto the vertical axis by tracking the two standard basis vectors. Apply it to (2,3).",
+    "answer": "The standard inputs go to (0, 0), (0, 1), so the rows are (0, 0), (0, 1). Applying it to (2,3) gives (0, 3).",
+    "kind": "mv",
+    "a": [
+      [0, 0],
+      [0, 1]
+    ],
+    "x": [2, 3],
+    "expected": [0, 3]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 31,
+    "prompt": "For T(x,y,z)=(x+1z,y+2z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?",
+    "answer": "The kernel is all multiples of (-1, -2, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 1],
+      [0, 1, 2]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[-1, -2, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 32,
+    "prompt": "For T(x,y,z)=(x+2z,y- 1z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?",
+    "answer": "The kernel is all multiples of (-2, 1, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 2],
+      [0, 1, -1]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[-2, 1, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 33,
+    "prompt": "For T(x,y,z)=(x- 1z,y+3z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?",
+    "answer": "The kernel is all multiples of (1, -3, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, -1],
+      [0, 1, 3]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[1, -3, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 34,
+    "prompt": "For T(x,y,z)=(x+0z,y+2z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?",
+    "answer": "The kernel is all multiples of (0, -2, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 0],
+      [0, 1, 2]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[0, -2, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 35,
+    "prompt": "For T(x,y,z)=(x+3z,y+0z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?",
+    "answer": "The kernel is all multiples of (-3, 0, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, 3],
+      [0, 1, 0]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[-3, 0, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 36,
+    "prompt": "For T(x,y,z)=(x- 2z,y- 1z), find kernel and image. Is it injective? Is it surjective onto the coordinate plane?",
+    "answer": "The kernel is all multiples of (2, 1, 1), so it is not injective. Any target (r,s) is reached from (r,s,0), so the image is the whole plane and the map is surjective.",
+    "kind": "spaces",
+    "a": [
+      [1, 0, -2],
+      [0, 1, -1]
+    ],
+    "columnBasis": [
+      [1, 0],
+      [0, 1]
+    ],
+    "nullBasis": [[2, 1, 1]],
+    "rank": 2
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 45,
+    "prompt": "A multiplies the first standard coordinate by 2 and the second by 1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.",
+    "answer": "The first basis vector goes to (2,1), whose basis coordinates are (3/2, 1/2). The second goes to (2,-1), whose basis coordinates are (1/2, 3/2). These are the columns, so the new rows are (3/2, 1/2), (1/2, 3/2).",
+    "kind": "similarity",
+    "a": [
+      [2, 0],
+      [0, 1]
+    ],
+    "p": [
+      [1, 1],
+      [1, -1]
+    ],
+    "expected": [
+      ["3/2", "1/2"],
+      ["1/2", "3/2"]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 46,
+    "prompt": "A multiplies the first standard coordinate by 3 and the second by -1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.",
+    "answer": "The first basis vector goes to (3,-1), whose basis coordinates are (1, 2). The second goes to (3,1), whose basis coordinates are (2, 1). These are the columns, so the new rows are (1, 2), (2, 1).",
+    "kind": "similarity",
+    "a": [
+      [3, 0],
+      [0, -1]
+    ],
+    "p": [
+      [1, 1],
+      [1, -1]
+    ],
+    "expected": [
+      ["1", "2"],
+      ["2", "1"]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 47,
+    "prompt": "A multiplies the first standard coordinate by 0 and the second by 2. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.",
+    "answer": "The first basis vector goes to (0,2), whose basis coordinates are (1, -1). The second goes to (0,-2), whose basis coordinates are (-1, 1). These are the columns, so the new rows are (1, -1), (-1, 1).",
+    "kind": "similarity",
+    "a": [
+      [0, 0],
+      [0, 2]
+    ],
+    "p": [
+      [1, 1],
+      [1, -1]
+    ],
+    "expected": [
+      ["1", "-1"],
+      ["-1", "1"]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 48,
+    "prompt": "A multiplies the first standard coordinate by -2 and the second by 4. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.",
+    "answer": "The first basis vector goes to (-2,4), whose basis coordinates are (1, -3). The second goes to (-2,-4), whose basis coordinates are (-3, 1). These are the columns, so the new rows are (1, -3), (-3, 1).",
+    "kind": "similarity",
+    "a": [
+      [-2, 0],
+      [0, 4]
+    ],
+    "p": [
+      [1, 1],
+      [1, -1]
+    ],
+    "expected": [
+      ["1", "-3"],
+      ["-3", "1"]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 49,
+    "prompt": "A multiplies the first standard coordinate by 1 and the second by 1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.",
+    "answer": "The first basis vector goes to (1,1), whose basis coordinates are (1, 0). The second goes to (1,-1), whose basis coordinates are (0, 1). These are the columns, so the new rows are (1, 0), (0, 1).",
+    "kind": "similarity",
+    "a": [
+      [1, 0],
+      [0, 1]
+    ],
+    "p": [
+      [1, 1],
+      [1, -1]
+    ],
+    "expected": [
+      ["1", "0"],
+      ["0", "1"]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-transformations",
+    "id": 50,
+    "prompt": "A multiplies the first standard coordinate by -1 and the second by -1. Find its matrix in the ordered basis (1,1),(1,-1), using that basis for input and output.",
+    "answer": "The first basis vector goes to (-1,-1), whose basis coordinates are (-1, 0). The second goes to (-1,1), whose basis coordinates are (0, -1). These are the columns, so the new rows are (-1, 0), (0, -1).",
+    "kind": "similarity",
+    "a": [
+      [-1, 0],
+      [0, -1]
+    ],
+    "p": [
+      [1, 1],
+      [1, -1]
+    ],
+    "expected": [
+      ["-1", "0"],
+      ["0", "-1"]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 3,
+    "prompt": "Project b=(3, 4) onto the line spanned by u=(2, -1). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.",
+    "answer": "The coefficient is 2/5=2/5. Projection is (4/5, -2/5) and residual (11/5, 22/5). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.",
+    "kind": "projection",
+    "u": [2, -1],
+    "b": [3, 4],
+    "expected": ["4/5", "-2/5"],
+    "residual": ["11/5", "22/5"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 4,
+    "prompt": "Project b=(-2, 1) onto the line spanned by u=(0, 3). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.",
+    "answer": "The coefficient is 3/9=1/3. Projection is (0, 1) and residual (-2, 0). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.",
+    "kind": "projection",
+    "u": [0, 3],
+    "b": [-2, 1],
+    "expected": ["0", "1"],
+    "residual": ["-2", "0"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 5,
+    "prompt": "Project b=(1, -4) onto the line spanned by u=(-3, 2). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.",
+    "answer": "The coefficient is -11/13=-11/13. Projection is (33/13, -22/13) and residual (-20/13, -30/13). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.",
+    "kind": "projection",
+    "u": [-3, 2],
+    "b": [1, -4],
+    "expected": ["33/13", "-22/13"],
+    "residual": ["-20/13", "-30/13"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 6,
+    "prompt": "Project b=(0, -3, 1) onto the line spanned by u=(1, 0, 2). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.",
+    "answer": "The coefficient is 2/5=2/5. Projection is (2/5, 0, 4/5) and residual (-2/5, -3, 1/5). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.",
+    "kind": "projection",
+    "u": [1, 0, 2],
+    "b": [0, -3, 1],
+    "expected": ["2/5", "0", "4/5"],
+    "residual": ["-2/5", "-3", "1/5"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 7,
+    "prompt": "Project b=(-1, 2, 3) onto the line spanned by u=(2, -1, 0). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.",
+    "answer": "The coefficient is -4/5=-4/5. Projection is (-8/5, 4/5, 0) and residual (3/5, 6/5, 3). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.",
+    "kind": "projection",
+    "u": [2, -1, 0],
+    "b": [-1, 2, 3],
+    "expected": ["-8/5", "4/5", "0"],
+    "residual": ["3/5", "6/5", "3"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 8,
+    "prompt": "Project b=(3, 0, 1, -1) onto the line spanned by u=(1, 2, -2, 0). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.",
+    "answer": "The coefficient is 1/9=1/9. Projection is (1/9, 2/9, -2/9, 0) and residual (26/9, -2/9, 11/9, -1). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.",
+    "kind": "projection",
+    "u": [1, 2, -2, 0],
+    "b": [3, 0, 1, -1],
+    "expected": ["1/9", "2/9", "-2/9", "0"],
+    "residual": ["26/9", "-2/9", "11/9", "-1"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 9,
+    "prompt": "Project b=(3,1) onto the line generated by u=(2, 2). Compare the result with projection using (1,1).",
+    "answer": "The coefficient for u is 1, producing (2,2). Using (1,1) gives coefficient two and the same point. The nonzero rescaling changes the coefficient but not the line or projection.",
+    "kind": "projection",
+    "u": [2, 2],
+    "b": [3, 1],
+    "expected": [2, 2],
+    "residual": [1, -1]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 10,
+    "prompt": "Project b=(3,1) onto the line generated by u=(-1, -1). Compare the result with projection using (1,1).",
+    "answer": "The coefficient for u is -2, producing (2,2). Using (1,1) gives coefficient two and the same point. The nonzero rescaling changes the coefficient but not the line or projection.",
+    "kind": "projection",
+    "u": [-1, -1],
+    "b": [3, 1],
+    "expected": [2, 2],
+    "residual": [1, -1]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 11,
+    "prompt": "Project b=(3,1) onto the line generated by u=(3, 3). Compare the result with projection using (1,1).",
+    "answer": "The coefficient for u is 2/3, producing (2,2). Using (1,1) gives coefficient two and the same point. The nonzero rescaling changes the coefficient but not the line or projection.",
+    "kind": "projection",
+    "u": [3, 3],
+    "b": [3, 1],
+    "expected": [2, 2],
+    "residual": [1, -1]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 12,
+    "prompt": "Project b=(3,1) onto the line generated by u=(-2, -2). Compare the result with projection using (1,1).",
+    "answer": "The coefficient for u is -1, producing (2,2). Using (1,1) gives coefficient two and the same point. The nonzero rescaling changes the coefficient but not the line or projection.",
+    "kind": "projection",
+    "u": [-2, -2],
+    "b": [3, 1],
+    "expected": [2, 2],
+    "residual": [1, -1]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 13,
+    "prompt": "Project b=(3,1) onto the line generated by u=(4, 4). Compare the result with projection using (1,1).",
+    "answer": "The coefficient for u is 1/2, producing (2,2). Using (1,1) gives coefficient two and the same point. The nonzero rescaling changes the coefficient but not the line or projection.",
+    "kind": "projection",
+    "u": [4, 4],
+    "b": [3, 1],
+    "expected": [2, 2],
+    "residual": [1, -1]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 14,
+    "prompt": "Project b=(3,1) onto the line generated by u=(-3, -3). Compare the result with projection using (1,1).",
+    "answer": "The coefficient for u is -2/3, producing (2,2). Using (1,1) gives coefficient two and the same point. The nonzero rescaling changes the coefficient but not the line or projection.",
+    "kind": "projection",
+    "u": [-3, -3],
+    "b": [3, 1],
+    "expected": [2, 2],
+    "residual": [1, -1]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 17,
+    "prompt": "The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (1, 2, 3) onto their span. Give Q transpose b and the residual.",
+    "answer": "Q transpose b gives coefficients (1, 3). The projection is (1, 0, 3); the residual is (0, 2, 0), perpendicular to both columns.",
+    "kind": "projection-space",
+    "a": [
+      [1, 0],
+      [0, 0],
+      [0, 1]
+    ],
+    "b": [1, 2, 3],
+    "expected": [1, 0, 3]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 18,
+    "prompt": "The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (-2, 1, 4) onto their span. Give Q transpose b and the residual.",
+    "answer": "Q transpose b gives coefficients (-2, 4). The projection is (-2, 0, 4); the residual is (0, 1, 0), perpendicular to both columns.",
+    "kind": "projection-space",
+    "a": [
+      [1, 0],
+      [0, 0],
+      [0, 1]
+    ],
+    "b": [-2, 1, 4],
+    "expected": [-2, 0, 4]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 19,
+    "prompt": "The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (0, 3, -1) onto their span. Give Q transpose b and the residual.",
+    "answer": "Q transpose b gives coefficients (0, -1). The projection is (0, 0, -1); the residual is (0, 3, 0), perpendicular to both columns.",
+    "kind": "projection-space",
+    "a": [
+      [1, 0],
+      [0, 0],
+      [0, 1]
+    ],
+    "b": [0, 3, -1],
+    "expected": [0, 0, -1]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 20,
+    "prompt": "The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (4, -2, 0) onto their span. Give Q transpose b and the residual.",
+    "answer": "Q transpose b gives coefficients (4, 0). The projection is (4, 0, 0); the residual is (0, -2, 0), perpendicular to both columns.",
+    "kind": "projection-space",
+    "a": [
+      [1, 0],
+      [0, 0],
+      [0, 1]
+    ],
+    "b": [4, -2, 0],
+    "expected": [4, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 21,
+    "prompt": "The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (2, 2, 2) onto their span. Give Q transpose b and the residual.",
+    "answer": "Q transpose b gives coefficients (2, 2). The projection is (2, 0, 2); the residual is (0, 2, 0), perpendicular to both columns.",
+    "kind": "projection-space",
+    "a": [
+      [1, 0],
+      [0, 0],
+      [0, 1]
+    ],
+    "b": [2, 2, 2],
+    "expected": [2, 0, 2]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 22,
+    "prompt": "The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (-1, -3, 2) onto their span. Give Q transpose b and the residual.",
+    "answer": "Q transpose b gives coefficients (-1, 2). The projection is (-1, 0, 2); the residual is (0, -3, 0), perpendicular to both columns.",
+    "kind": "projection-space",
+    "a": [
+      [1, 0],
+      [0, 0],
+      [0, 1]
+    ],
+    "b": [-1, -3, 2],
+    "expected": [-1, 0, 2]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 23,
+    "prompt": "Apply Gram–Schmidt to the ordered vectors (1,0,0) and (1, 1, 1). Give the orthonormal vectors and verify that the span is unchanged.",
+    "answer": "The first vector already has unit length. Subtract its projection (1,0,0) from the second, leaving (0, 1, 1). Divide that remainder by square root of 2 for the second unit vector. It is perpendicular to the first, and the original second vector is 1 times the first plus square root of 2 times the second unit vector.",
+    "kind": "gram-schmidt",
+    "a": [
+      [1, 0, 0],
+      [1, 1, 1]
+    ],
+    "remainders": [
+      [1, 0, 0],
+      [0, 1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 24,
+    "prompt": "Apply Gram–Schmidt to the ordered vectors (1,0,0) and (2, 1, 1). Give the orthonormal vectors and verify that the span is unchanged.",
+    "answer": "The first vector already has unit length. Subtract its projection (2,0,0) from the second, leaving (0, 1, 1). Divide that remainder by square root of 2 for the second unit vector. It is perpendicular to the first, and the original second vector is 2 times the first plus square root of 2 times the second unit vector.",
+    "kind": "gram-schmidt",
+    "a": [
+      [1, 0, 0],
+      [2, 1, 1]
+    ],
+    "remainders": [
+      [1, 0, 0],
+      [0, 1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 25,
+    "prompt": "Apply Gram–Schmidt to the ordered vectors (1,0,0) and (-1, 2, 1). Give the orthonormal vectors and verify that the span is unchanged.",
+    "answer": "The first vector already has unit length. Subtract its projection (-1,0,0) from the second, leaving (0, 2, 1). Divide that remainder by square root of 5 for the second unit vector. It is perpendicular to the first, and the original second vector is -1 times the first plus square root of 5 times the second unit vector.",
+    "kind": "gram-schmidt",
+    "a": [
+      [1, 0, 0],
+      [-1, 2, 1]
+    ],
+    "remainders": [
+      [1, 0, 0],
+      [0, 2, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 26,
+    "prompt": "Apply Gram–Schmidt to the ordered vectors (1,0,0) and (3, -1, 1). Give the orthonormal vectors and verify that the span is unchanged.",
+    "answer": "The first vector already has unit length. Subtract its projection (3,0,0) from the second, leaving (0, -1, 1). Divide that remainder by square root of 2 for the second unit vector. It is perpendicular to the first, and the original second vector is 3 times the first plus square root of 2 times the second unit vector.",
+    "kind": "gram-schmidt",
+    "a": [
+      [1, 0, 0],
+      [3, -1, 1]
+    ],
+    "remainders": [
+      [1, 0, 0],
+      [0, -1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 27,
+    "prompt": "Apply Gram–Schmidt to the ordered vectors (1,0,0) and (1, -2, 1). Give the orthonormal vectors and verify that the span is unchanged.",
+    "answer": "The first vector already has unit length. Subtract its projection (1,0,0) from the second, leaving (0, -2, 1). Divide that remainder by square root of 5 for the second unit vector. It is perpendicular to the first, and the original second vector is 1 times the first plus square root of 5 times the second unit vector.",
+    "kind": "gram-schmidt",
+    "a": [
+      [1, 0, 0],
+      [1, -2, 1]
+    ],
+    "remainders": [
+      [1, 0, 0],
+      [0, -2, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 28,
+    "prompt": "Apply Gram–Schmidt to the ordered vectors (1,0,0) and (-2, -1, 1). Give the orthonormal vectors and verify that the span is unchanged.",
+    "answer": "The first vector already has unit length. Subtract its projection (-2,0,0) from the second, leaving (0, -1, 1). Divide that remainder by square root of 2 for the second unit vector. It is perpendicular to the first, and the original second vector is -2 times the first plus square root of 2 times the second unit vector.",
+    "kind": "gram-schmidt",
+    "a": [
+      [1, 0, 0],
+      [-2, -1, 1]
+    ],
+    "remainders": [
+      [1, 0, 0],
+      [0, -1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 31,
+    "prompt": "Fit one constant c to observations (1, 2, 6) by least squares. Derive the normal equation and give fitted values and residual.",
+    "answer": "With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.",
+    "kind": "least-squares",
+    "a": [[1], [1], [1]],
+    "b": [1, 2, 6],
+    "x": ["3"],
+    "expected": ["3", "3", "3"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 32,
+    "prompt": "Fit one constant c to observations (2, 4, 9) by least squares. Derive the normal equation and give fitted values and residual.",
+    "answer": "With a column of 3 ones, the normal equation is 3c=15. Thus c=5, fitted values (5, 5, 5), residual (-3, -1, 4). Its components sum to zero, establishing orthogonality to the constant column.",
+    "kind": "least-squares",
+    "a": [[1], [1], [1]],
+    "b": [2, 4, 9],
+    "x": ["5"],
+    "expected": ["5", "5", "5"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 33,
+    "prompt": "Fit one constant c to observations (-1, 0, 4) by least squares. Derive the normal equation and give fitted values and residual.",
+    "answer": "With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.",
+    "kind": "least-squares",
+    "a": [[1], [1], [1]],
+    "b": [-1, 0, 4],
+    "x": ["1"],
+    "expected": ["1", "1", "1"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 34,
+    "prompt": "Fit one constant c to observations (3, 3, 3) by least squares. Derive the normal equation and give fitted values and residual.",
+    "answer": "With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (0, 0, 0). Its components sum to zero, establishing orthogonality to the constant column.",
+    "kind": "least-squares",
+    "a": [[1], [1], [1]],
+    "b": [3, 3, 3],
+    "x": ["3"],
+    "expected": ["3", "3", "3"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 35,
+    "prompt": "Fit one constant c to observations (0, 0, 6) by least squares. Derive the normal equation and give fitted values and residual.",
+    "answer": "With a column of 3 ones, the normal equation is 3c=6. Thus c=2, fitted values (2, 2, 2), residual (-2, -2, 4). Its components sum to zero, establishing orthogonality to the constant column.",
+    "kind": "least-squares",
+    "a": [[1], [1], [1]],
+    "b": [0, 0, 6],
+    "x": ["2"],
+    "expected": ["2", "2", "2"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 36,
+    "prompt": "Fit one constant c to observations (2, -2, 3) by least squares. Derive the normal equation and give fitted values and residual.",
+    "answer": "With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (1, -3, 2). Its components sum to zero, establishing orthogonality to the constant column.",
+    "kind": "least-squares",
+    "a": [[1], [1], [1]],
+    "b": [2, -2, 3],
+    "x": ["1"],
+    "expected": ["1", "1", "1"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 37,
+    "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (1, 2, 2). Set up and solve the two normal equations, then give the fitted output.",
+    "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=5 and 3c+5d=6. Subtracting gives 2d=1, so d=1/2 and c=7/6. Fitted values are (7/6, 5/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.",
+    "kind": "least-squares",
+    "a": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "b": [1, 2, 2],
+    "x": ["7/6", "1/2"],
+    "expected": ["7/6", "5/3", "13/6"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 38,
+    "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (0, 1, 3). Set up and solve the two normal equations, then give the fitted output.",
+    "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=4 and 3c+5d=7. Subtracting gives 2d=3, so d=3/2 and c=-1/6. Fitted values are (-1/6, 4/3, 17/6); subtracting them from observations gives a residual orthogonal to both design columns.",
+    "kind": "least-squares",
+    "a": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "b": [0, 1, 3],
+    "x": ["-1/6", "3/2"],
+    "expected": ["-1/6", "4/3", "17/6"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 39,
+    "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (2, 0, 1). Set up and solve the two normal equations, then give the fitted output.",
+    "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=3 and 3c+5d=2. Subtracting gives 2d=-1, so d=-1/2 and c=3/2. Fitted values are (3/2, 1, 1/2); subtracting them from observations gives a residual orthogonal to both design columns.",
+    "kind": "least-squares",
+    "a": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "b": [2, 0, 1],
+    "x": ["3/2", "-1/2"],
+    "expected": ["3/2", "1", "1/2"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 40,
+    "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (3, 3, 3). Set up and solve the two normal equations, then give the fitted output.",
+    "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=9 and 3c+5d=9. Subtracting gives 2d=0, so d=0 and c=3. Fitted values are (3, 3, 3); subtracting them from observations gives a residual orthogonal to both design columns.",
+    "kind": "least-squares",
+    "a": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "b": [3, 3, 3],
+    "x": ["3", "0"],
+    "expected": ["3", "3", "3"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 41,
+    "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (-1, 1, 2). Set up and solve the two normal equations, then give the fitted output.",
+    "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=2 and 3c+5d=5. Subtracting gives 2d=3, so d=3/2 and c=-5/6. Fitted values are (-5/6, 2/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.",
+    "kind": "least-squares",
+    "a": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "b": [-1, 1, 2],
+    "x": ["-5/6", "3/2"],
+    "expected": ["-5/6", "2/3", "13/6"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 42,
+    "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (2, 4, 6). Set up and solve the two normal equations, then give the fitted output.",
+    "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=12 and 3c+5d=16. Subtracting gives 2d=4, so d=2 and c=2. Fitted values are (2, 4, 6); subtracting them from observations gives a residual orthogonal to both design columns.",
+    "kind": "least-squares",
+    "a": [
+      [1, 0],
+      [1, 1],
+      [1, 2]
+    ],
+    "b": [2, 4, 6],
+    "x": ["2", "2"],
+    "expected": ["2", "4", "6"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 43,
+    "prompt": "A has rows (1,1),(1,1) and b=(1, 3). Describe every least-squares coefficient vector and the unique fitted output.",
+    "answer": "Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
+    "kind": "least-squares",
+    "a": [
+      [1, 1],
+      [1, 1]
+    ],
+    "b": [1, 3],
+    "x": ["2", 0],
+    "expected": ["2", "2"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 44,
+    "prompt": "A has rows (1,1),(1,1) and b=(2, 4). Describe every least-squares coefficient vector and the unique fitted output.",
+    "answer": "Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
+    "kind": "least-squares",
+    "a": [
+      [1, 1],
+      [1, 1]
+    ],
+    "b": [2, 4],
+    "x": ["3", 0],
+    "expected": ["3", "3"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 45,
+    "prompt": "A has rows (1,1),(1,1) and b=(-1, 2). Describe every least-squares coefficient vector and the unique fitted output.",
+    "answer": "Only the sum x1+x2 matters. Its best constant value is 1/2. All coefficients (1/2-t,t), t real, give fitted output (1/2,1/2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
+    "kind": "least-squares",
+    "a": [
+      [1, 1],
+      [1, 1]
+    ],
+    "b": [-1, 2],
+    "x": ["1/2", 0],
+    "expected": ["1/2", "1/2"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 46,
+    "prompt": "A has rows (1,1),(1,1) and b=(0, 4). Describe every least-squares coefficient vector and the unique fitted output.",
+    "answer": "Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
+    "kind": "least-squares",
+    "a": [
+      [1, 1],
+      [1, 1]
+    ],
+    "b": [0, 4],
+    "x": ["2", 0],
+    "expected": ["2", "2"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 47,
+    "prompt": "A has rows (1,1),(1,1) and b=(3, 3). Describe every least-squares coefficient vector and the unique fitted output.",
+    "answer": "Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
+    "kind": "least-squares",
+    "a": [
+      [1, 1],
+      [1, 1]
+    ],
+    "b": [3, 3],
+    "x": ["3", 0],
+    "expected": ["3", "3"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 48,
+    "prompt": "A has rows (1,1),(1,1) and b=(-2, -4). Describe every least-squares coefficient vector and the unique fitted output.",
+    "answer": "Only the sum x1+x2 matters. Its best constant value is -3. All coefficients (-3-t,t), t real, give fitted output (-3,-3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
+    "kind": "least-squares",
+    "a": [
+      [1, 1],
+      [1, 1]
+    ],
+    "b": [-2, -4],
+    "x": ["-3", 0],
+    "expected": ["-3", "-3"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 51,
+    "prompt": "A has one column (1,2). A proposed coefficient for target (1, 2) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
+    "answer": "The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
+    "kind": "least-squares",
+    "a": [[1], [2]],
+    "b": [1, 2],
+    "x": ["1"],
+    "expected": ["1", "2"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 52,
+    "prompt": "A has one column (1,2). A proposed coefficient for target (2, 0) is 2/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
+    "answer": "The output is (2/5, 4/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (2/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
+    "kind": "least-squares",
+    "a": [[1], [2]],
+    "b": [2, 0],
+    "x": ["2/5"],
+    "expected": ["2/5", "4/5"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 53,
+    "prompt": "A has one column (1,2). A proposed coefficient for target (3, 1) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
+    "answer": "The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
+    "kind": "least-squares",
+    "a": [[1], [2]],
+    "b": [3, 1],
+    "x": ["1"],
+    "expected": ["1", "2"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 54,
+    "prompt": "A has one column (1,2). A proposed coefficient for target (-1, 2) is 3/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
+    "answer": "The output is (3/5, 6/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (3/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
+    "kind": "least-squares",
+    "a": [[1], [2]],
+    "b": [-1, 2],
+    "x": ["3/5"],
+    "expected": ["3/5", "6/5"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 55,
+    "prompt": "A has one column (1,2). A proposed coefficient for target (0, 3) is 6/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
+    "answer": "The output is (6/5, 12/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (6/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
+    "kind": "least-squares",
+    "a": [[1], [2]],
+    "b": [0, 3],
+    "x": ["6/5"],
+    "expected": ["6/5", "12/5"]
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 56,
+    "prompt": "A has one column (1,2). A proposed coefficient for target (4, -2) is 0. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
+    "answer": "The output is (0, 0). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (0)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
+    "kind": "least-squares",
+    "a": [[1], [2]],
+    "b": [4, -2],
+    "x": ["0"],
+    "expected": ["0", "0"]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 3,
+    "prompt": "A is diagonal with entries 2,3. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.",
+    "answer": "The standard vectors have eigenvalues 2 and 3. The vector (1,1) goes to (2,3); the two scale factors differ, so it is not an eigenvector.",
+    "kind": "diagonal-eigen",
+    "a": [
+      [2, 0],
+      [0, 3]
+    ],
+    "values": [2, 3]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 4,
+    "prompt": "A is diagonal with entries -1,2. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.",
+    "answer": "The standard vectors have eigenvalues -1 and 2. The vector (1,1) goes to (-1,2); the two scale factors differ, so it is not an eigenvector.",
+    "kind": "diagonal-eigen",
+    "a": [
+      [-1, 0],
+      [0, 2]
+    ],
+    "values": [-1, 2]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 5,
+    "prompt": "A is diagonal with entries 0,4. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.",
+    "answer": "The standard vectors have eigenvalues 0 and 4. The vector (1,1) goes to (0,4); the two scale factors differ, so it is not an eigenvector.",
+    "kind": "diagonal-eigen",
+    "a": [
+      [0, 0],
+      [0, 4]
+    ],
+    "values": [0, 4]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 6,
+    "prompt": "A is diagonal with entries 3,3. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.",
+    "answer": "The standard vectors have eigenvalues 3 and 3. The vector (1,1) goes to (3,3); it is an eigenvector with eigenvalue 3.",
+    "kind": "diagonal-eigen",
+    "a": [
+      [3, 0],
+      [0, 3]
+    ],
+    "values": [3, 3]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 7,
+    "prompt": "A is diagonal with entries -2,-2. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.",
+    "answer": "The standard vectors have eigenvalues -2 and -2. The vector (1,1) goes to (-2,-2); it is an eigenvector with eigenvalue -2.",
+    "kind": "diagonal-eigen",
+    "a": [
+      [-2, 0],
+      [0, -2]
+    ],
+    "values": [-2, -2]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 8,
+    "prompt": "A is diagonal with entries 1,-1. Test (1,0), (0,1), and (1,1) for being eigenvectors; state each associated eigenvalue when applicable.",
+    "answer": "The standard vectors have eigenvalues 1 and -1. The vector (1,1) goes to (1,-1); the two scale factors differ, so it is not an eigenvector.",
+    "kind": "diagonal-eigen",
+    "a": [
+      [1, 0],
+      [0, -1]
+    ],
+    "values": [1, -1]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 11,
+    "prompt": "Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (2, 1), (0, 3). Use the determinant equation and verify the vectors in A.",
+    "answer": "The characteristic polynomial is (2-lambda)(3-lambda), giving distinct roots 2,3. For 2, use (1,0). For 3, use (1, 1) because (2-3)x+1y=0. Each eigenspace is the line spanned by its listed vector.",
+    "kind": "eigen",
+    "a": [
+      [2, 1],
+      [0, 3]
+    ],
+    "values": [2, 3],
+    "vectors": [
+      [1, 0],
+      [1, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 12,
+    "prompt": "Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (4, 1), (0, 2). Use the determinant equation and verify the vectors in A.",
+    "answer": "The characteristic polynomial is (4-lambda)(2-lambda), giving distinct roots 4,2. For 4, use (1,0). For 2, use (1, -2) because (4-2)x+1y=0. Each eigenspace is the line spanned by its listed vector.",
+    "kind": "eigen",
+    "a": [
+      [4, 1],
+      [0, 2]
+    ],
+    "values": [4, 2],
+    "vectors": [
+      [1, 0],
+      [1, -2]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 13,
+    "prompt": "Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (-1, 2), (0, 2). Use the determinant equation and verify the vectors in A.",
+    "answer": "The characteristic polynomial is (-1-lambda)(2-lambda), giving distinct roots -1,2. For -1, use (1,0). For 2, use (2, 3) because (-1-2)x+2y=0. Each eigenspace is the line spanned by its listed vector.",
+    "kind": "eigen",
+    "a": [
+      [-1, 2],
+      [0, 2]
+    ],
+    "values": [-1, 2],
+    "vectors": [
+      [1, 0],
+      [2, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 14,
+    "prompt": "Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (0, -1), (0, 3). Use the determinant equation and verify the vectors in A.",
+    "answer": "The characteristic polynomial is (0-lambda)(3-lambda), giving distinct roots 0,3. For 0, use (1,0). For 3, use (-1, 3) because (0-3)x- 1y=0. Each eigenspace is the line spanned by its listed vector.",
+    "kind": "eigen",
+    "a": [
+      [0, -1],
+      [0, 3]
+    ],
+    "values": [0, 3],
+    "vectors": [
+      [1, 0],
+      [-1, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 15,
+    "prompt": "Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (3, 1), (0, -2). Use the determinant equation and verify the vectors in A.",
+    "answer": "The characteristic polynomial is (3-lambda)(-2-lambda), giving distinct roots 3,-2. For 3, use (1,0). For -2, use (1, -5) because (3--2)x+1y=0. Each eigenspace is the line spanned by its listed vector.",
+    "kind": "eigen",
+    "a": [
+      [3, 1],
+      [0, -2]
+    ],
+    "values": [3, -2],
+    "vectors": [
+      [1, 0],
+      [1, -5]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 16,
+    "prompt": "Find every eigenvalue and a nonzero vector in each eigenspace of A with rows (1, -2), (0, 4). Use the determinant equation and verify the vectors in A.",
+    "answer": "The characteristic polynomial is (1-lambda)(4-lambda), giving distinct roots 1,4. For 1, use (1,0). For 4, use (-2, 3) because (1-4)x- 2y=0. Each eigenspace is the line spanned by its listed vector.",
+    "kind": "eigen",
+    "a": [
+      [1, -2],
+      [0, 4]
+    ],
+    "values": [1, 4],
+    "vectors": [
+      [1, 0],
+      [-2, 3]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 17,
+    "prompt": "Find the eigenvalues and eigenspaces for A with rows (2, 1), (1, 2). Show why the two displayed directions can be chosen perpendicular.",
+    "answer": "The vectors (1,1) and (1,-1) have respective eigenvalues 3 and 1. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.",
+    "kind": "eigen",
+    "a": [
+      [2, 1],
+      [1, 2]
+    ],
+    "values": [3, 1],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 18,
+    "prompt": "Find the eigenvalues and eigenspaces for A with rows (3, 2), (2, 3). Show why the two displayed directions can be chosen perpendicular.",
+    "answer": "The vectors (1,1) and (1,-1) have respective eigenvalues 5 and 1. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.",
+    "kind": "eigen",
+    "a": [
+      [3, 2],
+      [2, 3]
+    ],
+    "values": [5, 1],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 19,
+    "prompt": "Find the eigenvalues and eigenspaces for A with rows (1, -2), (-2, 1). Show why the two displayed directions can be chosen perpendicular.",
+    "answer": "The vectors (1,1) and (1,-1) have respective eigenvalues -1 and 3. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.",
+    "kind": "eigen",
+    "a": [
+      [1, -2],
+      [-2, 1]
+    ],
+    "values": [-1, 3],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 20,
+    "prompt": "Find the eigenvalues and eigenspaces for A with rows (0, 3), (3, 0). Show why the two displayed directions can be chosen perpendicular.",
+    "answer": "The vectors (1,1) and (1,-1) have respective eigenvalues 3 and -3. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.",
+    "kind": "eigen",
+    "a": [
+      [0, 3],
+      [3, 0]
+    ],
+    "values": [3, -3],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 21,
+    "prompt": "Find the eigenvalues and eigenspaces for A with rows (-1, 1), (1, -1). Show why the two displayed directions can be chosen perpendicular.",
+    "answer": "The vectors (1,1) and (1,-1) have respective eigenvalues 0 and -2. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.",
+    "kind": "eigen",
+    "a": [
+      [-1, 1],
+      [1, -1]
+    ],
+    "values": [0, -2],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 22,
+    "prompt": "Find the eigenvalues and eigenspaces for A with rows (4, -1), (-1, 4). Show why the two displayed directions can be chosen perpendicular.",
+    "answer": "The vectors (1,1) and (1,-1) have respective eigenvalues 3 and 5. They span the two eigenspaces since the eigenvalues are distinct. Their dot product is zero; dividing each by square root of two gives an orthonormal eigenbasis.",
+    "kind": "eigen",
+    "a": [
+      [4, -1],
+      [-1, 4]
+    ],
+    "values": [3, 5],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 23,
+    "prompt": "For A with rows (1,0),(0,1), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.",
+    "answer": "The characteristic polynomial is (1-lambda) squared, so algebraic multiplicity is two. A is scalar identity, so every vector lies in the eigenspace, its dimension is two, and a basis of eigenvectors exists.",
+    "kind": "multiplicity",
+    "a": [
+      [1, 0],
+      [0, 1]
+    ],
+    "value": 1,
+    "geometric": 2
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 24,
+    "prompt": "For A with rows (1,2),(0,1), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.",
+    "answer": "The characteristic polynomial is (1-lambda) squared, so algebraic multiplicity is two. The equation 2y=0 forces y=0. The eigenspace is the horizontal line with dimension one, so A is not diagonalizable.",
+    "kind": "multiplicity",
+    "a": [
+      [1, 2],
+      [0, 1]
+    ],
+    "value": 1,
+    "geometric": 1
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 25,
+    "prompt": "For A with rows (2,0),(0,2), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.",
+    "answer": "The characteristic polynomial is (2-lambda) squared, so algebraic multiplicity is two. A is scalar identity, so every vector lies in the eigenspace, its dimension is two, and a basis of eigenvectors exists.",
+    "kind": "multiplicity",
+    "a": [
+      [2, 0],
+      [0, 2]
+    ],
+    "value": 2,
+    "geometric": 2
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 26,
+    "prompt": "For A with rows (2,-1),(0,2), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.",
+    "answer": "The characteristic polynomial is (2-lambda) squared, so algebraic multiplicity is two. The equation -1y=0 forces y=0. The eigenspace is the horizontal line with dimension one, so A is not diagonalizable.",
+    "kind": "multiplicity",
+    "a": [
+      [2, -1],
+      [0, 2]
+    ],
+    "value": 2,
+    "geometric": 1
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 27,
+    "prompt": "For A with rows (0,3),(0,0), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.",
+    "answer": "The characteristic polynomial is (0-lambda) squared, so algebraic multiplicity is two. The equation 3y=0 forces y=0. The eigenspace is the horizontal line with dimension one, so A is not diagonalizable.",
+    "kind": "multiplicity",
+    "a": [
+      [0, 3],
+      [0, 0]
+    ],
+    "value": 0,
+    "geometric": 1
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 28,
+    "prompt": "For A with rows (-2,0),(0,-2), find the only eigenvalue, its algebraic multiplicity, its eigenspace dimension, and whether A is diagonalizable.",
+    "answer": "The characteristic polynomial is (-2-lambda) squared, so algebraic multiplicity is two. A is scalar identity, so every vector lies in the eigenspace, its dimension is two, and a basis of eigenvectors exists.",
+    "kind": "multiplicity",
+    "a": [
+      [-2, 0],
+      [0, -2]
+    ],
+    "value": -2,
+    "geometric": 2
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 37,
+    "prompt": "P has columns (1,1),(1,-1), and D is diagonal with entries 2,3. Compute A=P D P inverse and verify both eigenvector equations.",
+    "answer": "P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (2.5, -0.5), (-0.5, 2.5). Its outputs on P's columns are 2(1,1) and 3(1,-1), matching the diagonal entries in order.",
+    "kind": "eigen",
+    "a": [
+      [2.5, -0.5],
+      [-0.5, 2.5]
+    ],
+    "values": [2, 3],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 38,
+    "prompt": "P has columns (1,1),(1,-1), and D is diagonal with entries 3,-1. Compute A=P D P inverse and verify both eigenvector equations.",
+    "answer": "P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, 2), (2, 1). Its outputs on P's columns are 3(1,1) and -1(1,-1), matching the diagonal entries in order.",
+    "kind": "eigen",
+    "a": [
+      [1, 2],
+      [2, 1]
+    ],
+    "values": [3, -1],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 39,
+    "prompt": "P has columns (1,1),(1,-1), and D is diagonal with entries 0,2. Compute A=P D P inverse and verify both eigenvector equations.",
+    "answer": "P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, -1), (-1, 1). Its outputs on P's columns are 0(1,1) and 2(1,-1), matching the diagonal entries in order.",
+    "kind": "eigen",
+    "a": [
+      [1, -1],
+      [-1, 1]
+    ],
+    "values": [0, 2],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 40,
+    "prompt": "P has columns (1,1),(1,-1), and D is diagonal with entries -2,4. Compute A=P D P inverse and verify both eigenvector equations.",
+    "answer": "P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, -3), (-3, 1). Its outputs on P's columns are -2(1,1) and 4(1,-1), matching the diagonal entries in order.",
+    "kind": "eigen",
+    "a": [
+      [1, -3],
+      [-3, 1]
+    ],
+    "values": [-2, 4],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 41,
+    "prompt": "P has columns (1,1),(1,-1), and D is diagonal with entries 1,1. Compute A=P D P inverse and verify both eigenvector equations.",
+    "answer": "P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (1, 0), (0, 1). Its outputs on P's columns are 1(1,1) and 1(1,-1), matching the diagonal entries in order.",
+    "kind": "eigen",
+    "a": [
+      [1, 0],
+      [0, 1]
+    ],
+    "values": [1, 1],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 42,
+    "prompt": "P has columns (1,1),(1,-1), and D is diagonal with entries -1,-1. Compute A=P D P inverse and verify both eigenvector equations.",
+    "answer": "P inverse has rows (1/2,1/2),(1/2,-1/2). The reconstructed A has rows (-1, 0), (0, -1). Its outputs on P's columns are -1(1,1) and -1(1,-1), matching the diagonal entries in order.",
+    "kind": "eigen",
+    "a": [
+      [-1, 0],
+      [0, -1]
+    ],
+    "values": [-1, -1],
+    "vectors": [
+      [1, 1],
+      [1, -1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 17,
+    "prompt": "U is identity, Sigma is diagonal with entries 3,1, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).",
+    "answer": "V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 3), (1, 0) and the output is (-3, 2). The nonnegative diagonal entries are ordered as required.",
+    "kind": "svd",
+    "a": [
+      [0, 3],
+      [1, 0]
+    ],
+    "u": [
+      [1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [3, 0],
+      [0, 1]
+    ],
+    "v": [
+      [0, 1],
+      [1, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 18,
+    "prompt": "U is identity, Sigma is diagonal with entries 4,2, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).",
+    "answer": "V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 4), (2, 0) and the output is (-4, 4). The nonnegative diagonal entries are ordered as required.",
+    "kind": "svd",
+    "a": [
+      [0, 4],
+      [2, 0]
+    ],
+    "u": [
+      [1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [4, 0],
+      [0, 2]
+    ],
+    "v": [
+      [0, 1],
+      [1, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 19,
+    "prompt": "U is identity, Sigma is diagonal with entries 2,0, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).",
+    "answer": "V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 2), (0, 0) and the output is (-2, 0). The nonnegative diagonal entries are ordered as required.",
+    "kind": "svd",
+    "a": [
+      [0, 2],
+      [0, 0]
+    ],
+    "u": [
+      [1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [2, 0],
+      [0, 0]
+    ],
+    "v": [
+      [0, 1],
+      [1, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 20,
+    "prompt": "U is identity, Sigma is diagonal with entries 5,3, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).",
+    "answer": "V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 5), (3, 0) and the output is (-5, 6). The nonnegative diagonal entries are ordered as required.",
+    "kind": "svd",
+    "a": [
+      [0, 5],
+      [3, 0]
+    ],
+    "u": [
+      [1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [5, 0],
+      [0, 3]
+    ],
+    "v": [
+      [0, 1],
+      [1, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 21,
+    "prompt": "U is identity, Sigma is diagonal with entries 1,1, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).",
+    "answer": "V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 1), (1, 0) and the output is (-1, 2). The nonnegative diagonal entries are ordered as required.",
+    "kind": "svd",
+    "a": [
+      [0, 1],
+      [1, 0]
+    ],
+    "u": [
+      [1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [1, 0],
+      [0, 1]
+    ],
+    "v": [
+      [0, 1],
+      [1, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 22,
+    "prompt": "U is identity, Sigma is diagonal with entries 6,2, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).",
+    "answer": "V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 6), (2, 0) and the output is (-6, 4). The nonnegative diagonal entries are ordered as required.",
+    "kind": "svd",
+    "a": [
+      [0, 6],
+      [2, 0]
+    ],
+    "u": [
+      [1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [6, 0],
+      [0, 2]
+    ],
+    "v": [
+      [0, 1],
+      [1, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 23,
+    "prompt": "Give a valid SVD of the diagonal matrix with entries -4,2, using nonnegative singular values in descending order. Explain how the original signs are retained.",
+    "answer": "One choice is U with rows (-1, 0), (0, 1), Sigma with rows (4, 0), (0, 2), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.",
+    "kind": "svd",
+    "a": [
+      [-4, 0],
+      [0, 2]
+    ],
+    "u": [
+      [-1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [4, 0],
+      [0, 2]
+    ],
+    "v": [
+      [1, 0],
+      [0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 24,
+    "prompt": "Give a valid SVD of the diagonal matrix with entries 3,-1, using nonnegative singular values in descending order. Explain how the original signs are retained.",
+    "answer": "One choice is U with rows (1, 0), (0, -1), Sigma with rows (3, 0), (0, 1), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.",
+    "kind": "svd",
+    "a": [
+      [3, 0],
+      [0, -1]
+    ],
+    "u": [
+      [1, 0],
+      [0, -1]
+    ],
+    "sigma": [
+      [3, 0],
+      [0, 1]
+    ],
+    "v": [
+      [1, 0],
+      [0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 25,
+    "prompt": "Give a valid SVD of the diagonal matrix with entries -2,-1, using nonnegative singular values in descending order. Explain how the original signs are retained.",
+    "answer": "One choice is U with rows (-1, 0), (0, -1), Sigma with rows (2, 0), (0, 1), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.",
+    "kind": "svd",
+    "a": [
+      [-2, 0],
+      [0, -1]
+    ],
+    "u": [
+      [-1, 0],
+      [0, -1]
+    ],
+    "sigma": [
+      [2, 0],
+      [0, 1]
+    ],
+    "v": [
+      [1, 0],
+      [0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 26,
+    "prompt": "Give a valid SVD of the diagonal matrix with entries 0,-3, using nonnegative singular values in descending order. Explain how the original signs are retained.",
+    "answer": "One choice is U with rows (0, 1), (-1, 0), Sigma with rows (3, 0), (0, 0), and V with rows (0, 1), (1, 0). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.",
+    "kind": "svd",
+    "a": [
+      [0, 0],
+      [0, -3]
+    ],
+    "u": [
+      [0, 1],
+      [-1, 0]
+    ],
+    "sigma": [
+      [3, 0],
+      [0, 0]
+    ],
+    "v": [
+      [0, 1],
+      [1, 0]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 27,
+    "prompt": "Give a valid SVD of the diagonal matrix with entries -5,0, using nonnegative singular values in descending order. Explain how the original signs are retained.",
+    "answer": "One choice is U with rows (-1, 0), (0, 1), Sigma with rows (5, 0), (0, 0), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.",
+    "kind": "svd",
+    "a": [
+      [-5, 0],
+      [0, 0]
+    ],
+    "u": [
+      [-1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [5, 0],
+      [0, 0]
+    ],
+    "v": [
+      [1, 0],
+      [0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 28,
+    "prompt": "Give a valid SVD of the diagonal matrix with entries 2,2, using nonnegative singular values in descending order. Explain how the original signs are retained.",
+    "answer": "One choice is U with rows (1, 0), (0, 1), Sigma with rows (2, 0), (0, 2), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.",
+    "kind": "svd",
+    "a": [
+      [2, 0],
+      [0, 2]
+    ],
+    "u": [
+      [1, 0],
+      [0, 1]
+    ],
+    "sigma": [
+      [2, 0],
+      [0, 2]
+    ],
+    "v": [
+      [1, 0],
+      [0, 1]
+    ]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 31,
+    "prompt": "A is the 2-by-3 rectangular diagonal matrix with diagonal (3, 2) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.",
+    "answer": "Rank is 2. Nullity is 1, from number of columns minus rank. A transpose A is 3 by 3 with diagonal (9, 4, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.",
+    "kind": "rank-spectrum",
+    "a": [
+      [3, 0, 0],
+      [0, 2, 0]
+    ],
+    "rank": 2,
+    "ataEigen": [9, 4, 0]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 32,
+    "prompt": "A is the 3-by-2 rectangular diagonal matrix with diagonal (4, 0) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.",
+    "answer": "Rank is 1. Nullity is 1, from number of columns minus rank. A transpose A is 2 by 2 with diagonal (16, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.",
+    "kind": "rank-spectrum",
+    "a": [
+      [4, 0],
+      [0, 0],
+      [0, 0]
+    ],
+    "rank": 1,
+    "ataEigen": [16, 0]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 33,
+    "prompt": "A is the 3-by-4 rectangular diagonal matrix with diagonal (5, 2, 0) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.",
+    "answer": "Rank is 2. Nullity is 2, from number of columns minus rank. A transpose A is 4 by 4 with diagonal (25, 4, 0, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.",
+    "kind": "rank-spectrum",
+    "a": [
+      [5, 0, 0, 0],
+      [0, 2, 0, 0],
+      [0, 0, 0, 0]
+    ],
+    "rank": 2,
+    "ataEigen": [25, 4, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 34,
+    "prompt": "A is the 4-by-3 rectangular diagonal matrix with diagonal (3, 2, 1) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.",
+    "answer": "Rank is 3. Nullity is 0, from number of columns minus rank. A transpose A is 3 by 3 with diagonal (9, 4, 1). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.",
+    "kind": "rank-spectrum",
+    "a": [
+      [3, 0, 0],
+      [0, 2, 0],
+      [0, 0, 1],
+      [0, 0, 0]
+    ],
+    "rank": 3,
+    "ataEigen": [9, 4, 1]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 35,
+    "prompt": "A is the 2-by-4 rectangular diagonal matrix with diagonal (2, 1) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.",
+    "answer": "Rank is 2. Nullity is 2, from number of columns minus rank. A transpose A is 4 by 4 with diagonal (4, 1, 0, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.",
+    "kind": "rank-spectrum",
+    "a": [
+      [2, 0, 0, 0],
+      [0, 1, 0, 0]
+    ],
+    "rank": 2,
+    "ataEigen": [4, 1, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 36,
+    "prompt": "A is the 3-by-3 rectangular diagonal matrix with diagonal (0, 0, 0) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.",
+    "answer": "Rank is 0. Nullity is 3, from number of columns minus rank. A transpose A is 3 by 3 with diagonal (0, 0, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.",
+    "kind": "rank-spectrum",
+    "a": [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
+    ],
+    "rank": 0,
+    "ataEigen": [0, 0, 0]
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 37,
+    "prompt": "For A with rows (0, 3), (1, 0), the right singular vector (0,1) has positive singular value 3. Construct its left singular vector and verify its length and defining equation.",
+    "answer": "A(0,1)=(3,0). Dividing by 3 gives u=(1,0), which has norm one. The equation Av=3u holds. This construction is legal because 3 is positive.",
+    "kind": "singular-direction",
+    "a": [
+      [0, 3],
+      [1, 0]
+    ],
+    "right": [0, 1],
+    "left": [1, 0],
+    "sigma": 3
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 38,
+    "prompt": "For A with rows (0, 4), (2, 0), the right singular vector (0,1) has positive singular value 4. Construct its left singular vector and verify its length and defining equation.",
+    "answer": "A(0,1)=(4,0). Dividing by 4 gives u=(1,0), which has norm one. The equation Av=4u holds. This construction is legal because 4 is positive.",
+    "kind": "singular-direction",
+    "a": [
+      [0, 4],
+      [2, 0]
+    ],
+    "right": [0, 1],
+    "left": [1, 0],
+    "sigma": 4
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 39,
+    "prompt": "For A with rows (0, 2), (0, 0), the right singular vector (0,1) has positive singular value 2. Construct its left singular vector and verify its length and defining equation.",
+    "answer": "A(0,1)=(2,0). Dividing by 2 gives u=(1,0), which has norm one. The equation Av=2u holds. This construction is legal because 2 is positive.",
+    "kind": "singular-direction",
+    "a": [
+      [0, 2],
+      [0, 0]
+    ],
+    "right": [0, 1],
+    "left": [1, 0],
+    "sigma": 2
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 40,
+    "prompt": "For A with rows (0, 5), (3, 0), the right singular vector (0,1) has positive singular value 5. Construct its left singular vector and verify its length and defining equation.",
+    "answer": "A(0,1)=(5,0). Dividing by 5 gives u=(1,0), which has norm one. The equation Av=5u holds. This construction is legal because 5 is positive.",
+    "kind": "singular-direction",
+    "a": [
+      [0, 5],
+      [3, 0]
+    ],
+    "right": [0, 1],
+    "left": [1, 0],
+    "sigma": 5
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 41,
+    "prompt": "For A with rows (0, 1), (1, 0), the right singular vector (0,1) has positive singular value 1. Construct its left singular vector and verify its length and defining equation.",
+    "answer": "A(0,1)=(1,0). Dividing by 1 gives u=(1,0), which has norm one. The equation Av=1u holds. This construction is legal because 1 is positive.",
+    "kind": "singular-direction",
+    "a": [
+      [0, 1],
+      [1, 0]
+    ],
+    "right": [0, 1],
+    "left": [1, 0],
+    "sigma": 1
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 42,
+    "prompt": "For A with rows (0, 6), (2, 0), the right singular vector (0,1) has positive singular value 6. Construct its left singular vector and verify its length and defining equation.",
+    "answer": "A(0,1)=(6,0). Dividing by 6 gives u=(1,0), which has norm one. The equation Av=6u holds. This construction is legal because 6 is positive.",
+    "kind": "singular-direction",
+    "a": [
+      [0, 6],
+      [2, 0]
+    ],
+    "right": [0, 1],
+    "left": [1, 0],
+    "sigma": 6
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 45,
+    "prompt": "A is diagonal with entries (6, 3, 1) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.",
+    "answer": "One approximation has diagonal (6,0,0). The discarded squared entries sum to 10, so its Frobenius error is square root of 10. Keeping the first two gives error 1. If a cutoff splits tied positive singular values, other equally good choices can exist.",
+    "kind": "truncation",
+    "values": [6, 3, 1],
+    "k": 1,
+    "errorSquared": 10
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 46,
+    "prompt": "A is diagonal with entries (5, 2, 1) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.",
+    "answer": "One approximation has diagonal (5,0,0). The discarded squared entries sum to 5, so its Frobenius error is square root of 5. Keeping the first two gives error 1. If a cutoff splits tied positive singular values, other equally good choices can exist.",
+    "kind": "truncation",
+    "values": [5, 2, 1],
+    "k": 1,
+    "errorSquared": 5
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 47,
+    "prompt": "A is diagonal with entries (4, 4, 2) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.",
+    "answer": "One approximation has diagonal (4,0,0). The discarded squared entries sum to 20, so its Frobenius error is square root of 20. Keeping the first two gives error 2. If a cutoff splits tied positive singular values, other equally good choices can exist.",
+    "kind": "truncation",
+    "values": [4, 4, 2],
+    "k": 1,
+    "errorSquared": 20
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 48,
+    "prompt": "A is diagonal with entries (3, 1, 0) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.",
+    "answer": "One approximation has diagonal (3,0,0). The discarded squared entries sum to 1, so its Frobenius error is square root of 1. Keeping the first two gives error 0. If a cutoff splits tied positive singular values, other equally good choices can exist.",
+    "kind": "truncation",
+    "values": [3, 1, 0],
+    "k": 1,
+    "errorSquared": 1
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 49,
+    "prompt": "A is diagonal with entries (7, 3, 2) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.",
+    "answer": "One approximation has diagonal (7,0,0). The discarded squared entries sum to 13, so its Frobenius error is square root of 13. Keeping the first two gives error 2. If a cutoff splits tied positive singular values, other equally good choices can exist.",
+    "kind": "truncation",
+    "values": [7, 3, 2],
+    "k": 1,
+    "errorSquared": 13
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 50,
+    "prompt": "A is diagonal with entries (2, 2, 2) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.",
+    "answer": "One approximation has diagonal (2,0,0). The discarded squared entries sum to 8, so its Frobenius error is square root of 8. Keeping the first two gives error 2. If a cutoff splits tied positive singular values, other equally good choices can exist.",
+    "kind": "truncation",
+    "values": [2, 2, 2],
+    "k": 1,
+    "errorSquared": 8
+  }
+]

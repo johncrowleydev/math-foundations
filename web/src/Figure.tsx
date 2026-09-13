@@ -103,8 +103,12 @@ export function Figure({ figure: f }: { figure: Definition }) {
           const [x1, y1] = xy(a.from),
             [x2, y2] = xy(a.to);
           const translated = a.from.some((n) => n !== 0);
-          const lx = translated ? (x1 + x2) / 2 + 35 : x2 + 30;
-          const ly = translated ? (y1 + y2) / 2 : y2 - 18;
+          const lx = a.labelOffset
+            ? x2 + a.labelOffset[0]
+            : translated
+              ? (x1 + x2) / 2 + 35
+              : x2 + 30;
+          const ly = a.labelOffset ? y2 + a.labelOffset[1] : translated ? (y1 + y2) / 2 : y2 - 18;
           return (
             <g key={i}>
               <line

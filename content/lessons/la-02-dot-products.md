@@ -10,23 +10,45 @@ For u=(2,-1) and v=(3,4), the dot product is two times three plus negative one t
 
 The same rule works with any finite number of components. Because ordinary multiplication commutes, exchanging the two vectors leaves their dot product unchanged. It also distributes across vector addition. These facts will let us expand squared distances without drawing every example.
 
+### Why distribution is useful
+
+For u=(1,-2,2), the dot product with itself is 1+4+4=9. Every square is nonnegative, so a real vector has zero dot product with itself only when all its components vanish. This observation will explain why squared length detects zero.
+
+To expand the dot product of u+v with u-v, distribute in both positions. The four terms are u dot u, negative u dot v, v dot u, and negative v dot v. The middle terms cancel by symmetry. The result is the squared length of u minus the squared length of v. Explaining that cancellation is more useful than memorizing a separate vector identity.
+
 ## Length and unit vectors
 
 The [Euclidean norm](ref:linear-algebra-dot-products-2) is the usual geometric length of a vector. We write $\|u\|=\sqrt{u\cdot u}$, read “the norm of u equals the square root of u dot u.” The double vertical bars mean length here. Squaring and adding the components gives the familiar Pythagorean calculation, extended to more coordinates.
 
 For u=(3,4), the squared length is 25 and the length is 5. Length is nonnegative, and it is zero only for the zero vector. Distance between two points is the norm of their difference, because that difference is the displacement connecting them.
 
-A unit vector has length one. Normalizing a nonzero vector means dividing it by its norm. Thus (3/5,4/5) is a unit vector pointing in the direction of (3,4). Division here scales every component by the reciprocal of the length. The zero vector cannot be normalized: division by its zero length is undefined, and there is no direction to preserve.
+A [unit vector](ref:la-term-unit-vector) has length one. Normalizing a nonzero vector means dividing it by its norm. Thus (3/5,4/5) is a unit vector pointing in the direction of (3,4). Division here scales every component by the reciprocal of the length. The zero vector cannot be normalized: division by its zero length is undefined, and there is no direction to preserve.
+
+### Normalization changes size, not direction
+
+For v=(-2,1,2), the sum of squared components is 9, so its length is 3 and its [normalization](ref:la-term-normalization) is (-2/3,1/3,2/3). The negative coordinate remains negative. A unit vector is not a vector with every entry equal to one; in fact (1,1,1) has length square root of three.
+
+$
+\frac{1}{3}\begin{pmatrix}-2\\1\\2\end{pmatrix}=\begin{pmatrix}-2/3\\1/3\\2/3\end{pmatrix}
+$
+
+Scaling a vector by a real number c multiplies its squared length by c squared, and therefore multiplies its length by the absolute value of c. The absolute value matters when c is negative. Likewise the distance between points depends on the difference vector, so translating both points by the same displacement does not change their distance.
 
 ## Angle and orthogonality
 
 For nonzero vectors with angle theta between them, $u\cdot v=\|u\|\|v\|\cos\theta$. This identity connects the component calculation to geometry; it follows from the cosine rule applied to the triangle with sides u, v, and their difference. Theta is an angle between zero and pi radians, or between zero and 180 degrees.
 
-A positive dot product corresponds to an acute angle, zero to a right angle, and a negative value to an obtuse angle. We call vectors [orthogonal](ref:linear-algebra-dot-products-3) when their dot product is zero. For nonzero vectors this means perpendicular. Algebraically the zero vector is orthogonal to every vector, although an angle involving it is not defined.
+For angles strictly between zero and 180 degrees, a positive dot product corresponds to an acute angle, zero to a right angle, and a negative value to an obtuse angle. The endpoint cases are parallel vectors pointing in the same or opposite direction. We call vectors [orthogonal](ref:linear-algebra-dot-products-3) when their dot product is zero. For nonzero vectors this means perpendicular. Algebraically the zero vector is orthogonal to every vector, although an angle involving it is not defined.
 
 For example, (1,2) and (2,-1) are orthogonal because the two component products cancel. Neither vector needs to lie along a coordinate axis. Orthogonality depends on the relation between the vectors, not on their orientation on the page.
 
 ![Perpendicular vectors](figure:la-orthogonal-vectors)
+
+### Reading the sign carefully
+
+The angle classification needs one boundary correction: a positive dot product can also mean angle zero, and a negative dot product can also mean angle 180 degrees. Strictly acute means between zero and 90 degrees; strictly obtuse means between 90 and 180 degrees. Parallel vectors pointing the same way have cosine one, while opposite directions have cosine negative one.
+
+For u=(1,0) and v=(1,1), the dot product is one and the product of lengths is square root of two. Their cosine is one divided by square root of two, hence their angle is 45 degrees. For perpendicular vectors, the squared length of their sum is the sum of their squared lengths: distribute the dot product of the sum with itself and use the zero cross terms. This is the Pythagorean theorem expressed without choosing coordinate axes.
 
 ## Weighted totals and similarity
 
@@ -37,3 +59,9 @@ Comparing the dot product alone can confuse alignment with size: doubling one ve
 There are practical limitations. Rescaling one feature can change angles in a dataset, and features measured in different units may need a carefully chosen scaling. Linear algebra explains the calculation; interpreting similarity still requires judgment about the data.
 
 In your answers, distinguish a dot product, a norm, and a vector. They have different meanings even when some of their numerical values happen to coincide. Use an exact square root when a decimal approximation would hide a useful relationship.
+
+### Similarity depends on the representation
+
+Two records (1,2) and (2,4) have the same direction. A third record (2,1) has the same two numbers as the first in reverse order, but a different direction. Cosine similarity removes overall magnitude, not coordinate meaning. It is undefined if either record is zero.
+
+If you convert just one feature from metres to centimetres, that coordinate becomes a hundred times as large. Angles between records can change even though the underlying objects did not. When choosing a similarity measure, ask which changes you want to ignore. There is no universal instruction to normalize everything: sometimes magnitude, such as total sales volume, is precisely the information you need.

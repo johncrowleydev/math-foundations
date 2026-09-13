@@ -2,6 +2,33 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { loadTeaching, teachingBlocks, linkTeachingTerms } from './teaching.js';
 const teaching = await loadTeaching();
+
+test('explicit references still receive first-occurrence styling without automatic aliases', () => {
+  const text = '[rank](ref:la-term-rank) and [rank](ref:la-term-rank)';
+  const linked = linkTeachingTerms(text, 'linear-algebra-bases', teaching);
+  assert.equal(linked, '[rank](ref:la-term-rank) and [rank](ref:la-term-rank?repeat)');
+  assert.throws(
+    () =>
+      linkTeachingTerms(
+        '[rank](ref:la-term-[rank](ref:la-term-rank))',
+        'linear-algebra-bases',
+        teaching,
+      ),
+    /Malformed/,
+  );
+});
+
+test('a figure declaration cannot silently become a broken ordinary image', () => {
+  assert.throws(
+    () => teachingBlocks('![ellipse](figure:la-svd-ellipse) Text on the same line.', teaching),
+    /own line/,
+  );
+  assert.equal(
+    teachingBlocks('![ellipse](figure:la-svd-ellipse)\n\nFollowing explanation.', teaching)[0]
+      .figureId,
+    'la-svd-ellipse',
+  );
+});
 test('graph data agree with degree and representation examples', () => {
   const g = teaching.figures.find((f) => f.id === 'graph-degree');
   assert.ok(g?.kind === 'graph');

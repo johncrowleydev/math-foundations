@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { loadContent } from './content.js';
 import { quickChecks, validateQuickChecks } from './quick-checks.js';
 const { lessons } = await loadContent();
-test('all 30 quick checks have valid math, unique choices, and current preceding teaching', () => {
+test('all quick checks have valid math, unique choices, and current preceding teaching', () => {
   validateQuickChecks(lessons);
   assert.equal(Object.values(quickChecks).flat().length, 50);
 });

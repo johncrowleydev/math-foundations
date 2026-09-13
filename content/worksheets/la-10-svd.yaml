@@ -12,39 +12,359 @@ sections:
         prompt: Does an orthogonal factor in an SVD have to be a rotation rather than a reflection? Explain what property is actually required.
         answerLines: 5
         answer: No. Reflections are allowed. The required property is an orthonormal basis of columns, equivalently transpose times the matrix equals identity; this preserves lengths and angles.
+      - id: 3
+        type: freeform
+        prompt: For a real 3-by-2 matrix, state the full SVD shapes of U, Sigma, V, and V transpose. How many diagonal positions does Sigma have, and how many columns does each full basis matrix contain?
+        answerLines: 5
+        answer: U is 3 by 3; Sigma 3 by 2; V and its transpose 2 by 2. There are 2 diagonal positions. The full output basis has 3 columns and the input basis 2. Extra input directions in a wide matrix can be erased even without a listed zero diagonal value.
+      - id: 4
+        type: freeform
+        prompt: For a real 2-by-3 matrix, state the full SVD shapes of U, Sigma, V, and V transpose. How many diagonal positions does Sigma have, and how many columns does each full basis matrix contain?
+        answerLines: 5
+        answer: U is 2 by 2; Sigma 2 by 3; V and its transpose 3 by 3. There are 2 diagonal positions. The full output basis has 2 columns and the input basis 3. Extra input directions in a wide matrix can be erased even without a listed zero diagonal value.
+      - id: 5
+        type: freeform
+        prompt: For a real 4-by-2 matrix, state the full SVD shapes of U, Sigma, V, and V transpose. How many diagonal positions does Sigma have, and how many columns does each full basis matrix contain?
+        answerLines: 5
+        answer: U is 4 by 4; Sigma 4 by 2; V and its transpose 2 by 2. There are 2 diagonal positions. The full output basis has 4 columns and the input basis 2. Extra input directions in a wide matrix can be erased even without a listed zero diagonal value.
+      - id: 6
+        type: freeform
+        prompt: For a real 2-by-4 matrix, state the full SVD shapes of U, Sigma, V, and V transpose. How many diagonal positions does Sigma have, and how many columns does each full basis matrix contain?
+        answerLines: 5
+        answer: U is 2 by 2; Sigma 2 by 4; V and its transpose 4 by 4. There are 2 diagonal positions. The full output basis has 2 columns and the input basis 4. Extra input directions in a wide matrix can be erased even without a listed zero diagonal value.
+      - id: 7
+        type: freeform
+        prompt: For a real 3-by-3 matrix, state the full SVD shapes of U, Sigma, V, and V transpose. How many diagonal positions does Sigma have, and how many columns does each full basis matrix contain?
+        answerLines: 5
+        answer: U is 3 by 3; Sigma 3 by 3; V and its transpose 3 by 3. There are 3 diagonal positions. The full output basis has 3 columns and the input basis 3. Extra input directions in a wide matrix can be erased even without a listed zero diagonal value.
+      - id: 8
+        type: freeform
+        prompt: For a real 1-by-4 matrix, state the full SVD shapes of U, Sigma, V, and V transpose. How many diagonal positions does Sigma have, and how many columns does each full basis matrix contain?
+        answerLines: 5
+        answer: U is 1 by 1; Sigma 1 by 4; V and its transpose 4 by 4. There are 1 diagonal positions. The full output basis has 1 columns and the input basis 4. Extra input directions in a wide matrix can be erased even without a listed zero diagonal value.
+      - id: 9
+        type: freeform
+        prompt: A full two-dimensional SVD has singular values 4,2. Describe the possible output lengths of unit inputs at the strongest and weakest directions. Does either orthogonal factor cause these changes in length?
+        answerLines: 5
+        answer: The maximum is 4 and the minimum is 2. These extrema occur along the corresponding right singular directions. Orthogonal U and V preserve length; Sigma produces the stretches.
+      - id: 10
+        type: freeform
+        prompt: A full two-dimensional SVD has singular values 3,1. Describe the possible output lengths of unit inputs at the strongest and weakest directions. Does either orthogonal factor cause these changes in length?
+        answerLines: 5
+        answer: The maximum is 3 and the minimum is 1. These extrema occur along the corresponding right singular directions. Orthogonal U and V preserve length; Sigma produces the stretches.
+      - id: 11
+        type: freeform
+        prompt: A full two-dimensional SVD has singular values 5,0. Describe the possible output lengths of unit inputs at the strongest and weakest directions. Does either orthogonal factor cause these changes in length?
+        answerLines: 5
+        answer: The maximum is 5 and the minimum is 0. A unit input in a null direction collapses to zero. Orthogonal U and V preserve length; Sigma produces the stretches.
+      - id: 12
+        type: freeform
+        prompt: A full two-dimensional SVD has singular values 2,2. Describe the possible output lengths of unit inputs at the strongest and weakest directions. Does either orthogonal factor cause these changes in length?
+        answerLines: 5
+        answer: The maximum is 2 and the minimum is 2. These extrema occur along the corresponding right singular directions. Orthogonal U and V preserve length; Sigma produces the stretches.
+      - id: 13
+        type: freeform
+        prompt: A full two-dimensional SVD has singular values 1,0. Describe the possible output lengths of unit inputs at the strongest and weakest directions. Does either orthogonal factor cause these changes in length?
+        answerLines: 5
+        answer: The maximum is 1 and the minimum is 0. A unit input in a null direction collapses to zero. Orthogonal U and V preserve length; Sigma produces the stretches.
+      - id: 14
+        type: freeform
+        prompt: A full two-dimensional SVD has singular values 6,3. Describe the possible output lengths of unit inputs at the strongest and weakest directions. Does either orthogonal factor cause these changes in length?
+        answerLines: 5
+        answer: The maximum is 6 and the minimum is 3. These extrema occur along the corresponding right singular directions. Orthogonal U and V preserve length; Sigma produces the stretches.
   - title: A small example you can verify
     questions:
-      - id: 3
+      - id: 15
         type: freeform
         prompt: Let U be identity, Sigma have diagonal entries 3 and 1, and V swap the two standard basis vectors. Compute the rows of U Sigma V transpose and its output on (2,4).
         answerLines: 5
         answer: V transpose also swaps coordinates. The product has rows (0,3),(1,0), sending (2,4) to (12,2). The scale factors are 3 and 1 along the chosen right singular directions.
-      - id: 4
+      - id: 16
         type: freeform
         prompt: A diagonal matrix has diagonal entries 5 and 2. Describe the image of the unit circle and identify the greatest and least output lengths for unit inputs.
         answerLines: 5
         answer: The image is an ellipse with horizontal semiaxis five and vertical semiaxis two. The greatest output length is five along the horizontal input direction, and the least is two along the vertical direction.
+      - id: 17
+        type: freeform
+        prompt: U is identity, Sigma is diagonal with entries 3,1, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).
+        answerLines: 5
+        answer: V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 3), (1, 0) and the output is (-3, 2). The nonnegative diagonal entries are ordered as required.
+      - id: 18
+        type: freeform
+        prompt: U is identity, Sigma is diagonal with entries 4,2, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).
+        answerLines: 5
+        answer: V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 4), (2, 0) and the output is (-4, 4). The nonnegative diagonal entries are ordered as required.
+      - id: 19
+        type: freeform
+        prompt: U is identity, Sigma is diagonal with entries 2,0, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).
+        answerLines: 5
+        answer: V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 2), (0, 0) and the output is (-2, 0). The nonnegative diagonal entries are ordered as required.
+      - id: 20
+        type: freeform
+        prompt: U is identity, Sigma is diagonal with entries 5,3, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).
+        answerLines: 5
+        answer: V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 5), (3, 0) and the output is (-5, 6). The nonnegative diagonal entries are ordered as required.
+      - id: 21
+        type: freeform
+        prompt: U is identity, Sigma is diagonal with entries 1,1, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).
+        answerLines: 5
+        answer: V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 1), (1, 0) and the output is (-1, 2). The nonnegative diagonal entries are ordered as required.
+      - id: 22
+        type: freeform
+        prompt: U is identity, Sigma is diagonal with entries 6,2, and V swaps the two standard directions. Reconstruct A and find its output on (2, -1).
+        answerLines: 5
+        answer: V transpose first swaps the coordinates. Sigma then scales them, so A has rows (0, 6), (2, 0) and the output is (-6, 4). The nonnegative diagonal entries are ordered as required.
+      - id: 23
+        type: freeform
+        prompt: Give a valid SVD of the diagonal matrix with entries -4,2, using nonnegative singular values in descending order. Explain how the original signs are retained.
+        answerLines: 5
+        answer: One choice is U with rows (-1, 0), (0, 1), Sigma with rows (4, 0), (0, 2), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.
+      - id: 24
+        type: freeform
+        prompt: Give a valid SVD of the diagonal matrix with entries 3,-1, using nonnegative singular values in descending order. Explain how the original signs are retained.
+        answerLines: 5
+        answer: One choice is U with rows (1, 0), (0, -1), Sigma with rows (3, 0), (0, 1), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.
+      - id: 25
+        type: freeform
+        prompt: Give a valid SVD of the diagonal matrix with entries -2,-1, using nonnegative singular values in descending order. Explain how the original signs are retained.
+        answerLines: 5
+        answer: One choice is U with rows (-1, 0), (0, -1), Sigma with rows (2, 0), (0, 1), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.
+      - id: 26
+        type: freeform
+        prompt: Give a valid SVD of the diagonal matrix with entries 0,-3, using nonnegative singular values in descending order. Explain how the original signs are retained.
+        answerLines: 5
+        answer: One choice is U with rows (0, 1), (-1, 0), Sigma with rows (3, 0), (0, 0), and V with rows (0, 1), (1, 0). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.
+      - id: 27
+        type: freeform
+        prompt: Give a valid SVD of the diagonal matrix with entries -5,0, using nonnegative singular values in descending order. Explain how the original signs are retained.
+        answerLines: 5
+        answer: One choice is U with rows (-1, 0), (0, 1), Sigma with rows (5, 0), (0, 0), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.
+      - id: 28
+        type: freeform
+        prompt: Give a valid SVD of the diagonal matrix with entries 2,2, using nonnegative singular values in descending order. Explain how the original signs are retained.
+        answerLines: 5
+        answer: One choice is U with rows (1, 0), (0, 1), Sigma with rows (2, 0), (0, 2), and V with rows (1, 0), (0, 1). Permutations put the stretches in descending order; sign changes in U reconstruct negative original entries. Direct multiplication gives the original diagonal matrix.
   - title: Connection to rank and eigenvalues
     questions:
-      - id: 5
+      - id: 29
         type: freeform
         prompt: A real matrix has singular values 4,2,0 and has three columns. Find its rank and nullity, and give the eigenvalues of A transpose A.
         answerLines: 5
         answer: Rank is two because two singular values are positive. Nullity is one by rank plus nullity equals three. The eigenvalues of A transpose A are 16,4,0, the squares of the singular values.
-      - id: 6
+      - id: 30
         type: freeform
         prompt: Why is it invalid to construct a left singular vector by dividing Av by sigma when sigma is zero? What does Av equal in that case?
         answerLines: 5
         answer: Division by zero is undefined. A zero singular value corresponds to a right direction in the null space, so Av is zero. The remaining output basis directions must be completed separately.
+      - id: 31
+        type: freeform
+        prompt: A is the 2-by-3 rectangular diagonal matrix with diagonal (3, 2) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.
+        answerLines: 5
+        answer: Rank is 2. Nullity is 1, from number of columns minus rank. A transpose A is 3 by 3 with diagonal (9, 4, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.
+      - id: 32
+        type: freeform
+        prompt: A is the 3-by-2 rectangular diagonal matrix with diagonal (4, 0) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.
+        answerLines: 5
+        answer: Rank is 1. Nullity is 1, from number of columns minus rank. A transpose A is 2 by 2 with diagonal (16, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.
+      - id: 33
+        type: freeform
+        prompt: A is the 3-by-4 rectangular diagonal matrix with diagonal (5, 2, 0) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.
+        answerLines: 5
+        answer: Rank is 2. Nullity is 2, from number of columns minus rank. A transpose A is 4 by 4 with diagonal (25, 4, 0, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.
+      - id: 34
+        type: freeform
+        prompt: A is the 4-by-3 rectangular diagonal matrix with diagonal (3, 2, 1) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.
+        answerLines: 5
+        answer: Rank is 3. Nullity is 0, from number of columns minus rank. A transpose A is 3 by 3 with diagonal (9, 4, 1). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.
+      - id: 35
+        type: freeform
+        prompt: A is the 2-by-4 rectangular diagonal matrix with diagonal (2, 1) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.
+        answerLines: 5
+        answer: Rank is 2. Nullity is 2, from number of columns minus rank. A transpose A is 4 by 4 with diagonal (4, 1, 0, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.
+      - id: 36
+        type: freeform
+        prompt: A is the 3-by-3 rectangular diagonal matrix with diagonal (0, 0, 0) and all other entries zero. Find rank, nullity, and all eigenvalues of A transpose A, counting zeros.
+        answerLines: 5
+        answer: Rank is 0. Nullity is 3, from number of columns minus rank. A transpose A is 3 by 3 with diagonal (0, 0, 0). In a wide matrix, extra zero eigenvalues arise from input directions beyond the rectangular diagonal.
+      - id: 37
+        type: freeform
+        prompt: For A with rows (0, 3), (1, 0), the right singular vector (0,1) has positive singular value 3. Construct its left singular vector and verify its length and defining equation.
+        answerLines: 5
+        answer: A(0,1)=(3,0). Dividing by 3 gives u=(1,0), which has norm one. The equation Av=3u holds. This construction is legal because 3 is positive.
+      - id: 38
+        type: freeform
+        prompt: For A with rows (0, 4), (2, 0), the right singular vector (0,1) has positive singular value 4. Construct its left singular vector and verify its length and defining equation.
+        answerLines: 5
+        answer: A(0,1)=(4,0). Dividing by 4 gives u=(1,0), which has norm one. The equation Av=4u holds. This construction is legal because 4 is positive.
+      - id: 39
+        type: freeform
+        prompt: For A with rows (0, 2), (0, 0), the right singular vector (0,1) has positive singular value 2. Construct its left singular vector and verify its length and defining equation.
+        answerLines: 5
+        answer: A(0,1)=(2,0). Dividing by 2 gives u=(1,0), which has norm one. The equation Av=2u holds. This construction is legal because 2 is positive.
+      - id: 40
+        type: freeform
+        prompt: For A with rows (0, 5), (3, 0), the right singular vector (0,1) has positive singular value 5. Construct its left singular vector and verify its length and defining equation.
+        answerLines: 5
+        answer: A(0,1)=(5,0). Dividing by 5 gives u=(1,0), which has norm one. The equation Av=5u holds. This construction is legal because 5 is positive.
+      - id: 41
+        type: freeform
+        prompt: For A with rows (0, 1), (1, 0), the right singular vector (0,1) has positive singular value 1. Construct its left singular vector and verify its length and defining equation.
+        answerLines: 5
+        answer: A(0,1)=(1,0). Dividing by 1 gives u=(1,0), which has norm one. The equation Av=1u holds. This construction is legal because 1 is positive.
+      - id: 42
+        type: freeform
+        prompt: For A with rows (0, 6), (2, 0), the right singular vector (0,1) has positive singular value 6. Construct its left singular vector and verify its length and defining equation.
+        answerLines: 5
+        answer: A(0,1)=(6,0). Dividing by 6 gives u=(1,0), which has norm one. The equation Av=6u holds. This construction is legal because 6 is positive.
   - title: Approximation and responsible interpretation
     questions:
-      - id: 7
+      - id: 43
         type: freeform
         prompt: A diagonal matrix has entries 6,3,1. Form a rank-one truncated SVD approximation and give its Frobenius error exactly.
         answerLines: 5
         answer: Keep only the entry six, giving diagonal entries (6,0,0). The discarded squared singular values sum to 9+1=10, so the Frobenius error is the square root of ten.
-      - id: 8
+      - id: 44
         type: freeform
         prompt: Does discarding a small singular value prove the discarded information is scientifically unimportant? Explain the distinction between the approximation theorem and interpretation.
         answerLines: 5
         answer: No. The theorem concerns an error norm and a rank limit, not scientific importance. A small component can carry meaningful information, and rescaling data can change singular values. Interpretation requires knowledge of the data and purpose.
+      - id: 45
+        type: freeform
+        prompt: A is diagonal with entries (6, 3, 1) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.
+        answerLines: 5
+        answer: One approximation has diagonal (6,0,0). The discarded squared entries sum to 10, so its Frobenius error is square root of 10. Keeping the first two gives error 1. If a cutoff splits tied positive singular values, other equally good choices can exist.
+      - id: 46
+        type: freeform
+        prompt: A is diagonal with entries (5, 2, 1) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.
+        answerLines: 5
+        answer: One approximation has diagonal (5,0,0). The discarded squared entries sum to 5, so its Frobenius error is square root of 5. Keeping the first two gives error 1. If a cutoff splits tied positive singular values, other equally good choices can exist.
+      - id: 47
+        type: freeform
+        prompt: A is diagonal with entries (4, 4, 2) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.
+        answerLines: 5
+        answer: One approximation has diagonal (4,0,0). The discarded squared entries sum to 20, so its Frobenius error is square root of 20. Keeping the first two gives error 2. If a cutoff splits tied positive singular values, other equally good choices can exist.
+      - id: 48
+        type: freeform
+        prompt: A is diagonal with entries (3, 1, 0) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.
+        answerLines: 5
+        answer: One approximation has diagonal (3,0,0). The discarded squared entries sum to 1, so its Frobenius error is square root of 1. Keeping the first two gives error 0. If a cutoff splits tied positive singular values, other equally good choices can exist.
+      - id: 49
+        type: freeform
+        prompt: A is diagonal with entries (7, 3, 2) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.
+        answerLines: 5
+        answer: One approximation has diagonal (7,0,0). The discarded squared entries sum to 13, so its Frobenius error is square root of 13. Keeping the first two gives error 2. If a cutoff splits tied positive singular values, other equally good choices can exist.
+      - id: 50
+        type: freeform
+        prompt: A is diagonal with entries (2, 2, 2) in descending order. Give one rank-at-most-one truncated SVD approximation, its exact Frobenius error, and the error after keeping two directions.
+        answerLines: 5
+        answer: One approximation has diagonal (2,0,0). The discarded squared entries sum to 8, so its Frobenius error is square root of 8. Keeping the first two gives error 2. If a cutoff splits tied positive singular values, other equally good choices can exist.
+      - id: 51
+        type: freeform
+        prompt: A is diagonal with entries one and 1/2. If the second component of b changes by 1/2, with the first unchanged, how much does the recovered second component of the solution of Ax=b change? Relate this to the weak singular direction.
+        answerLines: 5
+        answer: The second equation is x2/2=b2, so x2=2b2. The stated output change produces input change one. The smallest singular value is 1/2, and its reciprocal 2 is the amplification in that inverse direction.
+      - id: 52
+        type: freeform
+        prompt: A is diagonal with entries one and 1/5. If the second component of b changes by 1/5, with the first unchanged, how much does the recovered second component of the solution of Ax=b change? Relate this to the weak singular direction.
+        answerLines: 5
+        answer: The second equation is x2/5=b2, so x2=5b2. The stated output change produces input change one. The smallest singular value is 1/5, and its reciprocal 5 is the amplification in that inverse direction.
+      - id: 53
+        type: freeform
+        prompt: A is diagonal with entries one and 1/10. If the second component of b changes by 1/10, with the first unchanged, how much does the recovered second component of the solution of Ax=b change? Relate this to the weak singular direction.
+        answerLines: 5
+        answer: The second equation is x2/10=b2, so x2=10b2. The stated output change produces input change one. The smallest singular value is 1/10, and its reciprocal 10 is the amplification in that inverse direction.
+      - id: 54
+        type: freeform
+        prompt: A is diagonal with entries one and 1/20. If the second component of b changes by 1/20, with the first unchanged, how much does the recovered second component of the solution of Ax=b change? Relate this to the weak singular direction.
+        answerLines: 5
+        answer: The second equation is x2/20=b2, so x2=20b2. The stated output change produces input change one. The smallest singular value is 1/20, and its reciprocal 20 is the amplification in that inverse direction.
+      - id: 55
+        type: freeform
+        prompt: A is diagonal with entries one and 1/50. If the second component of b changes by 1/50, with the first unchanged, how much does the recovered second component of the solution of Ax=b change? Relate this to the weak singular direction.
+        answerLines: 5
+        answer: The second equation is x2/50=b2, so x2=50b2. The stated output change produces input change one. The smallest singular value is 1/50, and its reciprocal 50 is the amplification in that inverse direction.
+      - id: 56
+        type: freeform
+        prompt: A is diagonal with entries one and 1/100. If the second component of b changes by 1/100, with the first unchanged, how much does the recovered second component of the solution of Ax=b change? Relate this to the weak singular direction.
+        answerLines: 5
+        answer: The second equation is x2/100=b2, so x2=100b2. The stated output change produces input change one. The smallest singular value is 1/100, and its reciprocal 100 is the amplification in that inverse direction.
+      - id: 57
+        type: freeform
+        prompt: Can a two-by-three matrix have two positive listed singular values and still have a nontrivial null space? Explain.
+        answerLines: 5
+        answer: Yes. Its rank is two but it has three input coordinates, giving nullity one. Sigma has only two diagonal positions; the extra input direction is also erased.
+      - id: 58
+        type: freeform
+        prompt: Why must A transpose A have nonnegative eigenvalues?
+        answerLines: 5
+        answer: For a unit eigenvector v with eigenvalue lambda, lambda=v transpose A transpose A v, which is the squared norm of Av and is nonnegative. The symmetric spectral theorem supplies the eigenbasis.
+      - id: 59
+        type: freeform
+        prompt: Why do A transpose A and A A transpose have the same positive eigenvalues but potentially different numbers of zeros?
+        answerLines: 5
+        answer: Positive singular values contribute their squares to both. The two products act on input and output spaces of potentially different dimensions, so the leftover zero directions can differ.
+      - id: 60
+        type: freeform
+        prompt: Why is a negative eigenvalue compatible with a nonnegative singular value?
+        answerLines: 5
+        answer: Eigenvalues include direction reversal relative to the same input line. Singular values measure nonnegative lengths between independently chosen input and output directions; reversals belong in the orthogonal factors.
+      - id: 61
+        type: freeform
+        prompt: Is an SVD unique if two positive singular values are equal? Explain.
+        answerLines: 5
+        answer: Not generally. Orthonormal directions within the equal-stretch subspaces can be changed consistently without changing the matrix. Even simple sign changes can give multiple valid factors.
+      - id: 62
+        type: freeform
+        prompt: Why is division by a zero singular value not a method for constructing its left singular vector?
+        answerLines: 5
+        answer: The corresponding Av is zero, so the formula would be zero divided by zero. Remaining output directions must instead be chosen to complete an orthonormal basis.
+      - id: 63
+        type: freeform
+        prompt: If all positive singular directions are retained, what is the truncation error?
+        answerLines: 5
+        answer: Zero. No nonzero contribution is discarded, so the reconstructed matrix is exact.
+      - id: 64
+        type: freeform
+        prompt: Why is the Frobenius norm of a discarded diagonal (0,3,4) five rather than seven or twenty-five?
+        answerLines: 5
+        answer: The squared entries sum to 9+16=25; the norm is their square root, five. Seven is a sum of magnitudes and twenty-five is the squared norm.
+      - id: 65
+        type: freeform
+        prompt: Does the best low-rank approximation theorem prove that discarded features are irrelevant to the task?
+        answerLines: 5
+        answer: No. It minimizes a specified matrix error under a rank constraint. Scientific importance, causal meaning, and task-specific predictive value are separate judgments.
+      - id: 66
+        type: freeform
+        prompt: Can a zero matrix have an SVD? Describe one.
+        answerLines: 5
+        answer: Yes. Choose identity orthogonal factors of the required input and output sizes and a zero rectangular Sigma. The product is zero and all singular values are zero.
+      - id: 67
+        type: freeform
+        prompt: What does retaining zero directions produce, and what is its error?
+        answerLines: 5
+        answer: It produces the zero matrix. The error is the original matrix’s Frobenius norm, the square root of the sum of all squared singular values.
+      - id: 68
+        type: freeform
+        prompt: Explain why calling every orthogonal factor a rotation is too restrictive.
+        answerLines: 5
+        answer: A reflection also has orthonormal columns and preserves lengths and angles. Orthogonal matrices allow both orientation-preserving and orientation-reversing actions.
+      - id: 69
+        type: freeform
+        prompt: Can a real matrix without a real eigenbasis still have a real SVD? Explain the conceptual difference.
+        answerLines: 5
+        answer: Yes. The real SVD exists for every real matrix, using distinct orthonormal input and output bases. An eigenbasis requires the same directions to return as scalar multiples, a stronger and different condition.
+      - id: 70
+        type: freeform
+        prompt: Why can a finite singular-value tolerance change numerical rank without changing exact mathematical rank?
+        answerLines: 5
+        answer: Numerical rank treats sufficiently small computed values as effectively zero based on scale and rounding. Exact rank counts all exactly positive singular values, however small.
+      - id: 71
+        type: freeform
+        prompt: For a full-rank tall matrix, must every output direction be reachable? Explain.
+        answerLines: 5
+        answer: No. Full column rank means independent inputs are preserved, but when rows outnumber columns the image dimension is still smaller than the output space. Extra left basis directions are outside the image.
+      - id: 72
+        type: freeform
+        prompt: Why should a supplied SVD be checked for orthogonality as well as multiplication?
+        answerLines: 5
+        answer: Many factorizations multiply to A. An SVD additionally requires orthogonal U,V and nonnegative rectangular diagonal Sigma, which give its geometric and rank interpretations.
