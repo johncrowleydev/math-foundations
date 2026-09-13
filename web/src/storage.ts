@@ -7,43 +7,55 @@ const db = openDB('foundations-web', 2, {
       if (!d.objectStoreNames.contains(s)) d.createObjectStore(s);
   },
 });
-let revision = 0;
-const listeners = new Set<() => void>();
+const revisions = new Map<string, number>();
+const listeners = new Map<string, Set<() => void>>();
 const updates =
   typeof window !== 'undefined' && typeof BroadcastChannel !== 'undefined'
-    ? new BroadcastChannel('foundations-data')
+    ? new BroadcastChannel('foundations-data-v2')
     : null;
-if (updates)
-  updates.onmessage = () => {
-    revision++;
-    listeners.forEach((f) => f());
-  };
-export function changed() {
-  updates?.postMessage('changed');
-  revision++;
-  listeners.forEach((f) => f());
+function notify(topic: string) {
+  revisions.set(topic, (revisions.get(topic) || 0) + 1);
+  listeners.get(topic)?.forEach((f) => f());
 }
-export function useRevision() {
+if (updates)
+  updates.onmessage = (e) => {
+    if (typeof e.data === 'string') notify(e.data);
+  };
+export function changed(topic = 'content') {
+  if (topic !== 'sync') updates?.postMessage(topic);
+  notify(topic);
+}
+export function useRevision(topic = 'content') {
   return useSyncExternalStore(
     (f) => {
-      listeners.add(f);
+      let set = listeners.get(topic);
+      if (!set) {
+        set = new Set();
+        listeners.set(topic, set);
+      }
+      set.add(f);
       return () => {
-        listeners.delete(f);
+        set.delete(f);
       };
     },
-    () => revision,
+    () => revisions.get(topic) || 0,
   );
+}
+function storedChange(store: string, key: string) {
+  if (store === 'media') changed('media:' + key);
+  else if (store === 'drafts') changed('draft:' + key);
+  else if (store === 'attempts' || store === 'records' || store === 'imports') changed();
 }
 export async function get<T>(store: string, key: string): Promise<T | undefined> {
   return (await db).get(store, key);
 }
 export async function put(store: string, key: string, value: unknown) {
   await (await db).put(store, value, key);
-  changed();
+  storedChange(store, key);
 }
 export async function remove(store: string, key: string) {
   await (await db).delete(store, key);
-  changed();
+  storedChange(store, key);
 }
 export async function all<T>(store: string): Promise<T[]> {
   return (await db).getAll(store);
@@ -77,19 +89,28 @@ export async function saveAttempt(a: Attempt) {
 export async function integrate(records: RecordData[], cursor: number) {
   const d = await db;
   const tx = d.transaction(['records', 'attempts', 'outbox', 'settings'], 'readwrite');
+  let updated = false;
   for (const r of records) {
     const old = await tx.objectStore('records').get(r.key);
-    if (old && old.revision > r.revision) continue;
-    await tx.objectStore('records').put(r, r.key);
+    const latest = old && old.revision >= r.revision ? old : r;
+    if (latest === r) {
+      await tx.objectStore('records').put(r, r.key);
+      updated = true;
+    }
     if (r.key.startsWith('attempt/')) {
-      const a = r.payload as unknown as Attempt;
-      await tx.objectStore('attempts').put(a, a.id);
+      const a = latest.payload as Attempt;
+      const saved = await tx.objectStore('attempts').get(a.id);
+      if (JSON.stringify(saved) !== JSON.stringify(a)) {
+        await tx.objectStore('attempts').put(a, a.id);
+        updated = true;
+      }
       await tx.objectStore('outbox').delete(a.id);
     }
   }
-  await tx.objectStore('settings').put(cursor, 'cursor');
+  const previous = (await tx.objectStore('settings').get('cursor')) || 0;
+  if (cursor > previous) await tx.objectStore('settings').put(cursor, 'cursor');
   await tx.done;
-  changed();
+  if (updated) changed();
 }
 export async function exportData() {
   const data: Record<string, unknown> = { version: 1 };

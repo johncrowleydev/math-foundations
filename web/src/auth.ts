@@ -16,6 +16,12 @@ let generation = 0;
 const listeners = new Set<() => void>();
 let snapshot: { session: Session | null; ready: boolean } = { session, ready };
 function notify() {
+  if (
+    snapshot.ready === ready &&
+    snapshot.session?.email === session?.email &&
+    snapshot.session?.expires === session?.expires
+  )
+    return;
   snapshot = { session, ready };
   listeners.forEach((f) => f());
 }

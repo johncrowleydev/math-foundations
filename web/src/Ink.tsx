@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import type { Stroke } from './types';
 export function drawStrokes(ctx: CanvasRenderingContext2D, strokes: Stroke[]) {
   ctx.lineCap = 'round';
@@ -17,12 +17,16 @@ export function drawStrokes(ctx: CanvasRenderingContext2D, strokes: Stroke[]) {
     }
   }
 }
+export function inkHeight(strokes: Stroke[], minimum: number, padding: number) {
+  let height = minimum;
+  for (const stroke of strokes)
+    for (const point of stroke.points) height = Math.max(height, point.y + padding);
+  return Math.ceil(height);
+}
 export async function inkImage(strokes: Stroke[]) {
   const canvas = document.createElement('canvas');
   canvas.width = 1350;
-  canvas.height = Math.ceil(
-    Math.max(120, ...strokes.flatMap((s) => s.points.map((p) => p.y + 24))) * 1.5,
-  );
+  canvas.height = Math.ceil(inkHeight(strokes, 120, 24) * 1.5);
   const ctx = canvas.getContext('2d')!;
   ctx.fillStyle = 'white';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -38,6 +42,10 @@ export function Ink({ strokes, onChange }: { strokes: Stroke[]; onChange: (s: St
     [erase, setErase] = useState(false),
     [move, setMove] = useState(false),
     [redo, setRedo] = useState<Stroke[]>([]);
+  const height = useMemo(() => inkHeight(strokes, 520, 80), [strokes]);
+  const pointer = useRef<number | null>(null);
+  const painted = useRef<Stroke[] | null>(null),
+    paintedHeight = useRef(0);
   const current = useRef(strokes);
   current.current = strokes;
   const paint = () => {
@@ -46,8 +54,12 @@ export function Ink({ strokes, onChange }: { strokes: Stroke[]; onChange: (s: St
     ctx.clearRect(0, 0, c.width, c.height);
     drawStrokes(ctx, current.current);
     if (active.current) drawStrokes(ctx, [active.current]);
+    painted.current = current.current;
+    paintedHeight.current = c.height;
   };
-  useEffect(paint, [strokes]);
+  useEffect(() => {
+    if (painted.current !== strokes || paintedHeight.current !== height) paint();
+  }, [strokes, height]);
   return (
     <div>
       <div className="toolbar">
@@ -100,11 +112,12 @@ export function Ink({ strokes, onChange }: { strokes: Stroke[]; onChange: (s: St
         <canvas
           ref={canvas}
           width={900}
-          height={Math.max(520, ...strokes.flatMap((s) => s.points.map((p) => p.y + 80)))}
+          height={height}
           aria-label="Handwriting canvas"
           style={{ touchAction: move ? 'pan-y' : 'none' }}
           onPointerDown={(e) => {
-            if (move || e.button !== 0) return;
+            if (move || e.button !== 0 || pointer.current !== null) return;
+            pointer.current = e.pointerId;
             e.currentTarget.setPointerCapture(e.pointerId);
             const r = e.currentTarget.getBoundingClientRect();
             const p = {
@@ -119,29 +132,42 @@ export function Ink({ strokes, onChange }: { strokes: Stroke[]; onChange: (s: St
               return;
             }
             active.current = { color, width, points: [p] };
-            paint();
+            drawStrokes(e.currentTarget.getContext('2d')!, [active.current]);
           }}
           onPointerMove={(e) => {
-            if (!active.current) return;
+            if (!active.current || pointer.current !== e.pointerId) return;
             const r = e.currentTarget.getBoundingClientRect();
-            for (const ev of e.nativeEvent.getCoalescedEvents?.() || [e.nativeEvent])
-              active.current.points.push({
+            const events = e.nativeEvent.getCoalescedEvents?.();
+            const points = [active.current.points.at(-1)!];
+            for (const ev of events?.length ? events : [e.nativeEvent]) {
+              const point = {
                 x: ((ev.clientX - r.left) * 900) / r.width,
                 y: ((ev.clientY - r.top) * e.currentTarget.height) / r.height,
                 p: ev.pressure || 0.5,
-              });
-            paint();
+              };
+              active.current.points.push(point);
+              points.push(point);
+            }
+            drawStrokes(e.currentTarget.getContext('2d')!, [{ ...active.current, points }]);
           }}
-          onPointerUp={() => {
+          onPointerUp={(e) => {
+            if (pointer.current !== e.pointerId) return;
+            pointer.current = null;
             if (active.current) {
-              onChange([...current.current, active.current]);
+              const next = [...current.current, active.current];
+              painted.current = next;
+              onChange(next);
               active.current = null;
               setRedo([]);
             }
           }}
-          onPointerCancel={() => {
+          onPointerCancel={(e) => {
+            if (pointer.current !== e.pointerId) return;
+            pointer.current = null;
             if (active.current) {
-              onChange([...current.current, active.current]);
+              const next = [...current.current, active.current];
+              painted.current = next;
+              onChange(next);
               active.current = null;
             }
           }}

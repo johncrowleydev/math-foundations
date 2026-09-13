@@ -10,6 +10,7 @@ import { Media, Photos, normalizedPhoto } from './Photos';
 export function Exercise({ q, lesson, data }: { q: Question; lesson: string; data: Curriculum }) {
   const key = lesson + '-' + q.id;
   const rev = useRevision();
+  const draftRevision = useRevision('draft:' + key);
   const [draft, setDraft] = useState<Draft | null>(null),
     [attempts, setAttempts] = useState<Attempt[]>([]),
     [saving, setSaving] = useState(false),
@@ -86,6 +87,18 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       live = false;
     };
   }, [versions.map((r) => r.revision).join(','), key]);
+  useEffect(() => {
+    let live = true;
+    void get<Draft>('drafts', key).then((saved) => {
+      if (live && saved && saved.updated > (latestDraft.current?.updated || 0)) {
+        latestDraft.current = saved;
+        setDraft(saved);
+      }
+    });
+    return () => {
+      live = false;
+    };
+  }, [key, draftRevision]);
   function update(p: Partial<Draft>) {
     touched.current = true;
     const next = { ...latestDraft.current!, ...p, updated: Date.now() };

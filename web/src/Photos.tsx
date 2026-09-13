@@ -3,7 +3,7 @@ import { get, saveMedia, useRevision } from './storage';
 import type { Photo } from './types';
 import { Modal } from './Rich';
 export function Media({ hash, rotation = 0 }: { hash: string; rotation?: number }) {
-  const revision = useRevision();
+  const revision = useRevision('media:' + hash);
   const [url, set] = useState('');
   useEffect(() => {
     let live = true,
@@ -25,7 +25,13 @@ export function Media({ hash, rotation = 0 }: { hash: string; rotation?: number 
     };
   }, [hash, rotation, revision]);
   return url ? (
-    <img className="response-image" src={url} alt="Submitted written work" />
+    <img
+      loading="lazy"
+      decoding="async"
+      className="response-image"
+      src={url}
+      alt="Submitted written work"
+    />
   ) : (
     <p className="muted">Image not available locally yet. Sync to download it.</p>
   );
@@ -46,6 +52,7 @@ export async function normalizedPhoto(p: Photo) {
   ctx.rotate((p.rotation * Math.PI) / 180);
   ctx.scale(scale, scale);
   ctx.drawImage(image, -image.width / 2, -image.height / 2);
+  image.close();
   image.close();
   return new Promise<Blob>((resolve) => c.toBlob((b) => resolve(b!), 'image/jpeg', 0.9));
 }

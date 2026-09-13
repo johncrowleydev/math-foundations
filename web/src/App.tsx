@@ -1,5 +1,5 @@
 import { authSession, signOut } from './auth';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
 import {
   BookOpen,
   Menu,
@@ -335,16 +335,19 @@ export function App({ data }: { data: Curriculum }) {
   ];
   return (
     <ContentContext.Provider
-      value={{
-        data,
-        lesson: lesson.slug,
-        reference: (id) => {
-          const rect = document.activeElement?.getBoundingClientRect();
-          setQuickAnchor(rect ? { x: rect.left, y: rect.bottom } : undefined);
-          setQuickRef(id);
-        },
-        formula: setFormula,
-      }}
+      value={useMemo(
+        () => ({
+          data,
+          lesson: lesson.slug,
+          reference: (id) => {
+            const rect = document.activeElement?.getBoundingClientRect();
+            setQuickAnchor(rect ? { x: rect.left, y: rect.bottom } : undefined);
+            setQuickRef(id);
+          },
+          formula: setFormula,
+        }),
+        [data, lesson.slug],
+      )}
     >
       <div className="app">
         <aside className="sidebar">{nav}</aside>
@@ -527,7 +530,7 @@ export function App({ data }: { data: Curriculum }) {
           </div>
           <div className="statusbar">
             <span>
-              {!navigator.onLine && <WifiOff size={12} />} {connected() ? syncStatus : ''}
+              {!navigator.onLine && <WifiOff size={12} />} <SyncStatus />
             </span>
             {tab === 'read' && (
               <>
@@ -1001,4 +1004,9 @@ function PracticeStatus({ status }: { status: string }) {
       <Icon size={14} strokeWidth={status === 'Not attempted' ? 1.5 : 2} aria-hidden="true" />
     </span>
   );
+}
+
+function SyncStatus() {
+  useRevision('sync');
+  return <>{connected() ? syncStatus : ''}</>;
 }

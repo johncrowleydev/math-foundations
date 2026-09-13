@@ -101,8 +101,11 @@ type Operation = { id: string; kind: string; attempt?: string; data: Record<stri
 export async function sync() {
   if (busy || !authSession()) return;
   busy = true;
-  syncStatus = 'Syncing';
-  changed();
+  const previousStatus = syncStatus;
+  if (!initialSyncComplete) {
+    syncStatus = 'Syncing';
+    changed('sync');
+  }
   try {
     if (!(await verifySession())) {
       syncStatus = authSession() ? 'Offline' : 'Sign in required';
@@ -160,15 +163,23 @@ export async function sync() {
       if (!(await attemptsMatch(status.attempts)))
         throw Error('Some attempts are missing; retrying sync');
     }
-    initialSyncComplete = true;
-    await put('settings', 'initial-sync-complete', true);
+    if (!initialSyncComplete) {
+      initialSyncComplete = true;
+      changed();
+    }
+    if (!(await get('settings', 'initial-sync-complete')))
+      await put('settings', 'initial-sync-complete', true);
     // Stored records are the durable download queue. A failed image must never
     // prevent grades or later change pages from reaching a new device.
     const hashes = referencedMedia(await all<RecordData>('records'));
     let missing = 0;
-    syncStatus = 'Answers synced · downloading images';
-    changed();
-    for (const h of hashes) {
+    const pendingHashes = [];
+    for (const h of hashes) if (!(await get('media', h))) pendingHashes.push(h);
+    if (pendingHashes.length) {
+      syncStatus = 'Answers synced · downloading images';
+      changed('sync');
+    }
+    for (const h of pendingHashes) {
       try {
         await download(h);
       } catch (e) {
@@ -186,7 +197,7 @@ export async function sync() {
     if (e instanceof HttpError && e.status === 401) syncStatus = 'Sign in required';
   } finally {
     busy = false;
-    changed();
+    if (syncStatus !== previousStatus) changed('sync');
   }
 }
 
