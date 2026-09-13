@@ -18,7 +18,7 @@ import (
 	"time"
 )
 
-const gradingModel = "z-ai/glm-5.3-flash"
+const gradingModel = "deepseek/deepseek-v4.1-flash"
 const promptVersion = "foundations-grading-2"
 
 type Submission struct {
