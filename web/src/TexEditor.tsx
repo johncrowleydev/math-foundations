@@ -30,6 +30,45 @@ export function TexEditor({
     return () => clearTimeout(t);
   }, [value]);
   useEffect(() => {
+    // A growing preview above the input must not push the active line away.
+    const frame = requestAnimationFrame(() => {
+      const editor = view.current;
+      if (editor?.hasFocus)
+        editor.dispatch({
+          effects: EditorView.scrollIntoView(editor.state.selection.main.head, {
+            y: 'nearest',
+            yMargin: 24,
+          }),
+        });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [preview]);
+  useEffect(() => {
+    let frame = 0;
+    const keepCaretVisible = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const editor = view.current;
+        if (editor?.hasFocus)
+          editor.dispatch({
+            effects: EditorView.scrollIntoView(editor.state.selection.main.head, {
+              y: 'nearest',
+              yMargin: 24,
+            }),
+          });
+      });
+    };
+    const viewport = window.visualViewport;
+    viewport?.addEventListener('resize', keepCaretVisible);
+    host.current?.addEventListener('focusin', keepCaretVisible);
+    const element = host.current;
+    return () => {
+      cancelAnimationFrame(frame);
+      viewport?.removeEventListener('resize', keepCaretVisible);
+      element?.removeEventListener('focusin', keepCaretVisible);
+    };
+  }, []);
+  useEffect(() => {
     const decorate = (v: EditorView) => {
       const b = new RangeSetBuilder<Decoration>();
       const text = v.state.doc.toString();
@@ -128,30 +167,32 @@ export function TexEditor({
   };
   return (
     <div className="tex-editor">
-      <div className="toolbar">
-        <button onClick={() => insert('', true)}>Insert math</button>
-        <button onClick={() => setHelp(true)}>Symbols & syntax</button>
-        <button
-          title="Undo"
-          onClick={() => {
-            if (view.current) undo(view.current);
-          }}
-        >
-          ↶
-        </button>
-        <button
-          title="Redo"
-          onClick={() => {
-            if (view.current) redo(view.current);
-          }}
-        >
-          ↷
-        </button>
-      </div>
       <div className="editor-columns">
-        <div className="editor-box">
-          <label>Answer</label>
-          <div ref={host} />
+        <div className="editor-input">
+          <div className="toolbar">
+            <button onClick={() => insert('', true)}>Insert math</button>
+            <button onClick={() => setHelp(true)}>Symbols & syntax</button>
+            <button
+              title="Undo"
+              onClick={() => {
+                if (view.current) undo(view.current);
+              }}
+            >
+              ↶
+            </button>
+            <button
+              title="Redo"
+              onClick={() => {
+                if (view.current) redo(view.current);
+              }}
+            >
+              ↷
+            </button>
+          </div>
+          <div className="editor-box">
+            <label>Answer</label>
+            <div ref={host} />
+          </div>
         </div>
         <div className="preview">
           <label>Preview</label>

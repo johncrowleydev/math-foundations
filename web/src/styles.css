@@ -94,7 +94,7 @@ label {
   text-transform: uppercase;
 }
 .app {
-  height: 100dvh;
+  height: var(--visible-height, 100dvh);
   display: flex;
   overflow: hidden;
 }
@@ -488,6 +488,9 @@ details > .rich {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
+.editor-input {
+  min-width: 0;
+}
 .editor-box,
 .preview {
   border: 1px solid var(--line);
@@ -658,6 +661,8 @@ details > .rich {
 .scrim {
   position: fixed;
   inset: 0;
+  bottom: auto;
+  height: var(--visible-height, 100dvh);
   z-index: 50;
   background: #202b3b40;
   display: flex;
@@ -670,7 +675,7 @@ details > .rich {
   border: 1px solid var(--line);
   border-radius: 10px;
   width: min(560px, 100%);
-  max-height: calc(100dvh - 40px);
+  max-height: calc(var(--visible-height, 100dvh) - 40px);
   box-shadow: 0 10px 50px #23304725;
   display: flex;
   flex-direction: column;
@@ -939,11 +944,11 @@ hr {
     padding: 10px;
   }
   .modal {
-    max-height: calc(100dvh - 20px);
+    max-height: calc(var(--visible-height, 100dvh) - 20px);
   }
   .modal.wide {
     width: 100%;
-    height: calc(100dvh - 20px);
+    height: calc(var(--visible-height, 100dvh) - 20px);
   }
   .brand {
     font-size: 25px;
