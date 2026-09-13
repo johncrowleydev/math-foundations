@@ -10,7 +10,7 @@ Submissions made offline are saved immediately and queued. Network/provider fail
 
 ## Backend and data
 
-The Go API uses `deepseek/deepseek-v4.1-flash` through OpenRouter, with structured results. The private `OPENROUTER_API_KEY` is stored only in `/etc/math-foundations/server.env`. The server loads `FOUNDATIONS_CATALOG` from its versioned deployment directory. Build the catalog with `npm run content`; deploy `output/grading-catalog.json` with the server binary. The corresponding catalog hash is bundled in Android. Attempt context is captured on submission so later curriculum edits do not change the question being rechecked.
+The Go API uses `z-ai/glm-5.3-flash` through OpenRouter, with structured results. The private `OPENROUTER_API_KEY` is stored only in `/etc/math-foundations/server.env`. The server loads `FOUNDATIONS_CATALOG` from its versioned deployment directory. Build the catalog with `npm run content`; deploy `output/grading-catalog.json` with the server binary. The corresponding catalog hash is bundled in Android. Attempt context is captured on submission so later curriculum edits do not change the question being rechecked.
 
 New SQLite tables are `attempts` and `grading_jobs`. Attempts retain response data, teaching context, status, authoritative verdict, and all assessments. Each assessment records feedback, issue location, meaningful improvement suggestions, optional transcription, model, timestamp, prompt version, recheck explanation, and usage/cost metadata. A single persistent worker processes jobs, recovers interrupted work after restart, and makes at most three tries for transient failures before exposing manual retry. Weekly backups include the new tables. Media remains immutable and privately stored on the VPS volume.
 
