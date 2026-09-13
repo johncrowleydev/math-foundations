@@ -418,7 +418,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       </details>
       {history && (
         <Modal
-          title={`Exercise ${q.id} — previous attempts`}
+          title={`${questionLabel(q)} — previous attempts`}
           onClose={() => setHistory(false)}
           wide
         >
@@ -430,7 +430,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         </Modal>
       )}
       {expanded && (
-        <Modal title={`Exercise ${q.id} — answer`} onClose={() => setExpanded(false)} wide>
+        <Modal title={`${questionLabel(q)} — answer`} onClose={() => setExpanded(false)} wide>
           <Rich text={q.instructions} />
           <Rich text={q.prompt} />
           {q.math && <Rich text={'$$' + q.math + '$$'} />}

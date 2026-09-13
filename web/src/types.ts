@@ -1,6 +1,7 @@
 export type Block = { id: string; kind: string; markdown?: string; figure?: string };
 export type Question = {
   id: number;
+  displayNumber?: number;
   instructions: string;
   prompt?: string;
   math?: string;
@@ -14,8 +15,7 @@ export type ChoiceAssessment = {
   options: { id: string; text: string; feedback: string }[];
   correctOption: string;
 };
-export const questionLabel = (q: Question) =>
-  q.quickSource ? 'Knowledge check ' + q.quickSource.slice(6) : 'Exercise ' + q.id;
+export const questionLabel = (q: Question) => 'Exercise ' + (q.displayNumber ?? q.id);
 export type Quick = {
   id: string;
   prompt: string;
@@ -201,7 +201,10 @@ export async function loadCurriculum(): Promise<Curriculum> {
     }),
   );
   return {
-    lessons: n.lessons,
+    lessons: n.lessons.map((lesson: Lesson) => ({
+      ...lesson,
+      questions: lesson.questions.map((q, index) => ({ ...q, displayNumber: index + 1 })),
+    })),
     ...t,
     syntax: s.entries,
     basics: x.basics,

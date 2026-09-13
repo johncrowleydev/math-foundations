@@ -432,22 +432,15 @@ export function App({ data }: { data: Curriculum }) {
                       show={tutorials}
                       first={i === 0}
                     />
-                    {s.quickChecks.map((c) => (
-                      <Exercise
-                        key={c.id}
-                        q={lesson.questions.find((q) => q.id === c.exerciseId)!}
-                        lesson={lesson.slug}
-                        data={data}
-                      />
-                    ))}
-                    {s.questionIds.map((id) => (
-                      <Exercise
-                        key={id}
-                        q={lesson.questions.find((q) => q.id === id)!}
-                        lesson={lesson.slug}
-                        data={data}
-                      />
-                    ))}
+                    {lesson.questions
+                      .filter(
+                        (q) =>
+                          s.questionIds.includes(q.id) ||
+                          s.quickChecks.some((c) => c.exerciseId === q.id),
+                      )
+                      .map((q) => (
+                        <Exercise key={q.id} q={q} lesson={lesson.slug} data={data} />
+                      ))}
                   </section>
                 ))}
                 <footer>
