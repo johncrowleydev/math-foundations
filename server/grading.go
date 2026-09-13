@@ -409,7 +409,7 @@ This is a RECHECK, not a first assessment. In feedback, directly address the stu
 		props[k] = map[string]any{"type": "string"}
 	}
 	props["verdict"] = map[string]any{"type": "string", "enum": []string{"correct", "incorrect", "not_graded"}}
-	body := map[string]any{"model": gradingModel, "max_tokens": 8192, "temperature": 0.1, "provider": map[string]any{"require_parameters": true}, "messages": []map[string]any{{"role": "system", "content": instruction}, {"role": "user", "content": parts}}, "response_format": map[string]any{"type": "json_schema", "json_schema": map[string]any{"name": "grade", "strict": true, "schema": map[string]any{"type": "object", "properties": props, "required": []string{"verdict", "feedback", "issue", "improvement", "transcription"}, "additionalProperties": false}}}}
+	body := map[string]any{"model": gradingModel, "max_tokens": 8192, "temperature": 0.1, "provider": map[string]any{"require_parameters": true, "sort": "throughput", "allow_fallbacks": true}, "messages": []map[string]any{{"role": "system", "content": instruction}, {"role": "user", "content": parts}}, "response_format": map[string]any{"type": "json_schema", "json_schema": map[string]any{"name": "grade", "strict": true, "schema": map[string]any{"type": "object", "properties": props, "required": []string{"verdict", "feedback", "issue", "improvement", "transcription"}, "additionalProperties": false}}}}
 	b, _ := json.Marshal(body)
 	req, e := http.NewRequestWithContext(ctx, "POST", g.endpoint, bytes.NewReader(b))
 	if e != nil {

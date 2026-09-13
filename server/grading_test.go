@@ -22,6 +22,10 @@ func graderFixture(t *testing.T, reply *string) *Grading {
 		if request["model"] != gradingModel {
 			t.Error("unexpected model")
 		}
+		provider, ok := request["provider"].(map[string]any)
+		if !ok || provider["sort"] != "throughput" || provider["require_parameters"] != true || provider["allow_fallbacks"] != true {
+			t.Error("grading must prioritize throughput with structured-output support and fallbacks")
+		}
 		writeJSON(w, 200, map[string]any{"model": gradingModel, "choices": []any{map[string]any{"message": map[string]any{"content": *reply}}}, "usage": map[string]any{"prompt_tokens": 10, "completion_tokens": 20, "cost": 0.001}})
 	}))
 	t.Cleanup(provider.Close)
