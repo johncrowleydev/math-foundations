@@ -1,0 +1,50 @@
+title: Singular Value Decomposition
+sections:
+  - title: Perpendicular directions and scale factors
+    questions:
+      - id: 1
+        type: freeform
+        prompt: For a three by two matrix, state the shapes of U, Sigma, and V in the full SVD. Explain which factor contains the length scale factors.
+        answerLines: 5
+        answer: U is three by three, Sigma is three by two, and V is two by two. Sigma contains nonnegative singular values on its diagonal; the orthogonal U and V factors preserve length.
+      - id: 2
+        type: freeform
+        prompt: Does an orthogonal factor in an SVD have to be a rotation rather than a reflection? Explain what property is actually required.
+        answerLines: 5
+        answer: No. Reflections are allowed. The required property is an orthonormal basis of columns, equivalently transpose times the matrix equals identity; this preserves lengths and angles.
+  - title: A small example you can verify
+    questions:
+      - id: 3
+        type: freeform
+        prompt: Let U be identity, Sigma have diagonal entries 3 and 1, and V swap the two standard basis vectors. Compute the rows of U Sigma V transpose and its output on (2,4).
+        answerLines: 5
+        answer: V transpose also swaps coordinates. The product has rows (0,3),(1,0), sending (2,4) to (12,2). The scale factors are 3 and 1 along the chosen right singular directions.
+      - id: 4
+        type: freeform
+        prompt: A diagonal matrix has diagonal entries 5 and 2. Describe the image of the unit circle and identify the greatest and least output lengths for unit inputs.
+        answerLines: 5
+        answer: The image is an ellipse with horizontal semiaxis five and vertical semiaxis two. The greatest output length is five along the horizontal input direction, and the least is two along the vertical direction.
+  - title: Connection to rank and eigenvalues
+    questions:
+      - id: 5
+        type: freeform
+        prompt: A real matrix has singular values 4,2,0 and has three columns. Find its rank and nullity, and give the eigenvalues of A transpose A.
+        answerLines: 5
+        answer: Rank is two because two singular values are positive. Nullity is one by rank plus nullity equals three. The eigenvalues of A transpose A are 16,4,0, the squares of the singular values.
+      - id: 6
+        type: freeform
+        prompt: Why is it invalid to construct a left singular vector by dividing Av by sigma when sigma is zero? What does Av equal in that case?
+        answerLines: 5
+        answer: Division by zero is undefined. A zero singular value corresponds to a right direction in the null space, so Av is zero. The remaining output basis directions must be completed separately.
+  - title: Approximation and responsible interpretation
+    questions:
+      - id: 7
+        type: freeform
+        prompt: A diagonal matrix has entries 6,3,1. Form a rank-one truncated SVD approximation and give its Frobenius error exactly.
+        answerLines: 5
+        answer: Keep only the entry six, giving diagonal entries (6,0,0). The discarded squared singular values sum to 9+1=10, so the Frobenius error is the square root of ten.
+      - id: 8
+        type: freeform
+        prompt: Does discarding a small singular value prove the discarded information is scientifically unimportant? Explain the distinction between the approximation theorem and interpretation.
+        answerLines: 5
+        answer: No. The theorem concerns an error norm and a rank limit, not scientific importance. A small component can carry meaningful information, and rescaling data can change singular values. Interpretation requires knowledge of the data and purpose.

@@ -23,7 +23,10 @@ export function validateQuickChecks(
     throw Error('Unknown quick-check lesson');
   for (const l of lessons) {
     const list = checks[l.slug] || [];
-    if (list.length !== 2 || new Set(list.map((c) => c.id)).size !== list.length)
+    if (
+      list.length !== (l.worksheetData ? 2 : 0) ||
+      new Set(list.map((c) => c.id)).size !== list.length
+    )
       throw Error('Each lesson needs two distinct quick checks');
     for (const c of list) {
       const section = teachingSections(l.markdown).find((s) => s.title === c.after);

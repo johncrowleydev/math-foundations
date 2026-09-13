@@ -15,9 +15,15 @@ function headings(markdown: string) {
 
 test('all inline exercises attach to an existing teaching heading and preserve question coverage', () => {
   let inlineCount = 0;
-  assert.deepEqual(Object.keys(inlinePlacements).sort(), content.lessons.map((l) => l.slug).sort());
+  assert.deepEqual(
+    Object.keys(inlinePlacements).sort(),
+    content.lessons
+      .filter((l) => l.worksheetData)
+      .map((l) => l.slug)
+      .sort(),
+  );
   for (const lesson of content.lessons) {
-    const ids = lesson.worksheetData!.sections.flatMap((s) => s.questions.map((q) => q.id));
+    const ids = (lesson.worksheetData?.sections || []).flatMap((s) => s.questions.map((q) => q.id));
     const placed = placeNotebookExercises(lesson.slug, headings(lesson.markdown), ids);
     const inline = placed.sectionQuestionIds.flat();
     inlineCount += inline.length;
@@ -28,7 +34,7 @@ test('all inline exercises attach to an existing teaching heading and preserve q
       ids.sort((a, b) => a - b),
     );
   }
-  assert.equal(inlineCount, 121);
+  assert.equal(inlineCount, 161);
 });
 
 test('exercises wait for their prerequisite concepts, including terminology used in answers', () => {
@@ -47,7 +53,7 @@ test('exercises wait for their prerequisite concepts, including terminology used
   for (const [slug, id, required] of requirements) {
     const lesson = content.lessons.find((l) => l.slug === slug)!;
     const titles = headings(lesson.markdown);
-    const ids = lesson.worksheetData!.sections.flatMap((s) => s.questions.map((q) => q.id));
+    const ids = (lesson.worksheetData?.sections || []).flatMap((s) => s.questions.map((q) => q.id));
     const placed = placeNotebookExercises(slug, titles, ids);
     const position = placed.sectionQuestionIds.findIndex((qs) => qs.includes(id));
     for (const title of required) {
@@ -60,7 +66,7 @@ test('exercises wait for their prerequisite concepts, including terminology used
 test('inserting teaching sections cannot shift inline exercises ahead of their named explanation', () => {
   for (const lesson of content.lessons) {
     const titles = headings(lesson.markdown);
-    const ids = lesson.worksheetData!.sections.flatMap((s) => s.questions.map((q) => q.id));
+    const ids = (lesson.worksheetData?.sections || []).flatMap((s) => s.questions.map((q) => q.id));
     const before = placeNotebookExercises(lesson.slug, titles, ids);
     const expanded = titles.flatMap((title, i) => [`New explanation ${i}`, title]);
     const after = placeNotebookExercises(lesson.slug, expanded, ids);
@@ -71,6 +77,7 @@ test('inserting teaching sections cannot shift inline exercises ahead of their n
       ),
     );
     assert.deepEqual(after.practiceIds, before.practiceIds);
+    if (!lesson.worksheetData) continue;
     const anchor = Object.keys(inlinePlacements[lesson.slug])[0];
     assert.throws(
       () =>
@@ -98,11 +105,11 @@ function question(slug: string, id: number) {
   );
 }
 
-test('all 1313 exercises adapt with valid math, stable IDs, and no printed-context references', () => {
+test('all curriculum exercises adapt with valid math, stable IDs, and no printed-context references', () => {
   validateNotebookAdaptations(content.lessons);
   let count = 0;
   for (const l of content.lessons)
-    for (const s of l.worksheetData!.sections)
+    for (const s of l.worksheetData?.sections || [])
       for (const source of s.questions) {
         const adapted = adaptNotebookQuestion(l.slug, source, s.instructions || '');
         assert.equal(adapted.id, source.id);
@@ -110,7 +117,7 @@ test('all 1313 exercises adapt with valid math, stable IDs, and no printed-conte
         assert.equal(adapted.math, source.math);
         count++;
       }
-  assert.equal(count, 1313);
+  assert.equal(count, 1393);
 });
 test('proposition classification does not inherit the translation exercise definitions', () => {
   const q = question('propositional-logic', 2);

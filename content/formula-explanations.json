@@ -173501,5 +173501,905 @@
     "latex": "\\{1,2\\}",
     "reading": "the set containing 1, 2 end set.",
     "bindings": []
+  },
+  {
+    "id": "formula-la-99799d7befbab5cf5c7d",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:coordinates-and-vectors:text-end",
+    "ordinal": 0,
+    "latex": "\\mathbb{R}^n",
+    "reading": "Real n-dimensional coordinate space: all ordered lists of n real numbers. Here n is a positive integer counting components, not the value of a coordinate.",
+    "bindings": [
+      {
+        "symbol": "\\mathbb{R}^n",
+        "meaning": "Real n-dimensional coordinate space: all ordered lists of n real numbers. Here n is a positive integer counting components, not the value of a coordinate.",
+        "reference": "linear-algebra-vectors-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-5cc1dc60e6ed12d400a3",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:coordinates-and-vectors:text-end",
+    "ordinal": 1,
+    "latex": "u=(3,2)",
+    "reading": "The vector u has first component three and second component two. As a displacement, it moves three units right and two up.",
+    "bindings": [
+      {
+        "symbol": "u=(3,2)",
+        "meaning": "The vector u has first component three and second component two. As a displacement, it moves three units right and two up.",
+        "reference": "linear-algebra-vectors-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-2aa90b0155436196d73f",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:adding-and-scaling:text-before-la-vector-addition",
+    "ordinal": 0,
+    "latex": "u=(3,2)",
+    "reading": "The vector u has first component three and second component two. As a displacement, it moves three units right and two up.",
+    "bindings": [
+      {
+        "symbol": "u=(3,2)",
+        "meaning": "The vector u has first component three and second component two. As a displacement, it moves three units right and two up.",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-00f7cdc780cab233cdae",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:adding-and-scaling:text-before-la-vector-addition",
+    "ordinal": 1,
+    "latex": "v=(-1,1)",
+    "reading": "The vector v has components negative one and one: one unit left and one unit up.",
+    "bindings": [
+      {
+        "symbol": "v=(-1,1)",
+        "meaning": "The vector v has components negative one and one: one unit left and one unit up.",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-519b1401e385563cd081",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:adding-and-scaling:text-before-la-vector-addition",
+    "ordinal": 2,
+    "latex": "u+v=(2,3)",
+    "reading": "Adding u=(3,2) and v=(-1,1) component by component gives the vector (2,3).",
+    "bindings": [
+      {
+        "symbol": "u+v=(2,3)",
+        "meaning": "Adding u=(3,2) and v=(-1,1) component by component gives the vector (2,3).",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-f5a6a54dc4524f2ec728",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:adding-and-scaling:text-before-la-vector-addition",
+    "ordinal": 3,
+    "latex": "2u=(6,4)",
+    "reading": "Two times the vector u=(3,2) is (6,4). The scalar two multiplies both components.",
+    "bindings": [
+      {
+        "symbol": "2u=(6,4)",
+        "meaning": "Two times the vector u=(3,2) is (6,4). The scalar two multiplies both components.",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-96739cf7f24378ed65fc",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:adding-and-scaling:text-before-la-vector-addition",
+    "ordinal": 4,
+    "latex": "u-v=(4,1)",
+    "reading": "The difference u minus v is (4,1), with u=(3,2) and v=(-1,1). It is the displacement from v's endpoint to u's endpoint when both start at the origin.",
+    "bindings": [
+      {
+        "symbol": "u-v=(4,1)",
+        "meaning": "The difference u minus v is (4,1), with u=(3,2) and v=(-1,1). It is the displacement from v's endpoint to u's endpoint when both start at the origin.",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-bdb1ce2e616bb7ce9e5e",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:building-linear-combinations:text-end",
+    "ordinal": 0,
+    "latex": "2u+3v=(3,7)",
+    "reading": "Two copies of u=(3,2) plus three copies of v=(-1,1) give (3,7). Two and three are real coefficients of a linear combination.",
+    "bindings": [
+      {
+        "symbol": "2u+3v=(3,7)",
+        "meaning": "Two copies of u=(3,2) plus three copies of v=(-1,1) give (3,7). Two and three are real coefficients of a linear combination.",
+        "reference": "linear-algebra-vectors-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-0bd745b73c86b215be7e",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:building-linear-combinations:text-end",
+    "ordinal": 1,
+    "latex": "e_1=(1,0)",
+    "reading": "E sub one is the first standard coordinate vector, (1,0), pointing along the positive horizontal axis.",
+    "bindings": [
+      {
+        "symbol": "e_1=(1,0)",
+        "meaning": "E sub one is the first standard coordinate vector, (1,0), pointing along the positive horizontal axis.",
+        "reference": "linear-algebra-vectors-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-ce9fd02753cc57017a0a",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:building-linear-combinations:text-end",
+    "ordinal": 2,
+    "latex": "e_2=(0,1)",
+    "reading": "E sub two is the second standard coordinate vector, (0,1), pointing along the positive vertical axis.",
+    "bindings": [
+      {
+        "symbol": "e_2=(0,1)",
+        "meaning": "E sub two is the second standard coordinate vector, (0,1), pointing along the positive vertical axis.",
+        "reference": "linear-algebra-vectors-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-6f5d672e10816491af75",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:building-linear-combinations:text-end",
+    "ordinal": 3,
+    "latex": "(a,b)",
+    "reading": "The real coordinate vector with arbitrary first component a and second component b.",
+    "bindings": [
+      {
+        "symbol": "(a,b)",
+        "meaning": "The real coordinate vector with arbitrary first component a and second component b.",
+        "reference": "linear-algebra-vectors-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-0c911fc8e5a16c7959af",
+    "lesson": "linear-algebra-vectors",
+    "source": "section:building-linear-combinations:text-end",
+    "ordinal": 4,
+    "latex": "ae_1+be_2",
+    "reading": "A times the first standard vector plus b times the second standard vector. With arbitrary real scalars a and b this equals (a,b).",
+    "bindings": [
+      {
+        "symbol": "ae_1+be_2",
+        "meaning": "A times the first standard vector plus b times the second standard vector. With arbitrary real scalars a and b this equals (a,b).",
+        "reference": "linear-algebra-vectors-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-44a867705f5cedfd6988",
+    "lesson": "linear-algebra-dot-products",
+    "source": "section:a-scalar-from-two-vectors:text-end",
+    "ordinal": 0,
+    "latex": "u\\cdot v=u_1v_1+u_2v_2",
+    "reading": "U dot v equals u sub one times v sub one plus u sub two times v sub two. The indexed symbols are the real components of two plane vectors; the result is a scalar.",
+    "bindings": [
+      {
+        "symbol": "u\\cdot v=u_1v_1+u_2v_2",
+        "meaning": "U dot v equals u sub one times v sub one plus u sub two times v sub two. The indexed symbols are the real components of two plane vectors; the result is a scalar.",
+        "reference": "linear-algebra-dot-products-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-637d315ef228d8fa5d56",
+    "lesson": "linear-algebra-dot-products",
+    "source": "section:length-and-unit-vectors:text-end",
+    "ordinal": 0,
+    "latex": "\\|u\\|=\\sqrt{u\\cdot u}",
+    "reading": "The norm of the real vector u equals the square root of u dot itself. Double bars denote Euclidean length, and the square root is the nonnegative root.",
+    "bindings": [
+      {
+        "symbol": "\\|u\\|=\\sqrt{u\\cdot u}",
+        "meaning": "The norm of the real vector u equals the square root of u dot itself. Double bars denote Euclidean length, and the square root is the nonnegative root.",
+        "reference": "linear-algebra-dot-products-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-016450c1b8f510a2eefa",
+    "lesson": "linear-algebra-dot-products",
+    "source": "section:angle-and-orthogonality:text-before-la-orthogonal-vectors",
+    "ordinal": 0,
+    "latex": "u\\cdot v=\\|u\\|\\|v\\|\\cos\\theta",
+    "reading": "U dot v equals the norm of u times the norm of v times the cosine of theta. Here u and v are nonzero real vectors and theta is their angle between zero and 180 degrees.",
+    "bindings": [
+      {
+        "symbol": "u\\cdot v=\\|u\\|\\|v\\|\\cos\\theta",
+        "meaning": "U dot v equals the norm of u times the norm of v times the cosine of theta. Here u and v are nonzero real vectors and theta is their angle between zero and 180 degrees.",
+        "reference": "linear-algebra-dot-products-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-8165b1a85e663c19bd2c",
+    "lesson": "linear-algebra-matrices",
+    "source": "section:shape-entries-and-transpose:text-end",
+    "ordinal": 0,
+    "latex": "A_{ij}",
+    "reading": "A sub i j is the entry of matrix A in row i and column j. Indices start at one and remain within the matrix's row and column counts.",
+    "bindings": [
+      {
+        "symbol": "A_{ij}",
+        "meaning": "A sub i j is the entry of matrix A in row i and column j. Indices start at one and remain within the matrix's row and column counts.",
+        "reference": "linear-algebra-matrices-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-e53ea6db1def9fdbc0b1",
+    "lesson": "linear-algebra-matrices",
+    "source": "section:shape-entries-and-transpose:text-end",
+    "ordinal": 1,
+    "latex": "A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}",
+    "reading": "A is the two-by-two matrix whose first row is one, two and whose second row is three, four. Its columns are (1,3) and (2,4).",
+    "bindings": [
+      {
+        "symbol": "A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}",
+        "meaning": "A is the two-by-two matrix whose first row is one, two and whose second row is three, four. Its columns are (1,3) and (2,4).",
+        "reference": "linear-algebra-matrices-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-02e39fd214e5c2de2ffb",
+    "lesson": "linear-algebra-matrices",
+    "source": "section:shape-entries-and-transpose:text-end",
+    "ordinal": 2,
+    "latex": "A^T",
+    "reading": "A transpose: exchange the rows and columns of matrix A. The superscript T names transposition, not exponentiation.",
+    "bindings": [
+      {
+        "symbol": "A^T",
+        "meaning": "A transpose: exchange the rows and columns of matrix A. The superscript T names transposition, not exponentiation.",
+        "reference": "linear-algebra-matrices-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-652971e430c076246c73",
+    "lesson": "linear-algebra-matrices",
+    "source": "section:a-matrix-acting-on-a-vector:text-end",
+    "ordinal": 0,
+    "latex": "Ax=\\begin{pmatrix}4\\\\10\\end{pmatrix}",
+    "reading": "Matrix A with rows (1,2),(3,4) applied to the column x=(2,1) gives the column (4,10). The input has two components and the output has two components.",
+    "bindings": [
+      {
+        "symbol": "Ax=\\begin{pmatrix}4\\\\10\\end{pmatrix}",
+        "meaning": "Matrix A with rows (1,2),(3,4) applied to the column x=(2,1) gives the column (4,10). The input has two components and the output has two components.",
+        "reference": "linear-algebra-matrices-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-d7336954a24eee120f55",
+    "lesson": "linear-algebra-matrices",
+    "source": "section:a-matrix-acting-on-a-vector:text-end",
+    "ordinal": 1,
+    "latex": "I_2",
+    "reading": "I sub two is the two-by-two identity matrix, with diagonal entries one and all other entries zero. It leaves every two-component column unchanged.",
+    "bindings": [
+      {
+        "symbol": "I_2",
+        "meaning": "I sub two is the two-by-two identity matrix, with diagonal entries one and all other entries zero. It leaves every two-component column unchanged.",
+        "reference": "linear-algebra-matrices-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-7cc10df9d4bc5d07114a",
+    "lesson": "linear-algebra-matrices",
+    "source": "section:composition-determines-the-product:text-end",
+    "ordinal": 0,
+    "latex": "A(Bx)=(AB)x",
+    "reading": "Applying B to input x and then A gives the same output as applying their matrix product AB. Matrix shapes must be compatible; B acts first on both sides.",
+    "bindings": [
+      {
+        "symbol": "A(Bx)=(AB)x",
+        "meaning": "Applying B to input x and then A gives the same output as applying their matrix product AB. Matrix shapes must be compatible; B acts first on both sides.",
+        "reference": "linear-algebra-matrices-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-0f9ede4ceed80501a58a",
+    "lesson": "linear-algebra-systems",
+    "source": "section:constraints-and-augmented-matrices:text-end",
+    "ordinal": 0,
+    "latex": "x+y=3",
+    "reading": "The scalar unknowns x and y sum to three. This is the first of two simultaneous equations in the worked example.",
+    "bindings": [
+      {
+        "symbol": "x+y=3",
+        "meaning": "The scalar unknowns x and y sum to three. This is the first of two simultaneous equations in the worked example.",
+        "reference": "linear-algebra-systems-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-7959a09af3e40bc2a0ce",
+    "lesson": "linear-algebra-systems",
+    "source": "section:constraints-and-augmented-matrices:text-end",
+    "ordinal": 1,
+    "latex": "2x-y=0",
+    "reading": "Twice the scalar unknown x minus the scalar unknown y equals zero. The same x and y must also satisfy the other equation in the system.",
+    "bindings": [
+      {
+        "symbol": "2x-y=0",
+        "meaning": "Twice the scalar unknown x minus the scalar unknown y equals zero. The same x and y must also satisfy the other equation in the system.",
+        "reference": "linear-algebra-systems-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-762e258679df2861f3f9",
+    "lesson": "linear-algebra-systems",
+    "source": "section:constraints-and-augmented-matrices:text-end",
+    "ordinal": 2,
+    "latex": "Ax=b",
+    "reading": "The coefficient matrix A times the column of unknowns x equals the specified right-hand-side column b. Here x is a vector, unlike the scalar x in the preceding two-equation example.",
+    "bindings": [
+      {
+        "symbol": "Ax=b",
+        "meaning": "The coefficient matrix A times the column of unknowns x equals the specified right-hand-side column b. Here x is a vector, unlike the scalar x in the preceding two-equation example.",
+        "reference": "linear-algebra-systems-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-6ef105d9d9a33e646eca",
+    "lesson": "linear-algebra-systems",
+    "source": "section:no-solution-or-a-family-of-solutions:text-end",
+    "ordinal": 0,
+    "latex": "y=t,\\quad x=3-t",
+    "reading": "Let the free scalar y equal an arbitrary real parameter t; then x equals three minus t. Together these formulas describe every solution on the line x+y=3.",
+    "bindings": [
+      {
+        "symbol": "y=t,\\quad x=3-t",
+        "meaning": "Let the free scalar y equal an arbitrary real parameter t; then x equals three minus t. Together these formulas describe every solution on the line x+y=3.",
+        "reference": "linear-algebra-systems-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-4e16db13291edf9974c2",
+    "lesson": "linear-algebra-systems",
+    "source": "section:homogeneous-systems-and-verification:text-end",
+    "ordinal": 0,
+    "latex": "Ax=0",
+    "reading": "The matrix A sends the unknown input column x to the zero output column. Zero has as many components as A has rows; this is a homogeneous system.",
+    "bindings": [
+      {
+        "symbol": "Ax=0",
+        "meaning": "The matrix A sends the unknown input column x to the zero output column. Zero has as many components as A has rows; this is a homogeneous system.",
+        "reference": "linear-algebra-systems-4"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-c7de941d9b3a7bd6033b",
+    "lesson": "linear-algebra-span",
+    "source": "section:span-is-everything-you-can-build:text-end",
+    "ordinal": 0,
+    "latex": "\\operatorname{span}\\{u,v\\}",
+    "reading": "The span of u and v: the set of every real linear combination of these two supplied vectors, including the zero vector.",
+    "bindings": [
+      {
+        "symbol": "\\operatorname{span}\\{u,v\\}",
+        "meaning": "The span of u and v: the set of every real linear combination of these two supplied vectors, including the zero vector.",
+        "reference": "linear-algebra-span-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-79b7eddb63e5e5f3cfdf",
+    "lesson": "linear-algebra-span",
+    "source": "section:independence-means-no-redundant-direction:text-end",
+    "ordinal": 0,
+    "latex": "2u-v=0",
+    "reading": "Twice u minus v is the zero vector, where u=(1,1) and v=(2,2). The nonzero coefficient list (2,-1) exhibits linear dependence.",
+    "bindings": [
+      {
+        "symbol": "2u-v=0",
+        "meaning": "Twice u minus v is the zero vector, where u=(1,1) and v=(2,2). The nonzero coefficient list (2,-1) exhibits linear dependence.",
+        "reference": "linear-algebra-span-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-66984c18878eda3e5168",
+    "lesson": "linear-algebra-bases",
+    "source": "section:rank-and-nullity:text-end",
+    "ordinal": 0,
+    "latex": "\\operatorname{rank}(A)+\\operatorname{nullity}(A)=n",
+    "reading": "Rank of A plus nullity of A equals n, the number of input columns. Pivot variables account for rank and free variables account for nullity.",
+    "bindings": [
+      {
+        "symbol": "\\operatorname{rank}(A)+\\operatorname{nullity}(A)=n",
+        "meaning": "Rank of A plus nullity of A equals n, the number of input columns. Pivot variables account for rank and free variables account for nullity.",
+        "reference": "linear-algebra-bases-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-73a226b984c4285d1c81",
+    "lesson": "linear-algebra-bases",
+    "source": "section:invertible-matrices:text-end",
+    "ordinal": 0,
+    "latex": "A^{-1}",
+    "reading": "A inverse, the matrix that undoes the square matrix A under matrix multiplication. It exists only when A is invertible; negative one does not request entrywise reciprocals.",
+    "bindings": [
+      {
+        "symbol": "A^{-1}",
+        "meaning": "A inverse, the matrix that undoes the square matrix A under matrix multiplication. It exists only when A is invertible; negative one does not request entrywise reciprocals.",
+        "reference": "linear-algebra-bases-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-829fa9f2dd65db3ea862",
+    "lesson": "linear-algebra-bases",
+    "source": "section:invertible-matrices:text-end",
+    "ordinal": 1,
+    "latex": "ad-bc",
+    "reading": "A times d minus b times c, the determinant of a two-by-two matrix with rows (a,b) and (c,d). All four letters here are scalar entries.",
+    "bindings": [
+      {
+        "symbol": "ad-bc",
+        "meaning": "A times d minus b times c, the determinant of a two-by-two matrix with rows (a,b) and (c,d). All four letters here are scalar entries.",
+        "reference": "linear-algebra-bases-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-1a9da36ade98ac08ed14",
+    "lesson": "linear-algebra-transformations",
+    "source": "section:what-linearity-requires:text-end",
+    "ordinal": 0,
+    "latex": "T(u+v)=T(u)+T(v)",
+    "reading": "The transformation T sends the sum of arbitrary input vectors u and v to the sum of their outputs. This is the addition-preserving condition of linearity.",
+    "bindings": [
+      {
+        "symbol": "T(u+v)=T(u)+T(v)",
+        "meaning": "The transformation T sends the sum of arbitrary input vectors u and v to the sum of their outputs. This is the addition-preserving condition of linearity.",
+        "reference": "linear-algebra-transformations-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-16738c482fc5030beba7",
+    "lesson": "linear-algebra-transformations",
+    "source": "section:what-linearity-requires:text-end",
+    "ordinal": 1,
+    "latex": "T(cu)=cT(u)",
+    "reading": "Applying T to c times u equals c times T of u, for every real scalar c and input vector u. This is the scaling-preserving condition of linearity.",
+    "bindings": [
+      {
+        "symbol": "T(cu)=cT(u)",
+        "meaning": "Applying T to c times u equals c times T of u, for every real scalar c and input vector u. This is the scaling-preserving condition of linearity.",
+        "reference": "linear-algebra-transformations-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-0ebc5fe141761c4f4209",
+    "lesson": "linear-algebra-transformations",
+    "source": "section:coordinates-composition-and-affine-rules:text-end",
+    "ordinal": 0,
+    "latex": "P^{-1}AP",
+    "reading": "P inverse times A times P. P converts new-basis coordinates to standard coordinates, A acts in standard coordinates, and P inverse converts the output back. P is invertible and all matrices here are square of the same size.",
+    "bindings": [
+      {
+        "symbol": "P^{-1}AP",
+        "meaning": "P inverse times A times P. P converts new-basis coordinates to standard coordinates, A acts in standard coordinates, and P inverse converts the output back. P is invertible and all matrices here are square of the same size.",
+        "reference": "linear-algebra-transformations-4"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-ce521a8766734d1cf307",
+    "lesson": "linear-algebra-projections",
+    "source": "section:projecting-onto-a-line:text-before-la-projection",
+    "ordinal": 0,
+    "latex": "p=\\frac{b\\cdot u}{u\\cdot u}u",
+    "reading": "The projection p equals b dot u divided by u dot u, times u. The target b and nonzero line direction u belong to the same real coordinate space; the denominator is positive.",
+    "bindings": [
+      {
+        "symbol": "p=\\frac{b\\cdot u}{u\\cdot u}u",
+        "meaning": "The projection p equals b dot u divided by u dot u, times u. The target b and nonzero line direction u belong to the same real coordinate space; the denominator is positive.",
+        "reference": "linear-algebra-projections-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-5bd118460fe3ebb2ef15",
+    "lesson": "linear-algebra-projections",
+    "source": "section:orthonormal-directions:text-end",
+    "ordinal": 0,
+    "latex": "p=QQ^Tb",
+    "reading": "Project target b by first computing its dot products with the orthonormal columns of Q, then combining those columns with the resulting coefficients. The resulting vector p lies in Q's column space.",
+    "bindings": [
+      {
+        "symbol": "p=QQ^Tb",
+        "meaning": "Project target b by first computing its dot products with the orthonormal columns of Q, then combining those columns with the resulting coefficients. The resulting vector p lies in Q's column space.",
+        "reference": "linear-algebra-projections-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-4b258b04187c5cd25549",
+    "lesson": "linear-algebra-projections",
+    "source": "section:orthonormal-directions:text-end",
+    "ordinal": 1,
+    "latex": "Q^TQ=I",
+    "reading": "Q transpose times Q equals the identity with one row per column of Q. This states that Q's columns have unit length and distinct columns are orthogonal.",
+    "bindings": [
+      {
+        "symbol": "Q^TQ=I",
+        "meaning": "Q transpose times Q equals the identity with one row per column of Q. This states that Q's columns have unit length and distinct columns are orthogonal.",
+        "reference": "linear-algebra-projections-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-4dcdb9b8f1223527ae2d",
+    "lesson": "linear-algebra-projections",
+    "source": "section:least-squares-and-the-normal-equations:text-end",
+    "ordinal": 0,
+    "latex": "A^T(Ax-b)=0",
+    "reading": "A transpose times the fitted output Ax minus target b is the zero column. Each column of A is perpendicular to the fitting error; x is a least-squares coefficient vector.",
+    "bindings": [
+      {
+        "symbol": "A^T(Ax-b)=0",
+        "meaning": "A transpose times the fitted output Ax minus target b is the zero column. Each column of A is perpendicular to the fitting error; x is a least-squares coefficient vector.",
+        "reference": "linear-algebra-projections-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-bc8a95a266afbbca5c21",
+    "lesson": "linear-algebra-projections",
+    "source": "section:least-squares-and-the-normal-equations:text-end",
+    "ordinal": 1,
+    "latex": "A^TAx=A^Tb",
+    "reading": "A transpose A times the coefficient column x equals A transpose b. These are the normal equations for minimizing the squared norm of Ax-b with real matrix A and target b.",
+    "bindings": [
+      {
+        "symbol": "A^TAx=A^Tb",
+        "meaning": "A transpose A times the coefficient column x equals A transpose b. These are the normal equations for minimizing the squared norm of Ax-b with real matrix A and target b.",
+        "reference": "linear-algebra-projections-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-15d474ce08c60c6b1ab5",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "section:directions-that-are-only-scaled:text-end",
+    "ordinal": 0,
+    "latex": "Av=\\lambda v",
+    "reading": "A times nonzero vector v equals lambda times v. The square real matrix A only scales this eigenvector; lambda is its real eigenvalue in the present lesson.",
+    "bindings": [
+      {
+        "symbol": "Av=\\lambda v",
+        "meaning": "A times nonzero vector v equals lambda times v. The square real matrix A only scales this eigenvector; lambda is its real eigenvalue in the present lesson.",
+        "reference": "linear-algebra-eigenvalues-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-a64d0e644712bb2839d4",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "section:finding-eigenvalues-in-two-dimensions:text-end",
+    "ordinal": 0,
+    "latex": "(A-\\lambda I)v=0",
+    "reading": "A minus lambda times the compatible identity, applied to v, gives zero. To find eigenvectors, seek nonzero v; the resulting homogeneous system must have a nontrivial solution.",
+    "bindings": [
+      {
+        "symbol": "(A-\\lambda I)v=0",
+        "meaning": "A minus lambda times the compatible identity, applied to v, gives zero. To find eigenvectors, seek nonzero v; the resulting homogeneous system must have a nontrivial solution.",
+        "reference": "linear-algebra-eigenvalues-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-c65ac92d7d0e0bdadfec",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "section:finding-eigenvalues-in-two-dimensions:text-end",
+    "ordinal": 1,
+    "latex": "(2-\\lambda)(3-\\lambda)=0",
+    "reading": "Two minus lambda times three minus lambda equals zero. This determinant condition for the worked triangular matrix gives eigenvalue candidates lambda equal to two or three.",
+    "bindings": [
+      {
+        "symbol": "(2-\\lambda)(3-\\lambda)=0",
+        "meaning": "Two minus lambda times three minus lambda equals zero. This determinant condition for the worked triangular matrix gives eigenvalue candidates lambda equal to two or three.",
+        "reference": "linear-algebra-eigenvalues-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-0d4fae14b70958e84bcc",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "section:an-eigenbasis-simplifies-repeated-action:text-end",
+    "ordinal": 0,
+    "latex": "AP=PD",
+    "reading": "A times P equals P times D. Columns of P are independent eigenvectors of A, and D's diagonal entries are their matching eigenvalues in the same order.",
+    "bindings": [
+      {
+        "symbol": "AP=PD",
+        "meaning": "A times P equals P times D. Columns of P are independent eigenvectors of A, and D's diagonal entries are their matching eigenvalues in the same order.",
+        "reference": "linear-algebra-eigenvalues-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-681cdf0ee297dd883f7e",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "section:an-eigenbasis-simplifies-repeated-action:text-end",
+    "ordinal": 1,
+    "latex": "A=PDP^{-1}",
+    "reading": "A equals P times diagonal D times P inverse. Convert to the eigenbasis with P inverse, scale with D, then convert back with P; P must be invertible.",
+    "bindings": [
+      {
+        "symbol": "A=PDP^{-1}",
+        "meaning": "A equals P times diagonal D times P inverse. Convert to the eigenbasis with P inverse, scale with D, then convert back with P; P must be invertible.",
+        "reference": "linear-algebra-eigenvalues-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-fbc99d79490b83aca32a",
+    "lesson": "linear-algebra-eigenvalues",
+    "source": "section:an-eigenbasis-simplifies-repeated-action:text-end",
+    "ordinal": 2,
+    "latex": "A^k=PD^kP^{-1}",
+    "reading": "A to the positive integer power k equals P times D to that power times P inverse. A is diagonalizable using the eigenvector basis P; diagonal entries of D are raised to power k.",
+    "bindings": [
+      {
+        "symbol": "A^k=PD^kP^{-1}",
+        "meaning": "A to the positive integer power k equals P times D to that power times P inverse. A is diagonalizable using the eigenvector basis P; diagonal entries of D are raised to power k.",
+        "reference": "linear-algebra-eigenvalues-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-d1baba2ea0d6e2b9ae85",
+    "lesson": "linear-algebra-svd",
+    "source": "section:perpendicular-directions-and-scale-factors:text-end",
+    "ordinal": 0,
+    "latex": "A=U\\Sigma V^T",
+    "reading": "A equals U times capital Sigma times V transpose. For real m-by-n A, U and V are square orthogonal matrices of sizes m and n; Sigma is m by n with nonnegative diagonal singular values. Sigma is a matrix name here, not a summation sign.",
+    "bindings": [
+      {
+        "symbol": "A=U\\Sigma V^T",
+        "meaning": "A equals U times capital Sigma times V transpose. For real m-by-n A, U and V are square orthogonal matrices of sizes m and n; Sigma is m by n with nonnegative diagonal singular values. Sigma is a matrix name here, not a summation sign.",
+        "reference": "linear-algebra-svd-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-b5dcb92fecb070c54572",
+    "lesson": "linear-algebra-svd",
+    "source": "section:connection-to-rank-and-eigenvalues:text-end",
+    "ordinal": 0,
+    "latex": "x^TA^TAx=\\|Ax\\|^2\\geq0",
+    "reading": "X transpose A transpose A x equals the squared Euclidean norm of Ax, which is nonnegative. Here A is a real matrix and x is any compatible real column. This establishes that A transpose A is positive semidefinite.",
+    "bindings": [
+      {
+        "symbol": "x^TA^TAx=\\|Ax\\|^2\\geq0",
+        "meaning": "X transpose A transpose A x equals the squared Euclidean norm of Ax, which is nonnegative. Here A is a real matrix and x is any compatible real column. This establishes that A transpose A is positive semidefinite.",
+        "reference": "linear-algebra-svd-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-3d8c35b6d4325da5b129",
+    "lesson": "linear-algebra-vectors",
+    "source": "figure:la-vector-addition:label:u",
+    "ordinal": 0,
+    "latex": "u",
+    "reading": "The labeled displacement runs from (0,0) to (3,2), with components (3,2). The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+    "bindings": [
+      {
+        "symbol": "u",
+        "meaning": "The labeled displacement runs from (0,0) to (3,2), with components (3,2). The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-3f86df0550610bc1d3d0",
+    "lesson": "linear-algebra-vectors",
+    "source": "figure:la-vector-addition:label:v",
+    "ordinal": 0,
+    "latex": "v",
+    "reading": "The labeled displacement runs from (3,2) to (2,3), with components (-1,1). The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+    "bindings": [
+      {
+        "symbol": "v",
+        "meaning": "The labeled displacement runs from (3,2) to (2,3), with components (-1,1). The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-f5819883b183be197ba6",
+    "lesson": "linear-algebra-vectors",
+    "source": "figure:la-vector-addition:label:u+v",
+    "ordinal": 0,
+    "latex": "u+v",
+    "reading": "The labeled displacement runs from (0,0) to (2,3), with components (2,3). The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+    "bindings": [
+      {
+        "symbol": "u+v",
+        "meaning": "The labeled displacement runs from (0,0) to (2,3), with components (2,3). The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+        "reference": "linear-algebra-vectors-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-538aa205f5d59159cc4e",
+    "lesson": "linear-algebra-dot-products",
+    "source": "figure:la-orthogonal-vectors:label:u",
+    "ordinal": 0,
+    "latex": "u",
+    "reading": "The labeled displacement runs from (0,0) to (1,2), with components (1,2). The arrows (1,2) and (2,-1) meet at a right angle. Their component products cancel: two plus negative two is zero. Equal coordinate units on both axes preserve the angle.",
+    "bindings": [
+      {
+        "symbol": "u",
+        "meaning": "The labeled displacement runs from (0,0) to (1,2), with components (1,2). The arrows (1,2) and (2,-1) meet at a right angle. Their component products cancel: two plus negative two is zero. Equal coordinate units on both axes preserve the angle.",
+        "reference": "linear-algebra-dot-products-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-02405d130795f87363ba",
+    "lesson": "linear-algebra-dot-products",
+    "source": "figure:la-orthogonal-vectors:label:v",
+    "ordinal": 0,
+    "latex": "v",
+    "reading": "The labeled displacement runs from (0,0) to (2,-1), with components (2,-1). The arrows (1,2) and (2,-1) meet at a right angle. Their component products cancel: two plus negative two is zero. Equal coordinate units on both axes preserve the angle.",
+    "bindings": [
+      {
+        "symbol": "v",
+        "meaning": "The labeled displacement runs from (0,0) to (2,-1), with components (2,-1). The arrows (1,2) and (2,-1) meet at a right angle. Their component products cancel: two plus negative two is zero. Equal coordinate units on both axes preserve the angle.",
+        "reference": "linear-algebra-dot-products-3"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-72a33e2c5e5c2dd63016",
+    "lesson": "linear-algebra-transformations",
+    "source": "figure:la-shear:label:e_1",
+    "ordinal": 0,
+    "latex": "e_1",
+    "reading": "The labeled displacement runs from (0,0) to (1,0), with components (1,0). For T(a,b)=(a+b,b), the first standard direction stays fixed while the second becomes (1,1). The dashed vertical arrow shows the original second direction; the solid diagonal shows its image.",
+    "bindings": [
+      {
+        "symbol": "e_1",
+        "meaning": "The labeled displacement runs from (0,0) to (1,0), with components (1,0). For T(a,b)=(a+b,b), the first standard direction stays fixed while the second becomes (1,1). The dashed vertical arrow shows the original second direction; the solid diagonal shows its image.",
+        "reference": "linear-algebra-transformations-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-23678ace999b4c091a1d",
+    "lesson": "linear-algebra-transformations",
+    "source": "figure:la-shear:label:e_2",
+    "ordinal": 0,
+    "latex": "e_2",
+    "reading": "The labeled displacement runs from (0,0) to (0,1), with components (0,1). For T(a,b)=(a+b,b), the first standard direction stays fixed while the second becomes (1,1). The dashed vertical arrow shows the original second direction; the solid diagonal shows its image.",
+    "bindings": [
+      {
+        "symbol": "e_2",
+        "meaning": "The labeled displacement runs from (0,0) to (0,1), with components (0,1). For T(a,b)=(a+b,b), the first standard direction stays fixed while the second becomes (1,1). The dashed vertical arrow shows the original second direction; the solid diagonal shows its image.",
+        "reference": "linear-algebra-transformations-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-b548833692df8adcc542",
+    "lesson": "linear-algebra-transformations",
+    "source": "figure:la-shear:label:T(e_2)",
+    "ordinal": 0,
+    "latex": "T(e_2)",
+    "reading": "The labeled displacement runs from (0,0) to (1,1), with components (1,1). For T(a,b)=(a+b,b), the first standard direction stays fixed while the second becomes (1,1). The dashed vertical arrow shows the original second direction; the solid diagonal shows its image.",
+    "bindings": [
+      {
+        "symbol": "T(e_2)",
+        "meaning": "The labeled displacement runs from (0,0) to (1,1), with components (1,1). For T(a,b)=(a+b,b), the first standard direction stays fixed while the second becomes (1,1). The dashed vertical arrow shows the original second direction; the solid diagonal shows its image.",
+        "reference": "linear-algebra-transformations-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-89ed71634e29c1cad48a",
+    "lesson": "linear-algebra-projections",
+    "source": "figure:la-projection:label:b",
+    "ordinal": 0,
+    "latex": "b",
+    "reading": "The labeled displacement runs from (0,0) to (3,1), with components (3,1). The target b=(3,1) projects to p=(3,0) on the horizontal axis. The dashed residual r=(0,1) connects the projection to the target and is perpendicular to the permitted line.",
+    "bindings": [
+      {
+        "symbol": "b",
+        "meaning": "The labeled displacement runs from (0,0) to (3,1), with components (3,1). The target b=(3,1) projects to p=(3,0) on the horizontal axis. The dashed residual r=(0,1) connects the projection to the target and is perpendicular to the permitted line.",
+        "reference": "linear-algebra-projections-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-f7a25302f8b0063da77e",
+    "lesson": "linear-algebra-projections",
+    "source": "figure:la-projection:label:p",
+    "ordinal": 0,
+    "latex": "p",
+    "reading": "The labeled displacement runs from (0,0) to (3,0), with components (3,0). The target b=(3,1) projects to p=(3,0) on the horizontal axis. The dashed residual r=(0,1) connects the projection to the target and is perpendicular to the permitted line.",
+    "bindings": [
+      {
+        "symbol": "p",
+        "meaning": "The labeled displacement runs from (0,0) to (3,0), with components (3,0). The target b=(3,1) projects to p=(3,0) on the horizontal axis. The dashed residual r=(0,1) connects the projection to the target and is perpendicular to the permitted line.",
+        "reference": "linear-algebra-projections-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-528bead7742b58a25695",
+    "lesson": "linear-algebra-projections",
+    "source": "figure:la-projection:label:r",
+    "ordinal": 0,
+    "latex": "r",
+    "reading": "The labeled displacement runs from (3,0) to (3,1), with components (0,1). The target b=(3,1) projects to p=(3,0) on the horizontal axis. The dashed residual r=(0,1) connects the projection to the target and is perpendicular to the permitted line.",
+    "bindings": [
+      {
+        "symbol": "r",
+        "meaning": "The labeled displacement runs from (3,0) to (3,1), with components (0,1). The target b=(3,1) projects to p=(3,0) on the horizontal axis. The dashed residual r=(0,1) connects the projection to the target and is perpendicular to the permitted line.",
+        "reference": "linear-algebra-projections-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-af7ed6fc7f91c8e16555",
+    "lesson": "linear-algebra-svd",
+    "source": "figure:la-svd-ellipse:label:2u_1",
+    "ordinal": 0,
+    "latex": "2u_1",
+    "reading": "The labeled displacement runs from (0,0) to (2,0), with components (2,0). The dashed unit circle maps to the solid ellipse under the matrix with rows (0,2),(1,0). Its semiaxes have lengths two and one. The arrows identify output directions, not the path traveled by one point. Here u sub one is (1,0), and u sub two is (0,1), the unit output directions.",
+    "bindings": [
+      {
+        "symbol": "2u_1",
+        "meaning": "The labeled displacement runs from (0,0) to (2,0), with components (2,0). The dashed unit circle maps to the solid ellipse under the matrix with rows (0,2),(1,0). Its semiaxes have lengths two and one. The arrows identify output directions, not the path traveled by one point. Here u sub one is (1,0), and u sub two is (0,1), the unit output directions.",
+        "reference": "linear-algebra-svd-2"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-912ec7d2b645c81baa00",
+    "lesson": "linear-algebra-svd",
+    "source": "figure:la-svd-ellipse:label:u_2",
+    "ordinal": 0,
+    "latex": "u_2",
+    "reading": "The labeled displacement runs from (0,0) to (0,1), with components (0,1). The dashed unit circle maps to the solid ellipse under the matrix with rows (0,2),(1,0). Its semiaxes have lengths two and one. The arrows identify output directions, not the path traveled by one point. Here u sub one is (1,0), and u sub two is (0,1), the unit output directions.",
+    "bindings": [
+      {
+        "symbol": "u_2",
+        "meaning": "The labeled displacement runs from (0,0) to (0,1), with components (0,1). The dashed unit circle maps to the solid ellipse under the matrix with rows (0,2),(1,0). Its semiaxes have lengths two and one. The arrows identify output directions, not the path traveled by one point. Here u sub one is (1,0), and u sub two is (0,1), the unit output directions.",
+        "reference": "linear-algebra-svd-2"
+      }
+    ]
   }
 ]

@@ -36,6 +36,8 @@ export const curriculumSchema = z
             slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
             title: text,
             eyebrow: text.optional(),
+            subject: text.default('Discrete mathematics'),
+            number: z.number().int().nonnegative().optional(),
             lesson: sourcePath('lessons', '.md'),
             worksheet: sourcePath('worksheets', '.yaml').optional(),
           })
@@ -50,6 +52,21 @@ export const curriculumSchema = z
       ctx.addIssue({ code: 'custom', message: 'Lesson slugs must be unique' });
     if (!slugs.includes(value.currentLesson))
       ctx.addIssue({ code: 'custom', message: 'currentLesson must reference a lesson slug' });
+    for (const subject of new Set(value.lessons.map((l) => l.subject))) {
+      const lessons = value.lessons.filter((l) => l.subject === subject);
+      if (lessons.every((l) => l.number !== undefined)) {
+        if (lessons[0].number !== 0 || lessons[0].title !== 'Introduction' || lessons[0].worksheet)
+          ctx.addIssue({
+            code: 'custom',
+            message: `${subject} must begin with a reading-only 00 Introduction`,
+          });
+        if (lessons.some((l, i) => l.number !== i))
+          ctx.addIssue({
+            code: 'custom',
+            message: `${subject} lesson numbers must be consecutive from zero`,
+          });
+      }
+    }
   });
 
 export const worksheetSchema = z

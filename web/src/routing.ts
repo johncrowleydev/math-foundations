@@ -15,7 +15,8 @@ export function readRoute(hash: string, lessons: Lesson[], savedLesson: string |
     lessons.find((l) => l.slug === slug) ||
     lessons.find((l) => l.slug === savedLesson) ||
     lessons[0];
-  const tab = page === 'practice' || page === 'reference' ? page : 'read';
+  const tab =
+    page === 'reference' ? page : page === 'practice' && lesson.questions.length ? page : 'read';
   return {
     slug: lesson.slug,
     tab,

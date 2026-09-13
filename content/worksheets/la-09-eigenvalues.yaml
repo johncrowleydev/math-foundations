@@ -1,0 +1,50 @@
+title: Eigenvalues and Eigenvectors
+sections:
+  - title: Directions that are only scaled
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A has diagonal entries 2 and -1, with zeros off the diagonal. Which of (1,0), (0,1), and (1,1) are eigenvectors? Give each corresponding eigenvalue.
+        answerLines: 5
+        answer: The first vector is an eigenvector with eigenvalue 2, and the second with eigenvalue -1. The third goes to (2,-1), which is not a single scalar multiple of (1,1), so it is not an eigenvector.
+      - id: 2
+        type: freeform
+        prompt: Explain why the zero vector is excluded from the definition of eigenvector, while zero is allowed as an eigenvalue.
+        answerLines: 5
+        answer: Zero input satisfies A0=lambda times 0 for every scalar, so it identifies no special direction. Eigenvalue zero is meaningful when a nonzero input is sent to zero, indicating a nontrivial kernel.
+  - title: Finding eigenvalues in two dimensions
+    questions:
+      - id: 3
+        type: freeform
+        prompt: Find the eigenvalues and a nonzero eigenvector for each for A with rows (4,1),(0,2). Show how the determinant condition and homogeneous equations are used.
+        answerLines: 5
+        answer: The determinant of A-lambda I is (4-lambda)(2-lambda), giving eigenvalues 4 and 2. For 4, the second component is zero, so (1,0) works. For 2, 2x+y=0, so (1,-2) works. Direct multiplication confirms both.
+      - id: 4
+        type: freeform
+        prompt: For A with rows (3,0),(0,3), describe the eigenspace for eigenvalue 3 and identify which members are eigenvectors.
+        answerLines: 5
+        answer: A-3I is zero, so the eigenspace is the entire coordinate plane. Every nonzero vector in it is an eigenvector; zero belongs to the eigenspace but is not an eigenvector.
+  - title: An eigenbasis simplifies repeated action
+    questions:
+      - id: 5
+        type: freeform
+        prompt: Independent vectors u and v form a basis, with Au=2u and Av=3v. Find A applied three times to the input u-2v, expressed in that basis.
+        answerLines: 5
+        answer: Each application scales the u coefficient by 2 and the v coefficient by 3. After three applications the result is 8u-54v. Linearity lets the two basis components be tracked separately.
+      - id: 6
+        type: freeform
+        prompt: P has eigenvectors of A as its columns, and D has their eigenvalues in the matching order. Explain why AP=PD and why independence of the columns is needed for diagonalization.
+        answerLines: 5
+        answer: Column by column, both products contain the corresponding eigenvector multiplied by its eigenvalue. Independence makes P invertible, so the relation can be rewritten as A=P D P inverse and used as a coordinate change.
+  - title: Limits and interpretation
+    questions:
+      - id: 7
+        type: freeform
+        prompt: A has rows (1,1),(0,1). Determine its eigenvectors' directions and explain why it is not diagonalizable over the real numbers.
+        answerLines: 5
+        answer: Its only eigenvalue is one. Solving (A-I)v=0 forces the second component to zero, so all eigenvectors lie on the horizontal axis. There cannot be two independent eigenvectors to form a plane basis.
+      - id: 8
+        type: freeform
+        prompt: Why does a right-angle rotation of the real coordinate plane have no real eigenvector?
+        answerLines: 5
+        answer: It turns every nonzero vector to a perpendicular direction, which cannot be a real scalar multiple of the original nonzero vector. This claim concerns real eigenvectors, not the theory over complex numbers.

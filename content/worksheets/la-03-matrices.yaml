@@ -1,0 +1,50 @@
+title: Matrices and Matrix Multiplication
+sections:
+  - title: Shape, entries, and transpose
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A matrix has rows (1,2,3) and (4,5,6). State its shape, its entry in row two column three, and the rows of its transpose.
+        answerLines: 5
+        answer: Its shape is two by three, and the specified entry is 6. Its transpose is three by two with rows (1,4), (2,5), and (3,6).
+      - id: 2
+        type: freeform
+        prompt: Let A have rows (1,-1),(2,0) and B have rows (3,2),(0,4). Find the rows of 2A+B.
+        answerLines: 5
+        answer: Twice A has rows (2,-2),(4,0). Adding corresponding entries of B gives rows (5,0),(4,4). Equal shapes make the addition defined.
+  - title: A matrix acting on a vector
+    questions:
+      - id: 3
+        type: freeform
+        prompt: Let A have rows (1,2),(3,-1). Compute Ax for x=(2,3) using both the row-dot-product and column-combination readings.
+        answerLines: 5
+        answer: Row dot products give 2+6=8 and 6-3=3. The column reading gives two times (1,3) plus three times (2,-1), again (8,3).
+      - id: 4
+        type: freeform
+        prompt: A three by two matrix has columns (1,0,2) and (-1,3,1). Find its output on (0,1) and explain why no full row calculation is necessary.
+        answerLines: 5
+        answer: The output is its second column, (-1,3,1). The input selects zero copies of the first column and one copy of the second.
+  - title: Composition determines the product
+    questions:
+      - id: 5
+        type: freeform
+        prompt: Let A have rows (1,1),(0,1), and let B have rows (2,0),(0,1). Compute AB and BA and state which transformation acts first in ABx.
+        answerLines: 5
+        answer: AB has rows (2,1),(0,1), while BA has rows (2,2),(0,1). In ABx, B acts first and A acts on B's output. The two products are unequal.
+      - id: 6
+        type: freeform
+        prompt: A is two by three and B is three by four. State the shape of AB and explain whether BA is defined.
+        answerLines: 5
+        answer: 'AB is two by four: the inner sizes three and three match. BA is not defined because B has four columns but A has two rows.'
+  - title: Checking a matrix calculation
+    questions:
+      - id: 7
+        type: freeform
+        prompt: A has rows (1,0),(0,0), and B has rows (0,0),(0,1). Compute AB. What scalar-style inference does this example disprove?
+        answerLines: 5
+        answer: AB is the two by two zero matrix even though neither factor is zero. A zero product of matrices does not imply that at least one factor is the zero matrix.
+      - id: 8
+        type: freeform
+        prompt: A proposed matrix C has columns (2,3) and (5,7). What outputs should C give on (1,0) and (0,1), and how could these tests help check a claimed product?
+        answerLines: 5
+        answer: The outputs should be (2,3) and (5,7), respectively. Apply the claimed component transformations in order to these standard inputs and compare the results with C's columns.

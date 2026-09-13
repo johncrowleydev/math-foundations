@@ -1834,5 +1834,214 @@
       "1+\\cdots+7=28": "1+\\cdots+7=28"
     },
     "arrangement": "triangle"
+  },
+  {
+    "id": "la-vector-addition",
+    "kind": "coordinates",
+    "title": "Adding displacements",
+    "lesson": "linear-algebra-vectors",
+    "section": "Adding and scaling",
+    "extent": 4,
+    "arrows": [
+      {
+        "label": "u",
+        "from": [0, 0],
+        "to": [3, 2],
+        "dashed": false
+      },
+      {
+        "label": "v",
+        "from": [3, 2],
+        "to": [2, 3],
+        "dashed": true
+      },
+      {
+        "label": "u+v",
+        "from": [0, 0],
+        "to": [2, 3],
+        "dashed": false
+      }
+    ],
+    "ellipses": [],
+    "frames": [
+      {
+        "text": "The solid resultant ends at (2,3). The dashed arrow is v=(-1,1), translated to begin at the end of u=(3,2); the change in starting point does not change v.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["linear-algebra-vectors-2"],
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"u\",[0,0],[3,2]],[\"v\",[3,2],[2,3],true],[\"u+v\",[0,0],[2,3]]],\"ellipses\":[]}",
+    "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
+    "mathLabels": {
+      "u": "u",
+      "v": "v",
+      "u+v": "u+v"
+    }
+  },
+  {
+    "id": "la-orthogonal-vectors",
+    "kind": "coordinates",
+    "title": "Perpendicular vectors",
+    "lesson": "linear-algebra-dot-products",
+    "section": "Angle and orthogonality",
+    "extent": 3,
+    "arrows": [
+      {
+        "label": "u",
+        "from": [0, 0],
+        "to": [1, 2],
+        "dashed": false
+      },
+      {
+        "label": "v",
+        "from": [0, 0],
+        "to": [2, -1],
+        "dashed": false
+      }
+    ],
+    "ellipses": [],
+    "frames": [
+      {
+        "text": "The arrows (1,2) and (2,-1) meet at a right angle. Their component products cancel: two plus negative two is zero. Equal coordinate units on both axes preserve the angle.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["linear-algebra-dot-products-3"],
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"u\",[0,0],[1,2]],[\"v\",[0,0],[2,-1]]],\"ellipses\":[]}",
+    "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
+    "mathLabels": {
+      "u": "u",
+      "v": "v"
+    }
+  },
+  {
+    "id": "la-shear",
+    "kind": "coordinates",
+    "title": "Basis directions under a shear",
+    "lesson": "linear-algebra-transformations",
+    "section": "Read the matrix from its columns",
+    "extent": 3,
+    "arrows": [
+      {
+        "label": "e_1",
+        "from": [0, 0],
+        "to": [1, 0],
+        "dashed": false
+      },
+      {
+        "label": "e_2",
+        "from": [0, 0],
+        "to": [0, 1],
+        "dashed": true
+      },
+      {
+        "label": "T(e_2)",
+        "from": [0, 0],
+        "to": [1, 1],
+        "dashed": false
+      }
+    ],
+    "ellipses": [],
+    "frames": [
+      {
+        "text": "For T(a,b)=(a+b,b), the first standard direction stays fixed while the second becomes (1,1). The dashed vertical arrow shows the original second direction; the solid diagonal shows its image.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["linear-algebra-transformations-2"],
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"e_1\",[0,0],[1,0]],[\"e_2\",[0,0],[0,1],true],[\"T(e_2)\",[0,0],[1,1]]],\"ellipses\":[]}",
+    "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
+    "mathLabels": {
+      "e_1": "e_1",
+      "e_2": "e_2",
+      "T(e_2)": "T(e_2)"
+    }
+  },
+  {
+    "id": "la-projection",
+    "kind": "coordinates",
+    "title": "A perpendicular residual",
+    "lesson": "linear-algebra-projections",
+    "section": "Projecting onto a line",
+    "extent": 4,
+    "arrows": [
+      {
+        "label": "b",
+        "from": [0, 0],
+        "to": [3, 1],
+        "dashed": false
+      },
+      {
+        "label": "p",
+        "from": [0, 0],
+        "to": [3, 0],
+        "dashed": false
+      },
+      {
+        "label": "r",
+        "from": [3, 0],
+        "to": [3, 1],
+        "dashed": true
+      }
+    ],
+    "ellipses": [],
+    "frames": [
+      {
+        "text": "The target b=(3,1) projects to p=(3,0) on the horizontal axis. The dashed residual r=(0,1) connects the projection to the target and is perpendicular to the permitted line.",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["linear-algebra-projections-1"],
+    "creation": "Original SVG drawn from the listed coordinate endpoints. Both axes use the same scale. {\"arrows\":[[\"b\",[0,0],[3,1]],[\"p\",[0,0],[3,0]],[\"r\",[3,0],[3,1],true]],\"ellipses\":[]}",
+    "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
+    "mathLabels": {
+      "b": "b",
+      "p": "p",
+      "r": "r"
+    }
+  },
+  {
+    "id": "la-svd-ellipse",
+    "kind": "coordinates",
+    "title": "A circle becomes an ellipse",
+    "lesson": "linear-algebra-svd",
+    "section": "A small example you can verify",
+    "extent": 3,
+    "arrows": [
+      {
+        "label": "2u_1",
+        "from": [0, 0],
+        "to": [2, 0],
+        "dashed": false
+      },
+      {
+        "label": "u_2",
+        "from": [0, 0],
+        "to": [0, 1],
+        "dashed": false
+      }
+    ],
+    "ellipses": [
+      [1, 1],
+      [2, 1]
+    ],
+    "frames": [
+      {
+        "text": "The dashed unit circle maps to the solid ellipse under the matrix with rows (0,2),(1,0). Its semiaxes have lengths two and one. The arrows identify output directions, not the path traveled by one point. Here u sub one is the output unit vector (1,0), and u sub two is (0,1).",
+        "route": [],
+        "highlight": []
+      }
+    ],
+    "requires": ["linear-algebra-svd-2"],
+    "creation": "Original SVG drawn from the listed coordinate endpoints and ellipse semiaxes. Both axes use the same scale. {\"arrows\":[[\"2u_1\",[0,0],[2,0]],[\"u_2\",[0,0],[0,1]]],\"ellipses\":[[1,1],[2,1]]}",
+    "limitations": "A two-dimensional example illustrates the stated construction. The diagram does not prove the general theorem; algebraic justification is in the accompanying text.",
+    "mathLabels": {
+      "2u_1": "2u_1",
+      "u_2": "u_2"
+    }
   }
 ]

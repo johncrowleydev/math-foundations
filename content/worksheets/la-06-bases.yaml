@@ -1,0 +1,50 @@
+title: Bases, Dimension, Rank, and Inverses
+sections:
+  - title: A basis gives unique coordinates
+    questions:
+      - id: 1
+        type: freeform
+        prompt: For the ordered basis p=(1,1), q=(1,-1), find the coordinates of (5,1). Distinguish them from standard coordinates.
+        answerLines: 5
+        answer: Solving a+b=5 and a-b=1 gives a=3, b=2. The coordinates in the ordered basis (p,q) are (3,2); standard coordinates remain (5,1).
+      - id: 2
+        type: freeform
+        prompt: Give a basis and dimension for the subspace consisting of all multiples of (2,-1,3). Explain why one vector suffices.
+        answerLines: 5
+        answer: The one-vector list containing (2,-1,3) is a basis. It spans by the definition of the subspace and is independent because that vector is nonzero. The dimension is one.
+  - title: Rank and nullity
+    questions:
+      - id: 3
+        type: freeform
+        prompt: A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?
+        answerLines: 5
+        answer: Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change.
+      - id: 4
+        type: freeform
+        prompt: A has columns (1,0), (0,1), and (1,1). Give a column-space basis using original columns and a null-space basis.
+        answerLines: 5
+        answer: The first two columns form a column-space basis. Solving x1+x3=0 and x2+x3=0 gives all multiples of (-1,-1,1), so that one nonzero vector is a null-space basis.
+  - title: Invertible matrices
+    questions:
+      - id: 5
+        type: freeform
+        prompt: Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.
+        answerLines: 5
+        answer: The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity.
+      - id: 6
+        type: freeform
+        prompt: Is the matrix with rows (1,2),(2,4) invertible? Justify using both its determinant and its columns.
+        answerLines: 5
+        answer: No. Its determinant is 4-4=0, and its second column is twice its first. Its rank is only one, so it loses an input direction and cannot be undone.
+  - title: Solving without unnecessary inverses
+    questions:
+      - id: 7
+        type: freeform
+        prompt: A three by two matrix has two independent columns. Can every three-component target have a solution? Can a target have two different solutions? Explain.
+        answerLines: 5
+        answer: Its column space has dimension two, so it cannot reach every three-component target. Its null space is zero, so any reachable target has exactly one solution. Existence and uniqueness are different questions.
+      - id: 8
+        type: freeform
+        prompt: Why should a column-space basis be selected from the original matrix's pivot-indexed columns, rather than directly from its row-reduced columns?
+        answerLines: 5
+        answer: Row operations preserve which columns depend on which others, so pivot indices identify an independent spanning selection. They can change the actual output vectors and hence the column space, so the corresponding original columns are needed.

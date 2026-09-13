@@ -8,6 +8,17 @@ const lessons = [
   { slug: 'sets', questions: [{ id: 2 }] },
 ] as Lesson[];
 
+test('reading-only introductions cannot enter an empty practice view', () => {
+  const intro = { slug: 'discrete-math-introduction', questions: [] } as unknown as Lesson;
+  assert.deepEqual(
+    readRoute('#/practice/discrete-math-introduction/1', [intro, ...lessons], null),
+    {
+      slug: intro.slug,
+      tab: 'read',
+    },
+  );
+});
+
 test('explicit exercise URLs override saved chapter and round trip by stable ID', () => {
   const route = readRoute('#/practice/logic/13', lessons, 'sets');
   assert.deepEqual(route, { slug: 'logic', tab: 'practice', exercise: '13' });

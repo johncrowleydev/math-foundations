@@ -283,18 +283,23 @@ export function App({ data }: { data: Curriculum }) {
       </div>
       <div className="course">
         <span className="eyebrow">Your notebook</span>
-        <h3>Discrete mathematics</h3>
+        <h3>Mathematics</h3>
       </div>
       <nav className="chapters">
         {data.lessons.map((l, i) => (
-          <button
-            key={l.slug}
-            className={l.slug === lesson.slug ? 'selected' : ''}
-            onClick={() => choose(l.slug)}
-          >
-            <span>{String(i + 1).padStart(2, '0')}</span>
-            {l.title}
-          </button>
+          <div key={l.slug}>
+            {(i === 0 || l.subject !== data.lessons[i - 1].subject) && (
+              <h3 className="exercise-group">{l.subject}</h3>
+            )}
+            <button
+              key={l.slug}
+              className={l.slug === lesson.slug ? 'selected' : ''}
+              onClick={() => choose(l.slug)}
+            >
+              <span>{String(l.number ?? i + 1).padStart(2, '0')}</span>
+              {l.title}
+            </button>
+          </div>
         ))}
       </nav>
     </>
@@ -362,12 +367,16 @@ export function App({ data }: { data: Curriculum }) {
             </button>
             <div className="chapter-title">
               <span className="eyebrow">
-                Chapter {String(data.lessons.indexOf(lesson) + 1).padStart(2, '0')} / 15
+                {lesson.subject} ·{' '}
+                {String(lesson.number ?? data.lessons.indexOf(lesson) + 1).padStart(2, '0')}
               </span>
               <strong>{lesson.title}</strong>
             </div>
             <nav className="tabs">
-              {['read', 'practice', 'reference'].map((t) => (
+              {(lesson.questions.length
+                ? ['read', 'practice', 'reference']
+                : ['read', 'reference']
+              ).map((t) => (
                 <button
                   aria-current={tab === t ? 'page' : undefined}
                   className={tab === t ? 'selected' : ''}
@@ -450,7 +459,7 @@ export function App({ data }: { data: Curriculum }) {
                   </button>
                 </footer>
               </div>
-              {tab === 'practice' ? (
+              {tab === 'practice' && q ? (
                 <div className="reading-column">
                   <div className="practice-heading">
                     <span className="muted">
@@ -659,7 +668,7 @@ function Typing({
   first: boolean;
 }) {
   const p = data.placements.find((p) => p.lesson === lesson && p.section === section);
-  const ids = [...(first ? data.basics.map((b) => b.id) : []), ...(p?.entries || [])];
+  const ids = [...new Set([...(first ? data.basics.map((b) => b.id) : []), ...(p?.entries || [])])];
   const entries = ids
     .map((id) => [...data.basics, ...data.syntax].find((e) => e.id === id))
     .filter((x) => !!x);

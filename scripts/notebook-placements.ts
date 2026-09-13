@@ -1,7 +1,9 @@
 // Each exercise follows the complete named teaching section, including its H3 subsections.
 // Audited against the adapted prompt, instructions, and answer across all 15 lessons.
 // Use teaching headings rather than ordinal positions: inserted sections must not shift exercises.
+import { readFileSync } from 'node:fs';
 export const inlinePlacements: Record<string, Record<string, number[]>> = {
+  ...JSON.parse(readFileSync('content/linear-algebra-placements.json', 'utf8')),
   'propositional-logic': {
     Propositions: [1, 4],
     'Negation: NOT': [9],
@@ -152,7 +154,7 @@ export const inlinePlacements: Record<string, Record<string, number[]>> = {
 };
 
 export function placeNotebookExercises(slug: string, titles: string[], questionIds: number[]) {
-  const placements = inlinePlacements[slug];
+  const placements = inlinePlacements[slug] ?? (questionIds.length === 0 ? {} : undefined);
   if (!placements) throw new Error(slug + ': missing inline exercise plan');
   const used = new Set<number>();
   const available = new Set(questionIds);

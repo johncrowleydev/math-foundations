@@ -21,7 +21,7 @@ type Question = Worksheet['sections'][number]['questions'][number];
 export function validateNotebookAdaptations(
   lessons: { slug: string; worksheetData?: Worksheet }[],
 ) {
-  const known = new Set(lessons.map((l) => l.slug));
+  const known = new Set(lessons.filter((l) => l.worksheetData).map((l) => l.slug));
   if (Object.keys(copy).length !== known.size || Object.keys(copy).some((s) => !known.has(s)))
     throw new Error('Exercise copy must cover exactly the known lessons');
   for (const lesson of lessons) {

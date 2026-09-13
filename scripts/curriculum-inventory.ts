@@ -162,7 +162,7 @@ const counts = {
   formulas: teaching.formulas.length,
   concepts: concepts.length,
 };
-if (counts.lessons !== 15 || counts.exercises !== 1313 || counts.quickChecks !== 30)
+if (counts.lessons !== 27 || counts.exercises !== 1393 || counts.quickChecks !== 50)
   throw new Error('Curriculum coverage changed: ' + JSON.stringify(counts));
 await mkdir('output', { recursive: true });
 await writeFile(

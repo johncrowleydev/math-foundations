@@ -1,0 +1,50 @@
+title: Systems of Linear Equations
+sections:
+  - title: Constraints and augmented matrices
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Solve x+y=5 and x-y=1. Verify the same pair in both original equations.
+        answerLines: 5
+        answer: Adding gives 2x=6, so x=3 and y=2. The checks are 3+2=5 and 3-2=1. A solution must use the same values in both equations.
+      - id: 2
+        type: freeform
+        prompt: Using variable order x then y, state the rows of the augmented matrix for 2x+3y=7 and -x+y=4.
+        answerLines: 5
+        answer: The augmented rows are (2,3,7) and (-1,1,4). The first two columns contain coefficients, and the last column contains the right-hand-side constants.
+  - title: Elimination preserves solutions
+    questions:
+      - id: 3
+        type: freeform
+        prompt: Solve x+2y=4 and 3x+5y=11 by replacing the second equation with the second minus three times the first. Show the resulting equation.
+        answerLines: 5
+        answer: The new second equation is -y=-1, so y=1. Substitution into the first gives x=2. The original equations check as 2+2=4 and 6+5=11.
+      - id: 4
+        type: freeform
+        prompt: Why is multiplying a row by zero not an allowed solution-preserving elementary row operation? Give a one-equation example.
+        answerLines: 5
+        answer: It cannot be undone and may erase a restriction. For example, replacing x=1 with 0=0 turns a one-value solution set into all real values of x.
+  - title: No solution or a family of solutions
+    questions:
+      - id: 5
+        type: freeform
+        prompt: Classify the system x+y=2 and 2x+2y=5 as having no solution, one solution, or infinitely many. Justify using elimination.
+        answerLines: 5
+        answer: There is no solution. Subtracting twice the first equation from the second yields 0=1, which is impossible.
+      - id: 6
+        type: freeform
+        prompt: Describe every real solution of x+2y=4 and 2x+4y=8 using a parameter. Identify the free variable.
+        answerLines: 5
+        answer: The second equation is twice the first. Let y=t for arbitrary real t; then x=4-2t. The free variable is y, and every such pair satisfies both equations.
+  - title: Homogeneous systems and verification
+    questions:
+      - id: 7
+        type: freeform
+        prompt: Find all solutions of x+y=0. Give one nontrivial solution and explain why the system must also have the zero solution.
+        answerLines: 5
+        answer: Every solution is (-t,t) for real t. For instance (-1,1) is nontrivial. All homogeneous systems admit zero because multiplying zero inputs gives a zero output.
+      - id: 8
+        type: freeform
+        prompt: A matrix A satisfies Ap=b and Az=0, with z nonzero. Prove that p+3z is another solution of Ax=b and is different from p.
+        answerLines: 5
+        answer: Distributivity gives A(p+3z)=Ap+3Az=b+0=b. Since z is nonzero, 3z is nonzero over the real numbers, so p+3z differs from p.

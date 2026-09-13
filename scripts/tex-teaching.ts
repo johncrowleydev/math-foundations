@@ -160,8 +160,15 @@ export async function inspectTexTeaching(requireComplete = false) {
         failures.push(key + ': manual audit missing or stale');
     }
   }
-  if (seenExercises.size !== 1343 || seenExercises.size !== teaching.exercises.length)
-    failures.push('Exercise coverage must be exactly 1,313 exercises and 30 quick checks');
+  const expectedExercises = notebook.lessons.reduce(
+    (n: number, l: any) =>
+      n +
+      l.questions.length +
+      l.sections.reduce((s: number, section: any) => s + section.quickChecks.length, 0),
+    0,
+  );
+  if (seenExercises.size !== expectedExercises || seenExercises.size !== teaching.exercises.length)
+    failures.push('Exercise coverage must match every curriculum exercise and quick check');
   if (seenPlacements.size !== teaching.placements.length)
     failures.push('Invalid or duplicate teaching placement');
   const refIds = new Set(teaching.references.map((e: any) => e.reference));

@@ -1,0 +1,50 @@
+title: Dot Products, Length, and Angle
+sections:
+  - title: A scalar from two vectors
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Compute the dot product of (1,-2,3) and (4,0,-1). Is the result a scalar or a vector?
+        answerLines: 5
+        answer: The component products are 4, 0, and -3; their sum is 1. The result is a scalar, not a list of three products.
+      - id: 2
+        type: freeform
+        prompt: Let u=(1,2), v=(3,0), and w=(-1,4). Verify distributivity by calculating u dot (v+w) and (u dot v)+(u dot w) separately.
+        answerLines: 5
+        answer: The sum v+w is (2,4), so u dot (v+w) is 2+8=10. The separate dot products are 3 and -1+8=7, which add to 10.
+  - title: Length and unit vectors
+    questions:
+      - id: 3
+        type: freeform
+        prompt: Find the norm of (6,8) and a unit vector in its direction. Explain why your normalized vector has length one.
+        answerLines: 5
+        answer: The norm is the square root of 36+64, or 10. Dividing gives (3/5,4/5). The sum of its squared components is 9/25+16/25=1, so its norm is one.
+      - id: 4
+        type: freeform
+        prompt: Find the distance between the points (1,-1) and (4,3). Explain why either subtraction order gives the same distance.
+        answerLines: 5
+        answer: Their difference is (3,4), with norm 5. Reversing the order gives (-3,-4); squaring the components gives the same norm, so distance does not depend on the subtraction order.
+  - title: Angle and orthogonality
+    questions:
+      - id: 5
+        type: freeform
+        prompt: Determine whether u=(2,3) and v=(3,-2) are orthogonal. Does their orthogonality imply they are unit vectors?
+        answerLines: 5
+        answer: Their dot product is 6-6=0, so they are orthogonal. Each has norm the square root of 13, not one. Perpendicularity and unit length are separate conditions.
+      - id: 6
+        type: freeform
+        prompt: The dot product of two nonzero vectors is negative. Is their angle acute, right, or obtuse? Explain using the angle identity.
+        answerLines: 5
+        answer: It is obtuse. The product of the two positive norms is positive, so a negative dot product requires a negative cosine. For an angle between zero and 180 degrees, that occurs strictly above 90 degrees.
+  - title: Weighted totals and similarity
+    questions:
+      - id: 7
+        type: freeform
+        prompt: Prices are (3,2,5) and quantities are (2,4,1), paired in the same order. Compute the total cost and explain the role of the dot product.
+        answerLines: 5
+        answer: The cost is 3 times 2 plus 2 times 4 plus 5 times 1, or 19. The dot product pairs each price with its own quantity and adds those item costs.
+      - id: 8
+        type: freeform
+        prompt: Compare u=(1,2) and v=(2,4). Find their cosine similarity and explain why a value of one does not make the vectors equal.
+        answerLines: 5
+        answer: Their dot product is 10 and the product of their norms is also 10, so cosine similarity is one. They have the same direction, but v has twice u's length and different components.

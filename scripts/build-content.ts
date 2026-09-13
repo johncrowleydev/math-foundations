@@ -21,7 +21,7 @@ function forNotebook(markdown: string) {
 const lessons = content.lessons.map((lesson) => {
   const chunks = forNotebook(lesson.markdown).split(/^## /m);
   const intro = chunks.shift()!.trim();
-  const questions = lesson.worksheetData!.sections.flatMap((section) =>
+  const questions = (lesson.worksheetData?.sections || []).flatMap((section) =>
     section.questions.map((q) =>
       adaptInlineQuestion(lesson.slug, {
         ...adaptNotebookQuestion(lesson.slug, q, section.instructions || ''),
@@ -42,6 +42,9 @@ const lessons = content.lessons.map((lesson) => {
   );
   return {
     slug: lesson.slug,
+    subject: lesson.subject,
+    number:
+      lesson.number ?? content.lessons.filter((l) => l.subject === lesson.subject).indexOf(lesson),
     title: lesson.title,
     eyebrow: lesson.eyebrow || content.course,
     intro,
@@ -54,7 +57,7 @@ const lessons = content.lessons.map((lesson) => {
         .replace(/-$/, ''),
       blocks: teachingBlocks(linkTeachingTerms(s.markdown, lesson.slug, teaching), teaching),
       questionIds: sectionQuestionIds[i],
-      quickChecks: quickChecks[lesson.slug]
+      quickChecks: (quickChecks[lesson.slug] || [])
         .filter((c) => c.after === s.title)
         .map((c) => ({
           ...c,

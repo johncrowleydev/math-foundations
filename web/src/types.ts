@@ -24,6 +24,8 @@ export type Section = {
   quickChecks: Quick[];
 };
 export type Lesson = {
+  subject?: string;
+  number?: number;
   slug: string;
   title: string;
   eyebrow: string;
@@ -66,6 +68,9 @@ export type Syntax = {
   requires?: string[];
 };
 export type Figure = {
+  extent?: number;
+  arrows?: { label: string; from: [number, number]; to: [number, number]; dashed: boolean }[];
+  ellipses?: [number, number][];
   id: string;
   kind: string;
   title: string;

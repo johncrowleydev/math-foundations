@@ -602,6 +602,48 @@
       "group": "formatting",
       "example": "a\\ b",
       "explanation": "A backslash followed by a space inserts an explicit space in mathematics. Ordinary spaces usually do not affect mathematical spacing."
+    },
+    {
+      "id": "tex-la-cos",
+      "command": "cos",
+      "group": "linear algebra",
+      "example": "\\cos\\theta",
+      "explanation": "Use cos for the cosine function; theta names the angle."
+    },
+    {
+      "id": "tex-la-theta",
+      "command": "theta",
+      "group": "linear algebra",
+      "example": "\\theta",
+      "explanation": "Use theta for the Greek angle label theta. Its meaning is supplied by the lesson."
+    },
+    {
+      "id": "tex-la-lambda",
+      "command": "lambda",
+      "group": "linear algebra",
+      "example": "Av=\\lambda v",
+      "explanation": "Use lambda for the Greek letter naming an eigenvalue."
+    },
+    {
+      "id": "tex-la-sigma",
+      "command": "Sigma",
+      "group": "linear algebra",
+      "example": "A=U\\Sigma V^T",
+      "explanation": "Use uppercase Sigma for the SVD diagonal matrix. This is a letter, unlike the sum command that inserts a summation operator."
+    },
+    {
+      "id": "tex-la-norm",
+      "command": "|",
+      "group": "linear algebra",
+      "example": "\\|u\\|",
+      "explanation": "Use a backslash followed by a vertical bar on each side for double norm bars. The bars denote Euclidean length in these lessons."
+    },
+    {
+      "id": "tex-la-det",
+      "command": "det",
+      "group": "linear algebra",
+      "example": "\\det(A)",
+      "explanation": "Use det for determinant. For a two-by-two matrix with rows (a,b),(c,d), this scalar is ad-bc. A zero value means the matrix is not invertible."
     }
   ]
 }

@@ -84,10 +84,10 @@ test('drafts never become outgoing attempts until submitted; revisions are monot
 test('all content, figures and inline targets are bundled from the shared curriculum', async () => {
   const n = JSON.parse(await readFile('public/notebook.json', 'utf8')),
     t = JSON.parse(await readFile('public/teaching.json', 'utf8'));
-  assert.equal(n.lessons.length, 15);
+  assert.equal(n.lessons.length, 27);
   assert.equal(
     n.lessons.reduce((s: number, l: any) => s + l.questions.length, 0),
-    1313,
+    1393,
   );
   assert.equal(
     n.lessons.reduce(
@@ -95,9 +95,10 @@ test('all content, figures and inline targets are bundled from the shared curric
         s + l.sections.reduce((n: number, s: any) => n + s.quickChecks.length, 0),
       0,
     ),
-    30,
+    50,
   );
   const kinds = new Set([
+    'coordinates',
     'graph',
     'mapping',
     'venn',

@@ -1,0 +1,50 @@
+title: Vectors and Linear Combinations
+sections:
+  - title: Coordinates and vectors
+    questions:
+      - id: 1
+        type: freeform
+        prompt: An arrow starts at (2,-1) and ends at (5,3). Give its displacement vector and explain whether moving its starting point changes the vector.
+        answerLines: 5
+        answer: 'The displacement is (3,4): subtract the starting coordinates from the ending coordinates. Translating both endpoints by the same amount preserves these differences and therefore represents the same vector.'
+      - id: 2
+        type: freeform
+        prompt: A data vector lists (hours studied, exercises attempted). Explain why (2,5) and (5,2) are different observations, and state the number of components.
+        answerLines: 5
+        answer: There are two components. The first observation records two hours and five attempts; the second records five hours and two attempts. Coordinates are ordered and have assigned meanings, so exchanging them changes the observation.
+  - title: Adding and scaling
+    questions:
+      - id: 3
+        type: freeform
+        prompt: For u=(2,-3) and v=(-1,4), find u+v, u-v, and -2u. Explain the geometric effect of the negative scalar.
+        answerLines: 5
+        answer: The sum is (1,1), the difference is (3,-7), and -2u=(-4,6). A negative factor reverses direction; its magnitude two doubles the length.
+      - id: 4
+        type: freeform
+        prompt: A traveler moves (4,1), then (-2,3), then (0,-1). Find the total displacement. Does it determine the distance traveled? Explain.
+        answerLines: 5
+        answer: The total displacement is (2,3). It gives the change from start to finish, not the distance along the three parts of the route. Different routes can have the same total displacement.
+  - title: Building linear combinations
+    questions:
+      - id: 5
+        type: freeform
+        prompt: Let u=(1,2) and v=(2,-1). Find 3u-2v, showing the component arithmetic.
+        answerLines: 5
+        answer: Three u is (3,6), and negative two v is (-4,2). Adding gives (-1,8). Both components must be scaled before the vectors are added.
+      - id: 6
+        type: freeform
+        prompt: Can (3,1) be expressed as a linear combination of (1,1) and (2,2)? Justify your answer without testing only a few coefficients.
+        answerLines: 5
+        answer: No. With arbitrary coefficients a and b, every combination has the form (a+2b,a+2b), so its two components agree. The target's components differ; no coefficient choice can produce it.
+  - title: Linear models and their limits
+    questions:
+      - id: 7
+        type: freeform
+        prompt: A product uses (3,2) units of wood and metal, in that order. A second product uses (1,4). Find the resources for two of the first and three of the second, and name one assumption of this calculation.
+        answerLines: 5
+        answer: The resource vector is two times (3,2) plus three times (1,4), or (9,16). The model assumes additive resource use proportional to production, with no extra setup use or changing waste rate.
+      - id: 8
+        type: freeform
+        prompt: The resource model for products u and v allows a mathematical combination -u+2v. Explain why this need not describe a feasible production plan.
+        answerLines: 5
+        answer: Real linear combinations permit negative coefficients. A negative number of manufactured products is not ordinarily feasible. Physical feasibility imposes additional constraints, such as nonnegative whole-number quantities, that are not part of vector addition itself.

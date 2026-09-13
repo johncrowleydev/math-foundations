@@ -1,0 +1,50 @@
+title: Span and Linear Independence
+sections:
+  - title: Span is everything you can build
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Does (3,4) lie in the span of u=(1,0) and v=(1,2)? Find coefficients or prove none exist.
+        answerLines: 5
+        answer: Yes. The second coordinate forces the coefficient of v to be 2. The first then forces the coefficient of u to be 1, so u+2v=(3,4).
+      - id: 2
+        type: freeform
+        prompt: Describe the span of (2,-1) geometrically and decide whether (6,-3) and (1,1) belong to it.
+        answerLines: 5
+        answer: 'The span is the line through the origin in direction (2,-1). The first target is three times that vector and belongs. The second cannot be a scalar multiple: its first coordinate would require scalar one half, producing second coordinate negative one half rather than one.'
+  - title: Independence means no redundant direction
+    questions:
+      - id: 3
+        type: freeform
+        prompt: Determine whether u=(1,2), v=(2,4) are linearly independent. Give a zero combination that supports your conclusion.
+        answerLines: 5
+        answer: They are dependent because 2u-v=0 has coefficients 2 and -1, not both zero. The vector v supplies no direction beyond u.
+      - id: 4
+        type: freeform
+        prompt: Prove that (1,0,1) and (0,1,1) are linearly independent.
+        answerLines: 5
+        answer: An arbitrary combination with coefficients a and b is (a,b,a+b). If it equals zero, its first two coordinates force a=0 and b=0. Thus the only zero combination is the trivial one.
+  - title: Subspaces and the origin
+    questions:
+      - id: 5
+        type: freeform
+        prompt: Is the set of plane vectors (x,y) satisfying x+y=0 a subspace? Check zero, addition, and scalar multiplication.
+        answerLines: 5
+        answer: Yes. Zero satisfies the equation. Adding two pairs whose coordinate sums are zero gives another with sum zero. Scaling such a pair multiplies its zero coordinate sum by the scalar, leaving zero.
+      - id: 6
+        type: freeform
+        prompt: Is the set of plane vectors with x at least zero a subspace? Give a decisive justification.
+        answerLines: 5
+        answer: No. It contains (1,0), but multiplying this vector by -1 gives (-1,0), which is outside the set. Closure under every real scalar fails.
+  - title: Reading independence from elimination
+    questions:
+      - id: 7
+        type: freeform
+        prompt: A matrix has three columns and its homogeneous system has one free variable. Are the columns independent? Explain using a nontrivial homogeneous solution.
+        answerLines: 5
+        answer: They are dependent. Choosing a nonzero value for the free variable and solving for the pivot variables gives a nonzero coefficient vector sent to zero, a nontrivial zero combination of the columns.
+      - id: 8
+        type: freeform
+        prompt: Do the independent vectors (1,0,1) and (0,1,1) span all of three-dimensional space? Identify a condition on every vector they span and give an unreachable target.
+        answerLines: 5
+        answer: No. Every combination is (a,b,a+b), so the third coordinate must equal the first plus the second. The target (0,0,1) violates that condition. Independence does not imply coverage of the entire ambient space.

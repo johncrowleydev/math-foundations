@@ -17,9 +17,9 @@ npm run web
 
 ## Content and checks
 
-The [full curriculum study plan](docs/study-plan.md), preserved from the original math repository, covers discrete mathematics and proofs, linear algebra, calculus, probability and statistics, and final review. The 15 lessons currently implemented in the app cover the discrete-mathematics portion. The plan retains its original timeline and references to the earlier worksheet/PDF workflow; the current PWA uses inline and focused practice.
+The [full curriculum study plan](docs/study-plan.md), preserved from the original math repository, covers discrete mathematics and proofs, linear algebra, calculus, probability and statistics, and final review. The authored curriculum now includes 15 discrete-mathematics lessons and 10 linear-algebra lessons, plus a reading-only 00 Introduction for each subject. Linear algebra adds 80 exercises, 20 quick checks, 50 reference entries, and five coordinate figures. The plan retains its original timeline and references to the earlier worksheet/PDF workflow; the current PWA uses inline and focused practice.
 
-Author lessons and references under `content/`. `scripts/build-content.ts` generates shared assets under `output/content` and the server catalog at `output/grading-catalog.json`. Exercise identities and catalog hashes remain compatible with existing notebook data. Formula inventory: `npx tsx scripts/build-content.ts --inventory-only`.
+Follow [subject authoring guidance](docs/content-authoring.md), including the required reading-only introduction for every future subject. Author lessons and references under `content/`. `scripts/build-content.ts` generates shared assets under `output/content` and the server catalog at `output/grading-catalog.json`. Exercise identities and catalog hashes remain compatible with existing notebook data. Formula inventory: `npx tsx scripts/build-content.ts --inventory-only`.
 
 ```sh
 npm test

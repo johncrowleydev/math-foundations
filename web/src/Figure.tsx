@@ -18,7 +18,112 @@ export function Figure({ figure: f }: { figure: Definition }) {
     </foreignObject>
   );
   let drawing;
-  if (f.kind === 'graph' || f.kind === 'mapping') {
+  let viewBox = '0 0 620 355';
+  if (f.kind === 'coordinates') {
+    const points = [
+      [0, 0],
+      ...(f.arrows || []).flatMap((a) => [a.from, a.to]),
+      ...(f.ellipses || []).flatMap(([x, y]) => [
+        [-x, -y],
+        [x, y],
+      ]),
+    ];
+    const xmin = Math.min(...points.map((p) => p[0])),
+      xmax = Math.max(...points.map((p) => p[0]));
+    const ymin = Math.min(...points.map((p) => p[1])),
+      ymax = Math.max(...points.map((p) => p[1]));
+    const scale = Math.min(380 / (xmax - xmin + 1), 230 / (ymax - ymin + 1));
+    const xy = ([x, y]: number[]) => [
+      300 + (x - (xmin + xmax) / 2) * scale,
+      175 - (y - (ymin + ymax) / 2) * scale,
+    ];
+    const [ox, oy] = xy([0, 0]);
+    const [left, bottom] = xy([xmin - 0.5, ymin - 0.5]),
+      [right, top] = xy([xmax + 0.5, ymax + 0.5]);
+    viewBox = `${left - 30} ${top - 30} ${right - left + 100} ${bottom - top + 60}`;
+    drawing = (
+      <>
+        <line x1={left} y1={oy} x2={right} y2={oy} stroke="#abb3bd" />
+        <line x1={ox} y1={bottom} x2={ox} y2={top} stroke="#abb3bd" />
+        <text x={right + 8} y={oy + 25}>
+          x
+        </text>
+        <text x={ox + 8} y={top}>
+          y
+        </text>
+        <text x={ox - 14} y={oy + 18}>
+          0
+        </text>
+        {Array.from(
+          { length: Math.ceil(xmax) - Math.floor(xmin) + 1 },
+          (_, i) => Math.floor(xmin) + i,
+        )
+          .filter((n) => n !== 0)
+          .map((n) => {
+            const [x] = xy([n, 0]);
+            return (
+              <g key={'x' + n}>
+                <line x1={x} x2={x} y1={oy - 3} y2={oy + 3} stroke={ink} />
+                <text x={x - 4} y={oy + 19} fontSize="12">
+                  {n}
+                </text>
+              </g>
+            );
+          })}
+        {Array.from(
+          { length: Math.ceil(ymax) - Math.floor(ymin) + 1 },
+          (_, i) => Math.floor(ymin) + i,
+        )
+          .filter((n) => n !== 0)
+          .map((n) => {
+            const [, y] = xy([0, n]);
+            return (
+              <g key={'y' + n}>
+                <line x1={ox - 3} x2={ox + 3} y1={y} y2={y} stroke={ink} />
+                <text x={ox - 20} y={y + 4} fontSize="12">
+                  {n}
+                </text>
+              </g>
+            );
+          })}
+        {f.ellipses?.map(([rx, ry], i) => (
+          <ellipse
+            key={i}
+            cx={ox}
+            cy={oy}
+            rx={rx * scale}
+            ry={ry * scale}
+            fill="none"
+            stroke={i ? accent : ink}
+            strokeWidth="2"
+            strokeDasharray={i ? undefined : '5 4'}
+          />
+        ))}
+        {f.arrows?.map((a, i) => {
+          const [x1, y1] = xy(a.from),
+            [x2, y2] = xy(a.to);
+          const translated = a.from.some((n) => n !== 0);
+          const lx = translated ? (x1 + x2) / 2 + 35 : x2 + 30;
+          const ly = translated ? (y1 + y2) / 2 : y2 - 18;
+          return (
+            <g key={i}>
+              <line
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke={a.dashed ? ink : accent}
+                strokeWidth="2.5"
+                strokeDasharray={a.dashed ? '5 4' : undefined}
+                markerEnd={`url(#${uid}-arrow)`}
+              />
+              {label(a.label, lx, ly, 100)}
+            </g>
+          );
+        })}
+      </>
+    );
+  } else if (f.kind === 'graph' || f.kind === 'mapping') {
     const mapping = f.kind === 'mapping';
     const nodes = mapping
       ? [
@@ -386,7 +491,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
     );
   }
   const chart = (
-    <svg viewBox="0 0 620 355" role="img" aria-label={f.title}>
+    <svg viewBox={viewBox} role="img" aria-label={f.title}>
       <defs>
         <marker
           id={uid + '-arrow'}

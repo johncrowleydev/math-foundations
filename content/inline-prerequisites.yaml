@@ -1,5 +1,3 @@
-# Every inline exercise has its own instructions and a checked prerequisite trace.
-# Hashes bind the audit to the actual displayed exercise and teaching text.
 propositional-logic:
   '1':
     after: Propositions
@@ -2062,7 +2060,7 @@ recurrence-relations:
         teachingHash: d34272fb6a8aac912cf98119f5b9b44f6f4c8662ed677fca4a1794d620ecd236
     exerciseHash: 48223f0ba3edf6145d90f898562f8b5e9779edb460ebb6cc0cbf7e2fc1933df7
     prompt: In the three-peg Tower of Hanoi puzzle, move a stack of $n$ differently sized disks to another peg. Move one exposed disk at a time and never place a larger disk on a smaller one. Let $H(n)$ be the minimum number of moves. State $H(0)$ and derive a recurrence for $H(n)$.
-    answer: "$H(0)=0$ and $H(n)=2H(n-1)+1$ for $n\\geq1$. The usual construction moves the smaller stack to the spare peg, moves the largest disk to its destination, and moves the smaller stack onto it, using this many moves. For a lower bound, before the largest disk's first move the entire smaller stack must have moved to one other peg, requiring at least $H(n-1)$ moves. After its last move to the destination, the smaller stack is entirely on a different peg and needs at least $H(n-1)$ further moves. Those two stages and at least one largest-disk move give the same lower bound, so the construction is optimal."
+    answer: $H(0)=0$ and $H(n)=2H(n-1)+1$ for $n\geq1$. The usual construction moves the smaller stack to the spare peg, moves the largest disk to its destination, and moves the smaller stack onto it, using this many moves. For a lower bound, before the largest disk's first move the entire smaller stack must have moved to one other peg, requiring at least $H(n-1)$ moves. After its last move to the destination, the smaller stack is entirely on a different peg and needs at least $H(n-1)$ further moves. Those two stages and at least one largest-disk move give the same lower bound, so the construction is optimal.
   '61':
     after: Different amounts of branching
     instructions: Let $n=2^k$ for integers $k\geq0$. The recurrence applies for $n\geq2$.
@@ -2444,3 +2442,1617 @@ asymptotic-growth:
     exerciseHash: dc310220695128e6f6534aa97a224b9a8d78ec2a1c951de5226a779658252269
     prompt: Prove $n^3+100n=\Theta(n^3)$ with explicit constants.
     answer: For $n\geq1$, $n^3\leq n^3+100n\leq101n^3$. Constants 1 and 101 and threshold 1 suffice.
+linear-algebra-vectors:
+  '1':
+    after: Coordinates and vectors
+    instructions: ''
+    prompt: An arrow starts at (2,-1) and ends at (5,3). Give its displacement vector and explain whether moving its starting point changes the vector.
+    answer: 'The displacement is (3,4): subtract the starting coordinates from the ending coordinates. Translating both endpoints by the same amount preserves these differences and therefore represents the same vector.'
+    concepts:
+      - linear-algebra-vectors-1
+    requires:
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+    exerciseHash: 511e32a14c9adc67c7cde13a3d9ca23bb4bc72b1fd3d8f6dcef9ed693834085f
+  '3':
+    after: Adding and scaling
+    instructions: ''
+    prompt: For u=(2,-3) and v=(-1,4), find u+v, u-v, and -2u. Explain the geometric effect of the negative scalar.
+    answer: The sum is (1,1), the difference is (3,-7), and -2u=(-4,6). A negative factor reverses direction; its magnitude two doubles the length.
+    concepts:
+      - linear-algebra-vectors-2
+    requires:
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+    exerciseHash: 29b84dbcdfc0aba8751fceb54327970efbc5178bee398d393632ae016f4a4515
+  '5':
+    after: Building linear combinations
+    instructions: ''
+    prompt: Let u=(1,2) and v=(2,-1). Find 3u-2v, showing the component arithmetic.
+    answer: Three u is (3,6), and negative two v is (-4,2). Adding gives (-1,8). Both components must be scaled before the vectors are added.
+    concepts:
+      - linear-algebra-vectors-3
+    requires:
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+    exerciseHash: 9bb4d0d7daaa49436254f7ade6ac07ca3eb3dd995d0869fa229e9bbdb92cf2d6
+  '7':
+    after: Linear models and their limits
+    instructions: ''
+    prompt: A product uses (3,2) units of wood and metal, in that order. A second product uses (1,4). Find the resources for two of the first and three of the second, and name one assumption of this calculation.
+    answer: The resource vector is two times (3,2) plus three times (1,4), or (9,16). The model assumes additive resource use proportional to production, with no extra setup use or changing waste rate.
+    concepts:
+      - linear-algebra-vectors-4
+    requires:
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-vectors
+        section: Linear models and their limits
+        teachingHash: 40b7cb0482e686b8f7105b8c7e56da8fff6f0ee5fe92f02821a3b0303dcf8aea
+    exerciseHash: a4cb70e8f3a00dd8cd2f9d3dd826aa08e725cd26aa32b82cee6a0055136fb85d
+linear-algebra-dot-products:
+  '1':
+    after: A scalar from two vectors
+    instructions: ''
+    prompt: Compute the dot product of (1,-2,3) and (4,0,-1). Is the result a scalar or a vector?
+    answer: The component products are 4, 0, and -3; their sum is 1. The result is a scalar, not a list of three products.
+    concepts:
+      - linear-algebra-dot-products-1
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+    requires:
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+    exerciseHash: 6d59c9cfebcbd979deacf84b9eba19a2e867595b237b3d5c76a1cdb108639e9d
+  '3':
+    after: Length and unit vectors
+    instructions: ''
+    prompt: Find the norm of (6,8) and a unit vector in its direction. Explain why your normalized vector has length one.
+    answer: The norm is the square root of 36+64, or 10. Dividing gives (3/5,4/5). The sum of its squared components is 9/25+16/25=1, so its norm is one.
+    concepts:
+      - linear-algebra-dot-products-2
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+    requires:
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-dot-products
+        section: Length and unit vectors
+        teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+    exerciseHash: d13cfa2f0a70c539f751b7a97823287e03aae89ef0ea10f6c62bf4ccb06a70e1
+  '5':
+    after: Angle and orthogonality
+    instructions: ''
+    prompt: Determine whether u=(2,3) and v=(3,-2) are orthogonal. Does their orthogonality imply they are unit vectors?
+    answer: Their dot product is 6-6=0, so they are orthogonal. Each has norm the square root of 13, not one. Perpendicularity and unit length are separate conditions.
+    concepts:
+      - linear-algebra-dot-products-3
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+    requires:
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-dot-products
+        section: Length and unit vectors
+        teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+      - lesson: linear-algebra-dot-products
+        section: Angle and orthogonality
+        teachingHash: b7f038d6f76cc83a80b3eb09de14ad0bbd5977a9508d0a286955104627021d05
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+    exerciseHash: fb37b77b4b093f32f767611e5b7337cfdf7b43433dffe3033be718b3d274263b
+  '7':
+    after: Weighted totals and similarity
+    instructions: ''
+    prompt: Prices are (3,2,5) and quantities are (2,4,1), paired in the same order. Compute the total cost and explain the role of the dot product.
+    answer: The cost is 3 times 2 plus 2 times 4 plus 5 times 1, or 19. The dot product pairs each price with its own quantity and adds those item costs.
+    concepts:
+      - linear-algebra-dot-products-4
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+    requires:
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-dot-products
+        section: Length and unit vectors
+        teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+      - lesson: linear-algebra-dot-products
+        section: Angle and orthogonality
+        teachingHash: b7f038d6f76cc83a80b3eb09de14ad0bbd5977a9508d0a286955104627021d05
+      - lesson: linear-algebra-dot-products
+        section: Weighted totals and similarity
+        teachingHash: bc2873160585b476ad61f9935c3023e73588f5a1bbaadd7952c2b0eeded9d4a9
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+    exerciseHash: 8546e7d9bcf5a9ca3dd1c0ccba6f4059f9297af42455c035092b41ee82e8ec16
+linear-algebra-matrices:
+  '1':
+    after: Shape, entries, and transpose
+    instructions: ''
+    prompt: A matrix has rows (1,2,3) and (4,5,6). State its shape, its entry in row two column three, and the rows of its transpose.
+    answer: Its shape is two by three, and the specified entry is 6. Its transpose is three by two with rows (1,4), (2,5), and (3,6).
+    concepts:
+      - linear-algebra-matrices-1
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-dot-products-1
+    requires:
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+    exerciseHash: 6d41f5061401d654ec7aa34160b10b287d1f462bfac91643afb63eb080f6afcc
+  '3':
+    after: A matrix acting on a vector
+    instructions: ''
+    prompt: Let A have rows (1,2),(3,-1). Compute Ax for x=(2,3) using both the row-dot-product and column-combination readings.
+    answer: Row dot products give 2+6=8 and 6-3=3. The column reading gives two times (1,3) plus three times (2,-1), again (8,3).
+    concepts:
+      - linear-algebra-matrices-2
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-dot-products-1
+    requires:
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+    exerciseHash: f754783309bfe3bf9d5cea74261da2d38f7ec94211055978cbc05aecc50eb7b3
+  '5':
+    after: Composition determines the product
+    instructions: ''
+    prompt: Let A have rows (1,1),(0,1), and let B have rows (2,0),(0,1). Compute AB and BA and state which transformation acts first in ABx.
+    answer: AB has rows (2,1),(0,1), while BA has rows (2,2),(0,1). In ABx, B acts first and A acts on B's output. The two products are unequal.
+    concepts:
+      - linear-algebra-matrices-3
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-dot-products-1
+    requires:
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+    exerciseHash: 866525b82a8adff1061395d7d0efcc565454470ef8b44e4b16be1e0a346525df
+  '7':
+    after: Checking a matrix calculation
+    instructions: ''
+    prompt: A has rows (1,0),(0,0), and B has rows (0,0),(0,1). Compute AB. What scalar-style inference does this example disprove?
+    answer: AB is the two by two zero matrix even though neither factor is zero. A zero product of matrices does not imply that at least one factor is the zero matrix.
+    concepts:
+      - linear-algebra-matrices-4
+      - linear-algebra-vectors-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-dot-products-1
+    requires:
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+      - lesson: linear-algebra-matrices
+        section: Checking a matrix calculation
+        teachingHash: 30f7428d9140db5d6e50384800d35ce58e04582c92de70aad210db2fefb2165a
+      - lesson: linear-algebra-vectors
+        section: Coordinates and vectors
+        teachingHash: 6c1a6aa90ec27d6b497c6b1ff43084638e2f2099d2dc7da3201e9628adf40694
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+    exerciseHash: dbd9919a5d7014a5bc138bfa258108c9934e905adc7255bc7bfe53b62145ff02
+linear-algebra-systems:
+  '1':
+    after: Constraints and augmented matrices
+    instructions: ''
+    prompt: Solve x+y=5 and x-y=1. Verify the same pair in both original equations.
+    answer: Adding gives 2x=6, so x=3 and y=2. The checks are 3+2=5 and 3-2=1. A solution must use the same values in both equations.
+    concepts:
+      - linear-algebra-systems-1
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-systems
+        section: Constraints and augmented matrices
+        teachingHash: ab09cc055928be7ef8b8b86d8a089ad0ef8410e407afc8702c57124c5a0e9c27
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 63032c592bb3bf95ecb248d2a68970ce8f9d9dd4a9397055b3b7a422b9ba0d04
+  '3':
+    after: Elimination preserves solutions
+    instructions: ''
+    prompt: Solve x+2y=4 and 3x+5y=11 by replacing the second equation with the second minus three times the first. Show the resulting equation.
+    answer: The new second equation is -y=-1, so y=1. Substitution into the first gives x=2. The original equations check as 2+2=4 and 6+5=11.
+    concepts:
+      - linear-algebra-systems-2
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-systems
+        section: Constraints and augmented matrices
+        teachingHash: ab09cc055928be7ef8b8b86d8a089ad0ef8410e407afc8702c57124c5a0e9c27
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 270e1fd6d07ece321052a409f2c42e2322a3247324eb1e5feaa3a3f58c23d060
+  '5':
+    after: No solution or a family of solutions
+    instructions: ''
+    prompt: Classify the system x+y=2 and 2x+2y=5 as having no solution, one solution, or infinitely many. Justify using elimination.
+    answer: There is no solution. Subtracting twice the first equation from the second yields 0=1, which is impossible.
+    concepts:
+      - linear-algebra-systems-3
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-systems
+        section: Constraints and augmented matrices
+        teachingHash: ab09cc055928be7ef8b8b86d8a089ad0ef8410e407afc8702c57124c5a0e9c27
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 4e24cfe96182a9653c957d1e562a2bc4d97c98e67ba71a304130bde0e4ecd0a1
+  '7':
+    after: Homogeneous systems and verification
+    instructions: ''
+    prompt: Find all solutions of x+y=0. Give one nontrivial solution and explain why the system must also have the zero solution.
+    answer: Every solution is (-t,t) for real t. For instance (-1,1) is nontrivial. All homogeneous systems admit zero because multiplying zero inputs gives a zero output.
+    concepts:
+      - linear-algebra-systems-4
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-systems
+        section: Constraints and augmented matrices
+        teachingHash: ab09cc055928be7ef8b8b86d8a089ad0ef8410e407afc8702c57124c5a0e9c27
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: d779fb42936d43cd06a8f87a5788bf6ac5c7a0c82f62ee4fba9465f951666784
+linear-algebra-span:
+  '1':
+    after: Span is everything you can build
+    instructions: ''
+    prompt: Does (3,4) lie in the span of u=(1,0) and v=(1,2)? Find coefficients or prove none exist.
+    answer: Yes. The second coordinate forces the coefficient of v to be 2. The first then forces the coefficient of u to be 1, so u+2v=(3,4).
+    concepts:
+      - linear-algebra-span-1
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+    requires:
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+    exerciseHash: 20c15962838a112af012942ae0477794f704c7fd064032cf59c45aa1205a5d37
+  '3':
+    after: Independence means no redundant direction
+    instructions: ''
+    prompt: Determine whether u=(1,2), v=(2,4) are linearly independent. Give a zero combination that supports your conclusion.
+    answer: They are dependent because 2u-v=0 has coefficients 2 and -1, not both zero. The vector v supplies no direction beyond u.
+    concepts:
+      - linear-algebra-span-2
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+    requires:
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-span
+        section: Independence means no redundant direction
+        teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+    exerciseHash: e377dceaef766da4348ff50112569e16006e6a41e8f991334207d116a362a0b2
+  '5':
+    after: Subspaces and the origin
+    instructions: ''
+    prompt: Is the set of plane vectors (x,y) satisfying x+y=0 a subspace? Check zero, addition, and scalar multiplication.
+    answer: Yes. Zero satisfies the equation. Adding two pairs whose coordinate sums are zero gives another with sum zero. Scaling such a pair multiplies its zero coordinate sum by the scalar, leaving zero.
+    concepts:
+      - linear-algebra-span-3
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+    requires:
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-span
+        section: Independence means no redundant direction
+        teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+    exerciseHash: c9298cd1f178dbb7f410824d45246f7ca78cc40c5a91d443841d19e2237f0910
+  '7':
+    after: Reading independence from elimination
+    instructions: ''
+    prompt: A matrix has three columns and its homogeneous system has one free variable. Are the columns independent? Explain using a nontrivial homogeneous solution.
+    answer: They are dependent. Choosing a nonzero value for the free variable and solving for the pivot variables gives a nonzero coefficient vector sent to zero, a nontrivial zero combination of the columns.
+    concepts:
+      - linear-algebra-span-4
+      - linear-algebra-vectors-2
+      - linear-algebra-vectors-3
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+    requires:
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-span
+        section: Independence means no redundant direction
+        teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-span
+        section: Reading independence from elimination
+        teachingHash: 866867e5b53b8590644ae1ac1837b054a5355c57d1da95269ec3d84b41666e48
+      - lesson: linear-algebra-vectors
+        section: Adding and scaling
+        teachingHash: 82ef2b3bb10fecab40b9f9f20ffe19533aa5bd5260019167238092d340d5fa5e
+      - lesson: linear-algebra-vectors
+        section: Building linear combinations
+        teachingHash: cceb98c3bd5e3df2d38cc6f2ff2e1f3784935d27f567612b1afcc62d3082f3df
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+    exerciseHash: 34bdbb1bfa27fc2d405ac9a17aa283cd94263da927ec5626882d822e1283c29d
+linear-algebra-bases:
+  '1':
+    after: A basis gives unique coordinates
+    instructions: ''
+    prompt: For the ordered basis p=(1,1), q=(1,-1), find the coordinates of (5,1). Distinguish them from standard coordinates.
+    answer: Solving a+b=5 and a-b=1 gives a=3, b=2. The coordinates in the ordered basis (p,q) are (3,2); standard coordinates remain (5,1).
+    concepts:
+      - linear-algebra-bases-1
+      - linear-algebra-span-1
+      - linear-algebra-span-2
+      - linear-algebra-span-3
+      - linear-algebra-span-4
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-span
+        section: Independence means no redundant direction
+        teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-span
+        section: Reading independence from elimination
+        teachingHash: 866867e5b53b8590644ae1ac1837b054a5355c57d1da95269ec3d84b41666e48
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: d73e52dd2a1e24b8602a9b6f9dcdbc7f4fba93c28b99341bc0cdd63590797741
+  '3':
+    after: Rank and nullity
+    instructions: ''
+    prompt: A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?
+    answer: Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change.
+    concepts:
+      - linear-algebra-bases-2
+      - linear-algebra-span-1
+      - linear-algebra-span-2
+      - linear-algebra-span-3
+      - linear-algebra-span-4
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-span
+        section: Independence means no redundant direction
+        teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-span
+        section: Reading independence from elimination
+        teachingHash: 866867e5b53b8590644ae1ac1837b054a5355c57d1da95269ec3d84b41666e48
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 6645908a7792d73d31c4b05e82d4d21fa5a0830b2b89dfd5db44b0e80ae4fbe4
+  '5':
+    after: Invertible matrices
+    instructions: ''
+    prompt: Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.
+    answer: The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity.
+    concepts:
+      - linear-algebra-bases-3
+      - linear-algebra-span-1
+      - linear-algebra-span-2
+      - linear-algebra-span-3
+      - linear-algebra-span-4
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-span
+        section: Independence means no redundant direction
+        teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-span
+        section: Reading independence from elimination
+        teachingHash: 866867e5b53b8590644ae1ac1837b054a5355c57d1da95269ec3d84b41666e48
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: bee74f4560e898a146a2f1e08a12e1cf74d9ca3fe2a903c478d44912aebe5d65
+  '7':
+    after: Solving without unnecessary inverses
+    instructions: ''
+    prompt: A three by two matrix has two independent columns. Can every three-component target have a solution? Can a target have two different solutions? Explain.
+    answer: Its column space has dimension two, so it cannot reach every three-component target. Its null space is zero, so any reachable target has exactly one solution. Existence and uniqueness are different questions.
+    concepts:
+      - linear-algebra-bases-4
+      - linear-algebra-span-1
+      - linear-algebra-span-2
+      - linear-algebra-span-3
+      - linear-algebra-span-4
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-bases
+        section: Solving without unnecessary inverses
+        teachingHash: 19c5874c484a7afb1a990e53e316ddd0436a758517a50604f7ba22a7e02a07d4
+      - lesson: linear-algebra-span
+        section: Span is everything you can build
+        teachingHash: 676a1eb990008307639f10912933e1882deab0abc6393e1a6da37e4289ea8928
+      - lesson: linear-algebra-span
+        section: Independence means no redundant direction
+        teachingHash: c765c5eab768b54fb41315b86c8066e971c3118cea28d4a27abdaea555cf10c2
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-span
+        section: Reading independence from elimination
+        teachingHash: 866867e5b53b8590644ae1ac1837b054a5355c57d1da95269ec3d84b41666e48
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 269d098f5318abc3381eeff017093313eb33d9d8bcd44ced930e9c15ec40df45
+linear-algebra-transformations:
+  '1':
+    after: What linearity requires
+    instructions: ''
+    prompt: Prove that T(x,y)=(2x-y,3y) is linear by checking addition and scalar multiplication for arbitrary inputs.
+    answer: For inputs (x,y),(a,b), T(x+a,y+b)=(2x+2a-y-b,3y+3b), equal to the sum of their outputs. For any real c, T(cx,cy)=(c(2x-y),c(3y))=cT(x,y). Both required properties hold.
+    concepts:
+      - linear-algebra-transformations-1
+      - linear-algebra-bases-1
+      - linear-algebra-bases-3
+      - linear-algebra-span-3
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 1cda9c7fe0efa713465f221a20faf0b0836de43108c58b0e94023fb102604ee4
+  '3':
+    after: Read the matrix from its columns
+    instructions: ''
+    prompt: A linear transformation sends (1,0) to (2,1) and (0,1) to (-1,3). State its matrix rows and its output on (3,2).
+    answer: The matrix has rows (2,-1),(1,3), placing the given outputs in columns. The output is three times (2,1) plus two times (-1,3), or (4,9).
+    concepts:
+      - linear-algebra-transformations-2
+      - linear-algebra-bases-1
+      - linear-algebra-bases-3
+      - linear-algebra-span-3
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-transformations
+        section: Read the matrix from its columns
+        teachingHash: c532dfe4665816cff5d84311c7f8bb242dc98cb48be04985ce3b47d7d6ed942d
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 6867ffe131770b4b1fd7782e7f18b37d2d7c99ce3e96a89f9a18a52815e0f168
+  '5':
+    after: Kernel, image, and information loss
+    instructions: ''
+    prompt: For T(x,y,z)=(x,y), find the kernel and image. State whether T is injective and surjective when its codomain is the coordinate plane.
+    answer: The kernel is all (0,0,t), with real t; the image is the whole plane. It is not injective because the third coordinate is lost, but it is surjective onto the stated codomain.
+    concepts:
+      - linear-algebra-transformations-3
+      - linear-algebra-bases-1
+      - linear-algebra-bases-3
+      - linear-algebra-span-3
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-transformations
+        section: Read the matrix from its columns
+        teachingHash: c532dfe4665816cff5d84311c7f8bb242dc98cb48be04985ce3b47d7d6ed942d
+      - lesson: linear-algebra-transformations
+        section: Kernel, image, and information loss
+        teachingHash: bfb353d1e9bc551b11967a3538feb0273269aaed99024a8527e13618e426cff4
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 08594c8c9e05c270a946fb780b4e6f07b8f8fa151098bde8f1caee5f95516291
+  '7':
+    after: Coordinates, composition, and affine rules
+    instructions: ''
+    prompt: Is T(x,y)=(x+2,y-1) linear or affine but not linear? Explain using its value at zero.
+    answer: It is affine but not linear. Its value at (0,0) is (2,-1), whereas a linear transformation must preserve zero. It is the identity linear rule plus a fixed nonzero offset.
+    concepts:
+      - linear-algebra-transformations-4
+      - linear-algebra-bases-1
+      - linear-algebra-bases-3
+      - linear-algebra-span-3
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-transformations
+        section: Read the matrix from its columns
+        teachingHash: c532dfe4665816cff5d84311c7f8bb242dc98cb48be04985ce3b47d7d6ed942d
+      - lesson: linear-algebra-transformations
+        section: Kernel, image, and information loss
+        teachingHash: bfb353d1e9bc551b11967a3538feb0273269aaed99024a8527e13618e426cff4
+      - lesson: linear-algebra-transformations
+        section: Coordinates, composition, and affine rules
+        teachingHash: e377cdc1f413a76172afc34bd08487c083acc76434eea221fb90fd692d72dacf
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 74c56eb6ba8b4ddc31ec1dcfbbf203099bcace5f395d5d0abe1138f66843af48
+linear-algebra-projections:
+  '1':
+    after: Projecting onto a line
+    instructions: ''
+    prompt: Project b=(4,2) onto the line spanned by u=(1,1). Find the residual and check its perpendicularity to u.
+    answer: The coefficient is (4+2)/(1+1)=3. The projection is (3,3), and the residual is (1,-1). Its dot product with u is 1-1=0.
+    concepts:
+      - linear-algebra-projections-1
+      - linear-algebra-dot-products-1
+      - linear-algebra-dot-products-2
+      - linear-algebra-dot-products-3
+      - linear-algebra-span-3
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-dot-products
+        section: Length and unit vectors
+        teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+      - lesson: linear-algebra-dot-products
+        section: Angle and orthogonality
+        teachingHash: b7f038d6f76cc83a80b3eb09de14ad0bbd5977a9508d0a286955104627021d05
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: e6338c87d65ea933cc1017b918791afdda2b098c6c6fecebc2b3bf1f71cd2807
+  '3':
+    after: Orthonormal directions
+    instructions: ''
+    prompt: Use Gram–Schmidt on u=(1,0) followed by v=(1,1). Give the resulting orthonormal vectors and show the subtraction step.
+    answer: The first normalized direction is (1,0). The projection of v onto it is (1,0); subtracting leaves (0,1), already unit length. The resulting ordered list is (1,0),(0,1).
+    concepts:
+      - linear-algebra-projections-2
+      - linear-algebra-dot-products-1
+      - linear-algebra-dot-products-2
+      - linear-algebra-dot-products-3
+      - linear-algebra-span-3
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: fc9c17f115ebd9275d5fa6f12feea02573931ec421a62f765b508cd74b454464
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-dot-products
+        section: Length and unit vectors
+        teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+      - lesson: linear-algebra-dot-products
+        section: Angle and orthogonality
+        teachingHash: b7f038d6f76cc83a80b3eb09de14ad0bbd5977a9508d0a286955104627021d05
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 047e297500eb4ef2b5e224221bc80797cf9b234ab7e67ab5cb347c1407fd25cd
+  '5':
+    after: Least squares and the normal equations
+    instructions: ''
+    prompt: Find the least-squares constant fit c to observations 2,4,9. Give the fitted output and the residual b minus the fitted output.
+    answer: The normal equation is 3c=15, giving c=5. The fitted output is (5,5,5), and the residual is (-3,-1,4). Its components sum to zero, making it perpendicular to the column of ones.
+    concepts:
+      - linear-algebra-projections-3
+      - linear-algebra-dot-products-1
+      - linear-algebra-dot-products-2
+      - linear-algebra-dot-products-3
+      - linear-algebra-span-3
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: fc9c17f115ebd9275d5fa6f12feea02573931ec421a62f765b508cd74b454464
+      - lesson: linear-algebra-projections
+        section: Least squares and the normal equations
+        teachingHash: 5cf1109131072db2caca3c99cf5ac373fd26cd4b5a930652985c6eedfb480e2a
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-dot-products
+        section: Length and unit vectors
+        teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+      - lesson: linear-algebra-dot-products
+        section: Angle and orthogonality
+        teachingHash: b7f038d6f76cc83a80b3eb09de14ad0bbd5977a9508d0a286955104627021d05
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: d9864f231edf6be2e6a7db9a184ca91a0be3d6bf55f217e977d4d1bd97f1031e
+  '7':
+    after: What a best fit does and does not say
+    instructions: ''
+    prompt: A least-squares calculation returns a nonzero residual. Does that alone mean the calculation is wrong? Explain.
+    answer: No. If the target lies outside the column space, no exact fit exists and the closest permitted output has a nonzero residual. The residual should be orthogonal to the column space at a least-squares solution.
+    concepts:
+      - linear-algebra-projections-4
+      - linear-algebra-dot-products-1
+      - linear-algebra-dot-products-2
+      - linear-algebra-dot-products-3
+      - linear-algebra-span-3
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: fc9c17f115ebd9275d5fa6f12feea02573931ec421a62f765b508cd74b454464
+      - lesson: linear-algebra-projections
+        section: Least squares and the normal equations
+        teachingHash: 5cf1109131072db2caca3c99cf5ac373fd26cd4b5a930652985c6eedfb480e2a
+      - lesson: linear-algebra-projections
+        section: What a best fit does and does not say
+        teachingHash: 59a99144dfa410a16c8cf6ea814c57086a972199777d3ad7f889f1642ba96878
+      - lesson: linear-algebra-dot-products
+        section: A scalar from two vectors
+        teachingHash: 7100f9076666e7138f978955b98d7afb7d865d77e058e8ad2aef6ddc0f983527
+      - lesson: linear-algebra-dot-products
+        section: Length and unit vectors
+        teachingHash: 36e3cc774ac0f5523c0ae052d347f8f90ebddd235bbdd605d82987e515fc3356
+      - lesson: linear-algebra-dot-products
+        section: Angle and orthogonality
+        teachingHash: b7f038d6f76cc83a80b3eb09de14ad0bbd5977a9508d0a286955104627021d05
+      - lesson: linear-algebra-span
+        section: Subspaces and the origin
+        teachingHash: 948087ffa1e0db7e91d68d8629cd876c45d5f2234fd0ce8d942c979ee305e6c3
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 7374af90d26def3b277e4ef415bb5a2e4038e4eab56980b7e41026a88a55d0dd
+linear-algebra-eigenvalues:
+  '1':
+    after: Directions that are only scaled
+    instructions: ''
+    prompt: A has diagonal entries 2 and -1, with zeros off the diagonal. Which of (1,0), (0,1), and (1,1) are eigenvectors? Give each corresponding eigenvalue.
+    answer: The first vector is an eigenvector with eigenvalue 2, and the second with eigenvalue -1. The third goes to (2,-1), which is not a single scalar multiple of (1,1), so it is not an eigenvector.
+    concepts:
+      - linear-algebra-eigenvalues-1
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-transformations-1
+      - linear-algebra-transformations-2
+      - linear-algebra-transformations-3
+    requires:
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-transformations
+        section: Read the matrix from its columns
+        teachingHash: c532dfe4665816cff5d84311c7f8bb242dc98cb48be04985ce3b47d7d6ed942d
+      - lesson: linear-algebra-transformations
+        section: Kernel, image, and information loss
+        teachingHash: bfb353d1e9bc551b11967a3538feb0273269aaed99024a8527e13618e426cff4
+    exerciseHash: 3c9507c727e8d94756340da7503838fce5a585025a867acba5568bf7fe466829
+  '3':
+    after: Finding eigenvalues in two dimensions
+    instructions: ''
+    prompt: Find the eigenvalues and a nonzero eigenvector for each for A with rows (4,1),(0,2). Show how the determinant condition and homogeneous equations are used.
+    answer: The determinant of A-lambda I is (4-lambda)(2-lambda), giving eigenvalues 4 and 2. For 4, the second component is zero, so (1,0) works. For 2, 2x+y=0, so (1,-2) works. Direct multiplication confirms both.
+    concepts:
+      - linear-algebra-eigenvalues-2
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-transformations-1
+      - linear-algebra-transformations-2
+      - linear-algebra-transformations-3
+    requires:
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-eigenvalues
+        section: Finding eigenvalues in two dimensions
+        teachingHash: dcfd954e9d1fa558cd21e96598a6f266e518ba7ebad1206b08696f5bdb65c3c3
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-transformations
+        section: Read the matrix from its columns
+        teachingHash: c532dfe4665816cff5d84311c7f8bb242dc98cb48be04985ce3b47d7d6ed942d
+      - lesson: linear-algebra-transformations
+        section: Kernel, image, and information loss
+        teachingHash: bfb353d1e9bc551b11967a3538feb0273269aaed99024a8527e13618e426cff4
+    exerciseHash: 5027232e522a2029fb087ecfb8d9b5dba8fb1a89e1de8163a39c87ad2bea7ab0
+  '5':
+    after: An eigenbasis simplifies repeated action
+    instructions: ''
+    prompt: Independent vectors u and v form a basis, with Au=2u and Av=3v. Find A applied three times to the input u-2v, expressed in that basis.
+    answer: Each application scales the u coefficient by 2 and the v coefficient by 3. After three applications the result is 8u-54v. Linearity lets the two basis components be tracked separately.
+    concepts:
+      - linear-algebra-eigenvalues-3
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-transformations-1
+      - linear-algebra-transformations-2
+      - linear-algebra-transformations-3
+    requires:
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-eigenvalues
+        section: Finding eigenvalues in two dimensions
+        teachingHash: dcfd954e9d1fa558cd21e96598a6f266e518ba7ebad1206b08696f5bdb65c3c3
+      - lesson: linear-algebra-eigenvalues
+        section: An eigenbasis simplifies repeated action
+        teachingHash: 92c606b9793245c983123be05075bd987e05494dd161f10d2392920ffb1eeac3
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-transformations
+        section: Read the matrix from its columns
+        teachingHash: c532dfe4665816cff5d84311c7f8bb242dc98cb48be04985ce3b47d7d6ed942d
+      - lesson: linear-algebra-transformations
+        section: Kernel, image, and information loss
+        teachingHash: bfb353d1e9bc551b11967a3538feb0273269aaed99024a8527e13618e426cff4
+    exerciseHash: 4a1bf9ff5c01e72757e217925f1bcef8a037eadc6adb769633cfef0208ebbc12
+  '7':
+    after: Limits and interpretation
+    instructions: ''
+    prompt: A has rows (1,1),(0,1). Determine its eigenvectors' directions and explain why it is not diagonalizable over the real numbers.
+    answer: Its only eigenvalue is one. Solving (A-I)v=0 forces the second component to zero, so all eigenvectors lie on the horizontal axis. There cannot be two independent eigenvectors to form a plane basis.
+    concepts:
+      - linear-algebra-eigenvalues-4
+      - linear-algebra-systems-2
+      - linear-algebra-systems-3
+      - linear-algebra-systems-4
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-bases-3
+      - linear-algebra-transformations-1
+      - linear-algebra-transformations-2
+      - linear-algebra-transformations-3
+    requires:
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-eigenvalues
+        section: Finding eigenvalues in two dimensions
+        teachingHash: dcfd954e9d1fa558cd21e96598a6f266e518ba7ebad1206b08696f5bdb65c3c3
+      - lesson: linear-algebra-eigenvalues
+        section: An eigenbasis simplifies repeated action
+        teachingHash: 92c606b9793245c983123be05075bd987e05494dd161f10d2392920ffb1eeac3
+      - lesson: linear-algebra-eigenvalues
+        section: Limits and interpretation
+        teachingHash: dff0433e5979135e542eaf4721b570bc62cb2424b4385d78368c35355c95e87c
+      - lesson: linear-algebra-systems
+        section: Elimination preserves solutions
+        teachingHash: f31b4e8432b4cd430e65a184de63fa550b322d1a9628b274c7cd7899b392033b
+      - lesson: linear-algebra-systems
+        section: No solution or a family of solutions
+        teachingHash: 5066f657ec6432c6f598b1474f18403585c4717d2122240e04223c080f5a1344
+      - lesson: linear-algebra-systems
+        section: Homogeneous systems and verification
+        teachingHash: 8954f676fa46b6d9df6c26909a3d2f9f9c489a2cbc18f751d4a77ec87c4e1116
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-bases
+        section: Invertible matrices
+        teachingHash: ecaeff67776dfea4aec5a614123e04b2d29035d8c38d52e03702fafcc67ba031
+      - lesson: linear-algebra-transformations
+        section: What linearity requires
+        teachingHash: 3efc6ed76ddac0a55e8421b9ecc7af5c984934b639a53c46a60d84350142da60
+      - lesson: linear-algebra-transformations
+        section: Read the matrix from its columns
+        teachingHash: c532dfe4665816cff5d84311c7f8bb242dc98cb48be04985ce3b47d7d6ed942d
+      - lesson: linear-algebra-transformations
+        section: Kernel, image, and information loss
+        teachingHash: bfb353d1e9bc551b11967a3538feb0273269aaed99024a8527e13618e426cff4
+    exerciseHash: 9319dba0943b21824f60c92d33bf6804648734e3616dd4e8ce824976cb7c32fa
+linear-algebra-svd:
+  '1':
+    after: Perpendicular directions and scale factors
+    instructions: ''
+    prompt: For a three by two matrix, state the shapes of U, Sigma, and V in the full SVD. Explain which factor contains the length scale factors.
+    answer: U is three by three, Sigma is three by two, and V is two by two. Sigma contains nonnegative singular values on its diagonal; the orthogonal U and V factors preserve length.
+    concepts:
+      - linear-algebra-svd-1
+      - linear-algebra-eigenvalues-1
+      - linear-algebra-eigenvalues-3
+      - linear-algebra-eigenvalues-4
+      - linear-algebra-projections-1
+      - linear-algebra-projections-2
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-svd
+        section: Perpendicular directions and scale factors
+        teachingHash: 285bed4d571b241a42debcffbc681f939b48a58cfc1ad69194f5384e91a8bbed
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-eigenvalues
+        section: An eigenbasis simplifies repeated action
+        teachingHash: 92c606b9793245c983123be05075bd987e05494dd161f10d2392920ffb1eeac3
+      - lesson: linear-algebra-eigenvalues
+        section: Limits and interpretation
+        teachingHash: dff0433e5979135e542eaf4721b570bc62cb2424b4385d78368c35355c95e87c
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: fc9c17f115ebd9275d5fa6f12feea02573931ec421a62f765b508cd74b454464
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: d887fa88901d705101f151c57b83f0b2438b78489290e576b3e2cfedf5d18426
+  '3':
+    after: A small example you can verify
+    instructions: ''
+    prompt: Let U be identity, Sigma have diagonal entries 3 and 1, and V swap the two standard basis vectors. Compute the rows of U Sigma V transpose and its output on (2,4).
+    answer: V transpose also swaps coordinates. The product has rows (0,3),(1,0), sending (2,4) to (12,2). The scale factors are 3 and 1 along the chosen right singular directions.
+    concepts:
+      - linear-algebra-svd-2
+      - linear-algebra-eigenvalues-1
+      - linear-algebra-eigenvalues-3
+      - linear-algebra-eigenvalues-4
+      - linear-algebra-projections-1
+      - linear-algebra-projections-2
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-svd
+        section: Perpendicular directions and scale factors
+        teachingHash: 285bed4d571b241a42debcffbc681f939b48a58cfc1ad69194f5384e91a8bbed
+      - lesson: linear-algebra-svd
+        section: A small example you can verify
+        teachingHash: ba2c59cd23f40d8a8334f28d96b2e351bc1a65ab4ec28fcd1cbdbdc869e2c1b5
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-eigenvalues
+        section: An eigenbasis simplifies repeated action
+        teachingHash: 92c606b9793245c983123be05075bd987e05494dd161f10d2392920ffb1eeac3
+      - lesson: linear-algebra-eigenvalues
+        section: Limits and interpretation
+        teachingHash: dff0433e5979135e542eaf4721b570bc62cb2424b4385d78368c35355c95e87c
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: fc9c17f115ebd9275d5fa6f12feea02573931ec421a62f765b508cd74b454464
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 4821e87538be6bfdd5540f47e07e7dd0d12d9d1dbd1facbe75f9de18883e7626
+  '5':
+    after: Connection to rank and eigenvalues
+    instructions: ''
+    prompt: A real matrix has singular values 4,2,0 and has three columns. Find its rank and nullity, and give the eigenvalues of A transpose A.
+    answer: Rank is two because two singular values are positive. Nullity is one by rank plus nullity equals three. The eigenvalues of A transpose A are 16,4,0, the squares of the singular values.
+    concepts:
+      - linear-algebra-svd-3
+      - linear-algebra-eigenvalues-1
+      - linear-algebra-eigenvalues-3
+      - linear-algebra-eigenvalues-4
+      - linear-algebra-projections-1
+      - linear-algebra-projections-2
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-svd
+        section: Perpendicular directions and scale factors
+        teachingHash: 285bed4d571b241a42debcffbc681f939b48a58cfc1ad69194f5384e91a8bbed
+      - lesson: linear-algebra-svd
+        section: A small example you can verify
+        teachingHash: ba2c59cd23f40d8a8334f28d96b2e351bc1a65ab4ec28fcd1cbdbdc869e2c1b5
+      - lesson: linear-algebra-svd
+        section: Connection to rank and eigenvalues
+        teachingHash: 130f70047facef68e9fb2fd6303b5ec9880f22a138530aab15cadf54bf65f4e4
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-eigenvalues
+        section: An eigenbasis simplifies repeated action
+        teachingHash: 92c606b9793245c983123be05075bd987e05494dd161f10d2392920ffb1eeac3
+      - lesson: linear-algebra-eigenvalues
+        section: Limits and interpretation
+        teachingHash: dff0433e5979135e542eaf4721b570bc62cb2424b4385d78368c35355c95e87c
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: fc9c17f115ebd9275d5fa6f12feea02573931ec421a62f765b508cd74b454464
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 2c545b85c89e567ae0af06ac4b58f3553870c5c024bc7f1d96c040a33c52da0f
+  '7':
+    after: Approximation and responsible interpretation
+    instructions: ''
+    prompt: A diagonal matrix has entries 6,3,1. Form a rank-one truncated SVD approximation and give its Frobenius error exactly.
+    answer: Keep only the entry six, giving diagonal entries (6,0,0). The discarded squared singular values sum to 9+1=10, so the Frobenius error is the square root of ten.
+    concepts:
+      - linear-algebra-svd-4
+      - linear-algebra-eigenvalues-1
+      - linear-algebra-eigenvalues-3
+      - linear-algebra-eigenvalues-4
+      - linear-algebra-projections-1
+      - linear-algebra-projections-2
+      - linear-algebra-bases-1
+      - linear-algebra-bases-2
+      - linear-algebra-matrices-1
+      - linear-algebra-matrices-2
+      - linear-algebra-matrices-3
+    requires:
+      - lesson: linear-algebra-svd
+        section: Perpendicular directions and scale factors
+        teachingHash: 285bed4d571b241a42debcffbc681f939b48a58cfc1ad69194f5384e91a8bbed
+      - lesson: linear-algebra-svd
+        section: A small example you can verify
+        teachingHash: ba2c59cd23f40d8a8334f28d96b2e351bc1a65ab4ec28fcd1cbdbdc869e2c1b5
+      - lesson: linear-algebra-svd
+        section: Connection to rank and eigenvalues
+        teachingHash: 130f70047facef68e9fb2fd6303b5ec9880f22a138530aab15cadf54bf65f4e4
+      - lesson: linear-algebra-svd
+        section: Approximation and responsible interpretation
+        teachingHash: f9422b527f918a7eabcfc2e908bc62f68c043eeb57d52a1788d7089a9ba88f38
+      - lesson: linear-algebra-eigenvalues
+        section: Directions that are only scaled
+        teachingHash: 6f753cadcc8325e961e3caf494e1a544070db3074ef89422a3b0545c3bbe634c
+      - lesson: linear-algebra-eigenvalues
+        section: An eigenbasis simplifies repeated action
+        teachingHash: 92c606b9793245c983123be05075bd987e05494dd161f10d2392920ffb1eeac3
+      - lesson: linear-algebra-eigenvalues
+        section: Limits and interpretation
+        teachingHash: dff0433e5979135e542eaf4721b570bc62cb2424b4385d78368c35355c95e87c
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: b9974d7f2f709226d8fce0db15f5051344cfbfc53972ad543ce468108640c5b4
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: fc9c17f115ebd9275d5fa6f12feea02573931ec421a62f765b508cd74b454464
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: ac62f3eca44b569f461dbd6c6a94b43d097fd81ee1679107106921e454766287
+      - lesson: linear-algebra-bases
+        section: Rank and nullity
+        teachingHash: ce96533358a8d23f1fdfa6095bad98711d8bf93952c9744ca4ae390ab1faeb78
+      - lesson: linear-algebra-matrices
+        section: Shape, entries, and transpose
+        teachingHash: 78fa1e37005abdbcfce86ebdbb9523a2585991af1fbebe6b54f0ac9ca534ec93
+      - lesson: linear-algebra-matrices
+        section: A matrix acting on a vector
+        teachingHash: 4a8df325886627eaf2b70db7852d7a66f3c57baa23e037b4a4da27c382c68e37
+      - lesson: linear-algebra-matrices
+        section: Composition determines the product
+        teachingHash: 669abd621207094e7b3b44e55ef8fa99fc9d1f1d5dee7a25deb15160e4baca3e
+    exerciseHash: 0af500ccac5670ce37a29977a469d539eae364e9a2291bd2731b5797ff72b792

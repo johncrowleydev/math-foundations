@@ -23,11 +23,11 @@ function displayed(slug: string, id: number) {
     section: section.title,
   });
 }
-test('every one of the 121 inline exercises has a current audit with preceding teaching evidence', () => {
+test('every one of the 161 inline exercises has a current audit with preceding teaching evidence', () => {
   validateInlinePrerequisites(content.lessons);
   assert.equal(
     Object.values(inlineAudit).reduce((n, entries) => n + Object.keys(entries).length, 0),
-    121,
+    161,
   );
 });
 test('inline instructions cannot inherit witness, complements, empty products, or graph concepts early', () => {
@@ -77,10 +77,12 @@ test('missing audits, newly changed instructions and changed teaching require an
     /Re-audit changed inline exercise/,
   );
   const lessons = structuredClone(content.lessons);
-  lessons[1].markdown = lessons[1].markdown.replace(
-    'A **predicate** is a property or relationship',
-    'A **predicate** is something',
-  );
+  lessons.find((l) => l.slug === 'predicates-and-quantifiers')!.markdown = lessons
+    .find((l) => l.slug === 'predicates-and-quantifiers')!
+    .markdown.replace(
+      'A **predicate** is a property or relationship',
+      'A **predicate** is something',
+    );
   assert.throws(() => validateInlinePrerequisites(lessons), /Re-audit changed prerequisite/);
 });
 test('moving a problem or its prerequisite into the wrong order is rejected', () => {
@@ -95,14 +97,14 @@ test('moving a problem or its prerequisite into the wrong order is rejected', ()
     /Untaught prerequisite/,
   );
   const lessons = structuredClone(content.lessons);
-  const original = lessons[1].markdown;
+  const original = lessons.find((l) => l.slug === 'predicates-and-quantifiers')!.markdown;
   const sections = teachingSections(original);
   const moved = sections.splice(
     sections.findIndex((s) => s.title === 'Existential quantification: there exists'),
     1,
   )[0];
   sections.push(moved);
-  lessons[1].markdown =
+  lessons.find((l) => l.slug === 'predicates-and-quantifiers')!.markdown =
     original.split(/^## /m)[0] + sections.map((s) => `## ${s.title}\n${s.text}\n\n`).join('');
   assert.throws(() => validateInlinePrerequisites(lessons), /Untaught prerequisite/);
 });

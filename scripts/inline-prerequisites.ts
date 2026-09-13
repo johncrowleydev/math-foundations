@@ -79,7 +79,7 @@ export function validateInlinePrerequisites(
     throw new Error('Unknown lesson in inline audit');
   for (const [lessonIndex, lesson] of lessons.entries()) {
     const sections = teachingSections(lesson.markdown);
-    const expected = Object.values(placements[lesson.slug])
+    const expected = Object.values(placements[lesson.slug] || {})
       .flat()
       .sort((a, b) => a - b);
     const audited = Object.keys(audit[lesson.slug] || {})

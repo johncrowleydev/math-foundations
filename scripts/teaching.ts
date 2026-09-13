@@ -71,6 +71,23 @@ const figureBase = z.object({
 const figureSchema = z.discriminatedUnion('kind', [
   figureBase
     .extend({
+      kind: z.literal('coordinates'),
+      extent: z.number().positive(),
+      arrows: z.array(
+        z
+          .object({
+            label: text,
+            from: z.tuple([z.number(), z.number()]),
+            to: z.tuple([z.number(), z.number()]),
+            dashed: z.boolean().default(false),
+          })
+          .strict(),
+      ),
+      ellipses: z.array(z.tuple([z.number().positive(), z.number().positive()])).default([]),
+    })
+    .strict(),
+  figureBase
+    .extend({
       kind: z.literal('collections'),
       collections: z
         .array(

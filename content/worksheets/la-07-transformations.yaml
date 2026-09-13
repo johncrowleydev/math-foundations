@@ -1,0 +1,50 @@
+title: Linear Transformations
+sections:
+  - title: What linearity requires
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Prove that T(x,y)=(2x-y,3y) is linear by checking addition and scalar multiplication for arbitrary inputs.
+        answerLines: 5
+        answer: For inputs (x,y),(a,b), T(x+a,y+b)=(2x+2a-y-b,3y+3b), equal to the sum of their outputs. For any real c, T(cx,cy)=(c(2x-y),c(3y))=cT(x,y). Both required properties hold.
+      - id: 2
+        type: freeform
+        prompt: The rule T(x,y)=(x squared,y) takes zero to zero. Is it linear? Give a decisive argument.
+        answerLines: 5
+        answer: No. T(2,0)=(4,0), while twice T(1,0)=(2,0), so scalar multiplication is not preserved. The zero test is necessary but not sufficient.
+  - title: Read the matrix from its columns
+    questions:
+      - id: 3
+        type: freeform
+        prompt: A linear transformation sends (1,0) to (2,1) and (0,1) to (-1,3). State its matrix rows and its output on (3,2).
+        answerLines: 5
+        answer: The matrix has rows (2,-1),(1,3), placing the given outputs in columns. The output is three times (2,1) plus two times (-1,3), or (4,9).
+      - id: 4
+        type: freeform
+        prompt: Find the image of (3,-2) under a right-angle counterclockwise rotation, using its action on the two standard basis vectors.
+        answerLines: 5
+        answer: The basis vectors go to (0,1) and (-1,0). Thus the input goes to three times (0,1) minus two times (-1,0), or (2,3).
+  - title: Kernel, image, and information loss
+    questions:
+      - id: 5
+        type: freeform
+        prompt: For T(x,y,z)=(x,y), find the kernel and image. State whether T is injective and surjective when its codomain is the coordinate plane.
+        answerLines: 5
+        answer: The kernel is all (0,0,t), with real t; the image is the whole plane. It is not injective because the third coordinate is lost, but it is surjective onto the stated codomain.
+      - id: 6
+        type: freeform
+        prompt: A linear transformation has a nonzero vector v in its kernel. Prove that it cannot be injective.
+        answerLines: 5
+        answer: Both v and the zero vector have zero output. These are distinct inputs since v is nonzero, contradicting injectivity.
+  - title: Coordinates, composition, and affine rules
+    questions:
+      - id: 7
+        type: freeform
+        prompt: Is T(x,y)=(x+2,y-1) linear or affine but not linear? Explain using its value at zero.
+        answerLines: 5
+        answer: It is affine but not linear. Its value at (0,0) is (2,-1), whereas a linear transformation must preserve zero. It is the identity linear rule plus a fixed nonzero offset.
+      - id: 8
+        type: freeform
+        prompt: P converts coordinates in a new basis to standard coordinates, and A represents a linear rule in standard coordinates. Explain the order of operations in the new-basis matrix P inverse times A times P.
+        answerLines: 5
+        answer: First P converts the input to standard coordinates; then A applies the rule; finally P inverse converts the output back. Matrix products act right to left, giving that order without changing the underlying transformation.
