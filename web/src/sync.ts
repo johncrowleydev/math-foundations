@@ -112,7 +112,15 @@ export async function sync() {
       return;
     }
     let outgoingError = '';
-    for (const op of await all<Operation>('outbox')) {
+    // Choice retries can be graded offline. Upload earlier attempts before a
+    // later correct one locks the exercise on the server (UUID order is random).
+    const outgoing = await all<Operation>('outbox');
+    outgoing.sort((a, b) => {
+      const at = a.kind === 'attempt' ? Number(a.data.submitted) : Infinity;
+      const bt = b.kind === 'attempt' ? Number(b.data.submitted) : Infinity;
+      return at - bt;
+    });
+    for (const op of outgoing) {
       try {
         if (op.kind === 'attempt') {
           const a = op.data as unknown as Attempt;

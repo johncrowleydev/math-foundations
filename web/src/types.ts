@@ -7,7 +7,15 @@ export type Question = {
   answer?: string;
   section: string;
   table?: { columns: string[]; rows: number };
+  choice?: ChoiceAssessment;
+  quickSource?: string;
 };
+export type ChoiceAssessment = {
+  options: { id: string; text: string; feedback: string }[];
+  correctOption: string;
+};
+export const questionLabel = (q: Question) =>
+  q.quickSource ? 'Knowledge check ' + q.quickSource.slice(6) : 'Exercise ' + q.id;
 export type Quick = {
   id: string;
   prompt: string;
@@ -15,6 +23,7 @@ export type Quick = {
   answer: number;
   correctIndex?: number;
   explanation: string;
+  exerciseId?: number;
 };
 export type Section = {
   id: string;
@@ -130,6 +139,7 @@ export type Curriculum = {
   version: string;
 };
 export type Grade = {
+  model?: string;
   verdict: string;
   feedback: string;
   issue?: string;
@@ -144,6 +154,7 @@ export type Attempt = {
   submitted: number;
   contentVersion: string;
   mode: string;
+  choiceId?: string;
   text: string;
   images: string[];
   photos?: { hash: string; rotation: number }[];
@@ -161,6 +172,7 @@ export type Stroke = {
 };
 export type Photo = { hash: string; rotation: number };
 export type Draft = {
+  choiceId?: string;
   text: string;
   mode: 'type' | 'pen' | 'photo';
   strokes: Stroke[];

@@ -83,6 +83,8 @@ for (const l of notebook.lessons) {
       );
   }
   for (const q of l.questions) {
+    // Promoted checks are the same authored unit inventoried above as quick:<id>.
+    if (q.quickSource) continue;
     const inline = l.sections.findIndex((s: any) => s.questionIds.includes(q.id));
     add(
       l.slug,

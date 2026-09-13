@@ -87,7 +87,7 @@ test('all content, figures and inline targets are bundled from the shared curric
   assert.equal(n.lessons.length, 27);
   assert.equal(
     n.lessons.reduce((s: number, l: any) => s + l.questions.length, 0),
-    2010,
+    2060,
   );
   assert.equal(
     n.lessons.reduce(

@@ -27,6 +27,7 @@ type Submission struct {
 	Submitted      int64            `json:"submitted"`
 	ContentVersion string           `json:"contentVersion"`
 	Mode           string           `json:"mode"`
+	ChoiceID       string           `json:"choiceId,omitempty"`
 	Text           string           `json:"text"`
 	Ink            json.RawMessage  `json:"ink,omitempty"`
 	Images         []string         `json:"images"`
@@ -59,6 +60,15 @@ type Attempt struct {
 type Catalog struct {
 	Version   string                     `json:"version"`
 	Exercises map[string]json.RawMessage `json:"exercises"`
+}
+type ChoiceOption struct {
+	ID       string `json:"id"`
+	Text     string `json:"text"`
+	Feedback string `json:"feedback"`
+}
+type ChoiceAssessment struct {
+	Options       []ChoiceOption `json:"options"`
+	CorrectOption string         `json:"correctOption"`
 }
 type Grading struct {
 	server        *Server
@@ -136,14 +146,40 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 	if !ok || a.ContentVersion != g.catalog.Version {
 		return Attempt{}, 409, errors.New("Update the app before submitting this exercise")
 	}
-	if a.Mode != "type" && a.Mode != "write" && a.Mode != "photo" {
+	var item struct {
+		Choice *ChoiceAssessment `json:"choice"`
+	}
+	if e := json.Unmarshal(teaching, &item); e != nil {
+		return Attempt{}, 503, e
+	}
+	var deterministic *Grade
+	if a.Mode == "choice" {
+		if item.Choice == nil || len(a.Images) > 0 || len(a.Ink) > 0 || len(a.Photos) > 0 {
+			return Attempt{}, 400, errors.New("Invalid choice response")
+		}
+		for _, option := range item.Choice.Options {
+			if option.ID == a.ChoiceID && option.Text == a.Text {
+				verdict := "incorrect"
+				if option.ID == item.Choice.CorrectOption {
+					verdict = "correct"
+				}
+				deterministic = &Grade{Verdict: verdict, Feedback: option.Feedback, Model: "deterministic", At: time.Now().UnixMilli(), PromptVersion: "authored-choice-1"}
+			}
+		}
+		if deterministic == nil {
+			return Attempt{}, 400, errors.New("Select one of this exercise's choices")
+		}
+	} else if a.ChoiceID != "" || item.Choice != nil {
+		return Attempt{}, 400, errors.New("This exercise requires a choice response")
+	}
+	if a.Mode != "type" && a.Mode != "write" && a.Mode != "photo" && a.Mode != "choice" {
 		return Attempt{}, 400, errors.New("Invalid input format")
 	}
 	if a.Mode == "type" {
 		if strings.TrimSpace(a.Text) == "" || len(a.Text) > 200000 || len(a.Images) > 0 || len(a.Ink) > 0 || len(a.Photos) > 0 {
 			return Attempt{}, 400, errors.New("Submit a nonempty typed response")
 		}
-	} else {
+	} else if a.Mode != "choice" {
 		if len(a.Images) == 0 || len(a.Images) > 100 || a.Text != "" {
 			return Attempt{}, 400, errors.New("Submit readable response images")
 		}
@@ -211,8 +247,15 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 	if _, e = tx.Exec("INSERT INTO attempts(id,exercise,submitted,data,context,status) VALUES(?,?,?,?,?,'pending')", a.ID, a.Exercise, a.Submitted, string(data), string(teaching)); e != nil {
 		return Attempt{}, 409, e
 	}
-	if _, e = tx.Exec("INSERT INTO grading_jobs(id,attempt,reason,status) VALUES(?,?,'','pending')", a.ID, a.ID); e != nil {
-		return Attempt{}, 503, e
+	if deterministic != nil {
+		grades, _ := json.Marshal([]Grade{*deterministic})
+		if _, e = tx.Exec("UPDATE attempts SET status='graded',verdict=?,grades=? WHERE id=?", deterministic.Verdict, string(grades), a.ID); e != nil {
+			return Attempt{}, 503, e
+		}
+	} else {
+		if _, e = tx.Exec("INSERT INTO grading_jobs(id,attempt,reason,status) VALUES(?,?,'','pending')", a.ID, a.ID); e != nil {
+			return Attempt{}, 503, e
+		}
 	}
 	if e = emitAttempt(tx, a.ID); e != nil {
 		return Attempt{}, 503, e
@@ -251,6 +294,9 @@ func (g *Grading) recheck(id, requestID, reason string) error {
 	a, e := loadAttempt(tx, id)
 	if e != nil {
 		return e
+	}
+	if a.Mode == "choice" {
+		return errors.New("This response is graded from a predefined answer, not an AI assessment")
 	}
 	if a.Status == "pending" || a.Status == "grading" || a.Status == "rechecking" {
 		return errors.New("Grading is already pending")

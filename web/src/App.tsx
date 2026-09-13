@@ -14,16 +14,8 @@ import {
 } from 'lucide-react';
 import { readRoute, routeHash, type AppRoute } from './routing';
 import { registerSW } from 'virtual:pwa-register';
-import type {
-  Curriculum,
-  Block,
-  Lesson,
-  Quick,
-  RecordData,
-  Formula,
-  Attempt,
-  Draft,
-} from './types';
+import type { Curriculum, Block, Lesson, RecordData, Formula, Attempt, Draft } from './types';
+import { questionLabel } from './types';
 import { ContentContext, Rich, MathText, Modal, Copy } from './Rich';
 import { Figure } from './Figure';
 import { Exercise } from './Exercise';
@@ -327,7 +319,7 @@ export function App({ data }: { data: Curriculum }) {
               aria-current={practice === i ? 'step' : undefined}
               onClick={() => selectExercise(i)}
             >
-              <span>Exercise {q.id}</span>
+              <span>{questionLabel(q)}</span>
               <PracticeStatus status={progress[i]?.status || 'Not attempted'} />
             </button>
           </div>
@@ -441,7 +433,12 @@ export function App({ data }: { data: Curriculum }) {
                       first={i === 0}
                     />
                     {s.quickChecks.map((c) => (
-                      <QuickCheck key={c.id} check={c} lesson={lesson.slug} />
+                      <Exercise
+                        key={c.id}
+                        q={lesson.questions.find((q) => q.id === c.exerciseId)!}
+                        lesson={lesson.slug}
+                        data={data}
+                      />
                     ))}
                     {s.questionIds.map((id) => (
                       <Exercise
@@ -466,7 +463,7 @@ export function App({ data }: { data: Curriculum }) {
                 <div className="reading-column">
                   <div className="practice-heading">
                     <span className="muted">
-                      Exercise {q.id} · {practice + 1} of {lesson.questions.length}
+                      {questionLabel(q)} · {practice + 1} of {lesson.questions.length}
                     </span>
                     <button className="exercise-nav-toggle" onClick={() => setExerciseNav(true)}>
                       Exercises
@@ -689,55 +686,6 @@ function Typing({
       ))}
     </details>
   ) : null;
-}
-function QuickCheck({ check: c, lesson }: { check: Quick; lesson: string }) {
-  const rev = useRevision();
-  const [choice, setChoice] = useState(-1),
-    [revealed, setRevealed] = useState(false);
-  useEffect(() => {
-    void get<RecordData>('records', 'quick/' + lesson + ':' + c.id).then((r) => {
-      if (r) {
-        setChoice(Number(r.payload.choice));
-        setRevealed(Boolean(r.payload.revealed));
-      }
-    });
-  }, [lesson, c.id, rev]);
-  return (
-    <article className="quick exercise">
-      <span className="eyebrow">Quick check</span>
-      <Rich text={c.prompt} source={`quick:${c.id}:prompt`} />
-      <div className="choices">
-        {c.options.map((o, i) => (
-          <button
-            key={i}
-            aria-pressed={choice === i}
-            className={choice === i ? 'selected' : ''}
-            onClick={() => {
-              setChoice(i);
-              void mutation('quick/' + lesson + ':' + c.id, { choice: i, revealed });
-            }}
-          >
-            <Rich text={o.replace(/\[([^\]]+)\]\(ref:[^)]+\)/g, '$1')} />
-          </button>
-        ))}
-      </div>
-      <button
-        disabled={choice < 0}
-        onClick={() => {
-          setRevealed(!revealed);
-          void mutation('quick/' + lesson + ':' + c.id, { choice, revealed: !revealed });
-        }}
-      >
-        {revealed ? 'Hide explanation' : 'Check answer'}
-      </button>
-      {revealed && (
-        <div className="feedback">
-          <strong>{choice === c.answer ? 'Correct' : 'Try thinking about it this way'}</strong>
-          <Rich text={c.explanation} />
-        </div>
-      )}
-    </article>
-  );
 }
 function Library({ data, onOpen }: { data: Curriculum; onOpen: (id: string) => void }) {
   const [query, setQuery] = useState(''),

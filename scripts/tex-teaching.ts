@@ -122,6 +122,7 @@ export async function inspectTexTeaching(requireComplete = false) {
       for (const check of section.quickChecks) verify(check, 'quick', known);
     }
     for (const q of lesson.questions) {
+      if (q.quickSource) continue; // Same authored check verified above; no typed response required.
       const section = lesson.sections.find((s: any) => s.questionIds.includes(q.id));
       verify(q, section ? 'inline' : 'practice', section ? before.get(section.id)! : known);
     }
@@ -163,7 +164,7 @@ export async function inspectTexTeaching(requireComplete = false) {
   const expectedExercises = notebook.lessons.reduce(
     (n: number, l: any) =>
       n +
-      l.questions.length +
+      l.questions.filter((q: any) => !q.quickSource).length +
       l.sections.reduce((s: number, section: any) => s + section.quickChecks.length, 0),
     0,
   );

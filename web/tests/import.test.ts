@@ -32,6 +32,26 @@ test('imports preserve conflicts, queued write attempts and media; corrupt impor
   data.outbox = [['pen-test', { id: 'pen-test', kind: 'attempt', data: pen }]];
   await importData(new Blob([JSON.stringify(data)]), 'pen.json');
   assert.equal((await get<any>('outbox', 'pen-test')).data.mode, 'write');
+  const choice = {
+    ...pen,
+    id: 'choice-test',
+    mode: 'choice',
+    choiceId: 'option-2',
+    text: 'No',
+    status: 'graded',
+    verdict: 'incorrect',
+    grades: [
+      { verdict: 'incorrect', feedback: 'Check both directions.', at: 1, model: 'deterministic' },
+    ],
+  };
+  data.attempts = [['choice-test', choice]];
+  data.outbox = [['choice-test', { id: 'choice-test', kind: 'attempt', data: choice }]];
+  await importData(new Blob([JSON.stringify(data)]), 'choice.json');
+  assert.equal((await get<any>('attempts', 'choice-test')).choiceId, 'option-2');
+  assert.equal(
+    (await get<any>('outbox', 'choice-test')).data.grades[0].feedback,
+    'Check both directions.',
+  );
 });
 
 test('attempt reconciliation detects missing derived rows despite an advanced cursor', async () => {

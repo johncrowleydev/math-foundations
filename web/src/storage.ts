@@ -160,7 +160,8 @@ export async function importData(file: Blob, name: string) {
     typeof v.exercise === 'string' &&
     finite(v.submitted) &&
     typeof v.text === 'string' &&
-    ['type', 'write', 'photo'].includes(v.mode) &&
+    ['type', 'write', 'photo', 'choice'].includes(v.mode) &&
+    (v.mode !== 'choice' || (typeof v.choiceId === 'string' && v.choiceId.length > 0)) &&
     Array.isArray(v.images) &&
     v.images.every(hashKey) &&
     Array.isArray(v.grades) &&

@@ -7,6 +7,8 @@ import { Rich, Modal } from './Rich';
 import { TexEditor } from './TexEditor';
 import { Ink, inkImage } from './Ink';
 import { Media, Photos, normalizedPhoto } from './Photos';
+import { gradeChoice } from './choiceGrading';
+import { questionLabel } from './types';
 export function Exercise({ q, lesson, data }: { q: Question; lesson: string; data: Curriculum }) {
   const key = lesson + '-' + q.id;
   const rev = useRevision();
@@ -19,6 +21,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
     [expanded, setExpanded] = useState(false),
     [versions, setVersions] = useState<RecordData[]>([]),
     [showVersions, setShowVersions] = useState(false);
+  const [choiceReference, setChoiceReference] = useState<number | null>(null);
   const latestDraft = useRef<Draft | null>(null);
   const writes = useRef(Promise.resolve());
   const saveError = useRef('');
@@ -38,6 +41,15 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         const ink = await get<RecordData>('records', 'ink/' + key);
         if (ink) {
           d.strokes = await decodeInk(ink.payload as unknown as NativeInk);
+        }
+        if (q.quickSource && q.choice) {
+          const previous = await get<RecordData>(
+            'records',
+            'quick/' + lesson + ':' + q.quickSource,
+          );
+          const option = q.choice.options[Number(previous?.payload.choice)];
+          if (option) d.choiceId = option.id;
+          if (previous?.payload.revealed) d.revealed = true;
         }
       }
       if (live) {
@@ -121,7 +133,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
     last = attempts.at(-1),
     editing = (!last || draft?.editing) && !correct && !pending;
   async function submit() {
-    if (!draft || pending || correct) return;
+    if (!draft || pending || correct || saving) return;
     setSaving(true);
     setError('');
     try {
@@ -129,24 +141,27 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       if (saveError.current) throw Error(saveError.current);
       const d = latestDraft.current!;
       if (
-        (d.mode === 'type' && !d.text.trim()) ||
-        (d.mode === 'pen' && !d.strokes.length) ||
-        (d.mode === 'photo' && !d.photos.length)
+        !q.choice &&
+        ((d.mode === 'type' && !d.text.trim()) ||
+          (d.mode === 'pen' && !d.strokes.length) ||
+          (d.mode === 'photo' && !d.photos.length))
       )
         throw Error('Add a response before submitting.');
-      const a: Attempt = {
+      let a: Attempt = {
         id: crypto.randomUUID(),
         exercise: key,
-        submitted: Date.now(),
+        submitted: Math.max(Date.now(), (last?.submitted || 0) + 1),
         contentVersion: data.version,
-        mode: d.mode === 'pen' ? 'write' : d.mode,
+        mode: q.choice ? 'choice' : d.mode === 'pen' ? 'write' : d.mode,
+        ...(q.choice ? { choiceId: d.choiceId } : {}),
         text: d.mode === 'type' ? d.text : '',
         images: [],
         revealed: d.revealed,
         status: 'queued',
         grades: [],
       };
-      if (d.mode === 'pen') {
+      if (q.choice) a = gradeChoice(a, q.choice);
+      else if (d.mode === 'pen') {
         const h = await saveMedia(await inkImage(d.strokes));
         a.images = [h];
         a.ink = await encodeInk(d.strokes);
@@ -168,6 +183,10 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
   }
   async function retry(a: Attempt) {
     if (correct || pending) return;
+    if (q.choice) {
+      update({ choiceId: undefined, editing: true, recovery: true });
+      return;
+    }
     if (latestDraft.current?.recovery) {
       update({ editing: true });
       return;
@@ -191,34 +210,69 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
   }
   const editor = draft && (
     <>
-      <div className="toolbar modes">
-        <select
-          aria-label="Response format"
-          value={draft.mode}
-          onChange={(e) => update({ mode: e.target.value as Draft['mode'] })}
-        >
-          <option value="type">Type</option>
-          <option value="pen">Pen / sketch</option>
-          <option value="photo">Photo</option>
-        </select>
-        <span className="muted">
-          {draft.mode !== 'type' && draft.text ? 'Also saved: Type' : ''}
-          {draft.mode !== 'pen' && draft.strokes.length ? ' · Sketch' : ''}
-          {draft.mode !== 'photo' && draft.photos.length ? ' · Photos' : ''}
-        </span>
-        <button className="push" onClick={() => setExpanded(true)}>
-          Expand
-        </button>
-      </div>
-      {draft.mode === 'type' ? (
-        <TexEditor value={draft.text} onChange={(text) => update({ text })} syntax={data.syntax} />
-      ) : draft.mode === 'pen' ? (
-        <Ink strokes={draft.strokes} onChange={(strokes) => update({ strokes })} />
+      {q.choice ? (
+        <div className="choices" role="group" aria-label="Answer choices">
+          {q.choice.options.map((o, i) => (
+            <div className="choice-row" key={o.id}>
+              <button
+                aria-pressed={draft.choiceId === o.id}
+                className={draft.choiceId === o.id ? 'selected' : ''}
+                onClick={() => update({ choiceId: o.id })}
+              >
+                <Rich text={o.text.replace(/\[([^\]]+)\]\(ref:[^)]+\)/g, '$1')} />
+              </button>
+              {/ref:|\$/.test(o.text) && (
+                <button
+                  className="choice-reference"
+                  aria-label={`References for option ${i + 1}`}
+                  onClick={() => setChoiceReference(i)}
+                >
+                  ⓘ
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
       ) : (
-        <Photos photos={draft.photos} onChange={(photos) => update({ photos })} />
+        <>
+          <div className="toolbar modes">
+            <select
+              aria-label="Response format"
+              value={draft.mode}
+              onChange={(e) => update({ mode: e.target.value as Draft['mode'] })}
+            >
+              <option value="type">Type</option>
+              <option value="pen">Pen / sketch</option>
+              <option value="photo">Photo</option>
+            </select>
+            <span className="muted">
+              {draft.mode !== 'type' && draft.text ? 'Also saved: Type' : ''}
+              {draft.mode !== 'pen' && draft.strokes.length ? ' · Sketch' : ''}
+              {draft.mode !== 'photo' && draft.photos.length ? ' · Photos' : ''}
+            </span>
+            <button className="push" onClick={() => setExpanded(true)}>
+              Expand
+            </button>
+          </div>
+          {draft.mode === 'type' ? (
+            <TexEditor
+              value={draft.text}
+              onChange={(text) => update({ text })}
+              syntax={data.syntax}
+            />
+          ) : draft.mode === 'pen' ? (
+            <Ink strokes={draft.strokes} onChange={(strokes) => update({ strokes })} />
+          ) : (
+            <Photos photos={draft.photos} onChange={(photos) => update({ photos })} />
+          )}
+        </>
       )}
       <div className="toolbar submit">
-        <button className="primary" disabled={saving} onClick={() => void submit()}>
+        <button
+          className="primary"
+          disabled={saving || (!!q.choice && !draft.choiceId)}
+          onClick={() => void submit()}
+        >
           {saving ? (
             <>
               <span className="spinner" />
@@ -244,9 +298,20 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       }
       id={'exercise-' + q.id}
     >
-      <div className="eyebrow">Exercise {q.id}</div>
+      <div className="eyebrow">{questionLabel(q)}</div>
       <Rich text={q.instructions} source={`question:${q.id}:instructions`} />
-      <Rich text={q.prompt} source={`question:${q.id}:prompt`} />
+      <Rich
+        text={q.prompt}
+        source={q.quickSource ? `quick:${q.quickSource}:prompt` : `question:${q.id}:prompt`}
+      />
+      {choiceReference !== null && q.choice && (
+        <Modal title="Choice references" onClose={() => setChoiceReference(null)}>
+          <Rich
+            text={q.choice.options[choiceReference].text}
+            source={q.quickSource ? `quick:${q.quickSource}:option:${choiceReference}` : ''}
+          />
+        </Modal>
+      )}
       {q.math && <Rich text={'$$' + q.math + '$$'} source={`question:${q.id}:math`} />}
       {q.table && (
         <table>
@@ -346,7 +411,10 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         }}
       >
         <summary>Reveal answer</summary>
-        <Rich text={q.answer} source={`question:${q.id}:answer`} />
+        <Rich
+          text={q.answer}
+          source={q.quickSource ? `quick:${q.quickSource}:explanation` : `question:${q.id}:answer`}
+        />
       </details>
       {history && (
         <Modal
@@ -423,7 +491,7 @@ function AttemptPanel({
           })}
         </time>
       </div>
-      {a.mode === 'type' ? (
+      {a.mode === 'type' || a.mode === 'choice' ? (
         <div className="submitted">
           <Rich text={a.text} />
         </div>
@@ -454,7 +522,9 @@ function AttemptPanel({
                 'Expand response',
                 ...(g?.transcription ? ['What the grader read'] : []),
                 ...(onHistory ? ['Previous attempts'] : []),
-                ...(!active && a.status !== 'queued' ? ['Request recheck'] : []),
+                ...(!active && a.status !== 'queued' && a.mode !== 'choice'
+                  ? ['Request recheck']
+                  : []),
                 ...(a.grades?.length > 1 ? ['Previous assessments'] : []),
               ].map((s) => (
                 <button
@@ -518,7 +588,7 @@ function AttemptPanel({
                 <Rich text={old.feedback} />
               </article>
             ))
-          ) : a.mode === 'type' ? (
+          ) : a.mode === 'type' || a.mode === 'choice' ? (
             <>
               <Rich text={a.text} />
               <pre>{a.text}</pre>
