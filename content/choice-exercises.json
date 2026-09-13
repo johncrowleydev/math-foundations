@@ -923,5 +923,2023 @@
       }
     ],
     "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 9,
+    "sourceHash": "49109522f3b272e4bc2ac6c08361a03f79f4aa5e953af8ee7e81964c47e155bd",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "The server is not online.",
+        "feedback": "Negation reverses the truth value of p, so the statement says the server is not online. It does not assert anything about the database: q does not occur in the formula."
+      },
+      {
+        "id": "option-2",
+        "text": "The database is not reachable.",
+        "feedback": "The negation applies to p, which names the server condition, not q. Translate the variable before applying NOT."
+      },
+      {
+        "id": "option-3",
+        "text": "The server is online.",
+        "feedback": "This translates p itself and leaves out the negation. NOT changes the assertion to its opposite."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 10,
+    "sourceHash": "4f8ea0bb24c0a31a1aaaaa96d9cd3d4907a653777ef17295e85d47655aa90f37",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "The server is online or the database is reachable, or both.",
+        "feedback": "This permits just one condition to hold, whereas AND requires both. Compare the case where the server is online but the database is unreachable."
+      },
+      {
+        "id": "option-2",
+        "text": "The server is online but the database is not reachable.",
+        "feedback": "This inserts a negation of q that the formula does not contain. Both variables occur positively."
+      },
+      {
+        "id": "option-3",
+        "text": "The server is online and the database is reachable.",
+        "feedback": "AND requires both statements to hold together. The first variable supplies the server condition and the second supplies the database condition; neither is optional."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 11,
+    "sourceHash": "c640f769fdab65c8b78b5fb69781fab774f401556fcb2e411e77a060fcc55164",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Exactly one is true: the server is online or the database is reachable.",
+        "feedback": "Exactly one excludes the case where both hold. Ordinary logical OR does not exclude that case."
+      },
+      {
+        "id": "option-2",
+        "text": "The server is online or the database is reachable, or both.",
+        "feedback": "Logical OR is inclusive: at least one condition must hold, and both may hold. It fails only when the server is offline and the database is unreachable."
+      },
+      {
+        "id": "option-3",
+        "text": "The server is online and the database is reachable.",
+        "feedback": "This requires both conditions, which is stronger than the displayed OR. One true condition already suffices."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 12,
+    "sourceHash": "23d01e4ebff928392468dd30d4a7e71792de19351e33537dcd4f8c661dd154b1",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "If the server is online, then the database is reachable.",
+        "feedback": "The statement before the arrow supplies the condition; the statement after it is the consequence required when that condition holds. Here p names the server condition and q the database condition. Reversing them would translate a different implication."
+      },
+      {
+        "id": "option-2",
+        "text": "If the database is reachable, then the server is online.",
+        "feedback": "This reverses the arrow. Read its left side as the condition and its right side as the required consequence."
+      },
+      {
+        "id": "option-3",
+        "text": "The server is online and the database is reachable.",
+        "feedback": "An implication is a conditional claim, not an assertion that both statements are currently true."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 13,
+    "sourceHash": "fa084ccd33aba651c352f78a25a280d870fb6de3713306deabaf40b4b5c09d10",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "If the server is online, then the database is reachable.",
+        "feedback": "This reverses the arrow. Read its left side as the condition and its right side as the required consequence."
+      },
+      {
+        "id": "option-2",
+        "text": "The server is online and the database is reachable.",
+        "feedback": "An implication is a conditional claim, not an assertion that both statements are currently true."
+      },
+      {
+        "id": "option-3",
+        "text": "If the database is reachable, then the server is online.",
+        "feedback": "The statement before the arrow supplies the condition; the statement after it is the consequence required when that condition holds. Here q names the database condition and p the server condition. Reversing them would translate a different implication."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 14,
+    "sourceHash": "c4a932706d21194ad2085bab9769303dbdfb686cde43da1310d5a0f1cd9a52d1",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "The server is online or the database is reachable, or both.",
+        "feedback": "OR requires at least one true statement; a biconditional requires matching truth values. In particular, both false satisfies the latter but not the former."
+      },
+      {
+        "id": "option-2",
+        "text": "The server is online if and only if the database is reachable.",
+        "feedback": "The biconditional requires the two statements to have the same truth value. It asserts both directions: an online server implies a reachable database, and a reachable database implies an online server. Both false also satisfies the biconditional."
+      },
+      {
+        "id": "option-3",
+        "text": "If the server is online, then the database is reachable.",
+        "feedback": "This includes only one direction. The double-headed arrow also requires the reverse implication."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 78,
+    "sourceHash": "06f1609e5bf3c836734558ae481d176a30dd905ebe2dc65a255b307ee09ab9d0",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Yes, it is a tautology.",
+        "feedback": "If the antecedent holds and p is true, the first implication forces q and the second forces r. Thus p implies r. If p is false, that conclusion is already true. If the antecedent fails, the outer implication is true. These cases cover every assignment."
+      },
+      {
+        "id": "option-2",
+        "text": "No, it is not a tautology.",
+        "feedback": "Try to make the outer implication false: both given implications would have to hold while p is true and r false. Follow the first implication to q and then the second to r; the proposed falsifying assignment cannot be completed."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 81,
+    "sourceHash": "448627ab2daf95be1116b01bf16da98853f89b57dd70844504f157c4282122fd",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Divisible by 12 is sufficient for divisible by 3; divisible by 3 is necessary for divisible by 12.",
+        "feedback": "Every multiple of 12 is a multiple of 3, so divisibility by 12 guarantees divisibility by 3. Divisibility by 3 is therefore a requirement for being divisible by 12, but not a guarantee: 3 itself is not divisible by 12."
+      },
+      {
+        "id": "option-2",
+        "text": "Divisible by 3 is sufficient for divisible by 12; divisible by 12 is necessary for divisible by 3.",
+        "feedback": "This reverses the guarantee. Test the integer 3: it meets divisibility by 3 without meeting divisibility by 12."
+      },
+      {
+        "id": "option-3",
+        "text": "Each condition is necessary and sufficient for the other.",
+        "feedback": "This would make the two conditions equivalent. A multiple of 3 need not be a multiple of 12, so only the stated forward guarantee holds."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 83,
+    "sourceHash": "a1a60cf0315ce6c6ab50f30a46dce1a5bbc488c8277e5f979d5be997c04dc187",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "p and q are each necessary and sufficient for the other.",
+        "feedback": "This asserts a biconditional, adding the reverse direction. A one-way implication alone does not support that extra guarantee."
+      },
+      {
+        "id": "option-2",
+        "text": "p is sufficient for q; q is necessary for p.",
+        "feedback": "The implication promises q whenever p holds, so p is enough to guarantee q. Equivalently, p cannot hold without q, which makes q required for p. These are two ways of describing the same one-way condition."
+      },
+      {
+        "id": "option-3",
+        "text": "q is sufficient for p; p is necessary for q.",
+        "feedback": "This describes the converse. The original implication does not promise p whenever q holds."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 84,
+    "sourceHash": "4ab1962cc20ad4141863779d1ee7bbe5a04b7eaf8b95fc0ce59144c83805341b",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p\\to q$",
+        "feedback": "Passing the final is required for completing the course: completion cannot occur without passing. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication."
+      },
+      {
+        "id": "option-2",
+        "text": "$q\\to p$",
+        "feedback": "Passing the final is required for completing the course: completion cannot occur without passing. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee."
+      },
+      {
+        "id": "option-3",
+        "text": "$p\\leftrightarrow q$",
+        "feedback": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 85,
+    "sourceHash": "97cb01267cac2379cbc2f611ba6b1507433934653a538ca22a1501b59cbb8fbc",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$q\\to p$",
+        "feedback": "Being divisible by 4 guarantees being even: whenever the divisibility condition holds, evenness follows. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee."
+      },
+      {
+        "id": "option-2",
+        "text": "$p\\leftrightarrow q$",
+        "feedback": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated."
+      },
+      {
+        "id": "option-3",
+        "text": "$p\\to q$",
+        "feedback": "Being divisible by 4 guarantees being even: whenever the divisibility condition holds, evenness follows. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 86,
+    "sourceHash": "1a890782ecc0b70b3ef2865c2b1eb001c777fd57e22b683a00a965d3f2ed1f3f",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p\\leftrightarrow q$",
+        "feedback": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated."
+      },
+      {
+        "id": "option-2",
+        "text": "$p\\to q$",
+        "feedback": "Admin permission is required for deletion: deletion cannot be allowed without permission. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication."
+      },
+      {
+        "id": "option-3",
+        "text": "$q\\to p$",
+        "feedback": "Admin permission is required for deletion: deletion cannot be allowed without permission. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 92,
+    "sourceHash": "6567ac5f40e4455420f0d8289fb9f19b5ece2b0611e174f30867071b790a1f75",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p\\leftrightarrow q$",
+        "feedback": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated."
+      },
+      {
+        "id": "option-2",
+        "text": "$p\\to q$",
+        "feedback": "“p only if q” makes q a requirement for p. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication."
+      },
+      {
+        "id": "option-3",
+        "text": "$q\\to p$",
+        "feedback": "“p only if q” makes q a requirement for p. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 93,
+    "sourceHash": "6f9d3322760da12fdcbf7bca12b2cbcbb52dab888dbb58547a59516f16f64e27",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$q\\to p$",
+        "feedback": "“p if q” means that q is the condition under which p is guaranteed. Thus q is the antecedent and p the required consequent. The statement does not establish the reverse implication."
+      },
+      {
+        "id": "option-2",
+        "text": "$p\\to q$",
+        "feedback": "“p if q” means that q is the condition under which p is guaranteed. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee."
+      },
+      {
+        "id": "option-3",
+        "text": "$p\\leftrightarrow q$",
+        "feedback": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 88,
+    "sourceHash": "31f66b647ca4029936e713d9bc855c5e766ad869cd4aa7b1aea04f113ef5f4dc",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Original and converse; inverse and contrapositive.",
+        "feedback": "Reversing an implication without negating both statements does not preserve its truth value. Test p true and q false to distinguish the original from the converse. Equivalence comes from reversing and negating together."
+      },
+      {
+        "id": "option-2",
+        "text": "Original and inverse; converse and contrapositive.",
+        "feedback": "Negating both statements without reversing the arrow produces the inverse, not an equivalent form. Compare the original and inverse when p is true and q is false."
+      },
+      {
+        "id": "option-3",
+        "text": "Original and contrapositive; converse and inverse.",
+        "feedback": "An implication $p\\to q$ is equivalent to its contrapositive $\\neg q\\to\\neg p$. Applying the same rule to the converse $q\\to p$ gives its contrapositive $\\neg p\\to\\neg q$, which is the inverse of the original. Thus the four forms split into these two equivalence pairs."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 91,
+    "sourceHash": "1cf3ea528a07c7badf3c9ebdf67673e16f20c052c57ffc802887cb05713c582e",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "If an integer is even, then it is divisible by 6.",
+        "feedback": "This treats a requirement as a guarantee in the reverse direction. The integer 2 is even without being divisible by 6."
+      },
+      {
+        "id": "option-2",
+        "text": "An integer is divisible by 6 if and only if it is even.",
+        "feedback": "This adds an unsupported reverse implication. The original sentence specifies a necessary condition, not a complete characterization."
+      },
+      {
+        "id": "option-3",
+        "text": "If an integer is divisible by 6, then it is even.",
+        "feedback": "Evenness is necessary for divisibility by 6, so divisibility by 6 cannot hold without evenness. The required condition belongs on the right of the implication. This does not assert that all even integers are divisible by 6."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 94,
+    "sourceHash": "35b7bfe1ad2adca0a606af5ea83f2151b8f33e32933212aaf75af672b5c7d98d",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$(p\\to q)\\lor(q\\to p)$",
+        "feedback": "OR asks for only one direction and is always true here: one of the two implications holds on every truth assignment. That is weaker than requiring matching truth values."
+      },
+      {
+        "id": "option-2",
+        "text": "$(p\\to q)\\land(p\\to q)$",
+        "feedback": "Repeating the same direction adds no reverse guarantee. The second implication must start from the other statement."
+      },
+      {
+        "id": "option-3",
+        "text": "$(p\\to q)\\land(q\\to p)$",
+        "feedback": "A biconditional asserts both one-way implications. AND is needed because neither direction is optional: p must imply q and q must imply p."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 112,
+    "sourceHash": "e9069b101e35688f358617a16cb560a7f3b2a8fae614a849a68c718d30e34ffa",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Modus ponens",
+        "feedback": "The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known."
+      },
+      {
+        "id": "option-2",
+        "text": "Modus tollens",
+        "feedback": "This rule fits a different premise pattern. The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-3",
+        "text": "Hypothetical syllogism",
+        "feedback": "This rule fits a different premise pattern. Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-4",
+        "text": "Disjunctive syllogism",
+        "feedback": "This rule fits a different premise pattern. The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true. Compare that pattern with the actual premises before naming the rule."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 113,
+    "sourceHash": "4930baa13d74032a81856ecf2224d3c1da07374b79892a19a3a0a7fd63317799",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Modus ponens",
+        "feedback": "This rule fits a different premise pattern. The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-2",
+        "text": "Hypothetical syllogism",
+        "feedback": "This rule fits a different premise pattern. Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-3",
+        "text": "Disjunctive syllogism",
+        "feedback": "This rule fits a different premise pattern. The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-4",
+        "text": "Modus tollens",
+        "feedback": "The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too."
+      }
+    ],
+    "correctOption": "option-4"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 114,
+    "sourceHash": "86abb274c93ae8d4f2ce9df79f565a9595058547fe915841125f81597b510937",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Modus tollens",
+        "feedback": "This rule fits a different premise pattern. The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-2",
+        "text": "Disjunctive syllogism",
+        "feedback": "This rule fits a different premise pattern. The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-3",
+        "text": "Hypothetical syllogism",
+        "feedback": "Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r."
+      },
+      {
+        "id": "option-4",
+        "text": "Modus ponens",
+        "feedback": "This rule fits a different premise pattern. The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known. Compare that pattern with the actual premises before naming the rule."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 115,
+    "sourceHash": "ec614da575e04292cffc232b6981ac549fefad0aad69cd5cc693ddec6cfea441",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Hypothetical syllogism",
+        "feedback": "This rule fits a different premise pattern. Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-2",
+        "text": "Disjunctive syllogism",
+        "feedback": "The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true."
+      },
+      {
+        "id": "option-3",
+        "text": "Modus ponens",
+        "feedback": "This rule fits a different premise pattern. The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known. Compare that pattern with the actual premises before naming the rule."
+      },
+      {
+        "id": "option-4",
+        "text": "Modus tollens",
+        "feedback": "This rule fits a different premise pattern. The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too. Compare that pattern with the actual premises before naming the rule."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 145,
+    "sourceHash": "e4a05c3307edd3aa42a9944e29a1823de2bc80f89f78c500cf3702273f9dccb8",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Tautology.",
+        "feedback": "Test p true and q false: the first implication fails. One falsifying assignment rules out tautology."
+      },
+      {
+        "id": "option-2",
+        "text": "Contradiction.",
+        "feedback": "Test both variables true, or both false. Both implications hold, so the conjunction is satisfiable and cannot be a contradiction."
+      },
+      {
+        "id": "option-3",
+        "text": "Contingency.",
+        "feedback": "The two implications together require p and q to agree. They are true when both are true or both false, and false when the values differ. Since some assignments satisfy the expression and others do not, it is contingent rather than always true or always false."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 6,
+    "sourceHash": "c4e842212cc4d530c8036427eac8381823a1b609ea25f9d62c364e913f13f2ec",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "x is bound; y is free.",
+        "feedback": "The universal quantifier binds x within its scope. It does not bind a different variable merely because that variable occurs inside the parentheses. No quantifier for y is present, so y remains free."
+      },
+      {
+        "id": "option-2",
+        "text": "x and y are both bound.",
+        "feedback": "A quantifier binds its named variable, not every variable in its scope. Check which letter follows the quantifier."
+      },
+      {
+        "id": "option-3",
+        "text": "x and y are both free.",
+        "feedback": "The displayed universal quantifier does bind the occurrences of its own variable inside the parentheses."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 8,
+    "sourceHash": "fd365f4226a1e568dc53f9afeafc9eb7d758c338fdfe7bd094f0ca6ce520b741",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Neither; both variables are bound.",
+        "feedback": "Quantifying x does not automatically quantify y. Each variable needs its own binding quantifier."
+      },
+      {
+        "id": "option-2",
+        "text": "y.",
+        "feedback": "The existential quantifier binds x within the relation. No quantifier binds y, so the truth of the expression can still depend on a supplied value for y."
+      },
+      {
+        "id": "option-3",
+        "text": "x.",
+        "feedback": "The quantifier explicitly names x, and the occurrence of x lies within its scope. That occurrence is bound."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 9,
+    "sourceHash": "7e30e9137db66f6580a441b99512f877ec35ce5ce3c8c6f5eda97216e6f6a792",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "The x in P(x) is bound; the x in Q(x) is free.",
+        "feedback": "The parentheses end the quantifier’s scope after P(x). Its occurrence of x is bound, but the same letter occurring in Q(x) lies outside that scope. Binding is a property of occurrences in a particular scope, not of a letter everywhere on the page."
+      },
+      {
+        "id": "option-2",
+        "text": "Both occurrences are bound.",
+        "feedback": "The quantifier’s scope ends at the closing parenthesis. It does not extend across the following AND into Q(x)."
+      },
+      {
+        "id": "option-3",
+        "text": "Both occurrences are free.",
+        "feedback": "The occurrence inside P(x) lies within the scope of the quantifier that names it. Only the later occurrence lies outside."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 21,
+    "sourceHash": "933647861141320afa866de4a56e7cea5db120fd339c9779272912974cb0b805",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\forall x\\,(S(x)\\to C(x))$",
+        "feedback": "Every person who is a student must own a computer. The implication restricts the requirement to students; it does not assert that everyone is a student."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\forall x\\,(S(x)\\land C(x))$",
+        "feedback": "AND would assert that every person is both a student and a computer owner. Check both the quantifier and the connective used to restrict the domain."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\forall x\\,(C(x)\\to S(x))$",
+        "feedback": "This reverses the restriction: it says that every computer owner is a student. Preserve the strength and scope of the original sentence."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 22,
+    "sourceHash": "0bedb609138e7a2905fdc6d5e52120e4abdb935743d5e92ad9e0dfae71980c7c",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\exists x\\,(S(x)\\to C(x))$",
+        "feedback": "An implication can be true for a nonstudent, so this does not ensure a student computer owner exists. Check both the quantifier and the connective used to restrict the domain."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\forall x\\,(S(x)\\to C(x))$",
+        "feedback": "This is a universal restriction and need not establish that any student exists. Preserve the strength and scope of the original sentence."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\exists x\\,(S(x)\\land C(x))$",
+        "feedback": "One and the same person must be a student and own a computer. The existential quantifier supplies that person, and AND requires both properties."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 23,
+    "sourceHash": "974518568e2d8dce77e1188785ec0077485118e281d40b7c907e019a6735f7c6",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\exists x\\,(S(x)\\land\\neg C(x))$",
+        "feedback": "One student without a computer does not rule out other students who own computers. Preserve the strength and scope of the original sentence."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\forall x\\,(S(x)\\to\\neg C(x))$",
+        "feedback": "Every student must fail to own a computer. Restricting the universal statement with an implication leaves nonstudents unrestricted and also allows the possibility that there are no students."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\forall x\\,(S(x)\\land\\neg C(x))$",
+        "feedback": "This additionally says everyone is a student, which the sentence does not claim. Check both the quantifier and the connective used to restrict the domain."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 24,
+    "sourceHash": "01400470c0833cab6be208bb8ea90db667643027f7499e7dc2eaf8cded9d2905",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\exists x\\,(S(x)\\land\\neg C(x))$",
+        "feedback": "There must be a person who satisfies both being a student and not owning a computer. The negation applies to ownership, not to the existence of the person."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\exists x\\,(S(x)\\to\\neg C(x))$",
+        "feedback": "A nonstudent can make this implication true without supplying the required student witness. Check both the quantifier and the connective used to restrict the domain."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\forall x\\,(S(x)\\to\\neg C(x))$",
+        "feedback": "This says no student owns a computer, a stronger claim than at least one student lacking one. Preserve the strength and scope of the original sentence."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 25,
+    "sourceHash": "4f21932a37bd4a6a8a4072f1359e94f192dd0af78b533801425a2b90fc6190b7",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\forall x\\,(S(x)\\to C(x))$",
+        "feedback": "This says every student owns a computer. It reverses what “only students” restricts. Check both the quantifier and the connective used to restrict the domain."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\forall x\\,(C(x)\\leftrightarrow S(x))$",
+        "feedback": "The reverse direction would additionally require every student to own a computer, which was not stated. Preserve the strength and scope of the original sentence."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\forall x\\,(C(x)\\to S(x))$",
+        "feedback": "“Only students own computers” makes being a student necessary for computer ownership. Every owner must therefore be a student; students who do not own computers are still allowed."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 26,
+    "sourceHash": "a9619e10efda132c2205f6c484e3cc7655bf11a57e5dfd15e7a5b5948dc92670",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\neg\\exists x\\,(S(x)\\land C(x))$",
+        "feedback": "This rules out all student computer owners, which is stronger than the original statement. Preserve the strength and scope of the original sentence."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\exists x\\,(S(x)\\land\\neg C(x))$",
+        "feedback": "“Not every” means at least one exception: a person who is a student but lacks a computer. Other students may still own computers."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\forall x\\,(S(x)\\to\\neg C(x))$",
+        "feedback": "This requires every student to lack a computer, rather than requiring just one exception. Check both the quantifier and the connective used to restrict the domain."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 27,
+    "sourceHash": "94d3f513cf0fb80fdd45e46979e46cc397e95a64482848f672d772439fcb3cf9",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\forall x\\,(S(x)\\land C(x))$",
+        "feedback": "Both properties are asserted of every person. AND retains both assertions inside the universal quantifier."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\forall x\\,(S(x)\\to C(x))$",
+        "feedback": "This leaves nonstudents unrestricted and does not require everyone to be a student. Check both the quantifier and the connective used to restrict the domain."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\exists x\\,(S(x)\\land C(x))$",
+        "feedback": "This supplies one person with both properties, not every person. Preserve the strength and scope of the original sentence."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 28,
+    "sourceHash": "ef6ca0b3f0fe9d1dfa6cfffbe95005fbde6b1ad24fa23d3b56f8f4d81a92519e",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\exists x\\,\\neg(S(x)\\land C(x))$",
+        "feedback": "Negating the conjunction only requires one property to fail. It does not force nonstudent status together with ownership. Check both the quantifier and the connective used to restrict the domain."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\exists x\\,(S(x)\\land\\neg C(x))$",
+        "feedback": "This swaps which property is negated, describing a student without a computer. Preserve the strength and scope of the original sentence."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\exists x\\,(\\neg S(x)\\land C(x))$",
+        "feedback": "The same witness must be a nonstudent and a computer owner. Here “but” has the truth-functional role of AND while emphasizing a contrast in ordinary language."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 29,
+    "sourceHash": "ca997b6825d9be846aa0c5cbd68eae47c647dffa90e3094460d6fa628594349c",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$\\exists x\\,(S(x)\\leftrightarrow C(x))$",
+        "feedback": "Agreement for one person is weaker than the stated general relationship for people. Preserve the strength and scope of the original sentence."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\forall x\\,(S(x)\\leftrightarrow C(x))$",
+        "feedback": "For every person, student status and computer ownership must agree. The biconditional includes both directions for that same person."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\forall x\\,(S(x)\\to C(x))$",
+        "feedback": "This omits the direction from computer ownership to student status. Check both the quantifier and the connective used to restrict the domain."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 30,
+    "sourceHash": "89c19ad127964b7abce950e6cec0a06127420663787fb6039d93fc448297e46b",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$(\\exists x\\,S(x))\\land\\forall y\\,(S(y)\\to C(y))$",
+        "feedback": "The sentence has two claims: at least one student exists, and every student owns a computer. The existential clause supplies existence; the universal clause supplies the restriction. Different bound-variable names make their independent scopes clear."
+      },
+      {
+        "id": "option-2",
+        "text": "$\\forall y\\,(S(y)\\to C(y))$",
+        "feedback": "The universal clause alone can be true when no students exist, so it drops the explicit existence claim. Check both the quantifier and the connective used to restrict the domain."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\exists x\\,(S(x)\\land C(x))$",
+        "feedback": "This guarantees a student computer owner but does not require the property of every student. Preserve the strength and scope of the original sentence."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 31,
+    "sourceHash": "5df4ee11c0499ae80492629849e7c0128e5ef5484881153b9dcf2ef4eb19ae77",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Every integer is positive and has a positive square.",
+        "feedback": "This changes the scope or strength of the quantifiers. The universal quantifier covers integers, and the implication restricts the square requirement to those that are positive. It does not assert that every integer is positive."
+      },
+      {
+        "id": "option-2",
+        "text": "Some positive integer has a positive square.",
+        "feedback": "This changes the property asserted in the formula. The universal quantifier covers integers, and the implication restricts the square requirement to those that are positive. It does not assert that every integer is positive."
+      },
+      {
+        "id": "option-3",
+        "text": "Every positive integer has a positive square.",
+        "feedback": "The universal quantifier covers integers, and the implication restricts the square requirement to those that are positive. It does not assert that every integer is positive."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 32,
+    "sourceHash": "de3d2094a28eba26557bbaa221d5c654b565e511d6d968004435ecd5fcc6f17e",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Some integer with square 4 is positive.",
+        "feedback": "This changes the property asserted in the formula. The existential quantifier asks for one integer satisfying both negativity and the specified square. Both conditions refer to the same integer."
+      },
+      {
+        "id": "option-2",
+        "text": "Some negative integer has square 4.",
+        "feedback": "The existential quantifier asks for one integer satisfying both negativity and the specified square. Both conditions refer to the same integer."
+      },
+      {
+        "id": "option-3",
+        "text": "Every negative integer has square 4.",
+        "feedback": "This changes the scope or strength of the quantifiers. The existential quantifier asks for one integer satisfying both negativity and the specified square. Both conditions refer to the same integer."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 33,
+    "sourceHash": "d73b707049eed86045c559cb10a1c0d8a2d243cb019fca4957a96fca4ae76eec",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Every integer has an integer one greater than it.",
+        "feedback": "For each n, an m is chosen afterward to equal n+1. The witness may depend on n, rather than being fixed for all n."
+      },
+      {
+        "id": "option-2",
+        "text": "There is one integer that is one greater than every integer.",
+        "feedback": "This changes the scope or strength of the quantifiers. For each n, an m is chosen afterward to equal n+1. The witness may depend on n, rather than being fixed for all n."
+      },
+      {
+        "id": "option-3",
+        "text": "Some integer has no larger integer.",
+        "feedback": "This changes the property asserted in the formula. For each n, an m is chosen afterward to equal n+1. The witness may depend on n, rather than being fixed for all n."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 34,
+    "sourceHash": "7ce1208413cd190514ca6fbc98ccaa8456d27ea62d49a9b467cd28b77ab8e539",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Every integer has an integer at least as large as it.",
+        "feedback": "This changes the scope or strength of the quantifiers. The existential choice of m comes first, so one fixed m must dominate all n. This translates the statement even though the claim is false for integers; translating and judging truth are separate tasks."
+      },
+      {
+        "id": "option-2",
+        "text": "Every integer is at least as large as every other integer.",
+        "feedback": "This changes the property asserted in the formula. The existential choice of m comes first, so one fixed m must dominate all n. This translates the statement even though the claim is false for integers; translating and judging truth are separate tasks."
+      },
+      {
+        "id": "option-3",
+        "text": "There is an integer at least as large as every integer.",
+        "feedback": "The existential choice of m comes first, so one fixed m must dominate all n. This translates the statement even though the claim is false for integers; translating and judging truth are separate tasks."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 35,
+    "sourceHash": "3fe2d9855f1ed3e39b7b0b633a5112e37ac69d98966f6dff547091305daae79f",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "There is a request to which every worker is assigned.",
+        "feedback": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-2",
+        "text": "Every request has at least one assigned worker; the worker may vary by request.",
+        "feedback": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. The order of the quantifiers determines which choice can depend on which variable."
+      },
+      {
+        "id": "option-3",
+        "text": "There is a worker assigned to every request.",
+        "feedback": "One worker must be selected before considering all requests; the same worker must be assigned to each request. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-4",
+        "text": "Every worker is assigned to at least one request.",
+        "feedback": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 36,
+    "sourceHash": "b667b05be3b1b44b9961c4953984125b8570a29361066c9c09b14c19eb98040e",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "There is a worker assigned to every request.",
+        "feedback": "One worker must be selected before considering all requests; the same worker must be assigned to each request. The order of the quantifiers determines which choice can depend on which variable."
+      },
+      {
+        "id": "option-2",
+        "text": "Every request has at least one assigned worker; the worker may vary by request.",
+        "feedback": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-3",
+        "text": "Every worker is assigned to at least one request.",
+        "feedback": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-4",
+        "text": "There is a request to which every worker is assigned.",
+        "feedback": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 37,
+    "sourceHash": "2036eb7f90199069c6375a3e9663cb350d561477cc1337fb8339157ab51965bd",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Every request has at least one assigned worker; the worker may vary by request.",
+        "feedback": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-2",
+        "text": "There is a worker assigned to every request.",
+        "feedback": "One worker must be selected before considering all requests; the same worker must be assigned to each request. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-3",
+        "text": "There is a request to which every worker is assigned.",
+        "feedback": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-4",
+        "text": "Every worker is assigned to at least one request.",
+        "feedback": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. The order of the quantifiers determines which choice can depend on which variable."
+      }
+    ],
+    "correctOption": "option-4"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 38,
+    "sourceHash": "44a0bd16012bfd4263e89e091c195dce9345f316640baf448827c55e0f833a66",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "There is a worker assigned to every request.",
+        "feedback": "One worker must be selected before considering all requests; the same worker must be assigned to each request. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-2",
+        "text": "Every worker is assigned to at least one request.",
+        "feedback": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      },
+      {
+        "id": "option-3",
+        "text": "There is a request to which every worker is assigned.",
+        "feedback": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. The order of the quantifiers determines which choice can depend on which variable."
+      },
+      {
+        "id": "option-4",
+        "text": "Every request has at least one assigned worker; the worker may vary by request.",
+        "feedback": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 39,
+    "sourceHash": "0d6fb16f4cc9aec5d0d531a639d8031c9dad37f1a03d63126f527dadd3824c2a",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Everyone likes someone other than themself.",
+        "feedback": "For each person x, the formula asks for a person y who differs from x and whom x likes. The two requirements apply to the same chosen y; different people may like different witnesses."
+      },
+      {
+        "id": "option-2",
+        "text": "There is one person whom everyone likes.",
+        "feedback": "This fixes the liked person before considering everyone else, whereas the displayed existential choice comes after each x."
+      },
+      {
+        "id": "option-3",
+        "text": "Everyone likes themself.",
+        "feedback": "The inequality explicitly requires the chosen y to differ from x."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 40,
+    "sourceHash": "fd38f36e8c59387f9d2073119f91858418162f7f9d49d85d1c181028b285db2a",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "There is a person who likes everyone.",
+        "feedback": "This switches the two arguments of the relation. L(x,y) says x likes y, so a fixed second argument is the person receiving the liking."
+      },
+      {
+        "id": "option-2",
+        "text": "Everyone likes at least one person, possibly different people.",
+        "feedback": "This allows the existential choice to depend on each person. The displayed order instead requires one common choice."
+      },
+      {
+        "id": "option-3",
+        "text": "There is a person whom everyone likes.",
+        "feedback": "The existential quantifier chooses the second argument of L first. Every x must like that one fixed person y. The formula describes a universally liked person, not a person who likes everyone."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 78,
+    "sourceHash": "d433be550cc5367f64ec586abb929368378b2a4ddc0e753d508582dc5fe460b6",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "It follows for a nonempty domain; it can fail for an empty domain.",
+        "feedback": "A universal claim supplies the property for every available element. If at least one element exists, that element witnesses existence. In an empty domain the universal is vacuously true while the existential is false, so nonemptiness is essential."
+      },
+      {
+        "id": "option-2",
+        "text": "It follows for every domain, including an empty domain.",
+        "feedback": "An empty domain has no possible witness. Evaluate the existential and universal statements separately in that case."
+      },
+      {
+        "id": "option-3",
+        "text": "It never follows, even on a nonempty domain.",
+        "feedback": "With a nonempty domain, select any element; the universal premise supplies the required property for it."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 2,
+    "sourceHash": "166130a42f3193e0f1764ab5f327a2913a9317bd9bd752fd83f5172993594337",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "No; both have cardinality 3.",
+        "feedback": "The distinct elements do match, and changing their written order does not change the set. Equal membership is exactly the condition for set equality."
+      },
+      {
+        "id": "option-2",
+        "text": "Yes; both have cardinality 3.",
+        "feedback": "Sets record membership without order or repeated copies. Both displays contain exactly the elements 1, 2, and 3, so they are equal and have three elements."
+      },
+      {
+        "id": "option-3",
+        "text": "No; the first has cardinality 4 and the second 3.",
+        "feedback": "This counts repeated written occurrences rather than distinct set elements. Repeating 1 does not create another element."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 6,
+    "sourceHash": "1cdce5d84ae3c053e270e648ca09812612c3b511300805f4506c48af93e167fe",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "The first and second statements hold; the third does not.",
+        "feedback": "Every element of A belongs to B, and B additionally contains 2. Thus A is both a subset and a proper subset of B, but B is not a subset of A. A proper subset also satisfies the ordinary subset condition."
+      },
+      {
+        "id": "option-2",
+        "text": "Only the first statement holds.",
+        "feedback": "B contains an additional element, so the inclusion is proper as well as ordinary. Check the element 2."
+      },
+      {
+        "id": "option-3",
+        "text": "All three statements hold.",
+        "feedback": "The reverse inclusion would require 2 to belong to A, which it does not."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "relations",
+    "id": 2,
+    "sourceHash": "f9f3882f462cadc31f845ffea128a5084b2d900971bb3b801a4c759e6819ecd0",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Only 1Ru holds.",
+        "feedback": "Input 2 is allowed to be related to more than one object: both (2,v) and (2,w) are listed. A relation need not be a function."
+      },
+      {
+        "id": "option-2",
+        "text": "1Ru and 2Rw hold; 1Rv does not.",
+        "feedback": "A relation statement holds exactly when its ordered pair appears in the relation. The pairs (1,u) and (2,w) are listed, but (1,v) is absent. Sharing an input or output with another listed pair does not create extra pairs."
+      },
+      {
+        "id": "option-3",
+        "text": "All three hold.",
+        "feedback": "The relation contains (2,v), not (1,v). Ordered pairs must match in both positions."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "relations",
+    "id": 18,
+    "sourceHash": "19bd68d1b982766e6262fa798d5f116eda998ff5445f2c66bfa33fdc89c79b90",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Antisymmetric only.",
+        "feedback": "The two opposite pairs between 1 and 2 already violate antisymmetry, regardless of other pairs."
+      },
+      {
+        "id": "option-2",
+        "text": "Both symmetric and antisymmetric.",
+        "feedback": "Check all required reverse pairs for symmetry and all opposite pairs between distinct elements for antisymmetry. There is a separate failure of each here."
+      },
+      {
+        "id": "option-3",
+        "text": "Neither symmetric nor antisymmetric.",
+        "feedback": "Symmetry fails because (2,3) is present but (3,2) is absent. Antisymmetry fails because the distinct elements 1 and 2 are related in both directions. These properties are not logical opposites; each has its own condition to check."
+      },
+      {
+        "id": "option-4",
+        "text": "Symmetric only.",
+        "feedback": "One reversed pair is not enough to establish symmetry. The pair (2,3) also needs its reverse."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "relations",
+    "id": 29,
+    "sourceHash": "730b5e52b9178a9e3a12dafd8db8bc20f7751868e185d674160ffdec7a8ae78b",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "None holds.",
+        "feedback": "An empty relation on an empty set has no tuple that violates any of the universally quantified conditions. Distinguish having no examples from having a counterexample."
+      },
+      {
+        "id": "option-2",
+        "text": "All four properties hold.",
+        "feedback": "Each condition quantifies over elements or tuples from the underlying set. Here none exist, so there is no possible violation of reflexivity, symmetry, antisymmetry, or transitivity. In particular, reflexivity does not require inventing an element of an empty set."
+      },
+      {
+        "id": "option-3",
+        "text": "Symmetry, antisymmetry, and transitivity hold, but reflexivity fails.",
+        "feedback": "Reflexivity requires a self-pair for every existing element. On the empty underlying set there is no missing self-pair to witness a failure."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "relations",
+    "id": 31,
+    "sourceHash": "f7e5168b3b132b4907f75d796cc882de042101a889616f0994f964d03541594c",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Only 1R9 holds.",
+        "feedback": "The difference between −3 and 5 is also −8. A negative input does not prevent its difference from being divisible by 4."
+      },
+      {
+        "id": "option-2",
+        "text": "All three hold.",
+        "feedback": "Check 2−7: it is −5, not a multiple of 4. The condition concerns divisibility of the difference, not merely the size of the two numbers."
+      },
+      {
+        "id": "option-3",
+        "text": "1R9 and −3R5 hold; 2R7 does not.",
+        "feedback": "The first and third differences are both −8, a multiple of 4. The second difference is −5, which is not a multiple of 4. Negative multiples count just as positive multiples do in integer divisibility."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "relations",
+    "id": 44,
+    "sourceHash": "7025593b445987df9e519ad8937b965145afa91f5805b4920c6d5f484997e645",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Minimal and least element: 6.",
+        "feedback": "The numbers 2 and 3 divide 6, placing 6 above them in this order, not below them."
+      },
+      {
+        "id": "option-2",
+        "text": "Minimal elements: 2 and 3. No least element.",
+        "feedback": "Neither 2 nor 3 has a different element of this set dividing it, so both are minimal. But neither divides the other, so neither lies below every element. Minimal means no smaller competitor; least means below all elements."
+      },
+      {
+        "id": "option-3",
+        "text": "Minimal and least element: 2.",
+        "feedback": "Numerical size is not the order here. The number 2 does not divide 3, so it is not below every element."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "relations",
+    "id": 45,
+    "sourceHash": "d3a5109404f894eb642478d3e5f15ec5af3919e40e7286dddf946bb1653990a9",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Maximal elements: 2 and 3. No greatest element.",
+        "feedback": "Neither 2 nor 3 divides a distinct larger element within this set, so both are maximal. They are incomparable with each other, so no element is above every element. Ordinary numerical maximum is not the same as greatest under divisibility."
+      },
+      {
+        "id": "option-2",
+        "text": "Maximal and greatest element: 3.",
+        "feedback": "Although 3 is numerically largest, 2 does not divide it. Therefore 3 is not above every element in the specified order."
+      },
+      {
+        "id": "option-3",
+        "text": "Maximal and greatest element: 1.",
+        "feedback": "One divides the other elements and is therefore below them, not above them."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "functions",
+    "id": 36,
+    "sourceHash": "a8e74bf98c02c8792a1b3c53025e74679751086c70fa44617255c4437e1fe056",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Surjectivity is lost; injectivity remains.",
+        "feedback": "The restricted rule still sends different inputs to different outputs. But its outputs now lie only between 0 and 1, so it misses real targets such as 2 in the unchanged codomain. Restricting inputs cannot create a collision, but it can remove coverage."
+      },
+      {
+        "id": "option-2",
+        "text": "Injectivity is lost; surjectivity remains.",
+        "feedback": "The restricted identity rule still has no collisions, and targets outside the restricted interval are no longer reached."
+      },
+      {
+        "id": "option-3",
+        "text": "Both properties are lost.",
+        "feedback": "Missing outputs affect surjectivity. They do not make two distinct allowed inputs share an output."
+      },
+      {
+        "id": "option-4",
+        "text": "Neither property is lost.",
+        "feedback": "The codomain is still all real numbers. Check whether a target such as 2 has an allowed input after the restriction."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "functions",
+    "id": 70,
+    "sourceHash": "e0691e98169a55299582c26b98a4a1dfa852fd10f0b645bcbebcb9a7551b8cc8",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Both injective and surjective.",
+        "feedback": "Surjectivity does hold, but adjacent inputs 2k and 2k+1 share an output. That rules out injectivity."
+      },
+      {
+        "id": "option-2",
+        "text": "Neither injective nor surjective.",
+        "feedback": "Collisions occur, but a collision does not imply a missed target. Each nonnegative target k is reached at 2k."
+      },
+      {
+        "id": "option-3",
+        "text": "Surjective but not injective.",
+        "feedback": "Every target k is reached by the allowed input 2k. However, 2k and 2k+1 both have floor of half equal to k, producing collisions. Thus output coverage is complete even though inputs are not uniquely recoverable."
+      },
+      {
+        "id": "option-4",
+        "text": "Injective but not surjective.",
+        "feedback": "Try the two inputs 0 and 1 to check injectivity. For an arbitrary target k, try the input 2k to check surjectivity."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 6,
+    "sourceHash": "dfa9cf93d29e22bdd0e5f270bdb14a412ce371fd5d23cbf7f80fc61bb91d130f",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Prove $A\\subseteq B$ and $B\\subseteq A$.",
+        "feedback": "The first inclusion shows A has no elements outside B; the second shows B has no elements outside A. Together they establish exactly the same membership, which is set equality. In each direction, start with an arbitrary element of the set on the left."
+      },
+      {
+        "id": "option-2",
+        "text": "Prove only $A\\subseteq B$.",
+        "feedback": "One inclusion allows B to contain extra elements, so it does not establish equality. Both directions are needed."
+      },
+      {
+        "id": "option-3",
+        "text": "Prove that A and B share at least one element.",
+        "feedback": "Overlapping sets can have different members. One shared element does not establish that all membership agrees."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 8,
+    "sourceHash": "3e9b209e112a9c72a64bc0aa87ea0b1cf72e3c6c2ec03081a57dd901251c2941",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$ab=4t$ for some real $t$.",
+        "feedback": "Allowing an arbitrary real witness makes the equation too weak: any real product could be divided by 4. Integer divisibility requires an integer witness."
+      },
+      {
+        "id": "option-2",
+        "text": "$ab=4t$ for some integer $t$.",
+        "feedback": "Divisibility by 4 means being 4 times an integer. The goal must concern the product ab and use an integer witness. Establishing this equation with an integer t completes that divisibility claim."
+      },
+      {
+        "id": "option-3",
+        "text": "$ab=2t$ for some integer $t$.",
+        "feedback": "This proves only that the product is even. Divisibility by 4 asks for a stronger factor-of-4 representation."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 3,
+    "sourceHash": "463212566f31e08fbfdd5e0846f55b320a6c659faf4fddb0196774c80c03535d",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "If an integer is odd, then it is not divisible by 4.",
+        "feedback": "Negate the original conclusion, evenness, and use it as the new hypothesis. Within integers that means oddness. The new conclusion negates divisibility by 4. Both reversing and negating are required."
+      },
+      {
+        "id": "option-2",
+        "text": "If an integer is even, then it is divisible by 4.",
+        "feedback": "This is the converse, reversing the original without negating. It is not the contrapositive."
+      },
+      {
+        "id": "option-3",
+        "text": "If an integer is not divisible by 4, then it is odd.",
+        "feedback": "This is the inverse: it negates both conditions but leaves them in their original order."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 4,
+    "sourceHash": "cd4a69bd42272b2124987455aca354bd7c827e0d1b660ed76f97cc16ed424d55",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "If the real number is irrational, then its square is irrational.",
+        "feedback": "This reverses the original claim without negating the two conditions, producing the converse."
+      },
+      {
+        "id": "option-2",
+        "text": "If its square is rational, then the real number is rational.",
+        "feedback": "This negates the original conditions without reversing them, producing the inverse."
+      },
+      {
+        "id": "option-3",
+        "text": "If the real number is rational, then its square is rational.",
+        "feedback": "The original conclusion concerns the number itself. Negating that conclusion makes rationality of the number the starting condition. The new conclusion negates irrationality of its square. Both negations remain within the real-number domain."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 1,
+    "sourceHash": "3fd5ea6bbdf8d52faa1dc55574b0fb2d3ace396474fca7ccb8812c547e093765",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Prove P(0); assume P(k) and prove P(k+1) only for k ≥ 3.",
+        "feedback": "A base at zero cannot reach 3 if the supplied step does not apply at the intervening indices. Start at the claimed first case."
+      },
+      {
+        "id": "option-2",
+        "text": "Prove P(3); assume P(k+1) and prove P(k).",
+        "feedback": "This runs the step backward. It does not extend the base at 3 to larger indices."
+      },
+      {
+        "id": "option-3",
+        "text": "Prove P(3); for each integer k ≥ 3, assume P(k) and prove P(k+1).",
+        "feedback": "The base starts the chain at the first claimed index. The step must work at every later allowed index, using the current case to establish the next. Neither a starting case outside the claimed chain nor assuming the desired next case supplies these obligations."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 7,
+    "sourceHash": "227650a86217557039f3b99badcf8a6ec464cfe5eaa21aee021646663d0ec0f6",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "All nonnegative indices.",
+        "feedback": "The step advances by two, so it skips a parity class. Trace the first few indices reached from zero."
+      },
+      {
+        "id": "option-2",
+        "text": "Only index 0.",
+        "feedback": "The valid step does extend the base, but only to indices two units farther along each time."
+      },
+      {
+        "id": "option-3",
+        "text": "Only the even nonnegative indices.",
+        "feedback": "Starting at 0 and adding 2 repeatedly reaches 2, 4, 6, and so on. The step never changes parity, so it cannot reach an odd index from this base. An odd starting case would be needed to seed a separate odd chain."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 4,
+    "sourceHash": "3e4f243594722aca40223e642be7add2a2f41fe6a258409dfb20b16bce984a67",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Every subset of the nonnegative integers, including the empty set, has a least element.",
+        "feedback": "The empty set contains no candidate for a least element. Nonemptiness is essential."
+      },
+      {
+        "id": "option-2",
+        "text": "Every nonempty subset of the real numbers has a least element.",
+        "feedback": "This changes the domain. For example, the positive real numbers have no least member, since half of any member is still positive and smaller."
+      },
+      {
+        "id": "option-3",
+        "text": "Every nonempty subset of the nonnegative integers has a least element.",
+        "feedback": "Both restrictions matter: a nonempty set provides candidates, and nonnegative integers cannot descend indefinitely. The least element must belong to the chosen subset and be no larger than any other member."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 35,
+    "sourceHash": "ff5250ac2d66cf15f3315e348db5c843e54eadde4d6b682a2a179ae4cde7cef1",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Neither strongly nor weakly connected.",
+        "feedback": "After ignoring directions, the displayed edges do connect all three vertices. Thus at least weak connectivity holds."
+      },
+      {
+        "id": "option-2",
+        "text": "Weakly connected but not strongly connected.",
+        "feedback": "Ignoring directions leaves a connected three-vertex path. But the directed chain cannot be traversed backward, so the last vertex cannot reach the first. This gives weak connectivity without strong connectivity."
+      },
+      {
+        "id": "option-3",
+        "text": "Both strongly and weakly connected.",
+        "feedback": "There is no directed route from the final vertex back to the first. Undirected connectivity does not supply a missing directed path."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 36,
+    "sourceHash": "86214a25f980e53fe0c2c6d70a1dce0d8b8e869b4115f0ec0167a7bfd2bcd0eb",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "Both strongly and weakly connected.",
+        "feedback": "Following the directed cycle reaches every vertex from any other vertex, establishing strong connectivity. Ignoring the directions leaves a connected graph as well, so weak connectivity also holds."
+      },
+      {
+        "id": "option-2",
+        "text": "Weakly connected but not strongly connected.",
+        "feedback": "The arrows form a cycle, so following them eventually reaches any chosen vertex from any starting vertex. Check all ordered reachability requirements."
+      },
+      {
+        "id": "option-3",
+        "text": "Neither strongly nor weakly connected.",
+        "feedback": "After ignoring directions, the displayed edges do connect all three vertices. Thus at least weak connectivity holds."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 15,
+    "sourceHash": "47ed5b71909d6a44d0456f1e47fd446b8f279d8ec45c3eeb26bb72231b0628ad",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "No isolated vertex; e is the only degree-1 vertex.",
+        "feedback": "The degrees are 2, 2, 3, 2, and 1 for a through e. Every vertex has at least one incident edge, so none is isolated, and only e has exactly one connection. Count edges at each endpoint rather than counting its written appearances in the vertex list."
+      },
+      {
+        "id": "option-2",
+        "text": "e is isolated; d is the only degree-1 vertex.",
+        "feedback": "The edge between d and e gives e degree 1, not 0. Vertex d is also connected to c, giving it a second incident edge."
+      },
+      {
+        "id": "option-3",
+        "text": "No isolated vertex; d and e both have degree 1.",
+        "feedback": "Vertex d has two incident edges, one to c and one to e. Only the terminal vertex has a single incident edge."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 6,
+    "sourceHash": "afa93196878eed67f817312f1bb22f97cb1baba3cfb4976fd04c57737a7ec829",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "The complete graph on five vertices, with 10 edges.",
+        "feedback": "A vertex of degree 4 is adjacent to every other vertex among the five. Since all vertices have that degree, every possible pair is an edge. Summing degrees gives 20 endpoint incidences, and each edge contributes two, leaving 10 edges."
+      },
+      {
+        "id": "option-2",
+        "text": "The complete graph on five vertices, with 20 edges.",
+        "feedback": "The structural description is right, but summing degrees counts both endpoints of each undirected edge. Divide the total by two."
+      },
+      {
+        "id": "option-3",
+        "text": "A five-vertex cycle, with 5 edges.",
+        "feedback": "In a simple cycle each vertex has degree 2, not 4. The stated degrees require more connections."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 10,
+    "sourceHash": "d81522775821d05dee39de07767c6bb4cf753255d8c8b33869162c9ad2ddc55d",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "The eigenspace is the entire plane; zero is also an eigenvector.",
+        "feedback": "Zero does satisfy the eigenspace equation, but eigenvectors are explicitly required to be nonzero. Distinguish the space from its eligible eigenvectors."
+      },
+      {
+        "id": "option-2",
+        "text": "Only the two coordinate axes belong to the eigenspace.",
+        "feedback": "The matrix scales both components by the same factor, so a vector with two nonzero components is also multiplied by 3. The property is not limited to coordinate-axis vectors."
+      },
+      {
+        "id": "option-3",
+        "text": "The eigenspace is the entire plane; all its nonzero vectors are eigenvectors.",
+        "feedback": "The matrix multiplies every vector by 3, so every vector satisfies the eigenspace equation for eigenvalue 3. The zero vector belongs to that solution space but is excluded from the definition of eigenvector."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 16,
+    "sourceHash": "94f85affeeb3cac4b07b56b2472760c72436be3d50707af2db7fce6e4565bbb5",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "A circle of radius 5; greatest and least length both 5.",
+        "feedback": "The two coordinate directions are scaled by different factors, so the image does not remain a circle."
+      },
+      {
+        "id": "option-2",
+        "text": "An ellipse with horizontal semiaxis 2 and vertical semiaxis 5; greatest length 5 and least length 2.",
+        "feedback": "The length bounds are right, but the axes are swapped. The first diagonal entry acts on the horizontal coordinate, and the second on the vertical coordinate."
+      },
+      {
+        "id": "option-3",
+        "text": "An ellipse with horizontal semiaxis 5 and vertical semiaxis 2; greatest length 5 and least length 2.",
+        "feedback": "The diagonal map scales the horizontal coordinate by 5 and the vertical coordinate by 2. Applying it to the unit circle gives those ellipse semiaxes. Unit inputs along the horizontal and vertical axes attain the maximum and minimum output lengths respectively."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 95,
+    "sourceHash": "6934b23dbc5e8b9cc7dc19f1da17f019d63ca80bf485267965c803abbfdd42f8",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      },
+      {
+        "id": "option-2",
+        "text": "$p$; double negation.",
+        "feedback": "Negating a truth value twice returns the original truth value. This is the double negation law, so the named rule and the simplified expression both match."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\neg p$; double negation.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 96,
+    "sourceHash": "5a8638c3ad17ae24d054d7a01867a7708a572235a2fc765c272dc2dfad6c8e1d",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p$; identity.",
+        "feedback": "AND with true leaves the other input unchanged: both are true exactly when p is true. This is the identity law, so the named rule and the simplified expression both match."
+      },
+      {
+        "id": "option-2",
+        "text": "$T$; identity.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      },
+      {
+        "id": "option-3",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 97,
+    "sourceHash": "c81f7db8f394e4e4ecec9b25d50e4b3b2b1004e3da45492201e27851ea7b2a03",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$F$; identity.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      },
+      {
+        "id": "option-2",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      },
+      {
+        "id": "option-3",
+        "text": "$p$; identity.",
+        "feedback": "OR with false leaves the other input unchanged: the false input cannot make the disjunction true. This is the identity law, so the named rule and the simplified expression both match."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 98,
+    "sourceHash": "0a0d32751b832deadaea818e096186234e70c4d1df7ea74d9c73d09e035f1839",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$T$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      },
+      {
+        "id": "option-2",
+        "text": "$T$; domination.",
+        "feedback": "One true input is enough for OR, regardless of the truth value of p. This is the domination law, so the named rule and the simplified expression both match."
+      },
+      {
+        "id": "option-3",
+        "text": "$p$; domination.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 99,
+    "sourceHash": "e10364f07452df57d676400e5aa3d03f9c1bc1b6a975c53d4eea351fb777e25e",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$F$; domination.",
+        "feedback": "One false input makes AND false, regardless of the truth value of p. This is the domination law, so the named rule and the simplified expression both match."
+      },
+      {
+        "id": "option-2",
+        "text": "$p$; domination.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      },
+      {
+        "id": "option-3",
+        "text": "$F$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 100,
+    "sourceHash": "365b8b3053ca5b08808435f5af9ac1f21354730cd1db61b5969f96c0734ab6a1",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$T$; idempotence.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      },
+      {
+        "id": "option-2",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      },
+      {
+        "id": "option-3",
+        "text": "$p$; idempotence.",
+        "feedback": "Repeating the same input in OR adds no new possibility for truth. This is the idempotence law, so the named rule and the simplified expression both match."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 101,
+    "sourceHash": "c694d997dde1dd50ad32bf13e5867d221b8d34ce286c3e55c90e4f60bbaccca3",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      },
+      {
+        "id": "option-2",
+        "text": "$p$; idempotence.",
+        "feedback": "Requiring the same statement twice in AND adds no new condition. This is the idempotence law, so the named rule and the simplified expression both match."
+      },
+      {
+        "id": "option-3",
+        "text": "$F$; idempotence.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 102,
+    "sourceHash": "c35d0c47ecb6939c9cd40b51776040f3233f57e287ce73725f0563ff9a2fa3d0",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p$; absorption.",
+        "feedback": "If p is true, the outer OR is true; if p is false, both its inputs are false. The extra conjunction cannot change the result. This is the absorption law, so the named rule and the simplified expression both match."
+      },
+      {
+        "id": "option-2",
+        "text": "$q$; absorption.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      },
+      {
+        "id": "option-3",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 103,
+    "sourceHash": "919b3129b804840c00ca1c9ce7d7c104fc9e34ab0622d1e4b58e64feaa57a8ff",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$q$; absorption.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      },
+      {
+        "id": "option-2",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      },
+      {
+        "id": "option-3",
+        "text": "$p$; absorption.",
+        "feedback": "If p is false, the outer AND is false; if p is true, the inner OR is true too. The extra disjunction cannot change the result. This is the absorption law, so the named rule and the simplified expression both match."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 104,
+    "sourceHash": "aa4fdbe2d6cfc5e0f17bff0b3121cd89e2ac829d4d3dd5c82a75731f08aa0d24",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p\\land q\\land r$; associative law.",
+        "feedback": "This would require q and r simultaneously. The original needs at least one of them; associativity cannot replace OR with AND."
+      },
+      {
+        "id": "option-2",
+        "text": "$(p\\land q)\\lor(p\\land r)$; distributive law.",
+        "feedback": "AND distributes over OR: p is required along either branch, and either q or r may supply the other condition. Copy p into both groups and keep OR between the groups."
+      },
+      {
+        "id": "option-3",
+        "text": "$(p\\lor q)\\land(p\\lor r)$; distributive law.",
+        "feedback": "This swaps the operators instead of distributing the original AND. For example, if p is false and q and r are true, this choice is true while the original is false."
+      }
+    ],
+    "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 105,
+    "sourceHash": "dd4fcf1df5212b1b19bdb858810670f006c7e25d60007af3e6b940ed4d27a0fc",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$(p\\lor q)\\land(p\\lor r)$; distributive law.",
+        "feedback": "OR distributes over AND. If p is true, both new groups are true; if p is false, they require q and r respectively. These are exactly the original alternatives."
+      },
+      {
+        "id": "option-2",
+        "text": "$(p\\land q)\\lor(p\\land r)$; distributive law.",
+        "feedback": "This makes p mandatory. The original can be true with p false when both q and r are true."
+      },
+      {
+        "id": "option-3",
+        "text": "$p\\lor q\\lor r$; associative law.",
+        "feedback": "This lets q alone suffice when p and r are false. The original requires q and r together in that situation."
+      }
+    ],
+    "correctOption": "option-1"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 106,
+    "sourceHash": "5779115be9ed9207bb9e4d99912b2a0c7ca04702cf2446ae6328bfb68b82fbe7",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$(p\\to q)\\lor(q\\to p)$; definition of the biconditional.",
+        "feedback": "OR allows just one direction. Indeed at least one of these implications is always true, even when p and q disagree."
+      },
+      {
+        "id": "option-2",
+        "text": "$p\\to q$; implication law.",
+        "feedback": "This omits the reverse condition. A biconditional requires both directions, not just the displayed one-way implication."
+      },
+      {
+        "id": "option-3",
+        "text": "$(p\\to q)\\land(q\\to p)$; definition of the biconditional.",
+        "feedback": "If and only if requires both implications. One direction makes q necessary for p, and the other makes p necessary for q, so their truth values must agree."
+      }
+    ],
+    "correctOption": "option-3"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 107,
+    "sourceHash": "9c7a3ce8e0f2fe75c09fba0d358a2bef3ee0d12926cb9a25d9de0bd5599fb9f2",
+    "rationale": "The complete response is a finite translation, classification, or named relationship; the options preserve every requested part.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$(p\\land\\neg q)\\lor(q\\land\\neg p)$; distributive law.",
+        "feedback": "This describes exactly one true input, so it expresses disagreement. The biconditional expresses agreement."
+      },
+      {
+        "id": "option-2",
+        "text": "$(\\neg p\\lor q)\\land(\\neg q\\lor p)$; biconditional definition followed by implication rewriting.",
+        "feedback": "First express the biconditional as both directional implications. Then replace each implication by NOT its antecedent OR its consequent. The AND remains because both directions are required."
+      },
+      {
+        "id": "option-3",
+        "text": "$(\\neg p\\lor q)\\lor(\\neg q\\lor p)$; biconditional definition followed by implication rewriting.",
+        "feedback": "Each directional rewrite is correct, but their connection must still require both directions. OR makes this expression true even when p and q differ."
+      }
+    ],
+    "correctOption": "option-2"
   }
 ]

@@ -157,7 +157,13 @@ export async function inspectTexTeaching(requireComplete = false) {
         if (!ids.has(id)) failures.push(key + ': unknown ' + id);
         if (!introduced.has(id)) failures.push(key + ': exercise before syntax ' + id);
       }
-      if (requireComplete && (record.status !== 'verified' || record.hash !== fingerprint(q)))
+      // The inspection pins the authored question. Publication adds choice grading
+      // (independently pinned and validated in choice-exercises.ts) and check IDs.
+      const { choice, exerciseId, ...authoredQuestion } = q;
+      if (
+        requireComplete &&
+        (record.status !== 'verified' || record.hash !== fingerprint(authoredQuestion))
+      )
         failures.push(key + ': manual audit missing or stale');
     }
   }

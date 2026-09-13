@@ -895,5 +895,835 @@
       "option-2": "The rank is three. Each positive singular value corresponds to one independent direction that survives the transformation, while zero singular values contribute none to the image. Thus counting positive singular values gives the rank. Additional zero values or unused rectangular dimensions do not change that count.",
       "option-3": "The number of rows only limits how large the rank can be; it does not determine the rank by itself. Count the independent directions retained by the positive singular values rather than all available output coordinates."
     }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 9,
+    "sourceHash": "3a0a31e50f97800e189fcc1657818f7b4ccd8d4d6e98eb41643afe74751b8fa3",
+    "responses": {
+      "option-1": "Negation reverses the truth value of p, so the statement says the server is not online. It does not assert anything about the database: q does not occur in the formula.",
+      "option-2": "The negation applies to p, which names the server condition, not q. Translate the variable before applying NOT.",
+      "option-3": "This translates p itself and leaves out the negation. NOT changes the assertion to its opposite."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 10,
+    "sourceHash": "0c7eb98c99ca535c35c42e9c9e50982bf26e0707acae44ae6f687069c8bfa6f0",
+    "responses": {
+      "option-1": "This permits just one condition to hold, whereas AND requires both. Compare the case where the server is online but the database is unreachable.",
+      "option-2": "This inserts a negation of q that the formula does not contain. Both variables occur positively.",
+      "option-3": "AND requires both statements to hold together. The first variable supplies the server condition and the second supplies the database condition; neither is optional."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 11,
+    "sourceHash": "e2167ac24eb5b98c412d530c735bb2596e46a0c12c76341835cb0e7cb57f20fb",
+    "responses": {
+      "option-1": "Exactly one excludes the case where both hold. Ordinary logical OR does not exclude that case.",
+      "option-2": "Logical OR is inclusive: at least one condition must hold, and both may hold. It fails only when the server is offline and the database is unreachable.",
+      "option-3": "This requires both conditions, which is stronger than the displayed OR. One true condition already suffices."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 12,
+    "sourceHash": "39ceabd08582bfb205dce49863a9392a9ef7da14d9492f79e84c2a42e74b3394",
+    "responses": {
+      "option-1": "The statement before the arrow supplies the condition; the statement after it is the consequence required when that condition holds. Here p names the server condition and q the database condition. Reversing them would translate a different implication.",
+      "option-2": "This reverses the arrow. Read its left side as the condition and its right side as the required consequence.",
+      "option-3": "An implication is a conditional claim, not an assertion that both statements are currently true."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 13,
+    "sourceHash": "41d9571a4ba59604c555f430e1571f3a3e60307fab2317d9e108eb86a3d67012",
+    "responses": {
+      "option-1": "This reverses the arrow. Read its left side as the condition and its right side as the required consequence.",
+      "option-2": "An implication is a conditional claim, not an assertion that both statements are currently true.",
+      "option-3": "The statement before the arrow supplies the condition; the statement after it is the consequence required when that condition holds. Here q names the database condition and p the server condition. Reversing them would translate a different implication."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 14,
+    "sourceHash": "04808f02ac9a8501d63d7ea2cc19fe1d6dc117c9e2892dbe5ba77dbd3a4fa564",
+    "responses": {
+      "option-1": "OR requires at least one true statement; a biconditional requires matching truth values. In particular, both false satisfies the latter but not the former.",
+      "option-2": "The biconditional requires the two statements to have the same truth value. It asserts both directions: an online server implies a reachable database, and a reachable database implies an online server. Both false also satisfies the biconditional.",
+      "option-3": "This includes only one direction. The double-headed arrow also requires the reverse implication."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 78,
+    "sourceHash": "582f2e7213ee1be6f068959bc24c09a7ff8603f9eadd8219db5c7a624d4c9408",
+    "responses": {
+      "option-1": "If the antecedent holds and p is true, the first implication forces q and the second forces r. Thus p implies r. If p is false, that conclusion is already true. If the antecedent fails, the outer implication is true. These cases cover every assignment.",
+      "option-2": "Try to make the outer implication false: both given implications would have to hold while p is true and r false. Follow the first implication to q and then the second to r; the proposed falsifying assignment cannot be completed."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 81,
+    "sourceHash": "bacc95220728ec2e1f8c1c04e59f0ca51885e1078638dae7f0adb3e253f41802",
+    "responses": {
+      "option-1": "Every multiple of 12 is a multiple of 3, so divisibility by 12 guarantees divisibility by 3. Divisibility by 3 is therefore a requirement for being divisible by 12, but not a guarantee: 3 itself is not divisible by 12.",
+      "option-2": "This reverses the guarantee. Test the integer 3: it meets divisibility by 3 without meeting divisibility by 12.",
+      "option-3": "This would make the two conditions equivalent. A multiple of 3 need not be a multiple of 12, so only the stated forward guarantee holds."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 83,
+    "sourceHash": "2141966f22c99db98440a94af6e3bc50de92ddd4d6f0b40bd5bc59e0821c3a01",
+    "responses": {
+      "option-1": "This asserts a biconditional, adding the reverse direction. A one-way implication alone does not support that extra guarantee.",
+      "option-2": "The implication promises q whenever p holds, so p is enough to guarantee q. Equivalently, p cannot hold without q, which makes q required for p. These are two ways of describing the same one-way condition.",
+      "option-3": "This describes the converse. The original implication does not promise p whenever q holds."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 84,
+    "sourceHash": "fd51380fee9d829e119e7fb84ee2bc4dd29a2d73df66d978209c670d93ace9c5",
+    "responses": {
+      "option-1": "Passing the final is required for completing the course: completion cannot occur without passing. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication.",
+      "option-2": "Passing the final is required for completing the course: completion cannot occur without passing. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee.",
+      "option-3": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 85,
+    "sourceHash": "acdc0ee938b0bdf85778d0efa8c27fc0b2ebc16918f507674510f958bdb5343a",
+    "responses": {
+      "option-1": "Being divisible by 4 guarantees being even: whenever the divisibility condition holds, evenness follows. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee.",
+      "option-2": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated.",
+      "option-3": "Being divisible by 4 guarantees being even: whenever the divisibility condition holds, evenness follows. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 86,
+    "sourceHash": "af0a4eb08bf49310dc31a73d5f37be6e4bd34c09be151d49d2229abda494f8ce",
+    "responses": {
+      "option-1": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated.",
+      "option-2": "Admin permission is required for deletion: deletion cannot be allowed without permission. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication.",
+      "option-3": "Admin permission is required for deletion: deletion cannot be allowed without permission. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 92,
+    "sourceHash": "1ad59274b615ffb2d4d479bbdda20955cc0819a6aeef0b8b8a29112915d62514",
+    "responses": {
+      "option-1": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated.",
+      "option-2": "“p only if q” makes q a requirement for p. Thus p is the antecedent and q the required consequent. The statement does not establish the reverse implication.",
+      "option-3": "“p only if q” makes q a requirement for p. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 93,
+    "sourceHash": "d62abf9e09742100da94f92e560c024cf8ee1d55997aca10a665de1fb455ad7a",
+    "responses": {
+      "option-1": "“p if q” means that q is the condition under which p is guaranteed. Thus q is the antecedent and p the required consequent. The statement does not establish the reverse implication.",
+      "option-2": "“p if q” means that q is the condition under which p is guaranteed. The selected arrow reverses that condition and consequence. Identify what is being guaranteed, and what supplies or is required by that guarantee.",
+      "option-3": "This requires both directions. The sentence supplies only one conditional guarantee, so a biconditional says more than was stated."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 88,
+    "sourceHash": "dbc89ae5cc50d70b64862db8cddc0497c74ecf63a2e81209eb24623c9eb10f8b",
+    "responses": {
+      "option-1": "Reversing an implication without negating both statements does not preserve its truth value. Test p true and q false to distinguish the original from the converse. Equivalence comes from reversing and negating together.",
+      "option-2": "Negating both statements without reversing the arrow produces the inverse, not an equivalent form. Compare the original and inverse when p is true and q is false.",
+      "option-3": "An implication $p\\to q$ is equivalent to its contrapositive $\\neg q\\to\\neg p$. Applying the same rule to the converse $q\\to p$ gives its contrapositive $\\neg p\\to\\neg q$, which is the inverse of the original. Thus the four forms split into these two equivalence pairs."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 91,
+    "sourceHash": "e6eca3205f97829ecb437e380e87681ff3a2d7e122caf731f17b123026bc99ac",
+    "responses": {
+      "option-1": "This treats a requirement as a guarantee in the reverse direction. The integer 2 is even without being divisible by 6.",
+      "option-2": "This adds an unsupported reverse implication. The original sentence specifies a necessary condition, not a complete characterization.",
+      "option-3": "Evenness is necessary for divisibility by 6, so divisibility by 6 cannot hold without evenness. The required condition belongs on the right of the implication. This does not assert that all even integers are divisible by 6."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 94,
+    "sourceHash": "ef5dde3f1ebbdd572909f956fcdd4d710766f143e211ea795674e5f5106099a1",
+    "responses": {
+      "option-1": "OR asks for only one direction and is always true here: one of the two implications holds on every truth assignment. That is weaker than requiring matching truth values.",
+      "option-2": "Repeating the same direction adds no reverse guarantee. The second implication must start from the other statement.",
+      "option-3": "A biconditional asserts both one-way implications. AND is needed because neither direction is optional: p must imply q and q must imply p."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 112,
+    "sourceHash": "902d372cd28fd7c565cb2e329d98c99b795a7a32531be4d96f191ba892e2dbfa",
+    "responses": {
+      "option-1": "The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known.",
+      "option-2": "This rule fits a different premise pattern. The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too. Compare that pattern with the actual premises before naming the rule.",
+      "option-3": "This rule fits a different premise pattern. Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r. Compare that pattern with the actual premises before naming the rule.",
+      "option-4": "This rule fits a different premise pattern. The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true. Compare that pattern with the actual premises before naming the rule."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 113,
+    "sourceHash": "9f77aee7a37424231f85e93cc63870fb96bc6f81112584222409a7bb71ed5fb8",
+    "responses": {
+      "option-1": "This rule fits a different premise pattern. The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known. Compare that pattern with the actual premises before naming the rule.",
+      "option-2": "This rule fits a different premise pattern. Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r. Compare that pattern with the actual premises before naming the rule.",
+      "option-3": "This rule fits a different premise pattern. The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true. Compare that pattern with the actual premises before naming the rule.",
+      "option-4": "The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 114,
+    "sourceHash": "84e1308b4f5449130196dfecf5ac2d0467f9003cb7b61a8f6511dbc6cf147dc5",
+    "responses": {
+      "option-1": "This rule fits a different premise pattern. The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too. Compare that pattern with the actual premises before naming the rule.",
+      "option-2": "This rule fits a different premise pattern. The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true. Compare that pattern with the actual premises before naming the rule.",
+      "option-3": "Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r.",
+      "option-4": "This rule fits a different premise pattern. The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known. Compare that pattern with the actual premises before naming the rule."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 115,
+    "sourceHash": "0e14bf3a64104575e3d4137c34a4093f33ddb2ee9f13a62bf082b722901a245e",
+    "responses": {
+      "option-1": "This rule fits a different premise pattern. Two implications join into a chain: the first leads from p to q and the second from q to r, so together they lead from p to r. Compare that pattern with the actual premises before naming the rule.",
+      "option-2": "The argument starts from an OR and eliminates one alternative. The remaining alternative must hold for the original disjunction to be true.",
+      "option-3": "This rule fits a different premise pattern. The argument supplies the antecedent of an implication and infers its consequent. This is the rule that applies a conditional guarantee once its condition is known. Compare that pattern with the actual premises before naming the rule.",
+      "option-4": "This rule fits a different premise pattern. The argument rules out the consequent of an implication and therefore rules out its antecedent. If the antecedent held, the consequent would have to hold too. Compare that pattern with the actual premises before naming the rule."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 145,
+    "sourceHash": "95b52c7bd91199f6b256a93fd0a5f65285fd7b68e8b83ad7a1108402fc8710fe",
+    "responses": {
+      "option-1": "Test p true and q false: the first implication fails. One falsifying assignment rules out tautology.",
+      "option-2": "Test both variables true, or both false. Both implications hold, so the conjunction is satisfiable and cannot be a contradiction.",
+      "option-3": "The two implications together require p and q to agree. They are true when both are true or both false, and false when the values differ. Since some assignments satisfy the expression and others do not, it is contingent rather than always true or always false."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 6,
+    "sourceHash": "b3d544be50cbf0cb808f6bdecebc1f955d3d083f98d73b7f671f85e33284ae05",
+    "responses": {
+      "option-1": "The universal quantifier binds x within its scope. It does not bind a different variable merely because that variable occurs inside the parentheses. No quantifier for y is present, so y remains free.",
+      "option-2": "A quantifier binds its named variable, not every variable in its scope. Check which letter follows the quantifier.",
+      "option-3": "The displayed universal quantifier does bind the occurrences of its own variable inside the parentheses."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 8,
+    "sourceHash": "0983dc05df542795791ce7f6c772561c44ecaf5193be91e0ff984594ea854907",
+    "responses": {
+      "option-1": "Quantifying x does not automatically quantify y. Each variable needs its own binding quantifier.",
+      "option-2": "The existential quantifier binds x within the relation. No quantifier binds y, so the truth of the expression can still depend on a supplied value for y.",
+      "option-3": "The quantifier explicitly names x, and the occurrence of x lies within its scope. That occurrence is bound."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 9,
+    "sourceHash": "994926692aa165d1c780a514bb4679b856a459c0e14fb4b8987f2be200981e3c",
+    "responses": {
+      "option-1": "The parentheses end the quantifier’s scope after P(x). Its occurrence of x is bound, but the same letter occurring in Q(x) lies outside that scope. Binding is a property of occurrences in a particular scope, not of a letter everywhere on the page.",
+      "option-2": "The quantifier’s scope ends at the closing parenthesis. It does not extend across the following AND into Q(x).",
+      "option-3": "The occurrence inside P(x) lies within the scope of the quantifier that names it. Only the later occurrence lies outside."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 21,
+    "sourceHash": "ec0ba7b57446f7d035d3462101ea33ef5a0fd3cce5774a9b73afeb0ee21fcc50",
+    "responses": {
+      "option-1": "Every person who is a student must own a computer. The implication restricts the requirement to students; it does not assert that everyone is a student.",
+      "option-2": "AND would assert that every person is both a student and a computer owner. Check both the quantifier and the connective used to restrict the domain.",
+      "option-3": "This reverses the restriction: it says that every computer owner is a student. Preserve the strength and scope of the original sentence."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 22,
+    "sourceHash": "def88dbce45cd9961b5af5cbc54487ec04648a68f5d3c2cb65a1e8b632dfbe6c",
+    "responses": {
+      "option-1": "An implication can be true for a nonstudent, so this does not ensure a student computer owner exists. Check both the quantifier and the connective used to restrict the domain.",
+      "option-2": "This is a universal restriction and need not establish that any student exists. Preserve the strength and scope of the original sentence.",
+      "option-3": "One and the same person must be a student and own a computer. The existential quantifier supplies that person, and AND requires both properties."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 23,
+    "sourceHash": "458961a1b33d27a8ff084e1125e88aca38508dd8def882581c26576d370b3e66",
+    "responses": {
+      "option-1": "One student without a computer does not rule out other students who own computers. Preserve the strength and scope of the original sentence.",
+      "option-2": "Every student must fail to own a computer. Restricting the universal statement with an implication leaves nonstudents unrestricted and also allows the possibility that there are no students.",
+      "option-3": "This additionally says everyone is a student, which the sentence does not claim. Check both the quantifier and the connective used to restrict the domain."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 24,
+    "sourceHash": "7f376d5316b882bc05a946a8c301b8ac0d26216a97fa0231aa5596bfa3701f2c",
+    "responses": {
+      "option-1": "There must be a person who satisfies both being a student and not owning a computer. The negation applies to ownership, not to the existence of the person.",
+      "option-2": "A nonstudent can make this implication true without supplying the required student witness. Check both the quantifier and the connective used to restrict the domain.",
+      "option-3": "This says no student owns a computer, a stronger claim than at least one student lacking one. Preserve the strength and scope of the original sentence."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 25,
+    "sourceHash": "bfa798d5a12f573514696611469f5c6dc56d4e63567c14132c3cd0a4f7465d5a",
+    "responses": {
+      "option-1": "This says every student owns a computer. It reverses what “only students” restricts. Check both the quantifier and the connective used to restrict the domain.",
+      "option-2": "The reverse direction would additionally require every student to own a computer, which was not stated. Preserve the strength and scope of the original sentence.",
+      "option-3": "“Only students own computers” makes being a student necessary for computer ownership. Every owner must therefore be a student; students who do not own computers are still allowed."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 26,
+    "sourceHash": "60d5f7966f00ab313432bddff1feaf41ed21558e816b57bcdbb245411ec4fc78",
+    "responses": {
+      "option-1": "This rules out all student computer owners, which is stronger than the original statement. Preserve the strength and scope of the original sentence.",
+      "option-2": "“Not every” means at least one exception: a person who is a student but lacks a computer. Other students may still own computers.",
+      "option-3": "This requires every student to lack a computer, rather than requiring just one exception. Check both the quantifier and the connective used to restrict the domain."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 27,
+    "sourceHash": "171a261f0155778919bc08b20f4cf666511b44d4fd7f1eae8a5db3b9b91ea860",
+    "responses": {
+      "option-1": "Both properties are asserted of every person. AND retains both assertions inside the universal quantifier.",
+      "option-2": "This leaves nonstudents unrestricted and does not require everyone to be a student. Check both the quantifier and the connective used to restrict the domain.",
+      "option-3": "This supplies one person with both properties, not every person. Preserve the strength and scope of the original sentence."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 28,
+    "sourceHash": "61a1b4972d83eab315eb82e3b999b9cc35830440757050904fba2bc0469af377",
+    "responses": {
+      "option-1": "Negating the conjunction only requires one property to fail. It does not force nonstudent status together with ownership. Check both the quantifier and the connective used to restrict the domain.",
+      "option-2": "This swaps which property is negated, describing a student without a computer. Preserve the strength and scope of the original sentence.",
+      "option-3": "The same witness must be a nonstudent and a computer owner. Here “but” has the truth-functional role of AND while emphasizing a contrast in ordinary language."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 29,
+    "sourceHash": "34c548d2c2a4802efa322cefab8e629b19c0e72b73bd000e4fb6f8d44c299ccb",
+    "responses": {
+      "option-1": "Agreement for one person is weaker than the stated general relationship for people. Preserve the strength and scope of the original sentence.",
+      "option-2": "For every person, student status and computer ownership must agree. The biconditional includes both directions for that same person.",
+      "option-3": "This omits the direction from computer ownership to student status. Check both the quantifier and the connective used to restrict the domain."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 30,
+    "sourceHash": "2b854c67fc4d1d13d5eaf864cf0794c40705750b9a85b0eb81bf2d395ff1425a",
+    "responses": {
+      "option-1": "The sentence has two claims: at least one student exists, and every student owns a computer. The existential clause supplies existence; the universal clause supplies the restriction. Different bound-variable names make their independent scopes clear.",
+      "option-2": "The universal clause alone can be true when no students exist, so it drops the explicit existence claim. Check both the quantifier and the connective used to restrict the domain.",
+      "option-3": "This guarantees a student computer owner but does not require the property of every student. Preserve the strength and scope of the original sentence."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 31,
+    "sourceHash": "c340341f0bb9dfb076d7be5487e3b349932fecbbf532823a1428bcf81accbf81",
+    "responses": {
+      "option-1": "This changes the scope or strength of the quantifiers. The universal quantifier covers integers, and the implication restricts the square requirement to those that are positive. It does not assert that every integer is positive.",
+      "option-2": "This changes the property asserted in the formula. The universal quantifier covers integers, and the implication restricts the square requirement to those that are positive. It does not assert that every integer is positive.",
+      "option-3": "The universal quantifier covers integers, and the implication restricts the square requirement to those that are positive. It does not assert that every integer is positive."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 32,
+    "sourceHash": "db38532a606d65201f89f93354908bc39bf800ddbc27b49e1ed7ecc94a265f01",
+    "responses": {
+      "option-1": "This changes the property asserted in the formula. The existential quantifier asks for one integer satisfying both negativity and the specified square. Both conditions refer to the same integer.",
+      "option-2": "The existential quantifier asks for one integer satisfying both negativity and the specified square. Both conditions refer to the same integer.",
+      "option-3": "This changes the scope or strength of the quantifiers. The existential quantifier asks for one integer satisfying both negativity and the specified square. Both conditions refer to the same integer."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 33,
+    "sourceHash": "a859485956f6d1847bab533736b712185465aca5ec9f4e16c0c60c5b9665be92",
+    "responses": {
+      "option-1": "For each n, an m is chosen afterward to equal n+1. The witness may depend on n, rather than being fixed for all n.",
+      "option-2": "This changes the scope or strength of the quantifiers. For each n, an m is chosen afterward to equal n+1. The witness may depend on n, rather than being fixed for all n.",
+      "option-3": "This changes the property asserted in the formula. For each n, an m is chosen afterward to equal n+1. The witness may depend on n, rather than being fixed for all n."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 34,
+    "sourceHash": "01fcc77ebd237a6e0ed91f677d9c2bf133e953a9e10d05b6b6a8fb02d4cdd3e2",
+    "responses": {
+      "option-1": "This changes the scope or strength of the quantifiers. The existential choice of m comes first, so one fixed m must dominate all n. This translates the statement even though the claim is false for integers; translating and judging truth are separate tasks.",
+      "option-2": "This changes the property asserted in the formula. The existential choice of m comes first, so one fixed m must dominate all n. This translates the statement even though the claim is false for integers; translating and judging truth are separate tasks.",
+      "option-3": "The existential choice of m comes first, so one fixed m must dominate all n. This translates the statement even though the claim is false for integers; translating and judging truth are separate tasks."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 35,
+    "sourceHash": "409ce0dfef4395d4c516d339accd0b3db69a9537c6e08aa56141accd311f75ca",
+    "responses": {
+      "option-1": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-2": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. The order of the quantifiers determines which choice can depend on which variable.",
+      "option-3": "One worker must be selected before considering all requests; the same worker must be assigned to each request. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-4": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 36,
+    "sourceHash": "14613be3aef4685bb570c3fee8f49a083c2a0825e419228769e325a7b365cf54",
+    "responses": {
+      "option-1": "One worker must be selected before considering all requests; the same worker must be assigned to each request. The order of the quantifiers determines which choice can depend on which variable.",
+      "option-2": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-3": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-4": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 37,
+    "sourceHash": "8e4e7b80db1ce6ea52d43547823e129a2ed4c61999950b1282d85b9cac042da7",
+    "responses": {
+      "option-1": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-2": "One worker must be selected before considering all requests; the same worker must be assigned to each request. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-3": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-4": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. The order of the quantifiers determines which choice can depend on which variable."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 38,
+    "sourceHash": "e92a615d5bab1e591e98a2bbf43eac31822ac42b1e27964c1958400794523310",
+    "responses": {
+      "option-1": "One worker must be selected before considering all requests; the same worker must be assigned to each request. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-2": "Each worker is supplied first, and a request assigned to that worker must exist. The chosen request may differ between workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula.",
+      "option-3": "One request must be chosen that is assigned to every worker; the request is fixed while the workers vary. The order of the quantifiers determines which choice can depend on which variable.",
+      "option-4": "Each request is supplied first, and a suitable worker may then be selected for it. Different requests may use different workers. That is a different quantifier arrangement. Identify the variable following each quantifier in the displayed formula."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 39,
+    "sourceHash": "06bbaa2d41b320a1b3024bbc97e2d96714575fad2d3941d53e20102218c30be8",
+    "responses": {
+      "option-1": "For each person x, the formula asks for a person y who differs from x and whom x likes. The two requirements apply to the same chosen y; different people may like different witnesses.",
+      "option-2": "This fixes the liked person before considering everyone else, whereas the displayed existential choice comes after each x.",
+      "option-3": "The inequality explicitly requires the chosen y to differ from x."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 40,
+    "sourceHash": "9d0f85b5729c27ed029f992826e7225840ae7e975fd97235e00b1b641eadfaa9",
+    "responses": {
+      "option-1": "This switches the two arguments of the relation. L(x,y) says x likes y, so a fixed second argument is the person receiving the liking.",
+      "option-2": "This allows the existential choice to depend on each person. The displayed order instead requires one common choice.",
+      "option-3": "The existential quantifier chooses the second argument of L first. Every x must like that one fixed person y. The formula describes a universally liked person, not a person who likes everyone."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 78,
+    "sourceHash": "fbdccde5d23d4a12286d25f02fb5aa1b2f327ab4c639a1f94b0611db0f7a7709",
+    "responses": {
+      "option-1": "A universal claim supplies the property for every available element. If at least one element exists, that element witnesses existence. In an empty domain the universal is vacuously true while the existential is false, so nonemptiness is essential.",
+      "option-2": "An empty domain has no possible witness. Evaluate the existential and universal statements separately in that case.",
+      "option-3": "With a nonempty domain, select any element; the universal premise supplies the required property for it."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 2,
+    "sourceHash": "c3cc4204ac2e84abcc5b43e9d64e3f4e5333d58aee0c1d336754eff34efa7dad",
+    "responses": {
+      "option-1": "The distinct elements do match, and changing their written order does not change the set. Equal membership is exactly the condition for set equality.",
+      "option-2": "Sets record membership without order or repeated copies. Both displays contain exactly the elements 1, 2, and 3, so they are equal and have three elements.",
+      "option-3": "This counts repeated written occurrences rather than distinct set elements. Repeating 1 does not create another element."
+    }
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 6,
+    "sourceHash": "f595a9017ec7e8b9e008d2e214130b09d2563193b1c8aafa2fb026d5090f156d",
+    "responses": {
+      "option-1": "Every element of A belongs to B, and B additionally contains 2. Thus A is both a subset and a proper subset of B, but B is not a subset of A. A proper subset also satisfies the ordinary subset condition.",
+      "option-2": "B contains an additional element, so the inclusion is proper as well as ordinary. Check the element 2.",
+      "option-3": "The reverse inclusion would require 2 to belong to A, which it does not."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 2,
+    "sourceHash": "ad4f255afcfd9dd8b19ffbc0f6e047da8e568a39324d235d50f3aadc858983c4",
+    "responses": {
+      "option-1": "Input 2 is allowed to be related to more than one object: both (2,v) and (2,w) are listed. A relation need not be a function.",
+      "option-2": "A relation statement holds exactly when its ordered pair appears in the relation. The pairs (1,u) and (2,w) are listed, but (1,v) is absent. Sharing an input or output with another listed pair does not create extra pairs.",
+      "option-3": "The relation contains (2,v), not (1,v). Ordered pairs must match in both positions."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 18,
+    "sourceHash": "b34ba8799dfe20a4e7dd2a884aadff7c55eed7d25bf68ced858bda15aabb54a8",
+    "responses": {
+      "option-1": "The two opposite pairs between 1 and 2 already violate antisymmetry, regardless of other pairs.",
+      "option-2": "Check all required reverse pairs for symmetry and all opposite pairs between distinct elements for antisymmetry. There is a separate failure of each here.",
+      "option-3": "Symmetry fails because (2,3) is present but (3,2) is absent. Antisymmetry fails because the distinct elements 1 and 2 are related in both directions. These properties are not logical opposites; each has its own condition to check.",
+      "option-4": "One reversed pair is not enough to establish symmetry. The pair (2,3) also needs its reverse."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 29,
+    "sourceHash": "7bb129dc48c1cb7c950270dff7c1ea062e31fc6f1958719eecf6087b7dfd101f",
+    "responses": {
+      "option-1": "An empty relation on an empty set has no tuple that violates any of the universally quantified conditions. Distinguish having no examples from having a counterexample.",
+      "option-2": "Each condition quantifies over elements or tuples from the underlying set. Here none exist, so there is no possible violation of reflexivity, symmetry, antisymmetry, or transitivity. In particular, reflexivity does not require inventing an element of an empty set.",
+      "option-3": "Reflexivity requires a self-pair for every existing element. On the empty underlying set there is no missing self-pair to witness a failure."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 31,
+    "sourceHash": "c46af53f4ca1e9d4d7e599f50a020da11eac245b9944a3c831d957e1956ea390",
+    "responses": {
+      "option-1": "The difference between −3 and 5 is also −8. A negative input does not prevent its difference from being divisible by 4.",
+      "option-2": "Check 2−7: it is −5, not a multiple of 4. The condition concerns divisibility of the difference, not merely the size of the two numbers.",
+      "option-3": "The first and third differences are both −8, a multiple of 4. The second difference is −5, which is not a multiple of 4. Negative multiples count just as positive multiples do in integer divisibility."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 44,
+    "sourceHash": "e53190b5798509c44f786285e4ea67d66b56d40506be50ad61bda8cde31e404b",
+    "responses": {
+      "option-1": "The numbers 2 and 3 divide 6, placing 6 above them in this order, not below them.",
+      "option-2": "Neither 2 nor 3 has a different element of this set dividing it, so both are minimal. But neither divides the other, so neither lies below every element. Minimal means no smaller competitor; least means below all elements.",
+      "option-3": "Numerical size is not the order here. The number 2 does not divide 3, so it is not below every element."
+    }
+  },
+  {
+    "lesson": "relations",
+    "id": 45,
+    "sourceHash": "56496bdc034040db6eec92d3577af88f2c1e2bb2a00c08d0d7faef75855d69df",
+    "responses": {
+      "option-1": "Neither 2 nor 3 divides a distinct larger element within this set, so both are maximal. They are incomparable with each other, so no element is above every element. Ordinary numerical maximum is not the same as greatest under divisibility.",
+      "option-2": "Although 3 is numerically largest, 2 does not divide it. Therefore 3 is not above every element in the specified order.",
+      "option-3": "One divides the other elements and is therefore below them, not above them."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 36,
+    "sourceHash": "3b1add50bb5d613434ba74f83870c44da13401719fa9489570d69c950f512b0c",
+    "responses": {
+      "option-1": "The restricted rule still sends different inputs to different outputs. But its outputs now lie only between 0 and 1, so it misses real targets such as 2 in the unchanged codomain. Restricting inputs cannot create a collision, but it can remove coverage.",
+      "option-2": "The restricted identity rule still has no collisions, and targets outside the restricted interval are no longer reached.",
+      "option-3": "Missing outputs affect surjectivity. They do not make two distinct allowed inputs share an output.",
+      "option-4": "The codomain is still all real numbers. Check whether a target such as 2 has an allowed input after the restriction."
+    }
+  },
+  {
+    "lesson": "functions",
+    "id": 70,
+    "sourceHash": "42b8f2f69fd9c5b6209a13fdd85663157f2870324343443e00ad80c3283a174f",
+    "responses": {
+      "option-1": "Surjectivity does hold, but adjacent inputs 2k and 2k+1 share an output. That rules out injectivity.",
+      "option-2": "Collisions occur, but a collision does not imply a missed target. Each nonnegative target k is reached at 2k.",
+      "option-3": "Every target k is reached by the allowed input 2k. However, 2k and 2k+1 both have floor of half equal to k, producing collisions. Thus output coverage is complete even though inputs are not uniquely recoverable.",
+      "option-4": "Try the two inputs 0 and 1 to check injectivity. For an arbitrary target k, try the input 2k to check surjectivity."
+    }
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 6,
+    "sourceHash": "49f0a7e33418dc8112ff9f29990c4597265d8079bdd644295c9cdbd27ed3e8a7",
+    "responses": {
+      "option-1": "The first inclusion shows A has no elements outside B; the second shows B has no elements outside A. Together they establish exactly the same membership, which is set equality. In each direction, start with an arbitrary element of the set on the left.",
+      "option-2": "One inclusion allows B to contain extra elements, so it does not establish equality. Both directions are needed.",
+      "option-3": "Overlapping sets can have different members. One shared element does not establish that all membership agrees."
+    }
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 8,
+    "sourceHash": "ac313be5e3beaa81610411ee84ef95c0a4e3434e1172c97bea79286ae75f8c5d",
+    "responses": {
+      "option-1": "Allowing an arbitrary real witness makes the equation too weak: any real product could be divided by 4. Integer divisibility requires an integer witness.",
+      "option-2": "Divisibility by 4 means being 4 times an integer. The goal must concern the product ab and use an integer witness. Establishing this equation with an integer t completes that divisibility claim.",
+      "option-3": "This proves only that the product is even. Divisibility by 4 asks for a stronger factor-of-4 representation."
+    }
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 3,
+    "sourceHash": "df4651fa71e0e2503f29137c490de6469371d157fb480a107e2587ab7954d48a",
+    "responses": {
+      "option-1": "Negate the original conclusion, evenness, and use it as the new hypothesis. Within integers that means oddness. The new conclusion negates divisibility by 4. Both reversing and negating are required.",
+      "option-2": "This is the converse, reversing the original without negating. It is not the contrapositive.",
+      "option-3": "This is the inverse: it negates both conditions but leaves them in their original order."
+    }
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 4,
+    "sourceHash": "27cfc3a79edbc1e40919372829b1ec95e4094b28914c87c48119dd0528748108",
+    "responses": {
+      "option-1": "This reverses the original claim without negating the two conditions, producing the converse.",
+      "option-2": "This negates the original conditions without reversing them, producing the inverse.",
+      "option-3": "The original conclusion concerns the number itself. Negating that conclusion makes rationality of the number the starting condition. The new conclusion negates irrationality of its square. Both negations remain within the real-number domain."
+    }
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 1,
+    "sourceHash": "f0b6ef4051c4c52b120050aa80451e811134268a444f6afc922789f50deca906",
+    "responses": {
+      "option-1": "A base at zero cannot reach 3 if the supplied step does not apply at the intervening indices. Start at the claimed first case.",
+      "option-2": "This runs the step backward. It does not extend the base at 3 to larger indices.",
+      "option-3": "The base starts the chain at the first claimed index. The step must work at every later allowed index, using the current case to establish the next. Neither a starting case outside the claimed chain nor assuming the desired next case supplies these obligations."
+    }
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 7,
+    "sourceHash": "5dd6827ee9a8dc0baba1911cfaf0eac9d38fd567e7eed4b0ffd5fea957aa50c2",
+    "responses": {
+      "option-1": "The step advances by two, so it skips a parity class. Trace the first few indices reached from zero.",
+      "option-2": "The valid step does extend the base, but only to indices two units farther along each time.",
+      "option-3": "Starting at 0 and adding 2 repeatedly reaches 2, 4, 6, and so on. The step never changes parity, so it cannot reach an odd index from this base. An odd starting case would be needed to seed a separate odd chain."
+    }
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 4,
+    "sourceHash": "16650943d516f408a2f6c799a6d99da0b9da53c4a54afe46d6dc8b8f5c5e64e6",
+    "responses": {
+      "option-1": "The empty set contains no candidate for a least element. Nonemptiness is essential.",
+      "option-2": "This changes the domain. For example, the positive real numbers have no least member, since half of any member is still positive and smaller.",
+      "option-3": "Both restrictions matter: a nonempty set provides candidates, and nonnegative integers cannot descend indefinitely. The least element must belong to the chosen subset and be no larger than any other member."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 35,
+    "sourceHash": "f705385c0dd10165551c5a78cfe968698c5b6ffb688f6a33d132f0d6153c5050",
+    "responses": {
+      "option-1": "After ignoring directions, the displayed edges do connect all three vertices. Thus at least weak connectivity holds.",
+      "option-2": "Ignoring directions leaves a connected three-vertex path. But the directed chain cannot be traversed backward, so the last vertex cannot reach the first. This gives weak connectivity without strong connectivity.",
+      "option-3": "There is no directed route from the final vertex back to the first. Undirected connectivity does not supply a missing directed path."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 36,
+    "sourceHash": "98b1d0ad7f7f0e2469fba4229fedb988012a98008e49a0ee1fc39a5f0f8492a0",
+    "responses": {
+      "option-1": "Following the directed cycle reaches every vertex from any other vertex, establishing strong connectivity. Ignoring the directions leaves a connected graph as well, so weak connectivity also holds.",
+      "option-2": "The arrows form a cycle, so following them eventually reaches any chosen vertex from any starting vertex. Check all ordered reachability requirements.",
+      "option-3": "After ignoring directions, the displayed edges do connect all three vertices. Thus at least weak connectivity holds."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 15,
+    "sourceHash": "754585a82117dff295e3e759796c1c0c45d8529b0f1cf1b9fa32aa90eac59b66",
+    "responses": {
+      "option-1": "The degrees are 2, 2, 3, 2, and 1 for a through e. Every vertex has at least one incident edge, so none is isolated, and only e has exactly one connection. Count edges at each endpoint rather than counting its written appearances in the vertex list.",
+      "option-2": "The edge between d and e gives e degree 1, not 0. Vertex d is also connected to c, giving it a second incident edge.",
+      "option-3": "Vertex d has two incident edges, one to c and one to e. Only the terminal vertex has a single incident edge."
+    }
+  },
+  {
+    "lesson": "graph-theory",
+    "id": 6,
+    "sourceHash": "ee40feccb1c57ab69ed37bbf0ef1b8995c864837648081bcdb56fa0e204101ff",
+    "responses": {
+      "option-1": "A vertex of degree 4 is adjacent to every other vertex among the five. Since all vertices have that degree, every possible pair is an edge. Summing degrees gives 20 endpoint incidences, and each edge contributes two, leaving 10 edges.",
+      "option-2": "The structural description is right, but summing degrees counts both endpoints of each undirected edge. Divide the total by two.",
+      "option-3": "In a simple cycle each vertex has degree 2, not 4. The stated degrees require more connections."
+    }
+  },
+  {
+    "lesson": "linear-algebra-eigenvalues",
+    "id": 10,
+    "sourceHash": "e37292dadd9f50a0e359d0059d409167542060fa64229105c9992c9d15d4e06a",
+    "responses": {
+      "option-1": "Zero does satisfy the eigenspace equation, but eigenvectors are explicitly required to be nonzero. Distinguish the space from its eligible eigenvectors.",
+      "option-2": "The matrix scales both components by the same factor, so a vector with two nonzero components is also multiplied by 3. The property is not limited to coordinate-axis vectors.",
+      "option-3": "The matrix multiplies every vector by 3, so every vector satisfies the eigenspace equation for eigenvalue 3. The zero vector belongs to that solution space but is excluded from the definition of eigenvector."
+    }
+  },
+  {
+    "lesson": "linear-algebra-svd",
+    "id": 16,
+    "sourceHash": "73a2d1f0362690ed73db3c532f16fab98cdffaf4624eaffb9f076a0aa45e3e61",
+    "responses": {
+      "option-1": "The two coordinate directions are scaled by different factors, so the image does not remain a circle.",
+      "option-2": "The length bounds are right, but the axes are swapped. The first diagonal entry acts on the horizontal coordinate, and the second on the vertical coordinate.",
+      "option-3": "The diagonal map scales the horizontal coordinate by 5 and the vertical coordinate by 2. Applying it to the unit circle gives those ellipse semiaxes. Unit inputs along the horizontal and vertical axes attain the maximum and minimum output lengths respectively."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 95,
+    "sourceHash": "08341825eb0a0fae069939b6077fdfa4e1f8291bf5db27e7d1e227a30b2df259",
+    "responses": {
+      "option-1": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression.",
+      "option-2": "Negating a truth value twice returns the original truth value. This is the double negation law, so the named rule and the simplified expression both match.",
+      "option-3": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 96,
+    "sourceHash": "44a37567a98e406b2d1aaf66fd7c64e03213f2af56e97953617f09997f30ac95",
+    "responses": {
+      "option-1": "AND with true leaves the other input unchanged: both are true exactly when p is true. This is the identity law, so the named rule and the simplified expression both match.",
+      "option-2": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately.",
+      "option-3": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 97,
+    "sourceHash": "542a117f46bbc6a2d5dc2e2c4687be3a96a0d58b6d76e43f5fe3dd439acc65b5",
+    "responses": {
+      "option-1": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately.",
+      "option-2": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression.",
+      "option-3": "OR with false leaves the other input unchanged: the false input cannot make the disjunction true. This is the identity law, so the named rule and the simplified expression both match."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 98,
+    "sourceHash": "1e95d2f960c30367b8acc7682f99889f40d73d29e790d4142911514bcea75328",
+    "responses": {
+      "option-1": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression.",
+      "option-2": "One true input is enough for OR, regardless of the truth value of p. This is the domination law, so the named rule and the simplified expression both match.",
+      "option-3": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 99,
+    "sourceHash": "831923524f8064953187131cfbd3d0582597e6418cafc18dbc58ca8ee7cc68ed",
+    "responses": {
+      "option-1": "One false input makes AND false, regardless of the truth value of p. This is the domination law, so the named rule and the simplified expression both match.",
+      "option-2": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately.",
+      "option-3": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 100,
+    "sourceHash": "875da5cbbf34bd507140aca47ffc5dd344e7bf0243f2b57769d8d24d4c1e362f",
+    "responses": {
+      "option-1": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately.",
+      "option-2": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression.",
+      "option-3": "Repeating the same input in OR adds no new possibility for truth. This is the idempotence law, so the named rule and the simplified expression both match."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 101,
+    "sourceHash": "0afd77d845bbceae8855ec86fab06bca06456313b4edf02d2a50f0ac7f61bda5",
+    "responses": {
+      "option-1": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression.",
+      "option-2": "Requiring the same statement twice in AND adds no new condition. This is the idempotence law, so the named rule and the simplified expression both match.",
+      "option-3": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 102,
+    "sourceHash": "5402e00624933fa7523202547033e63cef957e50f57e4e58a36ca1a515085766",
+    "responses": {
+      "option-1": "If p is true, the outer OR is true; if p is false, both its inputs are false. The extra conjunction cannot change the result. This is the absorption law, so the named rule and the simplified expression both match.",
+      "option-2": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately.",
+      "option-3": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 103,
+    "sourceHash": "78d4af54935ac9f092885ec2728b80967919dad1bcfd999b11fd7cb92526d84c",
+    "responses": {
+      "option-1": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately.",
+      "option-2": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression.",
+      "option-3": "If p is false, the outer AND is false; if p is true, the inner OR is true too. The extra disjunction cannot change the result. This is the absorption law, so the named rule and the simplified expression both match."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 104,
+    "sourceHash": "d0cf2d433175c9a92e3f69f209cc4700ddb50db24f2b7d886d82fb9273749fc1",
+    "responses": {
+      "option-1": "This would require q and r simultaneously. The original needs at least one of them; associativity cannot replace OR with AND.",
+      "option-2": "AND distributes over OR: p is required along either branch, and either q or r may supply the other condition. Copy p into both groups and keep OR between the groups.",
+      "option-3": "This swaps the operators instead of distributing the original AND. For example, if p is false and q and r are true, this choice is true while the original is false."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 105,
+    "sourceHash": "3234b87569b2934e9c2a9dd4cf1ceaa8f296583872755790e15f9966797b2e92",
+    "responses": {
+      "option-1": "OR distributes over AND. If p is true, both new groups are true; if p is false, they require q and r respectively. These are exactly the original alternatives.",
+      "option-2": "This makes p mandatory. The original can be true with p false when both q and r are true.",
+      "option-3": "This lets q alone suffice when p and r are false. The original requires q and r together in that situation."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 106,
+    "sourceHash": "050308b731405deba2b8a222c15f4bf28d83793215b32aa6c9eea7f8b68c7522",
+    "responses": {
+      "option-1": "OR allows just one direction. Indeed at least one of these implications is always true, even when p and q disagree.",
+      "option-2": "This omits the reverse condition. A biconditional requires both directions, not just the displayed one-way implication.",
+      "option-3": "If and only if requires both implications. One direction makes q necessary for p, and the other makes p necessary for q, so their truth values must agree."
+    }
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 107,
+    "sourceHash": "caa07c38aea793ccca545a394fd0126eeb14d1644e2b853838533eccd94249cc",
+    "responses": {
+      "option-1": "This describes exactly one true input, so it expresses disagreement. The biconditional expresses agreement.",
+      "option-2": "First express the biconditional as both directional implications. Then replace each implication by NOT its antecedent OR its consequent. The AND remains because both directions are required.",
+      "option-3": "Each directional rewrite is correct, but their connection must still require both directions. OR makes this expression true even when p and q differ."
+    }
   }
 ]
