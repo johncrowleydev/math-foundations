@@ -126,17 +126,15 @@ export async function integrate(records: RecordData[], cursor: number) {
           (draft.strokes.length || draft.photos.length)
         ) {
           for (const p of draft.photos) retired.add(p.hash);
-          await tx
-            .objectStore('drafts')
-            .put(
-              {
-                ...draft,
-                strokes: [],
-                photos: [],
-                updated: Math.max(Date.now(), draft.updated + 1),
-              },
-              a.exercise,
-            );
+          await tx.objectStore('drafts').put(
+            {
+              ...draft,
+              strokes: [],
+              photos: [],
+              updated: Math.max(Date.now(), draft.updated + 1),
+            },
+            a.exercise,
+          );
           changedDrafts.add(a.exercise);
         }
       }
