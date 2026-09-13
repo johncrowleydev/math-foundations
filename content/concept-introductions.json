@@ -4199,5 +4199,23 @@
     "start": 0,
     "end": 2008,
     "quote": "An orthogonal collection has pairwise zero dot products between distinct vectors. It is orthonormal if each vector also has norm one. For an orthonormal basis q sub one through q sub k of a subspace, project b by adding, for each basis vector, b dot that vector times that vector. The unit lengths remove the denominators from the line formula.\n\nFor a matrix Q whose columns are these basis vectors, this becomes $p=QQ^Tb$. The transpose turns the columns into rows so that Q transpose times b computes the coefficients. The orthonormal condition is $Q^TQ=I$. The reverse product Q times Q transpose need not be the identity: it is the projection onto the column space, which may be smaller than the whole output space.\n\nGram–Schmidt is a procedure for turning an independent list into an orthonormal list spanning the same space. Keep the first vector's direction and normalize it. From the next vector, subtract its projections onto all the directions already retained, then normalize the remainder. Independence ensures the remainder is nonzero in exact arithmetic. Dependent input needs separate handling rather than division by zero.\n\n### Carrying out Gram–Schmidt\n\nStart with independent vectors a=(1,1,0) and b=(1,0,1). Normalize a to get q1=(1,1,0) divided by square root of two. The projection of b onto a's line is (1/2,1/2,0). Subtracting gives (1/2,-1/2,1), which is orthogonal to a. Normalize this remainder to obtain q2=(1,-1,2) divided by square root of six. Both vectors now have length one, their dot product is zero, and the original vectors can be rebuilt from them.\n\nThis construction also explains [QR factorization](ref:la-term-qr): for an independent-column matrix A, put the orthonormal directions in Q and their combination coefficients in an upper-triangular matrix R, so A=QR. Upper triangular means entries below the main diagonal are zero. We name QR here to explain the numerical-method reference later; the practice requires only the small Gram–Schmidt construction just shown."
+  },
+  {
+    "concept": "propositional-model",
+    "lesson": "propositional-logic",
+    "section": "Satisfiability",
+    "start": 0,
+    "end": 185,
+    "quote": "A proposition is **satisfiable** if there is at least one assignment of truth values that makes it true. Such an assignment is sometimes called a **model** or **satisfying assignment**.",
+    "scope": "Inspected separate model and unsatisfiability definitions at their existing teaching location; both precede the relevant exercises."
+  },
+  {
+    "concept": "unsatisfiable",
+    "lesson": "propositional-logic",
+    "section": "Satisfiability",
+    "start": 269,
+    "end": 379,
+    "quote": "A proposition is **unsatisfiable** if no assignment makes it true. A contradiction is therefore unsatisfiable.",
+    "scope": "Inspected separate model and unsatisfiability definitions at their existing teaching location; both precede the relevant exercises."
   }
 ]

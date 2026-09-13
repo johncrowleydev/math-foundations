@@ -550,21 +550,40 @@
     "id": "satisfiable",
     "kind": "term",
     "name": "Satisfiability",
-    "aliases": [
-      "satisfiability",
-      "satisfiable",
-      "unsatisfiable",
-      "satisfying assignment",
-      "SAT",
-      "model"
-    ],
+    "aliases": ["satisfiability", "satisfiable", "SAT"],
     "quick": "Having at least one truth assignment that makes a formula true.",
     "definition": "A satisfying assignment is a choice of input truth values on which the formula is true; it is also called a model in propositional logic. Unsatisfiable means there is no such assignment. SAT is the problem of deciding whether one exists.",
     "example": "p AND q is satisfied by p = T, q = T. p AND NOT p is unsatisfiable.",
     "confusion": "Satisfiable means at least one successful assignment, not every assignment.",
     "lesson": "propositional-logic",
     "section": "Satisfiability",
-    "related": ["assignment", "tautology"]
+    "related": ["assignment", "tautology", "propositional-model", "unsatisfiable"]
+  },
+  {
+    "id": "propositional-model",
+    "kind": "term",
+    "name": "Model (propositional logic)",
+    "aliases": ["model", "satisfying assignment"],
+    "quick": "A truth assignment that makes the given formula true. To give a model, specify values for its propositional variables.",
+    "definition": "In propositional logic, a model of a formula is an assignment of truth values to its variables under which the formula evaluates to true. Giving a model means providing an actual assignment, rather than merely saying that one exists. A formula is satisfiable precisely when it has at least one model.",
+    "example": "For p AND q, the assignment p = T, q = T is a model. For p OR q, p = T, q = F is one model; other models also exist.",
+    "confusion": "Satisfiability is a property of a formula; a model is a particular assignment demonstrating that property. Here model does not mean a physical diagram or an AI model.",
+    "lesson": "propositional-logic",
+    "section": "Satisfiability",
+    "related": ["assignment", "satisfiable", "unsatisfiable"]
+  },
+  {
+    "id": "unsatisfiable",
+    "kind": "term",
+    "name": "Unsatisfiable",
+    "aliases": ["unsatisfiable"],
+    "quick": "False under every truth assignment: no model makes the formula true.",
+    "definition": "A propositional formula is unsatisfiable when every assignment to its variables makes it false. It therefore has no satisfying assignment, or model. In propositional logic, such a formula is a contradiction.",
+    "example": "p AND NOT p is unsatisfiable: when p is true its negation is false, and when p is false the first part is false.",
+    "confusion": "Finding one assignment that makes a formula false does not establish unsatisfiability. You must rule out every possible model.",
+    "lesson": "propositional-logic",
+    "section": "Satisfiability",
+    "related": ["satisfiable", "propositional-model", "contradiction"]
   },
   {
     "id": "symbol-negation",

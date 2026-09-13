@@ -7,6 +7,20 @@ const inventory = JSON.parse(await readFile('output/curriculum-inventory.json', 
 const teaching = JSON.parse(await readFile('output/content/teaching.json', 'utf8'));
 const hash = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
+test('a propositional model is linked separately from satisfiability and unsatisfiability', async () => {
+  const n = JSON.parse(await readFile('output/content/notebook.json', 'utf8'));
+  const lesson = n.lessons.find((l: any) => l.slug === 'propositional-logic');
+  const question = lesson.questions.find((q: any) => q.id === 129);
+  assert.match(question.prompt, /\[model\]\(ref:propositional-model\)/);
+  const sat = teaching.references.find((r: any) => r.id === 'satisfiable');
+  assert.ok(!sat.aliases.includes('model') && !sat.aliases.includes('unsatisfiable'));
+  assert.match(
+    teaching.references.find((r: any) => r.id === 'propositional-model').quick,
+    /truth assignment/,
+  );
+  assert.match(teaching.references.find((r: any) => r.id === 'unsatisfiable').quick, /no model/);
+});
+
 test('inspection records match every current unit, reference, formula and figure', () => {
   assert.deepEqual(audit.counts, inventory.counts);
   assert.equal(audit.units.length, inventory.units.length);
