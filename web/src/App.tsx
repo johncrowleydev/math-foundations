@@ -373,11 +373,14 @@ export function App({ data }: { data: Curriculum }) {
               <strong>{lesson.title}</strong>
             </div>
             <nav className="tabs">
-              {(lesson.questions.length
-                ? ['read', 'practice', 'reference']
-                : ['read', 'reference']
-              ).map((t) => (
+              {['read', 'practice', 'reference'].map((t) => (
                 <button
+                  disabled={t === 'practice' && !lesson.questions.length}
+                  title={
+                    t === 'practice' && !lesson.questions.length
+                      ? 'This introduction has no exercises'
+                      : undefined
+                  }
                   aria-current={tab === t ? 'page' : undefined}
                   className={tab === t ? 'selected' : ''}
                   key={t}
