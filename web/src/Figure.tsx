@@ -202,14 +202,26 @@ export function Figure({ figure: f }: { figure: Definition }) {
       </>
     );
   } else if (f.kind === 'predicate-table') {
+    const columns = f.columns as string[];
     drawing = (
-      <foreignObject x="30" y="25" width="560" height="290">
-        <table>
+      <div className="figure-table predicate-table">
+        <table aria-label={f.title}>
+          {columns.length > 1 && (
+            <caption>
+              <MathText tex={f.mathLabels[f.columnLabel!] || f.columnLabel!} />
+            </caption>
+          )}
           <thead>
             <tr>
-              <th>{f.rowLabel}</th>
+              <th scope="col">
+                <MathText tex={f.mathLabels[f.rowLabel!] || f.rowLabel!} />
+              </th>
               {(f.columns as string[]).map((c) => (
-                <th key={c}>
+                <th
+                  scope="col"
+                  key={c}
+                  className={frame.highlight.includes('column:' + c) ? 'highlighted' : ''}
+                >
                   <MathText tex={f.mathLabels[c] || c} />
                 </th>
               ))}
@@ -217,17 +229,26 @@ export function Figure({ figure: f }: { figure: Definition }) {
           </thead>
           <tbody>
             {(f.rows as string[]).map((r, i) => (
-              <tr key={r} className={frame.highlight.includes('row:' + r) ? 'selected' : ''}>
-                <th>{r}</th>
+              <tr key={r} className={frame.highlight.includes('row:' + r) ? 'highlighted' : ''}>
+                <th scope="row">
+                  <MathText tex={f.mathLabels[r] || r} />
+                </th>
                 {(f.values as boolean[][])[i].map((v, j) => (
-                  <td key={j}>{v ? 'T' : 'F'}</td>
+                  <td
+                    key={j}
+                    className={
+                      frame.highlight.includes('column:' + columns[j]) ? 'highlighted' : ''
+                    }
+                  >
+                    {v ? 'T' : 'F'}
+                  </td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
         <p>T = true; F = false</p>
-      </foreignObject>
+      </div>
     );
   } else if (f.kind === 'venn') {
     const op = frame.operation;
@@ -494,28 +515,31 @@ export function Figure({ figure: f }: { figure: Definition }) {
       </>
     );
   }
-  const chart = (
-    <svg viewBox={viewBox} role="img" aria-label={f.title}>
-      <defs>
-        <marker
-          id={uid + '-arrow'}
-          viewBox="0 0 10 10"
-          refX="9"
-          refY="5"
-          markerWidth="7"
-          markerHeight="7"
-          orient="auto"
-        >
-          <path d="M0 0L10 5L0 10Z" fill={ink} />
-        </marker>
-        <pattern id={uid + '-stripe'} patternUnits="userSpaceOnUse" width="9" height="9">
-          <rect width="9" height="9" fill={light} />
-          <path d="M0 9L9 0" stroke={accent} />
-        </pattern>
-      </defs>
-      {drawing}
-    </svg>
-  );
+  const chart =
+    f.kind === 'predicate-table' ? (
+      drawing
+    ) : (
+      <svg viewBox={viewBox} role="img" aria-label={f.title}>
+        <defs>
+          <marker
+            id={uid + '-arrow'}
+            viewBox="0 0 10 10"
+            refX="9"
+            refY="5"
+            markerWidth="7"
+            markerHeight="7"
+            orient="auto"
+          >
+            <path d="M0 0L10 5L0 10Z" fill={ink} />
+          </marker>
+          <pattern id={uid + '-stripe'} patternUnits="userSpaceOnUse" width="9" height="9">
+            <rect width="9" height="9" fill={light} />
+            <path d="M0 9L9 0" stroke={accent} />
+          </pattern>
+        </defs>
+        {drawing}
+      </svg>
+    );
   const table = matrix && f.nodes && (
     <div className="figure-table">
       <table>

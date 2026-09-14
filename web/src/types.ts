@@ -118,6 +118,7 @@ export type Figure = {
   rows?: number | string[];
   columns?: number | string[];
   rowLabel?: string;
+  columnLabel?: string;
   counts?: number[];
   firstIndex?: number;
   rule?: string;
