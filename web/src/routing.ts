@@ -1,6 +1,10 @@
 import type { Lesson } from './types';
 
-export type AppRoute = { slug: string; tab: 'read' | 'practice' | 'reference'; exercise?: string };
+export type AppRoute = {
+  slug: string;
+  tab: 'read' | 'practice' | 'reference' | 'progress';
+  exercise?: string;
+};
 
 // Hash routes work with the offline app shell and local/static hosting alike.
 export function readRoute(hash: string, lessons: Lesson[], savedLesson: string | null): AppRoute {
@@ -16,7 +20,11 @@ export function readRoute(hash: string, lessons: Lesson[], savedLesson: string |
     lessons.find((l) => l.slug === savedLesson) ||
     lessons[0];
   const tab =
-    page === 'reference' ? page : page === 'practice' && lesson.questions.length ? page : 'read';
+    page === 'reference' || page === 'progress'
+      ? page
+      : page === 'practice' && lesson.questions.length
+        ? page
+        : 'read';
   return {
     slug: lesson.slug,
     tab,

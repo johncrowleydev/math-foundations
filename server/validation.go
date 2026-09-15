@@ -13,6 +13,20 @@ func validPayload(m Mutation) bool {
 		return false
 	}
 	switch strings.Split(m.Key, "/")[0] {
+	case "assistance":
+		var v struct {
+			AnswerPreviouslyRevealed   *bool
+			PriorIncorrectFeedbackSeen *bool
+		}
+		return json.Unmarshal(m.Payload, &v) == nil && v.AnswerPreviouslyRevealed != nil && v.PriorIncorrectFeedbackSeen != nil
+	case "exposure":
+		var v struct {
+			Concept  string
+			Source   string
+			SourceID string
+			At       int64
+		}
+		return json.Unmarshal(m.Payload, &v) == nil && regexp.MustCompile(`^[a-z][a-z0-9-]{0,100}$`).MatchString(v.Concept) && enum(v.Source, "lesson", "exercise", "feedback") && len(v.SourceID) > 0 && len(v.SourceID) < 300 && v.At > 0
 	case "text":
 		var s string
 		return p["text"] != nil && json.Unmarshal(p["text"], &s) == nil

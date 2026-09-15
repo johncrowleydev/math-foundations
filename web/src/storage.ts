@@ -1,6 +1,8 @@
 import { openDB } from 'idb';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
+import type { EvidenceCatalog } from './evidenceTypes';
+import { validEffort, validGradeEvidence, validSnapshot } from './evidenceValidation';
 const db = openDB('foundations-web', 2, {
   upgrade(d) {
     for (const s of ['drafts', 'attempts', 'media', 'records', 'outbox', 'settings', 'imports'])
@@ -164,8 +166,12 @@ export async function integrate(records: RecordData[], cursor: number) {
   for (const key of changedDrafts) changed('draft:' + key);
   if (updated) changed();
 }
-export async function exportData() {
-  const data: Record<string, unknown> = { version: 1 };
+export async function exportData(catalog?: EvidenceCatalog) {
+  const data: Record<string, unknown> = {
+    version: 2,
+    exportedAt: Date.now(),
+    evidenceCatalog: catalog,
+  };
   const d = await db;
   for (const name of ['drafts', 'attempts', 'records', 'outbox']) {
     const tx = d.transaction(name);
@@ -197,7 +203,11 @@ export type ImportArchive = { name: string; at: number; conflicts: number; blob:
 export async function importData(file: Blob, name: string) {
   if (file.size > 100 * 1024 * 1024) throw Error('Backup exceeds 100 MB.');
   const data = JSON.parse(await file.text()) as Record<string, unknown>;
-  if (!data || typeof data !== 'object' || (data.version !== undefined && data.version !== 1))
+  if (
+    !data ||
+    typeof data !== 'object' ||
+    (data.version !== undefined && data.version !== 1 && data.version !== 2)
+  )
     throw Error('Unsupported backup format.');
   const names = ['drafts', 'attempts', 'records', 'outbox'] as const;
   const object = (v: unknown): v is Record<string, any> =>
@@ -208,6 +218,8 @@ export async function importData(file: Blob, name: string) {
     Array.isArray(v) &&
     v.every((p) => object(p) && hashKey(p.hash) && finite(p.rotation) && p.rotation % 90 === 0);
   const attempt = (v: Record<string, any>) =>
+    validEffort(v) &&
+    validSnapshot(v.analytics) &&
     typeof v.id === 'string' &&
     typeof v.exercise === 'string' &&
     finite(v.submitted) &&
@@ -218,6 +230,7 @@ export async function importData(file: Blob, name: string) {
     Array.isArray(v.images) &&
     v.images.every(hashKey) &&
     Array.isArray(v.grades) &&
+    v.grades.every((g: any) => object(g) && validGradeEvidence(g)) &&
     (v.photos === undefined || photos(v.photos));
   const parsed: Record<string, [string, Record<string, any>][]> = {};
   for (const store of names) {
@@ -236,6 +249,7 @@ export async function importData(file: Blob, name: string) {
       )
         throw Error('Invalid or duplicate backup entry.');
       const [key, v] = row;
+      if (store === 'drafts' && !validEffort(v)) throw Error('Invalid effort metadata');
       seen.add(key);
       if (
         store === 'drafts' &&

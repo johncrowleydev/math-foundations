@@ -19,6 +19,8 @@ import { questionLabel } from './types';
 import { ContentContext, Rich, MathText, Modal, Copy } from './Rich';
 import { Figure } from './Figure';
 import { Exercise } from './Exercise';
+import { Progress } from './Progress';
+import { expose } from './exposure';
 import {
   all,
   lessonProgress,
@@ -187,6 +189,12 @@ export function App({ data }: { data: Curriculum }) {
             setActive(e.target.id);
             clearTimeout(timer);
             timer = setTimeout(() => {
+              if (!document.hidden)
+                for (const t of data.evidence.teaching.filter(
+                  (t) =>
+                    t.lesson === lesson.slug && t.section === e.target.getAttribute('data-title'),
+                ))
+                  void expose(t.concept, 'lesson', lesson.slug + ':' + t.section).catch(() => {});
               void put('settings', 'bookmark:' + lesson.slug, { anchor: e.target.id });
               void get<string>('settings', 'device').then(
                 (device) =>
@@ -365,7 +373,7 @@ export function App({ data }: { data: Curriculum }) {
               <strong>{lesson.title}</strong>
             </div>
             <nav className="tabs">
-              {['read', 'practice', 'reference'].map((t) => (
+              {['read', 'practice', 'reference', 'progress'].map((t) => (
                 <button
                   disabled={t === 'practice' && !lesson.questions.length}
                   title={
@@ -482,6 +490,20 @@ export function App({ data }: { data: Curriculum }) {
                     </button>
                   </nav>
                 </div>
+              ) : tab === 'progress' ? (
+                <Progress
+                  data={data}
+                  slug={lesson.slug}
+                  onExercise={(key) => {
+                    for (const l of data.lessons) {
+                      const q = l.questions.find((q) => l.slug + '-' + q.id === key);
+                      if (q) {
+                        navigate({ slug: l.slug, tab: 'practice', exercise: String(q.id) });
+                        break;
+                      }
+                    }
+                  }}
+                />
               ) : tab === 'reference' ? (
                 <Library data={data} onOpen={(id) => setReference([id])} />
               ) : null}
@@ -588,6 +610,7 @@ export function App({ data }: { data: Curriculum }) {
       )}
       {settings && (
         <Settings
+          data={data}
           onResume={(r) => {
             const l = data.lessons.find((l) => l.slug === r.payload.slug);
             if (!l) return;
@@ -789,6 +812,7 @@ function ReferenceEntry({
   );
 }
 function Settings({
+  data,
   onResume,
   onClose,
   two,
@@ -796,6 +820,7 @@ function Settings({
   tutorials,
   setTutorials,
 }: {
+  data: Curriculum;
   onResume: (record: RecordData) => void;
   onClose: () => void;
   two: boolean;
@@ -870,7 +895,7 @@ function Settings({
       </p>
       <button
         onClick={() =>
-          void exportData().then((b) => {
+          void exportData(data.evidence).then((b) => {
             const a = document.createElement('a');
             a.href = URL.createObjectURL(b);
             a.download = 'foundations-backup.json';

@@ -50,7 +50,7 @@ type MediaStore interface {
 type DiskMedia struct{ Root string }
 
 var hashPattern = regexp.MustCompile(`^[a-f0-9]{64}$`)
-var keyPattern = regexp.MustCompile(`^(text|ink|photos|quick|preference|reading|practice)/[a-zA-Z0-9:_-]{1,200}$`)
+var keyPattern = regexp.MustCompile(`^(text|ink|photos|quick|preference|reading|practice|exposure|assistance)/[a-zA-Z0-9:_-]{1,200}$`)
 
 func (d DiskMedia) Open(id string) (*os.File, error) { return os.Open(filepath.Join(d.Root, id)) }
 func (d DiskMedia) Put(id string, r io.Reader) error {

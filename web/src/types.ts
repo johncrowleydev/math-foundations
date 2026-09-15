@@ -1,3 +1,4 @@
+import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from './evidenceTypes';
 export type Block = { id: string; kind: string; markdown?: string; figure?: string };
 export type Question = {
   id: number;
@@ -128,6 +129,7 @@ export type Figure = {
   series?: { label: string; model: string; coefficients?: number[]; base?: number }[];
 };
 export type Curriculum = {
+  evidence: EvidenceCatalog;
   lessons: Lesson[];
   references: Reference[];
   figures: Figure[];
@@ -139,7 +141,8 @@ export type Curriculum = {
   referenceSyntax: { reference: string; examples: string[]; requires: string[] }[];
   version: string;
 };
-export type Grade = {
+export type Grade = GradeEvidence & {
+  promptVersion?: string;
   model?: string;
   verdict: string;
   feedback: string;
@@ -149,7 +152,8 @@ export type Grade = {
   reason?: string;
   at: number;
 };
-export type Attempt = {
+export type Attempt = Effort & {
+  analytics?: EvidenceSnapshot;
   recheckReason?: string;
   transcription?: string;
   id: string;
@@ -174,7 +178,7 @@ export type Stroke = {
   width: number;
 };
 export type Photo = { hash: string; rotation: number };
-export type Draft = {
+export type Draft = Effort & {
   choiceId?: string;
   text: string;
   mode: 'type' | 'pen' | 'photo';
@@ -196,14 +200,22 @@ export type RecordData = {
   conflicts: string[];
 };
 export async function loadCurriculum(): Promise<Curriculum> {
-  const [n, t, s, x, v] = await Promise.all(
-    ['notebook', 'teaching', 'tex-syntax', 'tex-teaching', 'grading-version'].map(async (f) => {
+  const [n, t, s, x, v, evidence] = await Promise.all(
+    [
+      'notebook',
+      'teaching',
+      'tex-syntax',
+      'tex-teaching',
+      'grading-version',
+      'learning-evidence',
+    ].map(async (f) => {
       const r = await fetch(`/${f}.json`);
       if (!r.ok) throw Error('Could not load bundled lessons');
       return r.json();
     }),
   );
   return {
+    evidence,
     lessons: n.lessons.map((lesson: Lesson) => ({
       ...lesson,
       questions: lesson.questions.map((q, index) => ({ ...q, displayNumber: index + 1 })),
