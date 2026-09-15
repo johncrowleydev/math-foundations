@@ -2,7 +2,12 @@ import { openDB } from 'idb';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
 import type { EvidenceCatalog } from './evidenceTypes';
-import { validEffort, validGradeEvidence, validSnapshot } from './evidenceValidation';
+import {
+  validAttemptEffort,
+  validEffort,
+  validGradeEvidence,
+  validSnapshot,
+} from './evidenceValidation';
 const db = openDB('foundations-web', 2, {
   upgrade(d) {
     for (const s of ['drafts', 'attempts', 'media', 'records', 'outbox', 'settings', 'imports'])
@@ -47,6 +52,17 @@ function storedChange(store: string, key: string) {
   if (store === 'media') changed('media:' + key);
   else if (store === 'drafts') changed('draft:' + key);
   else if (store === 'attempts' || store === 'records' || store === 'imports') changed();
+}
+// A read/write transaction serializes first use across calls and browser tabs.
+export async function deviceId(): Promise<string> {
+  const tx = (await db).transaction('settings', 'readwrite');
+  let device = (await tx.store.get('device')) as string | undefined;
+  if (!device) {
+    device = 'web-' + crypto.randomUUID();
+    await tx.store.put(device, 'device');
+  }
+  await tx.done;
+  return device;
 }
 export async function get<T>(store: string, key: string): Promise<T | undefined> {
   return (await db).get(store, key);
@@ -218,7 +234,7 @@ export async function importData(file: Blob, name: string) {
     Array.isArray(v) &&
     v.every((p) => object(p) && hashKey(p.hash) && finite(p.rotation) && p.rotation % 90 === 0);
   const attempt = (v: Record<string, any>) =>
-    validEffort(v) &&
+    validAttemptEffort(v) &&
     validSnapshot(v.analytics) &&
     typeof v.id === 'string' &&
     typeof v.exercise === 'string' &&

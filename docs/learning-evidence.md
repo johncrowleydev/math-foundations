@@ -75,3 +75,13 @@ Screenshots use synthetic examples only:
 ![Optional uncertainty](screenshots/learning-evidence/uncertainty.png)
 
 Deferred explicitly: spaced repetition/review scheduling, mastery scoring, forgetting curves, psychometrics, adaptive generation, prerequisites unlocking, automatic stronger-model escalation, LLM progress summaries, inferred historical diagnostics, concept backfill for other lessons, and attribute correlation modeling.
+
+### Review follow-up
+
+Assistance records merge the two sticky facts with logical OR inside the server mutation transaction, including stale writes and explicit resolutions. Request hashes still describe the original request, so retries stay idempotent. Existing record keys remain compatible; already lost facts cannot be reconstructed from discarded versions.
+
+Exposure keys and sync mutations share an IndexedDB transaction-based device-ID initializer, including concurrent first use across tabs. Legacy exposure records remain readable; new records never use a placeholder device identity.
+
+Imported submitted attempts (including queued submissions) must have integral effort timestamps/durations, a positive start no later than submission, and a duration no greater than elapsed time with a start present. Legacy attempts without effort remain valid. Drafts keep their separate validation because they have no submission timestamp.
+
+Authored exercise `skills` accept both a string shorthand for a primary skill and an explicit `{ skill: justify, role: supporting }` object. The same catalog validation checks both forms, requires a primary skill, and rejects unknown IDs, duplicate skills, and invalid roles.

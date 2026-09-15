@@ -5,7 +5,7 @@ import { summarize, conceptRows, metadata } from '../src/analytics';
 import { EffortClock } from '../src/effort';
 import { snapshot, type EvidenceCatalog } from '../src/evidenceTypes';
 import type { Attempt } from '../src/types';
-import { put, get, exportData, importData, clearLocalWork } from '../src/storage';
+import { put, get, exportData, importData, clearLocalWork, all, deviceId } from '../src/storage';
 const catalog: EvidenceCatalog = {
   version: 'one',
   concepts: [{ id: 'generic', name: 'Generic' }],
@@ -130,4 +130,57 @@ test('version 2 export/import retains analytics, timing, assistance, uncertainty
   assert.deepEqual(await get('attempts', x.id), x);
   exported.attempts[0][1].activeDurationMs = -1;
   await assert.rejects(importData(new Blob([JSON.stringify(exported)]), 'invalid'));
+});
+
+test('fresh profile exposure uses one real device ID even with concurrent first calls', async () => {
+  await clearLocalWork();
+  const originalWindow = globalThis.window;
+  globalThis.window = { addEventListener() {} } as unknown as Window & typeof globalThis;
+  const { expose } = await import('../src/exposure');
+  globalThis.window = originalWindow;
+  await Promise.all([
+    expose('generic', 'lesson', 'section'),
+    expose('generic', 'lesson', 'section'),
+  ]);
+  const device = await deviceId();
+  assert.match(device, /^web-[0-9a-f-]{36}$/);
+  await expose('generic', 'lesson', 'section');
+  const records = (await all<any>('records')).filter((r) => r.key.startsWith('exposure/'));
+  const outbox = (await all<any>('outbox')).filter((r) => r.data?.key.startsWith('exposure/'));
+  assert.equal(records.length, 1);
+  assert.equal(outbox.length, 1);
+  assert.equal(records[0].key, `exposure/${device}:generic:lesson`);
+  assert.equal(records[0].device, device);
+  assert.equal(outbox[0].data.device, device);
+  assert.deepEqual(await Promise.all([deviceId(), deviceId()]), [device, device]);
+});
+
+test('import rejects impossible effort in saved and queued attempts, preserving legacy attempts', async () => {
+  await clearLocalWork();
+  const x = a('effort-import', 'correct', 2000);
+  await put('attempts', x.id, x);
+  const backup = JSON.parse(await (await exportData(catalog)).text());
+  for (const invalid of [
+    { startedAt: 0 },
+    { activeDurationMs: 0 },
+    { startedAt: 2001 },
+    { startedAt: 1000, activeDurationMs: 1001 },
+    { startedAt: 1000.5 },
+    { startedAt: 1000, activeDurationMs: 0.5 },
+  ]) {
+    for (const queued of [false, true]) {
+      const data = structuredClone(backup);
+      const attempt = { ...x, ...invalid };
+      data.attempts = queued ? [] : [[x.id, attempt]];
+      data.outbox = queued ? [[x.id, { id: x.id, kind: 'attempt', data: attempt }]] : [];
+      await assert.rejects(importData(new Blob([JSON.stringify(data)]), 'invalid-effort'));
+    }
+  }
+  for (const effort of [{}, { startedAt: 1000 }, { startedAt: 1000, activeDurationMs: 1000 }]) {
+    const data = structuredClone(backup);
+    data.attempts[0][1] = { ...x, ...effort };
+    await clearLocalWork();
+    await importData(new Blob([JSON.stringify(data)]), 'valid-effort');
+    assert.deepEqual(await get('attempts', x.id), data.attempts[0][1]);
+  }
 });

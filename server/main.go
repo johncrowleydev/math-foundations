@@ -159,6 +159,25 @@ func (s *Server) mutate(m Mutation) (Record, error) {
 	if e != nil && e != sql.ErrNoRows {
 		return Record{}, e
 	}
+	// Assistance is monotonic evidence, even when stale devices submit different facts.
+	// Keep the original request hash above for retry/idempotency validation.
+	if strings.HasPrefix(m.Key, "assistance/") {
+		var incoming, prior map[string]bool
+		if e = json.Unmarshal(m.Payload, &incoming); e != nil {
+			return Record{}, e
+		}
+		if incoming == nil {
+			incoming = map[string]bool{}
+		}
+		_ = json.Unmarshal(old.Payload, &prior)
+		for _, field := range []string{"answerPreviouslyRevealed", "priorIncorrectFeedbackSeen"} {
+			incoming[field] = incoming[field] || prior[field]
+		}
+		m.Payload, e = json.Marshal(incoming)
+		if e != nil {
+			return Record{}, e
+		}
+	}
 	conflict := old.Revision != m.Base && len(old.Payload) > 0 && string(old.Payload) != string(m.Payload)
 	// Learning preferences are last accepted changes; answers always preserve conflicts.
 	answer := strings.HasPrefix(m.Key, "text/") || strings.HasPrefix(m.Key, "ink/") || strings.HasPrefix(m.Key, "photos/")

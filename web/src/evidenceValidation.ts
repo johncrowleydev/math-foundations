@@ -1,3 +1,17 @@
+// Immutable submissions must satisfy the same effort bounds as the Go API.
+// Drafts have no submitted timestamp and may retain an untouched zero-duration clock.
+export function validAttemptEffort(v: Record<string, any>) {
+  return (
+    validEffort(v) &&
+    Number.isSafeInteger(v.submitted) &&
+    (v.startedAt === undefined ||
+      (Number.isSafeInteger(v.startedAt) && v.startedAt > 0 && v.startedAt <= v.submitted)) &&
+    (v.activeDurationMs === undefined ||
+      (Number.isSafeInteger(v.activeDurationMs) &&
+        v.startedAt !== undefined &&
+        v.activeDurationMs <= v.submitted - v.startedAt))
+  );
+}
 export function validEffort(v: Record<string, any>) {
   const number = (x: unknown) => typeof x === 'number' && Number.isFinite(x) && x >= 0;
   return (

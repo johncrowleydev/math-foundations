@@ -9,7 +9,7 @@ test('analysis ZIP v2 preserves synthetic structured evidence and excludes authe
 });
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { validateEvidence } from './evidence.js';
+import { validateEvidence, authoredSkills } from './evidence.js';
 import type { EvidenceCatalog } from '../web/src/evidenceTypes.js';
 const c: EvidenceCatalog = JSON.parse(
   await readFile('output/content/learning-evidence.json', 'utf8'),
@@ -44,4 +44,23 @@ test('role metadata distinguishes multi-concept work and representations', () =>
   assert.equal(q.concepts.find((x) => x.concept === 'distribution')?.role, 'primary');
   assert.ok(q.representations.includes('proof'));
   assert.equal(q.attributes?.operatorCount, 5);
+});
+
+test('authored skill objects retain roles while string shorthand remains primary', () => {
+  const copy = structuredClone(c);
+  const links = authoredSkills(['recognize', { skill: 'justify', role: 'supporting' }]);
+  assert.deepEqual(links, [
+    { skill: 'recognize', role: 'primary' },
+    { skill: 'justify', role: 'supporting' },
+  ]);
+  copy.exercises['propositional-logic-1'].skills = links;
+  validateEvidence(copy, keys);
+  for (const skills of [
+    authoredSkills([{ skill: 'justify', role: 'invalid' }]),
+    authoredSkills([{ skill: 'missing', role: 'primary' }]),
+    authoredSkills([{ skill: 'justify', role: 'supporting' }]),
+  ]) {
+    copy.exercises['propositional-logic-1'].skills = skills;
+    assert.throws(() => validateEvidence(copy, keys));
+  }
 });

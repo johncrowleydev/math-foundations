@@ -1,15 +1,16 @@
-import { all, get, put } from './storage';
+import { all, get, put, deviceId } from './storage';
 import { mutation } from './sync';
 import type { Exposure } from './evidenceTypes';
 import type { RecordData } from './types';
 const pending = new Set<string>();
 // One record per concept/source/device: bounded by curriculum, not by visits.
 export async function expose(concept: string, source: Exposure['source'], sourceId: string) {
-  const device = (await get<string>('settings', 'device')) || 'web';
+  const device = await deviceId();
   const key = 'exposure/' + device + ':' + concept + ':' + source;
-  if (pending.has(key) || (await get('records', key)) || (await get('settings', key))) return;
+  if (pending.has(key)) return;
   pending.add(key);
   try {
+    if ((await get('records', key)) || (await get('settings', key))) return;
     const e: Exposure = { concept, source, sourceId, at: Date.now() };
     await mutation(key, e);
     await put('settings', key, e);

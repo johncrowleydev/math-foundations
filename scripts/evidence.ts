@@ -54,6 +54,11 @@ export function validateEvidence(c: EvidenceCatalog, keys: Set<string>) {
   }
   for (const t of c.teaching) if (!concepts.has(t.concept)) throw Error('Unknown teaching concept');
 }
+export function authoredSkills(rows: (string | { skill: string; role: string })[]) {
+  return rows.map((row) =>
+    typeof row === 'string' ? { skill: row, role: 'primary' as const } : row,
+  ) as ExerciseEvidence['skills'];
+}
 export async function loadEvidence(
   lessons: {
     slug: string;
@@ -70,7 +75,7 @@ export async function loadEvidence(
       concepts: row.primary
         .map((concept: string) => ({ concept, role: 'primary' }))
         .concat((row.supporting || []).map((concept: string) => ({ concept, role: 'supporting' }))),
-      skills: row.skills.map((skill: string) => ({ skill, role: 'primary' })),
+      skills: authoredSkills(row.skills),
       representations: row.representations,
       attributes: row.attributes || {},
     };
