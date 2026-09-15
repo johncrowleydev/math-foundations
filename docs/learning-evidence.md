@@ -85,3 +85,7 @@ Exposure keys and sync mutations share an IndexedDB transaction-based device-ID 
 Imported submitted attempts (including queued submissions) must have integral effort timestamps/durations, a positive start no later than submission, and a duration no greater than elapsed time with a start present. Legacy attempts without effort remain valid. Drafts keep their separate validation because they have no submission timestamp.
 
 Authored exercise `skills` accept both a string shorthand for a primary skill and an explicit `{ skill: justify, role: supporting }` object. The same catalog validation checks both forms, requires a primary skill, and rejects unknown IDs, duplicate skills, and invalid roles.
+
+### Cancelling grading
+
+Pending/running assessments have an operation ID. The signed-in client can cancel that exact operation; stale cancellation cannot affect a later retry. Cancellation is persisted, synced across devices, and aborts the active HTTP request. A result arriving after cancellation is discarded. Cancelled first assessments have no mathematical verdict; cancelled rechecks retain previous assessments. Answers remain available for retry grading or a new submission. Cancellation requires a connection and does not promise a refund for provider work already performed.

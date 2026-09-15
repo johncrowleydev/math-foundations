@@ -84,11 +84,28 @@ export async function mutation(key: string, payload: Record<string, unknown>, re
   });
   void sync();
 }
+export async function cancelGrading(a: Attempt) {
+  const current: Attempt = a.activeJob ? a : await (await request('/attempts/' + a.id)).json();
+  if (!current.activeJob) {
+    await put('attempts', a.id, current);
+    return;
+  }
+  const saved = await (
+    await request('/attempts/' + a.id + '/cancel', 'POST', { job: current.activeJob })
+  ).json();
+  await put('attempts', a.id, saved);
+}
 export async function recheck(a: Attempt, reason: string) {
   if (a.verdict && !reason.trim()) throw Error('Explain what should be reconsidered.');
   const id = crypto.randomUUID();
   await put('outbox', id, { id, kind: 'recheck', attempt: a.id, data: { id, reason } });
-  await put('attempts', a.id, { ...a, status: 'rechecking', error: '', recheckReason: reason });
+  await put('attempts', a.id, {
+    ...a,
+    status: 'rechecking',
+    error: '',
+    recheckReason: reason,
+    activeJob: id,
+  });
   void sync();
 }
 async function download(h: string) {
@@ -139,6 +156,7 @@ export async function sync() {
             transcription,
             recheckReason,
             analytics,
+            activeJob,
             ...submission
           } = a;
           const saved = await (await request('/attempts', 'POST', submission)).json();

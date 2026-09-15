@@ -15,6 +15,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -59,6 +60,7 @@ type Grade struct {
 	Usage           json.RawMessage `json:"usage,omitempty"`
 }
 type Attempt struct {
+	ActiveJob string          `json:"activeJob,omitempty"`
 	Analytics json.RawMessage `json:"analytics,omitempty"`
 	Submission
 	Transcription string  `json:"transcription,omitempty"`
@@ -82,6 +84,7 @@ type ChoiceAssessment struct {
 	CorrectOption string         `json:"correctOption"`
 }
 type Grading struct {
+	active        sync.Map // job ID -> context.CancelFunc
 	server        *Server
 	catalog       Catalog
 	key, endpoint string
@@ -112,6 +115,9 @@ func loadAttempt(q querier, id string) (Attempt, error) {
 		return a, e
 	}
 	if e = json.Unmarshal([]byte(data), &a.Submission); e != nil {
+		return a, e
+	}
+	if e = q.QueryRow("SELECT COALESCE((SELECT id FROM grading_jobs WHERE attempt=? AND status IN ('pending','running') ORDER BY rowid DESC LIMIT 1),'')", id).Scan(&a.ActiveJob); e != nil {
 		return a, e
 	}
 	if e = q.QueryRow("SELECT COALESCE((SELECT reason FROM grading_jobs WHERE attempt=? AND reason<>'' ORDER BY rowid DESC LIMIT 1),'')", id).Scan(&a.RecheckReason); e != nil {
@@ -388,6 +394,30 @@ func (s *Server) gradingRoutes(mux *http.ServeMux) {
 		}
 		writeJSON(w, 200, a)
 	})
+	mux.HandleFunc("POST /api/v1/attempts/{id}/cancel", func(w http.ResponseWriter, r *http.Request) {
+		if s.grading == nil {
+			http.Error(w, "Grading is unavailable", 503)
+			return
+		}
+		var v struct {
+			Job string `json:"job"`
+		}
+		if json.NewDecoder(http.MaxBytesReader(w, r.Body, 1024)).Decode(&v) != nil || v.Job == "" {
+			http.Error(w, "Missing grading job", 400)
+			return
+		}
+		if e := s.grading.cancelJob(r.PathValue("id"), v.Job); e != nil {
+			http.Error(w, e.Error(), 409)
+			return
+		}
+		a, e := loadAttempt(s.db, r.PathValue("id"))
+		if e != nil {
+			http.NotFound(w, r)
+			return
+		}
+		writeJSON(w, 200, a)
+	})
+
 	mux.HandleFunc("POST /api/v1/attempts/{id}/recheck", func(w http.ResponseWriter, r *http.Request) {
 		if s.grading == nil {
 			http.Error(w, "Grading is temporarily unavailable", 503)
@@ -521,6 +551,9 @@ func (g *Grading) step(ctx context.Context) bool {
 	if e != nil {
 		return false
 	}
+	jobCtx, cancel := context.WithCancel(ctx)
+	g.active.Store(id, cancel)
+	defer func() { cancel(); g.active.Delete(id) }()
 	if _, e = tx.Exec("UPDATE grading_jobs SET status='running',tries=tries+1 WHERE id=?", id); e != nil {
 		return false
 	}
@@ -539,12 +572,16 @@ func (g *Grading) step(ctx context.Context) bool {
 	}
 	var teaching string
 	g.server.db.QueryRow("SELECT context FROM attempts WHERE id=?", attempt).Scan(&teaching)
-	grade, e := g.evaluate(ctx, a, teaching, reason)
+	grade, e := g.evaluate(jobCtx, a, teaching, reason)
 	tx, e2 := g.server.db.Begin()
 	if e2 != nil {
 		return true
 	}
 	defer tx.Rollback()
+	var state string
+	if tx.QueryRow("SELECT status FROM grading_jobs WHERE id=?", id).Scan(&state) != nil || state != "running" {
+		return true
+	}
 	if e != nil {
 		if tries < 2 {
 			_, e2 = tx.Exec("UPDATE grading_jobs SET status='pending',next=? WHERE id=?", time.Now().Add(time.Duration(tries+1)*20*time.Second).UnixMilli(), id)
@@ -626,6 +663,6 @@ func configureGrading(s *Server) (*Grading, error) {
 	if endpoint == "" {
 		endpoint = "https://openrouter.ai/api/v1/chat/completions"
 	}
-	return &Grading{s, c, key, endpoint, &http.Client{Timeout: 120 * time.Second}}, nil
+	return &Grading{server: s, catalog: c, key: key, endpoint: endpoint, client: &http.Client{Timeout: 120 * time.Second}}, nil
 }
 func contentHash(b []byte) string { h := sha256.Sum256(b); return hex.EncodeToString(h[:]) }

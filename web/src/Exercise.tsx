@@ -2,7 +2,7 @@ import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
 import { useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
 import { all, emptyDraft, get, put, saveAttempt, saveMedia, useRevision } from './storage';
-import { connected, recheck, sync } from './sync';
+import { connected, recheck, sync, cancelGrading } from './sync';
 import { Rich, Modal } from './Rich';
 import { TexEditor } from './TexEditor';
 import { Ink, inkImage } from './Ink';
@@ -566,6 +566,7 @@ function AttemptPanel({
     [more, setMore] = useState(false),
     [panel, setPanel] = useState(''),
     [reason, setReason] = useState(a.recheckReason || ''),
+    [cancelling, setCancelling] = useState(false),
     [error, setError] = useState('');
   useEffect(() => {
     setFeedback(a.verdict === 'correct');
@@ -584,13 +585,17 @@ function AttemptPanel({
               ? a.status === 'rechecking'
                 ? 'Rechecking…'
                 : 'Grading…'
-              : a.status === 'not_graded'
-                ? 'Not graded'
-                : a.status === 'error'
-                  ? 'Could not grade'
-                  : a.verdict === 'correct'
-                    ? 'Correct'
-                    : 'Incorrect'}
+              : a.status === 'cancelled'
+                ? a.verdict
+                  ? 'Recheck cancelled'
+                  : 'Grading cancelled'
+                : a.status === 'not_graded'
+                  ? 'Not graded'
+                  : a.status === 'error'
+                    ? 'Could not grade'
+                    : a.verdict === 'correct'
+                      ? 'Correct'
+                      : 'Incorrect'}
         </strong>
         <time>
           {new Date(a.submitted).toLocaleString(undefined, {
@@ -598,6 +603,20 @@ function AttemptPanel({
             timeStyle: 'short',
           })}
         </time>
+        {active && (
+          <button
+            disabled={cancelling}
+            onClick={() => {
+              setCancelling(true);
+              setError('');
+              void cancelGrading(a)
+                .catch((e) => setError(String(e)))
+                .finally(() => setCancelling(false));
+            }}
+          >
+            {cancelling ? 'Cancelling…' : 'Cancel'}
+          </button>
+        )}
       </div>
       {a.transcription ? (
         <div className="submitted">
@@ -624,7 +643,7 @@ function AttemptPanel({
         </p>
       )}
       <div className="toolbar">
-        {a.status === 'error' && a.mode !== 'choice' && (
+        {['error', 'cancelled'].includes(a.status) && a.mode !== 'choice' && (
           <button
             className="primary"
             onClick={() =>

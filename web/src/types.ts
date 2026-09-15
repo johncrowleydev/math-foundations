@@ -153,6 +153,7 @@ export type Grade = GradeEvidence & {
   at: number;
 };
 export type Attempt = Effort & {
+  activeJob?: string;
   analytics?: EvidenceSnapshot;
   recheckReason?: string;
   transcription?: string;

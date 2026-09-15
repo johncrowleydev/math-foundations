@@ -29,7 +29,7 @@ func TestLiveGradingSyntheticResponses(t *testing.T) {
 		t.Fatal(e)
 	}
 	s := fixture(t)
-	g := &Grading{s, catalog, key, "https://openrouter.ai/api/v1/chat/completions", &http.Client{Timeout: 120 * time.Second}}
+	g := &Grading{server: s, catalog: catalog, key: key, endpoint: "https://openrouter.ai/api/v1/chat/completions", client: &http.Client{Timeout: 120 * time.Second}}
 	cases := []struct{ key, text, want string }{
 		{"propositional-logic-1", "Yes. This declarative statement has a definite truth value. Adding seven and five gives twelve, so it is true.", "correct"},
 		{"propositional-logic-1", "No, because an equation cannot have a truth value.", "incorrect"},
