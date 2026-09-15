@@ -8,7 +8,24 @@ export function gradeChoice(a: Attempt, choice: ChoiceAssessment): Attempt {
     text: selected.text,
     status: 'graded',
     verdict,
-    grades: [{ verdict, feedback: selected.feedback, at: a.submitted, model: 'deterministic' }],
+    grades: [
+      {
+        verdict,
+        feedback: selected.feedback,
+        at: a.submitted,
+        model: 'deterministic',
+        promptVersion: 'authored-choice-2',
+        confidence: 'high',
+        requirements: [
+          {
+            id: 'selection',
+            description: 'Select the correct option',
+            satisfied: verdict === 'correct',
+          },
+        ],
+        diagnosis: [],
+      },
+    ],
   };
 }
 export function currentChoiceFeedback(a: Attempt, choice?: ChoiceAssessment): string | undefined {

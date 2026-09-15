@@ -31,3 +31,4 @@ go test ./...
 ```
 
 See [deployment and authentication](docs/pwa-deployment.md) and [web-client behavior](docs/web-client.md).
+Learning analytics and grading v5 are documented in [Learning evidence](docs/learning-evidence.md).

@@ -63,7 +63,7 @@ func TestTranscriptionRetiresMediaPreservesSourceAndRecheck(t *testing.T) {
 		if bytes.Contains(raw, []byte("image_url")) || !bytes.Contains(raw, []byte("SAVED TRANSCRIPTION")) || !bytes.Contains(raw, []byte("photo")) || !bytes.Contains(raw, []byte("clarification-test")) {
 			t.Error("Recheck lost transcription provenance or clarification")
 		}
-		writeJSON(w, 200, map[string]any{"choices": []any{map[string]any{"message": map[string]any{"content": reply}}}})
+		writeJSON(w, 200, map[string]any{"choices": []any{map[string]any{"message": map[string]any{"content": v5FixtureReply(reply)}}}})
 	}))
 	defer provider.Close()
 	g.endpoint = provider.URL

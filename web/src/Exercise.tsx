@@ -9,8 +9,13 @@ import { Ink, inkImage } from './Ink';
 import { Media, Photos, normalizedPhoto } from './Photos';
 import { gradeChoice, currentChoiceFeedback } from './choiceGrading';
 import { questionLabel } from './types';
+import { snapshot } from './evidenceTypes';
+import { EffortClock } from './effort';
+import { expose } from './exposure';
+import { markAssistance, seenAssistance } from './assistance';
 export function Exercise({ q, lesson, data }: { q: Question; lesson: string; data: Curriculum }) {
   const key = lesson + '-' + q.id;
+  const clock = useRef(new EffortClock());
   const rev = useRevision();
   const draftRevision = useRevision('draft:' + key);
   const [draft, setDraft] = useState<Draft | null>(null),
@@ -54,6 +59,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       if (live) {
         setDraft(d);
         latestDraft.current = d;
+        clock.current = new EffortClock(d);
       }
     })().catch((e) => setError('Could not restore saved work: ' + String(e)));
     return () => {
@@ -112,7 +118,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
   }, [key, draftRevision]);
   function update(p: Partial<Draft>) {
     touched.current = true;
-    const next = { ...latestDraft.current!, ...p, updated: Date.now() };
+    const next = { ...latestDraft.current!, ...clock.current.value(), ...p, updated: Date.now() };
     latestDraft.current = next;
     setDraft(next);
     writes.current = writes.current
@@ -131,6 +137,29 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
     ),
     last = attempts.at(-1),
     editing = (!last || draft?.editing) && !correct && !pending;
+  const editingRef = useRef(editing);
+  editingRef.current = editing;
+  useEffect(() => {
+    const pause = () => {
+      if (latestDraft.current && editingRef.current) update(clock.current.pause());
+    };
+    const visibility = () => {
+      if (document.hidden) pause();
+    };
+    window.addEventListener('blur', pause);
+    document.addEventListener('visibilitychange', visibility);
+    return () => {
+      pause();
+      window.removeEventListener('blur', pause);
+      document.removeEventListener('visibilitychange', visibility);
+    };
+  }, [key]);
+  function activity() {
+    if (!editing || !latestDraft.current || document.hidden) return;
+    clock.current.touch();
+    for (const c of data.evidence.exercises[key]?.concepts || [])
+      void expose(c.concept, 'exercise', key).catch((e) => setError(String(e)));
+  }
   async function submit() {
     if (!draft || pending || correct || saving) return;
     setSaving(true);
@@ -139,6 +168,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       await writes.current;
       if (saveError.current) throw Error(saveError.current);
       const d = latestDraft.current!;
+      const seen = await seenAssistance(key);
       if (
         !q.choice &&
         ((d.mode === 'type' && !d.text.trim()) ||
@@ -156,6 +186,21 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         text: d.mode === 'type' ? d.text : '',
         images: [],
         revealed: d.revealed,
+        ...clock.current.pause(),
+        unsure: d.unsure,
+        assistance: {
+          answerPreviouslyRevealed:
+            seen.answerPreviouslyRevealed ||
+            d.assistance?.answerPreviouslyRevealed ||
+            d.revealed ||
+            attempts.some((a) => a.revealed || a.assistance?.answerPreviouslyRevealed),
+          priorIncorrectFeedbackSeen:
+            seen.priorIncorrectFeedbackSeen ||
+            d.assistance?.priorIncorrectFeedbackSeen ||
+            attempts.some((a) => a.assistance?.priorIncorrectFeedbackSeen),
+          copiedFromRetry: d.assistance?.copiedFromRetry || false,
+        },
+        analytics: snapshot(data.evidence, key),
         status: 'queued',
         grades: [],
       };
@@ -182,6 +227,21 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
   }
   async function retry(a: Attempt) {
     if (correct || pending) return;
+    if (!latestDraft.current?.recovery) {
+      clock.current = new EffortClock();
+      update({
+        startedAt: undefined,
+        activeDurationMs: 0,
+        unsure: undefined,
+        assistance: {
+          answerPreviouslyRevealed:
+            latestDraft.current?.assistance?.answerPreviouslyRevealed || a.revealed,
+          priorIncorrectFeedbackSeen:
+            latestDraft.current?.assistance?.priorIncorrectFeedbackSeen || false,
+          copiedFromRetry: !q.choice,
+        },
+      });
+    }
     if (q.choice) {
       update({ choiceId: undefined, editing: true, recovery: true });
       return;
@@ -210,8 +270,31 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         recovery: true,
       });
   }
+  function feedbackSeen(id: string) {
+    void markAssistance(key, 'priorIncorrectFeedbackSeen').catch((e) => setError(String(e)));
+    update({
+      assistance: {
+        answerPreviouslyRevealed:
+          latestDraft.current?.assistance?.answerPreviouslyRevealed ||
+          latestDraft.current?.revealed ||
+          false,
+        priorIncorrectFeedbackSeen: true,
+        copiedFromRetry: latestDraft.current?.assistance?.copiedFromRetry || false,
+      },
+    });
+    for (const c of data.evidence.exercises[key]?.concepts || [])
+      void expose(c.concept, 'feedback', id).catch((e) => setError(String(e)));
+  }
   const editor = draft && (
-    <>
+    <div
+      onPointerDownCapture={activity}
+      onPointerMoveCapture={(e) => {
+        if (e.buttons && editing) clock.current.touch();
+      }}
+      onKeyDownCapture={activity}
+      onInputCapture={activity}
+      onFocusCapture={activity}
+    >
       {q.choice ? (
         <>
           <div className="choices" role="group" aria-label="Answer choices">
@@ -262,6 +345,13 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         </>
       )}
       <div className="toolbar submit">
+        <button
+          aria-pressed={draft.unsure === true}
+          title="Optional: mark this response as unsure"
+          onClick={() => update({ unsure: draft.unsure ? undefined : true })}
+        >
+          Unsure{draft.unsure ? ' ✓' : ''}
+        </button>
         {last?.status === 'error' && !q.choice && (
           <button
             onClick={() => {
@@ -290,7 +380,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
           )}
         </button>
       </div>
-    </>
+    </div>
   );
   return (
     <article
@@ -333,6 +423,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
           <AttemptPanel
             attempt={last}
             choice={q.choice}
+            onFeedbackSeen={() => feedbackSeen(last.id)}
             onRetry={() => void retry(last)}
             resumeDraft={draft?.recovery}
             canRetry={!correct && !pending}
@@ -405,8 +496,18 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       <details
         open={draft?.revealed || false}
         onToggle={(e) => {
+          if (draft && e.currentTarget.open)
+            void markAssistance(key, 'answerPreviouslyRevealed').catch((e) => setError(String(e)));
           if (draft && draft.revealed !== e.currentTarget.open)
-            update({ revealed: e.currentTarget.open });
+            update({
+              revealed: e.currentTarget.open,
+              assistance: {
+                answerPreviouslyRevealed:
+                  draft.assistance?.answerPreviouslyRevealed || e.currentTarget.open,
+                priorIncorrectFeedbackSeen: draft.assistance?.priorIncorrectFeedbackSeen || false,
+                copiedFromRetry: draft.assistance?.copiedFromRetry || false,
+              },
+            });
         }}
       >
         <summary>Reveal answer</summary>
@@ -423,7 +524,11 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         >
           {[...attempts].reverse().map((a) => (
             <div className="history-item" key={a.id}>
-              <AttemptPanel attempt={a} choice={q.choice} />
+              <AttemptPanel
+                attempt={a}
+                choice={q.choice}
+                onFeedbackSeen={() => feedbackSeen(a.id)}
+              />
             </div>
           ))}
         </Modal>
@@ -440,6 +545,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
   );
 }
 function AttemptPanel({
+  onFeedbackSeen,
   resumeDraft,
   attempt: a,
   onRetry,
@@ -448,6 +554,7 @@ function AttemptPanel({
   choice,
 }: {
   attempt: Attempt;
+  onFeedbackSeen?: () => void;
   choice?: ChoiceAssessment;
   resumeDraft?: boolean;
   onRetry?: () => void;
@@ -528,7 +635,12 @@ function AttemptPanel({
           </button>
         )}
         {g && (
-          <button onClick={() => setFeedback(!feedback)}>
+          <button
+            onClick={() => {
+              if (!feedback && a.verdict === 'incorrect') onFeedbackSeen?.();
+              setFeedback(!feedback);
+            }}
+          >
             {feedback ? 'Hide feedback' : 'Show feedback'}
           </button>
         )}
@@ -555,7 +667,14 @@ function AttemptPanel({
                   onClick={() => {
                     setMore(false);
                     if (s === 'Previous attempts') onHistory?.();
-                    else setPanel(s);
+                    else {
+                      if (
+                        s === 'Previous assessments' &&
+                        a.grades.some((g) => g.verdict === 'incorrect')
+                      )
+                        onFeedbackSeen?.();
+                      setPanel(s);
+                    }
                   }}
                 >
                   {s}

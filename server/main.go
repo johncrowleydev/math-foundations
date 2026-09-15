@@ -50,7 +50,7 @@ type MediaStore interface {
 type DiskMedia struct{ Root string }
 
 var hashPattern = regexp.MustCompile(`^[a-f0-9]{64}$`)
-var keyPattern = regexp.MustCompile(`^(text|ink|photos|quick|preference|reading|practice)/[a-zA-Z0-9:_-]{1,200}$`)
+var keyPattern = regexp.MustCompile(`^(text|ink|photos|quick|preference|reading|practice|exposure|assistance)/[a-zA-Z0-9:_-]{1,200}$`)
 
 func (d DiskMedia) Open(id string) (*os.File, error) { return os.Open(filepath.Join(d.Root, id)) }
 func (d DiskMedia) Put(id string, r io.Reader) error {
@@ -158,6 +158,25 @@ func (s *Server) mutate(m Mutation) (Record, error) {
 	old, e := record(tx, m.Key)
 	if e != nil && e != sql.ErrNoRows {
 		return Record{}, e
+	}
+	// Assistance is monotonic evidence, even when stale devices submit different facts.
+	// Keep the original request hash above for retry/idempotency validation.
+	if strings.HasPrefix(m.Key, "assistance/") {
+		var incoming, prior map[string]bool
+		if e = json.Unmarshal(m.Payload, &incoming); e != nil {
+			return Record{}, e
+		}
+		if incoming == nil {
+			incoming = map[string]bool{}
+		}
+		_ = json.Unmarshal(old.Payload, &prior)
+		for _, field := range []string{"answerPreviouslyRevealed", "priorIncorrectFeedbackSeen"} {
+			incoming[field] = incoming[field] || prior[field]
+		}
+		m.Payload, e = json.Marshal(incoming)
+		if e != nil {
+			return Record{}, e
+		}
 	}
 	conflict := old.Revision != m.Base && len(old.Payload) > 0 && string(old.Payload) != string(m.Payload)
 	// Learning preferences are last accepted changes; answers always preserve conflicts.

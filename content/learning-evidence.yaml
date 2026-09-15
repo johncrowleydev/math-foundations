@@ -1,0 +1,1818 @@
+concepts:
+  - id: propositional-logic
+    name: Propositional logic
+  - id: propositions
+    name: Propositions and truth values
+    parent: propositional-logic
+  - id: negation
+    name: Negation and condition boundaries
+    parent: propositional-logic
+  - id: connectives
+    name: Conjunction, inclusive and exclusive disjunction
+    parent: propositional-logic
+  - id: implication
+    name: Implication semantics
+    parent: propositional-logic
+  - id: conditional-forms
+    name: Converse and inverse
+    parent: implication
+  - id: contrapositive
+    name: Contrapositive
+    parent: implication
+  - id: necessary-sufficient
+    name: Necessary, sufficient, if and only if
+    parent: implication
+  - id: biconditional
+    name: Biconditional
+    parent: propositional-logic
+  - id: logical-equivalence
+    name: Logical equivalence
+    parent: propositional-logic
+  - id: de-morgan
+    name: De Morgan’s laws
+    parent: logical-equivalence
+  - id: equivalence-laws
+    name: Equivalence laws and simplification
+    parent: logical-equivalence
+  - id: distribution
+    name: Distribution and factoring
+    parent: logical-equivalence
+  - id: truth-classification
+    name: Tautology, contradiction and contingency
+    parent: propositional-logic
+  - id: counterexample
+    name: Counterexamples and counterassignments
+    parent: propositional-logic
+  - id: argument-validity
+    name: Argument structure and validity
+    parent: propositional-logic
+  - id: inference-rules
+    name: Valid inference rules
+    parent: argument-validity
+  - id: invalid-inference
+    name: Invalid inference patterns
+    parent: argument-validity
+  - id: satisfiability
+    name: Satisfiability and models
+    parent: propositional-logic
+skills:
+  - id: recall
+    name: Recall
+  - id: recognize
+    name: Recognize
+  - id: interpret
+    name: Interpret
+  - id: represent
+    name: Represent
+  - id: translate
+    name: Translate
+  - id: compute
+    name: Compute
+  - id: apply
+    name: Apply
+  - id: construct
+    name: Construct
+  - id: transform
+    name: Transform
+  - id: analyze
+    name: Analyze
+  - id: justify
+    name: Justify
+  - id: prove
+    name: Prove
+  - id: evaluate
+    name: Evaluate
+  - id: compare
+    name: Compare
+  - id: counterexample
+    name: Counterexample
+representations:
+  - id: natural-language
+    name: natural language
+  - id: symbolic
+    name: symbolic
+  - id: numeric
+    name: numeric
+  - id: algebraic
+    name: algebraic
+  - id: graph
+    name: graph
+  - id: table
+    name: table
+  - id: diagram
+    name: diagram
+  - id: set-notation
+    name: set notation
+  - id: matrix
+    name: matrix
+  - id: proof
+    name: proof
+  - id: code
+    name: code
+teaching:
+  - concept: propositions
+    lesson: propositional-logic
+    section: Propositions
+  - concept: negation
+    lesson: propositional-logic
+    section: 'Negation: NOT'
+  - concept: connectives
+    lesson: propositional-logic
+    section: 'Disjunction: OR'
+  - concept: implication
+    lesson: propositional-logic
+    section: 'Implication: IF ... THEN'
+  - concept: conditional-forms
+    lesson: propositional-logic
+    section: Converse, inverse, and contrapositive
+  - concept: contrapositive
+    lesson: propositional-logic
+    section: Converse, inverse, and contrapositive
+  - concept: necessary-sufficient
+    lesson: propositional-logic
+    section: Necessary and sufficient conditions
+  - concept: biconditional
+    lesson: propositional-logic
+    section: 'Biconditional: IF AND ONLY IF'
+  - concept: logical-equivalence
+    lesson: propositional-logic
+    section: Logical equivalence
+  - concept: de-morgan
+    lesson: propositional-logic
+    section: De Morgan's laws
+  - concept: equivalence-laws
+    lesson: propositional-logic
+    section: Common equivalence laws
+  - concept: distribution
+    lesson: propositional-logic
+    section: Common equivalence laws
+  - concept: truth-classification
+    lesson: propositional-logic
+    section: Tautologies, contradictions, and contingent statements
+  - concept: counterexample
+    lesson: propositional-logic
+    section: Counterexamples
+  - concept: argument-validity
+    lesson: propositional-logic
+    section: Arguments, premises, and conclusions
+  - concept: inference-rules
+    lesson: propositional-logic
+    section: Common rules of inference
+  - concept: invalid-inference
+    lesson: propositional-logic
+    section: Two common invalid argument forms
+  - concept: satisfiability
+    lesson: propositional-logic
+    section: Satisfiability
+exercises:
+  - lesson: propositional-logic
+    id: 1
+    primary:
+      - propositions
+    supporting: &a1 []
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - numeric
+  - lesson: propositional-logic
+    id: 2
+    primary:
+      - propositions
+    supporting: *a1
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 3
+    primary:
+      - propositions
+    supporting: *a1
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 4
+    primary:
+      - propositions
+    supporting: *a1
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - algebraic
+  - lesson: propositional-logic
+    id: 5
+    primary:
+      - propositions
+    supporting: *a1
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 6
+    primary:
+      - propositions
+    supporting: *a1
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 7
+    primary:
+      - propositions
+    supporting: *a1
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 8
+    primary:
+      - propositions
+    supporting: *a1
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 9
+    primary:
+      - negation
+    supporting: []
+    skills:
+      - translate
+    representations:
+      - symbolic
+      - natural-language
+  - lesson: propositional-logic
+    id: 10
+    primary:
+      - connectives
+    supporting: &a2 []
+    skills:
+      - translate
+    representations:
+      - symbolic
+      - natural-language
+  - lesson: propositional-logic
+    id: 11
+    primary:
+      - connectives
+    supporting: *a2
+    skills:
+      - translate
+    representations:
+      - symbolic
+      - natural-language
+  - lesson: propositional-logic
+    id: 12
+    primary:
+      - implication
+    supporting: &a3 []
+    skills:
+      - translate
+    representations:
+      - symbolic
+      - natural-language
+  - lesson: propositional-logic
+    id: 13
+    primary:
+      - implication
+    supporting: *a3
+    skills:
+      - translate
+    representations:
+      - symbolic
+      - natural-language
+  - lesson: propositional-logic
+    id: 14
+    primary:
+      - biconditional
+    supporting: []
+    skills:
+      - translate
+    representations:
+      - symbolic
+      - natural-language
+  - lesson: propositional-logic
+    id: 15
+    primary:
+      - connectives
+    supporting: &a4
+      - negation
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 16
+    primary:
+      - connectives
+    supporting: *a4
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 17
+    primary:
+      - connectives
+    supporting: *a4
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 18
+    primary:
+      - connectives
+    supporting: *a4
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 19
+    primary:
+      - implication
+    supporting: &a5
+      - connectives
+      - negation
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 20
+    primary:
+      - implication
+    supporting: *a5
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 21
+    primary:
+      - implication
+    supporting: *a5
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 22
+    primary:
+      - implication
+    supporting: *a5
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 23
+    primary:
+      - biconditional
+    supporting: &a6
+      - negation
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 24
+    primary:
+      - biconditional
+    supporting: *a6
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 25
+    primary:
+      - connectives
+    supporting: *a4
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 26
+    primary:
+      - implication
+    supporting: *a5
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 27
+    primary:
+      - implication
+    supporting: *a5
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 28
+    primary:
+      - connectives
+    supporting: *a4
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 29
+    primary:
+      - implication
+    supporting: *a5
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 30
+    primary:
+      - biconditional
+    supporting: *a6
+    skills:
+      - evaluate
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 31
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - negation
+      - implication
+      - counterexample
+    skills:
+      - construct
+      - evaluate
+      - counterexample
+    representations:
+      - natural-language
+      - numeric
+  - lesson: propositional-logic
+    id: 32
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - negation
+      - implication
+      - counterexample
+    skills:
+      - construct
+      - evaluate
+      - counterexample
+    representations:
+      - natural-language
+      - numeric
+  - lesson: propositional-logic
+    id: 33
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - negation
+      - implication
+      - counterexample
+    skills:
+      - construct
+      - evaluate
+      - counterexample
+    representations:
+      - natural-language
+      - numeric
+  - lesson: propositional-logic
+    id: 34
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - negation
+      - implication
+      - counterexample
+    skills:
+      - construct
+      - evaluate
+      - counterexample
+    representations:
+      - natural-language
+      - numeric
+  - lesson: propositional-logic
+    id: 35
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - negation
+      - implication
+      - counterexample
+    skills:
+      - construct
+      - evaluate
+      - counterexample
+    representations:
+      - natural-language
+      - numeric
+  - lesson: propositional-logic
+    id: 36
+    primary:
+      - implication
+    supporting: []
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 37
+    primary:
+      - implication
+    supporting: []
+    skills:
+      - recall
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 38
+    primary:
+      - biconditional
+    supporting: []
+    skills:
+      - recall
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 39
+    primary:
+      - conditional-forms
+      - counterexample
+    supporting:
+      - implication
+    skills:
+      - counterexample
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 40
+    primary:
+      - implication
+    supporting: &a7
+      - connectives
+    skills:
+      - compute
+      - represent
+    representations:
+      - symbolic
+      - table
+  - lesson: propositional-logic
+    id: 41
+    primary:
+      - negation
+    supporting:
+      - connectives
+    skills:
+      - compute
+      - represent
+    representations:
+      - symbolic
+      - table
+  - lesson: propositional-logic
+    id: 42
+    primary:
+      - conditional-forms
+    supporting:
+      - implication
+    skills:
+      - compute
+      - compare
+    representations:
+      - symbolic
+      - table
+  - lesson: propositional-logic
+    id: 43
+    primary:
+      - biconditional
+    supporting: []
+    skills:
+      - compute
+      - represent
+    representations:
+      - symbolic
+      - table
+  - lesson: propositional-logic
+    id: 44
+    primary:
+      - contrapositive
+    supporting:
+      - logical-equivalence
+    skills:
+      - compute
+      - compare
+    representations:
+      - symbolic
+      - table
+  - lesson: propositional-logic
+    id: 45
+    primary:
+      - implication
+    supporting: *a7
+    skills:
+      - compute
+      - represent
+    representations:
+      - symbolic
+      - table
+  - lesson: propositional-logic
+    id: 46
+    primary:
+      - de-morgan
+    supporting: &a8
+      - negation
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 47
+    primary:
+      - de-morgan
+    supporting: *a8
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 48
+    primary:
+      - de-morgan
+    supporting: *a8
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 49
+    primary:
+      - de-morgan
+    supporting: *a8
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 50
+    primary:
+      - implication
+    supporting: &a9
+      - logical-equivalence
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 51
+    primary:
+      - implication
+    supporting: *a9
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 52
+    primary:
+      - implication
+    supporting: *a9
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 53
+    primary:
+      - negation
+      - implication
+    supporting:
+      - de-morgan
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 54
+    primary:
+      - de-morgan
+    supporting:
+      - negation
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 55
+    primary:
+      - negation
+    supporting: []
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 56
+    primary:
+      - logical-equivalence
+    supporting:
+      - implication
+    skills:
+      - compare
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 57
+    primary:
+      - logical-equivalence
+      - counterexample
+    supporting:
+      - conditional-forms
+    skills:
+      - compare
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 58
+    primary:
+      - de-morgan
+    supporting:
+      - logical-equivalence
+    skills:
+      - compare
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 59
+    primary:
+      - biconditional
+    supporting:
+      - logical-equivalence
+    skills:
+      - compare
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 60
+    primary:
+      - truth-classification
+    supporting:
+      - connectives
+      - negation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 61
+    primary:
+      - truth-classification
+    supporting:
+      - connectives
+      - negation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 62
+    primary:
+      - truth-classification
+    supporting: &a10
+      - connectives
+      - implication
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 63
+    primary:
+      - truth-classification
+    supporting:
+      - connectives
+      - negation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 64
+    primary:
+      - truth-classification
+    supporting:
+      - implication
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 65
+    primary:
+      - truth-classification
+    supporting:
+      - biconditional
+      - negation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 66
+    primary:
+      - truth-classification
+    supporting: *a10
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 67
+    primary:
+      - truth-classification
+    supporting: *a10
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 68
+    primary:
+      - truth-classification
+    supporting:
+      - implication
+      - inference-rules
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 69
+    primary:
+      - truth-classification
+    supporting: *a10
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 70
+    primary:
+      - invalid-inference
+    supporting:
+      - implication
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 71
+    primary:
+      - inference-rules
+    supporting: &a11
+      - implication
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 72
+    primary:
+      - counterexample
+    supporting: []
+    skills:
+      - counterexample
+    representations:
+      - natural-language
+      - numeric
+  - lesson: propositional-logic
+    id: 73
+    primary:
+      - counterexample
+    supporting: []
+    skills:
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 74
+    primary:
+      - contrapositive
+    supporting:
+      - negation
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - algebraic
+  - lesson: propositional-logic
+    id: 75
+    primary:
+      - inference-rules
+    supporting: *a11
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 76
+    primary:
+      - conditional-forms
+    supporting:
+      - implication
+    skills:
+      - compare
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 77
+    primary:
+      - contrapositive
+    supporting:
+      - logical-equivalence
+    skills:
+      - compare
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 78
+    primary:
+      - truth-classification
+    supporting:
+      - inference-rules
+    skills:
+      - analyze
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 79
+    primary:
+      - connectives
+    supporting: []
+    skills:
+      - interpret
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 80
+    primary:
+      - de-morgan
+      - implication
+    supporting:
+      - negation
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 81
+    primary:
+      - necessary-sufficient
+    supporting: &a12
+      - implication
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 82
+    primary:
+      - necessary-sufficient
+    supporting: *a12
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 83
+    primary:
+      - necessary-sufficient
+    supporting: *a12
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 84
+    primary:
+      - necessary-sufficient
+    supporting: &a13
+      - implication
+    skills:
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 85
+    primary:
+      - necessary-sufficient
+    supporting: *a13
+    skills:
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 86
+    primary:
+      - necessary-sufficient
+    supporting: *a13
+    skills:
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 87
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - negation
+    skills:
+      - construct
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 88
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - logical-equivalence
+    skills:
+      - recognize
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 89
+    primary:
+      - conditional-forms
+      - negation
+    supporting: &a14
+      - counterexample
+    skills:
+      - construct
+      - evaluate
+    representations:
+      - natural-language
+      - algebraic
+  - lesson: propositional-logic
+    id: 90
+    primary:
+      - conditional-forms
+      - negation
+    supporting: *a14
+    skills:
+      - construct
+      - evaluate
+    representations:
+      - natural-language
+      - algebraic
+  - lesson: propositional-logic
+    id: 91
+    primary:
+      - necessary-sufficient
+    supporting: *a13
+    skills:
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 92
+    primary:
+      - necessary-sufficient
+    supporting: *a13
+    skills:
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 93
+    primary:
+      - necessary-sufficient
+    supporting: *a13
+    skills:
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 94
+    primary:
+      - biconditional
+    supporting:
+      - implication
+    skills:
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 95
+    primary:
+      - negation
+    supporting: []
+    skills:
+      - recognize
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 96
+    primary:
+      - equivalence-laws
+    supporting: &a15 []
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 97
+    primary:
+      - equivalence-laws
+    supporting: *a15
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 98
+    primary:
+      - equivalence-laws
+    supporting: *a15
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 99
+    primary:
+      - equivalence-laws
+    supporting: *a15
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 100
+    primary:
+      - equivalence-laws
+    supporting: *a15
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 101
+    primary:
+      - equivalence-laws
+    supporting: *a15
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 102
+    primary:
+      - equivalence-laws
+    supporting: *a15
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 103
+    primary:
+      - equivalence-laws
+    supporting: *a15
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 104
+    primary:
+      - distribution
+    supporting: &a16
+      - equivalence-laws
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 105
+    primary:
+      - distribution
+    supporting: *a16
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 106
+    primary:
+      - biconditional
+    supporting: &a17
+      - implication
+      - equivalence-laws
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 107
+    primary:
+      - biconditional
+    supporting: *a17
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 108
+    primary:
+      - distribution
+    supporting: &a18
+      - equivalence-laws
+      - truth-classification
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 109
+    primary:
+      - distribution
+    supporting: *a18
+    skills:
+      - transform
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 110
+    primary:
+      - logical-equivalence
+      - distribution
+    supporting:
+      - implication
+    skills:
+      - prove
+      - transform
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 111
+    primary:
+      - argument-validity
+    supporting: []
+    skills:
+      - recognize
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 112
+    primary:
+      - inference-rules
+    supporting: &a19 []
+    skills:
+      - recognize
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 113
+    primary:
+      - inference-rules
+    supporting: *a19
+    skills:
+      - recognize
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 114
+    primary:
+      - inference-rules
+    supporting: *a19
+    skills:
+      - recognize
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 115
+    primary:
+      - inference-rules
+    supporting: *a19
+    skills:
+      - recognize
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 116
+    primary:
+      - argument-validity
+    supporting:
+      - inference-rules
+    skills:
+      - evaluate
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 117
+    primary:
+      - invalid-inference
+    supporting: &a20
+      - implication
+    skills:
+      - recognize
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 118
+    primary:
+      - invalid-inference
+    supporting: *a20
+    skills:
+      - recognize
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 119
+    primary:
+      - argument-validity
+      - inference-rules
+    supporting: &a21 []
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 120
+    primary:
+      - argument-validity
+      - inference-rules
+    supporting: *a21
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 121
+    primary:
+      - argument-validity
+      - inference-rules
+    supporting: *a21
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 122
+    primary:
+      - invalid-inference
+      - counterexample
+    supporting:
+      - argument-validity
+    skills:
+      - analyze
+      - counterexample
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 123
+    primary:
+      - counterexample
+    supporting: &a22
+      - invalid-inference
+      - argument-validity
+    skills:
+      - construct
+      - counterexample
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 124
+    primary:
+      - counterexample
+    supporting: *a22
+    skills:
+      - construct
+      - counterexample
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 125
+    primary:
+      - argument-validity
+    supporting:
+      - inference-rules
+    skills:
+      - analyze
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 126
+    primary:
+      - argument-validity
+      - inference-rules
+    supporting: *a21
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 127
+    primary:
+      - satisfiability
+    supporting:
+      - negation
+      - connectives
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 128
+    primary:
+      - satisfiability
+      - truth-classification
+    supporting: &a24 []
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 129
+    primary:
+      - satisfiability
+    supporting: &a23
+      - connectives
+    skills:
+      - construct
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 130
+    primary:
+      - satisfiability
+    supporting:
+      - implication
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 131
+    primary:
+      - satisfiability
+    supporting: *a23
+    skills:
+      - construct
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 132
+    primary:
+      - satisfiability
+    supporting:
+      - biconditional
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 133
+    primary:
+      - satisfiability
+    supporting:
+      - negation
+      - implication
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 134
+    primary:
+      - satisfiability
+    supporting: *a23
+    skills:
+      - construct
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 135
+    primary:
+      - satisfiability
+    supporting:
+      - connectives
+      - negation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 136
+    primary:
+      - satisfiability
+      - truth-classification
+    supporting: *a24
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 137
+    primary:
+      - satisfiability
+      - truth-classification
+    supporting: *a24
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: propositional-logic
+    id: 138
+    primary:
+      - satisfiability
+      - truth-classification
+    supporting: []
+    skills:
+      - counterexample
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 139
+    primary:
+      - argument-validity
+      - inference-rules
+    supporting: []
+    skills:
+      - translate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 140
+    primary:
+      - conditional-forms
+      - contrapositive
+    supporting:
+      - equivalence-laws
+    skills:
+      - prove
+      - transform
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 141
+    primary:
+      - negation
+      - implication
+    supporting:
+      - de-morgan
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 142
+    primary:
+      - de-morgan
+    supporting:
+      - negation
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 143
+    primary:
+      - logical-equivalence
+      - biconditional
+    supporting: []
+    skills:
+      - prove
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 144
+    primary:
+      - truth-classification
+    supporting:
+      - contrapositive
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 145
+    primary:
+      - truth-classification
+    supporting:
+      - biconditional
+    skills:
+      - recognize
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 146
+    primary:
+      - satisfiability
+      - connectives
+    supporting: []
+    skills:
+      - construct
+      - interpret
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 147
+    primary:
+      - argument-validity
+      - counterexample
+    supporting:
+      - implication
+    skills:
+      - analyze
+      - counterexample
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 148
+    primary:
+      - argument-validity
+    supporting:
+      - inference-rules
+    skills:
+      - analyze
+      - justify
+    representations:
+      - symbolic
+      - proof
+  - lesson: propositional-logic
+    id: 149
+    primary:
+      - biconditional
+      - equivalence-laws
+    supporting:
+      - negation
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 150
+    primary:
+      - satisfiability
+    supporting:
+      - implication
+    skills:
+      - analyze
+      - construct
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 151
+    primary:
+      - equivalence-laws
+    supporting: []
+    skills:
+      - transform
+    representations:
+      - symbolic
+  - lesson: propositional-logic
+    id: 152
+    primary:
+      - contrapositive
+    supporting:
+      - negation
+    skills:
+      - prove
+    representations:
+      - algebraic
+      - proof
+  - lesson: propositional-logic
+    id: 153
+    primary:
+      - argument-validity
+    supporting: []
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 154
+    primary:
+      - connectives
+    supporting: *a2
+    skills:
+      - interpret
+    representations:
+      - natural-language
+  - lesson: propositional-logic
+    id: 155
+    primary:
+      - distribution
+    supporting: *a16
+    skills:
+      - recognize
+      - transform
+    representations:
+      - symbolic

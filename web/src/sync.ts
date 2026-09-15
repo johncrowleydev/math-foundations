@@ -1,5 +1,15 @@
 import { authSession, authGeneration, lockSession, verifySession } from './auth';
-import { all, get, put, remove, integrate, changed, hash, attemptsMatch } from './storage';
+import {
+  all,
+  get,
+  put,
+  deviceId,
+  remove,
+  integrate,
+  changed,
+  hash,
+  attemptsMatch,
+} from './storage';
 import type { Attempt, RecordData } from './types';
 export let syncStatus = 'Not connected';
 export let initialSyncComplete = false;
@@ -56,11 +66,7 @@ export async function initializeSync() {
 export async function mutation(key: string, payload: Record<string, unknown>, resolve = false) {
   const record = await get<RecordData>('records', key);
   const id = crypto.randomUUID();
-  let device = await get<string>('settings', 'device');
-  if (!device) {
-    device = 'web-' + crypto.randomUUID();
-    await put('settings', 'device', device);
-  }
+  const device = await deviceId();
   await put('outbox', id, {
     id,
     kind: 'mutation',
@@ -125,7 +131,16 @@ export async function sync() {
         if (op.kind === 'attempt') {
           const a = op.data as unknown as Attempt;
           for (const h of [...a.images, ...(a.photos || []).map((p) => p.hash)]) await upload(h);
-          const { status, verdict, error, grades, transcription, recheckReason, ...submission } = a;
+          const {
+            status,
+            verdict,
+            error,
+            grades,
+            transcription,
+            recheckReason,
+            analytics,
+            ...submission
+          } = a;
           const saved = await (await request('/attempts', 'POST', submission)).json();
           await put('attempts', a.id, saved);
         } else if (op.kind === 'recheck')

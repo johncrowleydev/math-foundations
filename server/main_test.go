@@ -196,3 +196,31 @@ func TestAttemptInventoryAndSnapshot(t *testing.T) {
 		t.Fatal("Snapshot is not protected")
 	}
 }
+
+func TestAssistanceStaleDevicesMergeMonotonically(t *testing.T) {
+	for _, reverse := range []bool{false, true} {
+		s := fixture(t)
+		a := Mutation{ID: "assist-tablet", Key: "assistance/logic-1", Device: "tablet", Payload: json.RawMessage(`{"answerPreviouslyRevealed":true,"priorIncorrectFeedbackSeen":false}`)}
+		b := Mutation{ID: "assist-phone", Key: a.Key, Device: "phone", Payload: json.RawMessage(`{"answerPreviouslyRevealed":false,"priorIncorrectFeedbackSeen":true}`)}
+		if reverse {
+			a, b = b, a
+		}
+		must(t, s, a)
+		r := must(t, s, b) // Both devices used base zero before seeing the other's update.
+		var seen map[string]bool
+		json.Unmarshal(r.Payload, &seen)
+		if !seen["answerPreviouslyRevealed"] || !seen["priorIncorrectFeedbackSeen"] {
+			t.Fatalf("lost evidence: %s", r.Payload)
+		}
+		retry := must(t, s, b)
+		if retry.Revision != r.Revision {
+			t.Fatal("retry was reapplied")
+		}
+		c := Mutation{ID: "assist-reset", Key: a.Key, Device: "third", Base: r.Revision, Resolve: true, Payload: json.RawMessage(`{"answerPreviouslyRevealed":false,"priorIncorrectFeedbackSeen":false}`)}
+		reset := must(t, s, c)
+		json.Unmarshal(reset.Payload, &seen)
+		if !seen["answerPreviouslyRevealed"] || !seen["priorIncorrectFeedbackSeen"] {
+			t.Fatal("reset erased sticky evidence")
+		}
+	}
+}

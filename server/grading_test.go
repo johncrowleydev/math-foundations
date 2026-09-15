@@ -26,7 +26,7 @@ func graderFixture(t *testing.T, reply *string) *Grading {
 		if !ok || provider["sort"] != "throughput" || provider["require_parameters"] != true || provider["allow_fallbacks"] != true {
 			t.Error("grading must prioritize throughput with structured-output support and fallbacks")
 		}
-		writeJSON(w, 200, map[string]any{"model": gradingModel, "choices": []any{map[string]any{"message": map[string]any{"content": *reply}}}, "usage": map[string]any{"prompt_tokens": 10, "completion_tokens": 20, "cost": 0.001}})
+		writeJSON(w, 200, map[string]any{"model": gradingModel, "choices": []any{map[string]any{"message": map[string]any{"content": v5FixtureReply(*reply)}}}, "usage": map[string]any{"prompt_tokens": 10, "completion_tokens": 20, "cost": 0.001}})
 	}))
 	t.Cleanup(provider.Close)
 	g := &Grading{server: s, catalog: Catalog{Version: "test-v1", Exercises: map[string]json.RawMessage{"logic-1": json.RawMessage(`{"question":"Is 7+5=12 a proposition? Explain.","answer":"Yes, a true proposition."}`)}}, key: "synthetic-key", endpoint: provider.URL, client: provider.Client()}

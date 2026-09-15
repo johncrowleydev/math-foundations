@@ -8,6 +8,8 @@ import { adaptNotebookQuestion, validateNotebookAdaptations } from './notebook-e
 import { adaptInlineQuestion, validateInlinePrerequisites } from './inline-prerequisites.js';
 import { quickChecks, validateQuickChecks } from './quick-checks.js';
 import { promoteChoices } from './choice-exercises.js';
+import { loadEvidence } from './evidence.js';
+import { snapshot } from '../web/src/evidenceTypes.js';
 
 const content = await loadContent();
 const teaching = await loadTeaching();
@@ -152,7 +154,9 @@ await mkdir('output', { recursive: true });
 await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory, null, 2) + '\n');
 const dir = 'output/content';
 const publishedLessons = promoteChoices(lessons);
+const evidence = await loadEvidence(publishedLessons);
 await mkdir(dir, { recursive: true });
+await writeFile(`${dir}/learning-evidence.json`, JSON.stringify(evidence));
 await writeFile(
   `${dir}/notebook.json`,
   JSON.stringify({ currentLesson: content.currentLesson, lessons: publishedLessons }),
@@ -168,7 +172,9 @@ await writeFile(`${dir}/tex-syntax.json`, await readFile('content/tex-syntax.jso
 await writeFile(`${dir}/tex-teaching.json`, await readFile('content/tex-teaching.json'));
 
 // The grader sees precisely the adapted questions shipped in the app, not worksheet originals.
-const gradingVersion = createHash('sha256').update(JSON.stringify(publishedLessons)).digest('hex');
+const gradingVersion = createHash('sha256')
+  .update(JSON.stringify({ publishedLessons, evidence }))
+  .digest('hex');
 const gradingExercises = Object.fromEntries(
   publishedLessons.flatMap((lesson) =>
     lesson.questions.map((q) => {
@@ -182,6 +188,7 @@ const gradingExercises = Object.fromEntries(
         `${lesson.slug}-${q.id}`,
         {
           lesson: lesson.title,
+          analytics: snapshot(evidence, `${lesson.slug}-${q.id}`),
           choice: q.choice,
           question: {
             instructions: q.instructions,
