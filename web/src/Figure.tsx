@@ -1,10 +1,11 @@
 import { useId, useState } from 'react';
+import { Sources, type SourceCatalog } from './Sources';
 import type { Figure as Definition } from './types';
 import { MathText, Rich, Modal } from './Rich';
 const accent = '#315fa0',
   ink = '#35404a',
   light = '#e5edf8';
-export function Figure({ figure: f }: { figure: Definition }) {
+export function Figure({ figure: f, sources }: { figure: Definition; sources?: SourceCatalog }) {
   const [step, set] = useState(0),
     [expanded, expand] = useState(false);
   const frame = f.frames[step];
@@ -604,6 +605,7 @@ export function Figure({ figure: f }: { figure: Definition }) {
         <summary>About this figure</summary>
         <Rich text={f.creation} />
         <Rich text={f.limitations} />
+        <Sources catalog={sources} target={`figure:${f.id}`} />
       </details>
       {expanded && (
         <Modal title={f.title} onClose={() => expand(false)} wide>

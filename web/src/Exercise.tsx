@@ -515,6 +515,7 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
           text={q.answer}
           source={q.quickSource ? `quick:${q.quickSource}:explanation` : `question:${q.id}:answer`}
         />
+        <Sources catalog={data.sources} target={`exercise:${lesson}-${q.id}`} exercise />
       </details>
       {history && (
         <Modal
@@ -775,3 +776,4 @@ function AttemptPanel({
     </div>
   );
 }
+import { Sources } from './Sources';

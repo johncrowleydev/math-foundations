@@ -269,6 +269,7 @@ export function App({ data }: { data: Curriculum }) {
       b.kind === 'figure' ? (
         <Figure
           key={b.id}
+          sources={data.sources}
           figure={data.figures.find((f) => f.id === (b as Block & { figureId: string }).figureId)!}
         />
       ) : (
@@ -433,12 +434,14 @@ export function App({ data }: { data: Curriculum }) {
                   <span className="eyebrow">{lesson.eyebrow}</span>
                   <h1>{lesson.title}</h1>
                   {blocks(lesson.introBlocks, 'intro')}
+                  <Sources catalog={data.sources} target={`${lesson.slug}/intro`} />
                 </div>
                 {lesson.sections.map((s, i) => (
                   <section key={s.id} id={'section-' + s.id} data-section data-title={s.title}>
                     <div className="teaching">
                       <h2>{s.title}</h2>
                       {blocks(s.blocks, 'section:' + s.id)}
+                      <Sources catalog={data.sources} target={`${lesson.slug}/${s.id}`} />
                     </div>
                     <Typing
                       data={data}
@@ -704,6 +707,7 @@ function Typing({
           <Copy text={e.source || e.example || ''} />
         </article>
       ))}
+      <Sources catalog={data.sources} targets={ids.map((id) => `syntax:${id}`)} />
     </details>
   ) : null;
 }
@@ -788,6 +792,7 @@ function ReferenceEntry({
       <Rich text={r.example} />
       <h3>Common confusion</h3>
       <Rich text={r.confusion} />
+      <Sources catalog={data.sources} target={`reference:${r.id}`} />
       {!!syntax?.examples.length && (
         <>
           <h3>Type this notation</h3>
@@ -992,3 +997,4 @@ function SyncStatus() {
   useRevision('sync');
   return <>{connected() ? syncStatus : ''}</>;
 }
+import { Sources } from './Sources';

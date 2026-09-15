@@ -1,4 +1,5 @@
 import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from './evidenceTypes';
+import type { SourceCatalog } from './Sources';
 export type Block = { id: string; kind: string; markdown?: string; figure?: string };
 export type Question = {
   id: number;
@@ -129,6 +130,7 @@ export type Figure = {
   series?: { label: string; model: string; coefficients?: number[]; base?: number }[];
 };
 export type Curriculum = {
+  sources?: SourceCatalog;
   evidence: EvidenceCatalog;
   lessons: Lesson[];
   references: Reference[];
@@ -201,7 +203,7 @@ export type RecordData = {
   conflicts: string[];
 };
 export async function loadCurriculum(): Promise<Curriculum> {
-  const [n, t, s, x, v, evidence] = await Promise.all(
+  const [n, t, s, x, v, evidence, sources] = await Promise.all(
     [
       'notebook',
       'teaching',
@@ -209,6 +211,7 @@ export async function loadCurriculum(): Promise<Curriculum> {
       'tex-teaching',
       'grading-version',
       'learning-evidence',
+      'sources',
     ].map(async (f) => {
       const r = await fetch(`/${f}.json`);
       if (!r.ok) throw Error('Could not load bundled lessons');
@@ -216,6 +219,7 @@ export async function loadCurriculum(): Promise<Curriculum> {
     }),
   );
   return {
+    sources,
     evidence,
     lessons: n.lessons.map((lesson: Lesson) => ({
       ...lesson,

@@ -1323,3 +1323,41 @@ hr {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
+.content-sources {
+  margin: 0.75rem 0 0;
+  font-size: 0.8667rem;
+  line-height: 1.5;
+  color: #596575;
+}
+.content-sources > summary {
+  width: fit-content;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: 400;
+}
+.content-sources > ul {
+  margin: 0.5rem 0 0;
+  padding: 0 0 0 1rem;
+}
+.content-sources > ul > li {
+  margin: 0 0 0.75rem;
+  padding: 0;
+}
+.content-sources .sources-note {
+  margin: 0.5rem 0;
+  font-size: inherit;
+}
+.source-credit,
+.source-scope {
+  display: block;
+  margin-top: 0.15rem;
+}
+.content-sources a {
+  color: var(--accent, #315fa0);
+  overflow-wrap: anywhere;
+}
+.content-sources summary:focus-visible {
+  outline: 2px solid var(--accent, #315fa0);
+  outline-offset: 3px;
+}

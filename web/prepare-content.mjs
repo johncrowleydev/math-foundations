@@ -7,6 +7,7 @@ for (const name of [
   'tex-teaching',
   'grading-version',
   'learning-evidence',
+  'sources',
 ])
   await copyFile(
     new URL('../output/content/' + name + '.json', import.meta.url),

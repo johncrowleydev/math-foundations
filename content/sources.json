@@ -1,0 +1,1910 @@
+{
+  "version": 1,
+  "bibliography": {
+    "mcs": {
+      "title": "Mathematics for Computer Science",
+      "author": "Eric Lehman, F. Thomson Leighton, Albert R. Meyer",
+      "edition": "MIT, June 6, 2018",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf"
+    },
+    "proof": {
+      "title": "Book of Proof",
+      "author": "Richard Hammack",
+      "edition": "Third edition, revision 3.4 (2025); Virginia Commonwealth University",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf"
+    },
+    "ila": {
+      "title": "Interactive Linear Algebra",
+      "author": "Dan Margalit and Joseph Rabinoff",
+      "edition": "Georgia Institute of Technology, June 3, 2019",
+      "url": "https://textbooks.math.gatech.edu/ila/index.html"
+    },
+    "mml": {
+      "title": "Mathematics for Machine Learning",
+      "author": "Marc Peter Deisenroth, A. Aldo Faisal, Cheng Soon Ong",
+      "edition": "Cambridge University Press, 2020; author PDF updated January 15, 2024",
+      "url": "https://mml-book.github.io/book/mml-book.pdf"
+    },
+    "levin": {
+      "title": "Discrete Mathematics: An Open Introduction",
+      "author": "Oscar Levin",
+      "edition": "Fourth edition; author-hosted open textbook",
+      "url": "https://discrete.openmathbooks.org/dmoi4/dmoi4.html"
+    },
+    "algorithms": {
+      "title": "Introduction to Algorithms, 6.006",
+      "author": "Erik Demaine and Srini Devadas",
+      "edition": "MIT, Fall 2011 lecture notes",
+      "url": "https://courses.csail.mit.edu/6.006/fall11/notes.shtml"
+    },
+    "katex": {
+      "title": "Supported Functions",
+      "author": "KaTeX contributors",
+      "edition": "Official renderer documentation; accessed September 15, 2026",
+      "url": "https://katex.org/docs/supported.html"
+    },
+    "mdn": {
+      "title": "JavaScript Reference",
+      "author": "MDN contributors",
+      "edition": "Mozilla Developer Network; accessed September 15, 2026",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference"
+    },
+    "sep": {
+      "title": "Ancient Logic",
+      "author": "Susanne Bobzien",
+      "edition": "Stanford Encyclopedia of Philosophy, revision April 15, 2020",
+      "url": "https://plato.stanford.edu/entries/logic-ancient/"
+    },
+    "stanford-pca": {
+      "title": "PCA I",
+      "author": "Jonathan Taylor",
+      "edition": "Stanford University, STATS305C course notes",
+      "url": "https://web.stanford.edu/class/stats305c/lectures/PCA_I.html"
+    },
+    "numpy": {
+      "title": "numpy.linalg.matrix_rank",
+      "author": "NumPy developers",
+      "edition": "NumPy 2.1 reference manual",
+      "url": "https://numpy.org/doc/2.1/reference/generated/numpy.linalg.matrix_rank.html"
+    },
+    "lapack": {
+      "title": "LAPACK Users’ Guide",
+      "author": "E. Anderson et al.",
+      "edition": "Third edition, SIAM, 1999",
+      "url": "https://www.netlib.org/lapack/lug/"
+    },
+    "euler": {
+      "title": "The solution of a problem relating to the geometry of position",
+      "author": "Leonhard Euler",
+      "edition": "E53, Commentarii academiae scientiarum Petropolitanae 8, pp. 128–140; published 1741. Euler Archive, University of the Pacific",
+      "url": "https://scholarlycommons.pacific.edu/euler-works/53/"
+    }
+  },
+  "citations": {
+    "m-intro": {
+      "source": "mcs",
+      "locator": "Part I Introduction; Chapter 1",
+      "supports": "Discrete models, proof, and computer-science applications.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=11",
+      "checked": "2026-09-15"
+    },
+    "m-propositions": {
+      "source": "mcs",
+      "locator": "§§1.1–1.2",
+      "supports": "Statements, truth values, predicates, and counterexamples.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=13",
+      "checked": "2026-09-15"
+    },
+    "m-implication": {
+      "source": "mcs",
+      "locator": "§§1.5–1.6",
+      "supports": "Direct and contrapositive implication proofs; both directions of an equivalence.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=19",
+      "checked": "2026-09-15"
+    },
+    "m-cases": {
+      "source": "mcs",
+      "locator": "§§1.7–1.9",
+      "supports": "Proof by cases, contradiction, and clear mathematical argument.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=23",
+      "checked": "2026-09-15"
+    },
+    "m-wop": {
+      "source": "mcs",
+      "locator": "§§2.1–2.4",
+      "supports": "Least counterexamples, well ordering, and prime-factor existence.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=37",
+      "checked": "2026-09-15"
+    },
+    "m-connectives": {
+      "source": "mcs",
+      "locator": "§3.1",
+      "supports": "Negation, conjunction, inclusive/exclusive disjunction, implication, and truth tables.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=56",
+      "checked": "2026-09-15"
+    },
+    "m-equivalence": {
+      "source": "mcs",
+      "locator": "§§3.3–3.4",
+      "supports": "Validity, equivalent formulas, Boolean laws, and justified rewrites.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=62",
+      "checked": "2026-09-15"
+    },
+    "m-sat": {
+      "source": "mcs",
+      "locator": "§3.5",
+      "supports": "Satisfying assignments and unsatisfiable formulas.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=70",
+      "checked": "2026-09-15"
+    },
+    "m-quantifiers": {
+      "source": "mcs",
+      "locator": "§3.6",
+      "supports": "Predicate domains, quantification, order, and negation.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=71",
+      "checked": "2026-09-15"
+    },
+    "m-sequences": {
+      "source": "mcs",
+      "locator": "§4.2 and §7.3",
+      "supports": "Indexed sequences and recursive integer functions.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=116",
+      "checked": "2026-09-15"
+    },
+    "m-functions": {
+      "source": "mcs",
+      "locator": "§§4.3–4.5",
+      "supports": "Functions, composition, partial/total conventions, arrow diagrams, and finite cardinality. This notebook uses total functions unless stated otherwise.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=117",
+      "checked": "2026-09-15"
+    },
+    "m-relations": {
+      "source": "mcs",
+      "locator": "§4.4",
+      "supports": "Relations as ordered pairs and arrow representations.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=119",
+      "checked": "2026-09-15"
+    },
+    "m-induction": {
+      "source": "mcs",
+      "locator": "§5.1",
+      "supports": "Base case, induction hypothesis, implication step, and invalid induction.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=145",
+      "checked": "2026-09-15"
+    },
+    "m-strong": {
+      "source": "mcs",
+      "locator": "§§5.2–5.3",
+      "supports": "Strong induction, recursive splitting, and equivalence with ordinary induction.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=154",
+      "checked": "2026-09-15"
+    },
+    "m-invariant": {
+      "source": "mcs",
+      "locator": "§§6.2–6.3",
+      "supports": "Invariants, partial correctness, and termination.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=182",
+      "checked": "2026-09-15"
+    },
+    "m-divisibility": {
+      "source": "mcs",
+      "locator": "§§9.1–9.4",
+      "supports": "Divisibility, greatest common divisors, primes, and factorization.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=349",
+      "checked": "2026-09-15"
+    },
+    "m-modular": {
+      "source": "mcs",
+      "locator": "§§9.6–9.7",
+      "supports": "Remainders and congruence arithmetic.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=370",
+      "checked": "2026-09-15"
+    },
+    "m-digraph": {
+      "source": "mcs",
+      "locator": "§§10.1–10.3",
+      "supports": "Directed degrees, walks, and adjacency matrices.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=431",
+      "checked": "2026-09-15"
+    },
+    "m-composition": {
+      "source": "mcs",
+      "locator": "§10.4",
+      "supports": "Relational composition, reachability, and positive/reflexive walk closures.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=438",
+      "checked": "2026-09-15"
+    },
+    "m-orders": {
+      "source": "mcs",
+      "locator": "§§10.5–10.9",
+      "supports": "DAG scheduling, partial orders, cover representations, and total orders.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=439",
+      "checked": "2026-09-15"
+    },
+    "m-classes": {
+      "source": "mcs",
+      "locator": "§§10.10–10.11",
+      "supports": "Equivalence classes, partitions, and relational properties.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=453",
+      "checked": "2026-09-15"
+    },
+    "m-graph": {
+      "source": "mcs",
+      "locator": "§§12.1–12.3",
+      "supports": "Simple graphs, adjacency, degree sums, and common graph families.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=509",
+      "checked": "2026-09-15"
+    },
+    "m-walks": {
+      "source": "mcs",
+      "locator": "§§12.7–12.9",
+      "supports": "Paths, components, and Euler/Hamiltonian walks. Terminology conventions are stated in the lesson.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=527",
+      "checked": "2026-09-15"
+    },
+    "m-trees": {
+      "source": "mcs",
+      "locator": "§12.11",
+      "supports": "Trees, forests, spanning trees, and equivalent tree properties.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=535",
+      "checked": "2026-09-15"
+    },
+    "m-sums": {
+      "source": "mcs",
+      "locator": "§§14.1–14.3",
+      "supports": "Finite geometric and power sums, telescoping, and bounds.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=614",
+      "checked": "2026-09-15"
+    },
+    "m-products": {
+      "source": "mcs",
+      "locator": "§§14.5–14.6",
+      "supports": "Products, factorial estimates, and sums with two indices.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=632",
+      "checked": "2026-09-15"
+    },
+    "m-asymptotic": {
+      "source": "mcs",
+      "locator": "§14.7",
+      "supports": "Eventual growth bounds, little-o, theta, and common asymptotic pitfalls.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=638",
+      "checked": "2026-09-15"
+    },
+    "m-counting": {
+      "source": "mcs",
+      "locator": "§§15.1–15.6",
+      "supports": "Sum/product/division rules, ordered choices, combinations, and repetition.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=663",
+      "checked": "2026-09-15"
+    },
+    "m-pigeonhole": {
+      "source": "mcs",
+      "locator": "§15.8",
+      "supports": "Pigeonhole arguments and finite mapping constraints.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=684",
+      "checked": "2026-09-15"
+    },
+    "m-pie": {
+      "source": "mcs",
+      "locator": "§§15.9–15.10",
+      "supports": "Inclusion–exclusion, binomial identities, and counting in two ways.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=693",
+      "checked": "2026-09-15"
+    },
+    "m-recursive": {
+      "source": "mcs",
+      "locator": "§§22.1–22.2",
+      "supports": "Unfolding, Hanoi, merge sort, and recurrence verification.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=1003",
+      "checked": "2026-09-15"
+    },
+    "m-linear-rec": {
+      "source": "mcs",
+      "locator": "§22.3",
+      "supports": "Characteristic roots, repeated roots, and nonhomogeneous linear recurrences.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=1010",
+      "checked": "2026-09-15"
+    },
+    "m-divide-rec": {
+      "source": "mcs",
+      "locator": "§§22.4–22.5",
+      "supports": "Recursion levels, divide-and-conquer recurrences, and bounds.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=1017",
+      "checked": "2026-09-15"
+    },
+    "p-sets": {
+      "source": "proof",
+      "locator": "§§1.1–1.9",
+      "supports": "Set definitions, power sets, Cartesian products, indexed families, and Venn reasoning.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=15",
+      "checked": "2026-09-15"
+    },
+    "p-logic": {
+      "source": "proof",
+      "locator": "§§2.1–2.6",
+      "supports": "Connectives, conditional forms, truth tables, and logical equivalence.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=47",
+      "checked": "2026-09-15"
+    },
+    "p-quantifiers": {
+      "source": "proof",
+      "locator": "§§2.7–2.11",
+      "supports": "Quantifiers, English translation, negation, and logical inference.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=65",
+      "checked": "2026-09-15"
+    },
+    "p-direct": {
+      "source": "proof",
+      "locator": "§§4.1–4.5",
+      "supports": "Definitions, parity, divisibility, direct proof, and cases.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=125",
+      "checked": "2026-09-15"
+    },
+    "p-contra": {
+      "source": "proof",
+      "locator": "§§5.1–5.3",
+      "supports": "Contraposition, congruence examples, and mathematical writing.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=140",
+      "checked": "2026-09-15"
+    },
+    "p-contradiction": {
+      "source": "proof",
+      "locator": "§§6.1–6.4",
+      "supports": "Contradiction proofs, irrationality, and combining proof techniques.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=150",
+      "checked": "2026-09-15"
+    },
+    "p-existence": {
+      "source": "proof",
+      "locator": "§§7.1–7.4",
+      "supports": "Biconditionals, constructive existence, and uniqueness.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=159",
+      "checked": "2026-09-15"
+    },
+    "p-setproof": {
+      "source": "proof",
+      "locator": "§§8.1–8.3",
+      "supports": "Element proofs of membership, inclusion, and equality.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=169",
+      "checked": "2026-09-15"
+    },
+    "p-disproof": {
+      "source": "proof",
+      "locator": "§§9.1–9.3",
+      "supports": "Genuine counterexamples and refuting existential assertions.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=186",
+      "checked": "2026-09-15"
+    },
+    "p-relations": {
+      "source": "proof",
+      "locator": "§§11.1–11.6",
+      "supports": "Relation properties, equivalence classes, and partitions.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=213",
+      "checked": "2026-09-15"
+    },
+    "p-functions": {
+      "source": "proof",
+      "locator": "§§12.1–12.6",
+      "supports": "Total functions, injectivity, surjectivity, inverses, images, and preimages.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=235",
+      "checked": "2026-09-15"
+    },
+    "p-multisets": {
+      "source": "proof",
+      "locator": "§§3.8–3.10",
+      "supports": "Stars and bars, division/pigeonhole principles, and combinatorial proof.",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=108",
+      "checked": "2026-09-15"
+    },
+    "i-vectors": {
+      "source": "ila",
+      "locator": "§2.1",
+      "supports": "Vector coordinates, addition, scaling, and linear combinations.",
+      "url": "https://textbooks.math.gatech.edu/ila/vectors.html",
+      "checked": "2026-09-15"
+    },
+    "i-span": {
+      "source": "ila",
+      "locator": "§2.2",
+      "supports": "Span and vector equations.",
+      "url": "https://textbooks.math.gatech.edu/ila/spans.html",
+      "checked": "2026-09-15"
+    },
+    "i-matrixeq": {
+      "source": "ila",
+      "locator": "§2.3",
+      "supports": "Matrix-vector multiplication and solvability.",
+      "url": "https://textbooks.math.gatech.edu/ila/matrix-equations.html",
+      "checked": "2026-09-15"
+    },
+    "i-solutions": {
+      "source": "ila",
+      "locator": "§2.4",
+      "supports": "Homogeneous and inhomogeneous solution sets.",
+      "url": "https://textbooks.math.gatech.edu/ila/solution-sets.html",
+      "checked": "2026-09-15"
+    },
+    "i-independent": {
+      "source": "ila",
+      "locator": "§2.5",
+      "supports": "Independence and dependence criteria.",
+      "url": "https://textbooks.math.gatech.edu/ila/linear-independence.html",
+      "checked": "2026-09-15"
+    },
+    "i-subspaces": {
+      "source": "ila",
+      "locator": "§2.6",
+      "supports": "Subspaces, column spaces, and null spaces.",
+      "url": "https://textbooks.math.gatech.edu/ila/subspaces.html",
+      "checked": "2026-09-15"
+    },
+    "i-basis": {
+      "source": "ila",
+      "locator": "§2.7",
+      "supports": "Bases, dimension, and the row space.",
+      "url": "https://textbooks.math.gatech.edu/ila/dimension.html",
+      "checked": "2026-09-15"
+    },
+    "i-coordinates": {
+      "source": "ila",
+      "locator": "§2.8",
+      "supports": "Unique coordinates relative to a basis.",
+      "url": "https://textbooks.math.gatech.edu/ila/bases-as-coord-systems.html",
+      "checked": "2026-09-15"
+    },
+    "i-rank": {
+      "source": "ila",
+      "locator": "§2.9",
+      "supports": "Rank, nullity, and the rank theorem.",
+      "url": "https://textbooks.math.gatech.edu/ila/rank-thm.html",
+      "checked": "2026-09-15"
+    },
+    "i-systems": {
+      "source": "ila",
+      "locator": "§1.1",
+      "supports": "Linear systems and solution geometry.",
+      "url": "https://textbooks.math.gatech.edu/ila/systems-of-eqns.html",
+      "checked": "2026-09-15"
+    },
+    "i-reduction": {
+      "source": "ila",
+      "locator": "§1.2",
+      "supports": "Row operations, pivots, and echelon forms.",
+      "url": "https://textbooks.math.gatech.edu/ila/row-reduction.html",
+      "checked": "2026-09-15"
+    },
+    "i-parameters": {
+      "source": "ila",
+      "locator": "§1.3",
+      "supports": "Free variables and parametric solution sets.",
+      "url": "https://textbooks.math.gatech.edu/ila/parametric-form.html",
+      "checked": "2026-09-15"
+    },
+    "i-transform": {
+      "source": "ila",
+      "locator": "§3.3",
+      "supports": "Linearity and recovering a matrix from basis images.",
+      "url": "https://textbooks.math.gatech.edu/ila/linear-transformations.html",
+      "checked": "2026-09-15"
+    },
+    "i-multiply": {
+      "source": "ila",
+      "locator": "§3.4",
+      "supports": "Composition, matrix products, transpose, and algebraic laws.",
+      "url": "https://textbooks.math.gatech.edu/ila/matrix-multiplication.html",
+      "checked": "2026-09-15"
+    },
+    "i-inverse": {
+      "source": "ila",
+      "locator": "§3.5",
+      "supports": "Inverse matrices and invertibility tests.",
+      "url": "https://textbooks.math.gatech.edu/ila/matrix-inverses.html",
+      "checked": "2026-09-15"
+    },
+    "i-eigen": {
+      "source": "ila",
+      "locator": "§5.1",
+      "supports": "Eigenvectors, eigenvalues, and eigenspaces.",
+      "url": "https://textbooks.math.gatech.edu/ila/eigenvectors.html",
+      "checked": "2026-09-15"
+    },
+    "i-characteristic": {
+      "source": "ila",
+      "locator": "§5.2",
+      "supports": "Characteristic polynomials and multiplicities.",
+      "url": "https://textbooks.math.gatech.edu/ila/characteristic-polynomial.html",
+      "checked": "2026-09-15"
+    },
+    "i-diagonal": {
+      "source": "ila",
+      "locator": "§5.4",
+      "supports": "Eigenbases, repeated action, and failures of diagonalization.",
+      "url": "https://textbooks.math.gatech.edu/ila/diagonalization.html",
+      "checked": "2026-09-15"
+    },
+    "i-dot": {
+      "source": "ila",
+      "locator": "§6.1",
+      "supports": "Dot product, norm, angles, and orthogonality.",
+      "url": "https://textbooks.math.gatech.edu/ila/dot-product.html",
+      "checked": "2026-09-15"
+    },
+    "i-projection": {
+      "source": "ila",
+      "locator": "§6.3",
+      "supports": "Orthogonal projections and closest vectors.",
+      "url": "https://textbooks.math.gatech.edu/ila/projections.html",
+      "checked": "2026-09-15"
+    },
+    "i-orthonormal": {
+      "source": "ila",
+      "locator": "§6.4",
+      "supports": "Orthonormal bases, Gram–Schmidt, and QR.",
+      "url": "https://textbooks.math.gatech.edu/ila/orthogonal-sets.html",
+      "checked": "2026-09-15"
+    },
+    "i-least": {
+      "source": "ila",
+      "locator": "§6.5",
+      "supports": "Normal equations, residuals, and least-squares fitting.",
+      "url": "https://textbooks.math.gatech.edu/ila/least-squares.html",
+      "checked": "2026-09-15"
+    },
+    "ml-intro": {
+      "source": "mml",
+      "locator": "§§1.1–1.2 and Chapter 2 introduction",
+      "supports": "Motivation for mathematical data models and linear algebra.",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=18",
+      "checked": "2026-09-15"
+    },
+    "ml-affine": {
+      "source": "mml",
+      "locator": "§§2.7–2.8",
+      "supports": "Linear maps, kernel/image, change of basis, and affine spaces.",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=54",
+      "checked": "2026-09-15"
+    },
+    "ml-svd": {
+      "source": "mml",
+      "locator": "§4.5",
+      "supports": "Full and reduced SVD, rectangular dimensions, singular directions, and numerical cautions.",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=125",
+      "checked": "2026-09-15"
+    },
+    "ml-models": {
+      "source": "mml",
+      "locator": "§8.1",
+      "supports": "Models, data, and the limits of mathematical interpretation.",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=257",
+      "checked": "2026-09-15"
+    },
+    "d-intro": {
+      "source": "levin",
+      "locator": "§0.1, What is Discrete Mathematics?",
+      "supports": "Scope and examples of discrete mathematics.",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_intro-intro.html",
+      "checked": "2026-09-15"
+    },
+    "d-sequences": {
+      "source": "levin",
+      "locator": "§4.2, Rate of Growth",
+      "supports": "Recursive, arithmetic, and geometric sequences.",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_seq-growth.html",
+      "checked": "2026-09-15"
+    },
+    "d-trees": {
+      "source": "levin",
+      "locator": "§2.2, Trees (including rooted trees)",
+      "supports": "Rooted trees and spanning-tree structure.",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_trees.html",
+      "checked": "2026-09-15"
+    },
+    "alg-search": {
+      "source": "algorithms",
+      "locator": "Lectures 13–14: BFS; DFS and topological sorting",
+      "supports": "Adjacency lists, breadth/depth-first traversals, complexity, and scheduling.",
+      "url": "https://courses.csail.mit.edu/6.006/fall11/notes.shtml",
+      "checked": "2026-09-15"
+    },
+    "alg-cost": {
+      "source": "algorithms",
+      "locator": "Lecture 2: Models of Computation; Recitation 1: asymptotic complexity",
+      "supports": "Cost models, input size, asymptotic analysis, and worst-case interpretation.",
+      "url": "https://courses.csail.mit.edu/6.006/fall11/notes.shtml",
+      "checked": "2026-09-15"
+    },
+    "tex-supported": {
+      "source": "katex",
+      "locator": "Supported Functions (grouped command reference)",
+      "supports": "Math commands, grouping, scripts, spacing, and matrix/aligned/cases environments. Foundations supports a curated subset; editor controls are app-specific.",
+      "url": "https://katex.org/docs/supported.html",
+      "checked": "2026-09-15"
+    },
+    "tex-delimiters": {
+      "source": "katex",
+      "locator": "Auto-render extension: delimiters and ignored text",
+      "supports": "Inline/display math delimiters; Foundations uses its own parser and deliberately supports single-dollar inline math.",
+      "url": "https://katex.org/docs/autorender.html",
+      "checked": "2026-09-15"
+    },
+    "js-every": {
+      "source": "mdn",
+      "locator": "Array.prototype.every(): Description",
+      "supports": "Finite-array predicate checks and empty-array behavior.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every",
+      "checked": "2026-09-15"
+    },
+    "js-some": {
+      "source": "mdn",
+      "locator": "Array.prototype.some(): Description",
+      "supports": "Finite-array predicate checks and empty-array behavior.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
+      "checked": "2026-09-15"
+    },
+    "js-floor": {
+      "source": "mdn",
+      "locator": "Math.floor(): Description",
+      "supports": "Rounding direction and the distinction between integer truncation and floor/ceiling.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor",
+      "checked": "2026-09-15"
+    },
+    "js-ceil": {
+      "source": "mdn",
+      "locator": "Math.ceil(): Description",
+      "supports": "Rounding direction and the distinction between integer truncation and floor/ceiling.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil",
+      "checked": "2026-09-15"
+    },
+    "js-trunc": {
+      "source": "mdn",
+      "locator": "Math.trunc(): Description",
+      "supports": "Rounding direction and the distinction between integer truncation and floor/ceiling.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc",
+      "checked": "2026-09-15"
+    },
+    "history-logic": {
+      "source": "sep",
+      "locator": "Introduction and §5, The Stoics",
+      "supports": "Historical distinction between term logic and Stoic propositional logic.",
+      "url": "https://plato.stanford.edu/entries/logic-ancient/",
+      "checked": "2026-09-15"
+    },
+    "history-graph": {
+      "source": "euler",
+      "locator": "E53: archive summary and English translation",
+      "supports": "Königsberg history and edge-traversal interpretation.",
+      "url": "https://scholarlycommons.pacific.edu/euler-works/53/",
+      "checked": "2026-09-15"
+    },
+    "svd-approx": {
+      "source": "stanford-pca",
+      "locator": "Low-rank approximation, Solution, and Relation to SVD",
+      "supports": "Frobenius-optimal truncated SVD and residual error from discarded singular values.",
+      "url": "https://web.stanford.edu/class/stats305c/lectures/PCA_I.html",
+      "checked": "2026-09-15"
+    },
+    "numerical-rank": {
+      "source": "numpy",
+      "locator": "Notes: detecting numerical rank deficiency",
+      "supports": "Singular-value thresholds and the distinction between exact and numerical rank.",
+      "url": "https://numpy.org/doc/2.1/reference/generated/numpy.linalg.matrix_rank.html",
+      "checked": "2026-09-15"
+    },
+    "numerical-ls": {
+      "source": "lapack",
+      "locator": "Linear Least Squares (LLS) Problems",
+      "supports": "QR/SVD methods, full-rank and rank-deficient least-squares problems.",
+      "url": "https://www.netlib.org/lapack/lug/node27.html",
+      "checked": "2026-09-15"
+    },
+    "alg-asymptotic": {
+      "source": "algorithms",
+      "locator": "Recitation 1, pp. 1–4: asymptotic complexity and binary search",
+      "supports": "Upper, lower, and tight bounds; logarithmic growth and binary-search recurrences.",
+      "url": "https://courses.csail.mit.edu/6.006/fall11/rec/rec01.pdf",
+      "checked": "2026-09-15"
+    }
+  },
+  "lessons": {
+    "discrete-math-introduction": {
+      "reviewedContentHash": "68142069565081f86a99efa4a6401d6e32ad8a3cd46ff3a9635a8e3499ce9d27",
+      "intro": ["d-intro", "m-intro"],
+      "sections": {
+        "why-this-subject-matters": ["d-intro", "m-intro"],
+        "the-journey-through-these-lessons": ["m-intro"],
+        "how-to-learn-from-the-notebook": ["m-cases"],
+        "what-success-will-look-like": ["m-cases"]
+      },
+      "practice": {}
+    },
+    "propositional-logic": {
+      "reviewedContentHash": "8e16c7b38c011bf6b02f5eaebef746228494e4c7713d95a55821dc77abf9b102",
+      "intro": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"],
+      "sections": {
+        "propositions": ["m-propositions"],
+        "negation-not": ["m-connectives"],
+        "conjunction-and": ["m-connectives"],
+        "disjunction-or": ["m-connectives"],
+        "implication-if-then": ["p-logic", "m-connectives"],
+        "converse-inverse-and-contrapositive": ["p-logic"],
+        "necessary-and-sufficient-conditions": ["p-logic"],
+        "biconditional-if-and-only-if": ["m-implication"],
+        "logical-equivalence": ["m-equivalence"],
+        "de-morgan-s-laws": ["m-equivalence"],
+        "common-equivalence-laws": ["m-equivalence"],
+        "tautologies-contradictions-and-contingent-statements": ["m-equivalence", "m-sat"],
+        "counterexamples": ["p-disproof"],
+        "arguments-premises-and-conclusions": ["p-quantifiers"],
+        "common-rules-of-inference": ["p-quantifiers", "history-logic"],
+        "two-common-invalid-argument-forms": ["p-quantifiers"],
+        "satisfiability": ["m-sat"],
+        "a-first-proof-by-contrapositive": ["p-contra"],
+        "what-to-be-able-to-do-before-moving-on": ["p-logic", "m-equivalence"]
+      },
+      "practice": {
+        "A first proof by contrapositive": ["p-contra"],
+        "Arguments, validity, and rules of inference": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Common equivalence laws": ["m-equivalence"],
+        "Common rules of inference": ["p-quantifiers", "history-logic"],
+        "Comprehensive challenges": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Conjunction: AND": ["m-connectives"],
+        "Converse, inverse, and contrapositive": ["p-logic"],
+        "De Morgan's laws": ["m-equivalence"],
+        "Disjunction: OR": ["m-connectives"],
+        "Equivalence and De Morgan's laws": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Equivalence laws and algebraic simplification": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Evaluate compound propositions": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "From laws to proofs": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"],
+        "Implication and related statements": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Mixed reasoning and counterexamples": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Necessary and sufficient conditions": ["p-logic"],
+        "Necessary and sufficient conditions; converse and inverse": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Negation: NOT": ["m-connectives"],
+        "Propositions": ["m-propositions"],
+        "Propositions and translation": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Satisfiability": ["m-sat"],
+        "Tautologies, contradictions, and contingent statements": ["m-equivalence", "m-sat"],
+        "Tautology, contradiction, or contingency?": [
+          "p-logic",
+          "m-equivalence",
+          "m-sat",
+          "p-quantifiers",
+          "p-contra"
+        ],
+        "Truth tables": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"],
+        "Two common invalid argument forms": ["p-quantifiers"]
+      }
+    },
+    "predicates-and-quantifiers": {
+      "reviewedContentHash": "06c588812938aaa0fafb2f48ed953eb402c37d0305a45a8d7df2d5b218765553",
+      "intro": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"],
+      "sections": {
+        "domains-come-first": ["m-quantifiers"],
+        "predicates-and-substitution": ["m-propositions", "m-quantifiers"],
+        "universal-quantification-for-every": ["m-quantifiers"],
+        "existential-quantification-there-exists": ["m-quantifiers"],
+        "scope-free-variables-and-bound-variables": ["m-quantifiers", "p-quantifiers"],
+        "translating-all-some-none-and-only": ["p-quantifiers"],
+        "negating-quantified-statements": ["p-quantifiers"],
+        "several-variables-and-quantifier-order": ["m-quantifiers"],
+        "relationships-in-ordinary-language": ["p-quantifiers"],
+        "negating-nested-quantifiers": ["p-quantifiers"],
+        "existence-uniqueness-and-exactly-one": ["p-existence", "p-quantifiers"],
+        "vacuous-truth-and-empty-cases": ["m-connectives", "p-quantifiers"],
+        "which-distributions-are-valid": ["p-quantifiers", "m-equivalence"],
+        "valid-reasoning-with-quantifiers": ["p-quantifiers"],
+        "writing-a-quantified-proof": ["p-direct", "p-existence"],
+        "quantifiers-in-programs-and-specifications": ["js-every", "js-some", "m-quantifiers"],
+        "what-to-be-able-to-do-before-moving-on": ["p-quantifiers"]
+      },
+      "practice": {
+        "A finite relationship": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"],
+        "Domains and genuine counterexamples": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Equivalence laws and countermodels": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Existence, uniqueness, and exactly one": ["p-existence", "p-quantifiers"],
+        "Existential quantification: there exists": ["m-quantifiers"],
+        "Finite-domain truth values": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Negating quantified statements": ["p-quantifiers"],
+        "Negating quantifiers": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"],
+        "Predicates and substitution": ["m-propositions", "m-quantifiers"],
+        "Predicates, substitution, and scope": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Proofs and specifications": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Quantifier order and witness dependence": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Read quantified statements": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Relationships in ordinary language": ["p-quantifiers"],
+        "Several variables and quantifier order": ["m-quantifiers"],
+        "Translate English into logic": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Translating all, some, none, and only": ["p-quantifiers"],
+        "Uniqueness and vacuous truth": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Universal quantification: for every": ["m-quantifiers"],
+        "Valid and invalid quantified arguments": [
+          "m-quantifiers",
+          "p-quantifiers",
+          "p-existence",
+          "p-disproof"
+        ],
+        "Valid reasoning with quantifiers": ["p-quantifiers"],
+        "Which distributions are valid?": ["p-quantifiers", "m-equivalence"],
+        "Writing a quantified proof": ["p-direct", "p-existence"]
+      }
+    },
+    "sets-and-set-operations": {
+      "reviewedContentHash": "7f7a114f571719f4b1d6f4158dbc225d5aaad5d99f3bc95c9df60fedee99044c",
+      "intro": ["p-sets", "p-setproof", "m-pie", "m-classes"],
+      "sections": {
+        "elements-descriptions-and-equality": ["p-sets"],
+        "membership-and-subsets-are-different": ["p-sets"],
+        "union-intersection-difference-and-complement": ["p-sets"],
+        "proving-inclusions-and-identities": ["p-setproof"],
+        "laws-of-set-operations": ["p-setproof", "p-sets"],
+        "power-sets": ["p-sets"],
+        "ordered-pairs-and-cartesian-products": ["p-sets"],
+        "counting-unions-without-double-counting": ["m-pie"],
+        "partitions-and-indexed-families": ["p-sets", "m-classes"],
+        "a-worked-access-policy-example": ["p-sets"],
+        "readiness-check": ["p-sets", "p-setproof"]
+      },
+      "practice": {
+        "A worked access-policy example": ["p-sets"],
+        "Computing operations in a fixed universe": ["p-sets", "p-setproof", "m-pie", "m-classes"],
+        "Counting unions without double-counting": ["m-pie"],
+        "Finite cardinality and inclusion-exclusion": [
+          "p-sets",
+          "p-setproof",
+          "m-pie",
+          "m-classes"
+        ],
+        "Identities and element proofs": ["p-sets", "p-setproof", "m-pie", "m-classes"],
+        "Laws of set operations": ["p-setproof", "p-sets"],
+        "Membership and subsets are different": ["p-sets"],
+        "Membership, subsets, and descriptions": ["p-sets", "p-setproof", "m-pie", "m-classes"],
+        "Mixed reasoning and error diagnosis": ["p-sets", "p-setproof", "m-pie", "m-classes"],
+        "Ordered pairs and Cartesian products": ["p-sets"],
+        "Partitions and indexed families": ["p-sets", "m-classes"],
+        "Policies, proofs, and counterexamples": ["p-sets", "p-setproof", "m-pie", "m-classes"],
+        "Power sets": ["p-sets"],
+        "Power sets and Cartesian products": ["p-sets", "p-setproof", "m-pie", "m-classes"],
+        "Union, intersection, difference, and complement": ["p-sets"]
+      }
+    },
+    "relations": {
+      "reviewedContentHash": "70a698b0ac884a903303624774d2068f191afb385ae42617cb2cf904a6a473ce",
+      "intro": ["p-relations", "m-orders", "m-composition"],
+      "sections": {
+        "relations-as-sets-of-ordered-pairs": ["m-relations", "m-digraph"],
+        "four-fundamental-properties": ["p-relations", "m-classes"],
+        "a-complete-finite-check": ["p-relations"],
+        "vacuous-cases-and-related-properties": ["p-relations", "m-orders"],
+        "equivalence-relations": ["m-classes"],
+        "equivalence-classes-and-partitions": ["m-classes"],
+        "partial-and-total-orders": ["m-orders"],
+        "hasse-diagrams-and-extreme-elements": ["m-orders"],
+        "inverses-and-composition-of-relations": ["m-composition", "p-relations"],
+        "building-closures-without-losing-the-meaning": ["m-composition"],
+        "readiness-check": ["p-relations", "m-orders"]
+      },
+      "practice": {
+        "A complete finite check": ["p-relations"],
+        "Building closures without losing the meaning": ["m-composition"],
+        "Closures and reachability": ["p-relations", "m-orders", "m-composition"],
+        "Equivalence classes and partitions": ["m-classes"],
+        "Equivalence relations and classes": ["p-relations", "m-orders", "m-composition"],
+        "Four fundamental properties": ["p-relations", "m-classes"],
+        "Hasse diagrams and extreme elements": ["m-orders"],
+        "Infinite domains and logical edge cases": ["p-relations", "m-orders", "m-composition"],
+        "Inverses and composition of relations": ["m-composition", "p-relations"],
+        "Mixed proofs and error diagnosis": ["p-relations", "m-orders", "m-composition"],
+        "Pairs and representations": ["p-relations", "m-orders", "m-composition"],
+        "Partial and total orders": ["m-orders"],
+        "Partial orders and Hasse diagrams": ["p-relations", "m-orders", "m-composition"],
+        "Relation composition": ["p-relations", "m-orders", "m-composition"],
+        "Relations as sets of ordered pairs": ["m-relations", "m-digraph"],
+        "Testing finite relation properties": ["p-relations", "m-orders", "m-composition"],
+        "Vacuous cases and related properties": ["p-relations", "m-orders"]
+      }
+    },
+    "functions": {
+      "reviewedContentHash": "ccedd06944444e63a9d3e891b2960e1bbaa326a1ad42ed0c5db50c50960625c7",
+      "intro": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"],
+      "sections": {
+        "what-a-function-specifies": ["p-functions", "m-functions"],
+        "image-and-preimage": ["p-functions"],
+        "injective-functions": ["p-functions"],
+        "surjective-functions": ["p-functions"],
+        "bijections-and-inverse-functions": ["p-functions"],
+        "composition-and-types": ["p-functions"],
+        "restrictions-empty-cases-and-finite-sizes": ["p-functions", "m-functions"],
+        "floor-and-ceiling-functions": ["js-floor", "js-ceil", "js-trunc"],
+        "checking-a-composed-claim-carefully": ["p-functions"],
+        "readiness-check": ["p-functions"]
+      },
+      "practice": {
+        "Composition and compatible domains": [
+          "p-functions",
+          "m-functions",
+          "js-floor",
+          "js-ceil",
+          "js-trunc"
+        ],
+        "Composition and types": ["p-functions"],
+        "Empty cases and finite counting": [
+          "p-functions",
+          "m-functions",
+          "js-floor",
+          "js-ceil",
+          "js-trunc"
+        ],
+        "Floor and ceiling functions": ["js-floor", "js-ceil", "js-trunc"],
+        "Floor, ceiling, and discrete models": [
+          "p-functions",
+          "m-functions",
+          "js-floor",
+          "js-ceil",
+          "js-trunc"
+        ],
+        "Functions and their specifications": [
+          "p-functions",
+          "m-functions",
+          "js-floor",
+          "js-ceil",
+          "js-trunc"
+        ],
+        "Image and preimage": ["p-functions"],
+        "Images and preimages": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"],
+        "Injectivity and surjectivity": [
+          "p-functions",
+          "m-functions",
+          "js-floor",
+          "js-ceil",
+          "js-trunc"
+        ],
+        "Inverses and restrictions": [
+          "p-functions",
+          "m-functions",
+          "js-floor",
+          "js-ceil",
+          "js-trunc"
+        ],
+        "Proofs, counterexamples, and mixed reasoning": [
+          "p-functions",
+          "m-functions",
+          "js-floor",
+          "js-ceil",
+          "js-trunc"
+        ],
+        "Restrictions, empty cases, and finite sizes": ["p-functions", "m-functions"],
+        "Surjective functions": ["p-functions"],
+        "What a function specifies": ["p-functions", "m-functions"]
+      }
+    },
+    "sequences-and-summations": {
+      "reviewedContentHash": "e6202c44da7d9cf4450bf80832099e62d8e63ca3c5634d772d847f52404fa0c5",
+      "intro": ["m-sequences", "d-sequences", "m-sums", "m-products"],
+      "sections": {
+        "a-sequence-is-an-indexed-function": ["m-sequences"],
+        "recursive-definitions-and-initial-conditions": ["m-sequences"],
+        "arithmetic-and-geometric-sequences": ["d-sequences"],
+        "summation-notation-and-term-counts": ["m-sums"],
+        "algebra-with-finite-sums": ["m-sums"],
+        "deriving-arithmetic-sums": ["m-sums"],
+        "deriving-finite-geometric-sums": ["m-sums"],
+        "reindexing-and-telescoping": ["m-sums"],
+        "products-and-factorials": ["m-products"],
+        "nested-sums-and-counting-iterations": ["m-products"],
+        "bounding-sums": ["m-sums"],
+        "translating-loop-bounds-into-sums": ["m-products", "alg-cost"],
+        "readiness-check": ["m-sums"]
+      },
+      "practice": {
+        "Arithmetic and geometric sequences": ["d-sequences"],
+        "Bounding sums": ["m-sums"],
+        "Deriving arithmetic sums": ["m-sums"],
+        "Deriving finite geometric sums": ["m-sums"],
+        "Finite geometric sums": ["m-sequences", "d-sequences", "m-sums", "m-products"],
+        "Indexing and recursive definitions": [
+          "m-sequences",
+          "d-sequences",
+          "m-sums",
+          "m-products"
+        ],
+        "Mixed derivations and loop reasoning": [
+          "m-sequences",
+          "d-sequences",
+          "m-sums",
+          "m-products"
+        ],
+        "Nested sums and bounds": ["m-sequences", "d-sequences", "m-sums", "m-products"],
+        "Products and factorials": ["m-products"],
+        "Recursive definitions and initial conditions": ["m-sequences"],
+        "Reindexing and telescoping": ["m-sums"],
+        "Summation notation and arithmetic sums": [
+          "m-sequences",
+          "d-sequences",
+          "m-sums",
+          "m-products"
+        ],
+        "Summation notation and term counts": ["m-sums"],
+        "Translating loop bounds into sums": ["m-products", "alg-cost"]
+      }
+    },
+    "direct-proof": {
+      "reviewedContentHash": "f5aa7044c03ad4bbe73f8816b29499ca2516ba7c4ab149542f967d0b7aa99785",
+      "intro": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
+      "sections": {
+        "read-the-claim-before-choosing-a-method": ["p-direct"],
+        "unpack-definitions": ["p-direct"],
+        "worked-proof-the-sum-of-two-odd-integers": ["p-direct"],
+        "divisibility-and-linear-combinations": ["m-divisibility", "p-direct"],
+        "closure-claims": ["p-direct"],
+        "proof-by-cases": ["m-cases"],
+        "set-inclusion-and-equality": ["p-setproof"],
+        "biconditionals-need-both-directions": ["p-existence"],
+        "constructive-existence": ["p-existence"],
+        "when-the-claim-is-false": ["p-disproof"],
+        "diagnose-and-revise-a-proof": ["p-direct", "m-cases"],
+        "readiness-checklist": ["p-direct"]
+      },
+      "practice": {
+        "Biconditionals need both directions": ["p-existence"],
+        "Cases, sets, and biconditionals": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
+        "Closure claims": ["p-direct"],
+        "Constructing witnesses and uniqueness": [
+          "p-direct",
+          "p-existence",
+          "p-setproof",
+          "p-disproof"
+        ],
+        "Constructive existence": ["p-existence"],
+        "Counterexamples and missing assumptions": [
+          "p-direct",
+          "p-existence",
+          "p-setproof",
+          "p-disproof"
+        ],
+        "Definitions and proof obligations": [
+          "p-direct",
+          "p-existence",
+          "p-setproof",
+          "p-disproof"
+        ],
+        "Diagnose and repair proofs": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
+        "Diagnose and revise a proof": ["p-direct", "m-cases"],
+        "Divisibility and rational closure": [
+          "p-direct",
+          "p-existence",
+          "p-setproof",
+          "p-disproof"
+        ],
+        "Mixed proof practice": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
+        "Parity and explicit witnesses": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
+        "Unpack definitions": ["p-direct"],
+        "When the claim is false": ["p-disproof"],
+        "Worked proof: the sum of two odd integers": ["p-direct"]
+      }
+    },
+    "proof-by-contrapositive": {
+      "reviewedContentHash": "10a838ec030b8c083fa2d710b1e431e73ce259d2f5dca56a51807269bfaa8cae",
+      "intro": ["p-contra", "p-quantifiers", "m-modular", "p-functions", "p-setproof"],
+      "sections": {
+        "the-equivalence-that-makes-the-method-work": ["p-contra"],
+        "the-proof-template": ["p-contra"],
+        "worked-proof-an-even-square-has-an-even-root": ["p-contra"],
+        "negate-compound-conditions-carefully": ["p-quantifiers"],
+        "an-even-product-has-an-even-factor": ["p-contra"],
+        "divisibility-by-3-and-remainders": ["m-modular", "p-contra"],
+        "irrationality-through-a-rational-contrapositive": ["p-contra", "p-direct"],
+        "contraposition-in-set-and-function-arguments": ["p-setproof", "p-functions", "p-contra"],
+        "supporting-a-biconditional": ["p-existence", "p-contra"],
+        "when-to-choose-this-method": ["p-contra"],
+        "diagnose-flawed-contrapositive-proofs": ["p-contra"],
+        "readiness-checklist": ["p-contra"]
+      },
+      "practice": {
+        "Choosing methods and proving equivalences": [
+          "p-contra",
+          "p-quantifiers",
+          "m-modular",
+          "p-functions",
+          "p-setproof"
+        ],
+        "Contraposition in set and function arguments": ["p-setproof", "p-functions", "p-contra"],
+        "Diagnose flawed contrapositive proofs": ["p-contra"],
+        "Diagnosing incorrect indirect arguments": [
+          "p-contra",
+          "p-quantifiers",
+          "m-modular",
+          "p-functions",
+          "p-setproof"
+        ],
+        "Divisibility and remainders": [
+          "p-contra",
+          "p-quantifiers",
+          "m-modular",
+          "p-functions",
+          "p-setproof"
+        ],
+        "Divisibility by 3 and remainders": ["m-modular", "p-contra"],
+        "Irrationality through a rational contrapositive": ["p-contra", "p-direct"],
+        "Negate compound conditions carefully": ["p-quantifiers"],
+        "Negating compound conclusions": [
+          "p-contra",
+          "p-quantifiers",
+          "m-modular",
+          "p-functions",
+          "p-setproof"
+        ],
+        "Parity proofs": ["p-contra", "p-quantifiers", "m-modular", "p-functions", "p-setproof"],
+        "Rationality and inequalities": [
+          "p-contra",
+          "p-quantifiers",
+          "m-modular",
+          "p-functions",
+          "p-setproof"
+        ],
+        "Recognizing the logical transformation": [
+          "p-contra",
+          "p-quantifiers",
+          "m-modular",
+          "p-functions",
+          "p-setproof"
+        ],
+        "Sets and functions": [
+          "p-contra",
+          "p-quantifiers",
+          "m-modular",
+          "p-functions",
+          "p-setproof"
+        ],
+        "The proof template": ["p-contra"],
+        "Worked proof: an even square has an even root": ["p-contra"]
+      }
+    },
+    "proof-by-contradiction": {
+      "reviewedContentHash": "fa87e6b783f20f00d3a55758eb93266b8e863598d7328cc577baafc60a6511b3",
+      "intro": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"],
+      "sections": {
+        "the-logical-structure": ["p-contradiction"],
+        "a-first-example-there-is-no-greatest-integer": ["p-contradiction"],
+        "contradiction-versus-contrapositive": ["p-contradiction", "p-contra"],
+        "fractions-in-lowest-terms": ["m-divisibility"],
+        "the-irrationality-of-the-square-root-of-2": ["p-contradiction"],
+        "rational-and-irrational-combinations": ["p-contradiction", "p-direct"],
+        "a-prime-divisor-lemma": ["m-wop", "m-divisibility"],
+        "there-are-infinitely-many-primes": ["m-divisibility"],
+        "uniqueness-proofs": ["p-existence"],
+        "common-errors-and-how-to-repair-them": ["p-contradiction"],
+        "readiness-checklist": ["p-contradiction"]
+      },
+      "practice": {
+        "Common errors and how to repair them": ["p-contradiction"],
+        "Contradiction versus contrapositive": ["p-contradiction", "p-contra"],
+        "Finding proof errors": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"],
+        "Lowest terms and irrational square roots": [
+          "p-contradiction",
+          "p-existence",
+          "m-divisibility",
+          "m-wop"
+        ],
+        "Mixed complete proofs": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"],
+        "Negating the whole claim": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"],
+        "Prime divisors and infinitely many primes": [
+          "p-contradiction",
+          "p-existence",
+          "m-divisibility",
+          "m-wop"
+        ],
+        "Rational and irrational combinations": ["p-contradiction", "p-direct"],
+        "Short contradiction arguments": [
+          "p-contradiction",
+          "p-existence",
+          "m-divisibility",
+          "m-wop"
+        ],
+        "The irrationality of the square root of 2": ["p-contradiction"],
+        "The logical structure": ["p-contradiction"],
+        "There are infinitely many primes": ["m-divisibility"],
+        "Uniqueness and incompatible properties": [
+          "p-contradiction",
+          "p-existence",
+          "m-divisibility",
+          "m-wop"
+        ],
+        "Uniqueness proofs": ["p-existence"]
+      }
+    },
+    "mathematical-induction": {
+      "reviewedContentHash": "18840d312f46e71caa09ea15326668727fa7b546d7d9b4819afdd726332b834e",
+      "intro": ["m-induction", "m-invariant", "m-sums"],
+      "sections": {
+        "the-induction-principle": ["m-induction"],
+        "why-the-hypothesis-is-not-circular": ["m-induction"],
+        "worked-proof-the-sum-of-the-first-positive-integers": ["m-induction", "m-sums"],
+        "empty-sums-and-a-base-at-zero": ["m-induction", "m-sums"],
+        "divisibility-by-induction": ["m-induction", "m-modular"],
+        "inequalities-require-a-bridge": ["m-induction"],
+        "a-recurrence-and-a-claimed-closed-form": ["m-induction", "m-linear-rec"],
+        "strengthening-the-statement": ["m-induction"],
+        "induction-and-repeated-computation": ["m-invariant"],
+        "common-invalid-induction-arguments": ["m-induction"],
+        "readiness-checklist": ["m-induction"]
+      },
+      "practice": {
+        "A recurrence and a claimed closed form": ["m-induction", "m-linear-rec"],
+        "Base, hypothesis, and target": ["m-induction", "m-invariant", "m-sums"],
+        "Common invalid induction arguments": ["m-induction"],
+        "Divisibility by induction": ["m-induction", "m-modular"],
+        "Divisibility induction": ["m-induction", "m-invariant", "m-sums"],
+        "Empty sums and a base at zero": ["m-induction", "m-sums"],
+        "Induction and repeated computation": ["m-invariant"],
+        "Inequalities and threshold conditions": ["m-induction", "m-invariant", "m-sums"],
+        "Inequalities require a bridge": ["m-induction"],
+        "Invalid induction and repairs": ["m-induction", "m-invariant", "m-sums"],
+        "Mixed induction proofs": ["m-induction", "m-invariant", "m-sums"],
+        "Recurrences and claimed formulas": ["m-induction", "m-invariant", "m-sums"],
+        "Strengthened statements and loop invariants": ["m-induction", "m-invariant", "m-sums"],
+        "Sums and products": ["m-induction", "m-invariant", "m-sums"],
+        "The induction principle": ["m-induction"],
+        "Why the hypothesis is not circular": ["m-induction"]
+      }
+    },
+    "strong-induction": {
+      "reviewedContentHash": "f98ee5b5a2b65be84b247b2f546ad1cd9ef61055ae4a6c6c8460bde441e3c943",
+      "intro": ["m-strong", "m-wop", "m-invariant"],
+      "sections": {
+        "the-strong-induction-principle": ["m-strong"],
+        "why-it-is-equivalent-to-ordinary-induction": ["m-strong"],
+        "well-ordering-and-a-smallest-counterexample": ["m-wop", "m-strong"],
+        "prime-factorization-existence": ["m-wop", "m-divisibility"],
+        "postage-with-several-base-cases": ["m-strong"],
+        "a-recursive-sequence-bound": ["m-strong"],
+        "recursive-algorithms-termination-and-correctness": ["m-strong", "m-invariant"],
+        "a-finite-construction-by-splitting": ["m-strong"],
+        "common-mistakes": ["m-strong"],
+        "readiness-checklist": ["m-strong"]
+      },
+      "practice": {
+        "A finite construction by splitting": ["m-strong"],
+        "A recursive sequence bound": ["m-strong"],
+        "Common mistakes": ["m-strong"],
+        "Diagnosing flawed strong induction": ["m-strong", "m-wop", "m-invariant"],
+        "Hypothesis ranges and well-ordering": ["m-strong", "m-wop", "m-invariant"],
+        "Mixed strong induction and proof selection": ["m-strong", "m-wop", "m-invariant"],
+        "Postage with several base cases": ["m-strong"],
+        "Postage, coverage, and base design": ["m-strong", "m-wop", "m-invariant"],
+        "Prime factorization: existence": ["m-wop", "m-divisibility"],
+        "Prime factors and representations": ["m-strong", "m-wop", "m-invariant"],
+        "Recurrences with multiple dependencies": ["m-strong", "m-wop", "m-invariant"],
+        "Recursive algorithms: termination and correctness": ["m-strong", "m-invariant"],
+        "Recursive constructions and exact counts": ["m-strong", "m-wop", "m-invariant"],
+        "Recursive termination and correctness": ["m-strong", "m-wop", "m-invariant"],
+        "The strong induction principle": ["m-strong"],
+        "Well-ordering and a smallest counterexample": ["m-wop", "m-strong"]
+      }
+    },
+    "combinatorics": {
+      "reviewedContentHash": "4100c11d39e21896166ebbeba9642c15f39b22e9045aded1fa80f950cf26ff44",
+      "intro": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"],
+      "sections": {
+        "the-sum-and-product-principles": ["m-counting"],
+        "complementary-counting": ["m-counting"],
+        "ordered-selections-and-permutations": ["m-counting"],
+        "unordered-selections-and-combinations": ["m-counting"],
+        "combining-restrictions": ["m-counting"],
+        "repeated-objects-and-circular-arrangements": ["m-counting", "p-multisets"],
+        "repetition-without-order-distributing-identical-objects": ["p-multisets"],
+        "the-binomial-theorem": ["m-pie"],
+        "inclusion-exclusion": ["m-pie"],
+        "the-pigeonhole-principle": ["m-pigeonhole"],
+        "a-complete-counting-solution": ["m-counting"],
+        "counting-the-same-set-in-two-ways": ["m-pie"],
+        "choosing-a-model-before-a-formula": ["m-counting"],
+        "readiness-check": ["m-counting", "p-multisets"]
+      },
+      "practice": {
+        "Binomial coefficients and counting proofs": [
+          "m-counting",
+          "m-pie",
+          "m-pigeonhole",
+          "p-multisets"
+        ],
+        "Choosing a model before a formula": ["m-counting"],
+        "Complementary counting": ["m-counting"],
+        "Functions, subsets, and test cases": [
+          "m-counting",
+          "m-pie",
+          "m-pigeonhole",
+          "p-multisets"
+        ],
+        "Inclusion-exclusion": ["m-pie"],
+        "Inclusion-exclusion and restrictions": [
+          "m-counting",
+          "m-pie",
+          "m-pigeonhole",
+          "p-multisets"
+        ],
+        "Mixed reasoning and model checks": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"],
+        "Ordered and unordered selections": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"],
+        "Pigeonhole arguments": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"],
+        "Repeated objects and circular arrangements": ["m-counting", "p-multisets"],
+        "Sum, product, and complement": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"],
+        "The binomial theorem": ["m-pie"],
+        "The pigeonhole principle": ["m-pigeonhole"],
+        "Unordered selections and combinations": ["m-counting"]
+      }
+    },
+    "recurrence-relations": {
+      "reviewedContentHash": "4e51fc065dd36c059db6dc88a0b9162b3287b822e5abd04bbf73bcdd8ec8709b",
+      "intro": ["m-recursive", "m-linear-rec", "m-divide-rec"],
+      "sections": {
+        "a-recurrence-needs-a-domain-and-initial-conditions": ["m-recursive"],
+        "iteration-unfold-the-definition": ["m-recursive"],
+        "differences-and-telescoping": ["m-sums"],
+        "first-order-linear-recurrences": ["m-linear-rec"],
+        "a-varying-nonhomogeneous-term": ["m-linear-rec"],
+        "second-order-homogeneous-recurrences": ["m-linear-rec"],
+        "repeated-roots": ["m-linear-rec"],
+        "recurrences-from-counting": ["m-linear-rec"],
+        "a-recurrence-for-a-recursive-construction": ["m-recursive"],
+        "testing-and-correcting-a-proposed-formula": ["m-linear-rec", "m-induction"],
+        "divide-and-conquer-recurrences": ["m-divide-rec"],
+        "proving-a-recursion-tree-formula": ["m-divide-rec", "m-induction"],
+        "different-amounts-of-branching": ["m-divide-rec"],
+        "guessing-bounds-and-proving-them": ["m-divide-rec", "m-induction"],
+        "readiness-check": ["m-linear-rec", "m-divide-rec"]
+      },
+      "practice": {
+        "A recurrence for a recursive construction": ["m-recursive"],
+        "A recurrence needs a domain and initial conditions": ["m-recursive"],
+        "A varying nonhomogeneous term": ["m-linear-rec"],
+        "Bounds and mixed verification": ["m-recursive", "m-linear-rec", "m-divide-rec"],
+        "Definitions, initial conditions, and early terms": [
+          "m-recursive",
+          "m-linear-rec",
+          "m-divide-rec"
+        ],
+        "Differences and telescoping": ["m-sums"],
+        "Different amounts of branching": ["m-divide-rec"],
+        "Divide-and-conquer on powers of two": ["m-recursive", "m-linear-rec", "m-divide-rec"],
+        "First-order linear recurrences": ["m-linear-rec"],
+        "Guessing bounds and proving them": ["m-divide-rec", "m-induction"],
+        "Iteration and telescoping": ["m-recursive", "m-linear-rec", "m-divide-rec"],
+        "Recursive constructions and optimality": ["m-recursive", "m-linear-rec", "m-divide-rec"],
+        "Repeated roots": ["m-linear-rec"],
+        "Second-order homogeneous equations": ["m-recursive", "m-linear-rec", "m-divide-rec"],
+        "Varying contributions and counting models": ["m-recursive", "m-linear-rec", "m-divide-rec"]
+      }
+    },
+    "graph-theory": {
+      "reviewedContentHash": "e08f2d3eac9ee208ab94767fdb8f54bcf111201c1f71db58e2045eb32b4e0f7b",
+      "intro": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"],
+      "sections": {
+        "vertices-edges-and-conventions": ["m-graph", "m-digraph"],
+        "adjacency-and-degree": ["m-graph", "m-digraph"],
+        "walks-trails-paths-and-cycles": ["m-walks"],
+        "connectivity-and-components": ["m-walks"],
+        "trees-and-forests": ["m-trees"],
+        "equivalent-characterizations-of-trees": ["m-trees"],
+        "rooted-trees": ["d-trees"],
+        "directed-acyclic-graphs-and-scheduling": ["m-orders"],
+        "representing-a-graph": ["m-digraph", "alg-search"],
+        "breadth-first-and-depth-first-search": ["alg-search"],
+        "euler-trails-and-hamiltonian-cycles": ["m-walks", "history-graph"],
+        "readiness-check": ["m-graph", "m-trees"]
+      },
+      "practice": {
+        "Adjacency and degree": ["m-graph", "m-digraph"],
+        "Breadth-first and depth-first search": ["alg-search"],
+        "Connectivity and components": ["m-walks"],
+        "Connectivity and reachability": [
+          "m-graph",
+          "m-walks",
+          "m-trees",
+          "m-orders",
+          "alg-search"
+        ],
+        "Directed acyclic graphs and scheduling": ["m-orders"],
+        "Equivalent characterizations of trees": ["m-trees"],
+        "Euler trails and Hamiltonian cycles": ["m-walks", "history-graph"],
+        "Euler, Hamiltonian, and mixed reasoning": [
+          "m-graph",
+          "m-walks",
+          "m-trees",
+          "m-orders",
+          "alg-search"
+        ],
+        "Graph models and degree counts": [
+          "m-graph",
+          "m-walks",
+          "m-trees",
+          "m-orders",
+          "alg-search"
+        ],
+        "Modeling and elementary deductions": [
+          "m-graph",
+          "m-walks",
+          "m-trees",
+          "m-orders",
+          "alg-search"
+        ],
+        "Representation and traversal": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"],
+        "Rooted trees and DAGs": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"],
+        "Trees, forests, and spanning trees": [
+          "m-graph",
+          "m-walks",
+          "m-trees",
+          "m-orders",
+          "alg-search"
+        ],
+        "Vertices, edges, and conventions": ["m-graph", "m-digraph"],
+        "Walks, trails, paths, and cycles": ["m-walks"]
+      }
+    },
+    "asymptotic-growth": {
+      "reviewedContentHash": "5639af84264179a0103d66d763fdf41a0e2313c0387bc6e22300243880b1cd1e",
+      "intro": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"],
+      "sections": {
+        "state-the-function-and-the-model": ["alg-cost"],
+        "big-o-an-eventual-upper-bound": ["m-asymptotic"],
+        "big-omega-and-big-theta": ["m-asymptotic", "alg-asymptotic"],
+        "negating-an-asymptotic-claim": ["m-asymptotic", "p-quantifiers"],
+        "useful-rules-with-reasons": ["m-asymptotic"],
+        "polynomials-and-logarithm-bases": ["m-asymptotic"],
+        "strictly-slower-growth": ["m-asymptotic"],
+        "why-exponentials-outrun-fixed-powers": ["m-asymptotic"],
+        "counting-simple-and-consecutive-loops": ["m-products", "alg-cost"],
+        "dependent-loop-bounds": ["m-products", "alg-cost"],
+        "doubling-and-halving": ["alg-cost", "m-divide-rec", "alg-asymptotic"],
+        "worst-case-is-a-different-axis": ["alg-cost"],
+        "an-upper-bound-proof-is-not-an-algorithm-lower-bound": ["alg-cost"],
+        "irregular-functions-still-use-the-definitions": ["m-asymptotic"],
+        "recurrences-and-input-size": ["alg-cost", "m-divide-rec"],
+        "readiness-check": ["m-asymptotic", "alg-cost"]
+      },
+      "practice": {
+        "An upper-bound proof is not an algorithm lower bound": ["alg-cost"],
+        "Big O: an eventual upper bound": ["m-asymptotic"],
+        "Big Omega and Big Theta": ["m-asymptotic", "alg-asymptotic"],
+        "Cases, parameters, and cost models": [
+          "m-asymptotic",
+          "m-products",
+          "m-divide-rec",
+          "alg-cost"
+        ],
+        "Counterexamples and quantified negation": [
+          "m-asymptotic",
+          "m-products",
+          "m-divide-rec",
+          "alg-cost"
+        ],
+        "Definitions and explicit bounds": [
+          "m-asymptotic",
+          "m-products",
+          "m-divide-rec",
+          "alg-cost",
+          "alg-asymptotic"
+        ],
+        "Dependent loop bounds": ["m-products", "alg-cost"],
+        "Doubling and halving": ["alg-cost", "m-divide-rec", "alg-asymptotic"],
+        "Doubling, halving, and recurrences": [
+          "m-asymptotic",
+          "m-products",
+          "m-divide-rec",
+          "alg-cost",
+          "alg-asymptotic"
+        ],
+        "Little o and growth comparisons": [
+          "m-asymptotic",
+          "m-products",
+          "m-divide-rec",
+          "alg-cost"
+        ],
+        "Loop counts and finite sums": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"],
+        "Mixed proofs and interpretation": [
+          "m-asymptotic",
+          "m-products",
+          "m-divide-rec",
+          "alg-cost"
+        ],
+        "Negating an asymptotic claim": ["m-asymptotic", "p-quantifiers"],
+        "Polynomials and logarithm bases": ["m-asymptotic"],
+        "Recurrences and input size": ["alg-cost", "m-divide-rec"],
+        "Rules and cancellation": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"],
+        "Why exponentials outrun fixed powers": ["m-asymptotic"]
+      }
+    },
+    "linear-algebra-introduction": {
+      "reviewedContentHash": "54f35ec47fcca81e0ec3e273b673edc792517b61589d91748791b4d62b501623",
+      "intro": ["ml-intro", "i-vectors"],
+      "sections": {
+        "why-linear-algebra-appears-everywhere": ["ml-intro"],
+        "what-you-will-learn": ["ml-intro"],
+        "how-this-subject-builds-on-what-you-know": ["i-vectors"],
+        "a-note-on-notation-and-practice": ["i-vectors"]
+      },
+      "practice": {}
+    },
+    "linear-algebra-vectors": {
+      "reviewedContentHash": "0d45cda29c7bfaa7941fa08d4138a26985147256010a3a175ad2c3650909056c",
+      "intro": ["i-vectors", "i-span", "ml-affine", "ml-models"],
+      "sections": {
+        "coordinates-and-vectors": ["i-vectors"],
+        "adding-and-scaling": ["i-vectors"],
+        "building-linear-combinations": ["i-span"],
+        "linear-models-and-their-limits": ["i-vectors", "ml-affine", "ml-models"]
+      },
+      "practice": {
+        "Adding and scaling": ["i-vectors"],
+        "Building linear combinations": ["i-span"],
+        "Coordinates and vectors": ["i-vectors"],
+        "Linear models and their limits": ["i-vectors", "ml-affine", "ml-models"]
+      }
+    },
+    "linear-algebra-dot-products": {
+      "reviewedContentHash": "7671888926146ffd61f92e0324eccba2740e9e4326bb10a53c647a1109dddff3",
+      "intro": ["i-dot", "ml-models"],
+      "sections": {
+        "a-scalar-from-two-vectors": ["i-dot"],
+        "length-and-unit-vectors": ["i-dot"],
+        "angle-and-orthogonality": ["i-dot"],
+        "weighted-totals-and-similarity": ["i-dot", "ml-models"]
+      },
+      "practice": {
+        "A scalar from two vectors": ["i-dot"],
+        "Angle and orthogonality": ["i-dot"],
+        "Length and unit vectors": ["i-dot"],
+        "Weighted totals and similarity": ["i-dot", "ml-models"]
+      }
+    },
+    "linear-algebra-matrices": {
+      "reviewedContentHash": "7931c44f18ec59806a21aeb46217b9340c848b7476a9d601bd867946f0c2886a",
+      "intro": ["i-multiply", "i-matrixeq"],
+      "sections": {
+        "shape-entries-and-transpose": ["i-multiply"],
+        "a-matrix-acting-on-a-vector": ["i-matrixeq"],
+        "composition-determines-the-product": ["i-multiply"],
+        "checking-a-matrix-calculation": ["i-multiply"]
+      },
+      "practice": {
+        "A matrix acting on a vector": ["i-matrixeq"],
+        "Checking a matrix calculation": ["i-multiply"],
+        "Composition determines the product": ["i-multiply"],
+        "Shape, entries, and transpose": ["i-multiply"]
+      }
+    },
+    "linear-algebra-systems": {
+      "reviewedContentHash": "2d1c1d64ac314b0e40d2b6c1ee46802ded128dd2f3e915e2fb5ea5e137d7ff7d",
+      "intro": ["i-systems", "i-reduction", "i-parameters", "i-solutions"],
+      "sections": {
+        "constraints-and-augmented-matrices": ["i-systems"],
+        "elimination-preserves-solutions": ["i-reduction"],
+        "no-solution-or-a-family-of-solutions": ["i-parameters"],
+        "homogeneous-systems-and-verification": ["i-solutions"]
+      },
+      "practice": {
+        "Constraints and augmented matrices": ["i-systems"],
+        "Elimination preserves solutions": ["i-reduction"],
+        "Homogeneous systems and verification": ["i-solutions"],
+        "No solution or a family of solutions": ["i-parameters"]
+      }
+    },
+    "linear-algebra-span": {
+      "reviewedContentHash": "3d7e09c82794b6a56c33bd18949d6e3a90f2b4470328a0cd50ef9881fd961e20",
+      "intro": ["i-span", "i-independent", "i-subspaces", "i-basis", "i-reduction"],
+      "sections": {
+        "span-is-everything-you-can-build": ["i-span"],
+        "independence-means-no-redundant-direction": ["i-independent"],
+        "subspaces-and-the-origin": ["i-subspaces", "i-basis"],
+        "reading-independence-from-elimination": ["i-independent", "i-reduction"]
+      },
+      "practice": {
+        "Independence means no redundant direction": ["i-independent"],
+        "Reading independence from elimination": ["i-independent", "i-reduction"],
+        "Span is everything you can build": ["i-span"],
+        "Subspaces and the origin": ["i-subspaces", "i-basis"]
+      }
+    },
+    "linear-algebra-bases": {
+      "reviewedContentHash": "03d65d7dd5ae825c4d6a9a28559a8c3a587f15fb20222d7b5f8ade405e9d19b6",
+      "intro": ["i-basis", "i-coordinates", "i-rank", "i-inverse", "i-reduction", "numerical-ls"],
+      "sections": {
+        "a-basis-gives-unique-coordinates": ["i-basis", "i-coordinates"],
+        "rank-and-nullity": ["i-rank"],
+        "invertible-matrices": ["i-inverse"],
+        "solving-without-unnecessary-inverses": ["i-inverse", "i-reduction", "numerical-ls"]
+      },
+      "practice": {
+        "A basis gives unique coordinates": ["i-basis", "i-coordinates"],
+        "Invertible matrices": ["i-inverse"],
+        "Rank and nullity": ["i-rank"],
+        "Solving without unnecessary inverses": ["i-inverse", "i-reduction", "numerical-ls"]
+      }
+    },
+    "linear-algebra-transformations": {
+      "reviewedContentHash": "8c6e6692681ff7dbb41a2a3ec33d85b5c73987c8d6b773275538f4f089002587",
+      "intro": ["i-transform", "ml-affine", "i-subspaces", "i-coordinates"],
+      "sections": {
+        "what-linearity-requires": ["i-transform"],
+        "read-the-matrix-from-its-columns": ["i-transform"],
+        "kernel-image-and-information-loss": ["ml-affine", "i-subspaces"],
+        "coordinates-composition-and-affine-rules": ["ml-affine", "i-coordinates"]
+      },
+      "practice": {
+        "Coordinates, composition, and affine rules": ["ml-affine", "i-coordinates"],
+        "Kernel, image, and information loss": ["ml-affine", "i-subspaces"],
+        "Read the matrix from its columns": ["i-transform"],
+        "What linearity requires": ["i-transform"]
+      }
+    },
+    "linear-algebra-projections": {
+      "reviewedContentHash": "f43dc8c83b717f932b50fe878cc7db2aaa1554167743ac686817e2631858171b",
+      "intro": ["i-projection", "i-orthonormal", "i-least", "numerical-ls", "ml-models"],
+      "sections": {
+        "projecting-onto-a-line": ["i-projection"],
+        "orthonormal-directions": ["i-orthonormal"],
+        "least-squares-and-the-normal-equations": ["i-least", "numerical-ls"],
+        "what-a-best-fit-does-and-does-not-say": ["i-least", "ml-models"]
+      },
+      "practice": {
+        "Least squares and the normal equations": ["i-least", "numerical-ls"],
+        "Orthonormal directions": ["i-orthonormal"],
+        "Projecting onto a line": ["i-projection"],
+        "What a best fit does and does not say": ["i-least", "ml-models"]
+      }
+    },
+    "linear-algebra-eigenvalues": {
+      "reviewedContentHash": "a4d057d84588794a13cc7f016073dee3d40d1aa75cafb4224a840ae4173dbeb7",
+      "intro": ["i-eigen", "i-characteristic", "i-diagonal", "ml-models"],
+      "sections": {
+        "directions-that-are-only-scaled": ["i-eigen"],
+        "finding-eigenvalues-in-two-dimensions": ["i-characteristic"],
+        "an-eigenbasis-simplifies-repeated-action": ["i-diagonal"],
+        "limits-and-interpretation": ["i-diagonal", "ml-models"]
+      },
+      "practice": {
+        "An eigenbasis simplifies repeated action": ["i-diagonal"],
+        "Directions that are only scaled": ["i-eigen"],
+        "Finding eigenvalues in two dimensions": ["i-characteristic"],
+        "Limits and interpretation": ["i-diagonal", "ml-models"]
+      }
+    },
+    "linear-algebra-svd": {
+      "reviewedContentHash": "ebee2d497f56ca3f04c2a3918142914dbba9e9d67329a192878325615f3d4bdb",
+      "intro": ["ml-svd", "numerical-rank", "svd-approx", "ml-models"],
+      "sections": {
+        "perpendicular-directions-and-scale-factors": ["ml-svd"],
+        "a-small-example-you-can-verify": ["ml-svd"],
+        "connection-to-rank-and-eigenvalues": ["ml-svd", "numerical-rank"],
+        "approximation-and-responsible-interpretation": ["svd-approx", "ml-svd", "ml-models"]
+      },
+      "practice": {
+        "A small example you can verify": ["ml-svd"],
+        "Approximation and responsible interpretation": ["svd-approx", "ml-svd", "ml-models"],
+        "Connection to rank and eigenvalues": ["ml-svd", "numerical-rank"],
+        "Perpendicular directions and scale factors": ["ml-svd"]
+      }
+    }
+  },
+  "syntax": {
+    "reviewedContentHash": "f0230f4804d98a53639639567cbb68219659bb7ff73be31ad83d800041da3da1",
+    "entries": {
+      "tex-command-neg": ["tex-supported"],
+      "tex-command-land": ["tex-supported"],
+      "tex-command-lor": ["tex-supported"],
+      "tex-command-to": ["tex-supported"],
+      "tex-command-leftrightarrow": ["tex-supported"],
+      "tex-command-equiv": ["tex-supported"],
+      "tex-command-therefore": ["tex-supported"],
+      "tex-command-vdash": ["tex-supported"],
+      "tex-command-Rightarrow": ["tex-supported"],
+      "tex-command-Longrightarrow": ["tex-supported"],
+      "tex-command-Longleftrightarrow": ["tex-supported"],
+      "tex-command-forall": ["tex-supported"],
+      "tex-command-exists": ["tex-supported"],
+      "tex-command-in": ["tex-supported"],
+      "tex-command-mathbb": ["tex-supported"],
+      "tex-command-notin": ["tex-supported"],
+      "tex-command-subseteq": ["tex-supported"],
+      "tex-command-subset": ["tex-supported"],
+      "tex-command-subsetneq": ["tex-supported"],
+      "tex-command-nsubseteq": ["tex-supported"],
+      "tex-command-cup": ["tex-supported"],
+      "tex-command-cap": ["tex-supported"],
+      "tex-command-setminus": ["tex-supported"],
+      "tex-command-varnothing": ["tex-supported"],
+      "tex-command-mathcal": ["tex-supported"],
+      "tex-command-bigcup": ["tex-supported"],
+      "tex-command-bigcap": ["tex-supported"],
+      "tex-command-mid": ["tex-supported"],
+      "tex-command-nmid": ["tex-supported"],
+      "tex-command-pmod": ["tex-supported"],
+      "tex-command-preceq": ["tex-supported"],
+      "tex-command-prec": ["tex-supported"],
+      "tex-command-mapsto": ["tex-supported"],
+      "tex-command-circ": ["tex-supported"],
+      "tex-command-lfloor": ["tex-supported"],
+      "tex-command-rfloor": ["tex-supported"],
+      "tex-command-lceil": ["tex-supported"],
+      "tex-command-rceil": ["tex-supported"],
+      "tex-command-sum": ["tex-supported"],
+      "tex-command-prod": ["tex-supported"],
+      "tex-command-ldots": ["tex-supported"],
+      "tex-command-cdots": ["tex-supported"],
+      "tex-command-frac": ["tex-supported"],
+      "tex-command-sqrt": ["tex-supported"],
+      "tex-command-cdot": ["tex-supported"],
+      "tex-command-times": ["tex-supported"],
+      "tex-command-leq": ["tex-supported"],
+      "tex-command-geq": ["tex-supported"],
+      "tex-command-ne": ["tex-supported"],
+      "tex-command-neq": ["tex-supported"],
+      "tex-command-pm": ["tex-supported"],
+      "tex-command-infty": ["tex-supported"],
+      "tex-command-log": ["tex-supported"],
+      "tex-command-max": ["tex-supported"],
+      "tex-command-gcd": ["tex-supported"],
+      "tex-command-binom": ["tex-supported"],
+      "tex-command-rho": ["tex-supported"],
+      "tex-command-ell": ["tex-supported"],
+      "tex-command-varepsilon": ["tex-supported"],
+      "tex-command-Theta": ["tex-supported"],
+      "tex-command-Omega": ["tex-supported"],
+      "tex-command-star": ["tex-supported"],
+      "tex-command-triangle": ["tex-supported"],
+      "tex-command-text": ["tex-supported"],
+      "tex-command-mathrm": ["tex-supported"],
+      "tex-command-operatorname": ["tex-supported"],
+      "tex-command-mathbin": ["tex-supported"],
+      "tex-command-deg": ["tex-supported"],
+      "tex-command-left": ["tex-supported"],
+      "tex-command-right": ["tex-supported"],
+      "tex-command-bigl": ["tex-supported"],
+      "tex-command-bigr": ["tex-supported"],
+      "tex-command-quad": ["tex-supported"],
+      "tex-command-qquad": ["tex-supported"],
+      "tex-formatting-11": ["tex-supported"],
+      "tex-formatting-12": ["tex-supported"],
+      "tex-formatting-13": ["tex-supported"],
+      "tex-formatting-14": ["tex-supported"],
+      "tex-command-begin": ["tex-supported"],
+      "tex-command-end": ["tex-supported"],
+      "tex-formatting-17": ["tex-supported"],
+      "tex-formatting-18": ["tex-supported"],
+      "tex-formatting-19": ["tex-supported"],
+      "tex-formatting-20": ["tex-supported"],
+      "tex-formatting-21": ["tex-supported"],
+      "tex-control-space": ["tex-supported"],
+      "tex-la-cos": ["tex-supported"],
+      "tex-la-theta": ["tex-supported"],
+      "tex-la-lambda": ["tex-supported"],
+      "tex-la-sigma": ["tex-supported"],
+      "tex-la-norm": ["tex-supported"],
+      "tex-la-det": ["tex-supported"],
+      "tex-la-small-sigma": ["tex-supported"],
+      "tex-basics": ["tex-delimiters", "tex-supported"],
+      "tex-commands": ["tex-supported"],
+      "tex-groups": ["tex-supported"],
+      "tex-superscripts": ["tex-supported"],
+      "tex-subscripts": ["tex-supported"],
+      "tex-multirow": ["tex-supported"],
+      "tex-feedback": ["tex-supported"],
+      "tex-unique-existence": ["tex-supported"],
+      "tex-bars": ["tex-supported"],
+      "tex-set-builder": ["tex-supported"],
+      "tex-complement": ["tex-supported"],
+      "tex-related": ["tex-supported"],
+      "tex-equivalence-class": ["tex-supported"],
+      "tex-inverse-superscript": ["tex-supported"],
+      "tex-function-type": ["tex-supported"],
+      "tex-intervals": ["tex-supported"],
+      "tex-preimage": ["tex-supported"],
+      "tex-restriction": ["tex-supported"],
+      "tex-indexed-term": ["tex-supported"],
+      "tex-sum-limits": ["tex-supported"],
+      "tex-factorial": ["tex-supported"],
+      "tex-nested-sum": ["tex-supported"],
+      "tex-aligned-proof": ["tex-supported"],
+      "tex-graph-data": ["tex-supported"],
+      "tex-big-o": ["tex-supported"],
+      "tex-little-o": ["tex-supported"]
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { quickChecks, validateQuickChecks } from './quick-checks.js';
 import { promoteChoices } from './choice-exercises.js';
 import { loadEvidence } from './evidence.js';
 import { snapshot } from '../web/src/evidenceTypes.js';
+import { loadSources } from './sources.js';
 
 const content = await loadContent();
 const teaching = await loadTeaching();
@@ -155,7 +156,9 @@ await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory
 const dir = 'output/content';
 const publishedLessons = promoteChoices(lessons);
 const evidence = await loadEvidence(publishedLessons);
+const sources = await loadSources(publishedLessons, teaching);
 await mkdir(dir, { recursive: true });
+await writeFile(`${dir}/sources.json`, JSON.stringify(sources));
 await writeFile(`${dir}/learning-evidence.json`, JSON.stringify(evidence));
 await writeFile(
   `${dir}/notebook.json`,
