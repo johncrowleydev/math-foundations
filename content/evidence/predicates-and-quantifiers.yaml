@@ -1,0 +1,1501 @@
+# Authored exercise-level evidence. IDs are canonical, not display positions.
+concepts:
+  - id: predicate-domain
+    name: Domains and allowable witnesses
+  - id: predicate-evaluation
+    name: Predicates and substitution
+  - id: universal-quantification
+    name: Universal quantification
+  - id: existential-quantification
+    name: Existential quantification and witnesses
+  - id: variable-scope
+    name: Free variables, binding and scope
+  - id: quantifier-translation
+    name: Translating quantified statements
+  - id: quantifier-negation
+    name: Negation of quantified statements
+  - id: quantifier-order
+    name: Quantifier order and dependent witnesses
+  - id: uniqueness
+    name: Existence and uniqueness
+  - id: vacuous-quantification
+    name: Empty domains and vacuous quantified statements
+  - id: quantifier-laws
+    name: Quantifier distribution and equivalence
+  - id: quantified-inference
+    name: Valid inference with quantifiers
+  - id: quantified-proof
+    name: Arbitrary objects and witness proofs
+  - id: quantified-specification
+    name: Quantified specifications and finite tests
+teaching:
+  - concept: predicate-domain
+    lesson: predicates-and-quantifiers
+    section: Domains come first
+  - concept: predicate-evaluation
+    lesson: predicates-and-quantifiers
+    section: Predicates and substitution
+  - concept: universal-quantification
+    lesson: predicates-and-quantifiers
+    section: 'Universal quantification: for every'
+  - concept: existential-quantification
+    lesson: predicates-and-quantifiers
+    section: 'Existential quantification: there exists'
+  - concept: variable-scope
+    lesson: predicates-and-quantifiers
+    section: Scope, free variables, and bound variables
+  - concept: quantifier-translation
+    lesson: predicates-and-quantifiers
+    section: Translating all, some, none, and only
+  - concept: quantifier-negation
+    lesson: predicates-and-quantifiers
+    section: Negating quantified statements
+  - concept: quantifier-order
+    lesson: predicates-and-quantifiers
+    section: Several variables and quantifier order
+  - concept: uniqueness
+    lesson: predicates-and-quantifiers
+    section: Existence, uniqueness, and exactly one
+  - concept: vacuous-quantification
+    lesson: predicates-and-quantifiers
+    section: Vacuous truth and empty cases
+  - concept: quantifier-laws
+    lesson: predicates-and-quantifiers
+    section: Which distributions are valid?
+  - concept: quantified-inference
+    lesson: predicates-and-quantifiers
+    section: Valid reasoning with quantifiers
+  - concept: quantified-proof
+    lesson: predicates-and-quantifiers
+    section: Writing a quantified proof
+  - concept: quantified-specification
+    lesson: predicates-and-quantifiers
+    section: Quantifiers in programs and specifications
+exercises:
+  - lesson: predicates-and-quantifiers
+    id: 1
+    primary:
+      - predicate-evaluation
+    supporting:
+      - predicate-domain
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 2
+    primary:
+      - predicate-evaluation
+    supporting:
+      - predicate-domain
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 3
+    primary:
+      - predicate-evaluation
+    supporting:
+      - predicate-domain
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 4
+    primary:
+      - predicate-evaluation
+    supporting:
+      - predicate-domain
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 5
+    primary:
+      - predicate-evaluation
+    supporting:
+      - predicate-domain
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 6
+    primary:
+      - variable-scope
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 7
+    primary:
+      - variable-scope
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 8
+    primary:
+      - variable-scope
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 9
+    primary:
+      - variable-scope
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 10
+    primary:
+      - variable-scope
+    skills:
+      - transform
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 11
+    primary:
+      - universal-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 12
+    primary:
+      - existential-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 13
+    primary:
+      - universal-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 14
+    primary:
+      - existential-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 15
+    primary:
+      - universal-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 16
+    primary:
+      - existential-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 17
+    primary:
+      - universal-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 18
+    primary:
+      - existential-quantification
+    supporting:
+      - predicate-domain
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 19
+    primary:
+      - universal-quantification
+    supporting:
+      - connectives
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 20
+    primary:
+      - existential-quantification
+    supporting:
+      - connectives
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 21
+    primary:
+      - quantifier-translation
+    supporting:
+      - implication
+      - universal-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 22
+    primary:
+      - quantifier-translation
+    supporting:
+      - connectives
+      - existential-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 23
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-negation
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 24
+    primary:
+      - quantifier-translation
+    supporting:
+      - connectives
+      - existential-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 25
+    primary:
+      - quantifier-translation
+    supporting:
+      - implication
+      - necessary-sufficient
+      - universal-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 26
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-negation
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 27
+    primary:
+      - quantifier-translation
+    supporting:
+      - connectives
+      - universal-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 28
+    primary:
+      - quantifier-translation
+    supporting:
+      - connectives
+      - existential-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 29
+    primary:
+      - quantifier-translation
+    supporting:
+      - biconditional
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 30
+    primary:
+      - quantifier-translation
+    supporting:
+      - existential-quantification
+      - universal-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 31
+    primary:
+      - quantifier-translation
+    supporting:
+      - implication
+      - universal-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 32
+    primary:
+      - quantifier-translation
+    supporting:
+      - connectives
+      - existential-quantification
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 33
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 34
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 35
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 36
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 37
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 38
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 39
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 40
+    primary:
+      - quantifier-translation
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+      - translate
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 41
+    primary:
+      - quantifier-negation
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 42
+    primary:
+      - quantifier-negation
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 43
+    primary:
+      - quantifier-negation
+    supporting:
+      - negation
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 44
+    primary:
+      - quantifier-negation
+    supporting:
+      - de-morgan
+      - negation
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 45
+    primary:
+      - quantifier-negation
+    supporting:
+      - implication
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 46
+    primary:
+      - quantifier-negation
+    supporting:
+      - de-morgan
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 47
+    primary:
+      - quantifier-negation
+    supporting:
+      - quantifier-order
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 48
+    primary:
+      - quantifier-negation
+    supporting:
+      - quantifier-order
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 49
+    primary:
+      - quantifier-negation
+    supporting:
+      - implication
+      - quantifier-order
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 50
+    primary:
+      - quantifier-negation
+    supporting:
+      - implication
+      - quantifier-order
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 51
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 52
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 53
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 54
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 55
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 56
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 57
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 58
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 59
+    primary:
+      - quantifier-order
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 60
+    primary:
+      - quantifier-order
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 61
+    primary:
+      - predicate-domain
+    supporting:
+      - existential-quantification
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 62
+    primary:
+      - predicate-domain
+    supporting:
+      - universal-quantification
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 63
+    primary:
+      - predicate-domain
+    supporting:
+      - universal-quantification
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 64
+    primary:
+      - predicate-domain
+    supporting:
+      - quantifier-order
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 65
+    primary:
+      - predicate-domain
+    supporting:
+      - quantifier-order
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 66
+    primary:
+      - predicate-domain
+    supporting:
+      - quantifier-order
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 67
+    primary:
+      - predicate-domain
+    supporting:
+      - quantifier-order
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+  - lesson: predicates-and-quantifiers
+    id: 68
+    primary:
+      - counterexample
+    supporting:
+      - implication
+      - universal-quantification
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 69
+    primary:
+      - counterexample
+    supporting:
+      - implication
+      - universal-quantification
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 70
+    primary:
+      - counterexample
+    supporting:
+      - implication
+      - universal-quantification
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 71
+    primary:
+      - uniqueness
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 72
+    primary:
+      - uniqueness
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 73
+    primary:
+      - uniqueness
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 74
+    primary:
+      - uniqueness
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 75
+    primary:
+      - uniqueness
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 76
+    primary:
+      - uniqueness
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 77
+    primary:
+      - vacuous-quantification
+    supporting:
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 78
+    primary:
+      - vacuous-quantification
+    supporting:
+      - predicate-domain
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 79
+    primary:
+      - vacuous-quantification
+    supporting:
+      - implication
+      - predicate-domain
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 80
+    primary:
+      - existential-quantification
+      - implication
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 81
+    primary:
+      - quantifier-laws
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 82
+    primary:
+      - quantifier-laws
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 83
+    primary:
+      - quantifier-laws
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 84
+    primary:
+      - quantifier-laws
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 85
+    primary:
+      - quantifier-laws
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 86
+    primary:
+      - quantifier-laws
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 87
+    primary:
+      - quantifier-laws
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 88
+    primary:
+      - quantifier-laws
+    supporting:
+      - quantifier-negation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 89
+    primary:
+      - quantifier-laws
+    supporting:
+      - quantifier-negation
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 90
+    primary:
+      - quantifier-laws
+    supporting:
+      - vacuous-quantification
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 91
+    primary:
+      - quantified-inference
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 92
+    primary:
+      - quantified-inference
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 93
+    primary:
+      - quantified-inference
+    supporting:
+      - counterexample
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 94
+    primary:
+      - quantified-inference
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 95
+    primary:
+      - quantified-inference
+    supporting:
+      - counterexample
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 96
+    primary:
+      - quantified-inference
+    supporting:
+      - counterexample
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 97
+    primary:
+      - quantified-inference
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 98
+    primary:
+      - quantified-inference
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 99
+    primary:
+      - quantified-inference
+    supporting:
+      - counterexample
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 100
+    primary:
+      - quantified-inference
+    supporting:
+      - quantifier-order
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 101
+    primary:
+      - predicate-evaluation
+    supporting:
+      - predicate-domain
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 102
+    primary:
+      - predicate-evaluation
+    supporting:
+      - predicate-domain
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 103
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 104
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 105
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 106
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 107
+    primary:
+      - uniqueness
+      - quantifier-order
+    supporting:
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 108
+    primary:
+      - existential-quantification
+    supporting:
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 109
+    primary:
+      - universal-quantification
+    supporting:
+      - counterexample
+      - implication
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 110
+    primary:
+      - quantifier-order
+    supporting:
+      - predicate-evaluation
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 111
+    primary:
+      - quantified-proof
+    supporting:
+      - existential-quantification
+      - quantifier-order
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+      - proof
+  - lesson: predicates-and-quantifiers
+    id: 112
+    primary:
+      - quantified-proof
+    supporting:
+      - parity
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+      - proof
+  - lesson: predicates-and-quantifiers
+    id: 113
+    primary:
+      - quantified-proof
+    supporting:
+      - parity
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+      - proof
+  - lesson: predicates-and-quantifiers
+    id: 114
+    primary:
+      - quantified-proof
+    supporting:
+      - existential-quantification
+      - quantifier-order
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+      - proof
+  - lesson: predicates-and-quantifiers
+    id: 115
+    primary:
+      - quantifier-order
+      - counterexample
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 116
+    primary:
+      - quantified-specification
+      - uniqueness
+    supporting:
+      - quantifier-order
+    skills:
+      - translate
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 117
+    primary:
+      - quantified-specification
+      - quantifier-negation
+    supporting:
+      - quantifier-order
+    skills:
+      - transform
+      - interpret
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 118
+    primary:
+      - quantified-specification
+      - vacuous-quantification
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - code
+  - lesson: predicates-and-quantifiers
+    id: 119
+    primary:
+      - quantified-specification
+      - counterexample
+    supporting:
+      - implication
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 120
+    primary:
+      - uniqueness
+      - quantified-proof
+    supporting:
+      - quantifier-order
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - algebraic
+      - proof
+  - lesson: predicates-and-quantifiers
+    id: 121
+    primary:
+      - existential-quantification
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: predicates-and-quantifiers
+    id: 122
+    primary:
+      - quantifier-order
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic

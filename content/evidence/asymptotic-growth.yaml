@@ -1,0 +1,913 @@
+# Authored exercise-level evidence. IDs are canonical, not display positions.
+concepts:
+  - id: cost-model
+    name: Input size and computational cost models
+  - id: big-o
+    name: Eventual upper bounds and big O
+  - id: big-omega-theta
+    name: Lower and tight asymptotic bounds
+  - id: asymptotic-rules
+    name: Combining asymptotic bounds
+  - id: growth-comparison
+    name: Polynomial, logarithmic and exponential growth
+  - id: little-o
+    name: Strictly slower growth and little o
+  - id: loop-counting
+    name: Counting loop operations
+  - id: case-complexity
+    name: Best, worst and average case
+  - id: algorithm-lower-bound
+    name: Problem lower bounds versus implementation bounds
+teaching:
+  - concept: cost-model
+    lesson: asymptotic-growth
+    section: State the function and the model
+  - concept: big-o
+    lesson: asymptotic-growth
+    section: 'Big O: an eventual upper bound'
+  - concept: big-omega-theta
+    lesson: asymptotic-growth
+    section: Big Omega and Big Theta
+  - concept: asymptotic-rules
+    lesson: asymptotic-growth
+    section: Useful rules, with reasons
+  - concept: growth-comparison
+    lesson: asymptotic-growth
+    section: Polynomials and logarithm bases
+  - concept: little-o
+    lesson: asymptotic-growth
+    section: Strictly slower growth
+  - concept: loop-counting
+    lesson: asymptotic-growth
+    section: Counting simple and consecutive loops
+  - concept: case-complexity
+    lesson: asymptotic-growth
+    section: Worst case is a different axis
+  - concept: algorithm-lower-bound
+    lesson: asymptotic-growth
+    section: An upper-bound proof is not an algorithm lower bound
+exercises:
+  - lesson: asymptotic-growth
+    id: 1
+    primary:
+      - big-o
+    skills:
+      - recall
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 2
+    primary:
+      - big-omega-theta
+    skills:
+      - recall
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 3
+    primary:
+      - big-omega-theta
+    skills:
+      - recall
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 4
+    primary:
+      - big-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 5
+    primary:
+      - big-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 6
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 7
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 8
+    primary:
+      - big-omega-theta
+    supporting:
+      - big-o
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 9
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 10
+    primary:
+      - big-o
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 11
+    primary:
+      - big-o
+    supporting:
+      - quantifier-negation
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 12
+    primary:
+      - big-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 13
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 14
+    primary:
+      - big-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 15
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 16
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 17
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 18
+    primary:
+      - big-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 19
+    primary:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 20
+    primary:
+      - big-o
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 21
+    primary:
+      - asymptotic-rules
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 22
+    primary:
+      - asymptotic-rules
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 23
+    primary:
+      - asymptotic-rules
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 24
+    primary:
+      - asymptotic-rules
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 25
+    primary:
+      - growth-comparison
+    supporting:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 26
+    primary:
+      - asymptotic-rules
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 27
+    primary:
+      - growth-comparison
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 28
+    primary:
+      - growth-comparison
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 29
+    primary:
+      - asymptotic-rules
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 30
+    primary:
+      - asymptotic-rules
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 31
+    primary:
+      - little-o
+    skills:
+      - recall
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 32
+    primary:
+      - little-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 33
+    primary:
+      - little-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 34
+    primary:
+      - little-o
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 35
+    primary:
+      - growth-comparison
+    supporting:
+      - binomial-theorem
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 36
+    primary:
+      - growth-comparison
+    supporting:
+      - binomial-theorem
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 37
+    primary:
+      - little-o
+    supporting:
+      - growth-comparison
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 38
+    primary:
+      - growth-comparison
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 39
+    primary:
+      - growth-comparison
+    skills:
+      - compare
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 40
+    primary:
+      - little-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 41
+    primary:
+      - loop-counting
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 42
+    primary:
+      - loop-counting
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 43
+    primary:
+      - loop-counting
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 44
+    primary:
+      - loop-counting
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 45
+    primary:
+      - loop-counting
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 46
+    primary:
+      - loop-counting
+    supporting:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 47
+    primary:
+      - loop-counting
+    supporting:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 48
+    primary:
+      - loop-counting
+    supporting:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 49
+    primary:
+      - loop-counting
+    supporting:
+      - cost-model
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 50
+    primary:
+      - loop-counting
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 51
+    primary:
+      - loop-counting
+    supporting:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 52
+    primary:
+      - loop-counting
+    supporting:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 53
+    primary:
+      - loop-counting
+    supporting:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 54
+    primary:
+      - loop-counting
+    supporting:
+      - geometric-sum
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 55
+    primary:
+      - loop-counting
+    supporting:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - code
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 56
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - big-omega-theta
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 57
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - big-omega-theta
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 58
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - big-omega-theta
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 59
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 60
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - recurrence-bounds
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 61
+    primary:
+      - case-complexity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 62
+    primary:
+      - case-complexity
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 63
+    primary:
+      - case-complexity
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 64
+    primary:
+      - case-complexity
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 65
+    primary:
+      - algorithm-lower-bound
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 66
+    primary:
+      - algorithm-lower-bound
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 67
+    primary:
+      - algorithm-lower-bound
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 68
+    primary:
+      - cost-model
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 69
+    primary:
+      - cost-model
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 70
+    primary:
+      - cost-model
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 71
+    primary:
+      - growth-comparison
+    supporting:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 72
+    primary:
+      - growth-comparison
+    supporting:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 73
+    primary:
+      - growth-comparison
+    supporting:
+      - big-omega-theta
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 74
+    primary:
+      - growth-comparison
+    supporting:
+      - big-o
+      - little-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 75
+    primary:
+      - graph-representation
+    supporting:
+      - cost-model
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 76
+    primary:
+      - graph-representation
+    supporting:
+      - cost-model
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 77
+    primary:
+      - big-o
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 78
+    primary:
+      - little-o
+    supporting:
+      - big-o
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: asymptotic-growth
+    id: 79
+    primary:
+      - case-complexity
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 80
+    primary:
+      - cost-model
+    supporting:
+      - loop-counting
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 81
+    primary:
+      - big-o
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: asymptotic-growth
+    id: 82
+    primary:
+      - big-omega-theta
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic

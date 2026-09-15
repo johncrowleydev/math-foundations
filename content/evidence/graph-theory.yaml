@@ -1,0 +1,916 @@
+# Authored exercise-level evidence. IDs are canonical, not display positions.
+concepts:
+  - id: graph-definition
+    name: Vertices, edges and graph conventions
+  - id: graph-degree
+    name: Adjacency, degree and the handshaking lemma
+  - id: graph-routes
+    name: Walks, trails, paths and cycles
+  - id: graph-connectivity
+    name: Reachability and connected components
+  - id: trees-forests
+    name: Trees, forests and spanning trees
+  - id: rooted-trees
+    name: Rooted and binary trees
+  - id: dag-order
+    name: Directed acyclic graphs and topological order
+  - id: graph-representation
+    name: Adjacency lists and matrices
+  - id: graph-search
+    name: Breadth-first and depth-first search
+  - id: euler-routes
+    name: Euler trails and circuits
+  - id: hamiltonian-routes
+    name: Hamiltonian paths and cycles
+teaching:
+  - concept: graph-definition
+    lesson: graph-theory
+    section: Vertices, edges, and conventions
+  - concept: graph-degree
+    lesson: graph-theory
+    section: Adjacency and degree
+  - concept: graph-routes
+    lesson: graph-theory
+    section: Walks, trails, paths, and cycles
+  - concept: graph-connectivity
+    lesson: graph-theory
+    section: Connectivity and components
+  - concept: trees-forests
+    lesson: graph-theory
+    section: Trees and forests
+  - concept: rooted-trees
+    lesson: graph-theory
+    section: Rooted trees
+  - concept: dag-order
+    lesson: graph-theory
+    section: Directed acyclic graphs and scheduling
+  - concept: graph-representation
+    lesson: graph-theory
+    section: Representing a graph
+  - concept: graph-search
+    lesson: graph-theory
+    section: Breadth-first and depth-first search
+  - concept: euler-routes
+    lesson: graph-theory
+    section: Euler trails and Hamiltonian cycles
+  - concept: hamiltonian-routes
+    lesson: graph-theory
+    section: Euler trails and Hamiltonian cycles
+exercises:
+  - lesson: graph-theory
+    id: 1
+    primary:
+      - graph-definition
+    supporting:
+      - combinations
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - graph
+      - set-notation
+  - lesson: graph-theory
+    id: 2
+    primary:
+      - graph-definition
+    supporting:
+      - permutations
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - graph
+      - set-notation
+  - lesson: graph-theory
+    id: 3
+    primary:
+      - graph-degree
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 4
+    primary:
+      - graph-degree
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 5
+    primary:
+      - graph-definition
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+      - set-notation
+  - lesson: graph-theory
+    id: 6
+    primary:
+      - graph-definition
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+      - set-notation
+  - lesson: graph-theory
+    id: 7
+    primary:
+      - graph-definition
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+      - set-notation
+  - lesson: graph-theory
+    id: 8
+    primary:
+      - graph-definition
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - set-notation
+  - lesson: graph-theory
+    id: 9
+    primary:
+      - graph-degree
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 10
+    primary:
+      - graph-degree
+    supporting:
+      - graph-connectivity
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 11
+    primary:
+      - graph-degree
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 12
+    primary:
+      - graph-degree
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 13
+    primary:
+      - graph-degree
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 14
+    primary:
+      - graph-degree
+    supporting:
+      - parity
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 15
+    primary:
+      - graph-degree
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 16
+    primary:
+      - graph-representation
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - graph
+      - matrix
+  - lesson: graph-theory
+    id: 17
+    primary:
+      - graph-degree
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 18
+    primary:
+      - graph-degree
+    supporting:
+      - parity
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - numeric
+      - proof
+  - lesson: graph-theory
+    id: 19
+    primary:
+      - graph-definition
+    skills:
+      - compare
+    representations:
+      - natural-language
+      - graph
+      - set-notation
+  - lesson: graph-theory
+    id: 20
+    primary:
+      - graph-degree
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 21
+    primary:
+      - graph-routes
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 22
+    primary:
+      - graph-routes
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 23
+    primary:
+      - graph-routes
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 24
+    primary:
+      - graph-routes
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 25
+    primary:
+      - graph-routes
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 26
+    primary:
+      - graph-routes
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 27
+    primary:
+      - graph-routes
+    skills:
+      - recognize
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 28
+    primary:
+      - graph-routes
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 29
+    primary:
+      - graph-routes
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 30
+    primary:
+      - graph-routes
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 31
+    primary:
+      - graph-connectivity
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 32
+    primary:
+      - graph-connectivity
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 33
+    primary:
+      - graph-connectivity
+    supporting:
+      - graph-routes
+      - relation-properties
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 34
+    primary:
+      - graph-connectivity
+    supporting:
+      - graph-routes
+      - relation-properties
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 35
+    primary:
+      - graph-connectivity
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 36
+    primary:
+      - graph-connectivity
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 37
+    primary:
+      - graph-connectivity
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 38
+    primary:
+      - graph-connectivity
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 39
+    primary:
+      - graph-connectivity
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 40
+    primary:
+      - graph-connectivity
+    skills:
+      - counterexample
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 41
+    primary:
+      - trees-forests
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 42
+    primary:
+      - trees-forests
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 43
+    primary:
+      - trees-forests
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 44
+    primary:
+      - trees-forests
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 45
+    primary:
+      - trees-forests
+    skills:
+      - counterexample
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 46
+    primary:
+      - trees-forests
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 47
+    primary:
+      - trees-forests
+    supporting:
+      - induction-principle
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 48
+    primary:
+      - trees-forests
+    supporting:
+      - graph-connectivity
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 49
+    primary:
+      - trees-forests
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 50
+    primary:
+      - trees-forests
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 51
+    primary:
+      - rooted-trees
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 52
+    primary:
+      - rooted-trees
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 53
+    primary:
+      - rooted-trees
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 54
+    primary:
+      - rooted-trees
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 55
+    primary:
+      - rooted-trees
+    supporting:
+      - structural-induction
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 56
+    primary:
+      - rooted-trees
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 57
+    primary:
+      - dag-order
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 58
+    primary:
+      - dag-order
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 59
+    primary:
+      - dag-order
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 60
+    primary:
+      - dag-order
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 61
+    primary:
+      - graph-search
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 62
+    primary:
+      - graph-search
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 63
+    primary:
+      - graph-search
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 64
+    primary:
+      - graph-search
+    skills:
+      - apply
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 65
+    primary:
+      - graph-representation
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - graph
+      - matrix
+  - lesson: graph-theory
+    id: 66
+    primary:
+      - graph-representation
+    supporting:
+      - cost-model
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - matrix
+  - lesson: graph-theory
+    id: 67
+    primary:
+      - graph-representation
+    supporting:
+      - cost-model
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - matrix
+  - lesson: graph-theory
+    id: 68
+    primary:
+      - graph-search
+    supporting:
+      - cost-model
+      - graph-representation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 69
+    primary:
+      - graph-representation
+    supporting:
+      - cost-model
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - graph
+      - matrix
+  - lesson: graph-theory
+    id: 70
+    primary:
+      - graph-search
+    skills:
+      - counterexample
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 71
+    primary:
+      - euler-routes
+      - hamiltonian-routes
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 72
+    primary:
+      - euler-routes
+      - hamiltonian-routes
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 73
+    primary:
+      - euler-routes
+      - hamiltonian-routes
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 74
+    primary:
+      - euler-routes
+    supporting:
+      - graph-degree
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 75
+    primary:
+      - hamiltonian-routes
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 76
+    primary:
+      - euler-routes
+    supporting:
+      - graph-connectivity
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 77
+    primary:
+      - euler-routes
+      - hamiltonian-routes
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 78
+    primary:
+      - euler-routes
+    supporting:
+      - graph-degree
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 79
+    primary:
+      - euler-routes
+    supporting:
+      - graph-connectivity
+      - graph-degree
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - graph
+      - proof
+  - lesson: graph-theory
+    id: 80
+    primary:
+      - euler-routes
+      - hamiltonian-routes
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - graph
+  - lesson: graph-theory
+    id: 81
+    primary:
+      - graph-degree
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph
+      - numeric
+  - lesson: graph-theory
+    id: 82
+    primary:
+      - euler-routes
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - graph

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { all, useRevision } from './storage';
 import type { Attempt, Curriculum } from './types';
-import { conceptRows, metadata, summarize, verdict } from './analytics';
+import { conceptRows, evidenceCoverage, metadata, summarize, verdict } from './analytics';
 import { exposures } from './exposure';
 import type { Exposure } from './evidenceTypes';
 import { Rich } from './Rich';
@@ -47,13 +47,14 @@ export function Progress({
       .flatMap((l) => l.questions.map((q) => l.slug + '-' + q.id)),
   );
   const as = attempts.filter((a) => keys.has(a.exercise)),
+    coverage = evidenceCoverage(as),
     s = summarize(as),
     rows = conceptRows(as, {
       ...data.evidence,
       exercises: Object.fromEntries(
         Object.entries(data.evidence.exercises).filter(([key]) => keys.has(key)),
       ),
-    }),
+    }).sort((a, b) => Number(b.summary.observed > 0) - Number(a.summary.observed > 0)),
     row = rows.find((r) => r.id === selected);
   const rate = (s: ReturnType<typeof summarize>) =>
     s.firstObserved
@@ -202,8 +203,8 @@ export function Progress({
           exercise. Completion requires at least one currently correct attempt. Error counts use
           each attempt’s latest diagnosis; rechecks are not counted repeatedly. Missing diagnosis
           does not mean no error. Minor/clerical and substantive exclude technical and
-          prompt-compliance from conceptual trouble signals. Untagged lessons still contribute to
-          overview counts.
+          prompt-compliance from conceptual trouble signals. Submissions without a concept snapshot
+          still contribute to overview counts.
         </p>
       </details>
       <h2>Needs attention</h2>
@@ -219,12 +220,25 @@ export function Progress({
             ))}
         </div>
       ) : (
-        <p>No repeated patterns meet the attention rules yet. This is not a claim of mastery.</p>
+        <p>
+          {!coverage.observed
+            ? coverage.missing
+              ? 'Concept evidence is incomplete: these submissions have no usable graded concept snapshots yet. Attention patterns cannot be assessed from them.'
+              : 'No graded concept evidence yet. Submit exercises to begin seeing patterns.'
+            : 'No repeated patterns meet the attention rules yet. This is not a claim of mastery.'}
+        </p>
+      )}
+      {coverage.observed && coverage.missing > 0 && (
+        <p className="muted">
+          Patterns use only mapped submissions; {coverage.missing} submissions are excluded because
+          their historical concept metadata is missing.
+        </p>
       )}
       <h2>Concept evidence</h2>
       <p className="muted">
-        {as.filter((a) => a.analytics).length} of {as.length} submissions have concept snapshots.
-        Missing historical metadata is not inferred from the current question.
+        {coverage.mapped} of {as.length} submissions have concept snapshots.
+        {coverage.missing > 0 &&
+          ' Missing snapshots may arrive on sync. Historical tasks that differ from the current exercise remain excluded from concept metrics.'}
       </p>
       <div className="evidence-scroll concept-evidence" id="concept-evidence">
         <table>

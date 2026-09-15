@@ -184,3 +184,16 @@ test('import rejects impossible effort in saved and queued attempts, preserving 
     assert.deepEqual(await get('attempts', x.id), data.attempts[0][1]);
   }
 });
+
+test('coverage distinguishes missing metadata, ungraded work, and actual concept evidence', async () => {
+  const { evidenceCoverage } = await import('../src/analytics');
+  const legacy = a('legacy', 'incorrect', 1);
+  assert.deepEqual(evidenceCoverage([legacy]), { mapped: 0, missing: 1, observed: false });
+  const pending = a('pending', 'not_graded', 2);
+  pending.analytics = snapshot(catalog, 'test-1');
+  assert.deepEqual(evidenceCoverage([pending]), { mapped: 1, missing: 0, observed: false });
+  const mapped = a('mapped', 'correct', 3);
+  mapped.analytics = snapshot(catalog, 'test-1');
+  assert.deepEqual(evidenceCoverage([legacy, mapped]), { mapped: 1, missing: 1, observed: true });
+  assert.deepEqual(evidenceCoverage([]), { mapped: 0, missing: 0, observed: false });
+});

@@ -14,6 +14,14 @@ export function verdict(a: Attempt) {
 export function gradable(a: Attempt) {
   return ['correct', 'incorrect'].includes(verdict(a) || '');
 }
+export function evidenceCoverage(attempts: Attempt[]) {
+  const mapped = attempts.filter((a) => a.analytics?.concepts.some((c) => c.role === 'primary'));
+  return {
+    mapped: mapped.length,
+    missing: attempts.length - mapped.length,
+    observed: mapped.some(gradable),
+  };
+}
 export function summarize(attempts: Attempt[], history: Attempt[] = attempts) {
   const sorted = [...attempts].sort(
     (a, b) => a.submitted - b.submitted || a.id.localeCompare(b.id),

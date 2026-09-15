@@ -1,0 +1,846 @@
+# Authored exercise-level evidence. IDs are canonical, not display positions.
+concepts:
+  - id: sequence-index
+    name: Sequences and indexing
+  - id: recursive-definition
+    name: Recurrences and initial conditions
+  - id: arithmetic-sequence
+    name: Arithmetic sequences
+  - id: geometric-sequence
+    name: Geometric sequences
+  - id: sum-notation
+    name: Finite sums and index bounds
+  - id: sum-linearity
+    name: Linearity and splitting sums
+  - id: arithmetic-sum
+    name: Arithmetic sum formulas
+  - id: geometric-sum
+    name: Finite geometric sums
+  - id: reindexing
+    name: Changing summation indices
+  - id: telescoping
+    name: Telescoping and cancellation
+  - id: products-factorials
+    name: Products and factorials
+  - id: nested-sums
+    name: Nested sums and iteration counts
+  - id: sum-bounds
+    name: Bounding finite sums
+teaching:
+  - concept: sequence-index
+    lesson: sequences-and-summations
+    section: A sequence is an indexed function
+  - concept: recursive-definition
+    lesson: sequences-and-summations
+    section: Recursive definitions and initial conditions
+  - concept: arithmetic-sequence
+    lesson: sequences-and-summations
+    section: Arithmetic and geometric sequences
+  - concept: geometric-sequence
+    lesson: sequences-and-summations
+    section: Arithmetic and geometric sequences
+  - concept: sum-notation
+    lesson: sequences-and-summations
+    section: Summation notation and term counts
+  - concept: sum-linearity
+    lesson: sequences-and-summations
+    section: Algebra with finite sums
+  - concept: arithmetic-sum
+    lesson: sequences-and-summations
+    section: Deriving arithmetic sums
+  - concept: geometric-sum
+    lesson: sequences-and-summations
+    section: Deriving finite geometric sums
+  - concept: reindexing
+    lesson: sequences-and-summations
+    section: Reindexing and telescoping
+  - concept: telescoping
+    lesson: sequences-and-summations
+    section: Reindexing and telescoping
+  - concept: products-factorials
+    lesson: sequences-and-summations
+    section: Products and factorials
+  - concept: nested-sums
+    lesson: sequences-and-summations
+    section: Nested sums and counting iterations
+  - concept: sum-bounds
+    lesson: sequences-and-summations
+    section: Bounding sums
+exercises:
+  - lesson: sequences-and-summations
+    id: 1
+    primary:
+      - sequence-index
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+      - numeric
+  - lesson: sequences-and-summations
+    id: 2
+    primary:
+      - sequence-index
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+      - numeric
+  - lesson: sequences-and-summations
+    id: 3
+    primary:
+      - sequence-index
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+      - numeric
+  - lesson: sequences-and-summations
+    id: 4
+    primary:
+      - recursive-definition
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 5
+    primary:
+      - recursive-definition
+    supporting:
+      - arithmetic-sequence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 6
+    primary:
+      - recursive-definition
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 7
+    primary:
+      - recursive-definition
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 8
+    primary:
+      - recursive-definition
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 9
+    primary:
+      - sequence-index
+    skills:
+      - compare
+    representations:
+      - natural-language
+      - symbolic
+      - numeric
+  - lesson: sequences-and-summations
+    id: 10
+    primary:
+      - sequence-index
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - symbolic
+      - numeric
+  - lesson: sequences-and-summations
+    id: 11
+    primary:
+      - arithmetic-sequence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 12
+    primary:
+      - arithmetic-sequence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 13
+    primary:
+      - arithmetic-sequence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 14
+    primary:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 15
+    primary:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 16
+    primary:
+      - geometric-sequence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 17
+    primary:
+      - geometric-sequence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 18
+    primary:
+      - geometric-sequence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 19
+    primary:
+      - geometric-sequence
+    supporting:
+      - recursive-definition
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 20
+    primary:
+      - geometric-sequence
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 21
+    primary:
+      - sum-notation
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 22
+    primary:
+      - sum-notation
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 23
+    primary:
+      - sum-notation
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 24
+    primary:
+      - sum-notation
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 25
+    primary:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 26
+    primary:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 27
+    primary:
+      - arithmetic-sum
+    supporting:
+      - sum-linearity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 28
+    primary:
+      - sum-linearity
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 29
+    primary:
+      - sum-linearity
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 30
+    primary:
+      - arithmetic-sum
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: sequences-and-summations
+    id: 31
+    primary:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 32
+    primary:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 33
+    primary:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 34
+    primary:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 35
+    primary:
+      - geometric-sum
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: sequences-and-summations
+    id: 36
+    primary:
+      - geometric-sum
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 37
+    primary:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 38
+    primary:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 39
+    primary:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 40
+    primary:
+      - geometric-sum
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 41
+    primary:
+      - reindexing
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 42
+    primary:
+      - reindexing
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 43
+    primary:
+      - reindexing
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 44
+    primary:
+      - telescoping
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 45
+    primary:
+      - telescoping
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 46
+    primary:
+      - telescoping
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 47
+    primary:
+      - telescoping
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 48
+    primary:
+      - telescoping
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 49
+    primary:
+      - telescoping
+    skills:
+      - compare
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 50
+    primary:
+      - reindexing
+    skills:
+      - analyze
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 51
+    primary:
+      - products-factorials
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 52
+    primary:
+      - products-factorials
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 53
+    primary:
+      - products-factorials
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 54
+    primary:
+      - products-factorials
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 55
+    primary:
+      - products-factorials
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 56
+    primary:
+      - products-factorials
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 57
+    primary:
+      - products-factorials
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 58
+    primary:
+      - products-factorials
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 59
+    primary:
+      - products-factorials
+    skills:
+      - counterexample
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 60
+    primary:
+      - products-factorials
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: sequences-and-summations
+    id: 61
+    primary:
+      - nested-sums
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 62
+    primary:
+      - nested-sums
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 63
+    primary:
+      - nested-sums
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 64
+    primary:
+      - nested-sums
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 65
+    primary:
+      - nested-sums
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 66
+    primary:
+      - sum-bounds
+    skills:
+      - apply
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 67
+    primary:
+      - sum-bounds
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: sequences-and-summations
+    id: 68
+    primary:
+      - sum-bounds
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: sequences-and-summations
+    id: 69
+    primary:
+      - sum-bounds
+    skills:
+      - counterexample
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 70
+    primary:
+      - sum-bounds
+    skills:
+      - apply
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 71
+    primary:
+      - nested-sums
+    supporting:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+      - code
+  - lesson: sequences-and-summations
+    id: 72
+    primary:
+      - nested-sums
+    supporting:
+      - arithmetic-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+      - code
+  - lesson: sequences-and-summations
+    id: 73
+    primary:
+      - nested-sums
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 74
+    primary:
+      - recursive-definition
+    supporting:
+      - arithmetic-sequence
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 75
+    primary:
+      - arithmetic-sum
+    supporting:
+      - sum-linearity
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: sequences-and-summations
+    id: 76
+    primary:
+      - arithmetic-sum
+    skills:
+      - analyze
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 77
+    primary:
+      - geometric-sum
+    skills:
+      - counterexample
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 78
+    primary:
+      - telescoping
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 79
+    primary:
+      - geometric-sum
+    supporting:
+      - sequence-index
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 80
+    primary:
+      - nested-sums
+    supporting:
+      - arithmetic-sum
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: sequences-and-summations
+    id: 81
+    primary:
+      - sum-notation
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: sequences-and-summations
+    id: 82
+    primary:
+      - telescoping
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic

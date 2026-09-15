@@ -1,0 +1,874 @@
+# Authored exercise-level evidence. IDs are canonical, not display positions.
+concepts:
+  - id: recurrence-unfolding
+    name: Unfolding and telescoping recurrences
+  - id: affine-recurrence
+    name: First-order affine recurrences
+  - id: forced-recurrence
+    name: Recurrences with varying forcing terms
+  - id: characteristic-roots
+    name: Characteristic roots of second-order recurrences
+  - id: repeated-roots
+    name: Repeated characteristic roots
+  - id: counting-recurrence
+    name: Constructing recurrences from disjoint cases
+  - id: recurrence-verification
+    name: Verifying recurrence solutions
+  - id: divide-conquer-recurrence
+    name: Divide-and-conquer recurrences and recursion trees
+  - id: recurrence-bounds
+    name: Proving upper and lower recurrence bounds
+teaching:
+  - concept: recurrence-unfolding
+    lesson: recurrence-relations
+    section: 'Iteration: unfold the definition'
+  - concept: affine-recurrence
+    lesson: recurrence-relations
+    section: First-order linear recurrences
+  - concept: forced-recurrence
+    lesson: recurrence-relations
+    section: A varying nonhomogeneous term
+  - concept: characteristic-roots
+    lesson: recurrence-relations
+    section: Second-order homogeneous recurrences
+  - concept: repeated-roots
+    lesson: recurrence-relations
+    section: Repeated roots
+  - concept: counting-recurrence
+    lesson: recurrence-relations
+    section: Recurrences from counting
+  - concept: recurrence-verification
+    lesson: recurrence-relations
+    section: Testing and correcting a proposed formula
+  - concept: divide-conquer-recurrence
+    lesson: recurrence-relations
+    section: Divide-and-conquer recurrences
+  - concept: recurrence-bounds
+    lesson: recurrence-relations
+    section: Guessing bounds and proving them
+exercises:
+  - lesson: recurrence-relations
+    id: 1
+    primary:
+      - recursive-definition
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 2
+    primary:
+      - recursive-definition
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 3
+    primary:
+      - recursive-definition
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 4
+    primary:
+      - recursive-definition
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 5
+    primary:
+      - recursive-definition
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 6
+    primary:
+      - recursive-definition
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 7
+    primary:
+      - recursive-definition
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 8
+    primary:
+      - recursive-definition
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 9
+    primary:
+      - recursive-definition
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 10
+    primary:
+      - recursive-definition
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 11
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - arithmetic-sequence
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 12
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - geometric-sum
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 13
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - arithmetic-sum
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 14
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - arithmetic-sum
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 15
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - arithmetic-sum
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 16
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - geometric-sum
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 17
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - arithmetic-sum
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 18
+    primary:
+      - recurrence-unfolding
+    supporting:
+      - arithmetic-sum
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 19
+    primary:
+      - recurrence-verification
+    supporting:
+      - induction-hypothesis
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: recurrence-relations
+    id: 20
+    primary:
+      - recurrence-verification
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 21
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 22
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 23
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 24
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 25
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 26
+    primary:
+      - affine-recurrence
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 27
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 28
+    primary:
+      - affine-recurrence
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 29
+    primary:
+      - affine-recurrence
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 30
+    primary:
+      - affine-recurrence
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: recurrence-relations
+    id: 31
+    primary:
+      - forced-recurrence
+    supporting:
+      - sum-notation
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 32
+    primary:
+      - forced-recurrence
+    supporting:
+      - sum-notation
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 33
+    primary:
+      - forced-recurrence
+    supporting:
+      - sum-notation
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 34
+    primary:
+      - forced-recurrence
+    supporting:
+      - sum-notation
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 35
+    primary:
+      - forced-recurrence
+    supporting:
+      - sum-notation
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 36
+    primary:
+      - counting-recurrence
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 37
+    primary:
+      - counting-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 38
+    primary:
+      - counting-recurrence
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 39
+    primary:
+      - counting-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 40
+    primary:
+      - recurrence-verification
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 41
+    primary:
+      - characteristic-roots
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 42
+    primary:
+      - characteristic-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 43
+    primary:
+      - characteristic-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 44
+    primary:
+      - characteristic-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 45
+    primary:
+      - repeated-roots
+    skills:
+      - represent
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 46
+    primary:
+      - repeated-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 47
+    primary:
+      - repeated-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 48
+    primary:
+      - repeated-roots
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 49
+    primary:
+      - repeated-roots
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 50
+    primary:
+      - recursive-definition
+    supporting:
+      - strong-induction
+      - uniqueness
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: recurrence-relations
+    id: 51
+    primary:
+      - counting-recurrence
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 52
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 53
+    primary:
+      - recurrence-verification
+    supporting:
+      - induction-hypothesis
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: recurrence-relations
+    id: 54
+    primary:
+      - recurrence-bounds
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 55
+    primary:
+      - recurrence-bounds
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 56
+    primary:
+      - affine-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 57
+    primary:
+      - recurrence-verification
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 58
+    primary:
+      - recurrence-verification
+    skills:
+      - transform
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 59
+    primary:
+      - recurrence-verification
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 60
+    primary:
+      - recurrence-bounds
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 61
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 62
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 63
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - represent
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 64
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - induction-hypothesis
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: recurrence-relations
+    id: 65
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 66
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 67
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 68
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - geometric-sum
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 69
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 70
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 71
+    primary:
+      - recurrence-bounds
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: recurrence-relations
+    id: 72
+    primary:
+      - recurrence-bounds
+    skills:
+      - counterexample
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 73
+    primary:
+      - recurrence-bounds
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 74
+    primary:
+      - forced-recurrence
+    supporting:
+      - sum-notation
+    skills:
+      - transform
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 75
+    primary:
+      - repeated-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 76
+    primary:
+      - characteristic-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 77
+    primary:
+      - repeated-roots
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 78
+    primary:
+      - cost-model
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 79
+    primary:
+      - divide-conquer-recurrence
+    supporting:
+      - induction-hypothesis
+    skills:
+      - prove
+    representations:
+      - natural-language
+      - symbolic
+      - proof
+  - lesson: recurrence-relations
+    id: 80
+    primary:
+      - recurrence-verification
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 81
+    primary:
+      - recursive-definition
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: recurrence-relations
+    id: 82
+    primary:
+      - divide-conquer-recurrence
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic

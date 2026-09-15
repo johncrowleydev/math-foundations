@@ -4,11 +4,11 @@ This change records evidence, not mastery. It adds no scheduling, scoring model,
 
 ## Content and taxonomy
 
-`content/learning-evidence.yaml` is the authored source. It is independent of section structure and uses the existing YAML/build pipeline. The initial catalog contains 19 concepts (including the organizational propositional-logic parent), 15 extensible skills and 11 representations. All 155 published Lesson 1 exercises, including the two promoted checks, have explicit ID-based annotations. The taxonomy separates implication semantics, conditional forms, contrapositive, necessary/sufficient conditions, equivalence, distribution, negation, argument validity, inference, counterexamples, and satisfiability without creating a concept for each wording variant. Sections appear only in optional teaching/exposure anchors, not as analytical categories.
+`content/learning-evidence.yaml` and the lesson files in `content/evidence/` are the authored sources. See [complete curriculum coverage](curriculum-evidence-coverage.md). It is independent of section structure and uses the existing YAML/build pipeline. The catalog contains 187 concepts, 15 extensible skills and 11 representations. All 2,060 exercises across 25 exercise-bearing lessons, including promoted checks, have explicit ID-based annotations. The taxonomy separates implication semantics, conditional forms, contrapositive, necessary/sufficient conditions, equivalence, distribution, negation, argument validity, inference, counterexamples, and satisfiability without creating a concept for each wording variant. Sections appear only in optional teaching/exposure anchors, not as analytical categories.
 
 The annotations were written against the actual adapted questions and answers, including current multiple-choice formats, rather than inferred from section names. For example: canonical 77 compares a contrapositive; 74 constructs one; 152 proves with one. Canonical 110 principally measures equivalence and distribution, with implication as supporting knowledge. Tasks can have multiple primary concepts and skills; there are no numerical weights. Supporting concepts are visible but excluded from primary concept metrics. The lesson overview counts each exercise once regardless of how many concepts it measures.
 
-`scripts/evidence.ts` validates IDs, parent links/cycles, primary/supporting roles, duplicate references, representations, attributes, teaching targets and complete Lesson 1 coverage. It derives response format for every annotation and counts explicit logical operators in the displayed math for logic questions. This is a literal operator count, not a difficulty estimate or full syntax-tree depth. No speculative correlation analysis is implemented. Attributes remain a generic scalar map. Other lessons work in the overview immediately, but do not gain invented concept annotations.
+`scripts/evidence.ts` validates IDs, parent links/cycles, primary/supporting roles, duplicate references, representations, attributes, teaching targets and complete coverage of every published exercise. It derives response format for every annotation and counts explicit logical operators in the displayed math for logic questions. This is a literal operator count, not a difficulty estimate or full syntax-tree depth. No speculative correlation analysis is implemented. Attributes remain a generic scalar map. All lessons have authored task-level annotations. Missing mappings in any lesson fail the content build.
 
 The generated `learning-evidence.json` ships offline. Its content hash is included in the grading catalog version. New contexts snapshot direct concept/skill/representation definitions, roles, attributes, version and provenance; the server supplies this snapshot from its catalog, never trusts a client-supplied analytical snapshot. Names remain interpretable if future catalog entries change.
 
@@ -55,9 +55,9 @@ Synthetic regression cases cover alternative/two-sided derivations, false interm
 
 There is no SQL schema migration: optional JSON fields extend the existing storage. On startup the new backend performs an idempotent metadata-only backfill for historical contexts with unchanged task wording and the same response format. Reference-link formatting and whitespace are ignored in that comparison. Original context text, student responses, grades, IDs, timestamps and content versions are preserved. An emitted attempt revision syncs the added labeled snapshot. Rechecks still use the original task and assessment history.
 
-Changed tasks or converted response formats are conservatively skipped. Their attempts remain in overview counts and the full history but are excluded from concept metrics until an appropriate historical annotation exists. The UI reports snapshot coverage explicitly; it never projects a changed current task onto historical evidence. This is a deliberate limitation; no automatic historical task rewriting, diagnosis generation, or taxonomy migration framework is introduced. Unknown timing, uncertainty and assistance remain unknown. No live database was changed by this PR. Existing backups remain weekly.
+Changed tasks or converted response formats are conservatively skipped. Their attempts remain in overview counts and the full history but are excluded from concept metrics until an appropriate historical annotation exists. The UI reports snapshot coverage explicitly; it never projects a changed current task onto historical evidence. This is a deliberate limitation; no automatic historical task rewriting, diagnosis generation, or taxonomy migration framework is introduced. Unknown timing, uncertainty and assistance remain unknown. Existing backups remain weekly.
 
-The web build and backend/catalog must be released together eventually because the grading catalog version changes. This PR is not deployed or merged.
+The web build and backend/catalog are released together because the grading catalog version changes. Startup backfills compatible historical submissions and emits revisions for clients to sync.
 
 ## Export and verification
 
@@ -74,7 +74,7 @@ Screenshots use synthetic examples only:
 ![Concept drill-down](screenshots/learning-evidence/concept.png)
 ![Optional uncertainty](screenshots/learning-evidence/uncertainty.png)
 
-Deferred explicitly: spaced repetition/review scheduling, mastery scoring, forgetting curves, psychometrics, adaptive generation, prerequisites unlocking, automatic stronger-model escalation, LLM progress summaries, inferred historical diagnostics, concept backfill for other lessons, and attribute correlation modeling.
+Deferred explicitly: spaced repetition/review scheduling, mastery scoring, forgetting curves, psychometrics, adaptive generation, prerequisites unlocking, automatic stronger-model escalation, LLM progress summaries, inferred historical diagnostics, and attribute correlation modeling.
 
 ### Review follow-up
 

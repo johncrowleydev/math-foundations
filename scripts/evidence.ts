@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import YAML from 'yaml';
 import type { EvidenceCatalog, ExerciseEvidence } from '../web/src/evidenceTypes.js';
@@ -53,6 +53,7 @@ export function validateEvidence(c: EvidenceCatalog, keys: Set<string>) {
       throw Error('Invalid attributes ' + key);
   }
   for (const t of c.teaching) if (!concepts.has(t.concept)) throw Error('Unknown teaching concept');
+  for (const key of keys) if (!c.exercises[key]) throw Error('Unannotated exercise ' + key);
 }
 export function authoredSkills(rows: (string | { skill: string; role: string })[]) {
   return rows.map((row) =>
@@ -67,6 +68,13 @@ export async function loadEvidence(
   }[],
 ): Promise<EvidenceCatalog> {
   const authored = YAML.parse(await readFile('content/learning-evidence.yaml', 'utf8'));
+  // Each lesson authors its own rows; the shared catalogs remain subject-neutral.
+  for (const file of (await readdir('content/evidence'))
+    .filter((f) => f.endsWith('.yaml'))
+    .sort()) {
+    const part = YAML.parse(await readFile('content/evidence/' + file, 'utf8'));
+    for (const field of ['concepts', 'teaching', 'exercises']) authored[field].push(...part[field]);
+  }
   const exercises: Record<string, ExerciseEvidence> = {};
   for (const row of authored.exercises) {
     const key = row.lesson + '-' + row.id;
@@ -89,9 +97,6 @@ export async function loadEvidence(
   }
   const c = { ...authored, exercises, version: '' } as EvidenceCatalog;
   validateEvidence(c, new Set(lessons.flatMap((l) => l.questions.map((q) => l.slug + '-' + q.id))));
-  for (const q of lessons.find((l) => l.slug === 'propositional-logic')!.questions)
-    if (!exercises['propositional-logic-' + q.id])
-      throw Error('Unannotated Lesson 1 exercise ' + q.id);
   for (const t of c.teaching)
     if (!lessons.find((l) => l.slug === t.lesson)?.sections.some((s) => s.title === t.section))
       throw Error('Missing exposure teaching section ' + t.section);

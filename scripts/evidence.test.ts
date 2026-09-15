@@ -15,9 +15,17 @@ const c: EvidenceCatalog = JSON.parse(
   await readFile('output/content/learning-evidence.json', 'utf8'),
 );
 const keys = new Set(Object.keys(c.exercises));
-test('every published lesson 1 exercise has authored evidence and valid references', () => {
-  assert.equal(keys.size, 155);
-  validateEvidence(c, keys);
+const notebook = JSON.parse(await readFile('output/content/notebook.json', 'utf8')) as {
+  lessons: { slug: string; questions: { id: number; choice?: unknown }[] }[];
+};
+const published = new Set(
+  notebook.lessons.flatMap((l) => l.questions.map((q) => l.slug + '-' + q.id)),
+);
+test('every exercise in every published lesson has authored evidence and valid references', () => {
+  assert.equal(notebook.lessons.filter((l) => l.questions.length).length, 25);
+  assert.equal(keys.size, 2060);
+  assert.deepEqual(keys, published);
+  validateEvidence(c, published);
   assert.ok(c.exercises['propositional-logic-152'].skills.some((s) => s.skill === 'prove'));
   assert.ok(c.exercises['propositional-logic-77'].skills.some((s) => s.skill === 'compare'));
 });
@@ -62,5 +70,58 @@ test('authored skill objects retain roles while string shorthand remains primary
   ]) {
     copy.exercises['propositional-logic-1'].skills = skills;
     assert.throws(() => validateEvidence(copy, keys));
+  }
+});
+
+test('missing coverage fails for any lesson, including new published exercises', () => {
+  for (const key of ['predicates-and-quantifiers-5', 'linear-algebra-svd-74']) {
+    const copy = structuredClone(c);
+    delete copy.exercises[key];
+    assert.throws(() => validateEvidence(copy, published), /Unannotated exercise/);
+  }
+  assert.throws(
+    () => validateEvidence(c, new Set([...published, 'future-lesson-1'])),
+    /Unannotated exercise/,
+  );
+});
+
+test('task mappings distinguish recognition, construction, proof, and cross-domain reuse', () => {
+  const skill = (key: string, id: string) => c.exercises[key].skills.some((s) => s.skill === id);
+  assert.ok(skill('predicates-and-quantifiers-21', 'recognize'));
+  assert.ok(skill('predicates-and-quantifiers-41', 'transform'));
+  assert.ok(skill('predicates-and-quantifiers-112', 'prove'));
+  assert.ok(skill('linear-algebra-span-17', 'construct'));
+  assert.ok(skill('linear-algebra-span-66', 'prove'));
+  assert.ok(skill('linear-algebra-span-73', 'recognize'));
+  assert.equal(
+    c.exercises['linear-algebra-transformations-30'].concepts.find(
+      (x) => x.concept === 'injectivity',
+    )?.role,
+    'supporting',
+  );
+  assert.ok(c.exercises['graph-theory-61'].representations.includes('graph'));
+  assert.ok(c.exercises['linear-algebra-matrices-31'].representations.includes('matrix'));
+  for (const l of notebook.lessons.filter((l) => l.slug !== 'propositional-logic'))
+    for (const q of l.questions.filter((q) => q.choice)) {
+      assert.ok(skill(`${l.slug}-${q.id}`, 'recognize'));
+      assert.ok(!skill(`${l.slug}-${q.id}`, 'prove'));
+      assert.ok(!skill(`${l.slug}-${q.id}`, 'justify'));
+    }
+});
+
+test('server grading catalog snapshots every authored exercise without losing roles or definitions', async () => {
+  const server = JSON.parse(await readFile('output/grading-catalog.json', 'utf8'));
+  assert.deepEqual(new Set(Object.keys(server.exercises)), published);
+  for (const key of published) {
+    const snapshot = server.exercises[key].analytics;
+    assert.equal(snapshot.version, c.version, key);
+    assert.deepEqual(snapshot.concepts, c.exercises[key].concepts, key);
+    assert.deepEqual(snapshot.skills, c.exercises[key].skills, key);
+    assert.deepEqual(snapshot.representations, c.exercises[key].representations, key);
+    for (const link of snapshot.concepts)
+      assert.ok(
+        snapshot.conceptDefinitions.some((x: { id: string }) => x.id === link.concept),
+        key,
+      );
   }
 });

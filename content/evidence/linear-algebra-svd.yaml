@@ -1,0 +1,904 @@
+# Authored exercise-level evidence. IDs are canonical, not display positions.
+concepts:
+  - id: svd
+    name: Singular value decomposition and factor shapes
+  - id: singular-values
+    name: Singular values and geometric scaling
+  - id: singular-vectors
+    name: Singular vectors and their defining equations
+  - id: svd-rank
+    name: Singular values, rank and Gram-matrix eigenvalues
+  - id: low-rank-approximation
+    name: Truncated SVD and approximation error
+  - id: conditioning
+    name: Sensitivity and numerical rank
+teaching:
+  - concept: svd
+    lesson: linear-algebra-svd
+    section: Perpendicular directions and scale factors
+  - concept: singular-values
+    lesson: linear-algebra-svd
+    section: Perpendicular directions and scale factors
+  - concept: singular-vectors
+    lesson: linear-algebra-svd
+    section: Connection to rank and eigenvalues
+  - concept: svd-rank
+    lesson: linear-algebra-svd
+    section: Connection to rank and eigenvalues
+  - concept: low-rank-approximation
+    lesson: linear-algebra-svd
+    section: Approximation and responsible interpretation
+  - concept: conditioning
+    lesson: linear-algebra-svd
+    section: Approximation and responsible interpretation
+exercises:
+  - lesson: linear-algebra-svd
+    id: 1
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 2
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+      - orthonormal-basis
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 3
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 4
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 5
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 6
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 7
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 8
+    primary:
+      - svd
+    supporting:
+      - matrix-shape
+    skills:
+      - interpret
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 9
+    primary:
+      - singular-values
+    supporting:
+      - orthonormal-basis
+      - vector-norm
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 10
+    primary:
+      - singular-values
+    supporting:
+      - orthonormal-basis
+      - vector-norm
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 11
+    primary:
+      - singular-values
+    supporting:
+      - orthonormal-basis
+      - vector-norm
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 12
+    primary:
+      - singular-values
+    supporting:
+      - orthonormal-basis
+      - vector-norm
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 13
+    primary:
+      - singular-values
+    supporting:
+      - orthonormal-basis
+      - vector-norm
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 14
+    primary:
+      - singular-values
+    supporting:
+      - orthonormal-basis
+      - vector-norm
+    skills:
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 15
+    primary:
+      - svd
+    supporting:
+      - matrix-product
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 16
+    primary:
+      - singular-values
+    supporting:
+      - orthonormal-basis
+      - vector-norm
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 17
+    primary:
+      - svd
+    supporting:
+      - matrix-product
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 18
+    primary:
+      - svd
+    supporting:
+      - matrix-product
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 19
+    primary:
+      - svd
+    supporting:
+      - matrix-product
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 20
+    primary:
+      - svd
+    supporting:
+      - matrix-product
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 21
+    primary:
+      - svd
+    supporting:
+      - matrix-product
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 22
+    primary:
+      - svd
+    supporting:
+      - matrix-product
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 23
+    primary:
+      - svd
+    supporting:
+      - orthonormal-basis
+      - singular-values
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 24
+    primary:
+      - svd
+    supporting:
+      - orthonormal-basis
+      - singular-values
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 25
+    primary:
+      - svd
+    supporting:
+      - orthonormal-basis
+      - singular-values
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 26
+    primary:
+      - svd
+    supporting:
+      - orthonormal-basis
+      - singular-values
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 27
+    primary:
+      - svd
+    supporting:
+      - orthonormal-basis
+      - singular-values
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 28
+    primary:
+      - svd
+    supporting:
+      - orthonormal-basis
+      - singular-values
+    skills:
+      - construct
+      - justify
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 29
+    primary:
+      - svd-rank
+    supporting:
+      - eigenvalue-equation
+      - rank-nullity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 30
+    primary:
+      - singular-vectors
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 31
+    primary:
+      - svd-rank
+    supporting:
+      - eigenvalue-equation
+      - rank-nullity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 32
+    primary:
+      - svd-rank
+    supporting:
+      - eigenvalue-equation
+      - rank-nullity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 33
+    primary:
+      - svd-rank
+    supporting:
+      - eigenvalue-equation
+      - rank-nullity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 34
+    primary:
+      - svd-rank
+    supporting:
+      - eigenvalue-equation
+      - rank-nullity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 35
+    primary:
+      - svd-rank
+    supporting:
+      - eigenvalue-equation
+      - rank-nullity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 36
+    primary:
+      - svd-rank
+    supporting:
+      - eigenvalue-equation
+      - rank-nullity
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 37
+    primary:
+      - singular-vectors
+    supporting:
+      - matrix-vector
+      - normalization
+    skills:
+      - construct
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 38
+    primary:
+      - singular-vectors
+    supporting:
+      - matrix-vector
+      - normalization
+    skills:
+      - construct
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 39
+    primary:
+      - singular-vectors
+    supporting:
+      - matrix-vector
+      - normalization
+    skills:
+      - construct
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 40
+    primary:
+      - singular-vectors
+    supporting:
+      - matrix-vector
+      - normalization
+    skills:
+      - construct
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 41
+    primary:
+      - singular-vectors
+    supporting:
+      - matrix-vector
+      - normalization
+    skills:
+      - construct
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 42
+    primary:
+      - singular-vectors
+    supporting:
+      - matrix-vector
+      - normalization
+    skills:
+      - construct
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 43
+    primary:
+      - low-rank-approximation
+    supporting:
+      - vector-norm
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 44
+    primary:
+      - low-rank-approximation
+    supporting:
+      - fit-interpretation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 45
+    primary:
+      - low-rank-approximation
+    supporting:
+      - vector-norm
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 46
+    primary:
+      - low-rank-approximation
+    supporting:
+      - vector-norm
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 47
+    primary:
+      - low-rank-approximation
+    supporting:
+      - vector-norm
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 48
+    primary:
+      - low-rank-approximation
+    supporting:
+      - vector-norm
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 49
+    primary:
+      - low-rank-approximation
+    supporting:
+      - vector-norm
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 50
+    primary:
+      - low-rank-approximation
+    supporting:
+      - vector-norm
+    skills:
+      - compute
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 51
+    primary:
+      - conditioning
+    supporting:
+      - linear-system
+      - singular-values
+    skills:
+      - compute
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 52
+    primary:
+      - conditioning
+    supporting:
+      - linear-system
+      - singular-values
+    skills:
+      - compute
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 53
+    primary:
+      - conditioning
+    supporting:
+      - linear-system
+      - singular-values
+    skills:
+      - compute
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 54
+    primary:
+      - conditioning
+    supporting:
+      - linear-system
+      - singular-values
+    skills:
+      - compute
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 55
+    primary:
+      - conditioning
+    supporting:
+      - linear-system
+      - singular-values
+    skills:
+      - compute
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 56
+    primary:
+      - conditioning
+    supporting:
+      - linear-system
+      - singular-values
+    skills:
+      - compute
+      - interpret
+    representations:
+      - natural-language
+      - matrix
+  - lesson: linear-algebra-svd
+    id: 57
+    primary:
+      - svd-rank
+    supporting:
+      - rank-nullity
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 58
+    primary:
+      - svd-rank
+    supporting:
+      - dot-product
+      - eigenvector
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 59
+    primary:
+      - svd-rank
+    supporting:
+      - dot-product
+      - eigenvector
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 60
+    primary:
+      - singular-values
+    supporting:
+      - eigenvector
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 61
+    primary:
+      - svd
+    supporting:
+      - uniqueness
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 62
+    primary:
+      - singular-vectors
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 63
+    primary:
+      - low-rank-approximation
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 64
+    primary:
+      - low-rank-approximation
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 65
+    primary:
+      - low-rank-approximation
+    supporting:
+      - fit-interpretation
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 66
+    primary:
+      - svd
+    skills:
+      - construct
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 67
+    primary:
+      - low-rank-approximation
+    skills:
+      - compute
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 68
+    primary:
+      - orthonormal-basis
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 69
+    primary:
+      - svd
+    supporting:
+      - diagonalization
+    skills:
+      - compare
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 70
+    primary:
+      - conditioning
+    supporting:
+      - rank-nullity
+    skills:
+      - analyze
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 71
+    primary:
+      - rank-nullity
+    supporting:
+      - surjectivity
+    skills:
+      - evaluate
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 72
+    primary:
+      - svd
+    supporting:
+      - orthonormal-basis
+    skills:
+      - justify
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 73
+    primary:
+      - singular-values
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
+  - lesson: linear-algebra-svd
+    id: 74
+    primary:
+      - svd-rank
+    skills:
+      - recognize
+    representations:
+      - natural-language
+      - symbolic
