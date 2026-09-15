@@ -1263,7 +1263,16 @@ hr {
 .concept-evidence {
   scroll-margin-top: 16px;
 }
+.concept-evidence th {
+  text-align: left;
+}
 .concept-evidence th button {
+  display: block;
+  width: 100%;
+  padding: 4px 0;
+  min-height: 36px;
+  line-height: 1.4;
+  font-weight: 500;
   white-space: normal;
   text-align: left;
   border: 0;
@@ -1275,10 +1284,42 @@ hr {
     display: none;
   }
   .concept-evidence th:first-child {
-    width: 40%;
+    width: 50%;
   }
   .concept-evidence th,
   .concept-evidence td {
     padding: 6px;
   }
+}
+
+.attention-list {
+  display: grid;
+  margin: 8px 0 24px;
+}
+.attention-list > button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  white-space: normal;
+  text-align: left;
+  line-height: 1.4;
+}
+.attention-list strong {
+  font-weight: 500;
+}
+.attention-list span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.concept-evidence td:nth-child(2),
+.concept-evidence td:nth-child(3) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }

@@ -208,13 +208,16 @@ export function Progress({
       </details>
       <h2>Needs attention</h2>
       {rows.some((r) => r.attention.length) ? (
-        rows
-          .filter((r) => r.attention.length)
-          .map((r) => (
-            <p key={r.id}>
-              <button onClick={() => setSelected(r.id)}>{r.name}</button> {r.attention.join(' · ')}
-            </p>
-          ))
+        <div className="attention-list">
+          {rows
+            .filter((r) => r.attention.length)
+            .map((r) => (
+              <button key={r.id} aria-label={r.name} onClick={() => setSelected(r.id)}>
+                <strong>{r.name}</strong>
+                <span>{r.attention.join(' · ')}</span>
+              </button>
+            ))}
+        </div>
       ) : (
         <p>No repeated patterns meet the attention rules yet. This is not a claim of mastery.</p>
       )}
@@ -249,7 +252,7 @@ export function Progress({
                   </button>
                 </th>
                 <td>{r.summary.observed}</td>
-                <td>{rate(r.summary)}</td>
+                <td title={rate(r.summary)}>{r.summary.firstObserved ? rate(r.summary) : '—'}</td>
                 <td>{r.summary.retries}</td>
                 <td>{r.summary.substantive}</td>
                 <td>{r.summary.minor}</td>
