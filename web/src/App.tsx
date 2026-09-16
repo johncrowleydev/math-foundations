@@ -19,6 +19,7 @@ import { questionLabel } from './types';
 import { ContentContext, Rich, MathText, Modal, Copy } from './Rich';
 import { Figure } from './Figure';
 import { Exercise } from './Exercise';
+import { lessonReview } from './lessonReview';
 import { Progress } from './Progress';
 import { expose } from './exposure';
 import {
@@ -89,7 +90,15 @@ export function App({ data }: { data: Curriculum }) {
     reader.current!.scrollTop =
       positions.current[positionKey] ??
       (Number(localStorage.getItem('scroll:' + positionKey)) || 0);
-  }, [positionKey]);
+    if (tab === 'read' && route.section) {
+      const target = document.getElementById('section-' + route.section);
+      if (target && reader.current) {
+        reader.current.scrollTop +=
+          target.getBoundingClientRect().top - reader.current.getBoundingClientRect().top - 12;
+        setActive('section-' + route.section);
+      }
+    }
+  }, [positionKey, route.section]);
   useEffect(() => {
     if (tab !== 'practice') return;
     const selected = document.querySelector<HTMLElement>(
@@ -480,7 +489,13 @@ export function App({ data }: { data: Curriculum }) {
                       Exercises
                     </button>
                   </div>
-                  <Exercise key={q.id} q={q} lesson={lesson.slug} data={data} />
+                  <Exercise
+                    key={q.id}
+                    q={q}
+                    lesson={lesson.slug}
+                    data={data}
+                    review={lessonReview(data, lesson, q)}
+                  />
                   <nav className="practice-nav" aria-label="Exercise navigation">
                     <button disabled={practice === 0} onClick={() => selectExercise(practice - 1)}>
                       ← Previous

@@ -13,7 +13,17 @@ import { snapshot } from './evidenceTypes';
 import { EffortClock } from './effort';
 import { expose } from './exposure';
 import { markAssistance, seenAssistance } from './assistance';
-export function Exercise({ q, lesson, data }: { q: Question; lesson: string; data: Curriculum }) {
+export function Exercise({
+  q,
+  lesson,
+  data,
+  review,
+}: {
+  q: Question;
+  lesson: string;
+  data: Curriculum;
+  review?: { slug: string; section: string; title: string };
+}) {
   const key = lesson + '-' + q.id;
   const choiceGroup = useId();
   const clock = useRef(new EffortClock());
@@ -402,7 +412,27 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
       }
       id={'exercise-' + q.id}
     >
-      <div className="eyebrow">{questionLabel(q)}</div>
+      {review ? (
+        <div className="exercise-heading">
+          <div className="eyebrow">{questionLabel(q)}</div>
+          {review && (
+            <a
+              className="lesson-review"
+              href={
+                '#/learn/' +
+                encodeURIComponent(review.slug) +
+                '/' +
+                encodeURIComponent(review.section)
+              }
+              title={review.title}
+            >
+              Review lesson
+            </a>
+          )}
+        </div>
+      ) : (
+        <div className="eyebrow">{questionLabel(q)}</div>
+      )}
       <Rich text={q.instructions} source={`question:${q.id}:instructions`} />
       <Rich
         text={q.prompt}

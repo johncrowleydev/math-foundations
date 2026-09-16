@@ -372,7 +372,8 @@ code {
   padding: 18px 20px;
   margin: 18px 0;
 }
-.exercise > .eyebrow {
+.exercise > .eyebrow,
+.exercise-heading > .eyebrow {
   display: block;
   margin-bottom: 12px;
   letter-spacing: 0;
@@ -1416,4 +1417,17 @@ button.danger {
 button.danger:hover:not(:disabled) {
   background: #922929;
   border-color: #922929;
+}
+
+.exercise-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.lesson-review {
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-underline-offset: 3px;
 }
