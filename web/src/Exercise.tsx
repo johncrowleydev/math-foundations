@@ -345,13 +345,6 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
         </>
       )}
       <div className="toolbar submit">
-        <button
-          aria-pressed={draft.unsure === true}
-          title="Optional: mark this response as unsure"
-          onClick={() => update({ unsure: draft.unsure ? undefined : true })}
-        >
-          Unsure{draft.unsure ? ' ✓' : ''}
-        </button>
         {last?.status === 'error' && !q.choice && (
           <button
             onClick={() => {
@@ -365,20 +358,30 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
           </button>
         )}
         {last && <button onClick={() => update({ editing: false })}>Back to latest attempt</button>}
-        <button
-          className="primary push"
-          disabled={saving || (!!q.choice && !draft.choiceId)}
-          onClick={() => void submit()}
-        >
-          {saving ? (
-            <>
-              <span className="spinner" />
-              Saving…
-            </>
-          ) : (
-            'Submit'
-          )}
-        </button>
+        <div className="submission-actions push">
+          <label className="unsure-option">
+            <input
+              type="checkbox"
+              checked={draft.unsure === true}
+              onChange={(e) => update({ unsure: e.target.checked ? true : undefined })}
+            />
+            Unsure
+          </label>
+          <button
+            className="primary"
+            disabled={saving || (!!q.choice && !draft.choiceId)}
+            onClick={() => void submit()}
+          >
+            {saving ? (
+              <>
+                <span className="spinner" />
+                Saving…
+              </>
+            ) : (
+              'Submit'
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -604,20 +607,6 @@ function AttemptPanel({
             timeStyle: 'short',
           })}
         </time>
-        {active && (
-          <button
-            disabled={cancelling}
-            onClick={() => {
-              setCancelling(true);
-              setError('');
-              void cancelGrading(a)
-                .catch((e) => setError(String(e)))
-                .finally(() => setCancelling(false));
-            }}
-          >
-            {cancelling ? 'Cancelling…' : 'Cancel'}
-          </button>
-        )}
       </div>
       {a.transcription ? (
         <div className="submitted">
@@ -703,6 +692,21 @@ function AttemptPanel({
             </div>
           )}
         </div>
+        {active && (
+          <button
+            className="danger push"
+            disabled={cancelling}
+            onClick={() => {
+              setCancelling(true);
+              setError('');
+              void cancelGrading(a)
+                .catch((e) => setError(String(e)))
+                .finally(() => setCancelling(false));
+            }}
+          >
+            {cancelling ? 'Cancelling…' : 'Cancel'}
+          </button>
+        )}
       </div>
       {g && feedback && (
         <div className="feedback">

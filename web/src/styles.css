@@ -1361,3 +1361,34 @@ hr {
   outline: 2px solid var(--accent, #315fa0);
   outline-offset: 3px;
 }
+
+.submission-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.unsure-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  font-size: 0.8rem;
+  letter-spacing: normal;
+  color: inherit;
+  cursor: pointer;
+}
+.unsure-option input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+button.danger {
+  background: #b33434;
+  border-color: #b33434;
+  color: white;
+}
+button.danger:hover:not(:disabled) {
+  background: #922929;
+  border-color: #922929;
+}
