@@ -1,5 +1,5 @@
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
 import { all, emptyDraft, get, put, saveAttempt, saveMedia, useRevision } from './storage';
 import { connected, recheck, sync, cancelGrading } from './sync';
@@ -15,6 +15,7 @@ import { expose } from './exposure';
 import { markAssistance, seenAssistance } from './assistance';
 export function Exercise({ q, lesson, data }: { q: Question; lesson: string; data: Curriculum }) {
   const key = lesson + '-' + q.id;
+  const choiceGroup = useId();
   const clock = useRef(new EffortClock());
   const rev = useRevision();
   const draftRevision = useRevision('draft:' + key);
@@ -297,16 +298,20 @@ export function Exercise({ q, lesson, data }: { q: Question; lesson: string; dat
     >
       {q.choice ? (
         <>
-          <div className="choices" role="group" aria-label="Answer choices">
+          <div className="choices" role="radiogroup" aria-label="Answer choices">
             {q.choice.options.map((o) => (
-              <button
-                key={o.id}
-                aria-pressed={draft.choiceId === o.id}
-                className={draft.choiceId === o.id ? 'selected' : ''}
-                onClick={() => update({ choiceId: o.id })}
-              >
-                <Rich text={o.text.replace(/\[([^\]]+)\]\(ref:[^)]+\)/g, '$1')} />
-              </button>
+              <div key={o.id} className="choice-row" onClick={() => update({ choiceId: o.id })}>
+                <input
+                  type="radio"
+                  name={choiceGroup}
+                  aria-labelledby={choiceGroup + '-' + o.id}
+                  checked={draft.choiceId === o.id}
+                  onChange={() => update({ choiceId: o.id })}
+                />
+                <div id={choiceGroup + '-' + o.id} className="choice-text">
+                  <Rich text={o.text.replace(/\[([^\]]+)\]\(ref:[^)]+\)/g, '$1')} />
+                </div>
+              </div>
             ))}
           </div>
         </>

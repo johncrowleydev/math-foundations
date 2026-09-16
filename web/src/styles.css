@@ -622,13 +622,38 @@ details > .rich {
 }
 .choices {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
   margin: 10px 0;
 }
-.choices button {
-  text-align: left;
-  white-space: normal;
+.choice-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 0;
+  cursor: pointer;
+}
+.choice-row + .choice-row {
+  border-top: 1px solid var(--line);
+}
+.choice-row input {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin: 4px 0 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.choice-text {
+  min-width: 0;
+  flex: 1;
+}
+.choice-text .rich > :first-child {
+  margin-top: 0;
+}
+.choice-text .rich > :last-child {
+  margin-bottom: 0;
 }
 .library {
   max-width: 950px;
@@ -736,7 +761,7 @@ details > .rich {
   justify-content: flex-start;
   text-align: left;
 }
-input:not([type='checkbox']):not([type='color']),
+input:not([type='checkbox']):not([type='radio']):not([type='color']),
 textarea,
 select {
   border: 1px solid #d6dee8;
@@ -745,7 +770,7 @@ select {
   padding: 8px 10px;
   color: inherit;
 }
-input:not([type='checkbox']):not([type='color']),
+input:not([type='checkbox']):not([type='radio']):not([type='color']),
 textarea {
   width: 100%;
   margin: 7px 0 12px;
