@@ -1,0 +1,24 @@
+{
+  "worktree": {
+    "setup": [
+      "npm ci",
+      "npm ci --prefix web --no-install-links",
+      "npm run content",
+      "cd server && go mod download"
+    ]
+  },
+  "scripts": {
+    "web": {
+      "type": "service",
+      "command": "npm run dev --prefix web -- --port \"$PASEO_PORT\""
+    },
+    "preview": {
+      "type": "service",
+      "command": "npm run web:build && npm run preview --prefix web -- --port \"$PASEO_PORT\""
+    },
+    "content": { "command": "npm run content" },
+    "check": {
+      "command": "npm run typecheck && npm test && npm run web:build && npm run web:test && (cd server && go test ./...)"
+    }
+  }
+}
