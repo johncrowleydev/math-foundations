@@ -78,6 +78,18 @@
       "author": "Leonhard Euler",
       "edition": "E53, Commentarii academiae scientiarum Petropolitanae 8, pp. 128–140; published 1741. Euler Archive, University of the Pacific",
       "url": "https://scholarlycommons.pacific.edu/euler-works/53/"
+    },
+    "strang-ila": {
+      "title": "Introduction to Linear Algebra",
+      "author": "Gilbert Strang",
+      "edition": "Fifth edition; author-hosted MIT excerpt, §3.5",
+      "url": "https://math.mit.edu/~gs/linearalgebra/ila5/linearalgebra5_3-5.pdf"
+    },
+    "fnc": {
+      "title": "Fundamentals of Numerical Computation",
+      "author": "Tobin A. Driscoll and Richard J. Braun",
+      "edition": "Online v1.0 edition, copyright 2020",
+      "url": "https://fncbook.github.io/v1.0/"
     }
   },
   "citations": {
@@ -429,7 +441,7 @@
       "locator": "§2.5",
       "supports": "Independence and dependence criteria.",
       "url": "https://textbooks.math.gatech.edu/ila/linear-independence.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-subspaces": {
       "source": "ila",
@@ -440,24 +452,24 @@
     },
     "i-basis": {
       "source": "ila",
-      "locator": "§2.7",
-      "supports": "Bases, dimension, and the row space.",
+      "locator": "§§2.7.1–2.7.3: basis and dimension definitions; column-space and null-space bases; Basis Theorem and proof",
+      "supports": "Bases and dimension; extracting or extending a basis; selecting original pivot columns and homogeneous solution vectors. The equal-size basis theorem is stated; the lesson supplies its own exchange argument.",
       "url": "https://textbooks.math.gatech.edu/ila/dimension.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-coordinates": {
       "source": "ila",
       "locator": "§2.8",
       "supports": "Unique coordinates relative to a basis.",
       "url": "https://textbooks.math.gatech.edu/ila/bases-as-coord-systems.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-rank": {
       "source": "ila",
       "locator": "§2.9",
       "supports": "Rank, nullity, and the rank theorem.",
       "url": "https://textbooks.math.gatech.edu/ila/rank-thm.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-systems": {
       "source": "ila",
@@ -471,7 +483,7 @@
       "locator": "§1.2",
       "supports": "Row operations, pivots, and echelon forms.",
       "url": "https://textbooks.math.gatech.edu/ila/row-reduction.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-parameters": {
       "source": "ila",
@@ -499,7 +511,7 @@
       "locator": "§3.5",
       "supports": "Inverse matrices and invertibility tests.",
       "url": "https://textbooks.math.gatech.edu/ila/matrix-inverses.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-eigen": {
       "source": "ila",
@@ -531,24 +543,24 @@
     },
     "i-projection": {
       "source": "ila",
-      "locator": "§6.3",
+      "locator": "§§6.3.1–6.3.2: Orthogonal decomposition; Closest vector and distance; line-projection recipe and proof; projection properties",
       "supports": "Orthogonal projections and closest vectors.",
       "url": "https://textbooks.math.gatech.edu/ila/projections.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-orthonormal": {
       "source": "ila",
-      "locator": "§6.4",
-      "supports": "Orthonormal bases, Gram–Schmidt, and QR.",
+      "locator": "§§6.4.1–6.4.2: orthogonal independence, Projection Formula, normalization, and Gram–Schmidt theorem/proof including zero remainders",
+      "supports": "Orthogonal and orthonormal bases, projection sums, and Gram–Schmidt with span preservation and redundant-vector removal. The source orthogonalizes before normalizing; the lesson normalizes each retained direction.",
       "url": "https://textbooks.math.gatech.edu/ila/orthogonal-sets.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-least": {
       "source": "ila",
-      "locator": "§6.5",
-      "supports": "Normal equations, residuals, and least-squares fitting.",
+      "locator": "§§6.5.1–6.5.2: normal-equation theorem, uniqueness criteria, and Best-fit line",
+      "supports": "Normal equations, orthogonal residuals, unique fitted outputs, rank-dependent parameter uniqueness, and least-squares fitting of vertical discrepancies. The source orders slope before intercept; the lesson orders intercept before slope and defines residual as observations minus fitted output.",
       "url": "https://textbooks.math.gatech.edu/ila/least-squares.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "ml-intro": {
       "source": "mml",
@@ -573,10 +585,10 @@
     },
     "ml-models": {
       "source": "mml",
-      "locator": "§8.1",
+      "locator": "§8.1, printed pp. 251–258 (PDF pp. 257–264), especially §8.1.4: fitting training observations versus predicting unseen data",
       "supports": "Models, data, and the limits of mathematical interpretation.",
       "url": "https://mml-book.github.io/book/mml-book.pdf#page=257",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "d-intro": {
       "source": "levin",
@@ -692,10 +704,10 @@
     },
     "numerical-ls": {
       "source": "lapack",
-      "locator": "Linear Least Squares (LLS) Problems",
+      "locator": "Linear Least Squares (LLS) Problems: xGELS paragraph, rank-deficient driver paragraph, and Table 2.3",
       "supports": "QR/SVD methods, full-rank and rank-deficient least-squares problems.",
       "url": "https://www.netlib.org/lapack/lug/node27.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "alg-asymptotic": {
       "source": "algorithms",
@@ -703,6 +715,48 @@
       "supports": "Upper, lower, and tight bounds; logarithmic growth and binary-search recurrences.",
       "url": "https://courses.csail.mit.edu/6.006/fall11/rec/rec01.pdf",
       "checked": "2026-09-15"
+    },
+    "i-determinant-area": {
+      "source": "ila",
+      "locator": "§4.3.2: Determinants and volumes theorem, transpose observation, Area example, and Signed volumes remark",
+      "supports": "Absolute determinant as parallelogram area and determinant sign as orientation in the plane. The source first uses rows, then explicitly extends the volume statement to columns; the lesson uses columns.",
+      "url": "https://textbooks.math.gatech.edu/ila/determinants-volumes.html",
+      "checked": "2026-09-16"
+    },
+    "i-existence-uniqueness": {
+      "source": "ila",
+      "locator": "§§3.2.1–3.2.3: one-to-one and onto matrix-transformation theorems; square-matrix comparison",
+      "supports": "Independent columns give at most one input per output; full row rank reaches every output. These are separate conditions for rectangular matrices and coincide for square matrices.",
+      "url": "https://textbooks.math.gatech.edu/ila/one-to-one-onto.html",
+      "checked": "2026-09-16"
+    },
+    "strang-row-space": {
+      "source": "strang-ila",
+      "locator": "§3.5, printed pp. 182, 184–185 (PDF pp. 2, 4–5): nonzero echelon rows; The Four Subspaces for A, items 1–2",
+      "supports": "Nonzero echelon rows form a row-space basis; reversible row operations preserve row span; row rank and column rank equal the pivot count. Row reduction need not preserve the column space.",
+      "url": "https://math.mit.edu/~gs/linearalgebra/ila5/linearalgebra5_3-5.pdf#page=2",
+      "checked": "2026-09-16"
+    },
+    "numerical-solve": {
+      "source": "lapack",
+      "locator": "Linear Equations: simple-driver description and paragraph immediately before Table 2.2",
+      "supports": "Linear-system drivers factor the coefficient matrix and solve without explicitly forming its inverse; explicit inversion is generally unnecessary for solving systems.",
+      "url": "https://www.netlib.org/lapack/lug/node26.html",
+      "checked": "2026-09-16"
+    },
+    "lapack-qr": {
+      "source": "lapack",
+      "locator": "QR Factorization: reduced factorization A=Q1 R and full-column-rank least-squares application",
+      "supports": "Orthonormal columns and upper-triangular reconstruction coefficients in reduced QR, matrix dimensions, and triangular least-squares solving. The lesson names the rectangular factor Q; this source names it Q1. LAPACK implementation is not claimed to use classroom Gram–Schmidt.",
+      "url": "https://www.netlib.org/lapack/lug/node40.html",
+      "checked": "2026-09-16"
+    },
+    "fnc-normal-stability": {
+      "source": "fnc",
+      "locator": "The normal equations — Conditioning and stability, equations (65)–(66)",
+      "supports": "Sensitivity of least-squares coefficients to perturbations and possible numerical instability from forming normal equations: in the 2-norm, the condition number of A transpose A squares that of A.",
+      "url": "https://fncbook.github.io/v1.0/leastsq/normaleqns.html#conditioning-and-stability",
+      "checked": "2026-09-16"
     }
   },
   "lessons": {
@@ -1703,23 +1757,59 @@
       }
     },
     "linear-algebra-bases": {
-      "reviewedContentHash": "03d65d7dd5ae825c4d6a9a28559a8c3a587f15fb20222d7b5f8ade405e9d19b6",
-      "intro": ["i-basis", "i-coordinates", "i-rank", "i-inverse", "i-reduction", "numerical-ls"],
+      "reviewedContentHash": "caeabeae58de93a7ec96cd377d84e1f56999686e47152f6f2648811bfd197150",
+      "intro": ["i-basis", "i-coordinates"],
       "sections": {
-        "a-basis-gives-unique-coordinates": ["i-basis", "i-coordinates"],
-        "rank-and-nullity": ["i-rank"],
-        "invertible-matrices": ["i-inverse"],
-        "solving-without-unnecessary-inverses": ["i-inverse", "i-reduction", "numerical-ls"]
+        "a-basis-gives-unique-coordinates": ["i-basis", "i-coordinates", "i-independent"],
+        "extracting-a-basis-rather-than-guessing-one": [
+          "i-basis",
+          "i-independent",
+          "i-coordinates"
+        ],
+        "dimension-and-the-ambient-space": ["i-basis", "i-independent"]
       },
       "practice": {
-        "A basis gives unique coordinates": ["i-basis", "i-coordinates"],
-        "Invertible matrices": ["i-inverse"],
-        "Rank and nullity": ["i-rank"],
-        "Solving without unnecessary inverses": ["i-inverse", "i-reduction", "numerical-ls"]
+        "A basis gives unique coordinates": ["i-basis", "i-coordinates", "i-independent"],
+        "Extracting a basis rather than guessing one": [
+          "i-basis",
+          "i-independent",
+          "i-coordinates"
+        ],
+        "Dimension and the ambient space": ["i-basis", "i-independent"]
+      }
+    },
+    "linear-algebra-rank-inverses": {
+      "reviewedContentHash": "8342fc2983aa1789a4b9bfe26c2d64294cff04de86a9e9c7c098f726a3b02da7",
+      "intro": ["i-basis", "i-rank", "i-inverse", "i-existence-uniqueness", "i-determinant-area"],
+      "sections": {
+        "rank-and-nullity": ["i-rank", "i-basis", "i-reduction", "strang-row-space"],
+        "finding-both-spaces-in-one-reduction": [
+          "i-basis",
+          "i-rank",
+          "i-reduction",
+          "strang-row-space"
+        ],
+        "what-a-determinant-measures-in-the-plane": ["i-inverse", "i-determinant-area"],
+        "invertible-matrices": ["i-inverse", "i-rank"],
+        "solving-without-unnecessary-inverses": ["i-inverse", "i-reduction", "numerical-solve"],
+        "existence-and-uniqueness": ["i-existence-uniqueness", "i-rank", "i-inverse"]
+      },
+      "practice": {
+        "Rank and nullity": ["i-rank", "i-basis", "i-reduction", "strang-row-space"],
+        "Finding both spaces in one reduction": [
+          "i-basis",
+          "i-rank",
+          "i-reduction",
+          "strang-row-space"
+        ],
+        "What a determinant measures in the plane": ["i-inverse", "i-determinant-area"],
+        "Invertible matrices": ["i-inverse", "i-rank"],
+        "Solving without unnecessary inverses": ["i-inverse", "i-reduction", "numerical-solve"],
+        "Existence and uniqueness": ["i-existence-uniqueness", "i-rank", "i-inverse"]
       }
     },
     "linear-algebra-transformations": {
-      "reviewedContentHash": "8c6e6692681ff7dbb41a2a3ec33d85b5c73987c8d6b773275538f4f089002587",
+      "reviewedContentHash": "ee77e809d38913010583ebb41bceaa1d58859dbc305b38bd553373fb2bacf6ae",
       "intro": ["i-transform", "ml-affine", "i-subspaces", "i-coordinates"],
       "sections": {
         "what-linearity-requires": ["i-transform"],
@@ -1735,23 +1825,51 @@
       }
     },
     "linear-algebra-projections": {
-      "reviewedContentHash": "f43dc8c83b717f932b50fe878cc7db2aaa1554167743ac686817e2631858171b",
-      "intro": ["i-projection", "i-orthonormal", "i-least", "numerical-ls", "ml-models"],
+      "reviewedContentHash": "146add6680cd59bfe6e282567462a791c16abccaa68da530b285de4d379370a5",
+      "intro": ["i-projection", "i-orthonormal"],
       "sections": {
         "projecting-onto-a-line": ["i-projection"],
-        "orthonormal-directions": ["i-orthonormal"],
-        "least-squares-and-the-normal-equations": ["i-least", "numerical-ls"],
+        "why-perpendicular-means-closest": ["i-projection"],
+        "orthonormal-directions": ["i-orthonormal", "i-projection"],
+        "carrying-out-gram-schmidt": ["i-orthonormal"],
+        "qr-as-a-record-of-the-construction": ["i-orthonormal", "lapack-qr"]
+      },
+      "practice": {
+        "Projecting onto a line": ["i-projection"],
+        "Why perpendicular means closest": ["i-projection"],
+        "Orthonormal directions": ["i-orthonormal", "i-projection"],
+        "Carrying out Gram–Schmidt": ["i-orthonormal"],
+        "QR as a record of the construction": ["i-orthonormal", "lapack-qr"]
+      }
+    },
+    "linear-algebra-least-squares": {
+      "reviewedContentHash": "39b6c8b31beabb7f41cd6d095275936e0832b464da1bfe3a3d15c3f5d364a089",
+      "intro": ["i-least", "ml-models"],
+      "sections": {
+        "least-squares-and-the-normal-equations": ["i-least", "i-projection"],
+        "fitting-a-constant": ["i-least"],
+        "fitting-a-line-rather-than-a-constant": ["i-least"],
+        "a-fit-can-be-unique-even-when-its-parameters-are-not": [
+          "i-least",
+          "numerical-ls",
+          "fnc-normal-stability"
+        ],
         "what-a-best-fit-does-and-does-not-say": ["i-least", "ml-models"]
       },
       "practice": {
-        "Least squares and the normal equations": ["i-least", "numerical-ls"],
-        "Orthonormal directions": ["i-orthonormal"],
-        "Projecting onto a line": ["i-projection"],
+        "Least squares and the normal equations": ["i-least", "i-projection"],
+        "Fitting a constant": ["i-least"],
+        "Fitting a line rather than a constant": ["i-least"],
+        "A fit can be unique even when its parameters are not": [
+          "i-least",
+          "numerical-ls",
+          "fnc-normal-stability"
+        ],
         "What a best fit does and does not say": ["i-least", "ml-models"]
       }
     },
     "linear-algebra-eigenvalues": {
-      "reviewedContentHash": "a4d057d84588794a13cc7f016073dee3d40d1aa75cafb4224a840ae4173dbeb7",
+      "reviewedContentHash": "c045cf6cc88c410daf3ec4756a70b6d625ef1a970b82a11fc4a98aca72a57b87",
       "intro": ["i-eigen", "i-characteristic", "i-diagonal", "ml-models"],
       "sections": {
         "directions-that-are-only-scaled": ["i-eigen"],
@@ -1767,7 +1885,7 @@
       }
     },
     "linear-algebra-svd": {
-      "reviewedContentHash": "ebee2d497f56ca3f04c2a3918142914dbba9e9d67329a192878325615f3d4bdb",
+      "reviewedContentHash": "38ee93aff9c16b0dd5bf5555103c032e6d560514452de865b18a890c20db52a6",
       "intro": ["ml-svd", "numerical-rank", "svd-approx", "ml-models"],
       "sections": {
         "perpendicular-directions-and-scale-factors": ["ml-svd"],
@@ -1784,7 +1902,7 @@
     }
   },
   "syntax": {
-    "reviewedContentHash": "f0230f4804d98a53639639567cbb68219659bb7ff73be31ad83d800041da3da1",
+    "reviewedContentHash": "4ef8720aa40f84c494c4f25aa4a0dd5304615c044274dab69987687b19cbc642",
     "entries": {
       "tex-command-neg": ["tex-supported"],
       "tex-command-land": ["tex-supported"],

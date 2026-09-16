@@ -1,3 +1,4 @@
+import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
@@ -38,6 +39,7 @@ const schema = z
 
 type Lesson = {
   slug: string;
+  exerciseNamespace?: string;
   sections: { id: string; title: string }[];
   questions: { id: number; section: string }[];
 };
@@ -66,6 +68,7 @@ export function validateSources(
   syntax: Syntax,
   typing: Typing,
 ) {
+  validateExerciseKeys(lessons);
   const catalog = schema.parse(raw);
   const targets: Record<string, string[]> = {};
   const used = new Set<string>();
@@ -106,7 +109,7 @@ export function validateSources(
     const practice = [...new Set(lesson.questions.map((q) => q.section))];
     exactKeys(Object.keys(authored.practice), practice, lesson.slug + ' exercise groups');
     for (const question of lesson.questions)
-      assign(`exercise:${lesson.slug}-${question.id}`, authored.practice[question.section]);
+      assign(`exercise:${exerciseKey(lesson, question.id)}`, authored.practice[question.section]);
     for (const kind of ['references', 'figures'] as const) {
       for (const item of teaching[kind].filter((r) => r.lesson === lesson.slug)) {
         const section = lesson.sections.find(

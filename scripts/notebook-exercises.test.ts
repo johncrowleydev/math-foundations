@@ -34,7 +34,7 @@ test('all inline exercises attach to an existing teaching heading and preserve q
       ids.sort((a, b) => a - b),
     );
   }
-  assert.equal(inlineCount, 226);
+  assert.equal(inlineCount, 253);
 });
 
 test('exercises wait for their prerequisite concepts, including terminology used in answers', () => {

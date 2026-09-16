@@ -1,11 +1,14 @@
 // Original authored practice families. Run from the repository root.
-// Exercises are numbered in teaching order. All numerical data are explicit,
+// Exercise IDs retain their original numbering across lesson splits. Numerical data are explicit,
 // deterministic, and checked separately by verify-linear-algebra.py using SymPy.
 import fs from 'node:fs';
 import YAML from 'yaml';
 const read = (p) => fs.readFileSync(p, 'utf8');
-const data = YAML.parse(read('content/curriculum.yaml'))
-  .lessons.filter((l) => l.subject === 'Linear algebra' && l.worksheet)
+const core = JSON.parse(read('scripts/authoring/linear-algebra-core.json'));
+const curriculum = YAML.parse(read('content/curriculum.yaml'));
+// Families retain their original order and IDs even when their teaching is split.
+const data = core
+  .map((original) => curriculum.lessons.find((l) => l.slug === original.slug))
   .map((l) => ({
     ...l,
     file: l.worksheet
@@ -13,8 +16,11 @@ const data = YAML.parse(read('content/curriculum.yaml'))
       .at(-1)
       .replace(/\.yaml$/, ''),
   }));
-const core = JSON.parse(read('scripts/authoring/linear-algebra-core.json'));
 const copies = YAML.parse(read('content/exercise-copy.yaml'));
+const pacing = ['bases', 'projections'].map((name) =>
+  JSON.parse(read(`scripts/authoring/linear-algebra-${name}-pacing.json`)),
+);
+const placements = JSON.parse(read('content/linear-algebra-placements.json'));
 const fixtures = [],
   coverage = [];
 let lesson, sections, questions, next, family, section;
@@ -719,8 +725,54 @@ for (let li = 0; li < data.length; li++) {
       .flatMap((s) => s.questions)
       .map((q) => [q.id, { instructions: '', prompt: q.prompt, answer: q.answer }]),
   );
-  fs.writeFileSync(path, YAML.stringify(original, { lineWidth: 0 }));
+  const plan = pacing.find((p) => p.lessons[0].slug === lesson.slug);
+  if (!plan) {
+    fs.writeFileSync(path, YAML.stringify(original, { lineWidth: 0 }));
+    continue;
+  }
+  const byId = new Map(original.sections.flatMap((s) => s.questions).map((q) => [q.id, q]));
+  const assigned = plan.lessons.flatMap((l) => l.sections.flatMap((s) => s.questionIds));
+  if (
+    assigned.length !== byId.size ||
+    new Set(assigned).size !== byId.size ||
+    assigned.some((id) => !byId.has(id))
+  )
+    throw Error(`Pacing plan must preserve every exercise exactly once: ${lesson.slug}`);
+  const originalCopies = copies[lesson.slug];
+  const originalCoverage = coverage.filter((o) => o.lesson === lesson.slug);
+  const originalFixtures = fixtures.filter((f) => f.lesson === lesson.slug);
+  for (const target of plan.lessons) {
+    const sections = target.sections.map((s) => ({
+      title: s.title,
+      questions: s.questionIds.map((id) => byId.get(id)),
+    }));
+    copies[target.slug] = Object.fromEntries(
+      sections.flatMap((s) => s.questions).map((q) => [q.id, originalCopies[q.id]]),
+    );
+    placements[target.slug] = Object.fromEntries(
+      target.sections.map((s) => {
+        if (s.inlineIds.some((id) => !s.questionIds.includes(id)))
+          throw Error(`Inline question outside its teaching section: ${target.slug}/${s.title}`);
+        return [s.title, s.inlineIds];
+      }),
+    );
+    for (const section of sections)
+      for (const question of section.questions) {
+        const objective = originalCoverage.find((o) => o.id === question.id);
+        Object.assign(objective, { lesson: target.slug, section: section.title });
+        const fixture = originalFixtures.find((f) => f.id === question.id);
+        if (fixture) fixture.lesson = target.slug;
+      }
+    fs.writeFileSync(
+      'content/' + target.worksheet,
+      YAML.stringify({ title: target.title, sections }, { lineWidth: 0 }),
+    );
+  }
 }
+fs.writeFileSync(
+  'content/linear-algebra-placements.json',
+  JSON.stringify(placements, null, 2) + '\n',
+);
 fs.writeFileSync('content/exercise-copy.yaml', YAML.stringify(copies, { lineWidth: 0 }));
 fs.writeFileSync(
   'content/linear-algebra-verification.json',

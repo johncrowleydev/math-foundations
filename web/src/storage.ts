@@ -1,3 +1,4 @@
+import { exerciseKey, exerciseNamespace, type ExerciseIdentity } from './exerciseIdentity';
 import { openDB } from 'idb';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
@@ -366,15 +367,17 @@ export async function importData(file: Blob, name: string) {
   return { imported, conflicts };
 }
 
-export async function lessonProgress(slug: string, ids: (number | string)[]) {
+export async function lessonProgress(lesson: ExerciseIdentity, ids: (number | string)[]) {
   const d = await db;
   const tx = d.transaction(['attempts', 'drafts', 'records']);
   const [attempts, drafts, saved] = await Promise.all([
     tx.objectStore('attempts').getAll() as Promise<Attempt[]>,
-    Promise.all(ids.map((id) => tx.objectStore('drafts').get(slug + '-' + id))) as Promise<
+    Promise.all(ids.map((id) => tx.objectStore('drafts').get(exerciseKey(lesson, id)))) as Promise<
       (Draft | undefined)[]
     >,
-    tx.objectStore('records').get('practice/position:' + slug) as Promise<RecordData | undefined>,
+    tx.objectStore('records').get('practice/position:' + lesson.slug) as Promise<
+      RecordData | undefined
+    >,
   ]);
   await tx.done;
   return { attempts, drafts, saved };
@@ -395,4 +398,14 @@ export async function attemptsMatch(manifest: { key: string; revision: number }[
   );
   await tx.done;
   return checks.every(Boolean);
+}
+
+// Local reading bookmarks predate split lessons; keep their stored owner intact.
+export async function readingBookmark(lesson: ExerciseIdentity) {
+  const own = await get<{ anchor: string }>('settings', 'bookmark:' + lesson.slug);
+  if (own) return { slug: lesson.slug, anchor: own.anchor };
+  const namespace = exerciseNamespace(lesson);
+  if (namespace === lesson.slug) return undefined;
+  const legacy = await get<{ anchor: string }>('settings', 'bookmark:' + namespace);
+  return legacy ? { slug: namespace, anchor: legacy.anchor } : undefined;
 }

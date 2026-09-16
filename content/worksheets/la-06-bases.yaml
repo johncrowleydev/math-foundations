@@ -1,4 +1,4 @@
-title: Bases, Dimension, Rank, and Inverses
+title: Bases, Coordinates, and Dimension
 sections:
   - title: A basis gives unique coordinates
     questions:
@@ -7,11 +7,6 @@ sections:
         prompt: For the ordered basis p=(1,1), q=(1,-1), find the coordinates of (5,1). Distinguish them from standard coordinates.
         answerLines: 5
         answer: Solving a+b=5 and a-b=1 gives a=3, b=2. The coordinates in the ordered basis (p,q) are (3,2); standard coordinates remain (5,1).
-      - id: 2
-        type: freeform
-        prompt: Give a basis and dimension for the subspace consisting of all multiples of (2,-1,3). Explain why one vector suffices.
-        answerLines: 5
-        answer: The one-vector list containing (2,-1,3) is a basis. It spans by the definition of the subspace and is independent because that vector is nonzero. The dimension is one.
       - id: 3
         type: freeform
         prompt: Find the coordinates of (3, -1) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.
@@ -42,6 +37,13 @@ sections:
         prompt: Find the coordinates of (-3, -1) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.
         answerLines: 5
         answer: The coefficients c,d satisfy c+d=-3, c-d=-1, so c=-2,d=-1. The basis-coordinate list is (-2, -1); its reconstruction -2p+(-1)q is (-3, -1).
+      - id: 62
+        type: freeform
+        prompt: Why must coordinates in an ordered basis be unique?
+        answerLines: 5
+        answer: Subtracting two different coefficient representations would give a nontrivial zero combination of the basis vectors, contradicting independence.
+  - title: Extracting a basis rather than guessing one
+    questions:
       - id: 9
         type: freeform
         prompt: Give a basis and dimension for the subspace consisting of (x,y,z) with z=1x+2y. Prove both spanning and independence.
@@ -72,294 +74,25 @@ sections:
         prompt: Give a basis and dimension for the subspace consisting of (x,y,z) with z=-2x- 1y. Prove both spanning and independence.
         answerLines: 5
         answer: Every vector equals x(1, 0, -2)+y(0, 1, -1). These two vectors span, and their first two coordinates force both coefficients to zero in a zero combination. They form a basis, and the dimension is two.
-  - title: Rank and nullity
-    questions:
-      - id: 15
-        type: freeform
-        prompt: A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?
-        answerLines: 5
-        answer: Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change.
-      - id: 16
-        type: freeform
-        prompt: A has columns (1,0), (0,1), and (1,1). Give a column-space basis using original columns and a null-space basis.
-        answerLines: 5
-        answer: The first two columns form a column-space basis. Solving x1+x3=0 and x2+x3=0 gives all multiples of (-1,-1,1), so that one nonzero vector is a null-space basis.
-      - id: 17
-        type: freeform
-        prompt: An 3-by-5 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-        answerLines: 5
-        answer: Nullity is 5-2=3. Both row and column spaces have dimension 2. It does not have full row rank. It does not have full column rank.
-      - id: 18
-        type: freeform
-        prompt: An 4-by-3 matrix has rank 3. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-        answerLines: 5
-        answer: Nullity is 3-3=0. Both row and column spaces have dimension 3. It does not have full row rank. It has full column rank.
-      - id: 19
-        type: freeform
-        prompt: An 2-by-4 matrix has rank 1. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-        answerLines: 5
-        answer: Nullity is 4-1=3. Both row and column spaces have dimension 1. It does not have full row rank. It does not have full column rank.
-      - id: 20
-        type: freeform
-        prompt: An 3-by-3 matrix has rank 0. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-        answerLines: 5
-        answer: Nullity is 3-0=3. Both row and column spaces have dimension 0. It does not have full row rank. It does not have full column rank.
-      - id: 21
-        type: freeform
-        prompt: An 4-by-4 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-        answerLines: 5
-        answer: Nullity is 4-2=2. Both row and column spaces have dimension 2. It does not have full row rank. It does not have full column rank.
-      - id: 22
-        type: freeform
-        prompt: An 2-by-3 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-        answerLines: 5
-        answer: Nullity is 3-2=1. Both row and column spaces have dimension 2. It has full row rank. It does not have full column rank.
-      - id: 23
-        type: freeform
-        prompt: For A with rows (1, 0, 1), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.
-        answerLines: 5
-        answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(1)z and y=-(2)z, so (-1, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-      - id: 24
-        type: freeform
-        prompt: For A with rows (1, 0, 2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.
-        answerLines: 5
-        answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(2)z and y=-(-1)z, so (-2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-      - id: 25
-        type: freeform
-        prompt: For A with rows (1, 0, -1), (0, 1, 3), give a basis of its column space and a basis of its null space. Verify both dimensions.
-        answerLines: 5
-        answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-1)z and y=-(3)z, so (1, -3, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-      - id: 26
-        type: freeform
-        prompt: For A with rows (1, 0, 0), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.
-        answerLines: 5
-        answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(0)z and y=-(2)z, so (0, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-      - id: 27
-        type: freeform
-        prompt: For A with rows (1, 0, 3), (0, 1, 0), give a basis of its column space and a basis of its null space. Verify both dimensions.
-        answerLines: 5
-        answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(3)z and y=-(0)z, so (-3, 0, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-      - id: 28
-        type: freeform
-        prompt: For A with rows (1, 0, -2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.
-        answerLines: 5
-        answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-2)z and y=-(-1)z, so (2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-      - id: 29
-        type: freeform
-        prompt: A has rows (1, 2), (1, 2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-        answerLines: 5
-        answer: Subtract 1 times row one from row two. The first column is the pivot column, so the original vector (1,1) is a basis. Reduced column (1,0) points along a different line because 1 is nonzero; it describes the reduced matrix's column space, not A's.
-      - id: 30
-        type: freeform
-        prompt: A has rows (1, 2), (2, 4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-        answerLines: 5
-        answer: Subtract 2 times row one from row two. The first column is the pivot column, so the original vector (1,2) is a basis. Reduced column (1,0) points along a different line because 2 is nonzero; it describes the reduced matrix's column space, not A's.
-      - id: 31
-        type: freeform
-        prompt: A has rows (1, 2), (-1, -2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-        answerLines: 5
-        answer: Subtract -1 times row one from row two. The first column is the pivot column, so the original vector (1,-1) is a basis. Reduced column (1,0) points along a different line because -1 is nonzero; it describes the reduced matrix's column space, not A's.
-      - id: 32
-        type: freeform
-        prompt: A has rows (1, 2), (3, 6). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-        answerLines: 5
-        answer: Subtract 3 times row one from row two. The first column is the pivot column, so the original vector (1,3) is a basis. Reduced column (1,0) points along a different line because 3 is nonzero; it describes the reduced matrix's column space, not A's.
-      - id: 33
-        type: freeform
-        prompt: A has rows (1, 2), (-2, -4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-        answerLines: 5
-        answer: Subtract -2 times row one from row two. The first column is the pivot column, so the original vector (1,-2) is a basis. Reduced column (1,0) points along a different line because -2 is nonzero; it describes the reduced matrix's column space, not A's.
-      - id: 34
-        type: freeform
-        prompt: A has rows (1, 2), (4, 8). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-        answerLines: 5
-        answer: Subtract 4 times row one from row two. The first column is the pivot column, so the original vector (1,4) is a basis. Reduced column (1,0) points along a different line because 4 is nonzero; it describes the reduced matrix's column space, not A's.
-  - title: Invertible matrices
-    questions:
-      - id: 35
-        type: freeform
-        prompt: Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.
-        answerLines: 5
-        answer: The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity.
-      - id: 36
-        type: freeform
-        prompt: Is the matrix with rows (1,2),(2,4) invertible? Justify using both its determinant and its columns.
-        answerLines: 5
-        answer: No. Its determinant is 4-4=0, and its second column is twice its first. Its rank is only one, so it loses an input direction and cannot be undone.
-      - id: 37
-        type: freeform
-        prompt: Find the inverse of A with rows (1, 2), (0, 1). Compute its determinant and verify the proposed inverse by multiplication.
-        answerLines: 5
-        answer: The determinant is 1 times 1 minus (2) times (0) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -2), (0, 1). Both products give the identity.
-      - id: 38
-        type: freeform
-        prompt: Find the inverse of A with rows (2, 1), (1, 1). Compute its determinant and verify the proposed inverse by multiplication.
-        answerLines: 5
-        answer: The determinant is 2 times 1 minus (1) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -1), (-1, 2). Both products give the identity.
-      - id: 39
-        type: freeform
-        prompt: Find the inverse of A with rows (1, -1), (2, 1). Compute its determinant and verify the proposed inverse by multiplication.
-        answerLines: 5
-        answer: The determinant is 1 times 1 minus (-1) times (2) = 3, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 3, giving rows (1/3, 1/3), (-2/3, 1/3). Both products give the identity.
-      - id: 40
-        type: freeform
-        prompt: Find the inverse of A with rows (0, 1), (1, 0). Compute its determinant and verify the proposed inverse by multiplication.
-        answerLines: 5
-        answer: The determinant is 0 times 0 minus (1) times (1) = -1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by -1, giving rows (0, 1), (1, 0). Both products give the identity.
-      - id: 41
-        type: freeform
-        prompt: Find the inverse of A with rows (3, 0), (0, 2). Compute its determinant and verify the proposed inverse by multiplication.
-        answerLines: 5
-        answer: The determinant is 3 times 2 minus (0) times (0) = 6, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 6, giving rows (1/3, 0), (0, 1/2). Both products give the identity.
-      - id: 42
-        type: freeform
-        prompt: Find the inverse of A with rows (2, 3), (1, 2). Compute its determinant and verify the proposed inverse by multiplication.
-        answerLines: 5
-        answer: The determinant is 2 times 2 minus (3) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (2, -3), (-1, 2). Both products give the identity.
-      - id: 43
-        type: freeform
-        prompt: A has plane columns (2, -1) and (3, 4). Find its determinant, the area of their parallelogram, and whether A is invertible.
-        answerLines: 5
-        answer: The determinant is 11; the area is its absolute value, 11. Nonzero area means two independent directions and an inverse.
-      - id: 44
-        type: freeform
-        prompt: A has plane columns (0, 3) and (-2, 1). Find its determinant, the area of their parallelogram, and whether A is invertible.
-        answerLines: 5
-        answer: The determinant is 6; the area is its absolute value, 6. Nonzero area means two independent directions and an inverse.
-      - id: 45
-        type: freeform
-        prompt: A has plane columns (-3, 2) and (1, -4). Find its determinant, the area of their parallelogram, and whether A is invertible.
-        answerLines: 5
-        answer: The determinant is 10; the area is its absolute value, 10. Nonzero area means two independent directions and an inverse.
-  - title: Solving without unnecessary inverses
-    questions:
-      - id: 46
-        type: freeform
-        prompt: A three by two matrix has two independent columns. Can every three-component target have a solution? Can a target have two different solutions? Explain.
-        answerLines: 5
-        answer: Its column space has dimension two, so it cannot reach every three-component target. Its null space is zero, so any reachable target has exactly one solution. Existence and uniqueness are different questions.
-      - id: 47
-        type: freeform
-        prompt: Why should a column-space basis be selected from the original matrix's pivot-indexed columns, rather than directly from its row-reduced columns?
-        answerLines: 5
-        answer: Row operations preserve which columns depend on which others, so pivot indices identify an independent spanning selection. They can change the actual output vectors and hence the column space, so the corresponding original columns are needed.
-      - id: 48
-        type: freeform
-        prompt: For an 3-by-2 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-        answerLines: 5
-        answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. A reachable output has a unique input because nullity is zero.
-      - id: 49
-        type: freeform
-        prompt: For an 2-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-        answerLines: 5
-        answer: Every output is reachable because rank equals the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
-      - id: 50
-        type: freeform
-        prompt: For an 3-by-3 matrix of rank 3, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-        answerLines: 5
-        answer: Every output is reachable because rank equals the number of rows. A reachable output has a unique input because nullity is zero.
-      - id: 51
-        type: freeform
-        prompt: For an 3-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-        answerLines: 5
-        answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
-      - id: 52
-        type: freeform
-        prompt: For an 2-by-4 matrix of rank 1, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-        answerLines: 5
-        answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 3>0.
-      - id: 53
-        type: freeform
-        prompt: For an 4-by-2 matrix of rank 1, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-        answerLines: 5
-        answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
-      - id: 54
-        type: freeform
-        prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(4, 3) using that inverse and check the result in A.
-        answerLines: 5
-        answer: Multiplying the inverse by the right-hand side gives (1, 2). Applying A returns (4, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-      - id: 55
-        type: freeform
-        prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(3, 1) using that inverse and check the result in A.
-        answerLines: 5
-        answer: Multiplying the inverse by the right-hand side gives (2, -1). Applying A returns (3, 1). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-      - id: 56
-        type: freeform
-        prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(1, 2) using that inverse and check the result in A.
-        answerLines: 5
-        answer: Multiplying the inverse by the right-hand side gives (-1, 3). Applying A returns (1, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-      - id: 57
-        type: freeform
-        prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(2, 2) using that inverse and check the result in A.
-        answerLines: 5
-        answer: Multiplying the inverse by the right-hand side gives (0, 2). Applying A returns (2, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-      - id: 58
-        type: freeform
-        prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(6, 3) using that inverse and check the result in A.
-        answerLines: 5
-        answer: Multiplying the inverse by the right-hand side gives (3, 0). Applying A returns (6, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-      - id: 59
-        type: freeform
-        prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(-5, -3) using that inverse and check the result in A.
-        answerLines: 5
-        answer: Multiplying the inverse by the right-hand side gives (-2, -1). Applying A returns (-5, -3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-      - id: 60
-        type: freeform
-        prompt: Give a basis for the zero-only subspace. Why is the list containing zero not a basis?
-        answerLines: 5
-        answer: The empty list is a basis and the dimension is zero. A list containing zero is dependent, so it is not a basis.
       - id: 61
         type: freeform
         prompt: If a list spans a subspace but is dependent, explain how a basis can be extracted.
         answerLines: 5
         answer: Find a vector expressible through the others and remove it without changing the span. Repeat until the remaining spanning list is independent.
-      - id: 62
+  - title: Dimension and the ambient space
+    questions:
+      - id: 2
         type: freeform
-        prompt: Why must coordinates in an ordered basis be unique?
+        prompt: Give a basis and dimension for the subspace consisting of all multiples of (2,-1,3). Explain why one vector suffices.
         answerLines: 5
-        answer: Subtracting two different coefficient representations would give a nontrivial zero combination of the basis vectors, contradicting independence.
-      - id: 63
+        answer: The one-vector list containing (2,-1,3) is a basis. It spans by the definition of the subspace and is independent because that vector is nonzero. The dimension is one.
+      - id: 60
         type: freeform
-        prompt: Can a two-by-five matrix have rank three? Explain.
+        prompt: Give a basis for the zero-only subspace. Why is the list containing zero not a basis?
         answerLines: 5
-        answer: No. Rank is at most the number of rows, two, as well as at most the number of columns.
-      - id: 64
-        type: freeform
-        prompt: Prove the inverse of AB is B inverse times A inverse when both square matrices are invertible.
-        answerLines: 5
-        answer: Multiplying AB by B inverse A inverse cancels the middle pair and then the outer pair to give identity. The reverse product similarly gives identity.
-      - id: 65
-        type: freeform
-        prompt: Why is entrywise reciprocal not the general matrix inverse? Give a simple obstruction.
-        answerLines: 5
-        answer: An invertible identity matrix contains zero entries, whose reciprocals are undefined. More generally matrix inverse is defined through matrix products, not independent entry products.
-      - id: 66
-        type: freeform
-        prompt: An n-by-n matrix has a nonzero null vector. Prove it has no inverse.
-        answerLines: 5
-        answer: If Az=0 and A inverse existed, multiplying would give z=0, contradicting the nonzero choice.
-      - id: 67
-        type: freeform
-        prompt: Explain why an inverse is unique if it exists.
-        answerLines: 5
-        answer: If B and C both invert A, then B=B(AC)=(BA)C=C using associativity and both identity equations.
+        answer: The empty list is a basis and the dimension is zero. A list containing zero is dependent, so it is not a basis.
       - id: 68
         type: freeform
         prompt: Can vectors be a basis of a proper subspace but fail to be a basis of the ambient space? Give an example.
         answerLines: 5
         answer: The single vector (1,0,0) is a basis of the first coordinate axis but does not span the full three-dimensional space.
-      - id: 69
-        type: freeform
-        prompt: Why do nonzero echelon rows form a row-space basis?
-        answerLines: 5
-        answer: Reversible row operations preserve the row span. Distinct leading positions make the nonzero echelon rows independent, so they both span and are independent.
-      - id: 70
-        type: freeform
-        prompt: If A has full column rank, why does Ax=b have at most one solution even when it is inconsistent for some b?
-        answerLines: 5
-        answer: Full column rank gives zero-only null space. The difference of any two solutions would be a null vector and must vanish. This uniqueness argument does not establish existence.
-      - id: 71
-        type: freeform
-        prompt: Does determinant magnitude two imply every vector has its length doubled? Give a counterexample.
-        answerLines: 5
-        answer: No. The diagonal matrix with entries two and one has determinant two but leaves the second standard vector’s length unchanged. The determinant magnitude scales area in the plane.

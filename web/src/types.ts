@@ -1,3 +1,4 @@
+import { validateExerciseKeys } from './exerciseIdentity';
 import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from './evidenceTypes';
 import type { SourceCatalog } from './Sources';
 export type Block = { id: string; kind: string; markdown?: string; figure?: string };
@@ -38,6 +39,7 @@ export type Lesson = {
   subject?: string;
   number?: number;
   slug: string;
+  exerciseNamespace?: string;
   title: string;
   eyebrow: string;
   introBlocks: Block[];
@@ -218,6 +220,7 @@ export async function loadCurriculum(): Promise<Curriculum> {
       return r.json();
     }),
   );
+  validateExerciseKeys(n.lessons);
   return {
     sources,
     evidence,

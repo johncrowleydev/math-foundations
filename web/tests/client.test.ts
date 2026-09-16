@@ -1,3 +1,4 @@
+import { validateExerciseKeys } from '../src/exerciseIdentity';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -84,19 +85,14 @@ test('drafts never become outgoing attempts until submitted; revisions are monot
 test('all content, figures and inline targets are bundled from the shared curriculum', async () => {
   const n = JSON.parse(await readFile('public/notebook.json', 'utf8')),
     t = JSON.parse(await readFile('public/teaching.json', 'utf8'));
-  assert.equal(n.lessons.length, 27);
-  assert.equal(
-    n.lessons.reduce((s: number, l: any) => s + l.questions.length, 0),
-    2060,
+  const published = JSON.parse(await readFile('../output/content/notebook.json', 'utf8'));
+  assert.deepEqual(
+    n,
+    published,
+    'The offline bundle must include the complete published curriculum',
   );
-  assert.equal(
-    n.lessons.reduce(
-      (s: number, l: any) =>
-        s + l.sections.reduce((n: number, s: any) => n + s.quickChecks.length, 0),
-      0,
-    ),
-    50,
-  );
+  assert.deepEqual(t, JSON.parse(await readFile('../output/content/teaching.json', 'utf8')));
+  validateExerciseKeys(n.lessons);
   const kinds = new Set([
     'coordinates',
     'graph',

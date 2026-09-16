@@ -1099,11 +1099,11 @@
         "tex-command-operatorname"
       ],
       "status": "verified",
-      "hash": "f941b31271fbc4109b44edce24e0cb0b793d0cc63a088d45cef489ba04b93e9c"
+      "hash": "94b742ae56c51d57c188db8708697df2291cbeeaa444cd821645066b1f24474b"
     },
     {
       "id": "typing-linear-algebra-bases-rank-and-nullity",
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "section": "rank-and-nullity",
       "entries": [
         "tex-command-begin",
@@ -1120,11 +1120,11 @@
         "tex-la-norm"
       ],
       "status": "verified",
-      "hash": "096a3284a1a6a7c794d855a2e5044ebb2f47887149f019f75c8b05ca65c10eb8"
+      "hash": "1be2ff65798b9d03930619d5f5566333858c2dad6f373f71c10b4b05f7d5fcb0"
     },
     {
       "id": "typing-linear-algebra-bases-invertible-matrices",
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "section": "invertible-matrices",
       "entries": [
         "tex-groups",
@@ -1142,11 +1142,11 @@
         "tex-la-det"
       ],
       "status": "verified",
-      "hash": "06f22f6fbbdae0baf4cd743cf4f58c254c79a2bae88a66212d84defa6baf6440"
+      "hash": "5404bac40cbc627ba102398cdf68d3862eb9bb47e62d22682618a0353b710d7e"
     },
     {
       "id": "typing-linear-algebra-bases-solving-without-unnecessary-inverses",
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "section": "solving-without-unnecessary-inverses",
       "entries": [
         "tex-multirow",
@@ -1164,7 +1164,7 @@
         "tex-la-det"
       ],
       "status": "verified",
-      "hash": "4e74d13a164e1a8728a5fafbc57504c9be3dacd546bf40c456af59d465deb704"
+      "hash": "7b4eeb7e5ca85b2254ea8a92410bb68924eaefcd6a9e72bf1827b373ffeba755"
     },
     {
       "id": "typing-linear-algebra-transformations-what-linearity-requires",
@@ -1274,7 +1274,7 @@
         "tex-la-det"
       ],
       "status": "verified",
-      "hash": "f8579137fc35bac08031456179c5a3ca189f2b1c0c216e979421ec36ba49876e"
+      "hash": "b135a0270a1d54264832837b13e5d0be7a2422ec1cc9838a33875f71a72fdbd6"
     },
     {
       "id": "typing-linear-algebra-projections-orthonormal-directions",
@@ -1296,11 +1296,11 @@
         "tex-la-det"
       ],
       "status": "verified",
-      "hash": "b482748a40af1101b6fe6caac7fe177182904bd3b06f0aeee43c011c6bf524af"
+      "hash": "a601cf8dfce5139bc579c64648f380675083dc80663c4446e14c15fb019c33c0"
     },
     {
       "id": "typing-linear-algebra-projections-least-squares-and-the-normal-equations",
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "section": "least-squares-and-the-normal-equations",
       "entries": [
         "tex-command-begin",
@@ -1318,11 +1318,11 @@
         "tex-la-det"
       ],
       "status": "verified",
-      "hash": "9f6916d827211584d0b4e525fd11fda4502714f01aad9866988a66a92feb863e"
+      "hash": "84092b64ef0275b88f60d873020434c38a43a82c09e7602423375efceae7d410"
     },
     {
       "id": "typing-linear-algebra-projections-what-a-best-fit-does-and-does-not-say",
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "section": "what-a-best-fit-does-and-does-not-say",
       "entries": [
         "tex-multirow",
@@ -1340,7 +1340,7 @@
         "tex-la-det"
       ],
       "status": "verified",
-      "hash": "98236f152c41aecd6d6803c4e8dc9454a1ae3826ba9e63b191dec67d435c24f0"
+      "hash": "f52b1389804a2db06f0e566fc343c1deaa58f11b9cc41d4003c75951b9425220"
     },
     {
       "id": "typing-linear-algebra-eigenvalues-directions-that-are-only-scaled",
@@ -1535,6 +1535,14 @@
       ],
       "status": "verified",
       "hash": "fbc551f3b61e9dead1612fb2f0550a7731077e82bb8db5c8d9ed92dd8a5855a7"
+    },
+    {
+      "id": "typing-linear-algebra-rank-inverses-determinant",
+      "lesson": "linear-algebra-rank-inverses",
+      "section": "what-a-determinant-measures-in-the-plane",
+      "entries": ["tex-la-det"],
+      "status": "verified",
+      "hash": "fa4beb66b3258c98c7e4348e73cbdffb52d87df828d6c5e4e6901a82ef2bfcd6"
     }
   ],
   "exercises": [
@@ -27915,7 +27923,7 @@
     {
       "lesson": "linear-algebra-bases",
       "exercise": 2,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -27931,13 +27939,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "c29a50b0a66f390707039a062b9660c380cff7fec3f347b00d6a33c493ee0ba4",
+      "hash": "61e9d8f9e22ad85fb3afe2ef4019133420b9c706ca55168f175d9ad901799359",
       "inspection": "2026-09-13 author reinspection: A basis gives unique coordinates — original practice. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
       "lesson": "linear-algebra-bases",
       "exercise": 3,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28085,7 +28093,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "5aafb6a845bd340d938a71585e586d00b8b88ef24142d4ec60a18c27e26357c2",
+      "hash": "2bb7aab832b71e23891cf31b9ff6beed1b5afd7d21bebcc3f4d40061db290a9b",
       "inspection": "2026-09-13 author reinspection: bases for planes. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -28107,7 +28115,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "7497754dc0e82ee4b4918fabc8f70c041cb967f065e73dc04aa2f64128ed39c4",
+      "hash": "4c2fb9441df060def4fb3b91e4383827d580503dff9eac5d9976062941a338d8",
       "inspection": "2026-09-13 author reinspection: bases for planes. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -28129,7 +28137,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "abe9347748313b122dd1627d3781eecd3d285d7a42c037aa1a54b0c866909f19",
+      "hash": "b82eb84f1dce1bdf6bef1b0d4f8decb6dbabc78e569f89c342d1a34d842357bb",
       "inspection": "2026-09-13 author reinspection: bases for planes. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -28151,7 +28159,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "b87b85fb575217a6ffb6357c7e02f28b9803d6d89e93b42dc87062dd271a21bd",
+      "hash": "fff2358b57195e1c4344f233ac16dd859f62903e1094002e1d35b97ea5dc80d9",
       "inspection": "2026-09-13 author reinspection: bases for planes. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -28173,7 +28181,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "0df95ea5b4b90f9417e431f6774de5e694ea7d10374d210adc7092996f5606d4",
+      "hash": "92b7a8bce3454a1fa64b7b46fa7b9bcdb236d07b4ea51e9f999fa43628affab3",
       "inspection": "2026-09-13 author reinspection: bases for planes. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -28195,11 +28203,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "e2553818e3e671d08ccfac9a0a2f22711dad2eec9180bdcda1806db43d992b07",
+      "hash": "dd00ef17d05dd4f96fa3986629eb31ce2398edcf56b4576c1c69486828a3f28b",
       "inspection": "2026-09-13 author reinspection: bases for planes. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 15,
       "kind": "inline",
       "requires": [
@@ -28221,7 +28229,7 @@
       "inspection": "2026-09-13 author reinspection: Rank and nullity — original practice. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 16,
       "kind": "practice",
       "requires": [
@@ -28239,13 +28247,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "dfd5b0bee28f14200118064734b2f9a276c2625cbe6ddee792b4f7032cd18dcb",
+      "hash": "72b9f9dc70509c63fa9bd9e80e06aa9c5d19f70ba43897e4e91e79a0e5bf4e1e",
       "inspection": "2026-09-13 author reinspection: Rank and nullity — original practice. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 17,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28261,11 +28269,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "bc3a787075ae9a902a1ede4830ef6a057b3fb2f07c9be7a0094245d578c5c544",
+      "hash": "dedea7991bf605d39bae8b8a2c54fbabb2e14aafebac07ebe3367e50ad2cacd7",
       "inspection": "2026-09-13 author reinspection: rank-nullity and ambient bounds. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 18,
       "kind": "inline",
       "requires": [
@@ -28283,11 +28291,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "882e17b4f2764f2a89d2756f961baaa37f8fe281abfb75c1a27ee9dedcd2ceda",
+      "hash": "7f4a825723abc51db2edeb04c4826e5dff455dcc7fa74e1e77b562408d737699",
       "inspection": "2026-09-13 author reinspection: rank-nullity and ambient bounds. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 19,
       "kind": "practice",
       "requires": [
@@ -28305,11 +28313,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "066296de8fded84ed16fbd181f44a6bad1cc5010c40f26d221285289f35cef19",
+      "hash": "0a25c132efa2ba2039ec4df1f56ea0c60de69d20cd785437e39db65de531e6e8",
       "inspection": "2026-09-13 author reinspection: rank-nullity and ambient bounds. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 20,
       "kind": "practice",
       "requires": [
@@ -28327,11 +28335,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "2afdea82bed8ffbaf74c8d3b4ac116b00774f487874e2cbfdb3f3c2157b2c37f",
+      "hash": "4186227eae906d1bdb087fd6a3da02442260bfea78675de7368914dfc6b659d2",
       "inspection": "2026-09-13 author reinspection: rank-nullity and ambient bounds. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 21,
       "kind": "practice",
       "requires": [
@@ -28349,11 +28357,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "a2845d436f7fe108b3cc8918fb79060c3e8a0b2f812cbcf2fd16a58366343baa",
+      "hash": "1ba8f93fcf45f13b1c83aa0559749a5baf6eb503ce3a6f2c634d7c0f207133fd",
       "inspection": "2026-09-13 author reinspection: rank-nullity and ambient bounds. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 22,
       "kind": "practice",
       "requires": [
@@ -28371,11 +28379,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "39b1cf4651ddb7c27149fb8b3537521d5d106d234fb35324a56451a4d2919646",
+      "hash": "522c4cc93be005b683609ec119594b0987ae2d86f4d4449c6ce5877a2c419614",
       "inspection": "2026-09-13 author reinspection: rank-nullity and ambient bounds. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 23,
       "kind": "practice",
       "requires": [
@@ -28393,13 +28401,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "f47f9de2dd94126ca8557908cc65da9e6f950515bd48a462b9feee46b152b697",
+      "hash": "d68b40e2fdb2e416bdc5a97183a99127b43b4d1f8277e28bba6ccd4957b7fd97",
       "inspection": "2026-09-13 author reinspection: explicit column and null-space bases. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 24,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28415,11 +28423,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "d9ac1baba2830659f7d96946088030ce7dea4f85cd3452cdfe2b16cce9097129",
+      "hash": "4442b12c1c0a3d256c0ce44d655bf5f30c0c40499bcc766d3b38cbc524b796c9",
       "inspection": "2026-09-13 author reinspection: explicit column and null-space bases. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 25,
       "kind": "practice",
       "requires": [
@@ -28437,11 +28445,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "6d2bba91b4db7c2dde5303822f0138c49607c9fc4798a2b4e097c024350ae57f",
+      "hash": "9fdb8ead0e6aca6c73f6cd0fad3cbb06b4b46c9b9dae0db8776e42eac93cf84f",
       "inspection": "2026-09-13 author reinspection: explicit column and null-space bases. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 26,
       "kind": "practice",
       "requires": [
@@ -28459,11 +28467,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "e427ca207d5ae90d788cf15b9809e02b2ba35d12fed848c2e2191e9a97691bf4",
+      "hash": "4c47977bf8651acca370142463cccf5839c758b95b996e901ba2a9e30d1f3555",
       "inspection": "2026-09-13 author reinspection: explicit column and null-space bases. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 27,
       "kind": "practice",
       "requires": [
@@ -28481,11 +28489,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "98e5d6efd76ad7ca8cc0dbb71ef8157faa250eff510d2e87ab0ca3fca9fefb3b",
+      "hash": "c4e3de5e703b80be03c1617560e9ca47bc1b564a470ee182fba5cf9170d0a5f9",
       "inspection": "2026-09-13 author reinspection: explicit column and null-space bases. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 28,
       "kind": "practice",
       "requires": [
@@ -28503,11 +28511,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "7c86ca6e874eb9d9bae58712a7873c53e782eddd72b9dc39c3390400aee352ac",
+      "hash": "5fbf82ac130e5a9b7e13968f849feb02ab52851831ea1c4d4196ea1ea6ede24c",
       "inspection": "2026-09-13 author reinspection: explicit column and null-space bases. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 29,
       "kind": "practice",
       "requires": [
@@ -28525,13 +28533,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "eaf008bc62f40979a82a3a50993c6903badeb90caa3b4a48b688b0dc247e210c",
+      "hash": "59521d7761365a44e4ca4a78a2f3e18d0b5a7f30c4578dadc2d8bc6ff309c7b3",
       "inspection": "2026-09-13 author reinspection: row reduction does not preserve column vectors. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 30,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28547,11 +28555,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "0c12035a285b91f91cf61d26e5aed7f42ca675e46bd1614f384378459ea6f360",
+      "hash": "855d48e051fb7f6565442236bf1f86538ec22b98e5df7b748a8d71e65081cd67",
       "inspection": "2026-09-13 author reinspection: row reduction does not preserve column vectors. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 31,
       "kind": "practice",
       "requires": [
@@ -28569,11 +28577,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "35494bc66d6639e98fa8395961b62d7980db58098918d9a668773051bafcea56",
+      "hash": "def814ed22235d9430554626ebf10da406e7ccc9f32d2f8e57a05f6308952135",
       "inspection": "2026-09-13 author reinspection: row reduction does not preserve column vectors. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 32,
       "kind": "practice",
       "requires": [
@@ -28591,11 +28599,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "f4ce4359abbb4af62d84faa7b4f3e420b9d01bf018f70076328383c139b86dc9",
+      "hash": "874149524eb05987243574fe8ab64b9fd0cddbb610ab6969b4aa0ba1bbbfc701",
       "inspection": "2026-09-13 author reinspection: row reduction does not preserve column vectors. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 33,
       "kind": "practice",
       "requires": [
@@ -28613,11 +28621,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "8f09c791fefa475f955320aa4c9035fac0c1239161395abfe80f5de01bc6e14c",
+      "hash": "e9750d23af6f9642b96071cdbc7d0bb5ea9b84df84452712a3074cabc1ec06d3",
       "inspection": "2026-09-13 author reinspection: row reduction does not preserve column vectors. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 34,
       "kind": "practice",
       "requires": [
@@ -28635,11 +28643,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "297503dd4085c36736b97a99b5fb74743292f4c7904302243781d2d26453bef6",
+      "hash": "3c669449f3e3ec9106015f20d0b1e7545e834a29bb0641836a37516acd338e8e",
       "inspection": "2026-09-13 author reinspection: row reduction does not preserve column vectors. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 35,
       "kind": "inline",
       "requires": [
@@ -28658,13 +28666,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "430de69f258c0e948fa9ac9e37b02f67645f22a7bb8dcdfba8fb298264b5a8e4",
+      "hash": "7f83e320ab6cac3a335af8f7d8fa2fe3de61d3941912a7d464a177c42f8f38e5",
       "inspection": "2026-09-13 author reinspection: Invertible matrices — original practice. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 36,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28681,13 +28689,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "1e1ac88dca8de3ca41f171b24c772a575f195bcb642d9316d118059065aa2300",
+      "hash": "7644512aff7e988e450e314f2f2705959946a7db454017998e1f7b8b68a9d50e",
       "inspection": "2026-09-13 author reinspection: Invertible matrices — original practice. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 37,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28708,7 +28716,7 @@
       "inspection": "2026-09-13 author reinspection: two-by-two inverses. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 38,
       "kind": "practice",
       "requires": [
@@ -28731,9 +28739,9 @@
       "inspection": "2026-09-13 author reinspection: two-by-two inverses. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 39,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28754,7 +28762,7 @@
       "inspection": "2026-09-13 author reinspection: two-by-two inverses. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 40,
       "kind": "practice",
       "requires": [
@@ -28777,7 +28785,7 @@
       "inspection": "2026-09-13 author reinspection: two-by-two inverses. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 41,
       "kind": "practice",
       "requires": [
@@ -28800,7 +28808,7 @@
       "inspection": "2026-09-13 author reinspection: two-by-two inverses. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 42,
       "kind": "practice",
       "requires": [
@@ -28823,9 +28831,9 @@
       "inspection": "2026-09-13 author reinspection: two-by-two inverses. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 43,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28842,11 +28850,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "866751d3a0ab6253caaebdd5482530e9552110f407809d8f10667566f765b14b",
+      "hash": "327c77aefe34cfb3783da37ccbf40216b7f7265ef5ef7b6a8d17935e4af9ed75",
       "inspection": "2026-09-13 author reinspection: determinant and area. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 44,
       "kind": "practice",
       "requires": [
@@ -28865,11 +28873,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "1c8087d1f20e9eae4823ad3ab5081f6feb379df501b193cca4805c15e76a7786",
+      "hash": "1b0e3092b953707699bdbb325a8514646656c0877f9d7611ed621abb5bcd7291",
       "inspection": "2026-09-13 author reinspection: determinant and area. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 45,
       "kind": "practice",
       "requires": [
@@ -28888,13 +28896,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "53b1ba120c778e01eba6c476a5d174a1d4746dfc6ce18239bffea8e597c1d823",
+      "hash": "728ce84449ebac90207ae7c6eb8c8100293e08407efac3ea5526565a6c18eb47",
       "inspection": "2026-09-13 author reinspection: determinant and area. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 46,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28911,11 +28919,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "d26d2691cdf623aa515e9df4d9bdaf45b1840ad12b96384229165e50f374cccf",
+      "hash": "708ab29a50ba730147a7ea2cc0cb8b6d2da18ce8ffd4cd9174d0649c56faea34",
       "inspection": "2026-09-13 author reinspection: Solving without unnecessary inverses — original practice. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 47,
       "kind": "practice",
       "requires": [
@@ -28934,13 +28942,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "e1fe5fa6659bd1f6361710cabff679728d7887ef051bed459402a6e7bd52cb92",
+      "hash": "4aebbf3f8eda16f71864e91ea1ae21f1ee5c955833a11c10deb60b6961f9b8d3",
       "inspection": "2026-09-13 author reinspection: Solving without unnecessary inverses — original practice. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 48,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -28957,11 +28965,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "9031b7c1ff36cd60a8029f6f75cc74b95ccc297eee402d44f96a72f45626119c",
+      "hash": "92900756ddd9da860eb606060fb91f52c5416894203b3171e1b79771060fb8a7",
       "inspection": "2026-09-13 author reinspection: existence versus uniqueness. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 49,
       "kind": "inline",
       "requires": [
@@ -28980,11 +28988,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "92cc68c24fbb5c772375003336f1efc540803bbb6aceb84cf84ae46664d0d2bb",
+      "hash": "1c6a73406e17f75a8324421affddc0a0ba08112421dc42099289d64d196da38c",
       "inspection": "2026-09-13 author reinspection: existence versus uniqueness. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 50,
       "kind": "practice",
       "requires": [
@@ -29003,13 +29011,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "f0334ded4f2921595b398cc20a838ce195fa3dcd663e247dc6142bb5dd4eded8",
+      "hash": "f123bbb8dd1f93e55079f4a077631fc39ae83ce63892c5858df3c0d0ed9ad77b",
       "inspection": "2026-09-13 author reinspection: existence versus uniqueness. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 51,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29026,11 +29034,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "6cb813ce0ef7ec4c25990392269a3990bbe04f57b5bc4e7ce27e53d2baa13357",
+      "hash": "a6b3c266399ef486b344a684be697cb4891ec3fd3e632eca1f01e1298c36049b",
       "inspection": "2026-09-13 author reinspection: existence versus uniqueness. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 52,
       "kind": "practice",
       "requires": [
@@ -29049,11 +29057,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "9d41fdb9fe9166e4e651f45979b778286b2cd1eed7edeed8c84a7230542de504",
+      "hash": "530f923c7b82f2d10180452bf4c763b026040eeb256709742f61ca17d2c7b6d1",
       "inspection": "2026-09-13 author reinspection: existence versus uniqueness. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 53,
       "kind": "practice",
       "requires": [
@@ -29072,11 +29080,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "01d9b0d989613753855eedd5ad6d24b24867fc2124bef2e113377eaca4c7fe6f",
+      "hash": "7debf317ac77b93bf3fe9dc1563d04c9eacbab2fcd7bfb5d9e13a3e8340bd1d2",
       "inspection": "2026-09-13 author reinspection: existence versus uniqueness. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 54,
       "kind": "practice",
       "requires": [
@@ -29099,7 +29107,7 @@
       "inspection": "2026-09-13 author reinspection: solving with a known inverse. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 55,
       "kind": "practice",
       "requires": [
@@ -29122,9 +29130,9 @@
       "inspection": "2026-09-13 author reinspection: solving with a known inverse. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 56,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29145,7 +29153,7 @@
       "inspection": "2026-09-13 author reinspection: solving with a known inverse. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 57,
       "kind": "practice",
       "requires": [
@@ -29168,7 +29176,7 @@
       "inspection": "2026-09-13 author reinspection: solving with a known inverse. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 58,
       "kind": "practice",
       "requires": [
@@ -29191,7 +29199,7 @@
       "inspection": "2026-09-13 author reinspection: solving with a known inverse. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 59,
       "kind": "practice",
       "requires": [
@@ -29216,7 +29224,7 @@
     {
       "lesson": "linear-algebra-bases",
       "exercise": 60,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29226,20 +29234,19 @@
         "tex-command-sqrt",
         "tex-formatting-14",
         "tex-groups",
-        "tex-la-det",
         "tex-la-norm",
         "tex-multirow",
         "tex-subscripts",
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "6ff1346ddd13ac48ac462a3733b511d3e8b8df1a5896c5295dfa6775bd30b1f8",
-      "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "89e6d95e652a9f7232436d354f39035565f98e9d34d2f5b1e84bdee98291ec63",
+      "inspection": "2026-09-16: inspected basis/coordinate/rank reasoning and unchanged answer. Determinant notation is unnecessary and is taught in the following determinant section."
     },
     {
       "lesson": "linear-algebra-bases",
       "exercise": 61,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29249,20 +29256,19 @@
         "tex-command-sqrt",
         "tex-formatting-14",
         "tex-groups",
-        "tex-la-det",
         "tex-la-norm",
         "tex-multirow",
         "tex-subscripts",
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "60f57bdc377f1b60657c345284a7b95617adc22adad7d4d3547394f698046d8c",
-      "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "541951bea80a786d11fb7b48b70cd1d5b4183f4a86b9c3adf34d64d4a978d831",
+      "inspection": "2026-09-16: inspected basis/coordinate/rank reasoning and unchanged answer. Determinant notation is unnecessary and is taught in the following determinant section."
     },
     {
       "lesson": "linear-algebra-bases",
       "exercise": 62,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29272,20 +29278,19 @@
         "tex-command-sqrt",
         "tex-formatting-14",
         "tex-groups",
-        "tex-la-det",
         "tex-la-norm",
         "tex-multirow",
         "tex-subscripts",
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "38934c74051a35feb2351d83b0293b4bd5556f9648b314319e25966cd082828e",
-      "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "15a6f91415e08818230f59bdacf44541a202d37bee0c27e0048428ce5ac1e84e",
+      "inspection": "2026-09-16: inspected basis/coordinate/rank reasoning and unchanged answer. Determinant notation is unnecessary and is taught in the following determinant section."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 63,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29295,20 +29300,19 @@
         "tex-command-sqrt",
         "tex-formatting-14",
         "tex-groups",
-        "tex-la-det",
         "tex-la-norm",
         "tex-multirow",
         "tex-subscripts",
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "aa6e79e2e5228b4820491403f4df61b4bce3a927f3045280e9de07d205bca760",
-      "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "ea57c4c19688e9b710172eec56c3c386aca881622f5270e9b99ffe4aad1d78bc",
+      "inspection": "2026-09-16: inspected basis/coordinate/rank reasoning and unchanged answer. Determinant notation is unnecessary and is taught in the following determinant section."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 64,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29325,11 +29329,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "9a8d432988e36155e2d664e59b0fe1204e8c5f66eccf92b8ea45194de8a589c7",
+      "hash": "a17acb1d04733a57131476957b3f3f0179b2363d2e0110181bd12e4eba9ec657",
       "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 65,
       "kind": "practice",
       "requires": [
@@ -29348,11 +29352,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "ad7b7ab5fa9e995ddce2374df8053f28ad85094a9bfd8dac0d482df938e6163b",
+      "hash": "86b8035a2ac769a9ad2b76d62fdb80c82dfced601a85f18df39fc01a530bff80",
       "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 66,
       "kind": "practice",
       "requires": [
@@ -29371,13 +29375,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "953bd258d9c52bf82e2e9113dacddcb2a352af686b6296c4b14c391f0adebec1",
+      "hash": "1f15c03fcc944eee7edcc8bbc05af9846fd273ba4d4469ee4838e7606383fd8e",
       "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 67,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29394,13 +29398,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "513c09a319849f39698a6ae9b086dc4c3c89c9fde6f1dee90d3fcbc47de1c0e9",
+      "hash": "deddffa7721b22a45741797ea5d860d21c96c3e4d238520e18a33b1af7b9cd50",
       "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
       "lesson": "linear-algebra-bases",
       "exercise": 68,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29410,20 +29414,19 @@
         "tex-command-sqrt",
         "tex-formatting-14",
         "tex-groups",
-        "tex-la-det",
         "tex-la-norm",
         "tex-multirow",
         "tex-subscripts",
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "aac47bb2ffe4df990119190ff95cc264faae6a21dea1862416906c827c287880",
-      "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "a4576863372a2fdd276ee7d91998f318f3695a90d2e4b61ed1ad7a015630e577",
+      "inspection": "2026-09-16: inspected basis/coordinate/rank reasoning and unchanged answer. Determinant notation is unnecessary and is taught in the following determinant section."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 69,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29433,20 +29436,19 @@
         "tex-command-sqrt",
         "tex-formatting-14",
         "tex-groups",
-        "tex-la-det",
         "tex-la-norm",
         "tex-multirow",
         "tex-subscripts",
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "73dd268cffecd46e1f169fbda76728cdea12d1690e46093161ce437051dd8652",
-      "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "62d665dcbb29963d8ab045062d8cbaabd85b567e9f247c3a7240b9e11aace7ff",
+      "inspection": "2026-09-16: inspected basis/coordinate/rank reasoning and unchanged answer. Determinant notation is unnecessary and is taught in the following determinant section."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 70,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29463,13 +29465,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "a15e273284d4b4d078cd197a039143ad7138e310157fde20c1ccf0734021faa4",
+      "hash": "e5a1d173eac68d54dfe3a2ee6e0860618c1df482561d71436f189cf2fcb43a76",
       "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": 71,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -29486,25 +29488,25 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "f790cb7e9c95c7bea517632a0ffccb0b2347cff46fc918607d753db50fc02ccd",
+      "hash": "dd3ffd87d294faca9cc7ae5cb40bdae8f1bcf89302243686bc39823944309e96",
       "inspection": "2026-09-13 author reinspection: basis rank inverse reasoning. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": "quick-1",
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "7b5f2f59e27601025b92742ad34bcce8c79e14569d4b01452c80b9ab4683ad72",
+      "hash": "9de8511f0421c6ffdc146f6f60d1a75c8160c0816fd26c73422db78026903916",
       "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-bases",
+      "lesson": "linear-algebra-rank-inverses",
       "exercise": "quick-2",
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "92839d6b77fadc209faaac95fcdb504617c2f34979530b3d4020fbe968d1785b",
+      "hash": "c820666185196968eb1b36ee8ac882007276d75d247093de866c6d3c5ea07298",
       "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -31115,7 +31117,7 @@
     {
       "lesson": "linear-algebra-projections",
       "exercise": 2,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31138,7 +31140,7 @@
     {
       "lesson": "linear-algebra-projections",
       "exercise": 3,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31184,7 +31186,7 @@
     {
       "lesson": "linear-algebra-projections",
       "exercise": 5,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31431,13 +31433,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "ecbaff506ef515c03de899af652d11eb02ea43fc3c863d45c852e8db4936c3c3",
+      "hash": "5d48ee22dcf3ac7045003a380373c0e9651db596e7b6f606779e2eb87f0479a8",
       "inspection": "2026-09-13 author reinspection: Orthonormal directions — original practice. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
       "lesson": "linear-algebra-projections",
       "exercise": 16,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31460,7 +31462,7 @@
     {
       "lesson": "linear-algebra-projections",
       "exercise": 17,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31483,7 +31485,7 @@
     {
       "lesson": "linear-algebra-projections",
       "exercise": 18,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31615,7 +31617,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "f1d46ae9ab5a99f1e52bd721651388c0a3addc4d0183f5c98e8f91877cf96df3",
+      "hash": "85f9a013c3890336b610277d1872e935d608335a2c6608e5718b9df15c261fee",
       "inspection": "2026-09-13 author reinspection: Gram-Schmidt with exact perpendicular remainders. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -31638,13 +31640,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "738a5043b77dec517e8f3daf58550b02d1f26e1424caba2c69e2a516a6ad9f86",
+      "hash": "c44e9c788ba03a15ed62521f4ed22f6d1c1025ed73a622c2d95de25dc15d9d4d",
       "inspection": "2026-09-13 author reinspection: Gram-Schmidt with exact perpendicular remainders. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
       "lesson": "linear-algebra-projections",
       "exercise": 25,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31661,7 +31663,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "d099d89036624e2de2b789814ec0654243f611165dad9fcfe60ce08aee207146",
+      "hash": "e69d67ad7ecd46412f9686affa4f3b4ee038fdd612e5dd2d54452fc59836d1f0",
       "inspection": "2026-09-13 author reinspection: Gram-Schmidt with exact perpendicular remainders. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -31684,7 +31686,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "a8105daf39a64b6682cda1a3cf64cd252c6da2d8bc0bf7b8eccb6ba178714bb6",
+      "hash": "35c9870adda44154bc918b3fec8b4eaa540b8a6fab17be03ea6ecdc67bf192cd",
       "inspection": "2026-09-13 author reinspection: Gram-Schmidt with exact perpendicular remainders. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -31707,7 +31709,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "b9848b4aff9fa19d6d84ebc770eb7b8151a24401b93fc81b323fd42f2442b802",
+      "hash": "8a7ecc76eceae477a578b656677cbbc921898a29f18258ae24e14e4ac409a68b",
       "inspection": "2026-09-13 author reinspection: Gram-Schmidt with exact perpendicular remainders. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -31730,11 +31732,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "a89915be88a5255d2da7853f2c90dcbb5397e2eae68780fe1b805c1825eff6a7",
+      "hash": "3f7dd6dab0b54b50161ffcfdab3b5c44a1f448813a1ebb52194dc75cd0349c75",
       "inspection": "2026-09-13 author reinspection: Gram-Schmidt with exact perpendicular remainders. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 29,
       "kind": "inline",
       "requires": [
@@ -31753,13 +31755,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "c6e8a6a9c63eed3517c540ecea0b96e2825532d4c3ee6f1a825285f32b7c0b91",
+      "hash": "ebefacf3a6d9542dd2397764b86cba236bb2483c6c7d5bb57425a6e4e3d67955",
       "inspection": "2026-09-13 author reinspection: Least squares and the normal equations — original practice. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 30,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31780,9 +31782,9 @@
       "inspection": "2026-09-13 author reinspection: Least squares and the normal equations — original practice. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 31,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31799,11 +31801,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "cf9fe510df6621a04d20ea1ad5eb0a3d33757901c0d72fbba4bb144488699178",
+      "hash": "a6a5c557e3c671552be4b20deb46b63d5ea91060a44cde8ff33457e450b7c077",
       "inspection": "2026-09-13 author reinspection: least-squares constant models. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 32,
       "kind": "practice",
       "requires": [
@@ -31822,11 +31824,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "88069395421701e4a61aa8418ae863915181aa6fd83320d93130da0b083bdd51",
+      "hash": "89506a0f52368d13cb847d9d3c012d42075394f6bb74aad49b3f9a8474c3de9b",
       "inspection": "2026-09-13 author reinspection: least-squares constant models. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 33,
       "kind": "practice",
       "requires": [
@@ -31845,13 +31847,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "8ea742a2a86b92ccc93e158cf8dca279951cc284c66104109cb26ab545e84701",
+      "hash": "f689eb230d2827d4704048e5c8c20436da7e2d409840c2f5942207bddf8fc084",
       "inspection": "2026-09-13 author reinspection: least-squares constant models. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 34,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31868,11 +31870,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "51a859e13aa67724f0c820ac9924efd876a66cfe211f646e65349ea3c5d0c86b",
+      "hash": "925fe6948c2c870885c6ea6c4e6ebbd184fd7433d9436f69cefbe0bf2728b210",
       "inspection": "2026-09-13 author reinspection: least-squares constant models. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 35,
       "kind": "practice",
       "requires": [
@@ -31891,11 +31893,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "20906bcbb70e4da79faa1dec7b11e05f30946d60c152c6d6b620e758243560a9",
+      "hash": "a7efcd23bd55ae224fb22f7e7f05deb449f82825376f1dbf8cdd422050fe2f12",
       "inspection": "2026-09-13 author reinspection: least-squares constant models. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 36,
       "kind": "practice",
       "requires": [
@@ -31914,11 +31916,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "0ae20b61b61da87f2125f0630d24e196a1bc1f653c0fb985eaedefa44903a1dc",
+      "hash": "e5f101fbc824cac77db1715f111c67f002e49ef027614c0687148b935643dab5",
       "inspection": "2026-09-13 author reinspection: least-squares constant models. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 37,
       "kind": "practice",
       "requires": [
@@ -31937,13 +31939,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "382c99dbcb5d12357cc1463d42801bc18343d10f4790ccb51077b28844cd3946",
+      "hash": "43f5c81e10e976a049caaf33fb1044aba6759cbc99b1be8763bafe2d93573634",
       "inspection": "2026-09-13 author reinspection: line fits with slope and intercept. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 38,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -31960,11 +31962,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "7298fc95e17400132e3dc50b9ed5e63adbadec4e4d5932bdf0ed40a22cb23da9",
+      "hash": "79c2085656fc13e5a878909ef01c9f9e9e83a9c6be305d0164eeb3472d6add38",
       "inspection": "2026-09-13 author reinspection: line fits with slope and intercept. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 39,
       "kind": "practice",
       "requires": [
@@ -31983,13 +31985,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "ee08ce7423903968507fa88e116f4dd4838213bb28a32c062c52100691614c53",
+      "hash": "337f7c2b740341ec683813ee7c8ebd4e36c54794c5ba8e7aeda83feb3208a544",
       "inspection": "2026-09-13 author reinspection: line fits with slope and intercept. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 40,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32006,11 +32008,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "7b373422a04d75a2cffb33f42cc73c8e7eb12d6924ceb2cf7a1a3d34a3fb024e",
+      "hash": "b73043e51ff81ad981933b95b11d8c98ca2b263b15a8c9ee07bfef7d58cfc24c",
       "inspection": "2026-09-13 author reinspection: line fits with slope and intercept. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 41,
       "kind": "practice",
       "requires": [
@@ -32029,11 +32031,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "f320efebd1ffcded04512813ecbc54e29b753fb80587c5187e15c2a31821a01c",
+      "hash": "1e9672fb69cec1c95680324d214a0c207f41c14c4e56cba0874b1d51448d6acd",
       "inspection": "2026-09-13 author reinspection: line fits with slope and intercept. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 42,
       "kind": "practice",
       "requires": [
@@ -32052,11 +32054,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "674d51ab0862e48a5c7ebdb15e9d96e3391b151b653547be59dbd400be9bc064",
+      "hash": "942ee7579b1a51d1ba6e3d443e89d14fa83611c45964696e3d1013e38f2d101c",
       "inspection": "2026-09-13 author reinspection: line fits with slope and intercept. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 43,
       "kind": "practice",
       "requires": [
@@ -32075,11 +32077,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "c0efbafe03d43c557fe279f4d995892d17ca362f060aeab2b765e5e9d5bdd23e",
+      "hash": "002058b83e4e04fa8ede1119dda1234c7c490f081228be7642a201c7e0b18362",
       "inspection": "2026-09-13 author reinspection: rank-deficient least squares. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 44,
       "kind": "practice",
       "requires": [
@@ -32098,13 +32100,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "92e95162975888ead372810fdf1142cf51bf03596c6d74e7ca50de1bdd116778",
+      "hash": "9e5e2bd6ad645e72783ceb41caf0c8e021d3f03f36d0f8809b6ce93e7d3b238b",
       "inspection": "2026-09-13 author reinspection: rank-deficient least squares. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 45,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32121,11 +32123,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "a3653b4fa33c3a39d348ff25528a3e9ef06baa1f59cb14255c140a0b97ffe3f4",
+      "hash": "7ab650f2de0e9fa3fad4ec9dc3dbf410f4181f92c5b645536e0f31767ecc3eb2",
       "inspection": "2026-09-13 author reinspection: rank-deficient least squares. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 46,
       "kind": "practice",
       "requires": [
@@ -32144,11 +32146,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "e646fb48e731c31d6539ae38fe914303343b1821c760b6a33fee437f21b52adc",
+      "hash": "75d11686f2f6bd17d8c31b2076fe76eb09890d195c4b0710d0efe5372ce95b2c",
       "inspection": "2026-09-13 author reinspection: rank-deficient least squares. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 47,
       "kind": "practice",
       "requires": [
@@ -32167,11 +32169,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "8387c6319d28eeea6f53f55f5caa6afdfd7db0b5a8568bf353f4057b088c8e2f",
+      "hash": "63887d5bf5406212466c617d147de23437119d3688b4490993346e1012e194b1",
       "inspection": "2026-09-13 author reinspection: rank-deficient least squares. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 48,
       "kind": "practice",
       "requires": [
@@ -32190,13 +32192,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "370ca35e829d52eca3724b7f3297daef315ed788925c5df1d26ccd67f1034e90",
+      "hash": "e525bb7918db3e561a0ab78883dfda2d0603e0383e25d3f6768dcdd75dd56b11",
       "inspection": "2026-09-13 author reinspection: rank-deficient least squares. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 49,
-      "kind": "inline",
+      "kind": "practice",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32213,35 +32215,12 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "3ebcc949e885677e9406e8de6ae3873ad62aa67d48b18155807b76ea088be9c0",
+      "hash": "e793aa7889b953d5aa59bd7918e242658f8f3ab2311ed40d174e58952fbe1c49",
       "inspection": "2026-09-13 author reinspection: What a best fit does and does not say — original practice. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 50,
-      "kind": "practice",
-      "requires": [
-        "tex-command-begin",
-        "tex-command-cdot",
-        "tex-command-end",
-        "tex-command-frac",
-        "tex-command-operatorname",
-        "tex-command-sqrt",
-        "tex-formatting-14",
-        "tex-groups",
-        "tex-la-det",
-        "tex-la-norm",
-        "tex-multirow",
-        "tex-subscripts",
-        "tex-superscripts"
-      ],
-      "status": "verified",
-      "hash": "76b19d60fee793254e3485d4bcc29e5a969e1e5f4081d1cd2b88a841dc580b44",
-      "inspection": "2026-09-13 author reinspection: What a best fit does and does not say — original practice. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
-    },
-    {
-      "lesson": "linear-algebra-projections",
-      "exercise": 51,
       "kind": "inline",
       "requires": [
         "tex-command-begin",
@@ -32259,12 +32238,12 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "f2d23add2621854db181c68482f2e7d1f51dd6f16aa2ba2d3c413a532858677a",
-      "inspection": "2026-09-13 author reinspection: checking a proposed least-squares fit. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "253d255e5d334a616e41e069f6b7b0aaebaf489aff670aa06fb760dfc7c7d175",
+      "inspection": "2026-09-13 author reinspection: What a best fit does and does not say — original practice. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
-      "exercise": 52,
+      "lesson": "linear-algebra-least-squares",
+      "exercise": 51,
       "kind": "practice",
       "requires": [
         "tex-command-begin",
@@ -32282,11 +32261,34 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "cf07580a8a6c7875269a7a6e0f57be9b2427efc43e6eb25324e37d80e4ddb1c0",
+      "hash": "e82ee9a1beb82e5f126e4adf337e31576b885c4dd378a89f1acf44e0a3e89b99",
       "inspection": "2026-09-13 author reinspection: checking a proposed least-squares fit. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
+      "exercise": 52,
+      "kind": "inline",
+      "requires": [
+        "tex-command-begin",
+        "tex-command-cdot",
+        "tex-command-end",
+        "tex-command-frac",
+        "tex-command-operatorname",
+        "tex-command-sqrt",
+        "tex-formatting-14",
+        "tex-groups",
+        "tex-la-det",
+        "tex-la-norm",
+        "tex-multirow",
+        "tex-subscripts",
+        "tex-superscripts"
+      ],
+      "status": "verified",
+      "hash": "ad8c02c3b0569b095149e674b96501059d3db265d6ad7b8824ed96a36ab19c94",
+      "inspection": "2026-09-13 author reinspection: checking a proposed least-squares fit. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+    },
+    {
+      "lesson": "linear-algebra-least-squares",
       "exercise": 53,
       "kind": "practice",
       "requires": [
@@ -32305,11 +32307,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "51098c514413c82fd70ef0c709f62a029740ee40646588e1a8dbabba8ea28aa7",
+      "hash": "21cb51d7d551ca8b41f5ae75169edc0e91d7d25fee142ee3479517bbf0f70210",
       "inspection": "2026-09-13 author reinspection: checking a proposed least-squares fit. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 54,
       "kind": "practice",
       "requires": [
@@ -32328,11 +32330,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "e774b6db3159b0eec9bf2d380c9dcd91fb93bc2026a73faa84e799cfe1527a1f",
+      "hash": "347aa782de391a51dd1e97bdd958669cf9f1c74324d57c419be134d22246a23a",
       "inspection": "2026-09-13 author reinspection: checking a proposed least-squares fit. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 55,
       "kind": "practice",
       "requires": [
@@ -32351,11 +32353,11 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "b0c61e7c6870fc0db6ebbbba380beb7f0181c393c101d4f17875124d6f01bbc4",
+      "hash": "37904b85bc9cfb799af2680fb5d0015d134511d35f9c19ca5149b589f48070ae",
       "inspection": "2026-09-13 author reinspection: checking a proposed least-squares fit. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 56,
       "kind": "practice",
       "requires": [
@@ -32374,7 +32376,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "50e726fb29af1a825c1c3e4bebe8181871483b29dffabe5cd332805dadc20cf1",
+      "hash": "678e6e2d359988fd1b774f2d06ac823fc1f317bcaf43fd7517cec26412a4716f",
       "inspection": "2026-09-13 author reinspection: checking a proposed least-squares fit. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -32397,13 +32399,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "1d1e9229e1b8ccdedfd0769d64b13a188a81afccb96b5d72d0a8dfa98f04da1d",
+      "hash": "3974496316050028b6fc256e9d9aa8058e1fd63889ebfd79e8cddb0beba328e0",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
       "lesson": "linear-algebra-projections",
       "exercise": 58,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32420,7 +32422,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "8d7dceb041b01051a43bb265285bdd5fddf515a2cb60436e39a64263222e4898",
+      "hash": "a081ee046a912b733cb187758ee02af5f9e1780ca342be4e013a7ca1ae1ac749",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -32443,13 +32445,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "7aaf25cee09ea90210184d5dc75202b15c128b64492275df2d15e62cd3ef4bd3",
+      "hash": "5613cc3330136e91cd06e8d9a54a5b730bb79b42d87bc00fdf7731792dddd9f7",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 60,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32470,7 +32472,7 @@
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 61,
       "kind": "practice",
       "requires": [
@@ -32489,13 +32491,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "cab3067a69aea5e1ee2a7e47c027e2a9ce2a923e65a7f166a19522530cd6d2a4",
+      "hash": "22ffc00a5819096e6ffaba63a94000579944a2645cf81c87f4997c3423d63346",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 62,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32512,13 +32514,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "33fc519b1dc392bdec5b4722eb964691b36135f3624063eb760b00ca3de05202",
+      "hash": "47a218c1649062dff55fa896df2ca607824f18f3f15709e9adb5400706dfe763",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 63,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32535,13 +32537,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "4d29e358dc1c9000d0dc2d2430039b670ed23a01a947464776b4c1e9ac62faa8",
+      "hash": "6465951b6bcdfca528a4be2a1af226ff49f2471f09eb23c35a61f46e096e6a3b",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 64,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32562,7 +32564,7 @@
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": 65,
       "kind": "practice",
       "requires": [
@@ -32587,7 +32589,7 @@
     {
       "lesson": "linear-algebra-projections",
       "exercise": 66,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32604,7 +32606,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "0a7eb1a977e6c710c884f3773e3f86a7ce1bf7899af1db6b6f59890b0a85769c",
+      "hash": "37a99e449e53219d2da0c19375c674dc8ad285762ff27d52ea10fc503e9dcfed",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -32627,13 +32629,13 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "ca0bfb6639eeef741eec55c953121c7e0f57a397ed4d134798805be8331ed726",
+      "hash": "614b7e4a0a134ea20e9e99bc85f076bd9cbab2298fff58b5e55da07788a5c1d9",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
       "lesson": "linear-algebra-projections",
       "exercise": 68,
-      "kind": "practice",
+      "kind": "inline",
       "requires": [
         "tex-command-begin",
         "tex-command-cdot",
@@ -32650,7 +32652,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "ca574e764c2fb3f5ccf906df7202a95fbbfc7adc8560929afcf6a674fe4d30f1",
+      "hash": "ed92a5c9852f794eee8ba16c7a63af9c2686ce52ea1c9197227e5239b13de544",
       "inspection": "2026-09-13 author reinspection: projection and fitting arguments. Section 4; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -32659,16 +32661,16 @@
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "5ddb78df7d183a56f4c878b6a4b4e70021fa1ac979940ef2f31ff87a888cdafb",
+      "hash": "a6a0503552d2f4e089b78cd1c34c67dcce159f49249e60fe67fe86f567623fc1",
       "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
-      "lesson": "linear-algebra-projections",
+      "lesson": "linear-algebra-least-squares",
       "exercise": "quick-2",
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "ac77a8b173b1b9ab1de0d1d629b2ca12e1bc07a483b9d0a973f8608247ee2ecf",
+      "hash": "af3cb546e27f0274ae96e081683428098b4f5027ea044785a0ecbbc1fe0063f2",
       "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
     },
     {
@@ -36066,6 +36068,42 @@
       "status": "verified",
       "hash": "1bd96d6510b898f874517203d0e718d3154649588d7e5a9b0f9527a04d75d277",
       "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+    },
+    {
+      "lesson": "linear-algebra-bases",
+      "exercise": "quick-3",
+      "kind": "quick",
+      "requires": [],
+      "status": "verified",
+      "hash": "69f51087c2a52352906d9e88bc2e7a67bea445484fb6fdefd175dd54c8b7e70c",
+      "inspection": "2026-09-16: new pacing checkpoint, text-only answer choices."
+    },
+    {
+      "lesson": "linear-algebra-bases",
+      "exercise": "quick-4",
+      "kind": "quick",
+      "requires": [],
+      "status": "verified",
+      "hash": "edfa3f9aa5a5e573bb5a0a92cae07390326d695d6789cefdd8cf14589a73d29d",
+      "inspection": "2026-09-16: new pacing checkpoint, text-only answer choices."
+    },
+    {
+      "lesson": "linear-algebra-projections",
+      "exercise": "quick-3",
+      "kind": "quick",
+      "requires": [],
+      "status": "verified",
+      "hash": "94a4eac8a3c89e90833a2bbb366a089a1bf65f646a1bd44d0d4f9fc6d1b0e8fa",
+      "inspection": "2026-09-16: new pacing checkpoint, text-only answer choices."
+    },
+    {
+      "lesson": "linear-algebra-least-squares",
+      "exercise": "quick-4",
+      "kind": "quick",
+      "requires": [],
+      "status": "verified",
+      "hash": "b8d3bc7aeecbcee59c3f9ffe353c719ba528535cd1d01672a17d55a0f3057e01",
+      "inspection": "2026-09-16: new pacing checkpoint, text-only answer choices."
     }
   ],
   "references": [
@@ -39265,7 +39303,7 @@
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "57d046ae4cf48a0fd15f2ff9738d92fb5ac41cf1f642d4011d6257fe8793c1bd"
+      "hash": "f9593bbcbc33568a96b590faaa9c3ea8477ad1733ea61fcfdedfd5980381dac9"
     },
     {
       "reference": "linear-algebra-bases-2",
@@ -39279,21 +39317,21 @@
         "tex-multirow"
       ],
       "status": "verified",
-      "hash": "44fc1d3e3d475c9c927e2c458ceffca8b402443c8f726716fa0e69c9e3a27aaf"
+      "hash": "a33ed3d3dc00e2ff866e001a18f23a5b65783d3bbf1b6abf8a40704628080321"
     },
     {
       "reference": "linear-algebra-bases-3",
       "examples": ["A^{-1}", "ad-bc"],
       "requires": ["tex-groups", "tex-superscripts"],
       "status": "verified",
-      "hash": "ee51abfef32ba7059c9e7475ae0cb0ccc3f3f8393834d23dc9808b635ecc5706"
+      "hash": "bfce5b915900321d8ee58dfa1d52e80d10f18dbe407cf2597280510dc31be48d"
     },
     {
       "reference": "linear-algebra-bases-4",
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "72731933ba78e77499e36d8c3545e1eba46bc92dd8ef122cdc03a7c347e11645"
+      "hash": "b4897ec3545b7620e9f6ae25833fe06cb65b318c2bfe2702dd60d11b448d8702"
     },
     {
       "reference": "linear-algebra-transformations-1",
@@ -39335,14 +39373,14 @@
       "examples": ["p=\\frac{b\\cdot u}{u\\cdot u}u"],
       "requires": ["tex-command-cdot", "tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "5fbc38e3a04511a1808a386c1def1c09780dc4f92fb06dc92d7cd42b97812ba8"
+      "hash": "8d0d5c620ba39f9de92b991e86227df40d9fc52f824dba632c919b49a8fca493"
     },
     {
       "reference": "linear-algebra-projections-2",
       "examples": ["p=QQ^Tb", "Q^TQ=I"],
       "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "d1c40d69ed092a1e47423e54761c50248733b0784dd9272c0174b3e962770c62"
+      "hash": "ff06956497bf02e6c04ce8b44515af10dca833b252a120d401e8e0c5702769ab"
     },
     {
       "reference": "linear-algebra-projections-3",
@@ -39356,14 +39394,14 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "771c72707e09b7e265cc83719af57993b623341d98795e80ec652ce0a614bfa0"
+      "hash": "b38b6b7d1521895d358d47da8ee532509436a4120a3095533b7f3ae6c4be0664"
     },
     {
       "reference": "linear-algebra-projections-4",
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "ed6619f3f7832bcb35d46a02139fe75709044398f81598b5f9222249928936cf"
+      "hash": "0bae8402bc2344839b29d7df351e1b297216184db832a5dced34c8a1a8fefe30"
     },
     {
       "reference": "linear-algebra-eigenvalues-1",
@@ -39509,21 +39547,21 @@
         "tex-multirow"
       ],
       "status": "verified",
-      "hash": "827028c3234eb248ae0bdace86629aa2fc86285f93e1d4ca6dadc6151e52715b"
+      "hash": "a58dc4b8c43d3cac89982eb4b3f03a3f3f5695bb78fa40a232fe489ec8b52652"
     },
     {
       "reference": "la-symbol-inverse",
       "examples": ["A^{-1}"],
       "requires": ["tex-groups", "tex-superscripts"],
       "status": "verified",
-      "hash": "be3d5039a968c6439f2c34e4e82def5a60f19816db7d4a7f1d433e4768956dac"
+      "hash": "f07c76f7b9e51ef4d1217382cf746748520eb6ccbeca29b59bda21c8dc8ad7ba"
     },
     {
       "reference": "la-symbol-projection",
       "examples": ["p=\\frac{b\\cdot u}{u\\cdot u}u"],
       "requires": ["tex-command-cdot", "tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "bccb0d5b35ffc7a45ccc92ae026eb4b3b1abecb21db749bfa1cf9be3e7c209a0"
+      "hash": "e3f117f88683cb045bdec084c5c0057ddb99d7acc273d14e84211444ba9f5159"
     },
     {
       "reference": "la-symbol-eigenvalue",
@@ -39649,28 +39687,28 @@
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "9328e813a17fdc86cd29cce37a77946e16cad27e38f0e43188b904dc0699f105"
+      "hash": "d05f038840dc8ab283f954ff7ea09eaa956ce9356e796ce4bc7daca15786ba86"
     },
     {
       "reference": "la-term-rank",
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "2ce432c43ba8faea3b367c31de75a78c4e731658a9e821ed9d5bef76bbf669d5"
+      "hash": "07b6e8bb4f7396c901629f74ca459859522e9b6fa9abc8851e50b39ff9ee9e0e"
     },
     {
       "reference": "la-term-nullity",
       "examples": ["\\operatorname{rank}(A)+\\operatorname{nullity}(A)=n"],
       "requires": ["tex-command-operatorname", "tex-groups"],
       "status": "verified",
-      "hash": "8a78c9af9b390c8e704c5a7696a1e5c50c99b1263d46e06a0c83d58cae0f6b2f"
+      "hash": "f8d4647dd9915c9fd86ef227fa8ac554618dd959249c139ca8a1f8c93a140196"
     },
     {
       "reference": "la-term-determinant-plane",
       "examples": ["ad-bc"],
       "requires": [],
       "status": "verified",
-      "hash": "13e3c041b353a2877dc698dd3a26f0875323379085c3eca5a9d37490852c8077"
+      "hash": "514c33b8f62c52c2ff2a9a2ff6dd649a51fda9ddfaad104030e34914147b8c3a"
     },
     {
       "reference": "la-term-kernel",
@@ -39705,35 +39743,35 @@
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "27cc117e586ce78dd5dd67d9668a0bfde12899bbe96f9882f3fb969cc8185fda"
+      "hash": "9d07543db5e2585bdf9a0f4f5a36a4fd5581ed687f4b555ab7ad2ce0f766ee2d"
     },
     {
       "reference": "la-term-gram-schmidt",
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "71fa2d3d977a6ff5bf4a8bc08378d38da520eb27d1a93fb57029df3964e94c56"
+      "hash": "a0772455ce46bb2367df97f15591ab5cfea8bb9be43255fb42fcc485a748247d"
     },
     {
       "reference": "la-term-qr",
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "451124e0d75f6148ae0bb01c3ebc02b7b8a49183a94495873956bcfb8653a4c1"
+      "hash": "a07905e92cc5e014da20d907e92a897bc5b1ef2c66e9c38ba97fddf63c7f81ed"
     },
     {
       "reference": "la-term-design-matrix",
       "examples": [],
       "requires": [],
       "status": "verified",
-      "hash": "090a531e7777e627f6e48a00069ddbc48a7159293100632fa076013c40282803"
+      "hash": "5493aa04e58fcf4111cd6bc4df6d4148fb391f18aa9442a04b0f105043b67f40"
     },
     {
       "reference": "la-term-normal-equations",
       "examples": ["A^T(Ax-b)=0", "A^TAx=A^Tb"],
       "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "4e2b5da189c299fd72ae6258a3bffbd706d4dc6a3949ed8c0d317b7d1d30c4db"
+      "hash": "1b761946c874252cf4813d512750b658e30c8ca2fb2df71b1b3976c54255b6ef"
     },
     {
       "reference": "la-term-characteristic-polynomial",
@@ -39796,7 +39834,7 @@
       "examples": ["\\det(A)"],
       "requires": ["tex-la-det"],
       "status": "verified",
-      "hash": "e897a308f996301c63cf6b49d7ac19d82500bd473bbaa8271b1a0199d48f5d18"
+      "hash": "c35476d97b1289ca3837d22562707608769b390685d0833282d92471549b725b"
     },
     {
       "reference": "la-symbol-system",
@@ -39831,7 +39869,7 @@
       "examples": ["A=QR"],
       "requires": [],
       "status": "verified",
-      "hash": "d9f4e5ec40422d4cf642f6a1cbeab21c7b2c0758e2c3c948cb887c4448a0c875"
+      "hash": "19f1ac6916266966b79c8de1a46063212ad73a439b50e37dda3952ec42e52b94"
     },
     {
       "reference": "propositional-model",

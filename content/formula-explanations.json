@@ -173999,7 +173999,7 @@
   },
   {
     "id": "formula-la-66984c18878eda3e5168",
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "source": "section:rank-and-nullity:text-end",
     "ordinal": 0,
     "latex": "\\operatorname{rank}(A)+\\operatorname{nullity}(A)=n",
@@ -174014,9 +174014,9 @@
   },
   {
     "id": "formula-la-2938cdd1a97fdbd691cf",
-    "lesson": "linear-algebra-bases",
-    "source": "section:rank-and-nullity:text-end",
-    "ordinal": 1,
+    "lesson": "linear-algebra-rank-inverses",
+    "source": "section:finding-both-spaces-in-one-reduction:text-end",
+    "ordinal": 0,
     "latex": "\\begin{pmatrix}1&2&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}",
     "reading": "The two-by-three matrix sends the three-component null direction negative two, one, zero to the two-component zero output. Its two pivot columns give rank two, while this one independent null direction gives nullity one.",
     "bindings": [
@@ -174029,7 +174029,7 @@
   },
   {
     "id": "formula-la-73a226b984c4285d1c81",
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "source": "section:invertible-matrices:text-end",
     "ordinal": 0,
     "latex": "A^{-1}",
@@ -174044,9 +174044,9 @@
   },
   {
     "id": "formula-la-829fa9f2dd65db3ea862",
-    "lesson": "linear-algebra-bases",
-    "source": "section:invertible-matrices:text-end",
-    "ordinal": 1,
+    "lesson": "linear-algebra-rank-inverses",
+    "source": "section:what-a-determinant-measures-in-the-plane:text-end",
+    "ordinal": 0,
     "latex": "ad-bc",
     "reading": "A times d minus b times c, the determinant of a two-by-two matrix with rows (a,b) and (c,d). All four letters here are scalar entries.",
     "bindings": [
@@ -174164,7 +174164,7 @@
   },
   {
     "id": "formula-la-4dcdb9b8f1223527ae2d",
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "source": "section:least-squares-and-the-normal-equations:text-end",
     "ordinal": 0,
     "latex": "A^T(Ax-b)=0",
@@ -174179,7 +174179,7 @@
   },
   {
     "id": "formula-la-bc8a95a266afbbca5c21",
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "source": "section:least-squares-and-the-normal-equations:text-end",
     "ordinal": 1,
     "latex": "A^TAx=A^Tb",
@@ -174194,9 +174194,9 @@
   },
   {
     "id": "formula-la-3b9dddd255cae596649f",
-    "lesson": "linear-algebra-projections",
-    "source": "section:least-squares-and-the-normal-equations:text-end",
-    "ordinal": 2,
+    "lesson": "linear-algebra-least-squares",
+    "source": "section:fitting-a-line-rather-than-a-constant:text-end",
+    "ordinal": 1,
     "latex": "\\begin{pmatrix}3&3\\\\3&5\\end{pmatrix}\\begin{pmatrix}c\\\\d\\end{pmatrix}=\\begin{pmatrix}5\\\\6\\end{pmatrix}",
     "reading": "These are the normal equations for fitting c plus d times t at t=0,1,2 to values 1,2,2. The scalar c is the intercept and d the slope; the two equations are three c plus three d equals five and three c plus five d equals six.",
     "bindings": [
@@ -174654,6 +174654,41 @@
         "symbol": "v=Av",
         "meaning": "The label identifies the arrow from (0,0) to (1,-1). For A with rows (2,1),(1,2), u=(1,1) becomes Au=(3,3), the dashed longer arrow on the same line. The vector v=(1,-1) stays unchanged. These eigenvalues are three and one: both special directions remain on their original lines even though their scale factors differ.",
         "reference": "linear-algebra-eigenvalues-1"
+      }
+    ]
+  },
+  {
+    "id": "formula-la-deac409a0a3cd38b8572",
+    "lesson": "linear-algebra-least-squares",
+    "source": "section:fitting-a-line-rather-than-a-constant:text-end",
+    "ordinal": 0,
+    "latex": "A=\\begin{pmatrix}1&0\\\\1&1\\\\1&2\\end{pmatrix},\\quad x=\\begin{pmatrix}c\\\\d\\end{pmatrix},\\quad b=\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}",
+    "reading": "A has rows one zero, one one, and one two. The coefficient column x contains the intercept c followed by slope d, and the observation column b contains one, two, and two. Multiplying A by x gives the predicted values c, c plus d, and c plus two d at inputs zero, one, and two.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The three-by-two design matrix: each row represents one observed input t, with entries one and t multiplying the intercept and slope.",
+        "reference": "la-term-design-matrix"
+      },
+      {
+        "symbol": "x",
+        "meaning": "The two-component column of unknown model parameters, ordered as intercept c and slope d.",
+        "reference": "linear-algebra-projections-3"
+      },
+      {
+        "symbol": "c",
+        "meaning": "The intercept, or predicted output when t is zero.",
+        "reference": "la-term-design-matrix"
+      },
+      {
+        "symbol": "d",
+        "meaning": "The slope, or change in predicted output for a one-unit increase in t.",
+        "reference": "la-term-design-matrix"
+      },
+      {
+        "symbol": "b",
+        "meaning": "The three observed outputs one, two, and two, in the same observation order as A's rows.",
+        "reference": "linear-algebra-projections-3"
       }
     ]
   }

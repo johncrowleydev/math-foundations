@@ -27,7 +27,7 @@ test('every inline exercise has a current audit with preceding teaching evidence
   validateInlinePrerequisites(content.lessons);
   assert.equal(
     Object.values(inlineAudit).reduce((n, entries) => n + Object.keys(entries).length, 0),
-    226,
+    253,
   );
 });
 test('inline instructions cannot inherit witness, complements, empty products, or graph concepts early', () => {

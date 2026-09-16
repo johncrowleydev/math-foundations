@@ -1,3 +1,4 @@
+import { exerciseKey } from './exerciseIdentity';
 import { useEffect, useState } from 'react';
 import { all, useRevision } from './storage';
 import type { Attempt, Curriculum } from './types';
@@ -55,7 +56,7 @@ export function Progress({
   const keys = new Set(
     data.lessons
       .filter((l) => !scope || l.slug === scope)
-      .flatMap((l) => l.questions.map((q) => l.slug + '-' + q.id)),
+      .flatMap((l) => l.questions.map((q) => exerciseKey(l, q.id))),
   );
   const as = attempts.filter((a) => keys.has(a.exercise)),
     coverage = evidenceCoverage(as),
@@ -85,7 +86,7 @@ export function Progress({
       : 'No first-attempt evidence';
   const label = (key: string) => {
     for (const l of data.lessons) {
-      const q = l.questions.find((q) => l.slug + '-' + q.id === key);
+      const q = l.questions.find((q) => exerciseKey(l, q.id) === key);
       if (q) return `${l.title} · Exercise ${q.displayNumber}`;
     }
     return key;
@@ -286,7 +287,7 @@ export function Progress({
             .map((l) => {
               const p = exerciseProgress(
                 as,
-                l.questions.map((q) => l.slug + '-' + q.id),
+                l.questions.map((q) => exerciseKey(l, q.id)),
               );
               return (
                 <button

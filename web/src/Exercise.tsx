@@ -1,3 +1,4 @@
+import { exerciseKey, exerciseNamespace, type ExerciseIdentity } from './exerciseIdentity';
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
@@ -20,11 +21,11 @@ export function Exercise({
   review,
 }: {
   q: Question;
-  lesson: string;
+  lesson: ExerciseIdentity;
   data: Curriculum;
   review?: { slug: string; section: string; title: string };
 }) {
-  const key = lesson + '-' + q.id;
+  const key = exerciseKey(lesson, q.id);
   const choiceGroup = useId();
   const clock = useRef(new EffortClock());
   const rev = useRevision();
@@ -60,7 +61,7 @@ export function Exercise({
         if (q.quickSource && q.choice) {
           const previous = await get<RecordData>(
             'records',
-            'quick/' + lesson + ':' + q.quickSource,
+            'quick/' + exerciseNamespace(lesson) + ':' + q.quickSource,
           );
           const option = q.choice.options[Number(previous?.payload.choice)];
           if (option) d.choiceId = option.id;
@@ -553,7 +554,7 @@ export function Exercise({
           text={q.answer}
           source={q.quickSource ? `quick:${q.quickSource}:explanation` : `question:${q.id}:answer`}
         />
-        <Sources catalog={data.sources} target={`exercise:${lesson}-${q.id}`} exercise />
+        <Sources catalog={data.sources} target={`exercise:${key}`} exercise />
       </details>
       {history && (
         <Modal

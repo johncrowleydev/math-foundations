@@ -1,3 +1,4 @@
+import { exerciseKey } from './exerciseIdentity';
 import { authSession, signOut } from './auth';
 import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
 import {
@@ -12,7 +13,7 @@ import {
   Pencil,
   CircleAlert,
 } from 'lucide-react';
-import { readRoute, routeHash, type AppRoute } from './routing';
+import { readRoute, routeHash, resolveReadingSection, type AppRoute } from './routing';
 import { registerSW } from 'virtual:pwa-register';
 import type { Curriculum, Block, Lesson, RecordData, Formula, Attempt, Draft } from './types';
 import { questionLabel } from './types';
@@ -25,6 +26,7 @@ import { expose } from './exposure';
 import {
   all,
   lessonProgress,
+  readingBookmark,
   get,
   put,
   useRevision,
@@ -39,6 +41,8 @@ export function App({ data }: { data: Curriculum }) {
   const [route, setRoute] = useState(() =>
     readRoute(location.hash, data.lessons, localStorage.getItem('lesson')),
   );
+  const restoreBookmark = useRef(!location.hash);
+  const initialRoute = useRef(route);
   const { slug, tab } = route;
   const navigate = (next: AppRoute, replace = false) => {
     const hash = routeHash(next);
@@ -67,6 +71,7 @@ export function App({ data }: { data: Curriculum }) {
   useEffect(() => {
     const restore = () => {
       const next = readRoute(location.hash, data.lessons, localStorage.getItem('lesson'));
+      if (location.hash !== routeHash(next)) history.replaceState(null, '', routeHash(next));
       setRoute(next);
       setOutline(false);
       setDrawer(false);
@@ -84,6 +89,24 @@ export function App({ data }: { data: Curriculum }) {
       window.removeEventListener('hashchange', restore);
     };
   }, [data.lessons]);
+  useEffect(() => {
+    // Only an unaddressed app launch resumes a local bookmark. Explicit URLs win.
+    if (!restoreBookmark.current || route !== initialRoute.current) return;
+    if (tab !== 'read' || route.section) return;
+    let live = true;
+    void readingBookmark(lesson)
+      .then((bookmark) => {
+        if (!live || !bookmark) return;
+        const target = resolveReadingSection(data.lessons, bookmark.slug, bookmark.anchor);
+        if (!target || (bookmark.slug !== lesson.slug && target.lesson.slug !== lesson.slug))
+          return;
+        navigate({ slug: target.lesson.slug, tab: 'read', section: target.section.id }, true);
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [lesson, tab, route, data.lessons]);
   const positionKey = lesson.slug + ':' + tab;
   const positions = useRef<Record<string, number>>({});
   useLayoutEffect(() => {
@@ -116,12 +139,12 @@ export function App({ data }: { data: Curriculum }) {
     let live = true;
     void (async () => {
       const { attempts, drafts, saved } = await lessonProgress(
-        lesson.slug,
+        lesson,
         lesson.questions.map((q) => q.id),
       );
       if (!live) return;
       const states = lesson.questions.map((q, i) => {
-        const history = attempts.filter((a) => a.exercise === lesson.slug + '-' + q.id);
+        const history = attempts.filter((a) => a.exercise === exerciseKey(lesson, q.id));
         const draft = drafts[i];
         const hasDraft =
           draft && (draft.text.trim() || draft.strokes.length || draft.photos.length);
@@ -466,14 +489,22 @@ export function App({ data }: { data: Curriculum }) {
                           s.quickChecks.some((c) => c.exerciseId === q.id),
                       )
                       .map((q) => (
-                        <Exercise key={q.id} q={q} lesson={lesson.slug} data={data} />
+                        <Exercise
+                          key={exerciseKey(lesson, q.id)}
+                          q={q}
+                          lesson={lesson}
+                          data={data}
+                        />
                       ))}
                   </section>
                 ))}
                 <footer>
                   <button
-                    disabled={data.lessons.indexOf(lesson) === 14}
-                    onClick={() => choose(data.lessons[data.lessons.indexOf(lesson) + 1].slug)}
+                    disabled={data.lessons.indexOf(lesson) >= data.lessons.length - 1}
+                    onClick={() => {
+                      const next = data.lessons[data.lessons.indexOf(lesson) + 1];
+                      if (next) choose(next.slug);
+                    }}
                   >
                     Next chapter →
                   </button>
@@ -490,9 +521,9 @@ export function App({ data }: { data: Curriculum }) {
                     </button>
                   </div>
                   <Exercise
-                    key={q.id}
+                    key={exerciseKey(lesson, q.id)}
                     q={q}
-                    lesson={lesson.slug}
+                    lesson={lesson}
                     data={data}
                     review={lessonReview(data, lesson, q)}
                   />
@@ -514,7 +545,7 @@ export function App({ data }: { data: Curriculum }) {
                   slug={lesson.slug}
                   onExercise={(key) => {
                     for (const l of data.lessons) {
-                      const q = l.questions.find((q) => l.slug + '-' + q.id === key);
+                      const q = l.questions.find((q) => exerciseKey(l, q.id) === key);
                       if (q) {
                         navigate({ slug: l.slug, tab: 'practice', exercise: String(q.id) });
                         break;
@@ -632,12 +663,18 @@ export function App({ data }: { data: Curriculum }) {
           onResume={(r) => {
             const l = data.lessons.find((l) => l.slug === r.payload.slug);
             if (!l) return;
-            choose(l.slug);
+            const target =
+              resolveReadingSection(data.lessons, l.slug, String(r.payload.anchor || '')) ||
+              resolveReadingSection(data.lessons, l.slug, String(r.payload.section || ''));
+            navigate({
+              slug: target?.lesson.slug || l.slug,
+              tab: 'read',
+              ...(target ? { section: target.section.id } : {}),
+            });
             setSettings(false);
-            const s = l.sections.find(
-              (s) => s.title === r.payload.section || String(r.payload.anchor).includes(s.id),
-            );
-            setTimeout(() => jump(s ? 'section-' + s.id : 'lesson-start'), 100);
+            setDrawer(false);
+            setOutline(false);
+            if (!target) setTimeout(() => jump('lesson-start'), 100);
           }}
           onClose={() => setSettings(false)}
           two={two}

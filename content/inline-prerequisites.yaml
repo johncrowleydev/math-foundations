@@ -3842,508 +3842,206 @@ linear-algebra-bases:
     concepts:
       - linear-algebra-bases-1
     requires:
-      - lesson: linear-algebra-span
+      - &a1
+        lesson: linear-algebra-span
         section: Span is everything you can build
         teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
+      - &a2
+        lesson: linear-algebra-span
         section: Independence means no redundant direction
         teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
+      - &a3
+        lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
+      - &a4
+        lesson: linear-algebra-span
         section: Reading independence from elimination
         teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
+      - &a5
+        lesson: linear-algebra-systems
         section: Elimination preserves solutions
         teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
+      - &a6
+        lesson: linear-algebra-systems
         section: No solution or a family of solutions
         teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
+      - &a7
+        lesson: linear-algebra-systems
         section: Homogeneous systems and verification
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
+      - &a8
+        lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
+      - &a9
+        lesson: linear-algebra-matrices
         section: A matrix acting on a vector
         teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
+      - &a10
+        lesson: linear-algebra-matrices
         section: Composition determines the product
         teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
     exerciseHash: d73e52dd2a1e24b8602a9b6f9dcdbc7f4fba93c28b99341bc0cdd63590797741
-  '3':
-    after: A basis gives unique coordinates
+  '2':
+    after: Dimension and the ambient space
     instructions: ''
-    prompt: Find the coordinates of (3, -1) in the ordered basis p=(1,1), q=(1,-1). Reconstruct the original vector.
-    answer: The coefficients c,d satisfy c+d=3, c-d=-1, so c=1,d=2. The basis-coordinate list is (1, 2); its reconstruction 1p+(2)q is (3, -1).
+    prompt: Give a basis and dimension for the subspace consisting of all multiples of (2,-1,3). Explain why one vector suffices.
+    answer: The one-vector list containing (2,-1,3) is a basis. It spans by the definition of the subspace and is independent because that vector is nonzero. The dimension is one.
     concepts:
-      - linear-algebra-bases-1
+      - Dimension and the ambient space
     requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-    exerciseHash: a13102a383e4e407e5ffaaf25f2d187254c20f058dd5f73389f3747054dbd8c6
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+    exerciseHash: 7a8f4f34e56fc1f7e87fc835b2fe72f3a9e689724c99ecd8b039a3611570bbf8
   '9':
-    after: A basis gives unique coordinates
+    after: Extracting a basis rather than guessing one
     instructions: ''
     prompt: Give a basis and dimension for the subspace consisting of (x,y,z) with z=1x+2y. Prove both spanning and independence.
     answer: Every vector equals x(1, 0, 1)+y(0, 1, 2). These two vectors span, and their first two coordinates force both coefficients to zero in a zero combination. They form a basis, and the dimension is two.
     concepts:
       - linear-algebra-bases-1
     requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-    exerciseHash: 262f38875d22455fab5a2181af3810f21cebe3141caa64840ff52287a663004b
-  '15':
-    after: Rank and nullity
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+    exerciseHash: 2e23c51b2658af1a2253130ff100d70f02f3681b1a73119318060b8ff41e3053
+  '60':
+    after: Dimension and the ambient space
     instructions: ''
-    prompt: A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?
-    answer: Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change.
+    prompt: Give a basis for the zero-only subspace. Why is the list containing zero not a basis?
+    answer: The empty list is a basis and the dimension is zero. A list containing zero is dependent, so it is not a basis.
     concepts:
-      - linear-algebra-bases-2
+      - Dimension and the ambient space
     requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
       - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-    exerciseHash: 6645908a7792d73d31c4b05e82d4d21fa5a0830b2b89dfd5db44b0e80ae4fbe4
-  '17':
-    after: Rank and nullity
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+    exerciseHash: 7ef4b26cb816566c8eb1487d5afaafce16c9da92532027ee9408fb9b2a804c5e
+  '61':
+    after: Extracting a basis rather than guessing one
     instructions: ''
-    prompt: An 3-by-5 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 5-2=3. Both row and column spaces have dimension 2. It does not have full row rank. It does not have full column rank.
+    prompt: If a list spans a subspace but is dependent, explain how a basis can be extracted.
+    answer: Find a vector expressible through the others and remove it without changing the span. Repeat until the remaining spanning list is independent.
     concepts:
-      - linear-algebra-bases-2
+      - Extracting a basis rather than guessing one
     requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
       - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-    exerciseHash: 99932d213cdb1944c7394c0ab74bf381acb6936efcec01b896ac6d20b5543f72
-  '18':
-    after: Rank and nullity
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+    exerciseHash: 77d0027010f0a9172ec282a0ff87d6b309313ceaa284f4bbe5af0b2ca7812a20
+  '62':
+    after: A basis gives unique coordinates
     instructions: ''
-    prompt: An 4-by-3 matrix has rank 3. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 3-3=0. Both row and column spaces have dimension 3. It does not have full row rank. It has full column rank.
+    prompt: Why must coordinates in an ordered basis be unique?
+    answer: Subtracting two different coefficient representations would give a nontrivial zero combination of the basis vectors, contradicting independence.
     concepts:
-      - linear-algebra-bases-2
+      - A basis gives unique coordinates
     requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-    exerciseHash: 512773abcebd8988e8d155bb0bed7275a1583a2da0e890ec193ee4d5b5e980bc
-  '35':
-    after: Invertible matrices
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+    exerciseHash: 5223dadb02bd14b8320f6a2c8c48bdb4c7bb0d4aff1d66d1abe896e98ae41bbc
+  '68':
+    after: Dimension and the ambient space
     instructions: ''
-    prompt: Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.
-    answer: The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity.
+    prompt: Can vectors be a basis of a proper subspace but fail to be a basis of the ambient space? Give an example.
+    answer: The single vector (1,0,0) is a basis of the first coordinate axis but does not span the full three-dimensional space.
     concepts:
-      - linear-algebra-bases-3
+      - Dimension and the ambient space
     requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
       - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
       - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-    exerciseHash: bee74f4560e898a146a2f1e08a12e1cf74d9ca3fe2a903c478d44912aebe5d65
-  '37':
-    after: Invertible matrices
-    instructions: ''
-    prompt: Find the inverse of A with rows (1, 2), (0, 1). Compute its determinant and verify the proposed inverse by multiplication.
-    answer: The determinant is 1 times 1 minus (2) times (0) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -2), (0, 1). Both products give the identity.
-    concepts:
-      - linear-algebra-bases-3
-    requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-    exerciseHash: 638948692ec17d5fc500f7448d00cf3df9da617cfdc1aa2a03b1ca96b095e4e9
-  '46':
-    after: Solving without unnecessary inverses
-    instructions: ''
-    prompt: A three by two matrix has two independent columns. Can every three-component target have a solution? Can a target have two different solutions? Explain.
-    answer: Its column space has dimension two, so it cannot reach every three-component target. Its null space is zero, so any reachable target has exactly one solution. Existence and uniqueness are different questions.
-    concepts:
-      - linear-algebra-bases-4
-    requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-bases
-        section: Solving without unnecessary inverses
-        teachingHash: 3bed901f0b923159ede3412360d83fc88b53a9a6b056707345324c254a95a61f
-    exerciseHash: 269d098f5318abc3381eeff017093313eb33d9d8bcd44ced930e9c15ec40df45
-  '48':
-    after: Solving without unnecessary inverses
-    instructions: ''
-    prompt: For an 3-by-2 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. A reachable output has a unique input because nullity is zero.
-    concepts:
-      - linear-algebra-bases-4
-    requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-bases
-        section: Solving without unnecessary inverses
-        teachingHash: 3bed901f0b923159ede3412360d83fc88b53a9a6b056707345324c254a95a61f
-    exerciseHash: d73b4717dafe5078e8392b12facc95d4f68a2108d871154e48c3ac8a1d6a4e5d
-  '49':
-    after: Solving without unnecessary inverses
-    instructions: ''
-    prompt: For an 2-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Every output is reachable because rank equals the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
-    concepts:
-      - linear-algebra-bases-4
-    requires:
-      - lesson: linear-algebra-span
-        section: Span is everything you can build
-        teachingHash: a2457920b4ecb3df013dde45f22444d30685c79a12b167bb7942cb427cb9acf4
-      - lesson: linear-algebra-span
-        section: Independence means no redundant direction
-        teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-span
-        section: Reading independence from elimination
-        teachingHash: 3f411b9978e589eccf3190b082e5124db1e05c55a6f96984d82c6c5e65f23742
-      - lesson: linear-algebra-systems
-        section: Elimination preserves solutions
-        teachingHash: e205e2c761d2c68efa59f94ff164dc3b2fac56d2a7c85381d7d1e8f8fd37bc5a
-      - lesson: linear-algebra-systems
-        section: No solution or a family of solutions
-        teachingHash: 4d2b4803f21f6eb2ed31f2065772ce05a5e0a2f0990a1c17462da1b0709b123a
-      - lesson: linear-algebra-systems
-        section: Homogeneous systems and verification
-        teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-bases
-        section: Solving without unnecessary inverses
-        teachingHash: 3bed901f0b923159ede3412360d83fc88b53a9a6b056707345324c254a95a61f
-    exerciseHash: 349693e48aa587f67fddb1293fb468e735684786aec310cf01cda8367d47cbe5
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+    exerciseHash: b56ad0810f6fdbfbc307b2fa3035ecd857bc2db32434e12a9123678b2e83807e
 linear-algebra-transformations:
   '1':
     after: What linearity requires
@@ -4355,10 +4053,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4382,10 +4080,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4409,10 +4107,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4436,10 +4134,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4466,10 +4164,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4496,10 +4194,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4529,10 +4227,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4562,10 +4260,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4595,10 +4293,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4631,10 +4329,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4667,10 +4365,10 @@ linear-algebra-transformations:
     requires:
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
@@ -4702,421 +4400,327 @@ linear-algebra-projections:
     concepts:
       - linear-algebra-projections-1
     requires:
-      - lesson: linear-algebra-dot-products
+      - &a11
+        lesson: linear-algebra-dot-products
         section: A scalar from two vectors
         teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
+      - &a12
+        lesson: linear-algebra-dot-products
         section: Length and unit vectors
         teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
+      - &a13
+        lesson: linear-algebra-dot-products
         section: Angle and orthogonality
         teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
+      - &a14
+        lesson: linear-algebra-span
         section: Subspaces and the origin
         teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
+      - &a15
+        lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - &a16
+        lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - &a17
+        lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+      - &a18
+        lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
+      - &a19
+        lesson: linear-algebra-matrices
         section: A matrix acting on a vector
         teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
+      - &a20
+        lesson: linear-algebra-matrices
         section: Composition determines the product
         teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
     exerciseHash: e6338c87d65ea933cc1017b918791afdda2b098c6c6fecebc2b3bf1f71cd2807
-  '3':
+  '2':
     after: Projecting onto a line
     instructions: ''
-    prompt: Project b=(3, 4) onto the line spanned by u=(2, -1). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.
-    answer: The coefficient is 2/5=2/5. Projection is (4/5, -2/5) and residual (11/5, 22/5). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.
+    prompt: Why does replacing a nonzero line direction u by 2u leave the projection of a target onto that line unchanged?
+    answer: In the projection formula the numerator doubles, the denominator quadruples, and the final direction vector doubles. These factors cancel. Geometrically, u and 2u span the same line.
     concepts:
-      - linear-algebra-projections-1
+      - Projecting onto a line
     requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
-    exerciseHash: 335024f840f40ce5ece3d932d397c550b74913ee90921121d9781defc95fe324
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+    exerciseHash: 6ca7369d695cdf7b28e1e16f49f994167c1c165006d504922a1ef8456222388f
+  '5':
+    after: Projecting onto a line
+    instructions: ''
+    prompt: Project b=(1, -4) onto the line spanned by u=(-3, 2). Give the scalar coefficient, projected vector, and residual b minus projection. Check orthogonality.
+    answer: The coefficient is -11/13=-11/13. Projection is (33/13, -22/13) and residual (-20/13, -30/13). Taking its dot product with u gives zero because the numerator is (b dot u)(u dot u) minus itself.
+    concepts:
+      - Projecting onto a line
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+    exerciseHash: 6467fdd7322d549aa76df7fbcf17d515e0a27a5798d90a79ffa5ebe26da5fb58
   '15':
-    after: Orthonormal directions
+    after: Carrying out Gram–Schmidt
     instructions: ''
     prompt: Use Gram–Schmidt on u=(1,0) followed by v=(1,1). Give the resulting orthonormal vectors and show the subtraction step.
     answer: The first normalized direction is (1,0). The projection of v onto it is (1,0); subtracting leaves (0,1), already unit length. The resulting ordered list is (1,0),(0,1).
     concepts:
       - linear-algebra-projections-2
     requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
-    exerciseHash: 047e297500eb4ef2b5e224221bc80797cf9b234ab7e67ab5cb347c1407fd25cd
-  '17':
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+    exerciseHash: 54e8189d7b83db1a4b9f5527804fda12f6e3e98baef651f218a9c25f2ff2a32f
+  '16':
     after: Orthonormal directions
     instructions: ''
-    prompt: The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (1, 2, 3) onto their span. Give Q transpose b and the residual.
-    answer: Q transpose b gives coefficients (1, 3). The projection is (1, 0, 3); the residual is (0, 2, 0), perpendicular to both columns.
+    prompt: Q has the single column (1,0). Compute Q transpose times Q and Q times Q transpose. Explain why only one is an identity matrix of its size.
+    answer: Q transpose Q is the one by one matrix containing 1, an identity. Q Q transpose has rows (1,0),(0,0), a projection onto the horizontal axis, not the two by two identity.
     concepts:
-      - linear-algebra-projections-2
+      - Orthonormal directions
     requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
-    exerciseHash: 6dd23d34ea3c01097f50ee0c58bf69b753266d740c6de9fea39ee3d67a0bbb1b
-  '29':
-    after: Least squares and the normal equations
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+    exerciseHash: 3561145f45e9d4e88d1be00613a17542a66c29c56191da441b1b4226a79281bd
+  '18':
+    after: Orthonormal directions
     instructions: ''
-    prompt: Find the least-squares constant fit c to observations 2,4,9. Give the fitted output and the residual b minus the fitted output.
-    answer: The normal equation is 3c=15, giving c=5. The fitted output is (5,5,5), and the residual is (-3,-1,4). Its components sum to zero, making it perpendicular to the column of ones.
+    prompt: The orthonormal columns of Q are (1,0,0) and (0,0,1). Project (-2, 1, 4) onto their span. Give Q transpose b and the residual.
+    answer: Q transpose b gives coefficients (-2, 4). The projection is (-2, 0, 4); the residual is (0, 1, 0), perpendicular to both columns.
     concepts:
-      - linear-algebra-projections-3
+      - Orthonormal directions
     requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
-      - lesson: linear-algebra-projections
-        section: Least squares and the normal equations
-        teachingHash: 0e8cfc91e167b0aad240695572abc257b45f59005dc8f2ffb9dddec3b8eb4bbe
-    exerciseHash: d9864f231edf6be2e6a7db9a184ca91a0be3d6bf55f217e977d4d1bd97f1031e
-  '31':
-    after: Least squares and the normal equations
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+    exerciseHash: a4723392460dbce04bd817e64017b988188a5ed1a15971b2926f40ac478c22a6
+  '25':
+    after: Carrying out Gram–Schmidt
     instructions: ''
-    prompt: Fit one constant c to observations (1, 2, 6) by least squares. Derive the normal equation and give fitted values and residual.
-    answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.
+    prompt: Apply Gram–Schmidt to the ordered vectors (1,0,0) and (-1, 2, 1). Give the orthonormal vectors and verify that the span is unchanged.
+    answer: The first vector already has unit length. Subtract its projection (-1,0,0) from the second, leaving (0, 2, 1). Divide that remainder by square root of 5 for the second unit vector. It is perpendicular to the first, and the original second vector is -1 times the first plus square root of 5 times the second unit vector.
     concepts:
-      - linear-algebra-projections-3
+      - Carrying out Gram–Schmidt
     requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-projections
-        section: Least squares and the normal equations
-        teachingHash: 0e8cfc91e167b0aad240695572abc257b45f59005dc8f2ffb9dddec3b8eb4bbe
-    exerciseHash: 210f7cf9bb85ba77fd7c0153237e92b59495329f337148e7b5921befccea1867
-  '49':
-    after: What a best fit does and does not say
-    instructions: ''
-    prompt: A least-squares calculation returns a nonzero residual. Does that alone mean the calculation is wrong? Explain.
-    answer: No. If the target lies outside the column space, no exact fit exists and the closest permitted output has a nonzero residual. The residual should be orthogonal to the column space at a least-squares solution.
-    concepts:
-      - linear-algebra-projections-4
-    requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
-      - lesson: linear-algebra-projections
-        section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
-      - lesson: linear-algebra-projections
-        section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
-      - lesson: linear-algebra-projections
-        section: Least squares and the normal equations
-        teachingHash: 0e8cfc91e167b0aad240695572abc257b45f59005dc8f2ffb9dddec3b8eb4bbe
-      - lesson: linear-algebra-projections
-        section: What a best fit does and does not say
-        teachingHash: 4177f84a5ba2e0a7f5fe53bf170d49229aa6a704877cb4be8120c1375483a648
-    exerciseHash: 7374af90d26def3b277e4ef415bb5a2e4038e4eab56980b7e41026a88a55d0dd
-  '51':
-    after: What a best fit does and does not say
-    instructions: ''
-    prompt: A has one column (1,2). A proposed coefficient for target (1, 2) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
-    answer: 'The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
-    concepts:
-      - linear-algebra-projections-4
-    requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
-      - lesson: linear-algebra-projections
-        section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
-      - lesson: linear-algebra-projections
-        section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
-      - lesson: linear-algebra-projections
-        section: Least squares and the normal equations
-        teachingHash: 0e8cfc91e167b0aad240695572abc257b45f59005dc8f2ffb9dddec3b8eb4bbe
-      - lesson: linear-algebra-projections
-        section: What a best fit does and does not say
-        teachingHash: 4177f84a5ba2e0a7f5fe53bf170d49229aa6a704877cb4be8120c1375483a648
-    exerciseHash: 9c86152e6d9f177f001b6c0277d46f3bf29cf8cbf3dadc49494218992e672e09
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+    exerciseHash: 7a5165132daeade022e0a2531b75a6c5b9a299e234869db0884dc8d3b6d009d7
   '57':
-    after: What a best fit does and does not say
+    after: Why perpendicular means closest
     instructions: ''
     prompt: Prove that the perpendicular projection onto a line is the unique closest point using the Pythagorean theorem.
     answer: For projected point p and any other line point q, b-p is perpendicular to p-q. Thus the squared distance from b to q equals the squared residual length plus the nonnegative squared distance from p to q. Equality requires q=p.
     concepts:
       - linear-algebra-projections-4
     requires:
-      - lesson: linear-algebra-dot-products
-        section: A scalar from two vectors
-        teachingHash: 51e86caed1768d9bfb6552fa92e04ddec8c4e25a2e6e81b5fa066252937947aa
-      - lesson: linear-algebra-dot-products
-        section: Length and unit vectors
-        teachingHash: 670b4ff553bdc1c6713796391bb32d672f97c3a1d39911aafa4feb71ce515a1f
-      - lesson: linear-algebra-dot-products
-        section: Angle and orthogonality
-        teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
-      - lesson: linear-algebra-span
-        section: Subspaces and the origin
-        teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
-      - lesson: linear-algebra-bases
-        section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
-        section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
-        section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
-      - lesson: linear-algebra-matrices
-        section: Shape, entries, and transpose
-        teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
-      - lesson: linear-algebra-matrices
-        section: A matrix acting on a vector
-        teachingHash: 39770a2a1cebaf55affc447be346693bda789a5f30e12d788fc5651c80dcc395
-      - lesson: linear-algebra-matrices
-        section: Composition determines the product
-        teachingHash: 04508b23b71f0caafea521c53a4fb5d7dcb2c9aa7057724a909301de3c07af87
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+    exerciseHash: d3a25642354c9b51a46dd879a108dc9f52b1a3e4b7854358b073593ca2f8b9d5
+  '58':
+    after: Carrying out Gram–Schmidt
+    instructions: ''
+    prompt: What happens if Gram–Schmidt encounters a zero remainder? Why must you not normalize it?
+    answer: The current input lies in the span of previously retained directions, so it adds no independent direction. Its norm is zero and division is undefined; discard the redundant direction or handle dependence explicitly.
+    concepts:
+      - Carrying out Gram–Schmidt
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-projections
-        section: Least squares and the normal equations
-        teachingHash: 0e8cfc91e167b0aad240695572abc257b45f59005dc8f2ffb9dddec3b8eb4bbe
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+    exerciseHash: 1669f1f729339bb631be54c3855f76b91e63c96ebce0628f5e9b9d2d96d4e3de
+  '66':
+    after: QR as a record of the construction
+    instructions: ''
+    prompt: What does QR factorization separate in a full-column-rank model matrix?
+    answer: Q contains orthonormal directions spanning the same column space, while upper-triangular R contains the coefficients reconstructing the original columns from those directions.
+    concepts:
+      - QR as a record of the construction
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
       - lesson: linear-algebra-projections
-        section: What a best fit does and does not say
-        teachingHash: 4177f84a5ba2e0a7f5fe53bf170d49229aa6a704877cb4be8120c1375483a648
-    exerciseHash: 32047c59d7c6443a8286fb50d00bd844c57021677c19afd9d3a24234f3874642
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+    exerciseHash: b5fb941216f687a95b771368be21da5b226fd7d4e315719a6e98575b537b9aad
+  '68':
+    after: Why perpendicular means closest
+    instructions: ''
+    prompt: If b is perpendicular to every vector in the permitted subspace, what is its projection?
+    answer: Zero. Its residual is b, already perpendicular to the subspace; every nonzero candidate adds a positive squared distance term.
+    concepts:
+      - Why perpendicular means closest
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+    exerciseHash: 59285b699608cba744cbfb883143d412ed220e9764e5d38c02efd5dc6c01a033
 linear-algebra-eigenvalues:
   '1':
     after: Directions that are only scaled
@@ -5137,13 +4741,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5176,13 +4780,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5215,13 +4819,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5257,13 +4861,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5299,13 +4903,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5344,13 +4948,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5389,13 +4993,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5434,13 +5038,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5482,13 +5086,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5530,13 +5134,13 @@ linear-algebra-eigenvalues:
         teachingHash: c798e6e37f4e4f9e795f51291e113bac396811e04f7b573839ae91fc828046c2
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-      - lesson: linear-algebra-bases
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
         section: Invertible matrices
-        teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
       - lesson: linear-algebra-transformations
         section: What linearity requires
         teachingHash: 96800ce393f277e719c5055621ed995fee32d9aab2a7a751107f847ca265a737
@@ -5579,16 +5183,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5621,16 +5225,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5663,16 +5267,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5705,16 +5309,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5750,16 +5354,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5795,16 +5399,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5843,16 +5447,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5891,16 +5495,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5942,16 +5546,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -5993,16 +5597,16 @@ linear-algebra-svd:
         teachingHash: d9ca6407c3c8b1ff6216b48641a25dd378bdff4d2af5af1b8349424b7d6bb28f
       - lesson: linear-algebra-projections
         section: Projecting onto a line
-        teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
       - lesson: linear-algebra-projections
         section: Orthonormal directions
-        teachingHash: 00595104067227ded1e4328391bb26aca963c7d96bc7b0aab360a8beada84177
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
       - lesson: linear-algebra-bases
         section: A basis gives unique coordinates
-        teachingHash: d7d38580e5d3a2911592ccf018cb1ccafdc772f00b76b12e8ab1cac7306e562f
-      - lesson: linear-algebra-bases
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-rank-inverses
         section: Rank and nullity
-        teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
       - lesson: linear-algebra-matrices
         section: Shape, entries, and transpose
         teachingHash: a880aa703ce858e87765731a7981ee06f4735bfa5e2676423d25a993c9b44184
@@ -6025,3 +5629,1171 @@ linear-algebra-svd:
         section: Approximation and responsible interpretation
         teachingHash: a1d54dccc61997793b8f81f8c2c4bc1e5970607cfc29736de4eef5a0d7509a10
     exerciseHash: 2b0508ed34ac2084e99147f26175c109505dabf11ccc71a487564e2d9cde97f6
+linear-algebra-rank-inverses:
+  '15':
+    after: Rank and nullity
+    instructions: ''
+    prompt: A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?
+    answer: Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change.
+    concepts:
+      - linear-algebra-bases-2
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+    exerciseHash: 6645908a7792d73d31c4b05e82d4d21fa5a0830b2b89dfd5db44b0e80ae4fbe4
+  '18':
+    after: Finding both spaces in one reduction
+    instructions: ''
+    prompt: An 4-by-3 matrix has rank 3. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
+    answer: Nullity is 3-3=0. Both row and column spaces have dimension 3. It does not have full row rank. It has full column rank.
+    concepts:
+      - linear-algebra-bases-2
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+    exerciseHash: 89e35dc9bb4add71760b91d385895c2184b82761cbceba2505df11643457338d
+  '24':
+    after: Finding both spaces in one reduction
+    instructions: ''
+    prompt: For A with rows (1, 0, 2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.
+    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(2)z and y=-(-1)z, so (-2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
+    concepts:
+      - Finding both spaces in one reduction
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+    exerciseHash: d3d3a1287bf0f1dbaa188c91d7b8aa6c507a60cfe180c5bf10980801b7c88e5e
+  '30':
+    after: Finding both spaces in one reduction
+    instructions: ''
+    prompt: A has rows (1, 2), (2, 4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
+    answer: Subtract 2 times row one from row two. The first column is the pivot column, so the original vector (1,2) is a basis. Reduced column (1,0) points along a different line because 2 is nonzero; it describes the reduced matrix's column space, not A's.
+    concepts:
+      - Finding both spaces in one reduction
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+    exerciseHash: 9c3f10c4b5dc90bef9f4655e6ae209e1df4797bc39b15bda3d1963d3be8782a8
+  '35':
+    after: Solving without unnecessary inverses
+    instructions: ''
+    prompt: Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.
+    answer: The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity.
+    concepts:
+      - linear-algebra-bases-3
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+      - lesson: linear-algebra-rank-inverses
+        section: Solving without unnecessary inverses
+        teachingHash: 2633d886b9879b0687d9d14b2fce4ce14673bedad5ee82cd8e00ab4952a8d7b5
+    exerciseHash: b4efc31113d3456119adc662d2a07f72e61ee68ad4614974d37aa6b533e3775d
+  '36':
+    after: What a determinant measures in the plane
+    instructions: ''
+    prompt: Is the matrix with rows (1,2),(2,4) invertible? Justify using both its determinant and its columns.
+    answer: No. Its determinant is 4-4=0, and its second column is twice its first. Its rank is only one, so it loses an input direction and cannot be undone.
+    concepts:
+      - What a determinant measures in the plane
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+    exerciseHash: a891258bfa5ca1588bc67d982b68df8a527c78a8ef5b130a8ccff9e09cd00031
+  '39':
+    after: Invertible matrices
+    instructions: ''
+    prompt: Find the inverse of A with rows (1, -1), (2, 1). Compute its determinant and verify the proposed inverse by multiplication.
+    answer: The determinant is 1 times 1 minus (-1) times (2) = 3, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 3, giving rows (1/3, 1/3), (-2/3, 1/3). Both products give the identity.
+    concepts:
+      - Invertible matrices
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+    exerciseHash: 8de74eae258b8fe86e7ef6166690bb5051f7ea674e379fcfa9cb2b9fa46874a7
+  '43':
+    after: What a determinant measures in the plane
+    instructions: ''
+    prompt: A has plane columns (2, -1) and (3, 4). Find its determinant, the area of their parallelogram, and whether A is invertible.
+    answer: The determinant is 11; the area is its absolute value, 11. Nonzero area means two independent directions and an inverse.
+    concepts:
+      - What a determinant measures in the plane
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+    exerciseHash: 352d42b9d863e6c79ef32dd182ecd3732c4eecd7a262c389bbbfa5582d4a6f6f
+  '49':
+    after: Existence and uniqueness
+    instructions: ''
+    prompt: For an 2-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Every output is reachable because rank equals the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
+    concepts:
+      - linear-algebra-bases-4
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+      - lesson: linear-algebra-rank-inverses
+        section: Solving without unnecessary inverses
+        teachingHash: 2633d886b9879b0687d9d14b2fce4ce14673bedad5ee82cd8e00ab4952a8d7b5
+      - lesson: linear-algebra-rank-inverses
+        section: Existence and uniqueness
+        teachingHash: 30e61b17af749c59bef98634cfc5971155b5a122d803994802e3289104f1a593
+    exerciseHash: c1825c320e1dad84f815eddc530a668074b7dcd7716b50ee6de102ff93474297
+  '51':
+    after: Existence and uniqueness
+    instructions: ''
+    prompt: For an 3-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
+    concepts:
+      - Existence and uniqueness
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+      - lesson: linear-algebra-rank-inverses
+        section: Solving without unnecessary inverses
+        teachingHash: 2633d886b9879b0687d9d14b2fce4ce14673bedad5ee82cd8e00ab4952a8d7b5
+      - lesson: linear-algebra-rank-inverses
+        section: Existence and uniqueness
+        teachingHash: 30e61b17af749c59bef98634cfc5971155b5a122d803994802e3289104f1a593
+    exerciseHash: bcade9f50e198aea60d22e8672cabceb53399281b5fe0cb305671c0d86485e02
+  '56':
+    after: Solving without unnecessary inverses
+    instructions: ''
+    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(1, 2) using that inverse and check the result in A.
+    answer: Multiplying the inverse by the right-hand side gives (-1, 3). Applying A returns (1, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
+    concepts:
+      - Solving without unnecessary inverses
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+      - lesson: linear-algebra-rank-inverses
+        section: Solving without unnecessary inverses
+        teachingHash: 2633d886b9879b0687d9d14b2fce4ce14673bedad5ee82cd8e00ab4952a8d7b5
+    exerciseHash: 26adde5a32ed68a146dcc9f463023705f00550ed389012ddc9e8285587b4ce50
+  '63':
+    after: Rank and nullity
+    instructions: ''
+    prompt: Can a two-by-five matrix have rank three? Explain.
+    answer: No. Rank is at most the number of rows, two, as well as at most the number of columns.
+    concepts:
+      - Rank and nullity
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+    exerciseHash: fd12ab70d81ff903d4dbe2f61f56ef2ac727c41f0fb534d80dbf6ff35e4adf54
+  '64':
+    after: Invertible matrices
+    instructions: ''
+    prompt: Prove the inverse of AB is B inverse times A inverse when both square matrices are invertible.
+    answer: Multiplying AB by B inverse A inverse cancels the middle pair and then the outer pair to give identity. The reverse product similarly gives identity.
+    concepts:
+      - Invertible matrices
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+    exerciseHash: 4c2e3b274050931a00046d992c518e5e9efc479bf5c33aae6e0fa20b27a0f738
+  '67':
+    after: Invertible matrices
+    instructions: ''
+    prompt: Explain why an inverse is unique if it exists.
+    answer: If B and C both invert A, then B=B(AC)=(BA)C=C using associativity and both identity equations.
+    concepts:
+      - Invertible matrices
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+    exerciseHash: 03b931c8358af4f1e000bb42207278563bdc580c7568bb2aeb967b2b4c462b02
+  '69':
+    after: Finding both spaces in one reduction
+    instructions: ''
+    prompt: Why do nonzero echelon rows form a row-space basis?
+    answer: Reversible row operations preserve the row span. Distinct leading positions make the nonzero echelon rows independent, so they both span and are independent.
+    concepts:
+      - Finding both spaces in one reduction
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+    exerciseHash: 2f6490c3220a085720ba659aac227154d56e0912386366bbfbddf6279df84b59
+  '70':
+    after: Existence and uniqueness
+    instructions: ''
+    prompt: If A has full column rank, why does Ax=b have at most one solution even when it is inconsistent for some b?
+    answer: Full column rank gives zero-only null space. The difference of any two solutions would be a null vector and must vanish. This uniqueness argument does not establish existence.
+    concepts:
+      - Existence and uniqueness
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+      - lesson: linear-algebra-rank-inverses
+        section: Invertible matrices
+        teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+      - lesson: linear-algebra-rank-inverses
+        section: Solving without unnecessary inverses
+        teachingHash: 2633d886b9879b0687d9d14b2fce4ce14673bedad5ee82cd8e00ab4952a8d7b5
+      - lesson: linear-algebra-rank-inverses
+        section: Existence and uniqueness
+        teachingHash: 30e61b17af749c59bef98634cfc5971155b5a122d803994802e3289104f1a593
+    exerciseHash: 686a38ac1ec2fa324218b64e31c4abd81efc6d82fd0ca8aaa6dfd03d15606c94
+  '71':
+    after: What a determinant measures in the plane
+    instructions: ''
+    prompt: Does determinant magnitude two imply every vector has its length doubled? Give a counterexample.
+    answer: No. The diagonal matrix with entries two and one has determinant two but leaves the second standard vector’s length unchanged. The determinant magnitude scales area in the plane.
+    concepts:
+      - What a determinant measures in the plane
+    requires:
+      - *a1
+      - *a2
+      - *a3
+      - *a4
+      - *a5
+      - *a6
+      - *a7
+      - *a8
+      - *a9
+      - *a10
+      - lesson: linear-algebra-bases
+        section: A basis gives unique coordinates
+        teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+      - lesson: linear-algebra-bases
+        section: Extracting a basis rather than guessing one
+        teachingHash: 1bc30baac67d9b81c04f4e3649d302c0577843b4ce096d2cfb87f6beee2f6124
+      - lesson: linear-algebra-bases
+        section: Dimension and the ambient space
+        teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
+      - lesson: linear-algebra-rank-inverses
+        section: Rank and nullity
+        teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+      - lesson: linear-algebra-rank-inverses
+        section: Finding both spaces in one reduction
+        teachingHash: 1278800d551212aa514c9a5fa3165e656d17ba03e4e4b8adb93ccc2774848a30
+      - lesson: linear-algebra-rank-inverses
+        section: What a determinant measures in the plane
+        teachingHash: f9eb9955c5fbda984e3687bd03fe6d477f6e16db2f9b8e68167ce27361fc32ae
+    exerciseHash: 263bacae75734884fd592e0ec05ea49afc8b99dc69a3abedd455f2f91f739bb4
+linear-algebra-least-squares:
+  '29':
+    after: Fitting a constant
+    instructions: ''
+    prompt: Find the least-squares constant fit c to observations 2,4,9. Give the fitted output and the residual b minus the fitted output.
+    answer: The normal equation is 3c=15, giving c=5. The fitted output is (5,5,5), and the residual is (-3,-1,4). Its components sum to zero, making it perpendicular to the column of ones.
+    concepts:
+      - linear-algebra-projections-3
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+    exerciseHash: 42790acc3f7ef19435387bb184fbcf346ea1f27b08d856642c1a8c1222dca7b4
+  '30':
+    after: Least squares and the normal equations
+    instructions: ''
+    prompt: A has one column (1,2) and b=(1,1). Solve the scalar normal equation for the coefficient, then give the fitted output.
+    answer: A transpose A is 5 and A transpose b is 3, so the coefficient is 3/5. The fitted output is (3/5,6/5). The residual (2/5,-1/5) has zero dot product with (1,2).
+    concepts:
+      - Least squares and the normal equations
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+    exerciseHash: 51c771112be71c25fb19e03415a37cb98e6c191ff16c5795db871e775c286157
+  '34':
+    after: Fitting a constant
+    instructions: ''
+    prompt: Fit one constant c to observations (3, 3, 3) by least squares. Derive the normal equation and give fitted values and residual.
+    answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (0, 0, 0). Its components sum to zero, establishing orthogonality to the constant column.
+    concepts:
+      - Fitting a constant
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+    exerciseHash: c0c12707e2cfadc4d259a58d961e63c2c1e2206723e46e976eeceb73bfbecdda
+  '38':
+    after: Fitting a line rather than a constant
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (0, 1, 3). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=4 and 3c+5d=7. Subtracting gives 2d=3, so d=3/2 and c=-1/6. Fitted values are (-1/6, 4/3, 17/6); subtracting them from observations gives a residual orthogonal to both design columns.
+    concepts:
+      - Fitting a line rather than a constant
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+      - lesson: linear-algebra-least-squares
+        section: Fitting a line rather than a constant
+        teachingHash: f693fe4f9f8c96d8ae2060d146c209dbdaf3e3c0a40f2c6e25b10309ac1418c1
+    exerciseHash: e7becf48b634ad7565b100196380216f9f0bfec75e41b0856bc7ddeef22df77d
+  '40':
+    after: Fitting a line rather than a constant
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (3, 3, 3). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=9 and 3c+5d=9. Subtracting gives 2d=0, so d=0 and c=3. Fitted values are (3, 3, 3); subtracting them from observations gives a residual orthogonal to both design columns.
+    concepts:
+      - Fitting a line rather than a constant
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+      - lesson: linear-algebra-least-squares
+        section: Fitting a line rather than a constant
+        teachingHash: f693fe4f9f8c96d8ae2060d146c209dbdaf3e3c0a40f2c6e25b10309ac1418c1
+    exerciseHash: 613440cf5df3937da919dd1457cb8dcbea34da120b66f0d94269228a28f60368
+  '45':
+    after: A fit can be unique even when its parameters are not
+    instructions: ''
+    prompt: A has rows (1,1),(1,1) and b=(-1, 2). Describe every least-squares coefficient vector and the unique fitted output.
+    answer: Only the sum x1+x2 matters. Its best constant value is 1/2. All coefficients (1/2-t,t), t real, give fitted output (1/2,1/2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+    concepts:
+      - A fit can be unique even when its parameters are not
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+      - lesson: linear-algebra-least-squares
+        section: Fitting a line rather than a constant
+        teachingHash: f693fe4f9f8c96d8ae2060d146c209dbdaf3e3c0a40f2c6e25b10309ac1418c1
+      - lesson: linear-algebra-least-squares
+        section: A fit can be unique even when its parameters are not
+        teachingHash: e05a31d65e60fea58d911dc364fdf528030e26c8ca0ceaa7dc320edcaaa2fe21
+    exerciseHash: d8ed31f3e8fe84f91594afaae709b9414bc28a18dc3880ed8f3de98998f6a8e7
+  '50':
+    after: A fit can be unique even when its parameters are not
+    instructions: ''
+    prompt: Why might two different coefficient vectors give the same unique closest output in a least-squares problem?
+    answer: Dependent columns give a nonzero null-space direction. Adding such a direction to a coefficient vector does not change its output. The projection output can therefore be unique even when its coefficient representation is not.
+    concepts:
+      - A fit can be unique even when its parameters are not
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+      - lesson: linear-algebra-least-squares
+        section: Fitting a line rather than a constant
+        teachingHash: f693fe4f9f8c96d8ae2060d146c209dbdaf3e3c0a40f2c6e25b10309ac1418c1
+      - lesson: linear-algebra-least-squares
+        section: A fit can be unique even when its parameters are not
+        teachingHash: e05a31d65e60fea58d911dc364fdf528030e26c8ca0ceaa7dc320edcaaa2fe21
+    exerciseHash: a66470d127ec1160c5bb76c3a6b16eea4ca9d6d850cbf27381b6059802b93d46
+  '52':
+    after: Least squares and the normal equations
+    instructions: ''
+    prompt: A has one column (1,2). A proposed coefficient for target (2, 0) is 2/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+    answer: 'The output is (2/5, 4/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (2/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+    concepts:
+      - Least squares and the normal equations
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+    exerciseHash: fee1890ea93c13de52639c8f8216e31de59d2c87e9f2c1e267ab6c96a4ad00ae
+  '60':
+    after: What a best fit does and does not say
+    instructions: ''
+    prompt: Does a zero least-squares residual prove the model is scientifically valid? Explain.
+    answer: It proves exact fit to these observations under this model, not a causal interpretation or valid extrapolation. A model can fit finite observations and still be unsuitable elsewhere.
+    concepts:
+      - What a best fit does and does not say
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+      - lesson: linear-algebra-least-squares
+        section: Fitting a line rather than a constant
+        teachingHash: f693fe4f9f8c96d8ae2060d146c209dbdaf3e3c0a40f2c6e25b10309ac1418c1
+      - lesson: linear-algebra-least-squares
+        section: A fit can be unique even when its parameters are not
+        teachingHash: e05a31d65e60fea58d911dc364fdf528030e26c8ca0ceaa7dc320edcaaa2fe21
+      - lesson: linear-algebra-least-squares
+        section: What a best fit does and does not say
+        teachingHash: dcffb4200c86344a351aa985e6da46142d280e4174fd85d2b0907f76d7f9cb01
+    exerciseHash: 690650aa109306181e57dd181927bfc361d044bbafea6634968ff8dfab854c74
+  '62':
+    after: A fit can be unique even when its parameters are not
+    instructions: ''
+    prompt: Prove A transpose A is invertible when A has independent columns.
+    answer: If A transpose A x=0, multiply by x transpose to get squared norm of Ax equal to zero. Then Ax=0, and independent columns force x=0. The square matrix has zero-only null space and is invertible.
+    concepts:
+      - A fit can be unique even when its parameters are not
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+      - lesson: linear-algebra-least-squares
+        section: Fitting a line rather than a constant
+        teachingHash: f693fe4f9f8c96d8ae2060d146c209dbdaf3e3c0a40f2c6e25b10309ac1418c1
+      - lesson: linear-algebra-least-squares
+        section: A fit can be unique even when its parameters are not
+        teachingHash: e05a31d65e60fea58d911dc364fdf528030e26c8ca0ceaa7dc320edcaaa2fe21
+    exerciseHash: 2dd9c29f0b70186c58a48e5274716cbf71cccb6bd24c303490476ef02f96b751
+  '63':
+    after: Least squares and the normal equations
+    instructions: ''
+    prompt: Why does the residual convention matter even though either sign gives the same squared error?
+    answer: The squared norm is unchanged by negation, but a reported residual component’s sign indicates whether the observation is above or below its fitted value under the chosen convention. Here residual is observation minus fitted output.
+    concepts:
+      - Least squares and the normal equations
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+    exerciseHash: d64502cc9772b5ae984c0dcebbed3209c012d7ee74d863f96c971daee8c7c5a3
+  '64':
+    after: What a best fit does and does not say
+    instructions: ''
+    prompt: A fit minimizes squared error. Does it necessarily minimize the sum of absolute errors? Explain.
+    answer: No. Those are different objectives and can prefer different fits. For observations zero, zero, and six, squared-error constant fitting gives two, while zero has smaller total absolute error than two.
+    concepts:
+      - What a best fit does and does not say
+    requires:
+      - *a11
+      - *a12
+      - *a13
+      - *a14
+      - *a15
+      - *a16
+      - *a17
+      - *a18
+      - *a19
+      - *a20
+      - lesson: linear-algebra-projections
+        section: Projecting onto a line
+        teachingHash: aca1e7aa1be50d58d91c456b31b883251608b329a46918c7ece6bf40ead175e7
+      - lesson: linear-algebra-projections
+        section: Why perpendicular means closest
+        teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+      - lesson: linear-algebra-projections
+        section: Orthonormal directions
+        teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
+      - lesson: linear-algebra-projections
+        section: Carrying out Gram–Schmidt
+        teachingHash: 96b11d4b1a2b676f10eb4e5b3b04be55dcd98122ba851cc1260cb0d3770640d4
+      - lesson: linear-algebra-projections
+        section: QR as a record of the construction
+        teachingHash: 260aaae5b459adbdb281fc7534dcd68953d55388d75d417b7e1c7a52155ccff7
+      - lesson: linear-algebra-least-squares
+        section: Least squares and the normal equations
+        teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+      - lesson: linear-algebra-least-squares
+        section: Fitting a constant
+        teachingHash: 9fee89a6e2046e7b66d8d4559325e8a2299adfc51627011accbbcb63a7a8bad4
+      - lesson: linear-algebra-least-squares
+        section: Fitting a line rather than a constant
+        teachingHash: f693fe4f9f8c96d8ae2060d146c209dbdaf3e3c0a40f2c6e25b10309ac1418c1
+      - lesson: linear-algebra-least-squares
+        section: A fit can be unique even when its parameters are not
+        teachingHash: e05a31d65e60fea58d911dc364fdf528030e26c8ca0ceaa7dc320edcaaa2fe21
+      - lesson: linear-algebra-least-squares
+        section: What a best fit does and does not say
+        teachingHash: dcffb4200c86344a351aa985e6da46142d280e4174fd85d2b0907f76d7f9cb01
+    exerciseHash: 98c92b04907b5f6764b0f3727a3b5b7e2ceb41fdd5e97d684873cd832214d076

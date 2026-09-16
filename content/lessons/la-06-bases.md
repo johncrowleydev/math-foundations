@@ -1,69 +1,51 @@
-# Bases, Dimension, Rank, and Inverses
+# Bases, Coordinates, and Dimension
 
-A useful coordinate system provides enough building blocks to describe every object under consideration, but no redundant ones. A basis captures this balance. It connects the number of genuine degrees of freedom to elimination and to the possibility of undoing a matrix operation.
+A useful coordinate system provides enough building blocks to describe every vector under consideration, but no redundant ones. A basis captures this balance. This lesson turns span and independence into a practical way to describe a subspace: choose its building blocks, find coordinates, and count its genuine degrees of freedom. Keep the space being described in view throughout; a basis of a plane need not describe the whole space surrounding it.
 
 ## A basis gives unique coordinates
 
-A basis of a subspace is an ordered list of vectors that is linearly independent and spans that subspace. Independence ensures uniqueness of the coefficient list; spanning ensures existence. Although the basis vectors themselves form a collection, we choose an order when using their coefficients as coordinates.
+A basis of a subspace is a collection of vectors that spans that subspace and is linearly independent. Spanning means that every vector in the subspace has a representation using the basis vectors. Independence means that the representation is unique. When we use the coefficients as coordinates, we put the basis vectors in a specified order.
 
-For the plane, p=(1,1) and q=(1,-1) form a basis. The vector (4,2) equals three p plus one q, so its coordinates in this ordered basis are (3,1). These are not its usual horizontal and vertical coordinates. Both lists describe the same vector relative to different building blocks.
+For the plane, take p=(1,1) and q=(1,-1). To express (4,2) as cp+dq, compare components: c+d=4 and c-d=2. Adding these equations gives 2c=6, so c=3; then d=1. Reconstruction checks the answer: three p plus one q is (3,3)+(1,-1)=(4,2). The coordinates in the ordered basis (p,q) are (3,1), while the standard horizontal and vertical coordinates remain (4,2).
 
-The [dimension](ref:la-term-dimension) of a subspace is the number of vectors in a basis. A fundamental finite-dimensional result says that every basis of the same space has the same size. One way to understand why is an exchange argument: independent vectors can replace members of a spanning list one at a time, and there cannot be more independent replacements than available members. Applying this in both directions to two bases forces equal sizes.
+This calculation works for every target (x,y): solve c+d=x and c-d=y to get c=(x+y)/2 and d=(x-y)/2. Thus p and q span the entire plane. For a zero target the same equations force c=d=0, proving independence. Both parts matter; solving for just one target would not prove that a list is a basis of the plane.
 
-Here is the replacement argument more explicitly. Start with a spanning list of n vectors and an independent list u1 through um. Express u1 using the spanning list. Some coefficient is nonzero, so solve for that spanning vector and replace it by u1 without losing the span. At step j, express uj using the previous replacements and the remaining old vectors. Some coefficient on an old vector must be nonzero: otherwise uj would be a combination of u1 through u(j-1), contradicting independence. Replace that old vector. If m exceeded n, after n replacements the next independent vector would already lie in their span, again a contradiction. Thus an independent list has no more vectors than any spanning list. Two bases give the two opposite inequalities.
+Order matters. In the ordered basis (q,p), that same vector (4,2) has coordinates (1,3). If instead we keep the ordered basis (p,q) but use the coefficients (1,3), reconstruction gives (4,-2), a different vector. A coordinate list is meaningful only together with its ordered basis.
 
-Thus the coordinate plane has dimension two, a line through the origin has dimension one, and the subspace containing only zero has dimension zero, with an empty basis. Two vectors in three-dimensional space can be a basis of a plane without being a basis of the entire space.
+### Why there cannot be two coordinate lists
 
-### Extracting a basis rather than guessing one
+Suppose two lists of coefficients produced the same vector from a basis. Subtract the representations. The result is a zero combination of the basis vectors, with coefficients equal to the differences between the two lists. Independence forces every difference to be zero. This proves uniqueness without assuming anything special about the particular basis above.
 
-If a spanning list contains a redundant vector, remove that vector without changing the span. Repeat until no redundancy remains; the resulting list is a basis. In the opposite direction, an independent list can be extended toward a desired finite-dimensional space by adding a vector outside its current span. Each addition expands the span while preserving independence.
+Spanning supplies existence only for vectors in the named subspace. If a basis describes a plane inside three-dimensional space, a vector outside that plane has no coordinates in that basis. That failure is not a failure of the basis; it is a mismatch between the target and the space.
 
-For vectors (1,0,1), (0,1,1), and (1,1,2), the first two already span the third. They form a basis of the plane whose third coordinate is the sum of the first two, with dimension two. They do not form a basis of the full three-dimensional ambient space. A basis statement always names the space.
+## Extracting a basis rather than guessing one
 
-## Rank and nullity
+Suppose a spanning list contains u=(1,0,1), v=(0,1,1), and w=(1,1,2). We can see that w=u+v. Removing w preserves the span: any combination au+bv+cw can be rewritten as (a+c)u+(b+c)v. Conversely, any combination of u and v is a combination of the original list with coefficient zero on w.
 
-The [rank](ref:la-term-rank) of a matrix is the dimension of its column space, the number of independent output directions its columns supply. Elimination finds it by counting pivot columns. To obtain a basis of the column space, take the pivot-indexed columns of the original matrix, not the changed columns of its row-reduced form. Row operations preserve dependencies among columns but can change the column space itself.
+Now verify independence of what remains. A zero combination su+tv has components (s,t,s+t). The first two components force s=t=0. Therefore (u,v) is a basis of the original span. We have checked both requirements, rather than concluding that two surviving vectors must be a basis merely because one vector was removed.
 
-The [nullity](ref:la-term-nullity) is the dimension of the null space, or equivalently the number of free variables in the homogeneous system. For a matrix with n columns, $\operatorname{rank}(A)+\operatorname{nullity}(A)=n$. Read this as “rank of A plus nullity of A equals n.” Every input variable is either a pivot variable or a free variable, which explains the count.
+We can also identify the space explicitly. Every combination of u and v has the form (s,t,s+t), and every vector whose third coordinate is the sum of its first two can be written this way. The basis describes exactly that plane. For example, (2,-1,1)=2u-v, so its coordinates in (u,v) are (2,-1). The vector (0,0,1) is outside the plane because its third coordinate is not the sum of its first two.
 
-For the matrix with columns (1,0), (0,1), and (1,1), rank is two and nullity is one. The third column adds no output direction, and coefficients (-1,-1,1) give a null-space direction. The matrix reaches every two-component output but loses some information about the three-component input.
+The same reasoning extracts a basis from a finite spanning list. Find a nontrivial zero combination, choose a vector whose coefficient is nonzero, and solve for that vector in terms of the others. Remove it and repeat until the remaining list is independent. Do not remove an arbitrary vector just because the whole list is dependent: in the list (1,0),(2,0),(0,1), removing (0,1) would destroy the ability to span the plane.
 
-### Finding both spaces in one reduction
+### Starting from a description of the space
 
-Take A with rows (1,2,0),(0,0,1). The pivot columns are first and third, so a column-space basis is (1,0),(0,1). For the null space, the equations are x+2y=0 and z=0. Letting y=t gives all multiples of (-2,1,0). Rank is two, nullity one, and their sum is the three input coordinates.
+A subspace may be given by a constraint rather than by a spanning list. For the plane z=2x+y, write (x,y,z)=(x,y,2x+y)=x(1,0,2)+y(0,1,1). This gives candidate basis vectors (1,0,2) and (0,1,1). The expression proves spanning, and their first two components prove independence. An arbitrary vector on this plane therefore has basis coordinates (x,y), even though its standard coordinate list has three entries.
 
-$
-\begin{pmatrix}1&2&0\\0&0&1\end{pmatrix}\begin{pmatrix}-2\\1\\0\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}
-$
+In the opposite direction, extend an independent list by adding a vector outside its span. The new list stays independent: a zero combination with nonzero coefficient on the added vector would express it using the old list, contradicting the choice. For u and v above, adding (0,0,1) gives a basis of the entire three-dimensional space. Any target (x,y,z) equals xu+yv+(z-x-y)(0,0,1); a zero target forces all three coefficients to vanish.
 
-The nonzero rows of a row-echelon form form a basis of the row space. Their distinct leading positions make them independent, and reversible row operations preserve their span. Consequently row-space dimension equals column-space dimension: both count pivots. For an m-by-n matrix, rank is at most the smaller of m and n. A full-column-rank matrix has rank n; a full-row-rank matrix has rank m.
+## Dimension and the ambient space
 
-## Invertible matrices
+The [dimension](ref:la-term-dimension) of a finite-dimensional subspace is the number of vectors in a basis. The ambient space is the larger space in which its vectors live. Our plane z=x+y has dimension two, while its ambient space has dimension three. Its vectors have three standard components but need only two independent basis coefficients. These counts answer different questions.
 
-A square matrix A is invertible if there is a matrix written $A^{-1}$ such that multiplying in either order gives the identity. The superscript negative one means matrix inverse here. It does not mean taking the reciprocal of each entry.
+A line through the origin has dimension one: a single nonzero vector on the line spans it and is independent. For example, (2,-1,3) is a basis vector for the line of its multiples, despite having three components. The entire coordinate plane has dimension two, and the full three-dimensional coordinate space has dimension three.
 
-The inverse undoes A. If Ax=b, multiply on the left by the inverse to obtain x equal to A inverse times b. An n by n matrix is invertible exactly when its rank is n: elimination then leaves no free variables and permits every right-hand side. Its columns consequently form a basis of the full output space.
+The zero-only subspace has dimension zero and the empty basis. Its only vector is the empty linear combination, which is zero. A list containing the zero vector is not a basis: multiplying that vector by one already gives a nontrivial zero combination, so the list is dependent.
 
-The diagonal matrix with diagonal entries 2 and 3 is inverted by the diagonal matrix with entries one half and one third. More generally, for a two by two matrix with rows (a,b),(c,d), the determinant is the scalar $ad-bc$. If it is nonzero, the inverse has rows (d,-b),(-c,a), all divided by that determinant. Multiplying the proposed inverse by the original verifies the formula. If the determinant is zero, elimination gives deficient rank and there is no inverse.
+### Why every basis has the same size
 
-### What a determinant measures in the plane
+Dimension would not be well defined if two bases of the same space could have different numbers of vectors. An exchange argument rules this out. Start with a spanning list of n vectors and an independent list u1 through um in the same space. Express u1 using the spanning list. Some coefficient is nonzero, so solve for that old vector and replace it by u1 without losing the span.
 
-For columns (a,c) and (b,d), the absolute value of ad-bc is the area of the parallelogram they form. Its sign records orientation relative to the standard axes. Zero means the parallelogram collapses into a line or point, precisely the loss of an independent direction that prevents a two-by-two inverse. Area scaling describes this [two-dimensional determinant](ref:la-term-determinant-plane); it is not the length scaling of every vector.
+At step j, express uj using the previous replacements and the remaining old vectors. Some coefficient on an old vector must be nonzero: otherwise uj would be a combination of u1 through u(j-1), contradicting independence. Replace that old vector. If m exceeded n, after n replacements the next independent vector would already lie in their span, again a contradiction. Thus an independent list has no more vectors than any spanning list. Applying this to two bases in both directions forces equal sizes.
 
-For rows (2,1),(1,1), the determinant is one and the inverse has rows (1,-1),(-1,2). The first product row is (2-1,-2+2)=(1,0), and the second is (1-1,-1+2)=(0,1). This verifies the proposed inverse directly. The inverse of a product AB of invertible square matrices is B inverse times A inverse: undo the last action first.
-
-## Solving without unnecessary inverses
-
-To compute an inverse by elimination, augment A with an identity matrix and row-reduce the left side to identity. The same operations transform the right side into the inverse. If the left side cannot become identity, the inverse does not exist.
-
-For solving one system, however, applying elimination directly to its right-hand side is usually the more natural method. Knowing that an inverse exists is a structural statement; explicitly forming it is a separate computational choice. Numerical software often solves systems without constructing an inverse.
-
-Rank also separates [uniqueness](ref:linear-algebra-bases-4) from existence. A rectangular matrix can have independent columns and therefore at most one solution for each output, while still missing some outputs. A matrix can reach every output and still admit many inputs for each. Only in the square full-rank case do these two requirements combine into invertibility.
-
-When naming a basis, specify its space. When naming coordinates, specify the ordered basis. When counting rank, distinguish the number of rows or columns from the number of pivots: the whole point is that a large array can contain less independent information than its size suggests.
-
-### Seeing inverse elimination as solving several systems
-
-For A with rows (1,2),(0,1), start with augmented rows (1,2,1,0) and (0,1,0,1), where the last two columns are identity. Subtract twice row two from row one. The left side becomes identity and the right side has rows (1,-2),(0,1), the inverse. Each right-hand column has solved the same coefficient system with a different standard basis output.
-
-The number of equations alone cannot decide existence or uniqueness. Full column rank means no two inputs share an output; full row rank means every declared output is reachable. In a square matrix these ranks coincide. For rectangular matrices they answer different questions, and a two-sided inverse of the usual kind is unavailable. A one-sided inverse can exist, but is a different claim that must specify the multiplication order.
+This also explains a useful test. If a space is already known to have dimension d, then d independent vectors in it form a basis, as do d vectors that span it. Without that known dimension, verify both spanning and independence. Always finish a basis claim by naming its space: two independent vectors in three-dimensional space describe their plane, not the entire ambient space.

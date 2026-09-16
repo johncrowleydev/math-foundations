@@ -6838,186 +6838,6 @@ linear-algebra-bases:
     instructions: ''
     prompt: Give a basis and dimension for the subspace consisting of (x,y,z) with z=-2x- 1y. Prove both spanning and independence.
     answer: Every vector equals x(1, 0, -2)+y(0, 1, -1). These two vectors span, and their first two coordinates force both coefficients to zero in a zero combination. They form a basis, and the dimension is two.
-  '15':
-    instructions: ''
-    prompt: A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?
-    answer: Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change.
-  '16':
-    instructions: ''
-    prompt: A has columns (1,0), (0,1), and (1,1). Give a column-space basis using original columns and a null-space basis.
-    answer: The first two columns form a column-space basis. Solving x1+x3=0 and x2+x3=0 gives all multiples of (-1,-1,1), so that one nonzero vector is a null-space basis.
-  '17':
-    instructions: ''
-    prompt: An 3-by-5 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 5-2=3. Both row and column spaces have dimension 2. It does not have full row rank. It does not have full column rank.
-  '18':
-    instructions: ''
-    prompt: An 4-by-3 matrix has rank 3. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 3-3=0. Both row and column spaces have dimension 3. It does not have full row rank. It has full column rank.
-  '19':
-    instructions: ''
-    prompt: An 2-by-4 matrix has rank 1. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 4-1=3. Both row and column spaces have dimension 1. It does not have full row rank. It does not have full column rank.
-  '20':
-    instructions: ''
-    prompt: An 3-by-3 matrix has rank 0. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 3-0=3. Both row and column spaces have dimension 0. It does not have full row rank. It does not have full column rank.
-  '21':
-    instructions: ''
-    prompt: An 4-by-4 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 4-2=2. Both row and column spaces have dimension 2. It does not have full row rank. It does not have full column rank.
-  '22':
-    instructions: ''
-    prompt: An 2-by-3 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
-    answer: Nullity is 3-2=1. Both row and column spaces have dimension 2. It has full row rank. It does not have full column rank.
-  '23':
-    instructions: ''
-    prompt: For A with rows (1, 0, 1), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.
-    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(1)z and y=-(2)z, so (-1, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-  '24':
-    instructions: ''
-    prompt: For A with rows (1, 0, 2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.
-    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(2)z and y=-(-1)z, so (-2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-  '25':
-    instructions: ''
-    prompt: For A with rows (1, 0, -1), (0, 1, 3), give a basis of its column space and a basis of its null space. Verify both dimensions.
-    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-1)z and y=-(3)z, so (1, -3, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-  '26':
-    instructions: ''
-    prompt: For A with rows (1, 0, 0), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.
-    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(0)z and y=-(2)z, so (0, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-  '27':
-    instructions: ''
-    prompt: For A with rows (1, 0, 3), (0, 1, 0), give a basis of its column space and a basis of its null space. Verify both dimensions.
-    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(3)z and y=-(0)z, so (-3, 0, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-  '28':
-    instructions: ''
-    prompt: For A with rows (1, 0, -2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.
-    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-2)z and y=-(-1)z, so (2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
-  '29':
-    instructions: ''
-    prompt: A has rows (1, 2), (1, 2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-    answer: Subtract 1 times row one from row two. The first column is the pivot column, so the original vector (1,1) is a basis. Reduced column (1,0) points along a different line because 1 is nonzero; it describes the reduced matrix's column space, not A's.
-  '30':
-    instructions: ''
-    prompt: A has rows (1, 2), (2, 4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-    answer: Subtract 2 times row one from row two. The first column is the pivot column, so the original vector (1,2) is a basis. Reduced column (1,0) points along a different line because 2 is nonzero; it describes the reduced matrix's column space, not A's.
-  '31':
-    instructions: ''
-    prompt: A has rows (1, 2), (-1, -2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-    answer: Subtract -1 times row one from row two. The first column is the pivot column, so the original vector (1,-1) is a basis. Reduced column (1,0) points along a different line because -1 is nonzero; it describes the reduced matrix's column space, not A's.
-  '32':
-    instructions: ''
-    prompt: A has rows (1, 2), (3, 6). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-    answer: Subtract 3 times row one from row two. The first column is the pivot column, so the original vector (1,3) is a basis. Reduced column (1,0) points along a different line because 3 is nonzero; it describes the reduced matrix's column space, not A's.
-  '33':
-    instructions: ''
-    prompt: A has rows (1, 2), (-2, -4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-    answer: Subtract -2 times row one from row two. The first column is the pivot column, so the original vector (1,-2) is a basis. Reduced column (1,0) points along a different line because -2 is nonzero; it describes the reduced matrix's column space, not A's.
-  '34':
-    instructions: ''
-    prompt: A has rows (1, 2), (4, 8). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
-    answer: Subtract 4 times row one from row two. The first column is the pivot column, so the original vector (1,4) is a basis. Reduced column (1,0) points along a different line because 4 is nonzero; it describes the reduced matrix's column space, not A's.
-  '35':
-    instructions: ''
-    prompt: Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.
-    answer: The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity.
-  '36':
-    instructions: ''
-    prompt: Is the matrix with rows (1,2),(2,4) invertible? Justify using both its determinant and its columns.
-    answer: No. Its determinant is 4-4=0, and its second column is twice its first. Its rank is only one, so it loses an input direction and cannot be undone.
-  '37':
-    instructions: ''
-    prompt: Find the inverse of A with rows (1, 2), (0, 1). Compute its determinant and verify the proposed inverse by multiplication.
-    answer: The determinant is 1 times 1 minus (2) times (0) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -2), (0, 1). Both products give the identity.
-  '38':
-    instructions: ''
-    prompt: Find the inverse of A with rows (2, 1), (1, 1). Compute its determinant and verify the proposed inverse by multiplication.
-    answer: The determinant is 2 times 1 minus (1) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -1), (-1, 2). Both products give the identity.
-  '39':
-    instructions: ''
-    prompt: Find the inverse of A with rows (1, -1), (2, 1). Compute its determinant and verify the proposed inverse by multiplication.
-    answer: The determinant is 1 times 1 minus (-1) times (2) = 3, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 3, giving rows (1/3, 1/3), (-2/3, 1/3). Both products give the identity.
-  '40':
-    instructions: ''
-    prompt: Find the inverse of A with rows (0, 1), (1, 0). Compute its determinant and verify the proposed inverse by multiplication.
-    answer: The determinant is 0 times 0 minus (1) times (1) = -1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by -1, giving rows (0, 1), (1, 0). Both products give the identity.
-  '41':
-    instructions: ''
-    prompt: Find the inverse of A with rows (3, 0), (0, 2). Compute its determinant and verify the proposed inverse by multiplication.
-    answer: The determinant is 3 times 2 minus (0) times (0) = 6, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 6, giving rows (1/3, 0), (0, 1/2). Both products give the identity.
-  '42':
-    instructions: ''
-    prompt: Find the inverse of A with rows (2, 3), (1, 2). Compute its determinant and verify the proposed inverse by multiplication.
-    answer: The determinant is 2 times 2 minus (3) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (2, -3), (-1, 2). Both products give the identity.
-  '43':
-    instructions: ''
-    prompt: A has plane columns (2, -1) and (3, 4). Find its determinant, the area of their parallelogram, and whether A is invertible.
-    answer: The determinant is 11; the area is its absolute value, 11. Nonzero area means two independent directions and an inverse.
-  '44':
-    instructions: ''
-    prompt: A has plane columns (0, 3) and (-2, 1). Find its determinant, the area of their parallelogram, and whether A is invertible.
-    answer: The determinant is 6; the area is its absolute value, 6. Nonzero area means two independent directions and an inverse.
-  '45':
-    instructions: ''
-    prompt: A has plane columns (-3, 2) and (1, -4). Find its determinant, the area of their parallelogram, and whether A is invertible.
-    answer: The determinant is 10; the area is its absolute value, 10. Nonzero area means two independent directions and an inverse.
-  '46':
-    instructions: ''
-    prompt: A three by two matrix has two independent columns. Can every three-component target have a solution? Can a target have two different solutions? Explain.
-    answer: Its column space has dimension two, so it cannot reach every three-component target. Its null space is zero, so any reachable target has exactly one solution. Existence and uniqueness are different questions.
-  '47':
-    instructions: ''
-    prompt: Why should a column-space basis be selected from the original matrix's pivot-indexed columns, rather than directly from its row-reduced columns?
-    answer: Row operations preserve which columns depend on which others, so pivot indices identify an independent spanning selection. They can change the actual output vectors and hence the column space, so the corresponding original columns are needed.
-  '48':
-    instructions: ''
-    prompt: For an 3-by-2 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. A reachable output has a unique input because nullity is zero.
-  '49':
-    instructions: ''
-    prompt: For an 2-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Every output is reachable because rank equals the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
-  '50':
-    instructions: ''
-    prompt: For an 3-by-3 matrix of rank 3, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Every output is reachable because rank equals the number of rows. A reachable output has a unique input because nullity is zero.
-  '51':
-    instructions: ''
-    prompt: For an 3-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
-  '52':
-    instructions: ''
-    prompt: For an 2-by-4 matrix of rank 1, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 3>0.
-  '53':
-    instructions: ''
-    prompt: For an 4-by-2 matrix of rank 1, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
-    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
-  '54':
-    instructions: ''
-    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(4, 3) using that inverse and check the result in A.
-    answer: Multiplying the inverse by the right-hand side gives (1, 2). Applying A returns (4, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-  '55':
-    instructions: ''
-    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(3, 1) using that inverse and check the result in A.
-    answer: Multiplying the inverse by the right-hand side gives (2, -1). Applying A returns (3, 1). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-  '56':
-    instructions: ''
-    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(1, 2) using that inverse and check the result in A.
-    answer: Multiplying the inverse by the right-hand side gives (-1, 3). Applying A returns (1, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-  '57':
-    instructions: ''
-    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(2, 2) using that inverse and check the result in A.
-    answer: Multiplying the inverse by the right-hand side gives (0, 2). Applying A returns (2, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-  '58':
-    instructions: ''
-    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(6, 3) using that inverse and check the result in A.
-    answer: Multiplying the inverse by the right-hand side gives (3, 0). Applying A returns (6, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
-  '59':
-    instructions: ''
-    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(-5, -3) using that inverse and check the result in A.
-    answer: Multiplying the inverse by the right-hand side gives (-2, -1). Applying A returns (-5, -3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
   '60':
     instructions: ''
     prompt: Give a basis for the zero-only subspace. Why is the list containing zero not a basis?
@@ -7030,42 +6850,10 @@ linear-algebra-bases:
     instructions: ''
     prompt: Why must coordinates in an ordered basis be unique?
     answer: Subtracting two different coefficient representations would give a nontrivial zero combination of the basis vectors, contradicting independence.
-  '63':
-    instructions: ''
-    prompt: Can a two-by-five matrix have rank three? Explain.
-    answer: No. Rank is at most the number of rows, two, as well as at most the number of columns.
-  '64':
-    instructions: ''
-    prompt: Prove the inverse of AB is B inverse times A inverse when both square matrices are invertible.
-    answer: Multiplying AB by B inverse A inverse cancels the middle pair and then the outer pair to give identity. The reverse product similarly gives identity.
-  '65':
-    instructions: ''
-    prompt: Why is entrywise reciprocal not the general matrix inverse? Give a simple obstruction.
-    answer: An invertible identity matrix contains zero entries, whose reciprocals are undefined. More generally matrix inverse is defined through matrix products, not independent entry products.
-  '66':
-    instructions: ''
-    prompt: An n-by-n matrix has a nonzero null vector. Prove it has no inverse.
-    answer: If Az=0 and A inverse existed, multiplying would give z=0, contradicting the nonzero choice.
-  '67':
-    instructions: ''
-    prompt: Explain why an inverse is unique if it exists.
-    answer: If B and C both invert A, then B=B(AC)=(BA)C=C using associativity and both identity equations.
   '68':
     instructions: ''
     prompt: Can vectors be a basis of a proper subspace but fail to be a basis of the ambient space? Give an example.
     answer: The single vector (1,0,0) is a basis of the first coordinate axis but does not span the full three-dimensional space.
-  '69':
-    instructions: ''
-    prompt: Why do nonzero echelon rows form a row-space basis?
-    answer: Reversible row operations preserve the row span. Distinct leading positions make the nonzero echelon rows independent, so they both span and are independent.
-  '70':
-    instructions: ''
-    prompt: If A has full column rank, why does Ax=b have at most one solution even when it is inconsistent for some b?
-    answer: Full column rank gives zero-only null space. The difference of any two solutions would be a null vector and must vanish. This uniqueness argument does not establish existence.
-  '71':
-    instructions: ''
-    prompt: Does determinant magnitude two imply every vector has its length doubled? Give a counterexample.
-    answer: No. The diagonal matrix with entries two and one has determinant two but leaves the second standard vector’s length unchanged. The determinant magnitude scales area in the plane.
 linear-algebra-transformations:
   '1':
     instructions: ''
@@ -7452,118 +7240,6 @@ linear-algebra-projections:
     instructions: ''
     prompt: Apply Gram–Schmidt to the ordered vectors (1,0,0) and (-2, -1, 1). Give the orthonormal vectors and verify that the span is unchanged.
     answer: The first vector already has unit length. Subtract its projection (-2,0,0) from the second, leaving (0, -1, 1). Divide that remainder by square root of 2 for the second unit vector. It is perpendicular to the first, and the original second vector is -2 times the first plus square root of 2 times the second unit vector.
-  '29':
-    instructions: ''
-    prompt: Find the least-squares constant fit c to observations 2,4,9. Give the fitted output and the residual b minus the fitted output.
-    answer: The normal equation is 3c=15, giving c=5. The fitted output is (5,5,5), and the residual is (-3,-1,4). Its components sum to zero, making it perpendicular to the column of ones.
-  '30':
-    instructions: ''
-    prompt: A has one column (1,2) and b=(1,1). Solve the scalar normal equation for the coefficient, then give the fitted output.
-    answer: A transpose A is 5 and A transpose b is 3, so the coefficient is 3/5. The fitted output is (3/5,6/5). The residual (2/5,-1/5) has zero dot product with (1,2).
-  '31':
-    instructions: ''
-    prompt: Fit one constant c to observations (1, 2, 6) by least squares. Derive the normal equation and give fitted values and residual.
-    answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.
-  '32':
-    instructions: ''
-    prompt: Fit one constant c to observations (2, 4, 9) by least squares. Derive the normal equation and give fitted values and residual.
-    answer: With a column of 3 ones, the normal equation is 3c=15. Thus c=5, fitted values (5, 5, 5), residual (-3, -1, 4). Its components sum to zero, establishing orthogonality to the constant column.
-  '33':
-    instructions: ''
-    prompt: Fit one constant c to observations (-1, 0, 4) by least squares. Derive the normal equation and give fitted values and residual.
-    answer: With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.
-  '34':
-    instructions: ''
-    prompt: Fit one constant c to observations (3, 3, 3) by least squares. Derive the normal equation and give fitted values and residual.
-    answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (0, 0, 0). Its components sum to zero, establishing orthogonality to the constant column.
-  '35':
-    instructions: ''
-    prompt: Fit one constant c to observations (0, 0, 6) by least squares. Derive the normal equation and give fitted values and residual.
-    answer: With a column of 3 ones, the normal equation is 3c=6. Thus c=2, fitted values (2, 2, 2), residual (-2, -2, 4). Its components sum to zero, establishing orthogonality to the constant column.
-  '36':
-    instructions: ''
-    prompt: Fit one constant c to observations (2, -2, 3) by least squares. Derive the normal equation and give fitted values and residual.
-    answer: With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (1, -3, 2). Its components sum to zero, establishing orthogonality to the constant column.
-  '37':
-    instructions: ''
-    prompt: Fit c+dt to observations at t=0,1,2 with measured values (1, 2, 2). Set up and solve the two normal equations, then give the fitted output.
-    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=5 and 3c+5d=6. Subtracting gives 2d=1, so d=1/2 and c=7/6. Fitted values are (7/6, 5/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.
-  '38':
-    instructions: ''
-    prompt: Fit c+dt to observations at t=0,1,2 with measured values (0, 1, 3). Set up and solve the two normal equations, then give the fitted output.
-    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=4 and 3c+5d=7. Subtracting gives 2d=3, so d=3/2 and c=-1/6. Fitted values are (-1/6, 4/3, 17/6); subtracting them from observations gives a residual orthogonal to both design columns.
-  '39':
-    instructions: ''
-    prompt: Fit c+dt to observations at t=0,1,2 with measured values (2, 0, 1). Set up and solve the two normal equations, then give the fitted output.
-    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=3 and 3c+5d=2. Subtracting gives 2d=-1, so d=-1/2 and c=3/2. Fitted values are (3/2, 1, 1/2); subtracting them from observations gives a residual orthogonal to both design columns.
-  '40':
-    instructions: ''
-    prompt: Fit c+dt to observations at t=0,1,2 with measured values (3, 3, 3). Set up and solve the two normal equations, then give the fitted output.
-    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=9 and 3c+5d=9. Subtracting gives 2d=0, so d=0 and c=3. Fitted values are (3, 3, 3); subtracting them from observations gives a residual orthogonal to both design columns.
-  '41':
-    instructions: ''
-    prompt: Fit c+dt to observations at t=0,1,2 with measured values (-1, 1, 2). Set up and solve the two normal equations, then give the fitted output.
-    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=2 and 3c+5d=5. Subtracting gives 2d=3, so d=3/2 and c=-5/6. Fitted values are (-5/6, 2/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.
-  '42':
-    instructions: ''
-    prompt: Fit c+dt to observations at t=0,1,2 with measured values (2, 4, 6). Set up and solve the two normal equations, then give the fitted output.
-    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=12 and 3c+5d=16. Subtracting gives 2d=4, so d=2 and c=2. Fitted values are (2, 4, 6); subtracting them from observations gives a residual orthogonal to both design columns.
-  '43':
-    instructions: ''
-    prompt: A has rows (1,1),(1,1) and b=(1, 3). Describe every least-squares coefficient vector and the unique fitted output.
-    answer: Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
-  '44':
-    instructions: ''
-    prompt: A has rows (1,1),(1,1) and b=(2, 4). Describe every least-squares coefficient vector and the unique fitted output.
-    answer: Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
-  '45':
-    instructions: ''
-    prompt: A has rows (1,1),(1,1) and b=(-1, 2). Describe every least-squares coefficient vector and the unique fitted output.
-    answer: Only the sum x1+x2 matters. Its best constant value is 1/2. All coefficients (1/2-t,t), t real, give fitted output (1/2,1/2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
-  '46':
-    instructions: ''
-    prompt: A has rows (1,1),(1,1) and b=(0, 4). Describe every least-squares coefficient vector and the unique fitted output.
-    answer: Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
-  '47':
-    instructions: ''
-    prompt: A has rows (1,1),(1,1) and b=(3, 3). Describe every least-squares coefficient vector and the unique fitted output.
-    answer: Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
-  '48':
-    instructions: ''
-    prompt: A has rows (1,1),(1,1) and b=(-2, -4). Describe every least-squares coefficient vector and the unique fitted output.
-    answer: Only the sum x1+x2 matters. Its best constant value is -3. All coefficients (-3-t,t), t real, give fitted output (-3,-3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
-  '49':
-    instructions: ''
-    prompt: A least-squares calculation returns a nonzero residual. Does that alone mean the calculation is wrong? Explain.
-    answer: No. If the target lies outside the column space, no exact fit exists and the closest permitted output has a nonzero residual. The residual should be orthogonal to the column space at a least-squares solution.
-  '50':
-    instructions: ''
-    prompt: Why might two different coefficient vectors give the same unique closest output in a least-squares problem?
-    answer: Dependent columns give a nonzero null-space direction. Adding such a direction to a coefficient vector does not change its output. The projection output can therefore be unique even when its coefficient representation is not.
-  '51':
-    instructions: ''
-    prompt: A has one column (1,2). A proposed coefficient for target (1, 2) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
-    answer: 'The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
-  '52':
-    instructions: ''
-    prompt: A has one column (1,2). A proposed coefficient for target (2, 0) is 2/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
-    answer: 'The output is (2/5, 4/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (2/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
-  '53':
-    instructions: ''
-    prompt: A has one column (1,2). A proposed coefficient for target (3, 1) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
-    answer: 'The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
-  '54':
-    instructions: ''
-    prompt: A has one column (1,2). A proposed coefficient for target (-1, 2) is 3/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
-    answer: 'The output is (3/5, 6/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (3/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
-  '55':
-    instructions: ''
-    prompt: A has one column (1,2). A proposed coefficient for target (0, 3) is 6/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
-    answer: 'The output is (6/5, 12/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (6/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
-  '56':
-    instructions: ''
-    prompt: A has one column (1,2). A proposed coefficient for target (4, -2) is 0. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
-    answer: 'The output is (0, 0). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (0)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
   '57':
     instructions: ''
     prompt: Prove that the perpendicular projection onto a line is the unique closest point using the Pythagorean theorem.
@@ -7576,30 +7252,6 @@ linear-algebra-projections:
     instructions: ''
     prompt: For a matrix Q with orthonormal columns, why can Q transpose Q be identity while Q Q transpose is not?
     answer: The first product records pairwise dot products of the columns and is identity. The reverse product projects onto their span, which may be a proper subspace of the output space.
-  '60':
-    instructions: ''
-    prompt: Does a zero least-squares residual prove the model is scientifically valid? Explain.
-    answer: It proves exact fit to these observations under this model, not a causal interpretation or valid extrapolation. A model can fit finite observations and still be unsuitable elsewhere.
-  '61':
-    instructions: ''
-    prompt: Why are the normal equations still valid for dependent columns?
-    answer: A closest output has residual perpendicular to the entire column space, equivalent to A transpose times residual equal to zero. This characterization does not require unique coefficients.
-  '62':
-    instructions: ''
-    prompt: Prove A transpose A is invertible when A has independent columns.
-    answer: If A transpose A x=0, multiply by x transpose to get squared norm of Ax equal to zero. Then Ax=0, and independent columns force x=0. The square matrix has zero-only null space and is invertible.
-  '63':
-    instructions: ''
-    prompt: Why does the residual convention matter even though either sign gives the same squared error?
-    answer: The squared norm is unchanged by negation, but a reported residual component’s sign indicates whether the observation is above or below its fitted value under the chosen convention. Here residual is observation minus fitted output.
-  '64':
-    instructions: ''
-    prompt: A fit minimizes squared error. Does it necessarily minimize the sum of absolute errors? Explain.
-    answer: No. Those are different objectives and can prefer different fits. For observations zero, zero, and six, squared-error constant fitting gives two, while zero has smaller total absolute error than two.
-  '65':
-    instructions: ''
-    prompt: Why can one large residual strongly influence least squares?
-    answer: Squaring gives disproportionately large contributions to large discrepancies. This is a property of the chosen loss, not an arithmetic mistake.
   '66':
     instructions: ''
     prompt: What does QR factorization separate in a full-column-rank model matrix?
@@ -8150,3 +7802,353 @@ linear-algebra-svd:
     instructions: ''
     prompt: Why should a supplied SVD be checked for orthogonality as well as multiplication?
     answer: Many factorizations multiply to A. An SVD additionally requires orthogonal U,V and nonnegative rectangular diagonal Sigma, which give its geometric and rank interpretations.
+linear-algebra-rank-inverses:
+  '15':
+    instructions: ''
+    prompt: A matrix has five columns and three pivots. Find its rank and nullity. What do the free variables describe?
+    answer: Rank is three and nullity is two. The two free variables parameterize the homogeneous solutions, describing input freedom that produces no output change.
+  '16':
+    instructions: ''
+    prompt: A has columns (1,0), (0,1), and (1,1). Give a column-space basis using original columns and a null-space basis.
+    answer: The first two columns form a column-space basis. Solving x1+x3=0 and x2+x3=0 gives all multiples of (-1,-1,1), so that one nonzero vector is a null-space basis.
+  '17':
+    instructions: ''
+    prompt: An 3-by-5 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
+    answer: Nullity is 5-2=3. Both row and column spaces have dimension 2. It does not have full row rank. It does not have full column rank.
+  '18':
+    instructions: ''
+    prompt: An 4-by-3 matrix has rank 3. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
+    answer: Nullity is 3-3=0. Both row and column spaces have dimension 3. It does not have full row rank. It has full column rank.
+  '19':
+    instructions: ''
+    prompt: An 2-by-4 matrix has rank 1. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
+    answer: Nullity is 4-1=3. Both row and column spaces have dimension 1. It does not have full row rank. It does not have full column rank.
+  '20':
+    instructions: ''
+    prompt: An 3-by-3 matrix has rank 0. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
+    answer: Nullity is 3-0=3. Both row and column spaces have dimension 0. It does not have full row rank. It does not have full column rank.
+  '21':
+    instructions: ''
+    prompt: An 4-by-4 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
+    answer: Nullity is 4-2=2. Both row and column spaces have dimension 2. It does not have full row rank. It does not have full column rank.
+  '22':
+    instructions: ''
+    prompt: An 2-by-3 matrix has rank 2. Find its nullity, the dimensions of its row and column spaces, and whether it has full row or full column rank.
+    answer: Nullity is 3-2=1. Both row and column spaces have dimension 2. It has full row rank. It does not have full column rank.
+  '23':
+    instructions: ''
+    prompt: For A with rows (1, 0, 1), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.
+    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(1)z and y=-(2)z, so (-1, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
+  '24':
+    instructions: ''
+    prompt: For A with rows (1, 0, 2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.
+    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(2)z and y=-(-1)z, so (-2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
+  '25':
+    instructions: ''
+    prompt: For A with rows (1, 0, -1), (0, 1, 3), give a basis of its column space and a basis of its null space. Verify both dimensions.
+    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-1)z and y=-(3)z, so (1, -3, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
+  '26':
+    instructions: ''
+    prompt: For A with rows (1, 0, 0), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.
+    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(0)z and y=-(2)z, so (0, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
+  '27':
+    instructions: ''
+    prompt: For A with rows (1, 0, 3), (0, 1, 0), give a basis of its column space and a basis of its null space. Verify both dimensions.
+    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(3)z and y=-(0)z, so (-3, 0, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
+  '28':
+    instructions: ''
+    prompt: For A with rows (1, 0, -2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.
+    answer: The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-2)z and y=-(-1)z, so (2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.
+  '29':
+    instructions: ''
+    prompt: A has rows (1, 2), (1, 2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
+    answer: Subtract 1 times row one from row two. The first column is the pivot column, so the original vector (1,1) is a basis. Reduced column (1,0) points along a different line because 1 is nonzero; it describes the reduced matrix's column space, not A's.
+  '30':
+    instructions: ''
+    prompt: A has rows (1, 2), (2, 4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
+    answer: Subtract 2 times row one from row two. The first column is the pivot column, so the original vector (1,2) is a basis. Reduced column (1,0) points along a different line because 2 is nonzero; it describes the reduced matrix's column space, not A's.
+  '31':
+    instructions: ''
+    prompt: A has rows (1, 2), (-1, -2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
+    answer: Subtract -1 times row one from row two. The first column is the pivot column, so the original vector (1,-1) is a basis. Reduced column (1,0) points along a different line because -1 is nonzero; it describes the reduced matrix's column space, not A's.
+  '32':
+    instructions: ''
+    prompt: A has rows (1, 2), (3, 6). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
+    answer: Subtract 3 times row one from row two. The first column is the pivot column, so the original vector (1,3) is a basis. Reduced column (1,0) points along a different line because 3 is nonzero; it describes the reduced matrix's column space, not A's.
+  '33':
+    instructions: ''
+    prompt: A has rows (1, 2), (-2, -4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
+    answer: Subtract -2 times row one from row two. The first column is the pivot column, so the original vector (1,-2) is a basis. Reduced column (1,0) points along a different line because -2 is nonzero; it describes the reduced matrix's column space, not A's.
+  '34':
+    instructions: ''
+    prompt: A has rows (1, 2), (4, 8). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.
+    answer: Subtract 4 times row one from row two. The first column is the pivot column, so the original vector (1,4) is a basis. Reduced column (1,0) points along a different line because 4 is nonzero; it describes the reduced matrix's column space, not A's.
+  '35':
+    instructions: ''
+    prompt: Find the inverse of the matrix with rows (1,2),(0,1), and verify it by multiplication.
+    answer: The inverse has rows (1,-2),(0,1). Multiplying in either order yields diagonal entries one and off-diagonal entries zero, the identity.
+  '36':
+    instructions: ''
+    prompt: Is the matrix with rows (1,2),(2,4) invertible? Justify using both its determinant and its columns.
+    answer: No. Its determinant is 4-4=0, and its second column is twice its first. Its rank is only one, so it loses an input direction and cannot be undone.
+  '37':
+    instructions: ''
+    prompt: Find the inverse of A with rows (1, 2), (0, 1). Compute its determinant and verify the proposed inverse by multiplication.
+    answer: The determinant is 1 times 1 minus (2) times (0) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -2), (0, 1). Both products give the identity.
+  '38':
+    instructions: ''
+    prompt: Find the inverse of A with rows (2, 1), (1, 1). Compute its determinant and verify the proposed inverse by multiplication.
+    answer: The determinant is 2 times 1 minus (1) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -1), (-1, 2). Both products give the identity.
+  '39':
+    instructions: ''
+    prompt: Find the inverse of A with rows (1, -1), (2, 1). Compute its determinant and verify the proposed inverse by multiplication.
+    answer: The determinant is 1 times 1 minus (-1) times (2) = 3, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 3, giving rows (1/3, 1/3), (-2/3, 1/3). Both products give the identity.
+  '40':
+    instructions: ''
+    prompt: Find the inverse of A with rows (0, 1), (1, 0). Compute its determinant and verify the proposed inverse by multiplication.
+    answer: The determinant is 0 times 0 minus (1) times (1) = -1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by -1, giving rows (0, 1), (1, 0). Both products give the identity.
+  '41':
+    instructions: ''
+    prompt: Find the inverse of A with rows (3, 0), (0, 2). Compute its determinant and verify the proposed inverse by multiplication.
+    answer: The determinant is 3 times 2 minus (0) times (0) = 6, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 6, giving rows (1/3, 0), (0, 1/2). Both products give the identity.
+  '42':
+    instructions: ''
+    prompt: Find the inverse of A with rows (2, 3), (1, 2). Compute its determinant and verify the proposed inverse by multiplication.
+    answer: The determinant is 2 times 2 minus (3) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (2, -3), (-1, 2). Both products give the identity.
+  '43':
+    instructions: ''
+    prompt: A has plane columns (2, -1) and (3, 4). Find its determinant, the area of their parallelogram, and whether A is invertible.
+    answer: The determinant is 11; the area is its absolute value, 11. Nonzero area means two independent directions and an inverse.
+  '44':
+    instructions: ''
+    prompt: A has plane columns (0, 3) and (-2, 1). Find its determinant, the area of their parallelogram, and whether A is invertible.
+    answer: The determinant is 6; the area is its absolute value, 6. Nonzero area means two independent directions and an inverse.
+  '45':
+    instructions: ''
+    prompt: A has plane columns (-3, 2) and (1, -4). Find its determinant, the area of their parallelogram, and whether A is invertible.
+    answer: The determinant is 10; the area is its absolute value, 10. Nonzero area means two independent directions and an inverse.
+  '46':
+    instructions: ''
+    prompt: A three by two matrix has two independent columns. Can every three-component target have a solution? Can a target have two different solutions? Explain.
+    answer: Its column space has dimension two, so it cannot reach every three-component target. Its null space is zero, so any reachable target has exactly one solution. Existence and uniqueness are different questions.
+  '47':
+    instructions: ''
+    prompt: Why should a column-space basis be selected from the original matrix's pivot-indexed columns, rather than directly from its row-reduced columns?
+    answer: Row operations preserve which columns depend on which others, so pivot indices identify an independent spanning selection. They can change the actual output vectors and hence the column space, so the corresponding original columns are needed.
+  '48':
+    instructions: ''
+    prompt: For an 3-by-2 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. A reachable output has a unique input because nullity is zero.
+  '49':
+    instructions: ''
+    prompt: For an 2-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Every output is reachable because rank equals the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
+  '50':
+    instructions: ''
+    prompt: For an 3-by-3 matrix of rank 3, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Every output is reachable because rank equals the number of rows. A reachable output has a unique input because nullity is zero.
+  '51':
+    instructions: ''
+    prompt: For an 3-by-3 matrix of rank 2, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
+  '52':
+    instructions: ''
+    prompt: For an 2-by-4 matrix of rank 1, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 3>0.
+  '53':
+    instructions: ''
+    prompt: For an 4-by-2 matrix of rank 1, decide whether every output is reachable and whether a reachable output has a unique input. Justify separately.
+    answer: Some outputs are missed because the column-space dimension is smaller than the number of rows. Every reachable output has infinitely many inputs because nullity is 1>0.
+  '54':
+    instructions: ''
+    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(4, 3) using that inverse and check the result in A.
+    answer: Multiplying the inverse by the right-hand side gives (1, 2). Applying A returns (4, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
+  '55':
+    instructions: ''
+    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(3, 1) using that inverse and check the result in A.
+    answer: Multiplying the inverse by the right-hand side gives (2, -1). Applying A returns (3, 1). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
+  '56':
+    instructions: ''
+    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(1, 2) using that inverse and check the result in A.
+    answer: Multiplying the inverse by the right-hand side gives (-1, 3). Applying A returns (1, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
+  '57':
+    instructions: ''
+    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(2, 2) using that inverse and check the result in A.
+    answer: Multiplying the inverse by the right-hand side gives (0, 2). Applying A returns (2, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
+  '58':
+    instructions: ''
+    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(6, 3) using that inverse and check the result in A.
+    answer: Multiplying the inverse by the right-hand side gives (3, 0). Applying A returns (6, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
+  '59':
+    instructions: ''
+    prompt: A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(-5, -3) using that inverse and check the result in A.
+    answer: Multiplying the inverse by the right-hand side gives (-2, -1). Applying A returns (-5, -3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.
+  '63':
+    instructions: ''
+    prompt: Can a two-by-five matrix have rank three? Explain.
+    answer: No. Rank is at most the number of rows, two, as well as at most the number of columns.
+  '64':
+    instructions: ''
+    prompt: Prove the inverse of AB is B inverse times A inverse when both square matrices are invertible.
+    answer: Multiplying AB by B inverse A inverse cancels the middle pair and then the outer pair to give identity. The reverse product similarly gives identity.
+  '65':
+    instructions: ''
+    prompt: Why is entrywise reciprocal not the general matrix inverse? Give a simple obstruction.
+    answer: An invertible identity matrix contains zero entries, whose reciprocals are undefined. More generally matrix inverse is defined through matrix products, not independent entry products.
+  '66':
+    instructions: ''
+    prompt: An n-by-n matrix has a nonzero null vector. Prove it has no inverse.
+    answer: If Az=0 and A inverse existed, multiplying would give z=0, contradicting the nonzero choice.
+  '67':
+    instructions: ''
+    prompt: Explain why an inverse is unique if it exists.
+    answer: If B and C both invert A, then B=B(AC)=(BA)C=C using associativity and both identity equations.
+  '69':
+    instructions: ''
+    prompt: Why do nonzero echelon rows form a row-space basis?
+    answer: Reversible row operations preserve the row span. Distinct leading positions make the nonzero echelon rows independent, so they both span and are independent.
+  '70':
+    instructions: ''
+    prompt: If A has full column rank, why does Ax=b have at most one solution even when it is inconsistent for some b?
+    answer: Full column rank gives zero-only null space. The difference of any two solutions would be a null vector and must vanish. This uniqueness argument does not establish existence.
+  '71':
+    instructions: ''
+    prompt: Does determinant magnitude two imply every vector has its length doubled? Give a counterexample.
+    answer: No. The diagonal matrix with entries two and one has determinant two but leaves the second standard vector’s length unchanged. The determinant magnitude scales area in the plane.
+linear-algebra-least-squares:
+  '29':
+    instructions: ''
+    prompt: Find the least-squares constant fit c to observations 2,4,9. Give the fitted output and the residual b minus the fitted output.
+    answer: The normal equation is 3c=15, giving c=5. The fitted output is (5,5,5), and the residual is (-3,-1,4). Its components sum to zero, making it perpendicular to the column of ones.
+  '30':
+    instructions: ''
+    prompt: A has one column (1,2) and b=(1,1). Solve the scalar normal equation for the coefficient, then give the fitted output.
+    answer: A transpose A is 5 and A transpose b is 3, so the coefficient is 3/5. The fitted output is (3/5,6/5). The residual (2/5,-1/5) has zero dot product with (1,2).
+  '31':
+    instructions: ''
+    prompt: Fit one constant c to observations (1, 2, 6) by least squares. Derive the normal equation and give fitted values and residual.
+    answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.
+  '32':
+    instructions: ''
+    prompt: Fit one constant c to observations (2, 4, 9) by least squares. Derive the normal equation and give fitted values and residual.
+    answer: With a column of 3 ones, the normal equation is 3c=15. Thus c=5, fitted values (5, 5, 5), residual (-3, -1, 4). Its components sum to zero, establishing orthogonality to the constant column.
+  '33':
+    instructions: ''
+    prompt: Fit one constant c to observations (-1, 0, 4) by least squares. Derive the normal equation and give fitted values and residual.
+    answer: With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.
+  '34':
+    instructions: ''
+    prompt: Fit one constant c to observations (3, 3, 3) by least squares. Derive the normal equation and give fitted values and residual.
+    answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (0, 0, 0). Its components sum to zero, establishing orthogonality to the constant column.
+  '35':
+    instructions: ''
+    prompt: Fit one constant c to observations (0, 0, 6) by least squares. Derive the normal equation and give fitted values and residual.
+    answer: With a column of 3 ones, the normal equation is 3c=6. Thus c=2, fitted values (2, 2, 2), residual (-2, -2, 4). Its components sum to zero, establishing orthogonality to the constant column.
+  '36':
+    instructions: ''
+    prompt: Fit one constant c to observations (2, -2, 3) by least squares. Derive the normal equation and give fitted values and residual.
+    answer: With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (1, -3, 2). Its components sum to zero, establishing orthogonality to the constant column.
+  '37':
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (1, 2, 2). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=5 and 3c+5d=6. Subtracting gives 2d=1, so d=1/2 and c=7/6. Fitted values are (7/6, 5/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.
+  '38':
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (0, 1, 3). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=4 and 3c+5d=7. Subtracting gives 2d=3, so d=3/2 and c=-1/6. Fitted values are (-1/6, 4/3, 17/6); subtracting them from observations gives a residual orthogonal to both design columns.
+  '39':
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (2, 0, 1). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=3 and 3c+5d=2. Subtracting gives 2d=-1, so d=-1/2 and c=3/2. Fitted values are (3/2, 1, 1/2); subtracting them from observations gives a residual orthogonal to both design columns.
+  '40':
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (3, 3, 3). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=9 and 3c+5d=9. Subtracting gives 2d=0, so d=0 and c=3. Fitted values are (3, 3, 3); subtracting them from observations gives a residual orthogonal to both design columns.
+  '41':
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (-1, 1, 2). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=2 and 3c+5d=5. Subtracting gives 2d=3, so d=3/2 and c=-5/6. Fitted values are (-5/6, 2/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.
+  '42':
+    instructions: ''
+    prompt: Fit c+dt to observations at t=0,1,2 with measured values (2, 4, 6). Set up and solve the two normal equations, then give the fitted output.
+    answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=12 and 3c+5d=16. Subtracting gives 2d=4, so d=2 and c=2. Fitted values are (2, 4, 6); subtracting them from observations gives a residual orthogonal to both design columns.
+  '43':
+    instructions: ''
+    prompt: A has rows (1,1),(1,1) and b=(1, 3). Describe every least-squares coefficient vector and the unique fitted output.
+    answer: Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+  '44':
+    instructions: ''
+    prompt: A has rows (1,1),(1,1) and b=(2, 4). Describe every least-squares coefficient vector and the unique fitted output.
+    answer: Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+  '45':
+    instructions: ''
+    prompt: A has rows (1,1),(1,1) and b=(-1, 2). Describe every least-squares coefficient vector and the unique fitted output.
+    answer: Only the sum x1+x2 matters. Its best constant value is 1/2. All coefficients (1/2-t,t), t real, give fitted output (1/2,1/2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+  '46':
+    instructions: ''
+    prompt: A has rows (1,1),(1,1) and b=(0, 4). Describe every least-squares coefficient vector and the unique fitted output.
+    answer: Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+  '47':
+    instructions: ''
+    prompt: A has rows (1,1),(1,1) and b=(3, 3). Describe every least-squares coefficient vector and the unique fitted output.
+    answer: Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+  '48':
+    instructions: ''
+    prompt: A has rows (1,1),(1,1) and b=(-2, -4). Describe every least-squares coefficient vector and the unique fitted output.
+    answer: Only the sum x1+x2 matters. Its best constant value is -3. All coefficients (-3-t,t), t real, give fitted output (-3,-3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+  '49':
+    instructions: ''
+    prompt: A least-squares calculation returns a nonzero residual. Does that alone mean the calculation is wrong? Explain.
+    answer: No. If the target lies outside the column space, no exact fit exists and the closest permitted output has a nonzero residual. The residual should be orthogonal to the column space at a least-squares solution.
+  '50':
+    instructions: ''
+    prompt: Why might two different coefficient vectors give the same unique closest output in a least-squares problem?
+    answer: Dependent columns give a nonzero null-space direction. Adding such a direction to a coefficient vector does not change its output. The projection output can therefore be unique even when its coefficient representation is not.
+  '51':
+    instructions: ''
+    prompt: A has one column (1,2). A proposed coefficient for target (1, 2) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+    answer: 'The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+  '52':
+    instructions: ''
+    prompt: A has one column (1,2). A proposed coefficient for target (2, 0) is 2/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+    answer: 'The output is (2/5, 4/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (2/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+  '53':
+    instructions: ''
+    prompt: A has one column (1,2). A proposed coefficient for target (3, 1) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+    answer: 'The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+  '54':
+    instructions: ''
+    prompt: A has one column (1,2). A proposed coefficient for target (-1, 2) is 3/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+    answer: 'The output is (3/5, 6/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (3/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+  '55':
+    instructions: ''
+    prompt: A has one column (1,2). A proposed coefficient for target (0, 3) is 6/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+    answer: 'The output is (6/5, 12/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (6/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+  '56':
+    instructions: ''
+    prompt: A has one column (1,2). A proposed coefficient for target (4, -2) is 0. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+    answer: 'The output is (0, 0). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (0)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+  '60':
+    instructions: ''
+    prompt: Does a zero least-squares residual prove the model is scientifically valid? Explain.
+    answer: It proves exact fit to these observations under this model, not a causal interpretation or valid extrapolation. A model can fit finite observations and still be unsuitable elsewhere.
+  '61':
+    instructions: ''
+    prompt: Why are the normal equations still valid for dependent columns?
+    answer: A closest output has residual perpendicular to the entire column space, equivalent to A transpose times residual equal to zero. This characterization does not require unique coefficients.
+  '62':
+    instructions: ''
+    prompt: Prove A transpose A is invertible when A has independent columns.
+    answer: If A transpose A x=0, multiply by x transpose to get squared norm of Ax equal to zero. Then Ax=0, and independent columns force x=0. The square matrix has zero-only null space and is invertible.
+  '63':
+    instructions: ''
+    prompt: Why does the residual convention matter even though either sign gives the same squared error?
+    answer: The squared norm is unchanged by negation, but a reported residual component’s sign indicates whether the observation is above or below its fitted value under the chosen convention. Here residual is observation minus fitted output.
+  '64':
+    instructions: ''
+    prompt: A fit minimizes squared error. Does it necessarily minimize the sum of absolute errors? Explain.
+    answer: No. Those are different objectives and can prefer different fits. For observations zero, zero, and six, squared-error constant fitting gives two, while zero has smaller total absolute error than two.
+  '65':
+    instructions: ''
+    prompt: Why can one large residual strongly influence least squares?
+    answer: Squaring gives disproportionately large contributions to large discrepancies. This is a property of the chosen loss, not an arithmetic mistake.

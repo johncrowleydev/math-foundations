@@ -2647,7 +2647,7 @@
     "expected": [-3, -1]
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 23,
     "prompt": "For A with rows (1, 0, 1), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.",
     "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(1)z and y=-(2)z, so (-1, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
@@ -2664,7 +2664,7 @@
     "rank": 2
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 24,
     "prompt": "For A with rows (1, 0, 2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.",
     "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(2)z and y=-(-1)z, so (-2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
@@ -2681,7 +2681,7 @@
     "rank": 2
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 25,
     "prompt": "For A with rows (1, 0, -1), (0, 1, 3), give a basis of its column space and a basis of its null space. Verify both dimensions.",
     "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-1)z and y=-(3)z, so (1, -3, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
@@ -2698,7 +2698,7 @@
     "rank": 2
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 26,
     "prompt": "For A with rows (1, 0, 0), (0, 1, 2), give a basis of its column space and a basis of its null space. Verify both dimensions.",
     "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(0)z and y=-(2)z, so (0, -2, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
@@ -2715,7 +2715,7 @@
     "rank": 2
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 27,
     "prompt": "For A with rows (1, 0, 3), (0, 1, 0), give a basis of its column space and a basis of its null space. Verify both dimensions.",
     "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(3)z and y=-(0)z, so (-3, 0, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
@@ -2732,7 +2732,7 @@
     "rank": 2
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 28,
     "prompt": "For A with rows (1, 0, -2), (0, 1, -1), give a basis of its column space and a basis of its null space. Verify both dimensions.",
     "answer": "The first two original columns, (1,0),(0,1), form a column-space basis. The homogeneous equations give x=-(-2)z and y=-(-1)z, so (2, 1, 1) alone is a null-space basis. Rank two plus nullity one equals three columns.",
@@ -2749,7 +2749,7 @@
     "rank": 2
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 29,
     "prompt": "A has rows (1, 2), (1, 2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
     "answer": "Subtract 1 times row one from row two. The first column is the pivot column, so the original vector (1,1) is a basis. Reduced column (1,0) points along a different line because 1 is nonzero; it describes the reduced matrix's column space, not A's.",
@@ -2763,7 +2763,7 @@
     "rank": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 30,
     "prompt": "A has rows (1, 2), (2, 4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
     "answer": "Subtract 2 times row one from row two. The first column is the pivot column, so the original vector (1,2) is a basis. Reduced column (1,0) points along a different line because 2 is nonzero; it describes the reduced matrix's column space, not A's.",
@@ -2777,7 +2777,7 @@
     "rank": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 31,
     "prompt": "A has rows (1, 2), (-1, -2). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
     "answer": "Subtract -1 times row one from row two. The first column is the pivot column, so the original vector (1,-1) is a basis. Reduced column (1,0) points along a different line because -1 is nonzero; it describes the reduced matrix's column space, not A's.",
@@ -2791,7 +2791,7 @@
     "rank": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 32,
     "prompt": "A has rows (1, 2), (3, 6). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
     "answer": "Subtract 3 times row one from row two. The first column is the pivot column, so the original vector (1,3) is a basis. Reduced column (1,0) points along a different line because 3 is nonzero; it describes the reduced matrix's column space, not A's.",
@@ -2805,7 +2805,7 @@
     "rank": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 33,
     "prompt": "A has rows (1, 2), (-2, -4). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
     "answer": "Subtract -2 times row one from row two. The first column is the pivot column, so the original vector (1,-2) is a basis. Reduced column (1,0) points along a different line because -2 is nonzero; it describes the reduced matrix's column space, not A's.",
@@ -2819,7 +2819,7 @@
     "rank": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 34,
     "prompt": "A has rows (1, 2), (4, 8). Reduce it and give a column-space basis from the original matrix. Explain why (1,0) from the reduced matrix is the wrong column-space basis here.",
     "answer": "Subtract 4 times row one from row two. The first column is the pivot column, so the original vector (1,4) is a basis. Reduced column (1,0) points along a different line because 4 is nonzero; it describes the reduced matrix's column space, not A's.",
@@ -2833,7 +2833,7 @@
     "rank": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 37,
     "prompt": "Find the inverse of A with rows (1, 2), (0, 1). Compute its determinant and verify the proposed inverse by multiplication.",
     "answer": "The determinant is 1 times 1 minus (2) times (0) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -2), (0, 1). Both products give the identity.",
@@ -2849,7 +2849,7 @@
     "det": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 38,
     "prompt": "Find the inverse of A with rows (2, 1), (1, 1). Compute its determinant and verify the proposed inverse by multiplication.",
     "answer": "The determinant is 2 times 1 minus (1) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (1, -1), (-1, 2). Both products give the identity.",
@@ -2865,7 +2865,7 @@
     "det": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 39,
     "prompt": "Find the inverse of A with rows (1, -1), (2, 1). Compute its determinant and verify the proposed inverse by multiplication.",
     "answer": "The determinant is 1 times 1 minus (-1) times (2) = 3, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 3, giving rows (1/3, 1/3), (-2/3, 1/3). Both products give the identity.",
@@ -2881,7 +2881,7 @@
     "det": 3
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 40,
     "prompt": "Find the inverse of A with rows (0, 1), (1, 0). Compute its determinant and verify the proposed inverse by multiplication.",
     "answer": "The determinant is 0 times 0 minus (1) times (1) = -1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by -1, giving rows (0, 1), (1, 0). Both products give the identity.",
@@ -2897,7 +2897,7 @@
     "det": -1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 41,
     "prompt": "Find the inverse of A with rows (3, 0), (0, 2). Compute its determinant and verify the proposed inverse by multiplication.",
     "answer": "The determinant is 3 times 2 minus (0) times (0) = 6, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 6, giving rows (1/3, 0), (0, 1/2). Both products give the identity.",
@@ -2913,7 +2913,7 @@
     "det": 6
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 42,
     "prompt": "Find the inverse of A with rows (2, 3), (1, 2). Compute its determinant and verify the proposed inverse by multiplication.",
     "answer": "The determinant is 2 times 2 minus (3) times (1) = 1, nonzero. Swap the diagonal entries, negate the off-diagonal entries, and divide by 1, giving rows (2, -3), (-1, 2). Both products give the identity.",
@@ -2929,7 +2929,7 @@
     "det": 1
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 43,
     "prompt": "A has plane columns (2, -1) and (3, 4). Find its determinant, the area of their parallelogram, and whether A is invertible.",
     "answer": "The determinant is 11; the area is its absolute value, 11. Nonzero area means two independent directions and an inverse.",
@@ -2941,7 +2941,7 @@
     "expected": 11
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 44,
     "prompt": "A has plane columns (0, 3) and (-2, 1). Find its determinant, the area of their parallelogram, and whether A is invertible.",
     "answer": "The determinant is 6; the area is its absolute value, 6. Nonzero area means two independent directions and an inverse.",
@@ -2953,7 +2953,7 @@
     "expected": 6
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 45,
     "prompt": "A has plane columns (-3, 2) and (1, -4). Find its determinant, the area of their parallelogram, and whether A is invertible.",
     "answer": "The determinant is 10; the area is its absolute value, 10. Nonzero area means two independent directions and an inverse.",
@@ -2965,7 +2965,7 @@
     "expected": 10
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 54,
     "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(4, 3) using that inverse and check the result in A.",
     "answer": "Multiplying the inverse by the right-hand side gives (1, 2). Applying A returns (4, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
@@ -2978,7 +2978,7 @@
     "expected": [1, 2]
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 55,
     "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(3, 1) using that inverse and check the result in A.",
     "answer": "Multiplying the inverse by the right-hand side gives (2, -1). Applying A returns (3, 1). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
@@ -2991,7 +2991,7 @@
     "expected": [2, -1]
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 56,
     "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(1, 2) using that inverse and check the result in A.",
     "answer": "Multiplying the inverse by the right-hand side gives (-1, 3). Applying A returns (1, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
@@ -3004,7 +3004,7 @@
     "expected": [-1, 3]
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 57,
     "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(2, 2) using that inverse and check the result in A.",
     "answer": "Multiplying the inverse by the right-hand side gives (0, 2). Applying A returns (2, 2). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
@@ -3017,7 +3017,7 @@
     "expected": [0, 2]
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 58,
     "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(6, 3) using that inverse and check the result in A.",
     "answer": "Multiplying the inverse by the right-hand side gives (3, 0). Applying A returns (6, 3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
@@ -3030,7 +3030,7 @@
     "expected": [3, 0]
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 59,
     "prompt": "A has rows (2,1),(1,1), with inverse rows (1,-1),(-1,2). Solve Ax=(-5, -3) using that inverse and check the result in A.",
     "answer": "Multiplying the inverse by the right-hand side gives (-2, -1). Applying A returns (-5, -3). Knowing the inverse allows this calculation; for an unknown inverse and one system, direct elimination would also work.",
@@ -3723,7 +3723,7 @@
     ]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 31,
     "prompt": "Fit one constant c to observations (1, 2, 6) by least squares. Derive the normal equation and give fitted values and residual.",
     "answer": "With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.",
@@ -3734,7 +3734,7 @@
     "expected": ["3", "3", "3"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 32,
     "prompt": "Fit one constant c to observations (2, 4, 9) by least squares. Derive the normal equation and give fitted values and residual.",
     "answer": "With a column of 3 ones, the normal equation is 3c=15. Thus c=5, fitted values (5, 5, 5), residual (-3, -1, 4). Its components sum to zero, establishing orthogonality to the constant column.",
@@ -3745,7 +3745,7 @@
     "expected": ["5", "5", "5"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 33,
     "prompt": "Fit one constant c to observations (-1, 0, 4) by least squares. Derive the normal equation and give fitted values and residual.",
     "answer": "With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.",
@@ -3756,7 +3756,7 @@
     "expected": ["1", "1", "1"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 34,
     "prompt": "Fit one constant c to observations (3, 3, 3) by least squares. Derive the normal equation and give fitted values and residual.",
     "answer": "With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (0, 0, 0). Its components sum to zero, establishing orthogonality to the constant column.",
@@ -3767,7 +3767,7 @@
     "expected": ["3", "3", "3"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 35,
     "prompt": "Fit one constant c to observations (0, 0, 6) by least squares. Derive the normal equation and give fitted values and residual.",
     "answer": "With a column of 3 ones, the normal equation is 3c=6. Thus c=2, fitted values (2, 2, 2), residual (-2, -2, 4). Its components sum to zero, establishing orthogonality to the constant column.",
@@ -3778,7 +3778,7 @@
     "expected": ["2", "2", "2"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 36,
     "prompt": "Fit one constant c to observations (2, -2, 3) by least squares. Derive the normal equation and give fitted values and residual.",
     "answer": "With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (1, -3, 2). Its components sum to zero, establishing orthogonality to the constant column.",
@@ -3789,7 +3789,7 @@
     "expected": ["1", "1", "1"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 37,
     "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (1, 2, 2). Set up and solve the two normal equations, then give the fitted output.",
     "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=5 and 3c+5d=6. Subtracting gives 2d=1, so d=1/2 and c=7/6. Fitted values are (7/6, 5/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.",
@@ -3804,7 +3804,7 @@
     "expected": ["7/6", "5/3", "13/6"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 38,
     "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (0, 1, 3). Set up and solve the two normal equations, then give the fitted output.",
     "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=4 and 3c+5d=7. Subtracting gives 2d=3, so d=3/2 and c=-1/6. Fitted values are (-1/6, 4/3, 17/6); subtracting them from observations gives a residual orthogonal to both design columns.",
@@ -3819,7 +3819,7 @@
     "expected": ["-1/6", "4/3", "17/6"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 39,
     "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (2, 0, 1). Set up and solve the two normal equations, then give the fitted output.",
     "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=3 and 3c+5d=2. Subtracting gives 2d=-1, so d=-1/2 and c=3/2. Fitted values are (3/2, 1, 1/2); subtracting them from observations gives a residual orthogonal to both design columns.",
@@ -3834,7 +3834,7 @@
     "expected": ["3/2", "1", "1/2"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 40,
     "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (3, 3, 3). Set up and solve the two normal equations, then give the fitted output.",
     "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=9 and 3c+5d=9. Subtracting gives 2d=0, so d=0 and c=3. Fitted values are (3, 3, 3); subtracting them from observations gives a residual orthogonal to both design columns.",
@@ -3849,7 +3849,7 @@
     "expected": ["3", "3", "3"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 41,
     "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (-1, 1, 2). Set up and solve the two normal equations, then give the fitted output.",
     "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=2 and 3c+5d=5. Subtracting gives 2d=3, so d=3/2 and c=-5/6. Fitted values are (-5/6, 2/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.",
@@ -3864,7 +3864,7 @@
     "expected": ["-5/6", "2/3", "13/6"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 42,
     "prompt": "Fit c+dt to observations at t=0,1,2 with measured values (2, 4, 6). Set up and solve the two normal equations, then give the fitted output.",
     "answer": "The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=12 and 3c+5d=16. Subtracting gives 2d=4, so d=2 and c=2. Fitted values are (2, 4, 6); subtracting them from observations gives a residual orthogonal to both design columns.",
@@ -3879,7 +3879,7 @@
     "expected": ["2", "4", "6"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 43,
     "prompt": "A has rows (1,1),(1,1) and b=(1, 3). Describe every least-squares coefficient vector and the unique fitted output.",
     "answer": "Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
@@ -3893,7 +3893,7 @@
     "expected": ["2", "2"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 44,
     "prompt": "A has rows (1,1),(1,1) and b=(2, 4). Describe every least-squares coefficient vector and the unique fitted output.",
     "answer": "Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
@@ -3907,7 +3907,7 @@
     "expected": ["3", "3"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 45,
     "prompt": "A has rows (1,1),(1,1) and b=(-1, 2). Describe every least-squares coefficient vector and the unique fitted output.",
     "answer": "Only the sum x1+x2 matters. Its best constant value is 1/2. All coefficients (1/2-t,t), t real, give fitted output (1/2,1/2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
@@ -3921,7 +3921,7 @@
     "expected": ["1/2", "1/2"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 46,
     "prompt": "A has rows (1,1),(1,1) and b=(0, 4). Describe every least-squares coefficient vector and the unique fitted output.",
     "answer": "Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
@@ -3935,7 +3935,7 @@
     "expected": ["2", "2"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 47,
     "prompt": "A has rows (1,1),(1,1) and b=(3, 3). Describe every least-squares coefficient vector and the unique fitted output.",
     "answer": "Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
@@ -3949,7 +3949,7 @@
     "expected": ["3", "3"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 48,
     "prompt": "A has rows (1,1),(1,1) and b=(-2, -4). Describe every least-squares coefficient vector and the unique fitted output.",
     "answer": "Only the sum x1+x2 matters. Its best constant value is -3. All coefficients (-3-t,t), t real, give fitted output (-3,-3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.",
@@ -3963,7 +3963,7 @@
     "expected": ["-3", "-3"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 51,
     "prompt": "A has one column (1,2). A proposed coefficient for target (1, 2) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
     "answer": "The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
@@ -3974,7 +3974,7 @@
     "expected": ["1", "2"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 52,
     "prompt": "A has one column (1,2). A proposed coefficient for target (2, 0) is 2/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
     "answer": "The output is (2/5, 4/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (2/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
@@ -3985,7 +3985,7 @@
     "expected": ["2/5", "4/5"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 53,
     "prompt": "A has one column (1,2). A proposed coefficient for target (3, 1) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
     "answer": "The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
@@ -3996,7 +3996,7 @@
     "expected": ["1", "2"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 54,
     "prompt": "A has one column (1,2). A proposed coefficient for target (-1, 2) is 3/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
     "answer": "The output is (3/5, 6/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (3/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
@@ -4007,7 +4007,7 @@
     "expected": ["3/5", "6/5"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 55,
     "prompt": "A has one column (1,2). A proposed coefficient for target (0, 3) is 6/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
     "answer": "The output is (6/5, 12/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (6/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",
@@ -4018,7 +4018,7 @@
     "expected": ["6/5", "12/5"]
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 56,
     "prompt": "A has one column (1,2). A proposed coefficient for target (4, -2) is 0. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.",
     "answer": "The output is (0, 0). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (0)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.",

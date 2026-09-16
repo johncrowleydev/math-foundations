@@ -1,3 +1,4 @@
+import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
 import { mathOccurrences, validateFormulaContexts, type FormulaSource } from './formula-context.js';
 import { loadTeaching, teachingBlocks, linkTeachingTerms } from './teaching.js';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
@@ -46,6 +47,7 @@ const lessons = content.lessons.map((lesson) => {
   );
   return {
     slug: lesson.slug,
+    ...(lesson.exerciseNamespace ? { exerciseNamespace: lesson.exerciseNamespace } : {}),
     subject: lesson.subject,
     number:
       lesson.number ?? content.lessons.filter((l) => l.subject === lesson.subject).indexOf(lesson),
@@ -155,6 +157,7 @@ await mkdir('output', { recursive: true });
 await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory, null, 2) + '\n');
 const dir = 'output/content';
 const publishedLessons = promoteChoices(lessons);
+validateExerciseKeys(publishedLessons);
 const evidence = await loadEvidence(publishedLessons);
 const sources = await loadSources(publishedLessons, teaching);
 await mkdir(dir, { recursive: true });
@@ -188,10 +191,10 @@ const gradingExercises = Object.fromEntries(
       const referenced = JSON.stringify({ q, blocks });
       const referenceIds = new Set([...referenced.matchAll(/ref:([a-z0-9-]+)/g)].map((m) => m[1]));
       return [
-        `${lesson.slug}-${q.id}`,
+        exerciseKey(lesson, q.id),
         {
           lesson: lesson.title,
-          analytics: snapshot(evidence, `${lesson.slug}-${q.id}`),
+          analytics: snapshot(evidence, exerciseKey(lesson, q.id)),
           choice: q.choice,
           question: {
             instructions: q.instructions,

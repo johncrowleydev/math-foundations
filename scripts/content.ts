@@ -34,6 +34,10 @@ export const curriculumSchema = z
         z
           .object({
             slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+            exerciseNamespace: z
+              .string()
+              .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+              .optional(),
             title: text,
             eyebrow: text.optional(),
             subject: text.default('Discrete mathematics'),

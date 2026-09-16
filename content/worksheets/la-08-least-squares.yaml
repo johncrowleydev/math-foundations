@@ -1,0 +1,182 @@
+title: Least Squares and Model Fitting
+sections:
+  - title: Least squares and the normal equations
+    questions:
+      - id: 30
+        type: freeform
+        prompt: A has one column (1,2) and b=(1,1). Solve the scalar normal equation for the coefficient, then give the fitted output.
+        answerLines: 5
+        answer: A transpose A is 5 and A transpose b is 3, so the coefficient is 3/5. The fitted output is (3/5,6/5). The residual (2/5,-1/5) has zero dot product with (1,2).
+      - id: 49
+        type: freeform
+        prompt: A least-squares calculation returns a nonzero residual. Does that alone mean the calculation is wrong? Explain.
+        answerLines: 5
+        answer: No. If the target lies outside the column space, no exact fit exists and the closest permitted output has a nonzero residual. The residual should be orthogonal to the column space at a least-squares solution.
+      - id: 51
+        type: freeform
+        prompt: A has one column (1,2). A proposed coefficient for target (1, 2) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+        answerLines: 5
+        answer: 'The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+      - id: 52
+        type: freeform
+        prompt: A has one column (1,2). A proposed coefficient for target (2, 0) is 2/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+        answerLines: 5
+        answer: 'The output is (2/5, 4/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (2/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+      - id: 53
+        type: freeform
+        prompt: A has one column (1,2). A proposed coefficient for target (3, 1) is 1. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+        answerLines: 5
+        answer: 'The output is (1, 2). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (1)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+      - id: 54
+        type: freeform
+        prompt: A has one column (1,2). A proposed coefficient for target (-1, 2) is 3/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+        answerLines: 5
+        answer: 'The output is (3/5, 6/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (3/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+      - id: 55
+        type: freeform
+        prompt: A has one column (1,2). A proposed coefficient for target (0, 3) is 6/5. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+        answerLines: 5
+        answer: 'The output is (6/5, 12/5). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (6/5)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+      - id: 56
+        type: freeform
+        prompt: A has one column (1,2). A proposed coefficient for target (4, -2) is 0. Verify that it is a least-squares solution by checking the residual rather than merely repeating the formula.
+        answerLines: 5
+        answer: 'The output is (0, 0). Subtract it from b and take the dot product with (1,2): the result is b1+2b2-5 times (0)=0. The residual is orthogonal to the whole one-column span, so the output is the closest point.'
+      - id: 63
+        type: freeform
+        prompt: Why does the residual convention matter even though either sign gives the same squared error?
+        answerLines: 5
+        answer: The squared norm is unchanged by negation, but a reported residual component’s sign indicates whether the observation is above or below its fitted value under the chosen convention. Here residual is observation minus fitted output.
+  - title: Fitting a constant
+    questions:
+      - id: 29
+        type: freeform
+        prompt: Find the least-squares constant fit c to observations 2,4,9. Give the fitted output and the residual b minus the fitted output.
+        answerLines: 5
+        answer: The normal equation is 3c=15, giving c=5. The fitted output is (5,5,5), and the residual is (-3,-1,4). Its components sum to zero, making it perpendicular to the column of ones.
+      - id: 31
+        type: freeform
+        prompt: Fit one constant c to observations (1, 2, 6) by least squares. Derive the normal equation and give fitted values and residual.
+        answerLines: 5
+        answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.
+      - id: 32
+        type: freeform
+        prompt: Fit one constant c to observations (2, 4, 9) by least squares. Derive the normal equation and give fitted values and residual.
+        answerLines: 5
+        answer: With a column of 3 ones, the normal equation is 3c=15. Thus c=5, fitted values (5, 5, 5), residual (-3, -1, 4). Its components sum to zero, establishing orthogonality to the constant column.
+      - id: 33
+        type: freeform
+        prompt: Fit one constant c to observations (-1, 0, 4) by least squares. Derive the normal equation and give fitted values and residual.
+        answerLines: 5
+        answer: With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (-2, -1, 3). Its components sum to zero, establishing orthogonality to the constant column.
+      - id: 34
+        type: freeform
+        prompt: Fit one constant c to observations (3, 3, 3) by least squares. Derive the normal equation and give fitted values and residual.
+        answerLines: 5
+        answer: With a column of 3 ones, the normal equation is 3c=9. Thus c=3, fitted values (3, 3, 3), residual (0, 0, 0). Its components sum to zero, establishing orthogonality to the constant column.
+      - id: 35
+        type: freeform
+        prompt: Fit one constant c to observations (0, 0, 6) by least squares. Derive the normal equation and give fitted values and residual.
+        answerLines: 5
+        answer: With a column of 3 ones, the normal equation is 3c=6. Thus c=2, fitted values (2, 2, 2), residual (-2, -2, 4). Its components sum to zero, establishing orthogonality to the constant column.
+      - id: 36
+        type: freeform
+        prompt: Fit one constant c to observations (2, -2, 3) by least squares. Derive the normal equation and give fitted values and residual.
+        answerLines: 5
+        answer: With a column of 3 ones, the normal equation is 3c=3. Thus c=1, fitted values (1, 1, 1), residual (1, -3, 2). Its components sum to zero, establishing orthogonality to the constant column.
+  - title: Fitting a line rather than a constant
+    questions:
+      - id: 37
+        type: freeform
+        prompt: Fit c+dt to observations at t=0,1,2 with measured values (1, 2, 2). Set up and solve the two normal equations, then give the fitted output.
+        answerLines: 5
+        answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=5 and 3c+5d=6. Subtracting gives 2d=1, so d=1/2 and c=7/6. Fitted values are (7/6, 5/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.
+      - id: 38
+        type: freeform
+        prompt: Fit c+dt to observations at t=0,1,2 with measured values (0, 1, 3). Set up and solve the two normal equations, then give the fitted output.
+        answerLines: 5
+        answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=4 and 3c+5d=7. Subtracting gives 2d=3, so d=3/2 and c=-1/6. Fitted values are (-1/6, 4/3, 17/6); subtracting them from observations gives a residual orthogonal to both design columns.
+      - id: 39
+        type: freeform
+        prompt: Fit c+dt to observations at t=0,1,2 with measured values (2, 0, 1). Set up and solve the two normal equations, then give the fitted output.
+        answerLines: 5
+        answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=3 and 3c+5d=2. Subtracting gives 2d=-1, so d=-1/2 and c=3/2. Fitted values are (3/2, 1, 1/2); subtracting them from observations gives a residual orthogonal to both design columns.
+      - id: 40
+        type: freeform
+        prompt: Fit c+dt to observations at t=0,1,2 with measured values (3, 3, 3). Set up and solve the two normal equations, then give the fitted output.
+        answerLines: 5
+        answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=9 and 3c+5d=9. Subtracting gives 2d=0, so d=0 and c=3. Fitted values are (3, 3, 3); subtracting them from observations gives a residual orthogonal to both design columns.
+      - id: 41
+        type: freeform
+        prompt: Fit c+dt to observations at t=0,1,2 with measured values (-1, 1, 2). Set up and solve the two normal equations, then give the fitted output.
+        answerLines: 5
+        answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=2 and 3c+5d=5. Subtracting gives 2d=3, so d=3/2 and c=-5/6. Fitted values are (-5/6, 2/3, 13/6); subtracting them from observations gives a residual orthogonal to both design columns.
+      - id: 42
+        type: freeform
+        prompt: Fit c+dt to observations at t=0,1,2 with measured values (2, 4, 6). Set up and solve the two normal equations, then give the fitted output.
+        answerLines: 5
+        answer: The design rows are (1,0),(1,1),(1,2). The normal equations are 3c+3d=12 and 3c+5d=16. Subtracting gives 2d=4, so d=2 and c=2. Fitted values are (2, 4, 6); subtracting them from observations gives a residual orthogonal to both design columns.
+  - title: A fit can be unique even when its parameters are not
+    questions:
+      - id: 43
+        type: freeform
+        prompt: A has rows (1,1),(1,1) and b=(1, 3). Describe every least-squares coefficient vector and the unique fitted output.
+        answerLines: 5
+        answer: Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+      - id: 44
+        type: freeform
+        prompt: A has rows (1,1),(1,1) and b=(2, 4). Describe every least-squares coefficient vector and the unique fitted output.
+        answerLines: 5
+        answer: Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+      - id: 45
+        type: freeform
+        prompt: A has rows (1,1),(1,1) and b=(-1, 2). Describe every least-squares coefficient vector and the unique fitted output.
+        answerLines: 5
+        answer: Only the sum x1+x2 matters. Its best constant value is 1/2. All coefficients (1/2-t,t), t real, give fitted output (1/2,1/2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+      - id: 46
+        type: freeform
+        prompt: A has rows (1,1),(1,1) and b=(0, 4). Describe every least-squares coefficient vector and the unique fitted output.
+        answerLines: 5
+        answer: Only the sum x1+x2 matters. Its best constant value is 2. All coefficients (2-t,t), t real, give fitted output (2,2). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+      - id: 47
+        type: freeform
+        prompt: A has rows (1,1),(1,1) and b=(3, 3). Describe every least-squares coefficient vector and the unique fitted output.
+        answerLines: 5
+        answer: Only the sum x1+x2 matters. Its best constant value is 3. All coefficients (3-t,t), t real, give fitted output (3,3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+      - id: 48
+        type: freeform
+        prompt: A has rows (1,1),(1,1) and b=(-2, -4). Describe every least-squares coefficient vector and the unique fitted output.
+        answerLines: 5
+        answer: Only the sum x1+x2 matters. Its best constant value is -3. All coefficients (-3-t,t), t real, give fitted output (-3,-3). The residual is perpendicular to (1,1). The coefficient vector is not unique even though this fitted output is.
+      - id: 50
+        type: freeform
+        prompt: Why might two different coefficient vectors give the same unique closest output in a least-squares problem?
+        answerLines: 5
+        answer: Dependent columns give a nonzero null-space direction. Adding such a direction to a coefficient vector does not change its output. The projection output can therefore be unique even when its coefficient representation is not.
+      - id: 61
+        type: freeform
+        prompt: Why are the normal equations still valid for dependent columns?
+        answerLines: 5
+        answer: A closest output has residual perpendicular to the entire column space, equivalent to A transpose times residual equal to zero. This characterization does not require unique coefficients.
+      - id: 62
+        type: freeform
+        prompt: Prove A transpose A is invertible when A has independent columns.
+        answerLines: 5
+        answer: If A transpose A x=0, multiply by x transpose to get squared norm of Ax equal to zero. Then Ax=0, and independent columns force x=0. The square matrix has zero-only null space and is invertible.
+  - title: What a best fit does and does not say
+    questions:
+      - id: 60
+        type: freeform
+        prompt: Does a zero least-squares residual prove the model is scientifically valid? Explain.
+        answerLines: 5
+        answer: It proves exact fit to these observations under this model, not a causal interpretation or valid extrapolation. A model can fit finite observations and still be unsuitable elsewhere.
+      - id: 64
+        type: freeform
+        prompt: A fit minimizes squared error. Does it necessarily minimize the sum of absolute errors? Explain.
+        answerLines: 5
+        answer: No. Those are different objectives and can prefer different fits. For observations zero, zero, and six, squared-error constant fitting gives two, while zero has smaller total absolute error than two.
+      - id: 65
+        type: freeform
+        prompt: Why can one large residual strongly influence least squares?
+        answerLines: 5
+        answer: Squaring gives disproportionately large contributions to large discrepancies. This is a property of the chosen loss, not an arithmetic mistake.
