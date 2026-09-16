@@ -14,6 +14,33 @@ export function verdict(a: Attempt) {
 export function gradable(a: Attempt) {
   return ['correct', 'incorrect'].includes(verdict(a) || '');
 }
+export function exerciseProgress(attempts: Attempt[], exerciseKeys: Iterable<string>) {
+  const scope = new Set(exerciseKeys);
+  const attempted = new Set<string>();
+  const correct = new Set<string>();
+  for (const a of attempts) {
+    if (!scope.has(a.exercise)) continue;
+    attempted.add(a.exercise);
+    if (verdict(a) === 'correct') correct.add(a.exercise);
+  }
+  const completedKeys: string[] = [];
+  const inProgressKeys: string[] = [];
+  const unattemptedKeys: string[] = [];
+  for (const key of scope) {
+    if (correct.has(key)) completedKeys.push(key);
+    else if (attempted.has(key)) inProgressKeys.push(key);
+    else unattemptedKeys.push(key);
+  }
+  return {
+    total: scope.size,
+    completed: completedKeys.length,
+    inProgress: inProgressKeys.length,
+    unattempted: unattemptedKeys.length,
+    completedKeys,
+    inProgressKeys,
+    unattemptedKeys,
+  };
+}
 export function evidenceCoverage(attempts: Attempt[]) {
   const mapped = attempts.filter((a) => a.analytics?.concepts.some((c) => c.role === 'primary'));
   return {

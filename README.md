@@ -8,12 +8,14 @@ Requires Node 22.12+ and Go 1.23+; no Android tooling is required.
 
 ```sh
 npm ci
-npm ci --prefix web
+npm ci --prefix web --no-install-links
 npm run content
-npm run web
+FOUNDATIONS_API_TARGET=http://127.0.0.1:18084 npm run web
 ```
 
-`npm run web:build` creates the offline production bundle. `npm run web:preview` serves it locally. Both proxy `/api` to the configured backend; set `FOUNDATIONS_API_TARGET` for an isolated local server. For local cookie-auth testing use localhost and configure the backend's `FOUNDATIONS_ORIGIN` to that exact frontend origin. Production only accepts its HTTPS origin.
+Run these commands from the repository root. `--no-install-links` preserves the parent-package symlink recorded in the web lockfile and avoids npm 9's default of installing it as a packed dependency.
+
+Open http://localhost:5173. Authenticated use requires a running backend; see [local API setup](docs/web-client.md#local-api). `npm run web:build` creates the offline production bundle. `FOUNDATIONS_API_TARGET=http://127.0.0.1:18084 npm run web:preview` serves it at http://localhost:4173. The development and preview servers proxy `/api` to `FOUNDATIONS_API_TARGET`, defaulting to production when it is unset. For local cookie-auth testing use localhost and configure the backend's `FOUNDATIONS_ORIGIN` to that exact frontend origin.
 
 ## Content and checks
 
@@ -29,6 +31,8 @@ npm run web:test
 cd server
 go test ./...
 ```
+
+Build before running web tests on a fresh checkout: the build copies generated curriculum assets into `web/public`, which the tests read. Go provider tests are opt-in through `FOUNDATIONS_LIVE_TEST_KEY`; leave it unset for ordinary local checks.
 
 See [deployment and authentication](docs/pwa-deployment.md) and [web-client behavior](docs/web-client.md).
 Learning analytics and grading v5 are documented in [Learning evidence](docs/learning-evidence.md).

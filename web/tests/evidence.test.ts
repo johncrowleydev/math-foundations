@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import 'fake-indexeddb/auto';
-import { summarize, conceptRows, metadata } from '../src/analytics';
+import { summarize, conceptRows, metadata, exerciseProgress } from '../src/analytics';
 import { EffortClock } from '../src/effort';
 import { snapshot, type EvidenceCatalog } from '../src/evidenceTypes';
 import type { Attempt } from '../src/types';
@@ -41,6 +41,50 @@ const a = (id: string, v: string, t: number): Attempt => ({
   status: v === 'not_graded' ? 'not_graded' : 'graded',
   verdict: v,
   grades: [{ verdict: v, feedback: 'Synthetic', at: t }],
+});
+test('exercise progress partitions unique scoped exercises including pending and failed grading', () => {
+  const attempts = [
+    a('first', 'incorrect', 1),
+    a('retry', 'correct', 2),
+    a('later', 'incorrect', 3),
+    { ...a('pending', '', 4), exercise: 'pending', status: 'queued' as const, grades: [] },
+    { ...a('error', '', 5), exercise: 'error', status: 'error' as const, grades: [] },
+    { ...a('ungraded', 'not_graded', 6), exercise: 'ungraded' },
+    { ...a('outside', 'correct', 7), exercise: 'outside' },
+  ];
+  assert.deepEqual(
+    exerciseProgress(attempts, ['test-1', 'pending', 'error', 'ungraded', 'untouched', 'test-1']),
+    {
+      total: 5,
+      completed: 1,
+      inProgress: 3,
+      unattempted: 1,
+      completedKeys: ['test-1'],
+      inProgressKeys: ['pending', 'error', 'ungraded'],
+      unattemptedKeys: ['untouched'],
+    },
+  );
+});
+test('exercise completion follows the latest recheck within each submission', () => {
+  const upgraded = a('upgraded', 'incorrect', 1);
+  upgraded.grades.push({ verdict: 'correct', feedback: 'Corrected', at: 2 });
+  const downgraded = { ...a('downgraded', 'correct', 1), exercise: 'test-2' };
+  downgraded.grades.push({ verdict: 'incorrect', feedback: 'Corrected', at: 2 });
+  const result = exerciseProgress([upgraded, downgraded], new Set(['test-1', 'test-2']));
+  assert.deepEqual(result.completedKeys, ['test-1']);
+  assert.deepEqual(result.inProgressKeys, ['test-2']);
+});
+test('exercise progress handles an empty scope and a scope with no attempts', () => {
+  assert.deepEqual(exerciseProgress([a('outside', 'correct', 1)], []), {
+    total: 0,
+    completed: 0,
+    inProgress: 0,
+    unattempted: 0,
+    completedKeys: [],
+    inProgressKeys: [],
+    unattemptedKeys: [],
+  });
+  assert.deepEqual(exerciseProgress([], ['one', 'two']).unattemptedKeys, ['one', 'two']);
 });
 test('first gradable success differs from completion; not graded is not a failure or retry', () => {
   const s = summarize([a('0', 'not_graded', 1), a('1', 'incorrect', 2), a('2', 'correct', 3)]);

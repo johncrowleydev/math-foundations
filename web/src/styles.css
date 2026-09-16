@@ -1431,3 +1431,253 @@ button.danger:hover:not(:disabled) {
   color: var(--accent);
   text-underline-offset: 3px;
 }
+
+/* Progress overview: keep completion and accuracy visually distinct. */
+.progress-overview {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+.progress-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  min-width: 0;
+}
+.analytics .progress-card h2 {
+  margin: 0 0 16px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+.progress-value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.progress-value > strong {
+  font-size: 2.5rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: #244d49;
+}
+.progress-value > span {
+  font-size: 0.85rem;
+}
+.completion-track,
+.accuracy-track {
+  display: flex;
+  height: 10px;
+  background: #e6eaf0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.completion-track {
+  height: 18px;
+}
+.completion-track .completed,
+.progress-legend .completed {
+  background: #367d70;
+}
+.completion-track .in-progress,
+.progress-legend .in-progress {
+  background: #c0933e;
+}
+.completion-track .unattempted,
+.progress-legend .unattempted {
+  background: #e6eaf0;
+}
+.accuracy-track > span {
+  display: block;
+  height: 100%;
+  background: #537ab2;
+  border-radius: inherit;
+}
+.progress-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 12px;
+}
+.progress-legend button {
+  border: 0;
+  background: none;
+  padding: 6px 0;
+  white-space: normal;
+  text-align: left;
+}
+.progress-legend button[aria-pressed='true'] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.progress-legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.analytics .progress-card p {
+  font-size: 0.78rem;
+  margin-bottom: 0;
+  color: #616c77;
+}
+.progress-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+.progress-context > span {
+  display: inline-block;
+}
+.concept-chart {
+  margin-top: 28px;
+  scroll-margin-top: 16px;
+}
+.concept-chart-rows {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: white;
+  overflow: hidden;
+}
+.concept-chart-row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  gap: 22px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 17px 18px;
+  background: white;
+  text-align: left;
+  white-space: normal;
+}
+.concept-chart-row:last-child {
+  border-bottom: 0;
+}
+.concept-chart-row[aria-expanded='true'] {
+  background: #edf3fa;
+}
+.concept-chart-name,
+.concept-chart-result {
+  display: grid;
+  gap: 7px;
+}
+.concept-chart-name > strong {
+  font-weight: 600;
+}
+.concept-chart-name > span,
+.concept-chart-result small {
+  font-size: 0.76rem;
+  color: #616c77;
+}
+.concept-chart-result > span:first-child {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.concept-chart-result small {
+  font-weight: 400;
+  margin-left: 5px;
+}
+.concept-signals {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.concept-signals > span {
+  color: #7b5418;
+  background: #faf0da;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 0.73rem;
+}
+.concept-signals > .neutral {
+  color: #616c77;
+  background: #f1f3f6;
+}
+.show-concepts {
+  margin-top: 12px;
+}
+.progress-exercises {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+}
+.analytics .progress-exercises h2 {
+  margin-top: 0;
+}
+.progress-exercises > div {
+  max-height: 260px;
+  overflow-y: auto;
+  margin-top: 10px;
+  display: grid;
+  gap: 5px;
+}
+.progress-exercises > div > button {
+  justify-content: flex-start;
+  white-space: normal;
+  text-align: left;
+}
+.lesson-progress > button {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: white;
+  white-space: normal;
+  text-align: left;
+  margin-bottom: 6px;
+}
+.lesson-progress .accuracy-track {
+  grid-column: 1 / -1;
+  height: 7px;
+}
+.lesson-progress .accuracy-track > span {
+  background: #367d70;
+}
+.diagnostic-bars {
+  max-width: 650px;
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+}
+.diagnostic-bars > div {
+  display: grid;
+  grid-template-columns: 170px 1fr 30px;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.82rem;
+}
+.diagnostic-bars strong {
+  text-align: right;
+}
+.diagnostic-bars .accuracy-track > span {
+  background: #b18a4f;
+}
+@media (max-width: 700px) {
+  .progress-overview {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .progress-card {
+    padding: 18px;
+  }
+  .concept-chart-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  .concept-chart-result {
+    gap: 6px;
+  }
+  .diagnostic-bars > div {
+    grid-template-columns: 130px 1fr 22px;
+    gap: 8px;
+  }
+}

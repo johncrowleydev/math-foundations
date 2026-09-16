@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import { all, useRevision } from './storage';
 import type { Attempt, Curriculum } from './types';
-import { conceptRows, evidenceCoverage, metadata, summarize, verdict } from './analytics';
+import {
+  conceptRows,
+  evidenceCoverage,
+  exerciseProgress,
+  metadata,
+  summarize,
+  verdict,
+} from './analytics';
 import { exposures } from './exposure';
 import type { Exposure } from './evidenceTypes';
 import { Rich } from './Rich';
@@ -19,10 +26,14 @@ export function Progress({
     [encounters, setEncounters] = useState<Exposure[]>([]),
     [scope, setScope] = useState(slug),
     [selected, setSelected] = useState(''),
-    [error, setError] = useState('');
+    [error, setError] = useState(''),
+    [showAllConcepts, setShowAllConcepts] = useState(false),
+    [exerciseFilter, setExerciseFilter] = useState('');
   useEffect(() => {
     setScope(slug);
     setSelected('');
+    setShowAllConcepts(false);
+    setExerciseFilter('');
   }, [slug]);
   useEffect(() => {
     if (selected) document.getElementById('concept-detail')?.scrollIntoView({ block: 'start' });
@@ -56,6 +67,18 @@ export function Progress({
       ),
     }).sort((a, b) => Number(b.summary.observed > 0) - Number(a.summary.observed > 0)),
     row = rows.find((r) => r.id === selected);
+  const progress = exerciseProgress(as, keys);
+  const groups = [
+    { id: 'completed', name: 'Completed', keys: progress.completedKeys },
+    { id: 'in-progress', name: 'Awaiting a correct result', keys: progress.inProgressKeys },
+    { id: 'unattempted', name: 'Not yet submitted', keys: progress.unattemptedKeys },
+  ];
+  const filteredExercises = groups.find((g) => g.id === exerciseFilter);
+  const percent = (value: number, total: number) => (total ? Math.round((100 * value) / total) : 0);
+  const conceptOrder = [...rows].sort(
+    (a, b) => Number(b.attention.length > 0) - Number(a.attention.length > 0),
+  );
+  const visibleConcepts = showAllConcepts ? conceptOrder : conceptOrder.slice(0, 5);
   const rate = (s: ReturnType<typeof summarize>) =>
     s.firstObserved
       ? `${s.firstCorrect} / ${s.firstObserved} (${Math.round((100 * s.firstCorrect) / s.firstObserved)}%)`
@@ -151,6 +174,8 @@ export function Progress({
             onChange={(e) => {
               setScope(e.target.value);
               setSelected('');
+              setShowAllConcepts(false);
+              setExerciseFilter('');
             }}
           >
             <option value="">All lessons</option>
@@ -166,34 +191,125 @@ export function Progress({
       </header>
       {error && <p role="alert">{error}</p>}
       <p className="muted">
-        Observed evidence, not a mastery rating. Concept metrics use primary relationships only;
-        supporting relationships are shown separately.
+        Your exercise progress and first-attempt results. These describe practice, not mastery.
       </p>
-      <div className="evidence-metrics">
-        <div>
-          <strong>{rate(s)}</strong>
-          <span>First gradable attempt correct</span>
-        </div>
-        <div>
-          <strong>{s.correction}</strong>
-          <span>Exercises with a correction</span>
-        </div>
-        <div>
-          <strong>{s.totalAttempts}</strong>
-          <span>Total submissions</span>
-        </div>
-        <div>
-          <strong>
-            {s.completed} / {keys.size}
-          </strong>
-          <span>Exercises completed</span>
-        </div>
+      <div className="progress-overview">
+        <section className="progress-card completion-card" aria-label="Exercise completion">
+          <h2>Exercise completion</h2>
+          <div className="progress-value">
+            <strong>{percent(progress.completed, keys.size)}%</strong>
+            <span>
+              {progress.completed} of {keys.size} completed
+            </span>
+          </div>
+          <div className="completion-track" aria-hidden="true">
+            {groups.map((g) => (
+              <span
+                key={g.id}
+                className={g.id}
+                style={{ width: `${keys.size ? (100 * g.keys.length) / keys.size : 0}%` }}
+              />
+            ))}
+          </div>
+          <div className="progress-legend">
+            {groups.map((g) => (
+              <button
+                key={g.id}
+                aria-pressed={exerciseFilter === g.id}
+                onClick={() => setExerciseFilter(exerciseFilter === g.id ? '' : g.id)}
+              >
+                <i className={g.id} aria-hidden="true" />
+                <strong>{g.keys.length}</strong> {g.name}
+              </button>
+            ))}
+          </div>
+          <p className="muted">
+            Select a category to browse exercises. Unsubmitted drafts count as not yet submitted.
+          </p>
+        </section>
+        <section className="progress-card" aria-label="First-attempt accuracy">
+          <h2>Correct on first attempt</h2>
+          <div className="progress-value">
+            <strong>
+              {s.firstObserved ? `${percent(s.firstCorrect, s.firstObserved)}%` : '—'}
+            </strong>
+            <span>
+              {s.firstObserved
+                ? `${s.firstCorrect} of ${s.firstObserved} first graded attempts`
+                : 'No graded attempts yet'}
+            </span>
+          </div>
+          <div className="accuracy-track" aria-hidden="true">
+            <span style={{ width: `${percent(s.firstCorrect, s.firstObserved)}%` }} />
+          </div>
+          <p className="muted">
+            Uses the first gradable submission for each exercise, including any updated assessment.
+          </p>
+        </section>
       </div>
-      <p>
-        {s.substantive} substantive-error attempts · {s.minor} minor/clerical · {s.unknown}{' '}
-        incorrect with no diagnosis · {s.notGraded} ungraded/technical. Rechecks stay within their
-        original submission.
+      <p className="progress-context">
+        <span>
+          <strong>{s.totalAttempts}</strong> submissions
+        </span>
+        <span>
+          <strong>{s.correction}</strong> exercises with an incorrect result
+        </span>
+        <span>
+          <strong>{s.retries}</strong> retries
+        </span>
       </p>
+      {filteredExercises && (
+        <section className="progress-exercises" aria-label={filteredExercises.name}>
+          <h2>
+            {filteredExercises.name}{' '}
+            <span className="muted">({filteredExercises.keys.length})</span>
+          </h2>
+          <button onClick={() => setExerciseFilter('')}>Close list</button>
+          {filteredExercises.keys.length ? (
+            <div>
+              {filteredExercises.keys.map((key) => (
+                <button key={key} onClick={() => onExercise(key)}>
+                  {label(key)} →
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p>No exercises in this category.</p>
+          )}
+        </section>
+      )}
+      {!scope && (
+        <section className="lesson-progress">
+          <h2>Progress by lesson</h2>
+          {data.lessons
+            .filter((l) => l.questions.length)
+            .map((l) => {
+              const p = exerciseProgress(
+                as,
+                l.questions.map((q) => l.slug + '-' + q.id),
+              );
+              return (
+                <button
+                  key={l.slug}
+                  onClick={() => {
+                    setScope(l.slug);
+                    setSelected('');
+                    setExerciseFilter('');
+                    setShowAllConcepts(false);
+                  }}
+                >
+                  <span>{l.title}</span>
+                  <strong>
+                    {p.completed} / {p.total}
+                  </strong>
+                  <span className="accuracy-track" aria-hidden="true">
+                    <span style={{ width: `${percent(p.completed, p.total)}%` }} />
+                  </span>
+                </button>
+              );
+            })}
+        </section>
+      )}
       <details>
         <summary>How these counts work</summary>
         <p>
@@ -207,76 +323,118 @@ export function Progress({
           still contribute to overview counts.
         </p>
       </details>
-      <h2>Needs attention</h2>
-      {rows.some((r) => r.attention.length) ? (
-        <div className="attention-list">
-          {rows
-            .filter((r) => r.attention.length)
-            .map((r) => (
-              <button key={r.id} aria-label={r.name} onClick={() => setSelected(r.id)}>
-                <strong>{r.name}</strong>
-                <span>{r.attention.join(' · ')}</span>
-              </button>
-            ))}
-        </div>
-      ) : (
-        <p>
-          {!coverage.observed
-            ? coverage.missing
-              ? 'Concept evidence is incomplete: these submissions have no usable graded concept snapshots yet. Attention patterns cannot be assessed from them.'
-              : 'No graded concept evidence yet. Submit exercises to begin seeing patterns.'
-            : 'No repeated patterns meet the attention rules yet. This is not a claim of mastery.'}
-        </p>
-      )}
-      {coverage.observed && coverage.missing > 0 && (
+      <section className="concept-chart" id="concept-evidence">
+        <h2>Concept overview</h2>
         <p className="muted">
-          Patterns use only mapped submissions; {coverage.missing} submissions are excluded because
-          their historical concept metadata is missing.
+          First-attempt accuracy by concept. Concepts with attention patterns appear first; select a
+          row to explore its evidence.
         </p>
-      )}
-      <h2>Concept evidence</h2>
-      <p className="muted">
-        {coverage.mapped} of {as.length} submissions have concept snapshots.
-        {coverage.missing > 0 &&
-          ' Missing snapshots may arrive on sync. Historical tasks that differ from the current exercise remain excluded from concept metrics.'}
-      </p>
-      <div className="evidence-scroll concept-evidence" id="concept-evidence">
-        <table>
-          <thead>
-            <tr>
-              <th>Concept</th>
-              <th>Exercises observed</th>
-              <th>First try</th>
-              <th>Retries</th>
-              <th>Substantive</th>
-              <th>Minor/clerical</th>
-              <th>Last response</th>
-              <th>Skills observed</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((r) => (
-              <tr key={r.id}>
-                <th>
-                  <button
-                    aria-expanded={selected === r.id}
-                    onClick={() => setSelected(selected === r.id ? '' : r.id)}
-                  >
-                    {r.name}
-                  </button>
-                </th>
-                <td>{r.summary.observed}</td>
-                <td title={rate(r.summary)}>{r.summary.firstObserved ? rate(r.summary) : '—'}</td>
-                <td>{r.summary.retries}</td>
-                <td>{r.summary.substantive}</td>
-                <td>{r.summary.minor}</td>
-                <td>{r.summary.last ? new Date(r.summary.last).toLocaleDateString() : '—'}</td>
-                <td>{[...r.skills.keys()].join(', ') || 'No evidence'}</td>
+        <div className="concept-chart-rows">
+          {visibleConcepts.map((r) => (
+            <button
+              className="concept-chart-row"
+              key={r.id}
+              aria-expanded={selected === r.id}
+              onClick={() => setSelected(selected === r.id ? '' : r.id)}
+            >
+              <span className="concept-chart-name">
+                <strong>{r.name}</strong>
+                <span>{r.summary.observed} exercises observed</span>
+              </span>
+              <span className="concept-chart-result">
+                <span>
+                  {r.summary.firstObserved
+                    ? `${percent(r.summary.firstCorrect, r.summary.firstObserved)}%`
+                    : '—'}{' '}
+                  <small>
+                    {r.summary.firstObserved
+                      ? `${r.summary.firstCorrect} / ${r.summary.firstObserved} first attempts`
+                      : r.primary.length || r.supporting.length
+                        ? 'No first-attempt evidence'
+                        : 'No concept evidence yet'}
+                  </small>
+                </span>
+                <span className="accuracy-track" aria-hidden="true">
+                  <span
+                    style={{
+                      width: `${percent(r.summary.firstCorrect, r.summary.firstObserved)}%`,
+                    }}
+                  />
+                </span>
+              </span>
+              <span className="concept-signals">
+                {r.attention.length ? (
+                  r.attention.map((a) => (
+                    <span key={a} title={a}>
+                      {a === 'Repeated substantive errors'
+                        ? 'Repeated errors'
+                        : a === 'Multiple first-try misses within a skill'
+                          ? 'First-attempt misses'
+                          : 'Used assistance'}
+                    </span>
+                  ))
+                ) : (
+                  <span className="neutral">
+                    {r.summary.observed ? 'No repeated pattern' : 'No graded evidence'}
+                  </span>
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
+        {rows.length > 5 && (
+          <button className="show-concepts" onClick={() => setShowAllConcepts(!showAllConcepts)}>
+            {showAllConcepts ? 'Show fewer concepts' : `Show all ${rows.length} concepts`}
+          </button>
+        )}
+        {!rows.length && <p>No concept evidence in this scope yet.</p>}
+        <p className="muted">
+          Concept bars use primary relationships only. {coverage.mapped} of {as.length} submissions
+          have concept snapshots.
+          {coverage.missing > 0 &&
+            ` ${coverage.missing} submissions are excluded from concept metrics because their metadata is missing.`}
+        </p>
+      </section>
+      <details className="concept-table-details">
+        <summary>Detailed concept evidence</summary>
+        <div className="evidence-scroll concept-evidence">
+          <table>
+            <thead>
+              <tr>
+                <th>Concept</th>
+                <th>Exercises observed</th>
+                <th>First try</th>
+                <th>Retries</th>
+                <th>Substantive</th>
+                <th>Minor/clerical</th>
+                <th>Last response</th>
+                <th>Skills observed</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.id}>
+                  <th>
+                    <button
+                      aria-expanded={selected === r.id}
+                      onClick={() => setSelected(selected === r.id ? '' : r.id)}
+                    >
+                      {r.name}
+                    </button>
+                  </th>
+                  <td>{r.summary.observed}</td>
+                  <td title={rate(r.summary)}>{r.summary.firstObserved ? rate(r.summary) : '—'}</td>
+                  <td>{r.summary.retries}</td>
+                  <td>{r.summary.substantive}</td>
+                  <td>{r.summary.minor}</td>
+                  <td>{r.summary.last ? new Date(r.summary.last).toLocaleDateString() : '—'}</td>
+                  <td>{[...r.skills.keys()].join(', ') || 'No evidence'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
       {row && (
         <section className="concept-detail" id="concept-detail">
           <button
@@ -398,21 +556,50 @@ export function Progress({
           ))}
         </section>
       )}
-      <h2>Error breakdown</h2>
-      {[...breakdown].map(([k, a]) => (
-        <details key={k}>
-          <summary>
-            {k} · {a.length} attempts
-          </summary>
-          {a.map(source)}
-        </details>
-      ))}
-      {!breakdown.size && (
-        <p>
-          No structured diagnoses available. Historical feedback has not been automatically
-          classified.
-        </p>
-      )}
+      <h2>Error patterns</h2>
+      <p className="muted">
+        Counts of submissions, not exercises. Categories may overlap; bars scale to the largest
+        count.
+      </p>
+      <div className="diagnostic-bars">
+        {(
+          [
+            ['Substantive errors', s.substantive],
+            ['Minor / clerical', s.minor],
+            ['Incorrect, no diagnosis', s.unknown],
+            ['Ungraded / technical', s.notGraded],
+          ] as const
+        ).map(([name, count]) => (
+          <div key={name}>
+            <span>{name}</span>
+            <div className="accuracy-track" aria-hidden="true">
+              <span
+                style={{
+                  width: `${percent(count, Math.max(s.substantive, s.minor, s.unknown, s.notGraded, 1))}%`,
+                }}
+              />
+            </div>
+            <strong>{count}</strong>
+          </div>
+        ))}
+      </div>
+      <details>
+        <summary>Detailed error breakdown</summary>
+        {[...breakdown].map(([k, a]) => (
+          <details key={k}>
+            <summary>
+              {k} · {a.length} attempts
+            </summary>
+            {a.map(source)}
+          </details>
+        ))}
+        {!breakdown.size && (
+          <p>
+            No structured diagnoses available. Historical feedback has not been automatically
+            classified.
+          </p>
+        )}
+      </details>
       <details>
         <summary>All submissions ({as.length})</summary>
         {[...as].sort((a, b) => b.submitted - a.submitted).map(source)}
