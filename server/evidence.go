@@ -77,6 +77,11 @@ func parseV5Grade(raw string) (Grade, error) {
 	if json.Unmarshal([]byte(raw), &g) != nil || !enum(g.Verdict, "correct", "incorrect", "not_graded") || strings.TrimSpace(g.Feedback) == "" {
 		return g, errors.New("Incomplete assessment")
 	}
+	for _, text := range []string{g.Feedback, g.Issue, g.Improvement, g.Transcription} {
+		if err := validateGradeText(text); err != nil {
+			return g, err
+		}
+	}
 	return g, validateGradeEvidence(g)
 }
 func evidenceSchema(props map[string]any) {
