@@ -16,6 +16,35 @@
 * {
   box-sizing: border-box;
 }
+.grading-toasts {
+  position: fixed;
+  top: max(20px, env(safe-area-inset-top));
+  right: 20px;
+  width: min(420px, calc(100vw - 40px));
+  z-index: 100;
+}
+.grading-toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 20px #253a4326;
+  font-size: 0.85rem;
+}
+.grading-toast span {
+  flex: 1;
+}
+.grading-toast.incorrect {
+  color: #b34e4e;
+  background: #fff8f8;
+  border-color: #b34e4e40;
+}
+.grading-toast.incorrect .icon-button {
+  color: inherit;
+}
 body {
   margin: 0;
 }

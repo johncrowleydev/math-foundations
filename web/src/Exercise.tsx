@@ -412,6 +412,7 @@ export function Exercise({
             : '')
       }
       id={'exercise-' + q.id}
+      data-exercise-key={key}
     >
       {review ? (
         <div className="exercise-heading">

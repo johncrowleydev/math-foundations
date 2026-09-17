@@ -20,6 +20,7 @@ import { questionLabel } from './types';
 import { ContentContext, Rich, MathText, Modal, Copy } from './Rich';
 import { Figure } from './Figure';
 import { Exercise } from './Exercise';
+import { GradingToasts } from './GradingToasts';
 import { lessonReview } from './lessonReview';
 import { Progress } from './Progress';
 import { expose } from './exposure';
@@ -388,6 +389,10 @@ export function App({ data }: { data: Curriculum }) {
       )}
     >
       <div className="app">
+        <GradingToasts
+          data={data}
+          currentExercise={tab === 'practice' && q ? exerciseKey(lesson, q.id) : undefined}
+        />
         <aside className="sidebar">{nav}</aside>
         <div className="workspace">
           <header className="topbar">
