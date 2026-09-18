@@ -1,0 +1,102 @@
+[
+  {
+    "lesson": "predicates-and-quantifiers",
+    "concept": "existential-quantification",
+    "skill": "recall",
+    "objective": "witness-definition",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["existential-quantification"],
+    "sourceIds": ["review-witness"],
+    "id": "witness-definition",
+    "family": "fixed",
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer briefly from memory.",
+      "prompt": "What is a witness for an existential statement?",
+      "answer": "A witness is a value in the stated domain that makes the existentially quantified condition true."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "concept": "existential-quantification",
+    "skill": "recall",
+    "objective": "witness-definition",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["existential-quantification"],
+    "sourceIds": ["review-witness"],
+    "id": "witness-definition-variants",
+    "family": "authored",
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer briefly from memory.",
+      "prompt": "What term names a value in the domain that makes an existentially quantified condition true?",
+      "answer": "A witness."
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer briefly from memory.",
+        "prompt": "What term names a value in the domain that makes an existentially quantified condition true?",
+        "answer": "A witness."
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer briefly from memory.",
+        "prompt": "Complete the definition: a witness is a value in the stated domain that _____.",
+        "answer": "Makes the existentially quantified condition true."
+      }
+    ]
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "concept": "existential-quantification",
+    "skill": "interpret",
+    "objective": "witness-selection",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["existential-quantification"],
+    "sourceIds": ["review-witness", "p-existence"],
+    "id": "integer-witness-selection",
+    "family": "generated",
+    "generator": "integer-witness-sum",
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which integer is a witness for the statement $\\exists x \\in \\mathbb{Z}\\;(x + {{a}} = {{sum}})$?",
+      "answer": "The witness is ${{witness}}$: substituting this integer gives $({{witness}}) + {{a}} = {{sum}}$.",
+      "choice": {
+        "options": [
+          {
+            "id": "witness",
+            "text": "${{witness}}$",
+            "feedback": "This integer satisfies the condition."
+          },
+          {
+            "id": "above",
+            "text": "${{witnessPlusOne}}$",
+            "feedback": "Substitution gives one more than the required sum."
+          },
+          {
+            "id": "below",
+            "text": "${{witnessMinusOne}}$",
+            "feedback": "Substitution gives one less than the required sum."
+          }
+        ],
+        "correctOption": "witness"
+      }
+    }
+  }
+]

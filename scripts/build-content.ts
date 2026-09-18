@@ -11,6 +11,7 @@ import { promoteChoices } from './choice-exercises.js';
 import { loadEvidence } from './evidence.js';
 import { snapshot } from '../web/src/evidenceTypes.js';
 import { loadSources } from './sources.js';
+import { loadReviewTemplates } from './review-templates.js';
 
 const content = await loadContent();
 const teaching = await loadTeaching();
@@ -156,9 +157,14 @@ await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory
 const dir = 'output/content';
 const publishedLessons = promoteChoices(lessons);
 const evidence = await loadEvidence(publishedLessons);
-const sources = await loadSources(publishedLessons, teaching);
+const reviewTemplates = await loadReviewTemplates(
+  evidence,
+  publishedLessons.map((l) => l.slug),
+);
+const sources = await loadSources(publishedLessons, teaching, reviewTemplates);
 await mkdir(dir, { recursive: true });
 await writeFile(`${dir}/sources.json`, JSON.stringify(sources));
+await writeFile(`${dir}/review-templates.json`, JSON.stringify(reviewTemplates));
 await writeFile(`${dir}/learning-evidence.json`, JSON.stringify(evidence));
 await writeFile(
   `${dir}/notebook.json`,
@@ -176,7 +182,7 @@ await writeFile(`${dir}/tex-teaching.json`, await readFile('content/tex-teaching
 
 // The grader sees precisely the adapted questions shipped in the app, not worksheet originals.
 const gradingVersion = createHash('sha256')
-  .update(JSON.stringify({ publishedLessons, evidence }))
+  .update(JSON.stringify({ publishedLessons, evidence, reviewTemplates }))
   .digest('hex');
 const gradingExercises = Object.fromEntries(
   publishedLessons.flatMap((lesson) =>
@@ -215,6 +221,6 @@ const gradingExercises = Object.fromEntries(
 );
 await writeFile(
   'output/grading-catalog.json',
-  JSON.stringify({ version: gradingVersion, exercises: gradingExercises }),
+  JSON.stringify({ version: gradingVersion, exercises: gradingExercises, reviewTemplates }),
 );
 await writeFile(`${dir}/grading-version.json`, JSON.stringify({ version: gradingVersion }));

@@ -78,6 +78,12 @@
       "author": "Leonhard Euler",
       "edition": "E53, Commentarii academiae scientiarum Petropolitanae 8, pp. 128–140; published 1741. Euler Archive, University of the Pacific",
       "url": "https://scholarlycommons.pacific.edu/euler-works/53/"
+    },
+    "lean-tpil": {
+      "title": "Theorem Proving in Lean 4",
+      "author": "Jeremy Avigad, Leonardo de Moura, Soonho Kong, Sebastian Ullrich",
+      "edition": "Lean 4 online edition; accessed September 18, 2026",
+      "url": "https://leanprover.github.io/theorem_proving_in_lean4/"
     }
   },
   "citations": {
@@ -703,6 +709,13 @@
       "supports": "Upper, lower, and tight bounds; logarithmic growth and binary-search recurrences.",
       "url": "https://courses.csail.mit.edu/6.006/fall11/rec/rec01.pdf",
       "checked": "2026-09-15"
+    },
+    "review-witness": {
+      "source": "lean-tpil",
+      "locator": "Quantifiers and Equality, The Existential Quantifier",
+      "url": "https://leanprover.github.io/theorem_proving_in_lean4/Quantifiers-and-Equality/#the-existential-quantifier",
+      "supports": "A witness is a domain value satisfying an existential condition. Supports original definition recall prompts and generated integer examples, not copied source exercises. Integer examples independently checked by substitution.",
+      "checked": "2026-09-18"
     }
   },
   "lessons": {
@@ -1905,6 +1918,20 @@
       "tex-graph-data": ["tex-supported"],
       "tex-big-o": ["tex-supported"],
       "tex-little-o": ["tex-supported"]
+    }
+  },
+  "reviewTemplates": {
+    "witness-definition": {
+      "reviewedContentHash": "5183822365f4626b5a55056eadb9a5396275340ff95f22e5717e9907003de20d",
+      "sources": ["review-witness"]
+    },
+    "witness-definition-variants": {
+      "reviewedContentHash": "dc1698821dec6a807ca8c724ac1d8e33ddc317a753d1803cf12f52af1613b71b",
+      "sources": ["review-witness"]
+    },
+    "integer-witness-selection": {
+      "reviewedContentHash": "fbc47173895c34238533597efdfcbb15b1d1062308fc332628c68aaebcac7727",
+      "sources": ["review-witness", "p-existence"]
     }
   }
 }
