@@ -1,4 +1,5 @@
 import { Review } from './Review';
+import { ReviewLibrary } from './ReviewLibrary';
 import { authSession, signOut } from './auth';
 import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
 import {
@@ -392,8 +393,12 @@ export function App({ data }: { data: Curriculum }) {
                       ? 'This introduction has no exercises'
                       : undefined
                   }
-                  aria-current={tab === t ? 'page' : undefined}
-                  className={tab === t ? 'selected' : ''}
+                  aria-current={
+                    tab === t || (tab === 'review-library' && t === 'review') ? 'page' : undefined
+                  }
+                  className={
+                    tab === t || (tab === 'review-library' && t === 'review') ? 'selected' : ''
+                  }
                   key={t}
                   onClick={() => {
                     if (t !== tab) navigate({ slug: lesson.slug, tab: t as AppRoute['tab'] });
@@ -510,7 +515,9 @@ export function App({ data }: { data: Curriculum }) {
                   </nav>
                 </div>
               ) : tab === 'review' ? (
-                <Review data={data} />
+                <Review data={data} lesson={lesson.slug} />
+              ) : tab === 'review-library' ? (
+                <ReviewLibrary data={data} lesson={lesson.slug} />
               ) : tab === 'progress' ? (
                 <Progress
                   data={data}

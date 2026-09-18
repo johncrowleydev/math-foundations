@@ -69,3 +69,35 @@ export type ReviewSession = {
   mode: ReviewMode;
   instances: ReviewInstance[];
 };
+
+// Effective, source-controlled templates supplied by the same Go catalog as the scheduler.
+export type ReviewCatalogItem = {
+  id: string;
+  concept: string;
+  skill: string;
+  objective?: string;
+  lesson: string;
+  family: 'fixed' | 'authored' | 'generated';
+  evidenceLevel: 'recognition' | 'production' | 'reasoning';
+  cognitiveLevel: string;
+  interactionCost: string;
+  inputCapabilities: string[];
+  activationConcepts?: string[];
+  sourceTarget: string;
+  question: Question;
+  variants?: Question[];
+  generator?: string;
+  quick: boolean;
+  provenance: 'lesson-exercise' | 'review-template';
+  origin: string;
+  originalExercise?: string;
+  generated: boolean;
+  variantCount: number;
+};
+export type ReviewCatalog = { contentVersion: string; items: ReviewCatalogItem[] };
+export type ReviewCatalogPreview = {
+  templateId: string;
+  seed: string;
+  parameters: Record<string, number>;
+  question: Question;
+};

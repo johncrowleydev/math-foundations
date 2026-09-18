@@ -1,7 +1,29 @@
 import { apiRequest, connected } from './sync';
 import { get, put } from './storage';
 import type { RecordData } from './types';
-import type { ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
+import type {
+  ReviewCatalog,
+  ReviewCatalogPreview,
+  ReviewSession,
+  ReviewSessionRequest,
+  ReviewSummary,
+} from './reviewTypes';
+
+// Authoring inspection is read-only and does not create or cache learner records.
+export async function loadReviewCatalog(): Promise<ReviewCatalog> {
+  return (await apiRequest('/review/catalog')).json();
+}
+
+export async function previewReviewTemplate(
+  id: string,
+  seed: string,
+): Promise<ReviewCatalogPreview> {
+  return (
+    await apiRequest(
+      '/review/catalog/' + encodeURIComponent(id) + '/preview?seed=' + encodeURIComponent(seed),
+    )
+  ).json();
+}
 
 // Cached server responses are presentation/offline work, never a local scheduler.
 async function cache(key: string, payload: Record<string, unknown>) {

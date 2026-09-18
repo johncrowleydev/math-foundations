@@ -3,6 +3,7 @@ import type { Attempt, Curriculum } from './types';
 import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
 import { all, useRevision } from './storage';
 import { Exercise } from './Exercise';
+import { routeHash } from './routing';
 import {
   cachedReviewSession,
   loadReviewSummary,
@@ -10,7 +11,7 @@ import {
   startReviewSession,
 } from './reviewApi';
 
-export function Review({ data }: { data: Curriculum }) {
+export function Review({ data, lesson: currentLesson }: { data: Curriculum; lesson: string }) {
   const [summary, setSummary] = useState<ReviewSummary>();
   const [cached, setCached] = useState(false);
   const [fetchedAt, setFetchedAt] = useState<number>();
@@ -115,7 +116,10 @@ export function Review({ data }: { data: Curriculum }) {
           <div className="eyebrow">Spaced retrieval</div>
           <h1>{session?.kind === 'focused-practice' ? 'Focused Practice' : 'Review'}</h1>
         </div>
-        {session && <button onClick={() => void finish()}>Back to overview</button>}
+        <div className="toolbar">
+          <a href={routeHash({ slug: currentLesson, tab: 'review-library' })}>Review Library</a>
+          {session && <button onClick={() => void finish()}>Back to overview</button>}
+        </div>
       </div>
       {error && (
         <p className="error" role="alert">
