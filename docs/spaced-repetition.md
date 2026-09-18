@@ -6,19 +6,11 @@ Status: design decisions for a future review system. This document describes the
 
 The review system should provide ongoing, spaced retrieval of concepts and skills without reducing mathematics study to a conventional flashcard deck.
 
-It must preserve meaningful differences between:
-
-- recognizing an idea;
-- recalling terminology;
-- interpreting notation or a statement;
-- applying a concept;
-- constructing a witness, example, or counterexample;
-- explaining reasoning;
-- proving a statement.
+It must preserve meaningful differences between recognizing an idea, recalling terminology, interpreting notation, applying a concept, constructing a witness or counterexample, explaining reasoning, and proving a statement.
 
 The central goal is **evidence-efficient review**: frequent low-cost retrieval where that is sufficient, with less frequent but essential higher-cost construction and proof tasks.
 
-The current evidence from the first two lessons is enough to begin with a simple scheduler. It is not enough to justify numerical mastery probabilities, personalized forgetting curves, or a psychometric model. The first review system should therefore be transparent and deliberately conservative while it collects real delayed-retrieval evidence.
+The evidence from the first two lessons is enough to begin with a simple scheduler. It is not enough to justify numerical mastery probabilities, personalized forgetting curves, or a psychometric model. The first review system should therefore be transparent and deliberately conservative while it collects real delayed-retrieval evidence.
 
 ## Architectural ownership
 
@@ -113,15 +105,7 @@ existential-quantification x recall x witness-definition
 
 An objective should be used when useful; it should not turn every vocabulary item into a new top-level concept.
 
-The scheduler answers:
-
-> What knowledge needs testing now?
-
-A separate template system answers:
-
-> How should that knowledge be tested this time?
-
-Keeping those responsibilities separate is a core design decision.
+The scheduler answers, "What knowledge needs testing now?" A separate template system answers, "How should that knowledge be tested this time?" Keeping those responsibilities separate is a core design decision.
 
 ## Lessons and Review have different jobs
 
@@ -139,14 +123,9 @@ Three template families are expected.
 
 ### Fixed
 
-Useful when repetition is itself appropriate, especially for definitions, terminology, canonical rules, and theorem statements.
+Fixed templates are useful when repetition is itself appropriate, especially for definitions, terminology, canonical rules, and theorem statements.
 
-Examples:
-
-- What is a predicate?
-- What is a witness?
-- Define injective.
-- What is the contrapositive of `P -> Q`?
+Examples include "What is a predicate?", "What is a witness?", "Define injective", and "What is the contrapositive of `P -> Q`?"
 
 ### Authored variants
 
@@ -177,7 +156,7 @@ a review family could instantiate related tasks such as:
 forall x exists y (x + y = 4)
 ```
 
-or
+or:
 
 ```text
 forall x exists y (x - y = 0)
@@ -212,17 +191,13 @@ The system should distinguish **encountered** from **activated**.
 
 ### Encountered
 
-Weak evidence that material has been seen, for example:
-
-- a section was viewed;
-- a definition was opened in Reference;
-- a term appeared in feedback.
+Encountered is weak evidence that material has been seen. Examples include viewing a section, opening a definition in Reference, or seeing a term in feedback.
 
 Encounter data may be retained as exposure evidence, but encounter alone does not schedule review.
 
 ### Activated
 
-The learner has actively worked with the knowledge.
+Activated means the learner has actively worked with the knowledge.
 
 Typical activation events are:
 
@@ -240,14 +215,9 @@ For example, after introducing free and bound variables:
 
 > In `forall x P(x, y)`, which variable is free?
 
-That quick deterministic question simultaneously:
+That quick deterministic question checks initial understanding, gives the system a clean activation boundary, produces first retrieval evidence, and allows associated definition objectives to enter Review.
 
-- checks initial understanding;
-- gives the system a clean activation boundary;
-- produces first retrieval evidence;
-- allows associated definition objectives to enter Review.
-
-A useful future lesson pattern is therefore:
+A useful future lesson pattern is:
 
 ```text
 explain concept
@@ -269,21 +239,15 @@ The first two lessons show that free-response and proof-style exercises provide 
 
 The curriculum should therefore deliberately balance evidence cost.
 
-A useful conceptual hierarchy is:
+The intended hierarchy is:
 
-| Class | Typical cost | Examples |
-| --- | --- | --- |
-| Rapid drill | Low | T/F, MCQ, matching, classification |
-| Short construction | Medium | witness, short symbolic response, brief counterexample |
-| Full reasoning | High | explanation, derivation, proof, model construction |
+- **Rapid drill, low cost:** T/F, MCQ, matching, classification.
+- **Short construction, medium cost:** witness, short symbolic response, brief counterexample.
+- **Full reasoning, high cost:** explanation, derivation, proof, model construction.
 
-A rough initial lesson mix might be approximately:
+A rough initial lesson mix might be 60-70% rapid deterministic questions, 20-25% short constructive questions, and 10-20% full open-ended reasoning. These percentages are guidelines, not quotas.
 
-- 60-70% rapid deterministic questions;
-- 20-25% short constructive questions;
-- 10-20% full open-ended reasoning.
-
-These percentages are guidelines, not quotas. The durable principle is:
+The durable principle is:
 
 > Use cheap questions for breadth and frequent retrieval, and use expensive questions strategically for depth.
 
@@ -318,7 +282,7 @@ For example, five correct multiple-choice questions about quantifier order shoul
 quantifier-order x construct
 ```
 
-or
+or:
 
 ```text
 quantifier-order x justify
@@ -338,16 +302,14 @@ A stronger task may provide evidence for several weaker requirements when its st
 
 The first scheduler should be simple, deterministic, and inspectable.
 
-Possible starting rules:
+Possible starting rules are:
 
-| Evidence | Approximate first review |
-| --- | ---: |
-| Clean first-try success | 5-7 days |
-| Correct but marked Unsure | 2-3 days |
-| Correct after one substantive error | 1-2 days |
-| Multiple substantive errors | about 1 day |
-| Primarily clerical/prompt-compliance error | 5-7 days |
-| Answer or reasoning effectively revealed | about 1 day |
+- clean first-try success: first review in about 5-7 days;
+- correct but marked Unsure: about 2-3 days;
+- correct after one substantive error: about 1-2 days;
+- multiple substantive errors: about 1 day;
+- primarily clerical or prompt-compliance error: about 5-7 days;
+- answer or reasoning effectively revealed: about 1 day.
 
 Likewise, a delayed review might initially use simple rules such as:
 
@@ -412,15 +374,7 @@ type ReviewContext struct {
 }
 ```
 
-This makes it possible to distinguish, for example:
-
-> correct during immediate practice
-
-from:
-
-> correct, unassisted, on a novel variant after fourteen days.
-
-Those should not be treated as equivalent evidence.
+This makes it possible to distinguish correct performance during immediate practice from correct, unassisted performance on a novel variant after fourteen days. Those should not be treated as equivalent evidence.
 
 ## Session planning is separate from long-term scheduling
 
@@ -428,11 +382,11 @@ There are two distinct scheduling problems.
 
 ### Long-term scheduler
 
-Determines when a target should next be tested.
+The long-term scheduler determines when a target should next be tested.
 
 ### Session planner
 
-Determines which currently eligible task should appear next.
+The session planner determines which currently eligible task should appear next.
 
 The session planner should interleave topics rather than presenting several near-identical tasks consecutively. Blocked practice can make performance look stronger than it is.
 
@@ -460,15 +414,7 @@ There is still one underlying due queue. The selected mode filters which due tar
 
 ### Quick mode
 
-Quick mode may include:
-
-- definitions;
-- T/F;
-- MCQ;
-- matching;
-- classification;
-- other tap-oriented tasks;
-- possibly very short text responses.
+Quick mode may include definitions, T/F, MCQ, matching, classification, other tap-oriented tasks, and possibly very short text responses.
 
 Longer construction, proof, handwriting, or photo-based tasks are not discarded or downgraded. They remain due for a later compatible session.
 
@@ -490,11 +436,7 @@ Core rule:
 
 A difficult conceptual multiple-choice question can be quick to answer. A mathematically easy derivation can still be awkward on a phone.
 
-Review metadata should therefore keep distinct notions for things such as:
-
-- cognitive level;
-- interaction cost;
-- input requirements.
+Review metadata should therefore keep distinct notions for cognitive level, interaction cost, and input requirements.
 
 Possible input requirements include:
 
@@ -520,9 +462,7 @@ Quick: 8
 Deep: 3
 ```
 
-or after a session:
-
-> Quick reviews complete. Three deeper reviews remain due.
+After a quick session it might say, "Quick reviews complete. Three deeper reviews remain due."
 
 A deferred deep target keeps its original due state. Quick study should not silently move its due date forward. When Regular mode resumes, overdue deeper targets can receive appropriate priority.
 
@@ -530,13 +470,7 @@ A deferred deep target keeps its original due state. Quick study should not sile
 
 The scheduler should guide study rather than prevent intentional study.
 
-The learner should be able to request focused practice by:
-
-- lesson;
-- concept;
-- skill;
-- combinations of those filters;
-- compatible study mode.
+The learner should be able to request focused practice by lesson, concept, skill, combinations of those filters, and compatible study mode.
 
 Examples:
 
@@ -550,9 +484,9 @@ This should be conceptually separate from scheduler-driven Review.
 
 A useful product distinction is:
 
-- **Review**: what the scheduler says is due;
-- **Quick Review**: the same due system filtered to low-friction tasks;
-- **Practice**: what the learner deliberately chooses to work on.
+- **Review:** what the scheduler says is due.
+- **Quick Review:** the same due system filtered to low-friction tasks.
+- **Practice:** what the learner deliberately chooses to work on.
 
 They can share the same template and grading infrastructure.
 
@@ -586,8 +520,10 @@ Review scheduling should remain inspectable.
 
 A target may eventually display something like:
 
-> **Quantifier order - Interpret**  
-> Due today  
+> **Quantifier order - Interpret**
+>
+> Due today
+>
 > Reason: two substantive first-attempt errors; last delayed review six days ago.
 
 The system should prefer concrete evidence over an opaque mastery percentage.
