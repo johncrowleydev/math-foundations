@@ -108,7 +108,9 @@ export function ReviewLibrary({ data, lesson }: { data: Curriculum; lesson: stri
                 Clear filters
               </button>
               <span className="muted">
-                {activeCount ? `${activeCount} active filters` : 'All content'}
+                {activeCount
+                  ? `${activeCount} active filter${activeCount === 1 ? '' : 's'}`
+                  : 'All content'}
               </span>
             </div>
             <details className="library-filters">
@@ -194,7 +196,8 @@ export function ReviewLibrary({ data, lesson }: { data: Curriculum; lesson: stri
           </section>
           <div className="library-results-heading">
             <p role="status">
-              {filtered.length} of {catalog.items.length} templates · {coverage.length} targets
+              {filtered.length} of {catalog.items.length} templates · {coverage.length} target
+              {coverage.length === 1 ? '' : 's'}
             </p>
             <div className="toolbar" aria-label="Catalog view">
               <button aria-pressed={view === 'items'} onClick={() => setView('items')}>
