@@ -2,7 +2,7 @@ import type { Lesson } from './types';
 
 export type AppRoute = {
   slug: string;
-  tab: 'read' | 'practice' | 'reference' | 'progress';
+  tab: 'read' | 'practice' | 'reference' | 'progress' | 'review';
   exercise?: string;
   section?: string;
 };
@@ -21,7 +21,7 @@ export function readRoute(hash: string, lessons: Lesson[], savedLesson: string |
     lessons.find((l) => l.slug === savedLesson) ||
     lessons[0];
   const tab =
-    page === 'reference' || page === 'progress'
+    page === 'reference' || page === 'progress' || page === 'review'
       ? page
       : page === 'practice' && lesson.questions.length
         ? page

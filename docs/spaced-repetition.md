@@ -1,6 +1,6 @@
 # Spaced repetition and review design
 
-Status: design decisions for a future review system. This document describes the agreed direction; it is not an implementation specification and does not imply that review scheduling is currently active.
+Status: product/design direction. The first implementation is documented in [Review system v1](review-system.md), including concrete scheduling rules and intentional limits. The broader curriculum mix and future statistical modeling below remain design guidance.
 
 ## Purpose
 

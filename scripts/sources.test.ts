@@ -13,13 +13,14 @@ const [raw, notebook, teaching, syntax, typing] = await Promise.all(
     'content/tex-teaching.json',
   ].map(read),
 );
+const reviewTemplates = await read('content/review-templates.json');
 const validate = (
   catalog = raw,
   lessons = notebook.lessons,
   t = teaching,
   s = syntax,
   x = typing,
-) => validateSources(catalog, lessons, t, s, x);
+) => validateSources(catalog, lessons, t, s, x, reviewTemplates);
 
 test('every lesson, section, exercise, reference, figure, and TeX construction has source coverage', () => {
   const result = validate();

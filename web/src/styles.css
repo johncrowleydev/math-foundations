@@ -1681,3 +1681,90 @@ button.danger:hover:not(:disabled) {
     gap: 8px;
   }
 }
+
+.review-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.review-heading h1 {
+  margin: 4px 0 12px;
+}
+.review-counts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.review-counts > div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.review-counts strong {
+  display: block;
+  font-size: 1.7rem;
+  color: var(--accent);
+}
+.review-counts span {
+  font-size: 0.8rem;
+}
+.review-panel {
+  margin: 24px 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.review-panel h2 {
+  margin-top: 0;
+}
+.review-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.review-filters label {
+  display: grid;
+  gap: 5px;
+  font-size: 0.85rem;
+}
+.review-filters select {
+  width: 100%;
+  min-width: 0;
+}
+.review-notice {
+  padding: 12px;
+  background: #edf2f8;
+  border-radius: 5px;
+}
+.review-why {
+  margin: 12px 0;
+  font-size: 0.85rem;
+}
+.review-targets article {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.review-targets p {
+  margin: 5px 0;
+}
+@media (max-width: 600px) {
+  .review-counts {
+    gap: 6px;
+  }
+  .review-counts > div {
+    padding: 10px 8px;
+  }
+  .review-filters {
+    grid-template-columns: 1fr;
+  }
+  .review-heading {
+    flex-wrap: wrap;
+  }
+  .review-page .practice-heading {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}

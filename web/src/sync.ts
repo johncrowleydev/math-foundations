@@ -24,7 +24,7 @@ class HttpError extends Error {
     super(message);
   }
 }
-async function request(path: string, method = 'GET', body?: unknown) {
+export async function apiRequest(path: string, method = 'GET', body?: unknown) {
   if (!authSession()) throw Error('Sign in required');
   const epoch = authGeneration();
   const response = await fetch('/api/v1' + path, {
@@ -85,13 +85,13 @@ export async function mutation(key: string, payload: Record<string, unknown>, re
   void sync();
 }
 export async function cancelGrading(a: Attempt) {
-  const current: Attempt = a.activeJob ? a : await (await request('/attempts/' + a.id)).json();
+  const current: Attempt = a.activeJob ? a : await (await apiRequest('/attempts/' + a.id)).json();
   if (!current.activeJob) {
     await put('attempts', a.id, current);
     return;
   }
   const saved = await (
-    await request('/attempts/' + a.id + '/cancel', 'POST', { job: current.activeJob })
+    await apiRequest('/attempts/' + a.id + '/cancel', 'POST', { job: current.activeJob })
   ).json();
   await put('attempts', a.id, saved);
 }
@@ -110,7 +110,7 @@ export async function recheck(a: Attempt, reason: string) {
 }
 async function download(h: string) {
   if (await get('media', h)) return;
-  const blob = await (await request('/media/' + h)).blob();
+  const blob = await (await apiRequest('/media/' + h)).blob();
   if ((await hash(blob)) !== h) throw Error('Downloaded image failed integrity check');
   await put('media', h, blob);
 }
@@ -118,7 +118,7 @@ async function upload(h: string) {
   const blob = await get<Blob>('media', h);
   if (!blob)
     throw Error('A submitted image is missing from this browser. Your attempt is retained.');
-  await request('/media/' + h, 'PUT', blob);
+  await apiRequest('/media/' + h, 'PUT', blob);
 }
 type Operation = { id: string; kind: string; attempt?: string; data: Record<string, unknown> };
 export async function sync() {
@@ -139,6 +139,8 @@ export async function sync() {
     // later correct one locks the exercise on the server (UUID order is random).
     const outgoing = await all<Operation>('outbox');
     outgoing.sort((a, b) => {
+      if (a.kind === 'review-import' || b.kind === 'review-import')
+        return Number(b.kind === 'review-import') - Number(a.kind === 'review-import');
       const at = a.kind === 'attempt' ? Number(a.data.submitted) : Infinity;
       const bt = b.kind === 'attempt' ? Number(b.data.submitted) : Infinity;
       return at - bt;
@@ -159,13 +161,23 @@ export async function sync() {
             activeJob,
             ...submission
           } = a;
-          const saved = await (await request('/attempts', 'POST', submission)).json();
+          const saved = await (await apiRequest('/attempts', 'POST', submission)).json();
           await put('attempts', a.id, saved);
+        } else if (op.kind === 'review-import') {
+          for (const a of op.data.attempts as Attempt[])
+            for (const h of [...a.images, ...(a.photos || []).map((p) => p.hash)]) await upload(h);
+          await apiRequest('/review/import', 'POST', op.data);
         } else if (op.kind === 'recheck')
-          await request('/attempts/' + op.attempt + '/recheck', 'POST', op.data);
-        else await request('/mutations', 'POST', op.data);
+          await apiRequest('/attempts/' + op.attempt + '/recheck', 'POST', op.data);
+        else await apiRequest('/mutations', 'POST', op.data);
         await remove('outbox', op.id);
       } catch (e) {
+        if (op.kind === 'review-import') {
+          // Pending review submissions depend on these server-issued instances.
+          // Keep both restore and submissions queued if restoration fails.
+          outgoingError = 'Review restore pending: ' + (e instanceof Error ? e.message : 'failed');
+          break;
+        }
         if (e instanceof HttpError && [400, 409].includes(e.status)) {
           if (op.kind === 'attempt')
             await put('attempts', op.id, { ...op.data, status: 'error', error: e.message });
@@ -185,7 +197,7 @@ export async function sync() {
     let cursor = (await get<number>('settings', 'cursor')) || 0;
     let more = true;
     while (more) {
-      const batch = (await (await request('/changes?after=' + cursor)).json()) as {
+      const batch = (await (await apiRequest('/changes?after=' + cursor)).json()) as {
         records: RecordData[];
         cursor: number;
         more: boolean;
@@ -194,12 +206,12 @@ export async function sync() {
       cursor = batch.cursor;
       more = batch.more;
     }
-    const status = (await (await request('/status')).json()) as {
+    const status = (await (await apiRequest('/status')).json()) as {
       attempts: { key: string; revision: number }[];
     };
     if (!Array.isArray(status.attempts)) throw Error('Could not verify saved attempts');
     if (!(await attemptsMatch(status.attempts))) {
-      const snapshot = (await (await request('/attempts')).json()) as { records: RecordData[] };
+      const snapshot = (await (await apiRequest('/attempts')).json()) as { records: RecordData[] };
       await integrate(snapshot.records, cursor);
       if (!(await attemptsMatch(status.attempts)))
         throw Error('Some attempts are missing; retrying sync');

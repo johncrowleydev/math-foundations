@@ -1,3 +1,4 @@
+import type { ReviewContext } from './reviewTypes';
 import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from './evidenceTypes';
 import type { SourceCatalog } from './Sources';
 export type Block = { id: string; kind: string; markdown?: string; figure?: string };
@@ -155,6 +156,7 @@ export type Grade = GradeEvidence & {
   at: number;
 };
 export type Attempt = Effort & {
+  review?: ReviewContext;
   activeJob?: string;
   analytics?: EvidenceSnapshot;
   recheckReason?: string;
