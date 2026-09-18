@@ -163,8 +163,11 @@ export async function sync() {
           } = a;
           const saved = await (await apiRequest('/attempts', 'POST', submission)).json();
           await put('attempts', a.id, saved);
-        } else if (op.kind === 'review-import') await apiRequest('/review/import', 'POST', op.data);
-        else if (op.kind === 'recheck')
+        } else if (op.kind === 'review-import') {
+          for (const a of op.data.attempts as Attempt[])
+            for (const h of [...a.images, ...(a.photos || []).map((p) => p.hash)]) await upload(h);
+          await apiRequest('/review/import', 'POST', op.data);
+        } else if (op.kind === 'recheck')
           await apiRequest('/attempts/' + op.attempt + '/recheck', 'POST', op.data);
         else await apiRequest('/mutations', 'POST', op.data);
         await remove('outbox', op.id);
