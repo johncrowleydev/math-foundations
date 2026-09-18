@@ -146,6 +146,12 @@ func (t ReviewTemplate) quick() bool {
 	}
 	return len(t.InputCapabilities) > 0
 }
+func (t ReviewTemplate) sourceTarget() string {
+	if t.SourceTarget != "" {
+		return t.SourceTarget
+	}
+	return "review:" + t.ID
+}
 func (g *Grading) reviewTemplates() []ReviewTemplate {
 	result := append([]ReviewTemplate{}, g.catalog.ReviewTemplates...)
 	keys := []string{}
@@ -495,7 +501,10 @@ func contains(values []string, v string) bool {
 	}
 	return false
 }
-func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version string, now int64) ReviewInstance {
+
+// instantiateReviewQuestion is shared by issued learner instances and read-only
+// authoring previews. Neither selection nor generation needs learner state.
+func instantiateReviewQuestion(t ReviewTemplate, seed string) (map[string]any, map[string]int) {
 	hash := sha256.Sum256([]byte(seed))
 	q := t.Question
 	var params map[string]int
@@ -513,6 +522,10 @@ func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version 
 	}
 	var question map[string]any
 	json.Unmarshal(raw, &question)
+	return question, params
+}
+func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version string, now int64) ReviewInstance {
+	question, params := instantiateReviewQuestion(t, seed)
 	context := ReviewContext{PreviousEvidenceAt: s.LastEvidenceAt, ReviewTarget: t.ReviewTarget, InstanceID: id, Kind: kind, TemplateID: t.ID, ScheduledFor: s.DueAt, PresentedAt: now, PreviousReviewAt: s.LastReviewedAt, IntervalDays: s.IntervalDays, Seed: seed, Parameters: params}
 	teaching := map[string]any{}
 	json.Unmarshal(t.Teaching, &teaching)
@@ -525,11 +538,7 @@ func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version 
 	teaching["choice"] = question["choice"]
 	teaching["analytics"] = t.Analytics
 	teachingRaw, _ := json.Marshal(teaching)
-	source := t.SourceTarget
-	if source == "" {
-		source = "review:" + t.ID
-	}
-	return ReviewInstance{EvidenceLevel: t.EvidenceLevel, CognitiveLevel: t.CognitiveLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities, SourceTarget: source, ID: id, Exercise: "review-" + id, Lesson: t.Lesson, Question: question, Context: context, Analytics: t.Analytics, ContentVersion: version, Teaching: teachingRaw}
+	return ReviewInstance{EvidenceLevel: t.EvidenceLevel, CognitiveLevel: t.CognitiveLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities, SourceTarget: t.sourceTarget(), ID: id, Exercise: "review-" + id, Lesson: t.Lesson, Question: question, Context: context, Analytics: t.Analytics, ContentVersion: version, Teaching: teachingRaw}
 }
 func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession, error) {
 	session := ReviewSession{ID: newID(), Kind: req.Kind, Mode: req.Mode, Instances: []ReviewInstance{}}
@@ -675,6 +684,7 @@ func (g *Grading) reviewSummary(now int64) (map[string]any, error) {
 	return result, tx.Commit()
 }
 func (s *Server) reviewRoutes(mux *http.ServeMux) {
+	s.reviewCatalogRoutes(mux)
 	mux.HandleFunc("POST /api/v1/review/import", func(w http.ResponseWriter, r *http.Request) {
 		if s.grading == nil {
 			http.Error(w, "Review unavailable", 503)
