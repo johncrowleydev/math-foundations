@@ -283,9 +283,12 @@ func scheduleReview(s ReviewState, signal reviewSignal, at int64) ReviewState {
 		reason = "Clerical or prompt-compliance issue; retain the normal interval"
 	}
 	if signal.Delayed && signal.Correct && !signal.Assisted && signal.Errors == 0 {
-		factor := 2.0
-		if signal.Kind == "focused-practice" {
-			factor = 1.25
+		// Only explicitly scheduled review is eligible for cold-retrieval weighting.
+		// Lesson/legacy attempts may be deliberately selected or primed, like
+		// focused practice; missing context must not imply a scheduled review.
+		factor := 1.25
+		if signal.Kind == "scheduled-review" {
+			factor = 2.0
 		}
 		if signal.Unsure {
 			factor = 1.2
@@ -467,6 +470,10 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 		}
 		if substantive(a) {
 			errorsByExercise[a.Exercise]++
+		} else if a.Verdict == "correct" {
+			// This success still includes the errors from its correction episode
+			// above. Later attempts start fresh; ungraded work never ends an episode.
+			delete(errorsByExercise, a.Exercise)
 		}
 	}
 	for key, s := range states {
