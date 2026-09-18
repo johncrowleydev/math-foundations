@@ -512,16 +512,55 @@ func instantiateReviewQuestion(t ReviewTemplate, seed string) (map[string]any, m
 		q = t.Variants[int(hash[0])%len(t.Variants)]
 	}
 	raw, _ := json.Marshal(q)
-	if t.Generator == "integer-witness-sum" {
+	replacements := map[string]string{}
+	switch t.Generator {
+	case "integer-witness-sum":
 		a, total := int(hash[0])%20+1, int(hash[1])%20+1
 		w := total - a
 		params = map[string]int{"a": a, "sum": total, "witness": w, "witnessPlusOne": w + 1, "witnessMinusOne": w - 1}
-		for k, v := range params {
-			raw = []byte(strings.ReplaceAll(string(raw), "{{"+k+"}}", fmt.Sprint(v)))
+	case "propositional-truth-values":
+		p, q, operation := int(hash[0])%2, int(hash[1])%2, int(hash[2])%4
+		formulas := []string{`p\land q`, `p\lor q`, `p\to q`, `p\leftrightarrow q`}
+		explanations := []string{
+			"Conjunction requires both components to be true.",
+			"Inclusive disjunction is true when at least one component is true.",
+			"An implication is false exactly when its antecedent is true and its consequent is false.",
+			"A biconditional is true exactly when its two sides have the same truth value.",
 		}
+		values := []bool{p == 1 && q == 1, p == 1 || q == 1, p == 0 || q == 1, p == q}
+		result := 0
+		if values[operation] {
+			result = 1
+		}
+		params = map[string]int{"p": p, "q": q, "operation": operation, "result": result}
+		truth, words := []string{"F", "T"}, []string{"False", "True"}
+		replacements = map[string]string{"pTruth": truth[p], "qTruth": truth[q], "formula": formulas[operation], "resultText": words[result], "oppositeText": words[1-result], "explanation": explanations[operation]}
+	case "integer-conditional-counterexample":
+		b, gap := int(hash[0])%21-10, int(hash[1])%5+1
+		a := b + gap
+		params = map[string]int{"a": a, "b": b, "gap": gap, "below": b - 1, "above": a + 1}
+	}
+	for k, v := range params {
+		replacements[k] = fmt.Sprint(v)
+	}
+	for k, v := range replacements {
+		// Replacements are JSON string contents: formula backslashes must survive
+		// decoding, and quotes or newlines must not corrupt the question object.
+		escaped, _ := json.Marshal(v)
+		raw = []byte(strings.ReplaceAll(string(raw), "{{"+k+"}}", string(escaped[1:len(escaped)-1])))
 	}
 	var question map[string]any
 	json.Unmarshal(raw, &question)
+	if enum(t.Generator, "propositional-truth-values", "integer-conditional-counterexample") {
+		if choice, ok := question["choice"].(map[string]any); ok {
+			if options, ok := choice["options"].([]any); ok && len(options) > 1 {
+				// Keep IDs stable for grading while varying the correct answer's
+				// position. Existing generators retain their historical ordering.
+				offset := int(hash[3]) % len(options)
+				choice["options"] = append(append([]any{}, options[offset:]...), options[:offset]...)
+			}
+		}
+	}
 	return question, params
 }
 func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version string, now int64) ReviewInstance {

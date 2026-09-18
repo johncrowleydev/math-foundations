@@ -57,6 +57,55 @@ test('recognition choices cannot masquerade as production and placeholders must 
   bad[2].question.prompt += '{{unknown}}';
   assert.throws(() => validate(bad), /placeholder/);
 });
+test('each generator accepts only its own renderable slots', () => {
+  const cases = [
+    {
+      generator: 'integer-witness-sum',
+      slots: ['a', 'sum', 'witness', 'witnessPlusOne', 'witnessMinusOne'],
+      foreign: 'formula',
+    },
+    {
+      generator: 'propositional-truth-values',
+      slots: ['pTruth', 'qTruth', 'formula', 'resultText', 'oppositeText', 'explanation'],
+      foreign: 'witness',
+    },
+    {
+      generator: 'integer-conditional-counterexample',
+      slots: ['a', 'b', 'below', 'above'],
+      foreign: 'sum',
+    },
+  ];
+  for (const { generator, slots, foreign } of cases) {
+    const row = structuredClone(
+      templates.find((t: { family: string }) => t.family === 'generated'),
+    );
+    row.generator = generator;
+    const rendered = slots.map((slot) => `{{${slot}}}`).join(' ');
+    row.question = {
+      id: 1,
+      section: 'Review',
+      instructions: 'Select one answer.',
+      prompt: rendered,
+      answer: rendered,
+      math: rendered,
+      choice: {
+        correctOption: 'correct',
+        options: [
+          { id: 'correct', text: rendered, feedback: rendered },
+          { id: 'other', text: 'Other', feedback: 'Try again.' },
+        ],
+      },
+    };
+    assert.deepEqual(validate([row]), [row]);
+    row.question.prompt += `{{${foreign}}}`;
+    assert.throws(() => validate([row]), /placeholder/);
+    row.generator = 'unknown-generator';
+    assert.throws(() => validate([row]));
+    delete row.generator;
+    row.family = 'fixed';
+    assert.throws(() => validate([row]), /placeholder/);
+  }
+});
 test('all generated integer witness options are distinct and exactly one satisfies the condition', () => {
   // Independently audit the entire finite generator domain, including zero and negative witnesses.
   for (let a = 1; a <= 20; a++)
