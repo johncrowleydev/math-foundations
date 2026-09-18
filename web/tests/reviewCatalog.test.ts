@@ -165,18 +165,18 @@ test('coverage counts effective templates once and keeps objectives and skills s
   assert.deepEqual(reviewCoverage([]), []);
 });
 
-test('coverage observations explicitly describe absent evidence without a score', () => {
+test('coverage observations describe template availability, including for deeper evidence', () => {
   const [deep] = reviewCoverage([proof]);
   assert.deepEqual(coverageObservations(deep), [
     'No Quick-compatible template',
-    'No production evidence',
+    'No production-level template',
     'Only one fixed template',
     'No variant/generator coverage',
   ]);
   const [recognition] = reviewCoverage([generated]);
   assert.deepEqual(coverageObservations(recognition), [
     'Recognition only',
-    'No production evidence',
+    'No production-level template',
     'No reasoning/proof template',
   ]);
 });

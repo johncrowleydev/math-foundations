@@ -114,7 +114,7 @@ export function coverageObservations(group: ReviewCoverage): string[] {
   const observations: string[] = [];
   if (!group.quick) observations.push('No Quick-compatible template');
   if (group.recognition === group.total) observations.push('Recognition only');
-  if (!group.production) observations.push('No production evidence');
+  if (!group.production) observations.push('No production-level template');
   if (!group.reasoning) observations.push('No reasoning/proof template');
   if (group.total === 1 && group.fixed === 1) observations.push('Only one fixed template');
   if (!group.authored && !group.generated) observations.push('No variant/generator coverage');
