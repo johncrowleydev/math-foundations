@@ -3,13 +3,7 @@
 // Override PLAYWRIGHT_MODULE / CHROME_BIN when using another local runtime.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
-import { pathToFileURL } from 'node:url';
-const { chromium } = await import(
-  process.env.PLAYWRIGHT_MODULE ||
-    pathToFileURL(
-      '/home/john/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs',
-    ).href
-);
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const baseURL = process.argv[2] || 'http://127.0.0.1:5186';
 const directory = new URL('../docs/screenshots/review/', import.meta.url);
 await mkdir(directory, { recursive: true });

@@ -160,7 +160,11 @@ export function Review({ data }: { data: Curriculum }) {
                   ? 'Previous review: ' +
                     new Date(item.context.previousReviewAt).toLocaleDateString() +
                     '.'
-                  : 'No previous delayed review recorded.'}
+                  : item.context.previousEvidenceAt
+                    ? 'Previous active work: ' +
+                      new Date(item.context.previousEvidenceAt).toLocaleDateString() +
+                      '. This is the first review.'
+                    : 'No previous delayed review recorded.'}
               </p>
             )}
           </details>

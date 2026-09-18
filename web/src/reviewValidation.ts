@@ -15,6 +15,7 @@ export function validReviewContext(value: unknown): boolean {
     time(value.scheduledFor) &&
     time(value.presentedAt) &&
     (value.previousReviewAt === undefined || time(value.previousReviewAt)) &&
+    (value.previousEvidenceAt === undefined || time(value.previousEvidenceAt)) &&
     typeof value.intervalDays === 'number' &&
     Number.isFinite(value.intervalDays) &&
     value.intervalDays >= 0 &&

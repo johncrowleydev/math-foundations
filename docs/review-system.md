@@ -6,7 +6,7 @@ This document describes the implementation of [the spaced repetition design](spa
 
 The top-level **Review** destination shows due, Quick-compatible, and deeper target counts. **Regular** selects from all compatible due tasks. **Quick** selects tasks with low interaction cost and tap or short-text input. Cognitive level is separate metadata: Quick does not mean easy.
 
-The same screen offers **Focused Practice** filters for lesson, concept, skill, and study mode. Filters combine; an empty selection has no compatible tasks. Focused Practice may select knowledge that is not due and deliberately activates the selected targets. Existing lesson exercises and the original Practice flow remain available.
+The same screen offers **Focused Practice** filters for lesson, concept, skill, and study mode. Filters combine; a combination with no compatible tasks shows an empty session. Focused Practice may select knowledge that is not due and deliberately activates the selected targets. Existing lesson exercises and the original Practice flow remain available.
 
 A collapsed schedule shows each active target's due date and reason. Each issued question has a collapsed “Why am I seeing this?” explanation. Sources remain collapsed beneath revealed explanations, outside answer-choice controls. Skipping, visiting all tasks, or returning to the overview does not certify a target. Pending answers update the authoritative counts after server processing.
 
@@ -20,7 +20,7 @@ A collapsed schedule shows each active target's due date and reason. Each issued
 
 The scheduling key is concept × skill × optional objective, not an exercise ID. Lesson is a selection filter. Existing structured primary concept/skill relationships supply the broad template pool. One target has one required evidence depth; incompatible shallower templates cannot satisfy it.
 
-Attempts and assessment history remain observations. Mutable `review-state/` records contain due dates, interval days, activation/review timestamps, evidence depth, and an explanation. They use the existing SQLite records/change stream and are separate from attempts. Server-issued `review-instance/` and `review-session/` records preserve planned work; `review-activation/` records retain deliberate practice activation. The client cannot update schedule records through ordinary mutations.
+Attempts and assessment history remain observations. Mutable `review-state/` records contain due dates, interval days, activation, active-evidence and actual-review timestamps, evidence depth, and an explanation. They use the existing SQLite records/change stream and are separate from attempts. Server-issued `review-instance/` and `review-session/` records preserve planned work; `review-activation/` records retain deliberate practice activation. The client cannot update schedule records through ordinary mutations.
 
 The server reconstructs review state from structured active evidence in submission order, with attempt ID as a stable tie-breaker. This also supports historical attempts, imported observations, and grade corrections. Passive exposure records are not inputs. Merely opening, scrolling, or rereading a lesson cannot activate review. Missing historical review context stays missing; replay does not fabricate prior scheduled sessions.
 
@@ -74,7 +74,7 @@ Issued instances contain the exact question, source target, grading content vers
 
 `presentedAt` records when the server made the **whole session** available, not when the learner first viewed each item. It must not be interpreted as item-level exposure telemetry. Existing lesson attempts without review context retain their original meaning.
 
-The existing answer renderer, deterministic choice grading, AI grading, effort/Unsure/assistance capture, handwriting/photos, retry behavior, and grading diagnostics are reused. Review is not a second grading stack. The server checks submissions against issued instance context and reconstructs generated questions from their saved template/seed when restoring them.
+The existing answer renderer, deterministic choice grading, AI grading, effort/Unsure/assistance capture, handwriting/photos, retry behavior, and grading diagnostics are reused. Review is not a second grading stack. The server checks submissions against issued instance context. Restoring current-version instances reproduces their question and parameters from the template/seed; historical-version instances retain their validated original question and teaching snapshot. Imported legacy lesson attempts without original teaching context cannot be regraded, rather than silently applying today’s question.
 
 ## Offline work, sync, and export/import
 
@@ -96,4 +96,6 @@ Replay favors inspectability and existing persistence patterns over an increment
 
 ## Validation and screenshots
 
-The implementation adds scheduler/planner/generation/persistence tests, source/template tests, and browser storage/sync/UI coverage. The PR handoff records the commands actually run and links screenshots of the landing summary, Regular and Quick sessions, deferred deeper work, focused filters, and mobile layout. Screenshot links and final full-suite results should be recorded after verification; this document does not claim checks that have not run.
+The implementation adds scheduler/planner/generation/persistence tests, source/template tests, and browser storage/sync/UI coverage. The PR handoff records the commands actually run and links screenshots of the landing summary, Regular and Quick sessions, deferred deeper work, focused filters, and mobile layout. The repeatable browser script is `scripts/check-review-ui.mjs` (set `PLAYWRIGHT_MODULE` to a local Playwright installation if it is not on the module path). It intercepts all API requests with synthetic evidence and checks desktop/mobile interaction, deferred deep dates, and queued submissions during an API outage. This API-outage check does not claim to test production service-worker caching.
+
+Screenshots: [landing](screenshots/review/landing.png), [Regular](screenshots/review/regular.png), [Quick](screenshots/review/quick.png), [deferred deeper reviews](screenshots/review/deferred.png), [focused filters](screenshots/review/practice.png), [mobile](screenshots/review/mobile.png).

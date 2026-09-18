@@ -14,6 +14,7 @@ export type ReviewContext = {
   scheduledFor: number;
   presentedAt: number;
   previousReviewAt?: number;
+  previousEvidenceAt?: number;
   intervalDays: number;
   seed?: string;
   parameters?: Record<string, unknown>;
@@ -26,6 +27,7 @@ export type ReviewState = {
   dueAt: number;
   intervalDays: number;
   lastReviewedAt?: number;
+  lastEvidenceAt?: number;
   activatedAt: number;
   reason: string;
   evidenceLevel: string;
@@ -41,6 +43,10 @@ export type ReviewSummary = {
   lessons: { slug: string; title: string }[];
 };
 export type ReviewInstance = {
+  evidenceLevel?: string;
+  cognitiveLevel?: string;
+  interactionCost?: string;
+  inputCapabilities?: string[];
   id: string;
   exercise: string;
   lesson: string;
