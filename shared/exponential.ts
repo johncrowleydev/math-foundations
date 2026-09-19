@@ -106,7 +106,6 @@ class Transform {
       return '(' + base + ')^(' + exponent + ')';
     }
     const b = parseExact(base).rational();
-    if (!b.n) fail('A variable exponent requires a nonzero rational base.');
     const e = parseExpression(exponent, this.options.variables),
       den = e.den.get('');
     if (e.den.size !== 1 || !den || e.exclusions.some((p) => [...p.keys()].some((k) => k !== '')))
@@ -128,6 +127,17 @@ class Transform {
       )
         fail('Declare integer variables and use an affine integer exponent.');
       coefficients.set(entries[0][0], n);
+    }
+    if (!b.n) {
+      let minimum = offset;
+      for (const [v, n] of coefficients) {
+        if (n < 0 || !this.options.positiveVariables?.includes(v))
+          fail('A zero base needs an exponent positive throughout the stated domain.');
+        minimum += n;
+      }
+      if (minimum <= 0)
+        fail('A zero base needs an exponent positive throughout the stated domain.');
+      return '0';
     }
     const factors = factor(b.n < 0n ? -b.n : b.n);
     for (const [p, n] of factor(b.d)) factors.set(p, (factors.get(p) || 0) - n);

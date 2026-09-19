@@ -125,7 +125,7 @@ func (t *exponentialTransform) exponential(base, exponent string) (string, error
 		return "", e
 	}
 	b, ok := bv.rat()
-	if !ok || b.Sign() == 0 {
+	if !ok {
 		return "", errors.New("A variable exponent requires a nonzero rational base")
 	}
 	p, e := parsePolynomial(exponent, t.options.Variables)
@@ -169,6 +169,19 @@ func (t *exponentialTransform) exponential(base, exponent string) (string, error
 		} else {
 			coeff[t.options.Variables[idx]] = n
 		}
+	}
+	if b.Sign() == 0 {
+		minimum := offset
+		for v, n := range coeff {
+			if n < 0 || !stringHas(t.options.PositiveVariables, v) {
+				return "", errors.New("A zero base needs an exponent positive throughout the stated domain")
+			}
+			minimum += n
+		}
+		if minimum <= 0 {
+			return "", errors.New("A zero base needs an exponent positive throughout the stated domain")
+		}
+		return "0", nil
 	}
 	factors, e := rationalFactors(new(big.Int).Abs(b.Num()))
 	if e != nil {
