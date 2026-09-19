@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import { once } from 'node:events';
-import { mkdir, mkdtemp, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -375,6 +375,135 @@ try {
   await page.getByRole('button', { name: 'Review', exact: true }).click();
   await page.getByRole('link', { name: 'Review Library', exact: true }).click();
   await items.first().waitFor();
+
+  // Audit authored Lessons 1–2 through the effective Library, not just its source file.
+  const authoredSource = JSON.parse(await readFile(join(root, 'content/review-templates.json')));
+  const contentScreenshots = join(root, 'docs/screenshots/review-content');
+  const auditDirectory = join(root, 'output/review-audit-after');
+  await mkdir(contentScreenshots, { recursive: true });
+  await mkdir(auditDirectory, { recursive: true });
+  await writeFile(join(auditDirectory, 'catalog.json'), JSON.stringify(catalog, null, 2));
+  async function contentScreenshot(name, target) {
+    // The reader is a scroll container: a tall locator screenshot otherwise
+    // captures blank pixels below its clipped viewport. Fit the whole example.
+    const viewport = page.viewportSize();
+    const bounds = await target.boundingBox();
+    await page.setViewportSize({
+      width: viewport.width,
+      height: Math.max(viewport.height, Math.ceil(bounds.height) + 200),
+    });
+    await target.screenshot({ path: join(contentScreenshots, name + '.png') });
+    await page.setViewportSize(viewport);
+  }
+  const contentExamples = new Set();
+  const manualConcepts = new Set([
+    'implication',
+    'contrapositive',
+    'quantifier-negation',
+    'quantifier-order',
+    'existential-quantification',
+    'universal-quantification',
+    'predicate-evaluation',
+  ]);
+  for (const source of authoredSource) {
+    const item = catalog.items.find((item) => item.id === source.id);
+    assert.ok(item, `${source.id} remains eligible in the effective catalog`);
+    await clear();
+    await library.getByLabel('Search catalog', { exact: true }).fill(item.id);
+    const rendered = library.locator(`[data-template-id="${item.id}"]`);
+    await rendered.locator('summary').click();
+    await rendered.locator('.library-item-body').waitFor();
+    assert.equal(
+      await rendered.getByRole('heading', { name: /^Authored variant / }).count(),
+      source.variants?.length || 0,
+      `${item.id}: every authored variant is inspectable`,
+    );
+    assert.equal(await rendered.locator('.katex-error').count(), 0, item.id);
+    const sourceDetails = rendered.locator('.content-sources');
+    assert.equal(await sourceDetails.count(), 1, `${item.id}: source support is published`);
+    assert.equal(await sourceDetails.evaluate((element) => element.open), false);
+    assert.equal(await rendered.locator('.library-choices .content-sources').count(), 0);
+    if (
+      item.quick &&
+      !item.generated &&
+      item.question.choice &&
+      manualConcepts.delete(item.concept)
+    ) {
+      await rendered
+        .locator('.library-question-section')
+        .first()
+        .screenshot({
+          path: join(auditDirectory, item.concept + '.png'),
+        });
+    }
+
+    let example;
+    if (item.concept === 'propositions' && item.skill === 'recall') example = 'logic-definition';
+    if (item.concept === 'conditional-forms' && item.variantCount >= 3)
+      example = 'conditional-variants';
+    if (item.concept === 'variable-scope' && item.skill === 'recall') example = 'scope-definition';
+    if (item.generator && item.generator !== 'integer-witness-sum') {
+      const generator = rendered.getByRole('region', { name: 'Generator inspection' });
+      await generator.getByLabel('Seed', { exact: true }).fill('content-audit-42');
+      await generator.getByRole('button', { name: 'Generate sample', exact: true }).click();
+      const preview = generator.locator('.library-generated-preview');
+      await preview.getByText('content-audit-42', { exact: true }).waitFor();
+      assert.equal(await preview.locator('.katex-error').count(), 0);
+      assert.ok(!(await preview.innerText()).includes('{{'));
+      await contentScreenshot(item.generator, generator);
+    }
+    if (example && !contentExamples.has(example)) {
+      contentExamples.add(example);
+      await contentScreenshot(example, rendered);
+    }
+  }
+  const coverageAudit = {};
+  for (const lesson of ['propositional-logic', 'predicates-and-quantifiers']) {
+    await clear();
+    await filtersOpen();
+    await library.getByLabel(/^Lesson/).selectOption(lesson);
+    await expectCount(catalog.items.filter((item) => item.lesson === lesson).length);
+    await library.getByRole('button', { name: 'Coverage', exact: true }).click();
+    const rows = library.locator('.library-coverage-table tbody tr');
+    coverageAudit[lesson] = {
+      count: await count.innerText(),
+      rows: await rows.allTextContents(),
+    };
+    await library
+      .getByLabel(/^Concept/)
+      .selectOption(lesson === 'propositional-logic' ? 'implication' : 'quantifier-order');
+    await library.locator('.library-filters summary').click();
+    await contentScreenshot(lesson + '-coverage', library.locator('.library-coverage'));
+  }
+  await writeFile(join(auditDirectory, 'coverage.json'), JSON.stringify(coverageAudit, null, 2));
+  await clear();
+  await library.getByRole('button', { name: 'Templates', exact: true }).click();
+  await page.setViewportSize({ width: 390, height: 844 });
+  // Inspect long symbolic variants at phone width as well as desktop.
+  for (const concept of ['quantifier-negation', 'variable-scope', 'conditional-forms']) {
+    const item = catalog.items.find(
+      (item) => item.provenance === 'review-template' && item.concept === concept && item.quick,
+    );
+    assert.ok(item, `${concept} has a dedicated Quick representation`);
+    await library.getByLabel('Search catalog', { exact: true }).fill(item.id);
+    const rendered = library.locator(`[data-template-id="${item.id}"]`);
+    await rendered.locator('summary').click();
+    await rendered.locator('.library-item-body').waitFor();
+    await assertNoOverflow();
+    assert.equal(
+      await rendered.evaluate((element) => element.scrollWidth > element.clientWidth),
+      false,
+      `${concept}: phone content stays within the item`,
+    );
+    if (concept === 'variable-scope') {
+      await contentScreenshot(
+        'scope-mobile',
+        rendered.locator('.library-question-section').first(),
+      );
+    }
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await clear();
 
   await page.route('**/api/v1/review/catalog', (route) =>
     route.fulfill({ status: 503, body: 'Catalog unavailable' }),

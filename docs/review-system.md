@@ -48,13 +48,11 @@ Focused practice can satisfy a matching due target. Its context remains distinct
 
 ## Templates, evidence depth, and planning
 
-`content/review-templates.json` adds three small authored templates:
-
-- Fixed production recall of the witness definition;
-- Two authored production recall variants for the same definition objective;
-- Deterministically generated recognition of an integer witness, with a separate `witness-selection` objective.
+`content/review-templates.json` contains dedicated fixed, authored, and generated review families. Lessons 1–2 combine deterministic terminology and interpretation probes with short constructive variants. Existing lesson exercises continue to supply longer reasoning and proof tasks. The original witness-definition production cards and integer-witness-selection generator retain their identities and evidence requirements.
 
 The generated question asks which integer satisfies an existential condition of the form `x + a = sum`. SHA-256 of the saved seed determines `a` and `sum` in 1–20; the witness is `sum - a`, with adjacent integers as distractors. This is witness **selection**, not evidence of constructing a witness without choices. Negative and zero witnesses are supported.
+
+Two further bounded generators support Lesson 1. `propositional-truth-values` samples the 16 combinations of two truth values and four connectives (AND, inclusive OR, implication, biconditional). Its saved integer parameters are `p`, `q`, `operation` (0–3 in that order), and `result`, with false/true encoded as 0/1. `integer-conditional-counterexample` chooses `b` in −10–10 and `gap` in 1–5, sets `a = b + gap`, and asks for a counterexample to “if `x < a`, then `x < b`” over integers. The boundary `b` refutes the implication; distractors `b − 1` and `a + 1` respectively satisfy the consequent or fail the antecedent. These generators rotate option order deterministically; the original witness generator retains its existing output. Both supply recognition evidence, leaving construction targets separate.
 
 Existing exercise templates supply additional concepts and skills without changing the curriculum. Choice tasks provide recognition evidence. Production and reasoning targets retain their deeper requirement; repeated recognition cannot erase construction or proof work. Deeper tasks may provide multiple compatible observations when their authored primary concept/skill mappings actually cover those components. There is no blanket rule that any proof certifies every weaker skill.
 
@@ -90,7 +88,7 @@ The separate analysis ZIP remains version 2. `attempts.json` preserves optional 
 
 Each new template has a pinpoint source assignment and inspected content digest in `content/sources.json`. The content build validates targets, family payloads, choice keys, evidence level, supported generator slots, math syntax, source coverage, and digests. It publishes templates into both the grading catalog and bundled content. Changing a question, variant, or feedback requires source reinspection. Existing lesson source digests are unchanged.
 
-This release implements a small template authoring surface plus reuse of the existing exercise catalog. It does not rebalance hundreds of lesson questions or add new matching/classification interfaces. Fixed/authored definition recall currently uses the existing free-response grader; the generated witness selection uses deterministic choices. General symbolic response grading, unrestricted LLM question generation, personalized forgetting curves, FSRS, psychometrics, and mastery percentages are outside v1.
+The authoring surface reuses the existing exercise catalog and grading interfaces. New terminology probes use deterministic choices. The two original witness-definition production cards retain the existing free-response grader; recognizing a definition does not satisfy their production requirement. Short constructive transformations and countermodels also use the existing free-response grader. General exact-text or symbolic response grading, new matching interfaces, unrestricted LLM question generation, personalized forgetting curves, FSRS, psychometrics, and mastery percentages remain outside this content pass.
 
 Replay favors inspectability and existing persistence patterns over an incremental scheduler subsystem. Session availability timestamps are not precise per-item exposure times. These limits preserve usable observations for later retention research without claiming a calibrated memory model.
 
@@ -114,6 +112,18 @@ Combine the library filters or search to audit a topic. For definition coverage,
 **Coverage** groups the currently filtered templates by concept × skill × optional objective. Each effective template contributes one count, including an authored family with multiple variants or a generator with many possible outputs. The same lesson exercise can contribute to different targets when its primary mappings warrant it. Quick counts compatible templates; evidence and family columns give explicit template counts. Neutral observations such as “No Quick-compatible template”, “Recognition only”, and “No variant/generator coverage” invite author judgment, not errors or a score. A proof target may intentionally have only reasoning evidence and no Quick option.
 
 Clear filters to audit the whole effective pool. Coverage does not infer unreviewed concepts or invent rows for targets absent from the effective catalog, and filtered-out weaker templates are not presented as scheduler options. To expand coverage, edit the source-controlled content/evidence, follow [source verification requirements](content-sources.md), rebuild, and inspect again. There is no browser content editor, SQLite authoring path, or automatic card generation. The library and new previews require the API; existing saved learner review sessions retain their offline behavior.
+
+### Authoring conventions
+
+Start with the effective Library, then compare it with the lesson's teaching targets. Count templates separately from authored variants, and distinguish dedicated review content from reused exercises. A large fixed exercise pool may still lack a concise definition or useful Quick representation. Conversely, a target with substantial proof or translation coverage does not need another near-duplicate merely to fill a column. Record concrete before/after counts and intentional gaps in an audit, rather than an aggregate coverage score.
+
+Use existing concepts and skills. Add an objective only for a stable, independently useful target, such as `contrapositive-definition` or `quantifier-order-dependence`. A choice can have skill `recall` while its evidence remains `recognition`: the skill describes what knowledge is requested; the evidence level describes what the response demonstrates. If an existing target requires production, give its recognition companion a distinct objective. Never lower the deeper target's evidence requirement to make a choice eligible.
+
+Use fixed cards when exact repetition is useful; use authored variants to change the direction or context of retrieval. Definition-to-term, term-to-definition, a cloze, and a distinction can share one objective. The representative `question` should equal one of the variants; it is not an additional scheduled variant. Distractors should expose a particular misconception, with concise feedback explaining it. Vary correct-answer positions: the exercise renderer preserves authored choice order.
+
+Prefer deterministic choices for terminology, truth conditions, scope, and symbolic recognition. Do not send new one-word terminology questions to the free-response grader. Keep actual negation production, witness construction, counterassignments, and countermodels as separate constructive evidence. Reuse existing longer proofs where their coverage is sufficient; do not label proof or open construction Quick merely to raise the Quick count.
+
+Use generation only for a bounded mathematical family with a known answer. Each generator must preserve seed reproducibility and stored parameters, state domains explicitly, and avoid ambiguous options or degenerate cases. Test the finite parameter domain independently where practical, as well as many real seeds through instantiation. Check answer correctness, distinct options, variation (including answer positions), complete placeholder substitution, preview/session agreement, and reproduction. Preserve existing generator outputs when adding a new family. Source inspection covers the mathematical rule and the independently checked original examples, not a claim that the cited book contains the generated questions.
 
 ## Validation and screenshots
 

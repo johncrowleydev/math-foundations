@@ -84,6 +84,30 @@
       "author": "Jeremy Avigad, Leonardo de Moura, Soonho Kong, Sebastian Ullrich",
       "edition": "Lean 4 online edition; accessed September 18, 2026",
       "url": "https://leanprover.github.io/theorem_proving_in_lean4/"
+    },
+    "lerma-discrete": {
+      "title": "Notes on Discrete Mathematics",
+      "author": "Miguel A. Lerma",
+      "edition": "Northwestern University CS 310, Spring 2005; author-hosted notes",
+      "url": "https://mlerma54.github.io/courses/cs310/notes/dm-all.pdf"
+    },
+    "cornell-knowledge-compilation": {
+      "title": "Computationally Efficient Knowledge Representation Systems: Knowledge Compilation",
+      "author": "Bart Selman, Cornell University",
+      "edition": "University-hosted lecture notes; accessed September 18, 2026",
+      "url": "https://www.cs.cornell.edu/selman/cs672/notes/knowl-comp-all.pdf"
+    },
+    "logic-and-proof": {
+      "title": "Logic and Proof",
+      "author": "Jeremy Avigad, Robert Y. Lewis, Floris van Doorn; Lean 4 adaptation by Joseph Hua",
+      "edition": "Lean 4 online edition, documentation version 3.18.4; accessed September 18, 2026",
+      "url": "https://leanprover-community.github.io/logic_and_proof/"
+    },
+    "forallx-calgary": {
+      "title": "forall x: Calgary",
+      "author": "P. D. Magnus and Tim Button; remixed and expanded by Aaron Thomas-Bolduc and Richard Zach",
+      "edition": "Open Logic Project online edition; accessed September 18, 2026",
+      "url": "https://forallx.openlogicproject.org/"
     }
   },
   "citations": {
@@ -715,6 +739,139 @@
       "locator": "Quantifiers and Equality, The Existential Quantifier",
       "url": "https://leanprover.github.io/theorem_proving_in_lean4/Quantifiers-and-Equality/#the-existential-quantifier",
       "supports": "A witness is a domain value satisfying an existential condition. Supports original definition recall prompts and generated integer examples, not copied source exercises. Integer examples independently checked by substitution.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-statements": {
+      "source": "levin",
+      "locator": "§1.1, Definition 1.1.5 and Atomic and Molecular Statements",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_logic-statements.html",
+      "supports": "Statements with definite truth values, including false or unchecked claims; contrast with questions, commands, and unassigned free variables. Supports original retrieval prompts and examples, not copied textbook exercises.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-basics": {
+      "source": "lerma-discrete",
+      "locator": "§1.1 and §1.1.1, pp. 6–7",
+      "url": "https://mlerma54.github.io/courses/cs310/notes/dm-all.pdf#page=6",
+      "supports": "Propositions, truth values, negation, conjunction, disjunction, exclusive OR, implication, and biconditional names and truth conditions. Original prompts follow this curriculum's notation and examples.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-conditionals": {
+      "source": "levin",
+      "locator": "§1.2, Definitions 1.2.1 and 1.2.6; Related Statements",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_logic-implications.html",
+      "supports": "Antecedent and consequent roles; the sole false implication case; converse, inverse, and contrapositive; refutation by a case meeting the antecedent and violating the consequent. Prompts preserve curriculum terminology, which does not introduce hypothesis as an antecedent synonym.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-conditional-language": {
+      "source": "proof",
+      "locator": "§§2.3–2.4, pp. 44–47",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=56",
+      "supports": "Necessary and sufficient conditions; direction of if and only if; biconditionals assert both implication directions. Supports original wording and notation variants, not copied examples.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-equivalence": {
+      "source": "proof",
+      "locator": "§§2.5–2.6, pp. 48–52",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=60",
+      "supports": "Complete truth tables, independent truth assignments, equivalence by matching all rows, contraposition, De Morgan's laws, and implication rewrites. Original compound formulas and counterassignments were independently checked over every truth assignment.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-negation": {
+      "source": "proof",
+      "locator": "§2.10, pp. 59–62, especially Example 2.12 and equation (2.10)",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=71",
+      "supports": "Negation of implication as a true antecedent with a false consequent; De Morgan transformations; strict versus non-strict inequality negation. Original boundary examples were independently checked below, at, and above each boundary.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-classification": {
+      "source": "lerma-discrete",
+      "locator": "§1.1.2, Tautology, Contradiction, Contingency, p. 7",
+      "url": "https://mlerma54.github.io/courses/cs310/notes/dm-all.pdf#page=7",
+      "supports": "Precise distinction among tautology, contradiction, and contingency according to all possible truth assignments. Original retrieval items distinguish all, some, and no true rows.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-arguments": {
+      "source": "levin",
+      "locator": "§1.1, Definition 1.1.2 (Argument)",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_logic-statements.html",
+      "supports": "Arguments, premises, conclusions, and validity as true premises forcing a true conclusion. Validity is distinct from the actual truth of the premises. Supports original definition and distinction prompts.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-counterassignments": {
+      "source": "levin",
+      "locator": "§1.3, Deductions, especially Example 1.3.15",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_logic-rules.html",
+      "supports": "An assignment with every premise true and conclusion false refutes validity. Original counterassignment construction variants and feedback were checked independently by truth-table evaluation; the examples are not copied from the source.",
+      "checked": "2026-09-18"
+    },
+    "review-logic-models": {
+      "source": "cornell-knowledge-compilation",
+      "locator": "Propositional Theories, numbered slide 9 (PDF page 8); Horn Bounds, numbered slide 11 (PDF page 10)",
+      "url": "https://www.cs.cornell.edu/selman/cs672/notes/knowl-comp-all.pdf#page=8",
+      "supports": "In propositional logic a model is an actual truth assignment under which the formula or theory is true. Supports the model terminology distinction; MIT references separately support satisfiability and unsatisfiability.",
+      "checked": "2026-09-18"
+    },
+    "review-predicate-meaning": {
+      "source": "mcs",
+      "locator": "§1.2 Predicates, printed p. 8 (PDF p. 16)",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=16",
+      "supports": "Predicate inputs and substitution into a truth-valued condition. Supports original definition and distinction prompts, not copied exercises.",
+      "checked": "2026-09-18"
+    },
+    "review-quantifier-meaning": {
+      "source": "proof",
+      "locator": "§2.7 Quantifiers, printed pp. 53–55 (PDF pp. 65–67)",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=65",
+      "supports": "Universal and existential terminology and truth conditions, explicit domains, finite-domain interpretations, and witness membership. Original numeric examples independently verified.",
+      "checked": "2026-09-18"
+    },
+    "review-domain-order": {
+      "source": "mcs",
+      "locator": "§§3.6.3–3.6.6, printed pp. 65–68 (PDF pp. 73–76)",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=73",
+      "supports": "Domains, mixed-quantifier order, dependent versus fixed witnesses, validity and countermodels. Supports original interpretations and constructions; examples independently checked.",
+      "checked": "2026-09-18"
+    },
+    "review-variable-scope": {
+      "source": "logic-and-proof",
+      "locator": "§§7.2–7.3, syntax notes and free/bound variables",
+      "url": "https://leanprover-community.github.io/logic_and_proof/first_order_logic.html#the-universal-quantifier",
+      "supports": "Scope, free and bound occurrences, formulas with no free variables, and safe renaming without capture. The curriculum uses explicit parentheses rather than relying on scope conventions; it calls formulas with no free variables closed.",
+      "checked": "2026-09-18"
+    },
+    "review-quantifier-negation": {
+      "source": "proof",
+      "locator": "§2.10 Negating Statements, printed pp. 60–62 (PDF pp. 72–74)",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=72",
+      "supports": "Negation of universal, existential, nested, and conditional quantified statements while preserving domains and variable order. Original comparison-boundary variants independently checked.",
+      "checked": "2026-09-18"
+    },
+    "review-quantifier-counterexamples": {
+      "source": "proof",
+      "locator": "§§9.1–9.2, printed pp. 174–176 (PDF pp. 186–188)",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=186",
+      "supports": "Domain-valid counterexamples to universal and conditional claims; refuting existence requires excluding all candidates. Original boundary and numeric examples independently verified.",
+      "checked": "2026-09-18"
+    },
+    "review-unique-existence": {
+      "source": "logic-and-proof",
+      "locator": "§7.5 Equality, final unique-existence formulas",
+      "url": "https://leanprover-community.github.io/logic_and_proof/first_order_logic.html#equality",
+      "supports": "Exactly-one quantification as existence plus at-most-one uniqueness, including the zero-solution distinction. Matches the curriculum's explicit separation of existence and uniqueness.",
+      "checked": "2026-09-18"
+    },
+    "review-empty-domain": {
+      "source": "forallx-calgary",
+      "locator": "§36.3 Empty domains",
+      "url": "https://forallx.openlogicproject.org/html/Ch36.html#S3",
+      "supports": "Universal truth and existential falsity for an explicitly empty domain; nonempty-domain requirement for inferring existence from a universal claim. The source normally assumes nonempty domains but explains the empty-domain contrast; the curriculum permits emptiness only when stated.",
+      "checked": "2026-09-18"
+    },
+    "review-quantifier-distribution": {
+      "source": "logic-and-proof",
+      "locator": "§§8.2–8.3, universal conjunction and existential disjunction proofs",
+      "url": "https://leanprover-community.github.io/logic_and_proof/natural_deduction_for_first_order_logic.html#the-universal-quantifier",
+      "supports": "Universal conjunction and existential disjunction distribution. The original separate-witness countermodel was exhaustively checked over its two-element domain.",
       "checked": "2026-09-18"
     }
   },
@@ -1932,6 +2089,282 @@
     "integer-witness-selection": {
       "reviewedContentHash": "fbc47173895c34238533597efdfcbb15b1d1062308fc332628c68aaebcac7727",
       "sources": ["review-witness", "p-existence"]
+    },
+    "proposition-definition-review": {
+      "reviewedContentHash": "c34d5aa0d9382f9db018ececf612577e508736388a4a9639890b08be984c796f",
+      "sources": ["review-logic-statements", "review-logic-basics"]
+    },
+    "truth-value-definition-review": {
+      "reviewedContentHash": "a5fe28ee041bf4d2b0a4b8608ff3c70afd687a8f19116912b8301f5ae027435e",
+      "sources": ["review-logic-basics"]
+    },
+    "truth-assignment-definition-review": {
+      "reviewedContentHash": "7ee548117b98a7fca2ebab7260d8839a33f9f9f56d9d3eb4fae7f110f899e604",
+      "sources": ["review-logic-equivalence"]
+    },
+    "negation-definition-review": {
+      "reviewedContentHash": "0b45ce52cabdb4af59c72df4c10abf0401729c7b64f8142b921c647124335525",
+      "sources": ["review-logic-basics", "m-connectives"]
+    },
+    "conjunction-definition-review": {
+      "reviewedContentHash": "5d1d97d26b966a891ecb789dc71dba2b513c3ceac94b76a3eb56b86eef487a04",
+      "sources": ["review-logic-basics", "m-connectives"]
+    },
+    "disjunction-definition-review": {
+      "reviewedContentHash": "45dfa5f4e0ba986ea025699345d0a40a2243789819db550858a67113354f98cc",
+      "sources": ["review-logic-basics", "m-connectives"]
+    },
+    "exclusive-or-definition-review": {
+      "reviewedContentHash": "c48ab880dc4639b42bb315c3d0b0d337112b3f367992d367adcf99cb4a95ea20",
+      "sources": ["review-logic-basics", "m-connectives"]
+    },
+    "implication-definition-review": {
+      "reviewedContentHash": "184b53f01d6b06ca80f39fc11144c15a2a3873ff4f72334949db073df72399c3",
+      "sources": ["review-logic-conditionals"]
+    },
+    "implication-parts-review": {
+      "reviewedContentHash": "b269f4274b14dff5e590e03d7ca7124a7d0f88fa3657e289d1f7b60ba658eaea",
+      "sources": ["review-logic-conditionals"]
+    },
+    "converse-definition-review": {
+      "reviewedContentHash": "aafde39e265840b4f296416eb5e194ae6215dff253cc5d6d12503b98e27cee43",
+      "sources": ["review-logic-conditionals"]
+    },
+    "inverse-definition-review": {
+      "reviewedContentHash": "975c190a14c96d32f5cb6f10f898034789dccd30b672e50d967a7e37f4b14b0d",
+      "sources": ["review-logic-conditionals"]
+    },
+    "contrapositive-definition-review": {
+      "reviewedContentHash": "3f5a862b8d216e72f95cbe60dc3a9ef828cfec47c573803857a5128381b6bbcb",
+      "sources": ["review-logic-conditionals", "review-logic-equivalence"]
+    },
+    "conditional-forms-recognition-review": {
+      "reviewedContentHash": "ee8fec688d2161ea6a124fd8c98b62a72af4d00832c5a1bc6ec537fa4452114a",
+      "sources": ["review-logic-conditionals", "review-logic-equivalence"]
+    },
+    "contrapositive-recognition-review": {
+      "reviewedContentHash": "82e534c044f37f4e70763c62e6a741c93d893f913b4aa5d327875675fbec2ba7",
+      "sources": ["review-logic-conditionals", "review-logic-negation"]
+    },
+    "necessary-sufficient-definition-review": {
+      "reviewedContentHash": "05a4003cbea21458e093d3167a0cb25ce65fe9915a48124936048e402e6a428b",
+      "sources": ["review-logic-conditional-language"]
+    },
+    "conditional-language-review": {
+      "reviewedContentHash": "92e732353676e569c65f7ef54242226c4bf05f5cc3ae22aab956ad21414ae634",
+      "sources": ["review-logic-conditional-language"]
+    },
+    "biconditional-definition-review": {
+      "reviewedContentHash": "af0c178250f2f810f7e0f9651b5e8f32fc38d97c1aa3a62dcee6480609a4586d",
+      "sources": ["review-logic-conditional-language", "review-logic-basics"]
+    },
+    "logical-equivalence-definition-review": {
+      "reviewedContentHash": "98406efb8447b744acdc3def53ed7f50bc606c020d303df73f6201e62e1a2226",
+      "sources": ["review-logic-equivalence"]
+    },
+    "truth-table-definition-review": {
+      "reviewedContentHash": "27276ce52443de15bcc5a94cb5dd780a4a69e6dc976b6e42bffff2c86daa0d4e",
+      "sources": ["review-logic-equivalence"]
+    },
+    "de-morgan-laws-review": {
+      "reviewedContentHash": "b40f77ef0a028810a56d32e3948b5179693afe802dfbd11167c3bd8aae38ec25",
+      "sources": ["review-logic-equivalence"]
+    },
+    "negated-implication-recognition-review": {
+      "reviewedContentHash": "07aff6a716f66f39823da284c724797cce86f29893f06d369287308392278c6e",
+      "sources": ["review-logic-negation"]
+    },
+    "equivalent-implication-forms-review": {
+      "reviewedContentHash": "5641ad9e99d2a9e88a178ca857d0823386eb6d3805457b198201b4c9b112d89b",
+      "sources": ["review-logic-equivalence", "review-logic-negation"]
+    },
+    "tautology-definition-review": {
+      "reviewedContentHash": "f0a06acf24aba5974033931816209dbb6b917f8b4e3acd47c95b73860f25b28f",
+      "sources": ["review-logic-classification"]
+    },
+    "contradiction-definition-review": {
+      "reviewedContentHash": "8dfc20d1259beb0ba3d3a6a2a3221cdfc8f21377b653ea1679a284505004b0b8",
+      "sources": ["review-logic-classification"]
+    },
+    "contingency-definition-review": {
+      "reviewedContentHash": "617956ad93a627b687de8e60c7da05dc6109ca97026147370432f439ec2f7a59",
+      "sources": ["review-logic-classification"]
+    },
+    "logical-equivalence-checks-review": {
+      "reviewedContentHash": "b0fd2fda44b0fe6ff87c8c2bd010825e2a945eb63ef05c806ca8581e9adc297d",
+      "sources": ["review-logic-equivalence"]
+    },
+    "counterexample-definition-review": {
+      "reviewedContentHash": "2743c30dc455d66b88638295484b142fb27fac7f7d4b0e76e451fcdbea17b58b",
+      "sources": [
+        "review-logic-arguments",
+        "review-logic-counterassignments",
+        "review-logic-conditionals"
+      ]
+    },
+    "argument-parts-definition-review": {
+      "reviewedContentHash": "073267ff955f1efbc53e4bfbb882e77c227820355ede3b23e0bce1afbc35b7ae",
+      "sources": ["review-logic-arguments", "review-logic-counterassignments"]
+    },
+    "validity-definition-review": {
+      "reviewedContentHash": "8d0af84f09ea4eb935615fe0213c5d28f7cdfbb69429392c662a3767074d4523",
+      "sources": ["review-logic-arguments", "review-logic-counterassignments"]
+    },
+    "satisfiability-model-vocabulary-review": {
+      "reviewedContentHash": "cc0b60ffc87b38a2325d2112cd746c26248d60698d072d74b76b0ce8c6efa1c7",
+      "sources": ["review-logic-models", "m-equivalence", "m-sat"]
+    },
+    "implication-negation-production-review": {
+      "reviewedContentHash": "79d15d8e420fbeff5e7cc61e4a66d18acfd0f16ac68d4c522cd35368ad7b78e8",
+      "sources": ["review-logic-negation", "review-logic-equivalence"]
+    },
+    "de-morgan-production-review": {
+      "reviewedContentHash": "403a9ab10d0fda57966a1243051811d619ddf0faac48842152aa594aecc6f8b1",
+      "sources": ["review-logic-equivalence"]
+    },
+    "counterassignment-construction-review": {
+      "reviewedContentHash": "889596bcfb661096457b12c0c3cd9f381c7bf331d991d15283c8072d067f00e7",
+      "sources": [
+        "review-logic-arguments",
+        "review-logic-counterassignments",
+        "review-logic-equivalence"
+      ]
+    },
+    "inequality-negation-review": {
+      "reviewedContentHash": "50067355febb519f7da879d6a2fdf71abc4bc28593efc01a6578ca6c11dc7242",
+      "sources": ["review-logic-negation"]
+    },
+    "proposition-recognition-review": {
+      "reviewedContentHash": "06851a7d0a201a17d89de82f82aac8691e69492403f263e6a9d67e4399d51a0c",
+      "sources": ["review-logic-statements", "review-logic-basics"]
+    },
+    "generated-connective-truth-value": {
+      "reviewedContentHash": "752a96ffe676c0da3958e2e0d4267e8b76e3531af8c49b694af2f9a0a1524dcb",
+      "sources": ["p-logic"]
+    },
+    "generated-integer-conditional-counterexample": {
+      "reviewedContentHash": "fa7addec1f121efc531396c575fdda7a27ce5de53a95715a1a87f7da0db7cda3",
+      "sources": ["p-logic", "p-disproof"]
+    },
+    "predicate-definition-review": {
+      "reviewedContentHash": "bb10dd784269bfd270bbddc7c186b4eaea2adf2a40d8b20a5e5f34738f9d43d5",
+      "sources": ["review-predicate-meaning"]
+    },
+    "domain-definition-review": {
+      "reviewedContentHash": "444112196a4eb63d8cdbb9e2795f7ae0341c8954b4685a8d5cd51c8c3351b1fc",
+      "sources": ["review-domain-order"]
+    },
+    "quantifier-definition-review": {
+      "reviewedContentHash": "b7165761798b5ba7e163d0b82e75acb8bbfcd5eca9d341a87b88c0f6a4d4f12f",
+      "sources": ["review-quantifier-meaning"]
+    },
+    "universal-quantifier-definition-review": {
+      "reviewedContentHash": "a05a1705df217c32176d7750b633d89074f2c3e350064b1f12b98e647ac75e0b",
+      "sources": ["review-quantifier-meaning"]
+    },
+    "existential-quantifier-definition-review": {
+      "reviewedContentHash": "73fa2294495a49d7e2a371a1758ffcff49ede7239c76fe310ae734cef8a8d370",
+      "sources": ["review-quantifier-meaning"]
+    },
+    "quantifier-scope-definition-review": {
+      "reviewedContentHash": "0bd248761bc5c19a758a2e6a7d97325d66f1292946c9b922b70c1ba6a9b7ef29",
+      "sources": ["review-variable-scope"]
+    },
+    "free-variable-definition-review": {
+      "reviewedContentHash": "32bcabd2aa80f706870a12111ad7f998e0aa2a8f6cc9fe22db28d65219e8c9de",
+      "sources": ["review-variable-scope"]
+    },
+    "bound-variable-definition-review": {
+      "reviewedContentHash": "e57f3a4ccc941620a82d2a46b7b335ad2f2600e26f4071677288cd83c6589dc6",
+      "sources": ["review-variable-scope"]
+    },
+    "open-closed-formula-review": {
+      "reviewedContentHash": "aea0d8004dd01d3d3ce66e0ab1b4ac2ea52c32e96b9c2b8ea0ba5b78ba3a7ffb",
+      "sources": ["review-variable-scope"]
+    },
+    "witness-definition-recognition-review": {
+      "reviewedContentHash": "436e47d3c05541c9014deda2831ae4472c60a7993d5b1081978c58760361fcfc",
+      "sources": ["review-witness", "review-quantifier-meaning"]
+    },
+    "universal-counterexample-definition-review": {
+      "reviewedContentHash": "56a214417e8938fbb48d4b1a8912624bf15e246a5dc946f1b94797cc99baccbd",
+      "sources": ["review-quantifier-counterexamples"]
+    },
+    "countermodel-definition-review": {
+      "reviewedContentHash": "87ee5900e27b352288d78397bf78162da448e19e7919e05b4e0eddd20304ec88",
+      "sources": ["review-domain-order"]
+    },
+    "existence-uniqueness-definition-review": {
+      "reviewedContentHash": "91d1bb742a3054043c06be96edc664a87c6261522029ab078e770f2e77432d50",
+      "sources": ["review-unique-existence"]
+    },
+    "vacuous-truth-definition-review": {
+      "reviewedContentHash": "149511243d5ef638b9dc3e4f55407bb5923f79493d9d7c7fcc9f575bde955570",
+      "sources": ["m-connectives", "review-empty-domain"]
+    },
+    "free-bound-occurrence-variants": {
+      "reviewedContentHash": "50a67b23df45a073fae957cbf3755b6519eaf77226947a481bf4cb4a6d6f6b85",
+      "sources": ["review-variable-scope"]
+    },
+    "quantifier-order-dependence-variants": {
+      "reviewedContentHash": "4d9fff9a70c1ce0a164e3989b0184afb53ae5624524e9bef0824858bb4ef08ce",
+      "sources": ["review-domain-order"]
+    },
+    "quantifier-order-interpretation-variants": {
+      "reviewedContentHash": "fe58d3e6420b49829a6a2dff65fca0f5d6dfb6ea3898aa856b5beddf1d4ff4b5",
+      "sources": ["review-domain-order"]
+    },
+    "negated-universal-form-review": {
+      "reviewedContentHash": "2c526de92756ed3a938053d86a02a9703af42ade757b818b49419969ca5bf52b",
+      "sources": ["review-quantifier-negation"]
+    },
+    "negated-existential-form-review": {
+      "reviewedContentHash": "259195895b2753f4f8f50ca3f6ac8baa15f80c5eda6560a131bc750208046217",
+      "sources": ["review-quantifier-negation"]
+    },
+    "nested-quantifier-negation-recognition": {
+      "reviewedContentHash": "fa733ed7ed8ca8ca4b497427a669446adad45294d1b41affc53ec3c6f8969b20",
+      "sources": ["review-quantifier-negation"]
+    },
+    "quantified-proof-obligations-review": {
+      "reviewedContentHash": "170cc29d59f1c0bd978347aa20d21d00fb6daa7f1bdafb943d2ab00d8349fc31",
+      "sources": [
+        "review-quantifier-meaning",
+        "review-quantifier-counterexamples",
+        "m-propositions"
+      ]
+    },
+    "vacuous-quantification-variants": {
+      "reviewedContentHash": "32c1ac76aecd2b3f33fa7a6c7511ea5edd4c068e72f4701e599d440e9d7c4f40",
+      "sources": ["review-empty-domain", "m-connectives"]
+    },
+    "domain-sensitive-witness-variants": {
+      "reviewedContentHash": "292761fb01df36344f09d1c829ef0bedcd22de42ba928ba0f4c712387b87d7be",
+      "sources": ["review-quantifier-meaning", "review-quantifier-counterexamples"]
+    },
+    "quantifier-distribution-recognition": {
+      "reviewedContentHash": "16000ebccd5788c6c977b755efb20b5fc0e96efb86d27efe6cb70c09a3159958",
+      "sources": ["review-quantifier-distribution"]
+    },
+    "existential-witness-construction-variants": {
+      "reviewedContentHash": "504e2dc486d05e13d8a0933c13dd9dd69b987ed88c77452839a99d29fdf5a423",
+      "sources": ["review-witness", "review-quantifier-meaning"]
+    },
+    "dependent-witness-construction-variants": {
+      "reviewedContentHash": "3c59f3264f996d294c4567c1bba74598549cd1361acc826dd0666d4d4165a806",
+      "sources": ["review-domain-order", "review-witness"]
+    },
+    "quantifier-negation-production-variants": {
+      "reviewedContentHash": "ff8ca05ade6682e956931bb66a5350778dfdfa706afbcf5f4d71ab5343d215c3",
+      "sources": ["review-quantifier-negation"]
+    },
+    "quantified-counterexample-construction-variants": {
+      "reviewedContentHash": "993ef79b9e54a78b5caafadb9b26a1177fc412dd4eec9813b4bdea6ce2d3fe25",
+      "sources": ["review-quantifier-counterexamples"]
+    },
+    "quantifier-order-countermodel-variants": {
+      "reviewedContentHash": "a02932681b66f3acef63c5782be57b8635149c0366b41accd6217a144775fdd9",
+      "sources": ["review-domain-order"]
     }
   }
 }
