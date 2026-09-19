@@ -58,6 +58,7 @@ export function Exercise({
   const touched = useRef(false);
   useEffect(() => {
     touched.current = false;
+    latestDraft.current = null;
     setDraft(null);
     let live = true;
     void (async () => {
@@ -84,8 +85,9 @@ export function Exercise({
         }
       }
       d = reconcileResponse(d, q);
+      if (!live || touched.current) return;
       if (saved && saved !== d) await put('drafts', key, d);
-      if (live) {
+      if (live && !touched.current) {
         setDraft(d);
         latestDraft.current = d;
         clock.current = new EffortClock(d);
@@ -117,8 +119,10 @@ export function Exercise({
   useEffect(() => {
     let live = true;
     void (async () => {
-      if (touched.current || (await get('drafts', key))) return;
-      const next = { ...(latestDraft.current || emptyDraft()) };
+      // The primary loader alone initializes a draft. Publishing an empty one
+      // here would expose editable fields while that loader is still reading.
+      if (!latestDraft.current || touched.current || (await get('drafts', key))) return;
+      const next = { ...latestDraft.current };
       for (const r of versions) {
         if (r.key.startsWith('text/')) next.text = String(r.payload.text || '');
         else if (r.key.startsWith('photos/')) next.photos = r.payload.photos as Draft['photos'];
