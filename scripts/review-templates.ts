@@ -3,6 +3,18 @@ import { z } from 'zod';
 import { validateMath } from './content.js';
 import type { EvidenceCatalog } from '../web/src/evidenceTypes.js';
 
+const generatorSlots = {
+  'integer-witness-sum': ['a', 'sum', 'witness', 'witnessPlusOne', 'witnessMinusOne'],
+  'propositional-truth-values': [
+    'pTruth',
+    'qTruth',
+    'formula',
+    'resultText',
+    'oppositeText',
+    'explanation',
+  ],
+  'integer-conditional-counterexample': ['a', 'b', 'below', 'above'],
+} as const;
 const text = z.string().trim().min(1);
 const question = z
   .object({
@@ -40,7 +52,14 @@ const schema = z.array(
       sourceIds: z.array(text).min(1),
       question,
       variants: z.array(question).min(2).optional(),
-      generator: z.literal('integer-witness-sum').optional(),
+      generator: z
+        .enum(
+          Object.keys(generatorSlots) as [
+            keyof typeof generatorSlots,
+            ...Array<keyof typeof generatorSlots>,
+          ],
+        )
+        .optional(),
     })
     .strict(),
 );
@@ -78,14 +97,11 @@ export function validateReviewTemplates(
       }
       const serialized = JSON.stringify(q);
       const placeholders = [...serialized.matchAll(/\{\{([^}]+)\}\}/g)].map((m) => m[1]);
-      if (
-        placeholders.some(
-          (p) => !['a', 'sum', 'witness', 'witnessPlusOne', 'witnessMinusOne'].includes(p),
-        ) ||
-        (placeholders.length && !t.generator)
-      )
+      const supportedSlots: readonly string[] = t.generator ? generatorSlots[t.generator] : [];
+      if (placeholders.some((p) => !supportedSlots.includes(p)))
         throw Error('Unknown review placeholder: ' + t.id);
-      // The Go generator supplies integers. Replace authoring slots solely for math syntax validation.
+      // Slots may contain integers, truth values, or formulas. This replacement
+      // checks surrounding authored math; generator tests check rendered samples.
       for (const value of [
         q.instructions,
         q.prompt,
