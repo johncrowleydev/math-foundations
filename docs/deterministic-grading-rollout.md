@@ -16,11 +16,13 @@ npm ci --ignore-scripts --no-install-links --prefix web
 npm run content
 npm run typecheck
 npm test
-npm run web:test
 npm run web:build
+npm run web:test
+node --import tsx scripts/check-tex-release.ts
+node --import tsx scripts/deterministic-coverage.ts
 ```
 
-Run `go test ./...` and build the server from `server/`. The web install flag installs the existing local root-package dependency without its package-link lifecycle issue; it changes no project dependency. Content generation validates source coverage, source pins, mutually exclusive grading methods, metadata, and every authored accepted/rejected fixture. TS and Go run the same language-neutral conformance cases.
+Run `go test ./...` and build the server from `server/`. Build the PWA before running its unit tests: the tests inspect its bundled curriculum. Run `scripts/check-deterministic-ui.mjs` and `web/tests/structuredAnswer.browser.mjs` with an available Playwright module as described in the [screenshot record](screenshots/deterministic/README.md). The web install flag installs the existing local root-package dependency without its package-link lifecycle issue; it changes no project dependency. Content generation validates source coverage, source pins, mutually exclusive grading methods, metadata, and every authored accepted/rejected fixture. TS and Go run the same language-neutral conformance cases.
 
 ## Coordinated activation
 
