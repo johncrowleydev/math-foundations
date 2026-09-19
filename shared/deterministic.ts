@@ -417,7 +417,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
           if ('given' in cell) {
             if (typeof cell.given !== 'string' && typeof cell.given !== 'boolean')
               throw Error('Invalid given cell.');
-            if ('id' in cell) throw Error('Given cells cannot be editable.');
+            if ('id' in cell || 'kind' in cell) throw Error('Given cells cannot be editable.');
           } else if (
             typeof cell.id !== 'string' ||
             !['boolean', 'text'].includes(String(cell.kind))
@@ -447,7 +447,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
   const a = value as unknown as Assessment,
     fields = assessmentFields(a),
     ids = new Set<string>();
-  if (fields.length > 2048) throw Error('Too many assessment fields.');
+  if (!fields.length || fields.length > 2048) throw Error('Too many assessment fields.');
   for (const f of fields) {
     if (
       f.id.length > 200 ||
@@ -583,6 +583,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         !strings(r.params.domains) ||
         !r.params.domains.length ||
         !object(r.params.predicates) ||
+        Object.keys(r.params.predicates).some((name) => !/^[A-Za-z][A-Za-z0-9_]*$/.test(name)) ||
         Object.values(r.params.predicates).some(
           (n) => !Number.isInteger(n) || Number(n) < 0 || Number(n) > 8,
         ) ||
@@ -592,6 +593,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
       if (
         r.params.functions !== undefined &&
         (!object(r.params.functions) ||
+          Object.keys(r.params.functions).some((name) => !/^[A-Za-z][A-Za-z0-9_]*$/.test(name)) ||
           Object.values(r.params.functions).some(
             (n) => !Number.isInteger(n) || Number(n) < 1 || Number(n) > 8,
           ))
@@ -640,6 +642,8 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
       validatePolynomialForm(r.params.form, r.params.factorDegree);
       if (
         !strings(r.params.variables) ||
+        r.params.variables.length > 8 ||
+        new Set(r.params.variables).size !== r.params.variables.length ||
         r.params.variables.some((v) => !/^[_A-Za-z][_A-Za-z0-9]*$/.test(v))
       )
         throw Error('Invalid expression variables.');

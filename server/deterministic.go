@@ -110,7 +110,7 @@ func validateAssessment(a *Assessment) error {
 	}
 	ids := map[string]bool{}
 	for _, in := range a.Inputs {
-		if in.ID == "" || ids[in.ID] || in.Label == "" || !enum(in.Kind, "text", "math", "boolean", "select", "multiselect", "grid", "interval") {
+		if in.ID == "" || ids[in.ID] || strings.TrimSpace(in.Label) == "" || !enum(in.Kind, "text", "math", "boolean", "select", "multiselect", "grid", "interval") {
 			return errors.New("Invalid assessment input")
 		}
 		ids[in.ID] = true
@@ -120,7 +120,7 @@ func validateAssessment(a *Assessment) error {
 			}
 			opts := map[string]bool{}
 			for _, o := range in.Options {
-				if o.ID == "" || o.Label == "" || opts[o.ID] {
+				if o.ID == "" || strings.TrimSpace(o.Label) == "" || opts[o.ID] {
 					return errors.New("Invalid assessment option")
 				}
 				opts[o.ID] = true
@@ -157,7 +157,7 @@ func validateAssessment(a *Assessment) error {
 	}
 	fields := map[string]answerField{}
 	for _, f := range a.fields() {
-		if f.id == "" || len(f.id) > 200 || fields[f.id].id != "" {
+		if !regexp.MustCompile(`^[A-Za-z0-9_.:-]+$`).MatchString(f.id) || enum(f.id, "__proto__", "prototype", "constructor") || len(f.id) > 200 || fields[f.id].id != "" {
 			return errors.New("Duplicate assessment field")
 		}
 		fields[f.id] = f
@@ -168,7 +168,7 @@ func validateAssessment(a *Assessment) error {
 	requirements := map[string]bool{}
 	covered := map[string]bool{}
 	for _, r := range a.Requirements {
-		if r.ID == "" || r.Description == "" || requirements[r.ID] || len(r.Fields) == 0 {
+		if r.ID == "" || strings.TrimSpace(r.Description) == "" || requirements[r.ID] || len(r.Fields) == 0 {
 			return errors.New("Invalid assessment requirement")
 		}
 		if r.EvidenceLevel != "" && !enum(r.EvidenceLevel, "recognition", "production", "reasoning") {
@@ -373,6 +373,18 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if jsonParams(r, &p) != nil || p.Expected == nil || len(r.Fields) != 1 {
 			return errors.New("Invalid selection parameters")
 		}
+		if len(fields[r.Fields[0]].options) == 0 {
+			return errors.New("Selection needs a selection field")
+		}
+		for _, id := range p.Expected {
+			found := false
+			for _, o := range fields[r.Fields[0]].options {
+				found = found || o.ID == id
+			}
+			if !found {
+				return errors.New("Unknown expected selection")
+			}
+		}
 	case "exact", "tuple":
 		var p struct {
 			Expected []string `json:"expected"`
@@ -433,8 +445,13 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		}
 	case "expression":
 		var p expressionParams
-		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Variables) > 8 {
+		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || p.Variables == nil || len(p.Variables) > 8 || len(stringSet(p.Variables)) != len(p.Variables) {
 			return errors.New("Invalid expression parameters")
+		}
+		for _, v := range p.Variables {
+			if !regexp.MustCompile(`^[_A-Za-z][_A-Za-z0-9]*$`).MatchString(v) {
+				return errors.New("Invalid expression variable")
+			}
 		}
 		if !enum(p.Form, "", "expanded", "factored") || p.FactorDegree != nil && (*p.FactorDegree < 1 || *p.FactorDegree > 100 || p.Form != "factored") {
 			return errors.New("Invalid requested polynomial form")
@@ -445,6 +462,11 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		}
 		if _, err := parsePolynomial(p.Expected, p.Variables); err != nil {
 			return err
+		}
+		for _, domain := range p.Domain {
+			if _, err := parsePolynomial(domain, p.Variables); err != nil {
+				return err
+			}
 		}
 	case "elementary-expression", "square-inverse":
 		return validateElementary(r)
@@ -464,8 +486,13 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		return validateLinear(r)
 	case "quantified-formula":
 		var p quantifiedParams
-		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Domains) == 0 || !enum(p.Form, "", "nnf", "negations-on-atoms") {
+		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Domains) == 0 || p.Predicates == nil || !enum(p.Form, "", "nnf", "negations-on-atoms") {
 			return errors.New("Invalid quantified formula parameters")
+		}
+		for name, arity := range p.Predicates {
+			if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(name) || arity < 0 || arity > 8 {
+				return errors.New("Invalid predicate definition")
+			}
 		}
 		for name, arity := range p.Functions {
 			if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(name) || arity < 1 || arity > 8 {
