@@ -52,7 +52,7 @@ function parseClass(source: string): Class {
     .trim()
     .replace(/^\$\$?|\$\$?$/g, '')
     .replace(/\\(?:left|right)\b/g, '')
-    .replace(/\\mathbb\{([ZNQR])\}/g, ' $1 ')
+    .replace(/\\mathbb\s*(?:\{([ZNQR])\}|([ZNQR]))/g, (_, a, b) => ' ' + (a || b) + ' ')
     .replace(/\\in\b|∈/g, ' in ')
     .replace(/\\exists\b|∃/g, 'exists ')
     .replace(/\\mid\b|\bdivides\b/g, '|')
