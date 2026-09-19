@@ -699,11 +699,53 @@ func splitMathList(s string) ([]string, error) {
 	}
 	return parts, nil
 }
+func enclosedMath(s string, left, right byte) bool {
+	if len(s) < 2 || s[0] != left || s[len(s)-1] != right {
+		return false
+	}
+	depth := 0
+	for i := 0; i < len(s); i++ {
+		if s[i] == left {
+			depth++
+		}
+		if s[i] == right {
+			depth--
+		}
+		if depth == 0 && i < len(s)-1 {
+			return false
+		}
+	}
+	return depth == 0
+}
 func parseMatrix(s string) ([][]string, error) {
 	s = stripMatrixMarkup(s)
-	if strings.HasPrefix(s, "[") && strings.HasSuffix(s, "]") {
+	s = strings.NewReplacer("\\{", "{", "\\}", "}").Replace(s)
+	if enclosedMath(s, '[', ']') || enclosedMath(s, '{', '}') {
 		s = strings.TrimSpace(s[1 : len(s)-1])
 	}
+	grouped, e := splitMathList(s)
+	if e != nil {
+		return nil, e
+	}
+	rowsGrouped := len(grouped) > 1
+	for _, row := range grouped {
+		rowsGrouped = rowsGrouped && (enclosedMath(row, '(', ')') || enclosedMath(row, '[', ']'))
+	}
+	if rowsGrouped {
+		out := [][]string{}
+		for _, row := range grouped {
+			xs, e := splitMathList(row)
+			if e != nil {
+				return nil, e
+			}
+			if len(out) > 0 && len(xs) != len(out[0]) {
+				return nil, errors.New("Use equal-length vector rows")
+			}
+			out = append(out, xs)
+		}
+		return out, nil
+	}
+
 	s = regexp.MustCompile(`\]\s*,\s*\[`).ReplaceAllString(s, ";")
 	s = strings.ReplaceAll(s, strings.Repeat(string(rune(92)), 2), ";")
 	s = strings.ReplaceAll(s, "\n", ";")

@@ -135,6 +135,10 @@ func (p *quantifiedParser) unary() (*quantifiedNode, error) {
 }
 func (p *quantifiedParser) atom() (*quantifiedNode, error) {
 	first := p.peek()
+	if arity, ok := p.predicates[first]; ok && arity == 0 && (p.at+1 >= len(p.tokens) || p.tokens[p.at+1] != "(") {
+		p.at++
+		return &quantifiedNode{kind: "predicate", name: first, args: []string{}}, nil
+	}
 	if arity, ok := p.predicates[first]; ok && p.at+1 < len(p.tokens) && p.tokens[p.at+1] == "(" {
 		p.at += 2
 		start, nesting := p.at, 0
@@ -161,6 +165,9 @@ func (p *quantifiedParser) atom() (*quantifiedNode, error) {
 				nesting--
 			}
 			p.at++
+		}
+		if arity == 0 && len(args) == 1 && strings.TrimSpace(args[0]) == "" {
+			args = nil
 		}
 		if !closed || len(args) != arity {
 			return nil, errors.New("Use the predicate's stated number of arguments")
@@ -227,61 +234,79 @@ func validateQuantified(n *quantifiedNode, bound []string, functions map[string]
 		return validateQuantified(n.right, bound, functions)
 	}
 }
-func replaceQuantifiedVariable(n *quantifiedNode, old, replacement string) *quantifiedNode {
-	result := *n
-	swap := func(s string) string {
-		return identifierToken.ReplaceAllStringFunc(s, func(v string) string {
-			if v == old {
-				return replacement
-			}
-			return v
-		})
-	}
-	switch n.kind {
-	case "quantifier":
-		if n.variable != old {
-			result.body = replaceQuantifiedVariable(n.body, old, replacement)
+func expandQuantifiedUnique(root *quantifiedNode, tokens []string) (*quantifiedNode, error) {
+	budget, fresh := 4096, 0
+	var replace func(*quantifiedNode, string, string) *quantifiedNode
+	replace = func(n *quantifiedNode, old, replacement string) *quantifiedNode {
+		budget--
+		if budget < 0 || n == nil {
+			return nil
 		}
-	case "not":
-		result.body = replaceQuantifiedVariable(n.body, old, replacement)
-	case "predicate":
-		result.args = []string{}
-		for _, s := range n.args {
-			result.args = append(result.args, swap(s))
-		}
-	case "comparison":
-		result.leftText = swap(n.leftText)
-		result.rightText = swap(n.rightText)
-	default:
-		result.left = replaceQuantifiedVariable(n.left, old, replacement)
-		result.right = replaceQuantifiedVariable(n.right, old, replacement)
-	}
-	return &result
-}
-func expandUnique(n *quantifiedNode, tokens []string, fresh *int) *quantifiedNode {
-	result := *n
-	switch n.kind {
-	case "quantifier":
-		result.body = expandUnique(n.body, tokens, fresh)
-		if n.quantifier == "unique" {
-			other := ""
-			for {
-				other = "uniqueBound" + strconv.Itoa(*fresh)
-				*fresh++
-				if !contains(tokens, other) {
-					break
+		result := *n
+		swap := func(s string) string {
+			return identifierToken.ReplaceAllStringFunc(s, func(v string) string {
+				if v == old {
+					return replacement
 				}
-			}
-			result.quantifier = "exists"
-			result.body = &quantifiedNode{kind: "and", left: result.body, right: &quantifiedNode{kind: "quantifier", quantifier: "forall", variable: other, domain: n.domain, body: &quantifiedNode{kind: "implies", left: replaceQuantifiedVariable(result.body, n.variable, other), right: &quantifiedNode{kind: "comparison", op: "=", leftText: other, rightText: n.variable}}}}
+				return v
+			})
 		}
-	case "not":
-		result.body = expandUnique(n.body, tokens, fresh)
-	case "and", "or", "implies", "iff":
-		result.left = expandUnique(n.left, tokens, fresh)
-		result.right = expandUnique(n.right, tokens, fresh)
+		switch n.kind {
+		case "quantifier":
+			if n.variable != old {
+				result.body = replace(n.body, old, replacement)
+			}
+		case "not":
+			result.body = replace(n.body, old, replacement)
+		case "predicate":
+			result.args = []string{}
+			for _, s := range n.args {
+				result.args = append(result.args, swap(s))
+			}
+		case "comparison":
+			result.leftText = swap(n.leftText)
+			result.rightText = swap(n.rightText)
+		default:
+			result.left = replace(n.left, old, replacement)
+			result.right = replace(n.right, old, replacement)
+		}
+		return &result
 	}
-	return &result
+	var expand func(*quantifiedNode) *quantifiedNode
+	expand = func(n *quantifiedNode) *quantifiedNode {
+		budget--
+		if budget < 0 || n == nil {
+			return nil
+		}
+		result := *n
+		switch n.kind {
+		case "quantifier":
+			result.body = expand(n.body)
+			if n.quantifier == "unique" {
+				other := ""
+				for {
+					other = "uniqueBound" + strconv.Itoa(fresh)
+					fresh++
+					if !contains(tokens, other) {
+						break
+					}
+				}
+				result.quantifier = "exists"
+				result.body = &quantifiedNode{kind: "and", left: result.body, right: &quantifiedNode{kind: "quantifier", quantifier: "forall", variable: other, domain: n.domain, body: &quantifiedNode{kind: "implies", left: replace(result.body, n.variable, other), right: &quantifiedNode{kind: "comparison", op: "=", leftText: other, rightText: n.variable}}}}
+			}
+		case "not":
+			result.body = expand(n.body)
+		case "and", "or", "implies", "iff":
+			result.left = expand(n.left)
+			result.right = expand(n.right)
+		}
+		return &result
+	}
+	result := expand(root)
+	if budget < 0 {
+		return nil, errors.New("Use a simpler quantified formula")
+	}
+	return result, nil
 }
 func parseQuantified(s string, domains []string, predicates map[string]int, options ...quantifiedParams) (*quantifiedNode, error) {
 	ts, e := quantifiedTokens(s)
@@ -296,7 +321,10 @@ func parseQuantified(s string, domains []string, predicates map[string]int, opti
 	if p.at != len(ts) {
 		return nil, errors.New("Check quantified formula syntax")
 	}
-	n = expandUnique(n, ts, new(int))
+	n, e = expandQuantifiedUnique(n, ts)
+	if e != nil {
+		return nil, e
+	}
 	o := quantifiedParams{}
 	if len(options) > 0 {
 		o = options[0]
@@ -593,9 +621,19 @@ func checkQuantified(r AssessmentRequirement, response StructuredResponse) (bool
 	if p.Form == "nnf" && !actual.nnf() {
 		return false, nil
 	}
+	budget := 4096
+	actual, e = quantifiedNormalForm(actual, false, &budget)
+	if e != nil {
+		return false, e
+	}
 	fixed := append(append([]string{}, p.Constants...), p.FreeVariables...)
 	for _, target := range append([]string{p.Expected}, p.Alternatives...) {
 		expected, e := parseQuantified(target, p.Domains, p.Predicates, p)
+		if e != nil {
+			return false, e
+		}
+		budget = 4096
+		expected, e = quantifiedNormalForm(expected, false, &budget)
 		if e != nil {
 			return false, e
 		}
@@ -605,4 +643,56 @@ func checkQuantified(r AssessmentRequirement, response StructuredResponse) (bool
 		}
 	}
 	return false, nil
+}
+
+func quantifiedNormalForm(n *quantifiedNode, negate bool, budget *int) (*quantifiedNode, error) {
+	*budget--
+	if *budget < 0 {
+		return nil, errors.New("Use a simpler quantified formula")
+	}
+	result := *n
+	switch n.kind {
+	case "not":
+		return quantifiedNormalForm(n.body, !negate, budget)
+	case "quantifier":
+		if negate {
+			if n.quantifier == "forall" {
+				result.quantifier = "exists"
+			} else {
+				result.quantifier = "forall"
+			}
+		}
+		body, e := quantifiedNormalForm(n.body, negate, budget)
+		result.body = body
+		return &result, e
+	case "implies":
+		return quantifiedNormalForm(&quantifiedNode{kind: "or", left: &quantifiedNode{kind: "not", body: n.left}, right: n.right}, negate, budget)
+	case "iff":
+		return quantifiedNormalForm(&quantifiedNode{kind: "and", left: &quantifiedNode{kind: "implies", left: n.left, right: n.right}, right: &quantifiedNode{kind: "implies", left: n.right, right: n.left}}, negate, budget)
+	case "and", "or":
+		if negate {
+			if n.kind == "and" {
+				result.kind = "or"
+			} else {
+				result.kind = "and"
+			}
+		}
+		left, e := quantifiedNormalForm(n.left, negate, budget)
+		if e != nil {
+			return nil, e
+		}
+		right, e := quantifiedNormalForm(n.right, negate, budget)
+		result.left, result.right = left, right
+		return &result, e
+	case "comparison":
+		if negate {
+			result.op = map[string]string{"=": "!=", "!=": "=", "<": ">=", "<=": ">", ">": "<=", ">=": "<"}[n.op]
+		}
+		return &result, nil
+	default:
+		if negate {
+			return &quantifiedNode{kind: "not", body: n}, nil
+		}
+		return n, nil
+	}
 }
