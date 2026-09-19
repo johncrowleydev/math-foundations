@@ -1,3 +1,4 @@
+import { checkAsymptotic, validateAsymptotic } from './asymptotic';
 import {
   extendedExpressionEquivalent,
   hasExtendedExpression,
@@ -148,6 +149,7 @@ const validators: Record<
     ),
   inequality: (r, a) =>
     inequalityEquivalent(text(a[r.fields[0]]), text(r.params.expected), text(r.params.variable)),
+  'asymptotic-bound': checkAsymptotic,
   expression: (r, a) => {
     const options = r.params as unknown as ExpressionOptions;
     if (hasExtendedExpression(options))
@@ -537,6 +539,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         text(r.params.variable),
       );
     }
+    if (r.validator === 'asymptotic-bound') validateAsymptotic(r);
     if (r.validator === 'expression') {
       if (
         !strings(r.params.variables) ||
