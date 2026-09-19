@@ -36,6 +36,9 @@ func TestFiniteMapConformance(t *testing.T) {
 func TestQuantifiedExtraConformance(t *testing.T) {
 	testDeterministicCorpus(t, "../shared/quantified-extra-fixtures.json")
 }
+func TestMathInputConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/math-input-fixtures.json")
+}
 func testDeterministicCorpus(t *testing.T, path string) {
 	b, e := os.ReadFile(path)
 	if e != nil {
@@ -573,5 +576,11 @@ func TestQuantifiedMembershipNotation(t *testing.T) {
 		if e != nil || g.Verdict != "correct" {
 			t.Fatalf("%s: %s %v", answer, g.Verdict, e)
 		}
+	}
+}
+
+func TestElementaryRejectsInternalRootSymbol(t *testing.T) {
+	if _, e := elementaryEquivalent("radicalRoot", "sqrt(y)", "y", "nonnegative"); e == nil {
+		t.Fatal("an internal symbol was accepted as a learner answer")
 	}
 }

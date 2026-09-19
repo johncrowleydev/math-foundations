@@ -442,6 +442,8 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if _, err := parsePolynomial(p.Expected, p.Variables); err != nil {
 			return err
 		}
+	case "elementary-expression", "square-inverse":
+		return validateElementary(r)
 	case "finite-map":
 		return validateFiniteMap(r)
 	case "integer-list":
@@ -630,6 +632,10 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 		return checkBooleanRequirement(r, response)
 	case "boolean-model":
 		return booleanModel(r, response)
+	case "elementary-expression":
+		return checkElementary(r, response)
+	case "square-inverse":
+		return checkSquareInverse(r, response)
 	case "finite-map":
 		return checkFiniteMap(r, response)
 	case "integer-list":
