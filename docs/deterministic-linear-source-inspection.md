@@ -19,3 +19,25 @@ Inspected 2026-09-19. These sources support the original authored problems and t
 The source file itself is intentionally not changed in this parallel authoring branch. Integration must update reviewed hashes in `content/sources.json` only for the resulting changed exercises after verifying these pinned passages cover each final adaptation. Existing citation keys already cover the listed concepts.
 
 Every adaptation uses one deterministic assessment. Short explanations replaced by a reason selection are recorded as an evidence change. Typed answers retain production. Basis and factorization controls are ordinary matrix text inputs with no answer-count or discovered-dimension hints. Proof and explicitly requested derivation/trace tasks retain a single open submission.
+
+Additional passages inspected for the completed per-item audit:
+
+| Source passage | Application |
+| --- | --- |
+| [ILA §1.2.1–1.2.2](https://textbooks.math.gatech.edu/ila/row-reduction.html), reversible row operations, augmented matrices and reduced echelon definition | Row-operation misconceptions, augmented-matrix counterexamples and final reduced matrices. Explicit elimination traces remain open. |
+| [ILA §2.4.1–2.4.2](https://textbooks.math.gatech.edu/ila/solution-sets.html), homogeneous solution spans and translated inhomogeneous solution sets | Complete affine-family grading, independent free coordinates, nontrivial homogeneous vectors. |
+| [ILA §2.5.1–2.5.2](https://textbooks.math.gatech.edu/ila/linear-independence.html), nontrivial zero combinations, deletion and pivot criteria | Dependence witnesses, redundant-vector choices, deletion counterexamples and ambient dimensions. |
+| [ILA §2.6.1–2.6.2](https://textbooks.math.gatech.edu/ila/subspaces.html), zero/addition/scaling closure and first-quadrant nonexample | Nonnegative-coordinate counterexamples and zero-offset reasons. |
+| [ILA §2.9](https://textbooks.math.gatech.edu/ila/rank-thm.html), rank, nullity and pivot/free-variable counts | Counts and full-row/full-column decisions. |
+| [ILA §3.2.1–3.2.2](https://textbooks.math.gatech.edu/ila/one-to-one-onto.html), injectivity/null-space and surjectivity/image criteria | Separating uniqueness from existence and information-loss examples. |
+| [ILA §4.3.3](https://textbooks.math.gatech.edu/ila/determinants-volumes.html), determinant magnitude scales area/volume | Determinant-area calculations and rejection of uniform-length-scaling claims. |
+| [ILA §6.4.1–6.4.2](https://textbooks.math.gatech.edu/ila/orthogonal-sets.html), normalization, projection coefficients and Gram–Schmidt | Exact radical answers and reconstruction of supplied vectors from the ordered orthonormal pair. |
+| [ILA §5.2](https://textbooks.math.gatech.edu/ila/characteristic-polynomial.html), roots, trace/determinant and triangular matrices | Typed characteristic polynomials, complete unordered eigenpairs and two-by-two spectral examples. |
+| [ILA §5.4.1](https://textbooks.math.gatech.edu/ila/diagonalization.html), diagonalization theorem, matched eigenvector/eigenvalue ordering and powers | Eigenbasis coordinates, repeated-eigenvalue examples and typed coefficient expressions in k. |
+| [Stanford STATS305C, PCA I: Low-rank approximation, Solution, Relation to SVD, Back to reduced rank](https://web.stanford.edu/class/stats305c/lectures/PCA_I.html#low-rank-approximation) | Frobenius rank-constrained approximation and retaining leading singular directions; tied alternatives must be accepted. |
+| [NumPy 2.1 matrix_rank, Notes](https://numpy.org/doc/2.1/reference/generated/numpy.linalg.matrix_rank.html#notes) | Numerical tolerance distinguishes effective rank from exact algebraic rank. |
+| [MML §8.1.4, printed pp.257–258](https://mml-book.github.io/book/mml-book.pdf#page=263), training versus prediction and unseen-data performance | Exact fit does not establish predictive validity or scientific importance. Inspected the downloaded PDF passage. |
+
+Final inventory: all 721 baseline linear algebra items have dispositions. There are 584 new deterministic definitions, seven existing deterministic matrix definitions, 27 existing choices, and 103 retained open tasks. The open entries include their actual prompt and a specific proof, closure or explicit derivation/trace requirement. Spectral counterexamples 55, 59 and 62 explicitly request two-by-two examples in the revised prompt; this preserves construction production while bounding the checker. Other matrix/vector witnesses retain arbitrary supported dimensions.
+
+Validation handoff: the first 249 definitions passed 996 fixture checks. The subsequent existing-validator definitions pass their fixtures; the newly coordinated property kinds and exponential expressions await the integration branch's checker updates before the final complete fixture run. The integration build must perform that run and reject any unsupported validator metadata. Generated catalogs remain data artifacts from this script.
