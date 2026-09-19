@@ -1,3 +1,4 @@
+import { prepareExtendedExpressions } from './exponential';
 import { logicalExpression, type FunctionTerm } from './fol-terms';
 import { InputError, parseExpression, sameExpressionDomain } from './exact';
 import { comparisonEqual, comparisonFromStrings } from './comparison';
@@ -40,6 +41,7 @@ export type QuantifiedOptions = {
   freeVariables?: string[];
   functions?: Record<string, number>;
   sets?: string[];
+  integerVariables?: string[];
 };
 export function parseQuantified(
   source: string,
@@ -128,6 +130,19 @@ export function parseQuantified(
       right: raw.slice(i + 1).join(' '),
     };
   };
+  const arithmeticGroup = (): boolean => {
+    if (tokens[at] !== '(') return false;
+    let depth = 0;
+    for (let i = at; i < tokens.length; i++) {
+      if (tokens[i] === '(') depth++;
+      if (tokens[i] === ')') depth--;
+      if (depth === 0)
+        return ['+', '-', '*', '/', '^', '=', '!=', '<', '<=', '>', '>=', 'in', 'notin'].includes(
+          tokens[i + 1],
+        );
+    }
+    return false;
+  };
   const unary = (): QNode => {
     if (++depth > 64) throw new InputError('The formula is nested too deeply.');
     let n: QNode;
@@ -145,7 +160,7 @@ export function parseQuantified(
       if (tokens[at] === '.' || tokens[at] === ':' || tokens[at] === ',') at++;
       n = { kind: 'quantifier', quantifier, variable, domain, body: iff() };
     } else if (take('!')) n = { kind: 'not', body: unary() };
-    else if (take('(')) {
+    else if (tokens[at] === '(' && !arithmeticGroup() && take('(')) {
       n = iff();
       if (!take(')')) throw new InputError('Close the quantified formula parentheses.');
     } else n = atom();
@@ -227,25 +242,41 @@ export function parseQuantified(
     return n;
   };
   result = expand(result);
-  function validate(n: QNode, bound: string[]) {
+  function validate(n: QNode, bound: string[], boundIntegers: string[] = []) {
     const available = [...bound, ...(options.constants || []), ...(options.freeVariables || [])];
+    const expression = (source: string) =>
+      options.integerVariables?.length
+        ? prepareExtendedExpressions([source], {
+            variables: available,
+            integerVariables: [
+              ...new Set([
+                ...boundIntegers,
+                ...options.integerVariables.filter((v) => available.includes(v)),
+              ]),
+            ],
+          })
+        : logicalExpression(source, available, options.functions);
     switch (n.kind) {
       case 'quantifier':
-        validate(n.body, [...bound, n.variable]);
+        validate(
+          n.body,
+          [...bound, n.variable],
+          ['N', 'Z'].includes(n.domain) ? [...boundIntegers, n.variable] : boundIntegers,
+        );
         break;
       case 'not':
-        validate(n.body, bound);
+        validate(n.body, bound, boundIntegers);
         break;
       case 'predicate':
-        n.args.forEach((s) => logicalExpression(s, available, options.functions));
+        n.args.forEach(expression);
         break;
       case 'comparison':
-        logicalExpression(n.left, available, options.functions);
-        logicalExpression(n.right, available, options.functions);
+        expression(n.left);
+        expression(n.right);
         break;
       default:
-        validate(n.left, bound);
-        validate(n.right, bound);
+        validate(n.left, bound, boundIntegers);
+        validate(n.right, bound, boundIntegers);
     }
   }
   validate(result, []);
@@ -305,15 +336,31 @@ function equal(
   integerDomains: boolean[] = [],
   fixed: string[] = [],
   functions: Record<string, number> = {},
+  integerVariables: string[] = [],
 ): boolean {
   if (a.kind !== b.kind) return false;
   const variables = [...ab.map((_, i) => 'v' + i), ...fixed.map((v) => 'fixed_' + v)];
   const registry: FunctionTerm[] = [];
   const expression = (s: string, bound: string[]) =>
     logicalExpression(rename(s, bound, fixed, functions), variables, functions, registry);
+  const expressions = (sources: [string, string[]][]) =>
+    integerVariables.length
+      ? prepareExtendedExpressions(
+          sources.map(([s, bound]) => rename(s, bound, fixed, functions)),
+          {
+            variables,
+            integerVariables: [
+              ...ab.map((_, i) => (integerDomains[i] ? 'v' + i : '')).filter(Boolean),
+              ...fixed.filter((v) => integerVariables.includes(v)).map((v) => 'fixed_' + v),
+            ],
+          },
+        )
+      : sources.map(([s, bound]) => expression(s, bound));
   const expressionEqual = (x: string, y: string) => {
-    const left = expression(x, ab),
-      right = expression(y, bb);
+    const [left, right] = expressions([
+      [x, ab],
+      [y, bb],
+    ]);
     return left.eq(right) && sameExpressionDomain(left, right);
   };
   if (a.kind === 'quantifier' && b.kind === 'quantifier')
@@ -328,22 +375,35 @@ function equal(
         [...integerDomains, ['Z', 'N'].includes(a.domain)],
         fixed,
         functions,
+        integerVariables,
       )
     );
   if (a.kind === 'not' && b.kind === 'not')
-    return equal(a.body, b.body, ab, bb, integerDomains, fixed, functions);
+    return equal(a.body, b.body, ab, bb, integerDomains, fixed, functions, integerVariables);
   if (a.kind === 'predicate' && b.kind === 'predicate')
     return (
       a.name === b.name &&
       a.args.length === b.args.length &&
       a.args.every((x, i) => expressionEqual(x, b.args[i]))
     );
-  if (a.kind === 'comparison' && b.kind === 'comparison')
+  if (a.kind === 'comparison' && b.kind === 'comparison') {
+    const [al, ar, bl, br] = expressions([
+      [a.left, ab],
+      [a.right, ab],
+      [b.left, bb],
+      [b.right, bb],
+    ]);
     return comparisonEqual(
-      { op: a.op, left: expression(a.left, ab), right: expression(a.right, ab) },
-      { op: b.op, left: expression(b.left, bb), right: expression(b.right, bb) },
-      integerDomains.every(Boolean) && !fixed.length && !Object.keys(functions).length,
+      { op: a.op, left: al, right: ar },
+      { op: b.op, left: bl, right: br },
+      integerDomains.every(Boolean) &&
+        fixed.every((v) => integerVariables.includes(v)) &&
+        !Object.keys(functions).length &&
+        [al, ar, bl, br].every((p) =>
+          [...p.num.keys(), ...p.den.keys()].every((k) => !k.includes('DETX')),
+        ),
     );
+  }
   if ((a.kind === 'and' || a.kind === 'or') && (b.kind === 'and' || b.kind === 'or')) {
     const flatten = (n: QNode, k: string): QNode[] =>
       n.kind === k && (n.kind === 'and' || n.kind === 'or')
@@ -353,7 +413,9 @@ function equal(
       right = flatten(b, b.kind);
     if (left.length !== right.length) return false;
     return left.every((x) => {
-      const i = right.findIndex((y) => equal(x, y, ab, bb, integerDomains, fixed, functions));
+      const i = right.findIndex((y) =>
+        equal(x, y, ab, bb, integerDomains, fixed, functions, integerVariables),
+      );
       if (i < 0) return false;
       right.splice(i, 1);
       return true;
@@ -361,8 +423,8 @@ function equal(
   }
   if ((a.kind === 'implies' || a.kind === 'iff') && (b.kind === 'implies' || b.kind === 'iff'))
     return (
-      equal(a.left, b.left, ab, bb, integerDomains, fixed, functions) &&
-      equal(a.right, b.right, ab, bb, integerDomains, fixed, functions)
+      equal(a.left, b.left, ab, bb, integerDomains, fixed, functions, integerVariables) &&
+      equal(a.right, b.right, ab, bb, integerDomains, fixed, functions, integerVariables)
     );
   return false;
 }
@@ -431,6 +493,7 @@ export function quantifiedEquivalent(
       [],
       [...(options.constants || []), ...(options.freeVariables || [])],
       options.functions,
+      options.integerVariables,
     )
   );
 }

@@ -334,6 +334,15 @@ class Transform {
     );
   }
 }
+export function prepareExtendedExpressions(
+  sources: string[],
+  options: ExpressionOptions,
+): Expression[] {
+  const transform = new Transform(options),
+    normalized = sources.map((s) => transform.parse(s)),
+    variables = [...options.variables, ...[...transform.atoms].sort()];
+  return normalized.map((s) => transform.expression(parseExpression(s, variables)));
+}
 export function extendedExpressionEquivalent(
   actual: string,
   expected: string,

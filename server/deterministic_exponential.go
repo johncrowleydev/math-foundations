@@ -586,16 +586,16 @@ func (t *exponentialTransform) expression(p rationalPoly) (rationalPoly, error) 
 	p.divisors = divisors
 	return p, p.valid()
 }
-func extendedExpressionEquivalent(actual, expected string, o expressionParams) (bool, error) {
+func prepareExtendedExpressions(sources []string, o expressionParams) ([]rationalPoly, *exponentialTransform, error) {
 	t, e := newExponentialTransform(o)
 	if e != nil {
-		return false, e
+		return nil, nil, e
 	}
-	sources := append([]string{actual, expected}, o.Domain...)
+	sources = append([]string{}, sources...)
 	for i, s := range sources {
 		x, e := t.parse(s)
 		if e != nil {
-			return false, e
+			return nil, nil, e
 		}
 		sources[i] = x
 	}
@@ -610,14 +610,22 @@ func extendedExpressionEquivalent(actual, expected string, o expressionParams) (
 	for _, s := range sources {
 		p, e := parsePolynomial(s, vs)
 		if e != nil {
-			return false, e
+			return nil, nil, e
 		}
 		p, e = t.expression(p)
 		if e != nil {
-			return false, e
+			return nil, nil, e
 		}
 		ps = append(ps, p)
 	}
+	return ps, t, nil
+}
+func extendedExpressionEquivalent(actual, expected string, o expressionParams) (bool, error) {
+	ps, t, e := prepareExtendedExpressions(append([]string{actual, expected}, o.Domain...), o)
+	if e != nil {
+		return false, e
+	}
+	vs := ps[0].variables
 	a, b := ps[0], ps[1]
 	difference := polyAdd(t.normalize(polyMul(a.n, b.d), vs), polyNeg(t.normalize(polyMul(b.n, a.d), vs)))
 	if len(difference) > 0 {

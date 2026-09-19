@@ -185,6 +185,7 @@ const validators: Record<
           freeVariables: strlist(r.params.freeVariables || []),
           functions: (r.params.functions || {}) as Record<string, number>,
           sets: strlist(r.params.sets || []),
+          integerVariables: strlist(r.params.integerVariables || []),
         },
       ),
     ),
@@ -596,7 +597,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
           ))
       )
         throw Error('Invalid function symbols.');
-      for (const name of ['constants', 'freeVariables', 'alternatives', 'sets'])
+      for (const name of ['constants', 'freeVariables', 'alternatives', 'sets', 'integerVariables'])
         if (r.params[name] !== undefined && !strings(r.params[name]))
           throw Error('Invalid quantified formula ' + name);
       for (const target of [text(r.params.expected), ...strlist(r.params.alternatives || [])])
@@ -605,6 +606,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
           freeVariables: strlist(r.params.freeVariables || []),
           functions: (r.params.functions || {}) as Record<string, number>,
           sets: strlist(r.params.sets || []),
+          integerVariables: strlist(r.params.integerVariables || []),
         });
     }
     if (r.validator === 'set') {
