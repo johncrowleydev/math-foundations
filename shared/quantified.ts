@@ -160,7 +160,12 @@ export function parseQuantified(
   let result = iff();
   if (at !== tokens.length) throw new InputError('Check the quantified formula syntax.');
   let fresh = 0;
+  let expansionBudget = 4096;
+  const expandedNode = () => {
+    if (--expansionBudget < 0) throw new InputError('Use a shorter quantified formula.');
+  };
   const replaceVariable = (n: QNode, old: string, replacement: string): QNode => {
+    expandedNode();
     const swap = (s: string) => s.replace(new RegExp('\\b' + old + '\\b', 'g'), replacement);
     if (n.kind === 'quantifier')
       return n.variable === old ? n : { ...n, body: replaceVariable(n.body, old, replacement) };
@@ -174,6 +179,7 @@ export function parseQuantified(
     };
   };
   const expand = (n: QNode): QNode => {
+    expandedNode();
     if (n.kind === 'quantifier') {
       if (n.quantifier !== 'unique') return { ...n, body: expand(n.body) };
       let other: string;
@@ -340,18 +346,20 @@ function equal(
   return false;
 }
 /** Normalize supported negations and connectives without changing quantifier order. */
-function logicalNormalForm(n: QNode, negate = false): QNode {
-  if (n.kind === 'not') return logicalNormalForm(n.body, !negate);
+function logicalNormalForm(n: QNode, negate = false, budget = { remaining: 4096 }): QNode {
+  if (--budget.remaining < 0) throw new InputError('Use a shorter quantified formula.');
+  if (n.kind === 'not') return logicalNormalForm(n.body, !negate, budget);
   if (n.kind === 'quantifier')
     return {
       ...n,
       quantifier: negate ? (n.quantifier === 'forall' ? 'exists' : 'forall') : n.quantifier,
-      body: logicalNormalForm(n.body, negate),
+      body: logicalNormalForm(n.body, negate, budget),
     };
   if (n.kind === 'implies')
     return logicalNormalForm(
       { kind: 'or', left: { kind: 'not', body: n.left }, right: n.right },
       negate,
+      budget,
     );
   if (n.kind === 'iff')
     return logicalNormalForm(
@@ -361,12 +369,13 @@ function logicalNormalForm(n: QNode, negate = false): QNode {
         right: { kind: 'implies', left: n.right, right: n.left },
       },
       negate,
+      budget,
     );
   if (n.kind === 'and' || n.kind === 'or')
     return {
       kind: negate ? (n.kind === 'and' ? 'or' : 'and') : n.kind,
-      left: logicalNormalForm(n.left, negate),
-      right: logicalNormalForm(n.right, negate),
+      left: logicalNormalForm(n.left, negate, budget),
+      right: logicalNormalForm(n.right, negate, budget),
     };
   if (n.kind === 'comparison' && negate)
     return {

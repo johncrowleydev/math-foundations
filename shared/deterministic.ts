@@ -1,3 +1,9 @@
+import {
+  setExpressionRequirement,
+  setModelRequirement,
+  nestedObjectRequirement,
+  validateSetRequirement,
+} from './set-model';
 import { checkRecurrence, validateRecurrence } from './recurrence';
 import { checkAsymptotic, validateAsymptotic } from './asymptotic';
 import {
@@ -64,6 +70,21 @@ const validators: Record<
   (r: AssessmentRequirement, response: StructuredResponse) => boolean
 > = {
   linear: linearRequirement,
+  'set-expression': setExpressionRequirement,
+  'set-model': setModelRequirement,
+  'nested-object': nestedObjectRequirement,
+  'boolean-property': (r, a) => {
+    const vars = strlist(r.params.variables),
+      n = parseBoolean(text(a[r.fields[0]]), vars);
+    const results = Array.from({ length: 2 ** vars.length }, (_, bits) =>
+      evaluateBoolean(n, Object.fromEntries(vars.map((v, i) => [v, !!(bits & (1 << i))]))),
+    );
+    return r.params.property === 'contingent'
+      ? results.some(Boolean) && results.some((x) => !x)
+      : r.params.property === 'tautology'
+        ? results.every(Boolean)
+        : results.every((x) => !x);
+  },
   boolean: (r, a) => r.fields.every((f, i) => a[f] === array(r.params.expected)[i]),
   term: (r, a) =>
     strlist(r.params.accepted).some(
@@ -437,6 +458,19 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     if (['selection', 'tuple'].includes(r.validator) && !strings(r.params.expected))
       throw Error('Expected values required.');
     if (r.validator === 'linear') validateLinearRequirement(r);
+    if (['set-expression', 'set-model', 'nested-object'].includes(r.validator))
+      validateSetRequirement(r);
+    if (r.validator === 'boolean-property') {
+      if (
+        r.fields.length !== 1 ||
+        !strings(r.params.variables) ||
+        !r.params.variables.length ||
+        r.params.variables.length > 8 ||
+        !['contingent', 'tautology', 'contradiction'].includes(String(r.params.property))
+      )
+        throw Error('Invalid Boolean property definition.');
+      parseBoolean(r.params.variables[0], r.params.variables);
+    }
     if (r.validator === 'boolean-formula') {
       if (
         r.params.maxNodes !== undefined &&

@@ -330,6 +330,18 @@ func normalizedTerm(s string, sensitive bool) string {
 
 func validateRequirement(r AssessmentRequirement, fields map[string]answerField) error {
 	switch r.Validator {
+	case "boolean-property":
+		var p struct {
+			Variables []string
+			Property  string
+		}
+		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Variables) < 1 || len(p.Variables) > 8 || !enum(p.Property, "contingent", "tautology", "contradiction") {
+			return errors.New("Invalid Boolean property definition")
+		}
+		_, e := parseBoolean(p.Variables[0], p.Variables)
+		return e
+	case "set-expression", "set-model", "nested-object":
+		return validateSetModelRequirement(r)
 	case "boolean":
 		var p struct {
 			Expected []bool `json:"expected"`
@@ -531,6 +543,14 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 }
 func checkRequirement(r AssessmentRequirement, response StructuredResponse) (bool, error) {
 	switch r.Validator {
+	case "boolean-property":
+		return checkBooleanProperty(r, response)
+	case "set-expression":
+		return checkSetExpression(r, response)
+	case "set-model":
+		return checkSetModel(r, response)
+	case "nested-object":
+		return checkNestedObject(r, response)
 	case "boolean":
 		var p struct {
 			Expected []bool `json:"expected"`

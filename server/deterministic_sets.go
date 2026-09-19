@@ -144,7 +144,7 @@ func checkSet(r AssessmentRequirement, response StructuredResponse) (bool, error
 	if e != nil {
 		return false, e
 	}
-	entered := strings.TrimSpace(xs[0])
+	entered := strings.TrimSpace(strings.Trim(strings.TrimSpace(xs[0]), "$"))
 	if !strings.HasPrefix(entered, "{") && !strings.HasPrefix(entered, "\\{") && !strings.HasPrefix(entered, "\\left\\{") && !strings.HasPrefix(entered, "\\varnothing") && !strings.HasPrefix(entered, "\\emptyset") && !strings.HasPrefix(entered, "∅") {
 		entered = "{" + entered + "}"
 	}

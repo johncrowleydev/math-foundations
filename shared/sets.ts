@@ -1,6 +1,6 @@
 import { Exact, InputError, parseExact } from './exact';
-type Node =
-  | { kind: 'set' | 'tuple'; members: Node[] }
+export type SetNode =
+  | { kind: 'set' | 'tuple'; members: SetNode[] }
   | { kind: 'number'; value: Exact }
   | { kind: 'atom'; value: string };
 function topLevel(s: string): string[] {
@@ -22,7 +22,7 @@ function topLevel(s: string): string[] {
   if (result.some((x) => !x)) throw new InputError('Enter a value between commas.');
   return result;
 }
-function equal(a: Node, b: Node): boolean {
+export function setNodeEqual(a: SetNode, b: SetNode): boolean {
   if (a.kind !== b.kind) return false;
   if (a.kind === 'number' && b.kind === 'number') return a.value.eq(b.value);
   if (a.kind === 'atom' && b.kind === 'atom') return a.value === b.value;
@@ -32,18 +32,18 @@ function equal(a: Node, b: Node): boolean {
     return (
       aa.length === bb.length &&
       (a.kind === 'tuple'
-        ? aa.every((x, i) => equal(x, bb[i]))
-        : aa.every((x) => bb.some((y) => equal(x, y))))
+        ? aa.every((x, i) => setNodeEqual(x, bb[i]))
+        : aa.every((x) => bb.some((y) => setNodeEqual(x, y))))
     );
   }
   return false;
 }
-function unique(nodes: Node[]): Node[] {
-  const result: Node[] = [];
-  for (const n of nodes) if (!result.some((x) => equal(x, n))) result.push(n);
+export function uniqueSetNodes(nodes: SetNode[]): SetNode[] {
+  const result: SetNode[] = [];
+  for (const n of nodes) if (!result.some((x) => setNodeEqual(x, n))) result.push(n);
   return result;
 }
-function parse(source: string, atoms: string[], depth = 0): Node {
+export function parseSetNode(source: string, atoms: string[], depth = 0): SetNode {
   if (source.length > 4096 || depth > 32) throw new InputError('Use a shorter finite set.');
   const s = source
     .trim()
@@ -56,12 +56,14 @@ function parse(source: string, atoms: string[], depth = 0): Node {
   if (s.startsWith('{') && s.endsWith('}'))
     return {
       kind: 'set',
-      members: unique(topLevel(s.slice(1, -1)).map((x) => parse(x, atoms, depth + 1))),
+      members: uniqueSetNodes(
+        topLevel(s.slice(1, -1)).map((x) => parseSetNode(x, atoms, depth + 1)),
+      ),
     };
   if (s.startsWith('(') && s.endsWith(')')) {
     const values = topLevel(s.slice(1, -1));
     if (values.length > 1)
-      return { kind: 'tuple', members: values.map((x) => parse(x, atoms, depth + 1)) };
+      return { kind: 'tuple', members: values.map((x) => parseSetNode(x, atoms, depth + 1)) };
   }
   if (atoms.includes(s)) return { kind: 'atom', value: s };
   return { kind: 'number', value: parseExact(s) };
@@ -85,8 +87,14 @@ export function setEqual(actual: string, expected: string[], atoms: string[] = [
           ].includes(a),
       ) || [];
   const allowed = [...new Set([...atoms, ...expected.flatMap(collect)])];
-  const target: Node = { kind: 'set', members: unique(expected.map((x) => parse(x, allowed))) };
-  let entered = actual.trim();
+  const target: SetNode = {
+    kind: 'set',
+    members: uniqueSetNodes(expected.map((x) => parseSetNode(x, allowed))),
+  };
+  let entered = actual
+    .trim()
+    .replace(/^\$\$?|\$\$?$/g, '')
+    .trim();
   if (
     !entered.startsWith('{') &&
     !entered.startsWith('\\{') &&
@@ -94,6 +102,17 @@ export function setEqual(actual: string, expected: string[], atoms: string[] = [
     !/^(?:\\(?:varnothing|emptyset)|∅)/.test(entered)
   )
     entered = '{' + entered + '}';
-  const got = parse(entered, allowed);
-  return got.kind === 'set' && equal(got, target);
+  const got = parseSetNode(entered, allowed);
+  return got.kind === 'set' && setNodeEqual(got, target);
+}
+
+export function parseFiniteSet(
+  source: string,
+  atoms: string[] = [],
+): Extract<SetNode, { kind: 'set' | 'tuple' }> {
+  const node = parseSetNode(source, atoms);
+  if (node.kind !== 'set')
+    throw new InputError('Use braces for a finite set, or {} for the empty set.');
+  if (node.members.length > 256) throw new InputError('Use a set with at most 256 members.');
+  return node;
 }

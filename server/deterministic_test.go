@@ -549,3 +549,5 @@ func TestQuantifiedTotalFunctions(t *testing.T) {
 		})
 	}
 }
+
+func TestSetConformance(t *testing.T) { testDeterministicCorpus(t, "../shared/set-fixtures.json") }
