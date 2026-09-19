@@ -281,10 +281,11 @@ func booleanStructure(a, b *boolNode, vars []string) bool {
 }
 
 type booleanModelParams struct {
-	Variables  map[string]string `json:"variables"`
-	Conditions []struct {
+	Variables      map[string]string `json:"variables"`
+	SelectionField *string           `json:"selectionField"`
+	Conditions     []struct {
 		Formula string `json:"formula"`
-		Value   bool   `json:"value"`
+		Value   *bool  `json:"value"`
 	} `json:"conditions"`
 	Checks map[string]string `json:"checks"`
 }
@@ -296,8 +297,31 @@ func booleanModel(r AssessmentRequirement, response StructuredResponse) (bool, e
 	}
 	vars := []string{}
 	values := map[string]bool{}
+	selected := map[string]bool{}
+	if p.SelectionField != nil {
+		switch xs := response[*p.SelectionField].(type) {
+		case []string:
+			for _, id := range xs {
+				selected[id] = true
+			}
+		case []any:
+			for _, value := range xs {
+				id, ok := value.(string)
+				if !ok {
+					return false, errors.New("Select the requested pairs")
+				}
+				selected[id] = true
+			}
+		default:
+			return false, errors.New("Select the requested pairs or mark the selection empty")
+		}
+	}
 	for v, f := range p.Variables {
 		vars = append(vars, v)
+		if p.SelectionField != nil {
+			values[v] = selected[f]
+			continue
+		}
 		b, ok := response[f].(bool)
 		if !ok {
 			return false, errors.New("Choose all truth values")
@@ -310,7 +334,10 @@ func booleanModel(r AssessmentRequirement, response StructuredResponse) (bool, e
 		if e != nil {
 			return false, e
 		}
-		valid = valid && n.value(values) == c.Value
+		if c.Value == nil {
+			return false, errors.New("Invalid Boolean model condition")
+		}
+		valid = valid && n.value(values) == *c.Value
 	}
 	for f, s := range p.Checks {
 		n, e := parseBoolean(s, vars)

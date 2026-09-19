@@ -161,7 +161,16 @@ const validators: Record<
   'boolean-model': (r, a) => {
     const variableFields = r.params.variables as Record<string, string>;
     const variables = Object.keys(variableFields),
-      assignment = Object.fromEntries(variables.map((v) => [v, a[variableFields[v]] as boolean]));
+      selection =
+        r.params.selectionField === undefined
+          ? undefined
+          : new Set(strlist(a[text(r.params.selectionField)])),
+      assignment = Object.fromEntries(
+        variables.map((v) => [
+          v,
+          selection ? selection.has(variableFields[v]) : (a[variableFields[v]] as boolean),
+        ]),
+      );
     const conditions = array(r.params.conditions).map((raw) => {
       if (!object(raw)) bad('Invalid Boolean model condition.');
       return evaluateBoolean(parseBoolean(text(raw.formula), variables), assignment) === raw.value;
@@ -549,27 +558,54 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         throw Error('Contrapositive requires an authored structural target.');
     }
     if (r.validator === 'boolean-model') {
+      const selectionField = r.params.selectionField;
+      const selection =
+        selectionField === undefined ? undefined : fields.find((f) => f.id === selectionField);
       if (
         !object(r.params.variables) ||
         !Object.keys(r.params.variables).length ||
         Object.keys(r.params.variables).length > 8 ||
-        Object.values(r.params.variables).some(
+        Object.keys(r.params.variables).some((name) => !/^[A-Za-z][A-Za-z0-9_]*$/.test(name)) ||
+        !Array.isArray(r.params.conditions) ||
+        r.params.conditions.length > 256
+      )
+        throw Error('Invalid Boolean model definition.');
+      const mapped = Object.values(r.params.variables);
+      if (selectionField !== undefined) {
+        if (
+          typeof selectionField !== 'string' ||
+          r.fields.length !== 1 ||
+          r.fields[0] !== selectionField ||
+          selection?.kind !== 'multiselect' ||
+          !r.params.conditions.length ||
+          mapped.length !== selection.options?.length ||
+          new Set(mapped).size !== mapped.length ||
+          mapped.some(
+            (id) => typeof id !== 'string' || !selection.options!.some((o) => o.id === id),
+          )
+        )
+          throw Error('Invalid Boolean model selection.');
+      } else if (
+        mapped.some(
           (f) =>
             typeof f !== 'string' ||
             !r.fields.includes(f) ||
             fields.find((x) => x.id === f)?.kind !== 'boolean',
-        ) ||
-        !Array.isArray(r.params.conditions)
+        )
       )
-        throw Error('Invalid Boolean model definition.');
+        throw Error('Invalid Boolean model truth fields.');
       const variables = Object.keys(r.params.variables);
       for (const raw of r.params.conditions) {
         if (!object(raw) || typeof raw.value !== 'boolean')
           throw Error('Invalid Boolean model condition.');
         parseBoolean(text(raw.formula), variables);
       }
-      if (r.params.checks) {
-        if (!object(r.params.checks)) throw Error('Invalid Boolean model checks.');
+      if (r.params.checks !== undefined) {
+        if (
+          !object(r.params.checks) ||
+          (selectionField !== undefined && Object.keys(r.params.checks).length)
+        )
+          throw Error('Invalid Boolean model checks.');
         for (const [field, formula] of Object.entries(r.params.checks)) {
           if (!r.fields.includes(field) || fields.find((x) => x.id === field)?.kind !== 'boolean')
             throw Error('Invalid Boolean model check field.');

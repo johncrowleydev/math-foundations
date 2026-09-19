@@ -731,5 +731,1934 @@
         "inputCapabilities": ["math-text"]
       }
     }
+  },
+  {
+    "name": "boolean-selection-wrong-input-kind",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "select",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-unknown-target",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "missing",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-null-target",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": null,
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-empty-target",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-duplicate-mapping",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r00",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-unknown-mapping",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "missing",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-unmapped-option",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-unknown-variable",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "unknown",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-missing-condition-value",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)"
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-nonboolean-condition-value",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": "true"
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-empty-conditions",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-too-many-conditions",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              },
+              {
+                "formula": "r00",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-extra-check-fields",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {
+              "pairs": "r00"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
+  },
+  {
+    "name": "boolean-selection-null-checks",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": null
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    }
   }
 ]

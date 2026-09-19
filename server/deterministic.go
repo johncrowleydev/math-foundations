@@ -525,23 +525,55 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 
 	case "boolean-model":
 		var p booleanModelParams
-		if jsonParams(r, &p) != nil || len(p.Variables) == 0 || len(p.Variables) > 8 {
+		if jsonParams(r, &p) != nil || len(p.Variables) == 0 || len(p.Variables) > 8 || p.Conditions == nil || len(p.Conditions) > 256 {
 			return errors.New("Invalid Boolean model")
+		}
+		var raw map[string]json.RawMessage
+		json.Unmarshal(r.Params, &raw)
+		_, selectionPresent := raw["selectionField"]
+		if selectionPresent && p.SelectionField == nil {
+			return errors.New("Invalid Boolean selection field")
+		}
+		if p.SelectionField != nil {
+			f := fields[*p.SelectionField]
+			if len(r.Fields) != 1 || r.Fields[0] != *p.SelectionField || f.kind != "multiselect" || len(p.Conditions) == 0 || len(f.options) != len(p.Variables) || len(p.Checks) > 0 {
+				return errors.New("Invalid Boolean model selection")
+			}
+			mapped := map[string]bool{}
+			for _, id := range p.Variables {
+				found := false
+				for _, o := range f.options {
+					found = found || id == o.ID
+				}
+				if !found || mapped[id] {
+					return errors.New("Invalid Boolean model option")
+				}
+				mapped[id] = true
+			}
 		}
 		vars := []string{}
 		for v, f := range p.Variables {
-			if fields[f].kind != "boolean" {
+			if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(v) {
+				return errors.New("Invalid Boolean model variable")
+			}
+			if p.SelectionField == nil && (fields[f].kind != "boolean" || !contains(r.Fields, f)) {
 				return errors.New("Boolean model needs truth fields")
 			}
 			vars = append(vars, v)
 		}
 		for _, c := range p.Conditions {
+			if c.Value == nil {
+				return errors.New("Invalid Boolean model condition")
+			}
 			if _, e := parseBoolean(c.Formula, vars); e != nil {
 				return e
 			}
 		}
+		if value, present := raw["checks"]; present && string(value) == "null" {
+			return errors.New("Invalid Boolean model checks")
+		}
 		for f, s := range p.Checks {
-			if fields[f].kind != "boolean" {
+			if fields[f].kind != "boolean" || !contains(r.Fields, f) {
 				return errors.New("Unknown Boolean model field")
 			}
 			if _, e := parseBoolean(s, vars); e != nil {

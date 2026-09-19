@@ -12,6 +12,9 @@ import (
 	"testing"
 )
 
+func TestBooleanSelectionConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/boolean-selection-fixtures.json")
+}
 func TestDeterministicConformance(t *testing.T) {
 	testDeterministicCorpus(t, "../shared/deterministic-fixtures.json")
 }
