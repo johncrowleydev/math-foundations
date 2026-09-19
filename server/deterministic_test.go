@@ -517,3 +517,29 @@ func TestParenthesizedVectorEntries(t *testing.T) {
 		}
 	}
 }
+
+func TestQuantifiedTotalFunctions(t *testing.T) {
+	cases := []struct {
+		name, actual, expected string
+		correct                bool
+	}{
+		{"alpha renamed function argument", "forall t in R (1+f(t)=0)", "forall x in R (f(x)+1=0)", true},
+		{"different function argument", "forall t in R (f(2*t)=0)", "forall x in R (f(x)=0)", false},
+		{"nested equivalent argument", "forall t in R (f(g(t+0))=g(t))", "forall x in R (f(g(x))=g(x))", true},
+		{"different function names", "forall t in R (f(t)=0)", "forall x in R (g(x)=0)", false},
+		{"function argument pole retained", "forall t in R (f(t/t)-f(t/t)=0)", "forall x in R (0=0)", false},
+		{"function codomain not necessarily integer", "forall t in Z (f(t)<2)", "forall x in Z (f(x)<=1)", false},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			a := deterministicFixture(t)
+			a.Requirements[0].Validator = "quantified-formula"
+			params := map[string]any{"expected": c.expected, "domains": []string{"R", "Z"}, "predicates": map[string]int{}, "functions": map[string]int{"f": 1, "g": 1}}
+			a.Requirements[0].Params, _ = json.Marshal(params)
+			g, e := gradeAssessment(a, StructuredResponse{"answer": c.actual})
+			if e != nil || (g.Verdict == "correct") != c.correct {
+				t.Fatalf("grade %s error %v", g.Verdict, e)
+			}
+		})
+	}
+}

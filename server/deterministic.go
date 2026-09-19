@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -427,8 +428,13 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Domains) == 0 || !enum(p.Form, "", "nnf") {
 			return errors.New("Invalid quantified formula parameters")
 		}
+		for name, arity := range p.Functions {
+			if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(name) || arity < 1 || arity > 8 {
+				return errors.New("Invalid total function definition")
+			}
+		}
 		for _, target := range append([]string{p.Expected}, p.Alternatives...) {
-			if _, e := parseQuantified(target, p.Domains, p.Predicates, p.Constants, p.FreeVariables); e != nil {
+			if _, e := parseQuantified(target, p.Domains, p.Predicates, p); e != nil {
 				return e
 			}
 		}
