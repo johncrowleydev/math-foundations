@@ -65,7 +65,7 @@ function AnswerGrid({
 }: {
   input: Extract<AssessmentInput, { kind: 'grid' }>;
   response: StructuredResponse;
-  onChange?: (response: StructuredResponse) => void;
+  onChange?: (patch: StructuredResponse) => void;
 }) {
   const [error, setError] = useState('');
   const rowLabels = input.rows.some((row) => row.label);
@@ -85,7 +85,7 @@ function AnswerGrid({
     if (!onChange || (!text.includes('\t') && !text.includes('\n'))) return;
     event.preventDefault();
     try {
-      onChange(pasteGrid(input, response, row, column, text));
+      onChange(pasteGrid(input, {}, row, column, text));
       setError('');
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause));
@@ -148,7 +148,7 @@ function AnswerGrid({
                         <BooleanCell
                           label={label}
                           value={value}
-                          onChange={(value) => onChange({ ...response, [cell.id]: value })}
+                          onChange={(value) => onChange({ [cell.id]: value })}
                         />
                       ) : (
                         <input
@@ -156,9 +156,7 @@ function AnswerGrid({
                           autoComplete="off"
                           spellCheck={false}
                           value={typeof value === 'string' ? value : ''}
-                          onChange={(event) =>
-                            onChange({ ...response, [cell.id]: event.target.value })
-                          }
+                          onChange={(event) => onChange({ [cell.id]: event.target.value })}
                         />
                       )}
                     </td>
@@ -187,13 +185,13 @@ function Input({
 }: {
   input: AssessmentInput;
   response: StructuredResponse;
-  onChange?: (response: StructuredResponse) => void;
+  onChange?: (patch: StructuredResponse) => void;
   syntax: Syntax[];
   preview?: boolean;
 }) {
   const uid = useId();
   const value = response[input.id];
-  const change = (value: AnswerValue) => onChange?.({ ...response, [input.id]: value });
+  const change = (value: AnswerValue) => onChange?.({ [input.id]: value });
   if (input.kind === 'grid')
     return <AnswerGrid input={input} response={response} onChange={onChange} />;
   if (input.kind === 'interval') {
@@ -205,7 +203,7 @@ function Input({
           autoComplete="off"
           spellCheck={false}
           value={typeof response[id] === 'string' ? (response[id] as string) : ''}
-          onChange={(event) => onChange({ ...response, [id]: event.target.value })}
+          onChange={(event) => onChange({ [id]: event.target.value })}
         />
       ) : (
         <Rich text={valueText(response[id])} />
@@ -221,7 +219,7 @@ function Input({
           symbols={symbols}
           blankSymbol={side === 'leftClosed' ? '[ / (' : '] / )'}
           announcements={['included', 'excluded']}
-          onChange={(value) => onChange({ ...response, [id]: value })}
+          onChange={(value) => onChange({ [id]: value })}
         />
       ) : (
         <span>{typeof response[id] === 'boolean' ? symbols[response[id] ? 0 : 1] : '?'}</span>
@@ -345,6 +343,7 @@ function Input({
         <Rich text={input.label} />
         {input.hint && <Rich text={input.hint} />}
         <TexEditor
+          compact
           label={input.label}
           value={typeof value === 'string' ? value : ''}
           onChange={change}
@@ -384,7 +383,8 @@ export function StructuredAnswer({
 }: {
   assessment: Assessment;
   response?: StructuredResponse;
-  onChange?: (response: StructuredResponse) => void;
+  // Only changed fields are emitted; the owner merges against its latest draft.
+  onChange?: (patch: StructuredResponse) => void;
   syntax?: Syntax[];
   preview?: boolean;
 }) {

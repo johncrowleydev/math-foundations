@@ -136,8 +136,13 @@ export function Exercise({
   useEffect(() => {
     let live = true;
     void get<Draft>('drafts', key).then((saved) => {
-      if (live && saved && saved.updated > (latestDraft.current?.updated || 0)) {
+      if (
+        live &&
+        saved &&
+        (!touched.current || saved.updated > (latestDraft.current?.updated || 0))
+      ) {
         const next = reconcileResponse(saved, q);
+        if (!touched.current) clock.current = new EffortClock(next);
         latestDraft.current = next;
         setDraft(next);
         if (next !== saved) void put('drafts', key, next).catch((e) => setError(String(e)));
@@ -412,7 +417,7 @@ export function Exercise({
         <StructuredAnswer
           assessment={q.assessment}
           response={draft.response}
-          onChange={(response) => update({ response })}
+          onChange={(patch) => update({ response: { ...latestDraft.current?.response, ...patch } })}
           syntax={data.syntax}
         />
       ) : q.choice ? (

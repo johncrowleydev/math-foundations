@@ -2243,3 +2243,40 @@ button.danger:hover:not(:disabled) {
   padding-left: 10px;
   border-left: 2px solid #d8dfe7;
 }
+
+/* Short deterministic answers use the existing editor without prose-sized panels. */
+.tex-editor.compact .editor-columns {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+.tex-editor.compact .editor-input {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: start;
+  gap: 6px;
+}
+.tex-editor.compact .editor-box {
+  padding: 7px 10px;
+}
+.tex-editor.compact .editor-box:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.tex-editor.compact .cm-editor {
+  min-height: 28px;
+}
+.tex-editor.compact .cm-content {
+  min-height: 28px;
+  padding: 1px 0;
+}
+.tex-editor.compact .compact-syntax {
+  min-width: 44px;
+  min-height: 44px;
+}
+.tex-editor.compact .preview {
+  grid-row: auto;
+  min-height: 0;
+}
+.tex-editor.compact .preview .rich > :last-child {
+  margin-bottom: 0;
+}

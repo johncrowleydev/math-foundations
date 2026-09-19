@@ -14,11 +14,13 @@ export function TexEditor({
   onChange,
   syntax,
   label = 'Answer',
+  compact = false,
 }: {
   value: string;
   onChange: (s: string) => void;
   syntax: Syntax[];
   label?: string;
+  compact?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null),
     view = useRef<EditorView>(null),
@@ -168,42 +170,56 @@ export function TexEditor({
     v.focus();
   };
   return (
-    <div className="tex-editor">
+    <div className={'tex-editor' + (compact ? ' compact' : '')}>
       <div className="editor-columns">
         <div className="editor-input">
-          <div className="toolbar">
-            <button onClick={() => insert('', true)}>Insert math</button>
-            <button onClick={() => setHelp(true)}>Symbols & syntax</button>
-            <button
-              title="Undo"
-              onClick={() => {
-                if (view.current) undo(view.current);
-              }}
-            >
-              ↶
-            </button>
-            <button
-              title="Redo"
-              onClick={() => {
-                if (view.current) redo(view.current);
-              }}
-            >
-              ↷
-            </button>
-          </div>
+          {!compact && (
+            <div className="toolbar">
+              <button onClick={() => insert('', true)}>Insert math</button>
+              <button onClick={() => setHelp(true)}>Symbols & syntax</button>
+              <button
+                title="Undo"
+                onClick={() => {
+                  if (view.current) undo(view.current);
+                }}
+              >
+                ↶
+              </button>
+              <button
+                title="Redo"
+                onClick={() => {
+                  if (view.current) redo(view.current);
+                }}
+              >
+                ↷
+              </button>
+            </div>
+          )}
           <div className="editor-box">
-            <label>{label}</label>
+            {!compact && <label>{label}</label>}
             <div ref={host} />
           </div>
-        </div>
-        <div className="preview">
-          <label>Preview</label>
-          {preview.trim() ? (
-            <Rich text={preview} />
-          ) : (
-            <p className="muted">Your text and math will appear here.</p>
+          {compact && (
+            <button
+              className="compact-syntax"
+              title="Symbols & syntax"
+              aria-label={`Symbols and syntax for ${label}`}
+              onClick={() => setHelp(true)}
+            >
+              ?
+            </button>
           )}
         </div>
+        {(!compact || mathRanges(preview).length > 0) && (
+          <div className="preview">
+            <label>Preview</label>
+            {preview.trim() ? (
+              <Rich text={preview} />
+            ) : (
+              <p className="muted">Your text and math will appear here.</p>
+            )}
+          </div>
+        )}
       </div>
       {help && (
         <Modal title="Symbols & TeX syntax" onClose={() => setHelp(false)}>

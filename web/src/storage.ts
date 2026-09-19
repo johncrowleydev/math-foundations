@@ -434,6 +434,8 @@ export async function importData(file: Blob, name: string) {
   const id = await hash(file);
   let conflicts = 0,
     imported = 0;
+  const importedDrafts: string[] = [];
+  const importedMedia: string[] = [];
   const tx = d.transaction([...names, 'media', 'imports'], 'readwrite');
   for (const store of names)
     for (const [key, value] of parsed[store]) {
@@ -448,11 +450,15 @@ export async function importData(file: Blob, name: string) {
             ? { ...value, revision: 0 }
             : value;
         await tx.objectStore(store).put(restored, key);
+        if (store === 'drafts') importedDrafts.push(key);
         imported++;
       } else if (JSON.stringify(old) !== JSON.stringify(value)) conflicts++;
     }
   for (const [key, blob] of media)
-    if (!(await tx.objectStore('media').get(key))) await tx.objectStore('media').put(blob, key);
+    if (!(await tx.objectStore('media').get(key))) {
+      await tx.objectStore('media').put(blob, key);
+      importedMedia.push(key);
+    }
   // Restore server-issued instances before pending attempts are uploaded. State
   // snapshots are never submitted as client mutations: Go replays the evidence.
   const reviewRecords = parsed.records
@@ -482,6 +488,8 @@ export async function importData(file: Blob, name: string) {
     .objectStore('imports')
     .put({ name, at: Date.now(), conflicts, blob: file } satisfies ImportArchive, id);
   await tx.done;
+  for (const key of importedDrafts) changed('draft:' + key);
+  for (const key of importedMedia) changed('media:' + key);
   changed();
   return { imported, conflicts };
 }
