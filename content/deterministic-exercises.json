@@ -8317,6 +8317,107 @@
   },
   {
     "lesson": "functions",
+    "id": 49,
+    "sourceHash": "54200570ef087ae77bf59c10552f0086b368a4772c80ab2067308d40c9572a22",
+    "rationale": "The inverse formula remains constructed; the short explanation is a concise order decision.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse of $g\\circ f$",
+          "hint": "Use ^{-1} for an inverse and \\circ (or o) for composition."
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Why this order?",
+          "options": [
+            {
+              "id": "undo",
+              "label": "Undo the last operation g first, then undo f."
+            },
+            {
+              "id": "same",
+              "label": "An inverse applies the original operations in the original order."
+            },
+            {
+              "id": "commute",
+              "label": "All function compositions commute."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "inverse",
+          "validator": "composition",
+          "fields": ["inverse"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          },
+          "description": "The typed composition has the inverse factors in the correct type-compatible order."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": ["reason"],
+          "params": {
+            "expected": ["undo"]
+          },
+          "description": "Inversion reverses operation order.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "It is $f^{-1}\\circ g^{-1}:C\\to A$. First undo the final step $g$, then undo the initial step $f$. Both inverse identities follow by cancelling these adjacent inverse pairs.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "inverse": "f^-1 o g^-1",
+          "reason": "undo"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "inverse": "f^{-1}\\circ g^{-1}",
+          "reason": "undo"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "inverse": "g^-1 o f^-1",
+          "reason": "undo"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "inverse": "f^-1 o g^-1",
+          "reason": "commute"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "functions",
     "id": 51,
     "sourceHash": "07f430f945f337049e76a056b5e6b2c676fe7efae5988d856aa269f4584feb8a",
     "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
@@ -10963,6 +11064,135 @@
   },
   {
     "lesson": "mathematical-induction",
+    "id": 2,
+    "sourceHash": "1f175674680250679422558896e187887a48a471d4959e04f3443c6c5e13c616",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{i=1}^{k+1}i=(k+1)*(k+2)/2",
+            "variables": ["k"],
+            "sequences": {}
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "The target is $\\sum_{i=1}^{k+1}i=(k+1)(k+2)/2$. Every occurrence of $n$ is replaced by $k+1$, including the second factor.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{i=1}^{k+1}i=(k+1)*(k+2)/2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,1,k+1,j)=(k^2+3*k+2)/2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(i,1,k+1,i)=k*(k+1)/2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 3,
+    "sourceHash": "ee7b162eca3e0cb1e803e992c7c9a43d97e55f26dc8d3e03a0b7a2a0a36cd375",
+    "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation. The given induction index k is fixed; quantify the integer divisibility witness."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": ["formula"],
+          "params": {
+            "expected": "exists t in Z (4^k-1=3*t)",
+            "domains": ["Z"],
+            "predicates": {},
+            "integerVariables": ["k"],
+            "alternatives": ["exists m in Z (3*m+1=4^k)"],
+            "freeVariables": ["k"]
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        }
+      ],
+      "feedback": {
+        "correct": "For arbitrary integer $k$ in the [induction](ref:ordinary-induction) range, assume $4^k-1=3t$ for some integer $t$. The witness comes from divisibility, not from assuming $4^k$ itself is divisible by 3.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "exists t in Z (4^k-1=3*t)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists m in Z (3*m+1=4^k)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists t in Z (4^k=3*t)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "mathematical-induction",
     "id": 4,
     "sourceHash": "dd113ce3c8c8cf6da94178d20f55115e3e7af3d30659540d36e301eb877483dc",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -12268,6 +12498,77 @@
       }
     ],
     "prompt": "A proposed [induction](ref:ordinary-induction) claims that every finite group of horses has the same color. For a group of $k+1$ horses, it removes the first horse and then the last horse, using the [induction hypothesis](ref:induction-hypothesis) on both groups of $k$. It claims that a shared horse forces the two colors to agree. Why does the transition from one horse to two fail?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "mathematical-induction",
+    "id": 66,
+    "sourceHash": "9d54395227ead4ae7371d402399c385639459dec828aadb3cc7dc81b72e2bcf9",
+    "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation. Type the corrected comparison for the given integer k >= 4."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": ["formula"],
+          "params": {
+            "expected": "2*k^2>=(k+1)^2",
+            "domains": ["Z"],
+            "predicates": {},
+            "alternatives": ["(k+1)^2<=2*k^2"],
+            "freeVariables": ["k"]
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        }
+      ],
+      "feedback": {
+        "correct": "Equality is generally false. The required inequality is $2k^2\\geq(k+1)^2$, justified by difference $(k-1)^2-2\\geq7$ for $k\\geq4$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "2*k^2>=(k+1)^2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "(k+1)^2<=2*k^2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "2*k^2=(k+1)^2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "2*k^2<=(k+1)^2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "mathematical-induction",
@@ -35961,6 +36262,215 @@
   },
   {
     "lesson": "relations",
+    "id": 32,
+    "sourceHash": "1512d9688923b44eb67a88ef60a622aa7f51f62c8132a312066d28f907b9f8b7",
+    "rationale": "The class description remains typed and the four explicitly requested members are entered in one compact row. Any four distinct valid integers are accepted.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "class",
+          "kind": "math",
+          "label": "Class [2] in set-builder notation"
+        },
+        {
+          "id": "members",
+          "kind": "grid",
+          "label": "Four distinct members",
+          "columns": ["First", "Second", "Third", "Fourth"],
+          "rows": [
+            {
+              "cells": [
+                {
+                  "id": "m1",
+                  "kind": "text"
+                },
+                {
+                  "id": "m2",
+                  "kind": "text"
+                },
+                {
+                  "id": "m3",
+                  "kind": "text"
+                },
+                {
+                  "id": "m4",
+                  "kind": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "class",
+          "validator": "integer-class",
+          "fields": ["class"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          },
+          "description": "The set-builder describes exactly the congruence class of two modulo four."
+        },
+        {
+          "id": "members",
+          "validator": "witness",
+          "fields": ["m1", "m2", "m3", "m4"],
+          "params": {
+            "variables": [
+              {
+                "name": "m1",
+                "field": "m1",
+                "integer": true
+              },
+              {
+                "name": "m2",
+                "field": "m2",
+                "integer": true
+              },
+              {
+                "name": "m3",
+                "field": "m3",
+                "integer": true
+              },
+              {
+                "name": "m4",
+                "field": "m4",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "4",
+                "op": "divides",
+                "right": "m1-2"
+              },
+              {
+                "left": "4",
+                "op": "divides",
+                "right": "m2-2"
+              },
+              {
+                "left": "4",
+                "op": "divides",
+                "right": "m3-2"
+              },
+              {
+                "left": "4",
+                "op": "divides",
+                "right": "m4-2"
+              },
+              {
+                "left": "m1",
+                "op": "!=",
+                "right": "m2"
+              },
+              {
+                "left": "m1",
+                "op": "!=",
+                "right": "m3"
+              },
+              {
+                "left": "m1",
+                "op": "!=",
+                "right": "m4"
+              },
+              {
+                "left": "m2",
+                "op": "!=",
+                "right": "m3"
+              },
+              {
+                "left": "m2",
+                "op": "!=",
+                "right": "m4"
+              },
+              {
+                "left": "m3",
+                "op": "!=",
+                "right": "m4"
+              }
+            ]
+          },
+          "description": "The four entries are distinct integers in the requested class."
+        }
+      ],
+      "feedback": {
+        "correct": "$[2]=\\{4k+2:k\\in\\mathbb Z\\}$. Examples are $-6,-2,2,6$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "class": "{4*k+2:k in Z}",
+          "m1": "-6",
+          "m2": "-2",
+          "m3": "2",
+          "m4": "6"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "class": "{4*k-2:k in Z}",
+          "m1": "2",
+          "m2": "6",
+          "m3": "10",
+          "m4": "14"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "class": "{n in Z:4|(n-2)}",
+          "m1": "-10",
+          "m2": "-6",
+          "m3": "2",
+          "m4": "18"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "class": "{4*k:k in Z}",
+          "m1": "-6",
+          "m2": "-2",
+          "m3": "2",
+          "m4": "6"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "class": "{4*k+2:k in Z}",
+          "m1": "2",
+          "m2": "2",
+          "m3": "6",
+          "m4": "10"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "class": "{4*k+2:k in Z}",
+          "m1": "2",
+          "m2": "6",
+          "m3": "10",
+          "m4": "15"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "relations",
     "id": 33,
     "sourceHash": "1e0a2c7ee49308413163ac39054265c88293527d3dcd364c2700f1fd9141deb4",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -39694,6 +40204,95 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 19,
+    "sourceHash": "d7a80bc9e4bf49c79cf1b070dbe307732456e3aa91b820989b95574c23f2f2a8",
+    "rationale": "An ordinary typed indexed expression preserves producing the rule or simplified result; exact symbolic indices and coefficients are checked without a formula-building interface.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "$a_{n+1}=$",
+          "hint": "Ordinary indexed terms such as a_n or a(n) are accepted."
+        },
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$a_0$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "indexed-expression",
+          "fields": ["formula"],
+          "params": {
+            "expected": "5*a_n",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          },
+          "description": "The indexed expression has the requested terms and exact coefficients."
+        },
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": ["value-1"],
+          "params": {
+            "expected": ["2"]
+          },
+          "description": "The initial value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$a_0=2$ and $a_{n+1}=5a_n$. Multiplying the [explicit formula](ref:explicit-formula) by 5 raises its exponent by one.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "5*a_n",
+          "value-1": "2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a(n)*5",
+          "value-1": "2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a(n)+5",
+          "value-1": "2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "5*a_n",
+          "value-1": "3"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 21,
     "sourceHash": "a5acb37995e1c5fcf65cb07117277f943e67145a6c70bd226a58a3eff454ee13",
     "rationale": "A single typed term list preserves constructing the expansion without revealing its length through prefilled slots.",
@@ -39942,6 +40541,69 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 24,
+    "sourceHash": "37363067a88a5185e7f330e63ffa641fb4fb5fd3796c3096f68f54edaef75623",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{k=0}^{4}(5+3*k)",
+            "variables": [],
+            "sequences": {}
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\sum_{k=0}^{4}(5+3k)$. There are five terms with four increments after the first.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{k=0}^{4}(5+3*k)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,0,4,3*j+5)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(k,1,5,5+3*k)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 25,
     "sourceHash": "e254029b794bb88821c2454bb16aafc9206d897ee0c07c446f7bf81610f46d04",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -40112,6 +40774,78 @@
       {
         "response": {
           "formula-1": "(2*n^2+5*n)+1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 28,
+    "sourceHash": "b728481d801d7bf40d4559f11aae2f0c4ba8de772272833057f5e77bb1aa4a88",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            },
+            "allowFiniteExpansion": true
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k$. Starting the second sum at 4 would count $a_4$ twice.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,1,4,a(j))+sum(i,5,n,a(i))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a(1)+a(2)+a(3)+a(4)+sum(k,5,n,a(k))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(k,1,3,a(k))+sum(k,4,n,a(k))"
         },
         "verdict": "incorrect"
       },
@@ -40740,6 +41474,286 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 41,
+    "sourceHash": "383e95feedf69d81242d003a8278da36c4c73620201a4a55065edcc1c55d02f4",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        },
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Sum"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{j=0}^{4}(j+5)",
+            "variables": [],
+            "sequences": {}
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        },
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": ["value-1"],
+          "params": {
+            "expected": ["35"]
+          },
+          "description": "The evaluated sum is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "It becomes $\\sum_{j=0}^{4}(j+5)=5+6+7+8+9=35$. Both bounds and the [summand](ref:summand) change.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{j=0}^{4}(j+5)",
+          "value-1": "35"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,0,4,5+j)",
+          "value-1": "35"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,0,4,j+2)",
+          "value-1": "35"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "\\sum_{j=0}^{4}(j+5)",
+          "value-1": "36"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 42,
+    "sourceHash": "e72d07d73457f4604710783822f293afd252e3713e178033bb4308ddca88cdf7",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{j=0}^{n-2}a_{j+2}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\sum_{j=0}^{n-2}a_{j+2}$. The original first and last terms remain $a_2$ and $a_n$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{j=0}^{n-2}a_{j+2}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,0,n-2,a(2+j))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,0,n-2,a(j))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 43,
+    "sourceHash": "cc39745ad91caa84d9d3780c3cdcc9cf0d32c1e5ae4e4c4303ec55cc1dec47f8",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}(n+1-j)^2",
+            "variables": ["n"],
+            "sequences": {}
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\sum_{j=1}^{n}(n+1-j)^2$. The new index visits the same terms in reverse order; finite addition permits the reversal.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{j=1}^{n}(n+1-j)^2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,1,n,(1+n-j)*(n+1-j))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,1,n,j^2)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 45,
+    "sourceHash": "e646654bf79f315b543f87e6e2958a795a3e35bedd96b260cefee3e26051d489",
+    "rationale": "An ordinary typed indexed expression preserves producing the rule or simplified result; exact symbolic indices and coefficients are checked without a formula-building interface.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Ordinary indexed terms such as a_n or a(n) are accepted."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "indexed-expression",
+          "fields": ["formula"],
+          "params": {
+            "expected": "b_{n+1}-b_m",
+            "variables": ["n", "m"],
+            "sequences": {
+              "b": 1
+            }
+          },
+          "description": "The indexed expression has the requested terms and exact coefficients."
+        }
+      ],
+      "feedback": {
+        "correct": "$b_{n+1}-b_m$. Every intermediate value appears once with each sign.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "b_{n+1}-b_m"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "-b(m)+b(n+1)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "b(n)-b(m)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 46,
     "sourceHash": "d839da0a15de979787f91daf2e10c124a4b06a0afccaccbe6bf4621bc89c665e",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -40935,6 +41949,71 @@
       }
     ],
     "prompt": "Why can the identity $1/(k(k+1))=1/k-1/(k+1)$ not justify a sum that includes $k=0$?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 50,
+    "sourceHash": "fd7d73fd03dee0f574dfeabf478d643c0325b7e1638d880a53eac382075b9be7",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{j=0}^{3}a_{j+2}",
+            "variables": [],
+            "sequences": {
+              "a": 1
+            }
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "The correct [summand](ref:summand) is $a_{j+2}$, so the result is $\\sum_{j=0}^{3}a_{j+2}$. The student's expression sums $a_0$ through $a_3$ instead.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{j=0}^{3}a_{j+2}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,0,3,a(j+2))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,0,3,a(j))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "sequences-and-summations",
@@ -41783,6 +42862,136 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 64,
+    "sourceHash": "0bb9679305710b02fc128d296b07e37ad49980be847aaf1ad7b41133c2287652",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}\\sum_{i=j}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\sum_{j=1}^{n}\\sum_{i=j}^{n}a_{i,j}$. Both expressions visit exactly the pairs with $1\\leq j\\leq i\\leq n$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{j=1}^{n}\\sum_{i=j}^{n}a_{i,j}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(t,1,n,sum(s,t,n,a(s,t)))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(i,1,n,sum(j,1,i,a(i,j)))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 65,
+    "sourceHash": "4529b9edd89bd66845e0311be2b19f39b5bf782d64b7438cfc92ca9619ebc77e",
+    "rationale": "The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Summation formula",
+          "hint": "Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "summation",
+          "fields": ["formula"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n-1}\\sum_{i=j+1}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          },
+          "description": "The bounds, index substitution, summand, and any stated equation are correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\sum_{j=1}^{n-1}\\sum_{i=j+1}^{n}a_{i,j}$. The same pairs satisfy $1\\leq j<i\\leq n$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "\\sum_{j=1}^{n-1}\\sum_{i=j+1}^{n}a_{i,j}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(t,1,n-1,sum(s,t+1,n,a(s,t)))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "sum(j,1,n-1,sum(i,j,n,a(i,j)))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 66,
     "sourceHash": "fbeb9c3627275a4b1513f049ac00b93f41e6e037a371f94b7c8c70bad64d623d",
     "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
@@ -42481,6 +43690,71 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 78,
+    "sourceHash": "30c1f204f1ad06609e4b282bb6d8e3cfd285c67081d177ce0247ef5e3968a624",
+    "rationale": "An ordinary typed indexed expression preserves producing the rule or simplified result; exact symbolic indices and coefficients are checked without a formula-building interface.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Ordinary indexed terms such as a_n or a(n) are accepted."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "indexed-expression",
+          "fields": ["formula"],
+          "params": {
+            "expected": "a_{n+1}+a_{n+2}-a_1-a_2",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          },
+          "description": "The indexed expression has the requested terms and exact coefficients."
+        }
+      ],
+      "feedback": {
+        "correct": "The result is $a_{n+1}+a_{n+2}-a_1-a_2$. Interior terms cancel. At $n=1$, the displayed $a_2$ terms cancel as well, leaving the correct $a_3-a_1$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "a_{n+1}+a_{n+2}-a_1-a_2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a(n+2)-a(2)+a(n+1)-a(1)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a(n+2)-a(1)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 79,
     "sourceHash": "26662eccb5357222e4a549b13c209df7a3e580b73715c433e42b47977f97172e",
     "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
@@ -42725,6 +43999,82 @@
           "value-3": "2"
         },
         "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 7,
+    "sourceHash": "d5dead055d6489ace030e6f2a977c4bf57e63108d2d74bb16b80dbe357774d71",
+    "rationale": "Ordinary set-builder entry preserves producing the description; exact integer-lattice normalization accepts parameter, divisibility, and quantified-witness forms.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set",
+          "kind": "math",
+          "label": "Set-builder description",
+          "hint": "Use Z or mathbb{Z} for the integers, with ordinary set-builder notation."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set",
+          "validator": "integer-class",
+          "fields": ["set"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          },
+          "description": "The set-builder describes exactly all integer multiples of five."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{n\\in\\mathbb Z:\\exists k\\in\\mathbb Z,\\ n=5k\\}$, equivalently $\\{5k:k\\in\\mathbb Z\\}$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set": "{5*k:k in Z}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set": "{n in Z:5|n}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set": "{n in Z:exists k in Z,n=5*k}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set": "{5*k+5:k in Z}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set": "{5*k+1:k in Z}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "set": "{10*k:k in Z}"
+        },
+        "verdict": "incorrect"
       }
     ]
   },

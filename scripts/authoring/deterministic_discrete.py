@@ -345,10 +345,12 @@ def author(append, requirement, exercises):
                + [{'response': {'decision': 'no', **dict(zip(fields, vals))}, 'verdict': 'correct'} for vals in alternatives]
                + [{'response': {'decision': 'no', **{f: False for f in fields}}, 'verdict': 'incorrect'}, {'response': {}, 'error': True}])
 
-    def quantified(identifier, expected, predicates, domains, *, alternatives=None, constants=None, free=None, choice=None, wrong=None, lesson='predicates-and-quantifiers', notation=None, functions=None, named_sets=None, form=None):
+    def quantified(identifier, expected, predicates, domains, *, alternatives=None, constants=None, free=None, choice=None, wrong=None, lesson='predicates-and-quantifiers', notation=None, functions=None, named_sets=None, form=None, integer_variables=None):
         inputs = [{'id': 'formula', 'kind': 'math', 'label': 'Formula',
                    'hint': 'Use forall / exists with domains '+', '.join(domains)+', or equivalent TeX notation.'}]
         params = {'expected': expected, 'domains': domains, 'predicates': predicates}
+        if integer_variables:
+            params['integerVariables'] = integer_variables
         if functions:
             params['functions'] = functions
         if named_sets:
@@ -1050,3 +1052,92 @@ def author(append, requirement, exercises):
         append(f'sequences-and-summations-{identifier}', inputs, reqs, response,
                'Two ordinary typed rules preserve constructing distinct sequences. The checker proves exact identities or nonidentities and checks every explicitly requested prefix index.',
                capabilities=['math-text', 'tap'] if choice else ['math-text'], test_cases=tests)
+
+    quantified(66, '2*k^2>=(k+1)^2', {}, ['Z'], free=['k'], lesson='mathematical-induction',
+               alternatives=['(k+1)^2<=2*k^2'], wrong=['2*k^2=(k+1)^2', '2*k^2<=(k+1)^2'],
+               notation='Type the corrected comparison for the given integer k >= 4.')
+
+    def indexed(key, expected, variables, sequences, alternatives, wrong, *, numeric=None, label='Formula'):
+        inputs = [{'id': 'formula', 'kind': 'math', 'label': label, 'hint': 'Ordinary indexed terms such as a_n or a(n) are accepted.'}]
+        reqs = [requirement('formula', 'indexed-expression', ['formula'], {'expected': expected, 'variables': variables, 'sequences': sequences}, 'The indexed expression has the requested terms and exact coefficients.')]
+        response = {'formula': expected}
+        tests = [{'response': {'formula': f}, 'verdict': verdict} for f, verdict in [(expected, 'correct')]+[(f, 'correct') for f in alternatives]+[(f, 'incorrect') for f in wrong]]
+        for i, (label, value) in enumerate(numeric or []):
+            field = f'value-{i+1}'
+            inputs.append({'id': field, 'kind': 'math', 'label': label})
+            reqs.append(requirement(field, 'exact', [field], {'expected': [str(value)]}, 'The initial value is correct.'))
+            response[field] = str(value)
+            for t in tests:
+                t['response'][field] = str(value)
+            tests.append({'response': {**response, field: str(value+1)}, 'verdict': 'incorrect'})
+        tests.append({'response': {}, 'error': True})
+        append(key, inputs, reqs, response,
+               'An ordinary typed indexed expression preserves producing the rule or simplified result; exact symbolic indices and coefficients are checked without a formula-building interface.',
+               capabilities=['math-text'], test_cases=tests)
+
+    indexed('sequences-and-summations-19', '5*a_n', ['n'], {'a': 1}, ['a(n)*5'], ['a(n)+5'], numeric=[('$a_0$', 2)], label='$a_{n+1}=$')
+    indexed('sequences-and-summations-45', 'b_{n+1}-b_m', ['n', 'm'], {'b': 1}, ['-b(m)+b(n+1)'], ['b(n)-b(m)'])
+    indexed('sequences-and-summations-78', 'a_{n+1}+a_{n+2}-a_1-a_2', ['n'], {'a': 1}, ['a(n+2)-a(2)+a(n+1)-a(1)'], ['a(n+2)-a(1)'])
+
+    def summation(key, expected, variables, sequences, alternatives, wrong, *, numeric=None, expand=False):
+        inputs = [{'id': 'formula', 'kind': 'math', 'label': 'Summation formula',
+                   'hint': r'Use ordinary TeX summation notation or sum(index,lower,upper,term); indexed terms may use a(i) or a_{i}.'}]
+        reqs = [requirement('formula', 'summation', ['formula'], {'expected': expected, 'variables': variables, 'sequences': sequences, **({'allowFiniteExpansion': True} if expand else {})}, 'The bounds, index substitution, summand, and any stated equation are correct.')]
+        response = {'formula': expected}
+        tests = [{'response': {'formula': f}, 'verdict': verdict} for f, verdict in [(expected, 'correct')]+[(f, 'correct') for f in alternatives]+[(f, 'incorrect') for f in wrong]]
+        for i, (label, value) in enumerate(numeric or []):
+            field = f'value-{i+1}'
+            inputs.append({'id': field, 'kind': 'math', 'label': label})
+            reqs.append(requirement(field, 'exact', [field], {'expected': [str(value)]}, 'The evaluated sum is correct.'))
+            response[field] = str(value)
+            for t in tests:
+                t['response'][field] = str(value)
+            tests.append({'response': {**response, field: str(value+1)}, 'verdict': 'incorrect'})
+        tests.append({'response': {}, 'error': True})
+        append(key, inputs, reqs, response,
+               'The learner types the whole summation in the existing math entry. Bound-variable renaming and equivalent term algebra are accepted while the requested bounds and summation structure remain assessed.',
+               capabilities=['math-text'], test_cases=tests)
+
+    summation('sequences-and-summations-24', r'\sum_{k=0}^{4}(5+3*k)', [], {}, ['sum(j,0,4,3*j+5)'], ['sum(k,1,5,5+3*k)'])
+    summation('sequences-and-summations-28', r'\sum_{k=1}^{4}a_k+\sum_{k=5}^{n}a_k', ['n'], {'a': 1},
+              ['sum(j,1,4,a(j))+sum(i,5,n,a(i))', 'a(1)+a(2)+a(3)+a(4)+sum(k,5,n,a(k))'], ['sum(k,1,3,a(k))+sum(k,4,n,a(k))'], expand=True)
+    summation('sequences-and-summations-41', r'\sum_{j=0}^{4}(j+5)', [], {}, ['sum(j,0,4,5+j)'], ['sum(j,0,4,j+2)'], numeric=[('Sum', 35)])
+    summation('sequences-and-summations-42', r'\sum_{j=0}^{n-2}a_{j+2}', ['n'], {'a': 1}, ['sum(j,0,n-2,a(2+j))'], ['sum(j,0,n-2,a(j))'])
+    summation('sequences-and-summations-43', r'\sum_{j=1}^{n}(n+1-j)^2', ['n'], {}, ['sum(j,1,n,(1+n-j)*(n+1-j))'], ['sum(j,1,n,j^2)'])
+    summation('sequences-and-summations-50', r'\sum_{j=0}^{3}a_{j+2}', [], {'a': 1}, ['sum(j,0,3,a(j+2))'], ['sum(j,0,3,a(j))'])
+    summation('sequences-and-summations-64', r'\sum_{j=1}^{n}\sum_{i=j}^{n}a_{i,j}', ['n'], {'a': 2}, ['sum(t,1,n,sum(s,t,n,a(s,t)))'], ['sum(i,1,n,sum(j,1,i,a(i,j)))'])
+    summation('sequences-and-summations-65', r'\sum_{j=1}^{n-1}\sum_{i=j+1}^{n}a_{i,j}', ['n'], {'a': 2}, ['sum(t,1,n-1,sum(s,t+1,n,a(s,t)))'], ['sum(j,1,n-1,sum(i,j,n,a(i,j)))'])
+    summation('mathematical-induction-2', r'\sum_{i=1}^{k+1}i=(k+1)*(k+2)/2', ['k'], {}, ['sum(j,1,k+1,j)=(k^2+3*k+2)/2'], ['sum(i,1,k+1,i)=k*(k+1)/2'])
+    quantified(3, 'exists t in Z (4^k-1=3*t)', {}, ['Z'], free=['k'], lesson='mathematical-induction', integer_variables=['k'],
+               alternatives=['exists m in Z (3*m+1=4^k)'], wrong=['exists t in Z (4^k=3*t)'],
+               notation='The given induction index k is fixed; quantify the integer divisibility witness.')
+
+    append('functions-49', [{'id': 'inverse', 'kind': 'math', 'label': 'Inverse of $g\\circ f$', 'hint': r'Use ^{-1} for an inverse and \circ (or o) for composition.'},
+                            decision('reason', 'Why this order?', [('undo', 'Undo the last operation g first, then undo f.'), ('same', 'An inverse applies the original operations in the original order.'), ('commute', 'All function compositions commute.')])],
+           [requirement('inverse', 'composition', ['inverse'], {'expected': 'f^-1 o g^-1', 'functions': {'f': ['A', 'B'], 'g': ['B', 'C']}, 'form': 'individual-inverses'}, 'The typed composition has the inverse factors in the correct type-compatible order.'),
+            choice_requirement('reason', 'undo', 'Inversion reverses operation order.')],
+           {'inverse': 'f^-1 o g^-1', 'reason': 'undo'}, 'The inverse formula remains constructed; the short explanation is a concise order decision.',
+           capabilities=['math-text', 'tap'], test_cases=[{'response': {'inverse': f, 'reason': why}, 'verdict': v} for f, why, v in [
+               ('f^-1 o g^-1', 'undo', 'correct'), (r'f^{-1}\circ g^{-1}', 'undo', 'correct'), ('g^-1 o f^-1', 'undo', 'incorrect'), ('f^-1 o g^-1', 'commute', 'incorrect')]])
+
+    append('sets-and-set-operations-7', [{'id': 'set', 'kind': 'math', 'label': 'Set-builder description', 'hint': 'Use Z or mathbb{Z} for the integers, with ordinary set-builder notation.'}],
+           [requirement('set', 'integer-class', ['set'], {'modulus': '5', 'residue': '0'}, 'The set-builder describes exactly all integer multiples of five.')],
+           {'set': '{5*k:k in Z}'}, 'Ordinary set-builder entry preserves producing the description; exact integer-lattice normalization accepts parameter, divisibility, and quantified-witness forms.',
+           capabilities=['math-text'], test_cases=[{'response': {'set': f}, 'verdict': v} for f, v in [
+               ('{5*k:k in Z}', 'correct'), ('{n in Z:5|n}', 'correct'), ('{n in Z:exists k in Z,n=5*k}', 'correct'),
+               ('{5*k+5:k in Z}', 'correct'), ('{5*k+1:k in Z}', 'incorrect'), ('{10*k:k in Z}', 'incorrect')]])
+    class_fields = [f'm{i}' for i in range(1, 5)]
+    class_conditions = [{'left': '4', 'op': 'divides', 'right': f'{f}-2'} for f in class_fields]
+    class_conditions += [{'left': a, 'op': '!=', 'right': b} for i, a in enumerate(class_fields) for b in class_fields[i+1:]]
+    append('relations-32', [{'id': 'class', 'kind': 'math', 'label': 'Class [2] in set-builder notation'},
+                             {'id': 'members', 'kind': 'grid', 'label': 'Four distinct members', 'columns': ['First', 'Second', 'Third', 'Fourth'],
+                              'rows': [{'cells': [{'id': f, 'kind': 'text'} for f in class_fields]}]}],
+           [requirement('class', 'integer-class', ['class'], {'modulus': '4', 'residue': '2'}, 'The set-builder describes exactly the congruence class of two modulo four.'),
+            requirement('members', 'witness', class_fields, {'variables': [{'name': f, 'field': f, 'integer': True} for f in class_fields], 'conditions': class_conditions}, 'The four entries are distinct integers in the requested class.')],
+           {'class': '{4*k+2:k in Z}', 'm1': '-6', 'm2': '-2', 'm3': '2', 'm4': '6'},
+           'The class description remains typed and the four explicitly requested members are entered in one compact row. Any four distinct valid integers are accepted.',
+           capabilities=['math-text'], test_cases=[{'response': {'class': f, **dict(zip(class_fields, values))}, 'verdict': verdict} for f, values, verdict in [
+               ('{4*k+2:k in Z}', ['-6', '-2', '2', '6'], 'correct'), ('{4*k-2:k in Z}', ['2', '6', '10', '14'], 'correct'),
+               ('{n in Z:4|(n-2)}', ['-10', '-6', '2', '18'], 'correct'),
+               ('{4*k:k in Z}', ['-6', '-2', '2', '6'], 'incorrect'), ('{4*k+2:k in Z}', ['2', '2', '6', '10'], 'incorrect'),
+               ('{4*k+2:k in Z}', ['2', '6', '10', '15'], 'incorrect')]])
