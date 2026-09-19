@@ -85,7 +85,7 @@ def author(append, requirement, exercises):
         inputs = [{'id': name, 'kind': 'math', 'label': label} for name, label, _ in variables]
         reqs = [requirement('witness', 'witness', [name for name, _, _ in variables],
                             {'variables': [{'name': name, 'field': name, **constraints} for name, _, constraints in variables],
-                             'conditions': [{'left': a, 'op': op, 'right': b} for a, op, b in conditions]},
+                             'conditions': [{'left': c[0], 'op': c[1], **({'right': c[2]} if len(c) > 2 else {})} for c in conditions]},
                             'The proposed values satisfy the requested hypotheses and violate the claimed conclusion.')]
         response = {name: str(value) for (name, _, _), value in zip(variables, correct)}
         tests = []
@@ -130,12 +130,12 @@ def author(append, requirement, exercises):
             [2, 3], [[3, 2], [-2, 3]], [[6, 1], [2, 2], [0, 3]])
     witness('proof-by-contrapositive-60', [('x', '$x$', {})], [('x^2', '>', '9'), ('x', '<=', '3')], [-4], [['-7/2'], [-5]], [[-3], [4], [0]])
 
-    def expressions(key, answers, numeric=None, choice=None):
+    def expressions(key, answers, numeric=None, choice=None, options=None):
         inputs, reqs, response, alternative = [], [], {}, {}
         for i, (label, expected, variables, domain, equivalent) in enumerate(answers):
             field = f'formula-{i+1}'
             inputs.append({'id': field, 'kind': 'math', 'label': label})
-            reqs.append(requirement(field, 'expression', [field], {'expected': expected, 'variables': variables, **({'domain': domain} if domain else {})},
+            reqs.append(requirement(field, 'expression', [field], {'expected': expected, 'variables': variables, **({'domain': domain} if domain else {}), **(options or {})},
                                     'The typed expression is equivalent on the stated domain.'))
             response[field], alternative[field] = expected, equivalent
         for i, (label, expected) in enumerate(numeric or []):
@@ -345,10 +345,16 @@ def author(append, requirement, exercises):
                + [{'response': {'decision': 'no', **dict(zip(fields, vals))}, 'verdict': 'correct'} for vals in alternatives]
                + [{'response': {'decision': 'no', **{f: False for f in fields}}, 'verdict': 'incorrect'}, {'response': {}, 'error': True}])
 
-    def quantified(identifier, expected, predicates, domains, *, alternatives=None, constants=None, free=None, choice=None, wrong=None, lesson='predicates-and-quantifiers', notation=None):
+    def quantified(identifier, expected, predicates, domains, *, alternatives=None, constants=None, free=None, choice=None, wrong=None, lesson='predicates-and-quantifiers', notation=None, functions=None, named_sets=None, form=None):
         inputs = [{'id': 'formula', 'kind': 'math', 'label': 'Formula',
                    'hint': 'Use forall / exists with domains '+', '.join(domains)+', or equivalent TeX notation.'}]
         params = {'expected': expected, 'domains': domains, 'predicates': predicates}
+        if functions:
+            params['functions'] = functions
+        if named_sets:
+            params['sets'] = named_sets
+        if form:
+            params['form'] = form
         if alternatives:
             params['alternatives'] = alternatives
         if constants:
@@ -703,3 +709,344 @@ def author(append, requirement, exercises):
            capabilities=['math-text'], test_cases=[{'response': {'terms': '3,5,7,9', 'sum': '24'}, 'verdict': 'correct'},
                                                   {'response': {'terms': '2*2-1,2*3-1,2*4-1,2*5-1', 'sum': '3+5+7+9'}, 'verdict': 'correct'},
                                                   {'response': {'terms': '3,5,7', 'sum': '15'}, 'verdict': 'incorrect'}, {'response': {}, 'error': True}])
+
+    for identifier, correct, wrong in [
+        (22, 'Bijective: equal outputs force equal inputs, and y is reached at (y-1)/3.', ['Injective only: real targets below 1 are missed.', 'Surjective only: opposite inputs always collide.']),
+        (23, 'Neither: -1 and 1 collide, and negative targets are missed.', ['Bijective: every real has exactly one real square root.', 'Surjective only: negative targets have negative square roots.']),
+        (24, 'Surjective only: every nonnegative target has a square root, but -1 and 1 collide.', ['Bijective: restricting the codomain removes input collisions.', 'Injective only: zero has no preimage.']),
+        (25, 'Bijective: each nonnegative target has exactly one nonnegative square root.', ['Surjective only: -1 and 1 are both allowed inputs.', 'Injective only: positive targets are missed.']),
+        (26, 'Injective only: cancellation gives equal inputs, but 0 is missed.', ['Bijective: every nonnegative target has a nonnegative predecessor.', 'Neither: consecutive inputs have equal outputs.']),
+        (27, 'Surjective only: k is reached at k, but -1 and 1 collide.', ['Bijective: every target has exactly one integer preimage.', 'Injective only: nonnegative targets are missed.']),
+        (66, 'Surjective only: each integer maps to itself, but 2.1 and 2.9 collide.', ['Bijective: distinct real numbers always have different floors.', 'Injective only: negative integer targets are missed.']),
+    ]:
+        recognition(f'functions-{identifier}', correct, wrong,
+                    prompt=exercises[f'functions-{identifier}']['publishedQuestion']['prompt'].replace('Justify your answer.', 'Select the classification and reason.'))
+
+    append('functions-10', [{'id': 'pairs', 'kind': 'math', 'label': 'Identity pairs'},
+                            decision('reason', 'Why do both compositions equal f?', [('fixed', 'Identity fixes the input or output; domains, codomains, and values agree.'), ('constant', 'Identity sends every input to the same output.'), ('reverse', 'Every composition of functions is commutative.')])],
+           [requirement('pairs', 'set', ['pairs'], {'expected': ['(a,a)', '(b,b)', '(c,c)'], 'atoms': ['a', 'b', 'c']}, 'Every element maps to itself.'),
+            choice_requirement('reason', 'fixed', 'The identity changes neither the permitted types nor any value.')],
+           {'pairs': '{(a,a),(b,b),(c,c)}', 'reason': 'fixed'},
+           'The identity is still constructed by typing its pairs; the short explanation is a concise conceptual choice.',
+           capabilities=['math-text', 'tap'], test_cases=[
+               {'response': {'pairs': p, 'reason': r}, 'verdict': v} for p, r, v in [
+                   ('{(a,a),(b,b),(c,c)}', 'fixed', 'correct'), ('{(c,c),(a,a),(b,b)}', 'fixed', 'correct'),
+                   ('{(a,a),(b,b)}', 'fixed', 'incorrect'), ('{(a,a),(b,b),(c,c)}', 'reverse', 'incorrect')]])
+    append('functions-33', [decision('source', 'Restricted codomain of f / domain of its inverse', [('even', 'Even integers'), ('all', 'All integers'), ('nonnegative', 'Nonnegative integers')]),
+                            decision('target', 'Codomain of the inverse', [('even', 'Even integers'), ('all', 'All integers'), ('nonnegative', 'Nonnegative integers')]),
+                            {'id': 'inverse', 'kind': 'math', 'label': 'Inverse at m'}],
+           [choice_requirement('source', 'even', 'The image is exactly the even integers.'), choice_requirement('target', 'all', 'The inverse returns to the original integer domain.'),
+            requirement('inverse', 'expression', ['inverse'], {'expected': 'm/2', 'variables': ['m']}, 'The inverse undoes multiplication by two.')],
+           {'source': 'even', 'target': 'all', 'inverse': 'm/2'},
+           'The inverse formula remains typed; the domain and codomain are concise type decisions.', capabilities=['math-text', 'tap'], test_cases=[
+               {'response': {'source': s, 'target': t, 'inverse': f}, 'verdict': v} for s, t, f, v in [
+                   ('even', 'all', 'm/2', 'correct'), ('even', 'all', '0.5*m', 'correct'), ('all', 'all', 'm/2', 'incorrect'),
+                   ('even', 'even', 'm/2', 'incorrect'), ('even', 'all', '2*m', 'incorrect')]])
+
+    def set_model(key, variables, conditions, valid, invalid, *, choice=None, prompt=None, atoms=None):
+        inputs = [{'id': v, 'kind': 'math', 'label': f'${v}$', 'hint': 'Enter a finite set in braces; {} is the empty set.'} for v in variables]
+        params = {'variables': {v: v for v in variables}, 'conditions': conditions}
+        if atoms:
+            params['atoms'] = atoms
+        reqs = [requirement('model', 'set-model', variables, params, 'The proposed finite sets satisfy the exact requested properties.')]
+        tests = [{'response': dict(zip(variables, values)), 'verdict': verdict} for values, verdict in [(v, 'correct') for v in valid]+[(v, 'incorrect') for v in invalid]]
+        response = dict(tests[0]['response'])
+        if choice:
+            field, label, options, expected = choice
+            inputs.append(decision(field, label, options))
+            reqs.append(choice_requirement(field, expected, 'The short explanation distinguishes the failed property.'))
+            response[field] = expected
+            for t in tests:
+                t['response'][field] = expected
+            tests.append({'response': {**response, field: next(k for k, _ in options if k != expected)}, 'verdict': 'incorrect'})
+        tests.append({'response': {}, 'error': True})
+        append(key, inputs, reqs, response,
+               'Ordinary finite-set entry preserves constructing a counterexample. The checker evaluates the stated set operations, so different valid constructions are accepted.',
+               capabilities=['math-text', 'tap'] if choice else ['math-text'], prompt=prompt, test_cases=tests)
+
+    set_model('sets-and-set-operations-29', ['A', 'B', 'C'], [{'left': 'A-(B|C)', 'op': '!=', 'right': '(A-B)|(A-C)'}],
+              [['{1,2}', '{1}', '{2}'], ['{3}', '{}', '{3}']], [['{}', '{1}', '{2}'], ['{1}', '{1}', '{1}']],
+              prompt='Refute the claimed identity $A\\setminus(B\\cup C)=(A\\setminus B)\\cup(A\\setminus C)$ by constructing finite sets.')
+    set_model('sets-and-set-operations-38', ['A', 'B'], [{'left': 'A', 'op': 'nonempty'}, {'left': 'B', 'op': 'nonempty'}, {'left': 'A*B', 'op': '!=', 'right': 'B*A'}],
+              [['{1}', '{2}'], ['{1,2}', '{2,3}']], [['{}', '{2}'], ['{1}', '{1}']])
+    set_model('sets-and-set-operations-50', ['A', 'B'], [{'left': 'A', 'op': 'same-size', 'right': 'B'}, {'left': 'A', 'op': '!=', 'right': 'B'}],
+              [['{1,2}', '{3,4}'], ['{0}', '{1}']], [['{1}', '{1}'], ['{}', '{1}']],
+              choice=('reason', 'Why is cardinality insufficient?', [('members', 'Equality requires the same members; cardinality records only their count.'), ('order', 'Equality also requires the same order of listing.'), ('size', 'Equal finite sets must have different cardinalities.')], 'members'))
+    set_model('sets-and-set-operations-60', ['A', 'B', 'C'], [{'left': s, 'op': 'nonempty'} for s in ['A&B', 'A&C', 'B&C']]+[{'left': 'A&B&C', 'op': '=', 'right': '{}'}],
+              [['{1,2}', '{2,3}', '{1,3}'], ['{0,1}', '{1,2}', '{0,2}']], [['{1}', '{1}', '{1}'], ['{1}', '{2}', '{1,2}']],
+              prompt='Construct three finite sets whose pairwise intersections are nonempty but whose three-way intersection is empty.')
+    set_model('sets-and-set-operations-64', ['E', 'T', 'S', 'X'], [{'left': '(((E&T)-S)|X)&S', 'op': 'nonempty'}],
+              [['{}', '{}', '{1}', '{1}'], ['{1,2}', '{1,2}', '{2}', '{2}']], [['{1}', '{1}', '{1}', '{}'], ['{}', '{}', '{}', '{1}']],
+              prompt='Give finite sets of users showing that $(E\\cap T\\cap S^c)\\cup X$ can admit a suspended user. Use numeric user labels; the universe contains all users you enter.')
+    set_model('sets-and-set-operations-66', ['A', 'B', 'C'], [{'left': 'A|B', 'op': '=', 'right': 'A|C'}, {'left': 'B', 'op': '!=', 'right': 'C'}],
+              [['{1}', '{}', '{1}'], ['{1,2}', '{1}', '{2}']], [['{1}', '{2}', '{2}'], ['{}', '{1}', '{2}']])
+    set_model('sets-and-set-operations-69', ['A', 'B'], [{'left': 'P(A|B)', 'op': '!=', 'right': 'P(A)|P(B)'}],
+              [['{1}', '{2}'], ['{1,2}', '{2,3}']], [['{}', '{1}'], ['{1}', '{1}']])
+    set_model('direct-proof-56', ['A', 'B'], [{'left': 'A-B', 'op': '!=', 'right': 'B-A'}],
+              [['{1}', '{2}'], ['{}', '{1}']], [['{1}', '{1}'], ['{}', '{}']])
+    set_model('direct-proof-57', ['A', 'B', 'C'], [{'left': 'A|B', 'op': '=', 'right': 'A|C'}, {'left': 'B', 'op': '!=', 'right': 'C'}],
+              [['{1}', '{}', '{1}'], ['{1,2}', '{1}', '{2}']], [['{1}', '{2}', '{2}'], ['{}', '{1}', '{2}']])
+    set_model('direct-proof-60', ['A', 'B'], [{'left': 'A', 'op': 'subset', 'right': 'B'}, {'left': 'A', 'op': '!=', 'right': 'B'}],
+              [['{1}', '{1,2}'], ['{}', '{1}']], [['{1}', '{1}'], ['{1,2}', '{1}']])
+    set_model('relations-75', ['A', 'B', 'C'], [{'left': s, 'op': 'subset', 'right': '{1,2}'} for s in ['A', 'B', 'C']]+[{'left': s, 'op': 'nonempty'} for s in ['A&B', 'B&C']]+[{'left': 'A&C', 'op': '=', 'right': '{}'}],
+              [['{1}', '{1,2}', '{2}'], ['{2}', '{1,2}', '{1}']], [['{1}', '{1}', '{1}'], ['{}', '{1,2}', '{2}']],
+              choice=('property', 'Failed equivalence-relation property', [('reflexive', 'Reflexivity'), ('symmetric', 'Symmetry'), ('transitive', 'Transitivity')], 'transitive'),
+              prompt='On the nonempty subsets of $\\{1,2\\}$, let $A\\,R\\,B$ mean $A\\cap B\\ne\\varnothing$. Construct $A,B,C$ that violate an equivalence-relation property and select the failed property.')
+
+    def set_formula(key, expected, variables, alternatives, wrong, *, choice=None, operations=None):
+        inputs = [{'id': 'formula', 'kind': 'math', 'label': 'Set expression', 'hint': 'Use union, intersection, difference and complement notation, or |, &, -, and a trailing apostrophe.'}]
+        params = {'expected': expected, 'variables': variables}
+        if operations:
+            params['operations'] = operations
+        reqs = [requirement('formula', 'set-expression', ['formula'], params, 'The expression has exactly the requested membership condition.')]
+        tests = [{'response': {'formula': f}, 'verdict': v} for f, v in [(expected, 'correct')]+[(f, 'correct') for f in alternatives]+[(f, 'incorrect') for f in wrong]]
+        response = {'formula': expected}
+        if choice:
+            field, label, options, answer = choice
+            inputs.append(decision(field, label, options))
+            reqs.append(choice_requirement(field, answer, 'The reason explains the membership condition.'))
+            response[field] = answer
+            for t in tests:
+                t['response'][field] = answer
+            tests.append({'response': {**response, field: next(k for k, _ in options if k != answer)}, 'verdict': 'incorrect'})
+        tests.append({'response': {}, 'error': True})
+        append(key, inputs, reqs, response, 'Typed set notation preserves formula construction, checked by exact membership equivalence across all assignments.',
+               capabilities=['math-text', 'tap'] if choice else ['math-text'], test_cases=tests)
+
+    set_formula('sets-and-set-operations-28', 'A&B', ['A', 'B'], ['B intersection A'], ['A-B'],
+                choice=('reason', 'Membership reason', [('both', 'An element remains exactly when it belongs to both A and B.'), ('either', 'An element remains when it belongs to either set.'), ('outside', 'Every element outside A remains.')], 'both'))
+    set_formula('sets-and-set-operations-61', "E&T&S'", ['E', 'T', 'S', 'X'], [r'E\cap T\cap S^c'], ['E|T|S'])
+    set_formula('sets-and-set-operations-62', "E'|T'|S", ['E', 'T', 'S', 'X'], [r'S\cup T^c\cup E^c'], ["E'&T'&S", "(E&T&S')'"], operations=['union', 'complement'])
+    set_formula('sets-and-set-operations-63', "E&(T|X)&S'", ['E', 'T', 'S', 'X'], [r'S^c\cap (X\cup T)\cap E'], ["(E&T&S')|X"])
+    append('propositional-logic-138', [{'id': 'example', 'kind': 'math', 'label': 'Counterexample formula', 'hint': 'Use p, q, and/or r.'},
+                                      decision('decision', 'Must every satisfiable formula be a tautology?', [('yes', 'Yes'), ('no', 'No')])],
+           [requirement('example', 'boolean-property', ['example'], {'variables': ['p', 'q', 'r'], 'property': 'contingent'}, 'The formula is true on some assignments and false on others.'),
+            choice_requirement('decision', 'no', 'Satisfiability does not require truth on every assignment.')],
+           {'example': 'p', 'decision': 'no'}, 'The learner creates any contingent formula; exhaustive truth evaluation accepts all valid counterexamples.',
+           capabilities=['math-text', 'tap'], test_cases=[{'response': {'example': f, 'decision': d}, 'verdict': v} for f, d, v in [
+               ('p', 'no', 'correct'), ('p&q', 'no', 'correct'), ('p|!p', 'no', 'incorrect'), ('p&!p', 'no', 'incorrect'), ('p', 'yes', 'incorrect')]])
+    append('strong-induction-60', [{'id': 'example', 'kind': 'math', 'label': 'Nested object with a repeated label', 'hint': 'Use atom labels a, b, c and binary pairs, such as (a,b).'},
+                                    decision('reason', 'Why count occurrences?', [('occurrences', 'Pairing adds both children’s weights; a repeated label contributes again.'), ('distinct', 'Pairing removes repeated labels before adding weights.'), ('level', 'Only atoms at different depths count separately.')])],
+           [requirement('example', 'nested-object', ['example'], {'atoms': ['a', 'b', 'c']}, 'The binary nested object contains a repeated atom label.'),
+            choice_requirement('reason', 'occurrences', 'Weight counts occurrences because it adds child weights.')],
+           {'example': '(a,a)', 'reason': 'occurrences'}, 'One ordinary nested-pair entry replaces an unrestricted drawing; the conceptual distinction is a concise reason choice.',
+           capabilities=['math-text', 'tap'], test_cases=[{'response': {'example': f, 'reason': r}, 'verdict': v} for f, r, v in [
+               ('(a,a)', 'occurrences', 'correct'), ('((b,c),b)', 'occurrences', 'correct'), ('(a,b)', 'occurrences', 'incorrect'), ('a', 'occurrences', 'incorrect'), ('(a,a)', 'distinct', 'incorrect')]])
+
+    for identifier, expected, domains, predicates, free, wrong in [
+        (17, '(exists x in R !R(c,x))->!A', ['R'], {'A': 0, 'R': 2}, ['c'], ['(!forall x in R R(c,x))->!A']),
+        (18, '!Q->forall x in D !P(x)', ['D'], {'Q': 0, 'P': 1}, [], ['!Q->!exists x in D P(x)']),
+        (19, '(exists x in D forall y in E !R(x,y))->!A', ['D', 'E'], {'A': 0, 'R': 2}, [], ['(!forall x in D exists y in E R(x,y))->!A']),
+    ]:
+        quantified(identifier, expected, predicates, domains, free=free, wrong=wrong, lesson='proof-by-contrapositive', form='negations-on-atoms')
+    quantified(69, '(forall x in D !P(x))->!A', {'A': 0, 'P': 1}, ['D'], lesson='proof-by-contrapositive',
+               wrong=['(exists x in D !P(x))->!A'])
+    boolean_written('proof-by-contrapositive-20', [('Contrapositive', '!q->(!p|!r)', ['p', 'q', 'r'], '!q->(!p|!r)')],
+                    hint='p: user is an administrator; r: user is active; q: access is allowed.')
+    boolean_written('proof-by-contrapositive-63', [('Correct negation', '!p|!q', ['p', 'q'], None)],
+                    hint='p: first factor is even; q: second factor is even.')
+    for lesson, identifier in [('sets-and-set-operations', 9), ('proof-by-contradiction', 7)]:
+        quantified(identifier, 'exists x in U (x in A & x notin B)', {'A': 1, 'B': 1}, ['U'], named_sets=['A', 'B'], lesson=lesson,
+                   notation='U is the common universe; membership notation x in A and x notin B is accepted.',
+                   alternatives=[r'exists z in U (z\in A & z\notin B)'], wrong=['forall x in U (x in A & x notin B)'])
+    for identifier, expected in [(42, 'forall x in U (x notin C -> (x notin A | x notin B))'),
+                                 (43, 'forall x in U (x notin C -> (x notin A & x notin B))')]:
+        quantified(identifier, expected, {'A': 1, 'B': 1, 'C': 1}, ['U'], named_sets=['A', 'B', 'C'], lesson='proof-by-contrapositive',
+                   notation='U is the common universe; use ordinary membership notation.', wrong=[expected.replace('notin C', 'in C')])
+    for identifier, expected, domains, predicates, wrong, notation in [
+        (1, 'exists n in Z forall m in Z (m<=n)', ['Z'], {}, ['forall n in Z exists m in Z (m<=n)'], None),
+        (2, 'exists x in Q (x^2=2)', ['Q'], {}, ['forall x in Q (x^2=2)'], None),
+        (3, 'exists n in Z (E(n^2)&!E(n))', ['Z'], {'E': 1}, ['exists n in Z (!E(n^2)&E(n))'], 'E(t) means t is even.'),
+        (5, 'exists x in Z exists y in Z (S(x)&S(y)&x!=y)', ['Z'], {'S': 1}, ['exists x in Z S(x)'], 'S(t) means t solves the given equation.'),
+        (6, '(!exists x in Z S(x))|exists x in Z exists y in Z (S(x)&S(y)&x!=y)', ['Z'], {'S': 1}, ['!exists x in Z S(x)'], 'S(t) means t solves the given equation.'),
+    ]:
+        quantified(identifier, expected, predicates, domains, lesson='proof-by-contradiction', wrong=wrong, notation=notation)
+    for lesson, identifiers in [('functions', [29, 30]), ('proof-by-contradiction', [8, 9])]:
+        quantified(identifiers[0], 'exists a in A exists b in A (a!=b&f(a)=f(b))', {}, ['A', 'B'], functions={'f': 1}, lesson=lesson,
+                   alternatives=['exists x in A exists y in A (f(y)=f(x)&y!=x)'], wrong=['exists a in A exists b in A (a=b&f(a)=f(b))'])
+        quantified(identifiers[1], 'exists b in B forall a in A (f(a)!=b)', {}, ['A', 'B'], functions={'f': 1}, lesson=lesson,
+                   alternatives=['exists y in B forall x in A (y!=f(x))'], wrong=['forall b in B exists a in A (f(a)!=b)'])
+    quantified(9, 'forall a in A exists! b in B F(a,b)', {'F': 2}, ['A', 'B'], lesson='functions',
+               alternatives=['forall x in A exists y in B (F(x,y)&forall z in B (F(x,z)->z=y))'],
+               wrong=['forall a in A exists b in B F(a,b)'], notation='F(a,b) means the ordered pair (a,b) belongs to the relation F.')
+    quantified(69, 'exists r in R forall w in W !A(r,w)', {'A': 2}, ['R', 'W'], lesson='proof-by-contradiction',
+               notation='R is requests, W is workers, and A(r,w) means worker w is assigned to request r.',
+               wrong=['forall r in R forall w in W !A(r,w)'])
+    witness('proof-by-contrapositive-55', [('x', 'Irrational counterexample', {'irrational': True})], [('x^2', 'rational')],
+            ['sqrt(2)'], [['sqrt(3)'], ['-sqrt(2)']], [[2], [0]])
+    witness('proof-by-contradiction-34', [('x', 'Irrational x (with r = 0)', {'irrational': True})], [('0*x', 'rational')],
+            ['sqrt(2)'], [['sqrt(3)'], ['-sqrt(6)']], [[2], [0]])
+    witness('proof-by-contradiction-40', [('a', 'First irrational factor, rational product', {'irrational': True}),
+                                       ('b', 'Second irrational factor, rational product', {'irrational': True}),
+                                       ('c', 'First irrational factor, irrational product', {'irrational': True}),
+                                       ('d', 'Second irrational factor, irrational product', {'irrational': True})],
+            [('a*b', 'rational'), ('c*d', 'irrational')], ['sqrt(2)', 'sqrt(2)', 'sqrt(2)', 'sqrt(3)'],
+            [['sqrt(3)', '-sqrt(3)', 'sqrt(3)', 'sqrt(6)']], [[2, 'sqrt(2)', 'sqrt(2)', 'sqrt(3)'], ['sqrt(2)', 'sqrt(3)', 'sqrt(2)', 'sqrt(3)'], ['sqrt(2)', 'sqrt(2)', 'sqrt(3)', 'sqrt(3)']])
+    append('proof-by-contrapositive-62', [{'id': 'negation', 'kind': 'math', 'label': 'Correct negation'},
+                                        decision('reason', 'Error', [('boundary', 'The equality case x=3 was omitted.'), ('sign', 'The value 3 must change sign.'), ('domain', 'Negation changes the real domain to integers.')])],
+           [requirement('negation', 'inequality', ['negation'], {'expected': 'x<=3', 'variable': 'x'}, 'The negation includes equality.'), choice_requirement('reason', 'boundary', 'The missing boundary is the error.')],
+           {'negation': 'x<=3', 'reason': 'boundary'}, 'The correction is typed; the explanation is a concise decision about the missing endpoint.',
+           capabilities=['math-text', 'tap'], test_cases=[{'response': {'negation': f, 'reason': r}, 'verdict': v} for f, r, v in [
+               ('x<=3', 'boundary', 'correct'), ('3>=x', 'boundary', 'correct'), ('x<3', 'boundary', 'incorrect'), ('x<=3', 'sign', 'incorrect')]])
+    roles = [('first', 'If it rains, I carry an umbrella.', 'premise'), ('second', 'It rains.', 'premise'), ('third', 'I carry an umbrella.', 'conclusion')]
+    append('propositional-logic-111', [decision(f, label, [('premise', 'Premise'), ('conclusion', 'Conclusion')]) for f, label, _ in roles],
+           [choice_requirement(f, role, 'The statement has the requested argument role.') for f, _, role in roles],
+           {f: role for f, _, role in roles}, 'Three short role labels directly express the requested premise/conclusion identification.',
+           capabilities=['tap'], level='recognition', test_cases=[{'response': {'first': 'premise', 'second': 'premise', 'third': 'conclusion'}, 'verdict': 'correct'},
+                                                                 {'response': {'first': 'conclusion', 'second': 'premise', 'third': 'premise'}, 'verdict': 'incorrect'}, {'response': {}, 'error': True}])
+    expressions('sequences-and-summations-39', [('Sum', '5*(2^(n+1)-1)', ['n'], [], '10*2^n-5')], options={'integerVariables': ['n']})
+    expressions('sequences-and-summations-77', [('Correct sum', '2^(n+1)-1', ['n'], [], '2*2^n-1')], [('Smallest counterexample index', 0)], options={'integerVariables': ['n']})
+
+    def interval(key, lower, upper, lc, rc, *, variables=None, choice=None):
+        inputs = [{'id': 'range', 'kind': 'interval', 'label': 'Interval'}]
+        fields = ['range.lower', 'range.upper', 'range.leftClosed', 'range.rightClosed']
+        params = {'lower': lower or '-infinity', 'upper': upper or 'infinity', 'leftClosed': lc, 'rightClosed': rc}
+        if variables:
+            params['variables'] = variables
+        reqs = [requirement('range', 'interval', fields, params, 'The endpoints and their inclusion match the requested set.')]
+        response = dict(zip(fields, [lower or '-infinity', upper or 'infinity', lc, rc]))
+        tests = [{'response': dict(response), 'verdict': 'correct'}, {'response': {**response, 'range.leftClosed': not lc}, 'verdict': 'incorrect'}]
+        if choice:
+            field, label, options, expected = choice
+            inputs.append(decision(field, label, options))
+            reqs.append(choice_requirement(field, expected, 'The domain decision is correct.'))
+            response[field] = expected
+            for t in tests:
+                t['response'][field] = expected
+            tests.append({'response': {**response, field: next(k for k, _ in options if k != expected)}, 'verdict': 'incorrect'})
+        tests.append({'response': {}, 'error': True})
+        append(key, inputs, reqs, response, 'A compact interval entry directly records the requested endpoints and open or closed boundaries.',
+               capabilities=['math-text', 'tap'], test_cases=tests)
+
+    interval('functions-6', '2', None, True, False)
+    interval('functions-16', '0', '9', True, True)
+    interval('functions-45', '2', None, True, False,
+             choice=('all', 'Defined on all reals?', [('yes', 'Yes'), ('no', 'No')], 'no'))
+    interval('functions-64', 'k', 'k+1', True, False, variables=['k'])
+    interval('functions-65', 'k-1', 'k', False, True, variables=['k'])
+    for identifier, expected, alternatives, wrong in [(5, 'x!=3', [r'R\{3}', '(-infinity,3) union (3,infinity)'], 'x=3'),
+                                                     (15, '(x>=-2 & x<=-1) | (x>=1 & x<=2)', ['[-2,-1] union [1,2]', r'[-2,-1]\cup[1,2]'], '[-2,2]')]:
+        append(f'functions-{identifier}', [{'id': 'set', 'kind': 'math', 'label': 'Real set', 'hint': 'Use interval notation, interval unions, or inequalities in x.'}],
+               [requirement('set', 'inequality', ['set'], {'expected': expected, 'variable': 'x'}, 'The real set is exactly the requested domain or preimage.')],
+               {'set': expected}, 'An ordinary typed real-set answer supports disconnected intervals and excluded points without adding multiple widgets.',
+               capabilities=['math-text'], test_cases=[{'response': {'set': f}, 'verdict': v} for f, v in [(expected, 'correct')]+[(f, 'correct') for f in alternatives]+[(wrong, 'incorrect')]])
+    append('functions-35', [{'id': 'domain', 'kind': 'interval', 'label': 'Restricted domain'}, {'id': 'inverse', 'kind': 'math', 'label': 'Inverse at y'}],
+           [requirement('inverse', 'square-inverse', ['domain.lower', 'domain.upper', 'domain.leftClosed', 'domain.rightClosed', 'inverse'], {}, 'The interval and inverse form a compatible bijective branch.')],
+           {'domain.lower': '0', 'domain.upper': 'infinity', 'domain.leftClosed': True, 'domain.rightClosed': False, 'inverse': 'sqrt(y)'},
+           'Both nonnegative and nonpositive interval restrictions are accepted with their matching typed inverse. No branch choice or inverse formula is supplied.',
+           prompt='Restrict the domain of the real square function to an interval to obtain a bijection onto $[0,\\infty)$, and give its inverse.',
+           capabilities=['math-text', 'tap'], test_cases=[{'response': dict(zip(['domain.lower', 'domain.upper', 'domain.leftClosed', 'domain.rightClosed', 'inverse'], values)), 'verdict': verdict}
+               for values, verdict in [(['0', 'infinity', True, False, 'sqrt(y)'], 'correct'), (['-infinity', '0', False, True, '-sqrt(y)'], 'correct'),
+                                      (['0', 'infinity', True, False, '-sqrt(y)'], 'incorrect'), (['-infinity', '0', False, True, 'sqrt(y)'], 'incorrect'),
+                                      (['0', 'infinity', False, False, 'sqrt(y)'], 'incorrect')]])
+    append('functions-43', [{'id': 'formula', 'kind': 'math', 'label': '$g(f(x))$'}],
+           [requirement('formula', 'elementary-expression', ['formula'], {'variable': 'x', 'expected': 'abs(x)', 'domain': 'real'}, 'The expression equals the nonnegative square root of x squared for every real x.')],
+           {'formula': 'abs(x)'}, 'Ordinary math entry accepts absolute-value and equivalent radical forms while checking negative real inputs exactly.',
+           capabilities=['math-text'], test_cases=[{'response': {'formula': f}, 'verdict': v} for f, v in [('abs(x)', 'correct'), ('sqrt(x^2)', 'correct'), ('2*sqrt((x/2)^2)', 'correct'), ('x', 'incorrect'), ('-x', 'incorrect')]])
+    expressions('functions-31', [('Inverse at x', '(x+2)/5', ['x'], [], 'x/5+2/5'), ('f(f inverse(x))', 'x', ['x'], [], '5*((x+2)/5)-2'),
+                                ('f inverse(f(x))', 'x', ['x'], [], '((5*x-2)+2)/5')])
+    expressions('functions-41', [('$(g\\circ f)(x)$', '3*x+6', ['x'], [], '3*(x+2)'),
+                                ('$h((g\\circ f)(x))$', '3*x+5', ['x'], [], '3*(x+2)-1'),
+                                ('$((h\\circ g)\\circ f)(x)$', '3*x+5', ['x'], [], '3*(x+2)-1')])
+    append('strong-induction-55', [{'id': 'vertices', 'kind': 'math', 'label': 'Vertices', 'hint': 'Enter a finite set of labels, such as {a,b}.'},
+                                   {'id': 'edges', 'kind': 'math', 'label': 'Edges', 'hint': 'Enter endpoint pairs in a set.'}, {'id': 'root', 'kind': 'text', 'label': 'Root'}],
+           [requirement('tree', 'graph', ['vertices', 'edges', 'root'], {'kind': 'graph-property', 'property': 'rooted-leaf-counterexample'}, 'The rooted tree has a one-child node and violates the stated leaf/internal-node identity.')],
+           {'vertices': '{a,b}', 'edges': '{(a,b)}', 'root': 'a'},
+           'Three ordinary entries describe the constructed tree; deterministic traversal checks child counts without requiring a drawing tool.',
+           capabilities=['math-text', 'short-text'], test_cases=[{'response': {'vertices': v, 'edges': e, 'root': r}, 'verdict': verdict} for v, e, r, verdict in [
+               ('{a,b}', '{(a,b)}', 'a', 'correct'), ('{a,b,c}', '{(a,b),(b,c)}', 'a', 'correct'),
+               ('{a,b,c}', '{(a,b),(a,c)}', 'a', 'incorrect'), ('{a}', '{}', 'a', 'incorrect')]])
+
+    def finite_map(key, kind, domains, maps, valid, invalid, *, subsets=None, prompt=None):
+        inputs, fields = [], []
+        for m in maps:
+            if 'field' in m:
+                fields.append(m['field'])
+                inputs.append({'id': m['field'], 'kind': 'math', 'label': '$'+m['name']+'$ as a set of pairs'})
+            else:
+                cells = []
+                for argument, field in m['fields'].items():
+                    fields.append(field)
+                    cells.append({'label': '$'+m['name']+'('+argument+')$', 'cells': [{'id': field, 'kind': 'text'}]})
+                inputs.append({'id': m['name']+'-table', 'kind': 'grid', 'label': '$'+m['name']+'$', 'columns': ['Output'], 'rows': cells})
+        if subsets:
+            for name, label in [('s', '$S$'), ('w', '$W$'), ('left', '$f(S\\cap W)$'), ('right', '$f(S)\\cap f(W)$')]:
+                fields.append(subsets[name])
+                inputs.append({'id': subsets[name], 'kind': 'math', 'label': label})
+        params = {'kind': kind, 'domains': domains, 'maps': maps}
+        if subsets:
+            params['subsets'] = subsets
+        append(key, inputs, [requirement('construction', 'finite-map', fields, params, 'The total finite maps satisfy the requested properties and every requested set calculation.')],
+               valid[0], 'A small typed mapping table or pair-set preserves construction. All maps are total on the stated finite domains, and the checker accepts every valid assignment.',
+               capabilities=['math-text', 'short-text'], prompt=prompt,
+               test_cases=[{'response': r, 'verdict': 'correct'} for r in valid]+[{'response': r, 'verdict': 'incorrect'} for r in invalid]+[{'response': {}, 'error': True}])
+
+    finite_map('direct-proof-59', 'unique-fiber-noninjective', {'A': ['1', '2', '3'], 'B': ['a', 'b']},
+               [{'name': 'f', 'domain': 'A', 'codomain': 'B', 'fields': {'1': 'f1', '2': 'f2', '3': 'f3'}}],
+               [{'f1': 'a', 'f2': 'b', 'f3': 'b'}, {'f1': 'b', 'f2': 'a', 'f3': 'a'}], [{'f1': 'a', 'f2': 'a', 'f3': 'a'}],
+               prompt='Refute “a function is injective if one output has exactly one preimage” by constructing $f:\\{1,2,3\\}\\to\\{a,b\\}$.')
+    map_domains = {'A': ['a', 'b'], 'B': ['1', '2', '3'], 'C': ['u', 'v']}
+    map_pair = [{'name': 'f', 'domain': 'A', 'codomain': 'B', 'fields': {'a': 'fa', 'b': 'fb'}},
+                {'name': 'g', 'domain': 'B', 'codomain': 'C', 'fields': {'1': 'g1', '2': 'g2', '3': 'g3'}}]
+    map_valid = [{'fa': '1', 'fb': '2', 'g1': 'u', 'g2': 'v', 'g3': 'u'}, {'fa': '2', 'fb': '3', 'g1': 'v', 'g2': 'u', 'g3': 'v'}]
+    map_invalid = [{'fa': '1', 'fb': '1', 'g1': 'u', 'g2': 'v', 'g3': 'u'}, {'fa': '1', 'fb': '2', 'g1': 'u', 'g2': 'u', 'g3': 'v'}]
+    for key, kind, objective in [('proof-by-contrapositive-50', 'injective-composite-noninjective-second', 'so that $g\\circ f$ is injective but $g$ is not injective on its entire domain'),
+                                  ('functions-76', 'bijective-composite-neither', 'so that $g\\circ f$ is bijective, $f$ is not onto, and $g$ is not injective')]:
+        finite_map(key, kind, map_domains, map_pair, map_valid, map_invalid,
+                   prompt='Construct $f:A\\to B$ and $g:B\\to C$ '+objective+'. Use $A=\\{a,b\\}$, $B=\\{1,2,3\\}$, and $C=\\{u,v\\}$.')
+    finite_map('functions-73', 'image-intersection-counterexample', {'A': ['1', '2', '3'], 'B': ['a', 'b']},
+               [{'name': 'f', 'domain': 'A', 'codomain': 'B', 'field': 'f'}],
+               [{'f': '{(1,a),(2,a),(3,b)}', 's': '{1}', 'w': '{2}', 'left': '{}', 'right': '{a}'},
+                {'f': '{(1,b),(2,a),(3,a)}', 's': '{2}', 'w': '{3}', 'left': '{}', 'right': '{a}'}],
+               [{'f': '{(1,a),(2,a),(3,b)}', 's': '{1}', 'w': '{1}', 'left': '{a}', 'right': '{a}'},
+                {'f': '{(1,a),(2,a),(3,b)}', 's': '{1}', 'w': '{2}', 'left': '{a}', 'right': '{a}'}],
+               subsets={'s': 's', 'w': 'w', 'left': 'left', 'right': 'right'},
+               prompt='Construct $f:A\\to B$ and subsets $S,W\\subseteq A$ for which $f(S\\cap W)\\ne f(S)\\cap f(W)$. Use $A=\\{1,2,3\\}$ and $B=\\{a,b\\}$, and calculate both sides.')
+
+    append('relations-57', [{'id': 'R', 'kind': 'math', 'label': '$R$', 'hint': 'Enter a finite set of ordered pairs.'},
+                             {'id': 'S', 'kind': 'math', 'label': '$S$', 'hint': 'Use numeric labels or a, b, c; the common carrier contains every endpoint.'}],
+           [requirement('relations', 'finite-relation', ['R', 'S'], {'kind': 'noncommuting-composition', 'atoms': ['a', 'b', 'c']}, 'The two relation compositions differ on their common finite carrier.')],
+           {'R': '{(1,2)}', 'S': '{(2,1)}'}, 'Two ordinary pair-set entries construct a complete finite counterexample without a relation editor or supplied size.',
+           capabilities=['math-text'], test_cases=[{'response': {'R': r, 'S': s}, 'verdict': v} for r, s, v in [
+               ('{(1,2)}', '{(2,1)}', 'correct'), ('{(a,a)}', '{(a,b)}', 'correct'), ('{(1,2)}', '{(1,2)}', 'incorrect'), ('{}', '{(1,2)}', 'incorrect')]])
+    append('relations-74', [{'id': 'R', 'kind': 'math', 'label': '$R$ as ordered pairs'},
+                             {'id': 'witness', 'kind': 'math', 'label': 'Transitivity counterexample $(a,b,c)$'}],
+           [requirement('relation', 'finite-relation', ['R', 'witness'], {'kind': 'reflexive-symmetric-not-transitive', 'universe': ['1', '2', '3']}, 'The relation is reflexive and symmetric, and the entered triple has aRb and bRc but not aRc.')],
+           {'R': '{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}', 'witness': '(1,2,3)'},
+           'Typing the relation and one witness triple directly answers both requested construction components.',
+           capabilities=['math-text'], test_cases=[{'response': {'R': r, 'witness': w}, 'verdict': v} for r, w, v in [
+               ('{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}', '(1,2,3)', 'correct'),
+               ('{(1,1),(2,2),(3,3),(1,3),(3,1),(3,2),(2,3)}', '(1,3,2)', 'correct'),
+               ('{(1,1),(2,2),(3,3)}', '(1,2,3)', 'incorrect'), ('{(1,2),(2,1),(2,3),(3,2)}', '(1,2,3)', 'incorrect')]])
+    append('relations-80', [{'id': 'R', 'kind': 'math', 'label': 'Smallest counterexample relation', 'hint': 'Enter ordered pairs; the carrier contains their endpoints. Use numeric labels or a, b, c.'},
+                             decision('reason', 'Flaw', [('repeat', 'The transitivity definition allows repeated objects, so missing loops can violate it.'), ('order', 'The transitivity definition ignores pair order.'), ('symmetric', 'Every transitive relation must be symmetric.')])],
+           [requirement('relation', 'finite-relation', ['R'], {'kind': 'distinct-triples-counterexample', 'atoms': ['a', 'b', 'c']}, 'The smallest finite carrier passes the distinct-triple check but fails transitivity.'),
+            choice_requirement('reason', 'repeat', 'The explanation identifies the omitted repeated-variable cases.')],
+           {'R': '{(a,b),(b,a)}', 'reason': 'repeat'}, 'One typed relation preserves finding the minimum-size counterexample; a concise reason identifies why the faulty test misses it.',
+           capabilities=['math-text', 'tap'], test_cases=[{'response': {'R': r, 'reason': why}, 'verdict': v} for r, why, v in [
+               ('{(a,b),(b,a)}', 'repeat', 'correct'), ('{(1,2),(2,1),(1,1)}', 'repeat', 'correct'),
+               ('{(a,b),(b,a),(a,a),(b,b)}', 'repeat', 'incorrect'), ('{(a,b),(b,a)}', 'symmetric', 'incorrect')]])
+
+    recognition('proof-by-contradiction-4', 'There are finitely many primes.', ['There are no primes.', 'There is exactly one prime.'],
+                prompt='Select the negation of “There are infinitely many primes.”')
+    for identifier, kind, params, valid, invalid, choice in [
+        (6, 'same-recurrence', {'increment': '3'}, [('3*n', '3*n+1'), ('3*n-8', '3*n+12')], [('3*n', '3*n'), ('3*n', '2*n+1')],
+         ('reason', 'Why is the sequence not unique?', [('initial', 'No initial value was specified.'), ('step', 'The increment changes at each index.'), ('indices', 'A recurrence cannot define an infinite sequence.')], 'initial')),
+        (10, 'prefix-counterexample', {'indices': ['0', '1', '2']}, [('n', 'n+n*(n-1)*(n-2)'), ('0', 'n*(n-1)*(n-2)')], [('n', 'n'), ('0', 'n*(n-1)')], None),
+    ]:
+        inputs = [{'id': 'a', 'kind': 'math', 'label': 'First rule at n'}, {'id': 'b', 'kind': 'math', 'label': 'Second rule at n'}]
+        reqs = [requirement('pair', 'sequence-pair', ['a', 'b'], {'kind': kind, 'variable': 'n', **params}, 'Both typed sequence rules meet the requested recurrence or prefix conditions and are not identical.')]
+        tests = [{'response': {'a': a, 'b': b}, 'verdict': verdict} for a, b, verdict in [(a, b, 'correct') for a, b in valid]+[(a, b, 'incorrect') for a, b in invalid]]
+        response = dict(tests[0]['response'])
+        if choice:
+            f, label, options, expected = choice
+            inputs.append(decision(f, label, options))
+            reqs.append(choice_requirement(f, expected, 'The missing initial value explains nonuniqueness.'))
+            response[f] = expected
+            for t in tests:
+                t['response'][f] = expected
+            tests.append({'response': {**response, f: 'step'}, 'verdict': 'incorrect'})
+        tests.append({'response': {}, 'error': True})
+        append(f'sequences-and-summations-{identifier}', inputs, reqs, response,
+               'Two ordinary typed rules preserve constructing distinct sequences. The checker proves exact identities or nonidentities and checks every explicitly requested prefix index.',
+               capabilities=['math-text', 'tap'] if choice else ['math-text'], test_cases=tests)

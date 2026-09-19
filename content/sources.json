@@ -639,7 +639,7 @@
       "locator": "§2.2, Trees (including rooted trees)",
       "supports": "Rooted trees and spanning-tree structure.",
       "url": "https://discrete.openmathbooks.org/dmoi4/sec_trees.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-19"
     },
     "alg-search": {
       "source": "algorithms",
@@ -933,6 +933,13 @@
       "locator": "§2.2.2, Definition 2.4 (Transpose), printed p. 25 / PDF p. 31",
       "url": "https://mml-book.github.io/book/mml-book.pdf#page=31",
       "supports": "Transpose shape and the row/column exchange defining each transposed entry; original numerical examples are independently calculated.",
+      "checked": "2026-09-19"
+    },
+    "m-recursive-data": {
+      "source": "mcs",
+      "locator": "§7.1, Recursive Definitions and Structural Induction (printed pp.217–220)",
+      "supports": "Base objects, recursive constructors, nested pairs, and additive occurrence counts.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=225",
       "checked": "2026-09-19"
     }
   },
@@ -2346,73 +2353,28 @@
         ]
       },
       "practice": {
-        "A finite construction by splitting": [
-          "m-strong"
-        ],
-        "A recursive sequence bound": [
-          "m-strong"
-        ],
-        "Common mistakes": [
-          "m-strong"
-        ],
-        "Diagnosing flawed strong induction": [
-          "m-strong",
-          "m-wop",
-          "m-invariant"
-        ],
-        "Hypothesis ranges and well-ordering": [
-          "m-strong",
-          "m-wop",
-          "m-invariant"
-        ],
-        "Mixed strong induction and proof selection": [
-          "m-strong",
-          "m-wop",
-          "m-invariant"
-        ],
-        "Postage with several base cases": [
-          "m-strong"
-        ],
-        "Postage, coverage, and base design": [
-          "m-strong",
-          "m-wop",
-          "m-invariant"
-        ],
-        "Prime factorization: existence": [
-          "m-wop",
-          "m-divisibility"
-        ],
-        "Prime factors and representations": [
-          "m-strong",
-          "m-wop",
-          "m-invariant"
-        ],
-        "Recurrences with multiple dependencies": [
-          "m-strong",
-          "m-wop",
-          "m-invariant"
-        ],
-        "Recursive algorithms: termination and correctness": [
-          "m-strong",
-          "m-invariant"
-        ],
+        "A finite construction by splitting": ["m-strong"],
+        "A recursive sequence bound": ["m-strong"],
+        "Common mistakes": ["m-strong"],
+        "Diagnosing flawed strong induction": ["m-strong", "m-wop", "m-invariant"],
+        "Hypothesis ranges and well-ordering": ["m-strong", "m-wop", "m-invariant"],
+        "Mixed strong induction and proof selection": ["m-strong", "m-wop", "m-invariant"],
+        "Postage with several base cases": ["m-strong"],
+        "Postage, coverage, and base design": ["m-strong", "m-wop", "m-invariant"],
+        "Prime factorization: existence": ["m-wop", "m-divisibility"],
+        "Prime factors and representations": ["m-strong", "m-wop", "m-invariant"],
+        "Recurrences with multiple dependencies": ["m-strong", "m-wop", "m-invariant"],
+        "Recursive algorithms: termination and correctness": ["m-strong", "m-invariant"],
         "Recursive constructions and exact counts": [
           "m-strong",
           "m-wop",
-          "m-invariant"
+          "m-invariant",
+          "m-recursive-data",
+          "d-trees"
         ],
-        "Recursive termination and correctness": [
-          "m-strong",
-          "m-wop",
-          "m-invariant"
-        ],
-        "The strong induction principle": [
-          "m-strong"
-        ],
-        "Well-ordering and a smallest counterexample": [
-          "m-wop",
-          "m-strong"
-        ]
+        "Recursive termination and correctness": ["m-strong", "m-wop", "m-invariant"],
+        "The strong induction principle": ["m-strong"],
+        "Well-ordering and a smallest counterexample": ["m-wop", "m-strong"]
       }
     },
     "combinatorics": {
