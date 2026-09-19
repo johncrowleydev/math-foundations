@@ -174,6 +174,14 @@ try {
     await page.screenshot({ path: join(screenshots, name + '.png') });
     console.log('Captured ' + name);
   };
+  const enterMath = async (label, value) => {
+    const editor = exercise().getByRole('textbox', { name: label + ' editor', exact: true });
+    // Use native selection/input so CodeMirror sees the replacement selection.
+    await editor.click();
+    await editor.press('ControlOrMeta+a');
+    await page.keyboard.insertText(value);
+    await editor.press('Tab');
+  };
   const fill = async (q, response) => {
     let selection = 0;
     for (const input of q.assessment.inputs) {
@@ -226,10 +234,11 @@ try {
         await exercise()
           .getByRole('button', { name: new RegExp('^' + input.label + ':') })
           .press(response[input.id] ? 't' : 'f');
-      } else
+      } else if (input.kind === 'math') await enterMath(input.label, response[input.id]);
+      else
         await exercise()
           .getByRole('textbox', {
-            name: input.label + (input.kind === 'math' ? ' editor' : ''),
+            name: input.label,
             exact: true,
           })
           .fill(response[input.id]);
@@ -299,8 +308,31 @@ try {
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });
+  // Reload after the asynchronous local save, rather than after the checkbox paint.
+  await page.waitForFunction(
+    () =>
+      new Promise((resolve) => {
+        const open = indexedDB.open('foundations-web');
+        open.onsuccess = () => {
+          const db = open.result;
+          const saved = db
+            .transaction('drafts')
+            .objectStore('drafts')
+            .get('propositional-logic-40');
+          saved.onsuccess = () => {
+            db.close();
+            resolve(saved.result?.unsure === true);
+          };
+        };
+      }),
+  );
   await page.reload();
   await exercise().locator('.structured-answer').waitFor();
+  assert.equal(
+    await exercise().getByLabel('Unsure', { exact: true }).isChecked(),
+    true,
+    'Saved Unsure survives reload before offline submission',
+  );
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   await context.setOffline(true);
   await submit('Incorrect');
@@ -344,12 +376,14 @@ try {
 
   // Real authored forms, including mathematically different accepted answers.
   const cases = [
-    ['linear-algebra-matrices', 1, 'matrix-grid-desktop', 1440],
+    ['linear-algebra-matrices', 1, 'matrix-shape-desktop', 1440],
+    ['linear-algebra-matrices', 29, 'matrix-grid-desktop', 1440],
     ['functions', 6, 'interval-phone', 320],
     ['graph-theory', 49, 'spanning-tree-phone', 390],
     ['graph-theory', 74, 'graph-route-phone', 390],
     ['recurrence-relations', 36, 'recurrence-desktop', 1440],
     ['sets-and-set-operations', 1, 'finite-set-phone', 390],
+    ['predicates-and-quantifiers', 83, 'finite-model-phone', 390],
     ['asymptotic-growth', 34, 'truth-and-value-phone', 390],
     ['linear-algebra-bases', 23, 'basis-desktop', 1440],
     ['linear-algebra-systems', 43, null, 390],
@@ -369,18 +403,41 @@ try {
         .click();
       await page.getByRole('dialog', { name: 'Symbols & TeX syntax' }).waitFor();
       await page.getByRole('dialog').getByRole('button', { name: 'Close', exact: true }).click();
-      await exercise().getByRole('textbox', { name: 'F(0) editor', exact: true }).fill('$1$');
+      await enterMath('F(0)', '$1$');
       await exercise().locator('.compact .preview .katex').waitFor();
     }
     if (name) await shot(name);
-    if (slug === 'linear-algebra-matrices') {
+    if (slug === 'linear-algebra-matrices' && id === 1) {
+      assert.equal(
+        await exercise().locator('.answer-grid').count(),
+        0,
+        'An assessed matrix shape is not revealed by its transpose input',
+      );
+    }
+    if (slug === 'linear-algebra-matrices' && id === 29) {
+      await page.setViewportSize({ width: 320, height: 844 });
+      await noOverflow();
+      await shot('matrix-grid-phone');
+      // A reduced visual viewport approximates the space available above a phone keyboard.
+      await page.setViewportSize({ width: 320, height: 420 });
+      const lastCell = exercise().locator('.answer-grid input').last();
+      await lastCell.focus();
+      await lastCell.scrollIntoViewIfNeeded();
+      const box = await lastCell.boundingBox();
+      assert.ok(
+        box && box.y >= 0 && box.y + box.height <= 420,
+        'Focused matrix cell remains visible in a keyboard-sized viewport',
+      );
+      await noOverflow();
+      await page.screenshot({ path: join(screenshots, 'matrix-keyboard-viewport.png') });
+      await page.setViewportSize({ width: 1440, height: 1000 });
       // Multiple edits in one event loop must not overwrite other fields through stale props.
       await exercise()
-        .locator('.answer-grid')
-        .evaluate((table) => {
+        .locator('.structured-answer')
+        .evaluate((answer) => {
           const setValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
-          for (const [i, input] of [...table.querySelectorAll('input')].entries()) {
-            setValue.call(input, ['2/2', '8/2', '4/2', '10/2', '6/2', '12/2'][i]);
+          for (const [i, input] of [...answer.querySelectorAll('.answer-grid input')].entries()) {
+            setValue.call(input, ['4/2', '2/2', '0/2', '2/2', '4/2', '4/2', '0/2', '2/2'][i]);
             input.dispatchEvent(new Event('input', { bubbles: true }));
           }
         });
@@ -388,18 +445,14 @@ try {
         await exercise()
           .locator('.answer-grid input')
           .evaluateAll((inputs) => inputs.map((input) => input.value)),
-        ['2/2', '8/2', '4/2', '10/2', '6/2', '12/2'],
+        ['4/2', '2/2', '0/2', '2/2', '4/2', '4/2', '0/2', '2/2'],
       );
       assert.equal(
-        (
-          await exercise()
-            .getByRole('textbox', { name: 'Number of rows editor', exact: true })
-            .innerText()
-        ).trim(),
-        '2',
+        await exercise().getByRole('radio', { name: 'B', exact: true }).isChecked(),
+        true,
       );
       const first = exercise().getByRole('textbox', {
-        name: 'Transpose, Row 1, Column 1',
+        name: 'AB, Row 1, Column 1',
         exact: true,
       });
       await first.fill('not a number');
@@ -410,7 +463,7 @@ try {
         0,
         'Input error does not create attempt',
       );
-      await first.fill('1');
+      await first.fill('2');
     }
     await submit();
     console.log('Graded ' + slug + '/' + id);
@@ -434,6 +487,22 @@ try {
     .first()
     .evaluate((e) => e.scrollIntoView({ block: 'start' }));
   await page.screenshot({ path: join(screenshots, 'review-library-phone.png') });
+  const relationTemplate = catalog.items.find(
+    (entry) => entry.sourceTarget === 'review:quantifier-order-countermodel-variants',
+  );
+  assert.ok(relationTemplate, 'Finite relation template is in the Review catalog');
+  await page.goto(baseURL + '/#/review-library/' + relationTemplate.lesson);
+  await library.getByRole('heading', { name: 'Review Library', exact: true }).waitFor();
+  await library.getByLabel('Search catalog').fill(relationTemplate.id);
+  const relationPreview = library.locator(`[data-template-id="${relationTemplate.id}"]`);
+  await relationPreview.locator('summary').first().click();
+  await relationPreview.locator('.structured-answer').first().waitFor();
+  assert.equal(await relationPreview.locator('.structured-answer input').count(), 0);
+  await relationPreview
+    .locator('.library-question')
+    .first()
+    .evaluate((e) => e.scrollIntoView({ block: 'start' }));
+  await page.screenshot({ path: join(screenshots, 'finite-relation-review-phone.png') });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   assert.deepEqual(mutations, [], 'Library inspection creates no review mutations');
   assert.deepEqual(errors, [], 'No browser runtime errors');
@@ -533,6 +602,11 @@ try {
     const attempt = await answer.json();
     assert.equal(attempt.status, 'graded', 'Server grades deterministically');
     assert.equal(attempt.grades.at(-1).model, 'deterministic');
+    assert.equal(
+      attempt.grades.at(-1).verdict,
+      id === ids[0] ? 'incorrect' : 'correct',
+      'Authoritative server grade agrees with the expected offline result',
+    );
     assert.ok(attempt.presentation?.question?.assessment, 'Server freezes the historic question');
   }
   console.log(
