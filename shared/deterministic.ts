@@ -6,6 +6,7 @@ import {
   nestedObjectRequirement,
   validateSetRequirement,
 } from './set-model';
+import { checkFiniteMap, validateFiniteMap } from './finite-map';
 import { polynomialForm, validatePolynomialForm } from './polynomial-form';
 import {
   checkIntegerList,
@@ -187,6 +188,7 @@ const validators: Record<
   'asymptotic-bound': checkAsymptotic,
   recurrence: checkRecurrence,
   'integer-list': checkIntegerList,
+  'finite-map': checkFiniteMap,
   'binomial-sum': checkBinomialSum,
   expression: (r, a) => {
     if (
@@ -614,6 +616,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     if (r.validator === 'asymptotic-bound') validateAsymptotic(r);
     if (r.validator === 'recurrence') validateRecurrence(r);
     if (r.validator === 'integer-list') validateIntegerList(r);
+    if (r.validator === 'finite-map') validateFiniteMap(r);
     if (r.validator === 'binomial-sum') validateBinomialSum(r);
     if (r.validator === 'expression') {
       validatePolynomialForm(r.params.form, r.params.factorDegree);

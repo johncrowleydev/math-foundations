@@ -30,6 +30,9 @@ func TestDiscreteConformance(t *testing.T) {
 func TestPolynomialFormConformance(t *testing.T) {
 	testDeterministicCorpus(t, "../shared/polynomial-form-fixtures.json")
 }
+func TestFiniteMapConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/finite-map-fixtures.json")
+}
 func testDeterministicCorpus(t *testing.T, path string) {
 	b, e := os.ReadFile(path)
 	if e != nil {

@@ -438,6 +438,8 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if _, err := parsePolynomial(p.Expected, p.Variables); err != nil {
 			return err
 		}
+	case "finite-map":
+		return validateFiniteMap(r)
 	case "integer-list":
 		return validateIntegerList(r)
 	case "binomial-sum":
@@ -620,6 +622,8 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 		return checkBooleanRequirement(r, response)
 	case "boolean-model":
 		return booleanModel(r, response)
+	case "finite-map":
+		return checkFiniteMap(r, response)
 	case "integer-list":
 		return checkIntegerList(r, response)
 	case "binomial-sum":

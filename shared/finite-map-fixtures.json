@@ -1,0 +1,1430 @@
+[
+  {
+    "name": "unique-fiber-collision",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f1",
+          "kind": "math",
+          "label": "f1"
+        },
+        {
+          "id": "f2",
+          "kind": "math",
+          "label": "f2"
+        },
+        {
+          "id": "f3",
+          "kind": "math",
+          "label": "f3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f1", "f2", "f3"],
+          "params": {
+            "kind": "unique-fiber-noninjective",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "1": "f1",
+                  "2": "f2",
+                  "3": "f3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f1": "a",
+      "f2": "b",
+      "f3": "b"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "unique-fiber-alternate",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f1",
+          "kind": "math",
+          "label": "f1"
+        },
+        {
+          "id": "f2",
+          "kind": "math",
+          "label": "f2"
+        },
+        {
+          "id": "f3",
+          "kind": "math",
+          "label": "f3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f1", "f2", "f3"],
+          "params": {
+            "kind": "unique-fiber-noninjective",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "1": "f1",
+                  "2": "f2",
+                  "3": "f3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f1": "b",
+      "f2": "a",
+      "f3": "a"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "unique-fiber-constant-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f1",
+          "kind": "math",
+          "label": "f1"
+        },
+        {
+          "id": "f2",
+          "kind": "math",
+          "label": "f2"
+        },
+        {
+          "id": "f3",
+          "kind": "math",
+          "label": "f3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f1", "f2", "f3"],
+          "params": {
+            "kind": "unique-fiber-noninjective",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "1": "f1",
+                  "2": "f2",
+                  "3": "f3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f1": "a",
+      "f2": "a",
+      "f3": "a"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "injective-composite",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "fa",
+          "kind": "math",
+          "label": "fa"
+        },
+        {
+          "id": "fb",
+          "kind": "math",
+          "label": "fb"
+        },
+        {
+          "id": "g1",
+          "kind": "math",
+          "label": "g1"
+        },
+        {
+          "id": "g2",
+          "kind": "math",
+          "label": "g2"
+        },
+        {
+          "id": "g3",
+          "kind": "math",
+          "label": "g3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["fa", "fb", "g1", "g2", "g3"],
+          "params": {
+            "kind": "injective-composite-noninjective-second",
+            "domains": {
+              "A": ["a", "b"],
+              "B": ["1", "2", "3"],
+              "C": ["u", "v"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "a": "fa",
+                  "b": "fb"
+                }
+              },
+              {
+                "name": "g",
+                "domain": "B",
+                "codomain": "C",
+                "fields": {
+                  "1": "g1",
+                  "2": "g2",
+                  "3": "g3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "fa": "1",
+      "fb": "2",
+      "g1": "u",
+      "g2": "v",
+      "g3": "u"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "injective-composite-alternative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "fa",
+          "kind": "math",
+          "label": "fa"
+        },
+        {
+          "id": "fb",
+          "kind": "math",
+          "label": "fb"
+        },
+        {
+          "id": "g1",
+          "kind": "math",
+          "label": "g1"
+        },
+        {
+          "id": "g2",
+          "kind": "math",
+          "label": "g2"
+        },
+        {
+          "id": "g3",
+          "kind": "math",
+          "label": "g3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["fa", "fb", "g1", "g2", "g3"],
+          "params": {
+            "kind": "injective-composite-noninjective-second",
+            "domains": {
+              "A": ["a", "b"],
+              "B": ["1", "2", "3"],
+              "C": ["u", "v"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "a": "fa",
+                  "b": "fb"
+                }
+              },
+              {
+                "name": "g",
+                "domain": "B",
+                "codomain": "C",
+                "fields": {
+                  "1": "g1",
+                  "2": "g2",
+                  "3": "g3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "fa": "2",
+      "fb": "3",
+      "g1": "v",
+      "g2": "u",
+      "g3": "v"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "composite-collision",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "fa",
+          "kind": "math",
+          "label": "fa"
+        },
+        {
+          "id": "fb",
+          "kind": "math",
+          "label": "fb"
+        },
+        {
+          "id": "g1",
+          "kind": "math",
+          "label": "g1"
+        },
+        {
+          "id": "g2",
+          "kind": "math",
+          "label": "g2"
+        },
+        {
+          "id": "g3",
+          "kind": "math",
+          "label": "g3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["fa", "fb", "g1", "g2", "g3"],
+          "params": {
+            "kind": "injective-composite-noninjective-second",
+            "domains": {
+              "A": ["a", "b"],
+              "B": ["1", "2", "3"],
+              "C": ["u", "v"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "a": "fa",
+                  "b": "fb"
+                }
+              },
+              {
+                "name": "g",
+                "domain": "B",
+                "codomain": "C",
+                "fields": {
+                  "1": "g1",
+                  "2": "g2",
+                  "3": "g3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "fa": "1",
+      "fb": "1",
+      "g1": "u",
+      "g2": "v",
+      "g3": "u"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "bijective-composite-neither-factor",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "fa",
+          "kind": "math",
+          "label": "fa"
+        },
+        {
+          "id": "fb",
+          "kind": "math",
+          "label": "fb"
+        },
+        {
+          "id": "g1",
+          "kind": "math",
+          "label": "g1"
+        },
+        {
+          "id": "g2",
+          "kind": "math",
+          "label": "g2"
+        },
+        {
+          "id": "g3",
+          "kind": "math",
+          "label": "g3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["fa", "fb", "g1", "g2", "g3"],
+          "params": {
+            "kind": "bijective-composite-neither",
+            "domains": {
+              "A": ["a", "b"],
+              "B": ["1", "2", "3"],
+              "C": ["u", "v"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "a": "fa",
+                  "b": "fb"
+                }
+              },
+              {
+                "name": "g",
+                "domain": "B",
+                "codomain": "C",
+                "fields": {
+                  "1": "g1",
+                  "2": "g2",
+                  "3": "g3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "fa": "1",
+      "fb": "2",
+      "g1": "u",
+      "g2": "v",
+      "g3": "u"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "bijective-composite-alternative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "fa",
+          "kind": "math",
+          "label": "fa"
+        },
+        {
+          "id": "fb",
+          "kind": "math",
+          "label": "fb"
+        },
+        {
+          "id": "g1",
+          "kind": "math",
+          "label": "g1"
+        },
+        {
+          "id": "g2",
+          "kind": "math",
+          "label": "g2"
+        },
+        {
+          "id": "g3",
+          "kind": "math",
+          "label": "g3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["fa", "fb", "g1", "g2", "g3"],
+          "params": {
+            "kind": "bijective-composite-neither",
+            "domains": {
+              "A": ["a", "b"],
+              "B": ["1", "2", "3"],
+              "C": ["u", "v"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "a": "fa",
+                  "b": "fb"
+                }
+              },
+              {
+                "name": "g",
+                "domain": "B",
+                "codomain": "C",
+                "fields": {
+                  "1": "g1",
+                  "2": "g2",
+                  "3": "g3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "fa": "2",
+      "fb": "3",
+      "g1": "v",
+      "g2": "u",
+      "g3": "v"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "bijective-composite-collision",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "fa",
+          "kind": "math",
+          "label": "fa"
+        },
+        {
+          "id": "fb",
+          "kind": "math",
+          "label": "fb"
+        },
+        {
+          "id": "g1",
+          "kind": "math",
+          "label": "g1"
+        },
+        {
+          "id": "g2",
+          "kind": "math",
+          "label": "g2"
+        },
+        {
+          "id": "g3",
+          "kind": "math",
+          "label": "g3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["fa", "fb", "g1", "g2", "g3"],
+          "params": {
+            "kind": "bijective-composite-neither",
+            "domains": {
+              "A": ["a", "b"],
+              "B": ["1", "2", "3"],
+              "C": ["u", "v"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "fields": {
+                  "a": "fa",
+                  "b": "fb"
+                }
+              },
+              {
+                "name": "g",
+                "domain": "B",
+                "codomain": "C",
+                "fields": {
+                  "1": "g1",
+                  "2": "g2",
+                  "3": "g3"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "fa": "1",
+      "fb": "1",
+      "g1": "u",
+      "g2": "v",
+      "g3": "u"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "image-intersection-counterexample",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,a),(2,a),(3,b)}",
+      "s": "{1}",
+      "w": "{2}",
+      "left": "{}",
+      "right": "{a}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "image-intersection-alternative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,b),(2,a),(3,a)}",
+      "s": "{2}",
+      "w": "{3}",
+      "left": "{}",
+      "right": "{a}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "image-intersection-commuted-exact-input",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(3,b),(2,a),(1/1,a)}",
+      "s": "{1}",
+      "w": "{2}",
+      "left": "{}",
+      "right": "{a}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "image-intersection-equal-subsets",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,a),(2,a),(3,b)}",
+      "s": "{1}",
+      "w": "{1}",
+      "left": "{a}",
+      "right": "{a}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "image-intersection-wrong-claimed-image",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,a),(2,a),(3,b)}",
+      "s": "{1}",
+      "w": "{2}",
+      "left": "{b}",
+      "right": "{a}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "finite-map-missing-domain-member",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,a),(2,a)}",
+      "s": "{1}",
+      "w": "{2}",
+      "left": "{}",
+      "right": "{a}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "finite-map-nonfunctional-relation",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,a),(1,b),(2,a),(3,b)}",
+      "s": "{1}",
+      "w": "{2}",
+      "left": "{}",
+      "right": "{a}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "finite-map-outside-domain-subset",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,a),(2,a),(3,b)}",
+      "s": "{4}",
+      "w": "{2}",
+      "left": "{}",
+      "right": "{a}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "finite-map-incomplete-pair",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "f",
+          "kind": "math",
+          "label": "f"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        },
+        {
+          "id": "w",
+          "kind": "math",
+          "label": "w"
+        },
+        {
+          "id": "left",
+          "kind": "math",
+          "label": "left"
+        },
+        {
+          "id": "right",
+          "kind": "math",
+          "label": "right"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "finite-map",
+          "fields": ["f", "s", "w", "left", "right"],
+          "params": {
+            "kind": "image-intersection-counterexample",
+            "domains": {
+              "A": ["1", "2", "3"],
+              "B": ["a", "b"]
+            },
+            "maps": [
+              {
+                "name": "f",
+                "domain": "A",
+                "codomain": "B",
+                "field": "f"
+              }
+            ],
+            "subsets": {
+              "s": "s",
+              "w": "w",
+              "left": "left",
+              "right": "right"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "f": "{(1,a),(2,),(3,b)}",
+      "s": "{1}",
+      "w": "{2}",
+      "left": "{}",
+      "right": "{a}"
+    },
+    "error": true
+  }
+]
