@@ -1,0 +1,872 @@
+[
+  {
+    "template": "witness-definition-variants",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "term": "witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " A WITNESS. "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "not a witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "counterexample"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "implication-negation-production-review",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "(a|b)&!c"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "!c&(b|a)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "!((a|b)&!c)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "implication-negation-production-review",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "a&(!b|!c)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "(!c|!b)&a"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "!(a&(!b|!c))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "de-morgan-production-review",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "(!a&b)|!c"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "!c|(b&!a)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "!((!a&b)|!c)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "de-morgan-production-review",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "!a&(b|!c)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "(b|!c)&!a"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "a"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "!(!a&(b|!c))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "de-morgan-production-review",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "!S|(!L&!M)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "(!M&!L)|!S"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "S"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "!(!S|(!L&!M))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "implication-negation-production-review",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "condition": "x<=0"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "condition": "x<=2 and x<=0"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "condition": "0>=x"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "condition": "x<0"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "condition": "x>0"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "counterassignment-construction-review",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "p": false,
+          "q": true,
+          "implication": true,
+          "equivalence": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "p": true,
+          "q": false,
+          "implication": false,
+          "equivalence": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "p": false,
+          "q": true,
+          "implication": false,
+          "equivalence": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "counterassignment-construction-review",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "p": false,
+          "q": false,
+          "r": true,
+          "premise-1": true,
+          "premise-2": true,
+          "conclusion": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "p": true,
+          "q": false,
+          "r": true,
+          "premise-1": true,
+          "premise-2": true,
+          "conclusion": true
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "p": false,
+          "q": false,
+          "r": true,
+          "premise-1": false,
+          "premise-2": true,
+          "conclusion": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "counterassignment-construction-review",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "p": true,
+          "q": true,
+          "r": false,
+          "premise-1": true,
+          "premise-2": true,
+          "conclusion": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "p": true,
+          "q": false,
+          "r": true,
+          "premise-1": true,
+          "premise-2": true,
+          "conclusion": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "p": true,
+          "q": true,
+          "r": true,
+          "premise-1": true,
+          "premise-2": true,
+          "conclusion": true
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "p": true,
+          "q": true,
+          "r": false,
+          "premise-1": false,
+          "premise-2": true,
+          "conclusion": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "existential-witness-construction-variants",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "value": "-5",
+          "square": "25",
+          "negative": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "-10/2",
+          "square": "5^2",
+          "negative": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "5",
+          "square": "25",
+          "negative": true
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value": "-5",
+          "square": "25",
+          "negative": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "existential-witness-construction-variants",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "value": "5",
+          "between": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "6",
+          "between": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "7",
+          "between": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "11/2",
+          "between": true
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value": "5",
+          "between": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "existential-witness-construction-variants",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "value": "1/2",
+          "square": "1/4",
+          "between": true,
+          "square-less": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "1/3",
+          "square": "1/9",
+          "between": true,
+          "square-less": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "3/4",
+          "square": "9/16",
+          "between": true,
+          "square-less": true
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "1",
+          "square": "1",
+          "between": true,
+          "square-less": true
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value": "1/2",
+          "square": "1/4",
+          "between": false,
+          "square-less": true
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "quantified-counterexample-construction-variants",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "value": "0",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "-1",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value": "0",
+          "antecedent": false,
+          "consequent": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "quantified-counterexample-construction-variants",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "value": "-1",
+          "square": "1",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "1",
+          "square": "1",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value": "-1",
+          "square": "1",
+          "antecedent": false,
+          "consequent": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "quantified-counterexample-construction-variants",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "value": "-2",
+          "square": "4",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "-3",
+          "square": "9",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "-5/2",
+          "square": "25/4",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value": "-1",
+          "square": "1",
+          "antecedent": true,
+          "consequent": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value": "-2",
+          "square": "4",
+          "antecedent": false,
+          "consequent": false
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "dependent-witness-construction-variants",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "9-n",
+          "verification": "n+(9-n)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "-n+9",
+          "verification": "9"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "9+n",
+          "verification": "9"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "dependent-witness-construction-variants",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "constant": "-4",
+          "verification": "n-4"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "constant": "-8/2",
+          "verification": "-4+n"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "constant": "4",
+          "verification": "n+4"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "quantifier-negation-production-variants",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "exists n in Z forall m in Z (m<n+2)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists a in Z forall b in Z (b<a+2)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists n in Z forall m in Z (m<=n+1)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "forall n in Z exists m in Z (m<n+2)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "quantifier-negation-production-variants",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "formula": "forall u in D exists v in D (A(u) and not B(u,v))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "forall x in D exists y in D (not B(x,y) and A(x))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists u in D forall v in D (A(u) and not B(u,v))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "quantifier-order-countermodel-variants",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "r00": true,
+          "r01": false,
+          "r10": false,
+          "r11": true,
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "r00": false,
+          "r01": true,
+          "r10": true,
+          "r11": false,
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "r00": true,
+          "r01": false,
+          "r10": true,
+          "r11": true,
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "r00": true,
+          "r01": false,
+          "r10": false,
+          "r11": true,
+          "reason": "common-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "quantifier-order-countermodel-variants",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "r00": true,
+          "r01": false,
+          "r10": false,
+          "r11": true,
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "r00": false,
+          "r01": true,
+          "r10": true,
+          "r11": false,
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "r00": true,
+          "r01": false,
+          "r10": true,
+          "r11": true,
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "r00": true,
+          "r01": false,
+          "r10": false,
+          "r11": true,
+          "reason": "common-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  }
+]

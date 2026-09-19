@@ -11,6 +11,7 @@ from itertools import product
 from math import comb, factorial, perm, floor, ceil
 from pathlib import Path
 import json
+import re
 
 ROOT = Path(__file__).resolve().parents[2]
 AUDIT = json.loads((ROOT / 'docs/deterministic-grading-audit.json').read_text())
@@ -53,7 +54,8 @@ def fixtures(response, alternate=None):
 
 
 def append(key, inputs, requirements, response, rationale, *, prompt=None,
-           instructions=None, cost='low', capabilities=None, alternate=None):
+           instructions=None, cost='low', capabilities=None, alternate=None,
+           test_cases=None):
     published = EXERCISES[key]['publishedQuestion']
     lesson, identifier = key.rsplit('-', 1)
     original = [published['instructions'], published['prompt'],
@@ -63,7 +65,7 @@ def append(key, inputs, requirements, response, rationale, *, prompt=None,
         'lesson': lesson, 'id': int(identifier), 'sourceHash': digest,
         'rationale': rationale,
         'assessment': assessment(inputs, requirements, published['officialAnswer'], cost, capabilities),
-        'fixtures': fixtures(response, alternate),
+        'fixtures': test_cases if test_cases is not None else fixtures(response, alternate),
     }
     if prompt is not None:
         entry['prompt'] = prompt
@@ -230,12 +232,16 @@ for identifier, columns in formulas.items():
            prompt=prompt, cost='medium' if identifier >= 40 else 'low', capabilities=['tap'])
 
 
-# These matrices are the explicit source data in the existing LA authoring generator.
-matrices = {
-    1: [[1,2,3],[4,5,6]], 3: [[1,2],[0,1]], 4: [[2,-1],[1,3]],
-    5: [[0,1,2],[2,-1,0]], 6: [[1,0],[0,2],[1,-1]],
-    7: [[2,0,-1],[0,1,3]], 8: [[1,2,0],[-1,0,1],[0,1,1]],
-}
+# The normal LA generator owns these numerical data. Read its emitted verification
+# records and the original core authoring record; never copy a second matrix bank.
+la_fixtures = json.loads((ROOT / 'content/linear-algebra-verification.json').read_text())
+core = json.loads((ROOT / 'scripts/authoring/linear-algebra-core.json').read_text())
+matrix_lesson = next(x for x in core if x['slug'] == 'linear-algebra-matrices')
+first_matrix = next(q for s in matrix_lesson['sections'] for q in s['questions'] if q['id'] == 1)
+matrices = {1: [[int(v) for v in row.split(',')] for row in re.findall(r'\(([-\d, ]+)\)', first_matrix['prompt'])]}
+matrices.update({x['id']: x['a'] for x in la_fixtures
+                 if x['lesson'] == 'linear-algebra-matrices' and x['kind'] == 'transpose'})
+assert sorted(matrices) == [1, 3, 4, 5, 6, 7, 8]
 for identifier, matrix in matrices.items():
     nr, nc = len(matrix), len(matrix[0])
     transpose = [list(column) for column in zip(*matrix)]
@@ -263,6 +269,115 @@ for identifier, matrix in matrices.items():
            cost='medium', capabilities=['math-text'])
 
 assert len(entries) == 126, len(entries)
+
+# Additional result-only recurrence evaluations share the same exact scalar input.
+for identifier, values, labels in [
+    (1, [5, 8, 11, 14], ['$a_1$', '$a_2$', '$a_3$', '$a_4$']),
+    (2, [10, 20, 40], ['$a_1$', '$a_2$', '$a_3$']),
+    (3, [1, 2, 3, 5, 8], ['$a_2$', '$a_3$', '$a_4$', '$a_5$', '$a_6$']),
+    (9, [3, 5, 8, 12], ['$a_1$', '$a_2$', '$a_3$', '$a_4$']),
+    (37, [3, 5, 8, 13, 21], ['$F(2)$', '$F(3)$', '$F(4)$', '$F(5)$', '$F(6)$']),
+    (52, [2**n-1 for n in range(1, 6)], [f'$H({n})$' for n in range(1, 6)]),
+    (56, [6], ['Maximum number of disks']),
+    (61, [4, 12, 32], ['$T(2)$', '$T(4)$', '$T(8)$']),
+]:
+    numeric(f'recurrence-relations-{identifier}', values, labels)
+
+
+def finite_sets(key, answers, universe):
+    inputs, reqs, response = [], [], {}
+    atoms = [str(v) for v in universe if isinstance(v, str)]
+    for i, (label, members) in enumerate(answers):
+        field = f'set-{i+1}'
+        expected = [str(v) for v in members]
+        inputs.append({'id': field, 'kind': 'math', 'label': label,
+                       'hint': 'Enter members separated by commas; use {} for the empty set.'})
+        reqs.append(requirement(field, 'set', [field], {'expected': expected, **({'atoms': atoms} if atoms else {})}, 'The entered members are exactly the requested set.'))
+        response[field] = '{'+','.join(expected)+'}'
+    first = next(iter(response))
+    first_members = answers[0][1]
+    wrong_members = first_members[1:] if first_members else [universe[0]]
+    wrong = {**response, first: '{'+','.join(map(str,wrong_members))+'}'}
+    reordered = {f'set-{i+1}': '{'+','.join(map(str,reversed(members)))+'}' for i, (_,members) in enumerate(answers)}
+    append(key, inputs, reqs, response,
+           'Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.',
+           capabilities=['math-text'], test_cases=[
+               {'response': response, 'verdict': 'correct'},
+               {'response': reordered, 'verdict': 'correct'},
+               {'response': wrong, 'verdict': 'incorrect'},
+               {'response': {}, 'error': True},
+           ])
+
+
+for identifier, answers, universe in [
+    (1, [('Requested set', [-2, 0, 2, 4])], list(range(-3, 5))),
+    (8, [('Solutions in the integers', [-3, 3]), ('Solutions in the positive integers', [3])], [-3, -2, -1, 0, 1, 2, 3]),
+    (11, [('$A\\cup B$', [1, 2, 3, 4, 6, 7])], list(range(1, 8))),
+    (12, [('$A\\cap B$', [2, 6])], list(range(1, 8))),
+    (13, [('$A\\setminus B$', [1, 4]), ('$B\\setminus A$', [3, 7])], list(range(1, 8))),
+    (14, [('$A^c$', [3, 5, 7, 8])], list(range(1, 9))),
+    (15, [('$A\\mathbin{\\triangle}B$', [1, 3, 4, 7])], list(range(1, 8))),
+    (16, [('$ (A\\cup B)^c $', [5, 8]), ('$A^c\\cap B^c$', [5, 8])], list(range(1, 9))),
+    (17, [('$ (A\\cap B)^c $', [1, 3, 4, 5, 7, 8])], list(range(1, 9))),
+    (18, [('$ (A\\cup B)\\setminus C $', [1, 2, 4])], list(range(1, 6))),
+    (19, [('$A\\setminus(B\\setminus C)$', [1, 3]), ('$(A\\setminus B)\\setminus C$', [1])], list(range(1, 6))),
+    (57, [('Union', [1, 2, 3, 4]), ('Intersection', [1])], [1, 2, 3, 4]),
+    (58, [('Union', [1, 2, 3, 4]), ('Intersection', [])], [1, 2, 3, 4]),
+    (73, [('$A\\cap B$', [-2, 0, 2]), ('$A\\setminus B$', [-1, 1])], [-2, -1, 0, 1, 2]),
+]:
+    finite_sets(f'sets-and-set-operations-{identifier}', answers, universe)
+
+# Typed sets also cover unrestricted domains without adding a candidate universe.
+finite_sets('functions-11', [('Image', [-3, 1, 7])], [])
+finite_sets('functions-12', [('Preimage', [0, 2])], [])
+finite_sets('functions-13', [('Preimage', [-3, 3])], [])
+finite_sets('functions-14', [('Preimage', [])], [0])
+finite_sets('functions-19', [('Preimage of $\\{1\\}$', ['a', 'b']),
+                            ('Preimage of $\\{2\\}$', []),
+                            ('Preimage of $\\{1,3\\}$', ['a', 'b', 'c'])], ['a', 'b', 'c'])
+
+
+def boolean_formula(key, answers):
+    inputs, reqs, response = [], [], {}
+    for i, (label, expected, variables, form, structure) in enumerate(answers):
+        field = f'formula-{i+1}'
+        inputs.append({'id': field, 'kind': 'math', 'label': label})
+        params = {'expected': expected, 'variables': variables}
+        if form:
+            params['form'] = form
+        if structure:
+            params['structure'] = structure
+        if key == 'propositional-logic-149':
+            params['maxNodes'] = 5
+        reqs.append(requirement(field, 'boolean-formula', [field], params, 'The formula has the requested meaning and form.'))
+        response[field] = expected
+    first = next(iter(response))
+    wrong = {**response, first: f'!({response[first]})'}
+    append(key, inputs, reqs, response,
+           'The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.',
+           capabilities=['math-text'], test_cases=[
+               {'response': response, 'verdict': 'correct'},
+               {'response': wrong, 'verdict': 'incorrect'},
+               {'response': {}, 'error': True},
+           ] + ([{'response': {first:'!q&!p'}, 'verdict':'correct'},
+                 {'response': {first:'!p&!q&!p'}, 'verdict':'incorrect'}]
+                if key == 'propositional-logic-149' else []))
+
+
+for identifier, formula, variables, form in [
+    (46, '!p|!q', ['p', 'q'], 'nnf'), (47, '!p&!q', ['p', 'q'], 'nnf'),
+    (80, '(p&!q)|!r', ['p', 'q', 'r'], 'no-implication'),
+    (141, 'p&!q&!r', ['p', 'q', 'r'], 'no-implication'),
+    (142, '(!p|!q)&!r', ['p', 'q', 'r'], 'nnf'),
+    (149, '!p&!q', ['p', 'q'], 'nnf'),
+]:
+    boolean_formula(f'propositional-logic-{identifier}', [('Rewritten formula', formula, variables, form, None)])
+boolean_formula('propositional-logic-87', [
+    ('Converse', 'q->p', ['p', 'q'], None, 'q->p'),
+    ('Inverse', '!p->!q', ['p', 'q'], None, '!p->!q'),
+    ('Contrapositive', '!q->!p', ['p', 'q'], None, '!q->!p'),
+])
+
 entries.sort(key=lambda e: (e['lesson'], e['id']))
 (ROOT / 'content/deterministic-exercises.json').write_text(json.dumps(entries, ensure_ascii=False, indent=2) + '\n')
 print(f'Authored {len(entries)} deterministic exercise definitions.')

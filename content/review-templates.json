@@ -38,7 +38,38 @@
       "section": "Review",
       "instructions": "Answer briefly from memory.",
       "prompt": "What term names a value in the domain that makes an existentially quantified condition true?",
-      "answer": "A witness."
+      "answer": "A witness.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": ["witness", "a witness", "witness.", "a witness."]
+            },
+            "description": "The complete answer names the requested term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A witness.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
     },
     "variants": [
       {
@@ -46,7 +77,38 @@
         "section": "Review",
         "instructions": "Answer briefly from memory.",
         "prompt": "What term names a value in the domain that makes an existentially quantified condition true?",
-        "answer": "A witness."
+        "answer": "A witness.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "term",
+              "kind": "text",
+              "label": "Term"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "term",
+              "validator": "term",
+              "fields": ["term"],
+              "params": {
+                "accepted": ["witness", "a witness", "witness.", "a witness."]
+              },
+              "description": "The complete answer names the requested term.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "A witness.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
       },
       {
         "id": 1,
@@ -3576,7 +3638,40 @@
       "section": "Review",
       "instructions": "Write a short answer. Show the requested formula or assignment.",
       "prompt": "Negate $(a\\lor b)\\to c$. Write the result with no implication arrow and with negation only on variables.",
-      "answer": "$(a\\lor b)\\land\\neg c$. A false implication has its complete antecedent true and its consequent false."
+      "answer": "$(a\\lor b)\\land\\neg c$. A false implication has its complete antecedent true and its consequent false.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "formula",
+            "kind": "math",
+            "label": "Negated formula"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "formula",
+            "validator": "boolean-formula",
+            "fields": ["formula"],
+            "params": {
+              "expected": "(a|b)&!c",
+              "variables": ["a", "b", "c"],
+              "form": "nnf"
+            },
+            "description": "The formula is equivalent to the requested negation, with negation only on variables.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "$(a\\lor b)\\land\\neg c$. A false implication has its complete antecedent true and its consequent false.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["math-text"]
+        }
+      }
     },
     "variants": [
       {
@@ -3584,21 +3679,120 @@
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Negate $(a\\lor b)\\to c$. Write the result with no implication arrow and with negation only on variables.",
-        "answer": "$(a\\lor b)\\land\\neg c$. A false implication has its complete antecedent true and its consequent false."
+        "answer": "$(a\\lor b)\\land\\neg c$. A false implication has its complete antecedent true and its consequent false.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Negated formula"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "formula",
+              "validator": "boolean-formula",
+              "fields": ["formula"],
+              "params": {
+                "expected": "(a|b)&!c",
+                "variables": ["a", "b", "c"],
+                "form": "nnf"
+              },
+              "description": "The formula is equivalent to the requested negation, with negation only on variables.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$(a\\lor b)\\land\\neg c$. A false implication has its complete antecedent true and its consequent false.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Negate $a\\to(b\\land c)$. Write the result with negation only on variables.",
-        "answer": "$a\\land(\\neg b\\lor\\neg c)$. First keep $a$ and negate the entire consequent, then apply De Morgan’s law."
+        "answer": "$a\\land(\\neg b\\lor\\neg c)$. First keep $a$ and negate the entire consequent, then apply De Morgan’s law.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Negated formula"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "formula",
+              "validator": "boolean-formula",
+              "fields": ["formula"],
+              "params": {
+                "expected": "a&(!b|!c)",
+                "variables": ["a", "b", "c"],
+                "form": "nnf"
+              },
+              "description": "The formula is equivalent to the requested negation, with negation only on variables.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$a\\land(\\neg b\\lor\\neg c)$. First keep $a$ and negate the entire consequent, then apply De Morgan’s law.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
-        "prompt": "For a fixed real number $x$, negate “If $x\\leq2$, then $x>0$.” Give a sentence or equivalent inequalities joined by AND or OR.",
-        "answer": "$x\\leq2$ and $x\\leq0$, equivalently $x\\leq0$. Keep the original antecedent and negate $x>0$, including equality at zero."
+        "prompt": "For a fixed real number $x$, negate “If $x\\leq2$, then $x>0$.” Give equivalent inequalities joined by AND or OR.",
+        "answer": "$x\\leq2$ and $x\\leq0$, equivalently $x\\leq0$. Keep the original antecedent and negate $x>0$, including equality at zero.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "condition",
+              "kind": "math",
+              "label": "Negated condition",
+              "hint": "Use inequalities joined by AND or OR."
+            }
+          ],
+          "requirements": [
+            {
+              "id": "condition",
+              "validator": "inequality",
+              "fields": ["condition"],
+              "params": {
+                "expected": "x<=0",
+                "variable": "x"
+              },
+              "description": "The inequalities describe precisely the negated condition over the real numbers.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$x\\leq2$ and $x\\leq0$, equivalently $x\\leq0$. Keep the original antecedent and negate $x>0$, including equality at zero.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       }
     ]
   },
@@ -3619,7 +3813,40 @@
       "section": "Review",
       "instructions": "Write a short answer. Show the requested formula or assignment.",
       "prompt": "Rewrite $\\neg((a\\lor\\neg b)\\land c)$ with negation only on variables.",
-      "answer": "$(\\neg a\\land b)\\lor\\neg c$. The outer AND becomes OR; the inner OR becomes AND, and double negation on $b$ cancels."
+      "answer": "$(\\neg a\\land b)\\lor\\neg c$. The outer AND becomes OR; the inner OR becomes AND, and double negation on $b$ cancels.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "formula",
+            "kind": "math",
+            "label": "Negated formula"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "formula",
+            "validator": "boolean-formula",
+            "fields": ["formula"],
+            "params": {
+              "expected": "(!a&b)|!c",
+              "variables": ["a", "b", "c"],
+              "form": "nnf"
+            },
+            "description": "The formula is equivalent to the requested negation, with negation only on variables.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "$(\\neg a\\land b)\\lor\\neg c$. The outer AND becomes OR; the inner OR becomes AND, and double negation on $b$ cancels.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["math-text"]
+        }
+      }
     },
     "variants": [
       {
@@ -3627,21 +3854,120 @@
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Rewrite $\\neg((a\\lor\\neg b)\\land c)$ with negation only on variables.",
-        "answer": "$(\\neg a\\land b)\\lor\\neg c$. The outer AND becomes OR; the inner OR becomes AND, and double negation on $b$ cancels."
+        "answer": "$(\\neg a\\land b)\\lor\\neg c$. The outer AND becomes OR; the inner OR becomes AND, and double negation on $b$ cancels.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Negated formula"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "formula",
+              "validator": "boolean-formula",
+              "fields": ["formula"],
+              "params": {
+                "expected": "(!a&b)|!c",
+                "variables": ["a", "b", "c"],
+                "form": "nnf"
+              },
+              "description": "The formula is equivalent to the requested negation, with negation only on variables.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$(\\neg a\\land b)\\lor\\neg c$. The outer AND becomes OR; the inner OR becomes AND, and double negation on $b$ cancels.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Rewrite $\\neg(a\\lor(\\neg b\\land c))$ with negation only on variables.",
-        "answer": "$\\neg a\\land(b\\lor\\neg c)$. The two connectives both switch, and $\\neg\\neg b$ simplifies to $b$."
+        "answer": "$\\neg a\\land(b\\lor\\neg c)$. The two connectives both switch, and $\\neg\\neg b$ simplifies to $b$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Negated formula"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "formula",
+              "validator": "boolean-formula",
+              "fields": ["formula"],
+              "params": {
+                "expected": "!a&(b|!c)",
+                "variables": ["a", "b", "c"],
+                "form": "nnf"
+              },
+              "description": "The formula is equivalent to the requested negation, with negation only on variables.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$\\neg a\\land(b\\lor\\neg c)$. The two connectives both switch, and $\\neg\\neg b$ simplifies to $b$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Negate “The switch is on and at least one of the two lamps is lit.” Use $S$ for the switch being on and $L,M$ for the lamps being lit. Give the negation with negation only on variables.",
-        "answer": "$\\neg S\\lor(\\neg L\\land\\neg M)$. The original is $S\\land(L\\lor M)$, so its negation says the switch is off or both lamps are unlit."
+        "answer": "$\\neg S\\lor(\\neg L\\land\\neg M)$. The original is $S\\land(L\\lor M)$, so its negation says the switch is off or both lamps are unlit.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Negated formula"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "formula",
+              "validator": "boolean-formula",
+              "fields": ["formula"],
+              "params": {
+                "expected": "!S|(!L&!M)",
+                "variables": ["S", "L", "M"],
+                "form": "nnf"
+              },
+              "description": "The formula is equivalent to the requested negation, with negation only on variables.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$\\neg S\\lor(\\neg L\\land\\neg M)$. The original is $S\\land(L\\lor M)$, so its negation says the switch is off or both lamps are unlit.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       }
     ]
   },
@@ -3666,7 +3992,75 @@
       "section": "Review",
       "instructions": "Write a short answer. Show the requested formula or assignment.",
       "prompt": "Give a truth assignment showing that $p\\to q$ and $p\\leftrightarrow q$ are not logically equivalent. State both resulting truth values.",
-      "answer": "$p=F$, $q=T$ gives $p\\to q=T$ and $p\\leftrightarrow q=F$."
+      "answer": "$p=F$, $q=T$ gives $p\\to q=T$ and $p\\leftrightarrow q=F$.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "assignment",
+            "kind": "grid",
+            "label": "Counterassignment",
+            "columns": ["$p$", "$q$", "$p\\to q$", "$p\\leftrightarrow q$"],
+            "rows": [
+              {
+                "label": "Your assignment",
+                "cells": [
+                  {
+                    "id": "p",
+                    "kind": "boolean"
+                  },
+                  {
+                    "id": "q",
+                    "kind": "boolean"
+                  },
+                  {
+                    "id": "implication",
+                    "kind": "boolean"
+                  },
+                  {
+                    "id": "equivalence",
+                    "kind": "boolean"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          {
+            "id": "counterassignment",
+            "validator": "boolean-model",
+            "fields": ["p", "q", "implication", "equivalence"],
+            "params": {
+              "variables": {
+                "p": "p",
+                "q": "q"
+              },
+              "checks": {
+                "implication": "p->q",
+                "equivalence": "p<->q"
+              },
+              "conditions": [
+                {
+                  "formula": "!((p->q)<->(p<->q))",
+                  "value": true
+                }
+              ]
+            },
+            "description": "The assignment is a counterexample and every requested resulting truth value is correct.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "$p=F$, $q=T$ gives $p\\to q=T$ and $p\\leftrightarrow q=F$.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["tap"]
+        }
+      }
     },
     "variants": [
       {
@@ -3674,21 +4068,261 @@
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Give a truth assignment showing that $p\\to q$ and $p\\leftrightarrow q$ are not logically equivalent. State both resulting truth values.",
-        "answer": "$p=F$, $q=T$ gives $p\\to q=T$ and $p\\leftrightarrow q=F$."
+        "answer": "$p=F$, $q=T$ gives $p\\to q=T$ and $p\\leftrightarrow q=F$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "assignment",
+              "kind": "grid",
+              "label": "Counterassignment",
+              "columns": ["$p$", "$q$", "$p\\to q$", "$p\\leftrightarrow q$"],
+              "rows": [
+                {
+                  "label": "Your assignment",
+                  "cells": [
+                    {
+                      "id": "p",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "q",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "implication",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "equivalence",
+                      "kind": "boolean"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "requirements": [
+            {
+              "id": "counterassignment",
+              "validator": "boolean-model",
+              "fields": ["p", "q", "implication", "equivalence"],
+              "params": {
+                "variables": {
+                  "p": "p",
+                  "q": "q"
+                },
+                "checks": {
+                  "implication": "p->q",
+                  "equivalence": "p<->q"
+                },
+                "conditions": [
+                  {
+                    "formula": "!((p->q)<->(p<->q))",
+                    "value": true
+                  }
+                ]
+              },
+              "description": "The assignment is a counterexample and every requested resulting truth value is correct.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$p=F$, $q=T$ gives $p\\to q=T$ and $p\\leftrightarrow q=F$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Give a counterassignment to this argument: $(p\\lor q)\\to r$, $r$; therefore $p\\lor q$. State the values of both premises and the conclusion.",
-        "answer": "$p=F$, $q=F$, $r=T$. Both the implication and $r$ are true, while $p\\lor q=F$."
+        "answer": "$p=F$, $q=F$, $r=T$. Both the implication and $r$ are true, while $p\\lor q=F$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "assignment",
+              "kind": "grid",
+              "label": "Counterassignment",
+              "columns": ["$p$", "$q$", "$r$", "First premise", "Second premise", "Conclusion"],
+              "rows": [
+                {
+                  "label": "Your assignment",
+                  "cells": [
+                    {
+                      "id": "p",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "q",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "r",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "premise-1",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "premise-2",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "conclusion",
+                      "kind": "boolean"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "requirements": [
+            {
+              "id": "counterassignment",
+              "validator": "boolean-model",
+              "fields": ["p", "q", "r", "premise-1", "premise-2", "conclusion"],
+              "params": {
+                "variables": {
+                  "p": "p",
+                  "q": "q",
+                  "r": "r"
+                },
+                "checks": {
+                  "premise-1": "(p|q)->r",
+                  "premise-2": "r",
+                  "conclusion": "p|q"
+                },
+                "conditions": [
+                  {
+                    "formula": "(p|q)->r",
+                    "value": true
+                  },
+                  {
+                    "formula": "r",
+                    "value": true
+                  },
+                  {
+                    "formula": "p|q",
+                    "value": false
+                  }
+                ]
+              },
+              "description": "The assignment is a counterexample and every requested resulting truth value is correct.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$p=F$, $q=F$, $r=T$. Both the implication and $r$ are true, while $p\\lor q=F$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Write a short answer. Show the requested formula or assignment.",
         "prompt": "Give a counterassignment to this argument: $p\\to(q\\lor r)$, $p$; therefore $q\\land r$. State the values of both premises and the conclusion.",
-        "answer": "For example, $p=T$, $q=T$, $r=F$. Both premises are true, while $q\\land r=F$. Also accept $p=T$, $q=F$, $r=T$."
+        "answer": "For example, $p=T$, $q=T$, $r=F$. Both premises are true, while $q\\land r=F$. Also accept $p=T$, $q=F$, $r=T$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "assignment",
+              "kind": "grid",
+              "label": "Counterassignment",
+              "columns": ["$p$", "$q$", "$r$", "First premise", "Second premise", "Conclusion"],
+              "rows": [
+                {
+                  "label": "Your assignment",
+                  "cells": [
+                    {
+                      "id": "p",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "q",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "r",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "premise-1",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "premise-2",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "conclusion",
+                      "kind": "boolean"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "requirements": [
+            {
+              "id": "counterassignment",
+              "validator": "boolean-model",
+              "fields": ["p", "q", "r", "premise-1", "premise-2", "conclusion"],
+              "params": {
+                "variables": {
+                  "p": "p",
+                  "q": "q",
+                  "r": "r"
+                },
+                "checks": {
+                  "premise-1": "p->(q|r)",
+                  "premise-2": "p",
+                  "conclusion": "q&r"
+                },
+                "conditions": [
+                  {
+                    "formula": "p->(q|r)",
+                    "value": true
+                  },
+                  {
+                    "formula": "p",
+                    "value": true
+                  },
+                  {
+                    "formula": "q&r",
+                    "value": false
+                  }
+                ]
+              },
+              "description": "The assignment is a counterexample and every requested resulting truth value is correct.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "For example, $p=T$, $q=T$, $r=F$. Both premises are true, while $q\\land r=F$. Also accept $p=T$, $q=F$, $r=T$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
       }
     ]
   },
@@ -6767,7 +7401,85 @@
       "section": "Review",
       "instructions": "Give a short answer and verify it.",
       "prompt": "Give one witness for $\\exists n\\in\\mathbb Z\\,(n<0\\land n^2=25)$ and verify both conditions.",
-      "answer": "Choose $n=-5$. It is an integer, $-5<0$, and $(-5)^2=25$."
+      "answer": "Choose $n=-5$. It is an integer, $-5<0$, and $(-5)^2=25$.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "value",
+            "kind": "math",
+            "label": "Integer witness $n$"
+          },
+          {
+            "id": "square",
+            "kind": "math",
+            "label": "$n^2$"
+          },
+          {
+            "id": "negative",
+            "kind": "boolean",
+            "label": "The chosen value is negative"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "witness",
+            "validator": "witness",
+            "fields": ["value", "square"],
+            "params": {
+              "variables": [
+                {
+                  "name": "n",
+                  "field": "value",
+                  "integer": true
+                },
+                {
+                  "name": "s",
+                  "field": "square"
+                }
+              ],
+              "conditions": [
+                {
+                  "left": "n",
+                  "op": "<",
+                  "right": "0"
+                },
+                {
+                  "left": "n^2",
+                  "op": "=",
+                  "right": "25"
+                },
+                {
+                  "left": "s",
+                  "op": "=",
+                  "right": "n^2"
+                }
+              ]
+            },
+            "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+            "evidenceLevel": "production"
+          },
+          {
+            "id": "verification",
+            "validator": "boolean",
+            "fields": ["negative"],
+            "params": {
+              "expected": [true]
+            },
+            "description": "Each requested condition has the correct truth value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Choose $n=-5$. It is an integer, $-5<0$, and $(-5)^2=25$.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["math-text", "tap"]
+        }
+      }
     },
     "variants": [
       {
@@ -6775,21 +7487,250 @@
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "Give one witness for $\\exists n\\in\\mathbb Z\\,(n<0\\land n^2=25)$ and verify both conditions.",
-        "answer": "Choose $n=-5$. It is an integer, $-5<0$, and $(-5)^2=25$."
+        "answer": "Choose $n=-5$. It is an integer, $-5<0$, and $(-5)^2=25$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "value",
+              "kind": "math",
+              "label": "Integer witness $n$"
+            },
+            {
+              "id": "square",
+              "kind": "math",
+              "label": "$n^2$"
+            },
+            {
+              "id": "negative",
+              "kind": "boolean",
+              "label": "The chosen value is negative"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "witness",
+              "validator": "witness",
+              "fields": ["value", "square"],
+              "params": {
+                "variables": [
+                  {
+                    "name": "n",
+                    "field": "value",
+                    "integer": true
+                  },
+                  {
+                    "name": "s",
+                    "field": "square"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "left": "n",
+                    "op": "<",
+                    "right": "0"
+                  },
+                  {
+                    "left": "n^2",
+                    "op": "=",
+                    "right": "25"
+                  },
+                  {
+                    "left": "s",
+                    "op": "=",
+                    "right": "n^2"
+                  }
+                ]
+              },
+              "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "verification",
+              "validator": "boolean",
+              "fields": ["negative"],
+              "params": {
+                "expected": [true]
+              },
+              "description": "Each requested condition has the correct truth value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "Choose $n=-5$. It is an integer, $-5<0$, and $(-5)^2=25$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text", "tap"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "Give one witness for $\\exists n\\in\\mathbb Z\\,(4<n<8)$ and verify it.",
-        "answer": "For example, $n=6$ is an integer and $4<6<8$. The integers 5 and 7 also work."
+        "answer": "For example, $n=6$ is an integer and $4<6<8$. The integers 5 and 7 also work.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "value",
+              "kind": "math",
+              "label": "Integer witness $n$"
+            },
+            {
+              "id": "between",
+              "kind": "boolean",
+              "label": "The chosen value is strictly between the stated bounds"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "witness",
+              "validator": "witness",
+              "fields": ["value"],
+              "params": {
+                "variables": [
+                  {
+                    "name": "n",
+                    "field": "value",
+                    "integer": true
+                  }
+                ],
+                "conditions": [
+                  {
+                    "left": "n",
+                    "op": ">",
+                    "right": "4"
+                  },
+                  {
+                    "left": "n",
+                    "op": "<",
+                    "right": "8"
+                  }
+                ]
+              },
+              "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "verification",
+              "validator": "boolean",
+              "fields": ["between"],
+              "params": {
+                "expected": [true]
+              },
+              "description": "Each requested condition has the correct truth value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "For example, $n=6$ is an integer and $4<6<8$. The integers 5 and 7 also work.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text", "tap"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "Give one witness for $\\exists x\\in\\mathbb R\\,(0<x<1\\land x^2<x)$ and verify it.",
-        "answer": "For example, $x=1/2$ is real, lies strictly between 0 and 1, and has square $1/4<1/2$. Any real $x$ strictly between 0 and 1 works with a valid verification."
+        "answer": "For example, $x=1/2$ is real, lies strictly between 0 and 1, and has square $1/4<1/2$. Any real $x$ strictly between 0 and 1 works with a valid verification.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "value",
+              "kind": "math",
+              "label": "Real witness $x$"
+            },
+            {
+              "id": "square",
+              "kind": "math",
+              "label": "$x^2$"
+            },
+            {
+              "id": "between",
+              "kind": "boolean",
+              "label": "The chosen value is strictly between the stated bounds"
+            },
+            {
+              "id": "square-less",
+              "kind": "boolean",
+              "label": "Its square is less than the chosen value"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "witness",
+              "validator": "witness",
+              "fields": ["value", "square"],
+              "params": {
+                "variables": [
+                  {
+                    "name": "x",
+                    "field": "value"
+                  },
+                  {
+                    "name": "s",
+                    "field": "square"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "left": "x",
+                    "op": ">",
+                    "right": "0"
+                  },
+                  {
+                    "left": "x",
+                    "op": "<",
+                    "right": "1"
+                  },
+                  {
+                    "left": "s",
+                    "op": "=",
+                    "right": "x^2"
+                  },
+                  {
+                    "left": "s",
+                    "op": "<",
+                    "right": "x"
+                  }
+                ]
+              },
+              "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "verification",
+              "validator": "boolean",
+              "fields": ["between", "square-less"],
+              "params": {
+                "expected": [true, true]
+              },
+              "description": "Each requested condition has the correct truth value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "For example, $x=1/2$ is real, lies strictly between 0 and 1, and has square $1/4<1/2$. Any real $x$ strictly between 0 and 1 works with a valid verification.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text", "tap"]
+          }
+        }
       }
     ]
   },
@@ -6810,7 +7751,55 @@
       "section": "Review",
       "instructions": "Give a short answer and verify it.",
       "prompt": "An arbitrary integer $n$ is given. Choose an integer $m$ with $n+m=9$ and verify that your choice works for every such $n$.",
-      "answer": "Choose $m=9-n$. It is an integer and $n+(9-n)=9$ for every integer $n$."
+      "answer": "Choose $m=9-n$. It is an integer and $n+(9-n)=9$ for every integer $n$.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "formula",
+            "kind": "math",
+            "label": "Integer choice $m$, in terms of $n$"
+          },
+          {
+            "id": "verification",
+            "kind": "math",
+            "label": "Substitute your choice into $n+m$ and simplify"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "dependent-choice",
+            "validator": "expression",
+            "fields": ["formula"],
+            "params": {
+              "expected": "9-n",
+              "variables": ["n"]
+            },
+            "description": "The chosen integer expression works for every integer n.",
+            "evidenceLevel": "production"
+          },
+          {
+            "id": "substitution",
+            "validator": "expression",
+            "fields": ["verification"],
+            "params": {
+              "expected": "9",
+              "variables": ["n"]
+            },
+            "description": "The substituted left side is identically nine.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Choose $m=9-n$. It is an integer and $n+(9-n)=9$ for every integer $n$.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["math-text"]
+        }
+      }
     },
     "variants": [
       {
@@ -6818,7 +7807,55 @@
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "An arbitrary integer $n$ is given. Choose an integer $m$ with $n+m=9$ and verify that your choice works for every such $n$.",
-        "answer": "Choose $m=9-n$. It is an integer and $n+(9-n)=9$ for every integer $n$."
+        "answer": "Choose $m=9-n$. It is an integer and $n+(9-n)=9$ for every integer $n$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Integer choice $m$, in terms of $n$"
+            },
+            {
+              "id": "verification",
+              "kind": "math",
+              "label": "Substitute your choice into $n+m$ and simplify"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "dependent-choice",
+              "validator": "expression",
+              "fields": ["formula"],
+              "params": {
+                "expected": "9-n",
+                "variables": ["n"]
+              },
+              "description": "The chosen integer expression works for every integer n.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "substitution",
+              "validator": "expression",
+              "fields": ["verification"],
+              "params": {
+                "expected": "9",
+                "variables": ["n"]
+              },
+              "description": "The substituted left side is identically nine.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "Choose $m=9-n$. It is an integer and $n+(9-n)=9$ for every integer $n$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       },
       {
         "id": 1,
@@ -6832,7 +7869,54 @@
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "Choose one fixed integer $c$ such that $\\forall n\\in\\mathbb Z\\,(n+c=n-4)$, and verify it.",
-        "answer": "Choose $c=-4$, independent of $n$. Then $n+c=n-4$ for every integer $n$."
+        "answer": "Choose $c=-4$, independent of $n$. Then $n+c=n-4$ for every integer $n$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "constant",
+              "kind": "math",
+              "label": "Fixed integer $c$"
+            },
+            {
+              "id": "verification",
+              "kind": "math",
+              "label": "Substitute your choice into $n+c$"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "constant",
+              "validator": "exact",
+              "fields": ["constant"],
+              "params": {
+                "expected": ["-4"]
+              },
+              "description": "The same integer works independently of n.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "identity",
+              "validator": "expression",
+              "fields": ["verification"],
+              "params": {
+                "expected": "n-4",
+                "variables": ["n"]
+              },
+              "description": "The substituted expression equals n minus four for every integer n.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "Choose $c=-4$, independent of $n$. Then $n+c=n-4$ for every integer $n$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       }
     ]
   },
@@ -6853,7 +7937,42 @@
       "section": "Review",
       "instructions": "Write the negated statement; a symbolic answer is sufficient.",
       "prompt": "Negate $\\forall n\\in\\mathbb Z\\,\\exists m\\in\\mathbb Z\\,(m\\geq n+2)$. Push the negation through the quantifiers and comparison.",
-      "answer": "$\\exists n\\in\\mathbb Z\\,\\forall m\\in\\mathbb Z\\,(m<n+2)$. Switch each quantifier, retain their order and integer domains, and replace $\\geq$ by $<$."
+      "answer": "$\\exists n\\in\\mathbb Z\\,\\forall m\\in\\mathbb Z\\,(m<n+2)$. Switch each quantifier, retain their order and integer domains, and replace $\\geq$ by $<$.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "formula",
+            "kind": "math",
+            "label": "Negated quantified statement",
+            "hint": "Include each quantifier and its domain; ordinary text or TeX notation is accepted."
+          }
+        ],
+        "requirements": [
+          {
+            "id": "quantified-formula",
+            "validator": "quantified-formula",
+            "fields": ["formula"],
+            "params": {
+              "expected": "exists n in Z forall m in Z (m<n+2)",
+              "domains": ["Z"],
+              "predicates": {},
+              "form": "nnf"
+            },
+            "description": "The negation preserves domains and scope, reverses the required quantifiers, and leaves negation only on atomic predicates.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "$\\exists n\\in\\mathbb Z\\,\\forall m\\in\\mathbb Z\\,(m<n+2)$. Switch each quantifier, retain their order and integer domains, and replace $\\geq$ by $<$.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["math-text"]
+        }
+      }
     },
     "variants": [
       {
@@ -6861,14 +7980,87 @@
         "section": "Review",
         "instructions": "Write the negated statement; a symbolic answer is sufficient.",
         "prompt": "Negate $\\forall n\\in\\mathbb Z\\,\\exists m\\in\\mathbb Z\\,(m\\geq n+2)$. Push the negation through the quantifiers and comparison.",
-        "answer": "$\\exists n\\in\\mathbb Z\\,\\forall m\\in\\mathbb Z\\,(m<n+2)$. Switch each quantifier, retain their order and integer domains, and replace $\\geq$ by $<$."
+        "answer": "$\\exists n\\in\\mathbb Z\\,\\forall m\\in\\mathbb Z\\,(m<n+2)$. Switch each quantifier, retain their order and integer domains, and replace $\\geq$ by $<$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Negated quantified statement",
+              "hint": "Include each quantifier and its domain; ordinary text or TeX notation is accepted."
+            }
+          ],
+          "requirements": [
+            {
+              "id": "quantified-formula",
+              "validator": "quantified-formula",
+              "fields": ["formula"],
+              "params": {
+                "expected": "exists n in Z forall m in Z (m<n+2)",
+                "domains": ["Z"],
+                "predicates": {},
+                "form": "nnf"
+              },
+              "description": "The negation preserves domains and scope, reverses the required quantifiers, and leaves negation only on atomic predicates.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$\\exists n\\in\\mathbb Z\\,\\forall m\\in\\mathbb Z\\,(m<n+2)$. Switch each quantifier, retain their order and integer domains, and replace $\\geq$ by $<$.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Write the negated statement; a symbolic answer is sufficient.",
         "prompt": "Let $A$ and $B$ be predicates on a fixed nonempty domain $D$. Negate $\\exists u\\in D\\,\\forall v\\in D\\,(A(u)\\to B(u,v))$, leaving negations only on predicates.",
-        "answer": "$\\forall u\\in D\\,\\exists v\\in D\\,(A(u)\\land\\neg B(u,v))$. Negating the implication keeps its antecedent true and negates its consequent."
+        "answer": "$\\forall u\\in D\\,\\exists v\\in D\\,(A(u)\\land\\neg B(u,v))$. Negating the implication keeps its antecedent true and negates its consequent.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "formula",
+              "kind": "math",
+              "label": "Negated quantified statement",
+              "hint": "Include each quantifier and its domain; ordinary text or TeX notation is accepted."
+            }
+          ],
+          "requirements": [
+            {
+              "id": "quantified-formula",
+              "validator": "quantified-formula",
+              "fields": ["formula"],
+              "params": {
+                "expected": "forall u in D exists v in D (A(u) and not B(u,v))",
+                "domains": ["D"],
+                "predicates": {
+                  "A": 1,
+                  "B": 2
+                },
+                "form": "nnf"
+              },
+              "description": "The negation preserves domains and scope, reverses the required quantifiers, and leaves negation only on atomic predicates.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$\\forall u\\in D\\,\\exists v\\in D\\,(A(u)\\land\\neg B(u,v))$. Negating the implication keeps its antecedent true and negates its consequent.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text"]
+          }
+        }
       },
       {
         "id": 1,
@@ -6896,7 +8088,76 @@
       "section": "Review",
       "instructions": "Give a short answer and verify it.",
       "prompt": "Give an integer counterexample to $\\forall n\\in\\mathbb Z\\,(n\\leq0\\to n<0)$. Verify the antecedent and consequent.",
-      "answer": "Use $n=0$. It is an integer and $0\\leq0$ is true, while $0<0$ is false."
+      "answer": "Use $n=0$. It is an integer and $0\\leq0$ is true, while $0<0$ is false.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "value",
+            "kind": "math",
+            "label": "Integer counterexample $n$"
+          },
+          {
+            "id": "antecedent",
+            "kind": "boolean",
+            "label": "Antecedent"
+          },
+          {
+            "id": "consequent",
+            "kind": "boolean",
+            "label": "Consequent"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "witness",
+            "validator": "witness",
+            "fields": ["value"],
+            "params": {
+              "variables": [
+                {
+                  "name": "n",
+                  "field": "value",
+                  "integer": true
+                }
+              ],
+              "conditions": [
+                {
+                  "left": "n",
+                  "op": "<=",
+                  "right": "0"
+                },
+                {
+                  "left": "n",
+                  "op": ">=",
+                  "right": "0"
+                }
+              ]
+            },
+            "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+            "evidenceLevel": "production"
+          },
+          {
+            "id": "verification",
+            "validator": "boolean",
+            "fields": ["antecedent", "consequent"],
+            "params": {
+              "expected": [true, false]
+            },
+            "description": "Each requested condition has the correct truth value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Use $n=0$. It is an integer and $0\\leq0$ is true, while $0<0$ is false.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["math-text", "tap"]
+        }
+      }
     },
     "variants": [
       {
@@ -6904,21 +8165,255 @@
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "Give an integer counterexample to $\\forall n\\in\\mathbb Z\\,(n\\leq0\\to n<0)$. Verify the antecedent and consequent.",
-        "answer": "Use $n=0$. It is an integer and $0\\leq0$ is true, while $0<0$ is false."
+        "answer": "Use $n=0$. It is an integer and $0\\leq0$ is true, while $0<0$ is false.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "value",
+              "kind": "math",
+              "label": "Integer counterexample $n$"
+            },
+            {
+              "id": "antecedent",
+              "kind": "boolean",
+              "label": "Antecedent"
+            },
+            {
+              "id": "consequent",
+              "kind": "boolean",
+              "label": "Consequent"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "witness",
+              "validator": "witness",
+              "fields": ["value"],
+              "params": {
+                "variables": [
+                  {
+                    "name": "n",
+                    "field": "value",
+                    "integer": true
+                  }
+                ],
+                "conditions": [
+                  {
+                    "left": "n",
+                    "op": "<=",
+                    "right": "0"
+                  },
+                  {
+                    "left": "n",
+                    "op": ">=",
+                    "right": "0"
+                  }
+                ]
+              },
+              "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "verification",
+              "validator": "boolean",
+              "fields": ["antecedent", "consequent"],
+              "params": {
+                "expected": [true, false]
+              },
+              "description": "Each requested condition has the correct truth value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "Use $n=0$. It is an integer and $0\\leq0$ is true, while $0<0$ is false.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text", "tap"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "Give an integer counterexample to $\\forall n\\in\\mathbb Z\\,(n^2=1\\to n=1)$. Verify it.",
-        "answer": "Use $n=-1$. Its square is 1, so the antecedent holds, but $-1\\ne1$, so the consequent fails."
+        "answer": "Use $n=-1$. Its square is 1, so the antecedent holds, but $-1\\ne1$, so the consequent fails.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "value",
+              "kind": "math",
+              "label": "Integer counterexample $n$"
+            },
+            {
+              "id": "square",
+              "kind": "math",
+              "label": "$n^2$"
+            },
+            {
+              "id": "antecedent",
+              "kind": "boolean",
+              "label": "Antecedent"
+            },
+            {
+              "id": "consequent",
+              "kind": "boolean",
+              "label": "Consequent"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "witness",
+              "validator": "witness",
+              "fields": ["value", "square"],
+              "params": {
+                "variables": [
+                  {
+                    "name": "n",
+                    "field": "value",
+                    "integer": true
+                  },
+                  {
+                    "name": "s",
+                    "field": "square"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "left": "n^2",
+                    "op": "=",
+                    "right": "1"
+                  },
+                  {
+                    "left": "n",
+                    "op": "!=",
+                    "right": "1"
+                  },
+                  {
+                    "left": "s",
+                    "op": "=",
+                    "right": "n^2"
+                  }
+                ]
+              },
+              "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "verification",
+              "validator": "boolean",
+              "fields": ["antecedent", "consequent"],
+              "params": {
+                "expected": [true, false]
+              },
+              "description": "Each requested condition has the correct truth value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "Use $n=-1$. Its square is 1, so the antecedent holds, but $-1\\ne1$, so the consequent fails.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text", "tap"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
         "instructions": "Give a short answer and verify it.",
         "prompt": "Give a real counterexample to $\\forall x\\in\\mathbb R\\,(x<2\\to x^2<4)$. Verify it.",
-        "answer": "For example, use $x=-3$. Then $-3<2$, but $(-3)^2=9$ is not less than 4. Any real $x\\leq-2$ works with a valid verification."
+        "answer": "For example, use $x=-3$. Then $-3<2$, but $(-3)^2=9$ is not less than 4. Any real $x\\leq-2$ works with a valid verification.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "value",
+              "kind": "math",
+              "label": "Real counterexample $x$"
+            },
+            {
+              "id": "square",
+              "kind": "math",
+              "label": "$x^2$"
+            },
+            {
+              "id": "antecedent",
+              "kind": "boolean",
+              "label": "Antecedent"
+            },
+            {
+              "id": "consequent",
+              "kind": "boolean",
+              "label": "Consequent"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "witness",
+              "validator": "witness",
+              "fields": ["value", "square"],
+              "params": {
+                "variables": [
+                  {
+                    "name": "x",
+                    "field": "value"
+                  },
+                  {
+                    "name": "s",
+                    "field": "square"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "left": "x",
+                    "op": "<",
+                    "right": "2"
+                  },
+                  {
+                    "left": "x^2",
+                    "op": ">=",
+                    "right": "4"
+                  },
+                  {
+                    "left": "s",
+                    "op": "=",
+                    "right": "x^2"
+                  }
+                ]
+              },
+              "description": "The value is in the stated domain and satisfies every required numerical condition and substitution check.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "verification",
+              "validator": "boolean",
+              "fields": ["antecedent", "consequent"],
+              "params": {
+                "expected": [true, false]
+              },
+              "description": "Each requested condition has the correct truth value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "For example, use $x=-3$. Then $-3<2$, but $(-3)^2=9$ is not less than 4. Any real $x\\leq-2$ works with a valid verification.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["math-text", "tap"]
+          }
+        }
       }
     ]
   },
@@ -6927,35 +8422,369 @@
     "family": "authored",
     "lesson": "predicates-and-quantifiers",
     "concept": "quantifier-order",
-    "skill": "justify",
-    "evidenceLevel": "reasoning",
+    "skill": "construct",
+    "evidenceLevel": "production",
     "interactionCost": "medium",
-    "inputCapabilities": ["math-text", "handwriting", "photo"],
+    "inputCapabilities": ["tap"],
     "cognitiveLevel": "analyze",
     "activationConcepts": ["quantifier-order"],
     "sourceIds": ["review-domain-order"],
     "question": {
       "id": 1,
       "section": "Review",
-      "instructions": "Construct a small countermodel and justify it.",
-      "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. List the true pairs and briefly verify both claims.",
-      "answer": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid."
+      "instructions": "Construct the relation and select its explanation.",
+      "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Mark the true and false pairs and select the explanation.",
+      "answer": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "relation",
+            "kind": "grid",
+            "label": "True pairs",
+            "columns": ["Input", "$y=a$", "$y=b$"],
+            "rows": [
+              {
+                "label": "$x=a$",
+                "cells": [
+                  {
+                    "given": "$x=a$"
+                  },
+                  {
+                    "id": "r00",
+                    "kind": "boolean"
+                  },
+                  {
+                    "id": "r01",
+                    "kind": "boolean"
+                  }
+                ]
+              },
+              {
+                "label": "$x=b$",
+                "cells": [
+                  {
+                    "given": "$x=b$"
+                  },
+                  {
+                    "id": "r10",
+                    "kind": "boolean"
+                  },
+                  {
+                    "id": "r11",
+                    "kind": "boolean"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "reason",
+            "kind": "select",
+            "label": "Why does this separate the quantifier orders?",
+            "options": [
+              {
+                "id": "varying-witness",
+                "label": "Each row has a true entry, and each column has a false entry."
+              },
+              {
+                "id": "common-witness",
+                "label": "One column has true entries in every row."
+              },
+              {
+                "id": "missing-witness",
+                "label": "One row has no true entry."
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          {
+            "id": "countermodel",
+            "validator": "boolean-model",
+            "fields": ["r00", "r01", "r10", "r11"],
+            "params": {
+              "variables": {
+                "r00": "r00",
+                "r01": "r01",
+                "r10": "r10",
+                "r11": "r11"
+              },
+              "conditions": [
+                {
+                  "formula": "(r00|r01)&(r10|r11)",
+                  "value": true
+                },
+                {
+                  "formula": "(r00&r10)|(r01&r11)",
+                  "value": false
+                }
+              ],
+              "checks": {}
+            },
+            "description": "Every input has a witness, while no single output witnesses every input.",
+            "evidenceLevel": "production"
+          },
+          {
+            "id": "quantifier-interpretation",
+            "validator": "selection",
+            "fields": ["reason"],
+            "params": {
+              "expected": ["varying-witness"]
+            },
+            "description": "The selected explanation correctly identifies the two quantified conditions.",
+            "evidenceLevel": "recognition"
+          }
+        ],
+        "feedback": {
+          "correct": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid.",
+          "incorrect": "Check the requested formula or values and each stated condition, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "medium",
+          "inputCapabilities": ["tap"]
+        }
+      }
     },
     "variants": [
       {
         "id": 1,
         "section": "Review",
-        "instructions": "Construct a small countermodel and justify it.",
-        "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. List the true pairs and briefly verify both claims.",
-        "answer": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid."
+        "instructions": "Construct the relation and select its explanation.",
+        "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Mark the true and false pairs and select the explanation.",
+        "answer": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "relation",
+              "kind": "grid",
+              "label": "True pairs",
+              "columns": ["Input", "$y=a$", "$y=b$"],
+              "rows": [
+                {
+                  "label": "$x=a$",
+                  "cells": [
+                    {
+                      "given": "$x=a$"
+                    },
+                    {
+                      "id": "r00",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "r01",
+                      "kind": "boolean"
+                    }
+                  ]
+                },
+                {
+                  "label": "$x=b$",
+                  "cells": [
+                    {
+                      "given": "$x=b$"
+                    },
+                    {
+                      "id": "r10",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "r11",
+                      "kind": "boolean"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "reason",
+              "kind": "select",
+              "label": "Why does this separate the quantifier orders?",
+              "options": [
+                {
+                  "id": "varying-witness",
+                  "label": "Each row has a true entry, and each column has a false entry."
+                },
+                {
+                  "id": "common-witness",
+                  "label": "One column has true entries in every row."
+                },
+                {
+                  "id": "missing-witness",
+                  "label": "One row has no true entry."
+                }
+              ]
+            }
+          ],
+          "requirements": [
+            {
+              "id": "countermodel",
+              "validator": "boolean-model",
+              "fields": ["r00", "r01", "r10", "r11"],
+              "params": {
+                "variables": {
+                  "r00": "r00",
+                  "r01": "r01",
+                  "r10": "r10",
+                  "r11": "r11"
+                },
+                "conditions": [
+                  {
+                    "formula": "(r00|r01)&(r10|r11)",
+                    "value": true
+                  },
+                  {
+                    "formula": "(r00&r10)|(r01&r11)",
+                    "value": false
+                  }
+                ],
+                "checks": {}
+              },
+              "description": "Every input has a witness, while no single output witnesses every input.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "quantifier-interpretation",
+              "validator": "selection",
+              "fields": ["reason"],
+              "params": {
+                "expected": ["varying-witness"]
+              },
+              "description": "The selected explanation correctly identifies the two quantified conditions.",
+              "evidenceLevel": "recognition"
+            }
+          ],
+          "feedback": {
+            "correct": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "medium",
+            "inputCapabilities": ["tap"]
+          }
+        }
       },
       {
         "id": 1,
         "section": "Review",
-        "instructions": "Construct a small countermodel and justify it.",
-        "prompt": "There are exactly two visitors, Ada and Ben, and exactly two guides, Gia and Hal. Specify who guides whom so each visitor has a guide but no guide serves every visitor. Explain how this separates the two quantifier orders.",
-        "answer": "For example, Gia guides only Ada and Hal guides only Ben. Every visitor has a guide, so $\\forall v\\exists g\\,G(g,v)$ holds. Gia does not guide Ben and Hal does not guide Ada, so $\\exists g\\forall v\\,G(g,v)$ fails. The witness may vary with the visitor."
+        "instructions": "Construct the relation and select its explanation.",
+        "prompt": "There are exactly two visitors, Ada and Ben, and exactly two guides, Gia and Hal. Specify who guides whom so each visitor has a guide but no guide serves every visitor. Select the explanation of the two quantifier orders.",
+        "answer": "For example, Gia guides only Ada and Hal guides only Ben. Every visitor has a guide, so $\\forall v\\exists g\\,G(g,v)$ holds. Gia does not guide Ben and Hal does not guide Ada, so $\\exists g\\forall v\\,G(g,v)$ fails. The witness may vary with the visitor.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "relation",
+              "kind": "grid",
+              "label": "Who guides each visitor",
+              "columns": ["Input", "Gia", "Hal"],
+              "rows": [
+                {
+                  "label": "Ada",
+                  "cells": [
+                    {
+                      "given": "Ada"
+                    },
+                    {
+                      "id": "r00",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "r01",
+                      "kind": "boolean"
+                    }
+                  ]
+                },
+                {
+                  "label": "Ben",
+                  "cells": [
+                    {
+                      "given": "Ben"
+                    },
+                    {
+                      "id": "r10",
+                      "kind": "boolean"
+                    },
+                    {
+                      "id": "r11",
+                      "kind": "boolean"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "reason",
+              "kind": "select",
+              "label": "Why does this separate the quantifier orders?",
+              "options": [
+                {
+                  "id": "varying-witness",
+                  "label": "Each row has a true entry, and each column has a false entry."
+                },
+                {
+                  "id": "common-witness",
+                  "label": "One column has true entries in every row."
+                },
+                {
+                  "id": "missing-witness",
+                  "label": "One row has no true entry."
+                }
+              ]
+            }
+          ],
+          "requirements": [
+            {
+              "id": "countermodel",
+              "validator": "boolean-model",
+              "fields": ["r00", "r01", "r10", "r11"],
+              "params": {
+                "variables": {
+                  "r00": "r00",
+                  "r01": "r01",
+                  "r10": "r10",
+                  "r11": "r11"
+                },
+                "conditions": [
+                  {
+                    "formula": "(r00|r01)&(r10|r11)",
+                    "value": true
+                  },
+                  {
+                    "formula": "(r00&r10)|(r01&r11)",
+                    "value": false
+                  }
+                ],
+                "checks": {}
+              },
+              "description": "Every input has a witness, while no single output witnesses every input.",
+              "evidenceLevel": "production"
+            },
+            {
+              "id": "quantifier-interpretation",
+              "validator": "selection",
+              "fields": ["reason"],
+              "params": {
+                "expected": ["varying-witness"]
+              },
+              "description": "The selected explanation correctly identifies the two quantified conditions.",
+              "evidenceLevel": "recognition"
+            }
+          ],
+          "feedback": {
+            "correct": "For example, Gia guides only Ada and Hal guides only Ben. Every visitor has a guide, so $\\forall v\\exists g\\,G(g,v)$ holds. Gia does not guide Ben and Hal does not guide Ada, so $\\exists g\\forall v\\,G(g,v)$ fails. The witness may vary with the visitor.",
+            "incorrect": "Check the requested formula or values and each stated condition, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "medium",
+            "inputCapabilities": ["tap"]
+          }
+        }
       }
-    ]
+    ],
+    "objective": "finite-quantifier-countermodel"
   }
 ]

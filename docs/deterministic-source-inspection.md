@@ -12,3 +12,15 @@ Inspected September 19, 2026. The explanations, examples and assessments remain 
 - **Matrices 1, 3–8:** Margalit–Rabinoff, _Interactive Linear Algebra_, §§2.3 and 3.4, for shape, matrix entries and row/column conventions. Added a precise transpose citation to Deisenroth–Faisal–Ong, _Mathematics for Machine Learning_, §2.2.2, Definition 2.4, printed p. 25 / PDF p. 31, after inspecting the row/column exchange definition. The seven explicit matrices match the existing linear-algebra authoring data; their shapes, selected entries and transposes are computed independently. No original worksheet prompt or numerical data was changed.
 
 The source digests must be updated only from the integrated candidate published content. This log authorizes no blind digest refresh for later batches or other changed claims.
+
+## Additional finite sets, formulas and recurrence values
+
+The added finite-set operations and finite preimages were rechecked against Hammack §§1.1–1.5 and §§12.1–12.2. Membership is evaluated against the explicitly given sets and domains. Formula-production conversions in Propositional Logic 46, 47, 80, 87, 141, 142 and 149 use Hammack §§2.5–2.6 and §2.10: inspected equivalences, converse/contrapositive distinctions and implication negation. They remain typed production tasks. Recurrence values in 1–3, 9, 37, 52, 56 and 61 are independently expanded from the displayed initial conditions; the source definitions are MCS §7.3 (PDF pp. 233–235) and the lesson's cited recurrence/Hanoi passages.
+
+## Dedicated Review: 22 variants
+
+Reinspected `review-logic-equivalence` (Hammack §§2.5–2.6), `review-logic-negation` (Hammack §2.10, PDF pp. 71–74), `review-domain-order` (MCS §§3.6.3–3.6.6, PDF pp. 73–76), and `review-witness` (_Theorem Proving in Lean 4_, “The Existential Quantifier”). These support the current equivalent-formula, domain, scope, witness and countermodel requirements.
+
+All displayed numerical witness and substitution examples were independently checked. Counterassignments retain every explicitly requested formula truth value and permit every satisfying assignment. The two-element relation condition is checked exhaustively, permitting both diagonal and antidiagonal relations. The inequality negation includes the boundary at zero. The two typed quantified negations retain domains and binding order while permitting renaming of bound variables.
+
+The two countermodel prompts now explicitly ask for a constructed relation and a selected explanation. Their new evidence is production for construction with a recognition requirement for the explanation; the current template targets `construct` with the distinct `finite-quantifier-countermodel` objective. This does not claim unrestricted justification or authorize relabeling any historical attempt. The four definition/prose/unrestricted-proof variants stay open, and the other 147 existing deterministic definitions and three generator identities are untouched.

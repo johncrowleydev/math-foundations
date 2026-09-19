@@ -2,6 +2,7 @@
 // Exercise IDs retain their original numbering across lesson splits. Numerical data are explicit,
 // deterministic, and checked separately by verify-linear-algebra.py using SymPy.
 import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import YAML from 'yaml';
 const read = (p) => fs.readFileSync(p, 'utf8');
 const core = JSON.parse(read('scripts/authoring/linear-algebra-core.json'));
@@ -782,3 +783,6 @@ fs.writeFileSync(
   'content/linear-algebra-objectives.json',
   JSON.stringify(coverage, null, 2) + '\n',
 );
+// Deterministic response metadata consumes these exact numerical fixture records.
+// Changed authored prompts still require an inspected source pin before publication.
+execFileSync('python3', ['scripts/authoring/deterministic-exercises.py'], { stdio: 'inherit' });

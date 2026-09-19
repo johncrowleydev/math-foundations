@@ -2954,6 +2954,350 @@
   },
   {
     "lesson": "functions",
+    "id": 11,
+    "sourceHash": "62a442dbfe4f7e717591df2eeca3df42f54b51f1f0ed11e633885c903101fd0c",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Image",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["-3", "1", "7"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{-3,1,7\\}$, obtained by evaluating the rule at each input.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{-3,1,7}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{7,1,-3}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{1,7}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "functions",
+    "id": 12,
+    "sourceHash": "b385bb9fc5fa7b939e600031b9e4d59d18e1702f812ad27eefc834ff5906fcbd",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Preimage",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["0", "2"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{0,2\\}$. Targets 1 and 5 come from 0 and 2; 8 would require the noninteger input $7/2$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{0,2}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{2,0}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{2}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "functions",
+    "id": 13,
+    "sourceHash": "915673b17119b56e34e8361bfa3b12f434bd1942a68291686b21c86e2a9668d6",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Preimage",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["-3", "3"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{-3,3\\}$, since both real inputs square to 9.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{-3,3}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3,-3}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "functions",
+    "id": 14,
+    "sourceHash": "bae0d9613dee2e2cbaa59aa7cce70c9fdadfc60bdfb10236c7b45652168d15ae",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Preimage",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": []
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "The empty set, because no real square is negative.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{0}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "functions",
+    "id": 19,
+    "sourceHash": "64971e278fed0d42d6e278d495118333d70135685655c287101c11342b1cc761",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Preimage of $\\{1\\}$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "Preimage of $\\{2\\}$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-3",
+          "kind": "math",
+          "label": "Preimage of $\\{1,3\\}$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["a", "b"],
+            "atoms": ["a", "b", "c"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": [],
+            "atoms": ["a", "b", "c"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-3",
+          "validator": "set",
+          "fields": ["set-3"],
+          "params": {
+            "expected": ["a", "b", "c"],
+            "atoms": ["a", "b", "c"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "They are respectively $\\{a,b\\}$, $\\varnothing$, and $\\{a,b,c\\}$. The unused [codomain](ref:codomain) value 2 has no [preimage](ref:preimage).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{a,b}",
+          "set-2": "{}",
+          "set-3": "{a,b,c}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{b,a}",
+          "set-2": "{}",
+          "set-3": "{c,b,a}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{b}",
+          "set-2": "{}",
+          "set-3": "{a,b,c}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "functions",
     "id": 55,
     "sourceHash": "eb9231927dcda4e50b4d86b5d3a284afa89636c8d03897116523e77e70660ea0",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -7087,6 +7431,1132 @@
     "prompt": "Complete the [truth table](ref:truth-table), using the supplied input columns. Use the input row order TTT, TTF, TFT, TFF, FTT, FTF, FFT, FFF."
   },
   {
+    "lesson": "propositional-logic",
+    "id": 46,
+    "sourceHash": "ba63a5e636ac2a5b392e457bdf5ee4628ac59ebd97073a4413797a8754702dee",
+    "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Rewritten formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": ["formula-1"],
+          "params": {
+            "expected": "!p|!q",
+            "variables": ["p", "q"],
+            "form": "nnf"
+          },
+          "description": "The formula has the requested meaning and form."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\neg p\\lor\\neg q$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!p|!q"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!(!p|!q)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 47,
+    "sourceHash": "4b75f534205c3932bd9083e0c04bb5cc85f09b6514936fb406332dd82312ddbd",
+    "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Rewritten formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": ["formula-1"],
+          "params": {
+            "expected": "!p&!q",
+            "variables": ["p", "q"],
+            "form": "nnf"
+          },
+          "description": "The formula has the requested meaning and form."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\neg p\\land\\neg q$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!p&!q"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!(!p&!q)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 80,
+    "sourceHash": "1a181fba02cef6025608f4dc0416815dfbc7767b7f0b5a4f4b09d13689e4a68f",
+    "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Rewritten formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": ["formula-1"],
+          "params": {
+            "expected": "(p&!q)|!r",
+            "variables": ["p", "q", "r"],
+            "form": "no-implication"
+          },
+          "description": "The formula has the requested meaning and form."
+        }
+      ],
+      "feedback": {
+        "correct": "$(p\\land\\neg q)\\lor\\neg r$, using the [implication](ref:implication) rewrite and [De Morgan's laws](ref:de-morgan).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "(p&!q)|!r"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!((p&!q)|!r)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 87,
+    "sourceHash": "99a7f0632caeda47474390419cfa5b13d824600475d0539b04d8523966cacb1f",
+    "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Converse"
+        },
+        {
+          "id": "formula-2",
+          "kind": "math",
+          "label": "Inverse"
+        },
+        {
+          "id": "formula-3",
+          "kind": "math",
+          "label": "Contrapositive"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": ["formula-1"],
+          "params": {
+            "expected": "q->p",
+            "variables": ["p", "q"],
+            "structure": "q->p"
+          },
+          "description": "The formula has the requested meaning and form."
+        },
+        {
+          "id": "formula-2",
+          "validator": "boolean-formula",
+          "fields": ["formula-2"],
+          "params": {
+            "expected": "!p->!q",
+            "variables": ["p", "q"],
+            "structure": "!p->!q"
+          },
+          "description": "The formula has the requested meaning and form."
+        },
+        {
+          "id": "formula-3",
+          "validator": "boolean-formula",
+          "fields": ["formula-3"],
+          "params": {
+            "expected": "!q->!p",
+            "variables": ["p", "q"],
+            "structure": "!q->!p"
+          },
+          "description": "The formula has the requested meaning and form."
+        }
+      ],
+      "feedback": {
+        "correct": "[Converse](ref:converse): $q\\to p$. [Inverse](ref:inverse): $\\neg p\\to\\neg q$. [Contrapositive](ref:contrapositive): $\\neg q\\to\\neg p$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "q->p",
+          "formula-2": "!p->!q",
+          "formula-3": "!q->!p"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!(q->p)",
+          "formula-2": "!p->!q",
+          "formula-3": "!q->!p"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 141,
+    "sourceHash": "683941c387932169cbb228e14ae9b2a85722b806c9e71d74b65cba7bc7b4f79c",
+    "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Rewritten formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": ["formula-1"],
+          "params": {
+            "expected": "p&!q&!r",
+            "variables": ["p", "q", "r"],
+            "form": "no-implication"
+          },
+          "description": "The formula has the requested meaning and form."
+        }
+      ],
+      "feedback": {
+        "correct": "$p\\land\\neg q\\land\\neg r$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "p&!q&!r"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!(p&!q&!r)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 142,
+    "sourceHash": "1a023d11c827100e3c3ad3081488d812410953493a5a90acbf1896bfc7b45116",
+    "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Rewritten formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": ["formula-1"],
+          "params": {
+            "expected": "(!p|!q)&!r",
+            "variables": ["p", "q", "r"],
+            "form": "nnf"
+          },
+          "description": "The formula has the requested meaning and form."
+        }
+      ],
+      "feedback": {
+        "correct": "$(\\neg p\\lor\\neg q)\\land\\neg r$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "(!p|!q)&!r"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!((!p|!q)&!r)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 149,
+    "sourceHash": "87e4e227821fecb591fef55f6b48e5a5a3d07904b304efe31044844cef1e5c87",
+    "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Rewritten formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": ["formula-1"],
+          "params": {
+            "expected": "!p&!q",
+            "variables": ["p", "q"],
+            "form": "nnf",
+            "maxNodes": 5
+          },
+          "description": "The formula has the requested meaning and form."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\neg p\\land\\neg q$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!p&!q"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!(!p&!q)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!q&!p"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "!p&!q&!p"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 1,
+    "sourceHash": "bf174aa5b8e0356f9cb380af105093f477e2c5299e2cfcb7739bcc8ce82ab50c",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$a_1$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$a_2$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$a_3$"
+        },
+        {
+          "id": "value-4",
+          "kind": "math",
+          "label": "$a_4$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1", "value-2", "value-3", "value-4"],
+          "params": {
+            "expected": ["5", "8", "11", "14"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$5,8,11,14$, adding 3 at each step.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "5",
+          "value-2": "8",
+          "value-3": "11",
+          "value-4": "14"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(5))/2",
+          "value-2": "8",
+          "value-3": "11",
+          "value-4": "14"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(5)+1",
+          "value-2": "8",
+          "value-3": "11",
+          "value-4": "14"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value-2": "8",
+          "value-3": "11",
+          "value-4": "14"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 2,
+    "sourceHash": "2fd9a9adbfbb255403814f24623a70ff00f7ecccb40cfa2ffa3c928995b78142",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$a_1$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$a_2$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$a_3$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1", "value-2", "value-3"],
+          "params": {
+            "expected": ["10", "20", "40"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$10,20,40$, doubling the preceding term.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "10",
+          "value-2": "20",
+          "value-3": "40"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(10))/2",
+          "value-2": "20",
+          "value-3": "40"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(10)+1",
+          "value-2": "20",
+          "value-3": "40"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value-2": "20",
+          "value-3": "40"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 3,
+    "sourceHash": "5baec80786d4d5c91b1f8f2fdeb82dd7c471d27a5a9441b7018ab03a2e0ae88c",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$a_2$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$a_3$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$a_4$"
+        },
+        {
+          "id": "value-4",
+          "kind": "math",
+          "label": "$a_5$"
+        },
+        {
+          "id": "value-5",
+          "kind": "math",
+          "label": "$a_6$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1", "value-2", "value-3", "value-4", "value-5"],
+          "params": {
+            "expected": ["1", "2", "3", "5", "8"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$1,2,3,5,8$, each the sum of the previous two terms.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "1",
+          "value-2": "2",
+          "value-3": "3",
+          "value-4": "5",
+          "value-5": "8"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(1))/2",
+          "value-2": "2",
+          "value-3": "3",
+          "value-4": "5",
+          "value-5": "8"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(1)+1",
+          "value-2": "2",
+          "value-3": "3",
+          "value-4": "5",
+          "value-5": "8"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value-2": "2",
+          "value-3": "3",
+          "value-4": "5",
+          "value-5": "8"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 9,
+    "sourceHash": "6afaa706c9a1435ba3d72552ca2e87ea2b4e10752e0f62e17dd2780204914eb4",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$a_1$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$a_2$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$a_3$"
+        },
+        {
+          "id": "value-4",
+          "kind": "math",
+          "label": "$a_4$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1", "value-2", "value-3", "value-4"],
+          "params": {
+            "expected": ["3", "5", "8", "12"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$3,5,8,12$, adding respectively 1, 2, 3, and 4.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "3",
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "12"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(3))/2",
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "12"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(3)+1",
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "12"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "12"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 37,
+    "sourceHash": "c41b8ff5e1a02ba8a80bbafb5888e5d890b39862474b7e66f880bb669ed61373",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$F(2)$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$F(3)$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$F(4)$"
+        },
+        {
+          "id": "value-4",
+          "kind": "math",
+          "label": "$F(5)$"
+        },
+        {
+          "id": "value-5",
+          "kind": "math",
+          "label": "$F(6)$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1", "value-2", "value-3", "value-4", "value-5"],
+          "params": {
+            "expected": ["3", "5", "8", "13", "21"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$3,5,8,13,21$, starting from $F(0)=1,F(1)=2$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "3",
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "13",
+          "value-5": "21"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(3))/2",
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "13",
+          "value-5": "21"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(3)+1",
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "13",
+          "value-5": "21"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value-2": "5",
+          "value-3": "8",
+          "value-4": "13",
+          "value-5": "21"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 52,
+    "sourceHash": "745dac6858837b793c38da46ab4e3af11037997e342eb5f092decd86124a5b16",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$H(1)$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$H(2)$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$H(3)$"
+        },
+        {
+          "id": "value-4",
+          "kind": "math",
+          "label": "$H(4)$"
+        },
+        {
+          "id": "value-5",
+          "kind": "math",
+          "label": "$H(5)$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1", "value-2", "value-3", "value-4", "value-5"],
+          "params": {
+            "expected": ["1", "3", "7", "15", "31"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$1,3,7,15,31$, successively doubling the preceding count and adding 1.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "1",
+          "value-2": "3",
+          "value-3": "7",
+          "value-4": "15",
+          "value-5": "31"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(1))/2",
+          "value-2": "3",
+          "value-3": "7",
+          "value-4": "15",
+          "value-5": "31"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(1)+1",
+          "value-2": "3",
+          "value-3": "7",
+          "value-4": "15",
+          "value-5": "31"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value-2": "3",
+          "value-3": "7",
+          "value-4": "15",
+          "value-5": "31"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 56,
+    "sourceHash": "191d00881e3472da9fdbe2f5a1a9347ac1ebb44df55f892ccfcf7503b7c63c6b",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Maximum number of disks"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1"],
+          "params": {
+            "expected": ["6"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "Six disks: $H(6)=63\\leq100$, while $H(7)=127>100$. The count increases with disk number.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "6"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(6))/2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(6)+1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "recurrence-relations",
+    "id": 61,
+    "sourceHash": "b79b080d03bd654b2adef32f93d80ecd8be1e95eea6ef462d59ba732ec7ce209",
+    "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$T(2)$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$T(4)$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$T(8)$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "values",
+          "validator": "exact",
+          "fields": ["value-1", "value-2", "value-3"],
+          "params": {
+            "expected": ["4", "12", "32"]
+          },
+          "description": "Every requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$4,12,32$, using respectively $2\\cdot1+2$, $2\\cdot4+4$, and $2\\cdot12+8$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "4",
+          "value-2": "12",
+          "value-3": "32"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2*(4))/2",
+          "value-2": "12",
+          "value-3": "32"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(4)+1",
+          "value-2": "12",
+          "value-3": "32"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "value-2": "12",
+          "value-3": "32"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
     "lesson": "relations",
     "id": 1,
     "sourceHash": "2d626ca82d7bb7e47c004bf8a2b7d21e097b23f57d62d4c0345ddc625ad9ace6",
@@ -8761,6 +10231,67 @@
   },
   {
     "lesson": "sets-and-set-operations",
+    "id": 1,
+    "sourceHash": "a2493124663c09b85b658b0ab9551aee480946d8c69b549b30732060f0bf2440",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Requested set",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["-2", "0", "2", "4"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{-2,0,2,4\\}$. Each listed integer satisfies both restrictions.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{-2,0,2,4}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{4,2,0,-2}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{0,2,4}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
     "id": 5,
     "sourceHash": "2827ba2f4b29d1481ccf9133b984da766d2b493ff0f168bb637433fd82853b41",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -8834,6 +10365,688 @@
           "value-2": "1",
           "value-3": "2"
         },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 8,
+    "sourceHash": "5288f3fdd98a25f0e0964c576b3e28be7cab23397006ad25dc8ea328e579999d",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Solutions in the integers",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "Solutions in the positive integers",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["-3", "3"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": ["3"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "In $\\mathbb Z$ the [set](ref:set) is $\\{-3,3\\}$. Among positive integers it is $\\{3\\}$. The domain changes the [set](ref:set?repeat).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{-3,3}",
+          "set-2": "{3}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3,-3}",
+          "set-2": "{3}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3}",
+          "set-2": "{3}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 11,
+    "sourceHash": "e0d9f9b3963b4554dd352f58cc3256a76beacbec55dab96fc4cb037feedee3bb",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$A\\cup B$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "2", "3", "4", "6", "7"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{1,2,3,4,6,7\\}$, containing each [element](ref:element) that belongs to at least one input [set](ref:set).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,2,3,4,6,7}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{7,6,4,3,2,1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{2,3,4,6,7}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 12,
+    "sourceHash": "b731ab1f962e12c3a2181ff720d54bbf519f6e24ea3b9168b667365a7b1ec7e1",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$A\\cap B$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["2", "6"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{2,6\\}$; only these [elements](ref:element) occur in both.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{2,6}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{6,2}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{6}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 13,
+    "sourceHash": "41e2df63cb4faddf95225fb8240a42289901fc9e9e66a5f2303a278936d0fded",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$A\\setminus B$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "$B\\setminus A$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "4"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": ["3", "7"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$A\\setminus B=\\{1,4\\}$ and $B\\setminus A=\\{3,7\\}$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,4}",
+          "set-2": "{3,7}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{4,1}",
+          "set-2": "{7,3}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{4}",
+          "set-2": "{3,7}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 14,
+    "sourceHash": "3baa6bd7380d388dd8541150f70d7397fa4bd479ef263f5a73192462ef6513e4",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$A^c$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["3", "5", "7", "8"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{3,5,7,8\\}$, the members of the stated [universe](ref:set-universe) missing from $A$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{3,5,7,8}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{8,7,5,3}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{5,7,8}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 15,
+    "sourceHash": "bff4de1f8221aa3c01cfe1e91aa932f11883c2fa39e4aaf5f2df4118489d1a0e",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$A\\mathbin{\\triangle}B$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "3", "4", "7"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{1,3,4,7\\}$; the common [elements](ref:element) 2 and 6 are excluded.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,3,4,7}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{7,4,3,1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3,4,7}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 16,
+    "sourceHash": "23fb98efd8825fd605c4f8bfcf150da18ef6c8171e03b34508e6f0edf4e1151a",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$ (A\\cup B)^c $",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "$A^c\\cap B^c$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["5", "8"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": ["5", "8"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "Both are $\\{5,8\\}$, illustrating [De Morgan's law](ref:set-de-morgan).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{5,8}",
+          "set-2": "{5,8}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{8,5}",
+          "set-2": "{8,5}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{8}",
+          "set-2": "{5,8}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 17,
+    "sourceHash": "b3b83689712641e665b7458a9432713d4eaf453d414b85402f1883a1d82a1c35",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$ (A\\cap B)^c $",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "3", "4", "5", "7", "8"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{1,3,4,5,7,8\\}$ because only 2 and 6 are excluded from $U$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,3,4,5,7,8}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{8,7,5,4,3,1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3,4,5,7,8}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 18,
+    "sourceHash": "df3c9651a12139eb7840d1c3eb83900c4b04a0bb2530daa461fa707673415639",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$ (A\\cup B)\\setminus C $",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "2", "4"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\{1,2,4\\}$. First form $\\{1,2,3,4\\}$, then remove 3.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,2,4}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{4,2,1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{2,4}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 19,
+    "sourceHash": "b1a7d998bcc15645fcb324b5e0e696256a28228b9c4072b2e621218c3b4d0d2c",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$A\\setminus(B\\setminus C)$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "$(A\\setminus B)\\setminus C$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "3"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": ["1"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "The first is $\\{1,3\\}$ since $B\\setminus C=\\{2,4\\}$. The second is $\\{1\\}$. [Difference](ref:set-difference) is not associative.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,3}",
+          "set-2": "{1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3,1}",
+          "set-2": "{1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{3}",
+          "set-2": "{1}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
         "error": true
       }
     ]
@@ -9319,6 +11532,243 @@
       {
         "response": {
           "value-1": "(20)+1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 57,
+    "sourceHash": "f45758872ab5a0b166c33742dd45cd5fa21d7e3a49cb8d266b406e35c65848c5",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Union",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "Intersection",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "2", "3", "4"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": ["1"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "The [union](ref:union) is $\\{1,2,3,4\\}$ and the [intersection](ref:intersection) is $\\{1\\}$. The [sets](ref:set) are nested, so the largest controls the [union](ref:union?repeat) and smallest controls the [intersection](ref:intersection?repeat).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,2,3,4}",
+          "set-2": "{1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{4,3,2,1}",
+          "set-2": "{1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{2,3,4}",
+          "set-2": "{1}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 58,
+    "sourceHash": "124932289c769292526e47070695f8716ae99cb4f41b95c3acde2d447e42ce3e",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Union",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "Intersection",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["1", "2", "3", "4"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": []
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "The [union](ref:union) is $\\{1,2,3,4\\}$. The [intersection](ref:intersection) is empty: no [element](ref:element) belongs to all three [sets](ref:set).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{1,2,3,4}",
+          "set-2": "{}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{4,3,2,1}",
+          "set-2": "{}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{2,3,4}",
+          "set-2": "{}"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sets-and-set-operations",
+    "id": 73,
+    "sourceHash": "27a816b142cb3656bdd6565666ff2e3444fe4769cf4addb9d9edafde81c11c08",
+    "rationale": "Ordinary typed set entry preserves construction of the answer without supplying candidate members. Membership is unordered and the empty set is explicit.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "$A\\cap B$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        },
+        {
+          "id": "set-2",
+          "kind": "math",
+          "label": "$A\\setminus B$",
+          "hint": "Enter members separated by commas; use {} for the empty set."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": ["set-1"],
+          "params": {
+            "expected": ["-2", "0", "2"]
+          },
+          "description": "The entered members are exactly the requested set."
+        },
+        {
+          "id": "set-2",
+          "validator": "set",
+          "fields": ["set-2"],
+          "params": {
+            "expected": ["-1", "1"]
+          },
+          "description": "The entered members are exactly the requested set."
+        }
+      ],
+      "feedback": {
+        "correct": "$A=\\{-2,-1,0,1,2\\}$. The [intersection](ref:intersection) is $\\{-2,0,2\\}$ and the [difference](ref:set-difference) is $\\{-1,1\\}$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{-2,0,2}",
+          "set-2": "{-1,1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{2,0,-2}",
+          "set-2": "{1,-1}"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{0,2}",
+          "set-2": "{-1,1}"
         },
         "verdict": "incorrect"
       },
