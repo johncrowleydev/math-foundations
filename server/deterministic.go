@@ -433,6 +433,10 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if _, err := parsePolynomial(p.Expected, p.Variables); err != nil {
 			return err
 		}
+	case "integer-list":
+		return validateIntegerList(r)
+	case "binomial-sum":
+		return validateBinomialSum(r)
 	case "recurrence":
 		return validateRecurrence(r)
 	case "asymptotic-bound":
@@ -609,6 +613,10 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 		return checkBooleanRequirement(r, response)
 	case "boolean-model":
 		return booleanModel(r, response)
+	case "integer-list":
+		return checkIntegerList(r, response)
+	case "binomial-sum":
+		return checkBinomialSum(r, response)
 	case "recurrence":
 		return checkRecurrence(r, response)
 	case "asymptotic-bound":

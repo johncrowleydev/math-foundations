@@ -4,6 +4,12 @@ import {
   nestedObjectRequirement,
   validateSetRequirement,
 } from './set-model';
+import {
+  checkIntegerList,
+  validateIntegerList,
+  checkBinomialSum,
+  validateBinomialSum,
+} from './discrete';
 import { checkRecurrence, validateRecurrence } from './recurrence';
 import { checkAsymptotic, validateAsymptotic } from './asymptotic';
 import {
@@ -173,6 +179,8 @@ const validators: Record<
     inequalityEquivalent(text(a[r.fields[0]]), text(r.params.expected), text(r.params.variable)),
   'asymptotic-bound': checkAsymptotic,
   recurrence: checkRecurrence,
+  'integer-list': checkIntegerList,
+  'binomial-sum': checkBinomialSum,
   expression: (r, a) => {
     const options = r.params as unknown as ExpressionOptions;
     if (hasExtendedExpression(options))
@@ -577,6 +585,8 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     }
     if (r.validator === 'asymptotic-bound') validateAsymptotic(r);
     if (r.validator === 'recurrence') validateRecurrence(r);
+    if (r.validator === 'integer-list') validateIntegerList(r);
+    if (r.validator === 'binomial-sum') validateBinomialSum(r);
     if (r.validator === 'expression') {
       if (
         !strings(r.params.variables) ||
