@@ -3,7 +3,7 @@ import { comparisonEqual, comparisonFromStrings } from './comparison';
 export type QNode =
   | {
       kind: 'quantifier';
-      quantifier: 'forall' | 'exists';
+      quantifier: 'forall' | 'exists' | 'unique';
       variable: string;
       domain: string;
       body: QNode;
@@ -33,12 +33,14 @@ function clean(source: string): string {
     .replace(/[{}\[\]]/g, (m) => (m === '{' || m === '[' ? '(' : ')'))
     .replace(/−/g, '-');
 }
+export type QuantifiedOptions = { constants?: string[]; freeVariables?: string[] };
 export function parseQuantified(
   source: string,
   domains: string[],
   predicates: Record<string, number>,
+  options: QuantifiedOptions = {},
 ): QNode {
-  const tokens =
+  const tokens: string[] =
     clean(source).match(
       /forall|exists|\bin\b|[A-Za-z][A-Za-z_0-9]*|\d+(?:\.\d+)?|<=|>=|!=|[!&|@#(),.:+*/^=<>-]|\S/g,
     ) || [];
@@ -106,8 +108,9 @@ export function parseQuantified(
     if (++depth > 64) throw new InputError('The formula is nested too deeply.');
     let n: QNode;
     if (tokens[at] === 'forall' || tokens[at] === 'exists') {
-      const quantifier = tokens[at++] as 'forall' | 'exists',
-        variable = tokens[at++];
+      let quantifier = tokens[at++] as 'forall' | 'exists' | 'unique';
+      if (quantifier === 'exists' && take('!')) quantifier = 'unique';
+      const variable = tokens[at++];
       if (!/^[a-zA-Z][a-zA-Z0-9_]*$/.test(variable || ''))
         throw new InputError('Name the quantified variable.');
       if (!take('in'))
@@ -144,9 +147,58 @@ export function parseQuantified(
     while (take('@')) n = { kind: 'iff', left: n, right: implies() };
     return n;
   };
-  const result = iff();
+  let result = iff();
   if (at !== tokens.length) throw new InputError('Check the quantified formula syntax.');
+  let fresh = 0;
+  const replaceVariable = (n: QNode, old: string, replacement: string): QNode => {
+    const swap = (s: string) => s.replace(new RegExp('\\b' + old + '\\b', 'g'), replacement);
+    if (n.kind === 'quantifier')
+      return n.variable === old ? n : { ...n, body: replaceVariable(n.body, old, replacement) };
+    if (n.kind === 'not') return { ...n, body: replaceVariable(n.body, old, replacement) };
+    if (n.kind === 'predicate') return { ...n, args: n.args.map(swap) };
+    if (n.kind === 'comparison') return { ...n, left: swap(n.left), right: swap(n.right) };
+    return {
+      ...n,
+      left: replaceVariable(n.left, old, replacement),
+      right: replaceVariable(n.right, old, replacement),
+    };
+  };
+  const expand = (n: QNode): QNode => {
+    if (n.kind === 'quantifier') {
+      if (n.quantifier !== 'unique') return { ...n, body: expand(n.body) };
+      let other: string;
+      do {
+        other = 'uniqueBound' + fresh++;
+      } while (tokens.includes(other));
+      const body = expand(n.body);
+      return {
+        ...n,
+        quantifier: 'exists',
+        body: {
+          kind: 'and',
+          left: body,
+          right: {
+            kind: 'quantifier',
+            quantifier: 'forall',
+            variable: other,
+            domain: n.domain,
+            body: {
+              kind: 'implies',
+              left: replaceVariable(body, n.variable, other),
+              right: { kind: 'comparison', op: '=', left: other, right: n.variable },
+            },
+          },
+        },
+      };
+    }
+    if (n.kind === 'not') return { ...n, body: expand(n.body) };
+    if (n.kind === 'and' || n.kind === 'or' || n.kind === 'implies' || n.kind === 'iff')
+      return { ...n, left: expand(n.left), right: expand(n.right) };
+    return n;
+  };
+  result = expand(result);
   function validate(n: QNode, bound: string[]) {
+    const available = [...bound, ...(options.constants || []), ...(options.freeVariables || [])];
     switch (n.kind) {
       case 'quantifier':
         validate(n.body, [...bound, n.variable]);
@@ -155,11 +207,11 @@ export function parseQuantified(
         validate(n.body, bound);
         break;
       case 'predicate':
-        n.args.forEach((s) => parseExpression(s, bound));
+        n.args.forEach((s) => parseExpression(s, available));
         break;
       case 'comparison':
-        parseExpression(n.left, bound);
-        parseExpression(n.right, bound);
+        parseExpression(n.left, available);
+        parseExpression(n.right, available);
         break;
       default:
         validate(n.left, bound);
@@ -185,10 +237,13 @@ function nnf(n: QNode): boolean {
       return true;
   }
 }
-function rename(s: string, bound: string[]): string {
+function rename(s: string, bound: string[], fixed: string[] = []): string {
   return s.replace(/[A-Za-z][A-Za-z_0-9]*/g, (v) => {
     const i = bound.lastIndexOf(v);
-    if (i < 0) throw new InputError('Bind every variable with a quantifier.');
+    if (i < 0) {
+      if (fixed.includes(v)) return 'fixed_' + v;
+      throw new InputError('Bind every variable with a quantifier.');
+    }
     return 'v' + i;
   });
 }
@@ -198,12 +253,13 @@ function equal(
   ab: string[] = [],
   bb: string[] = [],
   integerDomains: boolean[] = [],
+  fixed: string[] = [],
 ): boolean {
   if (a.kind !== b.kind) return false;
-  const variables = ab.map((_, i) => 'v' + i);
+  const variables = [...ab.map((_, i) => 'v' + i), ...fixed.map((v) => 'fixed_' + v)];
   const expressionEqual = (x: string, y: string) => {
-    const left = parseExpression(rename(x, ab), variables),
-      right = parseExpression(rename(y, bb), variables);
+    const left = parseExpression(rename(x, ab, fixed), variables),
+      right = parseExpression(rename(y, bb, fixed), variables);
     return left.eq(right) && sameExpressionDomain(left, right);
   };
   if (a.kind === 'quantifier' && b.kind === 'quantifier')
@@ -216,9 +272,11 @@ function equal(
         [...ab, a.variable],
         [...bb, b.variable],
         [...integerDomains, ['Z', 'N'].includes(a.domain)],
+        fixed,
       )
     );
-  if (a.kind === 'not' && b.kind === 'not') return equal(a.body, b.body, ab, bb, integerDomains);
+  if (a.kind === 'not' && b.kind === 'not')
+    return equal(a.body, b.body, ab, bb, integerDomains, fixed);
   if (a.kind === 'predicate' && b.kind === 'predicate')
     return (
       a.name === b.name &&
@@ -227,9 +285,9 @@ function equal(
     );
   if (a.kind === 'comparison' && b.kind === 'comparison')
     return comparisonEqual(
-      comparisonFromStrings(a.op, rename(a.left, ab), rename(a.right, ab), variables),
-      comparisonFromStrings(b.op, rename(b.left, bb), rename(b.right, bb), variables),
-      integerDomains.every(Boolean),
+      comparisonFromStrings(a.op, rename(a.left, ab, fixed), rename(a.right, ab, fixed), variables),
+      comparisonFromStrings(b.op, rename(b.left, bb, fixed), rename(b.right, bb, fixed), variables),
+      integerDomains.every(Boolean) && !fixed.length,
     );
   if ((a.kind === 'and' || a.kind === 'or') && (b.kind === 'and' || b.kind === 'or')) {
     const flatten = (n: QNode, k: string): QNode[] =>
@@ -240,7 +298,7 @@ function equal(
       right = flatten(b, b.kind);
     if (left.length !== right.length) return false;
     return left.every((x) => {
-      const i = right.findIndex((y) => equal(x, y, ab, bb, integerDomains));
+      const i = right.findIndex((y) => equal(x, y, ab, bb, integerDomains, fixed));
       if (i < 0) return false;
       right.splice(i, 1);
       return true;
@@ -248,8 +306,8 @@ function equal(
   }
   if ((a.kind === 'implies' || a.kind === 'iff') && (b.kind === 'implies' || b.kind === 'iff'))
     return (
-      equal(a.left, b.left, ab, bb, integerDomains) &&
-      equal(a.right, b.right, ab, bb, integerDomains)
+      equal(a.left, b.left, ab, bb, integerDomains, fixed) &&
+      equal(a.right, b.right, ab, bb, integerDomains, fixed)
     );
   return false;
 }
@@ -259,8 +317,12 @@ export function quantifiedEquivalent(
   domains: string[],
   predicates: Record<string, number>,
   form?: string,
+  options: QuantifiedOptions = {},
 ): boolean {
-  const a = parseQuantified(actual, domains, predicates),
-    b = parseQuantified(expected, domains, predicates);
-  return (form !== 'nnf' || nnf(a)) && equal(a, b);
+  const a = parseQuantified(actual, domains, predicates, options),
+    b = parseQuantified(expected, domains, predicates, options);
+  return (
+    (form !== 'nnf' || nnf(a)) &&
+    equal(a, b, [], [], [], [...(options.constants || []), ...(options.freeVariables || [])])
+  );
 }

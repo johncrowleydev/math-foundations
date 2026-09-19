@@ -76,8 +76,85 @@ function basis(a: Matrix, b: Matrix, space: string, originalColumns = false): bo
     !originalColumns || b.every((v) => transpose(a).some((w) => v.every((x, i) => x.eq(w[i]))))
   );
 }
+const constructionKinds = [
+  'zero-product',
+  'cancellation',
+  'nonsymmetric',
+  'nonparallel-dependent',
+  'changes-angles',
+  'determinant-scale',
+];
+function construction(r: AssessmentRequirement, response: StructuredResponse): boolean {
+  const values = r.fields.map((f) => answerMatrix(value(response, f))),
+    a = values[0],
+    m = a.length,
+    n = a[0].length;
+  const nonzero = (x: Matrix) => x.some((row) => row.some((v) => !v.isZero()));
+  const gram = multiply(transpose(a), a);
+  switch (r.params.kind) {
+    case 'zero-product':
+      return (
+        values.every((x) => shape(x, 2, 2)) &&
+        nonzero(a) &&
+        nonzero(values[1]) &&
+        !nonzero(values[2]) &&
+        equal(multiply(a, values[1]), values[2])
+      );
+    case 'cancellation':
+      return (
+        m === n &&
+        values.every((x) => shape(x, m, n)) &&
+        !equal(values[1], values[2]) &&
+        equal(multiply(a, values[1]), multiply(a, values[2]))
+      );
+    case 'nonsymmetric':
+      return m === n && !equal(a, transpose(a));
+    case 'nonparallel-dependent':
+      return (
+        shape(a, 3, 2) &&
+        a.every((v, i) => a.every((w, j) => i >= j || !v[0].mul(w[1]).sub(v[1].mul(w[0])).isZero()))
+      );
+    case 'changes-angles':
+      return (
+        n >= 2 &&
+        !equal(
+          gram,
+          identity(n).map((row) => row.map((x) => x.mul(gram[0][0]))),
+        )
+      );
+    case 'determinant-scale': {
+      if (!shape(a, 2, 2)) return false;
+      const det = a[0][0].mul(a[1][1]).sub(a[0][1].mul(a[1][0]));
+      const abs = det.sign() < 0 ? det.neg() : det;
+      return (
+        abs.eq(parseExact(r.params.determinantAbs as string)) &&
+        !equal(
+          gram,
+          identity(2).map((row) =>
+            row.map((x) => x.mul(parseExact(r.params.scaleSquared as string))),
+          ),
+        )
+      );
+    }
+    default:
+      throw Error('Unknown matrix construction.');
+  }
+}
 export function validateLinearRequirement(r: AssessmentRequirement): void {
   const p = r.params;
+  if (constructionKinds.includes(String(p.kind))) {
+    if (r.fields.length !== (['zero-product', 'cancellation'].includes(String(p.kind)) ? 3 : 1))
+      throw Error('Invalid matrix construction fields.');
+    if (
+      p.kind === 'determinant-scale' &&
+      (typeof p.determinantAbs !== 'string' ||
+        typeof p.scaleSquared !== 'string' ||
+        parseExact(p.determinantAbs).sign() < 0 ||
+        parseExact(p.scaleSquared).sign() < 0)
+    )
+      throw Error('Invalid determinant/scale condition.');
+    return;
+  }
   const a = numericMatrix(p.a);
   if (!['basis', 'affine-family', 'eigenvector', 'svd', 'best-rank'].includes(String(p.kind)))
     throw Error('Unknown linear algebra property.');
@@ -116,6 +193,7 @@ export function validateLinearRequirement(r: AssessmentRequirement): void {
   }
 }
 export function linearRequirement(r: AssessmentRequirement, response: StructuredResponse): boolean {
+  if (constructionKinds.includes(String(r.params.kind))) return construction(r, response);
   const p = r.params,
     a = numericMatrix(p.a),
     m = a.length,
@@ -150,6 +228,8 @@ export function linearRequirement(r: AssessmentRequirement, response: Structured
       );
     }
     case 'svd': {
+      if (p.form === 'compact' && matrixRank(a) === 0)
+        return r.fields.every((f) => answerMatrix(value(response, f), true).length === 0);
       const u = answerMatrix(value(response, r.fields[0])),
         s = answerMatrix(value(response, r.fields[1])),
         v = answerMatrix(value(response, r.fields[2]));

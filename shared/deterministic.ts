@@ -118,12 +118,18 @@ const validators: Record<
     return [...conditions, ...checks].every(Boolean);
   },
   'quantified-formula': (r, a) =>
-    quantifiedEquivalent(
-      text(a[r.fields[0]]),
-      text(r.params.expected),
-      strlist(r.params.domains),
-      r.params.predicates as Record<string, number>,
-      typeof r.params.form === 'string' ? r.params.form : undefined,
+    [text(r.params.expected), ...strlist(r.params.alternatives || [])].some((expected) =>
+      quantifiedEquivalent(
+        text(a[r.fields[0]]),
+        expected,
+        strlist(r.params.domains),
+        r.params.predicates as Record<string, number>,
+        typeof r.params.form === 'string' ? r.params.form : undefined,
+        {
+          constants: strlist(r.params.constants || []),
+          freeVariables: strlist(r.params.freeVariables || []),
+        },
+      ),
     ),
   set: (r, a) =>
     setEqual(
@@ -447,11 +453,14 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         (r.params.form && r.params.form !== 'nnf')
       )
         throw Error('Invalid quantified formula definition.');
-      parseQuantified(
-        text(r.params.expected),
-        r.params.domains,
-        r.params.predicates as Record<string, number>,
-      );
+      for (const name of ['constants', 'freeVariables', 'alternatives'])
+        if (r.params[name] !== undefined && !strings(r.params[name]))
+          throw Error('Invalid quantified formula ' + name);
+      for (const target of [text(r.params.expected), ...strlist(r.params.alternatives || [])])
+        parseQuantified(target, r.params.domains, r.params.predicates as Record<string, number>, {
+          constants: strlist(r.params.constants || []),
+          freeVariables: strlist(r.params.freeVariables || []),
+        });
     }
     if (r.validator === 'set') {
       if (
