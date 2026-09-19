@@ -1,0 +1,217 @@
+[
+  {
+    "name": "negations-on-atoms-implication",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D (P(x)->not Q(x))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "negations-on-atoms-equivalent-disjunction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D (not P(x) or not Q(x))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "negations-on-compound-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D not (P(x) and Q(x))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "negations-on-quantifier-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "not exists x in D (P(x) and Q(x))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "negations-on-atoms-wrong-sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D (P(x)->Q(x))"
+    },
+    "verdict": "incorrect"
+  }
+]

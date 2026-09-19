@@ -569,7 +569,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         Object.values(r.params.predicates).some(
           (n) => !Number.isInteger(n) || Number(n) < 0 || Number(n) > 8,
         ) ||
-        (r.params.form && r.params.form !== 'nnf')
+        (r.params.form && r.params.form !== 'nnf' && r.params.form !== 'negations-on-atoms')
       )
         throw Error('Invalid quantified formula definition.');
       if (

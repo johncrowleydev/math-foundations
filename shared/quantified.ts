@@ -267,6 +267,13 @@ function nnf(n: QNode): boolean {
       return true;
   }
 }
+function negationsOnAtoms(n: QNode): boolean {
+  if (n.kind === 'not') return n.body.kind === 'predicate' || n.body.kind === 'comparison';
+  if (n.kind === 'quantifier') return negationsOnAtoms(n.body);
+  if (n.kind === 'and' || n.kind === 'or' || n.kind === 'implies' || n.kind === 'iff')
+    return negationsOnAtoms(n.left) && negationsOnAtoms(n.right);
+  return true;
+}
 function rename(
   s: string,
   bound: string[],
@@ -415,6 +422,7 @@ export function quantifiedEquivalent(
     b = parseQuantified(expected, domains, predicates, options);
   return (
     (form !== 'nnf' || nnf(a)) &&
+    (form !== 'negations-on-atoms' || negationsOnAtoms(a)) &&
     equal(
       logicalNormalForm(a),
       logicalNormalForm(b),

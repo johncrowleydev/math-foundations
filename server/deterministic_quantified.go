@@ -19,6 +19,7 @@ type quantifiedParser struct {
 	at, depth  int
 	domains    []string
 	predicates map[string]int
+	sets       []string
 }
 
 var quantifiedToken = regexp.MustCompile(`[A-Za-z][A-Za-z_0-9]*|\d+(?:\.\d+)?|<=|>=|!=|[!&|@#(),.:+*/^=<>-]|\S`)
@@ -30,7 +31,7 @@ func quantifiedTokens(s string) ([]string, error) {
 		return nil, errors.New("Use a shorter quantified formula")
 	}
 	s = quantifiedDomain.ReplaceAllString(strings.Trim(strings.TrimSpace(s), "$"), " $1 ")
-	s = strings.NewReplacer("\\left", "", "\\right", "", "\\forall", " forall ", "∀", " forall ", "\\exists", " exists ", "∃", " exists ", "\\in", " in ", "∈", " in ", "\\neg", " ! ", "\\lnot", " ! ", "¬", " ! ", "~", " ! ", "\\land", " & ", "\\wedge", " & ", "∧", " & ", "&&", " & ", "\\lor", " | ", "\\vee", " | ", "∨", " | ", "||", " | ", "\\leftrightarrow", " @ ", "\\iff", " @ ", "↔", " @ ", "<->", " @ ", "<=>", " @ ", "\\rightarrow", " # ", "\\implies", " # ", "\\to", " # ", "→", " # ", "->", " # ", "=>", " # ", "\\leq", " <= ", "\\le", " <= ", "≤", " <= ", "\\geq", " >= ", "\\ge", " >= ", "≥", " >= ", "\\neq", " != ", "\\ne", " != ", "≠", " != ", "\\,", " ", "\\;", " ", "\\!", " ", "\\quad", " ", "\\qquad", " ", "\\ ", " ", "{", "(", "[", "(", "}", ")", "]", ")", "−", "-").Replace(s)
+	s = strings.NewReplacer("\\left", "", "\\right", "", "\\forall", " forall ", "∀", " forall ", "\\exists", " exists ", "∃", " exists ", "\\notin", " notin ", "∉", " notin ", "\\in", " in ", "∈", " in ", "\\neg", " ! ", "\\lnot", " ! ", "¬", " ! ", "~", " ! ", "\\land", " & ", "\\wedge", " & ", "∧", " & ", "&&", " & ", "\\lor", " | ", "\\vee", " | ", "∨", " | ", "||", " | ", "\\leftrightarrow", " @ ", "\\iff", " @ ", "↔", " @ ", "<->", " @ ", "<=>", " @ ", "\\rightarrow", " # ", "\\implies", " # ", "\\to", " # ", "→", " # ", "->", " # ", "=>", " # ", "\\leq", " <= ", "\\le", " <= ", "≤", " <= ", "\\geq", " >= ", "\\ge", " >= ", "≥", " >= ", "\\neq", " != ", "\\ne", " != ", "≠", " != ", "\\,", " ", "\\;", " ", "\\!", " ", "\\quad", " ", "\\qquad", " ", "\\ ", " ", "{", "(", "[", "(", "}", ")", "]", ")", "−", "-").Replace(s)
 	ts := quantifiedToken.FindAllString(s, -1)
 	if len(ts) > 1024 {
 		return nil, errors.New("Use a shorter quantified formula")
@@ -194,6 +195,24 @@ func (p *quantifiedParser) atom() (*quantifiedNode, error) {
 		p.at++
 	}
 	raw := p.tokens[start:p.at]
+	membership := -1
+	for i, t := range raw {
+		if enum(t, "in", "notin") {
+			membership = i
+			break
+		}
+	}
+	if membership > 0 && membership == len(raw)-2 {
+		set := raw[len(raw)-1]
+		if !contains(p.sets, set) || p.predicates[set] != 1 {
+			return nil, errors.New("Use one of the named sets")
+		}
+		member := &quantifiedNode{kind: "predicate", name: set, args: []string{strings.Join(raw[:membership], " ")}}
+		if raw[membership] == "notin" {
+			return &quantifiedNode{kind: "not", body: member}, nil
+		}
+		return member, nil
+	}
 	at := -1
 	for i, t := range raw {
 		if enum(t, "<", "<=", "=", "!=", ">", ">=") {
@@ -313,7 +332,11 @@ func parseQuantified(s string, domains []string, predicates map[string]int, opti
 	if e != nil {
 		return nil, e
 	}
-	p := quantifiedParser{tokens: ts, domains: domains, predicates: predicates}
+	o := quantifiedParams{}
+	if len(options) > 0 {
+		o = options[0]
+	}
+	p := quantifiedParser{tokens: ts, domains: domains, predicates: predicates, sets: o.Sets}
 	n, e := p.binary(1)
 	if e != nil {
 		return nil, e
@@ -324,10 +347,6 @@ func parseQuantified(s string, domains []string, predicates map[string]int, opti
 	n, e = expandQuantifiedUnique(n, ts)
 	if e != nil {
 		return nil, e
-	}
-	o := quantifiedParams{}
-	if len(options) > 0 {
-		o = options[0]
 	}
 	available := append(append([]string{}, o.Constants...), o.FreeVariables...)
 	return n, validateQuantified(n, available, o.Functions)
@@ -595,6 +614,7 @@ func quantifiedEqual(a, b *quantifiedNode, ab, bb, domains, fixed []string, func
 }
 
 type quantifiedParams struct {
+	Sets          []string       `json:"sets"`
 	Expected      string         `json:"expected"`
 	Domains       []string       `json:"domains"`
 	Predicates    map[string]int `json:"predicates"`
@@ -617,6 +637,9 @@ func checkQuantified(r AssessmentRequirement, response StructuredResponse) (bool
 	actual, e := parseQuantified(xs[0], p.Domains, p.Predicates, p)
 	if e != nil {
 		return false, e
+	}
+	if p.Form == "negations-on-atoms" && !actual.negationsOnAtoms() {
+		return false, nil
 	}
 	if p.Form == "nnf" && !actual.nnf() {
 		return false, nil
@@ -694,5 +717,18 @@ func quantifiedNormalForm(n *quantifiedNode, negate bool, budget *int) (*quantif
 			return &quantifiedNode{kind: "not", body: n}, nil
 		}
 		return n, nil
+	}
+}
+
+func (n *quantifiedNode) negationsOnAtoms() bool {
+	switch n.kind {
+	case "not":
+		return enum(n.body.kind, "predicate", "comparison")
+	case "quantifier":
+		return n.body.negationsOnAtoms()
+	case "and", "or", "implies", "iff":
+		return n.left.negationsOnAtoms() && n.right.negationsOnAtoms()
+	default:
+		return true
 	}
 }

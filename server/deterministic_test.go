@@ -33,6 +33,9 @@ func TestPolynomialFormConformance(t *testing.T) {
 func TestFiniteMapConformance(t *testing.T) {
 	testDeterministicCorpus(t, "../shared/finite-map-fixtures.json")
 }
+func TestQuantifiedExtraConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/quantified-extra-fixtures.json")
+}
 func testDeterministicCorpus(t *testing.T, path string) {
 	b, e := os.ReadFile(path)
 	if e != nil {
@@ -560,3 +563,15 @@ func TestQuantifiedTotalFunctions(t *testing.T) {
 }
 
 func TestSetConformance(t *testing.T) { testDeterministicCorpus(t, "../shared/set-fixtures.json") }
+
+func TestQuantifiedMembershipNotation(t *testing.T) {
+	a := deterministicFixture(t)
+	a.Requirements[0].Validator = "quantified-formula"
+	a.Requirements[0].Params = json.RawMessage(`{"expected":"forall x in D (A(x) and not B(x))","domains":["D"],"predicates":{"A":1,"B":1},"sets":["A","B"]}`)
+	for _, answer := range []string{"forall y in D (y in A and y notin B)", "forall y in D (y ∈ A and y ∉ B)", `\forall y \in D (y \in A \land y \notin B)`} {
+		g, e := gradeAssessment(a, StructuredResponse{"answer": answer})
+		if e != nil || g.Verdict != "correct" {
+			t.Fatalf("%s: %s %v", answer, g.Verdict, e)
+		}
+	}
+}

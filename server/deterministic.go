@@ -452,7 +452,7 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		return validateLinear(r)
 	case "quantified-formula":
 		var p quantifiedParams
-		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Domains) == 0 || !enum(p.Form, "", "nnf") {
+		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Domains) == 0 || !enum(p.Form, "", "nnf", "negations-on-atoms") {
 			return errors.New("Invalid quantified formula parameters")
 		}
 		for name, arity := range p.Functions {
