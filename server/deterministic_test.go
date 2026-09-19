@@ -584,3 +584,7 @@ func TestElementaryRejectsInternalRootSymbol(t *testing.T) {
 		t.Fatal("an internal symbol was accepted as a learner answer")
 	}
 }
+
+func TestConstructionConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/construction-fixtures.json")
+}

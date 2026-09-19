@@ -330,6 +330,10 @@ func normalizedTerm(s string, sensitive bool) string {
 
 func validateRequirement(r AssessmentRequirement, fields map[string]answerField) error {
 	switch r.Validator {
+	case "composition":
+		return validateComposition(r)
+	case "integer-class":
+		return validateIntegerClass(r)
 	case "finite-relation":
 		return validateFiniteRelation(r)
 	case "graph":
@@ -560,6 +564,10 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 }
 func checkRequirement(r AssessmentRequirement, response StructuredResponse) (bool, error) {
 	switch r.Validator {
+	case "composition":
+		return checkComposition(r, response)
+	case "integer-class":
+		return checkIntegerClass(r, response)
 	case "finite-relation":
 		return checkFiniteRelation(r, response)
 	case "graph":
