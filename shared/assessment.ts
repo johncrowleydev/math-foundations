@@ -27,6 +27,7 @@ export type AssessmentInput =
 export type AssessmentRequirement = {
   id: string;
   description: string;
+  evidenceLevel?: 'recognition' | 'production' | 'reasoning';
   validator: string;
   fields: string[];
   params: Record<string, unknown>;

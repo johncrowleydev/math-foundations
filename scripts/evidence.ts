@@ -1,3 +1,4 @@
+import type { Assessment } from '../shared/assessment.js';
 import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
 import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -65,7 +66,7 @@ type EvidenceLesson = {
   slug: string;
   exerciseNamespace?: string;
   sections: { title: string }[];
-  questions: { id: number; math?: string; choice?: unknown }[];
+  questions: { id: number; math?: string; choice?: unknown; assessment?: Assessment }[];
 };
 type AuthoredEvidence = Omit<EvidenceCatalog, 'exercises' | 'version'> & {
   exercises: {
@@ -112,7 +113,15 @@ export function publishEvidence(
       attributes: { ...row.attributes },
     };
     // Count only explicit logical operators in the displayed expression, not prose or the answer.
-    exercises[key].attributes!.responseFormat = q?.choice ? 'choice' : 'open';
+    exercises[key].attributes!.responseFormat = q?.choice
+      ? 'choice'
+      : q?.assessment
+        ? 'structured'
+        : 'open';
+    if (q.assessment) {
+      exercises[key].attributes!.evidenceLevel = q.assessment.evidence.level;
+      exercises[key].attributes!.interactionCost = q.assessment.evidence.interactionCost;
+    }
     if (row.lesson === 'propositional-logic' && q?.math)
       exercises[key].attributes!.operatorCount = (
         q.math.match(/\\(?:neg|land|lor|to|leftrightarrow)\b/g) || []

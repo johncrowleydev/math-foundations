@@ -99,5 +99,18 @@ export function booleanForm(n: BooleanNode, form?: string): boolean {
     !['implies', 'iff'].includes(n.op) && booleanForm(n.left, form) && booleanForm(n.right, form)
   );
 }
-export const booleanStructure = (a: BooleanNode, b: BooleanNode): boolean =>
-  JSON.stringify(a) === JSON.stringify(b);
+export function booleanStructure(a: BooleanNode, b: BooleanNode, variables: string[]): boolean {
+  if (a.op !== b.op) return false;
+  if (a.op === 'atom' && b.op === 'atom') return a.name === b.name;
+  if (a.op === 'not' && b.op === 'not') return booleanEquivalent(a.child, b.child, variables);
+  if (a.op !== 'atom' && a.op !== 'not' && b.op !== 'atom' && b.op !== 'not')
+    return (
+      booleanEquivalent(a.left, b.left, variables) && booleanEquivalent(a.right, b.right, variables)
+    );
+  return false;
+}
+export function booleanNodeCount(n: BooleanNode): number {
+  if (n.op === 'atom') return 1;
+  if (n.op === 'not') return 1 + booleanNodeCount(n.child);
+  return 1 + booleanNodeCount(n.left) + booleanNodeCount(n.right);
+}

@@ -1,3 +1,5 @@
+import { setEqual } from './sets';
+import { inequalityEquivalent } from './inequality';
 import {
   assessmentFields,
   type Assessment,
@@ -6,7 +8,15 @@ import {
   type StructuredResponse,
 } from './assessment';
 import { Exact, InputError, parseExact, parseExpression, sameExpressionDomain } from './exact';
-import { booleanEquivalent, booleanForm, booleanStructure, parseBoolean } from './logic';
+import {
+  booleanEquivalent,
+  booleanForm,
+  booleanStructure,
+  booleanNodeCount,
+  evaluateBoolean,
+  parseBoolean,
+} from './logic';
+import { quantifiedEquivalent, parseQuantified } from './quantified';
 export { InputError } from './exact';
 function bad(s: string): never {
   throw new InputError(s);
@@ -21,7 +31,7 @@ const array = (x: unknown): unknown[] =>
   Array.isArray(x) ? x : bad('Invalid assessment parameters.');
 const strlist = (x: unknown): string[] => (strings(x) ? x : bad('Invalid assessment parameters.'));
 const normalize = (s: string, caseSensitive = false) => {
-  s = s.normalize('NFKC').trim().replace(/\s+/g, ' ');
+  s = s.trim().replace(/\s+/g, ' ');
   return caseSensitive ? s : s.toLowerCase();
 };
 const exacts = (values: string[]) => values.map(parseExact);
@@ -134,9 +144,41 @@ const validators: Record<
     return (
       booleanEquivalent(got, expected, vars) &&
       booleanForm(got, typeof r.params.form === 'string' ? r.params.form : undefined) &&
-      (!r.params.structure || booleanStructure(got, parseBoolean(text(r.params.structure), vars)))
+      (!r.params.maxNodes || booleanNodeCount(got) <= Number(r.params.maxNodes)) &&
+      (!r.params.structure ||
+        booleanStructure(got, parseBoolean(text(r.params.structure), vars), vars))
     );
   },
+  'boolean-model': (r, a) => {
+    const variableFields = r.params.variables as Record<string, string>;
+    const variables = Object.keys(variableFields),
+      assignment = Object.fromEntries(variables.map((v) => [v, a[variableFields[v]] as boolean]));
+    const conditions = array(r.params.conditions).map((raw) => {
+      if (!object(raw)) bad('Invalid Boolean model condition.');
+      return evaluateBoolean(parseBoolean(text(raw.formula), variables), assignment) === raw.value;
+    });
+    const checks = Object.entries((r.params.checks || {}) as Record<string, string>).map(
+      ([field, formula]) =>
+        a[field] === evaluateBoolean(parseBoolean(formula, variables), assignment),
+    );
+    return [...conditions, ...checks].every(Boolean);
+  },
+  'quantified-formula': (r, a) =>
+    quantifiedEquivalent(
+      text(a[r.fields[0]]),
+      text(r.params.expected),
+      strlist(r.params.domains),
+      r.params.predicates as Record<string, number>,
+      typeof r.params.form === 'string' ? r.params.form : undefined,
+    ),
+  set: (r, a) =>
+    setEqual(
+      text(a[r.fields[0]]),
+      strlist(r.params.expected),
+      r.params.atoms ? strlist(r.params.atoms) : [],
+    ),
+  inequality: (r, a) =>
+    inequalityEquivalent(text(a[r.fields[0]]), text(r.params.expected), text(r.params.variable)),
   expression: (r, a) => {
     const vars = strlist(r.params.variables),
       got = parseExpression(text(a[r.fields[0]]), vars),
@@ -364,6 +406,13 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
       throw Error('Expected values required.');
     if (r.validator === 'boolean-formula') {
       if (
+        r.params.maxNodes !== undefined &&
+        (!Number.isInteger(r.params.maxNodes) ||
+          Number(r.params.maxNodes) < 1 ||
+          Number(r.params.maxNodes) > 128)
+      )
+        throw Error('Invalid formula complexity bound.');
+      if (
         !strings(r.params.variables) ||
         !r.params.variables.length ||
         r.params.variables.length > 8
@@ -377,6 +426,75 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         throw Error('Unknown Boolean form.');
       if (r.params.form === 'contrapositive' && !r.params.structure)
         throw Error('Contrapositive requires an authored structural target.');
+    }
+    if (r.validator === 'boolean-model') {
+      if (
+        !object(r.params.variables) ||
+        !Object.keys(r.params.variables).length ||
+        Object.keys(r.params.variables).length > 8 ||
+        Object.values(r.params.variables).some(
+          (f) =>
+            typeof f !== 'string' ||
+            !r.fields.includes(f) ||
+            fields.find((x) => x.id === f)?.kind !== 'boolean',
+        ) ||
+        !Array.isArray(r.params.conditions)
+      )
+        throw Error('Invalid Boolean model definition.');
+      const variables = Object.keys(r.params.variables);
+      for (const raw of r.params.conditions) {
+        if (!object(raw) || typeof raw.value !== 'boolean')
+          throw Error('Invalid Boolean model condition.');
+        parseBoolean(text(raw.formula), variables);
+      }
+      if (r.params.checks) {
+        if (!object(r.params.checks)) throw Error('Invalid Boolean model checks.');
+        for (const [field, formula] of Object.entries(r.params.checks)) {
+          if (!r.fields.includes(field) || fields.find((x) => x.id === field)?.kind !== 'boolean')
+            throw Error('Invalid Boolean model check field.');
+          parseBoolean(text(formula), variables);
+        }
+      }
+    }
+    if (r.validator === 'quantified-formula') {
+      if (
+        r.fields.length !== 1 ||
+        !strings(r.params.domains) ||
+        !r.params.domains.length ||
+        !object(r.params.predicates) ||
+        Object.values(r.params.predicates).some(
+          (n) => !Number.isInteger(n) || Number(n) < 1 || Number(n) > 8,
+        ) ||
+        (r.params.form && r.params.form !== 'nnf')
+      )
+        throw Error('Invalid quantified formula definition.');
+      parseQuantified(
+        text(r.params.expected),
+        r.params.domains,
+        r.params.predicates as Record<string, number>,
+      );
+    }
+    if (r.validator === 'set') {
+      if (
+        r.fields.length !== 1 ||
+        !strings(r.params.expected) ||
+        (r.params.atoms !== undefined && !strings(r.params.atoms))
+      )
+        throw Error('Invalid set definition.');
+      setEqual(
+        '{' + r.params.expected.join(',') + '}',
+        r.params.expected,
+        (r.params.atoms || []) as string[],
+      );
+    }
+    if (r.validator === 'inequality') {
+      if (r.fields.length !== 1 || !/^[A-Za-z][A-Za-z0-9_]*$/.test(text(r.params.variable)))
+        throw Error('Invalid inequality definition.');
+      inequalityEquivalent(
+        text(r.params.expected),
+        text(r.params.expected),
+        text(r.params.variable),
+      );
     }
     if (r.validator === 'expression') {
       if (

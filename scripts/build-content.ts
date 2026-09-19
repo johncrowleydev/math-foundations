@@ -9,6 +9,7 @@ import { adaptNotebookQuestion, validateNotebookAdaptations } from './notebook-e
 import { adaptInlineQuestion, validateInlinePrerequisites } from './inline-prerequisites.js';
 import { quickChecks, validateQuickChecks } from './quick-checks.js';
 import { promoteChoices } from './choice-exercises.js';
+import { promoteDeterministic } from './deterministic-exercises.js';
 import { loadEvidence } from './evidence.js';
 import { snapshot } from '../web/src/evidenceTypes.js';
 import { loadSources } from './sources.js';
@@ -157,7 +158,7 @@ if (missingFormulaContexts.length)
 await mkdir('output', { recursive: true });
 await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory, null, 2) + '\n');
 const dir = 'output/content';
-const publishedLessons = promoteChoices(lessons);
+const publishedLessons = promoteDeterministic(promoteChoices(lessons));
 validateExerciseKeys(publishedLessons);
 const evidence = await loadEvidence(publishedLessons);
 const reviewTemplates = await loadReviewTemplates(
@@ -202,6 +203,7 @@ const gradingExercises = Object.fromEntries(
           lesson: lesson.title,
           analytics: snapshot(evidence, exerciseKey(lesson, q.id)),
           choice: q.choice,
+          assessment: q.assessment,
           question: {
             instructions: q.instructions,
             prompt: q.prompt,

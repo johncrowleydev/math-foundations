@@ -2171,5 +2171,1344 @@
       "answer": "1"
     },
     "verdict": "incorrect"
+  },
+  {
+    "name": "quantifier-alpha",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists n in Z forall m in Z (m<n+2)",
+            "domains": ["Z"],
+            "predicates": {},
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exists k in Z forall j in Z (j<k+2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantifier-integer-strictness",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists n in Z forall m in Z (m<n+2)",
+            "domains": ["Z"],
+            "predicates": {},
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exists k in Z forall j in Z (j<=k+1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantifier-integer-scale",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists n in Z forall m in Z (m<n+2)",
+            "domains": ["Z"],
+            "predicates": {},
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exists k in Z forall j in Z (2*j<=2*k+2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantifier-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists n in Z forall m in Z (m<n+2)",
+            "domains": ["Z"],
+            "predicates": {},
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall n in Z exists m in Z (m<n+2)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "quantifier-domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists n in Z forall m in Z (m<n+2)",
+            "domains": ["Z", "R"],
+            "predicates": {},
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exists n in R forall m in R (m<n+2)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "quantifier-predicates",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall u in D exists v in D (A(u) & !B(u,v))",
+            "domains": ["D"],
+            "predicates": {
+              "A": 1,
+              "B": 2
+            },
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D exists y in D (!B(x,y) & A(x))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantifier-argument-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall u in D exists v in D (A(u) & !B(u,v))",
+            "domains": ["D"],
+            "predicates": {
+              "A": 1,
+              "B": 2
+            },
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D exists y in D (A(x) & !B(y,x))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "quantifier-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists n in Z forall m in Z (m<n+2)",
+            "domains": ["Z"],
+            "predicates": {},
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\exists k\\in\\mathbb{Z}\\,\\forall j\\in\\mathbb{Z}\\,(j<k+2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantifier-cancelled-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall n in Z A(1)",
+            "domains": ["Z"],
+            "predicates": {
+              "A": 1
+            },
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall n in Z A(n/n)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "quantifier-real-boundary",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R (x<2)",
+            "domains": ["R"],
+            "predicates": {},
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in R (x<=1)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "quantifier-unbound",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall n in Z A(n)",
+            "domains": ["Z"],
+            "predicates": {
+              "A": 1
+            },
+            "form": "nnf"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall n in Z A(m)"
+    },
+    "error": true
+  },
+  {
+    "name": "simplified-commuted",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "boolean-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "!p & !q",
+            "variables": ["p", "q"],
+            "form": "nnf",
+            "maxNodes": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "!q & !p"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "unsimplified-duplicate",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "boolean-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "!p & !q",
+            "variables": ["p", "q"],
+            "form": "nnf",
+            "maxNodes": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(!q & !p) & !p"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "counterassignment-property",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "p",
+          "kind": "boolean",
+          "label": "p"
+        },
+        {
+          "id": "q",
+          "kind": "boolean",
+          "label": "q"
+        },
+        {
+          "id": "implication",
+          "kind": "boolean",
+          "label": "implication"
+        },
+        {
+          "id": "equivalence",
+          "kind": "boolean",
+          "label": "equivalence"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "boolean-model",
+          "fields": ["p", "q", "implication", "equivalence"],
+          "params": {
+            "variables": {
+              "p": "p",
+              "q": "q"
+            },
+            "conditions": [
+              {
+                "formula": "!((p->q)<->(p<->q))",
+                "value": true
+              }
+            ],
+            "checks": {
+              "implication": "p->q",
+              "equivalence": "p<->q"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "p": false,
+      "q": true,
+      "implication": true,
+      "equivalence": false
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "counterassignment-wrong-check",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "p",
+          "kind": "boolean",
+          "label": "p"
+        },
+        {
+          "id": "q",
+          "kind": "boolean",
+          "label": "q"
+        },
+        {
+          "id": "implication",
+          "kind": "boolean",
+          "label": "implication"
+        },
+        {
+          "id": "equivalence",
+          "kind": "boolean",
+          "label": "equivalence"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "boolean-model",
+          "fields": ["p", "q", "implication", "equivalence"],
+          "params": {
+            "variables": {
+              "p": "p",
+              "q": "q"
+            },
+            "conditions": [
+              {
+                "formula": "!((p->q)<->(p<->q))",
+                "value": true
+              }
+            ],
+            "checks": {
+              "implication": "p->q",
+              "equivalence": "p<->q"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "p": false,
+      "q": true,
+      "implication": false,
+      "equivalence": false
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "inequality-joined",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x<=0",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x<=2 and x<=0"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inequality-reversed",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x<=0",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0>=x"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inequality-strict",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x<=0",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x<0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "inequality-disjunction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x<=0",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x<0 or x=0"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inequality-negation",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x<=0",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "not(x>0)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inequality-scale",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x<=0",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "3*x<=0"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inequality-wrong-sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x<=0",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-x<=0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-numeric-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["-3", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{3,-3}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-duplicates",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["1", "2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{1,1,2}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-nested",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["{1}", "{2}"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{{2},{1}}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-nesting-distinct",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["{1}", "{2}"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{1,2}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-tuples",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["(3,4)", "(1,2)"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{(1,2),(3,4)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-tuple-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["(1,2)"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{(2,1)}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-empty",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": []
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-tex-empty",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": []
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\varnothing"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-containing-empty",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": []
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{{}}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-fraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["1", "0.5"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\{\\frac{1}{2},1\\}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-blank",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": []
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": ""
+    },
+    "error": true
   }
 ]

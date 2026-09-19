@@ -1,3 +1,5 @@
+import { validateAssessment } from '../shared/deterministic.js';
+import type { Assessment } from '../shared/assessment.js';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import { validateMath } from './content.js';
@@ -24,6 +26,16 @@ const question = z
     prompt: text,
     answer: text,
     math: text.optional(),
+    assessment: z
+      .custom<Assessment>((a) => {
+        try {
+          validateAssessment(a);
+          return true;
+        } catch {
+          return false;
+        }
+      })
+      .optional(),
     choice: z
       .object({
         options: z.array(z.object({ id: text, text, feedback: text }).strict()).min(2),
@@ -88,6 +100,8 @@ export function validateReviewTemplates(
       throw Error('Review family payload mismatch: ' + t.id);
     if (new Set(t.sourceIds).size !== t.sourceIds.length) throw Error('Duplicate review citation');
     for (const q of [t.question, ...(t.variants || [])]) {
+      if (q.assessment && q.choice) throw Error('Conflicting review grading methods: ' + t.id);
+      if (q.assessment) validateAssessment(q.assessment);
       if (q.choice) {
         const ids = q.choice.options.map((o) => o.id);
         if (new Set(ids).size !== ids.length || !ids.includes(q.choice.correctOption))
