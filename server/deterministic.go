@@ -384,13 +384,18 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		}
 	case "boolean-formula":
 		var p struct {
-			Expected  string   `json:"expected"`
-			Variables []string `json:"variables"`
-			Form      string   `json:"form"`
-			Structure string   `json:"structure"`
+			Expected         string   `json:"expected"`
+			Variables        []string `json:"variables"`
+			Form             string   `json:"form"`
+			Structure        string   `json:"structure"`
+			MaxNodes         *int     `json:"maxNodes"`
+			NegationsOnAtoms bool     `json:"negationsOnAtoms"`
 		}
 		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Variables) > 8 || len(p.Variables) == 0 || !enum(p.Form, "", "nnf", "no-implication", "contrapositive") {
 			return errors.New("Invalid formula parameters")
+		}
+		if p.MaxNodes != nil && (*p.MaxNodes < 1 || *p.MaxNodes > 128) {
+			return errors.New("Invalid Boolean formula size bound")
 		}
 		if _, err := parseBoolean(p.Expected, p.Variables); err != nil {
 			return err
@@ -485,11 +490,14 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 			vars = append(vars, v.Name)
 		}
 		for _, c := range p.Conditions {
-			if !enum(c.Op, "=", "!=", "<", "<=", ">", ">=", "divides", "not-divides") {
+			if !enum(c.Op, "=", "!=", "<", "<=", ">", ">=", "divides", "not-divides", "rational", "irrational") {
 				return errors.New("Unknown witness comparison")
 			}
 			if _, e := parsePolynomial(c.Left, vars); e != nil {
 				return e
+			}
+			if enum(c.Op, "rational", "irrational") {
+				continue
 			}
 			if _, e := parsePolynomial(c.Right, vars); e != nil {
 				return e

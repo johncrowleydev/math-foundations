@@ -200,6 +200,8 @@ type witnessParams struct {
 		Field      string `json:"field"`
 		Integer    bool   `json:"integer"`
 		NonInteger bool   `json:"nonInteger"`
+		Rational   bool   `json:"rational"`
+		Irrational bool   `json:"irrational"`
 	} `json:"variables"`
 	Conditions []struct {
 		Left  string `json:"left"`
@@ -214,6 +216,7 @@ func checkWitness(r AssessmentRequirement, response StructuredResponse) (bool, e
 		return false, e
 	}
 	values := map[string]exactNumber{}
+	domainValid := true
 	for _, v := range p.Variables {
 		s, ok := response[v.Field].(string)
 		if !ok {
@@ -226,16 +229,25 @@ func checkWitness(r AssessmentRequirement, response StructuredResponse) (bool, e
 		if v.Integer {
 			q, ok := x.rat()
 			if !ok || !q.IsInt() {
-				return false, nil
+				domainValid = false
 			}
 		}
 		if v.NonInteger {
 			q, ok := x.rat()
 			if ok && q.IsInt() {
-				return false, nil
+				domainValid = false
+			}
+		}
+		if v.Rational || v.Irrational {
+			_, rational := x.rat()
+			if v.Rational && !rational || v.Irrational && rational {
+				domainValid = false
 			}
 		}
 		values[v.Name] = x
+	}
+	if !domainValid {
+		return false, nil
 	}
 	vars := []string{}
 	for k := range values {
@@ -262,6 +274,15 @@ func checkWitness(r AssessmentRequirement, response StructuredResponse) (bool, e
 			}
 			return out, out.valid()
 		}
+		for _, divisor := range p.divisors {
+			value, e := evalPoly(divisor)
+			if e != nil {
+				return exactNumber{}, e
+			}
+			if len(value.n) == 0 {
+				return exactNumber{}, errors.New("Witness expression is undefined")
+			}
+		}
 		n, e := evalPoly(p.n)
 		if e != nil {
 			return exactNumber{}, e
@@ -276,6 +297,13 @@ func checkWitness(r AssessmentRequirement, response StructuredResponse) (bool, e
 		a, e := evaluate(c.Left)
 		if e != nil {
 			return false, e
+		}
+		if enum(c.Op, "rational", "irrational") {
+			_, rational := a.rat()
+			if (c.Op == "rational") != rational {
+				return false, nil
+			}
+			continue
 		}
 		b, e := evaluate(c.Right)
 		if e != nil {

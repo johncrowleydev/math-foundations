@@ -7,6 +7,11 @@ import (
 
 type exactMatrix [][]exactNumber
 type linearParams struct {
+	Property        string     `json:"property"`
+	FreeVariables   bool       `json:"freeVariables"`
+	Eigenvalues     []string   `json:"eigenvalues"`
+	Checks          bool       `json:"checks"`
+	Orthogonal      bool       `json:"orthogonal"`
 	Kind            string     `json:"kind"`
 	A               [][]string `json:"a"`
 	B               []string   `json:"b"`
@@ -280,6 +285,9 @@ func validateLinear(r AssessmentRequirement) error {
 	if e := jsonParams(r, &p); e != nil {
 		return e
 	}
+	if extraLinearKind(p.Kind) {
+		return validateExtraLinear(r, p)
+	}
 	if linearConstructionKind(p.Kind) {
 		count := 1
 		if enum(p.Kind, "zero-product", "cancellation") {
@@ -315,7 +323,11 @@ func validateLinear(r AssessmentRequirement) error {
 			return errors.New("Invalid basis definition")
 		}
 	case "affine-family":
-		if len(r.Fields) != 2 || len(p.B) != len(a) {
+		count := 2
+		if p.FreeVariables {
+			count = 3
+		}
+		if len(r.Fields) != count || len(p.B) != len(a) {
 			return errors.New("Invalid affine family definition")
 		}
 		for _, s := range p.B {
@@ -357,6 +369,9 @@ func validateLinear(r AssessmentRequirement) error {
 func checkLinear(r AssessmentRequirement, response StructuredResponse) (bool, error) {
 	var p linearParams
 	jsonParams(r, &p)
+	if extraLinearKind(p.Kind) {
+		return checkExtraLinear(r, response, p)
+	}
 	if linearConstructionKind(p.Kind) {
 		return checkLinearConstruction(r, response, p)
 	}
@@ -364,7 +379,11 @@ func checkLinear(r AssessmentRequirement, response StructuredResponse) (bool, er
 	if e != nil {
 		return false, e
 	}
-	xs, e := responseStrings(r, response)
+	typed := r
+	if p.Kind == "affine-family" && p.FreeVariables {
+		typed.Fields = typed.Fields[:2]
+	}
+	xs, e := responseStrings(typed, response)
 	if e != nil {
 		return false, e
 	}
@@ -376,6 +395,34 @@ func checkLinear(r AssessmentRequirement, response StructuredResponse) (bool, er
 		}
 		return basisValid(a, v, p.Space, p.OriginalColumns)
 	case "affine-family":
+		if strings.EqualFold(strings.TrimSpace(xs[0]), "none") {
+			directions, e := matrixAnswer(xs[1], true)
+			if e != nil {
+				return false, e
+			}
+			augmented, e := augmentMatrix(a, p.B)
+			if e != nil {
+				return false, e
+			}
+			rank, e := matrixRank(a)
+			if e != nil {
+				return false, e
+			}
+			augRank, e := matrixRank(augmented)
+			if e != nil {
+				return false, e
+			}
+			if p.FreeVariables {
+				indices, e := linearIndices(response[r.Fields[2]])
+				if e != nil {
+					return false, e
+				}
+				if len(indices) > 0 {
+					return false, nil
+				}
+			}
+			return len(directions) == 0 && augRank > rank, nil
+		}
 		v, e := vectorAnswer(xs[0])
 		if e != nil {
 			return false, e
@@ -400,7 +447,14 @@ func checkLinear(r AssessmentRequirement, response StructuredResponse) (bool, er
 				return false, nil
 			}
 		}
-		return basisValid(a, directions, "null", false)
+		ok, e := basisValid(a, directions, "null", false)
+		if e != nil || !ok {
+			return ok, e
+		}
+		if p.FreeVariables {
+			return freeCoordinatesValid(directions, len(a[0]), response[r.Fields[2]])
+		}
+		return true, nil
 	case "eigenvector":
 		v, e := vectorAnswer(xs[0])
 		if e != nil {

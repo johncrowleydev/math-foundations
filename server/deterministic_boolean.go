@@ -196,11 +196,12 @@ func (n *boolNode) structure() string {
 }
 func checkBooleanRequirement(r AssessmentRequirement, response StructuredResponse) (bool, error) {
 	var p struct {
-		Expected  string   `json:"expected"`
-		Variables []string `json:"variables"`
-		Form      string   `json:"form"`
-		Structure string   `json:"structure"`
-		MaxNodes  int      `json:"maxNodes"`
+		Expected         string   `json:"expected"`
+		Variables        []string `json:"variables"`
+		Form             string   `json:"form"`
+		Structure        string   `json:"structure"`
+		MaxNodes         int      `json:"maxNodes"`
+		NegationsOnAtoms bool     `json:"negationsOnAtoms"`
 	}
 	jsonParams(r, &p)
 	xs, e := responseStrings(r, response)
@@ -216,6 +217,9 @@ func checkBooleanRequirement(r AssessmentRequirement, response StructuredRespons
 		return false, e
 	}
 	if p.MaxNodes > 0 && n.nodes() > p.MaxNodes {
+		return false, nil
+	}
+	if p.NegationsOnAtoms && !n.negationsOnAtoms() {
 		return false, nil
 	}
 	if !n.form(p.Form) {
@@ -320,4 +324,14 @@ func booleanModel(r AssessmentRequirement, response StructuredResponse) (bool, e
 		valid = valid && n.value(values) == b
 	}
 	return valid, nil
+}
+
+func (n *boolNode) negationsOnAtoms() bool {
+	if n == nil {
+		return true
+	}
+	if n.op == "!" && n.left.left != nil {
+		return false
+	}
+	return n.left.negationsOnAtoms() && n.right.negationsOnAtoms()
 }
