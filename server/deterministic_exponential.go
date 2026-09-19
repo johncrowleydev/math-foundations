@@ -10,6 +10,8 @@ import (
 )
 
 type expressionParams struct {
+	Form              string   `json:"form"`
+	FactorDegree      *int     `json:"factorDegree"`
 	Expected          string   `json:"expected"`
 	Variables         []string `json:"variables"`
 	IntegerVariables  []string `json:"integerVariables"`

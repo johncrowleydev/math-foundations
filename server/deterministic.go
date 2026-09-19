@@ -428,6 +428,9 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Variables) > 8 {
 			return errors.New("Invalid expression parameters")
 		}
+		if !enum(p.Form, "", "expanded", "factored") || p.FactorDegree != nil && (*p.FactorDegree < 1 || *p.FactorDegree > 100 || p.Form != "factored") {
+			return errors.New("Invalid requested polynomial form")
+		}
 		if p.extended() {
 			_, err := extendedExpressionEquivalent(p.Expected, p.Expected, p)
 			return err
@@ -652,6 +655,16 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 		xs, e := responseStrings(r, response)
 		if e != nil {
 			return false, e
+		}
+		if p.Form != "" {
+			degree := 0
+			if p.FactorDegree != nil {
+				degree = *p.FactorDegree
+			}
+			ok, e := polynomialForm(xs[0], p.Variables, p.Form, degree)
+			if e != nil || !ok {
+				return ok, e
+			}
 		}
 		if p.extended() {
 			return extendedExpressionEquivalent(xs[0], p.Expected, p)

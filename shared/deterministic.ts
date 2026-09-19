@@ -6,6 +6,7 @@ import {
   nestedObjectRequirement,
   validateSetRequirement,
 } from './set-model';
+import { polynomialForm, validatePolynomialForm } from './polynomial-form';
 import {
   checkIntegerList,
   validateIntegerList,
@@ -188,6 +189,16 @@ const validators: Record<
   'integer-list': checkIntegerList,
   'binomial-sum': checkBinomialSum,
   expression: (r, a) => {
+    if (
+      r.params.form &&
+      !polynomialForm(
+        text(a[r.fields[0]]),
+        strlist(r.params.variables),
+        text(r.params.form),
+        r.params.factorDegree as number | undefined,
+      )
+    )
+      return false;
     const options = r.params as unknown as ExpressionOptions;
     if (hasExtendedExpression(options))
       return extendedExpressionEquivalent(text(a[r.fields[0]]), text(r.params.expected), options);
@@ -605,6 +616,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     if (r.validator === 'integer-list') validateIntegerList(r);
     if (r.validator === 'binomial-sum') validateBinomialSum(r);
     if (r.validator === 'expression') {
+      validatePolynomialForm(r.params.form, r.params.factorDegree);
       if (
         !strings(r.params.variables) ||
         r.params.variables.some((v) => !/^[_A-Za-z][_A-Za-z0-9]*$/.test(v))
