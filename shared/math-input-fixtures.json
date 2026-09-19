@@ -1,0 +1,1641 @@
+[
+  {
+    "name": "elementary-abs",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "|x|"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "elementary-sqrt",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x^2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "elementary-scaled",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*sqrt((x/2)^2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "elementary-wrong-sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "elementary-wrong-negative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-abs(x)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "elementary-cancelled-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "abs(x)*x/x"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "elementary-not-real",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x)"
+    },
+    "error": true
+  },
+  {
+    "name": "elementary-zero-added",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x*x)+x-x"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "elementary-half-power",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "elementary-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "abs(x)",
+            "variable": "x",
+            "domain": "real"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x^2)^(1/2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "square-inverse-positive",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false,
+      "inverse": "sqrt(y)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "square-inverse-negative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "-infinity",
+      "domain.upper": "0",
+      "domain.leftClosed": false,
+      "domain.rightClosed": true,
+      "inverse": "-sqrt(y)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "square-inverse-half-power",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false,
+      "inverse": "y^(1/2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "square-inverse-scaled",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false,
+      "inverse": "sqrt(4*y)/2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "square-inverse-mismatch",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false,
+      "inverse": "-sqrt(y)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "square-inverse-excluded-zero",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": false,
+      "domain.rightClosed": false,
+      "inverse": "sqrt(y)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "square-inverse-wrong-slope",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false,
+      "inverse": "2*sqrt(y)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "square-inverse-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false,
+      "inverse": "y/sqrt(y)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "square-inverse-syntax",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        },
+        {
+          "id": "inverse",
+          "kind": "math",
+          "label": "Inverse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "square-inverse",
+          "fields": [
+            "domain.lower",
+            "domain.upper",
+            "domain.leftClosed",
+            "domain.rightClosed",
+            "inverse"
+          ],
+          "params": {}
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "0",
+      "domain.upper": "infinity",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false,
+      "inverse": "sqrt("
+    },
+    "error": true
+  },
+  {
+    "name": "interval-union",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x>=-2 and x<=-1) or (x>=1 and x<=2)",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "[-2,-1] union [1,2]"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "interval-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x>=-2 and x<=-1) or (x>=1 and x<=2)",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "[-2,-1]\\cup[1,2]"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "interval-wrong-end",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x>=-2 and x<=-1) or (x>=1 and x<=2)",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "[-2,-1) union [1,2]"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "interval-extra",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x>=-2 and x<=-1) or (x>=1 and x<=2)",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "[-2,2]"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "interval-missing-point",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x!=3",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "R\\{3}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "interval-two-points",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x!=3",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "R\\{3,4}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "interval-open-infinity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x!=3",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(-infinity,3) union (3,infinity)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "interval-closed-infinity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "inequality",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x!=3",
+            "variable": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "[-infinity,3) union (3,infinity)"
+    },
+    "error": true
+  },
+  {
+    "name": "symbolic-interval",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "interval",
+          "fields": ["domain.lower", "domain.upper", "domain.leftClosed", "domain.rightClosed"],
+          "params": {
+            "variables": ["k"],
+            "lower": "k",
+            "upper": "k+1",
+            "leftClosed": true,
+            "rightClosed": false
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "k",
+      "domain.upper": "1+k",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "symbolic-interval-wrong",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "domain",
+          "kind": "interval",
+          "label": "Restricted domain"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "interval",
+          "fields": ["domain.lower", "domain.upper", "domain.leftClosed", "domain.rightClosed"],
+          "params": {
+            "variables": ["k"],
+            "lower": "k",
+            "upper": "k+1",
+            "leftClosed": true,
+            "rightClosed": false
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "domain.lower": "k+1",
+      "domain.upper": "1+k",
+      "domain.leftClosed": true,
+      "domain.rightClosed": false
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "quantified-membership",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R: A(x) -> B(x)",
+            "domains": ["R"],
+            "predicates": {
+              "A": 1,
+              "B": 1
+            },
+            "sets": ["A", "B"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\forall t\\in R: t\\notin A\\lor t\\in B"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantified-membership-wrong",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R: A(x) -> B(x)",
+            "domains": ["R"],
+            "predicates": {
+              "A": 1,
+              "B": 1
+            },
+            "sets": ["A", "B"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall t in R: t in B -> t in A"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sequence-same-recurrence0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "same-recurrence",
+            "increment": "3"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "3*n",
+      "b": "3*n+1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sequence-same-recurrence1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "same-recurrence",
+            "increment": "3"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "3*n-8",
+      "b": "3*n+12"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sequence-same-recurrence2",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "same-recurrence",
+            "increment": "3"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "3*n",
+      "b": "3*n"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sequence-same-recurrence3",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "same-recurrence",
+            "increment": "3"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "3*n",
+      "b": "4*n"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sequence-prefix-counterexample0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "prefix-counterexample",
+            "indices": ["0", "1", "2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "n",
+      "b": "n+n*(n-1)*(n-2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sequence-prefix-counterexample1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "prefix-counterexample",
+            "indices": ["0", "1", "2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "0",
+      "b": "n*(n-1)*(n-2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sequence-prefix-counterexample2",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "prefix-counterexample",
+            "indices": ["0", "1", "2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "n",
+      "b": "n"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sequence-prefix-counterexample3",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet the requested conditions",
+          "validator": "sequence-pair",
+          "fields": ["a", "b"],
+          "params": {
+            "variable": "n",
+            "kind": "prefix-counterexample",
+            "indices": ["0", "1", "2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check both sequence rules."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "0",
+      "b": "n*(n-1)"
+    },
+    "verdict": "incorrect"
+  }
+]

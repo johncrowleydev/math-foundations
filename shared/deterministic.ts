@@ -1,3 +1,5 @@
+import { checkSequencePair, validateSequencePair } from './sequence-pair';
+import { checkElementary, checkSquareInverse, validateElementary } from './elementary';
 import {
   setExpressionRequirement,
   setModelRequirement,
@@ -76,6 +78,9 @@ const validators: Record<
   (r: AssessmentRequirement, response: StructuredResponse) => boolean
 > = {
   linear: linearRequirement,
+  'sequence-pair': checkSequencePair,
+  'elementary-expression': checkElementary,
+  'square-inverse': checkSquareInverse,
   'set-expression': setExpressionRequirement,
   'set-model': setModelRequirement,
   'nested-object': nestedObjectRequirement,
@@ -166,6 +171,7 @@ const validators: Record<
           constants: strlist(r.params.constants || []),
           freeVariables: strlist(r.params.freeVariables || []),
           functions: (r.params.functions || {}) as Record<string, number>,
+          sets: strlist(r.params.sets || []),
         },
       ),
     ),
@@ -300,11 +306,19 @@ const validators: Record<
       const sx = text(x),
         sy = text(y);
       if (/infinity|infty|∞/.test(sx + sy)) return aliases(sx) === aliases(sy);
+      const vars = strlist(r.params.variables || []);
+      if (vars.length) {
+        const a = parseExpression(sx, vars),
+          b = parseExpression(sy, vars);
+        return a.eq(b) && sameExpressionDomain(a, b);
+      }
       return parseExact(sx).eq(parseExact(sy));
     };
+    const lowerValid = endpoint(lower, r.params.lower),
+      upperValid = endpoint(upper, r.params.upper);
     return (
-      endpoint(lower, r.params.lower) &&
-      endpoint(upper, r.params.upper) &&
+      lowerValid &&
+      upperValid &&
       a[r.fields[2]] === r.params.leftClosed &&
       a[r.fields[3]] === r.params.rightClosed
     );
@@ -466,6 +480,8 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     if (['selection', 'tuple'].includes(r.validator) && !strings(r.params.expected))
       throw Error('Expected values required.');
     if (r.validator === 'linear') validateLinearRequirement(r);
+    if (r.validator === 'sequence-pair') validateSequencePair(r);
+    if (['elementary-expression', 'square-inverse'].includes(r.validator)) validateElementary(r);
     if (['set-expression', 'set-model', 'nested-object'].includes(r.validator))
       validateSetRequirement(r);
     if (r.validator === 'boolean-property') {
@@ -551,7 +567,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
           ))
       )
         throw Error('Invalid function symbols.');
-      for (const name of ['constants', 'freeVariables', 'alternatives'])
+      for (const name of ['constants', 'freeVariables', 'alternatives', 'sets'])
         if (r.params[name] !== undefined && !strings(r.params[name]))
           throw Error('Invalid quantified formula ' + name);
       for (const target of [text(r.params.expected), ...strlist(r.params.alternatives || [])])
@@ -559,6 +575,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
           constants: strlist(r.params.constants || []),
           freeVariables: strlist(r.params.freeVariables || []),
           functions: (r.params.functions || {}) as Record<string, number>,
+          sets: strlist(r.params.sets || []),
         });
     }
     if (r.validator === 'set') {

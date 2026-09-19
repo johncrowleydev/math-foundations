@@ -21,6 +21,7 @@ function clean(source: string): string {
     .replace(/\\mathbb\{([NZQRDC])\}/g, ' $1 ')
     .replace(/\\forall\b|∀/g, ' forall ')
     .replace(/\\exists\b|∃/g, ' exists ')
+    .replace(/\\notin\b|∉/g, ' notin ')
     .replace(/\\in\b|∈/g, ' in ')
     .replace(/\\(?:neg|lnot)\b|¬|~|\bnot\b/g, ' ! ')
     .replace(/\\(?:land|wedge)\b|∧|&&|\band\b/g, ' & ')
@@ -38,6 +39,7 @@ export type QuantifiedOptions = {
   constants?: string[];
   freeVariables?: string[];
   functions?: Record<string, number>;
+  sets?: string[];
 };
 export function parseQuantified(
   source: string,
@@ -101,6 +103,18 @@ export function parseQuantified(
       at++;
     }
     const raw = tokens.slice(start, at);
+    const membershipIndex = raw.findIndex((x) => x === 'in' || x === 'notin');
+    if (membershipIndex > 0 && membershipIndex === raw.length - 2) {
+      const set = raw.at(-1)!;
+      if (!options.sets?.includes(set) || predicates[set] !== 1)
+        throw new InputError('Use one of the named sets.');
+      const member: QNode = {
+        kind: 'predicate',
+        name: set,
+        args: [raw.slice(0, membershipIndex).join(' ')],
+      };
+      return raw[membershipIndex] === 'notin' ? { kind: 'not', body: member } : member;
+    }
     const indices = raw
       .map((x, i) => (['<', '<=', '=', '!=', '>', '>='].includes(x) ? i : -1))
       .filter((i) => i >= 0);

@@ -58,6 +58,11 @@ func linearCondition(n *quantifiedNode, variable string) (linearComparison, erro
 }
 func inequalityEquivalent(actual, expected, variable string) (bool, error) {
 	parse := func(s string) (*quantifiedNode, error) {
+		notation, e := intervalNotation(s, variable)
+		if e != nil {
+			return nil, e
+		}
+		s = notation
 		q, e := parseQuantified("forall "+variable+" in R ("+s+")", []string{"R"}, nil)
 		if e != nil {
 			return nil, e

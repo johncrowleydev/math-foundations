@@ -364,10 +364,11 @@ func checkWitness(r AssessmentRequirement, response StructuredResponse) (bool, e
 }
 func checkInterval(r AssessmentRequirement, response StructuredResponse) (bool, error) {
 	var p struct {
-		Lower       string `json:"lower"`
-		Upper       string `json:"upper"`
-		LeftClosed  bool   `json:"leftClosed"`
-		RightClosed bool   `json:"rightClosed"`
+		Variables   []string `json:"variables"`
+		Lower       string   `json:"lower"`
+		Upper       string   `json:"upper"`
+		LeftClosed  bool     `json:"leftClosed"`
+		RightClosed bool     `json:"rightClosed"`
 	}
 	jsonParams(r, &p)
 	endpoint := func(got any, want string) (bool, error) {
@@ -380,6 +381,18 @@ func checkInterval(r AssessmentRequirement, response StructuredResponse) (bool, 
 		}
 		if strings.Contains(s+want, "infinity") || strings.Contains(s+want, "infty") || strings.Contains(s+want, "∞") {
 			return normalize(s) == normalize(want), nil
+		}
+		if len(p.Variables) > 0 {
+			a, e := parsePolynomial(s, p.Variables)
+			if e != nil {
+				return false, e
+			}
+			b, e := parsePolynomial(want, p.Variables)
+			if e != nil {
+				return false, e
+			}
+			domain, e := samePolynomialDomain(a, b, nil)
+			return a.equal(b) && domain, e
 		}
 		a, e := parseExact(s)
 		if e != nil {

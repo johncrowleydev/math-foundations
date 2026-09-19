@@ -1,3 +1,4 @@
+import { intervalNotation } from './interval-notation';
 import { Exact, InputError, parseExpression } from './exact';
 import { parseQuantified, type QNode } from './quantified';
 type Interval = { lower: Exact | null; upper: Exact | null; left: boolean; right: boolean };
@@ -123,7 +124,11 @@ function solve(n: QNode, variable: string): Interval[] {
 }
 export function inequalityEquivalent(actual: string, expected: string, variable: string): boolean {
   const parse = (s: string) => {
-    const n = parseQuantified(`forall ${variable} in R (${s})`, ['R'], {});
+    const n = parseQuantified(
+      `forall ${variable} in R (${intervalNotation(s, variable)})`,
+      ['R'],
+      {},
+    );
     if (n.kind !== 'quantifier') throw new InputError('Enter an inequality.');
     return normalize(solve(n.body, variable));
   };
