@@ -360,7 +360,7 @@ type mathParser struct {
 
 func normalizeMath(s string) string {
 	s = strings.Trim(strings.TrimSpace(s), "$")
-	return strings.NewReplacer("\\left", "", "\\right", "", "\\dfrac", "\\frac", "\\tfrac", "\\frac", "\\cdot", "*", "\\times", "*", "×", "*", "·", "*", "−", "-", "–", "-", "÷", "/", "√", "sqrt", "\\,", "", "\\!", "", "\\;", "", "\\ ", " ").Replace(s)
+	return strings.NewReplacer("\\left", "", "\\right", "", "\\dfrac", "\\frac", "\\tfrac", "\\frac", "\\cdot", "*", "\\times", "*", "×", "*", "·", "*", "−", "-", "–", "-", "÷", "/", "√", "sqrt", "\\lambda", "lambda", "λ", "lambda", "\\,", "", "\\!", "", "\\;", "", "\\ ", " ").Replace(s)
 }
 func mathTokens(s string) ([]string, error) {
 	s = normalizeMath(s)

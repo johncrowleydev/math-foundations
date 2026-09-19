@@ -13,7 +13,13 @@ import (
 )
 
 func TestDeterministicConformance(t *testing.T) {
-	b, e := os.ReadFile("../shared/deterministic-fixtures.json")
+	testDeterministicCorpus(t, "../shared/deterministic-fixtures.json")
+}
+func TestExponentialConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/exponential-fixtures.json")
+}
+func testDeterministicCorpus(t *testing.T, path string) {
+	b, e := os.ReadFile(path)
 	if e != nil {
 		t.Fatal(e)
 	}

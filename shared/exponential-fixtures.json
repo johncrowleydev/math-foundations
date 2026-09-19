@@ -1,0 +1,1309 @@
+[
+  {
+    "name": "power-base-factorization",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^(2*n)",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "4^n"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-prime-product",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n*3^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "6^n"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-offset",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^(n+1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-rational-offset",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(2/3)*(3/2)^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(3/2)^(n-1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-reciprocal",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^(-n)",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1/(2^n)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-negative-base",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(-1)^n*2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(-2)^n"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-even-parity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "4^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(-2)^(2*n)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-odd-parity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "-2*4^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(-2)^(2*n+1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-parity-square",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "((-1)^n)^2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-parity-reciprocal",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(-1)^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1/((-1)^n)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-wrong-parity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(-2)^n"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "power-polynomial-coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*n*2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n*(2^n+2^n)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-constant-polynomial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(n+1)^2",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n^2+2*n+1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-nonlinear-exponent",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^(n*n)"
+    },
+    "error": true
+  },
+  {
+    "name": "power-zero-base",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0^n"
+    },
+    "error": true
+  },
+  {
+    "name": "power-variable-base",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n^n"
+    },
+    "error": true
+  },
+  {
+    "name": "power-rational-exponent",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^(n/2)"
+    },
+    "error": true
+  },
+  {
+    "name": "power-exponent-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^(n/n)"
+    },
+    "error": true
+  },
+  {
+    "name": "power-parity-zero-denominator",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1/(((-1)^n)^2-1)"
+    },
+    "error": true
+  },
+  {
+    "name": "power-additional-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(n*2^n)/n"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "power-authored-positive-domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(n*2^n)/n"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "power-declared-domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "domain": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(n*2^n)/n"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log2-product",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1+log2(n)",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(2*n)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log2-monomial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*log2(n)",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(n*n)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log2-quotient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "log2(n)-2",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(n/4)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log2-polynomial-coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n*log2(n)",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n*log2(2*n)-n"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log2-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "log2(n)",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\log_{2} n"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log2-wrong-coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "log2(n)",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(n*n)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "log2-unsupported-constant",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "log2(n)",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(3*n)"
+    },
+    "error": true
+  },
+  {
+    "name": "log2-no-positive-domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(n)"
+    },
+    "error": true
+  },
+  {
+    "name": "log2-cancelled-undefined-domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(n/n)"
+    },
+    "error": true
+  },
+  {
+    "name": "log2-retain-zero-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "log2(n)/log2(n)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "power-two-variables",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2^n*2^m",
+            "variables": ["n", "m"],
+            "integerVariables": ["n", "m"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^(n+m)"
+    },
+    "verdict": "correct"
+  }
+]

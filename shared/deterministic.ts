@@ -1,3 +1,9 @@
+import {
+  extendedExpressionEquivalent,
+  hasExtendedExpression,
+  validateExtendedExpression,
+  type ExpressionOptions,
+} from './exponential';
 import { linearRequirement, validateLinearRequirement } from './linear';
 import { splitValues, parseMatrix } from './math-input';
 import { setEqual } from './sets';
@@ -140,6 +146,9 @@ const validators: Record<
   inequality: (r, a) =>
     inequalityEquivalent(text(a[r.fields[0]]), text(r.params.expected), text(r.params.variable)),
   expression: (r, a) => {
+    const options = r.params as unknown as ExpressionOptions;
+    if (hasExtendedExpression(options))
+      return extendedExpressionEquivalent(text(a[r.fields[0]]), text(r.params.expected), options);
     const vars = strlist(r.params.variables),
       got = parseExpression(text(a[r.fields[0]]), vars),
       expected = parseExpression(text(r.params.expected), vars),
@@ -490,6 +499,11 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         r.params.variables.some((v) => !/^[_A-Za-z][_A-Za-z0-9]*$/.test(v))
       )
         throw Error('Invalid expression variables.');
+      const options = r.params as unknown as ExpressionOptions;
+      if (hasExtendedExpression(options)) {
+        validateExtendedExpression(text(r.params.expected), options);
+        continue;
+      }
       parseExpression(text(r.params.expected), r.params.variables);
       if (r.params.domain)
         strlist(r.params.domain).forEach((s) => parseExpression(s, r.params.variables as string[]));

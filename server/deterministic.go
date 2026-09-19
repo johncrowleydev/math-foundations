@@ -404,12 +404,13 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 			}
 		}
 	case "expression":
-		var p struct {
-			Expected  string   `json:"expected"`
-			Variables []string `json:"variables"`
-		}
+		var p expressionParams
 		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Variables) > 8 {
 			return errors.New("Invalid expression parameters")
+		}
+		if p.extended() {
+			_, err := extendedExpressionEquivalent(p.Expected, p.Expected, p)
+			return err
 		}
 		if _, err := parsePolynomial(p.Expected, p.Variables); err != nil {
 			return err
@@ -590,14 +591,14 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 	case "interval":
 		return checkInterval(r, response)
 	case "expression":
-		var p struct {
-			Expected  string   `json:"expected"`
-			Variables []string `json:"variables"`
-		}
+		var p expressionParams
 		jsonParams(r, &p)
 		xs, e := responseStrings(r, response)
 		if e != nil {
 			return false, e
+		}
+		if p.extended() {
+			return extendedExpressionEquivalent(xs[0], p.Expected, p)
 		}
 		actual, e := parsePolynomial(xs[0], p.Variables)
 		if e != nil {
