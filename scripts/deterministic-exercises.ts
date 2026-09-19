@@ -69,7 +69,11 @@ export function validateDeterministicEntry(raw: unknown): DeterministicEntry {
   return entry as DeterministicEntry;
 }
 export const deterministicExercises: DeterministicEntry[] = [];
-for (const file of ['content/deterministic-exercises.json', 'content/deterministic-linear.json'])
+for (const file of [
+  'content/deterministic-exercises.json',
+  'content/deterministic-linear.json',
+  'content/deterministic-algorithms.json',
+])
   deterministicExercises.push(
     ...JSON.parse(await readFile(file, 'utf8')).map(validateDeterministicEntry),
   );

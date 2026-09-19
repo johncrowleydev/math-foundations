@@ -1,3 +1,4 @@
+import { graphRequirement, validateGraphRequirement } from './graph';
 import { checkSequencePair, validateSequencePair } from './sequence-pair';
 import { checkElementary, checkSquareInverse, validateElementary } from './elementary';
 import {
@@ -80,6 +81,7 @@ const validators: Record<
   (r: AssessmentRequirement, response: StructuredResponse) => boolean
 > = {
   linear: linearRequirement,
+  graph: graphRequirement,
   'sequence-pair': checkSequencePair,
   'elementary-expression': checkElementary,
   'square-inverse': checkSquareInverse,
@@ -493,6 +495,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     if (['selection', 'tuple'].includes(r.validator) && !strings(r.params.expected))
       throw Error('Expected values required.');
     if (r.validator === 'linear') validateLinearRequirement(r);
+    if (r.validator === 'graph') validateGraphRequirement(r);
     if (r.validator === 'sequence-pair') validateSequencePair(r);
     if (['elementary-expression', 'square-inverse'].includes(r.validator)) validateElementary(r);
     if (['set-expression', 'set-model', 'nested-object'].includes(r.validator))
