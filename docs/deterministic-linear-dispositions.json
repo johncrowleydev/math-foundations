@@ -2006,9 +2006,14 @@
     "key": "linear-algebra-matrices-1",
     "originalHash": "678fe29c59675ffe1d9fd98bc6c7f5c94fb5d33bb12dfa282cf8162f17e2e026",
     "finalMethod": "deterministic",
-    "minimalOutputs": "Rows/columns fields, requested scalar entry, and transposed matrix grid whose dimensions must be supplied before entry. Use exact integer/rational entry; equivalent reduced fractions must compare equal. Preserve empty versus zero.",
-    "input": "matrix-grid",
-    "validator": [],
+    "minimalOutputs": [
+      "Number of rows",
+      "Number of columns",
+      "Requested matrix entry",
+      "Rows of the transpose"
+    ],
+    "input": ["math", "math", "math", "math"],
+    "validator": ["exact", "matrix"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md"
   },
   {
@@ -2028,54 +2033,84 @@
     "key": "linear-algebra-matrices-3",
     "originalHash": "c7d07023b59d1f3b4c1933860fa0f9b8816555ba2dc4a94d88f61f4586bc55c1",
     "finalMethod": "deterministic",
-    "minimalOutputs": "Rows/columns fields, requested scalar entry, and transposed matrix grid whose dimensions must be supplied before entry. Use exact integer/rational entry; equivalent reduced fractions must compare equal. Preserve empty versus zero.",
-    "input": "matrix-grid",
-    "validator": [],
+    "minimalOutputs": [
+      "Number of rows",
+      "Number of columns",
+      "Requested matrix entry",
+      "Rows of the transpose"
+    ],
+    "input": ["math", "math", "math", "math"],
+    "validator": ["exact", "matrix"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md"
   },
   {
     "key": "linear-algebra-matrices-4",
     "originalHash": "7c1c978336f59641f59bb1b5f907200fdea5a7e4166caf800e8bad7943831568",
     "finalMethod": "deterministic",
-    "minimalOutputs": "Rows/columns fields, requested scalar entry, and transposed matrix grid whose dimensions must be supplied before entry. Use exact integer/rational entry; equivalent reduced fractions must compare equal. Preserve empty versus zero.",
-    "input": "matrix-grid",
-    "validator": [],
+    "minimalOutputs": [
+      "Number of rows",
+      "Number of columns",
+      "Requested matrix entry",
+      "Rows of the transpose"
+    ],
+    "input": ["math", "math", "math", "math"],
+    "validator": ["exact", "matrix"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md"
   },
   {
     "key": "linear-algebra-matrices-5",
     "originalHash": "121fb18e3788c5eb467cee2238c966fdf847fa328ac085107f83fbee7dc1674c",
     "finalMethod": "deterministic",
-    "minimalOutputs": "Rows/columns fields, requested scalar entry, and transposed matrix grid whose dimensions must be supplied before entry. Use exact integer/rational entry; equivalent reduced fractions must compare equal. Preserve empty versus zero.",
-    "input": "matrix-grid",
-    "validator": [],
+    "minimalOutputs": [
+      "Number of rows",
+      "Number of columns",
+      "Requested matrix entry",
+      "Rows of the transpose"
+    ],
+    "input": ["math", "math", "math", "math"],
+    "validator": ["exact", "matrix"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md"
   },
   {
     "key": "linear-algebra-matrices-6",
     "originalHash": "132bc411bcecf01a2a7b378090ddd335a7e1a896a58ed5521eef567b77d87ae1",
     "finalMethod": "deterministic",
-    "minimalOutputs": "Rows/columns fields, requested scalar entry, and transposed matrix grid whose dimensions must be supplied before entry. Use exact integer/rational entry; equivalent reduced fractions must compare equal. Preserve empty versus zero.",
-    "input": "matrix-grid",
-    "validator": [],
+    "minimalOutputs": [
+      "Number of rows",
+      "Number of columns",
+      "Requested matrix entry",
+      "Rows of the transpose"
+    ],
+    "input": ["math", "math", "math", "math"],
+    "validator": ["exact", "matrix"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md"
   },
   {
     "key": "linear-algebra-matrices-7",
     "originalHash": "98982f76338c30dd433007a73e52f4bdf874f775773cb41e3ace4e5bfdfeb3cd",
     "finalMethod": "deterministic",
-    "minimalOutputs": "Rows/columns fields, requested scalar entry, and transposed matrix grid whose dimensions must be supplied before entry. Use exact integer/rational entry; equivalent reduced fractions must compare equal. Preserve empty versus zero.",
-    "input": "matrix-grid",
-    "validator": [],
+    "minimalOutputs": [
+      "Number of rows",
+      "Number of columns",
+      "Requested matrix entry",
+      "Rows of the transpose"
+    ],
+    "input": ["math", "math", "math", "math"],
+    "validator": ["exact", "matrix"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md"
   },
   {
     "key": "linear-algebra-matrices-8",
     "originalHash": "b53663469f23d439183e544e660d2ccd736e40b18abc4705f1750aa6ba6e1a87",
     "finalMethod": "deterministic",
-    "minimalOutputs": "Rows/columns fields, requested scalar entry, and transposed matrix grid whose dimensions must be supplied before entry. Use exact integer/rational entry; equivalent reduced fractions must compare equal. Preserve empty versus zero.",
-    "input": "matrix-grid",
-    "validator": [],
+    "minimalOutputs": [
+      "Number of rows",
+      "Number of columns",
+      "Requested matrix entry",
+      "Rows of the transpose"
+    ],
+    "input": ["math", "math", "math", "math"],
+    "validator": ["exact", "matrix"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md"
   },
   {
@@ -2357,13 +2392,14 @@
     "originalHash": "9c2b5253904e5e4a7c18cec592a35b92bddba8e6b2af4dd6c137da27ee56e444",
     "finalMethod": "deterministic",
     "minimalOutputs": ["AB", "BA", "First transformation in ABx"],
-    "input": ["math", "math", "select"],
+    "input": ["grid", "grid", "select"],
     "validator": ["matrix", "selection"],
     "sourceInspection": "docs/deterministic-linear-source-inspection.md",
     "evidenceChange": "Production preserved.",
     "source": "docs/deterministic-linear-source-inspection.md",
     "batch": "linear-algebra-exact",
-    "promptChange": true
+    "promptChange": false,
+    "controlRationale": "AB and BA use compact grids because this prompt asks for their entries and composition order, not their shapes. Shape questions 30–36 retain typed answers."
   },
   {
     "key": "linear-algebra-matrices-30",

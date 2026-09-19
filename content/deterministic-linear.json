@@ -21278,19 +21278,77 @@
     "lesson": "linear-algebra-matrices",
     "id": 29,
     "sourceHash": "b9fd5936d2e280aec4a293250df290f7d6167fa5ee23745e6497a2e90fbf76e6",
-    "rationale": "The requested outputs are finite and exact; equivalent numerical forms and nonunique constructions are checked mathematically.",
+    "rationale": "AB and BA use compact grids because this prompt asks for their entries and composition order, not their shapes. Shape questions 30–36 retain typed answers.",
     "assessment": {
       "version": 1,
       "inputs": [
         {
           "id": "answer-1",
-          "kind": "math",
-          "label": "AB"
+          "kind": "grid",
+          "label": "AB",
+          "columns": ["Column 1", "Column 2"],
+          "rows": [
+            {
+              "label": "Row 1",
+              "cells": [
+                {
+                  "id": "answer-1-r1-c1",
+                  "kind": "text"
+                },
+                {
+                  "id": "answer-1-r1-c2",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "label": "Row 2",
+              "cells": [
+                {
+                  "id": "answer-1-r2-c1",
+                  "kind": "text"
+                },
+                {
+                  "id": "answer-1-r2-c2",
+                  "kind": "text"
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "answer-2",
-          "kind": "math",
-          "label": "BA"
+          "kind": "grid",
+          "label": "BA",
+          "columns": ["Column 1", "Column 2"],
+          "rows": [
+            {
+              "label": "Row 1",
+              "cells": [
+                {
+                  "id": "answer-2-r1-c1",
+                  "kind": "text"
+                },
+                {
+                  "id": "answer-2-r1-c2",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "label": "Row 2",
+              "cells": [
+                {
+                  "id": "answer-2-r2-c1",
+                  "kind": "text"
+                },
+                {
+                  "id": "answer-2-r2-c2",
+                  "kind": "text"
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "answer-3",
@@ -21313,7 +21371,7 @@
           "id": "answer-1",
           "description": "AB is correct.",
           "validator": "matrix",
-          "fields": ["answer-1"],
+          "fields": ["answer-1-r1-c1", "answer-1-r1-c2", "answer-1-r2-c1", "answer-1-r2-c2"],
           "params": {
             "expected": [
               ["2", "1"],
@@ -21325,7 +21383,7 @@
           "id": "answer-2",
           "description": "BA is correct.",
           "validator": "matrix",
-          "fields": ["answer-2"],
+          "fields": ["answer-2-r1-c1", "answer-2-r1-c2", "answer-2-r2-c1", "answer-2-r2-c2"],
           "params": {
             "expected": [
               ["2", "2"],
@@ -21349,46 +21407,188 @@
       },
       "evidence": {
         "level": "production",
-        "interactionCost": "low",
-        "inputCapabilities": ["math-text", "tap"]
+        "interactionCost": "medium",
+        "inputCapabilities": ["short-text", "tap"]
       }
     },
     "fixtures": [
       {
         "response": {
-          "answer-1": "2, 1; 0, 1",
-          "answer-2": "2, 2; 0, 1",
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
           "answer-3": "option-1"
         },
         "verdict": "correct"
       },
       {
         "response": {
-          "answer-1": "2*(2)/2, 2*(1)/2; 2*(0)/2, 2*(1)/2",
-          "answer-2": "2*(2)/2, 2*(2)/2; 2*(0)/2, 2*(1)/2",
+          "answer-1-r1-c1": "2*(2)/2",
+          "answer-1-r1-c2": "2*(1)/2",
+          "answer-1-r2-c1": "2*(0)/2",
+          "answer-1-r2-c2": "2*(1)/2",
+          "answer-2-r1-c1": "2*(2)/2",
+          "answer-2-r1-c2": "2*(2)/2",
+          "answer-2-r2-c1": "2*(0)/2",
+          "answer-2-r2-c2": "2*(1)/2",
           "answer-3": "option-1"
         },
         "verdict": "correct"
       },
       {
         "response": {
-          "answer-1": "(2)+1, 1; 0, 1",
-          "answer-2": "2, 2; 0, 1",
+          "answer-1-r1-c1": "(2)+1",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
           "answer-3": "option-1"
         },
         "verdict": "incorrect"
       },
       {
         "response": {
-          "answer-2": "2, 2; 0, 1",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
           "answer-3": "option-1"
         },
         "error": true
       },
       {
         "response": {
-          "answer-1": "2, 1; 0, 1",
-          "answer-2": "2, 2; 0, 1",
+          "answer-1-r1-c1": "(2)+1",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "(1)+1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "(0)+1",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "(1)+1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "(2)+1",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "(2)+1",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "(0)+1",
+          "answer-2-r2-c2": "1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "(1)+1",
+          "answer-3": "option-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer-1-r1-c1": "2",
+          "answer-1-r1-c2": "1",
+          "answer-1-r2-c1": "0",
+          "answer-1-r2-c2": "1",
+          "answer-2-r1-c1": "2",
+          "answer-2-r1-c2": "2",
+          "answer-2-r2-c1": "0",
+          "answer-2-r2-c2": "1",
           "answer-3": "option-2"
         },
         "verdict": "incorrect"

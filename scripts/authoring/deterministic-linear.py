@@ -39,7 +39,7 @@ for lesson in CORE:
                 matches[0]["publishedQuestion"]["officialAnswer"] == question["answer"]
             ), "Core answer changed: re-audit required."
 EXISTING = {
-    f"{e['lesson']}-{e['id']}"
+    f"{e['lesson']}-{e['id']}": e
     for e in json.loads((ROOT / "content/deterministic-exercises.json").read_text())
 }
 ENTRIES = {}
@@ -225,6 +225,42 @@ class Task:
             mat([["2*(" + x + ")/2" for x in r] for r in value]),
         )
 
+    def matrix_grid(self, label, value):
+        # Use only when the prompt does not assess the result's dimensions.
+        value = ms(value)
+        i = "answer-" + str(len(self.inputs) + 1)
+        rows = []
+        fields = []
+        for r, values in enumerate(value):
+            cells = []
+            for c, v in enumerate(values):
+                field = f"{i}-r{r + 1}-c{c + 1}"
+                cells.append({"id": field, "kind": "text"})
+                fields.append(field)
+                self.response[field] = v
+                self.wrong[field] = "(" + v + ")+1"
+                self.alt[field] = "2*(" + v + ")/2"
+            rows.append({"label": f"Row {r + 1}", "cells": cells})
+        self.inputs.append(
+            {
+                "id": i,
+                "kind": "grid",
+                "label": label,
+                "columns": [f"Column {c + 1}" for c in range(len(value[0]))],
+                "rows": rows,
+            }
+        )
+        self.reqs.append(
+            {
+                "id": i,
+                "description": label + " is correct.",
+                "validator": "matrix",
+                "fields": fields,
+                "params": {"expected": value},
+            }
+        )
+        return fields
+
     def boolean(self, label, value):
         return self.field(
             label, "boolean", {"expected": [value]}, value, not value, kind="boolean"
@@ -387,10 +423,16 @@ class Task:
             },
             "evidence": {
                 "level": evidence,
-                "interactionCost": "medium" if len(self.inputs) > 3 else "low",
+                "interactionCost": "medium"
+                if len(self.inputs) > 3 or any(i["kind"] == "grid" for i in self.inputs)
+                else "low",
                 "inputCapabilities": list(
                     dict.fromkeys(
-                        "tap" if i["kind"] in ["select", "boolean"] else "math-text"
+                        "tap"
+                        if i["kind"] in ["select", "boolean"]
+                        else "short-text"
+                        if i["kind"] == "grid"
+                        else "math-text"
                         for i in self.inputs
                     )
                 ),
@@ -1059,8 +1101,8 @@ for n in [2, 15, 16, 29, 30, *range(43, 51), 57, 58, 61, 62, 66]:
         )
     elif n == 29:
         a, b = vv[:2], vv[2:]
-        t.matrix("AB", mm(a, b))
-        t.matrix("BA", mm(b, a))
+        t.matrix_grid("AB", mm(a, b))
+        t.matrix_grid("BA", mm(b, a))
         t.select("First transformation in ABx", "B", "A", shift=False)
     elif n == 30 or 43 <= n <= 48:
         dims = (
@@ -1167,6 +1209,14 @@ for n in [2, 15, 16, 29, 30, *range(43, 51), 57, 58, 61, 62, 66]:
             [1, 2, 2, 3],
         )
     t.finish()
+    if n == 29:
+        note = (
+            "AB and BA use compact grids because this prompt asks for their entries and "
+            "composition order, not their shapes. Shape questions 30–36 retain typed answers."
+        )
+        ENTRIES[t.key]["rationale"] = note
+        NOTES[t.key]["controlRationale"] = note
+        NOTES[t.key]["promptChange"] = False
 
 for n in [1, 2]:
     t = task("systems", n)
@@ -2490,6 +2540,17 @@ for entry in ENTRIES.values():
             entry["fixtures"].append(
                 {"response": {**good, field: wrong}, "verdict": "incorrect"}
             )
+        elif requirement["validator"] == "matrix" and any(
+            i["kind"] == "grid" and i["id"] == requirement["id"]
+            for i in entry["assessment"]["inputs"]
+        ):
+            for field in requirement["fields"]:
+                entry["fixtures"].append(
+                    {
+                        "response": {**good, field: "(" + good[field] + ")+1"},
+                        "verdict": "incorrect",
+                    }
+                )
         elif requirement["validator"] == "boolean":
             entry["fixtures"].append(
                 {"response": {**good, field: not good[field]}, "verdict": "incorrect"}
@@ -2540,7 +2601,7 @@ def write():
     )
     ledger = []
     for key, row in AUDIT.items():
-        e = ENTRIES.get(key)
+        e = ENTRIES.get(key) or EXISTING.get(key)
         method = (
             "deterministic"
             if e or key in EXISTING
