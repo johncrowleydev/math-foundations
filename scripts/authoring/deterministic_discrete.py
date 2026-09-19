@@ -81,7 +81,7 @@ def author(append, requirement, exercises):
            capabilities=['math-text'], test_cases=[{'response': {'models': v}, 'verdict': verdict} for v, verdict in
                                                   [('{TTT,FFF}', 'correct'), ('{FFF,TTT,FFF}', 'correct'), ('{TTT}', 'incorrect'), ('{TTT,FFF,TTF}', 'incorrect')]])
 
-    def witness(key, variables, conditions, correct, alternatives, wrong, choice=None):
+    def witness(key, variables, conditions, correct, alternatives, wrong, choice=None, prompt=None):
         inputs = [{'id': name, 'kind': 'math', 'label': label} for name, label, _ in variables]
         reqs = [requirement('witness', 'witness', [name for name, _, _ in variables],
                             {'variables': [{'name': name, 'field': name, **constraints} for name, _, constraints in variables],
@@ -102,7 +102,7 @@ def author(append, requirement, exercises):
         tests.append({'response': {}, 'error': True})
         append(key, inputs, reqs, response,
                'A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.',
-               capabilities=['math-text', 'tap'] if choice else ['math-text'], test_cases=tests)
+               prompt=prompt, capabilities=['math-text', 'tap'] if choice else ['math-text'], test_cases=tests)
 
     integer = {'integer': True}
     witness('propositional-logic-72', [('n', '$n$', integer)], [('2', 'divides', 'n'), ('4', 'not-divides', 'n')], [6], [[2], [-2]], [[4], [3], [0], ['3/2']])
@@ -233,6 +233,11 @@ def author(append, requirement, exercises):
         recognition(f'propositional-logic-{identifier}', correct, wrong)
 
     predicate_choices = {
+        1: ('True: substituting 5 gives 5 greater than 3.', ['False: substituting 5 gives 5 less than 3.', 'True: P is true for every integer input.']),
+        2: ('False: substituting 3 gives 3 greater than 3, which fails.', ['True: greater than includes equality.', 'False: 3 is not an integer input.']),
+        3: ('False: substituting -4 gives -4 greater than 3, which fails.', ['True: negative integers are greater than positive integers.', 'False: the predicate excludes negative inputs.']),
+        4: ('True: substitution gives 1 + 2 times 3 = 7.', ['False: substitution gives 3 + 2 times 1 = 5.', 'True: every pair of integer inputs gives 7.']),
+        5: ('False: substitution gives 3 + 2 times 1 = 5, not 7.', ['True: substitution gives 1 + 2 times 3 = 7.', 'False: unequal inputs are forbidden.']),
         7: ('Closed: both x and y are bound.', ['Open: y is bound by an existential quantifier.', 'Open: the interpretation of R is unspecified.']),
         11: ('True: the possible squares are 0, 1 and 4, all nonnegative.', ['False: negative inputs have negative squares.', 'False: zero is not positive.']),
         12: ('False: the possible squares are 0, 1 and 4.', ['True: x=2 has square 2.', 'True: square root of 2 belongs to the stated domain.']),
@@ -242,11 +247,18 @@ def author(append, requirement, exercises):
         16: ('False: the largest domain element is 2.', ['True: x=3 is a witness in the domain.', 'True: x=2 is greater than 2.']),
         17: ('True: every integer is either odd or even.', ['False: zero has neither parity.', 'False: negative integers have neither parity.']),
         18: ('False: no integer is both odd and even.', ['True: zero is both odd and even.', 'True: the domain contains both odd and even elements.']),
+        51: ('True: for each integer x, choose the integer y=x+1.', ['False: there is no single greatest integer.', 'True: choose y=x.']),
+        52: ('False: any proposed fixed y fails when x=y.', ['True: choose y=x+1 after seeing x.', 'True: choose the largest integer y.']),
+        53: ('True: choose the integer y=-x for each x.', ['False: no single y works for every x.', 'True: choose y=x for every x.']),
+        54: ('False: for any fixed y, x=1-y makes the sum 1.', ['True: choose y=-x after seeing x.', 'True: choose y=0 for every integer x.']),
+        55: ('True: y=1 works for every x; permitted dependence need not be used.', ['False: y must actually change with x.', 'True: y=0 works for every x.']),
+        56: ('True: the single integer y=1 works for every x.', ['False: the witness must depend on x.', 'True: choose y=x separately for each x.']),
         57: ('True: for each element, choose the other element.', ['False: no single y differs from both elements.', 'True: choose y=x.']),
         58: ('False: for any fixed y, the choice x=y defeats it.', ['True: each x has some different y.', 'True: choose y=0 for every x.']),
         59: ('Exists-y for every-x is stronger: one fixed witness works for every x.', ['For every-x exists-y is stronger: its witness must be fixed.', 'They are equivalent: mixed quantifiers always commute.']),
         60: ('Both swaps are valid: universal pairs check all choices; existential pairs ask for a choice.', ['Only universal quantifiers can be swapped.', 'Neither swap is valid because quantifier order always matters.']),
         61: ('False over integers; true over reals, with witness square root of 2.', ['True over both domains because 2 is an integer.', 'False over both domains because no integer squares to 2.']),
+        62: ('True on Z: no integer lies between 0 and 1. False on R: x=1/2 fails.', ['True on both domains because every square exceeds its input.', 'False on both domains because x=1/2 is an integer counterexample.']),
         64: ('False: x=0 has no reciprocal.', ['True: choose y=1/x for every real x.', 'False: positive inputs have no reciprocal.']),
         66: ('False: no nonnegative integer is smaller than 0.', ['True: always choose m=n-1 in the stated domain.', 'True: always choose m=0.']),
         67: ('True: m=n-1 is an integer smaller than n.', ['False: there is a smallest integer.', 'False: negative integers have no predecessors.']),
@@ -265,6 +277,7 @@ def author(append, requirement, exercises):
         91: ('Valid: instantiate the universal statement at the domain element a.', ['Invalid: a universal cannot describe a named element.', 'Valid: the premise says only that some element satisfies P.']),
         92: ('Valid: a supplies the required existential witness.', ['Invalid: existence requires two witnesses.', 'Valid: the premise implies P holds for every element.']),
         93: ('Invalid: an existential witness need not be the previously fixed a.', ['Valid: every fixed a is the existential witness.', 'Valid: existence implies universality.']),
+        94: ('Valid: the P-witness also satisfies Q by the universal implication.', ['Invalid: existential witnesses cannot be used with universal statements.', 'Valid: Q implies P for every element.']),
         100: ('A specially chosen witness was treated as an arbitrary integer.', ['The witness 3 does not satisfy n squared equals 9.', 'Existential witnesses must be unique.']),
         101: ('True: (a,b) is a stated true case.', ['False: (b,a) is not a stated true case.', 'True: every pair in D is related.']),
         102: ('False: (b,a) is not a stated true case.', ['True: (a,b) is true, so symmetry follows.', 'True: every pair in D is related.']),
@@ -332,7 +345,7 @@ def author(append, requirement, exercises):
                + [{'response': {'decision': 'no', **dict(zip(fields, vals))}, 'verdict': 'correct'} for vals in alternatives]
                + [{'response': {'decision': 'no', **{f: False for f in fields}}, 'verdict': 'incorrect'}, {'response': {}, 'error': True}])
 
-    def quantified(identifier, expected, predicates, domains, *, alternatives=None, constants=None, free=None, choice=None, wrong=None):
+    def quantified(identifier, expected, predicates, domains, *, alternatives=None, constants=None, free=None, choice=None, wrong=None, lesson='predicates-and-quantifiers', notation=None):
         inputs = [{'id': 'formula', 'kind': 'math', 'label': 'Formula',
                    'hint': 'Use forall / exists with domains '+', '.join(domains)+', or equivalent TeX notation.'}]
         params = {'expected': expected, 'domains': domains, 'predicates': predicates}
@@ -343,6 +356,8 @@ def author(append, requirement, exercises):
             inputs[0]['hint'] = 'Use the named objects '+', '.join(constants)+'; & means AND and | means OR. TeX is also accepted.'
         if free:
             params['freeVariables'] = free
+        if notation:
+            inputs[0]['hint'] += ' '+notation
         reqs = [requirement('formula', 'quantified-formula', ['formula'], params, 'The formula has the requested quantifiers, domain, binding and meaning.')]
         response = {'formula': expected}
         tests = [{'response': {'formula': s}, 'verdict': 'correct'} for s in [expected]+(alternatives or [])]
@@ -356,7 +371,7 @@ def author(append, requirement, exercises):
                 test['response'][field] = expected_choice
             tests.append({'response': {**response, field: next(k for k, _ in options if k != expected_choice)}, 'verdict': 'incorrect'})
         tests.append({'response': {}, 'error': True})
-        append(f'predicates-and-quantifiers-{identifier}', inputs, reqs, response,
+        append(f'{lesson}-{identifier}', inputs, reqs, response,
                'Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.',
                capabilities=['math-text', 'tap'] if choice else ['math-text'], test_cases=tests)
 
@@ -374,6 +389,13 @@ def author(append, requirement, exercises):
     quantified(117, 'exists r in R forall w in W !A(r,w)', {'A': 2}, ['R', 'W'],
                alternatives=['exists x in R forall y in W !A(x,y)'], wrong=['forall r in R exists w in W !A(r,w)'],
                choice=('interpretation', 'Interpretation', [('unserved', 'At least one request has no assigned worker.'), ('none', 'No request has any assigned worker.'), ('idle', 'At least one worker has no request.')], 'unserved'))
+    quantified(116, 'forall r in R exists! w in W A(r,w)', {'A': 2}, ['R', 'W'],
+               alternatives=['forall r in R exists w in W (A(r,w)&forall v in W (A(r,v)->v=w))'],
+               wrong=['exists! w in W forall r in R A(r,w)', 'forall r in R exists w in W A(r,w)'],
+               choice=('sharing', 'May one worker serve two requests?', [('yes', 'Yes: uniqueness applies separately to each request.'), ('no', 'No: each worker can appear only once.')], 'yes'))
+    quantified(2, 'exists k in Z (n=d*k)', {}, ['Z'], free=['d', 'n'], lesson='direct-proof',
+               alternatives=['exists t in Z (d*t=n)'], wrong=['exists k in Z (d=n*k)'],
+               choice=('zero', 'Is d = 0 excluded?', [('allowed', 'No: zero divides exactly zero.'), ('excluded', 'Yes: divisors must be nonzero.')], 'allowed'))
 
     for lesson, choices in {
         'sets-and-set-operations': {
@@ -391,10 +413,12 @@ def author(append, requirement, exercises):
             10: ('No: {(1,1)} is reflexive on {1}, but not on {1,2}.', ['Yes: a relation with any loop is reflexive on every set.', 'Yes: reflexivity depends only on the number of pairs.']),
             16: ('Transitive, but not reflexive: the only two-step chain has its shortcut; loops are absent.', ['Reflexive and transitive because all objects occur.', 'Neither: transitivity requires every possible pair.']),
             19: ('Yes: no two related pairs form a composable chain.', ['No: the pair (1,3) is missing.', 'No: a transitive relation must contain a loop.']),
+            27: ('Mutual divisibility gives positive integer multipliers with product 1; both are 1, so the objects are equal.', ['Every two positive integers divide one another.', 'A positive divisor must equal the number it divides.']),
             33: ('Yes: 1 and 9 have the same remainder modulo 4.', ['No: equal classes must have equal representatives.', 'No: 9 is larger than the modulus.']),
             41: ('Inclusion is reflexive, antisymmetric and transitive; {1} and {2} are incomparable.', ['Inclusion is not a partial order because {1} and {2} are incomparable.', 'Inclusion is total because every pair of subsets has the same size.']),
             48: ('Intermediate subsets {1} and {2} prevent that comparison from being a cover.', ['There is no inclusion from the empty set to a nonempty set.', 'Hasse diagrams omit every edge incident to the empty set.']),
             49: ('b and c are incomparable; a precedes d through an upward two-edge path.', ['b precedes c because both precede d; a does not precede d.', 'b and c are comparable because they have the same depth.']),
+            50: ('A strict cycle gives comparisons both ways between distinct elements, contradicting antisymmetry.', ['Every partial order is a total order, so branching is impossible.', 'A strict cycle would violate reflexivity because it has edges.']),
             58: ('Empty: no first relation pair can supply an intermediate object.', ['The second relation: composing with empty changes nothing.', 'The full relation: an empty condition is always satisfied.']),
             69: ('At most n squared pairs can be added, and productive steps never remove pairs.', ['The process stops after exactly n steps.', 'Every added pair reduces the size of the underlying set.']),
             71: ('Antisymmetry allows loops; distinct objects cannot relate in both directions.', ['Antisymmetry forbids loops and every reverse arrow.', 'Antisymmetry requires every arrow to have a reverse.']),
@@ -517,6 +541,10 @@ def author(append, requirement, exercises):
              ('Symmetric', 'Yes: no pair lacks its required reverse.', 'No: symmetry requires at least one pair.'),
              ('Antisymmetric', 'Yes: no distinct elements relate both ways.', 'No: antisymmetry requires all loops.'),
              ('Transitive', 'Yes: no two-step chain lacks a shortcut.', 'No: transitivity requires a chain.')],
+        21: [('Reflexive', 'Yes: every integer is at most itself.', 'No: equal integers cannot be compared.'),
+             ('Symmetric', 'No: 1 is at most 2, but 2 is not at most 1.', 'Yes: every comparison can be reversed.'),
+             ('Antisymmetric', 'Yes: inequalities in both directions force equality.', 'No: equal inputs relate in both directions.'),
+             ('Transitive', 'Yes: a at most b and b at most c imply a at most c.', 'No: a shortcut requires consecutive integers.')],
     }.items():
         inputs, reqs, response = [], [], {}
         for name, correct, wrong in reasons:
@@ -543,3 +571,135 @@ def author(append, requirement, exercises):
 
     from deterministic_proof_decisions import author as author_proof_decisions
     author_proof_decisions(recognition)
+
+    witness('direct-proof-47', [('n', 'Integer witness', integer)], [('4', 'divides', 'n'), ('6', 'divides', 'n'), ('5', 'not-divides', 'n')],
+            [12], [[-12], [24], [36]], [[60], [6], [0], ['12/5']])
+    witness('direct-proof-66', [('a', '$a$', {}), ('b', '$b$', {}), ('c', '$c$', {})],
+            [('a*b', '=', 'a*c'), ('b', '!=', 'c')], [0, 1, 2], [[0, -3, 4], [0, '1/2', '3/2']], [[1, 2, 2], [1, 2, 3]],
+            choice=('condition', 'Missing assumption', [('nonzero', 'a is nonzero'), ('positive-b', 'b is positive'), ('equal', 'b and c are equal')], 'nonzero'))
+    witness('proof-by-contrapositive-46', [('a', 'First input', {}), ('b', 'Second input', {})], [('a', '!=', 'b'), ('a^2', '=', 'b^2')],
+            [1, -1], [[-2, 2], ['1/2', '-1/2']], [[0, 0], [1, 2]],
+            choice=('reason', 'Why does the argument fail?', [('zero-sum', 'Distinct real inputs can have sum zero.'), ('difference', 'Distinct real inputs can have difference zero.'), ('negative-square', 'Real squares can be negative.')], 'zero-sum'))
+    witness('proof-by-contrapositive-66', [('a', 'Negative integer congruent to 1 modulo 3', integer), ('b', 'Negative integer congruent to 2 modulo 3', integer)],
+            [('a', '<', '0'), ('b', '<', '0'), ('3', 'divides', 'a-1'), ('3', 'divides', 'b-2')],
+            [-2, -1], [[-5, -4], [-8, -7]], [[1, 2], [-1, -2], [-3, -6]])
+    for key, values, reason, distractors in [
+        ('proof-by-contradiction-47', [('Product plus one', 31)], 'It illustrates the construction; one example does not prove a universal claim.', ['It proves every such product plus one is prime.', 'It proves that there are exactly four primes.']),
+        ('proof-by-contradiction-48', [('$59\\cdot509$', 30031)], 'Both factors exceed 1, so this product-plus-one is composite.', ['Every product-plus-one must be prime.', 'A factorization proves the factors belong to the original list.']),
+        ('mathematical-induction-50', [('Candidate value at index 0', 0)], 'It satisfies the recurrence but fails the specified initial condition.', ['It satisfies both initial condition and recurrence.', 'It satisfies the initial condition but fails the recurrence.']),
+        ('strong-induction-37', [('Candidate value at index 0', 3), ('Candidate value at index 1', 3)], 'The first base fails and the second matches; one failed base rejects the candidate.', ['Both bases match, so the candidate is proved.', 'The second matching base repairs the first failed base.']),
+        ('strong-induction-57', [('$t_2$', 2), ('$t_3$', 3), ('$t_4$', 5)], 'The empty rectangle has one empty completion, preserving a valid tiling when no cells remain.', ['The empty rectangle has no tilings because it has no cells.', 'The empty rectangle has two tilings, one for each orientation.']),
+    ]:
+        expressions(key, [], values, choice=('reason', 'Interpretation', [('reason', reason)]+[(f'wrong-{i}', t) for i, t in enumerate(distractors)], 'reason'))
+    expressions('strong-induction-68', [('Length-a piece', 'a-1', ['a'], [], 'a+(-1)'), ('Length-b piece', 'b-1', ['b'], [], 'b+(-1)'),
+                                        ('Total, in terms of n', 'n-1', ['n'], [], '1+n-2')])
+    sets('strong-induction-30', [('Consecutive bases', [str(n) for n in range(30, 37)])], numbers=[('First usable target', 37)])
+    fields = [(f'a{amount}', f'b{amount}') for amount in range(18, 22)]
+    counts = [(1, 2), (3, 1), (5, 0), (0, 3)]
+    response = {field: str(value) for pair, pairvalues in zip(fields, counts) for field, value in zip(pair, pairvalues)}
+    variables = [{'name': f, 'field': f, 'integer': True} for pair in fields for f in pair]
+    conditions = [{'left': f, 'op': '>=', 'right': '0'} for pair in fields for f in pair]
+    conditions += [{'left': f'4*{a}+7*{b}', 'op': '=', 'right': str(amount)} for amount, (a, b) in zip(range(18, 22), fields)]
+    append('strong-induction-21', [{'id': 'counts', 'kind': 'grid', 'label': 'Stamp combinations', 'columns': ['4-unit stamps', '7-unit stamps'],
+                                  'rows': [{'label': str(amount), 'cells': [{'id': f, 'kind': 'text'} for f in pair]} for amount, pair in zip(range(18, 22), fields)]}],
+           [requirement('counts', 'witness', [f for pair in fields for f in pair], {'variables': variables, 'conditions': conditions},
+                        'Each amount is made with nonnegative integer counts of the specified stamps.')], response,
+           'The compact count table matches the four requested combinations; each row is checked against its amount without requiring an explanation.',
+           capabilities=['math-text'])
+
+    def boolean_written(key, answers, *, choice=None, hint=None, atoms_only=False, wrong_forms=None):
+        inputs, reqs, response = [], [], {}
+        for i, (label, expected, variables, structure) in enumerate(answers):
+            field = f'formula-{i+1}'
+            inputs.append({'id': field, 'kind': 'math', 'label': label, **({'hint': hint} if hint else {})})
+            params = {'expected': expected, 'variables': variables}
+            if structure:
+                params['structure'] = structure
+            if atoms_only:
+                params['negationsOnAtoms'] = True
+            reqs.append(requirement(field, 'boolean-formula', [field], params, 'The typed formula has the requested meaning and outer logical structure.'))
+            response[field] = expected
+        if choice:
+            field, label, options, expected = choice
+            inputs.append(decision(field, label, options))
+            reqs.append(choice_requirement(field, expected, 'The accompanying interpretation is correct.'))
+            response[field] = expected
+        first = next(iter(response))
+        tests = [{'response': response, 'verdict': 'correct'}, {'response': {}, 'error': True},
+                 {'response': {**response, first: '!('+response[first]+')'}, 'verdict': 'incorrect'}]
+        tests += [{'response': {**response, first: s}, 'verdict': 'incorrect'} for s in (wrong_forms or [])]
+        if choice:
+            tests.append({'response': {**response, choice[0]: next(k for k, _ in choice[2] if k != choice[3])}, 'verdict': 'incorrect'})
+        append(key, inputs, reqs, response,
+               'The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.',
+               capabilities=['math-text', 'tap'] if choice else ['math-text'], test_cases=tests)
+
+    boolean_written('proof-by-contrapositive-1', [('Contrapositive', '!Q->!P', ['P', 'Q'], '!Q->!P')],
+                    choice=('reason', 'Why equivalent?', [('false-case', 'Both fail exactly when P is true and Q is false.'), ('reverse', 'Reversing any implication preserves truth.'), ('all-true', 'Both are true under every assignment.')], 'false-case'))
+    boolean_written('proof-by-contrapositive-2', [('Converse', 'Q->P', ['P', 'Q'], 'Q->P'), ('Inverse', '!P->!Q', ['P', 'Q'], '!P->!Q')],
+                    choice=('equivalence', 'Equivalent to the original in general?', [('no', 'No; the converse and inverse are equivalent to each other.'), ('yes', 'Yes; all three implications are equivalent.')], 'no'))
+    boolean_written('proof-by-contrapositive-5', [('Contrapositive', '!Q->!P', ['P', 'Q'], '!Q->!P'), ('Negation', 'P&!Q', ['P', 'Q'], None)])
+    for identifier, expected, variables, wrong in [
+        (11, '(!Q&!R)->!P', ['P', 'Q', 'R'], '!(Q|R)->!P'),
+        (12, '!Q->(!P|!R)', ['P', 'Q', 'R'], '!Q->!(P&R)'),
+        (13, '(!Q|!S)->(!P&!R)', ['P', 'Q', 'R', 'S'], '!(Q&S)->!(P|R)'),
+    ]:
+        boolean_written(f'proof-by-contrapositive-{identifier}', [('Contrapositive', expected, variables, expected)], atoms_only=True, wrong_forms=[wrong])
+    boolean_written('propositional-logic-74', [('Contrapositive', '!q->!p', ['p', 'q'], '!q->!p')], hint='Use p for “n squared is even” and q for “n is even”.')
+    for identifier, hint in [(89, 'Use p for “the integer is divisible by 8” and q for “the integer is even”.'),
+                             (90, 'Use p for “x > 2” and q for “x squared > 4”.')]:
+        boolean_written(f'propositional-logic-{identifier}', [('Inverse', '!p->!q', ['p', 'q'], '!p->!q')], hint=hint,
+                        choice=('truth', 'Is the inverse true on the stated domain?', [('true', 'True'), ('false', 'False')], 'false'))
+    boolean_written('propositional-logic-139', [('First premise', 'p->q', ['p', 'q', 'r'], None), ('Second premise', 'q->r', ['p', 'q', 'r'], None),
+                                               ('Third premise', 'p', ['p', 'q', 'r'], None), ('Conclusion', 'r', ['p', 'q', 'r'], None)],
+                    hint='p: application accepted; q: interview scheduled; r: confirmation sent.',
+                    choice=('reason', 'Validity and reason', [('valid', 'Valid: apply modus ponens twice.'), ('converse', 'Invalid: it affirms the consequent.'), ('invalid', 'Invalid: the final conclusion is independent of the premises.')], 'valid'))
+    boolean_written('propositional-logic-151', [('Reordered and regrouped formula', 'p&(q&r)', ['p', 'q', 'r'], 'p&(q&r)')], wrong_forms=['(p&q)&r'])
+
+    for identifier, expected, domain, predicates in [
+        (14, 'forall x in R (x^2<=9->x<=3)', 'R', {}),
+        (15, 'forall a in Z forall b in Z ((E(a)|E(b))->E(a*b))', 'Z', {'E': 1}),
+        (16, 'forall a in Z forall b in Z ((!E(a)&!E(b))->!E(a*b))', 'Z', {'E': 1}),
+    ]:
+        quantified(identifier, expected, predicates, [domain], lesson='proof-by-contrapositive',
+                   wrong=[expected.replace('->', '&')], notation='E(t) means t is even.' if predicates else None)
+
+    for key, values, reason, distractors in [
+        ('sequences-and-summations-2', [(f'$a_{n}$', 3*n-2) for n in range(1, 6)], 'Index 1 starts the sequence, so the term at index 0 is excluded.', ['Changing the starting index changes the rule to 3n+2.', 'Index 0 is always part of every sequence.']),
+        ('sequences-and-summations-23', [('Sum', 0)], 'No integer lies between the lower bound 1 and upper bound 0.', ['The single term at index 0 must be included.', 'An empty sum equals the first omitted term.']),
+        ('sequences-and-summations-58', [('Product', 0)], 'The factor at index 0 is zero.', ['A product over negative indices is always zero.', 'Every symmetric product has an even number of factors.']),
+        ('sequences-and-summations-79', [('Sum', 1023), ('Number of terms', 10)], 'Both index endpoints are included.', ['The index 0 contributes no term.', 'Only strictly positive indices count.']),
+    ]:
+        expressions(key, [], values, choice=('reason', 'Reason', [('correct', reason)]+[(f'wrong-{i}', s) for i, s in enumerate(distractors)], 'correct'))
+    for identifier, correct, wrong in [
+        (8, 'The initial value a_1 is also needed; different choices produce different sequences.', ['Only a_0 is ever needed for a second-order recurrence.', 'No initial values are needed when a recurrence is given.']),
+        (9, 'The sequences differ, but both have the value set {1,2}; a set forgets order and repetition.', ['The sequences are equal because their value sets agree.', 'Their value sets differ because 1 occurs in different positions.']),
+        (29, 'The index k varies across terms, so it cannot be treated as a constant.', ['Every summation index is a fixed constant.', 'The sum always contains k terms rather than n terms.']),
+        (40, 'An infinite sum needs a definition and convergence argument beyond finite cancellation.', ['Every finite sum formula automatically gives an infinite sum.', 'All infinite series have the value of their last term.']),
+        (48, 'At k=0 both sides are undefined; cancellation cannot define the original term.', ['The identity remains valid at zero because infinity cancels.', 'An undefined term can always be omitted from a sum.']),
+        (54, 'It is an empty product, whose multiplicative identity is 1.', ['It is an empty sum, whose value is 1.', 'Zero factors must make the product zero.']),
+    ]:
+        recognition(f'sequences-and-summations-{identifier}', correct, wrong)
+    expressions('sequences-and-summations-18', [], [('$a_0$', 9), ('$a_n$ for every $n\\geq1$', 0)])
+    expressions('sequences-and-summations-22', [], [('Sum', 18), ('Term count', 6)])
+    expressions('sequences-and-summations-53', [], [('Empty product', 1), ('Empty sum', 0)])
+    expressions('sequences-and-summations-36', [('Sum', 'N', ['N'], [], '1*N')],
+                choice=('reason', 'Why not substitute in the quotient?', [('zero', 'Its denominator is zero when r=1.'), ('no-terms', 'There are no terms when r=1.'), ('infinite', 'The finite sum becomes infinite when r=1.')], 'zero'))
+    expressions('sequences-and-summations-70', [('Lower bound from the smallest term', '1', ['n'], ['n'], 'n*(1/n)'),
+                                             ('Upper bound from the largest term', 'n', ['n'], [], 'n*1')])
+    expressions('sequences-and-summations-76', [('Correct sum', 'N*(2*c+(N-1)*d)/2', ['N', 'c', 'd'], [], 'N*c+N*(N-1)*d/2')],
+                choice=('issues', 'The two errors', [('both', 'One copy of c is missing, and N-1 increments were counted as N.'), ('order', 'The terms are unordered, and the first index must be 0.'), ('ratio', 'The ratio should be c, and the term count should be d.')], 'both'))
+    witness('sequences-and-summations-66', [('lower', 'Finite lower bound', {}), ('upper', 'Finite upper bound', {})],
+            [('lower', '<=', '-24'), ('upper', '>=', '60')], [-24, 60], [[-25, 61], [-100, 100]], [[-23, 60], [-24, 59]])
+    witness('sequences-and-summations-69', [('discarded', 'Term to discard', {}), ('kept', 'Term to keep', {})],
+            [('discarded', '<', '0'), ('kept', '>', 'discarded+kept')], [-5, 2], [[-1, 0], ['-1/2', -3]], [[1, 2], [0, 2]],
+            choice=('always', 'Does discarding always give a lower bound?', [('yes', 'Yes'), ('no', 'No')], 'no'),
+            prompt='Is discarding terms always a valid lower-bound operation on a sum of real numbers? If not, give a two-term counterexample, identifying the discarded term and the term kept.')
+    append('sequences-and-summations-21', [{'id': 'terms', 'kind': 'math', 'label': 'Expanded terms, in index order', 'hint': 'Separate the terms with commas.'},
+                                          {'id': 'sum', 'kind': 'math', 'label': 'Sum'}],
+           [requirement('terms', 'tuple', ['terms'], {'expected': ['3', '5', '7', '9'], 'ordered': True}, 'The expansion includes every term in index order.'),
+            requirement('sum', 'exact', ['sum'], {'expected': ['24']}, 'The expanded sum is correct.')], {'terms': '3,5,7,9', 'sum': '24'},
+           'A single typed term list preserves constructing the expansion without revealing its length through prefilled slots.',
+           capabilities=['math-text'], test_cases=[{'response': {'terms': '3,5,7,9', 'sum': '24'}, 'verdict': 'correct'},
+                                                  {'response': {'terms': '2*2-1,2*3-1,2*4-1,2*5-1', 'sum': '3+5+7+9'}, 'verdict': 'correct'},
+                                                  {'response': {'terms': '3,5,7', 'sum': '15'}, 'verdict': 'incorrect'}, {'response': {}, 'error': True}])

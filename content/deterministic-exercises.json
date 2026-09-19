@@ -3338,6 +3338,122 @@
   },
   {
     "lesson": "direct-proof",
+    "id": 2,
+    "sourceHash": "f66409662a419b91b3e049122da9e91efe31bec8d8c19f81d8556fb5046d8ff2",
+    "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation."
+        },
+        {
+          "id": "zero",
+          "kind": "select",
+          "label": "Is d = 0 excluded?",
+          "options": [
+            {
+              "id": "allowed",
+              "label": "No: zero divides exactly zero."
+            },
+            {
+              "id": "excluded",
+              "label": "Yes: divisors must be nonzero."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": [
+            "formula"
+          ],
+          "params": {
+            "expected": "exists k in Z (n=d*k)",
+            "domains": [
+              "Z"
+            ],
+            "predicates": {},
+            "alternatives": [
+              "exists t in Z (d*t=n)"
+            ],
+            "freeVariables": [
+              "d",
+              "n"
+            ]
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        },
+        {
+          "id": "zero",
+          "validator": "selection",
+          "fields": [
+            "zero"
+          ],
+          "params": {
+            "expected": [
+              "allowed"
+            ]
+          },
+          "description": "The interpretation of the formula is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$d\\mid n$ means $\\exists k\\in\\mathbb Z,\\ n=dk$. Zero is allowed: $0\\mid n$ holds exactly when $n=0$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "exists k in Z (n=d*k)",
+          "zero": "allowed"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists t in Z (d*t=n)",
+          "zero": "allowed"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists k in Z (d=n*k)",
+          "zero": "allowed"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "exists k in Z (n=d*k)",
+          "zero": "excluded"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "direct-proof",
     "id": 3,
     "sourceHash": "946a853cd3a9ced3f9c16c5f76a4b0b6cc70523cc619847b26c89e679f33c141",
     "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
@@ -3848,6 +3964,123 @@
       }
     ],
     "prompt": "Identify a genuine counterexample's two requirements for $P(x)\\to Q(x)$ on domain $D$.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 47,
+    "sourceHash": "b63922c9e849d25fddde1c9198e12a987df6362e89e9d7a3213ddab6e58f24f6",
+    "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "n",
+          "kind": "math",
+          "label": "Integer witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "witness",
+          "validator": "witness",
+          "fields": [
+            "n"
+          ],
+          "params": {
+            "variables": [
+              {
+                "name": "n",
+                "field": "n",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "4",
+                "op": "divides",
+                "right": "n"
+              },
+              {
+                "left": "6",
+                "op": "divides",
+                "right": "n"
+              },
+              {
+                "left": "5",
+                "op": "not-divides",
+                "right": "n"
+              }
+            ]
+          },
+          "description": "The proposed values satisfy the requested hypotheses and violate the claimed conclusion."
+        }
+      ],
+      "feedback": {
+        "correct": "Choose 12. It equals $4\\cdot3$ and $6\\cdot2$. It is not divisible by 5 because $12=5\\cdot2+2$ has nonzero remainder.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "n": "12"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "n": "-12"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "n": "24"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "n": "36"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "n": "60"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "n": "6"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "n": "0"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "n": "12/5"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "direct-proof",
@@ -4581,6 +4814,259 @@
       }
     ],
     "prompt": "A proof claims $n^2=2k$ implies $n=2\\sqrt{k/2}$ and hence [evenness](ref:even-odd). What is missing?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 65,
+    "sourceHash": "63aac83cc7dceb01ad96181525f57fb2a848a1fd29c47be83a72233ba85d5817",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "The positive and negative cases already cover zero."
+            },
+            {
+              "id": "answer",
+              "label": "Add the missing case x=0, where x squared is 0."
+            },
+            {
+              "id": "alternative-1",
+              "label": "Discard x=0 because it is not real."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Add $x=0$, where $x^2=0$. If $x>0$, multiplying positives gives $x^2>0$. If $x<0$, then $-x>0$ and $x^2=(-x)^2>0$. All real inputs are covered.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "A proof of $x^2\\geq0$ splits real $x$ into positive and negative cases. Repair it.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "direct-proof",
+    "id": 66,
+    "sourceHash": "e638b23c6d964070ef2b7029600c17123cc2de6033256c04dca666e5582fd9a0",
+    "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "kind": "math",
+          "label": "$a$"
+        },
+        {
+          "id": "b",
+          "kind": "math",
+          "label": "$b$"
+        },
+        {
+          "id": "c",
+          "kind": "math",
+          "label": "$c$"
+        },
+        {
+          "id": "condition",
+          "kind": "select",
+          "label": "Missing assumption",
+          "options": [
+            {
+              "id": "nonzero",
+              "label": "a is nonzero"
+            },
+            {
+              "id": "positive-b",
+              "label": "b is positive"
+            },
+            {
+              "id": "equal",
+              "label": "b and c are equal"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "witness",
+          "validator": "witness",
+          "fields": [
+            "a",
+            "b",
+            "c"
+          ],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a"
+              },
+              {
+                "name": "b",
+                "field": "b"
+              },
+              {
+                "name": "c",
+                "field": "c"
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a*b",
+                "op": "=",
+                "right": "a*c"
+              },
+              {
+                "left": "b",
+                "op": "!=",
+                "right": "c"
+              }
+            ]
+          },
+          "description": "The proposed values satisfy the requested hypotheses and violate the claimed conclusion."
+        },
+        {
+          "id": "condition",
+          "validator": "selection",
+          "fields": [
+            "condition"
+          ],
+          "params": {
+            "expected": [
+              "nonzero"
+            ]
+          },
+          "description": "The short explanation identifies the relevant condition.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Require $a\\ne0$ to divide by $a$. Without it, $a=0,b=1,c=2$ gives equal products but $b\\ne c$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "a": "0",
+          "b": "1",
+          "c": "2",
+          "condition": "nonzero"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "0",
+          "b": "-3",
+          "c": "4",
+          "condition": "nonzero"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "0",
+          "b": "1/2",
+          "c": "3/2",
+          "condition": "nonzero"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "1",
+          "b": "2",
+          "c": "2",
+          "condition": "nonzero"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "a": "1",
+          "b": "2",
+          "c": "3",
+          "condition": "nonzero"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "a": "0",
+          "b": "1",
+          "c": "2",
+          "condition": "positive-b"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "direct-proof",
@@ -9549,6 +10035,109 @@
   },
   {
     "lesson": "mathematical-induction",
+    "id": 50,
+    "sourceHash": "203ea38ef38f9dbaeda954039f54b913170bc9f028c81a9b174729bbc93bfe92",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Candidate value at index 0"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Interpretation",
+          "options": [
+            {
+              "id": "reason",
+              "label": "It satisfies the recurrence but fails the specified initial condition."
+            },
+            {
+              "id": "wrong-0",
+              "label": "It satisfies both initial condition and recurrence."
+            },
+            {
+              "id": "wrong-1",
+              "label": "It satisfies the initial condition but fails the recurrence."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "0"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "reason"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The candidate satisfies the recurrence because $4(n+1)=4n+4$, but gives $a_0=0$ instead of 3. Meeting the recurrence alone does not establish the specified sequence.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "0",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "0",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(0)+1",
+          "reason": "reason"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "mathematical-induction",
     "id": 52,
     "sourceHash": "8c761baac0079534f652e7b1308f54e984388e4f04ec98adbd81380daccdb613",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -10530,6 +11119,416 @@
       }
     ],
     "prompt": "A valid [induction](ref:ordinary-induction) proves a formula for $n\\geq1$. Its author concludes it also holds for all negative integers. Explain the gap.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 1,
+    "sourceHash": "83fe81806c15771953dfc47777b4f7756d0c69859530cbbdbc0d8e8c1b9fb836",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "False: substituting 5 gives 5 less than 3."
+            },
+            {
+              "id": "alternative-2",
+              "label": "True: P is true for every integer input."
+            },
+            {
+              "id": "answer",
+              "label": "True: substituting 5 gives 5 greater than 3."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "True, since $5>3$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this proposition true or false? Explain by substituting the input.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 2,
+    "sourceHash": "1010d30088a07dca1ff0e75fb74d2655ca3691a6981f3fc3796dc471de1ed783",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "False: 3 is not an integer input."
+            },
+            {
+              "id": "answer",
+              "label": "False: substituting 3 gives 3 greater than 3, which fails."
+            },
+            {
+              "id": "alternative-1",
+              "label": "True: greater than includes equality."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "False, since $3>3$ is false.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this proposition true or false? Explain by substituting the input.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 3,
+    "sourceHash": "f22a8580df8859d84aaaaad173bf77b24f8b67cbedd8afa83ea959bd2e9fa527",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "False: substituting -4 gives -4 greater than 3, which fails."
+            },
+            {
+              "id": "alternative-1",
+              "label": "True: negative integers are greater than positive integers."
+            },
+            {
+              "id": "alternative-2",
+              "label": "False: the predicate excludes negative inputs."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "False, since $-4>3$ is false.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this proposition true or false? Explain by substituting the input.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 4,
+    "sourceHash": "dd6d6913a8e8c1c4b59d3c29ec12d6f689e762ff057b84b83a314c37e10f7ec5",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "False: substitution gives 3 + 2 times 1 = 5."
+            },
+            {
+              "id": "alternative-2",
+              "label": "True: every pair of integer inputs gives 7."
+            },
+            {
+              "id": "answer",
+              "label": "True: substitution gives 1 + 2 times 3 = 7."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "True: $1+2(3)=7$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this proposition true or false? Explain by substituting the two inputs.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 5,
+    "sourceHash": "8a8ec2a2f61c5d32b7816ec86aa318d32e16e9029839a68509043677a4019a74",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "False: unequal inputs are forbidden."
+            },
+            {
+              "id": "answer",
+              "label": "False: substitution gives 3 + 2 times 1 = 5, not 7."
+            },
+            {
+              "id": "alternative-1",
+              "label": "True: substitution gives 1 + 2 times 3 = 7."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "False: $3+2(1)=5$, not 7.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this proposition true or false? Explain by substituting the two inputs.\n\nSelect the answer and reason."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -12291,6 +13290,498 @@
   },
   {
     "lesson": "predicates-and-quantifiers",
+    "id": 51,
+    "sourceHash": "5c5e6fe35f02688a9dead34d73331e90479732509b8c40350b7909dc36cb1554",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "True: for each integer x, choose the integer y=x+1."
+            },
+            {
+              "id": "alternative-1",
+              "label": "False: there is no single greatest integer."
+            },
+            {
+              "id": "alternative-2",
+              "label": "True: choose y=x."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "True. Given $x$, choose $y=x+1$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this statement true or false? Explain how an allowed choice works or why every proposed choice fails.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 52,
+    "sourceHash": "e47cefe587f9f114a57eed7a45552ac8e3cc946ec32846945f483fd4bde88322",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "True: choose y=x+1 after seeing x."
+            },
+            {
+              "id": "alternative-2",
+              "label": "True: choose the largest integer y."
+            },
+            {
+              "id": "answer",
+              "label": "False: any proposed fixed y fails when x=y."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "False. For any proposed $y$, choosing $x=y$ makes the inequality false.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this statement true or false? Explain how an allowed choice works or why every proposed choice fails.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 53,
+    "sourceHash": "c3863babfa1d3c2cb1696b5aa1f2e017ccef041e7cef9fe663a5c3fa2120b981",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "True: choose y=x for every x."
+            },
+            {
+              "id": "answer",
+              "label": "True: choose the integer y=-x for each x."
+            },
+            {
+              "id": "alternative-1",
+              "label": "False: no single y works for every x."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "True. Choose $y=-x$ for each given $x$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this statement true or false? Explain how an allowed choice works or why every proposed choice fails.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 54,
+    "sourceHash": "12be1e47834f58d6fd752acafb74428ada4639ca9bf1fe749983aca3df7d922e",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "False: for any fixed y, x=1-y makes the sum 1."
+            },
+            {
+              "id": "alternative-1",
+              "label": "True: choose y=-x after seeing x."
+            },
+            {
+              "id": "alternative-2",
+              "label": "True: choose y=0 for every integer x."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "False. For any fixed $y$, choose $x=1-y$; the sum is 1.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this statement true or false? Explain how an allowed choice works or why every proposed choice fails.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 55,
+    "sourceHash": "01a1927fac47eab3a770d5b08bb8504f2f007faf54ed3a12bb3e45bfad1abde9",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "False: y must actually change with x."
+            },
+            {
+              "id": "alternative-2",
+              "label": "True: y=0 works for every x."
+            },
+            {
+              "id": "answer",
+              "label": "True: y=1 works for every x; permitted dependence need not be used."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "True. Choose $y=1$ for every $x$. An allowed dependence on $x$ does not require an actual dependence.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this statement true or false? Explain how an allowed choice works or why every proposed choice fails.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 56,
+    "sourceHash": "ac763385f749811da32d4cd1566bfb741d170af4f8dfb72922d7ec39e4857718",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "True: choose y=x separately for each x."
+            },
+            {
+              "id": "answer",
+              "label": "True: the single integer y=1 works for every x."
+            },
+            {
+              "id": "alternative-1",
+              "label": "False: the witness must depend on x."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "True. The single [witness](ref:witness) $y=1$ works for every integer $x$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is this statement true or false? Explain how an allowed choice works or why every proposed choice fails.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
     "id": 57,
     "sourceHash": "e1f11b81d8fa9c995aba47843dbdb823cfaf555a089358006546384bcc0a20ad",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -12698,6 +14189,88 @@
       }
     ],
     "prompt": "Determine truth over $\\mathbb{Z}$, then over $\\mathbb{R}$.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "id": 62,
+    "sourceHash": "2d6779d51ef0343e316db996086ac8f2cb2cc2ba704f0c498e3e4a32dd0b4858",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "False on both domains because x=1/2 is an integer counterexample."
+            },
+            {
+              "id": "answer",
+              "label": "True on Z: no integer lies between 0 and 1. False on R: x=1/2 fails."
+            },
+            {
+              "id": "alternative-1",
+              "label": "True on both domains because every square exceeds its input."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "True over integers: $x(x-1)\\geq0$ when $x\\leq0$ or $x\\geq1$, covering every integer. False over reals: $x=1/2$ gives $1/4<1/2$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Determine truth over $\\mathbb{Z}$, then over $\\mathbb{R}$; justify.\n\nSelect the answer and reason."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -15190,6 +16763,88 @@
   },
   {
     "lesson": "predicates-and-quantifiers",
+    "id": 94,
+    "sourceHash": "ec28fc4f4bf1b52b5df9e445d398056d93e5ac60adcf3043f222bfb65ff0e55c",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "Invalid: existential witnesses cannot be used with universal statements."
+            },
+            {
+              "id": "alternative-2",
+              "label": "Valid: Q implies P for every element."
+            },
+            {
+              "id": "answer",
+              "label": "Valid: the P-witness also satisfies Q by the universal implication."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Valid. A [witness](ref:witness) for $P$ also satisfies $Q$ by the universal implication and modus ponens.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Does the conclusion follow from the premises?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
     "id": 95,
     "sourceHash": "39a4ceea47ef16373dff47fae35eb52c0671e40303065e0439efa99cba052a89",
     "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
@@ -16410,6 +18065,128 @@
   },
   {
     "lesson": "predicates-and-quantifiers",
+    "id": 116,
+    "sourceHash": "a71c5c1310d5da7df120be8ecca28c3d45859659ef406e255deeba9150fe9eea",
+    "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains R, W, or equivalent TeX notation."
+        },
+        {
+          "id": "sharing",
+          "kind": "select",
+          "label": "May one worker serve two requests?",
+          "options": [
+            {
+              "id": "yes",
+              "label": "Yes: uniqueness applies separately to each request."
+            },
+            {
+              "id": "no",
+              "label": "No: each worker can appear only once."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": [
+            "formula"
+          ],
+          "params": {
+            "expected": "forall r in R exists! w in W A(r,w)",
+            "domains": [
+              "R",
+              "W"
+            ],
+            "predicates": {
+              "A": 2
+            },
+            "alternatives": [
+              "forall r in R exists w in W (A(r,w)&forall v in W (A(r,v)->v=w))"
+            ]
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        },
+        {
+          "id": "sharing",
+          "validator": "selection",
+          "fields": [
+            "sharing"
+          ],
+          "params": {
+            "expected": [
+              "yes"
+            ]
+          },
+          "description": "The interpretation of the formula is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$\\forall r\\in R\\exists!w\\in W\\,A(r,w)$. No: [uniqueness](ref:uniqueness) is per request. The same worker may be the unique worker for several requests.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "forall r in R exists! w in W A(r,w)",
+          "sharing": "yes"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "forall r in R exists w in W (A(r,w)&forall v in W (A(r,v)->v=w))",
+          "sharing": "yes"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists! w in W forall r in R A(r,w)",
+          "sharing": "yes"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "forall r in R exists w in W A(r,w)",
+          "sharing": "yes"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "forall r in R exists! w in W A(r,w)",
+          "sharing": "no"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
     "id": 117,
     "sourceHash": "0f379687c3a78657704324e6d3234da6dec51ac39bfd7d595221a7c5d1fe19a4",
     "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
@@ -16854,6 +18631,88 @@
       }
     ],
     "prompt": "What does choosing a rational representation in [lowest terms](ref:lowest-terms) mean, and why can the denominator be positive?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "proof-by-contradiction",
+    "id": 22,
+    "sourceHash": "71624a5bf4389b87bf9a1328d7d6ebb63f827888a89aa4ee9cf451d64a3364fc",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "Dividing by any positive common divisor always produces lowest terms."
+            },
+            {
+              "id": "alternative-2",
+              "label": "Reduced entries cannot have any positive common divisor, including 1."
+            },
+            {
+              "id": "answer",
+              "label": "A remaining factor h greater than 1 would give original common divisor gh greater than the greatest divisor g."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "If the reduced entries shared $h>1$, then the original entries would share $gh>g$, contradicting that $g$ was greatest. The common-divisor set is nonempty and finite because its positive members divide the positive denominator.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Explain why dividing numerator and denominator by their greatest positive common divisor leaves no common divisor greater than 1.\n\nSelect the answer and reason."
   },
   {
     "lesson": "proof-by-contradiction",
@@ -17346,6 +19205,212 @@
       }
     ],
     "prompt": "If $p_1,\\ldots,p_k$ were all primes, why does $N=p_1\\cdots p_k+1$ exceed 1?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "proof-by-contradiction",
+    "id": 47,
+    "sourceHash": "548b5229789dfd097067942386b338a5e1edc0c927592bf4e70e613c83d1deb4",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Product plus one"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Interpretation",
+          "options": [
+            {
+              "id": "reason",
+              "label": "It illustrates the construction; one example does not prove a universal claim."
+            },
+            {
+              "id": "wrong-0",
+              "label": "It proves every such product plus one is prime."
+            },
+            {
+              "id": "wrong-1",
+              "label": "It proves that there are exactly four primes."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "31"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "reason"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$2\\cdot3\\cdot5+1=31$, which has no divisor 2, 3, or 5 and is prime. It illustrates the construction but does not prove that every such product-plus-one is prime or that every possible finite list fails without the general argument.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "31",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "31",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(31)+1",
+          "reason": "reason"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contradiction",
+    "id": 48,
+    "sourceHash": "ba71d026ed0136e2cacb865e177d19fae17df191813874f74fe8099edc065cc7",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$59\\cdot509$"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Interpretation",
+          "options": [
+            {
+              "id": "reason",
+              "label": "Both factors exceed 1, so this product-plus-one is composite."
+            },
+            {
+              "id": "wrong-0",
+              "label": "Every product-plus-one must be prime."
+            },
+            {
+              "id": "wrong-1",
+              "label": "A factorization proves the factors belong to the original list."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "30031"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "reason"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Multiplication gives $59\\cdot509=30031=2\\cdot3\\cdot5\\cdot7\\cdot11\\cdot13+1$. Thus the constructed number need not be prime. The infinitude proof uses a prime divisor absent from the list.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "30031",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "30031",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(30031)+1",
+          "reason": "reason"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "proof-by-contradiction",
@@ -18087,6 +20152,323 @@
   },
   {
     "lesson": "proof-by-contrapositive",
+    "id": 1,
+    "sourceHash": "74278d719ae7aca6828d415155c17142394126d867c3bd318c6623fb83b679ec",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Contrapositive"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Why equivalent?",
+          "options": [
+            {
+              "id": "false-case",
+              "label": "Both fail exactly when P is true and Q is false."
+            },
+            {
+              "id": "reverse",
+              "label": "Reversing any implication preserves truth."
+            },
+            {
+              "id": "all-true",
+              "label": "Both are true under every assignment."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "!Q->!P",
+            "variables": [
+              "P",
+              "Q"
+            ],
+            "structure": "!Q->!P"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "false-case"
+            ]
+          },
+          "description": "The accompanying interpretation is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "It is $\\neg Q\\to\\neg P$. Both implications fail exactly when $P$ is true and $Q$ is false, so their truth values agree in every assignment.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!Q->!P",
+          "reason": "false-case"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(!Q->!P)",
+          "reason": "false-case"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "!Q->!P",
+          "reason": "reverse"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 2,
+    "sourceHash": "2d9ce11a6469f7c6c79014683cd40d79dabdbd4e8a2b79f0206a421f5e4e55a9",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Converse"
+        },
+        {
+          "id": "formula-2",
+          "kind": "math",
+          "label": "Inverse"
+        },
+        {
+          "id": "equivalence",
+          "kind": "select",
+          "label": "Equivalent to the original in general?",
+          "options": [
+            {
+              "id": "no",
+              "label": "No; the converse and inverse are equivalent to each other."
+            },
+            {
+              "id": "yes",
+              "label": "Yes; all three implications are equivalent."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "Q->P",
+            "variables": [
+              "P",
+              "Q"
+            ],
+            "structure": "Q->P"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "formula-2",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-2"
+          ],
+          "params": {
+            "expected": "!P->!Q",
+            "variables": [
+              "P",
+              "Q"
+            ],
+            "structure": "!P->!Q"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "equivalence",
+          "validator": "selection",
+          "fields": [
+            "equivalence"
+          ],
+          "params": {
+            "expected": [
+              "no"
+            ]
+          },
+          "description": "The accompanying interpretation is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The converse is $Q\\to P$ and inverse is $\\neg P\\to\\neg Q$. They are equivalent to each other, but not generally to the original; $P=F,Q=T$ distinguishes the pairs.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "Q->P",
+          "formula-2": "!P->!Q",
+          "equivalence": "no"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(Q->P)",
+          "formula-2": "!P->!Q",
+          "equivalence": "no"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "Q->P",
+          "formula-2": "!P->!Q",
+          "equivalence": "yes"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 5,
+    "sourceHash": "60caaf0f698457fa5f48cab0a58dcdc5fcec9403a84c5c1d939f8994ceac5f3d",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Contrapositive"
+        },
+        {
+          "id": "formula-2",
+          "kind": "math",
+          "label": "Negation"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "!Q->!P",
+            "variables": [
+              "P",
+              "Q"
+            ],
+            "structure": "!Q->!P"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "formula-2",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-2"
+          ],
+          "params": {
+            "expected": "P&!Q",
+            "variables": [
+              "P",
+              "Q"
+            ]
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        }
+      ],
+      "feedback": {
+        "correct": "The contrapositive is $\\neg Q\\to\\neg P$, equivalent to the original. Its negation is $P\\land\\neg Q$, true exactly when the original fails.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!Q->!P",
+          "formula-2": "P&!Q"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(!Q->!P)",
+          "formula-2": "P&!Q"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
     "id": 7,
     "sourceHash": "c7c7f40d5c1fba70dc2460bdddf5679c7bfa1783681a4f10cf2da324678982b3",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -18333,6 +20715,413 @@
   },
   {
     "lesson": "proof-by-contrapositive",
+    "id": 11,
+    "sourceHash": "404c5be8a826492719c53e52a3e868b4425d5ade9ccd2b496e665df66971e219",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Contrapositive"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "(!Q&!R)->!P",
+            "variables": [
+              "P",
+              "Q",
+              "R"
+            ],
+            "structure": "(!Q&!R)->!P",
+            "negationsOnAtoms": true
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        }
+      ],
+      "feedback": {
+        "correct": "$(\\neg Q\\land\\neg R)\\to\\neg P$. For $Q\\lor R$ to be false, both $Q$ and $R$ must be false.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "(!Q&!R)->!P"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!((!Q&!R)->!P)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "!(Q|R)->!P"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 12,
+    "sourceHash": "abf21b7ec168a80c00535a210d8b154bda77701ea312446316a0c1b5059cd20b",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Contrapositive"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "!Q->(!P|!R)",
+            "variables": [
+              "P",
+              "Q",
+              "R"
+            ],
+            "structure": "!Q->(!P|!R)",
+            "negationsOnAtoms": true
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        }
+      ],
+      "feedback": {
+        "correct": "$\\neg Q\\to(\\neg P\\lor\\neg R)$. Negating the conjunction in the original hypothesis gives a disjunction.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!Q->(!P|!R)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(!Q->(!P|!R))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "!Q->!(P&R)"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 13,
+    "sourceHash": "252aef582d85caee6e04486630d5a60aeeebfcfc7e83aed8551cdb6ef6f02a8d",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Contrapositive"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "(!Q|!S)->(!P&!R)",
+            "variables": [
+              "P",
+              "Q",
+              "R",
+              "S"
+            ],
+            "structure": "(!Q|!S)->(!P&!R)",
+            "negationsOnAtoms": true
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        }
+      ],
+      "feedback": {
+        "correct": "$(\\neg Q\\lor\\neg S)\\to(\\neg P\\land\\neg R)$. Apply De Morgan's law separately to the original conclusion and hypothesis.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "(!Q|!S)->(!P&!R)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!((!Q|!S)->(!P&!R))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "!(Q&S)->!(P|R)"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 14,
+    "sourceHash": "dbfc29d23a617480500af314e77c54eea7351ecc86063db3697c39b91d04e0ec",
+    "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains R, or equivalent TeX notation."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": [
+            "formula"
+          ],
+          "params": {
+            "expected": "forall x in R (x^2<=9->x<=3)",
+            "domains": [
+              "R"
+            ],
+            "predicates": {}
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        }
+      ],
+      "feedback": {
+        "correct": "For real $x$, if $x^2\\leq9$, then $x\\leq3$. The weak inequalities include the equality boundary cases.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "forall x in R (x^2<=9->x<=3)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "forall x in R (x^2<=9&x<=3)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 15,
+    "sourceHash": "d5b2fb5e7449e3ab750974a0d94239d52a0c2c82fdf2d1cc61ebd746a1b743e7",
+    "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation. E(t) means t is even."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": [
+            "formula"
+          ],
+          "params": {
+            "expected": "forall a in Z forall b in Z ((E(a)|E(b))->E(a*b))",
+            "domains": [
+              "Z"
+            ],
+            "predicates": {
+              "E": 1
+            }
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        }
+      ],
+      "feedback": {
+        "correct": "If $a$ is even or $b$ is even, then $ab$ is even. Negating both factors odd gives at least one factor even.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "forall a in Z forall b in Z ((E(a)|E(b))->E(a*b))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "forall a in Z forall b in Z ((E(a)|E(b))&E(a*b))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 16,
+    "sourceHash": "e4ce036a825f37ecd42d3e76f252261cd79bf97c6a7e311c55e08679b85e5f16",
+    "rationale": "Ordinary formula entry preserves construction. Named objects and free variables retain their identities; bound variables may be renamed without capture.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation. E(t) means t is even."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": [
+            "formula"
+          ],
+          "params": {
+            "expected": "forall a in Z forall b in Z ((!E(a)&!E(b))->!E(a*b))",
+            "domains": [
+              "Z"
+            ],
+            "predicates": {
+              "E": 1
+            }
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        }
+      ],
+      "feedback": {
+        "correct": "If both $a$ and $b$ are odd, then $ab$ is odd. Both odd factors are needed; assuming only one does not negate the conclusion.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula": "forall a in Z forall b in Z ((!E(a)&!E(b))->!E(a*b))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "forall a in Z forall b in Z ((!E(a)&!E(b))&!E(a*b))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
     "id": 39,
     "sourceHash": "0211cb242eeb0bdca958a829b4759093ea7af86a305fbdd61c9de1ed7b979dcc",
     "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
@@ -18573,6 +21362,161 @@
         "response": {
           "a": "0",
           "b": "3"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 46,
+    "sourceHash": "e47c4a57c9aa087d2f8f2335d852a99769c6a2ee74d36a56e0193824fbf5a594",
+    "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "kind": "math",
+          "label": "First input"
+        },
+        {
+          "id": "b",
+          "kind": "math",
+          "label": "Second input"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Why does the argument fail?",
+          "options": [
+            {
+              "id": "zero-sum",
+              "label": "Distinct real inputs can have sum zero."
+            },
+            {
+              "id": "difference",
+              "label": "Distinct real inputs can have difference zero."
+            },
+            {
+              "id": "negative-square",
+              "label": "Real squares can be negative."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "witness",
+          "validator": "witness",
+          "fields": [
+            "a",
+            "b"
+          ],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a"
+              },
+              {
+                "name": "b",
+                "field": "b"
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a",
+                "op": "!=",
+                "right": "b"
+              },
+              {
+                "left": "a^2",
+                "op": "=",
+                "right": "b^2"
+              }
+            ]
+          },
+          "description": "The proposed values satisfy the requested hypotheses and violate the claimed conclusion."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "zero-sum"
+            ]
+          },
+          "description": "The short explanation identifies the relevant condition.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Distinct real inputs can satisfy $a+b=0$, for example $a=1,b=-1$. Their square difference is zero, so distinctness alone does not ensure different outputs.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "a": "1",
+          "b": "-1",
+          "reason": "zero-sum"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "-2",
+          "b": "2",
+          "reason": "zero-sum"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "1/2",
+          "b": "-1/2",
+          "reason": "zero-sum"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "0",
+          "b": "0",
+          "reason": "zero-sum"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "a": "1",
+          "b": "2",
+          "reason": "zero-sum"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "a": "1",
+          "b": "-1",
+          "reason": "difference"
         },
         "verdict": "incorrect"
       },
@@ -18926,6 +21870,215 @@
       }
     ],
     "prompt": "A proof of $3\\mid n^2\\to3\\mid n$ checks only $n=3k+1$. What remains?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 66,
+    "sourceHash": "b90bb8fbb16315e4f083b9c819893af0a4c14d70023f1f866f9e67f0278e1852",
+    "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "kind": "math",
+          "label": "Negative integer congruent to 1 modulo 3"
+        },
+        {
+          "id": "b",
+          "kind": "math",
+          "label": "Negative integer congruent to 2 modulo 3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "witness",
+          "validator": "witness",
+          "fields": [
+            "a",
+            "b"
+          ],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a",
+                "integer": true
+              },
+              {
+                "name": "b",
+                "field": "b",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a",
+                "op": "<",
+                "right": "0"
+              },
+              {
+                "left": "b",
+                "op": "<",
+                "right": "0"
+              },
+              {
+                "left": "3",
+                "op": "divides",
+                "right": "a-1"
+              },
+              {
+                "left": "3",
+                "op": "divides",
+                "right": "b-2"
+              }
+            ]
+          },
+          "description": "The proposed values satisfy the requested hypotheses and violate the claimed conclusion."
+        }
+      ],
+      "feedback": {
+        "correct": "Division with nonnegative [remainder](ref:quotient-remainder) applies to all integers: $-2=3(-1)+1$ and $-1=3(-1)+2$. The [quotient](ref:quotient-remainder?repeat) can be negative; the [remainder](ref:quotient-remainder?repeat) cases still cover the domain.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "a": "-2",
+          "b": "-1"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "-5",
+          "b": "-4"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "-8",
+          "b": "-7"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a": "1",
+          "b": "2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "a": "-1",
+          "b": "-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "a": "-3",
+          "b": "-6"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "proof-by-contrapositive",
+    "id": 67,
+    "sourceHash": "e67c76bc0eb5daca402f8dd9afd30617dea3224912e15650da251c6104f9515b",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "A zero denominator is allowed after squaring."
+            },
+            {
+              "id": "alternative-2",
+              "label": "Only the numerator needs to be nonzero."
+            },
+            {
+              "id": "answer",
+              "label": "Require a nonzero integer denominator; its square is then nonzero too."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Rationality supplies integers $a,b$ with $b\\ne0$. Then $x^2=a^2/b^2$ has nonzero denominator. The missing condition must come from the definition, not be ignored.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "A rational-square argument writes $x=a/b$ without requiring $b\\ne0$. Repair the proof.\n\nSelect the answer and reason."
   },
   {
     "lesson": "proof-by-contrapositive",
@@ -24377,6 +27530,70 @@
   },
   {
     "lesson": "propositional-logic",
+    "id": 74,
+    "sourceHash": "4ffad7d8c7b1dd8feed6461a22a4d210da660953bf3293968992e91f8fde73f8",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Contrapositive",
+          "hint": "Use p for “n squared is even” and q for “n is even”."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "!q->!p",
+            "variables": [
+              "p",
+              "q"
+            ],
+            "structure": "!q->!p"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        }
+      ],
+      "feedback": {
+        "correct": "If $n$ is odd, then $n^2$ is odd.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!q->!p"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(!q->!p)"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
     "id": 75,
     "sourceHash": "19bf5b793962f7980bd7949861cafa3431fdb2810e432e162b600ca32b68465a",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -24709,6 +27926,212 @@
       {
         "response": {},
         "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 89,
+    "sourceHash": "1588fdf9026cb2c9f7ebfc53f8e26045931d0d5bfece57c18e58cef9c7a95caa",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Inverse",
+          "hint": "Use p for “the integer is divisible by 8” and q for “the integer is even”."
+        },
+        {
+          "id": "truth",
+          "kind": "select",
+          "label": "Is the inverse true on the stated domain?",
+          "options": [
+            {
+              "id": "true",
+              "label": "True"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "!p->!q",
+            "variables": [
+              "p",
+              "q"
+            ],
+            "structure": "!p->!q"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "truth",
+          "validator": "selection",
+          "fields": [
+            "truth"
+          ],
+          "params": {
+            "expected": [
+              "false"
+            ]
+          },
+          "description": "The accompanying interpretation is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "If not divisible by 8, then not even. False: 6 is a [counterexample](ref:counterexample).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!p->!q",
+          "truth": "false"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(!p->!q)",
+          "truth": "false"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "!p->!q",
+          "truth": "true"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 90,
+    "sourceHash": "3cd2f351f1d2a854fb53f570c7352f94e7aa0ef9d7495a3f911aba36ce5ef436",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Inverse",
+          "hint": "Use p for “x > 2” and q for “x squared > 4”."
+        },
+        {
+          "id": "truth",
+          "kind": "select",
+          "label": "Is the inverse true on the stated domain?",
+          "options": [
+            {
+              "id": "true",
+              "label": "True"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "!p->!q",
+            "variables": [
+              "p",
+              "q"
+            ],
+            "structure": "!p->!q"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "truth",
+          "validator": "selection",
+          "fields": [
+            "truth"
+          ],
+          "params": {
+            "expected": [
+              "false"
+            ]
+          },
+          "description": "The accompanying interpretation is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "If $x\\leq2$, then $x^2\\leq4$. False: $x=-3$ is a [counterexample](ref:counterexample).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "!p->!q",
+          "truth": "false"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(!p->!q)",
+          "truth": "false"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "!p->!q",
+          "truth": "true"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
@@ -26681,6 +30104,188 @@
   },
   {
     "lesson": "propositional-logic",
+    "id": 139,
+    "sourceHash": "90b09bce4c003a2948a283a69a20e6fcea7f0d0b05c7a9e886e3ab348b76e8bb",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "First premise",
+          "hint": "p: application accepted; q: interview scheduled; r: confirmation sent."
+        },
+        {
+          "id": "formula-2",
+          "kind": "math",
+          "label": "Second premise",
+          "hint": "p: application accepted; q: interview scheduled; r: confirmation sent."
+        },
+        {
+          "id": "formula-3",
+          "kind": "math",
+          "label": "Third premise",
+          "hint": "p: application accepted; q: interview scheduled; r: confirmation sent."
+        },
+        {
+          "id": "formula-4",
+          "kind": "math",
+          "label": "Conclusion",
+          "hint": "p: application accepted; q: interview scheduled; r: confirmation sent."
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Validity and reason",
+          "options": [
+            {
+              "id": "valid",
+              "label": "Valid: apply modus ponens twice."
+            },
+            {
+              "id": "converse",
+              "label": "Invalid: it affirms the consequent."
+            },
+            {
+              "id": "invalid",
+              "label": "Invalid: the final conclusion is independent of the premises."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "p->q",
+            "variables": [
+              "p",
+              "q",
+              "r"
+            ]
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "formula-2",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-2"
+          ],
+          "params": {
+            "expected": "q->r",
+            "variables": [
+              "p",
+              "q",
+              "r"
+            ]
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "formula-3",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-3"
+          ],
+          "params": {
+            "expected": "p",
+            "variables": [
+              "p",
+              "q",
+              "r"
+            ]
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "formula-4",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-4"
+          ],
+          "params": {
+            "expected": "r",
+            "variables": [
+              "p",
+              "q",
+              "r"
+            ]
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "valid"
+            ]
+          },
+          "description": "The accompanying interpretation is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Let $p$ mean the application is accepted, $q$ mean an interview is scheduled, and $r$ mean a confirmation is sent. The [premises](ref:argument) are $p\\to q$, $q\\to r$, and $p$; the [conclusion](ref:argument?repeat) is $r$. [Modus ponens](ref:modus-ponens) first gives $q$ and then $r$, so the [argument](ref:argument?repeat) is [valid](ref:validity).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "p->q",
+          "formula-2": "q->r",
+          "formula-3": "p",
+          "formula-4": "r",
+          "reason": "valid"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(p->q)",
+          "formula-2": "q->r",
+          "formula-3": "p",
+          "formula-4": "r",
+          "reason": "valid"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "p->q",
+          "formula-2": "q->r",
+          "formula-3": "p",
+          "formula-4": "r",
+          "reason": "converse"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
     "id": 141,
     "sourceHash": "683941c387932169cbb228e14ae9b2a85722b806c9e71d74b65cba7bc7b4f79c",
     "rationale": "The student creates the requested formula using ordinary math entry; exhaustive Boolean comparison accepts equivalent expressions while enforcing the requested syntactic form.",
@@ -27503,6 +31108,76 @@
       {
         "response": {
           "models": "{TTT,FFF,TTF}"
+        },
+        "verdict": "incorrect"
+      }
+    ]
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 151,
+    "sourceHash": "107e0a221c6c1db6623d7936e26779c7a31e62058d9f7e66f0bbb706c94d6962",
+    "rationale": "The transformation remains an ordinary typed formula. Structural checks distinguish converse, inverse and contrapositive; any requested short explanation is a recognition requirement.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Reordered and regrouped formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "boolean-formula",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "p&(q&r)",
+            "variables": [
+              "p",
+              "q",
+              "r"
+            ],
+            "structure": "p&(q&r)"
+          },
+          "description": "The typed formula has the requested meaning and outer logical structure."
+        }
+      ],
+      "feedback": {
+        "correct": "$(q\\land p)\\land r\\equiv(p\\land q)\\land r\\equiv p\\land(q\\land r)$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "p&(q&r)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "formula-1": "!(p&(q&r))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula-1": "(p&q)&r"
         },
         "verdict": "incorrect"
       }
@@ -30330,6 +34005,198 @@
   },
   {
     "lesson": "relations",
+    "id": 21,
+    "sourceHash": "d904a5de39cbce76e56c313ab01ffabb5d801579bc227f0a60687da7d89210fe",
+    "rationale": "Each requested property keeps its own concise decision and reason. This is recognition of finite defining conditions, not a general proof.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "reflexive",
+          "kind": "select",
+          "label": "Reflexive",
+          "options": [
+            {
+              "id": "correct",
+              "label": "Yes: every integer is at most itself."
+            },
+            {
+              "id": "incorrect",
+              "label": "No: equal integers cannot be compared."
+            }
+          ]
+        },
+        {
+          "id": "symmetric",
+          "kind": "select",
+          "label": "Symmetric",
+          "options": [
+            {
+              "id": "correct",
+              "label": "No: 1 is at most 2, but 2 is not at most 1."
+            },
+            {
+              "id": "incorrect",
+              "label": "Yes: every comparison can be reversed."
+            }
+          ]
+        },
+        {
+          "id": "antisymmetric",
+          "kind": "select",
+          "label": "Antisymmetric",
+          "options": [
+            {
+              "id": "correct",
+              "label": "Yes: inequalities in both directions force equality."
+            },
+            {
+              "id": "incorrect",
+              "label": "No: equal inputs relate in both directions."
+            }
+          ]
+        },
+        {
+          "id": "transitive",
+          "kind": "select",
+          "label": "Transitive",
+          "options": [
+            {
+              "id": "incorrect",
+              "label": "No: a shortcut requires consecutive integers."
+            },
+            {
+              "id": "correct",
+              "label": "Yes: a at most b and b at most c imply a at most c."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "reflexive",
+          "validator": "selection",
+          "fields": [
+            "reflexive"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The reflexive decision has the correct reason.",
+          "evidenceLevel": "recognition"
+        },
+        {
+          "id": "symmetric",
+          "validator": "selection",
+          "fields": [
+            "symmetric"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The symmetric decision has the correct reason.",
+          "evidenceLevel": "recognition"
+        },
+        {
+          "id": "antisymmetric",
+          "validator": "selection",
+          "fields": [
+            "antisymmetric"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The antisymmetric decision has the correct reason.",
+          "evidenceLevel": "recognition"
+        },
+        {
+          "id": "transitive",
+          "validator": "selection",
+          "fields": [
+            "transitive"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The transitive decision has the correct reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "[Reflexive](ref:reflexive), [antisymmetric](ref:antisymmetric), and [transitive](ref:transitive). Not [symmetric](ref:symmetric): $1\\leq2$ is true but $2\\leq1$ is false.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "reflexive": "correct",
+          "symmetric": "correct",
+          "antisymmetric": "correct",
+          "transitive": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      },
+      {
+        "response": {
+          "reflexive": "incorrect",
+          "symmetric": "correct",
+          "antisymmetric": "correct",
+          "transitive": "correct"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "reflexive": "correct",
+          "symmetric": "incorrect",
+          "antisymmetric": "correct",
+          "transitive": "correct"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "reflexive": "correct",
+          "symmetric": "correct",
+          "antisymmetric": "incorrect",
+          "transitive": "correct"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "reflexive": "correct",
+          "symmetric": "correct",
+          "antisymmetric": "correct",
+          "transitive": "incorrect"
+        },
+        "verdict": "incorrect"
+      }
+    ],
+    "prompt": "Classify $\\leq$ on $\\mathbb Z$. Decide separately whether it is [reflexive](ref:reflexive), [symmetric](ref:symmetric), [antisymmetric](ref:antisymmetric), and [transitive](ref:transitive). Select each decision and its reason."
+  },
+  {
+    "lesson": "relations",
     "id": 22,
     "sourceHash": "9d421b875026d61b9da4e580e81be5820acedf467f3208e6cfc58f7b8b3c0fa6",
     "rationale": "The prompt asks only for classification; a compact truth-value row covers every named property.",
@@ -30626,6 +34493,88 @@
         "error": true
       }
     ]
+  },
+  {
+    "lesson": "relations",
+    "id": 27,
+    "sourceHash": "8132fcdbd1a5bbf3b1238979f0baaf3b5220a80a163e5f5d7415a1bde7605e9f",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "Mutual divisibility gives positive integer multipliers with product 1; both are 1, so the objects are equal."
+            },
+            {
+              "id": "alternative-1",
+              "label": "Every two positive integers divide one another."
+            },
+            {
+              "id": "alternative-2",
+              "label": "A positive divisor must equal the number it divides."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "If $b=ak$ and $a=b\\ell$ with positive integer factors, substitution gives $k\\ell=1$. Hence both factors are 1 and $a=b$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "On positive integers, explain why [divisibility](ref:divisibility) is [antisymmetric](ref:antisymmetric).\n\nSelect the answer and reason."
   },
   {
     "lesson": "relations",
@@ -31479,6 +35428,88 @@
       }
     ],
     "prompt": "A [poset](ref:poset) on $\\{a,b,c,d\\}$ has exactly the upward cover [edges](ref:edge) $a\\to b$, $a\\to c$, $b\\to d$, and $c\\to d$. Are $b,c$ [comparable](ref:comparable)? Is $a\\preceq d$? Explain both answers.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "relations",
+    "id": 50,
+    "sourceHash": "ff46741f603b8f34f85ad542fdd7f6cef92cc250d97c04b15123e8d8e5f5eb14",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "A strict cycle would violate reflexivity because it has edges."
+            },
+            {
+              "id": "answer",
+              "label": "A strict cycle gives comparisons both ways between distinct elements, contradicting antisymmetry."
+            },
+            {
+              "id": "alternative-1",
+              "label": "Every partial order is a total order, so branching is impossible."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "A cycle through distinct elements gives comparability in both directions by [transitivity](ref:transitive). [Antisymmetry](ref:antisymmetric) then forces those elements equal, contradicting strict upward movement.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Explain why a [partial order](ref:partial-order)'s strict upward graph cannot contain a directed cycle.\n\nSelect the answer and reason."
   },
   {
     "lesson": "relations",
@@ -32888,6 +36919,193 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 2,
+    "sourceHash": "01f412428e46ac9c9503506dfde95593c86d5a1adb5544f09a02cea8d75ecb3b",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$a_1$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$a_2$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$a_3$"
+        },
+        {
+          "id": "value-4",
+          "kind": "math",
+          "label": "$a_4$"
+        },
+        {
+          "id": "value-5",
+          "kind": "math",
+          "label": "$a_5$"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Reason",
+          "options": [
+            {
+              "id": "correct",
+              "label": "Index 1 starts the sequence, so the term at index 0 is excluded."
+            },
+            {
+              "id": "wrong-0",
+              "label": "Changing the starting index changes the rule to 3n+2."
+            },
+            {
+              "id": "wrong-1",
+              "label": "Index 0 is always part of every sequence."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "1"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-2",
+          "validator": "exact",
+          "fields": [
+            "value-2"
+          ],
+          "params": {
+            "expected": [
+              "4"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-3",
+          "validator": "exact",
+          "fields": [
+            "value-3"
+          ],
+          "params": {
+            "expected": [
+              "7"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-4",
+          "validator": "exact",
+          "fields": [
+            "value-4"
+          ],
+          "params": {
+            "expected": [
+              "10"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-5",
+          "validator": "exact",
+          "fields": [
+            "value-5"
+          ],
+          "params": {
+            "expected": [
+              "13"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$1,4,7,10,13$. The starting index is now 1, so the term at index 0 is excluded.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "1",
+          "value-2": "4",
+          "value-3": "7",
+          "value-4": "10",
+          "value-5": "13",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "1",
+          "value-2": "4",
+          "value-3": "7",
+          "value-4": "10",
+          "value-5": "13",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(1)+1",
+          "value-2": "4",
+          "value-3": "7",
+          "value-4": "10",
+          "value-5": "13",
+          "reason": "correct"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 3,
     "sourceHash": "b2f51e82321873493afee80dd10bf1f50538f7349962212b170f17da2f939a98",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -33239,6 +37457,170 @@
         "error": true
       }
     ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 8,
+    "sourceHash": "e086183db11c495d398030d369e816012ac73338b8fd38f12e332566804e97c6",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "No initial values are needed when a recurrence is given."
+            },
+            {
+              "id": "answer",
+              "label": "The initial value a_1 is also needed; different choices produce different sequences."
+            },
+            {
+              "id": "alternative-1",
+              "label": "Only a_0 is ever needed for a second-order recurrence."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The value $a_1$ is also needed. Choosing $a_1=0$ gives $1,0,1,1,\\ldots$, while $a_1=1$ gives $1,1,2,3,\\ldots$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "A [recurrence](ref:recurrence) is $a_{n+2}=a_{n+1}+a_n$ for $n\\geq0$, with only $a_0=1$ supplied. Explain the missing information.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 9,
+    "sourceHash": "f850d615e05361074be0bd7ca376f6a760ec42f2eecee248f850b9865a93ad19",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "The sequences differ, but both have the value set {1,2}; a set forgets order and repetition."
+            },
+            {
+              "id": "alternative-1",
+              "label": "The sequences are equal because their value sets agree."
+            },
+            {
+              "id": "alternative-2",
+              "label": "Their value sets differ because 1 occurs in different positions."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The [sequences](ref:sequence) differ at positions 2 and 3 under one-based indexing. Their sets of values are both $\\{1,2\\}$, which forget order and repetitions.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Are the finite [sequences](ref:sequence) $(1,2,1)$ and $(1,1,2)$ equal? Compare their sets of values.\n\nSelect the answer and reason."
   },
   {
     "lesson": "sequences-and-summations",
@@ -33760,6 +38142,375 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 18,
+    "sourceHash": "38a3196210a2613eb7b647c7c8fc23a8009ab019c6cf5a7fa77889e3245b51df",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$a_0$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$a_n$ for every $n\\geq1$"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "9"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-2",
+          "validator": "exact",
+          "fields": [
+            "value-2"
+          ],
+          "params": {
+            "expected": [
+              "0"
+            ]
+          },
+          "description": "The requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "The initial term is 9 by definition, and every term with index at least 1 is 0 by the [recurrence](ref:recurrence).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "9",
+          "value-2": "0"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "9",
+          "value-2": "0"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(9)+1",
+          "value-2": "0"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 21,
+    "sourceHash": "a5acb37995e1c5fcf65cb07117277f943e67145a6c70bd226a58a3eff454ee13",
+    "rationale": "A single typed term list preserves constructing the expansion without revealing its length through prefilled slots.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "terms",
+          "kind": "math",
+          "label": "Expanded terms, in index order",
+          "hint": "Separate the terms with commas."
+        },
+        {
+          "id": "sum",
+          "kind": "math",
+          "label": "Sum"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "terms",
+          "validator": "tuple",
+          "fields": [
+            "terms"
+          ],
+          "params": {
+            "expected": [
+              "3",
+              "5",
+              "7",
+              "9"
+            ],
+            "ordered": true
+          },
+          "description": "The expansion includes every term in index order."
+        },
+        {
+          "id": "sum",
+          "validator": "exact",
+          "fields": [
+            "sum"
+          ],
+          "params": {
+            "expected": [
+              "24"
+            ]
+          },
+          "description": "The expanded sum is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "$3+5+7+9=24$. The inclusive bounds give four terms.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "terms": "3,5,7,9",
+          "sum": "24"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "terms": "2*2-1,2*3-1,2*4-1,2*5-1",
+          "sum": "3+5+7+9"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "terms": "3,5,7",
+          "sum": "15"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 22,
+    "sourceHash": "f04668e54f6dc33bfa3e0697ecb8507326ff5541abb7cf86fadc18ff21cda9f1",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Sum"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "Term count"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "18"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-2",
+          "validator": "exact",
+          "fields": [
+            "value-2"
+          ],
+          "params": {
+            "expected": [
+              "6"
+            ]
+          },
+          "description": "The requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "There are $9-4+1=6$ terms, so the sum is $6\\cdot3=18$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "18",
+          "value-2": "6"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "18",
+          "value-2": "6"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(18)+1",
+          "value-2": "6"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 23,
+    "sourceHash": "c17558cdb798b5c43a7f8ec9bed2fc18c1115ac4a130f8313beaa5672c81e889",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Sum"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Reason",
+          "options": [
+            {
+              "id": "correct",
+              "label": "No integer lies between the lower bound 1 and upper bound 0."
+            },
+            {
+              "id": "wrong-0",
+              "label": "The single term at index 0 must be included."
+            },
+            {
+              "id": "wrong-1",
+              "label": "An empty sum equals the first omitted term."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "0"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Zero. The index range is empty, so no values are added.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "0",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "0",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(0)+1",
+          "reason": "correct"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 25,
     "sourceHash": "e254029b794bb88821c2454bb16aafc9206d897ee0c07c446f7bf81610f46d04",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -33956,6 +38707,88 @@
         "error": true
       }
     ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 29,
+    "sourceHash": "74f48f5efae0fdeeab960beeb844a54ccaa21ae96fd6b9e32b3a5a2035e3d698",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-2",
+              "label": "The sum always contains k terms rather than n terms."
+            },
+            {
+              "id": "answer",
+              "label": "The index k varies across terms, so it cannot be treated as a constant."
+            },
+            {
+              "id": "alternative-1",
+              "label": "Every summation index is a fixed constant."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The index $k$ changes from term to term and is not a constant that can be pulled out. The correct value is $n(n+1)/2$; at $n=3$ the terms are 1,2,3 and sum to 6.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "A student writes $\\sum_{k=1}^{n}k=nk$. Explain why this is not a valid use of a constant-sum rule.\n\nSelect the answer and reason."
   },
   {
     "lesson": "sequences-and-summations",
@@ -34157,6 +38990,110 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 36,
+    "sourceHash": "b3a5846822e4f90f47c4e7099633e80efa2fd2a8ae7a177c494a76e6c068bd7d",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Sum"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Why not substitute in the quotient?",
+          "options": [
+            {
+              "id": "zero",
+              "label": "Its denominator is zero when r=1."
+            },
+            {
+              "id": "no-terms",
+              "label": "There are no terms when r=1."
+            },
+            {
+              "id": "infinite",
+              "label": "The finite sum becomes infinite when r=1."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "expression",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "N",
+            "variables": [
+              "N"
+            ]
+          },
+          "description": "The typed expression is equivalent on the stated domain."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "zero"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The sum is $N$, since every term is 1. The quotient has denominator $1-r=0$, so direct substitution into it is invalid.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "N",
+          "reason": "zero"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "1*N",
+          "reason": "zero"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "(N)+1",
+          "reason": "zero"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 37,
     "sourceHash": "5e19577ee7c70224dbb40b8ec248bb4bce785af2bb6888e4d7b2a825f84a07a8",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -34301,6 +39238,88 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 40,
+    "sourceHash": "3411d25a3d1b80c28d2fea362c4194607b8d4db78e2564ebe83da8696d15d715",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "alternative-1",
+              "label": "Every finite sum formula automatically gives an infinite sum."
+            },
+            {
+              "id": "alternative-2",
+              "label": "All infinite series have the value of their last term."
+            },
+            {
+              "id": "answer",
+              "label": "An infinite sum needs a definition and convergence argument beyond finite cancellation."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The calculation evaluates only finitely many terms. An infinite sum requires a definition and a proof that the finite [partial sums](ref:partial-sum) approach a particular real value; finite cancellation alone provides neither.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Why does a finite geometric-sum derivation alone not justify assigning a value to an infinite series?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 46,
     "sourceHash": "d839da0a15de979787f91daf2e10c124a4b06a0afccaccbe6bf4621bc89c665e",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -34437,6 +39456,88 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 48,
+    "sourceHash": "91a11c1bc936a4331e61190e78ab2dab114c2c9455efbeab8965b026af85f3f7",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "At k=0 both sides are undefined; cancellation cannot define the original term."
+            },
+            {
+              "id": "alternative-1",
+              "label": "The identity remains valid at zero because infinity cancels."
+            },
+            {
+              "id": "alternative-2",
+              "label": "An undefined term can always be omitted from a sum."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Both sides are undefined at 0 because of division by zero. Formal cancellation cannot supply a value to an undefined original term.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Why can the identity $1/(k(k+1))=1/k-1/(k+1)$ not justify a sum that includes $k=0$?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 51,
     "sourceHash": "dc0e2cde0591316b8947282d03492caace4344e8458b92fdfe40e6057c1be99e",
     "rationale": "The published task asks for definite numerical values; explanatory answer-key prose is not an additional response requirement.",
@@ -34566,6 +39667,175 @@
         "error": true
       }
     ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 53,
+    "sourceHash": "d7a2c3a94abd55bcb6f71dbdf7bcfe30a9557ac1715e97c9a25c4433afbdd7f5",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Empty product"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "Empty sum"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "1"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-2",
+          "validator": "exact",
+          "fields": [
+            "value-2"
+          ],
+          "params": {
+            "expected": [
+              "0"
+            ]
+          },
+          "description": "The requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "The product is 1 and the sum is 0, the respective multiplicative and additive identities.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "1",
+          "value-2": "0"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "1",
+          "value-2": "0"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(1)+1",
+          "value-2": "0"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 54,
+    "sourceHash": "6563489990f2e8e0e3f5cf0401f2e9df603b5ca11e0d0a963947d741d849f8f3",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "It is an empty product, whose multiplicative identity is 1."
+            },
+            {
+              "id": "alternative-1",
+              "label": "It is an empty sum, whose value is 1."
+            },
+            {
+              "id": "alternative-2",
+              "label": "Zero factors must make the product zero."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$0!$ is the product over the empty range from 1 to 0. Its value is therefore the empty-product value 1.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Explain why $0!=1$ under the product definition of factorial.\n\nSelect the answer and reason."
   },
   {
     "lesson": "sequences-and-summations",
@@ -34761,6 +40031,109 @@
       {
         "response": {
           "formula-1": "(1/n)+1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 58,
+    "sourceHash": "de1053f47b078122e1800e71d05b5e13e4c006e79e4e8a795077780e68802808",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Product"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Reason",
+          "options": [
+            {
+              "id": "correct",
+              "label": "The factor at index 0 is zero."
+            },
+            {
+              "id": "wrong-0",
+              "label": "A product over negative indices is always zero."
+            },
+            {
+              "id": "wrong-1",
+              "label": "Every symmetric product has an even number of factors."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "0"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Zero, because the factor for $k=0$ is zero. Any finite product containing a zero factor is zero.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "0",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "0",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(0)+1",
+          "reason": "correct"
         },
         "verdict": "incorrect"
       },
@@ -35094,6 +40467,358 @@
   },
   {
     "lesson": "sequences-and-summations",
+    "id": 66,
+    "sourceHash": "fbeb9c3627275a4b1513f049ac00b93f41e6e037a371f94b7c8c70bad64d623d",
+    "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "lower",
+          "kind": "math",
+          "label": "Finite lower bound"
+        },
+        {
+          "id": "upper",
+          "kind": "math",
+          "label": "Finite upper bound"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "witness",
+          "validator": "witness",
+          "fields": [
+            "lower",
+            "upper"
+          ],
+          "params": {
+            "variables": [
+              {
+                "name": "lower",
+                "field": "lower"
+              },
+              {
+                "name": "upper",
+                "field": "upper"
+              }
+            ],
+            "conditions": [
+              {
+                "left": "lower",
+                "op": "<=",
+                "right": "-24"
+              },
+              {
+                "left": "upper",
+                "op": ">=",
+                "right": "60"
+              }
+            ]
+          },
+          "description": "The proposed values satisfy the requested hypotheses and violate the claimed conclusion."
+        }
+      ],
+      "feedback": {
+        "correct": "The sum lies between $12(-2)=-24$ and $12(5)=60$. Add the twelve individual lower and upper inequalities.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "lower": "-24",
+          "upper": "60"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "lower": "-25",
+          "upper": "61"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "lower": "-100",
+          "upper": "100"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "lower": "-23",
+          "upper": "60"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "lower": "-24",
+          "upper": "59"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 69,
+    "sourceHash": "6a85d9bbe87d0ae6d9cf65c1384cc68ac36980a746c4e6dd9c5d0d8b01ae45e9",
+    "rationale": "A freely created numeric witness is checked against the statement itself, including domain and boundary conditions; the official example is not the only accepted answer.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "discarded",
+          "kind": "math",
+          "label": "Term to discard"
+        },
+        {
+          "id": "kept",
+          "kind": "math",
+          "label": "Term to keep"
+        },
+        {
+          "id": "always",
+          "kind": "select",
+          "label": "Does discarding always give a lower bound?",
+          "options": [
+            {
+              "id": "yes",
+              "label": "Yes"
+            },
+            {
+              "id": "no",
+              "label": "No"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "witness",
+          "validator": "witness",
+          "fields": [
+            "discarded",
+            "kept"
+          ],
+          "params": {
+            "variables": [
+              {
+                "name": "discarded",
+                "field": "discarded"
+              },
+              {
+                "name": "kept",
+                "field": "kept"
+              }
+            ],
+            "conditions": [
+              {
+                "left": "discarded",
+                "op": "<",
+                "right": "0"
+              },
+              {
+                "left": "kept",
+                "op": ">",
+                "right": "discarded+kept"
+              }
+            ]
+          },
+          "description": "The proposed values satisfy the requested hypotheses and violate the claimed conclusion."
+        },
+        {
+          "id": "always",
+          "validator": "selection",
+          "fields": [
+            "always"
+          ],
+          "params": {
+            "expected": [
+              "no"
+            ]
+          },
+          "description": "The short explanation identifies the relevant condition.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "No. In $-5+2=-3$, discarding the negative term leaves 2, which is larger than the original sum. Discarding terms gives a lower bound exactly when their total is nonnegative. Requiring each discarded term to be nonnegative is a sufficient condition.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "discarded": "-5",
+          "kept": "2",
+          "always": "no"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "discarded": "-1",
+          "kept": "0",
+          "always": "no"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "discarded": "-1/2",
+          "kept": "-3",
+          "always": "no"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "discarded": "1",
+          "kept": "2",
+          "always": "no"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "discarded": "0",
+          "kept": "2",
+          "always": "no"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "discarded": "-5",
+          "kept": "2",
+          "always": "yes"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Is discarding terms always a valid lower-bound operation on a sum of real numbers? If not, give a two-term counterexample, identifying the discarded term and the term kept."
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 70,
+    "sourceHash": "f27ac7b9528a4156049fcce1b0eec7409bb392becc2b062219667986dfa4767d",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Lower bound from the smallest term"
+        },
+        {
+          "id": "formula-2",
+          "kind": "math",
+          "label": "Upper bound from the largest term"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "expression",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "1",
+            "variables": [
+              "n"
+            ],
+            "domain": [
+              "n"
+            ]
+          },
+          "description": "The typed expression is equivalent on the stated domain."
+        },
+        {
+          "id": "formula-2",
+          "validator": "expression",
+          "fields": [
+            "formula-2"
+          ],
+          "params": {
+            "expected": "n",
+            "variables": [
+              "n"
+            ]
+          },
+          "description": "The typed expression is equivalent on the stated domain."
+        }
+      ],
+      "feedback": {
+        "correct": "Each term lies between $1/n$ and 1, so the sum lies between 1 and $n$. These are valid finite bounds, though a more detailed argument can often give tighter bounds.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "1",
+          "formula-2": "n"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "n*(1/n)",
+          "formula-2": "n*1"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "(1)+1",
+          "formula-2": "n"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
     "id": 71,
     "sourceHash": "c7f1c31e6a27fb8046837399ee9ab887c9e1fb5061b0929cacdca1d277db2a66",
     "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
@@ -35306,6 +41031,236 @@
       {
         "response": {
           "formula-1": "((3*i^2-i)/2)+1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 76,
+    "sourceHash": "916fb6b6dfc1ac784c35974893a872d033c9b7e40834b0d7f254f838737862bd",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Correct sum"
+        },
+        {
+          "id": "issues",
+          "kind": "select",
+          "label": "The two errors",
+          "options": [
+            {
+              "id": "both",
+              "label": "One copy of c is missing, and N-1 increments were counted as N."
+            },
+            {
+              "id": "order",
+              "label": "The terms are unordered, and the first index must be 0."
+            },
+            {
+              "id": "ratio",
+              "label": "The ratio should be c, and the term count should be d."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "expression",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "N*(2*c+(N-1)*d)/2",
+            "variables": [
+              "N",
+              "c",
+              "d"
+            ]
+          },
+          "description": "The typed expression is equivalent on the stated domain."
+        },
+        {
+          "id": "issues",
+          "validator": "selection",
+          "fields": [
+            "issues"
+          ],
+          "params": {
+            "expected": [
+              "both"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The final term is $c+(N-1)d$, not $Nd$. Twice the average is first plus last, so the correct sum is $N(2c+(N-1)d)/2$. The proposed expression loses one copy of $c$ and miscounts the increments.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "N*(2*c+(N-1)*d)/2",
+          "issues": "both"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "N*c+N*(N-1)*d/2",
+          "issues": "both"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "(N*(2*c+(N-1)*d)/2)+1",
+          "issues": "both"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "sequences-and-summations",
+    "id": 79,
+    "sourceHash": "26662eccb5357222e4a549b13c209df7a3e580b73715c433e42b47977f97172e",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Sum"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "Number of terms"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Reason",
+          "options": [
+            {
+              "id": "correct",
+              "label": "Both index endpoints are included."
+            },
+            {
+              "id": "wrong-0",
+              "label": "The index 0 contributes no term."
+            },
+            {
+              "id": "wrong-1",
+              "label": "Only strictly positive indices count."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "1023"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-2",
+          "validator": "exact",
+          "fields": [
+            "value-2"
+          ],
+          "params": {
+            "expected": [
+              "10"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "correct"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "There are $9-0+1=10$ terms. Since $a_n=2^n$, the sum is $2^{10}-1=1023$. Inclusive endpoints determine the count.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "1023",
+          "value-2": "10",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "1023",
+          "value-2": "10",
+          "reason": "correct"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(1023)+1",
+          "value-2": "10",
+          "reason": "correct"
         },
         "verdict": "incorrect"
       },
@@ -38755,6 +44710,88 @@
   },
   {
     "lesson": "strong-induction",
+    "id": 3,
+    "sourceHash": "60eb09e2ec63d4cecfd9dc0d6715e2547756fe4924403f8b86b582b4e8841895",
+    "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "select",
+          "label": "Answer and reason",
+          "options": [
+            {
+              "id": "answer",
+              "label": "Ordinary induction on the conjunction of all cases through n supplies the strong hypothesis."
+            },
+            {
+              "id": "alternative-1",
+              "label": "Strong induction can prove claims that ordinary induction cannot."
+            },
+            {
+              "id": "alternative-2",
+              "label": "Ordinary induction has no need for hypotheses."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "selection",
+          "fields": [
+            "answer"
+          ],
+          "params": {
+            "expected": [
+              "answer"
+            ]
+          },
+          "description": "The selected response includes the correct decision and reason.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "Define $Q(n)$ as the conjunction of all statements $P(j)$ from the starting index through $n$. Ordinary induction on $Q$ makes the whole earlier collection available, reproducing the strong step.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "recognition",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "answer": "answer"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "alternative-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "alternative-2"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ],
+    "prompt": "Explain why [strong induction](ref:strong-induction) is not logically more powerful than ordinary induction.\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "strong-induction",
     "id": 6,
     "sourceHash": "877746d6dda929891a2e2edc78c7b6a49b46ebc705520724c92b3d0b729adb32",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -39575,6 +45612,254 @@
   },
   {
     "lesson": "strong-induction",
+    "id": 21,
+    "sourceHash": "1f8ec6938ce8928104778efc9dc925da0c14a1eecf548d1b795501026d89ef0a",
+    "rationale": "The compact count table matches the four requested combinations; each row is checked against its amount without requiring an explanation.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "counts",
+          "kind": "grid",
+          "label": "Stamp combinations",
+          "columns": [
+            "4-unit stamps",
+            "7-unit stamps"
+          ],
+          "rows": [
+            {
+              "label": "18",
+              "cells": [
+                {
+                  "id": "a18",
+                  "kind": "text"
+                },
+                {
+                  "id": "b18",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "label": "19",
+              "cells": [
+                {
+                  "id": "a19",
+                  "kind": "text"
+                },
+                {
+                  "id": "b19",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "label": "20",
+              "cells": [
+                {
+                  "id": "a20",
+                  "kind": "text"
+                },
+                {
+                  "id": "b20",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "label": "21",
+              "cells": [
+                {
+                  "id": "a21",
+                  "kind": "text"
+                },
+                {
+                  "id": "b21",
+                  "kind": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "counts",
+          "validator": "witness",
+          "fields": [
+            "a18",
+            "b18",
+            "a19",
+            "b19",
+            "a20",
+            "b20",
+            "a21",
+            "b21"
+          ],
+          "params": {
+            "variables": [
+              {
+                "name": "a18",
+                "field": "a18",
+                "integer": true
+              },
+              {
+                "name": "b18",
+                "field": "b18",
+                "integer": true
+              },
+              {
+                "name": "a19",
+                "field": "a19",
+                "integer": true
+              },
+              {
+                "name": "b19",
+                "field": "b19",
+                "integer": true
+              },
+              {
+                "name": "a20",
+                "field": "a20",
+                "integer": true
+              },
+              {
+                "name": "b20",
+                "field": "b20",
+                "integer": true
+              },
+              {
+                "name": "a21",
+                "field": "a21",
+                "integer": true
+              },
+              {
+                "name": "b21",
+                "field": "b21",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a18",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "b18",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "a19",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "b19",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "a20",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "b20",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "a21",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "b21",
+                "op": ">=",
+                "right": "0"
+              },
+              {
+                "left": "4*a18+7*b18",
+                "op": "=",
+                "right": "18"
+              },
+              {
+                "left": "4*a19+7*b19",
+                "op": "=",
+                "right": "19"
+              },
+              {
+                "left": "4*a20+7*b20",
+                "op": "=",
+                "right": "20"
+              },
+              {
+                "left": "4*a21+7*b21",
+                "op": "=",
+                "right": "21"
+              }
+            ]
+          },
+          "description": "Each amount is made with nonnegative integer counts of the specified stamps."
+        }
+      ],
+      "feedback": {
+        "correct": "$18=4+7+7$, $19=4+4+4+7$, $20=4+4+4+4+4$, and $21=7+7+7$. These are four consecutive valid bases.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "a18": "1",
+          "b18": "2",
+          "a19": "3",
+          "b19": "1",
+          "a20": "5",
+          "b20": "0",
+          "a21": "0",
+          "b21": "3"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "a18": "(1)+1",
+          "b18": "2",
+          "a19": "3",
+          "b19": "1",
+          "a20": "5",
+          "b20": "0",
+          "a21": "0",
+          "b21": "3"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "b18": "2",
+          "a19": "3",
+          "b19": "1",
+          "a20": "5",
+          "b20": "0",
+          "a21": "0",
+          "b21": "3"
+        },
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "strong-induction",
     "id": 23,
     "sourceHash": "769fc12231d82c15f6527145495f9825fb80d7691d622f6263a7ea70360d4d0f",
     "rationale": "This brief conceptual decision has a concise complete answer-and-reason choice. It measures recognition and does not claim proof or formula-production evidence.",
@@ -39736,6 +46021,224 @@
       }
     ],
     "prompt": "Can 6-unit and 9-unit stamps make every integer amount beyond some threshold?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 30,
+    "sourceHash": "704b6f4b1543e1e9faa0cded18d1276e4ddb10a46ca662710f696ec9468bcb6c",
+    "rationale": "Ordinary typed set notation preserves answer creation, including nested sets and ordered pairs. The checker ignores only outer set order and duplicate members.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "set-1",
+          "kind": "math",
+          "label": "Consecutive bases",
+          "hint": "Enter a set with braces; use parentheses for ordered pairs and {} for the empty set."
+        },
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "First usable target"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "set-1",
+          "validator": "set",
+          "fields": [
+            "set-1"
+          ],
+          "params": {
+            "expected": [
+              "30",
+              "31",
+              "32",
+              "33",
+              "34",
+              "35",
+              "36"
+            ]
+          },
+          "description": "Exactly the requested members are present, with order preserved inside ordered pairs."
+        },
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "37"
+            ]
+          },
+          "description": "The requested value is correct."
+        }
+      ],
+      "feedback": {
+        "correct": "The first usable target is 37, since $n-7\\geq30$ is required. Verifying 30 through 36 provides seven consecutive bases for this step, assuming those amounts really are representable.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "set-1": "{30,31,32,33,34,35,36}",
+          "value-1": "37"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{36,35,34,33,32,31,30}",
+          "value-1": "37"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "set-1": "{}",
+          "value-1": "37"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 37,
+    "sourceHash": "55b8b4a65011bee45981d142d0794b06f43a85ab976cf954d1799945b51cf374",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "Candidate value at index 0"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "Candidate value at index 1"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Interpretation",
+          "options": [
+            {
+              "id": "reason",
+              "label": "The first base fails and the second matches; one failed base rejects the candidate."
+            },
+            {
+              "id": "wrong-0",
+              "label": "Both bases match, so the candidate is proved."
+            },
+            {
+              "id": "wrong-1",
+              "label": "The second matching base repairs the first failed base."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "3"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-2",
+          "validator": "exact",
+          "fields": [
+            "value-2"
+          ],
+          "params": {
+            "expected": [
+              "3"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "reason"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "At $n=0$, the formula gives $2^1+1=3$, not the specified 2, so it is false for this sequence. At $n=1$, it gives $2^2-1=3$, which does match $a_1$. One failed base is enough to rule out the formula even though the other base agrees.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "3",
+          "value-2": "3",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "3",
+          "value-2": "3",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(3)+1",
+          "value-2": "3",
+          "reason": "reason"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "strong-induction",
@@ -40146,6 +46649,151 @@
       }
     ],
     "prompt": "A length-$n$ board is split between cells until every piece is a unit cell. If the first split produces lengths $a,b\\geq1$ with $a+b=n$, the two smaller pieces require $a-1$ and $b-1$ further splits. Why must the total also include the first split?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 57,
+    "sourceHash": "ad8ab559d3fcd81faa85286bff9cfd546f431f62d1c7c8b3fd097b51651397ae",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "value-1",
+          "kind": "math",
+          "label": "$t_2$"
+        },
+        {
+          "id": "value-2",
+          "kind": "math",
+          "label": "$t_3$"
+        },
+        {
+          "id": "value-3",
+          "kind": "math",
+          "label": "$t_4$"
+        },
+        {
+          "id": "reason",
+          "kind": "select",
+          "label": "Interpretation",
+          "options": [
+            {
+              "id": "reason",
+              "label": "The empty rectangle has one empty completion, preserving a valid tiling when no cells remain."
+            },
+            {
+              "id": "wrong-0",
+              "label": "The empty rectangle has no tilings because it has no cells."
+            },
+            {
+              "id": "wrong-1",
+              "label": "The empty rectangle has two tilings, one for each orientation."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value-1",
+          "validator": "exact",
+          "fields": [
+            "value-1"
+          ],
+          "params": {
+            "expected": [
+              "2"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-2",
+          "validator": "exact",
+          "fields": [
+            "value-2"
+          ],
+          "params": {
+            "expected": [
+              "3"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "value-3",
+          "validator": "exact",
+          "fields": [
+            "value-3"
+          ],
+          "params": {
+            "expected": [
+              "5"
+            ]
+          },
+          "description": "The requested value is correct."
+        },
+        {
+          "id": "reason",
+          "validator": "selection",
+          "fields": [
+            "reason"
+          ],
+          "params": {
+            "expected": [
+              "reason"
+            ]
+          },
+          "description": "The comparison is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "The values are $2,3,5$. At width 2, the two-horizontal-[domino](ref:tiling) case leaves width 0 and contributes its one empty completion. Setting $t_0=0$ would incorrectly discard that valid [tiling](ref:tiling?repeat).",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text",
+          "tap"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "value-1": "2",
+          "value-2": "3",
+          "value-3": "5",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "2",
+          "value-2": "3",
+          "value-3": "5",
+          "reason": "reason"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "value-1": "(2)+1",
+          "value-2": "3",
+          "value-3": "5",
+          "reason": "reason"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "strong-induction",
@@ -40720,6 +47368,117 @@
       }
     ],
     "prompt": "A [smallest-counterexample](ref:smallest-counterexample) proof chooses a least negative real counterexample without justification. Why is this invalid?\n\nSelect the answer and reason."
+  },
+  {
+    "lesson": "strong-induction",
+    "id": 68,
+    "sourceHash": "fc59c100c44abe765907aee3f97d995085262ac5b1df09d07d85d38031b591f9",
+    "rationale": "The prompt asks for a formula or result without a derivation. Ordinary typed math preserves answer creation, and symbolic equivalence accepts rearranged results.",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula-1",
+          "kind": "math",
+          "label": "Length-a piece"
+        },
+        {
+          "id": "formula-2",
+          "kind": "math",
+          "label": "Length-b piece"
+        },
+        {
+          "id": "formula-3",
+          "kind": "math",
+          "label": "Total, in terms of n"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula-1",
+          "validator": "expression",
+          "fields": [
+            "formula-1"
+          ],
+          "params": {
+            "expected": "a-1",
+            "variables": [
+              "a"
+            ]
+          },
+          "description": "The typed expression is equivalent on the stated domain."
+        },
+        {
+          "id": "formula-2",
+          "validator": "expression",
+          "fields": [
+            "formula-2"
+          ],
+          "params": {
+            "expected": "b-1",
+            "variables": [
+              "b"
+            ]
+          },
+          "description": "The typed expression is equivalent on the stated domain."
+        },
+        {
+          "id": "formula-3",
+          "validator": "expression",
+          "fields": [
+            "formula-3"
+          ],
+          "params": {
+            "expected": "n-1",
+            "variables": [
+              "n"
+            ]
+          },
+          "description": "The typed expression is equivalent on the stated domain."
+        }
+      ],
+      "feedback": {
+        "correct": "The subboards have lengths $a,b<n$, so their counts are $a-1,b-1$ by hypothesis. With the initial split the total is $1+(a-1)+(b-1)=n-1$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": [
+          "math-text"
+        ]
+      }
+    },
+    "fixtures": [
+      {
+        "response": {
+          "formula-1": "a-1",
+          "formula-2": "b-1",
+          "formula-3": "n-1"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "a+(-1)",
+          "formula-2": "b+(-1)",
+          "formula-3": "1+n-2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula-1": "(a-1)+1",
+          "formula-2": "b-1",
+          "formula-3": "n-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   },
   {
     "lesson": "strong-induction",
