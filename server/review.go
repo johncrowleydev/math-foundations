@@ -135,17 +135,40 @@ func depth(level string) int {
 		return 1
 	}
 }
-func (t ReviewTemplate) quick() bool {
-	if t.InteractionCost != "low" {
+func (t ReviewTemplate) questionEvidence(q map[string]any) AssessmentEvidence {
+	if a := assessmentFromQuestion(q); a != nil {
+		return a.Evidence
+	}
+	if q["choice"] != nil {
+		return AssessmentEvidence{Level: "recognition", InteractionCost: "low", InputCapabilities: []string{"tap"}}
+	}
+	return AssessmentEvidence{Level: t.EvidenceLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities}
+}
+func quickEvidence(e AssessmentEvidence) bool {
+	if e.InteractionCost != "low" || len(e.InputCapabilities) == 0 {
 		return false
 	}
-	for _, c := range t.InputCapabilities {
+	for _, c := range e.InputCapabilities {
 		if c != "tap" && c != "short-text" {
 			return false
 		}
 	}
-	return len(t.InputCapabilities) > 0
+	return true
 }
+func (t ReviewTemplate) quick() bool {
+	questions := t.Variants
+	if len(questions) == 0 {
+		questions = []map[string]any{t.Question}
+	}
+	for _, q := range questions {
+		e := t.questionEvidence(q)
+		if depth(e.Level) < depth(t.EvidenceLevel) || !quickEvidence(e) {
+			return false
+		}
+	}
+	return len(questions) > 0
+}
+
 func (t ReviewTemplate) sourceTarget() string {
 	if t.SourceTarget != "" {
 		return t.SourceTarget
@@ -154,6 +177,31 @@ func (t ReviewTemplate) sourceTarget() string {
 }
 func (g *Grading) reviewTemplates() []ReviewTemplate {
 	result := append([]ReviewTemplate{}, g.catalog.ReviewTemplates...)
+	for i, t := range result {
+		questions := t.Variants
+		if len(questions) == 0 {
+			questions = []map[string]any{t.Question}
+		}
+		changed := false
+		cost := 0
+		caps := map[string]bool{}
+		for _, q := range questions {
+			changed = changed || assessmentFromQuestion(q) != nil
+			e := t.questionEvidence(q)
+			cost = max(cost, map[string]int{"low": 1, "medium": 2, "high": 3}[e.InteractionCost])
+			for _, c := range e.InputCapabilities {
+				caps[c] = true
+			}
+		}
+		if changed {
+			result[i].InteractionCost = []string{"high", "low", "medium", "high"}[cost]
+			result[i].InputCapabilities = nil
+			for c := range caps {
+				result[i].InputCapabilities = append(result[i].InputCapabilities, c)
+			}
+			sort.Strings(result[i].InputCapabilities)
+		}
+	}
 	keys := []string{}
 	for key := range g.catalog.Exercises {
 		keys = append(keys, key)
@@ -162,10 +210,11 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 	for _, key := range keys {
 		raw := g.catalog.Exercises[key]
 		var item struct {
-			Lesson    string
-			Question  map[string]any
-			Choice    *ChoiceAssessment
-			Analytics json.RawMessage
+			Lesson     string
+			Question   map[string]any
+			Choice     *ChoiceAssessment
+			Assessment *Assessment
+			Analytics  json.RawMessage
 		}
 		if json.Unmarshal(raw, &item) != nil {
 			continue
@@ -183,6 +232,12 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 				level := skillDepth(s.Skill)
 				if s.Skill == "recall" && item.Choice == nil {
 					level = "production"
+				}
+				if item.Assessment != nil {
+					if depth(item.Assessment.Evidence.Level) < depth(level) {
+						continue
+					}
+					level = item.Assessment.Evidence.Level
 				}
 				// A choice tagged with a constructive skill cannot certify production.
 				if item.Choice != nil && level != "recognition" {
@@ -202,6 +257,11 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 					q["choice"] = item.Choice
 					cost = "low"
 					caps = []string{"tap"}
+				}
+				if item.Assessment != nil {
+					q["assessment"] = item.Assessment
+					cost = item.Assessment.Evidence.InteractionCost
+					caps = item.Assessment.Evidence.InputCapabilities
 				}
 				lesson := key
 				if i := strings.LastIndex(key, "-"); i >= 0 {
@@ -340,6 +400,28 @@ func substantive(a Attempt) bool {
 // Replay only structured active evidence. Passive exposure records are never read.
 func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[string]ReviewState, error) {
 	states := map[string]ReviewState{}
+	previous := map[string]ReviewState{}
+	rows, e := tx.Query("SELECT payload FROM versions JOIN records ON versions.id=records.head WHERE records.key LIKE 'review-state/%'")
+	if e != nil {
+		return nil, e
+	}
+	for rows.Next() {
+		var raw string
+		if e = rows.Scan(&raw); e != nil {
+			rows.Close()
+			return nil, e
+		}
+		var state ReviewState
+		if json.Unmarshal([]byte(raw), &state) == nil {
+			previous[state.key()] = state
+		}
+	}
+	e = rows.Err()
+	rows.Close()
+	if e != nil {
+		return nil, e
+	}
+	required := func(t ReviewTemplate) int { return max(depth(t.EvidenceLevel), depth(previous[t.key()].EvidenceLevel)) }
 	byTarget := map[string][]ReviewTemplate{}
 	for _, t := range templates {
 		byTarget[t.key()] = append(byTarget[t.key()], t)
@@ -349,6 +431,9 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 		s, ok := states[key]
 		if !ok {
 			s = ReviewState{ReviewTarget: t.ReviewTarget, ID: key, ActivatedAt: at, DueAt: at, Reason: "Active practice requested", EvidenceLevel: t.EvidenceLevel}
+			if required(t) > depth(t.EvidenceLevel) {
+				s.EvidenceLevel = previous[key].EvidenceLevel
+			}
 		}
 		if at < s.ActivatedAt {
 			s.ActivatedAt = at
@@ -359,7 +444,7 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 		s.Quick = s.Quick || t.quick()
 		states[key] = s
 	}
-	rows, e := tx.Query("SELECT payload FROM versions JOIN records ON versions.id=records.head WHERE records.key LIKE 'review-activation/%'")
+	rows, e = tx.Query("SELECT payload FROM versions JOIN records ON versions.id=records.head WHERE records.key LIKE 'review-activation/%'")
 	if e != nil {
 		return nil, e
 	}
@@ -409,6 +494,12 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 		if a.Mode == "choice" {
 			observedDepth = 1
 		}
+		if a.Mode == "structured" {
+			observedDepth = 0
+			if a.Presentation != nil && a.Presentation.Assessment != nil {
+				observedDepth = depth(a.Presentation.Assessment.Evidence.Level)
+			}
+		}
 		if a.Review != nil {
 			observedDepth = 0
 			var instance ReviewInstance
@@ -416,7 +507,7 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 				observedDepth = depth(instance.EvidenceLevel)
 			}
 			for _, t := range byTarget[a.Review.key()] {
-				if depth(t.EvidenceLevel) <= observedDepth {
+				if required(t) <= observedDepth {
 					observed = append(observed, t)
 				}
 			}
@@ -438,7 +529,7 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 			for _, sk := range meta.Skills {
 				if sk.Role == "primary" && sk.Skill == t.Skill {
 					activate(t, a.Submitted)
-					if depth(t.EvidenceLevel) <= observedDepth {
+					if required(t) <= observedDepth {
 						observed = append(observed, t)
 					}
 					break
@@ -482,9 +573,36 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 			delete(errorsByExercise, a.Exercise)
 		}
 	}
+	for key, s := range previous {
+		if _, ok := states[key]; !ok && len(byTarget[key]) == 0 {
+			s.Quick = false
+			s.Reason = "Deeper retrieval remains due; no compatible question is available"
+			states[key] = s
+		}
+	}
 	for key, s := range states {
+		s.Quick = false
+		compatible := false
 		for _, t := range byTarget[key] {
-			s.Quick = s.Quick || t.quick()
+			questions := t.Variants
+			if len(questions) == 0 {
+				questions = []map[string]any{t.Question}
+			}
+			for _, q := range questions {
+				if depth(t.questionEvidence(q).Level) >= required(t) {
+					compatible = true
+				}
+			}
+			if depth(t.EvidenceLevel) >= required(t) {
+				s.Quick = s.Quick || t.quick()
+			}
+		}
+		if !compatible {
+			if old, ok := previous[key]; ok {
+				s = old
+			}
+			s.Quick = false
+			s.Reason = "Deeper retrieval remains due; no compatible question is available"
 		}
 		states[key] = s
 		if e := reviewPut(tx, "review-state/"+key, s); e != nil {
@@ -575,6 +693,16 @@ func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version 
 	gradingQuestion["officialAnswer"] = question["answer"]
 	teaching["question"] = gradingQuestion
 	teaching["choice"] = question["choice"]
+	if question["assessment"] != nil {
+		teaching["assessment"] = question["assessment"]
+	} else {
+		delete(teaching, "assessment")
+	}
+	if assessment := assessmentFromQuestion(question); assessment != nil {
+		t.EvidenceLevel = assessment.Evidence.Level
+		t.InteractionCost = assessment.Evidence.InteractionCost
+		t.InputCapabilities = assessment.Evidence.InputCapabilities
+	}
 	teaching["analytics"] = t.Analytics
 	teachingRaw, _ := json.Marshal(teaching)
 	return ReviewInstance{EvidenceLevel: t.EvidenceLevel, CognitiveLevel: t.CognitiveLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities, SourceTarget: t.sourceTarget(), ID: id, Exercise: "review-" + id, Lesson: t.Lesson, Question: question, Context: context, Analytics: t.Analytics, ContentVersion: version, Teaching: teachingRaw}
@@ -601,6 +729,16 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		}
 		s, active := states[t.key()]
 		if req.Kind == "scheduled-review" && (!active || s.DueAt > now) {
+			continue
+		}
+		seed := session.ID + ":" + t.key()
+		question, _ := instantiateReviewQuestion(t, seed)
+		evidence := t.questionEvidence(question)
+		required := max(depth(t.EvidenceLevel), depth(s.EvidenceLevel))
+		if req.Kind == "scheduled-review" && depth(evidence.Level) < required {
+			continue
+		}
+		if req.Mode == "quick" && !quickEvidence(evidence) {
 			continue
 		}
 		grouped[t.key()] = append(grouped[t.key()], t)
@@ -830,9 +968,10 @@ func (g *Grading) importReview(v ReviewImport) error {
 			// An explicit user backup can carry an archived server-issued task. Keep
 			// that immutable task rather than fabricating its old question from today.
 			var teaching struct {
-				Question  map[string]any
-				Choice    any
-				Analytics json.RawMessage
+				Question   map[string]any
+				Choice     any
+				Assessment *Assessment
+				Analytics  json.RawMessage
 			}
 			if instance.ContentVersion == "" || json.Unmarshal(instance.Teaching, &teaching) != nil || len(teaching.Question) == 0 {
 				return errors.New("Missing archived grading context")
@@ -850,6 +989,20 @@ func (g *Grading) importReview(v ReviewImport) error {
 			gradingChoice, _ := json.Marshal(teaching.Choice)
 			if string(answer) != string(official) || string(choice) != string(gradingChoice) {
 				return errors.New("Archived answer and grading context disagree")
+			}
+			inputAssessment, _ := json.Marshal(instance.Question["assessment"])
+			gradingAssessment, _ := json.Marshal(teaching.Assessment)
+			if !jsonEquivalent(inputAssessment, gradingAssessment) {
+				return errors.New("Archived assessment and grading context disagree")
+			}
+			if teaching.Assessment != nil {
+				if err := validateAssessment(teaching.Assessment); err != nil {
+					return err
+				}
+				evidence := teaching.Assessment.Evidence
+				if instance.EvidenceLevel != evidence.Level || instance.InteractionCost != evidence.InteractionCost || strings.Join(instance.InputCapabilities, ",") != strings.Join(evidence.InputCapabilities, ",") {
+					return errors.New("Archived assessment evidence disagrees")
+				}
 			}
 			var meta any
 			if json.Unmarshal(teaching.Analytics, &meta) != nil {
@@ -937,11 +1090,41 @@ func (g *Grading) importReview(v ReviewImport) error {
 		}
 		var context map[string]json.RawMessage
 		json.Unmarshal(teaching, &context)
+		if a.Mode == "structured" && a.Review != nil {
+			var frozen struct {
+				Assessment *Assessment `json:"assessment"`
+			}
+			if json.Unmarshal(teaching, &frozen) != nil || frozen.Assessment == nil {
+				return errors.New("Missing structured grading context")
+			}
+			if _, err := gradeAssessment(frozen.Assessment, a.Response); err != nil {
+				return err
+			}
+		}
 		if a.Review == nil {
 			context = map[string]json.RawMessage{"importedHistoricalContext": json.RawMessage("true")}
 			if len(a.Analytics) > 0 {
 				context["analytics"] = a.Analytics
 			}
+			if a.Presentation != nil {
+				if a.Presentation.Assessment != nil {
+					if a.Mode != "structured" {
+						return errors.New("Archived assessment mode disagrees")
+					}
+					if _, err := gradeAssessment(a.Presentation.Assessment, a.Response); err != nil {
+						return err
+					}
+					context["assessment"], _ = json.Marshal(a.Presentation.Assessment)
+				}
+				question := map[string]any{}
+				for k, v := range a.Presentation.Question {
+					question[k] = v
+				}
+				question["officialAnswer"] = question["answer"]
+				delete(question, "answer")
+				context["question"], _ = json.Marshal(question)
+			}
+
 		}
 		teaching, _ = json.Marshal(context)
 		if !enum(a.Status, "graded", "not_graded", "error", "cancelled") {

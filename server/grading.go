@@ -23,22 +23,23 @@ const gradingModel = "z-ai/glm-5.3-flash"
 const promptVersion = "foundations-grading-5"
 
 type Submission struct {
-	Review           *ReviewContext   `json:"review,omitempty"`
-	StartedAt        *int64           `json:"startedAt,omitempty"`
-	ActiveDurationMs *int64           `json:"activeDurationMs,omitempty"`
-	Assistance       *Assistance      `json:"assistance,omitempty"`
-	Unsure           *bool            `json:"unsure,omitempty"`
-	ID               string           `json:"id"`
-	Exercise         string           `json:"exercise"`
-	Submitted        int64            `json:"submitted"`
-	ContentVersion   string           `json:"contentVersion"`
-	Mode             string           `json:"mode"`
-	ChoiceID         string           `json:"choiceId,omitempty"`
-	Text             string           `json:"text"`
-	Ink              json.RawMessage  `json:"ink,omitempty"`
-	Images           []string         `json:"images"`
-	Photos           []SubmittedPhoto `json:"photos,omitempty"`
-	Revealed         bool             `json:"revealed"`
+	Review           *ReviewContext     `json:"review,omitempty"`
+	StartedAt        *int64             `json:"startedAt,omitempty"`
+	ActiveDurationMs *int64             `json:"activeDurationMs,omitempty"`
+	Assistance       *Assistance        `json:"assistance,omitempty"`
+	Unsure           *bool              `json:"unsure,omitempty"`
+	ID               string             `json:"id"`
+	Exercise         string             `json:"exercise"`
+	Submitted        int64              `json:"submitted"`
+	ContentVersion   string             `json:"contentVersion"`
+	Mode             string             `json:"mode"`
+	ChoiceID         string             `json:"choiceId,omitempty"`
+	Response         StructuredResponse `json:"response,omitempty"`
+	Text             string             `json:"text"`
+	Ink              json.RawMessage    `json:"ink,omitempty"`
+	Images           []string           `json:"images"`
+	Photos           []SubmittedPhoto   `json:"photos,omitempty"`
+	Revealed         bool               `json:"revealed"`
 }
 type SubmittedPhoto struct {
 	Hash     string `json:"hash"`
@@ -61,8 +62,9 @@ type Grade struct {
 	Usage           json.RawMessage `json:"usage,omitempty"`
 }
 type Attempt struct {
-	ActiveJob string          `json:"activeJob,omitempty"`
-	Analytics json.RawMessage `json:"analytics,omitempty"`
+	Presentation *AttemptPresentation `json:"presentation,omitempty"`
+	ActiveJob    string               `json:"activeJob,omitempty"`
+	Analytics    json.RawMessage      `json:"analytics,omitempty"`
 	Submission
 	Transcription string  `json:"transcription,omitempty"`
 	RecheckReason string  `json:"recheckReason,omitempty"`
@@ -129,10 +131,24 @@ func loadAttempt(q querier, id string) (Attempt, error) {
 	var context string
 	if err := q.QueryRow("SELECT context FROM attempts WHERE id=?", id).Scan(&context); err == nil {
 		var v struct {
-			Analytics json.RawMessage `json:"analytics"`
+			Analytics  json.RawMessage   `json:"analytics"`
+			Question   map[string]any    `json:"question"`
+			Assessment *Assessment       `json:"assessment"`
+			Choice     *ChoiceAssessment `json:"choice"`
 		}
 		if json.Unmarshal([]byte(context), &v) == nil {
 			a.Analytics = v.Analytics
+			if len(v.Question) > 0 {
+				v.Question["answer"] = v.Question["officialAnswer"]
+				delete(v.Question, "officialAnswer")
+				if v.Choice != nil {
+					v.Question["choice"] = v.Choice
+				}
+				if v.Assessment != nil {
+					v.Question["assessment"] = v.Assessment
+				}
+				a.Presentation = &AttemptPresentation{Question: v.Question, Assessment: v.Assessment}
+			}
 		}
 	}
 	return a, e
@@ -209,12 +225,31 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 		return Attempt{}, 409, errors.New("Update the app before submitting this exercise")
 	}
 	var item struct {
-		Choice *ChoiceAssessment `json:"choice"`
+		Choice     *ChoiceAssessment `json:"choice"`
+		Assessment *Assessment       `json:"assessment"`
 	}
 	if e := json.Unmarshal(teaching, &item); e != nil {
 		return Attempt{}, 503, e
 	}
 	var deterministic *Grade
+	if item.Assessment != nil && item.Choice != nil {
+		return Attempt{}, 503, errors.New("Conflicting assessment definitions")
+	}
+	if item.Assessment != nil {
+		if err := validateAssessment(item.Assessment); err != nil {
+			return Attempt{}, 503, err
+		}
+		if a.Mode != "structured" || a.Text != "" || a.ChoiceID != "" || len(a.Images) > 0 || len(a.Ink) > 0 || len(a.Photos) > 0 {
+			return Attempt{}, 400, errors.New("This exercise requires a structured answer")
+		}
+		grade, err := gradeAssessment(item.Assessment, a.Response)
+		if err != nil {
+			return Attempt{}, 400, err
+		}
+		deterministic = &grade
+	} else if a.Mode == "structured" || a.Response != nil {
+		return Attempt{}, 400, errors.New("This exercise does not accept a structured answer")
+	}
 	if a.Mode == "choice" {
 		if item.Choice == nil || len(a.Images) > 0 || len(a.Ink) > 0 || len(a.Photos) > 0 {
 			return Attempt{}, 400, errors.New("Invalid choice response")
@@ -234,14 +269,14 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 	} else if a.ChoiceID != "" || item.Choice != nil {
 		return Attempt{}, 400, errors.New("This exercise requires a choice response")
 	}
-	if a.Mode != "type" && a.Mode != "write" && a.Mode != "photo" && a.Mode != "choice" {
+	if a.Mode != "type" && a.Mode != "write" && a.Mode != "photo" && a.Mode != "choice" && a.Mode != "structured" {
 		return Attempt{}, 400, errors.New("Invalid input format")
 	}
 	if a.Mode == "type" {
 		if strings.TrimSpace(a.Text) == "" || len(a.Text) > 200000 || len(a.Images) > 0 || len(a.Ink) > 0 || len(a.Photos) > 0 {
 			return Attempt{}, 400, errors.New("Submit a nonempty typed response")
 		}
-	} else if a.Mode != "choice" {
+	} else if a.Mode != "choice" && a.Mode != "structured" {
 		if len(a.Images) == 0 || len(a.Images) > 100 || a.Text != "" {
 			return Attempt{}, 400, errors.New("Submit readable response images")
 		}
@@ -279,6 +314,9 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 		f.Close()
 	}
 
+	if deterministic == nil && g.key == "" {
+		return Attempt{}, 503, errors.New("AI grading is temporarily unavailable; your answer remains on this device")
+	}
 	tx, e := g.server.db.Begin()
 	if e != nil {
 		return Attempt{}, 503, e
@@ -371,8 +409,11 @@ func (g *Grading) recheck(id, requestID, reason string) error {
 	if contextMeta.ImportedHistoricalContext {
 		return errors.New("This imported historical attempt has no original grading context to recheck")
 	}
-	if a.Mode == "choice" {
+	if a.Mode == "choice" || a.Mode == "structured" || contextHasDeterministic(storedContext) {
 		return errors.New("This response is graded from a predefined answer, not an AI assessment")
+	}
+	if g.key == "" {
+		return errors.New("AI grading is temporarily unavailable")
 	}
 	if a.Status == "pending" || a.Status == "grading" || a.Status == "rechecking" {
 		return errors.New("Grading is already pending")
@@ -480,6 +521,12 @@ Return only JSON conforming to the supplied schema. Empty strings and arrays are
 
 func (g *Grading) evaluate(ctx context.Context, a Attempt, teaching, reason string) (Grade, error) {
 	var result Grade
+	if a.Mode == "choice" || a.Mode == "structured" || contextHasDeterministic(teaching) {
+		return result, errors.New("Deterministic responses cannot be sent to an AI grader")
+	}
+	if g.key == "" {
+		return result, errors.New("AI grading is temporarily unavailable")
+	}
 	assessmentType := "initial"
 	instruction := graderInstruction + evidenceInstruction
 	if strings.TrimSpace(reason) != "" || len(a.Grades) > 0 {
@@ -569,6 +616,9 @@ This is a RECHECK, not a first assessment. In feedback, directly address the stu
 	return result, nil
 }
 func (g *Grading) step(ctx context.Context) bool {
+	if g.key == "" {
+		return false
+	}
 	var id, attempt, reason string
 	var tries int
 	tx, e := g.server.db.Begin()
@@ -686,10 +736,10 @@ func configureGrading(s *Server) (*Grading, error) {
 	if len(c.Exercises) == 0 || c.Version == "" {
 		return nil, errors.New("Empty grading catalog")
 	}
-	key := strings.TrimSpace(os.Getenv("OPENROUTER_API_KEY"))
-	if key == "" {
-		return nil, errors.New("Missing OpenRouter configuration")
+	if err := validateCatalogAssessments(c); err != nil {
+		return nil, err
 	}
+	key := strings.TrimSpace(os.Getenv("OPENROUTER_API_KEY"))
 	endpoint := os.Getenv("FOUNDATIONS_GRADING_URL")
 	if endpoint == "" {
 		endpoint = "https://openrouter.ai/api/v1/chat/completions"
