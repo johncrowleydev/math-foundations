@@ -391,6 +391,20 @@ func TestLinearAcceptsAlternativeAnswers(t *testing.T) {
 		response     []string
 		correct      bool
 	}{
+		{"nonzero zero product", `{"kind":"zero-product"}`, []string{"1,0;0,0", "0,0;0,2", "0,0;0,0"}, true},
+		{"zero product rejects zero input", `{"kind":"zero-product"}`, []string{"0,0;0,0", "0,0;0,2", "0,0;0,0"}, false},
+		{"zero cancellation factor", `{"kind":"cancellation"}`, []string{"0,0;0,0", "1,0;0,1", "2,0;0,2"}, true},
+		{"cancellation needs distinct factors", `{"kind":"cancellation"}`, []string{"0,0;0,0", "1,0;0,1", "1,0;0,1"}, false},
+		{"nonsymmetric", `{"kind":"nonsymmetric"}`, []string{"1,2;3,4"}, true},
+		{"symmetric rejected", `{"kind":"nonsymmetric"}`, []string{"1,2;2,4"}, false},
+		{"pairwise nonparallel triple", `{"kind":"nonparallel-dependent"}`, []string{"1,0;0,1;1,1"}, true},
+		{"parallel pair rejected", `{"kind":"nonparallel-dependent"}`, []string{"1,0;2,0;1,1"}, false},
+		{"rectangular angle changing map", `{"kind":"changes-angles"}`, []string{"1,2"}, true},
+		{"angle changing scaling", `{"kind":"changes-angles"}`, []string{"2,0;0,1"}, true},
+		{"scaled rotation preserves angles", `{"kind":"changes-angles"}`, []string{"0,-3;3,0"}, false},
+		{"determinant does not imply uniform scale", `{"kind":"determinant-scale","determinantAbs":"2","scaleSquared":"4"}`, []string{"2,0;0,1"}, true},
+		{"wrong determinant", `{"kind":"determinant-scale","determinantAbs":"2","scaleSquared":"4"}`, []string{"1,0;0,1"}, false},
+		{"zero compact SVD", `{"kind":"svd","a":[["0","0"],["0","0"]],"form":"compact"}`, []string{"{}", "{}", "{}"}, true},
 		{"scaled column basis", `{"kind":"basis","a":[["1","0"],["0","0"]],"space":"column"}`, []string{"2,0"}, true},
 		{"original columns required", `{"kind":"basis","a":[["1","0"],["0","0"]],"space":"column","originalColumns":true}`, []string{"2,0"}, false},
 		{"null basis rotated", `{"kind":"basis","a":[["1","1","1"]],"space":"null"}`, []string{"1,-1,0;0,2,-2"}, true},
