@@ -83,8 +83,70 @@ const constructionKinds = [
   'nonparallel-dependent',
   'changes-angles',
   'determinant-scale',
+  'dependent-list-deletion',
+  'proper-independent',
+  'information-loss',
+  'spectral-example',
+  'vector-pair',
+  'nonnegative-closure',
+  'zero-row-not-infinite',
 ];
 function construction(r: AssessmentRequirement, response: StructuredResponse): boolean {
+  const kind = r.params.kind;
+  const integer = (field: string): bigint | null => {
+    const x = parseExact(value(response, field));
+    try {
+      return x.integer();
+    } catch (e) {
+      if (e instanceof InputError) return null;
+      throw e;
+    }
+  };
+  if (kind === 'vector-pair') {
+    const u = vector(value(response, r.fields[0])),
+      v = vector(value(response, r.fields[1]));
+    if (u.length !== v.length) return false;
+    const dot = u.reduce((s, x, i) => s.add(x.mul(v[i])), zero()),
+      un = u.reduce((s, x) => s.add(x.mul(x)), zero()),
+      vn = v.reduce((s, x) => s.add(x.mul(x)), zero()),
+      different = !u.every((x, i) => x.eq(v[i]));
+    if (r.params.property === 'unequal-equal-norm') return different && un.eq(vn);
+    const positiveParallel = dot.sign() > 0 && matrixRank([u, v]) === 1;
+    return r.params.property === 'positive-nonacute'
+      ? positiveParallel
+      : positiveParallel && different;
+  }
+  if (kind === 'nonnegative-closure') {
+    const v = vector(value(response, r.fields[0])),
+      c = parseExact(value(response, r.fields[1]));
+    return v.every((x) => x.sign() >= 0) && v.some((x) => x.sign() > 0) && c.sign() < 0;
+  }
+  if (kind === 'dependent-list-deletion') {
+    const a = answerMatrix(value(response, r.fields[0])),
+      index = integer(r.fields[1]);
+    return (
+      index !== null &&
+      index >= 1n &&
+      index <= BigInt(a.length) &&
+      matrixRank(a) < a.length &&
+      matrixRank(a.filter((_, i) => i !== Number(index) - 1)) < matrixRank(a)
+    );
+  }
+  if (kind === 'proper-independent') {
+    const a = answerMatrix(value(response, r.fields[0])),
+      dimension = integer(r.fields[1]);
+    return (
+      dimension === BigInt(a[0].length) &&
+      a.length > 0 &&
+      matrixRank(a) === a.length &&
+      a.length < a[0].length
+    );
+  }
+  if (kind === 'information-loss') {
+    const a = answerMatrix(value(response, r.fields[0])),
+      vectors = answerMatrix(value(response, r.fields[1]), true);
+    return a[0].length > matrixRank(a) && basis(a, vectors, 'null');
+  }
   const values = r.fields.map((f) => answerMatrix(value(response, f))),
     a = values[0],
     m = a.length,
@@ -92,6 +154,31 @@ function construction(r: AssessmentRequirement, response: StructuredResponse): b
   const nonzero = (x: Matrix) => x.some((row) => row.some((v) => !v.isZero()));
   const gram = multiply(transpose(a), a);
   switch (r.params.kind) {
+    case 'zero-row-not-infinite': {
+      if (n < 2 || !a.some((row) => row.every((x) => x.isZero()))) return false;
+      const coefficients = a.map((row) => row.slice(0, -1)),
+        rank = matrixRank(coefficients);
+      return matrixRank(a) > rank || rank === n - 1;
+    }
+    case 'spectral-example': {
+      if (!shape(a, 2, 2)) return false;
+      const trace = a[0][0].add(a[1][1]),
+        det = a[0][0].mul(a[1][1]).sub(a[0][1].mul(a[1][0])),
+        disc = trace.mul(trace).sub(Exact.rational(4).mul(det)),
+        scalar = a[0][1].isZero() && a[1][0].isZero() && a[0][0].eq(a[1][1]);
+      switch (r.params.property) {
+        case 'repeated-diagonalizable':
+          return scalar;
+        case 'no-real-eigenvalue':
+          return disc.sign() < 0;
+        case 'nonorthogonal-eigenbasis':
+          return scalar || (disc.sign() > 0 && !equal(a, transpose(a)));
+        case 'unit-spectrum-not-identity':
+          return trace.eq(Exact.rational(2)) && det.eq(one()) && !equal(a, identity(2));
+        default:
+          throw Error('Unknown spectral example.');
+      }
+    }
     case 'zero-product':
       return (
         values.every((x) => shape(x, 2, 2)) &&
@@ -143,8 +230,38 @@ function construction(r: AssessmentRequirement, response: StructuredResponse): b
 export function validateLinearRequirement(r: AssessmentRequirement): void {
   const p = r.params;
   if (constructionKinds.includes(String(p.kind))) {
-    if (r.fields.length !== (['zero-product', 'cancellation'].includes(String(p.kind)) ? 3 : 1))
+    if (
+      r.fields.length !==
+      (['zero-product', 'cancellation'].includes(String(p.kind))
+        ? 3
+        : [
+              'dependent-list-deletion',
+              'proper-independent',
+              'information-loss',
+              'vector-pair',
+              'nonnegative-closure',
+            ].includes(String(p.kind))
+          ? 2
+          : 1)
+    )
       throw Error('Invalid matrix construction fields.');
+    if (
+      p.kind === 'spectral-example' &&
+      ![
+        'repeated-diagonalizable',
+        'no-real-eigenvalue',
+        'nonorthogonal-eigenbasis',
+        'unit-spectrum-not-identity',
+      ].includes(String(p.property))
+    )
+      throw Error('Unknown spectral example.');
+    if (
+      p.kind === 'vector-pair' &&
+      !['positive-nonacute', 'unequal-cosine-one', 'unequal-equal-norm'].includes(
+        String(p.property),
+      )
+    )
+      throw Error('Unknown vector-pair property.');
     if (
       p.kind === 'determinant-scale' &&
       (typeof p.determinantAbs !== 'string' ||
@@ -156,9 +273,22 @@ export function validateLinearRequirement(r: AssessmentRequirement): void {
     return;
   }
   const a = numericMatrix(p.a);
-  if (!['basis', 'affine-family', 'eigenvector', 'svd', 'best-rank'].includes(String(p.kind)))
+  if (
+    !['basis', 'affine-family', 'eigenvector', 'eigenpairs', 'svd', 'best-rank'].includes(
+      String(p.kind),
+    )
+  )
     throw Error('Unknown linear algebra property.');
-  const count = p.kind === 'svd' ? 3 : p.kind === 'affine-family' ? 2 : 1;
+  const count =
+    p.kind === 'svd'
+      ? 3
+      : p.kind === 'affine-family'
+        ? p.freeVariables
+          ? 3
+          : 2
+        : p.kind === 'eigenpairs' && p.checks
+          ? 2
+          : 1;
   if (r.fields.length !== count) throw Error('Invalid linear algebra fields.');
   if (p.kind === 'basis' && !['column', 'row', 'null'].includes(String(p.space)))
     throw Error('Unknown basis space.');
@@ -168,6 +298,19 @@ export function validateLinearRequirement(r: AssessmentRequirement): void {
     if (!Array.isArray(p.b) || p.b.length !== a.length || p.b.some((v) => typeof v !== 'string'))
       throw Error('Invalid right-hand side.');
     (p.b as string[]).forEach(parseExact);
+  }
+  if (p.kind === 'eigenpairs') {
+    if (
+      a.length !== a[0].length ||
+      !Array.isArray(p.eigenvalues) ||
+      !p.eigenvalues.length ||
+      p.eigenvalues.length > a.length ||
+      p.eigenvalues.some((v) => typeof v !== 'string')
+    )
+      throw Error('Invalid eigenvalue list.');
+    const values = (p.eigenvalues as string[]).map(parseExact);
+    if (values.some((x, i) => values.some((y, j) => j < i && x.eq(y))))
+      throw Error('Duplicate eigenvalue.');
   }
   if (p.kind === 'eigenvector') {
     if (a.length !== a[0].length || typeof p.lambda !== 'string')
@@ -207,14 +350,79 @@ export function linearRequirement(r: AssessmentRequirement, response: Structured
         p.originalColumns === true,
       );
     case 'affine-family': {
-      const v = vector(value(response, r.fields[0])),
+      const b = (p.b as string[]).map(parseExact),
         directions = answerMatrix(value(response, r.fields[1]), true),
-        b = (p.b as string[]).map(parseExact);
+        point = value(response, r.fields[0]).trim();
+      const rawFree = response[r.fields[2]],
+        free = p.freeVariables
+          ? (Array.isArray(rawFree)
+              ? rawFree
+              : typeof rawFree === 'string' && /^(?:\{\}|\[\]|none)$/i.test(rawFree.trim())
+                ? []
+                : splitValues(value(response, r.fields[2]))
+            ).map(parseExact)
+          : [];
+      if (/^none$/i.test(point))
+        return (
+          !directions.length &&
+          !free.length &&
+          matrixRank(a.map((row, i) => [...row, b[i]])) > matrixRank(a)
+        );
+      const v = vector(point);
+      if (
+        v.length !== n ||
+        !a.every((row, i) => row.reduce((sum, x, j) => sum.add(x.mul(v[j])), zero()).eq(b[i])) ||
+        !basis(a, directions, 'null')
+      )
+        return false;
+      if (!p.freeVariables) return true;
+      const indices: number[] = [];
+      for (const x of free) {
+        let index: bigint;
+        try {
+          index = x.integer();
+        } catch (e) {
+          if (e instanceof InputError) return false;
+          throw e;
+        }
+        if (index < 1n || index > BigInt(n) || indices.includes(Number(index) - 1)) return false;
+        indices.push(Number(index) - 1);
+      }
       return (
-        v.length === n &&
-        a.every((row, i) => row.reduce((sum, x, j) => sum.add(x.mul(v[j])), zero()).eq(b[i])) &&
-        basis(a, directions, 'null')
+        indices.length === directions.length &&
+        matrixRank(directions.map((row) => indices.map((i) => row[i]))) === directions.length
       );
+    }
+    case 'eigenpairs': {
+      const pairs = answerMatrix(value(response, r.fields[0])),
+        expected = (p.eigenvalues as string[]).map(parseExact),
+        checks = p.checks ? answerMatrix(value(response, r.fields[1])) : [];
+      if (
+        !shape(pairs, expected.length, n + 1) ||
+        expected.some((lambda) => pairs.filter((row) => row[0].eq(lambda)).length !== 1)
+      )
+        return false;
+      if (p.checks && !shape(checks, pairs.length, n)) return false;
+      return pairs.every((row, index) => {
+        const lambda = row[0],
+          v = row.slice(1);
+        if (!v.some((x) => !x.isZero())) return false;
+        const residual = a.map((r, i) =>
+          r.reduce((sum, x, j) => sum.add(x.mul(v[j])), zero()).sub(lambda.mul(v[i])),
+        );
+        if (
+          residual.some((x) => !x.isZero()) ||
+          (p.checks && !residual.every((x, i) => x.eq(checks[index][i])))
+        )
+          return false;
+        return (
+          !p.orthogonal ||
+          pairs.every(
+            (other, j) =>
+              j >= index || v.reduce((sum, x, i) => sum.add(x.mul(other[i + 1])), zero()).isZero(),
+          )
+        );
+      });
     }
     case 'eigenvector': {
       const v = vector(value(response, r.fields[0])),

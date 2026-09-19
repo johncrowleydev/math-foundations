@@ -21,6 +21,7 @@ import {
   booleanForm,
   booleanStructure,
   booleanNodeCount,
+  negationsOnAtoms,
   evaluateBoolean,
   parseBoolean,
 } from './logic';
@@ -105,6 +106,7 @@ const validators: Record<
       booleanEquivalent(got, expected, vars) &&
       booleanForm(got, typeof r.params.form === 'string' ? r.params.form : undefined) &&
       (!r.params.maxNodes || booleanNodeCount(got) <= Number(r.params.maxNodes)) &&
+      (!r.params.negationsOnAtoms || negationsOnAtoms(got)) &&
       (!r.params.structure ||
         booleanStructure(got, parseBoolean(text(r.params.structure), vars), vars))
     );
@@ -134,6 +136,7 @@ const validators: Record<
         {
           constants: strlist(r.params.constants || []),
           freeVariables: strlist(r.params.freeVariables || []),
+          functions: (r.params.functions || {}) as Record<string, number>,
         },
       ),
     ),
@@ -177,6 +180,17 @@ const validators: Record<
           if (!(e instanceof InputError)) throw e;
         }
       }
+      if (raw.rational === true || raw.irrational === true) {
+        let rational = true;
+        try {
+          value.rational();
+        } catch (e) {
+          if (e instanceof InputError) rational = false;
+          else throw e;
+        }
+        if ((raw.rational === true && !rational) || (raw.irrational === true && rational))
+          domainValid = false;
+      }
       values[text(raw.name)] = value;
     }
     if (!domainValid) return false;
@@ -198,8 +212,18 @@ const validators: Record<
     };
     return array(r.params.conditions).every((raw) => {
       if (!object(raw)) bad('Invalid witness condition.');
-      const left = evaluate(text(raw.left)),
-        right = evaluate(text(raw.right));
+      const left = evaluate(text(raw.left));
+      if (raw.op === 'rational' || raw.op === 'irrational') {
+        let rational = true;
+        try {
+          left.rational();
+        } catch (e) {
+          if (e instanceof InputError) rational = false;
+          else throw e;
+        }
+        return raw.op === 'rational' ? rational : !rational;
+      }
+      const right = evaluate(text(raw.right));
       if (raw.op === 'divides' || raw.op === 'not-divides') {
         let divisor: bigint, dividend: bigint;
         try {
@@ -353,7 +377,12 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     ids = new Set<string>();
   if (fields.length > 2048) throw Error('Too many assessment fields.');
   for (const f of fields) {
-    if (!/^[A-Za-z0-9_.:-]+$/.test(f.id) || ids.has(f.id))
+    if (
+      f.id.length > 200 ||
+      ['__proto__', 'prototype', 'constructor'].includes(f.id) ||
+      !/^[A-Za-z0-9_.:-]+$/.test(f.id) ||
+      ids.has(f.id)
+    )
       throw Error('Invalid or duplicate assessment field: ' + f.id);
     ids.add(f.id);
   }
@@ -369,11 +398,17 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
       !r.description.trim() ||
       !strings(r.fields) ||
       !r.fields.length ||
+      new Set(r.fields).size !== r.fields.length ||
       r.fields.some((f) => !ids.has(f)) ||
       !object(r.params) ||
-      !validators[r.validator]
+      !Object.hasOwn(validators, r.validator)
     )
       throw Error('Invalid assessment requirement.');
+    if (
+      r.evidenceLevel !== undefined &&
+      !['recognition', 'production', 'reasoning'].includes(r.evidenceLevel)
+    )
+      throw Error('Invalid requirement evidence level.');
     requirements.add(r.id);
     r.fields.forEach((f) => covered.add(f));
     if (
@@ -457,11 +492,19 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         !r.params.domains.length ||
         !object(r.params.predicates) ||
         Object.values(r.params.predicates).some(
-          (n) => !Number.isInteger(n) || Number(n) < 1 || Number(n) > 8,
+          (n) => !Number.isInteger(n) || Number(n) < 0 || Number(n) > 8,
         ) ||
         (r.params.form && r.params.form !== 'nnf')
       )
         throw Error('Invalid quantified formula definition.');
+      if (
+        r.params.functions !== undefined &&
+        (!object(r.params.functions) ||
+          Object.values(r.params.functions).some(
+            (n) => !Number.isInteger(n) || Number(n) < 1 || Number(n) > 8,
+          ))
+      )
+        throw Error('Invalid function symbols.');
       for (const name of ['constants', 'freeVariables', 'alternatives'])
         if (r.params[name] !== undefined && !strings(r.params[name]))
           throw Error('Invalid quantified formula ' + name);
@@ -469,6 +512,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
         parseQuantified(target, r.params.domains, r.params.predicates as Record<string, number>, {
           constants: strlist(r.params.constants || []),
           freeVariables: strlist(r.params.freeVariables || []),
+          functions: (r.params.functions || {}) as Record<string, number>,
         });
     }
     if (r.validator === 'set') {

@@ -68,9 +68,11 @@ export function validateDeterministicEntry(raw: unknown): DeterministicEntry {
   if (entry.prompt) validateMath(entry.prompt);
   return entry as DeterministicEntry;
 }
-export const deterministicExercises = JSON.parse(
-  await readFile('content/deterministic-exercises.json', 'utf8'),
-).map(validateDeterministicEntry) as DeterministicEntry[];
+export const deterministicExercises: DeterministicEntry[] = [];
+for (const file of ['content/deterministic-exercises.json', 'content/deterministic-linear.json'])
+  deterministicExercises.push(
+    ...JSON.parse(await readFile(file, 'utf8')).map(validateDeterministicEntry),
+  );
 type Q = {
   id: number;
   instructions: string;

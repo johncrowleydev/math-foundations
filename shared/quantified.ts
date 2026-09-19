@@ -1,3 +1,4 @@
+import { logicalExpression, type FunctionTerm } from './fol-terms';
 import { InputError, parseExpression, sameExpressionDomain } from './exact';
 import { comparisonEqual, comparisonFromStrings } from './comparison';
 export type QNode =
@@ -33,7 +34,11 @@ function clean(source: string): string {
     .replace(/[{}\[\]]/g, (m) => (m === '{' || m === '[' ? '(' : ')'))
     .replace(/−/g, '-');
 }
-export type QuantifiedOptions = { constants?: string[]; freeVariables?: string[] };
+export type QuantifiedOptions = {
+  constants?: string[];
+  freeVariables?: string[];
+  functions?: Record<string, number>;
+};
 export function parseQuantified(
   source: string,
   domains: string[],
@@ -56,6 +61,10 @@ export function parseQuantified(
   };
   const atom = (): QNode => {
     const first = tokens[at];
+    if (first && predicates[first] === 0 && tokens[at + 1] !== '(') {
+      at++;
+      return { kind: 'predicate', name: first, args: [] };
+    }
     if (first && Object.hasOwn(predicates, first) && tokens[at + 1] === '(') {
       at += 2;
       const args: string[] = [];
@@ -77,6 +86,7 @@ export function parseQuantified(
         if (t === ')') nesting--;
         at++;
       }
+      if (predicates[first] === 0 && args.length === 1 && !args[0].trim()) args.pop();
       if (args.length !== predicates[first] || args.some((s) => !s.trim()))
         throw new InputError(`Use ${first} with ${predicates[first]} arguments.`);
       return { kind: 'predicate', name: first, args };
@@ -207,11 +217,11 @@ export function parseQuantified(
         validate(n.body, bound);
         break;
       case 'predicate':
-        n.args.forEach((s) => parseExpression(s, available));
+        n.args.forEach((s) => logicalExpression(s, available, options.functions));
         break;
       case 'comparison':
-        parseExpression(n.left, available);
-        parseExpression(n.right, available);
+        logicalExpression(n.left, available, options.functions);
+        logicalExpression(n.right, available, options.functions);
         break;
       default:
         validate(n.left, bound);
@@ -237,8 +247,21 @@ function nnf(n: QNode): boolean {
       return true;
   }
 }
-function rename(s: string, bound: string[], fixed: string[] = []): string {
-  return s.replace(/[A-Za-z][A-Za-z_0-9]*/g, (v) => {
+function rename(
+  s: string,
+  bound: string[],
+  fixed: string[] = [],
+  functions: Record<string, number> = {},
+): string {
+  return s.replace(/[A-Za-z][A-Za-z_0-9]*/g, (v, offset: number) => {
+    if (
+      Object.hasOwn(functions, v) &&
+      s
+        .slice(offset + v.length)
+        .trimStart()
+        .startsWith('(')
+    )
+      return v;
     const i = bound.lastIndexOf(v);
     if (i < 0) {
       if (fixed.includes(v)) return 'fixed_' + v;
@@ -254,12 +277,16 @@ function equal(
   bb: string[] = [],
   integerDomains: boolean[] = [],
   fixed: string[] = [],
+  functions: Record<string, number> = {},
 ): boolean {
   if (a.kind !== b.kind) return false;
   const variables = [...ab.map((_, i) => 'v' + i), ...fixed.map((v) => 'fixed_' + v)];
+  const registry: FunctionTerm[] = [];
+  const expression = (s: string, bound: string[]) =>
+    logicalExpression(rename(s, bound, fixed, functions), variables, functions, registry);
   const expressionEqual = (x: string, y: string) => {
-    const left = parseExpression(rename(x, ab, fixed), variables),
-      right = parseExpression(rename(y, bb, fixed), variables);
+    const left = expression(x, ab),
+      right = expression(y, bb);
     return left.eq(right) && sameExpressionDomain(left, right);
   };
   if (a.kind === 'quantifier' && b.kind === 'quantifier')
@@ -273,10 +300,11 @@ function equal(
         [...bb, b.variable],
         [...integerDomains, ['Z', 'N'].includes(a.domain)],
         fixed,
+        functions,
       )
     );
   if (a.kind === 'not' && b.kind === 'not')
-    return equal(a.body, b.body, ab, bb, integerDomains, fixed);
+    return equal(a.body, b.body, ab, bb, integerDomains, fixed, functions);
   if (a.kind === 'predicate' && b.kind === 'predicate')
     return (
       a.name === b.name &&
@@ -285,9 +313,9 @@ function equal(
     );
   if (a.kind === 'comparison' && b.kind === 'comparison')
     return comparisonEqual(
-      comparisonFromStrings(a.op, rename(a.left, ab, fixed), rename(a.right, ab, fixed), variables),
-      comparisonFromStrings(b.op, rename(b.left, bb, fixed), rename(b.right, bb, fixed), variables),
-      integerDomains.every(Boolean) && !fixed.length,
+      { op: a.op, left: expression(a.left, ab), right: expression(a.right, ab) },
+      { op: b.op, left: expression(b.left, bb), right: expression(b.right, bb) },
+      integerDomains.every(Boolean) && !fixed.length && !Object.keys(functions).length,
     );
   if ((a.kind === 'and' || a.kind === 'or') && (b.kind === 'and' || b.kind === 'or')) {
     const flatten = (n: QNode, k: string): QNode[] =>
@@ -298,7 +326,7 @@ function equal(
       right = flatten(b, b.kind);
     if (left.length !== right.length) return false;
     return left.every((x) => {
-      const i = right.findIndex((y) => equal(x, y, ab, bb, integerDomains, fixed));
+      const i = right.findIndex((y) => equal(x, y, ab, bb, integerDomains, fixed, functions));
       if (i < 0) return false;
       right.splice(i, 1);
       return true;
@@ -306,10 +334,51 @@ function equal(
   }
   if ((a.kind === 'implies' || a.kind === 'iff') && (b.kind === 'implies' || b.kind === 'iff'))
     return (
-      equal(a.left, b.left, ab, bb, integerDomains, fixed) &&
-      equal(a.right, b.right, ab, bb, integerDomains, fixed)
+      equal(a.left, b.left, ab, bb, integerDomains, fixed, functions) &&
+      equal(a.right, b.right, ab, bb, integerDomains, fixed, functions)
     );
   return false;
+}
+/** Normalize supported negations and connectives without changing quantifier order. */
+function logicalNormalForm(n: QNode, negate = false): QNode {
+  if (n.kind === 'not') return logicalNormalForm(n.body, !negate);
+  if (n.kind === 'quantifier')
+    return {
+      ...n,
+      quantifier: negate ? (n.quantifier === 'forall' ? 'exists' : 'forall') : n.quantifier,
+      body: logicalNormalForm(n.body, negate),
+    };
+  if (n.kind === 'implies')
+    return logicalNormalForm(
+      { kind: 'or', left: { kind: 'not', body: n.left }, right: n.right },
+      negate,
+    );
+  if (n.kind === 'iff')
+    return logicalNormalForm(
+      {
+        kind: 'and',
+        left: { kind: 'implies', left: n.left, right: n.right },
+        right: { kind: 'implies', left: n.right, right: n.left },
+      },
+      negate,
+    );
+  if (n.kind === 'and' || n.kind === 'or')
+    return {
+      kind: negate ? (n.kind === 'and' ? 'or' : 'and') : n.kind,
+      left: logicalNormalForm(n.left, negate),
+      right: logicalNormalForm(n.right, negate),
+    };
+  if (n.kind === 'comparison' && negate)
+    return {
+      ...n,
+      op: (
+        { '=': '!=', '!=': '=', '<': '>=', '<=': '>', '>': '<=', '>=': '<' } as Record<
+          string,
+          string
+        >
+      )[n.op],
+    };
+  return negate ? { kind: 'not', body: n } : n;
 }
 export function quantifiedEquivalent(
   actual: string,
@@ -323,6 +392,14 @@ export function quantifiedEquivalent(
     b = parseQuantified(expected, domains, predicates, options);
   return (
     (form !== 'nnf' || nnf(a)) &&
-    equal(a, b, [], [], [], [...(options.constants || []), ...(options.freeVariables || [])])
+    equal(
+      logicalNormalForm(a),
+      logicalNormalForm(b),
+      [],
+      [],
+      [],
+      [...(options.constants || []), ...(options.freeVariables || [])],
+      options.functions,
+    )
   );
 }

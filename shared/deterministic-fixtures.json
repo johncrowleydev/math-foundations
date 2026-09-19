@@ -5851,5 +5851,535 @@
       "v": "{}"
     },
     "verdict": "correct"
+  },
+  {
+    "name": "function-alpha-renaming",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R: f(x+1)=f(x)+1",
+            "domains": ["R"],
+            "predicates": {},
+            "functions": {
+              "f": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall t in R: f(1+t)-1=f(t)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "function-distinct-argument",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R: f(x+1)=f(x)+1",
+            "domains": ["R"],
+            "predicates": {},
+            "functions": {
+              "f": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall t in R: f(t+2)=f(t)+1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "function-integer-domain-not-integer-codomain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in Z: f(x)>0",
+            "domains": ["Z"],
+            "predicates": {},
+            "functions": {
+              "f": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in Z: f(x)>=1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "function-canceled-argument-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R: f(x/x)-f(x/x)=0",
+            "domains": ["R"],
+            "predicates": {},
+            "functions": {
+              "f": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in R: 0=0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "bare-proposition-in-quantified-formula",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R: P(x) -> A",
+            "domains": ["R"],
+            "predicates": {
+              "P": 1,
+              "A": 0
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall z in R: not P(z) or A()"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "bare-proposition-wrong-sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in R: P(x) -> A",
+            "domains": ["R"],
+            "predicates": {
+              "P": 1,
+              "A": 0
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall z in R: not P(z) or not A"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "radical-tuple-parentheses",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "tuple",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["0", "1/sqrt(2)", "1/sqrt(2)"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(0)/sqrt(2), (1)/sqrt(2), (1)/sqrt(2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "radical-tuple-wrong",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "tuple",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["0", "1/sqrt(2)", "1/sqrt(2)"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(0)/sqrt(2), (1)/sqrt(2), (2)/sqrt(2)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "basis-set-of-tuples",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "0"],
+              ["0", "1"]
+            ],
+            "space": "column"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{(1,1),(1,-1)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "basis-nested-row-lists",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "0"],
+              ["0", "1"]
+            ],
+            "space": "column"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "[[1,1],[1,1]]"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "irrational-witness-product",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a",
+                "irrational": true
+              },
+              {
+                "name": "b",
+                "field": "b",
+                "irrational": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a*b",
+                "op": "rational"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "sqrt(2)",
+      "b": "3*sqrt(2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "irrational-witness-not-rational",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a",
+                "irrational": true
+              },
+              {
+                "name": "b",
+                "field": "b",
+                "irrational": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a*b",
+                "op": "rational"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "sqrt(2)",
+      "b": "sqrt(3)"
+    },
+    "verdict": "incorrect"
   }
 ]

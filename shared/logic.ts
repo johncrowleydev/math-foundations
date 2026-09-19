@@ -114,3 +114,9 @@ export function booleanNodeCount(n: BooleanNode): number {
   if (n.op === 'not') return 1 + booleanNodeCount(n.child);
   return 1 + booleanNodeCount(n.left) + booleanNodeCount(n.right);
 }
+
+export function negationsOnAtoms(n: BooleanNode): boolean {
+  if (n.op === 'atom') return true;
+  if (n.op === 'not') return n.child.op === 'atom';
+  return negationsOnAtoms(n.left) && negationsOnAtoms(n.right);
+}
