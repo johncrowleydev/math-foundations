@@ -3510,5 +3510,1546 @@
       "answer": ""
     },
     "error": true
+  },
+  {
+    "name": "basis-alternative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "2", "0"],
+              ["0", "0", "1"]
+            ],
+            "space": "column"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1,1;1,-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "basis-incomplete",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "2", "0"],
+              ["0", "0", "1"]
+            ],
+            "space": "column"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1,0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "basis-dependent",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "2", "0"],
+              ["0", "0", "1"]
+            ],
+            "space": "column"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1,0;2,0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "basis-original-columns",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "2", "0"],
+              ["0", "0", "1"]
+            ],
+            "space": "column",
+            "originalColumns": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1,0;0,1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "basis-not-original-column",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "2", "0"],
+              ["0", "0", "1"]
+            ],
+            "space": "column",
+            "originalColumns": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1,1;1,-1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "basis-null-scaled",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "2", "0"],
+              ["0", "0", "1"]
+            ],
+            "space": "null"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-4,2,0"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "basis-null-wrong",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "2", "0"],
+              ["0", "0", "1"]
+            ],
+            "space": "null"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1,2,0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "basis-empty-null",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "basis",
+            "a": [
+              ["1", "0"],
+              ["0", "1"]
+            ],
+            "space": "null"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "affine-alternative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "point",
+          "kind": "math",
+          "label": "point"
+        },
+        {
+          "id": "directions",
+          "kind": "math",
+          "label": "directions"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["point", "directions"],
+          "params": {
+            "kind": "affine-family",
+            "a": [["1", "1"]],
+            "b": ["3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "point": "(3,0)",
+      "directions": "-2,2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "affine-shifted",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "point",
+          "kind": "math",
+          "label": "point"
+        },
+        {
+          "id": "directions",
+          "kind": "math",
+          "label": "directions"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["point", "directions"],
+          "params": {
+            "kind": "affine-family",
+            "a": [["1", "1"]],
+            "b": ["3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "point": "(10,-7)",
+      "directions": "3,-3"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "affine-incomplete",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "point",
+          "kind": "math",
+          "label": "point"
+        },
+        {
+          "id": "directions",
+          "kind": "math",
+          "label": "directions"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["point", "directions"],
+          "params": {
+            "kind": "affine-family",
+            "a": [["1", "1"]],
+            "b": ["3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "point": "(3,0)",
+      "directions": "{}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "affine-wrong-particular",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "point",
+          "kind": "math",
+          "label": "point"
+        },
+        {
+          "id": "directions",
+          "kind": "math",
+          "label": "directions"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["point", "directions"],
+          "params": {
+            "kind": "affine-family",
+            "a": [["1", "1"]],
+            "b": ["3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "point": "(3,1)",
+      "directions": "1,-1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "eigen-nonzero-scaled",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "eigenvector",
+            "a": [
+              ["2", "0"],
+              ["0", "3"]
+            ],
+            "lambda": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(-7,0)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "eigen-zero",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "eigenvector",
+            "a": [
+              ["2", "0"],
+              ["0", "3"]
+            ],
+            "lambda": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(0,0)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "eigen-wrong-vector",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "eigenvector",
+            "a": [
+              ["2", "0"],
+              ["0", "3"]
+            ],
+            "lambda": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(1,1)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "svd-sign-freedom",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "u",
+          "kind": "math",
+          "label": "u"
+        },
+        {
+          "id": "sigma",
+          "kind": "math",
+          "label": "sigma"
+        },
+        {
+          "id": "v",
+          "kind": "math",
+          "label": "v"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["u", "sigma", "v"],
+          "params": {
+            "kind": "svd",
+            "a": [
+              ["3", "0"],
+              ["0", "2"]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "u": "-1,0;0,-1",
+      "sigma": "3,0;0,2",
+      "v": "-1,0;0,-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "svd-order-freedom",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "u",
+          "kind": "math",
+          "label": "u"
+        },
+        {
+          "id": "sigma",
+          "kind": "math",
+          "label": "sigma"
+        },
+        {
+          "id": "v",
+          "kind": "math",
+          "label": "v"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["u", "sigma", "v"],
+          "params": {
+            "kind": "svd",
+            "a": [
+              ["3", "0"],
+              ["0", "2"]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "u": "0,1;1,0",
+      "sigma": "2,0;0,3",
+      "v": "0,1;1,0"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "svd-required-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "u",
+          "kind": "math",
+          "label": "u"
+        },
+        {
+          "id": "sigma",
+          "kind": "math",
+          "label": "sigma"
+        },
+        {
+          "id": "v",
+          "kind": "math",
+          "label": "v"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["u", "sigma", "v"],
+          "params": {
+            "kind": "svd",
+            "a": [
+              ["3", "0"],
+              ["0", "2"]
+            ],
+            "order": "descending"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "u": "0,1;1,0",
+      "sigma": "2,0;0,3",
+      "v": "0,1;1,0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "svd-negative-singular",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "u",
+          "kind": "math",
+          "label": "u"
+        },
+        {
+          "id": "sigma",
+          "kind": "math",
+          "label": "sigma"
+        },
+        {
+          "id": "v",
+          "kind": "math",
+          "label": "v"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["u", "sigma", "v"],
+          "params": {
+            "kind": "svd",
+            "a": [
+              ["3", "0"],
+              ["0", "2"]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "u": "1,0;0,1",
+      "sigma": "-3,0;0,2",
+      "v": "-1,0;0,1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "svd-nonorthogonal",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "u",
+          "kind": "math",
+          "label": "u"
+        },
+        {
+          "id": "sigma",
+          "kind": "math",
+          "label": "sigma"
+        },
+        {
+          "id": "v",
+          "kind": "math",
+          "label": "v"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["u", "sigma", "v"],
+          "params": {
+            "kind": "svd",
+            "a": [
+              ["3", "0"],
+              ["0", "2"]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "u": "3,0;0,2",
+      "sigma": "1,0;0,1",
+      "v": "1,0;0,1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "svd-degenerate-rotation",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "u",
+          "kind": "math",
+          "label": "u"
+        },
+        {
+          "id": "sigma",
+          "kind": "math",
+          "label": "sigma"
+        },
+        {
+          "id": "v",
+          "kind": "math",
+          "label": "v"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["u", "sigma", "v"],
+          "params": {
+            "kind": "svd",
+            "a": [
+              ["2", "0"],
+              ["0", "2"]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "u": "3/5,-4/5;4/5,3/5",
+      "sigma": "2,0;0,2",
+      "v": "3/5,-4/5;4/5,3/5"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "svd-thin",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "u",
+          "kind": "math",
+          "label": "u"
+        },
+        {
+          "id": "sigma",
+          "kind": "math",
+          "label": "sigma"
+        },
+        {
+          "id": "v",
+          "kind": "math",
+          "label": "v"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["u", "sigma", "v"],
+          "params": {
+            "kind": "svd",
+            "a": [
+              ["2", "0"],
+              ["0", "1"],
+              ["0", "0"]
+            ],
+            "form": "thin"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "u": "1,0;0,1;0,0",
+      "sigma": "2,0;0,1",
+      "v": "1,0;0,1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "best-rank-tied-alternative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "best-rank",
+            "a": [
+              ["1", "0"],
+              ["0", "1"]
+            ],
+            "rank": 1,
+            "errorSquared": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1/2,1/2;1/2,1/2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "best-rank-zero",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "best-rank",
+            "a": [
+              ["1", "0"],
+              ["0", "1"]
+            ],
+            "rank": 1,
+            "errorSquared": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0,0;0,0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "best-rank-too-large",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "linear",
+          "fields": ["answer"],
+          "params": {
+            "kind": "best-rank",
+            "a": [
+              ["1", "0"],
+              ["0", "1"]
+            ],
+            "rank": 1,
+            "errorSquared": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1,0;0,1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "noninteger-radical",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "x",
+          "kind": "math",
+          "label": "x"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["x"],
+          "params": {
+            "variables": [
+              {
+                "name": "x",
+                "field": "x",
+                "nonInteger": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "x",
+                "op": ">",
+                "right": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "x": "sqrt(2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "noninteger-hidden-integer",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "x",
+          "kind": "math",
+          "label": "x"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["x"],
+          "params": {
+            "variables": [
+              {
+                "name": "x",
+                "field": "x",
+                "nonInteger": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "x",
+                "op": ">",
+                "right": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "x": "(1+sqrt(2))/(1+sqrt(2))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "noninteger-fraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "x",
+          "kind": "math",
+          "label": "x"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["x"],
+          "params": {
+            "variables": [
+              {
+                "name": "x",
+                "field": "x",
+                "nonInteger": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "x",
+                "op": ">",
+                "right": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "x": "3/2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "divides-negative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "kind": "math",
+          "label": "a"
+        },
+        {
+          "id": "b",
+          "kind": "math",
+          "label": "b"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a",
+                "integer": true
+              },
+              {
+                "name": "b",
+                "field": "b",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a",
+                "op": "divides",
+                "right": "b"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "-3",
+      "b": "6"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "divides-zero-zero",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "kind": "math",
+          "label": "a"
+        },
+        {
+          "id": "b",
+          "kind": "math",
+          "label": "b"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a",
+                "integer": true
+              },
+              {
+                "name": "b",
+                "field": "b",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a",
+                "op": "divides",
+                "right": "b"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "0",
+      "b": "0"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "divides-zero-nonzero",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "kind": "math",
+          "label": "a"
+        },
+        {
+          "id": "b",
+          "kind": "math",
+          "label": "b"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a",
+                "integer": true
+              },
+              {
+                "name": "b",
+                "field": "b",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a",
+                "op": "divides",
+                "right": "b"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "0",
+      "b": "3"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "not-divides-zero",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "kind": "math",
+          "label": "a"
+        },
+        {
+          "id": "b",
+          "kind": "math",
+          "label": "b"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "witness",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": [
+              {
+                "name": "a",
+                "field": "a",
+                "integer": true
+              },
+              {
+                "name": "b",
+                "field": "b",
+                "integer": true
+              }
+            ],
+            "conditions": [
+              {
+                "left": "a",
+                "op": "not-divides",
+                "right": "b"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "0",
+      "b": "3"
+    },
+    "verdict": "correct"
   }
 ]

@@ -152,10 +152,13 @@ export class Exact {
   }
   rational(): Rational {
     if (!this.num.size) return new Rational(0);
-    if (this.num.size === 1 && this.den.size === 1) {
-      const [[a, c]] = [...this.num],
-        [[b, d]] = [...this.den];
-      if (a === b) return c.div(d);
+    if (this.num.size === this.den.size) {
+      const [d, c] = [...this.den][0];
+      const value = this.num.get(d);
+      if (value) {
+        const ratio = value.div(c);
+        if ([...this.den].every(([k, v]) => this.num.get(k)?.eq(v.mul(ratio)))) return ratio;
+      }
     }
     return fail('Use a rational value here.');
   }

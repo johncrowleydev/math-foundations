@@ -1,3 +1,5 @@
+import { linearRequirement, validateLinearRequirement } from './linear';
+import { splitValues, parseMatrix } from './math-input';
 import { setEqual } from './sets';
 import { inequalityEquivalent } from './inequality';
 import {
@@ -35,40 +37,6 @@ const normalize = (s: string, caseSensitive = false) => {
   return caseSensitive ? s : s.toLowerCase();
 };
 const exacts = (values: string[]) => values.map(parseExact);
-export function splitValues(source: string): string[] {
-  let s = source
-    .trim()
-    .replace(/^\$\$?|\$\$?$/g, '')
-    .replace(/\\(?:left|right)/g, '')
-    .replace(/\\(?:begin|end)\{[pbvBV]?matrix\}/g, '')
-    .trim();
-  if ((s.startsWith('(') && s.endsWith(')')) || (s.startsWith('[') && s.endsWith(']')))
-    s = s.slice(1, -1);
-  const out: string[] = [];
-  let start = 0,
-    depth = 0;
-  for (let i = 0; i < s.length; i++) {
-    if ('([{'.includes(s[i])) depth++;
-    if (')]}'.includes(s[i])) depth--;
-    if (depth < 0) bad('Check the answer delimiters.');
-    if (
-      depth === 0 &&
-      (s[i] === ',' ||
-        s[i] === ';' ||
-        s[i] === '&' ||
-        s.slice(i, i + 2) === '\\\\' ||
-        s[i] === '\n')
-    ) {
-      out.push(s.slice(start, i).trim());
-      if (s.slice(i, i + 2) === '\\\\') i++;
-      start = i + 1;
-    }
-  }
-  if (depth !== 0) bad('Close the answer delimiters.');
-  out.push(s.slice(start).trim());
-  if (out.some((v) => !v)) bad('Fill each requested entry.');
-  return out;
-}
 const equalSet = (a: string[], b: string[]) =>
   a.length === b.length && new Set(a).size === a.length && a.every((x) => b.includes(x));
 function tupleEqual(got: Exact[], expected: Exact[], ordered = true): boolean {
@@ -82,25 +50,11 @@ function tupleEqual(got: Exact[], expected: Exact[], ordered = true): boolean {
     return true;
   });
 }
-export function parseMatrix(source: string): Exact[][] {
-  let s = source
-    .trim()
-    .replace(/^\$\$?|\$\$?$/g, '')
-    .replace(/\\(?:left|right)/g, '')
-    .replace(/\\begin\{[pbvBV]?matrix\}/g, '')
-    .replace(/\\end\{[pbvBV]?matrix\}/g, '')
-    .trim();
-  if (s.startsWith('[') && s.endsWith(']')) s = s.slice(1, -1).trim();
-  const rows = s.split(/\\\\|;|\n|\]\s*,\s*\[/).map((r) => r.replace(/^\[|\]$/g, '').trim());
-  const result = rows.map((r) => splitValues(r).map(parseExact));
-  if (!result.length || result.some((r) => r.length !== result[0].length))
-    bad('Use equal-length matrix rows, separated by semicolons.');
-  return result;
-}
 const validators: Record<
   string,
   (r: AssessmentRequirement, response: StructuredResponse) => boolean
 > = {
+  linear: linearRequirement,
   boolean: (r, a) => r.fields.every((f, i) => a[f] === array(r.params.expected)[i]),
   term: (r, a) =>
     strlist(r.params.accepted).some(
@@ -188,6 +142,7 @@ const validators: Record<
   },
   witness: (r, a) => {
     const values: Record<string, Exact> = {};
+    let domainValid = true;
     for (const raw of array(r.params.variables)) {
       if (!object(raw)) bad('Invalid witness definition.');
       const value = parseExact(text(a[text(raw.field)]));
@@ -195,12 +150,21 @@ const validators: Record<
         try {
           value.integer();
         } catch (e) {
-          if (e instanceof InputError) return false;
-          throw e;
+          if (e instanceof InputError) domainValid = false;
+          else throw e;
+        }
+      }
+      if (raw.nonInteger === true) {
+        try {
+          value.integer();
+          domainValid = false;
+        } catch (e) {
+          if (!(e instanceof InputError)) throw e;
         }
       }
       values[text(raw.name)] = value;
     }
+    if (!domainValid) return false;
     const evaluate = (s: string) => {
       const vars = Object.keys(values);
       let expression = s;
@@ -219,7 +183,21 @@ const validators: Record<
     };
     return array(r.params.conditions).every((raw) => {
       if (!object(raw)) bad('Invalid witness condition.');
-      const difference = evaluate(text(raw.left)).sub(evaluate(text(raw.right)));
+      const left = evaluate(text(raw.left)),
+        right = evaluate(text(raw.right));
+      if (raw.op === 'divides' || raw.op === 'not-divides') {
+        let divisor: bigint, dividend: bigint;
+        try {
+          divisor = left.integer();
+          dividend = right.integer();
+        } catch (e) {
+          if (e instanceof InputError) return false;
+          throw e;
+        }
+        const divides = divisor === 0n ? dividend === 0n : dividend % divisor === 0n;
+        return raw.op === 'divides' ? divides : !divides;
+      }
+      const difference = left.sub(right);
       switch (raw.op) {
         case '=':
           return difference.isZero();
@@ -404,6 +382,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
       throw Error('Accepted terms required.');
     if (['selection', 'tuple'].includes(r.validator) && !strings(r.params.expected))
       throw Error('Expected values required.');
+    if (r.validator === 'linear') validateLinearRequirement(r);
     if (r.validator === 'boolean-formula') {
       if (
         r.params.maxNodes !== undefined &&

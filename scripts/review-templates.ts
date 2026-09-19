@@ -1,4 +1,5 @@
-import { validateAssessment } from '../shared/deterministic.js';
+import { validateAssessment, gradeAssessment, InputError } from '../shared/deterministic.js';
+import type { AnswerFixture } from '../shared/assessment.js';
 import type { Assessment } from '../shared/assessment.js';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
@@ -129,9 +130,48 @@ export function validateReviewTemplates(
   return templates;
 }
 export async function loadReviewTemplates(evidence: EvidenceCatalog, lessons: string[]) {
-  return validateReviewTemplates(
+  const templates = validateReviewTemplates(
     JSON.parse(await readFile('content/review-templates.json', 'utf8')),
     evidence,
     lessons,
   );
+  const rows = JSON.parse(await readFile('content/deterministic-review-fixtures.json', 'utf8')) as {
+    template: string;
+    variant: number | null;
+    fixtures: AnswerFixture[];
+  }[];
+  const seen = new Set<string>();
+  for (const template of templates)
+    for (const [index, q] of (template.variants || [template.question]).entries()) {
+      if (!q.assessment) continue;
+      const variant = template.variants ? index + 1 : null,
+        key = template.id + '/' + variant;
+      const matching = rows.filter(
+        (row) => row.template === template.id && row.variant === variant,
+      );
+      if (matching.length !== 1)
+        throw Error('Missing or duplicate Review assessment fixtures: ' + key);
+      const fixtures = matching[0].fixtures;
+      if (
+        !fixtures.some((f) => f.verdict === 'correct') ||
+        !fixtures.some((f) => f.verdict === 'incorrect')
+      )
+        throw Error('Review assessment needs accepted and rejected answers: ' + key);
+      for (const fixture of fixtures) {
+        if ((fixture.error === true) === (fixture.verdict !== undefined))
+          throw Error('Review fixture needs exactly one expected outcome: ' + key);
+        try {
+          const result = gradeAssessment(q.assessment, fixture.response);
+          if (fixture.error || result.verdict !== fixture.verdict)
+            throw Error('Review assessment fixture mismatch: ' + key);
+        } catch (e) {
+          if (fixture.error && e instanceof InputError) continue;
+          throw e;
+        }
+      }
+      seen.add(key);
+    }
+  if (rows.length !== seen.size || rows.some((row) => !seen.has(row.template + '/' + row.variant)))
+    throw Error('Unmatched Review assessment fixtures.');
+  return templates;
 }
