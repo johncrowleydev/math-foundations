@@ -36,6 +36,9 @@ func TestFiniteMapConformance(t *testing.T) {
 func TestQuantifiedExtraConformance(t *testing.T) {
 	testDeterministicCorpus(t, "../shared/quantified-extra-fixtures.json")
 }
+func TestSymbolicFormConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/symbolic-form-fixtures.json")
+}
 func TestMathInputConformance(t *testing.T) {
 	testDeterministicCorpus(t, "../shared/math-input-fixtures.json")
 }

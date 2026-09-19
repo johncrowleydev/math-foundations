@@ -454,6 +454,8 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		return validateIntegerList(r)
 	case "binomial-sum":
 		return validateBinomialSum(r)
+	case "indexed-expression", "summation":
+		return validateSymbolicForm(r)
 	case "recurrence":
 		return validateRecurrence(r)
 	case "asymptotic-bound":
@@ -650,6 +652,8 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 		return checkIntegerList(r, response)
 	case "binomial-sum":
 		return checkBinomialSum(r, response)
+	case "indexed-expression", "summation":
+		return checkSymbolicForm(r, response)
 	case "recurrence":
 		return checkRecurrence(r, response)
 	case "asymptotic-bound":
