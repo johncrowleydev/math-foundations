@@ -1,6 +1,6 @@
 import { mathRanges, diagnostics } from './math';
 import { useEffect, useRef, useState } from 'react';
-import { EditorState, RangeSetBuilder } from '@codemirror/state';
+import { Annotation, EditorState, RangeSetBuilder } from '@codemirror/state';
 import { EditorView, Decoration, ViewPlugin, keymap, type DecorationSet } from '@codemirror/view';
 import { history, historyKeymap, defaultKeymap, undo, redo } from '@codemirror/commands';
 import { autocompletion, type CompletionContext } from '@codemirror/autocomplete';
@@ -9,6 +9,7 @@ import { bracketMatching } from '@codemirror/language';
 import katex from 'katex';
 import { Rich, Modal, MathText } from './Rich';
 import type { Syntax } from './types';
+const controlledValue = Annotation.define<boolean>();
 export function TexEditor({
   value,
   onChange,
@@ -109,7 +110,10 @@ export function TexEditor({
           bracketMatching(),
           EditorView.contentAttributes.of({ 'aria-label': label + ' editor', spellcheck: 'false' }),
           EditorView.updateListener.of((u) => {
-            if (u.docChanged) change.current(u.state.doc.toString());
+            // Restoring a controlled value is not a user edit. In particular,
+            // another view of the same draft must not echo an older snapshot.
+            if (u.transactions.some((t) => t.docChanged && !t.annotation(controlledValue)))
+              change.current(u.state.doc.toString());
           }),
           ViewPlugin.fromClass(
             class {
@@ -155,7 +159,10 @@ export function TexEditor({
   useEffect(() => {
     const v = view.current;
     if (v && v.state.doc.toString() !== value)
-      v.dispatch({ changes: { from: 0, to: v.state.doc.length, insert: value } });
+      v.dispatch({
+        changes: { from: 0, to: v.state.doc.length, insert: value },
+        annotations: controlledValue.of(true),
+      });
   }, [value]);
   const insert = (text: string, math = false) => {
     const v = view.current!;

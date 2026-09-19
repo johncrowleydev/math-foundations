@@ -53,6 +53,7 @@ try {
       window.releaseDraftHydration = resolve;
     });
     window.draftHydrationStarted = false;
+    window.draftHydrationWrites = [];
   });
   // Delay the primary legacy-record read, while permitting the concurrent draft reads.
   // This deterministically exposes the old early-empty-draft initialization race.
@@ -71,7 +72,19 @@ try {
       return (await db).get(store, key);
     `,
     );
-    await route.fulfill({ response, body });
+    const put = 'await (await db).put(store, value, key);';
+    assert.ok(body.includes(put), 'The storage put hook is present');
+    await route.fulfill({
+      response,
+      body: body.replace(
+        put,
+        `
+        if (store === 'drafts' && key === 'linear-algebra-matrices-1')
+          window.draftHydrationWrites.push(value.response);
+        await (await db).put(store, value, key);
+      `,
+      ),
+    });
   });
   page.on('pageerror', (error) => errors.push(error.message));
   await page.route('**/notebook.json', (route) =>
@@ -119,6 +132,45 @@ try {
   const question = notebook.lessons
     .find((l) => l.slug === 'linear-algebra-matrices')
     .questions.find((q) => q.id === 1);
+  // A saved draft also updates the hidden Learn view. Controlled editor updates
+  // must not emit user edits from either copy and write partial snapshots back.
+  await page.evaluate(
+    async ({ question, response }) => {
+      const { emptyDraft, put } = await import('/src/storage.ts');
+      const { reconcileResponse } = await import('/src/structuredAnswer.ts');
+      const restored = reconcileResponse(emptyDraft(), question);
+      restored.response = response;
+      window.draftHydrationWrites = [];
+      await put('drafts', 'linear-algebra-matrices-1', restored);
+    },
+    { question, response },
+  );
+  for (const input of question.assessment.inputs) {
+    await page.waitForFunction(
+      ({ label, value }) =>
+        [...document.querySelectorAll('article.exercise')]
+          .filter((article) => article.checkVisibility())
+          .some((article) =>
+            [...article.querySelectorAll('[role="textbox"]')].some(
+              (editor) =>
+                editor.getAttribute('aria-label') === label + ' editor' &&
+                editor.textContent === value,
+            ),
+          ),
+      { label: input.label, value: response[input.id] },
+    );
+  }
+  assert.equal(
+    await page.evaluate(() => window.draftHydrationWrites.length),
+    1,
+    'Restored math values must not be written back as user edits',
+  );
+  // Change every field through real input after restoration, including clearing it.
+  for (const input of question.assessment.inputs) {
+    await exercise()
+      .getByRole('textbox', { name: input.label + ' editor', exact: true })
+      .fill('');
+  }
   for (const input of question.assessment.inputs) {
     await exercise()
       .getByRole('textbox', { name: input.label + ' editor', exact: true })
