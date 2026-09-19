@@ -927,6 +927,13 @@
       "url": "https://leanprover-community.github.io/logic_and_proof/natural_deduction_for_first_order_logic.html#the-universal-quantifier",
       "supports": "Universal conjunction and existential disjunction distribution. The original separate-witness countermodel was exhaustively checked over its two-element domain.",
       "checked": "2026-09-18"
+    },
+    "mml-transpose": {
+      "source": "mml",
+      "locator": "§2.2.2, Definition 2.4 (Transpose), printed p. 25 / PDF p. 31",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=31",
+      "supports": "Transpose shape and the row/column exchange defining each transposed entry; original numerical examples are independently calculated.",
+      "checked": "2026-09-19"
     }
   },
   "lessons": {
@@ -1882,7 +1889,7 @@
       "reviewedContentHash": "7931c44f18ec59806a21aeb46217b9340c848b7476a9d601bd867946f0c2886a",
       "intro": ["i-multiply", "i-matrixeq"],
       "sections": {
-        "shape-entries-and-transpose": ["i-multiply"],
+        "shape-entries-and-transpose": ["i-multiply", "mml-transpose"],
         "a-matrix-acting-on-a-vector": ["i-matrixeq"],
         "composition-determines-the-product": ["i-multiply"],
         "checking-a-matrix-calculation": ["i-multiply"]
@@ -1891,7 +1898,7 @@
         "A matrix acting on a vector": ["i-matrixeq"],
         "Checking a matrix calculation": ["i-multiply"],
         "Composition determines the product": ["i-multiply"],
-        "Shape, entries, and transpose": ["i-multiply"]
+        "Shape, entries, and transpose": ["i-multiply", "mml-transpose"]
       }
     },
     "linear-algebra-systems": {
