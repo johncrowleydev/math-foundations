@@ -55,7 +55,7 @@ def fixtures(response, alternate=None):
 
 def append(key, inputs, requirements, response, rationale, *, prompt=None,
            instructions=None, cost='low', capabilities=None, alternate=None,
-           test_cases=None):
+           test_cases=None, level='production'):
     published = EXERCISES[key]['publishedQuestion']
     lesson, identifier = key.rsplit('-', 1)
     original = [published['instructions'], published['prompt'],
@@ -64,7 +64,7 @@ def append(key, inputs, requirements, response, rationale, *, prompt=None,
     entry = {
         'lesson': lesson, 'id': int(identifier), 'sourceHash': digest,
         'rationale': rationale,
-        'assessment': assessment(inputs, requirements, published['officialAnswer'], cost, capabilities),
+        'assessment': assessment(inputs, requirements, published['officialAnswer'], cost, capabilities, level),
         'fixtures': test_cases if test_cases is not None else fixtures(response, alternate),
     }
     if prompt is not None:
@@ -377,6 +377,9 @@ boolean_formula('propositional-logic-87', [
     ('Inverse', '!p->!q', ['p', 'q'], None, '!p->!q'),
     ('Contrapositive', '!q->!p', ['p', 'q'], None, '!q->!p'),
 ])
+
+from deterministic_discrete import author as author_discrete
+author_discrete(append, requirement, EXERCISES)
 
 entries.sort(key=lambda e: (e['lesson'], e['id']))
 (ROOT / 'content/deterministic-exercises.json').write_text(json.dumps(entries, ensure_ascii=False, indent=2) + '\n')
