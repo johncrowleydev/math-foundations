@@ -250,23 +250,21 @@ for identifier, matrix in matrices.items():
               {'id': 'columns', 'kind': 'math', 'label': 'Number of columns'},
               {'id': 'entry', 'kind': 'math', 'label': 'Requested matrix entry'}]
     response = {'rows': str(nr), 'columns': str(nc), 'entry': str(requested_entry)}
-    grid_rows, fields = [], []
-    for r, row in enumerate(transpose):
-        cells = []
-        for c, value in enumerate(row):
-            field = f't-{r+1}-{c+1}'
-            fields.append(field)
-            cells.append({'id': field, 'kind': 'text'})
-            response[field] = str(value)
-        grid_rows.append({'label': f'Row {r+1}', 'cells': cells})
-    inputs.append({'id': 'transpose', 'kind': 'grid', 'label': 'Transpose',
-                   'columns': [f'Column {c+1}' for c in range(nr)], 'rows': grid_rows})
+    inputs.append({'id': 'transpose', 'kind': 'math', 'label': 'Rows of the transpose',
+                   'hint': 'Separate entries with commas and rows with semicolons; ordinary matrix notation also works.'})
+    response['transpose'] = '; '.join(','.join(str(v) for v in row) for row in transpose)
     reqs = [requirement('shape-entry', 'exact', ['rows', 'columns', 'entry'],
                         {'expected': [str(nr), str(nc), str(requested_entry)]}, 'Shape and requested entry are correct.'),
-            requirement('transpose', 'matrix', fields, {'expected': [[str(v) for v in row] for row in transpose]}, 'The transpose exchanges rows and columns.')]
+            requirement('transpose', 'matrix', ['transpose'], {'expected': [[str(v) for v in row] for row in transpose]}, 'The transpose exchanges rows and columns.')]
+    alternative = {**response, 'transpose': r'\begin{bmatrix}' + r'\\'.join('&'.join(str(v) for v in row) for row in transpose) + r'\end{bmatrix}'}
+    tests = fixtures(response, alternative)
+    wrong_values = [row[:] for row in transpose]
+    wrong_values[0][0] += 1
+    tests += [{'response': {**response, 'transpose': ';'.join(','.join(str(v) for v in row) for row in rows)}, 'verdict': 'incorrect'}
+              for rows in [wrong_values, transpose[:-1], [row[:-1] for row in transpose]]]
     append(f'linear-algebra-matrices-{identifier}', inputs, reqs, response,
-           'The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.',
-           cost='medium', capabilities=['math-text'])
+           'The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.',
+           cost='medium', capabilities=['math-text'], test_cases=tests)
 
 assert len(entries) == 126, len(entries)
 

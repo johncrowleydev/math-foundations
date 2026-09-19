@@ -10038,7 +10038,7 @@
     "lesson": "linear-algebra-matrices",
     "id": 1,
     "sourceHash": "473e1c8f3e822289e0e187a26f356f8fd801031327adff17879c8705e8c9700e",
-    "rationale": "The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.",
+    "rationale": "The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -10059,50 +10059,9 @@
         },
         {
           "id": "transpose",
-          "kind": "grid",
-          "label": "Transpose",
-          "columns": ["Column 1", "Column 2"],
-          "rows": [
-            {
-              "label": "Row 1",
-              "cells": [
-                {
-                  "id": "t-1-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 2",
-              "cells": [
-                {
-                  "id": "t-2-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 3",
-              "cells": [
-                {
-                  "id": "t-3-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-3-2",
-                  "kind": "text"
-                }
-              ]
-            }
-          ]
+          "kind": "math",
+          "label": "Rows of the transpose",
+          "hint": "Separate entries with commas and rows with semicolons; ordinary matrix notation also works."
         }
       ],
       "requirements": [
@@ -10118,7 +10077,7 @@
         {
           "id": "transpose",
           "validator": "matrix",
-          "fields": ["t-1-1", "t-1-2", "t-2-1", "t-2-2", "t-3-1", "t-3-2"],
+          "fields": ["transpose"],
           "params": {
             "expected": [
               ["1", "4"],
@@ -10145,12 +10104,16 @@
           "rows": "2",
           "columns": "3",
           "entry": "6",
-          "t-1-1": "1",
-          "t-1-2": "4",
-          "t-2-1": "2",
-          "t-2-2": "5",
-          "t-3-1": "3",
-          "t-3-2": "6"
+          "transpose": "1,4; 2,5; 3,6"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "6",
+          "transpose": "\\begin{bmatrix}1&4\\\\2&5\\\\3&6\\end{bmatrix}"
         },
         "verdict": "correct"
       },
@@ -10159,12 +10122,7 @@
           "rows": "(2)+1",
           "columns": "3",
           "entry": "6",
-          "t-1-1": "1",
-          "t-1-2": "4",
-          "t-2-1": "2",
-          "t-2-2": "5",
-          "t-3-1": "3",
-          "t-3-2": "6"
+          "transpose": "1,4; 2,5; 3,6"
         },
         "verdict": "incorrect"
       },
@@ -10172,14 +10130,36 @@
         "response": {
           "columns": "3",
           "entry": "6",
-          "t-1-1": "1",
-          "t-1-2": "4",
-          "t-2-1": "2",
-          "t-2-2": "5",
-          "t-3-1": "3",
-          "t-3-2": "6"
+          "transpose": "1,4; 2,5; 3,6"
         },
         "error": true
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "6",
+          "transpose": "2,4;2,5;3,6"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "6",
+          "transpose": "1,4;2,5"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "6",
+          "transpose": "1;2;3"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
@@ -10187,7 +10167,7 @@
     "lesson": "linear-algebra-matrices",
     "id": 3,
     "sourceHash": "058789049a823b54a2c87fa524211894c4fb54216e8efb50df8ef3d0103fad42",
-    "rationale": "The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.",
+    "rationale": "The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -10208,37 +10188,9 @@
         },
         {
           "id": "transpose",
-          "kind": "grid",
-          "label": "Transpose",
-          "columns": ["Column 1", "Column 2"],
-          "rows": [
-            {
-              "label": "Row 1",
-              "cells": [
-                {
-                  "id": "t-1-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 2",
-              "cells": [
-                {
-                  "id": "t-2-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-2",
-                  "kind": "text"
-                }
-              ]
-            }
-          ]
+          "kind": "math",
+          "label": "Rows of the transpose",
+          "hint": "Separate entries with commas and rows with semicolons; ordinary matrix notation also works."
         }
       ],
       "requirements": [
@@ -10254,7 +10206,7 @@
         {
           "id": "transpose",
           "validator": "matrix",
-          "fields": ["t-1-1", "t-1-2", "t-2-1", "t-2-2"],
+          "fields": ["transpose"],
           "params": {
             "expected": [
               ["1", "0"],
@@ -10280,10 +10232,16 @@
           "rows": "2",
           "columns": "2",
           "entry": "0",
-          "t-1-1": "1",
-          "t-1-2": "0",
-          "t-2-1": "2",
-          "t-2-2": "1"
+          "transpose": "1,0; 2,1"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "0",
+          "transpose": "\\begin{bmatrix}1&0\\\\2&1\\end{bmatrix}"
         },
         "verdict": "correct"
       },
@@ -10292,10 +10250,7 @@
           "rows": "(2)+1",
           "columns": "2",
           "entry": "0",
-          "t-1-1": "1",
-          "t-1-2": "0",
-          "t-2-1": "2",
-          "t-2-2": "1"
+          "transpose": "1,0; 2,1"
         },
         "verdict": "incorrect"
       },
@@ -10303,12 +10258,36 @@
         "response": {
           "columns": "2",
           "entry": "0",
-          "t-1-1": "1",
-          "t-1-2": "0",
-          "t-2-1": "2",
-          "t-2-2": "1"
+          "transpose": "1,0; 2,1"
         },
         "error": true
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "0",
+          "transpose": "2,0;2,1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "0",
+          "transpose": "1,0"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "0",
+          "transpose": "1;2"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
@@ -10316,7 +10295,7 @@
     "lesson": "linear-algebra-matrices",
     "id": 4,
     "sourceHash": "94fe14f7ebe21f053a4ad91eea414d24ac67d907a370a13134212d0f073ed6da",
-    "rationale": "The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.",
+    "rationale": "The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -10337,37 +10316,9 @@
         },
         {
           "id": "transpose",
-          "kind": "grid",
-          "label": "Transpose",
-          "columns": ["Column 1", "Column 2"],
-          "rows": [
-            {
-              "label": "Row 1",
-              "cells": [
-                {
-                  "id": "t-1-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 2",
-              "cells": [
-                {
-                  "id": "t-2-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-2",
-                  "kind": "text"
-                }
-              ]
-            }
-          ]
+          "kind": "math",
+          "label": "Rows of the transpose",
+          "hint": "Separate entries with commas and rows with semicolons; ordinary matrix notation also works."
         }
       ],
       "requirements": [
@@ -10383,7 +10334,7 @@
         {
           "id": "transpose",
           "validator": "matrix",
-          "fields": ["t-1-1", "t-1-2", "t-2-1", "t-2-2"],
+          "fields": ["transpose"],
           "params": {
             "expected": [
               ["2", "1"],
@@ -10409,10 +10360,16 @@
           "rows": "2",
           "columns": "2",
           "entry": "1",
-          "t-1-1": "2",
-          "t-1-2": "1",
-          "t-2-1": "-1",
-          "t-2-2": "3"
+          "transpose": "2,1; -1,3"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "\\begin{bmatrix}2&1\\\\-1&3\\end{bmatrix}"
         },
         "verdict": "correct"
       },
@@ -10421,10 +10378,7 @@
           "rows": "(2)+1",
           "columns": "2",
           "entry": "1",
-          "t-1-1": "2",
-          "t-1-2": "1",
-          "t-2-1": "-1",
-          "t-2-2": "3"
+          "transpose": "2,1; -1,3"
         },
         "verdict": "incorrect"
       },
@@ -10432,12 +10386,36 @@
         "response": {
           "columns": "2",
           "entry": "1",
-          "t-1-1": "2",
-          "t-1-2": "1",
-          "t-2-1": "-1",
-          "t-2-2": "3"
+          "transpose": "2,1; -1,3"
         },
         "error": true
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "3,1;-1,3"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "2,1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "2;-1"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
@@ -10445,7 +10423,7 @@
     "lesson": "linear-algebra-matrices",
     "id": 5,
     "sourceHash": "e9641d2c87daea6da86de7c2638ccafe9bf67ad61145d3b9077138de8d9d281b",
-    "rationale": "The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.",
+    "rationale": "The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -10466,50 +10444,9 @@
         },
         {
           "id": "transpose",
-          "kind": "grid",
-          "label": "Transpose",
-          "columns": ["Column 1", "Column 2"],
-          "rows": [
-            {
-              "label": "Row 1",
-              "cells": [
-                {
-                  "id": "t-1-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 2",
-              "cells": [
-                {
-                  "id": "t-2-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 3",
-              "cells": [
-                {
-                  "id": "t-3-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-3-2",
-                  "kind": "text"
-                }
-              ]
-            }
-          ]
+          "kind": "math",
+          "label": "Rows of the transpose",
+          "hint": "Separate entries with commas and rows with semicolons; ordinary matrix notation also works."
         }
       ],
       "requirements": [
@@ -10525,7 +10462,7 @@
         {
           "id": "transpose",
           "validator": "matrix",
-          "fields": ["t-1-1", "t-1-2", "t-2-1", "t-2-2", "t-3-1", "t-3-2"],
+          "fields": ["transpose"],
           "params": {
             "expected": [
               ["0", "2"],
@@ -10552,12 +10489,16 @@
           "rows": "2",
           "columns": "3",
           "entry": "2",
-          "t-1-1": "0",
-          "t-1-2": "2",
-          "t-2-1": "1",
-          "t-2-2": "-1",
-          "t-3-1": "2",
-          "t-3-2": "0"
+          "transpose": "0,2; 1,-1; 2,0"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "2",
+          "transpose": "\\begin{bmatrix}0&2\\\\1&-1\\\\2&0\\end{bmatrix}"
         },
         "verdict": "correct"
       },
@@ -10566,12 +10507,7 @@
           "rows": "(2)+1",
           "columns": "3",
           "entry": "2",
-          "t-1-1": "0",
-          "t-1-2": "2",
-          "t-2-1": "1",
-          "t-2-2": "-1",
-          "t-3-1": "2",
-          "t-3-2": "0"
+          "transpose": "0,2; 1,-1; 2,0"
         },
         "verdict": "incorrect"
       },
@@ -10579,14 +10515,36 @@
         "response": {
           "columns": "3",
           "entry": "2",
-          "t-1-1": "0",
-          "t-1-2": "2",
-          "t-2-1": "1",
-          "t-2-2": "-1",
-          "t-3-1": "2",
-          "t-3-2": "0"
+          "transpose": "0,2; 1,-1; 2,0"
         },
         "error": true
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "2",
+          "transpose": "1,2;1,-1;2,0"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "2",
+          "transpose": "0,2;1,-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "2",
+          "transpose": "0;1;2"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
@@ -10594,7 +10552,7 @@
     "lesson": "linear-algebra-matrices",
     "id": 6,
     "sourceHash": "35463855f0306dd244578b486aa95d43978ab7f109b8727c347d3df1fed8ce44",
-    "rationale": "The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.",
+    "rationale": "The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -10615,45 +10573,9 @@
         },
         {
           "id": "transpose",
-          "kind": "grid",
-          "label": "Transpose",
-          "columns": ["Column 1", "Column 2", "Column 3"],
-          "rows": [
-            {
-              "label": "Row 1",
-              "cells": [
-                {
-                  "id": "t-1-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-2",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-3",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 2",
-              "cells": [
-                {
-                  "id": "t-2-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-2",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-3",
-                  "kind": "text"
-                }
-              ]
-            }
-          ]
+          "kind": "math",
+          "label": "Rows of the transpose",
+          "hint": "Separate entries with commas and rows with semicolons; ordinary matrix notation also works."
         }
       ],
       "requirements": [
@@ -10669,7 +10591,7 @@
         {
           "id": "transpose",
           "validator": "matrix",
-          "fields": ["t-1-1", "t-1-2", "t-1-3", "t-2-1", "t-2-2", "t-2-3"],
+          "fields": ["transpose"],
           "params": {
             "expected": [
               ["1", "0", "1"],
@@ -10695,12 +10617,16 @@
           "rows": "3",
           "columns": "2",
           "entry": "1",
-          "t-1-1": "1",
-          "t-1-2": "0",
-          "t-1-3": "1",
-          "t-2-1": "0",
-          "t-2-2": "2",
-          "t-2-3": "-1"
+          "transpose": "1,0,1; 0,2,-1"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "\\begin{bmatrix}1&0&1\\\\0&2&-1\\end{bmatrix}"
         },
         "verdict": "correct"
       },
@@ -10709,12 +10635,7 @@
           "rows": "(3)+1",
           "columns": "2",
           "entry": "1",
-          "t-1-1": "1",
-          "t-1-2": "0",
-          "t-1-3": "1",
-          "t-2-1": "0",
-          "t-2-2": "2",
-          "t-2-3": "-1"
+          "transpose": "1,0,1; 0,2,-1"
         },
         "verdict": "incorrect"
       },
@@ -10722,14 +10643,36 @@
         "response": {
           "columns": "2",
           "entry": "1",
-          "t-1-1": "1",
-          "t-1-2": "0",
-          "t-1-3": "1",
-          "t-2-1": "0",
-          "t-2-2": "2",
-          "t-2-3": "-1"
+          "transpose": "1,0,1; 0,2,-1"
         },
         "error": true
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "2,0,1;0,2,-1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "1,0,1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "2",
+          "entry": "1",
+          "transpose": "1,0;0,2"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
@@ -10737,7 +10680,7 @@
     "lesson": "linear-algebra-matrices",
     "id": 7,
     "sourceHash": "28d7c7d305e8d98446a59b2b9432f78ce1a73bafef4f86732e0c6d3dcb58fcb3",
-    "rationale": "The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.",
+    "rationale": "The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -10758,50 +10701,9 @@
         },
         {
           "id": "transpose",
-          "kind": "grid",
-          "label": "Transpose",
-          "columns": ["Column 1", "Column 2"],
-          "rows": [
-            {
-              "label": "Row 1",
-              "cells": [
-                {
-                  "id": "t-1-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 2",
-              "cells": [
-                {
-                  "id": "t-2-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-2",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 3",
-              "cells": [
-                {
-                  "id": "t-3-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-3-2",
-                  "kind": "text"
-                }
-              ]
-            }
-          ]
+          "kind": "math",
+          "label": "Rows of the transpose",
+          "hint": "Separate entries with commas and rows with semicolons; ordinary matrix notation also works."
         }
       ],
       "requirements": [
@@ -10817,7 +10719,7 @@
         {
           "id": "transpose",
           "validator": "matrix",
-          "fields": ["t-1-1", "t-1-2", "t-2-1", "t-2-2", "t-3-1", "t-3-2"],
+          "fields": ["transpose"],
           "params": {
             "expected": [
               ["2", "0"],
@@ -10844,12 +10746,16 @@
           "rows": "2",
           "columns": "3",
           "entry": "0",
-          "t-1-1": "2",
-          "t-1-2": "0",
-          "t-2-1": "0",
-          "t-2-2": "1",
-          "t-3-1": "-1",
-          "t-3-2": "3"
+          "transpose": "2,0; 0,1; -1,3"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "\\begin{bmatrix}2&0\\\\0&1\\\\-1&3\\end{bmatrix}"
         },
         "verdict": "correct"
       },
@@ -10858,12 +10764,7 @@
           "rows": "(2)+1",
           "columns": "3",
           "entry": "0",
-          "t-1-1": "2",
-          "t-1-2": "0",
-          "t-2-1": "0",
-          "t-2-2": "1",
-          "t-3-1": "-1",
-          "t-3-2": "3"
+          "transpose": "2,0; 0,1; -1,3"
         },
         "verdict": "incorrect"
       },
@@ -10871,14 +10772,36 @@
         "response": {
           "columns": "3",
           "entry": "0",
-          "t-1-1": "2",
-          "t-1-2": "0",
-          "t-2-1": "0",
-          "t-2-2": "1",
-          "t-3-1": "-1",
-          "t-3-2": "3"
+          "transpose": "2,0; 0,1; -1,3"
         },
         "error": true
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "3,0;0,1;-1,3"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "2,0;0,1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "2",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "2;0;-1"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
@@ -10886,7 +10809,7 @@
     "lesson": "linear-algebra-matrices",
     "id": 8,
     "sourceHash": "fd2ab2c6dd5f4a294e1d855107cd1a1f75293ca0a582ffdf6b0c9f2506e35be0",
-    "rationale": "The task requests a shape, entry, and transpose; labeled scalar fields and a compact matrix remove formatting work.",
+    "rationale": "The requested shape remains an independent answer. Typing the transpose rows avoids revealing its dimensions through a pre-sized response grid.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -10907,62 +10830,9 @@
         },
         {
           "id": "transpose",
-          "kind": "grid",
-          "label": "Transpose",
-          "columns": ["Column 1", "Column 2", "Column 3"],
-          "rows": [
-            {
-              "label": "Row 1",
-              "cells": [
-                {
-                  "id": "t-1-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-2",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-1-3",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 2",
-              "cells": [
-                {
-                  "id": "t-2-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-2",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-2-3",
-                  "kind": "text"
-                }
-              ]
-            },
-            {
-              "label": "Row 3",
-              "cells": [
-                {
-                  "id": "t-3-1",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-3-2",
-                  "kind": "text"
-                },
-                {
-                  "id": "t-3-3",
-                  "kind": "text"
-                }
-              ]
-            }
-          ]
+          "kind": "math",
+          "label": "Rows of the transpose",
+          "hint": "Separate entries with commas and rows with semicolons; ordinary matrix notation also works."
         }
       ],
       "requirements": [
@@ -10978,17 +10848,7 @@
         {
           "id": "transpose",
           "validator": "matrix",
-          "fields": [
-            "t-1-1",
-            "t-1-2",
-            "t-1-3",
-            "t-2-1",
-            "t-2-2",
-            "t-2-3",
-            "t-3-1",
-            "t-3-2",
-            "t-3-3"
-          ],
+          "fields": ["transpose"],
           "params": {
             "expected": [
               ["1", "-1", "0"],
@@ -11015,15 +10875,16 @@
           "rows": "3",
           "columns": "3",
           "entry": "0",
-          "t-1-1": "1",
-          "t-1-2": "-1",
-          "t-1-3": "0",
-          "t-2-1": "2",
-          "t-2-2": "0",
-          "t-2-3": "1",
-          "t-3-1": "0",
-          "t-3-2": "1",
-          "t-3-3": "1"
+          "transpose": "1,-1,0; 2,0,1; 0,1,1"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "\\begin{bmatrix}1&-1&0\\\\2&0&1\\\\0&1&1\\end{bmatrix}"
         },
         "verdict": "correct"
       },
@@ -11032,15 +10893,7 @@
           "rows": "(3)+1",
           "columns": "3",
           "entry": "0",
-          "t-1-1": "1",
-          "t-1-2": "-1",
-          "t-1-3": "0",
-          "t-2-1": "2",
-          "t-2-2": "0",
-          "t-2-3": "1",
-          "t-3-1": "0",
-          "t-3-2": "1",
-          "t-3-3": "1"
+          "transpose": "1,-1,0; 2,0,1; 0,1,1"
         },
         "verdict": "incorrect"
       },
@@ -11048,17 +10901,36 @@
         "response": {
           "columns": "3",
           "entry": "0",
-          "t-1-1": "1",
-          "t-1-2": "-1",
-          "t-1-3": "0",
-          "t-2-1": "2",
-          "t-2-2": "0",
-          "t-2-3": "1",
-          "t-3-1": "0",
-          "t-3-2": "1",
-          "t-3-3": "1"
+          "transpose": "1,-1,0; 2,0,1; 0,1,1"
         },
         "error": true
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "2,-1,0;2,0,1;0,1,1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "1,-1,0;2,0,1"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "rows": "3",
+          "columns": "3",
+          "entry": "0",
+          "transpose": "1,-1;2,0;0,1"
+        },
+        "verdict": "incorrect"
       }
     ]
   },
