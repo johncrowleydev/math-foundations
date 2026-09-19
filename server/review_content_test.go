@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 )
@@ -10,7 +11,11 @@ import (
 // Exercise the compiled authoring/scheduling boundary: new recognition cards
 // must neither disappear from the effective pool nor hide older, deeper work.
 func TestLessonReviewContentPreservesExistingEffectiveTemplates(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
+	root := os.Getenv("FOUNDATIONS_TEST_CONTENT_ROOT")
+	if root == "" {
+		root = ".."
+	}
+	raw, err := os.ReadFile(filepath.Join(root, "output/grading-catalog.json"))
 	if os.IsNotExist(err) {
 		t.Skip("run npm run content to test the published catalog")
 	}
@@ -57,11 +62,11 @@ func TestLessonReviewContentPreservesExistingEffectiveTemplates(t *testing.T) {
 		questions := append([]map[string]any{template.Question}, template.Variants...)
 		for _, question := range questions {
 			_, choice := question["choice"]
-			if template.Skill == "recall" && !choice {
+			if template.Skill == "recall" && !choice && assessmentFromQuestion(question) == nil {
 				t.Errorf("new terminology template requires provider grading: %s", template.ID)
 			}
-			if template.EvidenceLevel != "recognition" && (choice || template.quick()) {
-				t.Errorf("new constructive work is mislabeled as a choice or Quick task: %s", template.ID)
+			if template.EvidenceLevel != "recognition" && choice {
+				t.Errorf("new constructive work is mislabeled as a choice: %s", template.ID)
 			}
 		}
 	}

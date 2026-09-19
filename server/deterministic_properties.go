@@ -196,9 +196,10 @@ func samePolynomialDomain(a, b rationalPoly, domain []rationalPoly) (bool, error
 
 type witnessParams struct {
 	Variables []struct {
-		Name    string `json:"name"`
-		Field   string `json:"field"`
-		Integer bool   `json:"integer"`
+		Name       string `json:"name"`
+		Field      string `json:"field"`
+		Integer    bool   `json:"integer"`
+		NonInteger bool   `json:"nonInteger"`
 	} `json:"variables"`
 	Conditions []struct {
 		Left  string `json:"left"`
@@ -225,6 +226,12 @@ func checkWitness(r AssessmentRequirement, response StructuredResponse) (bool, e
 		if v.Integer {
 			q, ok := x.rat()
 			if !ok || !q.IsInt() {
+				return false, nil
+			}
+		}
+		if v.NonInteger {
+			q, ok := x.rat()
+			if ok && q.IsInt() {
 				return false, nil
 			}
 		}
@@ -273,6 +280,23 @@ func checkWitness(r AssessmentRequirement, response StructuredResponse) (bool, e
 		b, e := evaluate(c.Right)
 		if e != nil {
 			return false, e
+		}
+		if enum(c.Op, "divides", "not-divides") {
+			ar, aok := a.rat()
+			br, bok := b.rat()
+			if !aok || !bok || !ar.IsInt() || !br.IsInt() {
+				return false, nil
+			}
+			divides := false
+			if ar.Sign() == 0 {
+				divides = br.Sign() == 0
+			} else {
+				divides = new(big.Int).Rem(br.Num(), ar.Num()).Sign() == 0
+			}
+			if (c.Op == "divides") != divides {
+				return false, nil
+			}
+			continue
 		}
 		d := a.add(b.neg())
 		if c.Op == "=" {

@@ -414,6 +414,8 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if _, err := parsePolynomial(p.Expected, p.Variables); err != nil {
 			return err
 		}
+	case "linear":
+		return validateLinear(r)
 	case "quantified-formula":
 		var p quantifiedParams
 		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Domains) == 0 || !enum(p.Form, "", "nnf") {
@@ -480,7 +482,7 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 			vars = append(vars, v.Name)
 		}
 		for _, c := range p.Conditions {
-			if !enum(c.Op, "=", "!=", "<", "<=", ">", ">=") {
+			if !enum(c.Op, "=", "!=", "<", "<=", ">", ">=", "divides", "not-divides") {
 				return errors.New("Unknown witness comparison")
 			}
 			if _, e := parsePolynomial(c.Left, vars); e != nil {
@@ -566,6 +568,8 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 		return checkBooleanRequirement(r, response)
 	case "boolean-model":
 		return booleanModel(r, response)
+	case "linear":
+		return checkLinear(r, response)
 	case "quantified-formula":
 		return checkQuantified(r, response)
 	case "set":

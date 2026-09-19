@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math/big"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -88,7 +89,7 @@ func (x exactNumber) rat() (*big.Rat, bool) {
 	if len(x.n) == 0 {
 		return new(big.Rat), true
 	}
-	if len(x.n) != 1 || len(x.d) != 1 {
+	if len(x.n) != len(x.d) {
 		return nil, false
 	}
 	var ratio *big.Rat
@@ -636,80 +637,76 @@ func parseExact(s string) (exactNumber, error) {
 	}
 	return p.constant()
 }
-func splitMathList(s string) ([]string, error) {
+func stripMatrixMarkup(s string) string {
 	s = strings.TrimSpace(normalizeMath(s))
-	for len(s) >= 2 && ((s[0] == '(' && s[len(s)-1] == ')') || (s[0] == '[' && s[len(s)-1] == ']') || (s[0] == '{' && s[len(s)-1] == '}')) {
-		level := 0
-		outer := true
-		for i, c := range s {
-			if strings.ContainsRune("([{", c) {
-				level++
-			}
-			if strings.ContainsRune(")]}", c) {
-				level--
-			}
-			if level == 0 && i < len(s)-1 {
-				outer = false
-				break
-			}
-		}
-		if !outer {
-			break
-		}
-		s = strings.TrimSpace(s[1 : len(s)-1])
+	for _, kind := range []string{"matrix", "pmatrix", "bmatrix", "vmatrix", "Bmatrix", "Vmatrix"} {
+		s = strings.ReplaceAll(s, "\\begin{"+kind+"}", "")
+		s = strings.ReplaceAll(s, "\\end{"+kind+"}", "")
+	}
+	return strings.TrimSpace(s)
+}
+func splitMathList(s string) ([]string, error) {
+	s = stripMatrixMarkup(s)
+	if len(s) >= 2 && ((s[0] == '(' && s[len(s)-1] == ')') || (s[0] == '[' && s[len(s)-1] == ']')) {
+		s = s[1 : len(s)-1]
 	}
 	parts := []string{}
 	depth, start := 0, 0
-	for i, c := range s {
-		if strings.ContainsRune("([{", c) {
+	for i := 0; i < len(s); i++ {
+		c := s[i]
+		if strings.ContainsRune("([{", rune(c)) {
 			depth++
 		}
-		if strings.ContainsRune(")]}", c) {
+		if strings.ContainsRune(")]}", rune(c)) {
 			depth--
 		}
-		if c == ',' && depth == 0 {
+		if depth < 0 {
+			return nil, errors.New("Check answer delimiters")
+		}
+		double := i+1 < len(s) && s[i] == '\\' && s[i+1] == '\\'
+		if depth == 0 && (c == ',' || c == ';' || c == '&' || c == '\n' || double) {
 			parts = append(parts, strings.TrimSpace(s[start:i]))
+			if double {
+				i++
+			}
 			start = i + 1
 		}
 	}
-	parts = append(parts, strings.TrimSpace(s[start:]))
 	if depth != 0 {
-		return nil, errors.New("Close the tuple parentheses")
+		return nil, errors.New("Close answer delimiters")
 	}
-	for _, s := range parts {
-		if s == "" {
-			return nil, errors.New("Complete every tuple entry")
+	parts = append(parts, strings.TrimSpace(s[start:]))
+	for _, part := range parts {
+		if part == "" {
+			return nil, errors.New("Complete every entry")
 		}
 	}
 	return parts, nil
 }
 func parseMatrix(s string) ([][]string, error) {
-	s = strings.TrimSpace(normalizeMath(s))
-	for _, kind := range []string{"pmatrix", "bmatrix", "matrix"} {
-		s = strings.ReplaceAll(s, "\\begin{"+kind+"}", "")
-		s = strings.ReplaceAll(s, "\\end{"+kind+"}", "")
+	s = stripMatrixMarkup(s)
+	if strings.HasPrefix(s, "[") && strings.HasSuffix(s, "]") {
+		s = strings.TrimSpace(s[1 : len(s)-1])
 	}
-	s = strings.ReplaceAll(s, "\\\\", ";")
-	s = strings.ReplaceAll(s, "&", ",")
-	s = strings.TrimSpace(s)
-	if strings.HasPrefix(s, "[[") && strings.HasSuffix(s, "]]") {
-		s = s[1 : len(s)-1]
-		s = strings.ReplaceAll(s, "],[", "];[")
-	}
+	s = regexp.MustCompile(`\]\s*,\s*\[`).ReplaceAllString(s, ";")
+	s = strings.ReplaceAll(s, strings.Repeat(string(rune(92)), 2), ";")
+	s = strings.ReplaceAll(s, "\n", ";")
 	rows := strings.Split(s, ";")
 	out := [][]string{}
 	for _, row := range rows {
+		row = strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(row, "["), "]"))
 		xs, e := splitMathList(row)
 		if e != nil {
 			return nil, e
 		}
 		if len(out) > 0 && len(xs) != len(out[0]) {
-			return nil, errors.New("Use the same number of entries in each row")
+			return nil, errors.New("Use equal-length matrix rows")
 		}
 		out = append(out, xs)
 	}
 	return out, nil
 }
+
 func checkExactRequirement(r AssessmentRequirement, response StructuredResponse) (bool, error) {
 	xs, e := responseStrings(r, response)
 	if e != nil {

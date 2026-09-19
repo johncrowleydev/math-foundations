@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -266,5 +267,187 @@ func TestStructuredReviewArchivedTamperRejected(t *testing.T) {
 	raw, _ := json.Marshal(instance)
 	if e := g.importReview(ReviewImport{Records: []Record{{Key: "review-instance/" + instance.ID, Version: Version{Payload: raw}}}}); e == nil {
 		t.Fatal("accepted altered archived definition")
+	}
+}
+
+// Exercise published, frozen definitions against every authored example, rather
+// than testing a parallel hand-maintained list of catalog keys.
+func TestPublishedDeterministicFixtures(t *testing.T) {
+	root := os.Getenv("FOUNDATIONS_TEST_CONTENT_ROOT")
+	if root == "" {
+		root = ".."
+	}
+	raw, e := os.ReadFile(filepath.Join(root, "output/grading-catalog.json"))
+	if os.IsNotExist(e) {
+		t.Skip("run npm run content first")
+	}
+	if e != nil {
+		t.Fatal(e)
+	}
+	var catalog Catalog
+	if e = json.Unmarshal(raw, &catalog); e != nil {
+		t.Fatal(e)
+	}
+	if e = validateCatalogAssessments(catalog); e != nil {
+		t.Fatal(e)
+	}
+	type answerFixture struct {
+		Response StructuredResponse `json:"response"`
+		Verdict  string             `json:"verdict"`
+		Error    bool               `json:"error"`
+	}
+	check := func(name string, a *Assessment, fixtures []answerFixture) {
+		t.Helper()
+		if a == nil {
+			t.Fatalf("missing published assessment for %s", name)
+		}
+		if len(fixtures) == 0 {
+			t.Fatalf("missing fixtures for %s", name)
+		}
+		for i, f := range fixtures {
+			t.Run(fmt.Sprintf("%s/%d", name, i), func(t *testing.T) {
+				grade, e := gradeAssessment(a, f.Response)
+				if f.Error {
+					if e == nil {
+						t.Fatal("expected input error", grade)
+					}
+					return
+				}
+				if e != nil || grade.Verdict != f.Verdict {
+					t.Fatalf("got %s / %v; want %s", grade.Verdict, e, f.Verdict)
+				}
+			})
+		}
+	}
+	for _, name := range []string{"deterministic-exercises.json", "deterministic-linear.json"} {
+		b, e := os.ReadFile(filepath.Join(root, "content", name))
+		if os.IsNotExist(e) {
+			continue
+		}
+		if e != nil {
+			t.Fatal(e)
+		}
+		var entries []struct {
+			Lesson     string          `json:"lesson"`
+			ID         int             `json:"id"`
+			Assessment *Assessment     `json:"assessment"`
+			Fixtures   []answerFixture `json:"fixtures"`
+		}
+		if e = json.Unmarshal(b, &entries); e != nil {
+			t.Fatal(e)
+		}
+		for _, entry := range entries {
+			key := fmt.Sprintf("%s-%d", entry.Lesson, entry.ID)
+			var item struct {
+				Assessment *Assessment `json:"assessment"`
+			}
+			if e = json.Unmarshal(catalog.Exercises[key], &item); e != nil {
+				t.Fatal(key, e)
+			}
+			a, _ := json.Marshal(item.Assessment)
+			b, _ := json.Marshal(entry.Assessment)
+			if !jsonEquivalent(a, b) {
+				t.Fatal("published assessment differs from authoring", key)
+			}
+			check(key, item.Assessment, entry.Fixtures)
+		}
+	}
+	b, e := os.ReadFile(filepath.Join(root, "content/deterministic-review-fixtures.json"))
+	if os.IsNotExist(e) {
+		return
+	}
+	if e != nil {
+		t.Fatal(e)
+	}
+	var reviews []struct {
+		Template string          `json:"template"`
+		Variant  *int            `json:"variant"`
+		Fixtures []answerFixture `json:"fixtures"`
+	}
+	if e = json.Unmarshal(b, &reviews); e != nil {
+		t.Fatal(e)
+	}
+	for _, entry := range reviews {
+		var question map[string]any
+		for _, template := range catalog.ReviewTemplates {
+			if template.ID != entry.Template {
+				continue
+			}
+			question = template.Question
+			if entry.Variant != nil {
+				if *entry.Variant < 1 || *entry.Variant > len(template.Variants) {
+					t.Fatal("unknown review variant", entry.Template)
+				}
+				question = template.Variants[*entry.Variant-1]
+			}
+		}
+		check(fmt.Sprintf("%s/%v", entry.Template, entry.Variant), assessmentFromQuestion(question), entry.Fixtures)
+	}
+}
+
+func TestLinearAcceptsAlternativeAnswers(t *testing.T) {
+	cases := []struct {
+		name, params string
+		response     []string
+		correct      bool
+	}{
+		{"scaled column basis", `{"kind":"basis","a":[["1","0"],["0","0"]],"space":"column"}`, []string{"2,0"}, true},
+		{"original columns required", `{"kind":"basis","a":[["1","0"],["0","0"]],"space":"column","originalColumns":true}`, []string{"2,0"}, false},
+		{"null basis rotated", `{"kind":"basis","a":[["1","1","1"]],"space":"null"}`, []string{"1,-1,0;0,2,-2"}, true},
+		{"incomplete null directions", `{"kind":"basis","a":[["1","1","1"]],"space":"null"}`, []string{"1,-1,0"}, false},
+		{"zero space", `{"kind":"basis","a":[["1","0"],["0","1"]],"space":"null"}`, []string{"{}"}, true},
+		{"affine alternate offset", `{"kind":"affine-family","a":[["1","1","1"]],"b":["4"]}`, []string{"1,1,2", "2,-2,0;0,3,-3"}, true},
+		{"affine missing direction", `{"kind":"affine-family","a":[["1","1","1"]],"b":["4"]}`, []string{"1,1,2", "1,-1,0"}, false},
+		{"scaled eigenvector", `{"kind":"eigenvector","a":[["2","1"],["0","3"]],"lambda":"3"}`, []string{"7,7"}, true},
+		{"zero eigenvector", `{"kind":"eigenvector","a":[["2","1"],["0","3"]],"lambda":"3"}`, []string{"0,0"}, false},
+		{"rotated repeated SVD", `{"kind":"svd","a":[["2","0"],["0","2"]]}`, []string{"sqrt(2)/2,-sqrt(2)/2;sqrt(2)/2,sqrt(2)/2", "2,0;0,2", "sqrt(2)/2,-sqrt(2)/2;sqrt(2)/2,sqrt(2)/2"}, true},
+		{"negative Sigma", `{"kind":"svd","a":[["2","0"],["0","2"]]}`, []string{"-1,0;0,1", "-2,0;0,2", "1,0;0,1"}, false},
+		{"unordered SVD accepted", `{"kind":"svd","a":[["2","0"],["0","1"]]}`, []string{"0,1;1,0", "1,0;0,2", "0,1;1,0"}, true},
+		{"descending SVD enforced", `{"kind":"svd","a":[["2","0"],["0","1"]],"order":"descending"}`, []string{"0,1;1,0", "1,0;0,2", "0,1;1,0"}, false},
+		{"tied best rank rotated", `{"kind":"best-rank","a":[["2","0"],["0","2"]],"rank":1,"errorSquared":"4"}`, []string{"1,1;1,1"}, true},
+		{"insufficient rank constraint", `{"kind":"best-rank","a":[["2","0"],["0","2"]],"rank":1,"errorSquared":"2"}`, []string{"1,0;0,1"}, false},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			a := deterministicFixture(t)
+			a.Inputs = nil
+			r := AssessmentRequirement{ID: "linear", Description: "Construct the requested object", Validator: "linear", Params: json.RawMessage(c.params)}
+			response := StructuredResponse{}
+			for i, s := range c.response {
+				key := fmt.Sprint("field", i)
+				a.Inputs = append(a.Inputs, AssessmentInput{ID: key, Kind: "math", Label: key})
+				r.Fields = append(r.Fields, key)
+				response[key] = s
+			}
+			a.Requirements = []AssessmentRequirement{r}
+			grade, e := gradeAssessment(a, response)
+			if e != nil || (grade.Verdict == "correct") != c.correct {
+				t.Fatal(grade.Verdict, e)
+			}
+		})
+	}
+}
+func TestWitnessIntegralityAndDivisibility(t *testing.T) {
+	a := deterministicFixture(t)
+	a.Requirements[0].Validator = "witness"
+	a.Requirements[0].Params = json.RawMessage(`{"variables":[{"name":"n","field":"answer","nonInteger":true}],"conditions":[{"left":"n","op":">","right":"0"}]}`)
+	for _, c := range []struct {
+		s       string
+		correct bool
+	}{{"sqrt(2)", true}, {"3/2", true}, {"1", false}, {"(1+sqrt(2))/(1+sqrt(2))", false}} {
+		g, e := gradeAssessment(a, StructuredResponse{"answer": c.s})
+		if e != nil || (g.Verdict == "correct") != c.correct {
+			t.Fatal(c, g, e)
+		}
+	}
+	for _, c := range []struct {
+		left, right, op string
+		correct         bool
+	}{{"0", "0", "divides", true}, {"0", "1", "not-divides", true}, {"3", "-6", "divides", true}, {"3", "7", "divides", false}, {"3/2", "3", "divides", false}} {
+		a.Requirements[0].Params = json.RawMessage(fmt.Sprintf(`{"variables":[{"name":"n","field":"answer"}],"conditions":[{"left":%q,"op":%q,"right":%q}]}`, c.left, c.op, c.right))
+		g, e := gradeAssessment(a, StructuredResponse{"answer": "1"})
+		if e != nil || (g.Verdict == "correct") != c.correct {
+			t.Fatal(c, g, e)
+		}
 	}
 }
