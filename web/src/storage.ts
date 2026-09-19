@@ -105,6 +105,44 @@ export async function saveAttempt(a: Attempt) {
   await tx.done;
   changed();
 }
+// Older clients could stop the effort clock after recording submitted. Recover
+// only rejected, never-synced submissions; keep the original rejection payload.
+export async function recoverEffortRejections() {
+  const tx = (await db).transaction(['attempts', 'outbox', 'records', 'settings'], 'readwrite');
+  let recovered = 0;
+  for (const a of (await tx.objectStore('attempts').getAll()) as Attempt[]) {
+    if (a.status !== 'error' || a.error?.trim() !== 'Invalid effort metadata') continue;
+    const rejected = await tx.objectStore('settings').get('rejected:' + a.id);
+    if (
+      rejected?.kind !== 'attempt' ||
+      rejected.id !== a.id ||
+      rejected.data?.id !== a.id ||
+      rejected.error?.trim() !== 'Invalid effort metadata' ||
+      (await tx.objectStore('records').get('attempt/' + a.id)) ||
+      (await tx.objectStore('outbox').get(a.id))
+    )
+      continue;
+    const repaired: Attempt = { ...rejected.data };
+    if (repaired.startedAt === undefined && repaired.activeDurationMs === 0)
+      delete repaired.activeDurationMs;
+    else if (
+      Number.isSafeInteger(repaired.startedAt) &&
+      repaired.startedAt! > 0 &&
+      repaired.startedAt! <= repaired.submitted &&
+      Number.isSafeInteger(repaired.activeDurationMs) &&
+      repaired.activeDurationMs! > repaired.submitted - repaired.startedAt!
+    )
+      repaired.activeDurationMs = repaired.submitted - repaired.startedAt!;
+    else continue;
+    if (!validAttemptEffort(repaired)) continue;
+    await tx.objectStore('attempts').put(repaired, a.id);
+    await tx.objectStore('outbox').put({ id: a.id, kind: 'attempt', data: repaired }, a.id);
+    recovered++;
+  }
+  await tx.done;
+  if (recovered) changed();
+  return recovered;
+}
 export async function integrate(records: RecordData[], cursor: number) {
   const d = await db;
   const tx = d.transaction(

@@ -191,10 +191,14 @@ export function Exercise({
           (d.mode === 'photo' && !d.photos.length))
       )
         throw Error('Add a response before submitting.');
+      // Submission and its final interaction must share one timestamp: even a
+      // 1 ms-later clock reading can put active effort beyond the submitted time.
+      const submitted = Math.max(Date.now(), (last?.submitted || 0) + 1);
+      clock.current.touch(submitted);
       let a: Attempt = {
         id: crypto.randomUUID(),
         exercise: key,
-        submitted: Math.max(Date.now(), (last?.submitted || 0) + 1),
+        submitted,
         contentVersion: instance?.contentVersion || data.version,
         ...(instance ? { review: instance.context } : {}),
         mode: q.choice ? 'choice' : d.mode === 'pen' ? 'write' : d.mode,
@@ -202,7 +206,7 @@ export function Exercise({
         text: d.mode === 'type' ? d.text : '',
         images: [],
         revealed: d.revealed,
-        ...clock.current.pause(),
+        ...clock.current.pause(submitted),
         unsure: d.unsure,
         assistance: {
           answerPreviouslyRevealed:
