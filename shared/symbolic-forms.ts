@@ -23,7 +23,7 @@ function group(source: string, start: number): [string, number] {
     close = open === '{' ? '}' : open === '(' ? ')' : null;
   if (!close) {
     const m = /^(?:[A-Za-z][A-Za-z0-9]*|\d+)/.exec(source.slice(start));
-    if (!m) fail('Use braces or parentheses around each sum bound.');
+    if (!m) return fail('Use braces or parentheses around each sum bound.');
     return [m[0], start + m[0].length];
   }
   let depth = 1,
