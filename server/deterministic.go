@@ -330,6 +330,8 @@ func normalizedTerm(s string, sensitive bool) string {
 
 func validateRequirement(r AssessmentRequirement, fields map[string]answerField) error {
 	switch r.Validator {
+	case "finite-relation":
+		return validateFiniteRelation(r)
 	case "graph":
 		return validateGraph(r)
 	case "sequence-pair":
@@ -556,6 +558,8 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 }
 func checkRequirement(r AssessmentRequirement, response StructuredResponse) (bool, error) {
 	switch r.Validator {
+	case "finite-relation":
+		return checkFiniteRelation(r, response)
 	case "graph":
 		return checkGraph(r, response)
 	case "sequence-pair":

@@ -29,6 +29,8 @@ export function elementaryExpression(
   domain: 'real' | 'nonnegative',
   sign: 1 | -1,
 ): Expression {
+  if (/\bradicalRoot\b/.test(source) || variable === 'radicalRoot')
+    fail('Use the variable named in the question.');
   let s = cleanMath(source)
     .replace(/\\sqrt\b/g, 'sqrt')
     .replace(/\\(?:lvert|rvert)\b/g, '|')
