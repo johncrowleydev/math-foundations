@@ -65,6 +65,7 @@ func rationalFactors(n *big.Int) (map[int64]int, error) {
 type exponentialTransform struct {
 	options                expressionParams
 	atoms, parity, nonzero map[string]bool
+	floors, logs           map[string]string
 }
 
 func newExponentialTransform(o expressionParams) (*exponentialTransform, error) {
@@ -81,20 +82,26 @@ func newExponentialTransform(o expressionParams) (*exponentialTransform, error) 
 		}
 	}
 	for _, f := range o.Functions {
-		if f != "log2" {
+		if f != "log2" && f != "floor" {
 			return nil, errors.New("Unsupported expression function")
 		}
 	}
-	t := &exponentialTransform{o, map[string]bool{}, map[string]bool{}, map[string]bool{}}
+	t := &exponentialTransform{o, map[string]bool{}, map[string]bool{}, map[string]bool{}, map[string]string{}, map[string]string{}}
 	for _, v := range o.PositiveVariables {
 		t.nonzero[v] = true
 	}
 	return t, nil
 }
 func (t *exponentialTransform) atom(kind string, v string, prime int64) string {
+	source := v
+	marker := "v"
+	if original, ok := t.floors[v]; ok {
+		source = original
+		marker = "f"
+	}
 	idx := 0
 	for i, s := range t.options.Variables {
-		if s == v {
+		if s == source {
 			idx = i
 			break
 		}
@@ -103,15 +110,54 @@ func (t *exponentialTransform) atom(kind string, v string, prime int64) string {
 	if prime > 0 {
 		name += strconv.FormatInt(prime, 10)
 	}
-	name += "v" + strconv.Itoa(idx)
+	name += marker + strconv.Itoa(idx)
 	t.atoms[name] = true
 	if kind == "p" {
 		t.parity[name] = true
 	}
-	if kind != "l" {
+	if kind == "e" || kind == "p" {
 		t.nonzero[name] = true
 	}
+	if kind == "f" {
+		t.floors[name] = v
+	}
+	if kind == "l" {
+		t.logs[name] = v
+	}
 	return name
+}
+func (t *exponentialTransform) floored(source string) (string, error) {
+	if !stringHas(t.options.Functions, "floor") {
+		return "", errors.New("Floor is not supported for this answer")
+	}
+	vs := append([]string{}, t.options.Variables...)
+	atoms := []string{}
+	for a := range t.atoms {
+		atoms = append(atoms, a)
+	}
+	sort.Strings(atoms)
+	vs = append(vs, atoms...)
+	p, e := parsePolynomial(source, vs)
+	if e != nil {
+		return "", e
+	}
+	for _, q := range p.divisors {
+		for k := range q {
+			if k != zeroMonomial(len(vs)) {
+				return "", errors.New("Use floor(log2(n)) for a stated positive variable")
+			}
+		}
+	}
+	for symbol, v := range t.logs {
+		expected, e := parsePolynomial(symbol, vs)
+		if e != nil {
+			return "", e
+		}
+		if p.equal(expected) {
+			return t.atom("f", v, 0), nil
+		}
+	}
+	return "", errors.New("Use floor(log2(n)) for a stated positive variable")
 }
 func (t *exponentialTransform) exponential(base, exponent string) (string, error) {
 	if c, e := parseExact(exponent); e == nil {
@@ -128,7 +174,14 @@ func (t *exponentialTransform) exponential(base, exponent string) (string, error
 	if !ok {
 		return "", errors.New("A variable exponent requires a nonzero rational base")
 	}
-	p, e := parsePolynomial(exponent, t.options.Variables)
+	exponentVars := append([]string{}, t.options.Variables...)
+	floorVars := []string{}
+	for v := range t.floors {
+		floorVars = append(floorVars, v)
+	}
+	sort.Strings(floorVars)
+	exponentVars = append(exponentVars, floorVars...)
+	p, e := parsePolynomial(exponent, exponentVars)
 	if e != nil {
 		return "", e
 	}
@@ -158,7 +211,7 @@ func (t *exponentialTransform) exponential(base, exponent string) (string, error
 		idx := -1
 		for i, pow := range powers {
 			if pow != 0 {
-				if pow != 1 || idx != -1 || !stringHas(t.options.IntegerVariables, t.options.Variables[i]) {
+				if pow != 1 || idx != -1 || (!stringHas(t.options.IntegerVariables, exponentVars[i]) && t.floors[exponentVars[i]] == "") {
 					return "", errors.New("Declare integer variables and use an affine integer exponent")
 				}
 				idx = i
@@ -167,7 +220,7 @@ func (t *exponentialTransform) exponential(base, exponent string) (string, error
 		if idx < 0 {
 			offset = n
 		} else {
-			coeff[t.options.Variables[idx]] = n
+			coeff[exponentVars[idx]] = n
 		}
 	}
 	if b.Sign() == 0 {
@@ -195,7 +248,7 @@ func (t *exponentialTransform) exponential(base, exponent string) (string, error
 		factors[prime] -= n
 	}
 	terms := []string{"(" + b.RatString() + ")^(" + strconv.Itoa(offset) + ")"}
-	for _, v := range t.options.Variables {
+	for _, v := range exponentVars {
 		n := coeff[v]
 		primes := []int64{}
 		for prime := range factors {
@@ -334,6 +387,13 @@ func (p *exponentialParser) primary() (string, error) {
 		}
 		b, e := p.group()
 		return "(" + a + "/" + b + ")", e
+	case "floor":
+		p.at++
+		a, e := p.group()
+		if e != nil {
+			return "", e
+		}
+		return p.t.floored(a)
 	case "log2":
 		p.at++
 		var a string
@@ -411,7 +471,7 @@ func (p *exponentialParser) unary() (string, error) {
 }
 func (p *exponentialParser) starts() bool {
 	s := p.peek()
-	return s != "" && (s == "(" || s[0] >= '0' && s[0] <= '9' || s[0] == '.' || stringHas(p.t.options.Variables, s) || stringHas([]string{"\\frac", "sqrt", "\\sqrt", "binom", "\\binom", "choose", "log2"}, s))
+	return s != "" && (s == "(" || s[0] >= '0' && s[0] <= '9' || s[0] == '.' || stringHas(p.t.options.Variables, s) || stringHas([]string{"\\frac", "sqrt", "\\sqrt", "binom", "\\binom", "choose", "log2", "floor"}, s))
 }
 func (p *exponentialParser) product() (string, error) {
 	x, e := p.unary()
@@ -458,6 +518,7 @@ var log2Tex = regexp.MustCompile(`\\log_(\{2\}|2)`)
 
 func (t *exponentialTransform) parse(source string) (string, error) {
 	source = log2Tex.ReplaceAllString(source, "log2")
+	source = strings.NewReplacer("\\lfloor", "floor(", "\\rfloor", ")").Replace(source)
 	source = strings.NewReplacer("{", "(", "}", ")").Replace(source)
 	tokens, e := mathTokens(source)
 	if e != nil {

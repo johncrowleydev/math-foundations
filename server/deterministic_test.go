@@ -21,6 +21,9 @@ func TestExponentialConformance(t *testing.T) {
 func TestAsymptoticConformance(t *testing.T) {
 	testDeterministicCorpus(t, "../shared/asymptotic-fixtures.json")
 }
+func TestRecurrenceConformance(t *testing.T) {
+	testDeterministicCorpus(t, "../shared/recurrence-fixtures.json")
+}
 func testDeterministicCorpus(t *testing.T, path string) {
 	b, e := os.ReadFile(path)
 	if e != nil {

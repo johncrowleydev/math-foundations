@@ -1465,5 +1465,292 @@
       "answer": "0^(-n)"
     },
     "error": true
+  },
+  {
+    "name": "floor-log-exact-count",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1+floor(log2(n))",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2", "floor"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "floor(log2(n))+1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "floor-log-exponential-offset",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*2^floor(log2(n))-1",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2", "floor"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^(floor(log2(n))+1)-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "floor-log-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*2^floor(log2(n))-1",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2", "floor"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^{\\lfloor\\log_2 n\\rfloor+1}-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "floor-log-not-n",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2", "floor"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^floor(log2(n))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "floor-log-retains-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2", "floor"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "floor(log2(n))/floor(log2(n))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "floor-log-no-arbitrary-floor",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "floor(log2(n))",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2", "floor"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "floor(n)"
+    },
+    "error": true
+  },
+  {
+    "name": "floor-log-zero-power-not-positive",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0",
+            "variables": ["n"],
+            "integerVariables": ["n"],
+            "positiveVariables": ["n"],
+            "functions": ["log2", "floor"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0^floor(log2(n))"
+    },
+    "error": true
   }
 ]

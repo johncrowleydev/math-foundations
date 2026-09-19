@@ -71,28 +71,43 @@ function validateOptions(o: ExpressionOptions) {
   for (const list of [o.integerVariables || [], o.positiveVariables || []])
     if (list.some((v) => !o.variables.includes(v)))
       throw Error('Expression domains must name declared variables.');
-  if ((o.functions || []).some((f) => f !== 'log2'))
+  if ((o.functions || []).some((f) => f !== 'log2' && f !== 'floor'))
     throw Error('Unsupported expression function.');
 }
 class Transform {
   readonly atoms = new Set<string>();
   readonly parity = new Set<string>();
   readonly nonzero = new Set<string>();
+  readonly floors = new Map<string, string>();
+  readonly logs = new Map<string, string>();
   constructor(readonly options: ExpressionOptions) {
     validateOptions(options);
     for (const v of options.positiveVariables || []) this.nonzero.add(v);
   }
-  atom(kind: 'e' | 'p' | 'l', variable: string, prime?: bigint): string {
+  atom(kind: 'e' | 'p' | 'l' | 'f', variable: string, prime?: bigint): string {
+    const floorSource = this.floors.get(variable),
+      source = floorSource || variable;
     const name =
       'DETX' +
       kind +
       (prime === undefined ? '' : String(prime)) +
-      'v' +
-      this.options.variables.indexOf(variable);
+      (floorSource ? 'f' : 'v') +
+      this.options.variables.indexOf(source);
     this.atoms.add(name);
     if (kind === 'p') this.parity.add(name);
-    if (kind !== 'l') this.nonzero.add(name);
+    if (kind === 'e' || kind === 'p') this.nonzero.add(name);
+    if (kind === 'f') this.floors.set(name, variable);
+    if (kind === 'l') this.logs.set(name, variable);
     return name;
+  }
+  floored(source: string): string {
+    if (!this.options.functions?.includes('floor')) fail('Floor is not supported for this answer.');
+    const p = parseExpression(source, [...this.options.variables, ...this.atoms]);
+    if (p.exclusions.some((q) => [...q.keys()].some((k) => k !== '')))
+      fail('Use floor(log2(n)) for a stated positive variable.');
+    for (const [symbol, v] of this.logs)
+      if (p.eq(Expression.variable(symbol))) return this.atom('f', v);
+    return fail('Use floor(log2(n)) for a stated positive variable.');
   }
   exponential(base: string, exponent: string): string {
     let constant: Exact | undefined;
@@ -106,7 +121,7 @@ class Transform {
       return '(' + base + ')^(' + exponent + ')';
     }
     const b = parseExact(base).rational();
-    const e = parseExpression(exponent, this.options.variables),
+    const e = parseExpression(exponent, [...this.options.variables, ...this.floors.keys()]),
       den = e.den.get('');
     if (e.den.size !== 1 || !den || e.exclusions.some((p) => [...p.keys()].some((k) => k !== '')))
       fail('Use an affine integer exponent.');
@@ -123,7 +138,7 @@ class Transform {
       if (
         entries.length !== 1 ||
         entries[0][1] !== 1 ||
-        !this.options.integerVariables?.includes(entries[0][0])
+        (!this.options.integerVariables?.includes(entries[0][0]) && !this.floors.has(entries[0][0]))
       )
         fail('Declare integer variables and use an affine integer exponent.');
       coefficients.set(entries[0][0], n);
@@ -185,7 +200,12 @@ class Transform {
     return '(' + terms.join('+') + ')';
   }
   parse(source: string): string {
-    const s = cleanMath(source.replace(/\\log_(?:\{2\}|2)/g, 'log2'));
+    const s = cleanMath(
+      source
+        .replace(/\\log_(?:\{2\}|2)/g, 'log2')
+        .replace(/\\lfloor/g, 'floor(')
+        .replace(/\\rfloor/g, ')'),
+    );
     const tokens: string[] = [];
     const re = /\s+|(?:\d+(?:\.\d*)?|\.\d+)|\\[A-Za-z]+|[A-Za-z][A-Za-z_0-9]*|[()+\-*/^!,]/gy;
     let pos = 0;
@@ -227,6 +247,9 @@ class Transform {
       } else if (t === 'log2') {
         at++;
         result = this.logarithm(peek() === '(' ? group() : primary());
+      } else if (t === 'floor') {
+        at++;
+        result = this.floored(group());
       } else if (t === 'sqrt' || t === '\\sqrt') {
         at++;
         result = 'sqrt' + group();
@@ -259,7 +282,9 @@ class Transform {
       (peek() === '(' ||
         /^(?:\d|\.)/.test(peek()) ||
         this.options.variables.includes(peek()) ||
-        ['\\frac', 'sqrt', '\\sqrt', 'binom', '\\binom', 'choose', 'log2'].includes(peek()));
+        ['\\frac', 'sqrt', '\\sqrt', 'binom', '\\binom', 'choose', 'log2', 'floor'].includes(
+          peek(),
+        ));
     const product = (): string => {
       let x = unary();
       while (true) {

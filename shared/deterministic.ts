@@ -1,3 +1,4 @@
+import { checkRecurrence, validateRecurrence } from './recurrence';
 import { checkAsymptotic, validateAsymptotic } from './asymptotic';
 import {
   extendedExpressionEquivalent,
@@ -150,6 +151,7 @@ const validators: Record<
   inequality: (r, a) =>
     inequalityEquivalent(text(a[r.fields[0]]), text(r.params.expected), text(r.params.variable)),
   'asymptotic-bound': checkAsymptotic,
+  recurrence: checkRecurrence,
   expression: (r, a) => {
     const options = r.params as unknown as ExpressionOptions;
     if (hasExtendedExpression(options))
@@ -540,6 +542,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
       );
     }
     if (r.validator === 'asymptotic-bound') validateAsymptotic(r);
+    if (r.validator === 'recurrence') validateRecurrence(r);
     if (r.validator === 'expression') {
       if (
         !strings(r.params.variables) ||
