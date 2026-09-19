@@ -38,3 +38,18 @@ test('empty and malformed routes recover safely; invalid exercise IDs allow resu
   });
   assert.equal(routeHash({ slug: 'logic', tab: 'read' }), '#/learn/logic');
 });
+
+test('Review is a top-level route, including from reading-only introductions', () => {
+  const intro = { slug: 'intro', questions: [] } as unknown as Lesson;
+  const route = readRoute('#/review/intro', [intro, ...lessons], null);
+  assert.deepEqual(route, { slug: 'intro', tab: 'review' });
+  assert.equal(routeHash(route), '#/review/intro');
+  assert.equal(readRoute('#/review', lessons, 'sets').tab, 'review');
+});
+
+test('Review Library has its own reloadable route and preserves lesson navigation context', () => {
+  const route = readRoute('#/review-library/sets', lessons, 'logic');
+  assert.deepEqual(route, { slug: 'sets', tab: 'review-library' });
+  assert.equal(routeHash(route), '#/review-library/sets');
+  assert.deepEqual(readRoute('#/review-library', lessons, 'sets'), route);
+});

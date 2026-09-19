@@ -62,6 +62,11 @@ def export(database, release, media, output):
                           'exportedUTC': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                           'attempts': len(attempts), 'grades': sum(len(a['grades']) for a in attempts)})
         js('attempts.json', attempts)
+        js('review.json', {
+            'states': [r for r in tables['records'] if r['key'].startswith('review-state/')],
+            'instances': [r for r in tables['records'] if r['key'].startswith('review-instance/')],
+            'sessions': [r for r in tables['records'] if r['key'].startswith('review-session/')],
+        })
         sheet('attempts.csv', [{k: a.get(k, '') for k in ['id', 'exercise', 'submitted', 'mode', 'verdict', 'status', 'startedAt', 'activeDurationMs', 'unsure', 'text', 'transcription']} for a in attempts])
         sheet('grades.csv', [dict(attemptId=a['id'], exercise=a['exercise'], assessment=i + 1,
                                  **{k: json.dumps(g[k], ensure_ascii=False) if isinstance(g.get(k), (dict, list)) else g.get(k, '') for k in ['at', 'verdict', 'feedback', 'reason', 'confidence', 'requirements', 'diagnosis', 'notGradedReason']})
@@ -69,7 +74,7 @@ def export(database, release, media, output):
         for name, rows in tables.items():
             js('raw/' + name + '.json', rows)
         js('exposures.json', [r for r in tables['records'] if r['key'].startswith('exposure/')])
-        for name in ['notebook', 'teaching', 'tex-syntax', 'tex-teaching', 'grading-version', 'learning-evidence']:
+        for name in ['notebook', 'teaching', 'tex-syntax', 'tex-teaching', 'grading-version', 'learning-evidence', 'review-templates']:
             path = release / 'web' / (name + '.json')
             if path.exists():
                 write('curriculum/' + path.name, path.read_bytes())
@@ -82,6 +87,7 @@ def export(database, release, media, output):
                 write('media/' + path.name, data)
         write('README.txt', 'Foundations learning export v2. UTF-8 JSON and CSV. Numeric timestamps are Unix milliseconds.\n'
               'attempts.json contains immutable submissions, assistance, optional uncertainty/timing, all assessments with requirements/diagnoses/confidence, rechecks, original context and analytical snapshots. Missing fields are unknown, never inferred.\n'
+              'review.json separates mutable server scheduling state from issued instances/sessions; attempts retain optional review context. Absent review context on historical attempts is not fabricated.\n'
               'curriculum/ includes the current concept/skill/representation catalog and exercise mappings. Historical snapshots take precedence; historical-backfill is labeled. Unmatched legacy tasks may lack snapshots.\n'
               'raw/ retains sync records, conflicts and versions, including bounded concept exposures. Media previously replaced by transcription is not recoverable.\n'
               'Only server-synced work is included. Use the browser local-work export for unuploaded drafts. No credentials, sessions or operational request replay logs. Consistent DB read transaction; immutable media copied immediately afterward.\n'

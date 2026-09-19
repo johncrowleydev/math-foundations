@@ -235,6 +235,7 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 func (s *Server) handler() http.Handler {
 	mux := http.NewServeMux()
 	s.gradingRoutes(mux)
+	s.reviewRoutes(mux)
 	mux.HandleFunc("GET /api/v1/status", func(w http.ResponseWriter, r *http.Request) {
 		status := map[string]any{"api": 1, "status": "ok", "grading": s.grading != nil}
 		if s.grading != nil {

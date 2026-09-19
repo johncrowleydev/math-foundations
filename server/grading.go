@@ -23,6 +23,7 @@ const gradingModel = "z-ai/glm-5.3-flash"
 const promptVersion = "foundations-grading-5"
 
 type Submission struct {
+	Review           *ReviewContext   `json:"review,omitempty"`
 	StartedAt        *int64           `json:"startedAt,omitempty"`
 	ActiveDurationMs *int64           `json:"activeDurationMs,omitempty"`
 	Assistance       *Assistance      `json:"assistance,omitempty"`
@@ -71,8 +72,9 @@ type Attempt struct {
 	Grades        []Grade `json:"grades"`
 }
 type Catalog struct {
-	Version   string                     `json:"version"`
-	Exercises map[string]json.RawMessage `json:"exercises"`
+	ReviewTemplates []ReviewTemplate           `json:"reviewTemplates,omitempty"`
+	Version         string                     `json:"version"`
+	Exercises       map[string]json.RawMessage `json:"exercises"`
 }
 type ChoiceOption struct {
 	ID       string `json:"id"`
@@ -190,7 +192,20 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 		return old, 200, nil
 	}
 	teaching, ok := g.catalog.Exercises[a.Exercise]
-	if !ok || a.ContentVersion != g.catalog.Version {
+	if a.Review != nil {
+		var instance ReviewInstance
+		if err := reviewLoad(g.server.db, "review-instance/"+a.Review.InstanceID, &instance); err != nil {
+			return Attempt{}, 409, errors.New("Review instance unavailable; synchronize this session first")
+		}
+		expected, _ := json.Marshal(instance.Context)
+		received, _ := json.Marshal(a.Review)
+		if a.Submitted < instance.Context.PresentedAt || instance.Exercise != a.Exercise || instance.ContentVersion != a.ContentVersion || !bytes.Equal(expected, received) {
+			return Attempt{}, 400, errors.New("Review context does not match its server instance")
+		}
+		teaching = instance.Teaching
+		ok = true
+	}
+	if !ok || (a.Review == nil && a.ContentVersion != g.catalog.Version) {
 		return Attempt{}, 409, errors.New("Update the app before submitting this exercise")
 	}
 	var item struct {
@@ -310,6 +325,9 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 	if e = tx.Commit(); e != nil {
 		return Attempt{}, 503, e
 	}
+	if _, err := g.reviewSummary(time.Now().UnixMilli()); err != nil {
+		return Attempt{}, 503, err
+	}
 	result, e := loadAttempt(g.server.db, a.ID)
 	return result, 201, e
 }
@@ -341,6 +359,17 @@ func (g *Grading) recheck(id, requestID, reason string) error {
 	a, e := loadAttempt(tx, id)
 	if e != nil {
 		return e
+	}
+	var storedContext string
+	if err := tx.QueryRow("SELECT context FROM attempts WHERE id=?", id).Scan(&storedContext); err != nil {
+		return err
+	}
+	var contextMeta struct {
+		ImportedHistoricalContext bool `json:"importedHistoricalContext"`
+	}
+	json.Unmarshal([]byte(storedContext), &contextMeta)
+	if contextMeta.ImportedHistoricalContext {
+		return errors.New("This imported historical attempt has no original grading context to recheck")
 	}
 	if a.Mode == "choice" {
 		return errors.New("This response is graded from a predefined answer, not an AI assessment")
@@ -614,7 +643,9 @@ func (g *Grading) step(ctx context.Context) bool {
 		e2 = emitAttempt(tx, attempt)
 	}
 	if e2 == nil {
-		tx.Commit()
+		if tx.Commit() == nil {
+			g.reviewSummary(time.Now().UnixMilli())
+		}
 	}
 	return true
 }

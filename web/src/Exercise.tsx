@@ -1,4 +1,5 @@
 import { exerciseKey, exerciseNamespace, type ExerciseIdentity } from './exerciseIdentity';
+import type { ReviewInstance } from './reviewTypes';
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
@@ -19,13 +20,16 @@ export function Exercise({
   lesson,
   data,
   review,
+  instance,
 }: {
+  instance?: ReviewInstance;
   q: Question;
   lesson: ExerciseIdentity;
   data: Curriculum;
   review?: { slug: string; section: string; title: string };
 }) {
-  const key = exerciseKey(lesson, q.id);
+  const key = instance?.exercise || exerciseKey(lesson, q.id);
+  const evidence = instance?.analytics || snapshot(data.evidence, key);
   const choiceGroup = useId();
   const clock = useRef(new EffortClock());
   const rev = useRevision();
@@ -58,7 +62,7 @@ export function Exercise({
         if (ink) {
           d.strokes = await decodeInk(ink.payload as unknown as NativeInk);
         }
-        if (q.quickSource && q.choice) {
+        if (!instance && q.quickSource && q.choice) {
           const previous = await get<RecordData>(
             'records',
             'quick/' + exerciseNamespace(lesson) + ':' + q.quickSource,
@@ -169,7 +173,7 @@ export function Exercise({
   function activity() {
     if (!editing || !latestDraft.current || document.hidden) return;
     clock.current.touch();
-    for (const c of data.evidence.exercises[key]?.concepts || [])
+    for (const c of evidence?.concepts || [])
       void expose(c.concept, 'exercise', key).catch((e) => setError(String(e)));
   }
   async function submit() {
@@ -188,17 +192,22 @@ export function Exercise({
           (d.mode === 'photo' && !d.photos.length))
       )
         throw Error('Add a response before submitting.');
+      // Submission and its final interaction must share one timestamp: even a
+      // 1 ms-later clock reading can put active effort beyond the submitted time.
+      const submitted = Math.max(Date.now(), (last?.submitted || 0) + 1);
+      clock.current.touch(submitted);
       let a: Attempt = {
         id: crypto.randomUUID(),
         exercise: key,
-        submitted: Math.max(Date.now(), (last?.submitted || 0) + 1),
-        contentVersion: data.version,
+        submitted,
+        contentVersion: instance?.contentVersion || data.version,
+        ...(instance ? { review: instance.context } : {}),
         mode: q.choice ? 'choice' : d.mode === 'pen' ? 'write' : d.mode,
         ...(q.choice ? { choiceId: d.choiceId } : {}),
         text: d.mode === 'type' ? d.text : '',
         images: [],
         revealed: d.revealed,
-        ...clock.current.pause(),
+        ...clock.current.pause(submitted),
         unsure: d.unsure,
         assistance: {
           answerPreviouslyRevealed:
@@ -212,7 +221,7 @@ export function Exercise({
             attempts.some((a) => a.assistance?.priorIncorrectFeedbackSeen),
           copiedFromRetry: d.assistance?.copiedFromRetry || false,
         },
-        analytics: snapshot(data.evidence, key),
+        analytics: evidence,
         status: 'queued',
         grades: [],
       };
@@ -294,7 +303,7 @@ export function Exercise({
         copiedFromRetry: latestDraft.current?.assistance?.copiedFromRetry || false,
       },
     });
-    for (const c of data.evidence.exercises[key]?.concepts || [])
+    for (const c of evidence?.concepts || [])
       void expose(c.concept, 'feedback', id).catch((e) => setError(String(e)));
   }
   const editor = draft && (
@@ -416,7 +425,7 @@ export function Exercise({
     >
       {review ? (
         <div className="exercise-heading">
-          <div className="eyebrow">{questionLabel(q)}</div>
+          <div className="eyebrow">{instance ? 'Review task' : questionLabel(q)}</div>
           {review && (
             <a
               className="lesson-review"
@@ -433,14 +442,22 @@ export function Exercise({
           )}
         </div>
       ) : (
-        <div className="eyebrow">{questionLabel(q)}</div>
+        <div className="eyebrow">{instance ? 'Review task' : questionLabel(q)}</div>
       )}
-      <Rich text={q.instructions} source={`question:${q.id}:instructions`} />
+      <Rich text={q.instructions} source={instance ? undefined : `question:${q.id}:instructions`} />
       <Rich
         text={q.prompt}
-        source={q.quickSource ? `quick:${q.quickSource}:prompt` : `question:${q.id}:prompt`}
+        source={
+          instance
+            ? undefined
+            : q.quickSource
+              ? `quick:${q.quickSource}:prompt`
+              : `question:${q.id}:prompt`
+        }
       />
-      {q.math && <Rich text={'$$' + q.math + '$$'} source={`question:${q.id}:math`} />}
+      {q.math && (
+        <Rich text={'$$' + q.math + '$$'} source={instance ? undefined : `question:${q.id}:math`} />
+      )}
       {q.table && (
         <table>
           <thead>
@@ -553,9 +570,23 @@ export function Exercise({
         <summary>Reveal answer</summary>
         <Rich
           text={q.answer}
-          source={q.quickSource ? `quick:${q.quickSource}:explanation` : `question:${q.id}:answer`}
+          source={
+            instance
+              ? undefined
+              : q.quickSource
+                ? `quick:${q.quickSource}:explanation`
+                : `question:${q.id}:answer`
+          }
         />
-        <Sources catalog={data.sources} target={`exercise:${key}`} exercise />
+        <Sources
+          catalog={data.sources}
+          target={
+            instance
+              ? instance.sourceTarget || `review:${instance.context.templateId}`
+              : `exercise:${key}`
+          }
+          exercise
+        />
       </details>
       {history && (
         <Modal

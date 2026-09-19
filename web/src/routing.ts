@@ -3,7 +3,7 @@ import type { Lesson } from './types';
 
 export type AppRoute = {
   slug: string;
-  tab: 'read' | 'practice' | 'reference' | 'progress';
+  tab: 'read' | 'practice' | 'reference' | 'progress' | 'review' | 'review-library';
   exercise?: string;
   section?: string;
 };
@@ -32,7 +32,7 @@ export function readRoute(hash: string, lessons: Lesson[], savedLesson: string |
       : undefined;
   if (reading) lesson = reading.lesson;
   const tab =
-    page === 'reference' || page === 'progress'
+    page === 'reference' || page === 'progress' || page === 'review' || page === 'review-library'
       ? page
       : page === 'practice' && lesson.questions.length
         ? page

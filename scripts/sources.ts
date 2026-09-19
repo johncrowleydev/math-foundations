@@ -33,6 +33,9 @@ const schema = z
         })
         .strict(),
     ),
+    reviewTemplates: z
+      .record(text, z.object({ reviewedContentHash: text, sources: ids }).strict())
+      .default({}),
     syntax: z.object({ reviewedContentHash: text, entries: z.record(text, ids) }).strict(),
   })
   .strict();
@@ -67,6 +70,7 @@ export function validateSources(
   teaching: Teaching,
   syntax: Syntax,
   typing: Typing,
+  reviewTemplates: { id: string; sourceIds: string[] }[] = [],
 ) {
   validateExerciseKeys(lessons);
   const catalog = schema.parse(raw);
@@ -124,6 +128,19 @@ export function validateSources(
       }
     }
   }
+  exactKeys(
+    Object.keys(catalog.reviewTemplates),
+    reviewTemplates.map((t) => t.id),
+    'review templates',
+  );
+  for (const template of reviewTemplates) {
+    const authored = catalog.reviewTemplates[template.id];
+    if (authored.reviewedContentHash !== sourceHash(template))
+      throw Error('Review template sources need reinspection: ' + template.id);
+    if (JSON.stringify(authored.sources) !== JSON.stringify(template.sourceIds))
+      throw Error('Review template source assignment mismatch: ' + template.id);
+    assign('review:' + template.id, authored.sources);
+  }
   if (catalog.syntax.reviewedContentHash !== sourceHash({ syntax, typing }))
     throw Error('TeX sources need reinspection after content changes');
   const syntaxIds = [...syntax.entries, ...typing.basics].map((e) => e.id);
@@ -138,11 +155,15 @@ export function validateSources(
     targets,
   };
 }
-export async function loadSources(lessons: Lesson[], teaching: Teaching) {
+export async function loadSources(
+  lessons: Lesson[],
+  teaching: Teaching,
+  reviewTemplates: { id: string; sourceIds: string[] }[] = [],
+) {
   const [raw, syntax, typing] = await Promise.all(
     ['content/sources.json', 'content/tex-syntax.json', 'content/tex-teaching.json'].map(
       async (file) => JSON.parse(await readFile(file, 'utf8')),
     ),
   );
-  return validateSources(raw, lessons, teaching, syntax, typing);
+  return validateSources(raw, lessons, teaching, syntax, typing, reviewTemplates);
 }

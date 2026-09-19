@@ -1,5 +1,6 @@
 import { exerciseKey, exerciseNamespace, type ExerciseIdentity } from './exerciseIdentity';
 import { openDB } from 'idb';
+import { validReviewContext, validReviewSession } from './reviewValidation';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
 import type { EvidenceCatalog } from './evidenceTypes';
@@ -104,6 +105,44 @@ export async function saveAttempt(a: Attempt) {
   await tx.objectStore('outbox').put({ id: a.id, kind: 'attempt', data: a }, a.id);
   await tx.done;
   changed();
+}
+// Older clients could stop the effort clock after recording submitted. Recover
+// only rejected, never-synced submissions; keep the original rejection payload.
+export async function recoverEffortRejections() {
+  const tx = (await db).transaction(['attempts', 'outbox', 'records', 'settings'], 'readwrite');
+  let recovered = 0;
+  for (const a of (await tx.objectStore('attempts').getAll()) as Attempt[]) {
+    if (a.status !== 'error' || a.error?.trim() !== 'Invalid effort metadata') continue;
+    const rejected = await tx.objectStore('settings').get('rejected:' + a.id);
+    if (
+      rejected?.kind !== 'attempt' ||
+      rejected.id !== a.id ||
+      rejected.data?.id !== a.id ||
+      rejected.error?.trim() !== 'Invalid effort metadata' ||
+      (await tx.objectStore('records').get('attempt/' + a.id)) ||
+      (await tx.objectStore('outbox').get(a.id))
+    )
+      continue;
+    const repaired: Attempt = { ...rejected.data };
+    if (repaired.startedAt === undefined && repaired.activeDurationMs === 0)
+      delete repaired.activeDurationMs;
+    else if (
+      Number.isSafeInteger(repaired.startedAt) &&
+      repaired.startedAt! > 0 &&
+      repaired.startedAt! <= repaired.submitted &&
+      Number.isSafeInteger(repaired.activeDurationMs) &&
+      repaired.activeDurationMs! > repaired.submitted - repaired.startedAt!
+    )
+      repaired.activeDurationMs = repaired.submitted - repaired.startedAt!;
+    else continue;
+    if (!validAttemptEffort(repaired)) continue;
+    await tx.objectStore('attempts').put(repaired, a.id);
+    await tx.objectStore('outbox').put({ id: a.id, kind: 'attempt', data: repaired }, a.id);
+    recovered++;
+  }
+  await tx.done;
+  if (recovered) changed();
+  return recovered;
 }
 export async function integrate(records: RecordData[], cursor: number) {
   const d = await db;
@@ -236,6 +275,7 @@ export async function importData(file: Blob, name: string) {
     v.every((p) => object(p) && hashKey(p.hash) && finite(p.rotation) && p.rotation % 90 === 0);
   const attempt = (v: Record<string, any>) =>
     validAttemptEffort(v) &&
+    validReviewContext(v.review) &&
     validSnapshot(v.analytics) &&
     typeof v.id === 'string' &&
     typeof v.exercise === 'string' &&
@@ -301,12 +341,30 @@ export async function importData(file: Blob, name: string) {
       )
         throw Error('Invalid record.');
       if (
+        store === 'records' &&
+        key === 'review-cache/active' &&
+        v.payload.session !== null &&
+        !validReviewSession(v.payload.session)
+      )
+        throw Error('Invalid cached review session.');
+      if (
         store === 'outbox' &&
         !(
           v.id === key &&
-          ['attempt', 'mutation', 'recheck'].includes(v.kind) &&
+          ['attempt', 'mutation', 'recheck', 'review-import'].includes(v.kind) &&
           object(v.data) &&
           (v.kind !== 'attempt' || attempt(v.data)) &&
+          (v.kind !== 'review-import' ||
+            (Array.isArray(v.data.attempts) &&
+              v.data.attempts.every((a: any) => object(a) && attempt(a)) &&
+              Array.isArray(v.data.records) &&
+              v.data.records.every(
+                (r: any) =>
+                  object(r) &&
+                  typeof r.key === 'string' &&
+                  r.key.startsWith('review-') &&
+                  object(r.payload),
+              ))) &&
           (v.kind !== 'recheck' ||
             (typeof v.attempt === 'string' && /^[a-zA-Z0-9-]+$/.test(v.attempt))) &&
           (v.kind !== 'mutation' || (typeof v.data.key === 'string' && object(v.data.payload)))
@@ -353,12 +411,45 @@ export async function importData(file: Blob, name: string) {
     for (const [key, value] of parsed[store]) {
       const old = await tx.objectStore(store).get(key);
       if (old === undefined) {
-        await tx.objectStore(store).put(value, key);
+        // Revisions are local to a server database. A restored review snapshot
+        // must not outrank a new server's authoritative replay merely because
+        // its old revision was larger. The original remains in the archive.
+        const restored =
+          store === 'records' &&
+          (key.startsWith('review-') || (key.startsWith('attempt/') && value.payload.review))
+            ? { ...value, revision: 0 }
+            : value;
+        await tx.objectStore(store).put(restored, key);
         imported++;
       } else if (JSON.stringify(old) !== JSON.stringify(value)) conflicts++;
     }
   for (const [key, blob] of media)
     if (!(await tx.objectStore('media').get(key))) await tx.objectStore('media').put(blob, key);
+  // Restore server-issued instances before pending attempts are uploaded. State
+  // snapshots are never submitted as client mutations: Go replays the evidence.
+  const reviewRecords = parsed.records
+    .map(([, value]) => value)
+    .filter((r) =>
+      ['review-instance/', 'review-session/', 'review-activation/'].some((prefix) =>
+        r.key.startsWith(prefix),
+      ),
+    );
+  if (reviewRecords.length) {
+    const operationId = 'review-import-' + id;
+    await tx.objectStore('outbox').put(
+      {
+        id: operationId,
+        kind: 'review-import',
+        data: {
+          records: reviewRecords,
+          attempts: parsed.attempts
+            .map(([, value]) => value)
+            .filter((a) => a.status === 'graded' || a.grades.length > 0),
+        },
+      },
+      operationId,
+    );
+  }
   await tx
     .objectStore('imports')
     .put({ name, at: Date.now(), conflicts, blob: file } satisfies ImportArchive, id);
