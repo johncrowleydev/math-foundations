@@ -471,3 +471,15 @@ func TestWitnessIntegralityAndDivisibility(t *testing.T) {
 		}
 	}
 }
+
+func TestParenthesizedVectorEntries(t *testing.T) {
+	xs, e := splitMathList("(0)/sqrt(2), (1)/sqrt(2), (1)/sqrt(2)")
+	if e != nil || len(xs) != 3 {
+		t.Fatalf("entries %v error %v", xs, e)
+	}
+	for _, s := range xs {
+		if _, e := parseExact(s); e != nil {
+			t.Fatal(e)
+		}
+	}
+}

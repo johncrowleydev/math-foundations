@@ -648,7 +648,23 @@ func stripMatrixMarkup(s string) string {
 func splitMathList(s string) ([]string, error) {
 	s = stripMatrixMarkup(s)
 	if len(s) >= 2 && ((s[0] == '(' && s[len(s)-1] == ')') || (s[0] == '[' && s[len(s)-1] == ']')) {
-		s = s[1 : len(s)-1]
+		depth := 0
+		whole := true
+		for i, c := range s {
+			if c == '(' || c == '[' {
+				depth++
+			}
+			if c == ')' || c == ']' {
+				depth--
+			}
+			if depth == 0 && i < len(s)-1 {
+				whole = false
+				break
+			}
+		}
+		if whole {
+			s = s[1 : len(s)-1]
+		}
 	}
 	parts := []string{}
 	depth, start := 0, 0

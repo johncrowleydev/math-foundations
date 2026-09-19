@@ -422,8 +422,10 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 		if jsonParams(r, &p) != nil || len(r.Fields) != 1 || len(p.Domains) == 0 || !enum(p.Form, "", "nnf") {
 			return errors.New("Invalid quantified formula parameters")
 		}
-		if _, e := parseQuantified(p.Expected, p.Domains, p.Predicates); e != nil {
-			return e
+		for _, target := range append([]string{p.Expected}, p.Alternatives...) {
+			if _, e := parseQuantified(target, p.Domains, p.Predicates, p.Constants, p.FreeVariables); e != nil {
+				return e
+			}
 		}
 	case "inequality":
 		var p struct {

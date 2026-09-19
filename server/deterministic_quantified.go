@@ -95,6 +95,9 @@ func (p *quantifiedParser) unary() (*quantifiedNode, error) {
 	if enum(p.peek(), "forall", "exists") {
 		q := p.peek()
 		p.at++
+		if q == "exists" && p.take("!") {
+			q = "unique"
+		}
 		v := p.peek()
 		p.at++
 		if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(v) {
@@ -224,7 +227,63 @@ func validateQuantified(n *quantifiedNode, bound []string) error {
 		return validateQuantified(n.right, bound)
 	}
 }
-func parseQuantified(s string, domains []string, predicates map[string]int) (*quantifiedNode, error) {
+func replaceQuantifiedVariable(n *quantifiedNode, old, replacement string) *quantifiedNode {
+	result := *n
+	swap := func(s string) string {
+		return identifierToken.ReplaceAllStringFunc(s, func(v string) string {
+			if v == old {
+				return replacement
+			}
+			return v
+		})
+	}
+	switch n.kind {
+	case "quantifier":
+		if n.variable != old {
+			result.body = replaceQuantifiedVariable(n.body, old, replacement)
+		}
+	case "not":
+		result.body = replaceQuantifiedVariable(n.body, old, replacement)
+	case "predicate":
+		result.args = []string{}
+		for _, s := range n.args {
+			result.args = append(result.args, swap(s))
+		}
+	case "comparison":
+		result.leftText = swap(n.leftText)
+		result.rightText = swap(n.rightText)
+	default:
+		result.left = replaceQuantifiedVariable(n.left, old, replacement)
+		result.right = replaceQuantifiedVariable(n.right, old, replacement)
+	}
+	return &result
+}
+func expandUnique(n *quantifiedNode, tokens []string, fresh *int) *quantifiedNode {
+	result := *n
+	switch n.kind {
+	case "quantifier":
+		result.body = expandUnique(n.body, tokens, fresh)
+		if n.quantifier == "unique" {
+			other := ""
+			for {
+				other = "uniqueBound" + strconv.Itoa(*fresh)
+				*fresh++
+				if !contains(tokens, other) {
+					break
+				}
+			}
+			result.quantifier = "exists"
+			result.body = &quantifiedNode{kind: "and", left: result.body, right: &quantifiedNode{kind: "quantifier", quantifier: "forall", variable: other, domain: n.domain, body: &quantifiedNode{kind: "implies", left: replaceQuantifiedVariable(result.body, n.variable, other), right: &quantifiedNode{kind: "comparison", op: "=", leftText: other, rightText: n.variable}}}}
+		}
+	case "not":
+		result.body = expandUnique(n.body, tokens, fresh)
+	case "and", "or", "implies", "iff":
+		result.left = expandUnique(n.left, tokens, fresh)
+		result.right = expandUnique(n.right, tokens, fresh)
+	}
+	return &result
+}
+func parseQuantified(s string, domains []string, predicates map[string]int, fixed ...[]string) (*quantifiedNode, error) {
 	ts, e := quantifiedTokens(s)
 	if e != nil {
 		return nil, e
@@ -237,7 +296,12 @@ func parseQuantified(s string, domains []string, predicates map[string]int) (*qu
 	if p.at != len(ts) {
 		return nil, errors.New("Check quantified formula syntax")
 	}
-	return n, validateQuantified(n, nil)
+	n = expandUnique(n, ts, new(int))
+	available := []string{}
+	for _, xs := range fixed {
+		available = append(available, xs...)
+	}
+	return n, validateQuantified(n, available)
 }
 func (n *quantifiedNode) nnf() bool {
 	switch n.kind {
@@ -252,10 +316,13 @@ func (n *quantifiedNode) nnf() bool {
 	}
 	return true
 }
-func renamedExpression(s string, bound []string) (rationalPoly, error) {
+func renamedExpression(s string, bound []string, fixed []string) (rationalPoly, error) {
 	vars := []string{}
 	for i := range bound {
 		vars = append(vars, "v"+strconv.Itoa(i))
+	}
+	for _, v := range fixed {
+		vars = append(vars, "fixed_"+v)
 	}
 	missing := false
 	s = identifierToken.ReplaceAllStringFunc(s, func(v string) string {
@@ -263,6 +330,9 @@ func renamedExpression(s string, bound []string) (rationalPoly, error) {
 			if bound[i] == v {
 				return "v" + strconv.Itoa(i)
 			}
+		}
+		if contains(fixed, v) {
+			return "fixed_" + v
 		}
 		missing = true
 		return v
@@ -321,13 +391,13 @@ func integerComparison(op string, v rationalPoly) (string, rationalPoly) {
 	v.d = polyConst(exactInt(1), len(v.variables))
 	return "<=", v
 }
-func comparisonEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, error) {
+func comparisonEqual(a, b *quantifiedNode, ab, bb, domains, fixed []string) (bool, error) {
 	read := func(n *quantifiedNode, bound []string) (string, rationalPoly, error) {
-		left, e := renamedExpression(n.leftText, bound)
+		left, e := renamedExpression(n.leftText, bound, fixed)
 		if e != nil {
 			return "", left, e
 		}
-		right, e := renamedExpression(n.rightText, bound)
+		right, e := renamedExpression(n.rightText, bound, fixed)
 		if e != nil {
 			return "", right, e
 		}
@@ -351,7 +421,7 @@ func comparisonEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, erro
 	if e != nil {
 		return false, e
 	}
-	integers := len(domains) > 0
+	integers := len(fixed) == 0
 	for _, d := range domains {
 		integers = integers && enum(d, "N", "Z")
 	}
@@ -400,7 +470,7 @@ func comparisonEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, erro
 	}
 	return false, nil
 }
-func quantifiedEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, error) {
+func quantifiedEqual(a, b *quantifiedNode, ab, bb, domains, fixed []string) (bool, error) {
 	if a.kind != b.kind {
 		return false, nil
 	}
@@ -409,19 +479,19 @@ func quantifiedEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, erro
 		if a.quantifier != b.quantifier || a.domain != b.domain {
 			return false, nil
 		}
-		return quantifiedEqual(a.body, b.body, append(append([]string{}, ab...), a.variable), append(append([]string{}, bb...), b.variable), append(append([]string{}, domains...), a.domain))
+		return quantifiedEqual(a.body, b.body, append(append([]string{}, ab...), a.variable), append(append([]string{}, bb...), b.variable), append(append([]string{}, domains...), a.domain), fixed)
 	case "not":
-		return quantifiedEqual(a.body, b.body, ab, bb, domains)
+		return quantifiedEqual(a.body, b.body, ab, bb, domains, fixed)
 	case "predicate":
 		if a.name != b.name || len(a.args) != len(b.args) {
 			return false, nil
 		}
 		for i, s := range a.args {
-			x, e := renamedExpression(s, ab)
+			x, e := renamedExpression(s, ab, fixed)
 			if e != nil {
 				return false, e
 			}
-			y, e := renamedExpression(b.args[i], bb)
+			y, e := renamedExpression(b.args[i], bb, fixed)
 			if e != nil {
 				return false, e
 			}
@@ -435,7 +505,7 @@ func quantifiedEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, erro
 		}
 		return true, nil
 	case "comparison":
-		return comparisonEqual(a, b, ab, bb, domains)
+		return comparisonEqual(a, b, ab, bb, domains, fixed)
 	case "and", "or":
 		var flatten func(*quantifiedNode, string) []*quantifiedNode
 		flatten = func(n *quantifiedNode, k string) []*quantifiedNode {
@@ -455,7 +525,7 @@ func quantifiedEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, erro
 				if used[i] {
 					continue
 				}
-				ok, e := quantifiedEqual(n, m, ab, bb, domains)
+				ok, e := quantifiedEqual(n, m, ab, bb, domains, fixed)
 				if e != nil {
 					return false, e
 				}
@@ -471,20 +541,23 @@ func quantifiedEqual(a, b *quantifiedNode, ab, bb, domains []string) (bool, erro
 		}
 		return true, nil
 	case "implies", "iff":
-		ok, e := quantifiedEqual(a.left, b.left, ab, bb, domains)
+		ok, e := quantifiedEqual(a.left, b.left, ab, bb, domains, fixed)
 		if e != nil || !ok {
 			return ok, e
 		}
-		return quantifiedEqual(a.right, b.right, ab, bb, domains)
+		return quantifiedEqual(a.right, b.right, ab, bb, domains, fixed)
 	}
 	return false, fmt.Errorf("Unknown quantified node %s", a.kind)
 }
 
 type quantifiedParams struct {
-	Expected   string         `json:"expected"`
-	Domains    []string       `json:"domains"`
-	Predicates map[string]int `json:"predicates"`
-	Form       string         `json:"form"`
+	Expected      string         `json:"expected"`
+	Domains       []string       `json:"domains"`
+	Predicates    map[string]int `json:"predicates"`
+	Form          string         `json:"form"`
+	Constants     []string       `json:"constants"`
+	FreeVariables []string       `json:"freeVariables"`
+	Alternatives  []string       `json:"alternatives"`
 }
 
 func checkQuantified(r AssessmentRequirement, response StructuredResponse) (bool, error) {
@@ -496,16 +569,23 @@ func checkQuantified(r AssessmentRequirement, response StructuredResponse) (bool
 	if e != nil {
 		return false, e
 	}
-	actual, e := parseQuantified(xs[0], p.Domains, p.Predicates)
-	if e != nil {
-		return false, e
-	}
-	expected, e := parseQuantified(p.Expected, p.Domains, p.Predicates)
+	actual, e := parseQuantified(xs[0], p.Domains, p.Predicates, p.Constants, p.FreeVariables)
 	if e != nil {
 		return false, e
 	}
 	if p.Form == "nnf" && !actual.nnf() {
 		return false, nil
 	}
-	return quantifiedEqual(actual, expected, nil, nil, nil)
+	fixed := append(append([]string{}, p.Constants...), p.FreeVariables...)
+	for _, target := range append([]string{p.Expected}, p.Alternatives...) {
+		expected, e := parseQuantified(target, p.Domains, p.Predicates, fixed)
+		if e != nil {
+			return false, e
+		}
+		ok, e := quantifiedEqual(actual, expected, nil, nil, nil, fixed)
+		if e != nil || ok {
+			return ok, e
+		}
+	}
+	return false, nil
 }
