@@ -17,6 +17,8 @@ CATALOG = {f"{e['lesson']}-{e['id']}": e for e in json.loads((ROOT / 'content/de
 EXCLUDED = {'recurrence-relations', 'combinatorics', 'graph-theory', 'asymptotic-growth'}
 OWNED = [e for e in AUDIT['exercises'] if not e['displayLessonSlug'].startswith('linear-algebra') and e['displayLessonSlug'] not in EXCLUDED]
 assert len(OWNED) == 1015
+RELATION_SELECTION = {f'predicates-and-quantifiers-{i}' for i in (83, 84, 87, 89, 95, 96)}
+RELATION_SELECTION_INSPECTION = 'docs/deterministic-relation-selection-inspection.md'
 
 def plain(s):
     return re.sub(r'\[([^]]+)\]\(ref:[^)]+\)', r'\1', s).strip()
@@ -89,8 +91,9 @@ def ledger():
     for row in OWNED:
         key = row['key']
         q = row['publishedQuestion']
+        inspection = RELATION_SELECTION_INSPECTION if key in RELATION_SELECTION else 'docs/deterministic-source-inspection.md'
         base = {'key': key, 'originalHash': row['questionHash'], 'originalTask': q,
-                'sourceInspection': 'docs/deterministic-source-inspection.md', 'source': 'docs/deterministic-source-inspection.md'}
+                'sourceInspection': inspection, 'source': inspection}
         if key in CATALOG:
             e = CATALOG[key]
             a = e['assessment']
@@ -133,7 +136,8 @@ def review_ledger():
         a = q.get('assessment')
         base = {'key': row['key'], 'template': row['template'], 'variant': row['variant'], 'originalTask': row['question'],
                 'originalHash': sha256(json.dumps(row['question'], ensure_ascii=False, separators=(',', ':')).encode()).hexdigest(),
-                'sourceInspection': 'docs/deterministic-source-inspection.md', 'source': t.get('sourceIds', [])}
+                'sourceInspection': RELATION_SELECTION_INSPECTION if row['template'] == 'quantifier-order-countermodel-variants' else 'docs/deterministic-source-inspection.md',
+                'source': t.get('sourceIds', [])}
         if a:
             labels = [i['label'] for i in a['inputs']]
             result.append({**base, 'finalMethod': 'deterministic', 'minimalOutputs': labels, 'input': [i['kind'] for i in a['inputs']],

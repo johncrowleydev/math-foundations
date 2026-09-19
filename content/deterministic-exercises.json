@@ -16866,7 +16866,7 @@
     "lesson": "predicates-and-quantifiers",
     "id": 83,
     "sourceHash": "ff6462746b411f4d1c507680f018abdb2248745c813e943f5166444fa16023b6",
-    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -16886,36 +16886,26 @@
           ]
         },
         {
-          "id": "interpretation",
-          "kind": "grid",
-          "label": "Counterexample on D = {a, b}",
-          "columns": ["P", "Q"],
-          "rows": [
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "True predicate statements on D = {a, b}",
+          "emptyLabel": "None",
+          "options": [
             {
-              "label": "a",
-              "cells": [
-                {
-                  "id": "pa",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qa",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "pa",
+              "label": "$P(a)$"
             },
             {
-              "label": "b",
-              "cells": [
-                {
-                  "id": "pb",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qb",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "qa",
+              "label": "$Q(a)$"
+            },
+            {
+              "id": "pb",
+              "label": "$P(b)$"
+            },
+            {
+              "id": "qb",
+              "label": "$Q(b)$"
             }
           ]
         }
@@ -16934,8 +16924,9 @@
         {
           "id": "countermodel",
           "validator": "boolean-model",
-          "fields": ["pa", "qa", "pb", "qb"],
+          "fields": ["pairs"],
           "params": {
+            "selectionField": "pairs",
             "variables": {
               "pa": "pa",
               "qa": "qa",
@@ -16971,45 +16962,161 @@
       {
         "response": {
           "decision": "no",
-          "pa": true,
-          "qa": false,
-          "pb": false,
-          "qb": true
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": true,
-          "pb": true,
-          "qb": false
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": false,
-          "pb": false,
-          "qb": false
+          "pairs": []
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb", "pa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "yes",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},
         "error": true
       }
     ],
-    "prompt": "Does $\\forall x(P(x)\\lor Q(x))$ imply $(\\forall xP(x))\\lor(\\forall xQ(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by assigning the predicate truth values."
+    "prompt": "Does $\\forall x(P(x)\\lor Q(x))$ imply $(\\forall xP(x))\\lor(\\forall xQ(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
   },
   {
     "lesson": "predicates-and-quantifiers",
     "id": 84,
     "sourceHash": "49c11184686fb9d3fe9bef7ccad418d3052585ece9bc151c05fddd3a184e6138",
-    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -17029,36 +17136,26 @@
           ]
         },
         {
-          "id": "interpretation",
-          "kind": "grid",
-          "label": "Counterexample on D = {a, b}",
-          "columns": ["P", "Q"],
-          "rows": [
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "True predicate statements on D = {a, b}",
+          "emptyLabel": "None",
+          "options": [
             {
-              "label": "a",
-              "cells": [
-                {
-                  "id": "pa",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qa",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "pa",
+              "label": "$P(a)$"
             },
             {
-              "label": "b",
-              "cells": [
-                {
-                  "id": "pb",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qb",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "qa",
+              "label": "$Q(a)$"
+            },
+            {
+              "id": "pb",
+              "label": "$P(b)$"
+            },
+            {
+              "id": "qb",
+              "label": "$Q(b)$"
             }
           ]
         }
@@ -17077,8 +17174,9 @@
         {
           "id": "countermodel",
           "validator": "boolean-model",
-          "fields": ["pa", "qa", "pb", "qb"],
+          "fields": ["pairs"],
           "params": {
+            "selectionField": "pairs",
             "variables": {
               "pa": "pa",
               "qa": "qa",
@@ -17114,39 +17212,155 @@
       {
         "response": {
           "decision": "no",
-          "pa": true,
-          "qa": false,
-          "pb": false,
-          "qb": true
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": true,
-          "pb": true,
-          "qb": false
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": false,
-          "pb": false,
-          "qb": false
+          "pairs": []
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb", "pa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "yes",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},
         "error": true
       }
     ],
-    "prompt": "Does $(\\exists xP(x))\\land(\\exists xQ(x))$ imply $\\exists x(P(x)\\land Q(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by assigning the predicate truth values."
+    "prompt": "Does $(\\exists xP(x))\\land(\\exists xQ(x))$ imply $\\exists x(P(x)\\land Q(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -17304,7 +17518,7 @@
     "lesson": "predicates-and-quantifiers",
     "id": 87,
     "sourceHash": "f43ded4782ccf44c947c0746466b23493195912d53cebb103669ce201901e3be",
-    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -17324,36 +17538,26 @@
           ]
         },
         {
-          "id": "interpretation",
-          "kind": "grid",
-          "label": "Counterexample on D = {a, b}",
-          "columns": ["P", "Q"],
-          "rows": [
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "True predicate statements on D = {a, b}",
+          "emptyLabel": "None",
+          "options": [
             {
-              "label": "a",
-              "cells": [
-                {
-                  "id": "pa",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qa",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "pa",
+              "label": "$P(a)$"
             },
             {
-              "label": "b",
-              "cells": [
-                {
-                  "id": "pb",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qb",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "qa",
+              "label": "$Q(a)$"
+            },
+            {
+              "id": "pb",
+              "label": "$P(b)$"
+            },
+            {
+              "id": "qb",
+              "label": "$Q(b)$"
             }
           ]
         }
@@ -17372,8 +17576,9 @@
         {
           "id": "countermodel",
           "validator": "boolean-model",
-          "fields": ["pa", "qa", "pb", "qb"],
+          "fields": ["pairs"],
           "params": {
+            "selectionField": "pairs",
             "variables": {
               "pa": "pa",
               "qa": "qa",
@@ -17405,39 +17610,155 @@
       {
         "response": {
           "decision": "no",
-          "pa": true,
-          "qa": false,
-          "pb": false,
-          "qb": false
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": false,
-          "pb": true,
-          "qb": false
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": false,
-          "pb": false,
-          "qb": false
+          "pairs": []
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "yes",
+          "pairs": ["pa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},
         "error": true
       }
     ],
-    "prompt": "Are $\\forall x(P(x)\\to Q(x))$ and $(\\forall xP(x))\\to(\\forall xQ(x))$ equivalent?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by assigning the predicate truth values."
+    "prompt": "Are $\\forall x(P(x)\\to Q(x))$ and $(\\forall xP(x))\\to(\\forall xQ(x))$ equivalent?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -17519,7 +17840,7 @@
     "lesson": "predicates-and-quantifiers",
     "id": 89,
     "sourceHash": "28cc5f1043411fc3c5118e11cf4428e76e51098b7ef9534b1ef7ec83e8fca011",
-    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -17539,28 +17860,18 @@
           ]
         },
         {
-          "id": "interpretation",
-          "kind": "grid",
-          "label": "Counterexample on D = {a, b}",
-          "columns": ["P"],
-          "rows": [
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "True predicate statements on D = {a, b}",
+          "emptyLabel": "None",
+          "options": [
             {
-              "label": "a",
-              "cells": [
-                {
-                  "id": "pa",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "pa",
+              "label": "$P(a)$"
             },
             {
-              "label": "b",
-              "cells": [
-                {
-                  "id": "pb",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "pb",
+              "label": "$P(b)$"
             }
           ]
         }
@@ -17579,8 +17890,9 @@
         {
           "id": "countermodel",
           "validator": "boolean-model",
-          "fields": ["pa", "pb"],
+          "fields": ["pairs"],
           "params": {
+            "selectionField": "pairs",
             "variables": {
               "pa": "pa",
               "pb": "pb"
@@ -17614,33 +17926,71 @@
       {
         "response": {
           "decision": "no",
-          "pa": true,
-          "pb": false
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "pb": true
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "pb": false
+          "pairs": []
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "yes",
+          "pairs": ["pa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},
         "error": true
       }
     ],
-    "prompt": "Are \"Not every object is $P$\" and \"No object is $P$\" equivalent?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by assigning the predicate truth values."
+    "prompt": "Are \"Not every object is $P$\" and \"No object is $P$\" equivalent?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -18026,7 +18376,7 @@
     "lesson": "predicates-and-quantifiers",
     "id": 95,
     "sourceHash": "39a4ceea47ef16373dff47fae35eb52c0671e40303065e0439efa99cba052a89",
-    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -18046,36 +18396,26 @@
           ]
         },
         {
-          "id": "interpretation",
-          "kind": "grid",
-          "label": "Counterexample on D = {a, b}",
-          "columns": ["P", "Q"],
-          "rows": [
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "True predicate statements on D = {a, b}",
+          "emptyLabel": "None",
+          "options": [
             {
-              "label": "a",
-              "cells": [
-                {
-                  "id": "pa",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qa",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "pa",
+              "label": "$P(a)$"
             },
             {
-              "label": "b",
-              "cells": [
-                {
-                  "id": "pb",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qb",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "qa",
+              "label": "$Q(a)$"
+            },
+            {
+              "id": "pb",
+              "label": "$P(b)$"
+            },
+            {
+              "id": "qb",
+              "label": "$Q(b)$"
             }
           ]
         }
@@ -18094,8 +18434,9 @@
         {
           "id": "countermodel",
           "validator": "boolean-model",
-          "fields": ["pa", "qa", "pb", "qb"],
+          "fields": ["pairs"],
           "params": {
+            "selectionField": "pairs",
             "variables": {
               "pa": "pa",
               "qa": "qa",
@@ -18135,45 +18476,161 @@
       {
         "response": {
           "decision": "no",
-          "pa": false,
-          "qa": true,
-          "pb": false,
-          "qb": false
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": false,
-          "pb": false,
-          "qb": true
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": false,
-          "pb": false,
-          "qb": false
+          "pairs": []
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "qb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "yes",
+          "pairs": ["qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},
         "error": true
       }
     ],
-    "prompt": "Does the conclusion follow from the premises?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by assigning the predicate truth values."
+    "prompt": "Does the conclusion follow from the premises?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
   },
   {
     "lesson": "predicates-and-quantifiers",
     "id": 96,
     "sourceHash": "7b1825c727477c45d49d7c75ab229db8900d7aa8abe5ca6b5f69c6a13d8547e4",
-    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "rationale": "The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "assessment": {
       "version": 1,
       "inputs": [
@@ -18193,36 +18650,26 @@
           ]
         },
         {
-          "id": "interpretation",
-          "kind": "grid",
-          "label": "Counterexample on D = {a, b}",
-          "columns": ["P", "Q"],
-          "rows": [
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "True predicate statements on D = {a, b}",
+          "emptyLabel": "None",
+          "options": [
             {
-              "label": "a",
-              "cells": [
-                {
-                  "id": "pa",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qa",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "pa",
+              "label": "$P(a)$"
             },
             {
-              "label": "b",
-              "cells": [
-                {
-                  "id": "pb",
-                  "kind": "boolean"
-                },
-                {
-                  "id": "qb",
-                  "kind": "boolean"
-                }
-              ]
+              "id": "qa",
+              "label": "$Q(a)$"
+            },
+            {
+              "id": "pb",
+              "label": "$P(b)$"
+            },
+            {
+              "id": "qb",
+              "label": "$Q(b)$"
             }
           ]
         }
@@ -18241,8 +18688,9 @@
         {
           "id": "countermodel",
           "validator": "boolean-model",
-          "fields": ["pa", "qa", "pb", "qb"],
+          "fields": ["pairs"],
           "params": {
+            "selectionField": "pairs",
             "variables": {
               "pa": "pa",
               "qa": "qa",
@@ -18278,39 +18726,155 @@
       {
         "response": {
           "decision": "no",
-          "pa": true,
-          "qa": false,
-          "pb": false,
-          "qb": true
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": true,
-          "pb": true,
-          "qb": false
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "decision": "no",
-          "pa": false,
-          "qa": false,
-          "pb": false,
-          "qb": false
+          "pairs": []
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["pa", "qa", "pb", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["qb", "pa"]
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "decision": "yes",
+          "pairs": ["pa", "qb"]
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "decision": "no"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "decision": "no",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},
         "error": true
       }
     ],
-    "prompt": "Does the conclusion follow from the premises?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by assigning the predicate truth values."
+    "prompt": "Does the conclusion follow from the premises?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
   },
   {
     "lesson": "predicates-and-quantifiers",

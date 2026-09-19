@@ -1,5 +1,6 @@
 """Author the 22 finite Review assessments while retaining their stable IDs."""
 from copy import deepcopy
+from itertools import product
 from pathlib import Path
 import json
 
@@ -178,31 +179,38 @@ countermodel_template = by_id['quantifier-order-countermodel-variants']
 countermodel_template.update({'skill':'construct','objective':'finite-quantifier-countermodel',
                               'evidenceLevel':'production','inputCapabilities':['tap']})
 for variant in (1,2):
-    row_names, col_names = (['$x=a$','$x=b$'],['$y=a$','$y=b$']) if variant==1 else (['Ada','Ben'],['Gia','Hal'])
+    row_names, col_names = (['a','b'],['a','b']) if variant==1 else (['Ada','Ben'],['Gia','Hal'])
     fields = ['r00','r01','r10','r11']
-    grid = {'id':'relation','kind':'grid','label':'True pairs' if variant==1 else 'Who guides each visitor',
-            'columns':['Input']+col_names,'rows':[
-                {'label':row_names[r],'cells':[{'given':row_names[r]}]+[{'id':fields[2*r+c],'kind':'boolean'} for c in range(2)]}
-                for r in range(2)]}
+    pairs = {'id':'pairs','kind':'multiselect','label':'Pairs in the relation' if variant==1 else 'Visitor → guide',
+             'emptyLabel':'None','options':[
+                 {'id':fields[2*r+c], 'label':f'$({row_names[r]},{col_names[c]})$' if variant==1 else f'{row_names[r]} → {col_names[c]}'}
+                 for r in range(2) for c in range(2)]}
     reason = {'id':'reason','kind':'select','label':'Why does this separate the quantifier orders?',
               'options':[
-                  {'id':'varying-witness','label':'Each row has a true entry, and each column has a false entry.'},
-                  {'id':'common-witness','label':'One column has true entries in every row.'},
-                  {'id':'missing-witness','label':'One row has no true entry.'},
+                  {'id':'varying-witness','label':'Each input has a witness, but no output works for every input.'},
+                  {'id':'common-witness','label':'One output is a witness for every input.'},
+                  {'id':'missing-witness','label':'One input has no witness.'},
               ]}
-    requirements = [req('countermodel','boolean-model',fields,
-                         {'variables':{f:f for f in fields},'conditions':[
+    requirements = [req('countermodel','boolean-model',['pairs'],
+                         {'selectionField':'pairs','variables':{f:f for f in fields},'conditions':[
                              {'formula':'(r00|r01)&(r10|r11)','value':True},
                              {'formula':'(r00&r10)|(r01&r11)','value':False}], 'checks':{}},
                          'Every input has a witness, while no single output witnesses every input.'),
                     req('quantifier-interpretation','selection',['reason'],{'expected':['varying-witness']},
                         'The selected explanation correctly identifies the two quantified conditions.',level='recognition')]
-    diagonal={'r00':True,'r01':False,'r10':False,'r11':True,'reason':'varying-witness'}
-    antidiagonal={'r00':False,'r01':True,'r10':True,'r11':False,'reason':'varying-witness'}
-    prompt = ('Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Mark the true and false pairs and select the explanation.'
-              if variant==1 else 'There are exactly two visitors, Ada and Ben, and exactly two guides, Gia and Hal. Specify who guides whom so each visitor has a guide but no guide serves every visitor. Select the explanation of the two quantifier orders.')
-    set_variant('quantifier-order-countermodel-variants',variant,[grid,reason],requirements,
-                [ok(diagonal),ok(antidiagonal),wrong({**diagonal,'r10':True}),wrong({**diagonal,'reason':'common-witness'})],
+    diagonal={'pairs':['r00','r11'],'reason':'varying-witness'}
+    tests=[]
+    for values in product([False,True],repeat=4):
+        correct=all(any(values[2*r+c] for c in range(2)) for r in range(2)) and not any(all(values[2*r+c] for r in range(2)) for c in range(2))
+        tests.append({'response':{'pairs':[f for f,value in zip(fields,values) if value],'reason':'varying-witness'},
+                      'verdict':'correct' if correct else 'incorrect'})
+    tests += [ok({**diagonal,'pairs':['r11','r00']}),wrong({**diagonal,'reason':'common-witness'}),
+              {'response':{'reason':'varying-witness'},'error':True},
+              {'response':{'reason':'varying-witness','pairs':None},'error':True},
+              {'response':{'reason':'varying-witness','pairs':['unknown']},'error':True}]
+    prompt = ('Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Select the pairs in the relation and the explanation. Unselected pairs are absent; select None for the empty relation.'
+              if variant==1 else 'There are exactly two visitors, Ada and Ben, and exactly two guides, Gia and Hal. Select who guides whom so each visitor has a guide but no guide serves every visitor. Unselected pairs are absent; select None if nobody guides anyone. Select the explanation of the two quantifier orders.')
+    set_variant('quantifier-order-countermodel-variants',variant,[pairs,reason],requirements,tests,
                 instructions='Construct the relation and select its explanation.',prompt=prompt,cost='medium',capabilities=['tap'])
 
 assert len(cases)==22,len(cases)

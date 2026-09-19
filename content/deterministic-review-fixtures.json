@@ -775,43 +775,149 @@
     "fixtures": [
       {
         "response": {
-          "r00": true,
-          "r01": false,
-          "r10": false,
-          "r11": true,
-          "reason": "varying-witness"
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "r00": false,
-          "r01": true,
-          "r10": true,
-          "r11": false,
-          "reason": "varying-witness"
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "r00": true,
-          "r01": false,
-          "r10": true,
-          "r11": true,
+          "pairs": [],
           "reason": "varying-witness"
         },
         "verdict": "incorrect"
       },
       {
         "response": {
-          "r00": true,
-          "r01": false,
-          "r10": false,
-          "r11": true,
+          "pairs": ["r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r01"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r01", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r01", "r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "pairs": ["r01", "r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01", "r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01", "r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r11", "r00"],
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r11"],
           "reason": "common-witness"
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "reason": "varying-witness"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "reason": "varying-witness",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "reason": "varying-witness",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},
@@ -825,43 +931,149 @@
     "fixtures": [
       {
         "response": {
-          "r00": true,
-          "r01": false,
-          "r10": false,
-          "r11": true,
-          "reason": "varying-witness"
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "r00": false,
-          "r01": true,
-          "r10": true,
-          "r11": false,
-          "reason": "varying-witness"
-        },
-        "verdict": "correct"
-      },
-      {
-        "response": {
-          "r00": true,
-          "r01": false,
-          "r10": true,
-          "r11": true,
+          "pairs": [],
           "reason": "varying-witness"
         },
         "verdict": "incorrect"
       },
       {
         "response": {
-          "r00": true,
-          "r01": false,
-          "r10": false,
-          "r11": true,
+          "pairs": ["r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r01"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r01", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r01", "r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "pairs": ["r01", "r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01", "r10"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r01", "r10", "r11"],
+          "reason": "varying-witness"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "pairs": ["r11", "r00"],
+          "reason": "varying-witness"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "pairs": ["r00", "r11"],
           "reason": "common-witness"
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "reason": "varying-witness"
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "reason": "varying-witness",
+          "pairs": null
+        },
+        "error": true
+      },
+      {
+        "response": {
+          "reason": "varying-witness",
+          "pairs": ["unknown"]
+        },
+        "error": true
       },
       {
         "response": {},

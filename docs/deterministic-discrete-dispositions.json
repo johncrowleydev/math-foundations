@@ -5010,18 +5010,18 @@
       "prompt": "Does $\\forall x(P(x)\\lor Q(x))$ imply $(\\forall xP(x))\\lor(\\forall xQ(x))$? Explain why it holds, or give a [domain](ref:domain) and [predicate](ref:predicate) meanings that make it fail.",
       "officialAnswer": "No. On $D=\\{1,2\\}$, let $P$ mean odd and $Q$ mean even. Each element satisfies one [predicate](ref:predicate), but neither [predicate](ref:predicate?repeat) holds for every element."
     },
-    "sourceInspection": "docs/deterministic-source-inspection.md",
-    "source": "docs/deterministic-source-inspection.md",
+    "sourceInspection": "docs/deterministic-relation-selection-inspection.md",
+    "source": "docs/deterministic-relation-selection-inspection.md",
     "finalMethod": "deterministic",
-    "minimalOutputs": ["Does the claim hold?", "Counterexample on D = {a, b}"],
-    "input": ["select", "grid"],
+    "minimalOutputs": ["Does the claim hold?", "True predicate statements on D = {a, b}"],
+    "input": ["select", "multiselect"],
     "validator": ["boolean-model", "selection"],
-    "reason": "Requested answer components: Does the claim hold?; Counterexample on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "reason": "Requested answer components: Does the claim hold?; True predicate statements on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "evidenceChange": "Answer creation remains production; any short reason selection records recognition separately.",
     "batch": "discrete-conversion",
     "promptChange": true,
     "sourceHash": "ff6462746b411f4d1c507680f018abdb2248745c813e943f5166444fa16023b6",
-    "fixtureCount": 4
+    "fixtureCount": 22
   },
   {
     "key": "predicates-and-quantifiers-84",
@@ -5031,18 +5031,18 @@
       "prompt": "Does $(\\exists xP(x))\\land(\\exists xQ(x))$ imply $\\exists x(P(x)\\land Q(x))$? Explain why it holds, or give a [domain](ref:domain) and [predicate](ref:predicate) meanings that make it fail.",
       "officialAnswer": "No. On $D=\\{1,2\\}$ with $P$ odd and $Q$ even, the separate existentials have different [witnesses](ref:witness) and no element satisfies both."
     },
-    "sourceInspection": "docs/deterministic-source-inspection.md",
-    "source": "docs/deterministic-source-inspection.md",
+    "sourceInspection": "docs/deterministic-relation-selection-inspection.md",
+    "source": "docs/deterministic-relation-selection-inspection.md",
     "finalMethod": "deterministic",
-    "minimalOutputs": ["Does the claim hold?", "Counterexample on D = {a, b}"],
-    "input": ["select", "grid"],
+    "minimalOutputs": ["Does the claim hold?", "True predicate statements on D = {a, b}"],
+    "input": ["select", "multiselect"],
     "validator": ["boolean-model", "selection"],
-    "reason": "Requested answer components: Does the claim hold?; Counterexample on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "reason": "Requested answer components: Does the claim hold?; True predicate statements on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "evidenceChange": "Answer creation remains production; any short reason selection records recognition separately.",
     "batch": "discrete-conversion",
     "promptChange": true,
     "sourceHash": "49c11184686fb9d3fe9bef7ccad418d3052585ece9bc151c05fddd3a184e6138",
-    "fixtureCount": 4
+    "fixtureCount": 22
   },
   {
     "key": "predicates-and-quantifiers-85",
@@ -5094,18 +5094,18 @@
       "prompt": "Are $\\forall x(P(x)\\to Q(x))$ and $(\\forall xP(x))\\to(\\forall xQ(x))$ equivalent? Explain why it holds, or give a [domain](ref:domain) and [predicate](ref:predicate) meanings that make it fail.",
       "officialAnswer": "No. Take $D=\\{a,b\\}$, with $P$ true only at $a$ and $Q$ nowhere true. The first formula is false at $a$; the second is true because its antecedent is false."
     },
-    "sourceInspection": "docs/deterministic-source-inspection.md",
-    "source": "docs/deterministic-source-inspection.md",
+    "sourceInspection": "docs/deterministic-relation-selection-inspection.md",
+    "source": "docs/deterministic-relation-selection-inspection.md",
     "finalMethod": "deterministic",
-    "minimalOutputs": ["Does the claim hold?", "Counterexample on D = {a, b}"],
-    "input": ["select", "grid"],
+    "minimalOutputs": ["Does the claim hold?", "True predicate statements on D = {a, b}"],
+    "input": ["select", "multiselect"],
     "validator": ["boolean-model", "selection"],
-    "reason": "Requested answer components: Does the claim hold?; Counterexample on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "reason": "Requested answer components: Does the claim hold?; True predicate statements on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "evidenceChange": "Answer creation remains production; any short reason selection records recognition separately.",
     "batch": "discrete-conversion",
     "promptChange": true,
     "sourceHash": "f43ded4782ccf44c947c0746466b23493195912d53cebb103669ce201901e3be",
-    "fixtureCount": 4
+    "fixtureCount": 22
   },
   {
     "key": "predicates-and-quantifiers-88",
@@ -5136,18 +5136,18 @@
       "prompt": "Are \"Not every object is $P$\" and \"No object is $P$\" equivalent? Explain why it holds, or give a [domain](ref:domain) and [predicate](ref:predicate) meanings that make it fail.",
       "officialAnswer": "No. If $P$ holds only at $a$ in $D=\\{a,b\\}$, not every object is $P$, but some object is $P$."
     },
-    "sourceInspection": "docs/deterministic-source-inspection.md",
-    "source": "docs/deterministic-source-inspection.md",
+    "sourceInspection": "docs/deterministic-relation-selection-inspection.md",
+    "source": "docs/deterministic-relation-selection-inspection.md",
     "finalMethod": "deterministic",
-    "minimalOutputs": ["Does the claim hold?", "Counterexample on D = {a, b}"],
-    "input": ["select", "grid"],
+    "minimalOutputs": ["Does the claim hold?", "True predicate statements on D = {a, b}"],
+    "input": ["select", "multiselect"],
     "validator": ["boolean-model", "selection"],
-    "reason": "Requested answer components: Does the claim hold?; Counterexample on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "reason": "Requested answer components: Does the claim hold?; True predicate statements on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "evidenceChange": "Answer creation remains production; any short reason selection records recognition separately.",
     "batch": "discrete-conversion",
     "promptChange": true,
     "sourceHash": "28cc5f1043411fc3c5118e11cf4428e76e51098b7ef9534b1ef7ec83e8fca011",
-    "fixtureCount": 4
+    "fixtureCount": 10
   },
   {
     "key": "predicates-and-quantifiers-90",
@@ -5267,18 +5267,18 @@
       "math": "\\forall x\\,(P(x)\\to Q(x)),\\quad\\exists x\\,Q(x)\\quad\\therefore\\exists x\\,P(x)",
       "officialAnswer": "Invalid. On $D=\\{a\\}$ take $P(a)=F$, $Q(a)=T$. Both premises are true; no $P$-[witness](ref:witness) exists."
     },
-    "sourceInspection": "docs/deterministic-source-inspection.md",
-    "source": "docs/deterministic-source-inspection.md",
+    "sourceInspection": "docs/deterministic-relation-selection-inspection.md",
+    "source": "docs/deterministic-relation-selection-inspection.md",
     "finalMethod": "deterministic",
-    "minimalOutputs": ["Does the claim hold?", "Counterexample on D = {a, b}"],
-    "input": ["select", "grid"],
+    "minimalOutputs": ["Does the claim hold?", "True predicate statements on D = {a, b}"],
+    "input": ["select", "multiselect"],
     "validator": ["boolean-model", "selection"],
-    "reason": "Requested answer components: Does the claim hold?; Counterexample on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "reason": "Requested answer components: Does the claim hold?; True predicate statements on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "evidenceChange": "Answer creation remains production; any short reason selection records recognition separately.",
     "batch": "discrete-conversion",
     "promptChange": true,
     "sourceHash": "39a4ceea47ef16373dff47fae35eb52c0671e40303065e0439efa99cba052a89",
-    "fixtureCount": 4
+    "fixtureCount": 22
   },
   {
     "key": "predicates-and-quantifiers-96",
@@ -5289,18 +5289,18 @@
       "math": "\\exists x\\,P(x),\\quad\\exists x\\,Q(x)\\quad\\therefore\\exists x\\,(P(x)\\land Q(x))",
       "officialAnswer": "Invalid. Use two objects, with $P$ true only at one and $Q$ true only at the other."
     },
-    "sourceInspection": "docs/deterministic-source-inspection.md",
-    "source": "docs/deterministic-source-inspection.md",
+    "sourceInspection": "docs/deterministic-relation-selection-inspection.md",
+    "source": "docs/deterministic-relation-selection-inspection.md",
     "finalMethod": "deterministic",
-    "minimalOutputs": ["Does the claim hold?", "Counterexample on D = {a, b}"],
-    "input": ["select", "grid"],
+    "minimalOutputs": ["Does the claim hold?", "True predicate statements on D = {a, b}"],
+    "input": ["select", "multiselect"],
     "validator": ["boolean-model", "selection"],
-    "reason": "Requested answer components: Does the claim hold?; Counterexample on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.",
+    "reason": "Requested answer components: Does the claim hold?; True predicate statements on D = {a, b}. The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.",
     "evidenceChange": "Answer creation remains production; any short reason selection records recognition separately.",
     "batch": "discrete-conversion",
     "promptChange": true,
     "sourceHash": "7b1825c727477c45d49d7c75ab229db8900d7aa8abe5ca6b5f69c6a13d8547e4",
-    "fixtureCount": 4
+    "fixtureCount": 22
   },
   {
     "key": "predicates-and-quantifiers-97",

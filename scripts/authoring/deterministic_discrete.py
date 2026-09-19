@@ -319,31 +319,53 @@ def author(append, requirement, exercises):
                                                      [(expected, 'correct'), (alternate, 'correct'), (wrong, 'incorrect')]]
                + [{'response': {}, 'error': True}])
 
-    for identifier, predicates, conditions, values, alternatives in [
-        (83, ['P', 'Q'], [('(pa|qa)&(pb|qb)', True), ('(pa&pb)|(qa&qb)', False)], [True, False, False, True], [[False, True, True, False]]),
-        (84, ['P', 'Q'], [('(pa|pb)&(qa|qb)', True), ('(pa&qa)|(pb&qb)', False)], [True, False, False, True], [[False, True, True, False]]),
-        (87, ['P', 'Q'], [('!(((pa->qa)&(pb->qb))<->((pa&pb)->(qa&qb)))', True)], [True, False, False, False], [[False, False, True, False]]),
-        (89, ['P'], [('!(pa&pb)', True), ('!pa&!pb', False)], [True, False], [[False, True]]),
-        (95, ['P', 'Q'], [('(pa->qa)&(pb->qb)', True), ('qa|qb', True), ('pa|pb', False)], [False, True, False, False], [[False, False, False, True]]),
-        (96, ['P', 'Q'], [('(pa|pb)&(qa|qb)', True), ('(pa&qa)|(pb&qb)', False)], [True, False, False, True], [[False, True, True, False]]),
+    for identifier, predicates, conditions, values in [
+        (83, ['P', 'Q'], [('(pa|qa)&(pb|qb)', True), ('(pa&pb)|(qa&qb)', False)], [True, False, False, True]),
+        (84, ['P', 'Q'], [('(pa|pb)&(qa|qb)', True), ('(pa&qa)|(pb&qb)', False)], [True, False, False, True]),
+        (87, ['P', 'Q'], [('!(((pa->qa)&(pb->qb))<->((pa&pb)->(qa&qb)))', True)], [True, False, False, False]),
+        (89, ['P'], [('!(pa&pb)', True), ('!pa&!pb', False)], [True, False]),
+        (95, ['P', 'Q'], [('(pa->qa)&(pb->qb)', True), ('qa|qb', True), ('pa|pb', False)], [False, True, False, False]),
+        (96, ['P', 'Q'], [('(pa|pb)&(qa|qb)', True), ('(pa&qa)|(pb&qb)', False)], [True, False, False, True]),
     ]:
         fields = [predicate.lower()+v for v in ['a', 'b'] for predicate in predicates]
         inputs = [decision('decision', 'Does the claim hold?', [('yes', 'Yes'), ('no', 'No')]),
-                  {'id': 'interpretation', 'kind': 'grid', 'label': 'Counterexample on D = {a, b}', 'columns': predicates,
-                   'rows': [{'label': v, 'cells': [{'id': predicate.lower()+v, 'kind': 'boolean'} for predicate in predicates]} for v in ['a', 'b']]}]
-        response = {'decision': 'no', **dict(zip(fields, values))}
+                  {'id': 'pairs', 'kind': 'multiselect', 'label': 'True predicate statements on D = {a, b}',
+                   'emptyLabel': 'None',
+                   'options': [{'id': predicate.lower()+v, 'label': f'${predicate}({v})$'} for v in ['a', 'b'] for predicate in predicates]}]
+        response = {'decision': 'no', 'pairs': [field for field, value in zip(fields, values) if value]}
         reqs = [choice_requirement('decision', 'no', 'The proposed inference or equivalence fails.'),
-                requirement('countermodel', 'boolean-model', fields,
-                            {'variables': {f: f for f in fields}, 'conditions': [{'formula': f, 'value': b} for f, b in conditions], 'checks': {}},
+                requirement('countermodel', 'boolean-model', ['pairs'],
+                            {'selectionField': 'pairs', 'variables': {f: f for f in fields}, 'conditions': [{'formula': f, 'value': b} for f, b in conditions], 'checks': {}},
                             'The constructed interpretation actually refutes the inference or equivalence.')]
         prompt = exercises[f'predicates-and-quantifiers-{identifier}']['publishedQuestion']['prompt']
         prompt = re.sub(r'Explain why it holds, or give a \[domain\].*?fail\.|Explain, giving a counterexample interpretation if it does not\.', '', prompt).strip()
-        prompt += '\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by assigning the predicate truth values.'
+        prompt += '\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false.'
+        # Check every possible interpretation independently of the formula parser.
+        def refutes(env):
+            p = [env['pa'], env['pb']]
+            q = [env['qa'], env['qb']] if 'Q' in predicates else []
+            if identifier == 83:
+                return all(a or b for a, b in zip(p, q)) and not (all(p) or all(q))
+            if identifier in (84, 96):
+                return any(p) and any(q) and not any(a and b for a, b in zip(p, q))
+            if identifier == 87:
+                return all(not a or b for a, b in zip(p, q)) != (not all(p) or all(q))
+            if identifier == 89:
+                return not all(p) and any(p)
+            return all(not a or b for a, b in zip(p, q)) and any(q) and not any(p)
+        tests = []
+        for vals in product([False, True], repeat=len(fields)):
+            tests.append({'response': {'decision': 'no', 'pairs': [f for f, value in zip(fields, vals) if value]},
+                          'verdict': 'correct' if refutes(dict(zip(fields, vals))) else 'incorrect'})
+        tests += [{'response': {**response, 'pairs': list(reversed(response['pairs']))}, 'verdict': 'correct'},
+                  {'response': {**response, 'decision': 'yes'}, 'verdict': 'incorrect'},
+                  {'response': {'decision': 'no'}, 'error': True},
+                  {'response': {'decision': 'no', 'pairs': None}, 'error': True},
+                  {'response': {'decision': 'no', 'pairs': ['unknown']}, 'error': True},
+                  {'response': {}, 'error': True}]
         append(f'predicates-and-quantifiers-{identifier}', inputs, reqs, response,
-               'The revised prompt explicitly asks for a finite two-element countermodel. The complete constructed interpretation establishes the failure without a prose argument; this is production evidence.',
-               prompt=prompt, capabilities=['tap'], test_cases=[{'response': response, 'verdict': 'correct'}]
-               + [{'response': {'decision': 'no', **dict(zip(fields, vals))}, 'verdict': 'correct'} for vals in alternatives]
-               + [{'response': {'decision': 'no', **{f: False for f in fields}}, 'verdict': 'incorrect'}, {'response': {}, 'error': True}])
+               'The revised prompt explicitly asks for a finite two-element countermodel. Selecting its true predicate statements constructs the complete interpretation without requiring a separate false entry for every absent member; this remains production evidence.',
+               prompt=prompt, capabilities=['tap'], test_cases=tests)
 
     def quantified(identifier, expected, predicates, domains, *, alternatives=None, constants=None, free=None, choice=None, wrong=None, lesson='predicates-and-quantifiers', notation=None, functions=None, named_sets=None, form=None, integer_variables=None):
         inputs = [{'id': 'formula', 'kind': 'math', 'label': 'Formula',

@@ -8433,48 +8433,32 @@
       "id": 1,
       "section": "Review",
       "instructions": "Construct the relation and select its explanation.",
-      "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Mark the true and false pairs and select the explanation.",
+      "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Select the pairs in the relation and the explanation. Unselected pairs are absent; select None for the empty relation.",
       "answer": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid.",
       "assessment": {
         "version": 1,
         "inputs": [
           {
-            "id": "relation",
-            "kind": "grid",
-            "label": "True pairs",
-            "columns": ["Input", "$y=a$", "$y=b$"],
-            "rows": [
+            "id": "pairs",
+            "kind": "multiselect",
+            "label": "Pairs in the relation",
+            "emptyLabel": "None",
+            "options": [
               {
-                "label": "$x=a$",
-                "cells": [
-                  {
-                    "given": "$x=a$"
-                  },
-                  {
-                    "id": "r00",
-                    "kind": "boolean"
-                  },
-                  {
-                    "id": "r01",
-                    "kind": "boolean"
-                  }
-                ]
+                "id": "r00",
+                "label": "$(a,a)$"
               },
               {
-                "label": "$x=b$",
-                "cells": [
-                  {
-                    "given": "$x=b$"
-                  },
-                  {
-                    "id": "r10",
-                    "kind": "boolean"
-                  },
-                  {
-                    "id": "r11",
-                    "kind": "boolean"
-                  }
-                ]
+                "id": "r01",
+                "label": "$(a,b)$"
+              },
+              {
+                "id": "r10",
+                "label": "$(b,a)$"
+              },
+              {
+                "id": "r11",
+                "label": "$(b,b)$"
               }
             ]
           },
@@ -8485,15 +8469,15 @@
             "options": [
               {
                 "id": "varying-witness",
-                "label": "Each row has a true entry, and each column has a false entry."
+                "label": "Each input has a witness, but no output works for every input."
               },
               {
                 "id": "common-witness",
-                "label": "One column has true entries in every row."
+                "label": "One output is a witness for every input."
               },
               {
                 "id": "missing-witness",
-                "label": "One row has no true entry."
+                "label": "One input has no witness."
               }
             ]
           }
@@ -8502,8 +8486,9 @@
           {
             "id": "countermodel",
             "validator": "boolean-model",
-            "fields": ["r00", "r01", "r10", "r11"],
+            "fields": ["pairs"],
             "params": {
+              "selectionField": "pairs",
               "variables": {
                 "r00": "r00",
                 "r01": "r01",
@@ -8552,48 +8537,32 @@
         "id": 1,
         "section": "Review",
         "instructions": "Construct the relation and select its explanation.",
-        "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Mark the true and false pairs and select the explanation.",
+        "prompt": "Use exactly $D=\\{a,b\\}$ to define a relation $R$ for which $\\forall x\\exists y\\,R(x,y)$ is true but $\\exists y\\forall x\\,R(x,y)$ is false. Select the pairs in the relation and the explanation. Unselected pairs are absent; select None for the empty relation.",
         "answer": "One choice makes exactly $(a,a)$ and $(b,b)$ true. Each $x$ has witness $y=x$, so $\\forall x\\exists y$ holds. No fixed $y$ works for both inputs: $R(b,a)$ and $R(a,b)$ are false. Other relations meeting both requirements are valid.",
         "assessment": {
           "version": 1,
           "inputs": [
             {
-              "id": "relation",
-              "kind": "grid",
-              "label": "True pairs",
-              "columns": ["Input", "$y=a$", "$y=b$"],
-              "rows": [
+              "id": "pairs",
+              "kind": "multiselect",
+              "label": "Pairs in the relation",
+              "emptyLabel": "None",
+              "options": [
                 {
-                  "label": "$x=a$",
-                  "cells": [
-                    {
-                      "given": "$x=a$"
-                    },
-                    {
-                      "id": "r00",
-                      "kind": "boolean"
-                    },
-                    {
-                      "id": "r01",
-                      "kind": "boolean"
-                    }
-                  ]
+                  "id": "r00",
+                  "label": "$(a,a)$"
                 },
                 {
-                  "label": "$x=b$",
-                  "cells": [
-                    {
-                      "given": "$x=b$"
-                    },
-                    {
-                      "id": "r10",
-                      "kind": "boolean"
-                    },
-                    {
-                      "id": "r11",
-                      "kind": "boolean"
-                    }
-                  ]
+                  "id": "r01",
+                  "label": "$(a,b)$"
+                },
+                {
+                  "id": "r10",
+                  "label": "$(b,a)$"
+                },
+                {
+                  "id": "r11",
+                  "label": "$(b,b)$"
                 }
               ]
             },
@@ -8604,15 +8573,15 @@
               "options": [
                 {
                   "id": "varying-witness",
-                  "label": "Each row has a true entry, and each column has a false entry."
+                  "label": "Each input has a witness, but no output works for every input."
                 },
                 {
                   "id": "common-witness",
-                  "label": "One column has true entries in every row."
+                  "label": "One output is a witness for every input."
                 },
                 {
                   "id": "missing-witness",
-                  "label": "One row has no true entry."
+                  "label": "One input has no witness."
                 }
               ]
             }
@@ -8621,8 +8590,9 @@
             {
               "id": "countermodel",
               "validator": "boolean-model",
-              "fields": ["r00", "r01", "r10", "r11"],
+              "fields": ["pairs"],
               "params": {
+                "selectionField": "pairs",
                 "variables": {
                   "r00": "r00",
                   "r01": "r01",
@@ -8670,48 +8640,32 @@
         "id": 1,
         "section": "Review",
         "instructions": "Construct the relation and select its explanation.",
-        "prompt": "There are exactly two visitors, Ada and Ben, and exactly two guides, Gia and Hal. Specify who guides whom so each visitor has a guide but no guide serves every visitor. Select the explanation of the two quantifier orders.",
+        "prompt": "There are exactly two visitors, Ada and Ben, and exactly two guides, Gia and Hal. Select who guides whom so each visitor has a guide but no guide serves every visitor. Unselected pairs are absent; select None if nobody guides anyone. Select the explanation of the two quantifier orders.",
         "answer": "For example, Gia guides only Ada and Hal guides only Ben. Every visitor has a guide, so $\\forall v\\exists g\\,G(g,v)$ holds. Gia does not guide Ben and Hal does not guide Ada, so $\\exists g\\forall v\\,G(g,v)$ fails. The witness may vary with the visitor.",
         "assessment": {
           "version": 1,
           "inputs": [
             {
-              "id": "relation",
-              "kind": "grid",
-              "label": "Who guides each visitor",
-              "columns": ["Input", "Gia", "Hal"],
-              "rows": [
+              "id": "pairs",
+              "kind": "multiselect",
+              "label": "Visitor → guide",
+              "emptyLabel": "None",
+              "options": [
                 {
-                  "label": "Ada",
-                  "cells": [
-                    {
-                      "given": "Ada"
-                    },
-                    {
-                      "id": "r00",
-                      "kind": "boolean"
-                    },
-                    {
-                      "id": "r01",
-                      "kind": "boolean"
-                    }
-                  ]
+                  "id": "r00",
+                  "label": "Ada → Gia"
                 },
                 {
-                  "label": "Ben",
-                  "cells": [
-                    {
-                      "given": "Ben"
-                    },
-                    {
-                      "id": "r10",
-                      "kind": "boolean"
-                    },
-                    {
-                      "id": "r11",
-                      "kind": "boolean"
-                    }
-                  ]
+                  "id": "r01",
+                  "label": "Ada → Hal"
+                },
+                {
+                  "id": "r10",
+                  "label": "Ben → Gia"
+                },
+                {
+                  "id": "r11",
+                  "label": "Ben → Hal"
                 }
               ]
             },
@@ -8722,15 +8676,15 @@
               "options": [
                 {
                   "id": "varying-witness",
-                  "label": "Each row has a true entry, and each column has a false entry."
+                  "label": "Each input has a witness, but no output works for every input."
                 },
                 {
                   "id": "common-witness",
-                  "label": "One column has true entries in every row."
+                  "label": "One output is a witness for every input."
                 },
                 {
                   "id": "missing-witness",
-                  "label": "One row has no true entry."
+                  "label": "One input has no witness."
                 }
               ]
             }
@@ -8739,8 +8693,9 @@
             {
               "id": "countermodel",
               "validator": "boolean-model",
-              "fields": ["r00", "r01", "r10", "r11"],
+              "fields": ["pairs"],
               "params": {
+                "selectionField": "pairs",
                 "variables": {
                   "r00": "r00",
                   "r01": "r01",
