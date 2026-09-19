@@ -9,6 +9,7 @@ import {
   changed,
   hash,
   attemptsMatch,
+  recoverEffortRejections,
 } from './storage';
 import type { Attempt, RecordData } from './types';
 export let syncStatus = 'Not connected';
@@ -135,6 +136,7 @@ export async function sync() {
       return;
     }
     let outgoingError = '';
+    await recoverEffortRejections();
     // Choice retries can be graded offline. Upload earlier attempts before a
     // later correct one locks the exercise on the server (UUID order is random).
     const outgoing = await all<Operation>('outbox');
