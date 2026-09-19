@@ -219,7 +219,7 @@ class Task:
         }
         e = {
             "lesson": lesson,
-            "id": number,
+            "id": int(number),
             "sourceHash": digest,
             "rationale": note
             or "The complete requested result has a finite deterministic check.",
@@ -673,7 +673,6 @@ for n, count, boxes, occupancy, reason in [
 ]:
     t = Task(C, n)
     t.num("Minimum number", count)
-    t.tuple("Occupancies just below the threshold, one per class", [occupancy] * boxes)
     t.select(
         "Why this proves minimality",
         reason,
@@ -681,7 +680,7 @@ for n, count, boxes, occupancy, reason in [
         "One less than the threshold already forces the requested occupancy.",
     )
     t.finish(
-        "A finite extremal occupancy certificate plus the complete pigeonhole reason replaces brief minimality prose; no open part remains."
+        "The threshold remains typed; select the complete extremal arrangement and pigeonhole argument in one reason choice, avoiding repetitive occupancy entry."
     )
 t = Task(C, 53)
 t.num("Guaranteed lower bound on the maximum occupancy", 5)
