@@ -1,0 +1,1631 @@
+[
+  {
+    "name": "opposite-arrows",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,2)}",
+      "s": "{(2,1)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "projection-arrow",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1)}",
+      "s": "{(1,2)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "three-elements",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,2),(2,3)}",
+      "s": "{(1,1)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "different-labels",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(x,y)}",
+      "s": "{(y,x)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "rational-aliases",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1/2,2)}",
+      "s": "{(2,0.5)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "nested-elements",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{((1,2),{})}",
+      "s": "{({},(1,2))}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "duplicates-ignored",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,2),(1,2)}",
+      "s": "{(2,1)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "same-relation",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,2)}",
+      "s": "{(1,2)}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "distinct-but-commute",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1)}",
+      "s": "{(2,2)}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "empty-first",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{}",
+      "s": "{(1,2)}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "empty-second",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,2)}",
+      "s": "{}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "both-empty",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{}",
+      "s": "{}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "non-pair",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{1,2}",
+      "s": "{(1,2)}"
+    },
+    "error": true
+  },
+  {
+    "name": "triple-not-pair",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,2,3)}",
+      "s": "{(1,2)}"
+    },
+    "error": true
+  },
+  {
+    "name": "missing-relation",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,2)}"
+    },
+    "error": true
+  },
+  {
+    "name": "missing-braces",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "(1,2)",
+      "s": "{(2,1)}"
+    },
+    "error": true
+  },
+  {
+    "name": "over-carrier-limit",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "s",
+          "kind": "math",
+          "label": "s"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "s"],
+          "params": {
+            "kind": "noncommuting-composition",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(0,1),(1,2),(2,3),(3,4),(4,5),(5,6),(6,7),(7,8),(8,9),(9,10),(10,11),(11,12),(12,13),(13,14),(14,15),(15,16),(16,17)}",
+      "s": "{}"
+    },
+    "error": true
+  },
+  {
+    "name": "given-witness",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(1,2,3)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "reverse-witness",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(3,2,1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "equivalent-exact-witness",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(2/2,4/2,6/2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "other-center",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,3),(3,1),(2,3),(3,2)}",
+      "witness": "(1,3,2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "missing-first-link",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(1,3,2)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "present-conclusion",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(1,2,1)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "witness-outside-carrier",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(1,2,4)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "missing-loop",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(1,2,3)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "missing-symmetry",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,3),(3,2)}",
+      "witness": "(1,2,3)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "reflexive-only",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3)}",
+      "witness": "(1,2,3)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "extra-element",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2),(4,4)}",
+      "witness": "(1,2,3)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong-witness-arity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        },
+        {
+          "id": "witness",
+          "kind": "math",
+          "label": "witness"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r", "witness"],
+          "params": {
+            "kind": "reflexive-symmetric-not-transitive",
+            "atoms": ["a", "b", "c"],
+            "universe": ["1", "2", "3"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}",
+      "witness": "(1,2)"
+    },
+    "error": true
+  },
+  {
+    "name": "two-arrows",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(a,b),(b,a)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "one-loop",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(a,b),(b,a),(a,a)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "numeric-labels",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(7,9),(9,7)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "arbitrary-labels",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(first,second),(second,first)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "empty",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "singleton",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(a,a)}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "one-arrow",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(a,b)}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "complete-relation",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(a,a),(a,b),(b,a),(b,b)}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "too-large",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "r",
+          "kind": "math",
+          "label": "r"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "property",
+          "description": "The relation has every requested property.",
+          "validator": "finite-relation",
+          "fields": ["r"],
+          "params": {
+            "kind": "distinct-triples-counterexample",
+            "atoms": ["a", "b", "c"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "r": "{(a,b),(b,c)}"
+    },
+    "verdict": "incorrect"
+  }
+]
