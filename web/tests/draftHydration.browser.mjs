@@ -180,6 +180,7 @@ try {
     await exercise().getByRole('button', { name: 'Submit', exact: true }).isEnabled(),
     true,
   );
+  await exercise().getByLabel('Unsure', { exact: true }).check();
   await page.waitForFunction(
     (expected) =>
       new Promise((resolve) => {
@@ -192,7 +193,10 @@ try {
             .get('linear-algebra-matrices-1');
           get.onsuccess = () => {
             db.close();
-            resolve(JSON.stringify(get.result?.response) === JSON.stringify(expected));
+            resolve(
+              get.result?.unsure === true &&
+                JSON.stringify(get.result?.response) === JSON.stringify(expected),
+            );
           };
         };
       }),
@@ -201,6 +205,7 @@ try {
   await page.reload();
   await exercise().locator('.structured-answer').waitFor();
   await page.evaluate(() => window.releaseDraftHydration());
+  assert.equal(await exercise().getByLabel('Unsure', { exact: true }).isChecked(), true);
   for (const input of question.assessment.inputs) {
     assert.equal(
       (
@@ -223,6 +228,13 @@ try {
   );
   await exercise().getByRole('button', { name: 'Submit', exact: true }).click();
   await exercise().getByText('Correct', { exact: true }).waitFor();
+  const savedAttempt = await page.evaluate(async () => {
+    const { all } = await import('/src/storage.ts');
+    return (await all('attempts')).find(
+      (attempt) => attempt.exercise === 'linear-algebra-matrices-1',
+    );
+  });
+  assert.equal(savedAttempt.unsure, true, 'Unsure survives deterministic submission');
   assert.deepEqual(errors, []);
   await page.screenshot({ path: join(screenshotDirectory, 'restored-typed-matrix.png') });
   console.log('Passed delayed draft hydration, rapid field edits, reload, and keyboard entry.');
