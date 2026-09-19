@@ -346,7 +346,7 @@ func TestPublishedDeterministicFixtures(t *testing.T) {
 			})
 		}
 	}
-	for _, name := range []string{"deterministic-exercises.json", "deterministic-linear.json"} {
+	for _, name := range []string{"deterministic-exercises.json", "deterministic-linear.json", "deterministic-algorithms.json"} {
 		b, e := os.ReadFile(filepath.Join(root, "content", name))
 		if os.IsNotExist(e) {
 			continue
