@@ -1,3 +1,4 @@
+import { symbolicFormRequirement, validateSymbolicForm } from './symbolic-forms';
 import { finiteRelationRequirement, validateFiniteRelationRequirement } from './finite-relation';
 import { graphRequirement, validateGraphRequirement } from './graph';
 import { checkSequencePair, validateSequencePair } from './sequence-pair';
@@ -82,6 +83,8 @@ const validators: Record<
   (r: AssessmentRequirement, response: StructuredResponse) => boolean
 > = {
   linear: linearRequirement,
+  'indexed-expression': symbolicFormRequirement,
+  summation: symbolicFormRequirement,
   'finite-relation': finiteRelationRequirement,
   graph: graphRequirement,
   'sequence-pair': checkSequencePair,
@@ -497,6 +500,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     if (['selection', 'tuple'].includes(r.validator) && !strings(r.params.expected))
       throw Error('Expected values required.');
     if (r.validator === 'linear') validateLinearRequirement(r);
+    if (['indexed-expression', 'summation'].includes(r.validator)) validateSymbolicForm(r);
     if (r.validator === 'finite-relation') validateFiniteRelationRequirement(r);
     if (r.validator === 'graph') validateGraphRequirement(r);
     if (r.validator === 'sequence-pair') validateSequencePair(r);

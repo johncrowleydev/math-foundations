@@ -1,0 +1,1130 @@
+[
+  {
+    "name": "indexed-ascii",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "indexed-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "b_{n+1}-b_m",
+            "variables": ["m", "n"],
+            "sequences": {
+              "b": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "b(1+n)-b(m)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "indexed-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "indexed-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "b_{n+1}-b_m",
+            "variables": ["m", "n"],
+            "sequences": {
+              "b": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "b_{1+n}+(-b_m)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "indexed-wrong",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "indexed-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "b_{n+1}-b_m",
+            "variables": ["m", "n"],
+            "sequences": {
+              "b": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "b_n-b_m"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "indexed-unknown",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "indexed-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "b_{n+1}-b_m",
+            "variables": ["m", "n"],
+            "sequences": {
+              "b": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "b_q-b_m"
+    },
+    "error": true
+  },
+  {
+    "name": "indexed-cancel-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "indexed-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "a_{n+1}+a_{n+2}-a_1-a_2",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-a(2)+a(n+2)+a(n+1)-a(1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "indexed-missed-boundary",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "indexed-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "a_{n+1}+a_{n+2}-a_1-a_2",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "a(n+2)-a(1)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-finite0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=0}^{4}(5+3*k)",
+            "variables": [],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\sum_{j=0}^{4}(3*j+5)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-finite1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=0}^{4}(5+3*k)",
+            "variables": [],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(t,0,4,5+3*t)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-finite2",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=0}^{4}(5+3*k)",
+            "variables": [],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(k,1,5,2+3*k)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-finite3",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=0}^{4}(5+3*k)",
+            "variables": [],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "55"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-shift0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=0}^{n-2}a_{j+2}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(t,0,n-2,a(2+t))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-shift1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=0}^{n-2}a_{j+2}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\sum_{k=0}^{-2+n}a_{2+k}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-shift2",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=0}^{n-2}a_{j+2}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(k,2,n,a(k))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-shift3",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=0}^{n-2}a_{j+2}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(j,0,n-2,a(j))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-reverse0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}(n+1-j)^2",
+            "variables": ["n"],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(k,1,n,(1+n-k)*(1+n-k))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-reverse1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}(n+1-j)^2",
+            "variables": ["n"],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(k,1,n,k^2)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-split0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(j,5,n,a(j))+sum(i,1,4,a(i))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-split1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(i,1,4,a(i))+sum(j,4,n,a(j))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-triangle0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}\\sum_{i=j}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(u,1,n,sum(v,u,n,a(v,u)))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-triangle1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}\\sum_{i=j}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\sum_{u=1}^{n}\\sum_{v=u}^{n}a_{v,u}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-triangle2",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}\\sum_{i=j}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(i,1,n,sum(j,1,i,a(i,j)))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-triangle3",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n}\\sum_{i=j}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(u,1,n,sum(v,u,n,a(u,v)))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-strict-triangle0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n-1}\\sum_{i=j+1}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(u,1,-1+n,sum(v,1+u,n,a(v,u)))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-strict-triangle1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{j=1}^{n-1}\\sum_{i=j+1}^{n}a_{i,j}",
+            "variables": ["n"],
+            "sequences": {
+              "a": 2
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sum(u,1,n,sum(v,u,n,a(v,u)))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-equation-shift",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{i=1}^{k+1}i=(k+1)*(k+2)/2",
+            "variables": ["k"],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\sum_{j=1}^{1+k}j=(k^2+3*k+2)/2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-equation-swapped",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{i=1}^{k+1}i=(k+1)*(k+2)/2",
+            "variables": ["k"],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(k+2)*(k+1)/2=\\sum_{i=1}^{k+1}i"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-equation-old-upper",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{i=1}^{k+1}i=(k+1)*(k+2)/2",
+            "variables": ["k"],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\sum_{i=1}^{k}i=(k+1)*(k+2)/2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sum-equation-oldfactor",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{i=1}^{k+1}i=(k+1)*(k+2)/2",
+            "variables": ["k"],
+            "sequences": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\sum_{i=1}^{k+1}i=k*(k+1)/2"
+    },
+    "verdict": "incorrect"
+  }
+]
