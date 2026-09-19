@@ -211,6 +211,63 @@ function validateNode(
   expression(n.upper, [...variables, ...bound], {});
   validateNode(n.body, [...bound, n.variable], variables, sequences);
 }
+function expandFinite(
+  n: SumNode,
+  variables: string[],
+  sequences: Record<string, number>,
+  budget = { remaining: 256 },
+): SumNode {
+  if (--budget.remaining < 0) fail('Use fewer finite sum terms.');
+  if (n.kind === 'expression') return n;
+  if (n.kind === 'equation')
+    return {
+      ...n,
+      left: expandFinite(n.left, variables, sequences, budget),
+      right: expandFinite(n.right, variables, sequences, budget),
+    };
+  if (n.kind === 'add')
+    return { ...n, parts: n.parts.map((x) => expandFinite(x, variables, sequences, budget)) };
+  if (n.body.kind !== 'expression')
+    return { ...n, body: expandFinite(n.body, [...variables, n.variable], sequences, budget) };
+  let lower: bigint, upper: bigint;
+  try {
+    lower = parseExpression(n.lower, variables).exact().integer();
+    upper = parseExpression(n.upper, variables).exact().integer();
+  } catch (e) {
+    if (e instanceof InputError) return n;
+    throw e;
+  }
+  if (upper - lower < 0n || upper - lower > 63n) return n;
+  const body = indexedCalls(n.body.source, sequences),
+    parts: SumNode[] = [];
+  for (let value = lower; value <= upper; value++) {
+    if (--budget.remaining < 0) fail('Use fewer finite sum terms.');
+    parts.push({
+      kind: 'expression',
+      source: body.replace(new RegExp('\\b' + n.variable + '\\b', 'g'), '(' + value + ')'),
+    });
+  }
+  return { kind: 'add', parts };
+}
+function collectTerms(n: SumNode): SumNode {
+  if (n.kind === 'expression') return n;
+  if (n.kind === 'sum') return { ...n, body: collectTerms(n.body) };
+  if (n.kind === 'equation')
+    return { ...n, left: collectTerms(n.left), right: collectTerms(n.right) };
+  const flatten = (x: SumNode): SumNode[] =>
+    x.kind === 'add' ? x.parts.flatMap(flatten) : [collectTerms(x)];
+  const all = n.parts.flatMap(flatten),
+    expressions = all.filter(
+      (x): x is Extract<SumNode, { kind: 'expression' }> => x.kind === 'expression',
+    ),
+    others: SumNode[] = all.filter((x) => x.kind !== 'expression');
+  if (expressions.length)
+    others.push({
+      kind: 'expression',
+      source: expressions.map((x) => '(' + x.source + ')').join('+'),
+    });
+  return others.length === 1 ? others[0] : { kind: 'add', parts: others };
+}
 export function symbolicFormRequirement(r: AssessmentRequirement, a: StructuredResponse): boolean {
   const actual = clean(text(a, r.fields[0])),
     expected = clean(r.params.expected as string),
@@ -218,9 +275,13 @@ export function symbolicFormRequirement(r: AssessmentRequirement, a: StructuredR
     sequences = (r.params.sequences || {}) as Record<string, number>;
   if (r.validator === 'indexed-expression')
     return equivalent(actual, expected, [], [], variables, sequences);
-  const left = parseSum(actual),
+  let left = parseSum(actual),
     right = parseSum(expected);
   validateNode(left, [], variables, sequences);
+  if (r.params.allowFiniteExpansion === true) {
+    left = collectTerms(expandFinite(left, variables, sequences));
+    right = collectTerms(expandFinite(right, variables, sequences));
+  }
   return sameSum(left, right, [], [], variables, sequences);
 }
 export function validateSymbolicForm(r: AssessmentRequirement): void {

@@ -1126,5 +1126,131 @@
       "answer": "\\sum_{i=1}^{k+1}i=k*(k+1)/2"
     },
     "verdict": "incorrect"
+  },
+  {
+    "name": "sum-prefix-expanded",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            },
+            "allowFiniteExpansion": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "a(1)+a(2)+a(3)+a(4)+sum(k,5,n,a(k))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-prefix-regrouped",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            },
+            "allowFiniteExpansion": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(a(1)+a(2)+a(3)+a(4))+sum(k,5,n,a(k))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sum-prefix-missing",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Formula"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Preserve the requested formula and form",
+          "validator": "summation",
+          "fields": ["answer"],
+          "params": {
+            "expected": "\\sum_{k=1}^{4}a_k+\\sum_{k=5}^{n}a_k",
+            "variables": ["n"],
+            "sequences": {
+              "a": 1
+            },
+            "allowFiniteExpansion": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the formula and bounds."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "a(1)+a(2)+a(3)+sum(k,5,n,a(k))"
+    },
+    "verdict": "incorrect"
   }
 ]
