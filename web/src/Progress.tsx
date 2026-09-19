@@ -13,6 +13,7 @@ import {
 import { exposures } from './exposure';
 import type { Exposure } from './evidenceTypes';
 import { Rich } from './Rich';
+import { SubmittedStructuredAnswer } from './StructuredAnswer';
 export function Progress({
   data,
   slug,
@@ -104,7 +105,11 @@ export function Progress({
             ? 'Metadata backfilled from current authored catalog; original grade unchanged.'
             : 'Metadata captured at submission.'}
       </p>
-      <Rich text={a.transcription || a.text || '(Image response; open exercise to inspect)'} />
+      {a.mode === 'structured' ? (
+        <SubmittedStructuredAnswer attempt={a} />
+      ) : (
+        <Rich text={a.transcription || a.text || '(Image response; open exercise to inspect)'} />
+      )}
       <p>
         Task attributes:{' '}
         {Object.entries(metadata(a, data.evidence)?.attributes || {})

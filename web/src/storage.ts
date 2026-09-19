@@ -3,6 +3,7 @@ import { openDB } from 'idb';
 import { validReviewContext, validReviewSession } from './reviewValidation';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
+import { validResponse, validPresentation } from './structuredAnswer';
 import type { EvidenceCatalog } from './evidenceTypes';
 import {
   validAttemptEffort,
@@ -179,6 +180,7 @@ export async function integrate(records: RecordData[], cursor: number) {
         if (
           !newer &&
           draft &&
+          !draft.assessmentFingerprint &&
           draft.editing === false &&
           !draft.recovery &&
           (draft.strokes.length || draft.photos.length)
@@ -282,8 +284,18 @@ export async function importData(file: Blob, name: string) {
     finite(v.submitted) &&
     typeof v.text === 'string' &&
     (v.transcription === undefined || typeof v.transcription === 'string') &&
-    ['type', 'write', 'photo', 'choice'].includes(v.mode) &&
+    ['type', 'write', 'photo', 'choice', 'structured'].includes(v.mode) &&
     (v.mode !== 'choice' || (typeof v.choiceId === 'string' && v.choiceId.length > 0)) &&
+    (v.mode !== 'structured' ||
+      (validResponse(v.response) &&
+        v.text === '' &&
+        Array.isArray(v.images) &&
+        v.images.length === 0 &&
+        v.photos === undefined &&
+        v.ink === undefined &&
+        v.choiceId === undefined)) &&
+    (v.response === undefined || validResponse(v.response)) &&
+    validPresentation(v.presentation) &&
     Array.isArray(v.images) &&
     v.images.every(hashKey) &&
     Array.isArray(v.grades) &&
@@ -315,6 +327,20 @@ export async function importData(file: Blob, name: string) {
           ['type', 'pen', 'photo'].includes(v.mode) &&
           finite(v.updated) &&
           typeof v.revealed === 'boolean' &&
+          (v.response === undefined || validResponse(v.response)) &&
+          (v.assessmentFingerprint === undefined || typeof v.assessmentFingerprint === 'string') &&
+          (v.assessmentQuestion === undefined ||
+            validPresentation({ question: v.assessmentQuestion })) &&
+          (v.earlierWork === undefined ||
+            (Array.isArray(v.earlierWork) &&
+              v.earlierWork.every(
+                (work: unknown) =>
+                  object(work) &&
+                  typeof work.fingerprint === 'string' &&
+                  finite(work.updated) &&
+                  validResponse(work.response) &&
+                  (work.question === undefined || validPresentation({ question: work.question })),
+              ))) &&
           photos(v.photos) &&
           Array.isArray(v.strokes) &&
           v.strokes.every(
@@ -340,6 +366,8 @@ export async function importData(file: Blob, name: string) {
         )
       )
         throw Error('Invalid record.');
+      if (store === 'records' && key.startsWith('attempt/') && !attempt(v.payload))
+        throw Error('Invalid saved attempt.');
       if (
         store === 'records' &&
         key === 'review-cache/active' &&

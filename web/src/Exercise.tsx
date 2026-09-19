@@ -15,6 +15,14 @@ import { snapshot } from './evidenceTypes';
 import { EffortClock } from './effort';
 import { expose } from './exposure';
 import { markAssistance, seenAssistance } from './assistance';
+import { StructuredAnswer, SubmittedStructuredAnswer } from './StructuredAnswer';
+import {
+  assessmentFingerprint,
+  deterministicAttempt,
+  gradeStructured,
+  reconcileResponse,
+  responseComplete,
+} from './structuredAnswer';
 export function Exercise({
   q,
   lesson,
@@ -29,6 +37,8 @@ export function Exercise({
   review?: { slug: string; section: string; title: string };
 }) {
   const key = instance?.exercise || exerciseKey(lesson, q.id);
+  const fingerprint = assessmentFingerprint(q);
+  const deterministic = !!(q.choice || q.assessment);
   const evidence = instance?.analytics || snapshot(data.evidence, key);
   const choiceGroup = useId();
   const clock = useRef(new EffortClock());
@@ -52,6 +62,7 @@ export function Exercise({
     let live = true;
     void (async () => {
       let d = await get<Draft>('drafts', key);
+      const saved = d;
       if (!d) {
         d = emptyDraft();
         const old = await get<RecordData>('records', 'text/' + key);
@@ -72,6 +83,8 @@ export function Exercise({
           if (previous?.payload.revealed) d.revealed = true;
         }
       }
+      d = reconcileResponse(d, q);
+      if (saved && saved !== d) await put('drafts', key, d);
       if (live) {
         setDraft(d);
         latestDraft.current = d;
@@ -81,7 +94,7 @@ export function Exercise({
     return () => {
       live = false;
     };
-  }, [key]);
+  }, [key, fingerprint]);
   useEffect(() => {
     let live = true;
     void all<Attempt>('attempts').then((as) => {
@@ -124,8 +137,10 @@ export function Exercise({
     let live = true;
     void get<Draft>('drafts', key).then((saved) => {
       if (live && saved && saved.updated > (latestDraft.current?.updated || 0)) {
-        latestDraft.current = saved;
-        setDraft(saved);
+        const next = reconcileResponse(saved, q);
+        latestDraft.current = next;
+        setDraft(next);
+        if (next !== saved) void put('drafts', key, next).catch((e) => setError(String(e)));
       }
     });
     return () => {
@@ -147,7 +162,9 @@ export function Exercise({
         setError(saveError.current);
       });
   }
-  const correct = attempts.some((a) => a.verdict === 'correct'),
+  const correct = attempts.some(
+      (a) => a.verdict === 'correct' && !(deterministicAttempt(a) && a.status === 'error'),
+    ),
     pending = attempts.some((a) =>
       ['queued', 'pending', 'grading', 'rechecking'].includes(a.status),
     ),
@@ -186,7 +203,7 @@ export function Exercise({
       const d = latestDraft.current!;
       const seen = await seenAssistance(key);
       if (
-        !q.choice &&
+        !deterministic &&
         ((d.mode === 'type' && !d.text.trim()) ||
           (d.mode === 'pen' && !d.strokes.length) ||
           (d.mode === 'photo' && !d.photos.length))
@@ -202,9 +219,17 @@ export function Exercise({
         submitted,
         contentVersion: instance?.contentVersion || data.version,
         ...(instance ? { review: instance.context } : {}),
-        mode: q.choice ? 'choice' : d.mode === 'pen' ? 'write' : d.mode,
+        mode: q.assessment
+          ? 'structured'
+          : q.choice
+            ? 'choice'
+            : d.mode === 'pen'
+              ? 'write'
+              : d.mode,
         ...(q.choice ? { choiceId: d.choiceId } : {}),
-        text: d.mode === 'type' ? d.text : '',
+        ...(q.assessment ? { response: d.response || {} } : {}),
+        presentation: { question: q },
+        text: !deterministic && d.mode === 'type' ? d.text : '',
         images: [],
         revealed: d.revealed,
         ...clock.current.pause(submitted),
@@ -225,7 +250,8 @@ export function Exercise({
         status: 'queued',
         grades: [],
       };
-      if (q.choice) a = gradeChoice(a, q.choice);
+      if (q.assessment) a = gradeStructured(a, q);
+      else if (q.choice) a = gradeChoice(a, q.choice);
       else if (d.mode === 'pen') {
         const h = await saveMedia(await inkImage(d.strokes));
         a.images = [h];
@@ -267,6 +293,20 @@ export function Exercise({
       update({ choiceId: undefined, editing: true, recovery: true });
       return;
     }
+    if (q.assessment) {
+      const matches =
+        a.presentation?.question && assessmentFingerprint(a.presentation.question) === fingerprint;
+      update({
+        response: latestDraft.current?.recovery
+          ? latestDraft.current.response
+          : matches && a.response
+            ? { ...a.response }
+            : latestDraft.current?.response || {},
+        editing: true,
+        recovery: true,
+      });
+      return;
+    }
     if (latestDraft.current?.recovery) {
       update({ editing: true });
       return;
@@ -306,6 +346,58 @@ export function Exercise({
     for (const c of evidence?.concepts || [])
       void expose(c.concept, 'feedback', id).catch((e) => setError(String(e)));
   }
+  const freeResponseEditor = draft && (
+    <>
+      <div className="toolbar modes">
+        <select
+          aria-label={deterministic ? 'Scratchwork format' : 'Response format'}
+          value={draft.mode}
+          onChange={(e) => update({ mode: e.target.value as Draft['mode'] })}
+        >
+          <option value="type">Type</option>
+          <option value="pen">Pen / sketch</option>
+          <option value="photo">Photo</option>
+        </select>
+        <span className="muted">
+          {draft.mode !== 'type' && draft.text ? 'Also saved: Type' : ''}
+          {draft.mode !== 'pen' && draft.strokes.length ? ' · Sketch' : ''}
+          {draft.mode !== 'photo' && draft.photos.length ? ' · Photos' : ''}
+        </span>
+        {!deterministic && (
+          <button className="push" onClick={() => setExpanded(true)}>
+            Expand
+          </button>
+        )}
+      </div>
+      {draft.mode === 'type' ? (
+        <TexEditor
+          label={deterministic ? 'Scratchwork' : 'Answer'}
+          value={draft.text}
+          onChange={(text) => update({ text })}
+          syntax={data.syntax}
+        />
+      ) : draft.mode === 'pen' ? (
+        <Ink strokes={draft.strokes} onChange={(strokes) => update({ strokes })} />
+      ) : (
+        <Photos photos={draft.photos} onChange={(photos) => update({ photos })} />
+      )}
+    </>
+  );
+  const scratchwork = deterministic && draft && (
+    <details
+      className="scratchwork"
+      onPointerDownCapture={activity}
+      onKeyDownCapture={activity}
+      onInputCapture={activity}
+    >
+      <summary>
+        Scratchwork
+        {draft.text || draft.strokes.length || draft.photos.length ? ' · saved' : ' (optional)'}
+      </summary>
+      <p className="muted">Kept on this device and in exports; not submitted for grading.</p>
+      {freeResponseEditor}
+    </details>
+  );
   const editor = draft && (
     <div
       onPointerDownCapture={activity}
@@ -316,7 +408,14 @@ export function Exercise({
       onInputCapture={activity}
       onFocusCapture={activity}
     >
-      {q.choice ? (
+      {q.assessment ? (
+        <StructuredAnswer
+          assessment={q.assessment}
+          response={draft.response}
+          onChange={(response) => update({ response })}
+          syntax={data.syntax}
+        />
+      ) : q.choice ? (
         <>
           <div className="choices" role="radiogroup" aria-label="Answer choices">
             {q.choice.options.map((o) => (
@@ -336,41 +435,10 @@ export function Exercise({
           </div>
         </>
       ) : (
-        <>
-          <div className="toolbar modes">
-            <select
-              aria-label="Response format"
-              value={draft.mode}
-              onChange={(e) => update({ mode: e.target.value as Draft['mode'] })}
-            >
-              <option value="type">Type</option>
-              <option value="pen">Pen / sketch</option>
-              <option value="photo">Photo</option>
-            </select>
-            <span className="muted">
-              {draft.mode !== 'type' && draft.text ? 'Also saved: Type' : ''}
-              {draft.mode !== 'pen' && draft.strokes.length ? ' · Sketch' : ''}
-              {draft.mode !== 'photo' && draft.photos.length ? ' · Photos' : ''}
-            </span>
-            <button className="push" onClick={() => setExpanded(true)}>
-              Expand
-            </button>
-          </div>
-          {draft.mode === 'type' ? (
-            <TexEditor
-              value={draft.text}
-              onChange={(text) => update({ text })}
-              syntax={data.syntax}
-            />
-          ) : draft.mode === 'pen' ? (
-            <Ink strokes={draft.strokes} onChange={(strokes) => update({ strokes })} />
-          ) : (
-            <Photos photos={draft.photos} onChange={(photos) => update({ photos })} />
-          )}
-        </>
+        freeResponseEditor
       )}
       <div className="toolbar submit">
-        {last?.status === 'error' && !q.choice && (
+        {last?.status === 'error' && !deterministic && !deterministicAttempt(last) && (
           <button
             onClick={() => {
               update({ editing: false });
@@ -394,7 +462,11 @@ export function Exercise({
           </label>
           <button
             className="primary"
-            disabled={saving || (!!q.choice && !draft.choiceId)}
+            disabled={
+              saving ||
+              (!!q.choice && !draft.choiceId) ||
+              (!!q.assessment && !responseComplete(q.assessment, draft.response || {}))
+            }
             onClick={() => void submit()}
           >
             {saving ? (
@@ -458,7 +530,7 @@ export function Exercise({
       {q.math && (
         <Rich text={'$$' + q.math + '$$'} source={instance ? undefined : `question:${q.id}:math`} />
       )}
-      {q.table && (
+      {q.table && !q.assessment && (
         <table>
           <thead>
             <tr>
@@ -480,6 +552,7 @@ export function Exercise({
           <AttemptPanel
             attempt={last}
             choice={q.choice}
+            allowRecheck={!deterministic}
             onFeedbackSeen={() => feedbackSeen(last.id)}
             onRetry={() => void retry(last)}
             resumeDraft={draft?.recovery}
@@ -487,6 +560,37 @@ export function Exercise({
             onHistory={attempts.length > 1 ? () => setHistory(true) : undefined}
           />
         )
+      )}
+      {scratchwork}
+      {!!draft?.earlierWork?.length && (
+        <details className="earlier-work">
+          <summary>Earlier saved answers</summary>
+          <p className="muted">These answers belong to previous versions of the question.</p>
+          {draft.earlierWork.map((work, i) => (
+            <article key={i}>
+              {work.question && (
+                <>
+                  <Rich text={work.question.instructions} />
+                  <Rich text={work.question.prompt} />
+                  {work.question.math && <Rich text={'$$' + work.question.math + '$$'} />}
+                </>
+              )}
+              {work.question?.choice && typeof work.response.choice === 'string' ? (
+                <Rich
+                  text={
+                    work.question.choice.options.find(
+                      (option) => option.id === work.response.choice,
+                    )?.text || work.response.choice
+                  }
+                />
+              ) : work.question?.assessment ? (
+                <StructuredAnswer assessment={work.question.assessment} response={work.response} />
+              ) : (
+                <pre>{JSON.stringify(work.response, null, 2)}</pre>
+              )}
+            </article>
+          ))}
+        </details>
       )}
       {error && (
         <p role="alert" className="error">
@@ -598,7 +702,8 @@ export function Exercise({
             <div className="history-item" key={a.id}>
               <AttemptPanel
                 attempt={a}
-                choice={q.choice}
+                choice={a.presentation?.question.choice || q.choice}
+                allowRecheck={!deterministic}
                 onFeedbackSeen={() => feedbackSeen(a.id)}
               />
             </div>
@@ -624,16 +729,20 @@ function AttemptPanel({
   canRetry,
   onHistory,
   choice,
+  allowRecheck = true,
 }: {
   attempt: Attempt;
   onFeedbackSeen?: () => void;
   choice?: ChoiceAssessment;
+  allowRecheck?: boolean;
   resumeDraft?: boolean;
   onRetry?: () => void;
   canRetry?: boolean;
   onHistory?: () => void;
 }) {
   const g = a.grades?.at(-1);
+  const deterministic = deterministicAttempt(a);
+  const canRecheck = allowRecheck && !deterministic;
   const [feedback, setFeedback] = useState(a.verdict === 'correct'),
     [more, setMore] = useState(false),
     [panel, setPanel] = useState(''),
@@ -650,9 +759,11 @@ function AttemptPanel({
         {active && <span className="spinner" aria-label="Grading in progress" />}
         <strong>
           {a.status === 'queued'
-            ? connected()
-              ? 'Waiting to upload'
-              : 'Saved — connect to grade'
+            ? deterministic
+              ? 'Saved — waiting to upload'
+              : connected()
+                ? 'Waiting to upload'
+                : 'Saved — connect to grade'
             : active
               ? a.status === 'rechecking'
                 ? 'Rechecking…'
@@ -664,7 +775,9 @@ function AttemptPanel({
                 : a.status === 'not_graded'
                   ? 'Not graded'
                   : a.status === 'error'
-                    ? 'Could not grade'
+                    ? deterministic
+                      ? 'Could not sync answer'
+                      : 'Could not grade'
                     : a.verdict === 'correct'
                       ? 'Correct'
                       : 'Incorrect'}
@@ -676,7 +789,11 @@ function AttemptPanel({
           })}
         </time>
       </div>
-      {a.transcription ? (
+      {a.mode === 'structured' ? (
+        <div className="submitted">
+          <SubmittedStructuredAnswer attempt={a} />
+        </div>
+      ) : a.transcription ? (
         <div className="submitted">
           <p className="eyebrow">
             {a.mode === 'photo' ? 'Transcribed from photo' : 'Transcribed from handwriting'}
@@ -694,6 +811,16 @@ function AttemptPanel({
           ))}
         </div>
       )}
+      {a.presentation?.question && (
+        <details className="submitted-question">
+          <summary>Question as submitted</summary>
+          <Rich text={a.presentation.question.instructions} />
+          <Rich text={a.presentation.question.prompt} />
+          {a.presentation.question.math && (
+            <Rich text={'$$' + a.presentation.question.math + '$$'} />
+          )}
+        </details>
+      )}
       {a.error && <p className="error">{a.error}</p>}
       {error && !panel && (
         <p className="error" role="alert">
@@ -701,7 +828,7 @@ function AttemptPanel({
         </p>
       )}
       <div className="toolbar">
-        {['error', 'cancelled'].includes(a.status) && a.mode !== 'choice' && (
+        {['error', 'cancelled'].includes(a.status) && canRecheck && (
           <button
             className="primary"
             onClick={() =>
@@ -721,7 +848,7 @@ function AttemptPanel({
             {feedback ? 'Hide feedback' : 'Show feedback'}
           </button>
         )}
-        {a.status !== 'error' && canRetry && onRetry && (
+        {(a.status !== 'error' || deterministic) && canRetry && onRetry && (
           <button onClick={onRetry}>{resumeDraft ? 'Continue draft' : 'Try again'}</button>
         )}
         <div className="menu-anchor">
@@ -734,9 +861,7 @@ function AttemptPanel({
                 'Expand response',
                 ...(!a.transcription && g?.transcription ? ['What the grader read'] : []),
                 ...(onHistory ? ['Previous attempts'] : []),
-                ...(!active && a.status !== 'queued' && a.mode !== 'choice'
-                  ? ['Request recheck']
-                  : []),
+                ...(!active && a.status !== 'queued' && canRecheck ? ['Request recheck'] : []),
                 ...(a.grades?.length > 1 ? ['Previous assessments'] : []),
               ].map((s) => (
                 <button
@@ -778,7 +903,9 @@ function AttemptPanel({
       </div>
       {g && feedback && (
         <div className="feedback">
-          <Rich text={currentChoiceFeedback(a, choice) ?? g.feedback} />
+          <Rich
+            text={currentChoiceFeedback(a, a.presentation?.question.choice || choice) ?? g.feedback}
+          />
           {g.issue && <Rich text={'Where to look: ' + g.issue} />}
           {g.improvement && <Rich text={g.improvement} />}
         </div>
@@ -822,6 +949,8 @@ function AttemptPanel({
                 <Rich text={old.feedback} />
               </article>
             ))
+          ) : a.mode === 'structured' ? (
+            <SubmittedStructuredAnswer attempt={a} />
           ) : a.transcription ? (
             <>
               <p className="eyebrow">

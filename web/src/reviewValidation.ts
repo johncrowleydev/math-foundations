@@ -41,7 +41,10 @@ export function validReviewSession(value: unknown): boolean {
         instance.context.kind === value.kind &&
         object(instance.question) &&
         Number.isSafeInteger(instance.question.id) &&
-        typeof instance.question.instructions === 'string',
+        typeof instance.question.instructions === 'string' &&
+        (instance.question.assessment === undefined ||
+          (!instance.question.choice && validAssessment(instance.question.assessment))),
     )
   );
 }
+import { validAssessment } from './structuredAnswer';

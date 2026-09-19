@@ -13,10 +13,12 @@ export function TexEditor({
   value,
   onChange,
   syntax,
+  label = 'Answer',
 }: {
   value: string;
   onChange: (s: string) => void;
   syntax: Syntax[];
+  label?: string;
 }) {
   const host = useRef<HTMLDivElement>(null),
     view = useRef<EditorView>(null),
@@ -103,7 +105,7 @@ export function TexEditor({
           keymap.of([...defaultKeymap, ...historyKeymap]),
           EditorView.lineWrapping,
           bracketMatching(),
-          EditorView.contentAttributes.of({ 'aria-label': 'Answer editor', spellcheck: 'false' }),
+          EditorView.contentAttributes.of({ 'aria-label': label + ' editor', spellcheck: 'false' }),
           EditorView.updateListener.of((u) => {
             if (u.docChanged) change.current(u.state.doc.toString());
           }),
@@ -190,7 +192,7 @@ export function TexEditor({
             </button>
           </div>
           <div className="editor-box">
-            <label>Answer</label>
+            <label>{label}</label>
             <div ref={host} />
           </div>
         </div>
