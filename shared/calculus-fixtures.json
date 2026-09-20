@@ -2797,5 +2797,157 @@
       "answer": "x"
     },
     "error": true
+  },
+  {
+    "name": "constant logarithm",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "ln(5)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(5)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "constant pi fraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "pi/2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*pi/4"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "constant exponential subtraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "e-1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-1+e"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "wrong constant multiple",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "pi/2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "pi"
+    },
+    "verdict": "incorrect"
   }
 ]

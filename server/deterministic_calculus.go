@@ -648,7 +648,7 @@ func calcParameters(r AssessmentRequirement) (calculusParams, []string, []calcGu
 	if r.Validator == "antiderivative" {
 		vs = []string{p.Variable}
 	}
-	if len(vs) == 0 || len(vs) > 6 || len(r.Fields) != 1 {
+	if (r.Validator == "antiderivative" && len(vs) != 1) || (r.Validator == "calculus-expression" && p.Variables == nil) || len(vs) > 6 || len(r.Fields) != 1 {
 		calcFail("Invalid calculus variables or fields")
 	}
 	seen := map[string]bool{}

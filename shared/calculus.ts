@@ -390,7 +390,7 @@ function parameters(r: AssessmentRequirement): {
   const p = r.params as CalculusParams;
   const variables = r.validator === 'antiderivative' ? [p.variable as string] : p.variables || [];
   if (
-    !variables?.length ||
+    (r.validator === 'antiderivative' ? !variables.length : !Array.isArray(p.variables)) ||
     variables.length > 6 ||
     new Set(variables).size !== variables.length ||
     variables.some(
