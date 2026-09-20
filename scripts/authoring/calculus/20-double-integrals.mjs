@@ -153,7 +153,7 @@ sections[0].questions = [
     'The density describes mass per unit area. Multiplying by square meters gives kilograms, whereas multiplying by width alone leaves kilograms per meter.',
   ),
   q(
-    'A height is between 2 and 5 over area 3. Give lower and upper bounds for its volume as a pair.',
+    'A height is between 2 and 5 over area 3. Give the sharp lower and upper volume bounds implied by these height bounds, as a pair.',
     'Multiply the area by both height bounds: (6,15).',
     tuple([6, 15]),
   ),
@@ -245,7 +245,7 @@ sections[2].questions = [
     expr('4-2*x', ['x']),
   ),
   q(
-    raw`For that triangle, give the outer x interval endpoints as a pair.`,
+    raw`For the triangle x,y>=0 and 2x+y<=4, give the outer x interval endpoints as a pair when integrating y first.`,
     'On y=0 the sloping boundary reaches x=2; the interval is[0,2].',
     tuple([0, 2]),
   ),
@@ -280,7 +280,7 @@ sections[3].questions = [
     tuple([0, 4]),
   ),
   q(
-    raw`For that region, give the upper x bound as a formula in y.`,
+    raw`For the region 0<=x<=2 and x squared<=y<=4, give the upper x bound as a formula in y after reversing the integration order.`,
     'The condition x squared<=y with x>=0 becomes x<=sqrt(y).',
     {
       validator: 'calculus-expression',

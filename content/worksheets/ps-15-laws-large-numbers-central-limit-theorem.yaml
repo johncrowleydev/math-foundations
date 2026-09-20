@@ -66,12 +66,12 @@ sections:
         answer: $9/(100\cdot1^2)=9/100$.
       - id: 13
         type: freeform
-        prompt: Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?
+        prompt: Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?
         answerLines: 5
         answer: Require $1/[n(1/10)^2]\le1/20$, so $n\ge2000$. The smallest is $2000$.
       - id: 14
         type: freeform
-        prompt: Iid observations have variance two. What upper bound results for error at least $1/2$ in a mean of one hundred observations?
+        prompt: Iid observations have variance two. What Chebyshev upper bound results for error at least $1/2$ in a mean of one hundred observations?
         answerLines: 5
         answer: $2/[100(1/2)^2]=2/25$.
       - id: 15

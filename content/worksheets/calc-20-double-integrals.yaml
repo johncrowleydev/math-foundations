@@ -65,7 +65,7 @@ sections:
         answer: The density describes mass per unit area. Multiplying by square meters gives kilograms, whereas multiplying by width alone leaves kilograms per meter.
       - id: 9
         type: freeform
-        prompt: A height is between 2 and 5 over area 3. Give lower and upper bounds for its volume as a pair.
+        prompt: A height is between 2 and 5 over area 3. Give the sharp lower and upper volume bounds implied by these height bounds, as a pair.
         answerLines: 5
         answer: |-
           The answer is $\left(6,\ 15\right)$.
@@ -204,7 +204,7 @@ sections:
           Solve 2x+y=4 for y:4-2x.
       - id: 27
         type: freeform
-        prompt: For that triangle, give the outer x interval endpoints as a pair.
+        prompt: For the triangle x,y>=0 and 2x+y<=4, give the outer x interval endpoints as a pair when integrating y first.
         answerLines: 5
         answer: |-
           The answer is $\left(0,\ 2\right)$.
@@ -256,7 +256,7 @@ sections:
           The lowest y is 0 and the highest is 4, giving(0,4).
       - id: 34
         type: freeform
-        prompt: For that region, give the upper x bound as a formula in y.
+        prompt: For the region 0<=x<=2 and x squared<=y<=4, give the upper x bound as a formula in y after reversing the integration order.
         answerLines: 5
         answer: |-
           The answer is $\sqrt{y}$.

@@ -311,7 +311,7 @@ Logarithms often suggest the integral test. For $n\ge2$, $f(x)=1/[x(\ln x)^2]$ i
           r`$R_{20}\le\int_{20}^{\infty}x^{-2}dx=1/20$.`,
         ),
         n(
-          r`What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?`,
+          r`What minimum integer $N$ makes the integral-test upper bound for the $\sum_{n=1}^{\infty}1/n^2$ tail at most $1/100$?`,
           '100',
           r`Require $1/N\le1/100$, giving $N\ge100$.`,
         ),
@@ -498,7 +498,7 @@ Use an alternating remainder bound only after establishing decreasing magnitudes
           r`The first omitted magnitude is $1/(10+1)=1/11$.`,
         ),
         n(
-          r`What minimum $N$ guarantees error at most $1/100$ by that bound?`,
+          r`For the alternating harmonic series $\sum_{n=1}^{\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?`,
           '99',
           r`Require $1/(N+1)\le1/100$, giving $N\ge99$.`,
         ),
@@ -508,7 +508,7 @@ Use an alternating remainder bound only after establishing decreasing magnitudes
           r`A common denominator gives $12/12-6/12+4/12-3/12=7/12$.`,
         ),
         n(
-          r`For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.`,
+          r`For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.`,
           '1/100',
           r`The first omitted term has magnitude $1/10^2=1/100$.`,
         ),
@@ -529,7 +529,7 @@ Use an alternating remainder bound only after establishing decreasing magnitudes
           r`Its magnitude series has $p=3>1$.`,
         ),
         n(
-          r`For an alternating series with decreasing magnitudes $b_n=1/(2n+1)$, bound the error after $N=4$ terms, starting at $n=1$.`,
+          r`For an alternating series with decreasing magnitudes $b_n=1/(2n+1)$, give the first-omitted-term error bound after $N=4$ terms, starting at $n=1$.`,
           '1/11',
           r`The first omitted index is $5$, so its magnitude is $1/(2\cdot5+1)=1/11$.`,
         ),

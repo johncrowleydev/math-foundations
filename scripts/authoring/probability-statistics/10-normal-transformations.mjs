@@ -133,7 +133,7 @@ Sketching the requested region on a number line often prevents choosing the wron
       r`$\Phi(z)$ is the standard normal left-tail probability.`,
       r`$\Phi(z)=P(Z\le z)$ for $Z\sim N(0,1)$.`,
       r`$\Phi(-z)=1-\Phi(z)$.`,
-      `A right-tail probability is $1-\Phi(z)$.`,
+      r`A right-tail probability is $1-\Phi(z)$.`,
     ),
   ],
 );
@@ -340,7 +340,10 @@ s4.questions = [
   q(
     r`For $U\sim\operatorname{Uniform}(0,2)$ and $Y=U^2$, give $F_Y(y)$ on $0<y<4$.`,
     r`$P(U^2\le y)=P(U\le\sqrt y)=\sqrt y/2$.`,
-    calc('sqrt(y)/2', ['y'], { positive: ['y'] }),
+    {
+      ...calc('sqrt(y)/2', ['y'], { positive: ['y', '4-y'] }),
+      extraValid: ['sqrt(y)*(4-y)/(2*(4-y))'],
+    },
   ),
   q(
     r`For $U\sim\operatorname{Uniform}(0,2)$ and $Y=U^2$, give $f_Y(y)$ on $0<y<4$.`,
@@ -508,7 +511,7 @@ s5.quickCheck = quick(
   `The transformation collapses the entire nonpositive half of the input interval to zero.`,
   [
     `A density height is not a point probability; here the mass is determined by the interval that is collapsed.`,
-    `Correct. The event $Y=0$ is $U\le0$, which has probability one half.`,
+    r`Correct. The event $Y=0$ is $U\le0$, which has probability one half.`,
     `Continuity of the input does not prevent a transformation from creating atoms.`,
   ],
 );

@@ -58,7 +58,7 @@ For independent Bernoulli indicators, $\operatorname{Var}(X_i)=p(1-p)\le1/4$, ev
         'concentration-guarantee',
         'Concentration guarantee',
         'A bound on the probability of estimation error.',
-        r`Under independence and common finite variance, $P(|\bar X-\mu|\ge\varepsilon)\le\sigma^2/(n\varepsilon^2)$.`,
+        r`Under independence, common mean $\mu$, and common finite variance $\sigma^2$, $P(|\bar X-\mu|\ge\varepsilon)\le\sigma^2/(n\varepsilon^2)$.`,
         r`With $\sigma^2=4$, $\varepsilon=1/2$, $\delta=1/20$, $n=320$ suffices.`,
         'A sufficient sample size need not be necessary.',
       ),
@@ -156,7 +156,7 @@ for (const [v, b] of [
       exact(val),
     ),
     q(
-      r`Using the same variance ${v}, what lower bound follows for $P(|X-E[X]|<${b})$?`,
+      r`For variance ${v}, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<${b})$?`,
       r`Take the complement of the at-least event: $1-${val}=${frac(b * b - v, b * b)}$.`,
       exact(frac(b * b - v, b * b)),
     ),
@@ -182,7 +182,7 @@ for (const [v, eps, delta] of [
   const n = Math.ceil(v / (delta * eps * eps) - 1e-9);
   sections[2].questions.push(
     q(
-      r`Independent identically distributed observations have variance ${v}. Using Chebyshev, give a sufficient integer sample size for error at least ${eps} to have probability at most ${delta}.`,
+      r`Independent identically distributed observations have variance ${v}. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least ${eps} to have probability at most ${delta}.`,
       r`Require $n\ge ${v}/(${delta}\cdot${eps}^2)$ and round upward, giving $n=${n}$.`,
       exact(n),
     ),
@@ -289,12 +289,12 @@ sections[2].quickCheck = quick(
 );
 sections[0].review = [
   q(
-    'A nonnegative variable has mean 6. Bound its probability of being at least 30.',
+    'A nonnegative variable has mean 6. Give the Markov bound for its probability of being at least 30.',
     r`Markov gives $6/30=1/5$.`,
     exact('1/5'),
   ),
   q(
-    'A nonnegative variable has mean 9. Bound its probability of being at least 45.',
+    'A nonnegative variable has mean 9. Give the Markov bound for its probability of being at least 45.',
     r`Markov gives $9/45=1/5$.`,
     exact('1/5'),
   ),
@@ -309,12 +309,12 @@ sections[0].review = [
 ];
 sections[1].review = [
   q(
-    'Variance is 8. Bound the probability of deviation at least 4.',
+    'Variance is 8. Give the Chebyshev bound for the probability of absolute deviation from the mean at least 4.',
     r`Chebyshev gives $8/16=1/2$.`,
     exact('1/2'),
   ),
   q(
-    'Variance is 3. Bound the probability of deviation at least 6.',
+    'Variance is 3. Give the Chebyshev bound for the probability of absolute deviation from the mean at least 6.',
     r`Chebyshev gives $3/36=1/12$.`,
     exact('1/12'),
   ),
@@ -325,17 +325,17 @@ sections[1].review = [
 ];
 sections[2].review = [
   q(
-    'For iid observations of variance 2, what n suffices by Chebyshev for tolerance 1/2 and failure probability 1/10?',
+    'For iid observations of variance 2, what is the smallest integer n certified by Chebyshev for tolerance 1/2 and failure probability 1/10?',
     r`$n\ge2/[(1/10)(1/4)]=80$.`,
     exact(80),
   ),
   q(
-    'For iid observations of variance 3, what n suffices for tolerance 1 and failure probability 1/20?',
+    'For iid observations of variance 3, what is the smallest integer n certified by Chebyshev for tolerance 1 and failure probability 1/20?',
     r`$n\ge3/(1/20)=60$.`,
     exact(60),
   ),
   q(
-    'What variance bound can be used for a Bernoulli variable when its parameter is unknown?',
+    'What is the smallest upper bound valid for the variance of every Bernoulli variable when its parameter is unknown?',
     r`$p(1-p)\le1/4$.`,
     exact('1/4'),
   ),

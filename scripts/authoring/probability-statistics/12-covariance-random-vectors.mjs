@@ -133,7 +133,7 @@ This distinction matters for measurements reused in several features. Even if or
       'Variance includes both squared coefficients and covariance terms.',
       r`$\operatorname{Var}(aX+bY)=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\operatorname{Cov}(X,Y)$.`,
       r`Variances four and nine with covariance three give sum variance nineteen.`,
-      `A minus sign on $Y$ changes the cross term, not $\operatorname{Var}(Y)$.`,
+      r`A minus sign on $Y$ changes the cross term, not $\operatorname{Var}(Y)$.`,
     ),
   ],
 );
@@ -340,7 +340,7 @@ For independent unit-variance inputs $X_1,X_2$, define outputs $Y_1=X_1+X_2$ and
       'The matrix of all pairwise component covariances.',
       r`$\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)$ and $\operatorname{Cov}(A\mathbf X+\mathbf b)=A\Sigma A^T$.`,
       r`Diagonal entries are variances; off-diagonal entries describe co-variation.`,
-      `A covariance matrix is not generally the matrix $E[\mathbf X\mathbf X^T]$ unless the mean is zero.`,
+      r`A covariance matrix is not generally the matrix $E[\mathbf X\mathbf X^T]$ unless the mean is zero.`,
     ),
   ],
 );

@@ -1102,7 +1102,7 @@
   {
     "lesson": "probability-statistics-probability-models-events",
     "id": 28,
-    "sourceHash": "71db81748eb0036ade1cfd633c6d3f3ebaf9c4ee1408fcd2bb6b4bba6d20ce94",
+    "sourceHash": "4ea283f20485c25f2e578ca6b6d10c431a41cf9e0e5170548525905c58dbe01a",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -20481,7 +20481,7 @@
             "expected": "sqrt(y)/2",
             "variables": ["y"],
             "domain": {
-              "positive": ["y"]
+              "positive": ["y", "4-y"]
             }
           }
         }
@@ -20508,6 +20508,12 @@
           "answer": "(sqrt(y)/2)+1"
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "sqrt(y)*(4-y)/(2*(4-y))"
+        },
+        "verdict": "correct"
       }
     ]
   },
@@ -29178,7 +29184,7 @@
           "validator": "term",
           "fields": ["answer"],
           "params": {
-            "accepted": ["cluster"]
+            "accepted": ["cluster", "cluster sampling"]
           }
         }
       ],
@@ -29204,6 +29210,12 @@
           "answer": "stratified"
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "cluster sampling"
+        },
+        "verdict": "correct"
       }
     ]
   },
@@ -29228,7 +29240,7 @@
           "validator": "term",
           "fields": ["answer"],
           "params": {
-            "accepted": ["systematic"]
+            "accepted": ["systematic", "systematic sampling"]
           }
         }
       ],
@@ -29254,6 +29266,12 @@
           "answer": "convenience"
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "systematic sampling"
+        },
+        "verdict": "correct"
       }
     ]
   },
@@ -29278,7 +29296,7 @@
           "validator": "term",
           "fields": ["answer"],
           "params": {
-            "accepted": ["convenience"]
+            "accepted": ["convenience", "convenience sampling"]
           }
         }
       ],
@@ -29304,6 +29322,12 @@
           "answer": "stratified"
         },
         "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "convenience sampling"
+        },
+        "verdict": "correct"
       }
     ]
   },
@@ -30310,7 +30334,7 @@
   {
     "lesson": "probability-statistics-laws-large-numbers-central-limit-theorem",
     "id": 13,
-    "sourceHash": "23dabc0124dc354fce4987552ba4e48294e6e028eae9379da6c3329be7df7062",
+    "sourceHash": "ab268465901ab4ec1498af6ea0cabc9e48573ed505a39a34e200ad4a2d017460",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -30360,7 +30384,7 @@
   {
     "lesson": "probability-statistics-laws-large-numbers-central-limit-theorem",
     "id": 14,
-    "sourceHash": "49d14d85d809ad534b3a2ae90f38505ffdce870ef42b9b0c51f109569209a84d",
+    "sourceHash": "67df38e1b773b311be27355e4d8549b031ea492099e0fb6e23142c4922321fe6",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -32425,7 +32449,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 14,
-    "sourceHash": "05c047c3e8efc116ea97121c48e086d41e670959d385114a06c8b20adbf6432e",
+    "sourceHash": "e374b7bfe78e022c4c555443ec5265765774d20729bf667dba6778df5d362d44",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -32525,7 +32549,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 16,
-    "sourceHash": "16cd1711e77d28f63584f5567a9902972870013a9a3b9f477b72d4a06bd8e0fb",
+    "sourceHash": "9dfd325ae93fcfc8c014ae98008ba7287186a28ba2391de13bce6c0379500edf",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -32625,7 +32649,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 18,
-    "sourceHash": "582a7be6a79039dc5dbdbae4e4fd9f2c55bb8522d12d3a1b573847bfab485951",
+    "sourceHash": "4896c9a94979e4ea3815987ebdbf748d62496233bdbd67ad42584edb07b8a590",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -32725,7 +32749,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 20,
-    "sourceHash": "39248241a8e52f25c062e57ecfd2e9e7a53b07b0c7b4131da04fd8cadafa8c58",
+    "sourceHash": "e52f328c128d3234d41ea78f1a3db45c535190726a29e163a73d1f57cf7b62cc",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -32825,7 +32849,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 22,
-    "sourceHash": "5b8d71b106d0122ea3ba6423b9dc535725d4969d8fe680b8577de50747a24b25",
+    "sourceHash": "e947c97269f1348e395ee6077018bdf8e0a413bb43e3871e5699f6d7b123dba6",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -32875,7 +32899,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 25,
-    "sourceHash": "8fd65e14f6cc24e4fbe226cc584961958867b30ae1174e5a6ad2ad063c398d9d",
+    "sourceHash": "b6637d7c64fb9ac8c516aba003fda6518f61bb72965ad7279e900304b31280d5",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -32975,7 +32999,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 27,
-    "sourceHash": "17572c04c74c40e8281ea18322ad6acccd4e9cd4d63903a3616608a631df8414",
+    "sourceHash": "8c89a228880823c2684bd8263662fe40d0b895865f853e83f97e31f3f466d1f4",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -33075,7 +33099,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 29,
-    "sourceHash": "0890b2fa2df78828417c3ec8552b81a3a5f2962447aa79327624b84afe02f7f7",
+    "sourceHash": "87bc2af3c73fb15c21bb644ea7fd5ed31cf4771b23b2e822149ea251ccf983d9",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -33175,7 +33199,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 31,
-    "sourceHash": "cd48e147a98ea53a12dd1efc95d4dbf0edd7ad8ef0732290c3abf1cffde29607",
+    "sourceHash": "6d3c3752893dc760ba81a9946364015e9b6e4e6fe9039c1f1b2d06daff1b9157",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -33275,7 +33299,7 @@
   {
     "lesson": "probability-statistics-concentration-monte-carlo",
     "id": 33,
-    "sourceHash": "48c58ac24e54a592ed17d9599e5beb6484e8e3a6db525f79fffae0ce2d0935e9",
+    "sourceHash": "675ce69688f9a5770f45b573708aec7559e3c54e60eeadf60e49791edd5b497c",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -42204,7 +42228,7 @@
   {
     "lesson": "probability-statistics-hypothesis-testing",
     "id": 49,
-    "sourceHash": "84a15597e13b441253c6934a261b0042b84725e07c4cb351084ef2a0a4aa1cf2",
+    "sourceHash": "39d513c4d1a98440e7d96013b64d9b6f851612a840ec8a0c5c9795e61dd42f93",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -42304,7 +42328,7 @@
   {
     "lesson": "probability-statistics-hypothesis-testing",
     "id": 51,
-    "sourceHash": "943a8aad7308c1c3ae1677dae1014193076c43a7495f71423bf7bb985169bc68",
+    "sourceHash": "499cdc90a83a53a22d41fedcae8491bcc632e7d62bafdd8599b6d88e33ceb8aa",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -42404,7 +42428,7 @@
   {
     "lesson": "probability-statistics-hypothesis-testing",
     "id": 53,
-    "sourceHash": "fdf66b558f6527e95425079fc68e0a71bfe6ab1876b21d4eded8c4bc45501df0",
+    "sourceHash": "b9d3eddcd7a23e2254c2358045ead15d809cb95707cd18de43d7fef0bb23a187",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -42504,7 +42528,7 @@
   {
     "lesson": "probability-statistics-hypothesis-testing",
     "id": 55,
-    "sourceHash": "b2fab209b2120bcb9ab254d20e25bc4285a8ad9c9084c84d22f5f02a539646d5",
+    "sourceHash": "9274bf48d86455bef46bff093884ca8c96da43b241dbdd3b83bddafce986369f",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,
@@ -42604,7 +42628,7 @@
   {
     "lesson": "probability-statistics-hypothesis-testing",
     "id": 57,
-    "sourceHash": "37880df9ac65e7fe193613094f9667b9fb33565f1f58e01331fc4964924ee31c",
+    "sourceHash": "91865cafdb4e25514251847d298934b79101d164ec26eb747dabee5162ae05c1",
     "rationale": "The authored task requests a bounded mathematical answer; its interpretation and domain remain in the prompt and worked solution.",
     "assessment": {
       "version": 1,

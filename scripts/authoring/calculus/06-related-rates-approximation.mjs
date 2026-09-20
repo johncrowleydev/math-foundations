@@ -261,12 +261,12 @@ In every case, solve any missing instantaneous lengths from the original geometr
           R`$xx'+yy'=0$ gives $3x'-12=0$, so $x'=4$.`,
         ),
         exact(
-          R`If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.`,
+          R`A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.`,
           '11/5',
           R`$d=10$, so $d'=(6+16)/10=11/5$.`,
         ),
         exact(
-          R`If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.`,
+          R`A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.`,
           '-2/5',
           R`The separation is $5$, and $d'=(-6+4)/5=-2/5$.`,
         ),
@@ -298,7 +298,7 @@ In every case, solve any missing instantaneous lengths from the original geometr
       review: [
         exact(R`For a ladder with $x=9,y=12,x'=2$, find $y'$.`, '-3/2', R`$y'=-9(2)/12=-3/2$.`),
         exact(
-          R`For $d^2=x^2+y^2$ with $x=5,y=12,x'=1,y'=0$, find $d'$.`,
+          R`For nonnegative distance $d$ satisfying $d^2=x^2+y^2$ with $x=5,y=12,x'=1,y'=0$, find $d'$.`,
           '5/13',
           R`$d=13$ and $d'=(5+0)/13=5/13$.`,
         ),

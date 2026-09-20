@@ -88,7 +88,7 @@ sections:
           Here a=4, so 1-alpha a=1-1/2=1/2.
       - id: 12
         type: freeform
-        prompt: For that update starting at x=2, find x after three steps.
+        prompt: For $L=2x^2$ with alpha=1/8 starting at x=2, find x after three gradient-descent steps.
         answerLines: 5
         answer: |-
           The answer is $\frac{1}{4}$.
@@ -104,7 +104,7 @@ sections:
           The factor is 1-4 times 3/8=-1/2.
       - id: 14
         type: freeform
-        prompt: For that update starting at x=2, find x after three steps.
+        prompt: For $L=2x^2$ with alpha=3/8 starting at x=2, find x after three gradient-descent steps.
         answerLines: 5
         answer: |-
           The answer is $\frac{-1}{4}$.
@@ -240,7 +240,7 @@ sections:
           The gradient is (4x(x squared -1),2y); both components vanish at the origin.
       - id: 32
         type: freeform
-        prompt: For that loss, find the value at the origin.
+        prompt: For $L=(x^2-1)^2+y^2$, find the value at the origin.
         answerLines: 5
         answer: |-
           The answer is $1$.
@@ -248,7 +248,7 @@ sections:
           Substitution gives (-1) squared+0=1.
       - id: 33
         type: freeform
-        prompt: For that loss, find the value at (1,0).
+        prompt: For $L=(x^2-1)^2+y^2$, find the value at (1,0).
         answerLines: 5
         answer: |-
           The answer is $0$.
@@ -256,7 +256,7 @@ sections:
           Both squared terms vanish, giving 0.
       - id: 34
         type: freeform
-        prompt: For that loss, classify the origin as minimum, maximum, or saddle.
+        prompt: For $L=(x^2-1)^2+y^2$, classify the origin as minimum, maximum, or saddle.
         answerLines: 5
         answer: |-
           The answer is **saddle**.
@@ -264,7 +264,7 @@ sections:
           The Hessian has one negative and one positive direction, so it is a saddle.
       - id: 35
         type: freeform
-        prompt: Starting that loss at the origin, what next point does ordinary gradient descent produce for any positive step size?
+        prompt: Starting $L=(x^2-1)^2+y^2$ at the origin, what next point does ordinary gradient descent produce for any positive step size?
         answerLines: 5
         answer: |-
           The answer is $\left(0,\ 0\right)$.
@@ -272,7 +272,7 @@ sections:
           The gradient is zero, so the point remains(0,0).
       - id: 36
         type: freeform
-        prompt: For that loss, compute the gradient at (2,1).
+        prompt: For $L=(x^2-1)^2+y^2$, compute the gradient at (2,1).
         answerLines: 5
         answer: |-
           The answer is $\left(24,\ 2\right)$.
@@ -280,7 +280,7 @@ sections:
           The components are 4 times 2 times (4-1)=24 and 2, giving(24,2).
       - id: 37
         type: freeform
-        prompt: For that loss, start at (2,1) with alpha=1/16. Give the next point.
+        prompt: For $L=(x^2-1)^2+y^2$, start at (2,1) with alpha=1/16. Give the next point.
         answerLines: 5
         answer: |-
           The answer is $\left(\frac{1}{2},\ \frac{7}{8}\right)$.
@@ -316,7 +316,7 @@ sections:
           All predictions are 0, so subtracting the targets gives (-1,-2,-2).
       - id: 42
         type: freeform
-        prompt: For those data and theta=(0,0), give the gradient of half the squared residual norm.
+        prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and theta=(0,0), give the gradient of half the squared residual norm.
         answerLines: 5
         answer: |-
           The answer is $\left(-5,\ -6\right)$.
@@ -324,7 +324,7 @@ sections:
           The intercept component sums residuals to -5; the slope component is 0(-1)+1(-2)+2(-2)=-6. The gradient is (-5,-6).
       - id: 43
         type: freeform
-        prompt: For those data, start at theta=(0,0) with alpha=1/10. Give the next theta.
+        prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, start at theta=(0,0) with alpha=1/10. Give the next theta.
         answerLines: 5
         answer: |-
           The answer is $\left(\frac{1}{2},\ \frac{3}{5}\right)$.
@@ -332,7 +332,7 @@ sections:
           Subtract one tenth of(-5,-6), obtaining(1/2,3/5).
       - id: 44
         type: freeform
-        prompt: For those data, find the initial half-squared loss at theta=(0,0).
+        prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the initial half-squared loss at theta=(0,0).
         answerLines: 5
         answer: |-
           The answer is $\frac{9}{2}$.
@@ -340,7 +340,7 @@ sections:
           The squared residuals sum to 1+4+4=9; half is 9/2.
       - id: 45
         type: freeform
-        prompt: For those data, find the half-squared loss at theta=(1/2,3/5).
+        prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the half-squared loss at theta=(1/2,3/5).
         answerLines: 5
         answer: |-
           The answer is $\frac{23}{40}$.
@@ -348,7 +348,7 @@ sections:
           Residuals are -1/2,-9/10,-3/10. Half their squared sum is 23/40.
       - id: 46
         type: freeform
-        prompt: For those data, give A transpose b as a pair.
+        prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, give A transpose b as a pair.
         answerLines: 5
         answer: |-
           The answer is $\left(5,\ 6\right)$.
@@ -364,7 +364,7 @@ sections:
           Subtracting equations gives 2b=1, so b=1/2. The first equation then gives a=7/6.
       - id: 48
         type: freeform
-        prompt: For those data, find the minimum half-squared loss at theta=(7/6,1/2).
+        prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the minimum half-squared loss at theta=(7/6,1/2).
         answerLines: 5
         answer: |-
           The answer is $\frac{1}{12}$.

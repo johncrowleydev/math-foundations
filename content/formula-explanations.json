@@ -176083,8 +176083,35 @@
     "lesson": "calculus-limits-continuity",
     "source": "question:3:prompt",
     "ordinal": 0,
+    "latex": "f(x)=x+4",
+    "reading": "Let $f(x)=x+4$ for $x\\ne2$ and $f(2)=19$. Find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-e564a295c1328bfa0d2a",
+    "lesson": "calculus-limits-continuity",
+    "source": "question:3:prompt",
+    "ordinal": 1,
+    "latex": "x\\ne2",
+    "reading": "Let $f(x)=x+4$ for $x\\ne2$ and $f(2)=19$. Find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-11f60818651af6827452",
+    "lesson": "calculus-limits-continuity",
+    "source": "question:3:prompt",
+    "ordinal": 2,
+    "latex": "f(2)=19",
+    "reading": "Let $f(x)=x+4$ for $x\\ne2$ and $f(2)=19$. Find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-9f28d8c8dc68e3f5e8e9",
+    "lesson": "calculus-limits-continuity",
+    "source": "question:3:prompt",
+    "ordinal": 3,
     "latex": "f(2)",
-    "reading": "For that same explicitly defined function, find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
+    "reading": "Let $f(x)=x+4$ for $x\\ne2$ and $f(2)=19$. Find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
     "bindings": []
   },
   {
@@ -176093,7 +176120,7 @@
     "source": "question:3:answer",
     "ordinal": 0,
     "latex": "19",
-    "reading": "For that same explicitly defined function, find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
+    "reading": "Let $f(x)=x+4$ for $x\\ne2$ and $f(2)=19$. Find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
     "bindings": []
   },
   {
@@ -176102,7 +176129,7 @@
     "source": "question:3:answer",
     "ordinal": 1,
     "latex": "f(2)=19",
-    "reading": "For that same explicitly defined function, find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
+    "reading": "Let $f(x)=x+4$ for $x\\ne2$ and $f(2)=19$. Find $f(2)$.\n\nThe answer is $19$. The special definition gives $f(2)=19$, independently of its limit.",
     "bindings": []
   },
   {
@@ -177893,7 +177920,7 @@
     "source": "question:48:prompt",
     "ordinal": 0,
     "latex": "x^2\\to9",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -177902,7 +177929,7 @@
     "source": "question:48:prompt",
     "ordinal": 1,
     "latex": "x\\to3",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -177911,7 +177938,7 @@
     "source": "question:48:prompt",
     "ordinal": 2,
     "latex": "|x-3|<1",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -177920,7 +177947,7 @@
     "source": "question:48:prompt",
     "ordinal": 3,
     "latex": "|x+3|",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -177929,7 +177956,7 @@
     "source": "question:48:answer",
     "ordinal": 0,
     "latex": "7",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -177938,7 +177965,7 @@
     "source": "question:48:answer",
     "ordinal": 1,
     "latex": "2<x<4",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -177947,7 +177974,7 @@
     "source": "question:48:answer",
     "ordinal": 2,
     "latex": "5<x+3<7",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -177956,7 +177983,7 @@
     "source": "question:48:answer",
     "ordinal": 3,
     "latex": "|x+3|<7",
-    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
+    "reading": "To prove $x^2\\to9$ as $x\\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?\n\nThe answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.",
     "bindings": []
   },
   {
@@ -193291,8 +193318,8 @@
     "lesson": "calculus-related-rates-approximation",
     "source": "question:24:prompt",
     "ordinal": 0,
-    "latex": "d^2=x^2+y^2",
-    "reading": "If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
+    "latex": "d",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
     "bindings": []
   },
   {
@@ -193300,8 +193327,8 @@
     "lesson": "calculus-related-rates-approximation",
     "source": "question:24:prompt",
     "ordinal": 1,
-    "latex": "x=6,y=8,x'=1,y'=2",
-    "reading": "If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
+    "latex": "d^2=x^2+y^2",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
     "bindings": []
   },
   {
@@ -193309,8 +193336,17 @@
     "lesson": "calculus-related-rates-approximation",
     "source": "question:24:prompt",
     "ordinal": 2,
+    "latex": "x=6,y=8,x'=1,y'=2",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-04876db69a2dc0e38fa8",
+    "lesson": "calculus-related-rates-approximation",
+    "source": "question:24:prompt",
+    "ordinal": 3,
     "latex": "d'",
-    "reading": "If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
     "bindings": []
   },
   {
@@ -193319,7 +193355,7 @@
     "source": "question:24:answer",
     "ordinal": 0,
     "latex": "\\frac{11}{5}",
-    "reading": "If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
     "bindings": []
   },
   {
@@ -193328,7 +193364,7 @@
     "source": "question:24:answer",
     "ordinal": 1,
     "latex": "d=10",
-    "reading": "If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
     "bindings": []
   },
   {
@@ -193337,7 +193373,7 @@
     "source": "question:24:answer",
     "ordinal": 2,
     "latex": "d'=(6+16)/10=11/5",
-    "reading": "If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.\n\nThe answer is $\\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.",
     "bindings": []
   },
   {
@@ -193345,8 +193381,8 @@
     "lesson": "calculus-related-rates-approximation",
     "source": "question:25:prompt",
     "ordinal": 0,
-    "latex": "d^2=x^2+y^2",
-    "reading": "If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
+    "latex": "d",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
     "bindings": []
   },
   {
@@ -193354,8 +193390,8 @@
     "lesson": "calculus-related-rates-approximation",
     "source": "question:25:prompt",
     "ordinal": 1,
-    "latex": "x=3,y=4,x'=-2,y'=1",
-    "reading": "If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
+    "latex": "d^2=x^2+y^2",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
     "bindings": []
   },
   {
@@ -193363,8 +193399,17 @@
     "lesson": "calculus-related-rates-approximation",
     "source": "question:25:prompt",
     "ordinal": 2,
+    "latex": "x=3,y=4,x'=-2,y'=1",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-f0bc382b0799694e073c",
+    "lesson": "calculus-related-rates-approximation",
+    "source": "question:25:prompt",
+    "ordinal": 3,
     "latex": "d'",
-    "reading": "If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
     "bindings": []
   },
   {
@@ -193373,7 +193418,7 @@
     "source": "question:25:answer",
     "ordinal": 0,
     "latex": "\\frac{-2}{5}",
-    "reading": "If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
     "bindings": []
   },
   {
@@ -193382,7 +193427,7 @@
     "source": "question:25:answer",
     "ordinal": 1,
     "latex": "5",
-    "reading": "If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
     "bindings": []
   },
   {
@@ -193391,7 +193436,7 @@
     "source": "question:25:answer",
     "ordinal": 2,
     "latex": "d'=(-6+4)/5=-2/5",
-    "reading": "If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
+    "reading": "A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.\n\nThe answer is $\\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.",
     "bindings": []
   },
   {
@@ -195830,7 +195875,7 @@
     "source": "question:12:prompt",
     "ordinal": 0,
     "latex": "2\\le f'\\le5",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
     "bindings": []
   },
   {
@@ -195839,7 +195884,7 @@
     "source": "question:12:prompt",
     "ordinal": 1,
     "latex": "[1,4]",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
     "bindings": []
   },
   {
@@ -195848,7 +195893,7 @@
     "source": "question:12:prompt",
     "ordinal": 2,
     "latex": "f(4)-f(1)",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
     "bindings": []
   },
   {
@@ -195857,7 +195902,7 @@
     "source": "question:12:answer",
     "ordinal": 0,
     "latex": "6",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
     "bindings": []
   },
   {
@@ -195866,7 +195911,7 @@
     "source": "question:12:answer",
     "ordinal": 1,
     "latex": "2(3)=6",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.",
     "bindings": []
   },
   {
@@ -195875,7 +195920,7 @@
     "source": "question:13:prompt",
     "ordinal": 0,
     "latex": "2\\le f'\\le5",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
     "bindings": []
   },
   {
@@ -195884,7 +195929,7 @@
     "source": "question:13:prompt",
     "ordinal": 1,
     "latex": "[1,4]",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
     "bindings": []
   },
   {
@@ -195893,7 +195938,7 @@
     "source": "question:13:prompt",
     "ordinal": 2,
     "latex": "f(4)-f(1)",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
     "bindings": []
   },
   {
@@ -195902,7 +195947,7 @@
     "source": "question:13:answer",
     "ordinal": 0,
     "latex": "15",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
     "bindings": []
   },
   {
@@ -195911,7 +195956,7 @@
     "source": "question:13:answer",
     "ordinal": 1,
     "latex": "5(3)=15",
-    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
+    "reading": "If $2\\le f'\\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.\n\nThe answer is $15$. The maximum slope bound gives $5(3)=15$.",
     "bindings": []
   },
   {
@@ -196010,7 +196055,7 @@
     "source": "question:18:prompt",
     "ordinal": 0,
     "latex": "|\\cos x|\\le1",
-    "reading": "Using the derivative bound $|\\cos x|\\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
+    "reading": "Using the derivative bound $|\\cos x|\\le1$, give the bound $1|\\Delta x|$ on sine-output error for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
     "bindings": []
   },
   {
@@ -196018,8 +196063,17 @@
     "lesson": "calculus-mvt-function-behavior",
     "source": "question:18:prompt",
     "ordinal": 1,
+    "latex": "1|\\Delta x|",
+    "reading": "Using the derivative bound $|\\cos x|\\le1$, give the bound $1|\\Delta x|$ on sine-output error for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-4f914edf3a66213366b6",
+    "lesson": "calculus-mvt-function-behavior",
+    "source": "question:18:prompt",
+    "ordinal": 2,
     "latex": "0.03",
-    "reading": "Using the derivative bound $|\\cos x|\\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
+    "reading": "Using the derivative bound $|\\cos x|\\le1$, give the bound $1|\\Delta x|$ on sine-output error for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
     "bindings": []
   },
   {
@@ -196028,7 +196082,7 @@
     "source": "question:18:answer",
     "ordinal": 0,
     "latex": "\\frac{3}{100}",
-    "reading": "Using the derivative bound $|\\cos x|\\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
+    "reading": "Using the derivative bound $|\\cos x|\\le1$, give the bound $1|\\Delta x|$ on sine-output error for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
     "bindings": []
   },
   {
@@ -196037,7 +196091,7 @@
     "source": "question:18:answer",
     "ordinal": 1,
     "latex": "1(0.03)=0.03",
-    "reading": "Using the derivative bound $|\\cos x|\\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
+    "reading": "Using the derivative bound $|\\cos x|\\le1$, give the bound $1|\\Delta x|$ on sine-output error for a radian input error of at most $0.03$.\n\nThe answer is $\\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.",
     "bindings": []
   },
   {
@@ -202854,12 +202908,48 @@
     "bindings": []
   },
   {
+    "id": "calculus-formula-12202eff29bab7ee962d",
+    "lesson": "calculus-definite-integrals",
+    "source": "question:43:prompt",
+    "ordinal": 0,
+    "latex": "3",
+    "reading": "Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-9d635ea35f8dd60b8ceb",
+    "lesson": "calculus-definite-integrals",
+    "source": "question:43:prompt",
+    "ordinal": 1,
+    "latex": "2",
+    "reading": "Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-e510cb72b96db150d7cd",
+    "lesson": "calculus-definite-integrals",
+    "source": "question:43:prompt",
+    "ordinal": 2,
+    "latex": "-2",
+    "reading": "Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-b81138a4e9cfc829d706",
+    "lesson": "calculus-definite-integrals",
+    "source": "question:43:prompt",
+    "ordinal": 3,
+    "latex": "4",
+    "reading": "Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
+    "bindings": []
+  },
+  {
     "id": "calculus-formula-ff2228643edebd70a644",
     "lesson": "calculus-definite-integrals",
     "source": "question:43:answer",
     "ordinal": 0,
     "latex": "6+8=14",
-    "reading": "For the same motion, find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
+    "reading": "Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
     "bindings": []
   },
   {
@@ -202868,7 +202958,7 @@
     "source": "question:43:answer",
     "ordinal": 1,
     "latex": "14",
-    "reading": "For the same motion, find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
+    "reading": "Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.\n\nAdd absolute contributions: $6+8=14$ meters. The answer is $14$.",
     "bindings": []
   },
   {
@@ -211786,8 +211876,26 @@
     "lesson": "calculus-applications-integration",
     "source": "question:28:prompt",
     "ordinal": 0,
+    "latex": "0\\le y\\le x",
+    "reading": "Rotate $0\\le y\\le x$, $0\\le x\\le1$, about $y=2$. Find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-c843651fe095ca60124a",
+    "lesson": "calculus-applications-integration",
+    "source": "question:28:prompt",
+    "ordinal": 1,
+    "latex": "0\\le x\\le1",
+    "reading": "Rotate $0\\le y\\le x$, $0\\le x\\le1$, about $y=2$. Find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-04accd35cb972fd282a9",
+    "lesson": "calculus-applications-integration",
+    "source": "question:28:prompt",
+    "ordinal": 2,
     "latex": "y=2",
-    "reading": "For that rotation about $y=2$, find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
+    "reading": "Rotate $0\\le y\\le x$, $0\\le x\\le1$, about $y=2$. Find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
     "bindings": []
   },
   {
@@ -211796,7 +211904,7 @@
     "source": "question:28:answer",
     "ordinal": 0,
     "latex": "\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3",
-    "reading": "For that rotation about $y=2$, find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
+    "reading": "Rotate $0\\le y\\le x$, $0\\le x\\le1$, about $y=2$. Find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
     "bindings": []
   },
   {
@@ -211805,7 +211913,7 @@
     "source": "question:28:answer",
     "ordinal": 1,
     "latex": "\\frac{5\\cdot \\pi}{3}",
-    "reading": "For that rotation about $y=2$, find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
+    "reading": "Rotate $0\\le y\\le x$, $0\\le x\\le1$, about $y=2$. Find the volume.\n\n$\\pi\\int_0^1[4-(2-x)^2]dx=\\pi\\int_0^1(4x-x^2)dx=5\\pi/3$. The answer is $\\frac{5\\cdot \\pi}{3}$.",
     "bindings": []
   },
   {
@@ -212389,8 +212497,44 @@
     "lesson": "calculus-applications-integration",
     "source": "question:42:prompt",
     "ordinal": 0,
+    "latex": "10",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-7d3be53f929b874a7a12",
+    "lesson": "calculus-applications-integration",
+    "source": "question:42:prompt",
+    "ordinal": 1,
+    "latex": "4+t",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-232a2e2aa3f47655415b",
+    "lesson": "calculus-applications-integration",
+    "source": "question:42:prompt",
+    "ordinal": 2,
+    "latex": "6",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-1fe4b9238a43aff8ca7f",
+    "lesson": "calculus-applications-integration",
+    "source": "question:42:prompt",
+    "ordinal": 3,
+    "latex": "0\\le t\\le3",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-1dbe8c19581d6535d355",
+    "lesson": "calculus-applications-integration",
+    "source": "question:42:prompt",
+    "ordinal": 4,
     "latex": "[0,3]",
-    "reading": "For that buffer, find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
     "bindings": []
   },
   {
@@ -212399,7 +212543,7 @@
     "source": "question:42:answer",
     "ordinal": 0,
     "latex": "Q'=t-2",
-    "reading": "For that buffer, find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
     "bindings": []
   },
   {
@@ -212408,7 +212552,7 @@
     "source": "question:42:answer",
     "ordinal": 1,
     "latex": "t=2",
-    "reading": "For that buffer, find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
     "bindings": []
   },
   {
@@ -212417,7 +212561,7 @@
     "source": "question:42:answer",
     "ordinal": 2,
     "latex": "Q(2)=10+2-4=8",
-    "reading": "For that buffer, find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
     "bindings": []
   },
   {
@@ -212426,7 +212570,7 @@
     "source": "question:42:answer",
     "ordinal": 3,
     "latex": "8",
-    "reading": "For that buffer, find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
+    "reading": "A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\\le t\\le3$. Find the minimum content on $[0,3]$.\n\n$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.",
     "bindings": []
   },
   {
@@ -215387,7 +215531,7 @@
     "source": "question:46:prompt",
     "ordinal": 0,
     "latex": "1/1000",
-    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
+    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give the total absolute error bound obtained by adding these two bounds.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
     "bindings": []
   },
   {
@@ -215396,7 +215540,7 @@
     "source": "question:46:prompt",
     "ordinal": 1,
     "latex": "1/500",
-    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
+    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give the total absolute error bound obtained by adding these two bounds.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
     "bindings": []
   },
   {
@@ -215405,7 +215549,7 @@
     "source": "question:46:answer",
     "ordinal": 0,
     "latex": "1/1000+2/1000=3/1000",
-    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
+    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give the total absolute error bound obtained by adding these two bounds.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
     "bindings": []
   },
   {
@@ -215414,7 +215558,7 @@
     "source": "question:46:answer",
     "ordinal": 1,
     "latex": "\\frac{3}{1000}",
-    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
+    "reading": "A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give the total absolute error bound obtained by adding these two bounds.\n\nThe triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\\frac{3}{1000}$.",
     "bindings": []
   },
   {
@@ -217502,7 +217646,7 @@
     "source": "question:28:prompt",
     "ordinal": 0,
     "latex": "N",
-    "reading": "What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
+    "reading": "What minimum integer $N$ makes the integral-test upper bound for the $\\sum_{n=1}^{\\infty}1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
     "bindings": []
   },
   {
@@ -217510,8 +217654,8 @@
     "lesson": "calculus-sequences-series",
     "source": "question:28:prompt",
     "ordinal": 1,
-    "latex": "1/n^2",
-    "reading": "What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
+    "latex": "\\sum_{n=1}^{\\infty}1/n^2",
+    "reading": "What minimum integer $N$ makes the integral-test upper bound for the $\\sum_{n=1}^{\\infty}1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
     "bindings": []
   },
   {
@@ -217520,7 +217664,7 @@
     "source": "question:28:prompt",
     "ordinal": 2,
     "latex": "1/100",
-    "reading": "What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
+    "reading": "What minimum integer $N$ makes the integral-test upper bound for the $\\sum_{n=1}^{\\infty}1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
     "bindings": []
   },
   {
@@ -217529,7 +217673,7 @@
     "source": "question:28:answer",
     "ordinal": 0,
     "latex": "1/N\\le1/100",
-    "reading": "What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
+    "reading": "What minimum integer $N$ makes the integral-test upper bound for the $\\sum_{n=1}^{\\infty}1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
     "bindings": []
   },
   {
@@ -217538,7 +217682,7 @@
     "source": "question:28:answer",
     "ordinal": 1,
     "latex": "N\\ge100",
-    "reading": "What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
+    "reading": "What minimum integer $N$ makes the integral-test upper bound for the $\\sum_{n=1}^{\\infty}1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
     "bindings": []
   },
   {
@@ -217547,7 +217691,7 @@
     "source": "question:28:answer",
     "ordinal": 2,
     "latex": "100",
-    "reading": "What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
+    "reading": "What minimum integer $N$ makes the integral-test upper bound for the $\\sum_{n=1}^{\\infty}1/n^2$ tail at most $1/100$?\n\nRequire $1/N\\le1/100$, giving $N\\ge100$. The answer is $100$.",
     "bindings": []
   },
   {
@@ -218059,8 +218203,8 @@
     "lesson": "calculus-sequences-series",
     "source": "question:46:prompt",
     "ordinal": 0,
-    "latex": "N",
-    "reading": "What minimum $N$ guarantees error at most $1/100$ by that bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
+    "latex": "\\sum_{n=1}^{\\infty}(-1)^{n+1}/n",
+    "reading": "For the alternating harmonic series $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
     "bindings": []
   },
   {
@@ -218068,8 +218212,17 @@
     "lesson": "calculus-sequences-series",
     "source": "question:46:prompt",
     "ordinal": 1,
+    "latex": "N",
+    "reading": "For the alternating harmonic series $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-f1f2d88eae7ebf40727a",
+    "lesson": "calculus-sequences-series",
+    "source": "question:46:prompt",
+    "ordinal": 2,
     "latex": "1/100",
-    "reading": "What minimum $N$ guarantees error at most $1/100$ by that bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
+    "reading": "For the alternating harmonic series $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
     "bindings": []
   },
   {
@@ -218078,7 +218231,7 @@
     "source": "question:46:answer",
     "ordinal": 0,
     "latex": "1/(N+1)\\le1/100",
-    "reading": "What minimum $N$ guarantees error at most $1/100$ by that bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
+    "reading": "For the alternating harmonic series $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
     "bindings": []
   },
   {
@@ -218087,7 +218240,7 @@
     "source": "question:46:answer",
     "ordinal": 1,
     "latex": "N\\ge99",
-    "reading": "What minimum $N$ guarantees error at most $1/100$ by that bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
+    "reading": "For the alternating harmonic series $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
     "bindings": []
   },
   {
@@ -218096,7 +218249,7 @@
     "source": "question:46:answer",
     "ordinal": 2,
     "latex": "99",
-    "reading": "What minimum $N$ guarantees error at most $1/100$ by that bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
+    "reading": "For the alternating harmonic series $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?\n\nRequire $1/(N+1)\\le1/100$, giving $N\\ge99$. The answer is $99$.",
     "bindings": []
   },
   {
@@ -218141,7 +218294,7 @@
     "source": "question:48:prompt",
     "ordinal": 0,
     "latex": "\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2",
-    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
+    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
     "bindings": []
   },
   {
@@ -218150,7 +218303,7 @@
     "source": "question:48:prompt",
     "ordinal": 1,
     "latex": "9",
-    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
+    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
     "bindings": []
   },
   {
@@ -218159,7 +218312,7 @@
     "source": "question:48:answer",
     "ordinal": 0,
     "latex": "1/10^2=1/100",
-    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
+    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
     "bindings": []
   },
   {
@@ -218168,7 +218321,7 @@
     "source": "question:48:answer",
     "ordinal": 1,
     "latex": "\\frac{1}{100}",
-    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
+    "reading": "For $\\sum_{n=1}^{\\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.\n\nThe first omitted term has magnitude $1/10^2=1/100$. The answer is $\\frac{1}{100}$.",
     "bindings": []
   },
   {
@@ -220822,8 +220975,35 @@
     "lesson": "calculus-power-series-taylor",
     "source": "question:32:prompt",
     "ordinal": 0,
+    "latex": "e^{0.1}",
+    "reading": "For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-d021fed95dd86b5f19c0",
+    "lesson": "calculus-power-series-taylor",
+    "source": "question:32:prompt",
+    "ordinal": 1,
+    "latex": "P_2(x)=1+x+x^2/2",
+    "reading": "For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-161a864490e8b564b171",
+    "lesson": "calculus-power-series-taylor",
+    "source": "question:32:prompt",
+    "ordinal": 2,
+    "latex": "x=0.1",
+    "reading": "For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-c43ddf8610381b66e1a0",
+    "lesson": "calculus-power-series-taylor",
+    "source": "question:32:prompt",
+    "ordinal": 3,
     "latex": "M=2",
-    "reading": "For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
+    "reading": "For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
     "bindings": []
   },
   {
@@ -220832,7 +221012,7 @@
     "source": "question:32:answer",
     "ordinal": 0,
     "latex": "2(1/10)^3/3!=2/(1000\\cdot6)=1/3000",
-    "reading": "For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
+    "reading": "For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
     "bindings": []
   },
   {
@@ -220841,7 +221021,7 @@
     "source": "question:32:answer",
     "ordinal": 1,
     "latex": "\\frac{1}{3000}",
-    "reading": "For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
+    "reading": "For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.\n\n$2(1/10)^3/3!=2/(1000\\cdot6)=1/3000$. The answer is $\\frac{1}{3000}$.",
     "bindings": []
   },
   {
@@ -220885,8 +221065,17 @@
     "lesson": "calculus-power-series-taylor",
     "source": "question:34:prompt",
     "ordinal": 0,
+    "latex": "x-x^3/6",
+    "reading": "Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.\n\n$1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\\frac{23}{48}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-3beaaf264d4dc35c031c",
+    "lesson": "calculus-power-series-taylor",
+    "source": "question:34:prompt",
+    "ordinal": 1,
     "latex": "x=1/2",
-    "reading": "Evaluate the same sine polynomial at $x=1/2$.\n\n$1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\\frac{23}{48}$.",
+    "reading": "Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.\n\n$1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\\frac{23}{48}$.",
     "bindings": []
   },
   {
@@ -220895,7 +221084,7 @@
     "source": "question:34:answer",
     "ordinal": 0,
     "latex": "1/2-(1/8)/6=1/2-1/48=23/48",
-    "reading": "Evaluate the same sine polynomial at $x=1/2$.\n\n$1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\\frac{23}{48}$.",
+    "reading": "Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.\n\n$1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\\frac{23}{48}$.",
     "bindings": []
   },
   {
@@ -220904,7 +221093,7 @@
     "source": "question:34:answer",
     "ordinal": 1,
     "latex": "\\frac{23}{48}",
-    "reading": "Evaluate the same sine polynomial at $x=1/2$.\n\n$1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\\frac{23}{48}$.",
+    "reading": "Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.\n\n$1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\\frac{23}{48}$.",
     "bindings": []
   },
   {
@@ -220913,7 +221102,7 @@
     "source": "question:35:prompt",
     "ordinal": 0,
     "latex": "\\cos x\\approx1-x^2/2",
-    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
+    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
     "bindings": []
   },
   {
@@ -220922,7 +221111,7 @@
     "source": "question:35:prompt",
     "ordinal": 1,
     "latex": "x=1/5",
-    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
+    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
     "bindings": []
   },
   {
@@ -220931,7 +221120,7 @@
     "source": "question:35:prompt",
     "ordinal": 2,
     "latex": "M=1",
-    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
+    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
     "bindings": []
   },
   {
@@ -220940,7 +221129,7 @@
     "source": "question:35:answer",
     "ordinal": 0,
     "latex": "(1/5)^4/4!=1/(625\\cdot24)=1/15000",
-    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
+    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
     "bindings": []
   },
   {
@@ -220949,7 +221138,7 @@
     "source": "question:35:answer",
     "ordinal": 1,
     "latex": "\\frac{1}{15000}",
-    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
+    "reading": "For $\\cos x\\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.\n\nThe cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$.",
     "bindings": []
   },
   {
@@ -221281,8 +221470,17 @@
     "lesson": "calculus-power-series-taylor",
     "source": "question:47:prompt",
     "ordinal": 0,
+    "latex": "1-x^2+x^4/2",
+    "reading": "Use $1-x^2+x^4/2$ to approximate $\\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.\n\n$1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\\frac{443}{960}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-d007d491f3f7be9ff2ec",
+    "lesson": "calculus-power-series-taylor",
+    "source": "question:47:prompt",
+    "ordinal": 1,
     "latex": "\\int_0^{1/2}e^{-x^2}dx",
-    "reading": "Use those three terms to approximate $\\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.\n\n$1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\\frac{443}{960}$.",
+    "reading": "Use $1-x^2+x^4/2$ to approximate $\\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.\n\n$1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\\frac{443}{960}$.",
     "bindings": []
   },
   {
@@ -221291,7 +221489,7 @@
     "source": "question:47:answer",
     "ordinal": 0,
     "latex": "1/2-1/24+1/320=(480-40+3)/960=443/960",
-    "reading": "Use those three terms to approximate $\\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.\n\n$1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\\frac{443}{960}$.",
+    "reading": "Use $1-x^2+x^4/2$ to approximate $\\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.\n\n$1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\\frac{443}{960}$.",
     "bindings": []
   },
   {
@@ -221300,7 +221498,25 @@
     "source": "question:47:answer",
     "ordinal": 1,
     "latex": "\\frac{443}{960}",
-    "reading": "Use those three terms to approximate $\\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.\n\n$1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\\frac{443}{960}$.",
+    "reading": "Use $1-x^2+x^4/2$ to approximate $\\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.\n\n$1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\\frac{443}{960}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-5cfe46387767d77bd1b3",
+    "lesson": "calculus-power-series-taylor",
+    "source": "question:48:prompt",
+    "ordinal": 0,
+    "latex": "\\int_0^{1/2}e^{-x^2}dx",
+    "reading": "Approximate $\\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-bd1052edf84d160eba22",
+    "lesson": "calculus-power-series-taylor",
+    "source": "question:48:prompt",
+    "ordinal": 1,
+    "latex": "1-x^2+x^4/2",
+    "reading": "Approximate $\\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
     "bindings": []
   },
   {
@@ -221309,7 +221525,7 @@
     "source": "question:48:answer",
     "ordinal": 0,
     "latex": "b^7/42",
-    "reading": "Give the first-omitted-term bound for that three-term integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
+    "reading": "Approximate $\\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
     "bindings": []
   },
   {
@@ -221318,7 +221534,7 @@
     "source": "question:48:answer",
     "ordinal": 1,
     "latex": "b=1/2",
-    "reading": "Give the first-omitted-term bound for that three-term integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
+    "reading": "Approximate $\\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
     "bindings": []
   },
   {
@@ -221327,7 +221543,7 @@
     "source": "question:48:answer",
     "ordinal": 2,
     "latex": "1/(128\\cdot42)=1/5376",
-    "reading": "Give the first-omitted-term bound for that three-term integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
+    "reading": "Approximate $\\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
     "bindings": []
   },
   {
@@ -221336,7 +221552,7 @@
     "source": "question:48:answer",
     "ordinal": 3,
     "latex": "\\frac{1}{5376}",
-    "reading": "Give the first-omitted-term bound for that three-term integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
+    "reading": "Approximate $\\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.\n\nThe next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\\cdot42)=1/5376$. The answer is $\\frac{1}{5376}$.",
     "bindings": []
   },
   {
@@ -225494,7 +225710,7 @@
     "source": "question:32:prompt",
     "ordinal": 0,
     "latex": "(1,2)",
-    "reading": "A gradient is $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
     "bindings": []
   },
   {
@@ -225503,7 +225719,7 @@
     "source": "question:32:prompt",
     "ordinal": 1,
     "latex": "(3/5,4/5)",
-    "reading": "A gradient is $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
     "bindings": []
   },
   {
@@ -225512,7 +225728,7 @@
     "source": "question:32:answer",
     "ordinal": 0,
     "latex": "\\frac{11}{5}",
-    "reading": "A gradient is $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
     "bindings": []
   },
   {
@@ -225521,7 +225737,7 @@
     "source": "question:32:answer",
     "ordinal": 1,
     "latex": "11/5",
-    "reading": "A gradient is $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{11}{5}$.\n\nTake the dot product: $11/5$.",
     "bindings": []
   },
   {
@@ -225530,7 +225746,7 @@
     "source": "question:33:prompt",
     "ordinal": 0,
     "latex": "(1,2)",
-    "reading": "A gradient is $(1,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(1,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225539,7 +225755,7 @@
     "source": "question:33:answer",
     "ordinal": 0,
     "latex": "\\sqrt{5}",
-    "reading": "A gradient is $(1,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(1,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225548,7 +225764,7 @@
     "source": "question:33:answer",
     "ordinal": 1,
     "latex": "\\sqrt{5}",
-    "reading": "A gradient is $(1,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(1,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225557,7 +225773,7 @@
     "source": "question:34:prompt",
     "ordinal": 0,
     "latex": "(-1,1)",
-    "reading": "A gradient is $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
     "bindings": []
   },
   {
@@ -225566,7 +225782,7 @@
     "source": "question:34:prompt",
     "ordinal": 1,
     "latex": "(3/5,4/5)",
-    "reading": "A gradient is $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
     "bindings": []
   },
   {
@@ -225575,7 +225791,7 @@
     "source": "question:34:answer",
     "ordinal": 0,
     "latex": "\\frac{1}{5}",
-    "reading": "A gradient is $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
     "bindings": []
   },
   {
@@ -225584,7 +225800,7 @@
     "source": "question:34:answer",
     "ordinal": 1,
     "latex": "1/5",
-    "reading": "A gradient is $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{1}{5}$.\n\nTake the dot product: $1/5$.",
     "bindings": []
   },
   {
@@ -225593,7 +225809,7 @@
     "source": "question:35:prompt",
     "ordinal": 0,
     "latex": "(-1,1)",
-    "reading": "A gradient is $(-1,1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{2}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{2}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-1,1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{2}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{2}$.",
     "bindings": []
   },
   {
@@ -225602,7 +225818,7 @@
     "source": "question:35:answer",
     "ordinal": 0,
     "latex": "\\sqrt{2}",
-    "reading": "A gradient is $(-1,1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{2}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{2}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-1,1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{2}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{2}$.",
     "bindings": []
   },
   {
@@ -225611,7 +225827,7 @@
     "source": "question:35:answer",
     "ordinal": 1,
     "latex": "\\sqrt{2}",
-    "reading": "A gradient is $(-1,1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{2}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{2}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-1,1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{2}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{2}$.",
     "bindings": []
   },
   {
@@ -225620,7 +225836,7 @@
     "source": "question:36:prompt",
     "ordinal": 0,
     "latex": "(0,2)",
-    "reading": "A gradient is $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
     "bindings": []
   },
   {
@@ -225629,7 +225845,7 @@
     "source": "question:36:prompt",
     "ordinal": 1,
     "latex": "(3/5,4/5)",
-    "reading": "A gradient is $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
     "bindings": []
   },
   {
@@ -225638,7 +225854,7 @@
     "source": "question:36:answer",
     "ordinal": 0,
     "latex": "\\frac{8}{5}",
-    "reading": "A gradient is $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
     "bindings": []
   },
   {
@@ -225647,7 +225863,7 @@
     "source": "question:36:answer",
     "ordinal": 1,
     "latex": "8/5",
-    "reading": "A gradient is $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{8}{5}$.\n\nTake the dot product: $8/5$.",
     "bindings": []
   },
   {
@@ -225656,7 +225872,7 @@
     "source": "question:37:prompt",
     "ordinal": 0,
     "latex": "(0,2)",
-    "reading": "A gradient is $(0,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{4}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{4}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(0,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{4}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{4}$.",
     "bindings": []
   },
   {
@@ -225665,7 +225881,7 @@
     "source": "question:37:answer",
     "ordinal": 0,
     "latex": "\\sqrt{4}",
-    "reading": "A gradient is $(0,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{4}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{4}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(0,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{4}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{4}$.",
     "bindings": []
   },
   {
@@ -225674,7 +225890,7 @@
     "source": "question:37:answer",
     "ordinal": 1,
     "latex": "\\sqrt{4}",
-    "reading": "A gradient is $(0,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{4}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{4}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(0,2)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{4}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{4}$.",
     "bindings": []
   },
   {
@@ -225683,7 +225899,7 @@
     "source": "question:38:prompt",
     "ordinal": 0,
     "latex": "(2,-1)",
-    "reading": "A gradient is $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
     "bindings": []
   },
   {
@@ -225692,7 +225908,7 @@
     "source": "question:38:prompt",
     "ordinal": 1,
     "latex": "(3/5,4/5)",
-    "reading": "A gradient is $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
     "bindings": []
   },
   {
@@ -225701,7 +225917,7 @@
     "source": "question:38:answer",
     "ordinal": 0,
     "latex": "\\frac{2}{5}",
-    "reading": "A gradient is $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
     "bindings": []
   },
   {
@@ -225710,7 +225926,7 @@
     "source": "question:38:answer",
     "ordinal": 1,
     "latex": "2/5",
-    "reading": "A gradient is $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{2}{5}$.\n\nTake the dot product: $2/5$.",
     "bindings": []
   },
   {
@@ -225719,7 +225935,7 @@
     "source": "question:39:prompt",
     "ordinal": 0,
     "latex": "(2,-1)",
-    "reading": "A gradient is $(2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225728,7 +225944,7 @@
     "source": "question:39:answer",
     "ordinal": 0,
     "latex": "\\sqrt{5}",
-    "reading": "A gradient is $(2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225737,7 +225953,7 @@
     "source": "question:39:answer",
     "ordinal": 1,
     "latex": "\\sqrt{5}",
-    "reading": "A gradient is $(2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225746,7 +225962,7 @@
     "source": "question:40:prompt",
     "ordinal": 0,
     "latex": "(-2,-1)",
-    "reading": "A gradient is $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
     "bindings": []
   },
   {
@@ -225755,7 +225971,7 @@
     "source": "question:40:prompt",
     "ordinal": 1,
     "latex": "(3/5,4/5)",
-    "reading": "A gradient is $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
     "bindings": []
   },
   {
@@ -225764,7 +225980,7 @@
     "source": "question:40:answer",
     "ordinal": 0,
     "latex": "\\frac{-10}{5}",
-    "reading": "A gradient is $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
     "bindings": []
   },
   {
@@ -225773,7 +225989,7 @@
     "source": "question:40:answer",
     "ordinal": 1,
     "latex": "-10/5",
-    "reading": "A gradient is $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.\n\nThe answer is $\\frac{-10}{5}$.\n\nTake the dot product: $-10/5$.",
     "bindings": []
   },
   {
@@ -225782,7 +225998,7 @@
     "source": "question:41:prompt",
     "ordinal": 0,
     "latex": "(-2,-1)",
-    "reading": "A gradient is $(-2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225791,7 +226007,7 @@
     "source": "question:41:answer",
     "ordinal": 0,
     "latex": "\\sqrt{5}",
-    "reading": "A gradient is $(-2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -225800,7 +226016,7 @@
     "source": "question:41:answer",
     "ordinal": 1,
     "latex": "\\sqrt{5}",
-    "reading": "A gradient is $(-2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
+    "reading": "A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the greatest rate of increase over unit directions.\n\nThe answer is $\\sqrt{5}$.\n\nCauchy–Schwarz gives the gradient length $\\sqrt{5}$.",
     "bindings": []
   },
   {
@@ -226825,8 +227041,8 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:2:prompt",
     "ordinal": 0,
-    "latex": "f_x=1",
-    "reading": "At a point, $f_x=1$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
+    "latex": "f",
+    "reading": "At a point where $f$ is differentiable, $f_x=1$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
     "bindings": []
   },
   {
@@ -226834,8 +227050,17 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:2:prompt",
     "ordinal": 1,
+    "latex": "f_x=1",
+    "reading": "At a point where $f$ is differentiable, $f_x=1$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-80c5fe5f5c1678ba3051",
+    "lesson": "calculus-multivariable-chain-rule",
+    "source": "question:2:prompt",
+    "ordinal": 2,
     "latex": "f_y=2",
-    "reading": "At a point, $f_x=1$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=1$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
     "bindings": []
   },
   {
@@ -226844,7 +227069,7 @@
     "source": "question:2:answer",
     "ordinal": 0,
     "latex": "-4",
-    "reading": "At a point, $f_x=1$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=1$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
     "bindings": []
   },
   {
@@ -226853,7 +227078,7 @@
     "source": "question:2:answer",
     "ordinal": 1,
     "latex": "2(1)-3(2)=-4",
-    "reading": "At a point, $f_x=1$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=1$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-4$.\n\nThe rate is $2(1)-3(2)=-4$.",
     "bindings": []
   },
   {
@@ -226906,8 +227131,8 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:4:prompt",
     "ordinal": 0,
-    "latex": "f_x=-1",
-    "reading": "At a point, $f_x=-1$ and $f_y=3$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
+    "latex": "f",
+    "reading": "At a point where $f$ is differentiable, $f_x=-1$ and $f_y=3$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
     "bindings": []
   },
   {
@@ -226915,8 +227140,17 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:4:prompt",
     "ordinal": 1,
+    "latex": "f_x=-1",
+    "reading": "At a point where $f$ is differentiable, $f_x=-1$ and $f_y=3$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-3978f1f013549f4f9d2d",
+    "lesson": "calculus-multivariable-chain-rule",
+    "source": "question:4:prompt",
+    "ordinal": 2,
     "latex": "f_y=3",
-    "reading": "At a point, $f_x=-1$ and $f_y=3$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=-1$ and $f_y=3$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
     "bindings": []
   },
   {
@@ -226925,7 +227159,7 @@
     "source": "question:4:answer",
     "ordinal": 0,
     "latex": "-11",
-    "reading": "At a point, $f_x=-1$ and $f_y=3$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=-1$ and $f_y=3$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
     "bindings": []
   },
   {
@@ -226934,7 +227168,7 @@
     "source": "question:4:answer",
     "ordinal": 1,
     "latex": "2(-1)-3(3)=-11",
-    "reading": "At a point, $f_x=-1$ and $f_y=3$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=-1$ and $f_y=3$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-11$.\n\nThe rate is $2(-1)-3(3)=-11$.",
     "bindings": []
   },
   {
@@ -226987,8 +227221,8 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:6:prompt",
     "ordinal": 0,
-    "latex": "f_x=2",
-    "reading": "At a point, $f_x=2$ and $f_y=-1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
+    "latex": "f",
+    "reading": "At a point where $f$ is differentiable, $f_x=2$ and $f_y=-1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
     "bindings": []
   },
   {
@@ -226996,8 +227230,17 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:6:prompt",
     "ordinal": 1,
+    "latex": "f_x=2",
+    "reading": "At a point where $f$ is differentiable, $f_x=2$ and $f_y=-1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-3c4b88b88712ce6c5aa4",
+    "lesson": "calculus-multivariable-chain-rule",
+    "source": "question:6:prompt",
+    "ordinal": 2,
     "latex": "f_y=-1",
-    "reading": "At a point, $f_x=2$ and $f_y=-1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=2$ and $f_y=-1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
     "bindings": []
   },
   {
@@ -227006,7 +227249,7 @@
     "source": "question:6:answer",
     "ordinal": 0,
     "latex": "7",
-    "reading": "At a point, $f_x=2$ and $f_y=-1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=2$ and $f_y=-1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
     "bindings": []
   },
   {
@@ -227015,7 +227258,7 @@
     "source": "question:6:answer",
     "ordinal": 1,
     "latex": "2(2)-3(-1)=7",
-    "reading": "At a point, $f_x=2$ and $f_y=-1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=2$ and $f_y=-1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $7$.\n\nThe rate is $2(2)-3(-1)=7$.",
     "bindings": []
   },
   {
@@ -227068,8 +227311,8 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:8:prompt",
     "ordinal": 0,
-    "latex": "f_x=0",
-    "reading": "At a point, $f_x=0$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
+    "latex": "f",
+    "reading": "At a point where $f$ is differentiable, $f_x=0$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
     "bindings": []
   },
   {
@@ -227077,8 +227320,17 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:8:prompt",
     "ordinal": 1,
+    "latex": "f_x=0",
+    "reading": "At a point where $f$ is differentiable, $f_x=0$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-bdf67a39dd1d8f5d1ce3",
+    "lesson": "calculus-multivariable-chain-rule",
+    "source": "question:8:prompt",
+    "ordinal": 2,
     "latex": "f_y=2",
-    "reading": "At a point, $f_x=0$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=0$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
     "bindings": []
   },
   {
@@ -227087,7 +227339,7 @@
     "source": "question:8:answer",
     "ordinal": 0,
     "latex": "-6",
-    "reading": "At a point, $f_x=0$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=0$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
     "bindings": []
   },
   {
@@ -227096,7 +227348,7 @@
     "source": "question:8:answer",
     "ordinal": 1,
     "latex": "2(0)-3(2)=-6",
-    "reading": "At a point, $f_x=0$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=0$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $-6$.\n\nThe rate is $2(0)-3(2)=-6$.",
     "bindings": []
   },
   {
@@ -227149,8 +227401,8 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:10:prompt",
     "ordinal": 0,
-    "latex": "f_x=3",
-    "reading": "At a point, $f_x=3$ and $f_y=1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
+    "latex": "f",
+    "reading": "At a point where $f$ is differentiable, $f_x=3$ and $f_y=1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
     "bindings": []
   },
   {
@@ -227158,8 +227410,17 @@
     "lesson": "calculus-multivariable-chain-rule",
     "source": "question:10:prompt",
     "ordinal": 1,
+    "latex": "f_x=3",
+    "reading": "At a point where $f$ is differentiable, $f_x=3$ and $f_y=1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-daa1d08a19d48168c2dd",
+    "lesson": "calculus-multivariable-chain-rule",
+    "source": "question:10:prompt",
+    "ordinal": 2,
     "latex": "f_y=1",
-    "reading": "At a point, $f_x=3$ and $f_y=1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=3$ and $f_y=1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
     "bindings": []
   },
   {
@@ -227168,7 +227429,7 @@
     "source": "question:10:answer",
     "ordinal": 0,
     "latex": "3",
-    "reading": "At a point, $f_x=3$ and $f_y=1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=3$ and $f_y=1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
     "bindings": []
   },
   {
@@ -227177,7 +227438,7 @@
     "source": "question:10:answer",
     "ordinal": 1,
     "latex": "2(3)-3(1)=3",
-    "reading": "At a point, $f_x=3$ and $f_y=1$. Along a path, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
+    "reading": "At a point where $f$ is differentiable, $f_x=3$ and $f_y=1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.\n\nThe answer is $3$.\n\nThe rate is $2(3)-3(1)=3$.",
     "bindings": []
   },
   {
@@ -230687,7 +230948,7 @@
     "source": "question:9:answer",
     "ordinal": 0,
     "latex": "\\left(6,\\ 15\\right)",
-    "reading": "A height is between 2 and 5 over area 3. Give lower and upper bounds for its volume as a pair.\n\nThe answer is $\\left(6,\\ 15\\right)$.\n\nMultiply the area by both height bounds: (6,15).",
+    "reading": "A height is between 2 and 5 over area 3. Give the sharp lower and upper volume bounds implied by these height bounds, as a pair.\n\nThe answer is $\\left(6,\\ 15\\right)$.\n\nMultiply the area by both height bounds: (6,15).",
     "bindings": []
   },
   {
@@ -231002,7 +231263,7 @@
     "source": "question:27:answer",
     "ordinal": 0,
     "latex": "\\left(0,\\ 2\\right)",
-    "reading": "For that triangle, give the outer x interval endpoints as a pair.\n\nThe answer is $\\left(0,\\ 2\\right)$.\n\nOn y=0 the sloping boundary reaches x=2; the interval is[0,2].",
+    "reading": "For the triangle x,y>=0 and 2x+y<=4, give the outer x interval endpoints as a pair when integrating y first.\n\nThe answer is $\\left(0,\\ 2\\right)$.\n\nOn y=0 the sloping boundary reaches x=2; the interval is[0,2].",
     "bindings": []
   },
   {
@@ -231110,7 +231371,7 @@
     "source": "question:34:answer",
     "ordinal": 0,
     "latex": "\\sqrt{y}",
-    "reading": "For that region, give the upper x bound as a formula in y.\n\nThe answer is $\\sqrt{y}$.\n\nThe condition x squared<=y with x>=0 becomes x<=sqrt(y).",
+    "reading": "For the region 0<=x<=2 and x squared<=y<=4, give the upper x bound as a formula in y after reversing the integration order.\n\nThe answer is $\\sqrt{y}$.\n\nThe condition x squared<=y with x>=0 becomes x<=sqrt(y).",
     "bindings": []
   },
   {
@@ -231650,7 +231911,7 @@
     "source": "question:18:answer",
     "ordinal": 0,
     "latex": "\\left(-3,\\ 3\\right)",
-    "reading": "For that upper semicircle, give the x interval endpoints.\n\nThe answer is $\\left(-3,\\ 3\\right)$.\n\nReal square roots require 9-x squared>=0, hence[-3,3].",
+    "reading": "For the upper semicircle x squared+y squared=9 with y nonnegative, give the x interval endpoints.\n\nThe answer is $\\left(-3,\\ 3\\right)$.\n\nReal square roots require 9-x squared>=0, hence[-3,3].",
     "bindings": []
   },
   {
@@ -231722,7 +231983,7 @@
     "source": "question:23:answer",
     "ordinal": 0,
     "latex": "12",
-    "reading": "For that candidate with g=x+y, find lambda using the minus-sign Lagrangian convention.\n\nThe answer is $12$.\n\nThe equations give lambda=2x=12, also 4y=12.",
+    "reading": "At the Lagrange candidate for f=x squared+2y squared subject to g=x+y=9, find lambda using the minus-sign Lagrangian convention.\n\nThe answer is $12$.\n\nThe equations give lambda=2x=12, also 4y=12.",
     "bindings": []
   },
   {
@@ -232419,12 +232680,21 @@
     "bindings": []
   },
   {
+    "id": "calculus-formula-d36781c3e027c83eb230",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:12:prompt",
+    "ordinal": 0,
+    "latex": "L=2x^2",
+    "reading": "For $L=2x^2$ with alpha=1/8 starting at x=2, find x after three gradient-descent steps.\n\nThe answer is $\\frac{1}{4}$.\n\nMultiply 2 by (1/2) cubed to obtain 1/4.",
+    "bindings": []
+  },
+  {
     "id": "calculus-formula-66f11f4caf381d2f4c43",
     "lesson": "calculus-gradient-descent",
     "source": "question:12:answer",
     "ordinal": 0,
     "latex": "\\frac{1}{4}",
-    "reading": "For that update starting at x=2, find x after three steps.\n\nThe answer is $\\frac{1}{4}$.\n\nMultiply 2 by (1/2) cubed to obtain 1/4.",
+    "reading": "For $L=2x^2$ with alpha=1/8 starting at x=2, find x after three gradient-descent steps.\n\nThe answer is $\\frac{1}{4}$.\n\nMultiply 2 by (1/2) cubed to obtain 1/4.",
     "bindings": []
   },
   {
@@ -232446,12 +232716,21 @@
     "bindings": []
   },
   {
+    "id": "calculus-formula-aa88f3858b7e9ee8d0f4",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:14:prompt",
+    "ordinal": 0,
+    "latex": "L=2x^2",
+    "reading": "For $L=2x^2$ with alpha=3/8 starting at x=2, find x after three gradient-descent steps.\n\nThe answer is $\\frac{-1}{4}$.\n\nMultiply 2 by (-1/2) cubed to obtain -1/4.",
+    "bindings": []
+  },
+  {
     "id": "calculus-formula-4dfa3fb904f403178c6b",
     "lesson": "calculus-gradient-descent",
     "source": "question:14:answer",
     "ordinal": 0,
     "latex": "\\frac{-1}{4}",
-    "reading": "For that update starting at x=2, find x after three steps.\n\nThe answer is $\\frac{-1}{4}$.\n\nMultiply 2 by (-1/2) cubed to obtain -1/4.",
+    "reading": "For $L=2x^2$ with alpha=3/8 starting at x=2, find x after three gradient-descent steps.\n\nThe answer is $\\frac{-1}{4}$.\n\nMultiply 2 by (-1/2) cubed to obtain -1/4.",
     "bindings": []
   },
   {
@@ -232599,12 +232878,30 @@
     "bindings": []
   },
   {
+    "id": "calculus-formula-46bca3ca646f57303716",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:32:prompt",
+    "ordinal": 0,
+    "latex": "L=(x^2-1)^2+y^2",
+    "reading": "For $L=(x^2-1)^2+y^2$, find the value at the origin.\n\nThe answer is $1$.\n\nSubstitution gives (-1) squared+0=1.",
+    "bindings": []
+  },
+  {
     "id": "calculus-formula-b164bfa7fd4ff6dccc32",
     "lesson": "calculus-gradient-descent",
     "source": "question:32:answer",
     "ordinal": 0,
     "latex": "1",
-    "reading": "For that loss, find the value at the origin.\n\nThe answer is $1$.\n\nSubstitution gives (-1) squared+0=1.",
+    "reading": "For $L=(x^2-1)^2+y^2$, find the value at the origin.\n\nThe answer is $1$.\n\nSubstitution gives (-1) squared+0=1.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-6c23e330a2efee58a9f7",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:33:prompt",
+    "ordinal": 0,
+    "latex": "L=(x^2-1)^2+y^2",
+    "reading": "For $L=(x^2-1)^2+y^2$, find the value at (1,0).\n\nThe answer is $0$.\n\nBoth squared terms vanish, giving 0.",
     "bindings": []
   },
   {
@@ -232613,7 +232910,25 @@
     "source": "question:33:answer",
     "ordinal": 0,
     "latex": "0",
-    "reading": "For that loss, find the value at (1,0).\n\nThe answer is $0$.\n\nBoth squared terms vanish, giving 0.",
+    "reading": "For $L=(x^2-1)^2+y^2$, find the value at (1,0).\n\nThe answer is $0$.\n\nBoth squared terms vanish, giving 0.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-2c0ed38ee8bd4c08a476",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:34:prompt",
+    "ordinal": 0,
+    "latex": "L=(x^2-1)^2+y^2",
+    "reading": "For $L=(x^2-1)^2+y^2$, classify the origin as minimum, maximum, or saddle.\n\nThe answer is **saddle**.\n\nThe Hessian has one negative and one positive direction, so it is a saddle.",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-0d9bf77341dbf39bc6b7",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:35:prompt",
+    "ordinal": 0,
+    "latex": "L=(x^2-1)^2+y^2",
+    "reading": "Starting $L=(x^2-1)^2+y^2$ at the origin, what next point does ordinary gradient descent produce for any positive step size?\n\nThe answer is $\\left(0,\\ 0\\right)$.\n\nThe gradient is zero, so the point remains(0,0).",
     "bindings": []
   },
   {
@@ -232622,7 +232937,16 @@
     "source": "question:35:answer",
     "ordinal": 0,
     "latex": "\\left(0,\\ 0\\right)",
-    "reading": "Starting that loss at the origin, what next point does ordinary gradient descent produce for any positive step size?\n\nThe answer is $\\left(0,\\ 0\\right)$.\n\nThe gradient is zero, so the point remains(0,0).",
+    "reading": "Starting $L=(x^2-1)^2+y^2$ at the origin, what next point does ordinary gradient descent produce for any positive step size?\n\nThe answer is $\\left(0,\\ 0\\right)$.\n\nThe gradient is zero, so the point remains(0,0).",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-aa3acc17ac13eea7a1b2",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:36:prompt",
+    "ordinal": 0,
+    "latex": "L=(x^2-1)^2+y^2",
+    "reading": "For $L=(x^2-1)^2+y^2$, compute the gradient at (2,1).\n\nThe answer is $\\left(24,\\ 2\\right)$.\n\nThe components are 4 times 2 times (4-1)=24 and 2, giving(24,2).",
     "bindings": []
   },
   {
@@ -232631,7 +232955,16 @@
     "source": "question:36:answer",
     "ordinal": 0,
     "latex": "\\left(24,\\ 2\\right)",
-    "reading": "For that loss, compute the gradient at (2,1).\n\nThe answer is $\\left(24,\\ 2\\right)$.\n\nThe components are 4 times 2 times (4-1)=24 and 2, giving(24,2).",
+    "reading": "For $L=(x^2-1)^2+y^2$, compute the gradient at (2,1).\n\nThe answer is $\\left(24,\\ 2\\right)$.\n\nThe components are 4 times 2 times (4-1)=24 and 2, giving(24,2).",
+    "bindings": []
+  },
+  {
+    "id": "calculus-formula-6eb6ab44d50fa0ccd444",
+    "lesson": "calculus-gradient-descent",
+    "source": "question:37:prompt",
+    "ordinal": 0,
+    "latex": "L=(x^2-1)^2+y^2",
+    "reading": "For $L=(x^2-1)^2+y^2$, start at (2,1) with alpha=1/16. Give the next point.\n\nThe answer is $\\left(\\frac{1}{2},\\ \\frac{7}{8}\\right)$.\n\nSubtract (24/16,2/16)=(3/2,1/8), giving(1/2,7/8).",
     "bindings": []
   },
   {
@@ -232640,7 +232973,7 @@
     "source": "question:37:answer",
     "ordinal": 0,
     "latex": "\\left(\\frac{1}{2},\\ \\frac{7}{8}\\right)",
-    "reading": "For that loss, start at (2,1) with alpha=1/16. Give the next point.\n\nThe answer is $\\left(\\frac{1}{2},\\ \\frac{7}{8}\\right)$.\n\nSubtract (24/16,2/16)=(3/2,1/8), giving(1/2,7/8).",
+    "reading": "For $L=(x^2-1)^2+y^2$, start at (2,1) with alpha=1/16. Give the next point.\n\nThe answer is $\\left(\\frac{1}{2},\\ \\frac{7}{8}\\right)$.\n\nSubtract (24/16,2/16)=(3/2,1/8), giving(1/2,7/8).",
     "bindings": []
   },
   {
@@ -232658,7 +232991,7 @@
     "source": "question:42:answer",
     "ordinal": 0,
     "latex": "\\left(-5,\\ -6\\right)",
-    "reading": "For those data and theta=(0,0), give the gradient of half the squared residual norm.\n\nThe answer is $\\left(-5,\\ -6\\right)$.\n\nThe intercept component sums residuals to -5; the slope component is 0(-1)+1(-2)+2(-2)=-6. The gradient is (-5,-6).",
+    "reading": "For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and theta=(0,0), give the gradient of half the squared residual norm.\n\nThe answer is $\\left(-5,\\ -6\\right)$.\n\nThe intercept component sums residuals to -5; the slope component is 0(-1)+1(-2)+2(-2)=-6. The gradient is (-5,-6).",
     "bindings": []
   },
   {
@@ -232667,7 +233000,7 @@
     "source": "question:43:answer",
     "ordinal": 0,
     "latex": "\\left(\\frac{1}{2},\\ \\frac{3}{5}\\right)",
-    "reading": "For those data, start at theta=(0,0) with alpha=1/10. Give the next theta.\n\nThe answer is $\\left(\\frac{1}{2},\\ \\frac{3}{5}\\right)$.\n\nSubtract one tenth of(-5,-6), obtaining(1/2,3/5).",
+    "reading": "For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, start at theta=(0,0) with alpha=1/10. Give the next theta.\n\nThe answer is $\\left(\\frac{1}{2},\\ \\frac{3}{5}\\right)$.\n\nSubtract one tenth of(-5,-6), obtaining(1/2,3/5).",
     "bindings": []
   },
   {
@@ -232676,7 +233009,7 @@
     "source": "question:44:answer",
     "ordinal": 0,
     "latex": "\\frac{9}{2}",
-    "reading": "For those data, find the initial half-squared loss at theta=(0,0).\n\nThe answer is $\\frac{9}{2}$.\n\nThe squared residuals sum to 1+4+4=9; half is 9/2.",
+    "reading": "For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the initial half-squared loss at theta=(0,0).\n\nThe answer is $\\frac{9}{2}$.\n\nThe squared residuals sum to 1+4+4=9; half is 9/2.",
     "bindings": []
   },
   {
@@ -232685,7 +233018,7 @@
     "source": "question:45:answer",
     "ordinal": 0,
     "latex": "\\frac{23}{40}",
-    "reading": "For those data, find the half-squared loss at theta=(1/2,3/5).\n\nThe answer is $\\frac{23}{40}$.\n\nResiduals are -1/2,-9/10,-3/10. Half their squared sum is 23/40.",
+    "reading": "For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the half-squared loss at theta=(1/2,3/5).\n\nThe answer is $\\frac{23}{40}$.\n\nResiduals are -1/2,-9/10,-3/10. Half their squared sum is 23/40.",
     "bindings": []
   },
   {
@@ -232694,7 +233027,7 @@
     "source": "question:46:answer",
     "ordinal": 0,
     "latex": "\\left(5,\\ 6\\right)",
-    "reading": "For those data, give A transpose b as a pair.\n\nThe answer is $\\left(5,\\ 6\\right)$.\n\nThe intercept sum is 1+2+2=5; the slope weighted sum is 0+2+4=6. Thus(5,6).",
+    "reading": "For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, give A transpose b as a pair.\n\nThe answer is $\\left(5,\\ 6\\right)$.\n\nThe intercept sum is 1+2+2=5; the slope weighted sum is 0+2+4=6. Thus(5,6).",
     "bindings": []
   },
   {
@@ -232712,7 +233045,7 @@
     "source": "question:48:answer",
     "ordinal": 0,
     "latex": "\\frac{1}{12}",
-    "reading": "For those data, find the minimum half-squared loss at theta=(7/6,1/2).\n\nThe answer is $\\frac{1}{12}$.\n\nPredictions are 7/6,5/3,13/6; residuals are 1/6,-1/3,1/6. Half their squared sum is 1/12.",
+    "reading": "For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the minimum half-squared loss at theta=(7/6,1/2).\n\nThe answer is $\\frac{1}{12}$.\n\nPredictions are 7/6,5/3,13/6; residuals are 1/6,-1/3,1/6. Half their squared sum is 1/12.",
     "bindings": []
   },
   {
@@ -234458,7 +234791,7 @@
     "source": "question:28:answer",
     "ordinal": 0,
     "latex": "2k,k,k,k",
-    "reading": "An outcome has weight twice that of each of three other outcomes. Find its probability.\n\nWriting the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.",
+    "reading": "A model has exactly four possible outcomes. One outcome has weight twice that of each of the other three. Find its probability.\n\nWriting the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.",
     "bindings": []
   },
   {
@@ -234467,7 +234800,7 @@
     "source": "question:28:answer",
     "ordinal": 1,
     "latex": "5k=1",
-    "reading": "An outcome has weight twice that of each of three other outcomes. Find its probability.\n\nWriting the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.",
+    "reading": "A model has exactly four possible outcomes. One outcome has weight twice that of each of the other three. Find its probability.\n\nWriting the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.",
     "bindings": []
   },
   {
@@ -234476,7 +234809,7 @@
     "source": "question:28:answer",
     "ordinal": 2,
     "latex": "2/5",
-    "reading": "An outcome has weight twice that of each of three other outcomes. Find its probability.\n\nWriting the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.",
+    "reading": "A model has exactly four possible outcomes. One outcome has weight twice that of each of the other three. Find its probability.\n\nWriting the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.",
     "bindings": []
   },
   {
@@ -266219,7 +266552,7 @@
     "source": "question:13:prompt",
     "ordinal": 0,
     "latex": "n",
-    "reading": "Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
+    "reading": "Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
     "bindings": []
   },
   {
@@ -266228,7 +266561,7 @@
     "source": "question:13:prompt",
     "ordinal": 1,
     "latex": "1/10",
-    "reading": "Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
+    "reading": "Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
     "bindings": []
   },
   {
@@ -266237,7 +266570,7 @@
     "source": "question:13:prompt",
     "ordinal": 2,
     "latex": "1/20",
-    "reading": "Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
+    "reading": "Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
     "bindings": []
   },
   {
@@ -266246,7 +266579,7 @@
     "source": "question:13:answer",
     "ordinal": 0,
     "latex": "1/[n(1/10)^2]\\le1/20",
-    "reading": "Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
+    "reading": "Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
     "bindings": []
   },
   {
@@ -266255,7 +266588,7 @@
     "source": "question:13:answer",
     "ordinal": 1,
     "latex": "n\\ge2000",
-    "reading": "Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
+    "reading": "Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
     "bindings": []
   },
   {
@@ -266264,7 +266597,7 @@
     "source": "question:13:answer",
     "ordinal": 2,
     "latex": "2000",
-    "reading": "Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
+    "reading": "Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?\n\nRequire $1/[n(1/10)^2]\\le1/20$, so $n\\ge2000$. The smallest is $2000$.",
     "bindings": []
   },
   {
@@ -266273,7 +266606,7 @@
     "source": "question:14:prompt",
     "ordinal": 0,
     "latex": "1/2",
-    "reading": "Iid observations have variance two. What upper bound results for error at least $1/2$ in a mean of one hundred observations?\n\n$2/[100(1/2)^2]=2/25$.",
+    "reading": "Iid observations have variance two. What Chebyshev upper bound results for error at least $1/2$ in a mean of one hundred observations?\n\n$2/[100(1/2)^2]=2/25$.",
     "bindings": []
   },
   {
@@ -266282,7 +266615,7 @@
     "source": "question:14:answer",
     "ordinal": 0,
     "latex": "2/[100(1/2)^2]=2/25",
-    "reading": "Iid observations have variance two. What upper bound results for error at least $1/2$ in a mean of one hundred observations?\n\n$2/[100(1/2)^2]=2/25$.",
+    "reading": "Iid observations have variance two. What Chebyshev upper bound results for error at least $1/2$ in a mean of one hundred observations?\n\n$2/[100(1/2)^2]=2/25$.",
     "bindings": []
   },
   {
@@ -267956,7 +268289,7 @@
     "source": "question:14:prompt",
     "ordinal": 0,
     "latex": "P(|X-E[X]|<4)",
-    "reading": "Using the same variance 4, what lower bound follows for $P(|X-E[X]|<4)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
+    "reading": "For variance 4, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<4)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
     "bindings": []
   },
   {
@@ -267965,7 +268298,7 @@
     "source": "question:14:answer",
     "ordinal": 0,
     "latex": "1-1/4=3/4",
-    "reading": "Using the same variance 4, what lower bound follows for $P(|X-E[X]|<4)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
+    "reading": "For variance 4, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<4)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
     "bindings": []
   },
   {
@@ -267992,7 +268325,7 @@
     "source": "question:16:prompt",
     "ordinal": 0,
     "latex": "P(|X-E[X]|<6)",
-    "reading": "Using the same variance 9, what lower bound follows for $P(|X-E[X]|<6)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
+    "reading": "For variance 9, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<6)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
     "bindings": []
   },
   {
@@ -268001,7 +268334,7 @@
     "source": "question:16:answer",
     "ordinal": 0,
     "latex": "1-1/4=3/4",
-    "reading": "Using the same variance 9, what lower bound follows for $P(|X-E[X]|<6)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
+    "reading": "For variance 9, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<6)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
     "bindings": []
   },
   {
@@ -268028,7 +268361,7 @@
     "source": "question:18:prompt",
     "ordinal": 0,
     "latex": "P(|X-E[X]|<8)",
-    "reading": "Using the same variance 16, what lower bound follows for $P(|X-E[X]|<8)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
+    "reading": "For variance 16, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<8)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
     "bindings": []
   },
   {
@@ -268037,7 +268370,7 @@
     "source": "question:18:answer",
     "ordinal": 0,
     "latex": "1-1/4=3/4",
-    "reading": "Using the same variance 16, what lower bound follows for $P(|X-E[X]|<8)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
+    "reading": "For variance 16, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<8)$?\n\nTake the complement of the at-least event: $1-1/4=3/4$.",
     "bindings": []
   },
   {
@@ -268064,7 +268397,7 @@
     "source": "question:20:prompt",
     "ordinal": 0,
     "latex": "P(|X-E[X]|<5)",
-    "reading": "Using the same variance 1, what lower bound follows for $P(|X-E[X]|<5)$?\n\nTake the complement of the at-least event: $1-1/25=24/25$.",
+    "reading": "For variance 1, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<5)$?\n\nTake the complement of the at-least event: $1-1/25=24/25$.",
     "bindings": []
   },
   {
@@ -268073,7 +268406,7 @@
     "source": "question:20:answer",
     "ordinal": 0,
     "latex": "1-1/25=24/25",
-    "reading": "Using the same variance 1, what lower bound follows for $P(|X-E[X]|<5)$?\n\nTake the complement of the at-least event: $1-1/25=24/25$.",
+    "reading": "For variance 1, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<5)$?\n\nTake the complement of the at-least event: $1-1/25=24/25$.",
     "bindings": []
   },
   {
@@ -268100,7 +268433,7 @@
     "source": "question:22:prompt",
     "ordinal": 0,
     "latex": "P(|X-E[X]|<15)",
-    "reading": "Using the same variance 25, what lower bound follows for $P(|X-E[X]|<15)$?\n\nTake the complement of the at-least event: $1-1/9=8/9$.",
+    "reading": "For variance 25, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<15)$?\n\nTake the complement of the at-least event: $1-1/9=8/9$.",
     "bindings": []
   },
   {
@@ -268109,7 +268442,7 @@
     "source": "question:22:answer",
     "ordinal": 0,
     "latex": "1-1/9=8/9",
-    "reading": "Using the same variance 25, what lower bound follows for $P(|X-E[X]|<15)$?\n\nTake the complement of the at-least event: $1-1/9=8/9$.",
+    "reading": "For variance 25, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<15)$?\n\nTake the complement of the at-least event: $1-1/9=8/9$.",
     "bindings": []
   },
   {
@@ -268118,7 +268451,7 @@
     "source": "question:25:answer",
     "ordinal": 0,
     "latex": "n\\ge 1/(0.1\\cdot0.5^2)",
-    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.1.\n\nRequire $n\\ge 1/(0.1\\cdot0.5^2)$ and round upward, giving $n=40$.",
+    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.1.\n\nRequire $n\\ge 1/(0.1\\cdot0.5^2)$ and round upward, giving $n=40$.",
     "bindings": []
   },
   {
@@ -268127,7 +268460,7 @@
     "source": "question:25:answer",
     "ordinal": 1,
     "latex": "n=40",
-    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.1.\n\nRequire $n\\ge 1/(0.1\\cdot0.5^2)$ and round upward, giving $n=40$.",
+    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.1.\n\nRequire $n\\ge 1/(0.1\\cdot0.5^2)$ and round upward, giving $n=40$.",
     "bindings": []
   },
   {
@@ -268145,7 +268478,7 @@
     "source": "question:27:answer",
     "ordinal": 0,
     "latex": "n\\ge 4/(0.05\\cdot0.5^2)",
-    "reading": "Independent identically distributed observations have variance 4. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.05.\n\nRequire $n\\ge 4/(0.05\\cdot0.5^2)$ and round upward, giving $n=320$.",
+    "reading": "Independent identically distributed observations have variance 4. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.05.\n\nRequire $n\\ge 4/(0.05\\cdot0.5^2)$ and round upward, giving $n=320$.",
     "bindings": []
   },
   {
@@ -268154,7 +268487,7 @@
     "source": "question:27:answer",
     "ordinal": 1,
     "latex": "n=320",
-    "reading": "Independent identically distributed observations have variance 4. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.05.\n\nRequire $n\\ge 4/(0.05\\cdot0.5^2)$ and round upward, giving $n=320$.",
+    "reading": "Independent identically distributed observations have variance 4. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.05.\n\nRequire $n\\ge 4/(0.05\\cdot0.5^2)$ and round upward, giving $n=320$.",
     "bindings": []
   },
   {
@@ -268172,7 +268505,7 @@
     "source": "question:29:answer",
     "ordinal": 0,
     "latex": "n\\ge 9/(0.1\\cdot1^2)",
-    "reading": "Independent identically distributed observations have variance 9. Using Chebyshev, give a sufficient integer sample size for error at least 1 to have probability at most 0.1.\n\nRequire $n\\ge 9/(0.1\\cdot1^2)$ and round upward, giving $n=90$.",
+    "reading": "Independent identically distributed observations have variance 9. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 1 to have probability at most 0.1.\n\nRequire $n\\ge 9/(0.1\\cdot1^2)$ and round upward, giving $n=90$.",
     "bindings": []
   },
   {
@@ -268181,7 +268514,7 @@
     "source": "question:29:answer",
     "ordinal": 1,
     "latex": "n=90",
-    "reading": "Independent identically distributed observations have variance 9. Using Chebyshev, give a sufficient integer sample size for error at least 1 to have probability at most 0.1.\n\nRequire $n\\ge 9/(0.1\\cdot1^2)$ and round upward, giving $n=90$.",
+    "reading": "Independent identically distributed observations have variance 9. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 1 to have probability at most 0.1.\n\nRequire $n\\ge 9/(0.1\\cdot1^2)$ and round upward, giving $n=90$.",
     "bindings": []
   },
   {
@@ -268199,7 +268532,7 @@
     "source": "question:31:answer",
     "ordinal": 0,
     "latex": "n\\ge 2/(0.05\\cdot0.2^2)",
-    "reading": "Independent identically distributed observations have variance 2. Using Chebyshev, give a sufficient integer sample size for error at least 0.2 to have probability at most 0.05.\n\nRequire $n\\ge 2/(0.05\\cdot0.2^2)$ and round upward, giving $n=1000$.",
+    "reading": "Independent identically distributed observations have variance 2. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.2 to have probability at most 0.05.\n\nRequire $n\\ge 2/(0.05\\cdot0.2^2)$ and round upward, giving $n=1000$.",
     "bindings": []
   },
   {
@@ -268208,7 +268541,7 @@
     "source": "question:31:answer",
     "ordinal": 1,
     "latex": "n=1000",
-    "reading": "Independent identically distributed observations have variance 2. Using Chebyshev, give a sufficient integer sample size for error at least 0.2 to have probability at most 0.05.\n\nRequire $n\\ge 2/(0.05\\cdot0.2^2)$ and round upward, giving $n=1000$.",
+    "reading": "Independent identically distributed observations have variance 2. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.2 to have probability at most 0.05.\n\nRequire $n\\ge 2/(0.05\\cdot0.2^2)$ and round upward, giving $n=1000$.",
     "bindings": []
   },
   {
@@ -268226,7 +268559,7 @@
     "source": "question:33:answer",
     "ordinal": 0,
     "latex": "n\\ge 1/(0.01\\cdot0.1^2)",
-    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.1 to have probability at most 0.01.\n\nRequire $n\\ge 1/(0.01\\cdot0.1^2)$ and round upward, giving $n=10000$.",
+    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.1 to have probability at most 0.01.\n\nRequire $n\\ge 1/(0.01\\cdot0.1^2)$ and round upward, giving $n=10000$.",
     "bindings": []
   },
   {
@@ -268235,7 +268568,7 @@
     "source": "question:33:answer",
     "ordinal": 1,
     "latex": "n=10000",
-    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.1 to have probability at most 0.01.\n\nRequire $n\\ge 1/(0.01\\cdot0.1^2)$ and round upward, giving $n=10000$.",
+    "reading": "Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.1 to have probability at most 0.01.\n\nRequire $n\\ge 1/(0.01\\cdot0.1^2)$ and round upward, giving $n=10000$.",
     "bindings": []
   },
   {
@@ -272591,7 +272924,7 @@
     "source": "question:49:answer",
     "ordinal": 0,
     "latex": "\\alpha/m=0.05/5=0.01",
-    "reading": "To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what per-test significance level suffices?\n\nUse $\\alpha/m=0.05/5=0.01$. Independence is not required for the union bound.",
+    "reading": "To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?\n\nUse $\\alpha/m=0.05/5=0.01$. Independence is not required for the union bound.",
     "bindings": []
   },
   {
@@ -272609,7 +272942,7 @@
     "source": "question:51:answer",
     "ordinal": 0,
     "latex": "\\alpha/m=0.05/10=0.005",
-    "reading": "To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what per-test significance level suffices?\n\nUse $\\alpha/m=0.05/10=0.005$. Independence is not required for the union bound.",
+    "reading": "To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?\n\nUse $\\alpha/m=0.05/10=0.005$. Independence is not required for the union bound.",
     "bindings": []
   },
   {
@@ -272627,7 +272960,7 @@
     "source": "question:53:answer",
     "ordinal": 0,
     "latex": "\\alpha/m=0.04/4=0.01",
-    "reading": "To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what per-test significance level suffices?\n\nUse $\\alpha/m=0.04/4=0.01$. Independence is not required for the union bound.",
+    "reading": "To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?\n\nUse $\\alpha/m=0.04/4=0.01$. Independence is not required for the union bound.",
     "bindings": []
   },
   {
@@ -272645,7 +272978,7 @@
     "source": "question:55:answer",
     "ordinal": 0,
     "latex": "\\alpha/m=0.1/20=0.005",
-    "reading": "To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what per-test significance level suffices?\n\nUse $\\alpha/m=0.1/20=0.005$. Independence is not required for the union bound.",
+    "reading": "To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?\n\nUse $\\alpha/m=0.1/20=0.005$. Independence is not required for the union bound.",
     "bindings": []
   },
   {
@@ -272663,7 +272996,7 @@
     "source": "question:57:answer",
     "ordinal": 0,
     "latex": "\\alpha/m=0.08/8=0.01",
-    "reading": "To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what per-test significance level suffices?\n\nUse $\\alpha/m=0.08/8=0.01$. Independence is not required for the union bound.",
+    "reading": "To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?\n\nUse $\\alpha/m=0.08/8=0.01$. Independence is not required for the union bound.",
     "bindings": []
   },
   {

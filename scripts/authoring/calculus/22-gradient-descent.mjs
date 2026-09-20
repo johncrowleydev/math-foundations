@@ -177,7 +177,7 @@ sections[1].questions = [
     exact('1/2'),
   ),
   q(
-    'For that update starting at x=2, find x after three steps.',
+    'For $L=2x^2$ with alpha=1/8 starting at x=2, find x after three gradient-descent steps.',
     'Multiply 2 by (1/2) cubed to obtain 1/4.',
     exact('1/4'),
   ),
@@ -187,7 +187,7 @@ sections[1].questions = [
     exact('-1/2'),
   ),
   q(
-    'For that update starting at x=2, find x after three steps.',
+    'For $L=2x^2$ with alpha=3/8 starting at x=2, find x after three gradient-descent steps.',
     'Multiply 2 by (-1/2) cubed to obtain -1/4.',
     exact('-1/4'),
   ),
@@ -283,29 +283,33 @@ sections[3].questions = [
     tuple([0, 0]),
   ),
   q(
-    'For that loss, find the value at the origin.',
+    'For $L=(x^2-1)^2+y^2$, find the value at the origin.',
     'Substitution gives (-1) squared+0=1.',
     exact(1),
   ),
-  q('For that loss, find the value at (1,0).', 'Both squared terms vanish, giving 0.', exact(0)),
   q(
-    'For that loss, classify the origin as minimum, maximum, or saddle.',
+    'For $L=(x^2-1)^2+y^2$, find the value at (1,0).',
+    'Both squared terms vanish, giving 0.',
+    exact(0),
+  ),
+  q(
+    'For $L=(x^2-1)^2+y^2$, classify the origin as minimum, maximum, or saddle.',
     'The Hessian has one negative and one positive direction, so it is a saddle.',
     term('saddle', 'minimum'),
     'analyze',
   ),
   q(
-    'Starting that loss at the origin, what next point does ordinary gradient descent produce for any positive step size?',
+    'Starting $L=(x^2-1)^2+y^2$ at the origin, what next point does ordinary gradient descent produce for any positive step size?',
     'The gradient is zero, so the point remains(0,0).',
     tuple([0, 0]),
   ),
   q(
-    'For that loss, compute the gradient at (2,1).',
+    'For $L=(x^2-1)^2+y^2$, compute the gradient at (2,1).',
     'The components are 4 times 2 times (4-1)=24 and 2, giving(24,2).',
     tuple([24, 2]),
   ),
   q(
-    'For that loss, start at (2,1) with alpha=1/16. Give the next point.',
+    'For $L=(x^2-1)^2+y^2$, start at (2,1) with alpha=1/16. Give the next point.',
     'Subtract (24/16,2/16)=(3/2,1/8), giving(1/2,7/8).',
     tuple(['1/2', '7/8']),
   ),
@@ -331,27 +335,27 @@ sections[4].questions = [
     tuple([-1, -2, -2]),
   ),
   q(
-    'For those data and theta=(0,0), give the gradient of half the squared residual norm.',
+    'For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and theta=(0,0), give the gradient of half the squared residual norm.',
     'The intercept component sums residuals to -5; the slope component is 0(-1)+1(-2)+2(-2)=-6. The gradient is (-5,-6).',
     tuple([-5, -6]),
   ),
   q(
-    'For those data, start at theta=(0,0) with alpha=1/10. Give the next theta.',
+    'For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, start at theta=(0,0) with alpha=1/10. Give the next theta.',
     'Subtract one tenth of(-5,-6), obtaining(1/2,3/5).',
     tuple(['1/2', '3/5']),
   ),
   q(
-    'For those data, find the initial half-squared loss at theta=(0,0).',
+    'For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the initial half-squared loss at theta=(0,0).',
     'The squared residuals sum to 1+4+4=9; half is 9/2.',
     exact('9/2'),
   ),
   q(
-    'For those data, find the half-squared loss at theta=(1/2,3/5).',
+    'For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the half-squared loss at theta=(1/2,3/5).',
     'Residuals are -1/2,-9/10,-3/10. Half their squared sum is 23/40.',
     exact('23/40'),
   ),
   q(
-    'For those data, give A transpose b as a pair.',
+    'For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, give A transpose b as a pair.',
     'The intercept sum is 1+2+2=5; the slope weighted sum is 0+2+4=6. Thus(5,6).',
     tuple([5, 6]),
   ),
@@ -361,7 +365,7 @@ sections[4].questions = [
     tuple(['7/6', '1/2']),
   ),
   q(
-    'For those data, find the minimum half-squared loss at theta=(7/6,1/2).',
+    'For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the minimum half-squared loss at theta=(7/6,1/2).',
     'Predictions are 7/6,5/3,13/6; residuals are 1/6,-1/3,1/6. Half their squared sum is 1/12.',
     exact('1/12'),
   ),
@@ -410,7 +414,7 @@ sections[1].review = [
   ),
   q('For $L=3x^2$ and alpha=1/4, find the error multiplier.', 'It is 1-6/4=-1/2.', exact('-1/2')),
   q(
-    'Starting at x=4 with that multiplier, find x after two steps.',
+    'For $L=3x^2$ with alpha=1/4 starting at x=4, find x after two gradient-descent steps.',
     'The error is 4 times (-1/2) squared=1.',
     exact(1),
   ),
@@ -441,7 +445,7 @@ sections[3].review = [
     exact(0),
   ),
   q(
-    'For that function, does starting at the stationary origin reach a minimum under the ordinary update?',
+    'For $L=(x^2-1)^2+y^2$, does starting at the stationary origin reach a minimum under the ordinary gradient-descent update?',
     'No. Every update is zero and the saddle is retained.',
     truth(false),
     'interpret',
@@ -458,12 +462,12 @@ sections[4].review = [
     exact(-3),
   ),
   q(
-    'For that scalar model, take alpha=1/5 from theta=0. Find the next theta.',
+    'For A=(1,2) transpose, targets (1,1), and loss equal to half the squared residual norm, take alpha=1/5 from scalar theta=0. Find the next theta.',
     'Subtract (1/5)(-3), giving 3/5.',
     exact('3/5'),
   ),
   q(
-    'For that model, find the half-squared loss at theta=3/5.',
+    'For A=(1,2) transpose and targets (1,1), find the half-squared residual loss at scalar theta=3/5.',
     'Predictions are 3/5 and 6/5; residuals -2/5 and 1/5 give half of 5/25=1/10.',
     exact('1/10'),
   ),

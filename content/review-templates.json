@@ -13374,7 +13374,7 @@
         "id": 2,
         "section": "Distances, angles, and moving constraints",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For $d^2=x^2+y^2$ with $x=5,y=12,x'=1,y'=0$, find $d'$.",
+        "prompt": "For nonnegative distance $d$ satisfying $d^2=x^2+y^2$ with $x=5,y=12,x'=1,y'=0$, find $d'$.",
         "answer": "The answer is $\\frac{5}{13}$. $d=13$ and $d'=(5+0)/13=5/13$.",
         "assessment": {
           "version": 1,
@@ -13979,7 +13979,7 @@
       "id": 1,
       "section": "Monotonicity, uniqueness, and change bounds",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "If $|g'|\\le8$ on an interval of width $1/20$, give the bound on the magnitude of its endpoint change.",
+      "prompt": "If $|g'|\\le8$ on an interval of width $1/20$, give the mean-value-theorem bound $M|b-a|$ on the magnitude of its endpoint change.",
       "answer": "The answer is $\\frac{2}{5}$. $8(1/20)=2/5$.",
       "assessment": {
         "version": 1,
@@ -14017,7 +14017,7 @@
         "id": 1,
         "section": "Monotonicity, uniqueness, and change bounds",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "If $|g'|\\le8$ on an interval of width $1/20$, give the bound on the magnitude of its endpoint change.",
+        "prompt": "If $|g'|\\le8$ on an interval of width $1/20$, give the mean-value-theorem bound $M|b-a|$ on the magnitude of its endpoint change.",
         "answer": "The answer is $\\frac{2}{5}$. $8(1/20)=2/5$.",
         "assessment": {
           "version": 1,
@@ -19392,7 +19392,7 @@
         "id": 2,
         "section": "Comparison and controlled truncation",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "A tail bound is $1/200$ and a quadrature bound is $1/400$. Give the combined bound.",
+        "prompt": "A tail bound is $1/200$ and a quadrature bound is $1/400$. Give the combined bound obtained by adding the two bounds.",
         "answer": "Add the two bounds: $2/400+1/400=3/400$. The answer is $\\frac{3}{400}$.",
         "assessment": {
           "version": 1,
@@ -20080,7 +20080,7 @@
       "id": 1,
       "section": "Alternating, absolute, and conditional convergence",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "For an alternating series with decreasing magnitudes $b_n=1/(2n+1)$, bound the error after $N=4$ terms, starting at $n=1$.",
+      "prompt": "For an alternating series with decreasing magnitudes $b_n=1/(2n+1)$, give the first-omitted-term error bound after $N=4$ terms, starting at $n=1$.",
       "answer": "The first omitted index is $5$, so its magnitude is $1/(2\\cdot5+1)=1/11$. The answer is $\\frac{1}{11}$.",
       "assessment": {
         "version": 1,
@@ -20821,7 +20821,7 @@
         "id": 2,
         "section": "Remainders and trustworthy approximations",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Use the alternating exponential series to bound the error of that approximation.",
+        "prompt": "For $e^{-0.1}$ approximated by $1+x+x^2/2$ at $x=-0.1$, give the alternating exponential series first-omitted-term error bound.",
         "answer": "At $x=-0.1$, magnitudes decrease and the first omitted term is $(0.1)^3/3!=1/6000$. The answer is $\\frac{1}{6000}$.",
         "assessment": {
           "version": 1,
@@ -22263,7 +22263,7 @@
       "id": 1,
       "section": "Directional derivatives and unit directions",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "For gradient (6,8), give the greatest unit-direction rate.",
+      "prompt": "For a differentiable scalar function with gradient (6,8), give the greatest unit-direction rate.",
       "answer": "The answer is $10$.\n\nThe norm is ten.",
       "assessment": {
         "version": 1,
@@ -22301,7 +22301,7 @@
         "id": 1,
         "section": "Directional derivatives and unit directions",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For gradient (6,8), give the greatest unit-direction rate.",
+        "prompt": "For a differentiable scalar function with gradient (6,8), give the greatest unit-direction rate.",
         "answer": "The answer is $10$.\n\nThe norm is ten.",
         "assessment": {
           "version": 1,
@@ -22338,7 +22338,7 @@
         "id": 2,
         "section": "Directional derivatives and unit directions",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For gradient (6,8), give the rate in direction (-1,0).",
+        "prompt": "For a differentiable scalar function with gradient (6,8), give the rate in direction (-1,0).",
         "answer": "The answer is $-6$.\n\nThe dot product is -6.",
         "assessment": {
           "version": 1,
@@ -22375,7 +22375,7 @@
         "id": 3,
         "section": "Directional derivatives and unit directions",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For gradient (6,8), give the unit ascent direction.",
+        "prompt": "For a differentiable scalar function with gradient (6,8), give the unit ascent direction.",
         "answer": "The answer is $\\left(\\frac{3}{5},\\ \\frac{4}{5}\\right)$.\n\nDivide by ten: (3/5,4/5).",
         "assessment": {
           "version": 1,
@@ -22499,7 +22499,7 @@
       "id": 1,
       "section": "Gradients and contour geometry",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "For gradient (2,-3) and displacement (3,2), find the linear change.",
+      "prompt": "For a differentiable scalar function with gradient (2,-3) and displacement (3,2), find the linear change.",
       "answer": "The answer is $0$.\n\nThe dot product is zero.",
       "assessment": {
         "version": 1,
@@ -22552,7 +22552,7 @@
       "id": 1,
       "section": "A moving input changes several coordinates",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "Given gradient (4,-1) and path velocity (2,3), find the output rate.",
+      "prompt": "For a differentiable function with gradient (4,-1) and a differentiable path with velocity (2,3), find the output rate.",
       "answer": "The answer is $5$.\n\nThe dot product is 8-3=5.",
       "assessment": {
         "version": 1,
@@ -22590,7 +22590,7 @@
         "id": 1,
         "section": "A moving input changes several coordinates",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Given gradient (4,-1) and path velocity (2,3), find the output rate.",
+        "prompt": "For a differentiable function with gradient (4,-1) and a differentiable path with velocity (2,3), find the output rate.",
         "answer": "The answer is $5$.\n\nThe dot product is 8-3=5.",
         "assessment": {
           "version": 1,
@@ -23594,7 +23594,7 @@
         "id": 2,
         "section": "The Hessian and quadratic approximation",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For Hessian diagonal (2,6), find one half of h transpose H h at h=(1,2).",
+        "prompt": "For the diagonal Hessian H=diag(2,6), find one half of h transpose H h at h=(1,2).",
         "answer": "The answer is $13$.\n\nIt is one half of (2+24)=13.",
         "assessment": {
           "version": 1,
@@ -23830,7 +23830,7 @@
       "id": 1,
       "section": "Stationary points and the second derivative test",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "For second partials f_xx=-2,f_yy=-6,f_xy=0 at a stationary point, classify it.",
+      "prompt": "For a twice continuously differentiable function with f_xx=-2,f_yy=-6,f_xy=0 at a stationary point, classify it as a minimum, maximum, or saddle.",
       "answer": "The answer is **maximum**.\n\nD=12 and the first pure partial is negative, so maximum.",
       "assessment": {
         "version": 1,
@@ -25321,7 +25321,7 @@
         "id": 2,
         "section": "Set up and solve the Lagrange equations",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For that candidate with g=x+y, find lambda.",
+        "prompt": "At the Lagrange candidate for f=x squared+3y squared subject to g=x+y=8, find lambda using the minus-sign Lagrangian convention.",
         "answer": "The answer is $12$.\n\nLambda=2x=12, also 6y=12.",
         "assessment": {
           "version": 1,
@@ -25473,7 +25473,7 @@
         "id": 2,
         "section": "Compare all candidates and boundaries",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Find its minimum on the full circle.",
+        "prompt": "Find the minimum of xy on the full circle x squared+y squared=9.",
         "answer": "The answer is $\\frac{-9}{2}$.\n\nOpposite signs attain -9/2.",
         "assessment": {
           "version": 1,
@@ -25510,7 +25510,7 @@
         "id": 3,
         "section": "Compare all candidates and boundaries",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Find its minimum on the first-quadrant closed arc.",
+        "prompt": "Find the minimum of xy on the first-quadrant closed arc x squared+y squared=9, including its endpoints.",
         "answer": "The answer is $0$.\n\nThe product reaches 0 at either axis endpoint.",
         "assessment": {
           "version": 1,
@@ -25976,7 +25976,7 @@
         "id": 3,
         "section": "Understand step sizes through an exact recurrence",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Starting at x=4 with that multiplier, find x after two steps.",
+        "prompt": "For $L=3x^2$ with alpha=1/4 starting at x=4, find x after two gradient-descent steps.",
         "answer": "The answer is $1$.\n\nThe error is 4 times (-1/2) squared=1.",
         "assessment": {
           "version": 1,
@@ -26265,7 +26265,7 @@
       "id": 1,
       "section": "Recognize nonconvex behavior and stopping limits",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "For that function, does starting at the stationary origin reach a minimum under the ordinary update?",
+      "prompt": "For $L=(x^2-1)^2+y^2$, does starting at the stationary origin reach a minimum under the ordinary gradient-descent update?",
       "answer": "The answer is false.\n\nNo. Every update is zero and the saddle is retained.",
       "assessment": {
         "version": 1,
@@ -26416,7 +26416,7 @@
         "id": 2,
         "section": "Connect the gradient to least-squares fitting",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For that scalar model, take alpha=1/5 from theta=0. Find the next theta.",
+        "prompt": "For A=(1,2) transpose, targets (1,1), and loss equal to half the squared residual norm, take alpha=1/5 from scalar theta=0. Find the next theta.",
         "answer": "The answer is $\\frac{3}{5}$.\n\nSubtract (1/5)(-3), giving 3/5.",
         "assessment": {
           "version": 1,
@@ -26453,7 +26453,7 @@
         "id": 3,
         "section": "Connect the gradient to least-squares fitting",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For that model, find the half-squared loss at theta=3/5.",
+        "prompt": "For A=(1,2) transpose and targets (1,1), find the half-squared residual loss at scalar theta=3/5.",
         "answer": "The answer is $\\frac{1}{10}$.\n\nPredictions are 3/5 and 6/5; residuals -2/5 and 1/5 give half of 5/25=1/10.",
         "assessment": {
           "version": 1,
@@ -27045,7 +27045,7 @@
         "id": 2,
         "section": "Complements, overlap, and bounds",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For event probabilities $0.45,0.8$, give the lower and upper bounds for their overlap as an ordered pair.",
+        "prompt": "For event probabilities $0.45,0.8$, give the sharp lower and upper bounds for their overlap as an ordered pair.",
         "answer": "The bounds are $\\max(0,0.45+0.8-1)=0.25$ and $\\min(0.45,0.8)=0.45$, so the pair is $(1/4,9/20)$.",
         "assessment": {
           "version": 1,
@@ -27082,7 +27082,7 @@
         "id": 3,
         "section": "Complements, overlap, and bounds",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Six events each have probability at most $0.005$. Bound the probability that none occurs from below.",
+        "prompt": "Six events each have probability at most $0.005$. Give the lower bound for the probability that none occurs obtained by subtracting the union bound from one.",
         "answer": "Their union has probability at most $0.03$, so its complement has probability at least $0.97=97/100$.",
         "assessment": {
           "version": 1,
@@ -37693,7 +37693,7 @@
             "validator": "term",
             "fields": ["answer"],
             "params": {
-              "accepted": ["cluster"]
+              "accepted": ["cluster", "cluster sampling"]
             }
           }
         ],
@@ -38023,7 +38023,7 @@
       "id": 1,
       "section": "The law of large numbers concerns concentration",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "Iid observations have variance sixteen. Bound the chance that their mean over one hundred observations differs from its expectation by at least two.",
+      "prompt": "Iid observations have variance sixteen. Give the Chebyshev bound for the chance that their mean over one hundred observations differs from its expectation by at least two.",
       "answer": "The bound is $16/[100(2^2)]=1/25$.",
       "assessment": {
         "version": 1,
@@ -38061,7 +38061,7 @@
         "id": 1,
         "section": "The law of large numbers concerns concentration",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Iid observations have variance sixteen. Bound the chance that their mean over one hundred observations differs from its expectation by at least two.",
+        "prompt": "Iid observations have variance sixteen. Give the Chebyshev bound for the chance that their mean over one hundred observations differs from its expectation by at least two.",
         "answer": "The bound is $16/[100(2^2)]=1/25$.",
         "assessment": {
           "version": 1,
@@ -38728,7 +38728,7 @@
       "id": 1,
       "section": "A mean can bound a nonnegative tail",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "A nonnegative variable has mean 6. Bound its probability of being at least 30.",
+      "prompt": "A nonnegative variable has mean 6. Give the Markov bound for its probability of being at least 30.",
       "answer": "Markov gives $6/30=1/5$.",
       "assessment": {
         "version": 1,
@@ -38766,7 +38766,7 @@
         "id": 1,
         "section": "A mean can bound a nonnegative tail",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "A nonnegative variable has mean 6. Bound its probability of being at least 30.",
+        "prompt": "A nonnegative variable has mean 6. Give the Markov bound for its probability of being at least 30.",
         "answer": "Markov gives $6/30=1/5$.",
         "assessment": {
           "version": 1,
@@ -38803,7 +38803,7 @@
         "id": 2,
         "section": "A mean can bound a nonnegative tail",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "A nonnegative variable has mean 9. Bound its probability of being at least 45.",
+        "prompt": "A nonnegative variable has mean 9. Give the Markov bound for its probability of being at least 45.",
         "answer": "Markov gives $9/45=1/5$.",
         "assessment": {
           "version": 1,
@@ -38899,7 +38899,7 @@
       "id": 1,
       "section": "Centering and squaring gives Chebyshev",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "Variance is 8. Bound the probability of deviation at least 4.",
+      "prompt": "Variance is 8. Give the Chebyshev bound for the probability of absolute deviation from the mean at least 4.",
       "answer": "Chebyshev gives $8/16=1/2$.",
       "assessment": {
         "version": 1,
@@ -38937,7 +38937,7 @@
         "id": 1,
         "section": "Centering and squaring gives Chebyshev",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Variance is 8. Bound the probability of deviation at least 4.",
+        "prompt": "Variance is 8. Give the Chebyshev bound for the probability of absolute deviation from the mean at least 4.",
         "answer": "Chebyshev gives $8/16=1/2$.",
         "assessment": {
           "version": 1,
@@ -38974,7 +38974,7 @@
         "id": 2,
         "section": "Centering and squaring gives Chebyshev",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "Variance is 3. Bound the probability of deviation at least 6.",
+        "prompt": "Variance is 3. Give the Chebyshev bound for the probability of absolute deviation from the mean at least 6.",
         "answer": "Chebyshev gives $3/36=1/12$.",
         "assessment": {
           "version": 1,
@@ -39051,7 +39051,7 @@
       "id": 1,
       "section": "Guarantees for averages and sample sizes",
       "instructions": "Give the requested answer, including reasoning when asked.",
-      "prompt": "For iid observations of variance 2, what n suffices by Chebyshev for tolerance 1/2 and failure probability 1/10?",
+      "prompt": "For iid observations of variance 2, what is the smallest integer n certified by Chebyshev for tolerance 1/2 and failure probability 1/10?",
       "answer": "$n\\ge2/[(1/10)(1/4)]=80$.",
       "assessment": {
         "version": 1,
@@ -39089,7 +39089,7 @@
         "id": 1,
         "section": "Guarantees for averages and sample sizes",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For iid observations of variance 2, what n suffices by Chebyshev for tolerance 1/2 and failure probability 1/10?",
+        "prompt": "For iid observations of variance 2, what is the smallest integer n certified by Chebyshev for tolerance 1/2 and failure probability 1/10?",
         "answer": "$n\\ge2/[(1/10)(1/4)]=80$.",
         "assessment": {
           "version": 1,
@@ -39126,7 +39126,7 @@
         "id": 2,
         "section": "Guarantees for averages and sample sizes",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "For iid observations of variance 3, what n suffices for tolerance 1 and failure probability 1/20?",
+        "prompt": "For iid observations of variance 3, what is the smallest integer n certified by Chebyshev for tolerance 1 and failure probability 1/20?",
         "answer": "$n\\ge3/(1/20)=60$.",
         "assessment": {
           "version": 1,
@@ -39163,7 +39163,7 @@
         "id": 3,
         "section": "Guarantees for averages and sample sizes",
         "instructions": "Give the requested answer, including reasoning when asked.",
-        "prompt": "What variance bound can be used for a Bernoulli variable when its parameter is unknown?",
+        "prompt": "What is the smallest upper bound valid for the variance of every Bernoulli variable when its parameter is unknown?",
         "answer": "$p(1-p)\\le1/4$.",
         "assessment": {
           "version": 1,

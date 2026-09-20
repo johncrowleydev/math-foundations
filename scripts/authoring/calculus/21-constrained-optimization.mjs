@@ -200,7 +200,7 @@ sections[1].questions = [
     },
   ),
   q(
-    'For that upper semicircle, give the x interval endpoints.',
+    'For the upper semicircle x squared+y squared=9 with y nonnegative, give the x interval endpoints.',
     'Real square roots require 9-x squared>=0, hence[-3,3].',
     tuple([-3, 3]),
   ),
@@ -226,7 +226,7 @@ sections[2].questions = [
     tuple([6, 3]),
   ),
   q(
-    'For that candidate with g=x+y, find lambda using the minus-sign Lagrangian convention.',
+    'At the Lagrange candidate for f=x squared+2y squared subject to g=x+y=9, find lambda using the minus-sign Lagrangian convention.',
     'The equations give lambda=2x=12, also 4y=12.',
     exact(12),
   ),
@@ -332,7 +332,7 @@ sections[4].questions = [
     exact(0),
   ),
   q(
-    'For the same problem, does any lambda solve gradient f=lambda gradient g at the feasible point?',
+    'For f=x subject to g=x squared+y squared=0, does any lambda solve gradient f=lambda gradient g at the feasible point?',
     'No. The equation would require(1,0)=lambda(0,0).',
     truth(false),
     'interpret',
@@ -420,7 +420,11 @@ sections[2].review = [
     'The equations give x=3y and then(6,2).',
     tuple([6, 2]),
   ),
-  q('For that candidate with g=x+y, find lambda.', 'Lambda=2x=12, also 6y=12.', exact(12)),
+  q(
+    'At the Lagrange candidate for f=x squared+3y squared subject to g=x+y=8, find lambda using the minus-sign Lagrangian convention.',
+    'Lambda=2x=12, also 6y=12.',
+    exact(12),
+  ),
   q(
     'Explain why solving the multiplier equations does not itself prove a global minimum.',
     'They supply necessary candidates; one still needs a complete feasible comparison or another global bound.',
@@ -432,9 +436,13 @@ sections[3].review = [
     'The bound 2|xy|<=9 is attained with equal signs, giving 9/2.',
     exact('9/2'),
   ),
-  q('Find its minimum on the full circle.', 'Opposite signs attain -9/2.', exact('-9/2')),
   q(
-    'Find its minimum on the first-quadrant closed arc.',
+    'Find the minimum of xy on the full circle x squared+y squared=9.',
+    'Opposite signs attain -9/2.',
+    exact('-9/2'),
+  ),
+  q(
+    'Find the minimum of xy on the first-quadrant closed arc x squared+y squared=9, including its endpoints.',
     'The product reaches 0 at either axis endpoint.',
     exact(0),
   ),

@@ -300,7 +300,7 @@ for (const [power, m, alpha] of [
       exact((1 - power).toFixed(2)),
     ),
     q(
-      r`To bound the chance of any false rejection by ${alpha} across ${m} valid tests using the union bound, what per-test significance level suffices?`,
+      r`To bound the chance of any false rejection by ${alpha} across ${m} valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?`,
       r`Use $\alpha/m=${alpha}/${m}=${alpha / m}$. Independence is not required for the union bound.`,
       exact(`${alpha}/${m}`),
     ),

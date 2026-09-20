@@ -136,7 +136,7 @@ sections:
           The allowed branch is the nonnegative root sqrt(9-x squared).
       - id: 18
         type: freeform
-        prompt: For that upper semicircle, give the x interval endpoints.
+        prompt: For the upper semicircle x squared+y squared=9 with y nonnegative, give the x interval endpoints.
         answerLines: 5
         answer: |-
           The answer is $\left(-3,\ 3\right)$.
@@ -175,7 +175,7 @@ sections:
           Equating 2x and 4y gives x=2y; the sum 9 gives (6,3).
       - id: 23
         type: freeform
-        prompt: For that candidate with g=x+y, find lambda using the minus-sign Lagrangian convention.
+        prompt: At the Lagrange candidate for f=x squared+2y squared subject to g=x+y=9, find lambda using the minus-sign Lagrangian convention.
         answerLines: 5
         answer: |-
           The answer is $12$.
@@ -330,7 +330,7 @@ sections:
           The only feasible point is the origin; its objective value is 0.
       - id: 43
         type: freeform
-        prompt: For the same problem, does any lambda solve gradient f=lambda gradient g at the feasible point?
+        prompt: For f=x subject to g=x squared+y squared=0, does any lambda solve gradient f=lambda gradient g at the feasible point?
         answerLines: 5
         answer: |-
           The answer is false.

@@ -435,7 +435,7 @@ For a non-elementary example, when $x\ge B\ge1$, $e^{-x^2}\le x e^{-x^2}$. Thus 
         ),
         n(r`Find $\int_3^\infty e^{-x}dx$.`, 'exp(-3)', r`The tail equals $e^{-B}$ at $B=3$.`),
         n(
-          r`A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.`,
+          r`A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give the total absolute error bound obtained by adding these two bounds.`,
           '3/1000',
           r`The triangle inequality gives $1/1000+2/1000=3/1000$.`,
         ),
@@ -466,7 +466,7 @@ For a non-elementary example, when $x\ge B\ge1$, $e^{-x^2}\le x e^{-x^2}$. Thus 
           r`The antiderivative gives $1/(2\cdot4^2)=1/32$.`,
         ),
         n(
-          r`A tail bound is $1/200$ and a quadrature bound is $1/400$. Give the combined bound.`,
+          r`A tail bound is $1/200$ and a quadrature bound is $1/400$. Give the combined bound obtained by adding the two bounds.`,
           '3/400',
           r`Add the two bounds: $2/400+1/400=3/400$.`,
         ),

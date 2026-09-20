@@ -183,12 +183,12 @@ s2.questions = [
     exact('9/100'),
   ),
   q(
-    r`Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?`,
+    r`Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?`,
     r`Require $1/[n(1/10)^2]\le1/20$, so $n\ge2000$. The smallest is $2000$.`,
     exact('2000'),
   ),
   q(
-    r`Iid observations have variance two. What upper bound results for error at least $1/2$ in a mean of one hundred observations?`,
+    r`Iid observations have variance two. What Chebyshev upper bound results for error at least $1/2$ in a mean of one hundred observations?`,
     r`$2/[100(1/2)^2]=2/25$.`,
     exact('2/25'),
   ),
@@ -226,7 +226,7 @@ s2.questions = [
 ];
 s2.review = [
   q(
-    r`Iid observations have variance sixteen. Bound the chance that their mean over one hundred observations differs from its expectation by at least two.`,
+    r`Iid observations have variance sixteen. Give the Chebyshev bound for the chance that their mean over one hundred observations differs from its expectation by at least two.`,
     r`The bound is $16/[100(2^2)]=1/25$.`,
     exact('1/25'),
   ),
@@ -458,7 +458,7 @@ Finally, an approximation can fail because its target changed. A time series wit
       'shared-noise',
       'Shared noise in an average',
       'A common random component does not disappear when readings are averaged.',
-      r`If $X_i=B+\varepsilon_i$ with independent components, $\operatorname{Var}(\bar X_n)=\operatorname{Var}(B)+\operatorname{Var}(\varepsilon_i)/n$.`,
+      r`If $X_i=B+\varepsilon_i$ with independent components and common noise variance $\operatorname{Var}(\varepsilon_i)=\tau^2$, then $\operatorname{Var}(\bar X_n)=\operatorname{Var}(B)+\tau^2/n$.`,
       r`A shared calibration error persists across repeated measurements.`,
       `More readings are not equivalent to more independent sources of information.`,
     ),

@@ -424,7 +424,7 @@ For measured data, retain the distinction between an approximation and an exact 
           r`$3(2)-2(4)=6-8=-2$ meters.`,
         ),
         n(
-          r`For the same motion, find distance in meters.`,
+          r`Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.`,
           '14',
           r`Add absolute contributions: $6+8=14$ meters.`,
         ),

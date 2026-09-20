@@ -366,7 +366,7 @@ To show that a full Taylor series equals $f$, prove $R_N(x)\to0$ for the target 
           r`$1+1/10+1/200=221/200=1.105$.`,
         ),
         n(
-          r`For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.`,
+          r`For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.`,
           '1/3000',
           r`$2(1/10)^3/3!=2/(1000\cdot6)=1/3000$.`,
         ),
@@ -376,12 +376,12 @@ To show that a full Taylor series equals $f$, prove $R_N(x)\to0$ for the target 
           r`The next magnitude is $(1/2)^5/5!=1/(32\cdot120)=1/3840$.`,
         ),
         n(
-          r`Evaluate the same sine polynomial at $x=1/2$.`,
+          r`Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.`,
           '23/48',
           r`$1/2-(1/8)/6=1/2-1/48=23/48$.`,
         ),
         n(
-          r`For $\cos x\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.`,
+          r`For $\cos x\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.`,
           '1/15000',
           r`The cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\cdot24)=1/15000$.`,
         ),
@@ -416,7 +416,7 @@ To show that a full Taylor series equals $f$, prove $R_N(x)\to0$ for the target 
           r`$1-1/10+1/200=181/200$.`,
         ),
         n(
-          r`Use the alternating exponential series to bound the error of that approximation.`,
+          r`For $e^{-0.1}$ approximated by $1+x+x^2/2$ at $x=-0.1$, give the alternating exponential series first-omitted-term error bound.`,
           '1/6000',
           r`At $x=-0.1$, magnitudes decrease and the first omitted term is $(0.1)^3/3!=1/6000$.`,
         ),
@@ -487,12 +487,12 @@ An approximation should be chosen around a useful center. For $\sqrt{1.04}$, the
           ['b'],
         ),
         n(
-          r`Use those three terms to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.`,
+          r`Use $1-x^2+x^4/2$ to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.`,
           '443/960',
           r`$1/2-1/24+1/320=(480-40+3)/960=443/960$.`,
         ),
         n(
-          r`Give the first-omitted-term bound for that three-term integral approximation.`,
+          r`Approximate $\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.`,
           '1/5376',
           r`The next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\cdot42)=1/5376$.`,
         ),

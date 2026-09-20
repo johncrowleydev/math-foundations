@@ -37752,9 +37752,9 @@
       "lesson": "calculus-limits-continuity",
       "exercise": 3,
       "kind": "inline",
-      "requires": [],
+      "requires": ["tex-command-ne"],
       "status": "verified",
-      "hash": "cc0bb71bf0188abeec5dcb7d6e2c1b8effa109ae41a1f7d782614fbbaaa4a7d0"
+      "hash": "c7c5de3d5eee458956cde13ddd0f02583a1241fec9e796da455dc396f8d25f96"
     },
     {
       "lesson": "calculus-limits-continuity",
@@ -38246,7 +38246,7 @@
       "kind": "inline",
       "requires": ["tex-command-to", "tex-superscripts"],
       "status": "verified",
-      "hash": "a0ceb95a2eed54adb71bbd38d690be2d9315414c86af2b014c17c74dc506c85c"
+      "hash": "805cb2ecc1b4f62e9617d49f6e1f0da57ddf85c3eef69093e17ac639c515794e"
     },
     {
       "lesson": "calculus-limits-continuity",
@@ -40542,7 +40542,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups", "tex-superscripts"],
       "status": "verified",
-      "hash": "3e7cf6e30472e564c7f47dc87a96ffa0fa718f70bd190c13f7a93a1711bd581f"
+      "hash": "3e41cfdc154d01fe804817efe3c77b52b5d642c24608f1f15907753714862811"
     },
     {
       "lesson": "calculus-related-rates-approximation",
@@ -40550,7 +40550,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups", "tex-superscripts"],
       "status": "verified",
-      "hash": "fce3224549c6880e398d860f48dd24de8d1aa78f2ddc604bc1fce221af7d5c20"
+      "hash": "963332319614f0d1ab2f122e0dff8b0938ef811f9825ed273f1d81c7df9d4d75"
     },
     {
       "lesson": "calculus-related-rates-approximation",
@@ -40873,7 +40873,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-le"],
       "status": "verified",
-      "hash": "2c76f7280536f7f147135a4fa4f73d1c44fe4145679290ec125d22d5c4823cff"
+      "hash": "5c547f81e6b5df71305ef4dfb41a928e7ec3448ef3478e4450d6c58c434f1d46"
     },
     {
       "lesson": "calculus-mvt-function-behavior",
@@ -40881,7 +40881,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-le"],
       "status": "verified",
-      "hash": "735a1a56986d43f05c7d1018d7241371620d8a29a25c5f0848e74c6398327e20"
+      "hash": "1bf87748b83a88db618a1a50b2bf7851f050581ea89696b54d61ba0e1643cb6b"
     },
     {
       "lesson": "calculus-mvt-function-behavior",
@@ -40919,9 +40919,15 @@
       "lesson": "calculus-mvt-function-behavior",
       "exercise": 18,
       "kind": "inline",
-      "requires": ["tex-calculus-le", "tex-command-frac", "tex-groups", "tex-la-cos"],
+      "requires": [
+        "tex-calculus-capital-delta",
+        "tex-calculus-le",
+        "tex-command-frac",
+        "tex-groups",
+        "tex-la-cos"
+      ],
       "status": "verified",
-      "hash": "70a538cc47bb7beb9b9ab48da6010a1da3edcde64e3e17826fb5ac7302a751cc"
+      "hash": "19d0bd298ab98518dc6b9e10dc2fa8277459c5337b8a773cd49619a42610507e"
     },
     {
       "lesson": "calculus-mvt-function-behavior",
@@ -42129,7 +42135,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "2db3a73bf9c6f6aa0f7b692fe70f48d9f9aab56953515d72135116694a5f217c"
+      "hash": "a16a5360a870babc0d17486675919bbb2d4235f78aed69d08db4d455688230db"
     },
     {
       "lesson": "calculus-definite-integrals",
@@ -43878,6 +43884,7 @@
       "kind": "inline",
       "requires": [
         "tex-calculus-int",
+        "tex-calculus-le",
         "tex-calculus-pi",
         "tex-command-cdot",
         "tex-command-frac",
@@ -43886,7 +43893,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "791df73ec8788a682bfc7693254363b978f39fffa8e9c944b4be1721b8ab44c5"
+      "hash": "fe6fa8e9487d56f49c9b7b746ca2a6db9e22e99e9d2402979aa20f8978d29cf1"
     },
     {
       "lesson": "calculus-applications-integration",
@@ -44011,9 +44018,9 @@
       "lesson": "calculus-applications-integration",
       "exercise": 42,
       "kind": "inline",
-      "requires": [],
+      "requires": ["tex-calculus-le"],
       "status": "verified",
-      "hash": "2f50b96ca08e6525a30bbd400fac8a29c79a007ad17964d1ee41debaffe7e3e5"
+      "hash": "9a680cb4173cee7cfa94d750fa390c40c73fb8892f15259f22b0b5aab3cf6fcd"
     },
     {
       "lesson": "calculus-applications-integration",
@@ -44645,7 +44652,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "1977b52422dc51cafeaf7ce0979e5c4f3b572ce2d41628cf410bdc92423503e0"
+      "hash": "4f1dfa6d827777d854c5943e464b638e9647a0f018db32e16a6143e6f87398fd"
     },
     {
       "lesson": "calculus-numerical-improper",
@@ -45066,9 +45073,17 @@
       "lesson": "calculus-sequences-series",
       "exercise": 28,
       "kind": "inline",
-      "requires": ["tex-calculus-ge", "tex-calculus-le", "tex-superscripts"],
+      "requires": [
+        "tex-calculus-ge",
+        "tex-calculus-le",
+        "tex-command-infty",
+        "tex-command-sum",
+        "tex-groups",
+        "tex-subscripts",
+        "tex-superscripts"
+      ],
       "status": "verified",
-      "hash": "3559629f27e602d856296cddef2a9107b8e5092954da31586b9ed7d630a98605"
+      "hash": "4281e606dbbe1875d82b476d9cd8825dae57e3868d6a843c18306180f43bbc8b"
     },
     {
       "lesson": "calculus-sequences-series",
@@ -45255,9 +45270,17 @@
       "lesson": "calculus-sequences-series",
       "exercise": 46,
       "kind": "inline",
-      "requires": ["tex-calculus-ge", "tex-calculus-le"],
+      "requires": [
+        "tex-calculus-ge",
+        "tex-calculus-le",
+        "tex-command-infty",
+        "tex-command-sum",
+        "tex-groups",
+        "tex-subscripts",
+        "tex-superscripts"
+      ],
       "status": "verified",
-      "hash": "cc4016332e3e1bcbff40d9243d31195c91e9baa6601f39d84445a4e6d037256a"
+      "hash": "f9edbc40340c4e2680ab3365341a7ea0677ab015e40d5c6d2f6517a827c970b3"
     },
     {
       "lesson": "calculus-sequences-series",
@@ -45280,7 +45303,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "6a3382b3a07e1bd0c8caadf6b896b8b11619f43abe62118c5c2fa09b01e9683e"
+      "hash": "f378dbb8683c55a127162e28254aed99e3b34b2cd73566040d2cf8e0d4c63dd4"
     },
     {
       "lesson": "calculus-sequences-series",
@@ -45758,9 +45781,15 @@
       "lesson": "calculus-power-series-taylor",
       "exercise": 32,
       "kind": "inline",
-      "requires": ["tex-command-cdot", "tex-command-frac", "tex-groups", "tex-superscripts"],
+      "requires": [
+        "tex-command-cdot",
+        "tex-command-frac",
+        "tex-groups",
+        "tex-subscripts",
+        "tex-superscripts"
+      ],
       "status": "verified",
-      "hash": "74b5f13f811e2721f8f9585a90f42d8a5fbf56bc892c4ce4b2d4e4e62405f741"
+      "hash": "bbcde48b0799f7242a33704bfa4f8a0c114a1700c47a109fbe1b8390b682a660"
     },
     {
       "lesson": "calculus-power-series-taylor",
@@ -45781,9 +45810,9 @@
       "lesson": "calculus-power-series-taylor",
       "exercise": 34,
       "kind": "inline",
-      "requires": ["tex-command-frac", "tex-groups"],
+      "requires": ["tex-command-frac", "tex-groups", "tex-superscripts"],
       "status": "verified",
-      "hash": "517d39af1a671fd1de49a30d4ff6da811b9aa520064dcfe540a509733c64af35"
+      "hash": "0dcde974cbb8ac903c4d09b0ee46379e0ebb5db2f53aad22e112b703465d81ee"
     },
     {
       "lesson": "calculus-power-series-taylor",
@@ -45798,7 +45827,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "52d9f8eb5aec01189c3636666ab0b55a299200d861c4f36cf0b00c0966e3580c"
+      "hash": "a617386fad481bded41356aba1fbad7273c2f36e230027fcce1affc566b1c720"
     },
     {
       "lesson": "calculus-power-series-taylor",
@@ -45947,15 +45976,22 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "30eeef570e47582cc2b80e2061ea6fb8293bf5ea1c69743ef646ee1f96588f72"
+      "hash": "49b0668cb2ed143f1add8f8cd6377c92c40af78901fa67960c51f7f5dfc9c0b2"
     },
     {
       "lesson": "calculus-power-series-taylor",
       "exercise": 48,
       "kind": "inline",
-      "requires": ["tex-command-cdot", "tex-command-frac", "tex-groups", "tex-superscripts"],
+      "requires": [
+        "tex-calculus-int",
+        "tex-command-cdot",
+        "tex-command-frac",
+        "tex-groups",
+        "tex-subscripts",
+        "tex-superscripts"
+      ],
       "status": "verified",
-      "hash": "d15e4134f4313aa2d56c9a68352acdae53beaac7b97c05c7ce3355ce084452aa"
+      "hash": "c6fba7e2db8d8b98c811bd9d8dbfefd23566c0bb3ad9e0939425bb4f1d320cf8"
     },
     {
       "lesson": "calculus-power-series-taylor",
@@ -46731,7 +46767,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "a89d2e786b5c9f5578f7d2b81bc607c12a7e615bbcd42345aa45230412854254"
+      "hash": "0ade4d5c89be2121e58704893de00b63ffd68bb3d5ab0ab3b7aeb05c0e6f079c"
     },
     {
       "lesson": "calculus-gradients",
@@ -46739,7 +46775,7 @@
       "kind": "inline",
       "requires": ["tex-command-sqrt", "tex-groups"],
       "status": "verified",
-      "hash": "7fae6af10310297af94774c2beb4700b43028982d940c4934aba244bfbed06a9"
+      "hash": "14579c9b2027268a14d316652c0b230b5de9a1a25456b8fd23a2d35af3c74a65"
     },
     {
       "lesson": "calculus-gradients",
@@ -46747,7 +46783,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "f1e34df1b954925ac16741a92040ef57e915d3f47f9ab3e65c7ad96e7b55cd52"
+      "hash": "b758fcadb719b48ce8d7b1e1e15eebc5f13ab1e41f9293f1592e806bbd9fb9eb"
     },
     {
       "lesson": "calculus-gradients",
@@ -46755,7 +46791,7 @@
       "kind": "inline",
       "requires": ["tex-command-sqrt", "tex-groups"],
       "status": "verified",
-      "hash": "5e55a1bb5a7ef626df134ba7e3c763044973c7a545591361785327c5d76d1290"
+      "hash": "cee9746aea72134c4162e49f24436487c1e039d69b1050c9b8e8c3df404f5234"
     },
     {
       "lesson": "calculus-gradients",
@@ -46763,7 +46799,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "ad6e2d9633b09a4bd4ff97260da5e453ce54069d15984bfb38a4b00bf064c694"
+      "hash": "888b4ab19d0c722f77e27e9b135692d25eb064744c5c1fdd9cd109a45c1d3bbc"
     },
     {
       "lesson": "calculus-gradients",
@@ -46771,7 +46807,7 @@
       "kind": "inline",
       "requires": ["tex-command-sqrt", "tex-groups"],
       "status": "verified",
-      "hash": "78fa88d04fc83c2996fb9d8a3080fa851052b443e63be2d16745fd34ff7880da"
+      "hash": "109799624d9db792b4706c13ffd61ae76ab74ae408958bedb5432e866041f2df"
     },
     {
       "lesson": "calculus-gradients",
@@ -46779,7 +46815,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "2671bf7171fa5124ceca2fc51844dc4555d3dd8ba6173e81df28f4df0659f21a"
+      "hash": "9b4384d71a8c8941f5d4a8f3eb028d7ff79ad92253b646c5055f1783c9687ce2"
     },
     {
       "lesson": "calculus-gradients",
@@ -46787,7 +46823,7 @@
       "kind": "inline",
       "requires": ["tex-command-sqrt", "tex-groups"],
       "status": "verified",
-      "hash": "bf8055d6a7cd7aceb8d4c3c671ae2e76e94a9c9959617426f5abd6f87d61da66"
+      "hash": "85cce4d63e4205c1485a59d63a0eb506dacd9c0426a27e9d44952b4fafd1efca"
     },
     {
       "lesson": "calculus-gradients",
@@ -46795,7 +46831,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "f6f551d1d9f09fb38da564aa94fb57c4d022ea46404e06bc46c36f7850f141e7"
+      "hash": "9de0a3e80383a5decf72bdc36e219e2aee469b96b066397f21cefc17aa0e0adf"
     },
     {
       "lesson": "calculus-gradients",
@@ -46803,7 +46839,7 @@
       "kind": "inline",
       "requires": ["tex-command-sqrt", "tex-groups"],
       "status": "verified",
-      "hash": "f8728042ec0ab1d2cde7f7b56dce79aa173afe923509e20a256ea9ddd7f71f80"
+      "hash": "0c44760059688ea32c9cb5c14a9685292912d9fdc75dfd928ff67c34297ce8ff"
     },
     {
       "lesson": "calculus-gradients",
@@ -46946,7 +46982,7 @@
       "kind": "inline",
       "requires": ["tex-subscripts"],
       "status": "verified",
-      "hash": "3aac2b3f077c2d241f20afbd5a45246c819de56e319493fd502367cc079f1d8c"
+      "hash": "a5eb49be9f77847a31b7ffbc85416c2fde917346e455d115f27c8325be5d9572"
     },
     {
       "lesson": "calculus-multivariable-chain-rule",
@@ -46968,7 +47004,7 @@
       "kind": "inline",
       "requires": ["tex-subscripts"],
       "status": "verified",
-      "hash": "3ba8bd66fd2b267038cbe7a8fafd22ebfe1e580c83385fcf2569ba90ed9bd3ae"
+      "hash": "70a537f02fdb58d72ebeb38a30b14e9b88270392f5cd6f485f71fe0fe3f20644"
     },
     {
       "lesson": "calculus-multivariable-chain-rule",
@@ -46990,7 +47026,7 @@
       "kind": "inline",
       "requires": ["tex-subscripts"],
       "status": "verified",
-      "hash": "dc350c6bcfe08f4713e7ed61e52bee271ac8e8e9de71eed945aa914b6a7c177f"
+      "hash": "1377bc5da04fe45e4a493845136cee17bf7724dc81c81df7c38272351df68bbc"
     },
     {
       "lesson": "calculus-multivariable-chain-rule",
@@ -47012,7 +47048,7 @@
       "kind": "inline",
       "requires": ["tex-subscripts"],
       "status": "verified",
-      "hash": "60775dd4837809d0761af642d08828f12991cadc0e1adf90067365fdd69d9606"
+      "hash": "e4d9c171672482c5f06f7b0631b50d18f7338cd197be4d9fa6d76e85b8ee4fe5"
     },
     {
       "lesson": "calculus-multivariable-chain-rule",
@@ -47034,7 +47070,7 @@
       "kind": "inline",
       "requires": ["tex-subscripts"],
       "status": "verified",
-      "hash": "4c536ab29b6f2f8587f7feca3f97b5cb12b3d4eef9fa9da3a028eed742cc0e33"
+      "hash": "3771d933240155d486928735c7d88d4e7d993e51b6c588d9ae2490c2c6d3a43a"
     },
     {
       "lesson": "calculus-multivariable-chain-rule",
@@ -48059,7 +48095,7 @@
       "kind": "inline",
       "requires": ["tex-command-left", "tex-command-right", "tex-control-space"],
       "status": "verified",
-      "hash": "e0cf44750f6d3b15984a9fcf47174a35214b0356adccab40481232594f2eeda2"
+      "hash": "bf051532319f97d25afe48eeaf7c0debd09f691a0e0948530721fc6593f80972"
     },
     {
       "lesson": "calculus-double-integrals",
@@ -48233,7 +48269,7 @@
       "kind": "inline",
       "requires": ["tex-command-left", "tex-command-right", "tex-control-space"],
       "status": "verified",
-      "hash": "8c49e9d45f77ff285e4f56dda66661fcba9d833a0a76ac9e80f9cb0ee407e4ed"
+      "hash": "64ab7e03f40db285cec0a3fea4996436e64267f742a1ed26346375a2da2515ef"
     },
     {
       "lesson": "calculus-double-integrals",
@@ -48295,7 +48331,7 @@
       "kind": "inline",
       "requires": ["tex-command-sqrt", "tex-groups"],
       "status": "verified",
-      "hash": "f68b8636412e9485d180442818b101689acb5291586857bf351253f6ff391668"
+      "hash": "6d19efca104776f22221886dcf7e419021ca4b3744f142c5cb85fb9fca624340"
     },
     {
       "lesson": "calculus-double-integrals",
@@ -48605,7 +48641,7 @@
       "kind": "inline",
       "requires": ["tex-command-left", "tex-command-right", "tex-control-space"],
       "status": "verified",
-      "hash": "1d6aa52b842a506e881adb76c1a67d5c72f022f926cdb7dff3ee6480bafc2a45"
+      "hash": "7bb31937e45a733ab51789da840b7ce1057f899c8489be5451c624ef3aaea6dc"
     },
     {
       "lesson": "calculus-constrained-optimization",
@@ -48660,7 +48696,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "7379d6db6fd02f4d3b02938510fe249bbe74eb90ff85918051371dbe7fc42908"
+      "hash": "543836c018a7be4cbbb4a2af37ea8646b69d591a13b2123e6f7010c81b49a648"
     },
     {
       "lesson": "calculus-constrained-optimization",
@@ -48838,7 +48874,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "0a844b5b51977b4a63bd64a6dea1c50683186d0600429be390ff5e4d418db890"
+      "hash": "614dd1c6e9957202de13d028dd6654be24d3620876ca7d6a800c874c1a419c8a"
     },
     {
       "lesson": "calculus-constrained-optimization",
@@ -49022,9 +49058,9 @@
       "lesson": "calculus-gradient-descent",
       "exercise": 12,
       "kind": "inline",
-      "requires": ["tex-command-frac", "tex-groups"],
+      "requires": ["tex-command-frac", "tex-groups", "tex-superscripts"],
       "status": "verified",
-      "hash": "0e2c3819033588aa92de05ed8a8000aa140e311951caf3d324e5484ae93554bb"
+      "hash": "defe965d773f1a6fa747a4ab5726d3167beea25d4da107d10bd3a8e05c798a3b"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49038,9 +49074,9 @@
       "lesson": "calculus-gradient-descent",
       "exercise": 14,
       "kind": "inline",
-      "requires": ["tex-command-frac", "tex-groups"],
+      "requires": ["tex-command-frac", "tex-groups", "tex-superscripts"],
       "status": "verified",
-      "hash": "e91cd215ebbb3a51bc62a48237016790656f149372da270eea4ce75523002fd9"
+      "hash": "cca3e53622a87b69fef5a79acd87719c44d6da379aafe5a03f44b56b44b98a76"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49202,41 +49238,51 @@
       "lesson": "calculus-gradient-descent",
       "exercise": 32,
       "kind": "inline",
-      "requires": [],
+      "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "8fa6dabe2e8cb2a136935f5687aff5d513d22b53356ea4dcca2f4e3613374f2f"
+      "hash": "aa24f9cb080a88bbf68eee4efbfc68cfb30d919a1a296cf736a583696c6624b5"
     },
     {
       "lesson": "calculus-gradient-descent",
       "exercise": 33,
       "kind": "inline",
-      "requires": [],
+      "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "45fdab1630da360010d6f047b2f55c5bd756c9b8495d265cdae06625c8ff09ea"
+      "hash": "e16c7dbc36a9190f5d575d4fd70dc895f556eb06ebd56d921583e332a33f9873"
     },
     {
       "lesson": "calculus-gradient-descent",
       "exercise": 34,
       "kind": "inline",
-      "requires": [],
+      "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "3e80ef329abba8864b158f54e2159854ad02282d3701b3c0bc3ec0d4ef964e53"
+      "hash": "d0626e953ab236083acc1b62938302d727047366b47efe0d11cb68760ef3c608"
     },
     {
       "lesson": "calculus-gradient-descent",
       "exercise": 35,
       "kind": "inline",
-      "requires": ["tex-command-left", "tex-command-right", "tex-control-space"],
+      "requires": [
+        "tex-command-left",
+        "tex-command-right",
+        "tex-control-space",
+        "tex-superscripts"
+      ],
       "status": "verified",
-      "hash": "b9f718234a216f766d30a61fdc479a6a56562d6df695e5eb1b72238ddab5ad17"
+      "hash": "651cf81264c7b7fde47657956d517dab0f0d5417c45bd019738d2518efd7a65f"
     },
     {
       "lesson": "calculus-gradient-descent",
       "exercise": 36,
       "kind": "inline",
-      "requires": ["tex-command-left", "tex-command-right", "tex-control-space"],
+      "requires": [
+        "tex-command-left",
+        "tex-command-right",
+        "tex-control-space",
+        "tex-superscripts"
+      ],
       "status": "verified",
-      "hash": "760ace92731e777a97e7ddd39b4e53d656bf3c1c255693d69a40b7cdc307b178"
+      "hash": "bdebdb38c68b772709a1bf7acc0036ffcb50e5f9be02f819631d347af0ec2a51"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49247,10 +49293,11 @@
         "tex-command-left",
         "tex-command-right",
         "tex-control-space",
-        "tex-groups"
+        "tex-groups",
+        "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "5b900ba44825f1d99dcfa5aeeb717fd83595e717655e67421fddf8092486eb89"
+      "hash": "ff7278dd8c2dd0a85c779d71dc7bd257da001b69fdbad14c8c96b20b08fdfd92"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49298,7 +49345,7 @@
       "kind": "inline",
       "requires": ["tex-command-left", "tex-command-right", "tex-control-space"],
       "status": "verified",
-      "hash": "8977a5717b84dcb3fe8fb2dd720df9beb49fe028862a70d63c87691e8df27003"
+      "hash": "9c2004ea79a8eeeae96a15cf1e6fc3199c6247f1871b13384d9d40637f4987cf"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49312,7 +49359,7 @@
         "tex-groups"
       ],
       "status": "verified",
-      "hash": "b0d217adf526f31751760958e00edfcb3e51c661be36ab060b0d27a00c2221db"
+      "hash": "4a0da1400fc4085a24d369cd603d5f4cf5f97bd3d0d876d634e2fdca679001c1"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49320,7 +49367,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "6d195be72623d9f8223dea9abd96c239dfa715f12d684ea3a24bf3646b6d43a3"
+      "hash": "606150b85cad73d34aeab39b4cca158c30686b60d66c38bbc6abc1895a6f08e6"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49328,7 +49375,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "4224953901f3406c6696487c2e3ad413520f9c733e10918ed68eea2be3e4eec4"
+      "hash": "309b8d09cf6278b3516649a74e25fd110fadb57a813bb00ca12edd8c537bf335"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49336,7 +49383,7 @@
       "kind": "inline",
       "requires": ["tex-command-left", "tex-command-right", "tex-control-space"],
       "status": "verified",
-      "hash": "850cf1677768c0737f6b8a552cadc6f4683bceebdf16bc4d70e5e61d252760c1"
+      "hash": "eef4b1dbd0967805a6fc9c4031283fa8189c466d5f262dcb93d0a6eef914b37a"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49358,7 +49405,7 @@
       "kind": "inline",
       "requires": ["tex-command-frac", "tex-groups"],
       "status": "verified",
-      "hash": "182a9ed782983fe5f19bd4ef31aab6e667996a8bfbd50bba3fbb1b486c5484e1"
+      "hash": "49566e6aad26d2d303aa56eb1b7898dd685a27510e5ff929fe72b207ff80a28b"
     },
     {
       "lesson": "calculus-gradient-descent",
@@ -49606,7 +49653,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "26c7035ebd36f520c9e775afad1e7cab971e10ea3bfc514d3b423a1be81d726b"
+      "hash": "ec5ed4bc84151b3990247affa80afa40fd8034c6628b781f4dd2ce5664afbf11"
     },
     {
       "lesson": "probability-statistics-probability-models-events",
@@ -53604,7 +53651,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "d77743f7d4d85eba360d005dbce872fa732286e7ffe2e10fa1129c7c3fa604d7"
+      "hash": "610622cf2ef6522c45e91b18609ffcdf69b3c5b46645a94da1959730d77f2190"
     },
     {
       "lesson": "probability-statistics-normal-distributions-transformations",
@@ -55604,7 +55651,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "4fddd2b5704fda81fe8819fce83097d16aeaefb97ca3af41558b3fc47d783a75"
+      "hash": "23181e4a772367805d39b02f4e45467dd944c3ec119b90ab5d9e632b29169953"
     },
     {
       "lesson": "probability-statistics-data-samples-study-design",
@@ -55612,7 +55659,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "89a02d626d1e43c795b04e28a8d6767efb095a0dc343eda68b1d4effacfa4df3"
+      "hash": "4bb0fc57104f443161488a9170bb46e7638f89770f5650c6188d47d5a459f723"
     },
     {
       "lesson": "probability-statistics-data-samples-study-design",
@@ -55620,7 +55667,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "ad90468dee0973db50a8cd887b6329037108b81ebf05b360f92524db1b5c37b4"
+      "hash": "b450fc2d3e8845b7841d98e050de569c35e5cf01e6e9f09a5fb16d9a4f83c645"
     },
     {
       "lesson": "probability-statistics-data-samples-study-design",
@@ -55884,7 +55931,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-ge", "tex-calculus-le", "tex-superscripts"],
       "status": "verified",
-      "hash": "ac25039be9f83fd4598498a5515d82d10cd73c5c36fa7a51b897c44672e22716"
+      "hash": "333d757d828f2010bf5082478328829aec0d57e6959d04b522d5d8673f849264"
     },
     {
       "lesson": "probability-statistics-laws-large-numbers-central-limit-theorem",
@@ -55892,7 +55939,7 @@
       "kind": "inline",
       "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "5d21d80f6d73d4417cc4068528f938c7d819aa728113464c901b831803f14ebf"
+      "hash": "3a7415b8df8d7556334320a07026e5f01a04aa48fb656682febfef098d31427d"
     },
     {
       "lesson": "probability-statistics-laws-large-numbers-central-limit-theorem",
@@ -56372,7 +56419,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "1da578a63cd04413a5d8e9ffa50393d49ef06cb3008977aaa9d59e65c220b6c7"
+      "hash": "e9644875f1ff052709f8dd18070004bf5ecde4cf508f4398f23f4d5504dd55fa"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56388,7 +56435,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "ea07a2eba9f8e1ad7389e009a3554289badd7a0d9dd7a8270dc02482ee8e7c1f"
+      "hash": "33f0c89c69414b8d5995cf6cee6045dc06afbd3ccf5d0d1bd2d7c362244f3e0b"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56404,7 +56451,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "713e92571a0e95caf9e0806a6ce138865eda0d78f2c75c16eba38ebb18d965ba"
+      "hash": "600d0c3511ba39ae7452f0c1dd92c707e5d4eec57017ba5946c5be98a183a6c2"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56420,7 +56467,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "b16a196f6dde241fd0e5e6fae52dd582714511f9f5928803a7eeaf8f17b91c92"
+      "hash": "601b2bcda41fc3dc10eb837a70703588763f7cc09cf2bb315db5453727c4c4d8"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56436,7 +56483,7 @@
       "kind": "inline",
       "requires": [],
       "status": "verified",
-      "hash": "8d2dddca51f71a51441be2531645d0b81822da6877e1586350be6350206ba4e2"
+      "hash": "16947af812ed6a8d62539ca349bb978ff9e05c9af1ee2c02a993af2adce91883"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56460,7 +56507,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-ge", "tex-command-cdot", "tex-superscripts"],
       "status": "verified",
-      "hash": "79e16c317092f2bbfe245f23a77ef899e54be3e7ccb9da7216c0d57c0cef3752"
+      "hash": "f85ecea91d1baceeb24901abe189b86a6c8f7357d4c9ff00bdaf2dee4fd13774"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56476,7 +56523,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-ge", "tex-command-cdot", "tex-superscripts"],
       "status": "verified",
-      "hash": "24cdc638e48dc8ac5aa611e7703ddb805b64e2b0a1b0fd9a0935ebdb423a02f1"
+      "hash": "3919cfce74da3f661d5dc617ae0d8d2fdea8b24032cdfc881d47b8219102e3c6"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56492,7 +56539,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-ge", "tex-command-cdot", "tex-superscripts"],
       "status": "verified",
-      "hash": "a851ca6d1e90fcaf4295fe60be811e4220c6a73455ec5cc6dea3836c5da0e5af"
+      "hash": "d06e0d2d3b07cc46f94bd899af64a8c9764255b4c9d9f59ce06861965ea3cde2"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56508,7 +56555,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-ge", "tex-command-cdot", "tex-superscripts"],
       "status": "verified",
-      "hash": "d6f01d14d6fff104f40fd849f7c9cac87c53a5f44aded2aa7c7fee01d6e86cd6"
+      "hash": "d7110b770728e0c4aac9782492e5e6b5a98dfd39bfcc32eda55d39c5e07e45b2"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -56524,7 +56571,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-ge", "tex-command-cdot", "tex-superscripts"],
       "status": "verified",
-      "hash": "e1198e6c72639fe322f9247df221b5a3a06f1ebf347c5193cce42c9e90d3b242"
+      "hash": "f89a2ca5893d96c01fc123da26a0024b11dd87081ff210049a8918e0313a0360"
     },
     {
       "lesson": "probability-statistics-concentration-monte-carlo",
@@ -58160,7 +58207,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-alpha"],
       "status": "verified",
-      "hash": "04634e78c4722783dee3fc2be58af9d4be6ef8ae095e3e2d3c17e4f775a4868f"
+      "hash": "2cbe5e0b4c0f061c8deb0e2fd58904891abbd23191bfae5ce0c98551c6321230"
     },
     {
       "lesson": "probability-statistics-hypothesis-testing",
@@ -58176,7 +58223,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-alpha"],
       "status": "verified",
-      "hash": "4e429ed035127e7ed9ec917507febe56f1d30b5f1355abece4b56f9dff09e3d7"
+      "hash": "861d479557eb3fce5406fb98bd26090145f391006a78887a0feea0226b8fb8f2"
     },
     {
       "lesson": "probability-statistics-hypothesis-testing",
@@ -58192,7 +58239,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-alpha"],
       "status": "verified",
-      "hash": "36dd820eae506acbf11b7ef73903e0ea3f3215edc5dd1e6fea638652e0b53b7b"
+      "hash": "74678e210390dbb2d00de82ad551bfd42c094be9ce2f56f06b22658a5911b84c"
     },
     {
       "lesson": "probability-statistics-hypothesis-testing",
@@ -58208,7 +58255,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-alpha"],
       "status": "verified",
-      "hash": "c18ba01b82a769d0ebe9a25660d14795345b3275a4935ad3672cd7e6d750e236"
+      "hash": "15ec2112623418e6cf64035567e34927cdf7af21e08c8fe9f6249b51a2c2ebf5"
     },
     {
       "lesson": "probability-statistics-hypothesis-testing",
@@ -58224,7 +58271,7 @@
       "kind": "inline",
       "requires": ["tex-calculus-alpha"],
       "status": "verified",
-      "hash": "066b93725d984090722e0eff3a62310340851337505942c75b8495cc1a39767c"
+      "hash": "1564ee6b8ac93418f8b07df644f5e7258f9e987eda7d5ba15457754fdf5f9184"
     },
     {
       "lesson": "probability-statistics-hypothesis-testing",
@@ -64492,10 +64539,12 @@
     },
     {
       "reference": "calculus-directional-derivative",
-      "examples": ["For gradient $(3,4)$, the greatest unit-direction rate is five."],
+      "examples": [
+        "For a differentiable function with gradient $(3,4)$, the greatest unit-direction rate is five."
+      ],
       "requires": [],
       "status": "verified",
-      "hash": "a5297755770d2e0dad32e3b5a3f4bdcf52d2209be240b97d790e292173d2add7"
+      "hash": "58290e755ce14bffbdbadea5a51b3cccb3640062569965d21fd6927efd3353f3"
     },
     {
       "reference": "calculus-regular-level-curve",
@@ -65137,7 +65186,7 @@
       "examples": ["With density $4x^3$ on $(0,1)$, $E[X]=4/5$."],
       "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "b73001d37966807493bb0a5d3e7a7acf6148e240072252e245a4dfe1afd789b6"
+      "hash": "89102a3035cbeae86261d20c2712c745e7cb586f24f2eaab5ef23e18b247fa63"
     },
     {
       "reference": "probability-statistics-uniform-continuous",
@@ -65181,7 +65230,7 @@
       "examples": ["$\\Phi(-z)=1-\\Phi(z)$."],
       "requires": ["tex-probability-statistics-capital-phi"],
       "status": "verified",
-      "hash": "e92f7512ab4e695200208e7b1e28ea40c1733c8c16a0d861985b7344d07d71f6"
+      "hash": "3d0efb10617047726aa4396f4065c90ac0dce45ececa0bf66ec1f195012554e7"
     },
     {
       "reference": "probability-statistics-normal-quantile",
@@ -65273,7 +65322,7 @@
       "examples": ["Variances four and nine with covariance three give sum variance nineteen."],
       "requires": [],
       "status": "verified",
-      "hash": "349b9a06a7c8eb9d308c8d0dbe4e4939ec22f0ef38dc1d729f13530e045e171b"
+      "hash": "e71e3de398fd5803291e988f1f62207dc93906bb981a8689b3560d26f139385f"
     },
     {
       "reference": "probability-statistics-correlation",
@@ -65289,7 +65338,7 @@
       "examples": ["Diagonal entries are variances; off-diagonal entries describe co-variation."],
       "requires": [],
       "status": "verified",
-      "hash": "a58c4ec8050411a3d5dd3fcefbba687d21344e697201eda1fb317cc2dfc08436"
+      "hash": "2cb262cac0ab5e6c3cb45e5a44208bde1776f41b27d26fa76c1ab1209fb6c792"
     },
     {
       "reference": "probability-statistics-covariance-psd",
@@ -65454,7 +65503,7 @@
       "examples": ["A shared calibration error persists across repeated measurements."],
       "requires": [],
       "status": "verified",
-      "hash": "35ba52e7d17b7420817ae3b96d5355c8e944c2cbffa6e9afb6cb364834a49652"
+      "hash": "60308edf121e87030cbd77c01d9012c17738d16ebbb742103c5905fe975d9659"
     },
     {
       "reference": "probability-statistics-markov-bound",
@@ -65480,7 +65529,7 @@
         "tex-superscripts"
       ],
       "status": "verified",
-      "hash": "82bf5e3e3ce06a540014f823300119cda48628fdcaa1c7c4b93d76eab28c7da1"
+      "hash": "9bb2c56d6b549c123e3ed2beed3066437546b0e70c7eb7c7a486cafd2733fd9b"
     },
     {
       "reference": "probability-statistics-monte-carlo-estimate",

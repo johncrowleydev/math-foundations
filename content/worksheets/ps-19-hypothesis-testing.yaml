@@ -252,7 +252,7 @@ sections:
         answer: 'Failing to reject is the complementary decision: $1-0.8=0.20$.'
       - id: 49
         type: freeform
-        prompt: To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what per-test significance level suffices?
+        prompt: To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
         answerLines: 5
         answer: Use $\alpha/m=0.05/5=0.01$. Independence is not required for the union bound.
       - id: 50
@@ -262,7 +262,7 @@ sections:
         answer: 'Failing to reject is the complementary decision: $1-0.9=0.10$.'
       - id: 51
         type: freeform
-        prompt: To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what per-test significance level suffices?
+        prompt: To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
         answerLines: 5
         answer: Use $\alpha/m=0.05/10=0.005$. Independence is not required for the union bound.
       - id: 52
@@ -272,7 +272,7 @@ sections:
         answer: 'Failing to reject is the complementary decision: $1-0.6=0.40$.'
       - id: 53
         type: freeform
-        prompt: To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what per-test significance level suffices?
+        prompt: To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
         answerLines: 5
         answer: Use $\alpha/m=0.04/4=0.01$. Independence is not required for the union bound.
       - id: 54
@@ -282,7 +282,7 @@ sections:
         answer: 'Failing to reject is the complementary decision: $1-0.95=0.05$.'
       - id: 55
         type: freeform
-        prompt: To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what per-test significance level suffices?
+        prompt: To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
         answerLines: 5
         answer: Use $\alpha/m=0.1/20=0.005$. Independence is not required for the union bound.
       - id: 56
@@ -292,7 +292,7 @@ sections:
         answer: 'Failing to reject is the complementary decision: $1-0.7=0.30$.'
       - id: 57
         type: freeform
-        prompt: To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what per-test significance level suffices?
+        prompt: To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
         answerLines: 5
         answer: Use $\alpha/m=0.08/8=0.01$. Independence is not required for the union bound.
       - id: 58

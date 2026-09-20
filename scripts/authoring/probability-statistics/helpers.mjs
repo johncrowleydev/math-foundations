@@ -38,9 +38,10 @@ export const truth = (value) => ({
   correct: value,
   incorrect: !value,
 });
-export const term = (value, wrong) => ({
+export const term = (value, wrong, alternatives = []) => ({
   validator: 'term',
-  params: { accepted: [value] },
+  params: { accepted: [value, ...alternatives] },
+  ...(alternatives.length ? { extraValid: alternatives } : {}),
   correct: value,
   incorrect: wrong,
 });
