@@ -53,6 +53,9 @@ export function Exercise({
     [versions, setVersions] = useState<RecordData[]>([]),
     [showVersions, setShowVersions] = useState(false);
   const latestDraft = useRef<Draft | null>(null);
+  // React state disables the button after rendering; this lock also covers
+  // multiple activation events before that render has committed.
+  const submissionInFlight = useRef(false);
   const writes = useRef(Promise.resolve());
   const saveError = useRef('');
   const touched = useRef(false);
@@ -203,7 +206,8 @@ export function Exercise({
       void expose(c.concept, 'exercise', key).catch((e) => setError(String(e)));
   }
   async function submit() {
-    if (!draft || pending || correct || saving) return;
+    if (!draft || pending || correct || saving || submissionInFlight.current) return;
+    submissionInFlight.current = true;
     setSaving(true);
     setError('');
     try {
@@ -278,6 +282,7 @@ export function Exercise({
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
+      submissionInFlight.current = false;
       setSaving(false);
     }
   }

@@ -1,7 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import 'fake-indexeddb/auto';
-import { put, get, integrate, emptyDraft, exportData, importData } from '../src/storage';
+import {
+  put,
+  get,
+  integrate,
+  emptyDraft,
+  exportData,
+  importData,
+  clearLocalWork,
+} from '../src/storage';
 import type { Attempt, RecordData } from '../src/types';
 
 test('transcription sync retires the submitted image and preserves photo origin through export/import', async () => {
@@ -35,6 +43,7 @@ test('transcription sync retires the submitted image and preserves photo origin 
     status: 'graded',
     transcription: '$p \\to q$',
     verdict: 'correct',
+    grades: [{ at: 20, verdict: 'correct', feedback: 'Correct.', transcription: '$p \\to q$' }],
   };
   const r = {
     key: 'attempt/' + a.id,
@@ -90,7 +99,12 @@ test('transcription sync keeps a photo reused by an active draft', async () => {
     key: 'attempt/' + a.id,
     id: 'version-2',
     revision: 101,
-    payload: { ...a, images: [], transcription: 'x' },
+    payload: {
+      ...a,
+      images: [],
+      transcription: 'x',
+      grades: [{ at: 20, verdict: 'correct', feedback: 'Correct.', transcription: 'x' }],
+    },
     versions: [],
     conflicts: [],
     device: 'Grader',
@@ -99,4 +113,49 @@ test('transcription sync keeps a photo reused by an active draft', async () => {
   await integrate([r], 101);
   assert.ok(await get('media', h));
   assert.equal((await get<any>('drafts', 'another-exercise')).photos[0].hash, h);
+});
+
+test('legacy retired history remains readable without authorizing draft or media deletion', async () => {
+  await clearLocalWork();
+  const h = 'c'.repeat(64);
+  const a: Attempt = {
+    id: 'legacy-transcript',
+    exercise: 'logic-legacy',
+    submitted: 10,
+    contentVersion: 'v1',
+    mode: 'photo',
+    text: '',
+    images: [],
+    revealed: false,
+    status: 'graded',
+    verdict: 'correct',
+    transcription: 'Old transcript.',
+    grades: [],
+  };
+  const draft = {
+    ...emptyDraft(),
+    mode: 'photo',
+    photos: [{ hash: h, rotation: 0 }],
+    editing: false,
+  };
+  await put('media', h, new Blob(['original scratchwork']));
+  await put('drafts', a.exercise, draft);
+  await integrate(
+    [
+      {
+        key: 'attempt/' + a.id,
+        payload: a,
+        revision: 1,
+        id: 'legacy-record',
+        device: 'server',
+        updated: 20,
+        versions: [],
+        conflicts: [],
+      },
+    ],
+    1,
+  );
+  assert.deepEqual(await get('attempts', a.id), a);
+  assert.deepEqual(await get('drafts', a.exercise), draft);
+  assert.ok(await get('media', h));
 });

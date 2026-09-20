@@ -94,6 +94,17 @@ test('server plans sessions; offline reload uses cached responses without changi
       revealed: false,
       status: 'queued',
       grades: [],
+      review: {
+        instanceId: 'instance',
+        kind: 'scheduled-review',
+        templateId: 'definition',
+        concept: 'logic',
+        skill: 'recall',
+        scheduledFor: 0,
+        presentedAt: 50,
+        intervalDays: 0,
+      },
+      presentation: { question: { id: 1, section: 'Review', instructions: 'Define the term.' } },
     };
     await saveAttempt(pending);
     let rejectRestore = true;
