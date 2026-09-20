@@ -521,6 +521,8 @@ try {
   const curriculumScreenshots = join(root, 'docs/screenshots/review-coverage');
   await mkdir(curriculumScreenshots, { recursive: true });
   for (const lesson of ['linear-algebra-rank-inverses', 'linear-algebra-least-squares']) {
+    await page.goto(baseURL + '/#/review-library/' + lesson);
+    await items.first().waitFor();
     const example = catalog.items.find((item) => item.lesson === lesson && item.originalExercise);
     assert.ok(example, `${lesson}: relocated exercises remain in the effective pool`);
     await clear();
@@ -537,9 +539,11 @@ try {
       `#/practice/${lesson}/${example.originalExercise.split('-').at(-1)}`,
     );
     await library.locator('.library-filters summary').click();
+    await link.scrollIntoViewIfNeeded();
     await page.screenshot({ path: join(curriculumScreenshots, lesson + '-desktop.png') });
     await page.setViewportSize({ width: 390, height: 844 });
     await assertNoOverflow();
+    await link.scrollIntoViewIfNeeded();
     await page.screenshot({ path: join(curriculumScreenshots, lesson + '-phone.png') });
     await link.click();
     await page.waitForURL(`**/#/practice/${lesson}/${example.originalExercise.split('-').at(-1)}`);

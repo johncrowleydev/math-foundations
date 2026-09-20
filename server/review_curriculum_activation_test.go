@@ -18,6 +18,8 @@ func TestPublishedCurriculumReviewPrerequisiteActivation(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, tc := range []struct{ id, earlier, ready string }{
+		{"df-function-type-classification-review", "function-definition", "bijection"},
+		{"la-fit-null-space-transfer-review", "orthogonal-projection", "least-squares"},
 		{"counting-model-distinction-review", "counting-principles", "combinations"},
 		{"big-o-constants-review", "big-o", "big-omega-theta"},
 		{"graph-scan-growth-transfer-review", "cost-model", "big-omega-theta"},
