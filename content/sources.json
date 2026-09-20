@@ -1914,6 +1914,111 @@
       "url": "https://katex.org/docs/supported.html",
       "supports": "Probability notation, accents, bold Latin and Greek vector symbols, relations, and operator constructions in the authored optional typing help.",
       "checked": "2026-09-20"
+    },
+    "review-df-set-basics": {
+      "source": "proof",
+      "locator": "§§1.1–1.4, pp. 3–17",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=15",
+      "supports": "Membership, empty sets, cardinality, subsets, power sets and Cartesian products; supports original terminology retrieval.",
+      "checked": "2026-09-20"
+    },
+    "review-df-set-operations": {
+      "source": "proof",
+      "locator": "§§1.5–1.6, pp. 18–21",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=30",
+      "supports": "Membership definitions of union, intersection, difference and complement relative to a universe. Original finite examples are computed from these definitions; notation uses setminus and superscript c.",
+      "checked": "2026-09-20"
+    },
+    "review-df-partition": {
+      "source": "proof",
+      "locator": "§11.4, Definition 11.5, p. 216",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=228",
+      "supports": "Nonempty, pairwise disjoint blocks covering a set; original partition and disjointness terminology.",
+      "checked": "2026-09-20"
+    },
+    "review-df-relations": {
+      "source": "proof",
+      "locator": "§§11.1–11.3, Definitions 11.1–11.4, pp. 201–212; §11.6, Definition 11.7, p. 221",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=213",
+      "supports": "Relations, reflexivity, symmetry, transitivity, equivalence relations and equivalence classes; original finite relation instances.",
+      "checked": "2026-09-20"
+    },
+    "review-df-function-types": {
+      "source": "proof",
+      "locator": "§12.1, Definitions 12.1–12.2, pp. 224–225",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=236",
+      "supports": "Total functions, domain, codomain and range; original terminology and domain/codomain examples.",
+      "checked": "2026-09-20"
+    },
+    "review-df-function-properties": {
+      "source": "proof",
+      "locator": "§12.2, Definition 12.4, pp. 228–229",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=240",
+      "supports": "Injective, surjective and bijective functions; dependence on domain/codomain. Original finite and square-function classification examples.",
+      "checked": "2026-09-20"
+    },
+    "review-df-function-inverse": {
+      "source": "proof",
+      "locator": "§§12.4–12.6, Definitions 12.5–12.9, pp. 235–243",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=247",
+      "supports": "Composition order and types, inverse functions and preimages; original terminology retrieval.",
+      "checked": "2026-09-20"
+    },
+    "review-df-direct": {
+      "source": "proof",
+      "locator": "§4.3, pp. 118–119",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=130",
+      "supports": "Direct proof starts with the hypothesis and derives the conclusion from established facts and definitions.",
+      "checked": "2026-09-20"
+    },
+    "review-df-contrapositive": {
+      "source": "proof",
+      "locator": "§5.1, pp. 128–129",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=140",
+      "supports": "Contrapositive proof assumes the negated conclusion and establishes the negated hypothesis.",
+      "checked": "2026-09-20"
+    },
+    "review-df-contradiction": {
+      "source": "proof",
+      "locator": "§§6.1–6.2, pp. 138–141",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=150",
+      "supports": "Contradiction proofs negate the whole target; conditional and quantified proof setups. Original assumption-selection tasks follow these rules.",
+      "checked": "2026-09-20"
+    },
+    "review-df-orders": {
+      "source": "mcs",
+      "locator": "§10.6.2, Definitions 10.6.12–10.6.13, pp. 441–442",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=449",
+      "supports": "Antisymmetry and reflexive partial orders. The curriculum calls the book’s weak partial order a partial order; loops are allowed. Original finite classification instances.",
+      "checked": "2026-09-20"
+    },
+    "review-df-proper-subset": {
+      "source": "mcs",
+      "locator": "Problems for §4.1, Problem 4.2, p. 119",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=127",
+      "supports": "Proper inclusion is subset inclusion together with inequality; the curriculum writes subsetneq to make its convention explicit.",
+      "checked": "2026-09-20"
+    },
+    "review-df-sequence-growth": {
+      "source": "levin",
+      "locator": "§4.2, Arithmetic Sequences and Geometric Sequences",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_seq-growth.html",
+      "supports": "Recursive rules, initial values, arithmetic sequences and geometric sequences. Original terminology retrieval follows the taught distinction between starting values and continuation rules.",
+      "checked": "2026-09-20"
+    },
+    "review-df-sum-notation": {
+      "source": "mcs",
+      "locator": "§2.2, summation notation preceding the proof of Theorem 2.2.1, p. 31",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=39",
+      "supports": "Summation indices enumerate the included terms and empty sums equal zero; original endpoint, singleton and empty-index calculations.",
+      "checked": "2026-09-20"
+    },
+    "review-df-sequence-definitions": {
+      "source": "levin",
+      "locator": "§4.1, Recursive Definitions, including Example 4.1.7",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_seq_intro.html",
+      "supports": "Recurrence relations determine later terms from earlier terms; initial conditions supply starting values. Original retrieval distinguishes the rule from the data.",
+      "checked": "2026-09-20"
     }
   },
   "lessons": {
@@ -5963,6 +6068,186 @@
     "probability-statistics-estimation-likelihood-review-a-parameter-an-estimator-and-an-estimate-recall-production": {
       "reviewedContentHash": "c7ad91c054f59c00483411acb7d56975b167752f65754dad54136de233262d54",
       "sources": ["ps-pn-8-2-1", "ps-pn-8-2-3"]
+    },
+    "df-element-term-review": {
+      "reviewedContentHash": "7cb24ad794cbd100bc87449dde2b654a03818ef5f30adf1943d38d9190075e94",
+      "sources": ["review-df-set-basics"]
+    },
+    "df-subset-term-review": {
+      "reviewedContentHash": "d797d6159995cb457c3d24b0a3fadab657fa78d098412bcdb01af1f56679e298",
+      "sources": ["review-df-set-basics"]
+    },
+    "df-proper-subset-term-review": {
+      "reviewedContentHash": "f1b0e6e78082a948eb40d05e1b78aa660f6a2429316372f0dbb1c28570e90add",
+      "sources": ["review-df-set-basics", "review-df-proper-subset"]
+    },
+    "df-union-term-review": {
+      "reviewedContentHash": "05c19173c69e1d145a516dfbf2ddee004b6308cdd1650048d1c557911935b1f0",
+      "sources": ["review-df-set-operations"]
+    },
+    "df-intersection-term-review": {
+      "reviewedContentHash": "d1d9ea62d472b92366618e504171af897083578504f918dbed09750cfc4f8b57",
+      "sources": ["review-df-set-operations"]
+    },
+    "df-difference-term-review": {
+      "reviewedContentHash": "e9aa138b5c2de1f58a92be98edbf235d315a7bdb18f916c5a97e644c13c29df8",
+      "sources": ["review-df-set-operations"]
+    },
+    "df-complement-term-review": {
+      "reviewedContentHash": "708235e76e6b60f5ded3aa36aa4a2ec14e4e63eceab54c6fbc41448a872efe52",
+      "sources": ["review-df-set-operations"]
+    },
+    "df-universe-term-review": {
+      "reviewedContentHash": "5452545ac308c7163f0d6c26390de5ee312b7ee066225dc307dea7fc727f968a",
+      "sources": ["review-df-set-operations"]
+    },
+    "df-empty-set-term-review": {
+      "reviewedContentHash": "659ad34e2df537e9c8dec388b73d1c1c6aef8cabaccbe7823ea89dce52f96118",
+      "sources": ["review-df-set-basics"]
+    },
+    "df-cardinality-term-review": {
+      "reviewedContentHash": "ad050e93c5eb7ed8abb677c6a9129cbd45222eadfb99a7ff1f573ccebec9e9ec",
+      "sources": ["review-df-set-basics"]
+    },
+    "df-power-set-term-review": {
+      "reviewedContentHash": "c84cf37ab2f1e0e4f16513c6f8f90fa6420d5d1c1eb0c7bb89012a5516486009",
+      "sources": ["review-df-set-basics"]
+    },
+    "df-cartesian-product-term-review": {
+      "reviewedContentHash": "5e021a0d75edbe8c6698a7a01fd17146a457f290c28cb68d5ea6dce8d3f7a7d6",
+      "sources": ["review-df-set-basics"]
+    },
+    "df-disjoint-term-review": {
+      "reviewedContentHash": "fe9a4fdf2e67ff8dfb9a8d9199614eb19f610f65bc2408b610b99b8ad1f4bb45",
+      "sources": ["review-df-set-operations", "review-df-partition"]
+    },
+    "df-partition-term-review": {
+      "reviewedContentHash": "e79d1c65fd240561887136a5f7524d380c5b45597eb46628702bb71bfc2d7f8d",
+      "sources": ["review-df-partition"]
+    },
+    "df-relation-term-review": {
+      "reviewedContentHash": "a18298316914f6db9450ddea140b9624019503203e63f7ced1ab1b4bd5e16719",
+      "sources": ["review-df-relations"]
+    },
+    "df-reflexive-term-review": {
+      "reviewedContentHash": "632e974f2bd248121d471e9f688de13847c6a4b5b61ea48b0b1eb7dfb2e324ee",
+      "sources": ["review-df-relations"]
+    },
+    "df-symmetric-term-review": {
+      "reviewedContentHash": "cefb6de1f343d8c383bd2faf1534545615296882b329b54e57b16af348ae0230",
+      "sources": ["review-df-relations"]
+    },
+    "df-antisymmetric-term-review": {
+      "reviewedContentHash": "6732bc745556fee3b586c11bd8f36931b6a6adb75a68a71790e570fbecba776b",
+      "sources": ["review-df-orders"]
+    },
+    "df-transitive-term-review": {
+      "reviewedContentHash": "8a20bb98f8b95762c21a9e304d8fc72629ea0a41206f8f4ad8fc4f70071334e5",
+      "sources": ["review-df-relations"]
+    },
+    "df-equivalence-relation-term-review": {
+      "reviewedContentHash": "ab223776f24abe493f1697af6cc60ef16bf068816c5f337a11ca40a5a8c23829",
+      "sources": ["review-df-relations"]
+    },
+    "df-equivalence-class-term-review": {
+      "reviewedContentHash": "bd4f1f9494bf279d38f7bb89939f8ccb655990c2ace55541e77ffa02abe5c75e",
+      "sources": ["review-df-relations"]
+    },
+    "df-partial-order-term-review": {
+      "reviewedContentHash": "02002e339c032fa620e0b2543af63596eae50881b143cb68166856b44147e10d",
+      "sources": ["review-df-orders"]
+    },
+    "df-function-term-review": {
+      "reviewedContentHash": "9c42dfb0cf9a73ec4c39a2aa2267d293a3bcfa1ef519070f7e536131376a1bd7",
+      "sources": ["review-df-function-types"]
+    },
+    "df-domain-term-review": {
+      "reviewedContentHash": "ec9b24428d7f6aeb6f99bd8aef4cac8ee05fc48bc5af6ad2a90301a326450c61",
+      "sources": ["review-df-function-types"]
+    },
+    "df-codomain-term-review": {
+      "reviewedContentHash": "6f6e969e1bad895ae7081aad5a6524a6a48342a93e8173057e801ca93b623fae",
+      "sources": ["review-df-function-types"]
+    },
+    "df-range-term-review": {
+      "reviewedContentHash": "be15d4996e4c599f5c685451678453d7da7bc33c535141e85c21dd644a599070",
+      "sources": ["review-df-function-types"]
+    },
+    "df-injective-term-review": {
+      "reviewedContentHash": "a78505193e4e459d5fcbbb4115af5a3102fb8af29e8113fcd5b5272299162ad4",
+      "sources": ["review-df-function-properties"]
+    },
+    "df-surjective-term-review": {
+      "reviewedContentHash": "68d72386cb15af6bae2aa877913ec0955c3e2afe8dcb247574b328b5f88211d7",
+      "sources": ["review-df-function-properties"]
+    },
+    "df-bijective-term-review": {
+      "reviewedContentHash": "8b925a259f215ec3039d4559895f858ea5afc8d2f692e53e1d91f1835147acab",
+      "sources": ["review-df-function-properties"]
+    },
+    "df-inverse-function-term-review": {
+      "reviewedContentHash": "366c60f45daec207b964984a497d594f95a747294078ddcb43de43d56b528b39",
+      "sources": ["review-df-function-inverse"]
+    },
+    "df-composition-term-review": {
+      "reviewedContentHash": "7285a1e1311aa396a295477c0deb2f4e0addf34bdf500461b75a9ce679788453",
+      "sources": ["review-df-function-inverse"]
+    },
+    "df-preimage-term-review": {
+      "reviewedContentHash": "eb33ae7a5ccdea9be6cfba74f5a8390d21a085ffa071c0522b442245f536ab65",
+      "sources": ["review-df-function-inverse"]
+    },
+    "df-recursive-definition-term-review": {
+      "reviewedContentHash": "26b8d3bef2f739954dbf1e9253aa3e789886df4ff34a657e6b92d0062668fdac",
+      "sources": ["review-df-sequence-definitions"]
+    },
+    "df-recurrence-term-review": {
+      "reviewedContentHash": "5f23433f1a353550bdb3f03d3dc798b89dbf020cdf84d019536d98e9b275a069",
+      "sources": ["review-df-sequence-definitions"]
+    },
+    "df-initial-condition-term-review": {
+      "reviewedContentHash": "bd555ac3a2e4d666ef58a0e2c0570cd3d279bcf09c3606825748addd2159db18",
+      "sources": ["review-df-sequence-definitions"]
+    },
+    "df-arithmetic-sequence-term-review": {
+      "reviewedContentHash": "5f0d1c3a933ab4e264b9525007e530db746b0a99fc8991bbd2a3ec336a77001a",
+      "sources": ["review-df-sequence-growth"]
+    },
+    "df-geometric-sequence-term-review": {
+      "reviewedContentHash": "b62a2efb78f2e11493482ac8e1cd25f4df5fd7a76ae6660ab601712aac622274",
+      "sources": ["review-df-sequence-growth"]
+    },
+    "df-direct-proof-term-review": {
+      "reviewedContentHash": "9acfdde2b8adceae990508ee6092ac6614c66bc749e304fcd116ca1ffe6b4f1d",
+      "sources": ["review-df-direct"]
+    },
+    "df-contrapositive-proof-term-review": {
+      "reviewedContentHash": "cbd0b5b42c7c1b3b19e7667ecad3c852876acc9a61f984cb42a58d3a656e9c4d",
+      "sources": ["review-df-contrapositive"]
+    },
+    "df-contradiction-proof-term-review": {
+      "reviewedContentHash": "83079d9cb8f12c73e661ed7b48f939842e178fc0350184fd5d165f48bab82980",
+      "sources": ["review-df-contradiction"]
+    },
+    "df-set-operation-retrieval-review": {
+      "reviewedContentHash": "d26f7b69b5a30fd04260f3a0a24c4e00caef0bd92d4105d4ea200cae79b59727",
+      "sources": ["review-df-set-operations"]
+    },
+    "df-symmetry-antisymmetry-distinction-review": {
+      "reviewedContentHash": "b64484bdd3b6322bdc24bb19ddbbd424880fb13b10b10887a789815bb9864750",
+      "sources": ["review-df-relations", "review-df-orders"]
+    },
+    "df-function-type-classification-review": {
+      "reviewedContentHash": "d038fb2e7a449695232480d88728de463a59b092a5deca8f41112004e0d2a2e0",
+      "sources": ["review-df-function-types", "review-df-function-properties"]
+    },
+    "df-contradiction-start-review": {
+      "reviewedContentHash": "6a6bbe75897931b0088726e03eeea36fca4084a2568fe26afe7bd16da0ea3d12",
+      "sources": ["review-df-contradiction"]
+    },
+    "df-summation-term-count-review": {
+      "reviewedContentHash": "df0ff6a3892a55575fe0576b90790898322cab80aea980428260a346ee70786e",
+      "sources": ["review-df-sum-notation"]
     }
   }
 }

@@ -45245,5 +45245,3488 @@
         }
       }
     ]
+  },
+  {
+    "id": "df-element-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "membership-subset",
+    "skill": "recall",
+    "objective": "element-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["membership-subset"],
+    "sourceIds": ["review-df-set-basics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "In $x\\in A$, what do we call $x$ in relation to the set $A$?",
+      "answer": "Element.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "element",
+                "element.",
+                "a element",
+                "a element.",
+                "an element",
+                "an element.",
+                "the element",
+                "the element.",
+                "member",
+                "member.",
+                "a member",
+                "a member.",
+                "an member",
+                "an member.",
+                "the member",
+                "the member."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Element.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-subset-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "membership-subset",
+    "skill": "recall",
+    "objective": "subset-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["membership-subset"],
+    "sourceIds": ["review-df-set-basics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "Every element of $A$ belongs to $B$, and equality is allowed. Complete: $A$ is a _____ of $B$.",
+      "answer": "Subset.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "subset",
+                "subset.",
+                "a subset",
+                "a subset.",
+                "an subset",
+                "an subset.",
+                "the subset",
+                "the subset."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Subset.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-proper-subset-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "membership-subset",
+    "skill": "recall",
+    "objective": "proper-subset-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["membership-subset"],
+    "sourceIds": ["review-df-set-basics", "review-df-proper-subset"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "$A\\subseteq B$ and $A\\ne B$. What two-word term describes $A$ in relation to $B$?",
+      "answer": "Proper subset.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "proper subset",
+                "proper subset.",
+                "a proper subset",
+                "a proper subset.",
+                "an proper subset",
+                "an proper subset.",
+                "the proper subset",
+                "the proper subset.",
+                "strict subset",
+                "strict subset.",
+                "a strict subset",
+                "a strict subset.",
+                "an strict subset",
+                "an strict subset.",
+                "the strict subset",
+                "the strict subset."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Proper subset.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-union-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "union-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-df-set-operations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What operation forms the set of elements belonging to at least one of two sets?",
+      "answer": "Union.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "union",
+                "union.",
+                "a union",
+                "a union.",
+                "an union",
+                "an union.",
+                "the union",
+                "the union."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Union.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-intersection-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "intersection-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-df-set-operations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What operation forms the set of elements belonging to both sets?",
+      "answer": "Intersection.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "intersection",
+                "intersection.",
+                "a intersection",
+                "a intersection.",
+                "an intersection",
+                "an intersection.",
+                "the intersection",
+                "the intersection."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Intersection.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-difference-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "difference-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-df-set-operations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What operation forms the set of elements in $A$ that are not in $B$?",
+      "answer": "Difference.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "difference",
+                "difference.",
+                "a difference",
+                "a difference.",
+                "an difference",
+                "an difference.",
+                "the difference",
+                "the difference.",
+                "set difference",
+                "set difference.",
+                "a set difference",
+                "a set difference.",
+                "an set difference",
+                "an set difference.",
+                "the set difference",
+                "the set difference.",
+                "relative complement",
+                "relative complement.",
+                "a relative complement",
+                "a relative complement.",
+                "an relative complement",
+                "an relative complement.",
+                "the relative complement",
+                "the relative complement."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Difference.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-complement-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "complement-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-df-set-operations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "Fix a universe $U$ and $A\\subseteq U$. What is the set $U\\setminus A$ called relative to $U$?",
+      "answer": "Complement.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "complement",
+                "complement.",
+                "a complement",
+                "a complement.",
+                "an complement",
+                "an complement.",
+                "the complement",
+                "the complement.",
+                "complement of A",
+                "complement of A.",
+                "a complement of A",
+                "a complement of A.",
+                "an complement of A",
+                "an complement of A.",
+                "the complement of A",
+                "the complement of A."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Complement.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-universe-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "universe-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-df-set-operations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is the fixed surrounding set, relative to which complements are taken, called?",
+      "answer": "Universe.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "universe",
+                "universe.",
+                "a universe",
+                "a universe.",
+                "an universe",
+                "an universe.",
+                "the universe",
+                "the universe.",
+                "universal set",
+                "universal set.",
+                "a universal set",
+                "a universal set.",
+                "an universal set",
+                "an universal set.",
+                "the universal set",
+                "the universal set."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Universe.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-empty-set-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-description",
+    "skill": "recall",
+    "objective": "empty-set-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-description"],
+    "sourceIds": ["review-df-set-basics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is the set containing no elements called?",
+      "answer": "Empty set.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "empty set",
+                "empty set.",
+                "a empty set",
+                "a empty set.",
+                "an empty set",
+                "an empty set.",
+                "the empty set",
+                "the empty set.",
+                "null set",
+                "null set.",
+                "a null set",
+                "a null set.",
+                "an null set",
+                "an null set.",
+                "the null set",
+                "the null set."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Empty set.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-cardinality-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-description",
+    "skill": "recall",
+    "objective": "cardinality-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-description"],
+    "sourceIds": ["review-df-set-basics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What term names the number of distinct elements in a finite set?",
+      "answer": "Cardinality.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "cardinality",
+                "cardinality.",
+                "a cardinality",
+                "a cardinality.",
+                "an cardinality",
+                "an cardinality.",
+                "the cardinality",
+                "the cardinality.",
+                "size",
+                "size.",
+                "a size",
+                "a size.",
+                "an size",
+                "an size.",
+                "the size",
+                "the size."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Cardinality.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-power-set-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "power-set",
+    "skill": "recall",
+    "objective": "power-set-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["power-set"],
+    "sourceIds": ["review-df-set-basics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is the set of all subsets of $A$ called?",
+      "answer": "Power set.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "power set",
+                "power set.",
+                "a power set",
+                "a power set.",
+                "an power set",
+                "an power set.",
+                "the power set",
+                "the power set.",
+                "power set of A",
+                "power set of A.",
+                "a power set of A",
+                "a power set of A.",
+                "an power set of A",
+                "an power set of A.",
+                "the power set of A",
+                "the power set of A."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Power set.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-cartesian-product-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "cartesian-product",
+    "skill": "recall",
+    "objective": "cartesian-product-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["cartesian-product"],
+    "sourceIds": ["review-df-set-basics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What operation forms all ordered pairs $(a,b)$ with $a\\in A$ and $b\\in B$?",
+      "answer": "Cartesian product.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "Cartesian product",
+                "Cartesian product.",
+                "a Cartesian product",
+                "a Cartesian product.",
+                "an Cartesian product",
+                "an Cartesian product.",
+                "the Cartesian product",
+                "the Cartesian product."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Cartesian product.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-disjoint-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "disjoint-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-df-set-operations", "review-df-partition"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What adjective describes two sets with no common element?",
+      "answer": "Disjoint.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "disjoint",
+                "disjoint.",
+                "a disjoint",
+                "a disjoint.",
+                "an disjoint",
+                "an disjoint.",
+                "the disjoint",
+                "the disjoint."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Disjoint.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-partition-term-review",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "partitions",
+    "skill": "recall",
+    "objective": "partition-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["partitions"],
+    "sourceIds": ["review-df-partition"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is a collection of nonempty, pairwise disjoint subsets whose union is all of $A$ called?",
+      "answer": "Partition.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "partition",
+                "partition.",
+                "a partition",
+                "a partition.",
+                "an partition",
+                "an partition.",
+                "the partition",
+                "the partition.",
+                "partition of A",
+                "partition of A.",
+                "a partition of A",
+                "a partition of A.",
+                "an partition of A",
+                "an partition of A.",
+                "the partition of A",
+                "the partition of A."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Partition.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-relation-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "relation-representation",
+    "skill": "recall",
+    "objective": "relation-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["relation-representation"],
+    "sourceIds": ["review-df-relations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is an arbitrary subset of $A\\times B$ called as a connection from $A$ to $B$?",
+      "answer": "Relation.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "relation",
+                "relation.",
+                "a relation",
+                "a relation.",
+                "an relation",
+                "an relation.",
+                "the relation",
+                "the relation.",
+                "binary relation",
+                "binary relation.",
+                "a binary relation",
+                "a binary relation.",
+                "an binary relation",
+                "an binary relation.",
+                "the binary relation",
+                "the binary relation."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Relation.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-reflexive-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "relation-properties",
+    "skill": "recall",
+    "objective": "reflexive-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["relation-properties"],
+    "sourceIds": ["review-df-relations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "Which relation property requires $aRa$ for every $a$ in the underlying set?",
+      "answer": "Reflexive.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "reflexive",
+                "reflexive.",
+                "a reflexive",
+                "a reflexive.",
+                "an reflexive",
+                "an reflexive.",
+                "the reflexive",
+                "the reflexive.",
+                "reflexivity",
+                "reflexivity.",
+                "a reflexivity",
+                "a reflexivity.",
+                "an reflexivity",
+                "an reflexivity.",
+                "the reflexivity",
+                "the reflexivity."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Reflexive.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-symmetric-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "relation-properties",
+    "skill": "recall",
+    "objective": "symmetric-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["relation-properties"],
+    "sourceIds": ["review-df-relations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "Which relation property requires $bRa$ whenever $aRb$?",
+      "answer": "Symmetric.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "symmetric",
+                "symmetric.",
+                "a symmetric",
+                "a symmetric.",
+                "an symmetric",
+                "an symmetric.",
+                "the symmetric",
+                "the symmetric.",
+                "symmetry",
+                "symmetry.",
+                "a symmetry",
+                "a symmetry.",
+                "an symmetry",
+                "an symmetry.",
+                "the symmetry",
+                "the symmetry."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Symmetric.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-antisymmetric-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "relation-properties",
+    "skill": "recall",
+    "objective": "antisymmetric-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["relation-properties"],
+    "sourceIds": ["review-df-orders"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "Which relation property requires $a=b$ whenever both $aRb$ and $bRa$ hold?",
+      "answer": "Antisymmetric.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "antisymmetric",
+                "antisymmetric.",
+                "a antisymmetric",
+                "a antisymmetric.",
+                "an antisymmetric",
+                "an antisymmetric.",
+                "the antisymmetric",
+                "the antisymmetric.",
+                "antisymmetry",
+                "antisymmetry.",
+                "a antisymmetry",
+                "a antisymmetry.",
+                "an antisymmetry",
+                "an antisymmetry.",
+                "the antisymmetry",
+                "the antisymmetry.",
+                "anti-symmetric",
+                "anti-symmetric.",
+                "a anti-symmetric",
+                "a anti-symmetric.",
+                "an anti-symmetric",
+                "an anti-symmetric.",
+                "the anti-symmetric",
+                "the anti-symmetric."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Antisymmetric.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-transitive-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "relation-properties",
+    "skill": "recall",
+    "objective": "transitive-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["relation-properties"],
+    "sourceIds": ["review-df-relations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "Which relation property requires $aRc$ whenever $aRb$ and $bRc$?",
+      "answer": "Transitive.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "transitive",
+                "transitive.",
+                "a transitive",
+                "a transitive.",
+                "an transitive",
+                "an transitive.",
+                "the transitive",
+                "the transitive.",
+                "transitivity",
+                "transitivity.",
+                "a transitivity",
+                "a transitivity.",
+                "an transitivity",
+                "an transitivity.",
+                "the transitivity",
+                "the transitivity."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Transitive.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-equivalence-relation-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "equivalence-relation",
+    "skill": "recall",
+    "objective": "equivalence-relation-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["equivalence-relation"],
+    "sourceIds": ["review-df-relations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is a relation that is reflexive, symmetric and transitive called?",
+      "answer": "Equivalence relation.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "equivalence relation",
+                "equivalence relation.",
+                "a equivalence relation",
+                "a equivalence relation.",
+                "an equivalence relation",
+                "an equivalence relation.",
+                "the equivalence relation",
+                "the equivalence relation."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Equivalence relation.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-equivalence-class-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "equivalence-classes",
+    "skill": "recall",
+    "objective": "equivalence-class-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["equivalence-classes"],
+    "sourceIds": ["review-df-relations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "For an equivalence relation $R$ on $A$, what is $[a]=\\{x\\in A:xRa\\}$ called?",
+      "answer": "Equivalence class.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "equivalence class",
+                "equivalence class.",
+                "a equivalence class",
+                "a equivalence class.",
+                "an equivalence class",
+                "an equivalence class.",
+                "the equivalence class",
+                "the equivalence class.",
+                "equivalence class of a",
+                "equivalence class of a.",
+                "a equivalence class of a",
+                "a equivalence class of a.",
+                "an equivalence class of a",
+                "an equivalence class of a.",
+                "the equivalence class of a",
+                "the equivalence class of a."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Equivalence class.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-partial-order-term-review",
+    "family": "fixed",
+    "lesson": "relations",
+    "concept": "partial-order",
+    "skill": "recall",
+    "objective": "partial-order-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["partial-order"],
+    "sourceIds": ["review-df-orders"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is a relation that is reflexive, antisymmetric and transitive called?",
+      "answer": "Partial order.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "partial order",
+                "partial order.",
+                "a partial order",
+                "a partial order.",
+                "an partial order",
+                "an partial order.",
+                "the partial order",
+                "the partial order.",
+                "partial ordering",
+                "partial ordering.",
+                "a partial ordering",
+                "a partial ordering.",
+                "an partial ordering",
+                "an partial ordering.",
+                "the partial ordering",
+                "the partial ordering."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Partial order.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-function-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "function-definition",
+    "skill": "recall",
+    "objective": "function-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["function-definition"],
+    "sourceIds": ["review-df-function-types"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is a relation from $A$ to $B$ assigning exactly one output in $B$ to each input in $A$ called?",
+      "answer": "Function.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "function",
+                "function.",
+                "a function",
+                "a function.",
+                "an function",
+                "an function.",
+                "the function",
+                "the function.",
+                "total function",
+                "total function.",
+                "a total function",
+                "a total function.",
+                "an total function",
+                "an total function.",
+                "the total function",
+                "the total function."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Function.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-domain-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "function-definition",
+    "skill": "recall",
+    "objective": "domain-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["function-definition"],
+    "sourceIds": ["review-df-function-types"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "In $f:A\\to B$, what is the set $A$ of allowed inputs called?",
+      "answer": "Domain.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "domain",
+                "domain.",
+                "a domain",
+                "a domain.",
+                "an domain",
+                "an domain.",
+                "the domain",
+                "the domain."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Domain.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-codomain-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "function-definition",
+    "skill": "recall",
+    "objective": "codomain-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["function-definition"],
+    "sourceIds": ["review-df-function-types"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What is the declared target set of a function called, including values it may never reach?",
+      "answer": "Codomain.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "codomain",
+                "codomain.",
+                "a codomain",
+                "a codomain.",
+                "an codomain",
+                "an codomain.",
+                "the codomain",
+                "the codomain.",
+                "co-domain",
+                "co-domain.",
+                "a co-domain",
+                "a co-domain.",
+                "an co-domain",
+                "an co-domain.",
+                "the co-domain",
+                "the co-domain."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Codomain.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-range-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "function-image",
+    "skill": "recall",
+    "objective": "range-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["function-image"],
+    "sourceIds": ["review-df-function-types"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "For $f:A\\to B$, what is the set $f(A)$ of outputs actually reached called?",
+      "answer": "Range.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "range",
+                "range.",
+                "a range",
+                "a range.",
+                "an range",
+                "an range.",
+                "the range",
+                "the range.",
+                "image",
+                "image.",
+                "a image",
+                "a image.",
+                "an image",
+                "an image.",
+                "the image",
+                "the image.",
+                "image of f",
+                "image of f.",
+                "a image of f",
+                "a image of f.",
+                "an image of f",
+                "an image of f.",
+                "the image of f",
+                "the image of f."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Range.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-injective-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "injectivity",
+    "skill": "recall",
+    "objective": "injective-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["injectivity"],
+    "sourceIds": ["review-df-function-properties"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What adjective describes a function whose distinct inputs always have distinct outputs?",
+      "answer": "Injective.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "injective",
+                "injective.",
+                "a injective",
+                "a injective.",
+                "an injective",
+                "an injective.",
+                "the injective",
+                "the injective.",
+                "one-to-one",
+                "one-to-one.",
+                "a one-to-one",
+                "a one-to-one.",
+                "an one-to-one",
+                "an one-to-one.",
+                "the one-to-one",
+                "the one-to-one.",
+                "one to one",
+                "one to one.",
+                "a one to one",
+                "a one to one.",
+                "an one to one",
+                "an one to one.",
+                "the one to one",
+                "the one to one."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Injective.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-surjective-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "surjectivity",
+    "skill": "recall",
+    "objective": "surjective-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["surjectivity"],
+    "sourceIds": ["review-df-function-properties"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What adjective describes a function that reaches every element of its declared codomain?",
+      "answer": "Surjective.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "surjective",
+                "surjective.",
+                "a surjective",
+                "a surjective.",
+                "an surjective",
+                "an surjective.",
+                "the surjective",
+                "the surjective.",
+                "onto",
+                "onto.",
+                "a onto",
+                "a onto.",
+                "an onto",
+                "an onto.",
+                "the onto",
+                "the onto."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Surjective.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-bijective-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "bijection",
+    "skill": "recall",
+    "objective": "bijective-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["bijection"],
+    "sourceIds": ["review-df-function-properties"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What adjective describes a function that is both injective and surjective?",
+      "answer": "Bijective.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "bijective",
+                "bijective.",
+                "a bijective",
+                "a bijective.",
+                "an bijective",
+                "an bijective.",
+                "the bijective",
+                "the bijective.",
+                "bijective function",
+                "bijective function.",
+                "a bijective function",
+                "a bijective function.",
+                "an bijective function",
+                "an bijective function.",
+                "the bijective function",
+                "the bijective function."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Bijective.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-inverse-function-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "bijection",
+    "skill": "recall",
+    "objective": "inverse-function-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["bijection"],
+    "sourceIds": ["review-df-function-inverse"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "For a bijection $f:A\\to B$, what is the function $g:B\\to A$ satisfying $g(f(a))=a$ and $f(g(b))=b$ called?",
+      "answer": "Inverse function.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "inverse function",
+                "inverse function.",
+                "a inverse function",
+                "a inverse function.",
+                "an inverse function",
+                "an inverse function.",
+                "the inverse function",
+                "the inverse function.",
+                "inverse",
+                "inverse.",
+                "a inverse",
+                "a inverse.",
+                "an inverse",
+                "an inverse.",
+                "the inverse",
+                "the inverse.",
+                "inverse of f",
+                "inverse of f.",
+                "a inverse of f",
+                "a inverse of f.",
+                "an inverse of f",
+                "an inverse of f.",
+                "the inverse of f",
+                "the inverse of f."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Inverse function.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-composition-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "function-composition",
+    "skill": "recall",
+    "objective": "composition-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["function-composition"],
+    "sourceIds": ["review-df-function-inverse"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What operation combines compatible functions by $(g\\circ f)(x)=g(f(x))$?",
+      "answer": "Composition.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "composition",
+                "composition.",
+                "a composition",
+                "a composition.",
+                "an composition",
+                "an composition.",
+                "the composition",
+                "the composition.",
+                "function composition",
+                "function composition.",
+                "a function composition",
+                "a function composition.",
+                "an function composition",
+                "an function composition.",
+                "the function composition",
+                "the function composition."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Composition.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-preimage-term-review",
+    "family": "fixed",
+    "lesson": "functions",
+    "concept": "function-image",
+    "skill": "recall",
+    "objective": "preimage-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["function-image"],
+    "sourceIds": ["review-df-function-inverse"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "Given $f:A\\to B$ and $T\\subseteq B$, what is the set $\\{x\\in A:f(x)\\in T\\}$ called?",
+      "answer": "Preimage.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "preimage",
+                "preimage.",
+                "a preimage",
+                "a preimage.",
+                "an preimage",
+                "an preimage.",
+                "the preimage",
+                "the preimage.",
+                "pre-image",
+                "pre-image.",
+                "a pre-image",
+                "a pre-image.",
+                "an pre-image",
+                "an pre-image.",
+                "the pre-image",
+                "the pre-image.",
+                "inverse image",
+                "inverse image.",
+                "a inverse image",
+                "a inverse image.",
+                "an inverse image",
+                "an inverse image.",
+                "the inverse image",
+                "the inverse image.",
+                "preimage of T",
+                "preimage of T.",
+                "a preimage of T",
+                "a preimage of T.",
+                "an preimage of T",
+                "an preimage of T.",
+                "the preimage of T",
+                "the preimage of T."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Preimage.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-recursive-definition-term-review",
+    "family": "fixed",
+    "lesson": "sequences-and-summations",
+    "concept": "recursive-definition",
+    "skill": "recall",
+    "objective": "recursive-definition-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["recursive-definition"],
+    "sourceIds": ["review-df-sequence-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What kind of definition specifies starting values and a rule for later terms using earlier ones?",
+      "answer": "Recursive definition.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "recursive definition",
+                "recursive definition.",
+                "a recursive definition",
+                "a recursive definition.",
+                "an recursive definition",
+                "an recursive definition.",
+                "the recursive definition",
+                "the recursive definition.",
+                "recursion",
+                "recursion.",
+                "a recursion",
+                "a recursion.",
+                "an recursion",
+                "an recursion.",
+                "the recursion",
+                "the recursion."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Recursive definition.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-recurrence-term-review",
+    "family": "fixed",
+    "lesson": "sequences-and-summations",
+    "concept": "recursive-definition",
+    "skill": "recall",
+    "objective": "recurrence-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["recursive-definition"],
+    "sourceIds": ["review-df-sequence-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What term names an equation relating later terms of a sequence to earlier ones?",
+      "answer": "Recurrence relation.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "recurrence relation",
+                "recurrence relation.",
+                "a recurrence relation",
+                "a recurrence relation.",
+                "an recurrence relation",
+                "an recurrence relation.",
+                "the recurrence relation",
+                "the recurrence relation.",
+                "recurrence",
+                "recurrence.",
+                "a recurrence",
+                "a recurrence.",
+                "an recurrence",
+                "an recurrence.",
+                "the recurrence",
+                "the recurrence."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Recurrence relation.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-initial-condition-term-review",
+    "family": "fixed",
+    "lesson": "sequences-and-summations",
+    "concept": "recursive-definition",
+    "skill": "recall",
+    "objective": "initial-condition-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["recursive-definition"],
+    "sourceIds": ["review-df-sequence-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What are the starting values supplied alongside a recurrence relation called?",
+      "answer": "Initial conditions.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "initial conditions",
+                "initial conditions.",
+                "a initial conditions",
+                "a initial conditions.",
+                "an initial conditions",
+                "an initial conditions.",
+                "the initial conditions",
+                "the initial conditions.",
+                "initial condition",
+                "initial condition.",
+                "a initial condition",
+                "a initial condition.",
+                "an initial condition",
+                "an initial condition.",
+                "the initial condition",
+                "the initial condition.",
+                "initial values",
+                "initial values.",
+                "a initial values",
+                "a initial values.",
+                "an initial values",
+                "an initial values.",
+                "the initial values",
+                "the initial values.",
+                "initial value",
+                "initial value.",
+                "a initial value",
+                "a initial value.",
+                "an initial value",
+                "an initial value.",
+                "the initial value",
+                "the initial value."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Initial conditions.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-arithmetic-sequence-term-review",
+    "family": "fixed",
+    "lesson": "sequences-and-summations",
+    "concept": "arithmetic-sequence",
+    "skill": "recall",
+    "objective": "arithmetic-sequence-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["arithmetic-sequence"],
+    "sourceIds": ["review-df-sequence-growth"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What kind of sequence has the same difference between every pair of consecutive terms?",
+      "answer": "Arithmetic sequence.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "arithmetic sequence",
+                "arithmetic sequence.",
+                "a arithmetic sequence",
+                "a arithmetic sequence.",
+                "an arithmetic sequence",
+                "an arithmetic sequence.",
+                "the arithmetic sequence",
+                "the arithmetic sequence.",
+                "arithmetic progression",
+                "arithmetic progression.",
+                "a arithmetic progression",
+                "a arithmetic progression.",
+                "an arithmetic progression",
+                "an arithmetic progression.",
+                "the arithmetic progression",
+                "the arithmetic progression."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Arithmetic sequence.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-geometric-sequence-term-review",
+    "family": "fixed",
+    "lesson": "sequences-and-summations",
+    "concept": "geometric-sequence",
+    "skill": "recall",
+    "objective": "geometric-sequence-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["geometric-sequence"],
+    "sourceIds": ["review-df-sequence-growth"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "What kind of sequence is formed by multiplying each term by the same fixed factor to obtain the next?",
+      "answer": "Geometric sequence.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "geometric sequence",
+                "geometric sequence.",
+                "a geometric sequence",
+                "a geometric sequence.",
+                "an geometric sequence",
+                "an geometric sequence.",
+                "the geometric sequence",
+                "the geometric sequence.",
+                "geometric progression",
+                "geometric progression.",
+                "a geometric progression",
+                "a geometric progression.",
+                "an geometric progression",
+                "an geometric progression.",
+                "the geometric progression",
+                "the geometric progression."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Geometric sequence.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-direct-proof-term-review",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "direct-proof",
+    "skill": "recall",
+    "objective": "direct-proof-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["proof-obligations", "parity", "divisibility"],
+    "sourceIds": ["review-df-direct"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "To establish $P\\to Q$, a proof assumes $P$ and derives $Q$ using definitions and established facts. What method is this?",
+      "answer": "Direct proof.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "direct proof",
+                "direct proof.",
+                "a direct proof",
+                "a direct proof.",
+                "an direct proof",
+                "an direct proof.",
+                "the direct proof",
+                "the direct proof."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Direct proof.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-contrapositive-proof-term-review",
+    "family": "fixed",
+    "lesson": "proof-by-contrapositive",
+    "concept": "contrapositive-proof",
+    "skill": "recall",
+    "objective": "contrapositive-proof-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["contrapositive-proof"],
+    "sourceIds": ["review-df-contrapositive"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "To establish $P\\to Q$, a proof assumes $\\neg Q$ and derives $\\neg P$. What method is this?",
+      "answer": "Proof by contrapositive.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "proof by contrapositive",
+                "proof by contrapositive.",
+                "a proof by contrapositive",
+                "a proof by contrapositive.",
+                "an proof by contrapositive",
+                "an proof by contrapositive.",
+                "the proof by contrapositive",
+                "the proof by contrapositive.",
+                "contrapositive proof",
+                "contrapositive proof.",
+                "a contrapositive proof",
+                "a contrapositive proof.",
+                "an contrapositive proof",
+                "an contrapositive proof.",
+                "the contrapositive proof",
+                "the contrapositive proof.",
+                "contraposition",
+                "contraposition.",
+                "a contraposition",
+                "a contraposition.",
+                "an contraposition",
+                "an contraposition.",
+                "the contraposition",
+                "the contraposition.",
+                "proof by contraposition",
+                "proof by contraposition.",
+                "a proof by contraposition",
+                "a proof by contraposition.",
+                "an proof by contraposition",
+                "an proof by contraposition.",
+                "the proof by contraposition",
+                "the proof by contraposition."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Proof by contrapositive.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-contradiction-proof-term-review",
+    "family": "fixed",
+    "lesson": "proof-by-contradiction",
+    "concept": "contradiction-proof",
+    "skill": "recall",
+    "objective": "contradiction-proof-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["contradiction-proof"],
+    "sourceIds": ["review-df-contradiction"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter the mathematical term.",
+      "prompt": "A proof assumes the entire target statement is false and derives incompatible facts. What method is this?",
+      "answer": "Proof by contradiction.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "proof by contradiction",
+                "proof by contradiction.",
+                "a proof by contradiction",
+                "a proof by contradiction.",
+                "an proof by contradiction",
+                "an proof by contradiction.",
+                "the proof by contradiction",
+                "the proof by contradiction.",
+                "contradiction proof",
+                "contradiction proof.",
+                "a contradiction proof",
+                "a contradiction proof.",
+                "an contradiction proof",
+                "an contradiction proof.",
+                "the contradiction proof",
+                "the contradiction proof.",
+                "contradiction",
+                "contradiction.",
+                "a contradiction",
+                "a contradiction.",
+                "an contradiction",
+                "an contradiction.",
+                "the contradiction",
+                "the contradiction."
+              ]
+            },
+            "description": "Name the mathematical term described in the prompt.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Proof by contradiction.",
+          "incorrect": "Recall the precise term for the stated definition."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "df-set-operation-retrieval-review",
+    "family": "authored",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "interpret",
+    "objective": "finite-set-operation-recognition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-df-set-operations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Let $A=\\{0,2\\}$ and $B=\\{2,3\\}$. What is $A\\cup B$?",
+      "answer": "Union keeps each element present in either set.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$\\{0,3\\}$",
+            "feedback": "That is the symmetric difference: union also includes the shared element 2."
+          },
+          {
+            "id": "option-2",
+            "text": "$\\{0,2,3\\}$",
+            "feedback": "Union keeps each element present in either set."
+          },
+          {
+            "id": "option-3",
+            "text": "$\\{2\\}$",
+            "feedback": "That is the intersection: it keeps only the shared element."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Let $A=\\{0,2\\}$ and $B=\\{2,3\\}$. What is $A\\cup B$?",
+        "answer": "Union keeps each element present in either set.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\{0,3\\}$",
+              "feedback": "That is the symmetric difference: union also includes the shared element 2."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\{0,2,3\\}$",
+              "feedback": "Union keeps each element present in either set."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\{2\\}$",
+              "feedback": "That is the intersection: it keeps only the shared element."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Let $A=\\{1,3,4\\}$ and $B=\\{0,3,4\\}$. What is $A\\cap B$?",
+        "answer": "Intersection keeps only elements present in both sets.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\{0,1,3,4\\}$",
+              "feedback": "That is the union; 0 and 1 do not belong to both sets."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\{1\\}$",
+              "feedback": "The element 1 belongs only to A, so it is excluded from the intersection."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\{3,4\\}$",
+              "feedback": "Intersection keeps only elements present in both sets."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Let $A=\\{1,2,5\\}$ and $B=\\{2,4\\}$. What is $A\\setminus B$?",
+        "answer": "Keep elements of A and remove those also in B; reversing the difference changes it.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\{1,5\\}$",
+              "feedback": "Keep elements of A and remove those also in B; reversing the difference changes it."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\{4\\}$",
+              "feedback": "That reverses the operation and computes B minus A."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\{1,4,5\\}$",
+              "feedback": "The element 4 is not in A, so it cannot belong to A minus B."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Let $U=\\{0,1,2,3,4\\}$ and $A=\\{0,3\\}$. What is $A^c$ relative to $U$?",
+        "answer": "The complement contains every universe element missing from A.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\{0,3\\}$",
+              "feedback": "Those are the elements of A itself, not its complement."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\{1,2\\}$",
+              "feedback": "The universe also contains 4, which is missing from A and must be included."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\{1,2,4\\}$",
+              "feedback": "The complement contains every universe element missing from A."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "df-symmetry-antisymmetry-distinction-review",
+    "family": "authored",
+    "lesson": "relations",
+    "concept": "relation-properties",
+    "skill": "recognize",
+    "objective": "symmetry-antisymmetry-distinction",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["relation-properties"],
+    "sourceIds": ["review-df-relations", "review-df-orders"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "On $\\{1,2\\}$, the relation is $R=\\{(1,1),(2,2)\\}$. Which description is correct?",
+      "answer": "Every pair is its own reverse, and no distinct elements relate both ways.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Symmetric but not antisymmetric.",
+            "feedback": "Antisymmetry permits loops; there is no bidirectional pair of distinct elements."
+          },
+          {
+            "id": "option-2",
+            "text": "Antisymmetric but not symmetric.",
+            "feedback": "Every listed loop is its own reverse, so symmetry holds too."
+          },
+          {
+            "id": "option-3",
+            "text": "Both symmetric and antisymmetric.",
+            "feedback": "Every pair is its own reverse, and no distinct elements relate both ways."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "On $\\{1,2\\}$, the relation is $R=\\{(1,1),(2,2)\\}$. Which description is correct?",
+        "answer": "Every pair is its own reverse, and no distinct elements relate both ways.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Symmetric but not antisymmetric.",
+              "feedback": "Antisymmetry permits loops; there is no bidirectional pair of distinct elements."
+            },
+            {
+              "id": "option-2",
+              "text": "Antisymmetric but not symmetric.",
+              "feedback": "Every listed loop is its own reverse, so symmetry holds too."
+            },
+            {
+              "id": "option-3",
+              "text": "Both symmetric and antisymmetric.",
+              "feedback": "Every pair is its own reverse, and no distinct elements relate both ways."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "On $\\{1,2,3\\}$, let $R=\\{(1,2),(2,1),(2,3)\\}$. Which description is correct?",
+        "answer": "The pair (2,3) lacks its reverse, while the distinct elements 1 and 2 relate both ways.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Neither symmetric nor antisymmetric.",
+              "feedback": "The pair (2,3) lacks its reverse, while the distinct elements 1 and 2 relate both ways."
+            },
+            {
+              "id": "option-2",
+              "text": "Symmetric but not antisymmetric.",
+              "feedback": "The reverse of (2,3) is missing, so symmetry fails."
+            },
+            {
+              "id": "option-3",
+              "text": "Antisymmetric but not symmetric.",
+              "feedback": "The distinct elements 1 and 2 relate in both directions, so antisymmetry fails."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "On $\\{1,2\\}$, let $R=\\{(1,1),(2,2),(1,2)\\}$. Which description is correct?",
+        "answer": "The pair (1,2) lacks its reverse; there is no bidirectional pair of distinct elements.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Symmetric but not antisymmetric.",
+              "feedback": "Symmetry fails at (1,2), while antisymmetry allows the listed loops."
+            },
+            {
+              "id": "option-2",
+              "text": "Antisymmetric but not symmetric.",
+              "feedback": "The pair (1,2) lacks its reverse; there is no bidirectional pair of distinct elements."
+            },
+            {
+              "id": "option-3",
+              "text": "Both symmetric and antisymmetric.",
+              "feedback": "The reverse of (1,2) is missing, so symmetry fails."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "df-function-type-classification-review",
+    "family": "authored",
+    "lesson": "functions",
+    "concept": "function-definition",
+    "skill": "recognize",
+    "objective": "domain-codomain-classification",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["function-definition"],
+    "sourceIds": ["review-df-function-types", "review-df-function-properties"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "For $f:\\mathbb R\\to[0,\\infty)$, $f(x)=x^2$, which description is correct?",
+      "answer": "Every nonnegative target has a square root, but -1 and 1 collide.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Injective but not surjective.",
+            "feedback": "Injectivity fails at -1 and 1, while every declared nonnegative target is reached."
+          },
+          {
+            "id": "option-2",
+            "text": "Surjective but not injective.",
+            "feedback": "Every nonnegative target has a square root, but -1 and 1 collide."
+          },
+          {
+            "id": "option-3",
+            "text": "Bijective.",
+            "feedback": "The inputs -1 and 1 collide, so injectivity fails."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For $f:\\mathbb R\\to[0,\\infty)$, $f(x)=x^2$, which description is correct?",
+        "answer": "Every nonnegative target has a square root, but -1 and 1 collide.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Injective but not surjective.",
+              "feedback": "Injectivity fails at -1 and 1, while every declared nonnegative target is reached."
+            },
+            {
+              "id": "option-2",
+              "text": "Surjective but not injective.",
+              "feedback": "Every nonnegative target has a square root, but -1 and 1 collide."
+            },
+            {
+              "id": "option-3",
+              "text": "Bijective.",
+              "feedback": "The inputs -1 and 1 collide, so injectivity fails."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For $f:[0,\\infty)\\to\\mathbb R$, $f(x)=x^2$, which description is correct?",
+        "answer": "Nonnegative inputs have distinct squares, but negative codomain values are missed.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Bijective.",
+              "feedback": "Negative values in the declared codomain are never reached."
+            },
+            {
+              "id": "option-2",
+              "text": "Surjective but not injective.",
+              "feedback": "The nonnegative domain removes opposite-sign collisions, but negative targets are still missed."
+            },
+            {
+              "id": "option-3",
+              "text": "Injective but not surjective.",
+              "feedback": "Nonnegative inputs have distinct squares, but negative codomain values are missed."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For $f:[0,\\infty)\\to[0,\\infty)$, $f(x)=x^2$, which description is correct?",
+        "answer": "Each nonnegative target has exactly one nonnegative square root.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Bijective.",
+              "feedback": "Each nonnegative target has exactly one nonnegative square root."
+            },
+            {
+              "id": "option-2",
+              "text": "Injective but not surjective.",
+              "feedback": "Each declared nonnegative target has a nonnegative square root, so surjectivity holds too."
+            },
+            {
+              "id": "option-3",
+              "text": "Surjective but not injective.",
+              "feedback": "Opposite-sign collisions are absent on the nonnegative domain, so injectivity holds too."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "df-contradiction-start-review",
+    "family": "authored",
+    "lesson": "proof-by-contradiction",
+    "concept": "contradiction-proof",
+    "skill": "interpret",
+    "objective": "whole-target-negation-recognition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["contradiction-proof"],
+    "sourceIds": ["review-df-contradiction"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "To prove $P\\to Q$ by contradiction, which temporary assumption negates the whole target?",
+      "answer": "An implication fails exactly when its hypothesis holds and its conclusion fails.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$\\neg P\\land Q$",
+            "feedback": "A false hypothesis does not refute an implication; the hypothesis must hold."
+          },
+          {
+            "id": "option-2",
+            "text": "$\\neg P\\land\\neg Q$",
+            "feedback": "A false hypothesis makes the implication true, regardless of the conclusion."
+          },
+          {
+            "id": "option-3",
+            "text": "$P\\land\\neg Q$",
+            "feedback": "An implication fails exactly when its hypothesis holds and its conclusion fails."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "To prove $P\\to Q$ by contradiction, which temporary assumption negates the whole target?",
+        "answer": "An implication fails exactly when its hypothesis holds and its conclusion fails.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\neg P\\land Q$",
+              "feedback": "A false hypothesis does not refute an implication; the hypothesis must hold."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\neg P\\land\\neg Q$",
+              "feedback": "A false hypothesis makes the implication true, regardless of the conclusion."
+            },
+            {
+              "id": "option-3",
+              "text": "$P\\land\\neg Q$",
+              "feedback": "An implication fails exactly when its hypothesis holds and its conclusion fails."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "To prove $\\forall x\\in D\\,P(x)$ by contradiction, which assumption is appropriate?",
+        "answer": "The negation requires one counterexample, not failure at every point.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\exists x\\in D\\,\\neg P(x)$",
+              "feedback": "The negation requires one counterexample, not failure at every point."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\forall x\\in D\\,\\neg P(x)$",
+              "feedback": "Failure at every point is stronger than the negation; one failing point suffices."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\exists x\\in D\\,P(x)$",
+              "feedback": "A point where P holds does not refute the claim that P holds everywhere."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "To prove there is no greatest integer by contradiction, which assumption is appropriate?",
+        "answer": "Assume a greatest integer M exists; then M+1 supplies the conflict.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Every integer is greater than every other integer.",
+              "feedback": "This is much stronger than claiming one greatest integer, so refuting it would not prove the target."
+            },
+            {
+              "id": "option-2",
+              "text": "There exists a greatest integer.",
+              "feedback": "Assume a greatest integer M exists; then M+1 supplies the conflict."
+            },
+            {
+              "id": "option-3",
+              "text": "There exists a positive integer.",
+              "feedback": "Positive integers exist and do not contradict the target."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "df-summation-term-count-review",
+    "family": "authored",
+    "lesson": "sequences-and-summations",
+    "concept": "sum-notation",
+    "skill": "compute",
+    "objective": "summation-term-count",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["sum-notation"],
+    "sourceIds": ["review-df-sum-notation"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter one integer.",
+      "prompt": "How many summands appear in $\\sum_{k=3}^{7}a_k$?",
+      "answer": "The indices are $3,4,5,6,7$: five summands.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "math",
+            "label": "Number of summands"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "count",
+            "validator": "exact",
+            "fields": ["answer"],
+            "params": {
+              "expected": ["5"]
+            },
+            "description": "Count exactly the included indices.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The indices are $3,4,5,6,7$: five summands.",
+          "incorrect": "Check both endpoints and whether the index set is empty."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Enter one integer.",
+        "prompt": "How many summands appear in $\\sum_{k=3}^{7}a_k$?",
+        "answer": "The indices are $3,4,5,6,7$: five summands.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Number of summands"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "count",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["5"]
+              },
+              "description": "Count exactly the included indices.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "The indices are $3,4,5,6,7$: five summands.",
+            "incorrect": "Check both endpoints and whether the index set is empty."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Enter one integer.",
+        "prompt": "How many summands appear in $\\sum_{k=4}^{4}a_k$?",
+        "answer": "The single permitted index is $k=4$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Number of summands"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "count",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["1"]
+              },
+              "description": "Count exactly the included indices.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "The single permitted index is $k=4$.",
+            "incorrect": "Check both endpoints and whether the index set is empty."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Enter one integer.",
+        "prompt": "How many summands appear in $\\sum_{k\\in\\varnothing}a_k$?",
+        "answer": "There are no indices, hence no summands; the empty sum has value zero.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Number of summands"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "count",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["0"]
+              },
+              "description": "Count exactly the included indices.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "There are no indices, hence no summands; the empty sum has value zero.",
+            "incorrect": "Check both endpoints and whether the index set is empty."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      }
+    ]
   }
 ]
