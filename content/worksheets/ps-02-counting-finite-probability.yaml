@@ -1,0 +1,262 @@
+title: Counting and Finite Probability
+sections:
+  - title: Count stages and identify the sampling rule
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A label has one of $5$ colors and one of $4$ shapes. Count labels.
+        answerLines: 5
+        answer: The two choices combine freely, giving $5\cdot4=20$ labels.
+      - id: 2
+        type: freeform
+        prompt: A route uses one of $3$ entrances, then one of $2$ lifts, then one of $4$ exits. Count routes.
+        answerLines: 5
+        answer: Each stage has a fixed number of choices, so the count is $3\cdot2\cdot4=24$.
+      - id: 3
+        type: freeform
+        prompt: A menu offers either $4$ soups or $3$ salads as one starter. Count starter choices.
+        answerLines: 5
+        answer: 'The alternatives are disjoint, so add: $4+3=7$.'
+      - id: 4
+        type: freeform
+        prompt: One gateway allows $2$ destinations and another allows $5$. Count gateway-destination routes.
+        answerLines: 5
+        answer: 'Separate the two gateway cases: $2+5=7$ routes.'
+      - id: 5
+        type: freeform
+        prompt: Draw three ordered labels with replacement from four labels. Count outcomes.
+        answerLines: 5
+        answer: There are four possibilities at each draw, so the count is $4^3=64$.
+      - id: 6
+        type: freeform
+        prompt: Two independent uniform draws use labels $1,2,3,4$. Find the probability both labels are even.
+        answerLines: 5
+        answer: There are $4^2=16$ ordered outcomes and $2^2=4$ favorable ones, giving $4/16=1/4$.
+      - id: 7
+        type: freeform
+        prompt: A four-position binary string starts with $1$. Count possible strings.
+        answerLines: 5
+        answer: The first position is fixed and the remaining three each have two choices, giving $2^3=8$.
+      - id: 8
+        type: freeform
+        prompt: 'True or false: a process with $4$ possibilities always assigns each probability $1/4$.'
+        answerLines: 5
+        answer: False. Equal likelihood is an additional property of the probability model, not a consequence of the count.
+      - id: 9
+        type: freeform
+        prompt: Explain why counting two named roles differs from counting an unordered two-person committee.
+        answerLines: 5
+        answer: Swapping the two people changes who holds each named role, so it changes a role assignment. Swapping the written order of committee members leaves the committee unchanged.
+      - id: 10
+        type: freeform
+        prompt: A code uses two letters from $\{A,B,C\}$ followed by one digit from $\{0,1,2,3\}$; repetitions are allowed. Count codes.
+        answerLines: 5
+        answer: "Multiply the position choices: $3\\cdot3\\cdot4=36$."
+  - title: Ordered selections and factorials
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Assign two named roles to distinct people from $8$ candidates. Count assignments.
+        answerLines: 5
+        answer: There are $8$ choices then $7$, so $8\cdot7=56$.
+      - id: 12
+        type: freeform
+        prompt: Count ordered lists of length $3$ without repetition from $5$ labels.
+        answerLines: 5
+        answer: The count is $5\cdot4\cdot3=60$.
+      - id: 13
+        type: freeform
+        prompt: Count arrangements of six distinct books on a shelf.
+        answerLines: 5
+        answer: All six positions are ordered, giving $6!=720$.
+      - id: 14
+        type: freeform
+        prompt: Six distinct books are arranged with a specified book first. Count arrangements.
+        answerLines: 5
+        answer: The first position is fixed, leaving $5!=120$ arrangements.
+      - id: 15
+        type: freeform
+        prompt: Count distinct strings containing two $A$s and three $B$s.
+        answerLines: 5
+        answer: Permuting labeled copies overcounts by $2!3!$, so the count is $5!/(2!3!)=10$.
+      - id: 16
+        type: freeform
+        prompt: Count distinct strings containing two $A$s, two $B$s, and one $C$.
+        answerLines: 5
+        answer: 'Divide labeled arrangements by the permutations of identical copies: $5!/(2!2!1!)=30$.'
+      - id: 17
+        type: freeform
+        prompt: Three named roles are assigned uniformly among distinct people from $6$. Find the probability a specified person gets the first role.
+        answerLines: 5
+        answer: There are $6\cdot5\cdot4=120$ assignments; fixing that person first leaves $5\cdot4=20$. The ratio is $1/6$.
+      - id: 18
+        type: freeform
+        prompt: How many ordered selections of four distinct objects can be made from three objects?
+        answerLines: 5
+        answer: There are insufficient distinct objects, so the count is $0$.
+      - id: 19
+        type: freeform
+        prompt: Explain why $0!=1$ is compatible with counting arrangements.
+        answerLines: 5
+        answer: 'There is exactly one arrangement of no objects: the empty arrangement. This also makes $n!/(n-0)!=1$ count the unique empty ordered selection.'
+      - id: 20
+        type: freeform
+        prompt: Count arrangements of five distinct people if two specified people must occupy the first two positions, in either order.
+        answerLines: 5
+        answer: Order the specified pair in $2!$ ways and the others in $3!$ ways, giving $2\cdot6=12$.
+  - title: Unordered selections and combinations
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Count three-person committees from $7$ people.
+        answerLines: 5
+        answer: A committee ignores order, so the count is $\binom73=35$.
+      - id: 22
+        type: freeform
+        prompt: Count two-element subsets of a six-element set.
+        answerLines: 5
+        answer: The count is $\binom62=6\cdot5/2=15$.
+      - id: 23
+        type: freeform
+        prompt: Count length-seven binary strings with exactly three ones.
+        answerLines: 5
+        answer: "Choose the three one-positions: $\\binom73=35$."
+      - id: 24
+        type: freeform
+        prompt: A group has $4$ experienced and $5$ new members. Count committees with two of each.
+        answerLines: 5
+        answer: "Choose each category separately: $\\binom42\\binom52=6\\cdot10=60$."
+      - id: 25
+        type: freeform
+        prompt: A group contains four experienced and five new members. Count three-person committees with exactly one experienced member.
+        answerLines: 5
+        answer: "Choose one of four experienced and two of five new members: $4\\binom52=40$."
+      - id: 26
+        type: freeform
+        prompt: How many subsets of a five-element set are nonempty?
+        answerLines: 5
+        answer: There are $2^5=32$ subsets in total; remove the empty subset to obtain $31$.
+      - id: 27
+        type: freeform
+        prompt: Evaluate $\binom90+\binom99$.
+        answerLines: 5
+        answer: Each coefficient equals one, so their sum is $2$.
+      - id: 28
+        type: freeform
+        prompt: Find the coefficient of $a^2b^4$ in $(a+b)^6$.
+        answerLines: 5
+        answer: "Choose which two factors contribute $a$: $\\binom62=15$."
+      - id: 29
+        type: freeform
+        prompt: Give a counting proof of $\binom nk=\binom n{n-k}$.
+        answerLines: 5
+        answer: Taking complements is a bijection between $k$-element subsets and $(n-k)$-element subsets of the same $n$-element set. Therefore their counts are equal.
+      - id: 30
+        type: freeform
+        prompt: Explain why selecting two people from a five-person group and then naming one chair gives $2\binom52$ possibilities.
+        answerLines: 5
+        answer: There are $\binom52=10$ pairs, and each pair admits two choices of chair. Thus the count is $20$, agreeing with $5\cdot4$ ordered role assignments.
+  - title: Use compatible numerator and denominator counts
+    questions:
+      - id: 31
+        type: freeform
+        prompt: A bag contains $4$ marked and $6$ unmarked distinct tokens. Select two uniformly without replacement. Find the probability both are marked.
+        answerLines: 5
+        answer: The probability is $\binom42/\binom{10}2=6/45=2/15$.
+      - id: 32
+        type: freeform
+        prompt: A bag contains four marked and six unmarked distinct tokens. Select two uniformly without replacement. Find the probability of exactly one marked token.
+        answerLines: 5
+        answer: There are $4\cdot6=24$ favorable pairs out of $45$, giving $8/15$.
+      - id: 33
+        type: freeform
+        prompt: A bag contains four marked and six unmarked distinct tokens. Select two uniformly without replacement. Find the probability of at least one marked token.
+        answerLines: 5
+        answer: The complement contains $\binom62=15$ unmarked pairs, so the result is $1-15/45=2/3$.
+      - id: 34
+        type: freeform
+        prompt: Choose three of eight people uniformly. Find the probability a specified person is included.
+        answerLines: 5
+        answer: There are $\binom72=21$ committees containing the person out of $\binom83=56$, giving $3/8$.
+      - id: 35
+        type: freeform
+        prompt: Choose three of eight people uniformly. Find the probability two specified people are both included.
+        answerLines: 5
+        answer: "Choose the third person from the other six: $6/\\binom83=6/56=3/28$."
+      - id: 36
+        type: freeform
+        prompt: A uniform length-four binary string is chosen. Find the probability it has exactly two ones.
+        answerLines: 5
+        answer: There are $\binom42=6$ favorable strings out of $2^4=16$, giving $3/8$.
+      - id: 37
+        type: freeform
+        prompt: A uniform length-four binary string is chosen. Find the probability it has at least one one.
+        answerLines: 5
+        answer: Only the all-zero string fails, so the probability is $1-1/16=15/16$.
+      - id: 38
+        type: freeform
+        prompt: Two independent fair dice are rolled. Find the probability their sum is $8$.
+        answerLines: 5
+        answer: The five ordered pairs are $(2,6),(3,5),(4,4),(5,3),(6,2)$, among $36$ equally likely pairs. The probability is $5/36$.
+      - id: 39
+        type: freeform
+        prompt: Explain why the possible sums $2,3,\ldots,12$ of two fair dice are not equally likely.
+        answerLines: 5
+        answer: Different sums have different numbers of ordered realizations. Sum two has only $(1,1)$, while sum seven has six pairs; their probabilities are $1/36$ and $6/36$.
+      - id: 40
+        type: freeform
+        prompt: A calculation uses $4\cdot3/\binom{10}2$ for two marked tokens among ten, four marked. Identify and repair the error.
+        answerLines: 5
+        answer: The numerator counts ordered marked pairs but the denominator counts unordered pairs. Use $\binom42/\binom{10}2=2/15$, or divide $4\cdot3$ by $10\cdot9$.
+  - title: Complements, collisions, and counting arguments
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Three independent uniform draws use four labels. Find the probability that all labels differ.
+        answerLines: 5
+        answer: There are $4\cdot3\cdot2=24$ no-repeat lists among $4^3=64$, so the probability is $3/8$.
+      - id: 42
+        type: freeform
+        prompt: Three independent uniform draws use four labels. Find the probability of a collision.
+        answerLines: 5
+        answer: 'Take the complement of all distinct: $1-3/8=5/8$.'
+      - id: 43
+        type: freeform
+        prompt: Five draws use four labels. Find the probability of at least one repeated label, regardless of their probability weights.
+        answerLines: 5
+        answer: Five positions cannot all have distinct values from four labels. The pigeonhole principle makes a repetition certain, so the probability is $1$.
+      - id: 44
+        type: freeform
+        prompt: Four independent uniform labels use six possible values. Find the probability that none of the last three matches the first.
+        answerLines: 5
+        answer: For each of the other positions five of six labels avoid the first, giving $(5/6)^3=125/216$.
+      - id: 45
+        type: freeform
+        prompt: Evaluate $\binom52+\binom53$ using Pascal's identity.
+        answerLines: 5
+        answer: The sum equals $\binom63=20$.
+      - id: 46
+        type: freeform
+        prompt: A uniform committee of three is chosen from four experts and three novices. Find the probability of at least two experts.
+        answerLines: 5
+        answer: The favorable count is $\binom42\binom31+\binom43=18+4=22$, out of $\binom73=35$, so the probability is $22/35$.
+      - id: 47
+        type: freeform
+        prompt: Count subsets of a six-element set that contain a specified element.
+        answerLines: 5
+        answer: The specified element is fixed as included; each of the other five is included or excluded. The count is $2^5=32$.
+      - id: 48
+        type: freeform
+        prompt: Two independent uniform draws use $n$ labels, where $n$ is a positive integer. Derive the probability of equal labels.
+        answerLines: 5
+        answer: There are $n^2$ ordered outcomes and $n$ matching pairs $(i,i)$. Their ratio is $1/n$.
+      - id: 49
+        type: freeform
+        prompt: Prove Pascal's identity $\binom nk=\binom{n-1}k+\binom{n-1}{k-1}$ for $1\leq k<n$.
+        answerLines: 5
+        answer: Partition the size-$k$ subsets according to whether they contain one distinguished element. Excluding it gives the first term, while including it leaves $k-1$ elements to choose and gives the second. The disjoint cases exhaust all subsets.
+      - id: 50
+        type: freeform
+        prompt: Two uniform independent draws use labels $A,B$. If order is discarded, are $\{A,A\},\{A,B\},\{B,B\}$ equally likely?
+        answerLines: 5
+        answer: No. Their probabilities are $1/4,1/2,1/4$ because the mixed record has two ordered realizations. Discarding order does not produce a uniform collection of multisets.

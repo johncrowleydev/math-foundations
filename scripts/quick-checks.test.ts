@@ -7,7 +7,9 @@ test('all quick checks have valid math, unique choices, and current preceding te
   validateQuickChecks(lessons);
   assert.equal(
     Object.entries(quickChecks)
-      .filter(([slug]) => !slug.startsWith('calculus-'))
+      .filter(
+        ([slug]) => !slug.startsWith('calculus-') && !slug.startsWith('probability-statistics-'),
+      )
       .flatMap(([, checks]) => checks).length,
     54,
   );

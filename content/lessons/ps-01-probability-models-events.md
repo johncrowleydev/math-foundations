@@ -1,0 +1,69 @@
+# Probability Models and Events
+
+A probability calculation connects a clearly described experiment to a number between zero and one. This lesson establishes that connection before introducing formulas for repeated trials or inference. We will distinguish outcomes from events, translate verbal conditions into sets, and build consistent finite models. Familiar set notation from discrete mathematics helps, but every operation needed here is refreshed in context. The central habit is to specify what is recorded and why particular outcomes receive particular weights. Once that is clear, complements and overlap corrections turn many complicated descriptions into short calculations. When the supplied information is insufficient, we will describe what can still be bounded instead of inventing an assumption.
+
+## Specify the experiment before calculating
+
+Probability begins with a description of what is uncertain. A random experiment produces an outcome; its sample space $\Omega$ lists the outcomes our model distinguishes. An event is a subset of $\Omega$. It occurs when the observed outcome belongs to that subset. These are different objects: an individual outcome, a collection of outcomes, and a number assigned to that collection.
+
+Suppose two inspection stations each report pass or fail, and order identifies the station. A useful space is $\Omega=\{PP,PF,FP,FF\}$. The event that exactly one station reports fail is $\{PF,FP\}$. The event that the first station reports pass is $\{PP,PF\}$. Both events occur for the single outcome $PF$. Events do not have to be mutually exclusive descriptions.
+
+If we instead record only the number of failures, the recorded possibilities are $\{0,1,2\}$. This smaller space answers count questions but cannot distinguish which station failed. Neither representation alone says that its outcomes are equally likely. Indeed, when the four ordered reports are equally likely, the three counts have probabilities $1/4,1/2,1/4$. Forgetting detail merges outcomes and can destroy equal likelihood.
+
+A model should state the experiment, observation rule, and assumptions before arithmetic begins. A fair die means equal probability for its six faces. A die with six visible faces is not automatically fair. Likewise, an observed frequency from a short run is evidence about a model, not a mathematical reason that each future run must reproduce that frequency. We will study estimation later; for now probabilities are supplied or justified by explicit modeling assumptions. Keep track of which claims follow from those assumptions and which would require data.
+
+Related definitions: [Sample space](ref:probability-statistics-sample-space); [Event](ref:probability-statistics-event).
+
+## Translate event language into sets
+
+The word “or” in probability normally includes the possibility of both events. Thus $A\cup B$ means at least one of $A,B$ occurs, whereas $A\cap B$ means both occur. The complement $A^c$ consists of the outcomes in the sample space that are not in $A$. A complement is always relative to the chosen space; “not an even die face” has a different meaning from “not an even integer.”
+
+For one die roll let $A=\{2,4,6\}$ and $B=\{4,5,6\}$. Then $A\cap B=\{4,6\}$, $A\cup B=\{2,4,5,6\}$, and $A\cap B^c=\{2\}$. The last event says even but not greater than three. “Exactly one of $A,B$” combines $A\cap B^c$ and $A^c\cap B$, giving $\{2,5\}$. It excludes the overlap, unlike the ordinary inclusive “or.”
+
+Two events are disjoint when their intersection is empty. This describes which combinations can occur; it is not a statement about whether knowledge of one changes the probability of the other. Independence, introduced later, is a separate property. Two positive-probability disjoint events will actually fail the independence test.
+
+Negating a statement often simplifies a calculation. De Morgan's laws give $(A\cup B)^c=A^c\cap B^c$ and $(A\cap B)^c=A^c\cup B^c$. “Not both succeeded” includes either single failure and also two failures. “Neither succeeded” requires two failures. Test translations against a small list of outcomes before trusting algebra. A four-region diagram—both, only $A$, only $B$, neither—provides the same check and will become a useful probability table.
+
+Related definitions: [Disjoint events](ref:probability-statistics-disjoint-events); [Complement](ref:probability-statistics-complement).
+
+## Probability weights and the axioms
+
+A probability assignment must be internally consistent. It gives every event a nonnegative number, assigns $P(\Omega)=1$, and adds probabilities across disjoint events. For a countable collection of pairwise disjoint events, this addition extends to an infinite sum. In a finite model, assigning nonnegative weights to individual outcomes that sum to one determines every event probability by addition.
+
+Consider outcomes $a,b,c,d$ with weights $k,2k,3k,4k$. Normalization requires $10k=1$, so $k=1/10$. The event $\{a,d\}$ then has probability $1/10+4/10=1/2$. The count of favorable outcomes is two, but $2/4$ happens to agree only accidentally here. For $\{a,b\}$ the probability is $3/10$, not $1/2$.
+
+The familiar ratio $P(A)=|A|/|\Omega|$ requires a finite space with equally likely outcomes. If there are $N$ such outcomes, additivity and normalization force each singleton probability to be $1/N$. Counting is therefore a consequence of the probability model, not an alternative to specifying it. A spinner divided into unequal sectors should be weighted by the specified sector probabilities, even when its labels look symmetric.
+
+Some proposed assignments fail before any event is calculated. The list $0.4,0.4,0.4$ sums to more than one. The list $-0.1,0.4,0.7$ sums to one but violates nonnegativity. Both checks are essential. Zero-weight outcomes are allowed mathematically, although in a finite model it is often convenient to omit them. Later continuous models require extra care: a probability-zero event need not be empty. The axioms distinguish probability from simple logical possibility; do not silently replace one with the other.
+
+Related definitions: [Probability model](ref:probability-statistics-probability-model); [Equally likely outcomes](ref:probability-statistics-equally-likely).
+
+## Complements, overlap, and bounds
+
+Since $A$ and $A^c$ partition the sample space, additivity gives $P(A)+P(A^c)=1$. Thus $P(A^c)=1-P(A)$. This is especially useful when the complement has a simpler description: “at least one” can be found from “none.” No independence assumption is needed for this identity.
+
+For overlapping events, adding $P(A)$ and $P(B)$ counts the intersection twice. Subtracting one copy gives $P(A\cup B)=P(A)+P(B)-P(A\cap B)$. Suppose a service uses channel $A$ with probability $0.55$, channel $B$ with probability $0.35$, and both with probability $0.15$. The probability of at least one channel is $0.55+0.35-0.15=0.75$. The probability of neither is $0.25$. Only $A$ has probability $0.40$; only $B$ has probability $0.20$. These four disjoint regions sum to one.
+
+The same picture supplies bounds. Because $A\cap B\subseteq A,B$, its probability cannot exceed $\min(P(A),P(B))$. Because the union cannot exceed one, the intersection cannot be smaller than $P(A)+P(B)-1$, or zero when that expression is negative. Therefore $\max(0,P(A)+P(B)-1)\leq P(A\cap B)\leq\min(P(A),P(B))$.
+
+Without an overlap or another assumption, two marginal probabilities usually do not determine the union. A useful weaker conclusion is the union bound $P(A\cup B)\leq P(A)+P(B)$, extended to any finite list. It remains valid with dependence and overlapping failure modes. A bound greater than one is mathematically true but uninformative; combine it with the universal upper bound one. A small union bound, by contrast, can certify that any one of many undesirable events is unlikely under the stated model.
+
+For three events, begin with the two-event rule applied to $(A\cup B)\cup C$. The overlap with $C$ is $(A\cap C)\cup(B\cap C)$, whose probability is $P(A\cap C)+P(B\cap C)-P(A\cap B\cap C)$. Substitution gives $P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(A\cap C)-P(B\cap C)+P(A\cap B\cap C)$. The triple overlap is added back because the first three terms count it three times and the three pair subtractions remove it three times. It should ultimately be counted once. For example, individual probabilities $0.3,0.4,0.2$, pair overlaps $0.1,0.05,0.08$, and triple overlap $0.02$ give union probability $0.69$.
+
+Related definitions: [Inclusion-exclusion](ref:probability-statistics-inclusion-exclusion); [Union bound](ref:probability-statistics-union-bound).
+
+![Events overlap without double-counting](figure:probability-statistics-figure-1)
+
+## Build and audit a complete event model
+
+A reliable solution does more than produce a plausible number. It names the event, identifies the supplied probabilities, and checks whether the resulting regions can all be nonnegative. This is particularly useful when a word problem gives partly overlapping descriptions instead of an outcome table.
+
+Suppose $P(A)=0.65$, $P(B)=0.50$, and the probability of neither is $0.20$. First obtain $P(A\cup B)=0.80$ by taking a complement. Then the overlap is $0.65+0.50-0.80=0.35$. Only $A$ has probability $0.30$ and only $B$ has probability $0.15$. The complete four-region model is therefore $(0.35,0.30,0.15,0.20)$ in the order both, only $A$, only $B$, neither. Each entry is nonnegative and the sum is one. This independently checks the calculation and demonstrates that the supplied numbers are consistent.
+
+If a problem instead supplies only $P(A)=0.65$ and $P(B)=0.50$, the overlap remains free between $0.15$ and $0.50$. There are many valid models. Choosing an overlap without an additional assumption is inventing information. A correct answer may be a bound or a statement of underdetermination, accompanied by two concrete models showing why uniqueness fails.
+
+Finally separate model conclusions from physical conclusions. A model may assume all tickets are equally likely to be selected; its calculated probability is conditional on that selection mechanism. Duplicate entries, unequal selection weights, or an incomplete sample space change the model. Checking arithmetic cannot validate these assumptions. When writing a solution, state what is assumed, show how the rules apply, and interpret the result in terms of the original experiment. This discipline will carry into conditional probability, statistical estimation, and fitting models from observed data.
+
+Check the difference between a constraint and a complete specification. Saying two events have probabilities $0.2$ and $0.3$ supplies two numbers, but their four-region table still needs an overlap. Setting that overlap to zero gives union $0.5$; setting it to $0.2$ gives union $0.3$. Both tables can have nonnegative entries totaling one. Presenting these two explicit models is stronger than merely saying there is “not enough information”: it demonstrates which missing quantity changes the answer.
+
+Related definitions: [Partition](ref:probability-statistics-partition).

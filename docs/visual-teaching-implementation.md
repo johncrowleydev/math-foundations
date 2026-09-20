@@ -124,3 +124,14 @@ Production assembleRelease, testReleaseUnitTest, and lintRelease passed (52 seco
 ## Publication verification
 
 Published [Foundations 0.4.0](https://github.com/johncrowleydev/math-foundations/releases/tag/v0.4.0) from commit `6bae02b50df106cae3c574eeb12061d9911201ed`, after [Android CI passed](https://github.com/johncrowleydev/math-foundations/actions/runs/34634155276). The public `/releases/latest/download/update.json` returned version 0.4.0/code 8. An unauthenticated download of its APK matched the manifest's 51,360,795-byte size and SHA-256 `36fad035987d858c20fd8e563624cf36965fc25bb47f8e51fda60bb9cc8dab8b`. APK signature verification passed with the existing release certificate SHA-256 `e945580aac14d216ff5ad39bf86994c070f79760475d8310a449711620adae7e`. This completes every gate above. Installation remains the normal user-confirmed Android OTA flow.
+
+Cartesian figures also accept optional `axisLabels: {x?: string, y?: string}`
+and `ticks: {x?: {value: number, label: string}[], y?: {value: number, label: string}[]}`.
+Tick positions must increase strictly within the corresponding bounds; each axis
+allows at most 12 ticks. Labels are authored strings, so small probabilities such
+as `0.005` retain their intended precision. An omitted axis keeps its existing
+five automatic ticks, while an empty tick list suppresses that axis's ticks.
+Marker `label` is optional for scatterplots. These optional properties have no
+schema defaults, preserving previously authored figure records and source digests.
+Axis labels are plain text (up to 64 characters), and tick labels allow up to 24
+characters; use concise labels suited to the figure's phone layout.

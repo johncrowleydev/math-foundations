@@ -22,6 +22,7 @@ export function Figure({ figure: f, sources }: { figure: Definition; sources?: S
   let drawing;
   let viewBox = '0 0 620 355';
   if (f.kind === 'cartesian') {
+    if (f.axisLabels?.x) viewBox = '0 0 620 373';
     drawing = <CartesianFigure figure={f} uid={uid} />;
   } else if (f.kind === 'coordinates') {
     const points = [

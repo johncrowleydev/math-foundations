@@ -1,0 +1,287 @@
+title: Resampling and Model Assessment
+sections:
+  - title: The empirical distribution and resampling units
+    questions:
+      - id: 1
+        type: freeform
+        prompt: For recorded values $2,2,5,7$, give the empirical probabilities of $2,5,7$, in that order.
+        answerLines: 5
+        answer: 'Count rows and divide by four: the masses are $1/2,1/4,1/4$.'
+      - id: 2
+        type: freeform
+        prompt: For the same empirical distribution from $2,2,5,7$, calculate its mean.
+        answerLines: 5
+        answer: 'Average all four rows, including repeated values: $(2+2+5+7)/4=4$.'
+      - id: 3
+        type: freeform
+        prompt: For the empirical distribution from $2,2,5,7$, calculate its variance around mean $4$.
+        answerLines: 5
+        answer: 'Divide the squared deviations by four: $(4+4+1+9)/4=9/2$.'
+      - id: 4
+        type: freeform
+        prompt: A dataset has three labeled rows. How many ordered index sequences are possible in a size-three bootstrap sample?
+        answerLines: 5
+        answer: Each of three independent draws has three choices, giving $3^3=27$.
+      - id: 5
+        type: freeform
+        prompt: From four labeled rows, what is the probability of the particular bootstrap index sequence $(2,2,1,4)$?
+        answerLines: 5
+        answer: Each specified draw has probability $1/4$, so the product is $(1/4)^4=1/256$.
+      - id: 6
+        type: freeform
+        prompt: From four labeled rows, what is the probability that row 1 never appears in a size-four bootstrap sample?
+        answerLines: 5
+        answer: Every draw must choose one of the other three rows. The probability is $(3/4)^4=81/256$.
+      - id: 7
+        type: freeform
+        prompt: From three labeled rows, what is the probability that row 2 appears at least once in a size-three bootstrap sample?
+        answerLines: 5
+        answer: 'Use the complement of omission: $1-(2/3)^3=19/27$.'
+      - id: 8
+        type: freeform
+        prompt: For empirical values $0,1,1,1$, what is the probability that two independent empirical draws both equal one?
+        answerLines: 5
+        answer: Each has probability $3/4$, so the joint probability is $9/16$.
+      - id: 9
+        type: freeform
+        prompt: Is a repeated row allowed in a bootstrap sample drawn with replacement?
+        answerLines: 5
+        answer: Yes. Each selected row returns to the pool before the next draw.
+      - id: 10
+        type: freeform
+        prompt: Why is resampling the predictor and response columns independently unsuitable for bootstrapping an observed regression association?
+        answerLines: 5
+        answer: It breaks the pairing that records which response belongs to each predictor. Resample complete pairs to retain the empirical joint distribution.
+      - id: 11
+        type: freeform
+        prompt: Why can ordinary resampling fail to reveal a subgroup absent from the original sample?
+        answerLines: 5
+        answer: Every resampled row comes from observed data. An unobserved subgroup receives no empirical mass, so repeated resampling cannot repair its absence.
+  - title: Bootstrap uncertainty versus more simulation
+    questions:
+      - id: 12
+        type: freeform
+        prompt: From data $0,4$, give the bootstrap means for ordered resamples $(0,0),(0,4),(4,0),(4,4)$.
+        answerLines: 5
+        answer: 'Average each pair: the means are $0,2,2,4$.'
+      - id: 13
+        type: freeform
+        prompt: For the exact equally likely bootstrap means $0,2,2,4$, compute their expectation.
+        answerLines: 5
+        answer: The probability-weighted mean is $(0+2+2+4)/4=2$.
+      - id: 14
+        type: freeform
+        prompt: For the exact equally likely bootstrap means $0,2,2,4$, compute their variance.
+        answerLines: 5
+        answer: Their mean is $2$. The variance is $(4+0+0+4)/4=2$.
+      - id: 15
+        type: freeform
+        prompt: For a size-two bootstrap of data $0,4$, what is the probability its mean equals $2$?
+        answerLines: 5
+        answer: Two of the four ordered outcomes give mean $2$, so the probability is $1/2$.
+      - id: 16
+        type: freeform
+        prompt: Three independently simulated bootstrap estimates are $3,4,5$. Compute their sample standard deviation.
+        answerLines: 5
+        answer: Their mean is $4$, and the centered squared sum is $2$. Divide by $3-1$ and take a square root to obtain $1$.
+      - id: 17
+        type: freeform
+        prompt: Four simulated bootstrap estimates are $0,0,2,2$. Compute the estimated bootstrap standard error.
+        answerLines: 5
+        answer: The mean is $1$, the squared-deviation sum is $4$, and the sample standard deviation is $\sqrt{4/3}=2/\sqrt3$.
+      - id: 18
+        type: freeform
+        prompt: A bootstrap sample from three original values is $2,2,8$. Recompute its mean and median.
+        answerLines: 5
+        answer: The mean is $(2+2+8)/3=4$; the middle ordered observation is $2$.
+      - id: 19
+        type: freeform
+        prompt: The empirical observation variance is $12$. For a mean of three independent bootstrap draws, what is the exact conditional variance?
+        answerLines: 5
+        answer: Independence gives the mean variance $12/3=4$.
+      - id: 20
+        type: freeform
+        prompt: If the number of bootstrap replicates is quadrupled while the original data stay fixed, does the underlying conditional bootstrap standard deviation become half as large?
+        answerLines: 5
+        answer: No. The conditional distribution remains the same. Its simulated description becomes more precise, but its spread is not divided by two.
+      - id: 21
+        type: freeform
+        prompt: Why do four exhaustively enumerated equally likely bootstrap outcomes use probability weights 1/4, while four simulated estimates use denominator 3 to estimate variance?
+        answerLines: 5
+        answer: Enumeration gives the whole conditional probability distribution. Simulated estimates are a random sample from it, so their sample variance uses B−1 to estimate its variance.
+      - id: 22
+        type: freeform
+        prompt: Does a very large number of bootstrap replicates cure selection bias in the original sample?
+        answerLines: 5
+        answer: No. The procedure repeatedly samples the same biased empirical distribution.
+  - title: Training, validation, and a final test
+    questions:
+      - id: 23
+        type: freeform
+        prompt: Split 200 observations into 60% training, 20% validation, and the rest test. Give the three sizes.
+        answerLines: 5
+        answer: The sizes are $120,40,40$, which sum to 200.
+      - id: 24
+        type: freeform
+        prompt: Held-out responses are $2,4,6$ and predictions are $1,4,8$. Compute prediction MSE.
+        answerLines: 5
+        answer: Errors are $1,0,-2$, with squared sum $5$. Divide by three to get $5/3$.
+      - id: 25
+        type: freeform
+        prompt: Held-out MSE is $9$. What is root MSE?
+        answerLines: 5
+        answer: Taking the nonnegative square root gives $3$ in response units.
+      - id: 26
+        type: freeform
+        prompt: Two held-out folds have sizes $2,6$ and MSE values $1,3$. Compute the overall observation-weighted MSE.
+        answerLines: 5
+        answer: The combined squared-error sum is $2(1)+6(3)=20$. Divide by eight to get $5/2$.
+      - id: 27
+        type: freeform
+        prompt: A development sample has 80 observations in five equal cross-validation folds. How many observations train each fold's model?
+        answerLines: 5
+        answer: One fold has $16$ observations. Excluding it leaves $80-16=64$.
+      - id: 28
+        type: freeform
+        prompt: Training feature values are $2,4,6$ and a validation value is $10$. Center using the training mean. What centered validation value results?
+        answerLines: 5
+        answer: The training mean is $4$; apply that fixed value to obtain $10-4=6$.
+      - id: 29
+        type: freeform
+        prompt: For equal held-out fold sizes, MSE values are $2,4,3$. Compute the cross-validation MSE.
+        answerLines: 5
+        answer: Equal weights give $(2+4+3)/3=3$.
+      - id: 30
+        type: freeform
+        prompt: Can a test set remain untouched assessment data after its error is repeatedly used to choose polynomial degree?
+        answerLines: 5
+        answer: No. Those decisions use it for selection, so it now functions as validation data.
+      - id: 31
+        type: freeform
+        prompt: Should centering parameters be recomputed from each held-out fold before using a trained model on that fold?
+        answerLines: 5
+        answer: No. Estimate preprocessing parameters from that fold’s training portion and apply the same transformation to its held-out observations.
+      - id: 32
+        type: freeform
+        prompt: Explain why random row splitting can be misleading when the deployment task predicts later measurements from earlier ones.
+        answerLines: 5
+        answer: A random split may place future observations in training. A time-respecting split better represents the information available at prediction time.
+      - id: 33
+        type: freeform
+        prompt: Several records belong to each person, and the goal is prediction for previously unseen people. Explain a defensible splitting unit.
+        answerLines: 5
+        answer: Keep each person’s records together and hold out whole people. Otherwise training can learn person-specific information also present in evaluation rows.
+  - title: Reading a confusion matrix
+    questions:
+      - id: 34
+        type: freeform
+        prompt: Classifier A has TP=12, FN=4, FP=8, TN=16. Compute accuracy.
+        answerLines: 5
+        answer: 'Correct classifications are TP+TN. Divide by the total: $(12+16)/40=7/10$.'
+      - id: 35
+        type: freeform
+        prompt: For TP=12, FN=4, FP=8, TN=16, compute precision.
+        answerLines: 5
+        answer: 'Condition on predicted positives: $12/(12+8)=3/5$.'
+      - id: 36
+        type: freeform
+        prompt: For TP=12, FN=4, FP=8, TN=16, compute recall.
+        answerLines: 5
+        answer: 'Condition on actual positives: $12/(12+4)=3/4$.'
+      - id: 37
+        type: freeform
+        prompt: Classifier B has TP=3, FN=9, FP=1, TN=27. Compute accuracy.
+        answerLines: 5
+        answer: 'Correct classifications are TP+TN. Divide by the total: $(3+27)/40=3/4$.'
+      - id: 38
+        type: freeform
+        prompt: For TP=3, FN=9, FP=1, TN=27, compute precision.
+        answerLines: 5
+        answer: 'Condition on predicted positives: $3/(3+1)=3/4$.'
+      - id: 39
+        type: freeform
+        prompt: For TP=3, FN=9, FP=1, TN=27, compute recall.
+        answerLines: 5
+        answer: 'Condition on actual positives: $3/(3+9)=1/4$.'
+      - id: 40
+        type: freeform
+        prompt: For TP=12, FN=4, FP=8, TN=16, compute specificity and false-positive rate.
+        answerLines: 5
+        answer: There are $24$ actual negatives. Specificity is $16/24=2/3$ and false-positive rate is $8/24=1/3$.
+      - id: 41
+        type: freeform
+        prompt: For TP=12, FN=4, FP=8, TN=16, compute the false-discovery fraction among positive predictions.
+        answerLines: 5
+        answer: 'There are $20$ positive predictions, and eight are false: $8/20=2/5$.'
+      - id: 42
+        type: freeform
+        prompt: Among 100 held-out observations, 5 are positive. An always-negative classifier makes what accuracy?
+        answerLines: 5
+        answer: It correctly classifies the 95 negatives, giving $95/100=19/20$.
+      - id: 43
+        type: freeform
+        prompt: A classifier predicts no positive cases. Is its precision defined by TP/(TP+FP)?
+        answerLines: 5
+        answer: No. Both TP and FP are zero, leaving a zero denominator.
+      - id: 44
+        type: freeform
+        prompt: Explain how high accuracy can coexist with zero recall.
+        answerLines: 5
+        answer: If the positive class is rare, predicting negative for everyone correctly classifies most observations but finds none of the actual positives.
+  - title: Matching assessment to the decision
+    questions:
+      - id: 45
+        type: freeform
+        prompt: False-positive cost is 1 and false-negative cost is 4, with zero cost for correct decisions. Give the positive-probability threshold above which positive prediction has smaller expected cost.
+        answerLines: 5
+        answer: Solve $1(1-p)<4p$, giving $p>1/5$.
+      - id: 46
+        type: freeform
+        prompt: With $p=3/10$, false-positive cost 1, and false-negative cost 4, give the expected costs of positive and negative predictions, in that order.
+        answerLines: 5
+        answer: Positive prediction costs $1(1-3/10)=7/10$; negative prediction costs $4(3/10)=6/5$.
+      - id: 47
+        type: freeform
+        prompt: False-positive cost is 3 and false-negative cost is 2, with zero cost for correct decisions. Give the positive-probability threshold above which positive prediction has smaller expected cost.
+        answerLines: 5
+        answer: Solve $3(1-p)<2p$, giving $p>3/5$.
+      - id: 48
+        type: freeform
+        prompt: With $p=1/2$, false-positive cost 3, and false-negative cost 2, give the expected costs of positive and negative predictions, in that order.
+        answerLines: 5
+        answer: Positive prediction costs $3(1-1/2)=3/2$; negative prediction costs $2(1/2)=1$.
+      - id: 49
+        type: freeform
+        prompt: False-positive cost is 2 and false-negative cost is 6, with zero cost for correct decisions. Give the positive-probability threshold above which positive prediction has smaller expected cost.
+        answerLines: 5
+        answer: Solve $2(1-p)<6p$, giving $p>1/4$.
+      - id: 50
+        type: freeform
+        prompt: With $p=1/4$, false-positive cost 2, and false-negative cost 6, give the expected costs of positive and negative predictions, in that order.
+        answerLines: 5
+        answer: Positive prediction costs $2(1-1/4)=3/2$; negative prediction costs $6(1/4)=3/2$.
+      - id: 51
+        type: freeform
+        prompt: A held-out confusion matrix has 6 false positives and 4 false negatives among 50 cases. With costs 2 and 5 respectively, compute average cost per case.
+        answerLines: 5
+        answer: Total cost is $2(6)+5(4)=32$. Divide by 50 to obtain $16/25$.
+      - id: 52
+        type: freeform
+        prompt: Loss is $1$ in a group of probability $3/4$ and $5$ in a group of probability $1/4$. Compute expected loss.
+        answerLines: 5
+        answer: 'Weight losses by target-population probabilities: $3/4+5/4=2$.'
+      - id: 53
+        type: freeform
+        prompt: Group losses are $1$ and $5$, with respective target probabilities $1/4$ and $3/4$. Compute expected loss.
+        answerLines: 5
+        answer: The new risk is $1/4+15/4=4$. The model's group losses need not change for overall risk to change.
+      - id: 54
+        type: freeform
+        prompt: A flexible model has training MSE 0.1 and validation MSE 4; a simpler model has training MSE 1 and validation MSE 2. Which is better supported for selection, and what remains to do?
+        answerLines: 5
+        answer: The simpler model has lower validation error on this comparison. After completing selection, assess the chosen procedure on a reserved test set and consider sampling uncertainty and deployment fit.
+      - id: 55
+        type: freeform
+        prompt: A bootstrap slope interval excludes zero. Does this alone establish low prediction error or a causal effect?
+        answerLines: 5
+        answer: No. The interval addresses coefficient uncertainty under the resampling model. Prediction needs appropriate held-out assessment, and causation needs additional design assumptions.

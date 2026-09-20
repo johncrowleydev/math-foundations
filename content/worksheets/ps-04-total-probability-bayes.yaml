@@ -1,0 +1,262 @@
+title: Total Probability and Bayes Rule
+sections:
+  - title: Total probability is a weighted average
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A source is $U$ with probability $0.6$ and $V$ otherwise. Success rates are $0.9$ for $U$ and $0.5$ for $V$. Find overall success probability.
+        answerLines: 5
+        answer: 'Weight the rates: $0.6(0.9)+0.4(0.5)=0.74=37/50$.'
+      - id: 2
+        type: freeform
+        prompt: A source is $U$ with probability $0.6$ and $V$ otherwise. Success rates are $0.9$ under $U$ and $0.5$ under $V$. Find the joint probability of source $V$ and success.
+        answerLines: 5
+        answer: The $V$ branch contributes $0.4(0.5)=0.2=1/5$.
+      - id: 3
+        type: freeform
+        prompt: A source is $U$ with probability $0.6$ and $V$ otherwise. Success rates are $0.9$ under $U$ and $0.5$ under $V$. Find overall failure probability.
+        answerLines: 5
+        answer: 'Take the complement of success: $1-37/50=13/50$.'
+      - id: 4
+        type: freeform
+        prompt: Three partition weights are $1/2,1/3,1/6$, with event rates $1/5,2/5,3/5$. Find the event probability.
+        answerLines: 5
+        answer: The weighted sum is $1/10+2/15+1/10=1/3$.
+      - id: 5
+        type: freeform
+        prompt: Two equally likely cases have event rates $0.3$ and $0.7$. Find the event probability.
+        answerLines: 5
+        answer: Equal weights give $(0.3+0.7)/2=1/2$.
+      - id: 6
+        type: freeform
+        prompt: A partition has weights $0.2,0.5,0.3$. An event occurs only in the last case, where its conditional probability is $0.4$. Find its probability.
+        answerLines: 5
+        answer: The first two contributions vanish, leaving $0.3(0.4)=0.12=3/25$.
+      - id: 7
+        type: freeform
+        prompt: 'True or false: a weighted average of conditional probabilities $0.2$ and $0.6$ can equal $0.8$.'
+        answerLines: 5
+        answer: False. Nonnegative weights summing to one keep the average between $0.2$ and $0.6$.
+      - id: 8
+        type: freeform
+        prompt: Explain why total probability does not require the event $A$ to be independent of the partition cases.
+        answerLines: 5
+        answer: Each conditional rate $P(A\mid B_i)$ can differ. The multiplication rule uses that dependence explicitly when forming each joint contribution.
+      - id: 9
+        type: freeform
+        prompt: An event has rate $0.4$ within every positive-probability partition piece. Find its overall probability.
+        answerLines: 5
+        answer: "The common rate factors out: $0.4\\sum_iP(B_i)=0.4=2/5$."
+      - id: 10
+        type: freeform
+        prompt: Prove the finite law of total probability from a partition.
+        answerLines: 5
+        answer: The sets $A\cap B_i$ are disjoint and have union $A$. Therefore $P(A)=\sum_iP(A\cap B_i)=\sum_iP(A\mid B_i)P(B_i)$, using additivity and the conditional definition.
+  - title: Reverse the question with Bayes rule
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Cases $A,B$ have priors $1/3,2/3$ and evidence likelihoods $3/4,1/4$. Find the evidence probability.
+        answerLines: 5
+        answer: The joint weights are $1/4$ and $1/6$, totaling $5/12$.
+      - id: 12
+        type: freeform
+        prompt: Cases $A,B$ have priors $1/3,2/3$ and evidence likelihoods $P(E\mid A)=3/4$, $P(E\mid B)=1/4$. Find $P(A\mid E)$.
+        answerLines: 5
+        answer: 'Normalize the $A$ weight: $(1/4)/(5/12)=3/5$.'
+      - id: 13
+        type: freeform
+        prompt: Cases $A,B$ have priors $1/3,2/3$ and evidence likelihoods $P(E\mid A)=3/4$, $P(E\mid B)=1/4$. Find $P(B\mid E)$.
+        answerLines: 5
+        answer: The $B$ weight is $1/6$, so the posterior is $(1/6)/(5/12)=2/5$.
+      - id: 14
+        type: freeform
+        prompt: Equally likely hypotheses have likelihoods $0.2,0.6,0.4$. Find the posterior of the second hypothesis.
+        answerLines: 5
+        answer: Equal priors cancel, leaving $0.6/(0.2+0.6+0.4)=1/2$.
+      - id: 15
+        type: freeform
+        prompt: A hypothesis has prior $0.2$, evidence likelihood $0.5$, and evidence probability $0.25$. Find its posterior.
+        answerLines: 5
+        answer: Bayes rule gives $0.2(0.5)/0.25=0.4=2/5$.
+      - id: 16
+        type: freeform
+        prompt: Two unnormalized posterior weights are $0.03$ and $0.07$. Give their normalized values as a pair.
+        answerLines: 5
+        answer: Their total is $0.10$, so the posterior pair is $(3/10,7/10)$.
+      - id: 17
+        type: freeform
+        prompt: 'True or false: likelihood values $0.8$ and $0.7$ for two hypotheses are invalid because they sum above one.'
+        answerLines: 5
+        answer: False. Each is a probability under a different conditioning hypothesis. They need not sum to one over hypotheses.
+      - id: 18
+        type: freeform
+        prompt: An event has the same positive likelihood under every hypothesis in a partition. Explain why the posterior equals the prior.
+        answerLines: 5
+        answer: The common likelihood cancels between numerator and denominator. Since the priors sum to one, the denominator is just that common likelihood.
+      - id: 19
+        type: freeform
+        prompt: A case has prior zero and the observed evidence has positive overall probability. Find that case's posterior.
+        answerLines: 5
+        answer: The joint event is contained in a probability-zero case, so its joint probability is zero by monotonicity. Dividing by the positive evidence probability gives posterior $0$.
+      - id: 20
+        type: freeform
+        prompt: Explain what fails when the model gives $P(E)=0$ but $E$ is reported.
+        answerLines: 5
+        answer: The elementary conditional update has zero denominator. One must reconsider the model or the representation of evidence; the formula supplies no posterior value.
+  - title: Base rates and screening tables
+    questions:
+      - id: 21
+        type: freeform
+        prompt: A flag has specificity $0.96$. Find its false-positive rate.
+        answerLines: 5
+        answer: The rate is $1-0.96=0.04=1/25$.
+      - id: 22
+        type: freeform
+        prompt: A flag has sensitivity $0.85$. Find its false-negative rate.
+        answerLines: 5
+        answer: The rate is $1-0.85=0.15=3/20$.
+      - id: 23
+        type: freeform
+        prompt: The defect base rate is $0.1$, sensitivity $0.8$, and false-positive rate $0.2$. Find the flag probability.
+        answerLines: 5
+        answer: Total probability gives $0.1(0.8)+0.9(0.2)=0.26=13/50$.
+      - id: 24
+        type: freeform
+        prompt: The defect base rate is $0.1$, sensitivity is $0.8$, and false-positive rate is $0.2$. Find the defect probability given a flag.
+        answerLines: 5
+        answer: The defective-and-flagged weight is $0.08$, so the posterior is $0.08/0.26=4/13$.
+      - id: 25
+        type: freeform
+        prompt: The defect base rate is $0.1$, sensitivity is $0.8$, and false-positive rate is $0.2$. Find the defect probability given no flag.
+        answerLines: 5
+        answer: The defective-and-unflagged weight is $0.02$ and no-flag probability is $0.74$, giving $1/37$.
+      - id: 26
+        type: freeform
+        prompt: A model has $100$ target and $900$ nontarget items. Its rates imply $90$ target flags and $45$ nontarget flags. Find the target fraction among flags.
+        answerLines: 5
+        answer: There are $135$ flags, so the target fraction is $90/135=2/3$.
+      - id: 27
+        type: freeform
+        prompt: A collection has one hundred target and nine hundred nontarget items; there are ninety target flags and forty-five nontarget flags. Find the false-positive rate.
+        answerLines: 5
+        answer: False positives are $45$ of the $900$ nontarget items, giving $45/900=1/20$.
+      - id: 28
+        type: freeform
+        prompt: 'True or false: sensitivity $0.99$ alone determines the target probability after a positive signal.'
+        answerLines: 5
+        answer: False. The base rate and the positive-signal rate outside the target category are also needed.
+      - id: 29
+        type: freeform
+        prompt: Explain why increasing the base rate while holding positive likelihoods fixed increases the positive posterior, when both likelihoods are positive.
+        answerLines: 5
+        answer: The target joint weight grows while the nontarget joint weight shrinks. Since both likelihoods are positive, the target contribution becomes a larger fraction of their total, so its normalized posterior increases.
+      - id: 30
+        type: freeform
+        prompt: A target has prior $1/5$, sensitivity $1$, and false-positive rate $0$. Find its posterior given a positive result.
+        answerLines: 5
+        answer: Only target items can produce a positive result, so the posterior is $1$. The evidence has positive probability $1/5$.
+  - title: Odds and sequential evidence
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Convert probability $2/5$ to odds as a numerical ratio.
+        answerLines: 5
+        answer: The odds are $(2/5)/(3/5)=2/3$.
+      - id: 32
+        type: freeform
+        prompt: Convert odds $5$ to $2$ into probability.
+        answerLines: 5
+        answer: The probability is $5/(5+2)=5/7$.
+      - id: 33
+        type: freeform
+        prompt: Prior odds are $1/9$ and the evidence likelihood ratio is $3$. Find posterior odds.
+        answerLines: 5
+        answer: 'Multiply: $(1/9)3=1/3$.'
+      - id: 34
+        type: freeform
+        prompt: Prior odds are $1/9$ and the evidence likelihood ratio is $3$. Find the posterior probability.
+        answerLines: 5
+        answer: Odds $1:3$ correspond to probability $1/(1+3)=1/4$.
+      - id: 35
+        type: freeform
+        prompt: Evidence has likelihoods $0.6$ under $H$ and $0.15$ under $H^c$. Find the likelihood ratio.
+        answerLines: 5
+        answer: The ratio is $0.6/0.15=4$.
+      - id: 36
+        type: freeform
+        prompt: Prior probability is $1/4$ and the likelihood ratio is $9$. Find the posterior probability.
+        answerLines: 5
+        answer: Prior odds are $1/3$, posterior odds are $3$, and posterior probability is $3/4$.
+      - id: 37
+        type: freeform
+        prompt: Prior odds are one. Two signals are conditionally independent under each hypothesis and each has likelihood ratio two. Find the posterior probability after both.
+        answerLines: 5
+        answer: Posterior odds are $1\cdot2\cdot2=4$, so the probability is $4/5$.
+      - id: 38
+        type: freeform
+        prompt: An event was already observed. The identical event is reported again without new information. What likelihood ratio does this second report contribute, assuming both posterior hypotheses have positive probability?
+        answerLines: 5
+        answer: Conditional on the existing evidence, the already-known event has probability one under either remaining hypothesis. The new ratio is $1/1=1$.
+      - id: 39
+        type: freeform
+        prompt: Derive the odds form of Bayes rule from the two posterior formulas.
+        answerLines: 5
+        answer: Divide $P(E\mid H)P(H)/P(E)$ by $P(E\mid H^c)P(H^c)/P(E)$. The shared denominator cancels, leaving prior odds times the likelihood ratio.
+      - id: 40
+        type: freeform
+        prompt: 'True or false: a likelihood ratio below one must make the posterior probability less than one half.'
+        answerLines: 5
+        answer: False. It decreases the odds, but sufficiently large prior odds can still leave the posterior above one half.
+  - title: Compare mechanisms and audit an update
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Choose one of two bags uniformly. Bag $A$ has three red and one blue; bag $B$ has one red and one blue. Select a token uniformly from the chosen bag. Find the red probability.
+        answerLines: 5
+        answer: The weighted rate is $(1/2)(3/4)+(1/2)(1/2)=5/8$.
+      - id: 42
+        type: freeform
+        prompt: "Choose a bag uniformly: bag $A$ has three red and one blue token; bag $B$ has one red and one blue. Then choose a token uniformly from that bag; let $R$ denote red. Find $P(A\\mid R)$."
+        answerLines: 5
+        answer: The $A$ red contribution is $3/8$, so the posterior is $(3/8)/(5/8)=3/5$.
+      - id: 43
+        type: freeform
+        prompt: Pool all tokens from bag $A$ (three red, one blue) and bag $B$ (one red, one blue), then choose a token uniformly. Find the probability the token is red.
+        answerLines: 5
+        answer: Four of the six tokens are red, so the probability is $2/3$.
+      - id: 44
+        type: freeform
+        prompt: Pool all tokens from bag $A$ (three red, one blue) and bag $B$ (one red, one blue), then select a token uniformly. Given that the token is red, find the probability it came from bag $A$.
+        answerLines: 5
+        answer: Three of the four red tokens came from $A$, giving $3/4$.
+      - id: 45
+        type: freeform
+        prompt: An environment is equally likely high or low. Independent conditional trials have success rates $3/4$ or $1/4$. Find the first-trial success probability.
+        answerLines: 5
+        answer: The mixture rate is $(1/2)(3/4)+(1/2)(1/4)=1/2$.
+      - id: 46
+        type: freeform
+        prompt: An environment is equally likely high or low. Conditional on that environment, trials are independent with success probability $3/4$ in high or $1/4$ in low. Find the probability both first two trials succeed.
+        answerLines: 5
+        answer: 'Within each environment multiply, then mix: $(1/2)(9/16)+(1/2)(1/16)=5/16$.'
+      - id: 47
+        type: freeform
+        prompt: An environment is equally likely high or low. Conditional on that environment, trials are independent with success probability $3/4$ in high or $1/4$ in low. Find the probability the second succeeds given the first succeeded.
+        answerLines: 5
+        answer: 'Divide the two-success probability by first success: $(5/16)/(1/2)=5/8$.'
+      - id: 48
+        type: freeform
+        prompt: An environment is equally likely high or low. Conditional on that environment, trials are independent with success probability $3/4$ in high or $1/4$ in low. Find the posterior probability of the high environment after one success.
+        answerLines: 5
+        answer: Its success weight is $3/8$ out of total $1/2$, giving $3/4$.
+      - id: 49
+        type: freeform
+        prompt: An environment is equally likely high or low. Conditional on that environment, trials are independent with success probability $3/4$ in high or $1/4$ in low. Are the first two success events independent without conditioning on the environment?
+        answerLines: 5
+        answer: No. The joint probability $5/16$ differs from the marginal product $(1/2)^2=1/4$.
+      - id: 50
+        type: freeform
+        prompt: Explain why changing from uniform bag selection to uniform token selection can change a posterior.
+        answerLines: 5
+        answer: Unequal bag sizes give different probabilities of selecting each bag's token under pooling. Bayes rule uses these changed priors, so the normalized contributions can change even when each bag's internal color proportions stay fixed.

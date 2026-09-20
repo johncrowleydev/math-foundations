@@ -1,0 +1,262 @@
+title: Continuous Random Variables
+sections:
+  - title: Probability is area, not height
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find $c$ so that $f(x)=c$ on $(0,4)$, zero elsewhere, is a density.
+        answerLines: 5
+        answer: Normalization gives $4c=1$, so $c=1/4$.
+      - id: 2
+        type: freeform
+        prompt: Find $c$ for $f(x)=cx^2$ on $(0,2)$, zero elsewhere.
+        answerLines: 5
+        answer: $c\int_0^2x^2\,dx=8c/3=1$, so $c=3/8$.
+      - id: 3
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, find $P(X<1/2)$.
+        answerLines: 5
+        answer: $\int_0^{1/2}3x^2\,dx=1/8$.
+      - id: 4
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, find $P(1/2<X<1)$.
+        answerLines: 5
+        answer: The complement of the lower half has probability $1-1/8=7/8$.
+      - id: 5
+        type: freeform
+        prompt: A variable has a density. Find $P(X=7)$.
+        answerLines: 5
+        answer: A singleton has zero area, so $P(X=7)=0$.
+      - id: 6
+        type: freeform
+        prompt: 'True or false: a density equal to $4$ throughout $(0,1/4)$ and zero elsewhere is valid.'
+        answerLines: 5
+        answer: True. It is nonnegative and its area is $4(1/4)=1$.
+      - id: 7
+        type: freeform
+        prompt: 'True or false: $f(x)=x$ on $(-1,1)$, zero elsewhere, is a density.'
+        answerLines: 5
+        answer: False. It is negative for negative $x$, and its total integral is zero.
+      - id: 8
+        type: freeform
+        prompt: For a uniform density on $(0,1)$, a device reports $0.40$ exactly when $0.395\le X<0.405$. Find the probability of that report.
+        answerLines: 5
+        answer: The interval has length $0.405-0.395=0.01=1/100$.
+      - id: 9
+        type: freeform
+        prompt: Explain why $f(0.8)=1.92$ is compatible with $P(X=0.8)=0$ for density $3x^2$ on $(0,1)$.
+        answerLines: 5
+        answer: The first number is probability density, a height; the second is the integral over a singleton, which has width zero. They measure different quantities.
+      - id: 10
+        type: freeform
+        prompt: Construct a nonnegative function integrating to two and explain why it cannot be a density.
+        answerLines: 5
+        answer: For example, $f(x)=2$ on $(0,1)$ and zero elsewhere has total area two. It would assign probability two to the entire support, violating normalization.
+  - title: Move between density and cumulative probability
+    questions:
+      - id: 11
+        type: freeform
+        prompt: For density $4x^3$ on $(0,1)$, give $F(x)$ for $0<x<1$.
+        answerLines: 5
+        answer: $F(x)=\int_0^x4t^3\,dt=x^4$.
+      - id: 12
+        type: freeform
+        prompt: For density $4x^3$ on $(0,1)$, find $F(2)$.
+        answerLines: 5
+        answer: The entire support lies below two, so $F(2)=1$.
+      - id: 13
+        type: freeform
+        prompt: A continuous CDF is $F(x)=x^2/9$ on $(0,3)$. Give its density on that interval.
+        answerLines: 5
+        answer: Differentiating gives $f(x)=2x/9$.
+      - id: 14
+        type: freeform
+        prompt: For $F(x)=x^2/9$ on $(0,3)$, with zero/one extensions, find $P(1<X<2)$.
+        answerLines: 5
+        answer: $F(2)-F(1)=4/9-1/9=1/3$.
+      - id: 15
+        type: freeform
+        prompt: For the CDF $F(x)=x^2/9$ on $(0,3)$, zero below and one above, find the $4/9$-quantile.
+        answerLines: 5
+        answer: Solve $q^2/9=4/9$ in $[0,3]$ to obtain $q=2$.
+      - id: 16
+        type: freeform
+        prompt: A density is $1/4$ on $(0,2)$ and $1/2$ on $(2,3)$, zero elsewhere. Find $F(5/2)$.
+        answerLines: 5
+        answer: $F(5/2)=1/2+(1/2)(1/2)=3/4$.
+      - id: 17
+        type: freeform
+        prompt: A density is $1/4$ on $(0,2)$ and $1/2$ on $(2,3)$, zero elsewhere. Give $F(x)$ for $2<x<3$.
+        answerLines: 5
+        answer: Earlier accumulation plus the new area gives $F(x)=1/2+(x-2)/2=(x-1)/2$.
+      - id: 18
+        type: freeform
+        prompt: 'True or false: a CDF that jumps from $0.3$ to $0.5$ at zero belongs to a density-only model.'
+        answerLines: 5
+        answer: False. The jump assigns point mass $0.2$ to zero.
+      - id: 19
+        type: freeform
+        prompt: Explain why differentiating a CDF only on open intervals can miss information when the CDF has jumps.
+        answerLines: 5
+        answer: Derivatives on the intervals describe the continuous accumulation but omit the jump masses. A complete distribution must also record those jumps.
+      - id: 20
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, derive and give its median exactly.
+        answerLines: 5
+        answer: The median $m$ solves $m^3=1/2$, hence $m=(1/2)^{1/3}$.
+  - title: Compute expectations by integration
+    questions:
+      - id: 21
+        type: freeform
+        prompt: For density $4x^3$ on $(0,1)$, find $E[X]$.
+        answerLines: 5
+        answer: $E[X]=\int_0^14x^4\,dx=4/5$.
+      - id: 22
+        type: freeform
+        prompt: For density $4x^3$ on $(0,1)$, find $E[X^2]$.
+        answerLines: 5
+        answer: $E[X^2]=\int_0^14x^5\,dx=2/3$.
+      - id: 23
+        type: freeform
+        prompt: For density $4x^3$ on $(0,1)$, find $\operatorname{Var}(X)$.
+        answerLines: 5
+        answer: $2/3-(4/5)^2=2/75$.
+      - id: 24
+        type: freeform
+        prompt: For density $2(1-x)$ on $(0,1)$, find $E[X]$.
+        answerLines: 5
+        answer: $\int_0^1 2x(1-x)\,dx=1-2/3=1/3$.
+      - id: 25
+        type: freeform
+        prompt: For density $2(1-x)$ on $(0,1)$, find $E[X^2]$.
+        answerLines: 5
+        answer: $\int_0^12x^2(1-x)\,dx=2/3-1/2=1/6$.
+      - id: 26
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, find $E[8X-2]$.
+        answerLines: 5
+        answer: $8(3/4)-2=4$.
+      - id: 27
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, find $\operatorname{Var}(4X+7)$.
+        answerLines: 5
+        answer: The variance is $16(3/80)=3/5$.
+      - id: 28
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, find $E[1/X]$.
+        answerLines: 5
+        answer: $\int_0^1(1/x)3x^2\,dx=\int_0^13x\,dx=3/2$. The endpoint singularity is integrable.
+      - id: 29
+        type: freeform
+        prompt: For density $2/x^3$ on $[1,\infty)$, explain why a finite mean does not imply finite variance.
+        answerLines: 5
+        answer: The mean integral is $\int_1^\infty2/x^2\,dx=2$, but the second-moment integral $\int_1^\infty2/x\,dx$ diverges. Hence the variance is infinite.
+      - id: 30
+        type: freeform
+        prompt: Derive $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$ when $E[X^2]<\infty$.
+        answerLines: 5
+        answer: "Subtract the mean: $aX+b-E[aX+b]=a(X-E[X])$. Squaring and taking expectation gives $a^2E[(X-E[X])^2]=a^2\\operatorname{Var}(X)$."
+  - title: Uniform models and interval conditioning
+    questions:
+      - id: 31
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(-2,4)$, find $E[X]$.
+        answerLines: 5
+        answer: The midpoint is $(-2+4)/2=1$.
+      - id: 32
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(-2,4)$, find its variance.
+        answerLines: 5
+        answer: The width is six, so $\operatorname{Var}(X)=6^2/12=3$.
+      - id: 33
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(-2,4)$, find $P(-5<X<1)$.
+        answerLines: 5
+        answer: 'Intersect with the support: the interval $(-2,1)$ has length three. The probability is $3/6=1/2$.'
+      - id: 34
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(2,8)$, find $P(X>6\mid X>4)$.
+        answerLines: 5
+        answer: The retained lengths give $2/4=1/2$.
+      - id: 35
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(2,8)$, find $E[X\mid X>4]$.
+        answerLines: 5
+        answer: The conditional distribution is uniform on $(4,8)$, whose midpoint is $6$.
+      - id: 36
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(2,8)$, find $\operatorname{Var}(X\mid X>4)$.
+        answerLines: 5
+        answer: The retained width is four, so the variance is $16/12=4/3$.
+      - id: 37
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, give the conditional density for $1/2<x<1$ given $X>1/2$.
+        answerLines: 5
+        answer: Divide by $P(X>1/2)=7/8$ to obtain $24x^2/7$. It is zero outside the retained interval.
+      - id: 38
+        type: freeform
+        prompt: For density $3x^2$ on $(0,1)$, find $P(X<3/4\mid X>1/2)$.
+        answerLines: 5
+        answer: The numerator is $27/64-1/8=19/64$, and the denominator is $7/8$, giving $19/56$.
+      - id: 39
+        type: freeform
+        prompt: A wait must lie between zero and ten minutes. Explain why this does not determine its distribution.
+        answerLines: 5
+        answer: The support specifies possible values, but many different densities fit it. Constant, increasing, decreasing, or multimodal densities give different interval probabilities.
+      - id: 40
+        type: freeform
+        prompt: Show that conditioning a uniform $(a,b)$ variable on $c<X<d$, with $a\le c<d\le b$, produces a uniform $(c,d)$ variable.
+        answerLines: 5
+        answer: The event has probability $(d-c)/(b-a)$. Dividing $1/(b-a)$ by that probability gives the constant density $1/(d-c)$ on $(c,d)$ and zero elsewhere.
+  - title: Exponential waiting times and their limitations
+    questions:
+      - id: 41
+        type: freeform
+        prompt: An exponential waiting time has rate $2$ per hour. Find its mean in hours.
+        answerLines: 5
+        answer: $E[T]=1/2$ hour.
+      - id: 42
+        type: freeform
+        prompt: For exponential rate $2$ per hour, find its variance in squared hours.
+        answerLines: 5
+        answer: $\operatorname{Var}(T)=1/2^2=1/4$.
+      - id: 43
+        type: freeform
+        prompt: For exponential rate $2$, find $P(T>3)$ exactly.
+        answerLines: 5
+        answer: The survival probability is $e^{-2(3)}=e^{-6}$.
+      - id: 44
+        type: freeform
+        prompt: For exponential rate $1/3$, find $P(T\le6)$ exactly.
+        answerLines: 5
+        answer: $F(6)=1-e^{-6/3}=1-e^{-2}$.
+      - id: 45
+        type: freeform
+        prompt: For exponential rate $1/2$, find $P(2<T<6)$.
+        answerLines: 5
+        answer: 'Subtract tails: $e^{-1}-e^{-3}$.'
+      - id: 46
+        type: freeform
+        prompt: For exponential rate $1/2$, find $P(T>9\mid T>5)$.
+        answerLines: 5
+        answer: The additional wait is four units, so the probability is $e^{-4/2}=e^{-2}$.
+      - id: 47
+        type: freeform
+        prompt: Find the median of an exponential variable with rate $3$.
+        answerLines: 5
+        answer: Solve $e^{-3m}=1/2$ to get $m=\ln2/3$.
+      - id: 48
+        type: freeform
+        prompt: An exponential waiting time has mean five seconds. Find its rate in inverse seconds.
+        answerLines: 5
+        answer: The rate is the reciprocal mean, $1/5$.
+      - id: 49
+        type: freeform
+        prompt: For exponential rate $1/4$, give the $3/4$-quantile exactly.
+        answerLines: 5
+        answer: $1-e^{-q/4}=3/4$ implies $q=4\ln4$.
+      - id: 50
+        type: freeform
+        prompt: A job is guaranteed to finish within ten minutes. Explain why its exact duration cannot have an exponential distribution.
+        answerLines: 5
+        answer: Every exponential distribution with positive finite rate has $P(T>10)=e^{-10\lambda}>0$. This conflicts with the guaranteed upper bound.

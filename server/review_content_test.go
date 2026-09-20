@@ -57,7 +57,7 @@ func TestLessonReviewContentPreservesExistingEffectiveTemplates(t *testing.T) {
 		if legacy[template.ID] {
 			continue
 		}
-		if template.Lesson != "propositional-logic" && template.Lesson != "predicates-and-quantifiers" && !strings.HasPrefix(template.Lesson, "calculus-") {
+		if template.Lesson != "propositional-logic" && template.Lesson != "predicates-and-quantifiers" && !strings.HasPrefix(template.Lesson, "calculus-") && !strings.HasPrefix(template.Lesson, "probability-statistics-") {
 			t.Errorf("new dedicated template outside Lessons 1–2: %s", template.ID)
 		}
 		questions := append([]map[string]any{template.Question}, template.Variants...)

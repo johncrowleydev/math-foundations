@@ -138,6 +138,30 @@
       "author": "Gilbert Strang and Edwin Herman",
       "edition": "OpenStax, Rice University; online edition inspected September 2026",
       "url": "https://openstax.org/books/calculus-volume-3/pages/preface"
+    },
+    "islr": {
+      "title": "An Introduction to Statistical Learning with Applications in R",
+      "author": "Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani",
+      "edition": "2013; corrected seventh printing, 2017",
+      "url": "https://www.statlearning.com/s/ISLRSeventhPrinting.pdf"
+    },
+    "psu-stat501": {
+      "title": "STAT 501: Regression Methods",
+      "author": "Pennsylvania State University",
+      "edition": "Online course, inspected September 2026",
+      "url": "https://online.stat.psu.edu/stat501/"
+    },
+    "pishro-nik": {
+      "title": "Introduction to Probability, Statistics, and Random Processes",
+      "author": "Hossein Pishro-Nik",
+      "edition": "Kappa Research, 2014; online text inspected September 2026",
+      "url": "https://www.probabilitycourse.com/"
+    },
+    "openstax-statistics-2e": {
+      "title": "Introductory Statistics 2e",
+      "author": "Barbara Illowsky and Susan Dean",
+      "edition": "OpenStax, 2023; online text inspected September 2026",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/preface"
     }
   },
   "citations": {
@@ -1393,6 +1417,503 @@
       "url": "https://katex.org/docs/supported.html",
       "supports": "The supported calculus commands, grouping, function notation, derivatives, and integral limits in the authored optional typing help.",
       "checked": "2026-09-19"
+    },
+    "ps-introduction-probability": {
+      "source": "pishro-nik",
+      "locator": "§1.3.1 Random Experiments",
+      "url": "https://www.probabilitycourse.com/chapter1/1_3_1_random_experiments.php",
+      "supports": "Experiments, observed outcomes, and probability models supporting the original subject orientation.",
+      "checked": "2026-09-20"
+    },
+    "ps-introduction-inference": {
+      "source": "pishro-nik",
+      "locator": "§8.1.0 Introduction to Statistical Inference",
+      "url": "https://www.probabilitycourse.com/chapter8/8_1_0_intro.php",
+      "supports": "The distinction between working from a specified probability model and drawing conclusions about unknown quantities from data.",
+      "checked": "2026-09-20"
+    },
+    "ps-mml-8-2": {
+      "source": "mml",
+      "locator": "§8.2 Empirical Risk Minimization and §8.3 Parameter Estimation, printed pp.259–273 / PDF pp.265–279",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=265",
+      "supports": "Expected versus empirical loss, generalization, likelihood, and the distinction between estimation and prediction.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-3-1": {
+      "source": "pishro-nik",
+      "locator": "§1.3.1 Random Experiments",
+      "url": "https://www.probabilitycourse.com/chapter1/1_3_1_random_experiments.php",
+      "supports": "Experiments, outcomes, sample spaces, and event set operations.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-3-3": {
+      "source": "pishro-nik",
+      "locator": "§1.3.3 Finding Probabilities",
+      "url": "https://www.probabilitycourse.com/chapter1/1_3_3_finding_probabilities.php",
+      "supports": "Finite probability weights, complements, monotonicity, and inclusion-exclusion.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-3-2": {
+      "source": "pishro-nik",
+      "locator": "§1.3.2 Probability",
+      "url": "https://www.probabilitycourse.com/chapter1/1_3_2_probability.php",
+      "supports": "Nonnegativity, normalization, and countable additivity for disjoint events.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-2-1-1": {
+      "source": "pishro-nik",
+      "locator": "§2.1.1 Ordered Sampling with Replacement",
+      "url": "https://www.probabilitycourse.com/chapter2/2_1_1_ordered_with_replacement.php",
+      "supports": "Product counting and ordered repeated choices.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-2-1-2": {
+      "source": "pishro-nik",
+      "locator": "§2.1.2 Ordered Sampling without Replacement",
+      "url": "https://www.probabilitycourse.com/chapter2/2_1_2_ordered_without_replacement.php",
+      "supports": "Permutations, factorials, and collision probabilities by complements.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-2-1-3": {
+      "source": "pishro-nik",
+      "locator": "§2.1.3 Unordered Sampling without Replacement",
+      "url": "https://www.probabilitycourse.com/chapter2/2_1_3_unordered_without_replacement.php",
+      "supports": "Combinations, binary arrangements, multinomial counting, and counting identities.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-4-0": {
+      "source": "pishro-nik",
+      "locator": "§1.4.0 Conditional Probability",
+      "url": "https://www.probabilitycourse.com/chapter1/1_4_0_conditional_probability.php",
+      "supports": "Conditional probability, renormalization, complement rules, and the multiplication chain rule.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-4-1": {
+      "source": "pishro-nik",
+      "locator": "§1.4.1 Independence",
+      "url": "https://www.probabilitycourse.com/chapter1/1_4_1_independence.php",
+      "supports": "Independence, complement preservation, mutual versus pairwise independence, and independent repeated events.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-4-4": {
+      "source": "pishro-nik",
+      "locator": "§1.4.4 Conditional Independence",
+      "url": "https://www.probabilitycourse.com/chapter1/1_4_4_conditional_independence.php",
+      "supports": "Conditional independence and its distinction from unconditional independence. Conditional independence within hypotheses and dependence after mixing.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-1-4": {
+      "source": "openstax-statistics-2e",
+      "locator": "§1.4 Experimental Design and Ethics, opening observational-study discussion",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/1-4-experimental-design-and-ethics",
+      "supports": "Observational association alone does not establish a causal effect.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-4-2": {
+      "source": "pishro-nik",
+      "locator": "§1.4.2 Law of Total Probability",
+      "url": "https://www.probabilitycourse.com/chapter1/1_4_2_total_probability.php",
+      "supports": "Partitioning an event and weighting conditional probabilities by partition probabilities.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-1-4-3": {
+      "source": "pishro-nik",
+      "locator": "§1.4.3 Bayes' Rule",
+      "url": "https://www.probabilitycourse.com/chapter1/1_4_3_bayes_rule.php",
+      "supports": "Bayes rule, normalization, reverse conditioning, and base-rate effects.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-1-1": {
+      "source": "pishro-nik",
+      "locator": "§3.1.1 Random Variables",
+      "url": "https://www.probabilitycourse.com/chapter3/3_1_1_random_variables.php",
+      "supports": "Random variables as real-valued functions of outcomes and their ranges.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-1-2": {
+      "source": "pishro-nik",
+      "locator": "§3.1.2 Discrete Random Variables",
+      "url": "https://www.probabilitycourse.com/chapter3/3_1_2_discrete_random_var.php",
+      "supports": "Finite and countably infinite discrete value sets.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-1-3": {
+      "source": "pishro-nik",
+      "locator": "§3.1.3 Probability Mass Function",
+      "url": "https://www.probabilitycourse.com/chapter3/3_1_3_pmf.php",
+      "supports": "Mass functions, normalization, and summing probabilities over values.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-2-1": {
+      "source": "pishro-nik",
+      "locator": "§3.2.1 Cumulative Distribution Function",
+      "url": "https://www.probabilitycourse.com/chapter3/3_2_1_cdf.php",
+      "supports": "CDF construction, jumps, endpoint conventions, and interval probabilities.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-2-3": {
+      "source": "pishro-nik",
+      "locator": "§3.2.3 Functions of Random Variables",
+      "url": "https://www.probabilitycourse.com/chapter3/3_2_3_functions_random_var.php",
+      "supports": "Distribution of a transformed discrete variable by summing preimage masses. Computing expected transformed values using the original PMF.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-2-2": {
+      "source": "pishro-nik",
+      "locator": "§3.2.2 Expectation",
+      "url": "https://www.probabilitycourse.com/chapter3/3_2_2_expectation.php",
+      "supports": "Probability-weighted means, linearity, and expectations of indicator sums. Means of Bernoulli, binomial, and trials-until-success geometric variables. Indicator-sum means and Poisson mean derivation.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-2-4": {
+      "source": "pishro-nik",
+      "locator": "§3.2.4 Variance",
+      "url": "https://www.probabilitycourse.com/chapter3/3_2_4_variance.php",
+      "supports": "Variance, standard deviation, moment identity, scaling, and independent sums. Bernoulli and binomial variances using independent indicator sums. Second-moment identity supporting original finite-population and Poisson variance derivations.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-3-1-5": {
+      "source": "pishro-nik",
+      "locator": "§3.1.5 Special Distributions",
+      "url": "https://www.probabilitycourse.com/chapter3/3_1_5_special_discrete_distr.php",
+      "supports": "Bernoulli indicators, binomial counts, geometric waiting times, assumptions, and parameter conventions. Hypergeometric support and PMF, Poisson PMF and normalization, interval scaling, and the binomial-to-Poisson limit.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-4-4": {
+      "source": "openstax-statistics-2e",
+      "locator": "§4.4 Geometric Distribution, assumptions and Case I/II formulas",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/4-4-geometric-distribution",
+      "supports": "Geometric memorylessness and the identical variance of trials and failures conventions; formulas independently reconciled.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-4-6": {
+      "source": "openstax-statistics-2e",
+      "locator": "§4.6 Poisson Distribution, notation and interval scaling",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/4-6-poisson-distribution",
+      "supports": "Poisson mean, standard deviation, and probability calculations with the interval-specific parameter.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-11-1-2": {
+      "source": "pishro-nik",
+      "locator": "§11.1.2 Basic Concepts of the Poisson Process, definition and interval-count example",
+      "url": "https://www.probabilitycourse.com/chapter11/11_1_2_basic_concepts_of_the_poisson_process.php",
+      "supports": "Constant-rate Poisson interval counts and independence of disjoint interval increments; no advanced process theory.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-11-1-3": {
+      "source": "pishro-nik",
+      "locator": "§11.1.3 Merging and Splitting Poisson Processes, merging independent processes",
+      "url": "https://www.probabilitycourse.com/chapter11/11_1_3_merging_and_splitting_poisson_processes.php",
+      "supports": "Addition of independent Poisson counts and rate parameters.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-4-1-1": {
+      "source": "pishro-nik",
+      "locator": "§4.1.1 Probability Density Function",
+      "url": "https://www.probabilitycourse.com/chapter4/4_1_1_pdf.php",
+      "supports": "Density, normalization, interval probability, CDFs, uniform distributions, and density units.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-4-1-2": {
+      "source": "pishro-nik",
+      "locator": "§4.1.2 Expected Value and Variance",
+      "url": "https://www.probabilitycourse.com/chapter4/4_1_2_expected_val_variance.php",
+      "supports": "Integral expectations, transformed quantities, variance, and existence of moments.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-2-3": {
+      "source": "pishro-nik",
+      "locator": "§5.2.3 Conditioning and Independence",
+      "url": "https://www.probabilitycourse.com/chapter5/5_2_3_conditioning_independence.php",
+      "supports": "Truncation, conditional densities, positive-density denominators, and independence.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-4-2-2": {
+      "source": "pishro-nik",
+      "locator": "§4.2.2 Exponential Distribution",
+      "url": "https://www.probabilitycourse.com/chapter4/4_2_2_exponential.php",
+      "supports": "Rate convention, survival probabilities, moments, and memorylessness.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-4-2-3": {
+      "source": "pishro-nik",
+      "locator": "§4.2.3 Normal (Gaussian) Distribution",
+      "url": "https://www.probabilitycourse.com/chapter4/4_2_3_normal.php",
+      "supports": "Normal density, mean/variance convention, standardization, CDF symmetry, and probability calculations.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-4-1-3": {
+      "source": "pishro-nik",
+      "locator": "§4.1.3 Functions of Continuous Random Variables",
+      "url": "https://www.probabilitycourse.com/chapter4/4_1_3_functions_continuous_var.php",
+      "supports": "CDF transformations, inverse derivatives, multiple branches, and transformations that create point masses.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-1-1": {
+      "source": "pishro-nik",
+      "locator": "§5.1.1 Joint Probability Mass Function",
+      "url": "https://www.probabilitycourse.com/chapter5/5_1_1_joint_pmf.php",
+      "supports": "Joint PMFs, event sums, and marginal distributions.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-1-3": {
+      "source": "pishro-nik",
+      "locator": "§5.1.3 Conditioning and Independence",
+      "url": "https://www.probabilitycourse.com/chapter5/5_1_3_conditioning_independence.php",
+      "supports": "Conditional PMFs, independence, and reconstructing joint probabilities.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-2-1": {
+      "source": "pishro-nik",
+      "locator": "§5.2.1 Joint Probability Density Function",
+      "url": "https://www.probabilitycourse.com/chapter5/5_2_1_joint_pdf.php",
+      "supports": "Joint densities, normalization, marginal integration, and region probabilities.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-2-2": {
+      "source": "pishro-nik",
+      "locator": "§5.2.2 Joint Cumulative Distribution Function",
+      "url": "https://www.probabilitycourse.com/chapter5/5_2_2_joint_cdf.php",
+      "supports": "Joint CDFs, rectangular inclusion-exclusion, and mixed derivatives.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-3-1": {
+      "source": "pishro-nik",
+      "locator": "§5.3.1 Covariance and Correlation",
+      "url": "https://www.probabilitycourse.com/chapter5/5_3_1_covariance_correlation.php",
+      "supports": "Covariance identities, correlation, variance of sums, and uncorrelated versus independent variables.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-6-1-5": {
+      "source": "pishro-nik",
+      "locator": "§6.1.5 Random Vectors",
+      "url": "https://www.probabilitycourse.com/chapter6/6_1_5_random_vectors.php",
+      "supports": "Mean vectors, covariance matrices, affine transformations, positive semidefiniteness, and singular dependence.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-1-5": {
+      "source": "pishro-nik",
+      "locator": "§5.1.5 Conditional Expectation and Conditional Variance",
+      "url": "https://www.probabilitycourse.com/chapter5/5_1_5_conditional_expectation.php",
+      "supports": "Conditional expectation as a random variable, total expectation, total variance, and random sums.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-9-1-5": {
+      "source": "pishro-nik",
+      "locator": "§9.1.5 Mean Squared Error",
+      "url": "https://www.probabilitycourse.com/chapter9/9_1_5_mean_squared_error_MSE.php",
+      "supports": "Conditional mean prediction, squared-error decomposition, and orthogonality of prediction error.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-stat-1-1": {
+      "source": "openstax-statistics-2e",
+      "locator": "§1.1 Definitions of Statistics, Probability, and Key Terms",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/1-1-definitions-of-statistics-probability-and-key-terms",
+      "supports": "Populations, samples, parameters, statistics, and descriptive versus inferential questions.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-stat-1-2": {
+      "source": "openstax-statistics-2e",
+      "locator": "§1.2 Data, Sampling, and Variation in Data and Sampling",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/1-2-data-sampling-and-variation-in-data-and-sampling",
+      "supports": "Data types, probability sampling designs, convenience sampling, missing data, and sampling variation.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-stat-2-5": {
+      "source": "openstax-statistics-2e",
+      "locator": "§2.5 Measures of the Center of the Data",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/2-5-measures-of-the-center-of-the-data",
+      "supports": "Means, medians, modes, weighted frequency calculations, and grouped-data limitations.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-stat-2-7": {
+      "source": "openstax-statistics-2e",
+      "locator": "§2.7 Measures of the Spread of the Data",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/2-7-measures-of-the-spread-of-the-data",
+      "supports": "Sample variance, standard deviation, centered sums, and changes of units.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-stat-1-4": {
+      "source": "openstax-statistics-2e",
+      "locator": "§1.4 Experimental Design and Ethics",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/1-4-experimental-design-and-ethics",
+      "supports": "Observational studies, explanatory/response variables, random assignment, masking, and responsible reporting.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-7-1-1": {
+      "source": "pishro-nik",
+      "locator": "§7.1.1 Law of Large Numbers",
+      "url": "https://www.probabilitycourse.com/chapter7/7_1_1_law_of_large_numbers.php",
+      "supports": "Sample-mean moments, weak law of large numbers, and finite-variance deviation proof.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-7-1-2": {
+      "source": "pishro-nik",
+      "locator": "§7.1.2 Central Limit Theorem",
+      "url": "https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php",
+      "supports": "Iid finite-variance CLT, standardized CDF convergence, approximation examples, and continuity correction.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-5-3-2": {
+      "source": "pishro-nik",
+      "locator": "§5.3.2 Bivariate Normal Distribution, opening discussion",
+      "url": "https://www.probabilitycourse.com/chapter5/5_3_2_bivariate_normal_dist.php",
+      "supports": "Independent normal sums are normal; marginal normality alone is insufficient without joint assumptions.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-6-2-2": {
+      "source": "pishro-nik",
+      "locator": "§6.2.2 Markov and Chebyshev Inequalities",
+      "url": "https://www.probabilitycourse.com/chapter6/6_2_2_markov_chebyshev_inequalities.php",
+      "supports": "Nonnegative-variable bounds, centered second-moment bounds, and indicator-variable union bounds supporting the original guarantees and calculations.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-8-2-1": {
+      "source": "pishro-nik",
+      "locator": "§8.2.1 Evaluating Estimators",
+      "url": "https://www.probabilitycourse.com/chapter8/8_2_1_evaluating_estimators.php",
+      "supports": "Bias, variance, mean squared error, consistency, and finite-variance sample-mean error bounds.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-8-2-3": {
+      "source": "pishro-nik",
+      "locator": "§8.2.3 Maximum Likelihood Estimation",
+      "url": "https://www.probabilitycourse.com/chapter8/8_2_3_max_likelihood_estimation.php",
+      "supports": "Likelihoods from joint mass/density, independent products, logarithms, and elementary parameter maximization.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-8-1": {
+      "source": "openstax-statistics-2e",
+      "locator": "§8.1 A Single Population Mean using the Normal Distribution",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/8-1-a-single-population-mean-using-the-normal-distribution",
+      "supports": "Repeated-sampling confidence, known-standard-deviation mean intervals, normal quantiles, margin of error and sample-size planning; original calculations use explicitly stated assumptions.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-8-2": {
+      "source": "openstax-statistics-2e",
+      "locator": "§8.2 A Single Population Mean using the Student t Distribution",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/8-2-a-single-population-mean-using-the-student-t-distribution",
+      "supports": "Estimated standard errors, degrees of freedom, Student t quantiles, and mean intervals under the stated sampling model.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-8-3": {
+      "source": "openstax-statistics-2e",
+      "locator": "§8.3 A Population Proportion",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/8-3-a-population-proportion",
+      "supports": "Large-sample normal intervals for proportions, plug-in standard errors and sample-size planning; the lesson explicitly limits the approximation near boundaries.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-9-1": {
+      "source": "openstax-statistics-2e",
+      "locator": "§9.1 Null and Alternative Hypotheses",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/9-1-null-and-alternative-hypotheses",
+      "supports": "Population hypotheses, one- and two-sided alternatives, and reject versus fail-to-reject decisions.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-9-4": {
+      "source": "openstax-statistics-2e",
+      "locator": "§9.4 Rare Events, the Sample, Decision and Conclusion",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/9-4-rare-events-the-sample-decision-and-conclusion",
+      "supports": "Tail probabilities under a null model, significance comparisons, and conclusions supported by the test.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-9-3": {
+      "source": "openstax-statistics-2e",
+      "locator": "§9.3 Probability Distribution Needed for Hypothesis Testing",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/9-3-probability-distribution-needed-for-hypothesis-testing",
+      "supports": "Normal and Student reference models, proportion standard errors under the null, and sampling assumptions; the authored lesson explicitly uses a more conservative expected-count screen of at least ten.",
+      "checked": "2026-09-20"
+    },
+    "ps-os-9-2": {
+      "source": "openstax-statistics-2e",
+      "locator": "§9.2 Outcomes and the Type I and Type II Errors",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors",
+      "supports": "Testing errors, significance and power, with original worked examples distinguishing effect sizes and decisions.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-9-1": {
+      "source": "pishro-nik",
+      "locator": "§9.1.0 Bayesian Inference",
+      "url": "https://www.probabilitycourse.com/chapter9/9_1_0_bayesian_inference.php",
+      "supports": "Priors, observation likelihoods and normalized posterior distributions for parameter uncertainty.",
+      "checked": "2026-09-20"
+    },
+    "ps-pn-9-2-beta": {
+      "source": "pishro-nik",
+      "locator": "§9.2 End of Chapter Problems: beta distribution and beta-binomial conjugacy problems",
+      "url": "https://www.probabilitycourse.com/chapter9/9_2_0_ch_probs.php",
+      "supports": "Beta density and moments, binomial updating, and posterior normalization; the lesson uses independently calculated original integer-parameter examples.",
+      "checked": "2026-09-20"
+    },
+    "ps-regression-os-12-3": {
+      "source": "openstax-statistics-2e",
+      "locator": "§12.3 The Regression Equation",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/12-3-the-regression-equation",
+      "supports": "Least-squares slope and intercept, residuals, squared errors, residual plots, and restrictions on extrapolation; examples are original.",
+      "checked": "2026-09-20"
+    },
+    "ps-regression-mml-9-1-2": {
+      "source": "mml",
+      "locator": "§§9.1–9.2, printed pp.291–295 / PDF pp.297–301",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=297",
+      "supports": "Independent Gaussian observation models and the equivalence between maximum likelihood and least squares for fixed common error variance.",
+      "checked": "2026-09-20"
+    },
+    "ps-regression-islr-3-1": {
+      "source": "islr",
+      "locator": "§3.1.2, printed pp.65–68 / PDF pp.74–77",
+      "url": "https://www.statlearning.com/s/ISLRSeventhPrinting.pdf#page=74",
+      "supports": "Residual variance, coefficient standard errors, t tests and confidence intervals with n−2 degrees of freedom under the normal-error model.",
+      "checked": "2026-09-20"
+    },
+    "ps-regression-psu-3-2-3": {
+      "source": "psu-stat501",
+      "locator": "Lesson 3 §§3.2–3.3: mean-response confidence interval and new-response prediction interval",
+      "url": "https://online.stat.psu.edu/stat501/Lesson03",
+      "supports": "Exact simple-linear-regression mean and prediction standard errors, t multipliers, and the extra variance of a future observation.",
+      "checked": "2026-09-20"
+    },
+    "ps-regression-islr-3-3": {
+      "source": "islr",
+      "locator": "§3.3.3 Potential Problems, printed pp.92–101 / PDF pp.101–110",
+      "url": "https://www.statlearning.com/s/ISLRSeventhPrinting.pdf#page=101",
+      "supports": "Nonlinearity, correlated errors, nonconstant variance, outliers and high leverage; numerical intervals rely on the specified model.",
+      "checked": "2026-09-20"
+    },
+    "ps-assessment-islr-5-2": {
+      "source": "islr",
+      "locator": "§5.2 The Bootstrap, printed pp.187–190 / PDF pp.195–198",
+      "url": "https://www.statlearning.com/s/ISLRSeventhPrinting.pdf#page=195",
+      "supports": "Sampling observations with replacement, preserving predictor-response pairs, repeated bootstrap estimates, and their sample standard deviation as an estimated standard error.",
+      "checked": "2026-09-20"
+    },
+    "ps-assessment-islr-5-1": {
+      "source": "islr",
+      "locator": "§§5.1.1–5.1.4, printed pp.176–185 / PDF pp.184–193",
+      "url": "https://www.statlearning.com/s/ISLRSeventhPrinting.pdf#page=184",
+      "supports": "Validation splits, held-out squared prediction error, k-fold cross-validation, and the distinction between training fit and model assessment.",
+      "checked": "2026-09-20"
+    },
+    "ps-assessment-mml-8-2-6": {
+      "source": "mml",
+      "locator": "§8.2 Empirical Risk Minimization and §8.6 Model Selection, printed pp.259–266 and 283–288 / PDF pp.265–272 and 289–294",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=265",
+      "supports": "Population versus empirical loss, held-out assessment, selection, overfitting and differing costs; examples compute finite expected losses independently.",
+      "checked": "2026-09-20"
+    },
+    "ps-assessment-islr-4-4": {
+      "source": "islr",
+      "locator": "§4.4.3, printed pp.145–149 / PDF pp.154–158, Tables 4.6–4.7",
+      "url": "https://www.statlearning.com/s/ISLRSeventhPrinting.pdf#page=154",
+      "supports": "Confusion matrices, sensitivity/recall, specificity, precision, false-positive rates, and effects of classification thresholds.",
+      "checked": "2026-09-20"
+    },
+    "probability-statistics-katex": {
+      "source": "katex",
+      "locator": "Supported Functions: Accents, Greek Letters, Logic and Set Theory, Operators, Fractions, Big Operators, and Style, Color, Size, and Font (Font)",
+      "url": "https://katex.org/docs/supported.html",
+      "supports": "Probability notation, accents, bold Latin and Greek vector symbols, relations, and operator constructions in the authored optional typing help.",
+      "checked": "2026-09-20"
     }
   },
   "lessons": {
@@ -2963,10 +3484,557 @@
           "mml-calculus-convexity"
         ]
       }
+    },
+    "probability-statistics-introduction": {
+      "reviewedContentHash": "d9bbd1c0a7bd0c860ed25a9f751ea279225fb1b79f9de14d48443df7ce1629fb",
+      "intro": ["ps-introduction-probability", "ps-introduction-inference"],
+      "sections": {
+        "two-directions-between-models-and-data": [
+          "ps-introduction-probability",
+          "ps-introduction-inference"
+        ],
+        "applications-in-algorithms-and-learning": ["ps-introduction-inference", "ps-mml-8-2"],
+        "what-to-bring-from-the-earlier-subjects": ["ps-introduction-probability", "ps-mml-8-2"],
+        "the-learning-journey": ["ps-introduction-inference", "ps-mml-8-2"],
+        "how-to-study-uncertainty-carefully": [
+          "ps-introduction-probability",
+          "ps-introduction-inference"
+        ]
+      },
+      "practice": {}
+    },
+    "probability-statistics-probability-models-events": {
+      "reviewedContentHash": "66cc21747d1253d4309809fd08e94be518b4a24e81585508da6d7c6310347dc9",
+      "intro": ["ps-pn-1-3-1", "ps-pn-1-3-3"],
+      "sections": {
+        "specify-the-experiment-before-calculating": ["ps-pn-1-3-1", "ps-pn-1-3-3"],
+        "translate-event-language-into-sets": ["ps-pn-1-3-1", "ps-pn-1-3-3"],
+        "probability-weights-and-the-axioms": ["ps-pn-1-3-2", "ps-pn-1-3-3"],
+        "complements-overlap-and-bounds": ["ps-pn-1-3-3"],
+        "build-and-audit-a-complete-event-model": ["ps-pn-1-3-1", "ps-pn-1-3-2", "ps-pn-1-3-3"]
+      },
+      "practice": {
+        "Specify the experiment before calculating": ["ps-pn-1-3-1", "ps-pn-1-3-3"],
+        "Translate event language into sets": ["ps-pn-1-3-1", "ps-pn-1-3-3"],
+        "Probability weights and the axioms": ["ps-pn-1-3-2", "ps-pn-1-3-3"],
+        "Complements, overlap, and bounds": ["ps-pn-1-3-3"],
+        "Build and audit a complete event model": ["ps-pn-1-3-1", "ps-pn-1-3-2", "ps-pn-1-3-3"]
+      }
+    },
+    "probability-statistics-counting-finite-probability": {
+      "reviewedContentHash": "dcb3da983d1952961ce1902f5b0039c7b53a9f4e6162b3260e9636d2e25677b2",
+      "intro": ["ps-pn-2-1-1", "ps-pn-2-1-2"],
+      "sections": {
+        "count-stages-and-identify-the-sampling-rule": ["ps-pn-2-1-1", "ps-pn-2-1-2"],
+        "ordered-selections-and-factorials": ["ps-pn-2-1-2", "ps-pn-2-1-3"],
+        "unordered-selections-and-combinations": ["ps-pn-2-1-3"],
+        "use-compatible-numerator-and-denominator-counts": ["ps-pn-2-1-2", "ps-pn-2-1-3"],
+        "complements-collisions-and-counting-arguments": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+      },
+      "practice": {
+        "Count stages and identify the sampling rule": ["ps-pn-2-1-1", "ps-pn-2-1-2"],
+        "Ordered selections and factorials": ["ps-pn-2-1-2", "ps-pn-2-1-3"],
+        "Unordered selections and combinations": ["ps-pn-2-1-3"],
+        "Use compatible numerator and denominator counts": ["ps-pn-2-1-2", "ps-pn-2-1-3"],
+        "Complements, collisions, and counting arguments": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+      }
+    },
+    "probability-statistics-conditional-probability-independence": {
+      "reviewedContentHash": "f42fc68e482381f0fd7b60b84a20ef399d49b96c4938ae225d3a4d8cffe7c326",
+      "intro": ["ps-pn-1-4-0"],
+      "sections": {
+        "conditioning-changes-the-reference-population": ["ps-pn-1-4-0"],
+        "read-tables-and-multiply-along-a-history": ["ps-pn-1-4-0"],
+        "independence-is-a-testable-factorization": ["ps-pn-1-4-1"],
+        "repeated-trials-and-mutual-independence": ["ps-pn-1-4-1"],
+        "conditioning-selection-and-causal-restraint": [
+          "ps-pn-1-4-0",
+          "ps-pn-1-4-1",
+          "ps-pn-1-4-4",
+          "ps-os-1-4"
+        ]
+      },
+      "practice": {
+        "Conditioning changes the reference population": ["ps-pn-1-4-0"],
+        "Read tables and multiply along a history": ["ps-pn-1-4-0"],
+        "Independence is a testable factorization": ["ps-pn-1-4-1"],
+        "Repeated trials and mutual independence": ["ps-pn-1-4-1"],
+        "Conditioning, selection, and causal restraint": [
+          "ps-pn-1-4-0",
+          "ps-pn-1-4-1",
+          "ps-pn-1-4-4",
+          "ps-os-1-4"
+        ]
+      }
+    },
+    "probability-statistics-total-probability-bayes": {
+      "reviewedContentHash": "9351a12407d89a93701e63349daa7c231719c9737e8c356c9ec5df39e4ce7f44",
+      "intro": ["ps-pn-1-4-2"],
+      "sections": {
+        "total-probability-is-a-weighted-average": ["ps-pn-1-4-2"],
+        "reverse-the-question-with-bayes-rule": ["ps-pn-1-4-3", "ps-pn-1-4-2"],
+        "base-rates-and-screening-tables": ["ps-pn-1-4-3", "ps-pn-1-4-2"],
+        "odds-and-sequential-evidence": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"],
+        "compare-mechanisms-and-audit-an-update": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"]
+      },
+      "practice": {
+        "Total probability is a weighted average": ["ps-pn-1-4-2"],
+        "Reverse the question with Bayes rule": ["ps-pn-1-4-3", "ps-pn-1-4-2"],
+        "Base rates and screening tables": ["ps-pn-1-4-3", "ps-pn-1-4-2"],
+        "Odds and sequential evidence": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"],
+        "Compare mechanisms and audit an update": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"]
+      }
+    },
+    "probability-statistics-discrete-random-variables": {
+      "reviewedContentHash": "5371c4162cadca1bc779c3df68b9923ae6465165605fe8477bb0b8e92e6c9960",
+      "intro": ["ps-pn-3-1-1", "ps-pn-3-1-2", "ps-pn-3-1-3"],
+      "sections": {
+        "a-random-variable-records-a-numerical-feature": [
+          "ps-pn-3-1-1",
+          "ps-pn-3-1-2",
+          "ps-pn-3-1-3"
+        ],
+        "construct-and-check-a-probability-mass-function": ["ps-pn-3-1-3", "ps-pn-3-1-2"],
+        "accumulate-mass-into-a-cdf": ["ps-pn-3-2-1", "ps-pn-3-1-3"],
+        "intervals-tails-and-endpoint-discipline": ["ps-pn-3-2-1", "ps-pn-3-1-3"],
+        "transform-values-and-combine-their-masses": ["ps-pn-3-2-3", "ps-pn-3-1-3"]
+      },
+      "practice": {
+        "A random variable records a numerical feature": [
+          "ps-pn-3-1-1",
+          "ps-pn-3-1-2",
+          "ps-pn-3-1-3"
+        ],
+        "Construct and check a probability mass function": ["ps-pn-3-1-3", "ps-pn-3-1-2"],
+        "Accumulate mass into a CDF": ["ps-pn-3-2-1", "ps-pn-3-1-3"],
+        "Intervals, tails, and endpoint discipline": ["ps-pn-3-2-1", "ps-pn-3-1-3"],
+        "Transform values and combine their masses": ["ps-pn-3-2-3", "ps-pn-3-1-3"]
+      }
+    },
+    "probability-statistics-expectation-variance": {
+      "reviewedContentHash": "288c9c1644f361ea5949a8374ead556e26cb1cb10c8c2f6956937f5e52fb3bbe",
+      "intro": ["ps-pn-3-2-2"],
+      "sections": {
+        "expectation-is-a-probability-weighted-mean": ["ps-pn-3-2-2"],
+        "transformations-linearity-and-indicators": ["ps-pn-3-2-2", "ps-pn-3-2-3"],
+        "variance-and-standard-deviation-measure-spread": ["ps-pn-3-2-4", "ps-pn-3-2-3"],
+        "scaling-sums-and-the-role-of-dependence": ["ps-pn-3-2-4", "ps-pn-3-2-2"],
+        "use-moments-without-losing-the-full-model": ["ps-pn-3-2-2", "ps-pn-3-2-3", "ps-pn-3-2-4"]
+      },
+      "practice": {
+        "Expectation is a probability-weighted mean": ["ps-pn-3-2-2"],
+        "Transformations, linearity, and indicators": ["ps-pn-3-2-2", "ps-pn-3-2-3"],
+        "Variance and standard deviation measure spread": ["ps-pn-3-2-4", "ps-pn-3-2-3"],
+        "Scaling, sums, and the role of dependence": ["ps-pn-3-2-4", "ps-pn-3-2-2"],
+        "Use moments without losing the full model": ["ps-pn-3-2-2", "ps-pn-3-2-3", "ps-pn-3-2-4"]
+      }
+    },
+    "probability-statistics-bernoulli-binomial-geometric": {
+      "reviewedContentHash": "5606961e88bebf30e5ab316f61a52e0b37cd67a3308b9dc0a7616e9b58891e36",
+      "intro": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"],
+      "sections": {
+        "bernoulli-variables-model-one-binary-event": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"],
+        "binomial-counts-combine-fixed-independent-trials": [
+          "ps-pn-3-1-5",
+          "ps-pn-3-2-2",
+          "ps-pn-3-2-4"
+        ],
+        "binomial-tails-and-model-checks": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"],
+        "geometric-waiting-time-counts-through-first-success": ["ps-pn-3-1-5", "ps-os-4-4"],
+        "geometric-moments-and-memorylessness": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-os-4-4"]
+      },
+      "practice": {
+        "Bernoulli variables model one binary event": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"],
+        "Binomial counts combine fixed independent trials": [
+          "ps-pn-3-1-5",
+          "ps-pn-3-2-2",
+          "ps-pn-3-2-4"
+        ],
+        "Binomial tails and model checks": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"],
+        "Geometric waiting time counts through first success": ["ps-pn-3-1-5", "ps-os-4-4"],
+        "Geometric moments and memorylessness": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-os-4-4"]
+      }
+    },
+    "probability-statistics-hypergeometric-poisson": {
+      "reviewedContentHash": "4a93fbe13c7fe803d3eaec751d75832ac554d7fe920f923f8b2b3667fb830b4e",
+      "intro": ["ps-pn-3-1-5"],
+      "sections": {
+        "hypergeometric-counts-sample-without-replacement": ["ps-pn-3-1-5"],
+        "finite-populations-reduce-count-variance": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"],
+        "poisson-counts-have-an-interval-specific-mean": [
+          "ps-pn-3-1-5",
+          "ps-pn-3-2-2",
+          "ps-pn-3-2-4",
+          "ps-os-4-6"
+        ],
+        "rates-exposure-and-independent-counts": ["ps-pn-11-1-2", "ps-pn-11-1-3", "ps-os-4-6"],
+        "approximation-and-choosing-a-model": ["ps-pn-3-1-5", "ps-os-4-6"]
+      },
+      "practice": {
+        "Hypergeometric counts sample without replacement": ["ps-pn-3-1-5"],
+        "Finite populations reduce count variance": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"],
+        "Poisson counts have an interval-specific mean": [
+          "ps-pn-3-1-5",
+          "ps-pn-3-2-2",
+          "ps-pn-3-2-4",
+          "ps-os-4-6"
+        ],
+        "Rates, exposure, and independent counts": ["ps-pn-11-1-2", "ps-pn-11-1-3", "ps-os-4-6"],
+        "Approximation and choosing a model": ["ps-pn-3-1-5", "ps-os-4-6"]
+      }
+    },
+    "probability-statistics-continuous-random-variables": {
+      "reviewedContentHash": "134fff2a3839adca672936b4f79b72f05bd8695b614176975a781d0b266197a3",
+      "intro": ["ps-pn-4-1-1"],
+      "sections": {
+        "probability-is-area-not-height": ["ps-pn-4-1-1"],
+        "move-between-density-and-cumulative-probability": ["ps-pn-4-1-1", "ps-pn-4-2-3"],
+        "compute-expectations-by-integration": ["ps-pn-4-1-2"],
+        "uniform-models-and-interval-conditioning": ["ps-pn-4-1-1", "ps-pn-5-2-3"],
+        "exponential-waiting-times-and-their-limitations": ["ps-pn-4-2-2", "ps-pn-4-1-1"]
+      },
+      "practice": {
+        "Probability is area, not height": ["ps-pn-4-1-1"],
+        "Move between density and cumulative probability": ["ps-pn-4-1-1", "ps-pn-4-2-3"],
+        "Compute expectations by integration": ["ps-pn-4-1-2"],
+        "Uniform models and interval conditioning": ["ps-pn-4-1-1", "ps-pn-5-2-3"],
+        "Exponential waiting times and their limitations": ["ps-pn-4-2-2", "ps-pn-4-1-1"]
+      }
+    },
+    "probability-statistics-normal-distributions-transformations": {
+      "reviewedContentHash": "23c9d80fb10d9c3151c7602e89988db56421eba21c00fd04f1ce3370b71c20ef",
+      "intro": ["ps-pn-4-2-3"],
+      "sections": {
+        "normal-models-have-a-location-and-a-scale": ["ps-pn-4-2-3"],
+        "use-the-normal-cdf-without-confusing-tails": ["ps-pn-4-2-3"],
+        "quantiles-and-affine-changes-of-units": ["ps-pn-4-2-3", "ps-pn-4-1-3"],
+        "transform-a-distribution-through-its-cdf": ["ps-pn-4-1-3"],
+        "account-for-branches-and-point-masses": ["ps-pn-4-1-3"]
+      },
+      "practice": {
+        "Normal models have a location and a scale": ["ps-pn-4-2-3"],
+        "Use the normal CDF without confusing tails": ["ps-pn-4-2-3"],
+        "Quantiles and affine changes of units": ["ps-pn-4-2-3", "ps-pn-4-1-3"],
+        "Transform a distribution through its CDF": ["ps-pn-4-1-3"],
+        "Account for branches and point masses": ["ps-pn-4-1-3"]
+      }
+    },
+    "probability-statistics-joint-conditional-distributions": {
+      "reviewedContentHash": "42ccffca1c20a37a356283a974914d2b4fedc0cb6527aa22ab37f298e174b251",
+      "intro": ["ps-pn-5-1-1", "ps-pn-5-1-3"],
+      "sections": {
+        "a-joint-table-retains-how-variables-occur-together": ["ps-pn-5-1-1", "ps-pn-5-1-3"],
+        "condition-a-table-and-test-independence": ["ps-pn-5-1-3", "ps-pn-5-1-1"],
+        "a-joint-density-assigns-probability-to-regions": ["ps-pn-5-2-1"],
+        "condition-continuous-variables-using-densities": ["ps-pn-5-2-3", "ps-pn-5-2-1"],
+        "check-the-whole-joint-model": ["ps-pn-5-2-3", "ps-pn-5-2-2", "ps-pn-5-2-1"]
+      },
+      "practice": {
+        "A joint table retains how variables occur together": ["ps-pn-5-1-1", "ps-pn-5-1-3"],
+        "Condition a table and test independence": ["ps-pn-5-1-3", "ps-pn-5-1-1"],
+        "A joint density assigns probability to regions": ["ps-pn-5-2-1"],
+        "Condition continuous variables using densities": ["ps-pn-5-2-3", "ps-pn-5-2-1"],
+        "Check the whole joint model": ["ps-pn-5-2-3", "ps-pn-5-2-2", "ps-pn-5-2-1"]
+      }
+    },
+    "probability-statistics-covariance-correlation-random-vectors": {
+      "reviewedContentHash": "6a5894ed53496ec59089eb7f341238f64d3c17d5fad87f333d0a0f91c0ca4616",
+      "intro": ["ps-pn-5-3-1"],
+      "sections": {
+        "covariance-measures-centered-co-variation": ["ps-pn-5-3-1"],
+        "variance-of-a-combination-includes-cross-terms": ["ps-pn-5-3-1"],
+        "correlation-standardizes-covariance-but-does-not-describe-all-dependence": [
+          "ps-pn-5-3-1",
+          "ps-os-stat-1-4"
+        ],
+        "collect-means-and-covariances-into-vectors-and-matrices": ["ps-pn-6-1-5", "ps-pn-5-3-1"],
+        "covariance-geometry-validity-and-redundant-features": ["ps-pn-6-1-5", "ps-pn-5-3-1"]
+      },
+      "practice": {
+        "Covariance measures centered co-variation": ["ps-pn-5-3-1"],
+        "Variance of a combination includes cross terms": ["ps-pn-5-3-1"],
+        "Correlation standardizes covariance but does not describe all dependence": [
+          "ps-pn-5-3-1",
+          "ps-os-stat-1-4"
+        ],
+        "Collect means and covariances into vectors and matrices": ["ps-pn-6-1-5", "ps-pn-5-3-1"],
+        "Covariance geometry, validity, and redundant features": ["ps-pn-6-1-5", "ps-pn-5-3-1"]
+      }
+    },
+    "probability-statistics-conditional-expectation": {
+      "reviewedContentHash": "b9eecd90802121f1463017f03388693dc77300144f6fe405a5919eb4b49b7c18",
+      "intro": ["ps-pn-5-1-5", "ps-pn-5-2-3"],
+      "sections": {
+        "a-conditional-mean-is-a-function-of-the-information": ["ps-pn-5-1-5", "ps-pn-5-2-3"],
+        "average-conditional-means-to-recover-the-overall-mean": ["ps-pn-5-1-5", "ps-pn-5-2-3"],
+        "split-variation-within-and-between-conditions": ["ps-pn-5-1-5", "ps-pn-5-2-3"],
+        "conditional-means-give-optimal-squared-error-predictions": ["ps-pn-9-1-5", "ps-pn-5-1-5"],
+        "use-conditioning-to-analyze-random-workloads": ["ps-pn-5-1-5", "ps-pn-9-1-5"]
+      },
+      "practice": {
+        "A conditional mean is a function of the information": ["ps-pn-5-1-5", "ps-pn-5-2-3"],
+        "Average conditional means to recover the overall mean": ["ps-pn-5-1-5", "ps-pn-5-2-3"],
+        "Split variation within and between conditions": ["ps-pn-5-1-5", "ps-pn-5-2-3"],
+        "Conditional means give optimal squared-error predictions": ["ps-pn-9-1-5", "ps-pn-5-1-5"],
+        "Use conditioning to analyze random workloads": ["ps-pn-5-1-5", "ps-pn-9-1-5"]
+      }
+    },
+    "probability-statistics-data-samples-study-design": {
+      "reviewedContentHash": "b9d64b1c90434a315959a5f4592bd928e26f0ea5be5b660aa45a570c9f4dad09",
+      "intro": ["ps-os-stat-1-1", "ps-os-stat-1-2"],
+      "sections": {
+        "define-the-population-observation-and-question": ["ps-os-stat-1-1", "ps-os-stat-1-2"],
+        "summarize-location-without-hiding-the-data": ["ps-os-stat-2-5", "ps-os-stat-1-2"],
+        "describe-spread-and-distinguish-empirical-from-model-variation": [
+          "ps-os-stat-2-7",
+          "ps-os-stat-1-1"
+        ],
+        "connect-the-sampling-design-to-the-target-population": [
+          "ps-os-stat-1-2",
+          "ps-os-stat-1-1"
+        ],
+        "separate-random-error-systematic-bias-and-causal-evidence": [
+          "ps-os-stat-1-4",
+          "ps-os-stat-1-2"
+        ]
+      },
+      "practice": {
+        "Define the population, observation, and question": ["ps-os-stat-1-1", "ps-os-stat-1-2"],
+        "Summarize location without hiding the data": ["ps-os-stat-2-5", "ps-os-stat-1-2"],
+        "Describe spread and distinguish empirical from model variation": [
+          "ps-os-stat-2-7",
+          "ps-os-stat-1-1"
+        ],
+        "Connect the sampling design to the target population": [
+          "ps-os-stat-1-2",
+          "ps-os-stat-1-1"
+        ],
+        "Separate random error, systematic bias, and causal evidence": [
+          "ps-os-stat-1-4",
+          "ps-os-stat-1-2"
+        ]
+      }
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem": {
+      "reviewedContentHash": "e5675d062d652ab60338c8e28a8c37238d411ae449f262aadacc315e346d7d67",
+      "intro": ["ps-pn-7-1-1", "ps-pn-7-1-2"],
+      "sections": {
+        "a-statistic-has-a-sampling-distribution": ["ps-pn-7-1-1", "ps-pn-7-1-2"],
+        "the-law-of-large-numbers-concerns-concentration": ["ps-pn-7-1-1"],
+        "the-central-limit-theorem-describes-standardized-fluctuations": [
+          "ps-pn-7-1-2",
+          "ps-pn-5-3-2"
+        ],
+        "approximate-probabilities-for-means-sums-and-proportions": ["ps-pn-7-1-2", "ps-pn-4-2-3"],
+        "check-dependence-precision-and-the-limits-of-asymptotics": [
+          "ps-pn-5-3-1",
+          "ps-pn-7-1-1",
+          "ps-pn-7-1-2"
+        ]
+      },
+      "practice": {
+        "A statistic has a sampling distribution": ["ps-pn-7-1-1", "ps-pn-7-1-2"],
+        "The law of large numbers concerns concentration": ["ps-pn-7-1-1"],
+        "The central limit theorem describes standardized fluctuations": [
+          "ps-pn-7-1-2",
+          "ps-pn-5-3-2"
+        ],
+        "Approximate probabilities for means, sums, and proportions": [
+          "ps-pn-7-1-2",
+          "ps-pn-4-2-3"
+        ],
+        "Check dependence, precision, and the limits of asymptotics": [
+          "ps-pn-5-3-1",
+          "ps-pn-7-1-1",
+          "ps-pn-7-1-2"
+        ]
+      }
+    },
+    "probability-statistics-concentration-monte-carlo": {
+      "reviewedContentHash": "15099ac6152d2ae3a1d46976c6c732a1489b6905195b4d4919d56555c77e4a9b",
+      "intro": ["ps-pn-6-2-2"],
+      "sections": {
+        "a-mean-can-bound-a-nonnegative-tail": ["ps-pn-6-2-2"],
+        "centering-and-squaring-gives-chebyshev": ["ps-pn-6-2-2"],
+        "guarantees-for-averages-and-sample-sizes": ["ps-pn-6-2-2", "ps-pn-8-2-1"],
+        "monte-carlo-turns-an-expectation-into-an-estimate": ["ps-pn-8-2-1", "ps-pn-6-2-2"],
+        "from-individual-failures-to-algorithm-guarantees": ["ps-pn-6-2-2"]
+      },
+      "practice": {
+        "A mean can bound a nonnegative tail": ["ps-pn-6-2-2"],
+        "Centering and squaring gives Chebyshev": ["ps-pn-6-2-2"],
+        "Guarantees for averages and sample sizes": ["ps-pn-6-2-2", "ps-pn-8-2-1"],
+        "Monte Carlo turns an expectation into an estimate": ["ps-pn-8-2-1", "ps-pn-6-2-2"],
+        "From individual failures to algorithm guarantees": ["ps-pn-6-2-2"]
+      }
+    },
+    "probability-statistics-estimation-likelihood": {
+      "reviewedContentHash": "7fde27837ec13fdf70c362315351201126efc3b4e171a02665025f6460f76dec",
+      "intro": ["ps-pn-8-2-1", "ps-pn-8-2-3"],
+      "sections": {
+        "a-parameter-an-estimator-and-an-estimate": ["ps-pn-8-2-1", "ps-pn-8-2-3"],
+        "bias-and-mean-squared-error": ["ps-pn-8-2-1"],
+        "consistency-and-the-denominator-in-sample-variance": ["ps-pn-8-2-1", "ps-pn-8-2-3"],
+        "likelihood-keeps-the-data-fixed": ["ps-pn-8-2-3"],
+        "log-likelihood-and-elementary-maximization": ["ps-pn-8-2-3", "ps-pn-8-2-1"]
+      },
+      "practice": {
+        "A parameter, an estimator, and an estimate": ["ps-pn-8-2-1", "ps-pn-8-2-3"],
+        "Bias and mean squared error": ["ps-pn-8-2-1"],
+        "Consistency and the denominator in sample variance": ["ps-pn-8-2-1", "ps-pn-8-2-3"],
+        "Likelihood keeps the data fixed": ["ps-pn-8-2-3"],
+        "Log-likelihood and elementary maximization": ["ps-pn-8-2-3", "ps-pn-8-2-1"]
+      }
+    },
+    "probability-statistics-confidence-intervals": {
+      "reviewedContentHash": "fe49bcc836cba528b86587eed8a69120c35e134443339e43f1066d4dcb0be676",
+      "intro": ["ps-os-8-1"],
+      "sections": {
+        "coverage-belongs-to-a-procedure": ["ps-os-8-1"],
+        "a-mean-interval-with-known-population-spread": ["ps-os-8-1"],
+        "estimating-spread-leads-to-student-t": ["ps-os-8-2"],
+        "proportion-intervals-and-boundary-limitations": ["ps-os-8-3"],
+        "planning-precision-and-checking-conclusions": ["ps-os-8-1", "ps-os-8-3"]
+      },
+      "practice": {
+        "Coverage belongs to a procedure": ["ps-os-8-1"],
+        "A mean interval with known population spread": ["ps-os-8-1"],
+        "Estimating spread leads to Student t": ["ps-os-8-2"],
+        "Proportion intervals and boundary limitations": ["ps-os-8-3"],
+        "Planning precision and checking conclusions": ["ps-os-8-1", "ps-os-8-3"]
+      }
+    },
+    "probability-statistics-hypothesis-testing": {
+      "reviewedContentHash": "a6f919692a923cc5f21a46335b30089b4d47409ba2f842f24304994c0dc79846",
+      "intro": ["ps-os-9-1", "ps-os-9-4"],
+      "sections": {
+        "state-a-claim-about-the-population-before-examining-evidence": ["ps-os-9-1", "ps-os-9-4"],
+        "tail-probabilities-under-the-null-model": ["ps-os-9-4", "ps-os-9-1"],
+        "tests-for-a-single-population-mean": ["ps-os-9-4", "ps-os-8-1", "ps-os-8-2"],
+        "a-proportion-test-uses-the-null-standard-error": [
+          "ps-os-9-3",
+          "ps-os-9-4",
+          "ps-os-8-3",
+          "ps-os-9-1"
+        ],
+        "errors-power-and-practical-meaning": ["ps-os-9-2", "ps-os-9-4", "ps-pn-6-2-2"]
+      },
+      "practice": {
+        "State a claim about the population before examining evidence": ["ps-os-9-1", "ps-os-9-4"],
+        "Tail probabilities under the null model": ["ps-os-9-4", "ps-os-9-1"],
+        "Tests for a single population mean": ["ps-os-9-4", "ps-os-8-1", "ps-os-8-2"],
+        "A proportion test uses the null standard error": [
+          "ps-os-9-3",
+          "ps-os-9-4",
+          "ps-os-8-3",
+          "ps-os-9-1"
+        ],
+        "Errors, power, and practical meaning": ["ps-os-9-2", "ps-os-9-4", "ps-pn-6-2-2"]
+      }
+    },
+    "probability-statistics-bayesian-estimation": {
+      "reviewedContentHash": "073e13cc4b979adf4dfddbce3f7f51dbd9a1729b379230e2149c9fddb13816a0",
+      "intro": ["ps-pn-9-1"],
+      "sections": {
+        "model-uncertainty-about-a-parameter": ["ps-pn-9-1"],
+        "beta-distributions-on-a-probability-parameter": ["ps-pn-9-2-beta"],
+        "binomial-data-update-both-shape-parameters": ["ps-pn-9-2-beta", "ps-pn-9-1"],
+        "predict-future-observations-by-averaging-over-uncertainty": [
+          "ps-pn-9-2-beta",
+          "ps-pn-9-1"
+        ],
+        "credible-intervals-and-sensitivity-to-assumptions": [
+          "ps-pn-9-1",
+          "ps-pn-9-2-beta",
+          "ps-os-8-1"
+        ]
+      },
+      "practice": {
+        "Model uncertainty about a parameter": ["ps-pn-9-1"],
+        "Beta distributions on a probability parameter": ["ps-pn-9-2-beta"],
+        "Binomial data update both shape parameters": ["ps-pn-9-2-beta", "ps-pn-9-1"],
+        "Predict future observations by averaging over uncertainty": [
+          "ps-pn-9-2-beta",
+          "ps-pn-9-1"
+        ],
+        "Credible intervals and sensitivity to assumptions": [
+          "ps-pn-9-1",
+          "ps-pn-9-2-beta",
+          "ps-os-8-1"
+        ]
+      }
+    },
+    "probability-statistics-regression-interpretation": {
+      "reviewedContentHash": "fe1094fe90dc6295860234dcbe2ef7f007da18dd03dfc31106d6883d03305f1f",
+      "intro": ["ps-regression-os-12-3", "ps-regression-mml-9-1-2"],
+      "sections": {
+        "a-fitted-line-and-a-population-model": [
+          "ps-regression-os-12-3",
+          "ps-regression-mml-9-1-2"
+        ],
+        "why-gaussian-likelihood-gives-least-squares": [
+          "ps-regression-mml-9-1-2",
+          "ps-regression-islr-3-1"
+        ],
+        "uncertainty-in-a-coefficient": ["ps-regression-islr-3-1"],
+        "predicting-a-mean-and-predicting-one-new-observation": ["ps-regression-psu-3-2-3"],
+        "assumptions-diagnostics-and-the-limits-of-a-slope": [
+          "ps-regression-os-12-3",
+          "ps-regression-islr-3-3"
+        ]
+      },
+      "practice": {
+        "A fitted line and a population model": [
+          "ps-regression-os-12-3",
+          "ps-regression-mml-9-1-2"
+        ],
+        "Why Gaussian likelihood gives least squares": [
+          "ps-regression-mml-9-1-2",
+          "ps-regression-islr-3-1"
+        ],
+        "Uncertainty in a coefficient": ["ps-regression-islr-3-1"],
+        "Predicting a mean and predicting one new observation": ["ps-regression-psu-3-2-3"],
+        "Assumptions, diagnostics, and the limits of a slope": [
+          "ps-regression-os-12-3",
+          "ps-regression-islr-3-3"
+        ]
+      }
+    },
+    "probability-statistics-resampling-model-assessment": {
+      "reviewedContentHash": "213ba5ffd32b00cf18b27aa5a1fba271f2d743bba3a00509bdb4189784db971b",
+      "intro": ["ps-assessment-islr-5-2"],
+      "sections": {
+        "the-empirical-distribution-and-resampling-units": ["ps-assessment-islr-5-2"],
+        "bootstrap-uncertainty-versus-more-simulation": ["ps-assessment-islr-5-2"],
+        "training-validation-and-a-final-test": [
+          "ps-assessment-islr-5-1",
+          "ps-assessment-mml-8-2-6"
+        ],
+        "reading-a-confusion-matrix": ["ps-assessment-islr-4-4"],
+        "matching-assessment-to-the-decision": [
+          "ps-assessment-mml-8-2-6",
+          "ps-assessment-islr-5-1",
+          "ps-assessment-islr-4-4"
+        ]
+      },
+      "practice": {
+        "The empirical distribution and resampling units": ["ps-assessment-islr-5-2"],
+        "Bootstrap uncertainty versus more simulation": ["ps-assessment-islr-5-2"],
+        "Training, validation, and a final test": [
+          "ps-assessment-islr-5-1",
+          "ps-assessment-mml-8-2-6"
+        ],
+        "Reading a confusion matrix": ["ps-assessment-islr-4-4"],
+        "Matching assessment to the decision": [
+          "ps-assessment-mml-8-2-6",
+          "ps-assessment-islr-5-1",
+          "ps-assessment-islr-4-4"
+        ]
+      }
     }
   },
   "syntax": {
-    "reviewedContentHash": "e6fe30befe94eee7fc99b58d98524edc83e5c165865e000b37ef460f8c6d8835",
+    "reviewedContentHash": "96011be3fdae69a3be03ae2b6740478fdf4d86d0e715f84ad80d82ef22bcf0fc",
     "entries": {
       "tex-command-neg": ["tex-supported"],
       "tex-command-land": ["tex-supported"],
@@ -3120,7 +4188,15 @@
       "tex-calculus-dots": ["calculus-katex"],
       "tex-calculus-eta": ["calculus-katex"],
       "tex-calculus-implies": ["calculus-katex"],
-      "tex-calculus-longrightarrow": ["calculus-katex"]
+      "tex-calculus-longrightarrow": ["calculus-katex"],
+      "tex-probability-statistics-mu": ["probability-statistics-katex"],
+      "tex-probability-statistics-capital-phi": ["probability-statistics-katex"],
+      "tex-probability-statistics-hat": ["probability-statistics-katex"],
+      "tex-probability-statistics-bar": ["probability-statistics-katex"],
+      "tex-probability-statistics-sim": ["probability-statistics-katex"],
+      "tex-probability-statistics-widehat": ["probability-statistics-katex"],
+      "tex-probability-statistics-mathbf": ["probability-statistics-katex"],
+      "tex-probability-statistics-boldsymbol": ["probability-statistics-katex"]
     }
   },
   "reviewTemplates": {
@@ -4163,6 +5239,710 @@
     "calculus-gradient-descent-review-connect-the-gradient-to-least-squares-fitting-compute-production": {
       "reviewedContentHash": "496134c842cdf1eed854a8a62875e18db63a2147b30732289447c677dbd66026",
       "sources": ["mml-calculus-gradient-descent", "mml-calculus-convexity"]
+    },
+    "probability-statistics-probability-models-events-review-specify-the-experiment-before-calculating-compute-production": {
+      "reviewedContentHash": "61985152063698227a27c8bd6299ff6448c0cbd8e1d48154b63ad2e26162f0d7",
+      "sources": ["ps-pn-1-3-1", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-specify-the-experiment-before-calculating-justify-reasoning": {
+      "reviewedContentHash": "6450396bbe46b36ef9dfae037739e498a71a65075b0efb2da18ad5d35bd8f60e",
+      "sources": ["ps-pn-1-3-1", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-translate-event-language-into-sets-compute-production": {
+      "reviewedContentHash": "63b4fb8f69dcd76333b3bfe2d833924abd38e715ccfa76fe8e88085ec9e9c00a",
+      "sources": ["ps-pn-1-3-1", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-translate-event-language-into-sets-interpret-recognition": {
+      "reviewedContentHash": "0357392151bdcdfa44b88851422d2ca8d43290e9d699a23b0827a1bc64eda5e3",
+      "sources": ["ps-pn-1-3-1", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-translate-event-language-into-sets-justify-reasoning": {
+      "reviewedContentHash": "2834100a2a30fe1e5bae54520393d25608b9c0a1fb47ab416579e5c8a16043c6",
+      "sources": ["ps-pn-1-3-1", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-probability-weights-and-the-axioms-compute-production": {
+      "reviewedContentHash": "472d0570078c3c7b81ae4895f08224286c40fd1e90b11c636f498e21f938898b",
+      "sources": ["ps-pn-1-3-2", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-probability-weights-and-the-axioms-interpret-recognition": {
+      "reviewedContentHash": "1bfcceef698e4087299d326d1ab00e31c4ba37da48f53c99ca060be4f6e1aaaf",
+      "sources": ["ps-pn-1-3-2", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-complements-overlap-and-bounds-compute-production": {
+      "reviewedContentHash": "1e1d523a4bd8acdba9dab3528edb30f28161fc20ca31e3ed1c2f1ab2d34d0b2d",
+      "sources": ["ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-build-and-audit-a-complete-event-model-compute-production": {
+      "reviewedContentHash": "c1249ad3d3df5a7eca13244da10cf8d5f33a303c8f77ee73e41fe2d289558a51",
+      "sources": ["ps-pn-1-3-1", "ps-pn-1-3-2", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-probability-models-events-review-build-and-audit-a-complete-event-model-justify-reasoning": {
+      "reviewedContentHash": "f0f22d2961b54445a0fd9e15608946f6dcf6ce1375f7d44f3bfb9c64de2316fe",
+      "sources": ["ps-pn-1-3-1", "ps-pn-1-3-2", "ps-pn-1-3-3"]
+    },
+    "probability-statistics-counting-finite-probability-review-count-stages-and-identify-the-sampling-rule-compute-production": {
+      "reviewedContentHash": "507cfcffe53fdf89b81c06b7023f2c211a1e742a6c3d5252a533ad68650f2ed4",
+      "sources": ["ps-pn-2-1-1", "ps-pn-2-1-2"]
+    },
+    "probability-statistics-counting-finite-probability-review-count-stages-and-identify-the-sampling-rule-justify-reasoning": {
+      "reviewedContentHash": "177b854302adabbfaf58143f4eab8493dd94e9bf94494d763b6491e6777048dd",
+      "sources": ["ps-pn-2-1-1", "ps-pn-2-1-2"]
+    },
+    "probability-statistics-counting-finite-probability-review-ordered-selections-and-factorials-compute-production": {
+      "reviewedContentHash": "426268d962f217ee82b5afec6f6130933f9ccaceba1505fc25e58cd97c37afe8",
+      "sources": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+    },
+    "probability-statistics-counting-finite-probability-review-ordered-selections-and-factorials-justify-reasoning": {
+      "reviewedContentHash": "1f59500cc5db91328adcb2f673729192fb4505b8b4bae9348df9bd17377c2fc6",
+      "sources": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+    },
+    "probability-statistics-counting-finite-probability-review-unordered-selections-and-combinations-compute-production": {
+      "reviewedContentHash": "e9624a227b9795a292e5d788ae6a390e704ad37e5e34ff948ab224000a86c071",
+      "sources": ["ps-pn-2-1-3"]
+    },
+    "probability-statistics-counting-finite-probability-review-use-compatible-numerator-and-denominator-counts-compute-production": {
+      "reviewedContentHash": "2c6714ed6c5b9fc755947a54ea2e983924220686bcdaa5ed21cecbcacf71557c",
+      "sources": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+    },
+    "probability-statistics-counting-finite-probability-review-use-compatible-numerator-and-denominator-counts-justify-reasoning": {
+      "reviewedContentHash": "87d2993f4c3b1de11d583877691b974ce8ec77511f9edba3ed179925cad5d6ab",
+      "sources": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+    },
+    "probability-statistics-counting-finite-probability-review-complements-collisions-and-counting-arguments-compute-production": {
+      "reviewedContentHash": "62e5cd6449863570dc56be64be9aab1d928f89c0c1f70fed162d563273cda0a5",
+      "sources": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+    },
+    "probability-statistics-counting-finite-probability-review-complements-collisions-and-counting-arguments-justify-reasoning": {
+      "reviewedContentHash": "50b247903d8c8a90ae7dd71c76a642886e709ef470484ef4f1eaa5fe0490f9fc",
+      "sources": ["ps-pn-2-1-2", "ps-pn-2-1-3"]
+    },
+    "probability-statistics-conditional-probability-independence-review-conditioning-changes-the-reference-population-compute-production": {
+      "reviewedContentHash": "c7eed44dfd06e868b237435ec599caa05d0273d643435b2a4bddfb079672ef2b",
+      "sources": ["ps-pn-1-4-0"]
+    },
+    "probability-statistics-conditional-probability-independence-review-conditioning-changes-the-reference-population-justify-reasoning": {
+      "reviewedContentHash": "f9d7883c0095415dedbaab145b3f3f3b4c5656518e9e505eaeb01e92da78acb9",
+      "sources": ["ps-pn-1-4-0"]
+    },
+    "probability-statistics-conditional-probability-independence-review-read-tables-and-multiply-along-a-history-compute-production": {
+      "reviewedContentHash": "73bdc59f3595355fd3b20a768352db72ae99da5782d995de99b5fd5214fe40fe",
+      "sources": ["ps-pn-1-4-0"]
+    },
+    "probability-statistics-conditional-probability-independence-review-independence-is-a-testable-factorization-compute-production": {
+      "reviewedContentHash": "679da425a9087ffbd822b183eeac690cdcdaa062cd8b51011041076837024cdb",
+      "sources": ["ps-pn-1-4-1"]
+    },
+    "probability-statistics-conditional-probability-independence-review-independence-is-a-testable-factorization-interpret-recognition": {
+      "reviewedContentHash": "8d34377c191ba8a62943cd00ea007cbc83f0785bda3bb905e989b259d2d38b95",
+      "sources": ["ps-pn-1-4-1"]
+    },
+    "probability-statistics-conditional-probability-independence-review-repeated-trials-and-mutual-independence-compute-production": {
+      "reviewedContentHash": "d137b4549acd9f8fd2da3d47cbeeaac3e20cdef69822e2b8ea4a5b678a693259",
+      "sources": ["ps-pn-1-4-1"]
+    },
+    "probability-statistics-conditional-probability-independence-review-repeated-trials-and-mutual-independence-justify-reasoning": {
+      "reviewedContentHash": "17b00617a99b018a7b9cb35e61a4de02f45c58ed20c6003986bd4c47b60dabbf",
+      "sources": ["ps-pn-1-4-1"]
+    },
+    "probability-statistics-conditional-probability-independence-review-conditioning-selection-and-causal-restraint-compute-production": {
+      "reviewedContentHash": "40258276627b3fd0688ec1fb8d84927940940a1ba6b35e18d6213198cd1d30d8",
+      "sources": ["ps-pn-1-4-0", "ps-pn-1-4-1", "ps-pn-1-4-4", "ps-os-1-4"]
+    },
+    "probability-statistics-conditional-probability-independence-review-conditioning-selection-and-causal-restraint-interpret-recognition": {
+      "reviewedContentHash": "524770f594f875e85f9d0cc82cc5e03b2eea139ab7d71e27b6dcea7f71ba6583",
+      "sources": ["ps-pn-1-4-0", "ps-pn-1-4-1", "ps-pn-1-4-4", "ps-os-1-4"]
+    },
+    "probability-statistics-conditional-probability-independence-review-conditioning-selection-and-causal-restraint-justify-reasoning": {
+      "reviewedContentHash": "46fe258d295a2b9df924fab2bc4c75658f90d79ce455f6e781d097f15bbf0e1f",
+      "sources": ["ps-pn-1-4-0", "ps-pn-1-4-1", "ps-pn-1-4-4", "ps-os-1-4"]
+    },
+    "probability-statistics-total-probability-bayes-review-total-probability-is-a-weighted-average-compute-production": {
+      "reviewedContentHash": "efe138af09596e0ab84a149ba08033734d3d548a5bd2d2c37f5a5f7673f8143d",
+      "sources": ["ps-pn-1-4-2"]
+    },
+    "probability-statistics-total-probability-bayes-review-total-probability-is-a-weighted-average-justify-reasoning": {
+      "reviewedContentHash": "4b7f5851a03b430387e64f5189e2c3ebd7a89e5ead8fafc1bf958c2ab6dd75f2",
+      "sources": ["ps-pn-1-4-2"]
+    },
+    "probability-statistics-total-probability-bayes-review-reverse-the-question-with-bayes-rule-compute-production": {
+      "reviewedContentHash": "e9660b5f166600173d6977ebbbf47fee475fa03e78bee2392d855621f8d1e8c3",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2"]
+    },
+    "probability-statistics-total-probability-bayes-review-reverse-the-question-with-bayes-rule-justify-reasoning": {
+      "reviewedContentHash": "4afebf68fbe893ffd7b430237fc37776de94e2284d2be1f0894d764749f0c7e7",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2"]
+    },
+    "probability-statistics-total-probability-bayes-review-base-rates-and-screening-tables-compute-production": {
+      "reviewedContentHash": "e060e8ec9bf33842af76800a745f2fbc0ff61ceef17453d788a5493993177afa",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2"]
+    },
+    "probability-statistics-total-probability-bayes-review-base-rates-and-screening-tables-justify-reasoning": {
+      "reviewedContentHash": "b1463c2f883327761a4eb088413ddfb709e6d27e45e6ac65ddc6db975f7155b4",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2"]
+    },
+    "probability-statistics-total-probability-bayes-review-odds-and-sequential-evidence-compute-production": {
+      "reviewedContentHash": "e33e062fae9109d1e852e6f4da5acfa908dcece8822dda7226d65db96022db13",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"]
+    },
+    "probability-statistics-total-probability-bayes-review-odds-and-sequential-evidence-justify-reasoning": {
+      "reviewedContentHash": "8d9bc1e69c1c793b722aeee04c73210b9cb8e525379e8c28e92f6847ff40ce51",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"]
+    },
+    "probability-statistics-total-probability-bayes-review-compare-mechanisms-and-audit-an-update-compute-production": {
+      "reviewedContentHash": "b1aca5f0d0991959f75edc287cf8f3f2b33afc24d7424a26c5b803f4fb42bca8",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"]
+    },
+    "probability-statistics-total-probability-bayes-review-compare-mechanisms-and-audit-an-update-justify-reasoning": {
+      "reviewedContentHash": "d2be1130505804fb777f909e3e07e133c598170b14af55b56c193706fb273464",
+      "sources": ["ps-pn-1-4-3", "ps-pn-1-4-2", "ps-pn-1-4-4"]
+    },
+    "probability-statistics-discrete-random-variables-review-a-random-variable-records-a-numerical-feature-compute-production": {
+      "reviewedContentHash": "02ca6c67702eb2b00f6d96e4189bb5f003a634221e6d0968187f101a33b0b06f",
+      "sources": ["ps-pn-3-1-1", "ps-pn-3-1-2", "ps-pn-3-1-3"]
+    },
+    "probability-statistics-discrete-random-variables-review-a-random-variable-records-a-numerical-feature-justify-reasoning": {
+      "reviewedContentHash": "90de2a589da2883ba07edd35f014b1662b374b34ec6a301dab77e942c720b27d",
+      "sources": ["ps-pn-3-1-1", "ps-pn-3-1-2", "ps-pn-3-1-3"]
+    },
+    "probability-statistics-discrete-random-variables-review-construct-and-check-a-probability-mass-function-compute-production": {
+      "reviewedContentHash": "d420e655662624d2500d632b20cff5431d3ef345850bb2ee84580b4d57b32b8e",
+      "sources": ["ps-pn-3-1-3", "ps-pn-3-1-2"]
+    },
+    "probability-statistics-discrete-random-variables-review-construct-and-check-a-probability-mass-function-justify-reasoning": {
+      "reviewedContentHash": "e9230158baf57f74ae6ad076cf65d1c868582cf6a06cf28b14a7f3fe0e579345",
+      "sources": ["ps-pn-3-1-3", "ps-pn-3-1-2"]
+    },
+    "probability-statistics-discrete-random-variables-review-accumulate-mass-into-a-cdf-compute-production": {
+      "reviewedContentHash": "18c982a5e0c516a81142d0e5187153a77cebc1f486acb569897c2443b13e38cd",
+      "sources": ["ps-pn-3-2-1", "ps-pn-3-1-3"]
+    },
+    "probability-statistics-discrete-random-variables-review-accumulate-mass-into-a-cdf-justify-reasoning": {
+      "reviewedContentHash": "8ca680c59261ab9ba51232ac01c620d3f0a80fcae14847fd6711ac4178334153",
+      "sources": ["ps-pn-3-2-1", "ps-pn-3-1-3"]
+    },
+    "probability-statistics-discrete-random-variables-review-intervals-tails-and-endpoint-discipline-compute-production": {
+      "reviewedContentHash": "140eb406a613826056836e6651ab12e9ef526871d4ed9e62284186bbb79ab0d8",
+      "sources": ["ps-pn-3-2-1", "ps-pn-3-1-3"]
+    },
+    "probability-statistics-discrete-random-variables-review-transform-values-and-combine-their-masses-compute-production": {
+      "reviewedContentHash": "277e804b83eb95d9b8f082a1531499f8bdeee96942ac4dfe3518994d4f8f2fd0",
+      "sources": ["ps-pn-3-2-3", "ps-pn-3-1-3"]
+    },
+    "probability-statistics-discrete-random-variables-review-transform-values-and-combine-their-masses-justify-reasoning": {
+      "reviewedContentHash": "a62f4b87053fbec60f373fae0ea30c1a6b3c611a523c02dcb3f81afeef1ad03a",
+      "sources": ["ps-pn-3-2-3", "ps-pn-3-1-3"]
+    },
+    "probability-statistics-expectation-variance-review-expectation-is-a-probability-weighted-mean-compute-production": {
+      "reviewedContentHash": "b85d1a1bf1a98e19a1a1d24cdd16d771a114a29a85a89d7983179c2f0fd7a483",
+      "sources": ["ps-pn-3-2-2"]
+    },
+    "probability-statistics-expectation-variance-review-expectation-is-a-probability-weighted-mean-justify-reasoning": {
+      "reviewedContentHash": "aa4049037317ee8558b728ab4045ae43a19fe2fbaa94efaff48b3236da300103",
+      "sources": ["ps-pn-3-2-2"]
+    },
+    "probability-statistics-expectation-variance-review-transformations-linearity-and-indicators-compute-production": {
+      "reviewedContentHash": "042cc4005119a50640d459ace8d251b92e2cf077cf0f4b0636f6de63405ce391",
+      "sources": ["ps-pn-3-2-2", "ps-pn-3-2-3"]
+    },
+    "probability-statistics-expectation-variance-review-transformations-linearity-and-indicators-justify-reasoning": {
+      "reviewedContentHash": "eb54f63061aa945ff43c19020eabea1c1d75ce50ede5c90251d10e5f7574f846",
+      "sources": ["ps-pn-3-2-2", "ps-pn-3-2-3"]
+    },
+    "probability-statistics-expectation-variance-review-variance-and-standard-deviation-measure-spread-compute-production": {
+      "reviewedContentHash": "007b23da01eb8c550561e13864c1db4fbc4ca0857afb3eed40e05dbc66f295ac",
+      "sources": ["ps-pn-3-2-4", "ps-pn-3-2-3"]
+    },
+    "probability-statistics-expectation-variance-review-scaling-sums-and-the-role-of-dependence-compute-production": {
+      "reviewedContentHash": "ebe9ff1e7077b5266e5396427682a448192e73bb15a2814a7042a2dd137cbccb",
+      "sources": ["ps-pn-3-2-4", "ps-pn-3-2-2"]
+    },
+    "probability-statistics-expectation-variance-review-scaling-sums-and-the-role-of-dependence-justify-reasoning": {
+      "reviewedContentHash": "7e6da0ad9155e1bfa7ba1c630370574d5b5c57a4c6dc1305c0a4eceb74338bea",
+      "sources": ["ps-pn-3-2-4", "ps-pn-3-2-2"]
+    },
+    "probability-statistics-expectation-variance-review-use-moments-without-losing-the-full-model-compute-production": {
+      "reviewedContentHash": "8ae75fca62987d102c2902a5f75a2a0b749c266d6af893e4a76b459ea7a6b248",
+      "sources": ["ps-pn-3-2-2", "ps-pn-3-2-3", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-expectation-variance-review-use-moments-without-losing-the-full-model-justify-reasoning": {
+      "reviewedContentHash": "e1aee750a2b982eebd8e7dacb3f73558d2189c9d39371217d9a57ff204079423",
+      "sources": ["ps-pn-3-2-2", "ps-pn-3-2-3", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-bernoulli-variables-model-one-binary-event-compute-production": {
+      "reviewedContentHash": "0239cdeb765568f4fb09f2043c87ecf1c1d2259744f6d1c31bbcd8700cbd7d8b",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-bernoulli-variables-model-one-binary-event-justify-reasoning": {
+      "reviewedContentHash": "93bc733175cf13b6cc7f098a629771a2fc3c47499e7e2c9e5499a8ec63a95432",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-binomial-counts-combine-fixed-independent-trials-compute-production": {
+      "reviewedContentHash": "9518d28d310f772a0fbd3ad886dc7d349c558f28b018e31aef4547671781b953",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-binomial-counts-combine-fixed-independent-trials-prove-reasoning": {
+      "reviewedContentHash": "2baad6a434468fad37052ae144997078ce747569d82fd17dfa699c464b7d29a3",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-binomial-tails-and-model-checks-compute-production": {
+      "reviewedContentHash": "95ddbb3d8682ff523664a6dd8bfde082c95d5a2b698fded5f5da80683aa748a5",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-geometric-waiting-time-counts-through-first-success-compute-production": {
+      "reviewedContentHash": "3050f02b66217508cf1ae148b1bb096ecafb8de1ef6155a57b8e8d778afb3f4e",
+      "sources": ["ps-pn-3-1-5", "ps-os-4-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-geometric-waiting-time-counts-through-first-success-justify-reasoning": {
+      "reviewedContentHash": "7493dae996d69668ba2f4ebc295f017ff684882a5503bb8cefda33b7f65d6f20",
+      "sources": ["ps-pn-3-1-5", "ps-os-4-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-geometric-moments-and-memorylessness-compute-production": {
+      "reviewedContentHash": "d5e516f6100d4da924a93a9e4de25e288671f3e56a34198c5132e74921c48b01",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-os-4-4"]
+    },
+    "probability-statistics-bernoulli-binomial-geometric-review-geometric-moments-and-memorylessness-justify-reasoning": {
+      "reviewedContentHash": "8d228a7801927a98ae8560e6a4bd09defef00a8ad4024bc1afebd179d5352b05",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-os-4-4"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-hypergeometric-counts-sample-without-replacement-compute-production": {
+      "reviewedContentHash": "4b5e21358e85bc11187562b7f920f46c6e28a1b4e84a69348fd687ea766e01d7",
+      "sources": ["ps-pn-3-1-5"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-finite-populations-reduce-count-variance-compute-production": {
+      "reviewedContentHash": "5333fca7e2b11f94c90ec229ebe314bf36c656ab03a0c6f8c01e511f53c94afe",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-finite-populations-reduce-count-variance-justify-reasoning": {
+      "reviewedContentHash": "61187b215d043634ccc869aed93e38e1816fd1c75fa12b28ea80da69a33fbe53",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-poisson-counts-have-an-interval-specific-mean-compute-production": {
+      "reviewedContentHash": "a96a2265c71107057fd210ecd0a343e01c2238b15f0ea4f09abcd6e78614925e",
+      "sources": ["ps-pn-3-1-5", "ps-pn-3-2-2", "ps-pn-3-2-4", "ps-os-4-6"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-rates-exposure-and-independent-counts-compute-production": {
+      "reviewedContentHash": "abe818477a5ac4af5c8e4d09fbd21b78b55b294518e1218f5d7fa99dd8988282",
+      "sources": ["ps-pn-11-1-2", "ps-pn-11-1-3", "ps-os-4-6"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-rates-exposure-and-independent-counts-justify-reasoning": {
+      "reviewedContentHash": "502fd45795c98b8eb1f1ad3295c976c68f56b40a53c93783734f021a3d4e6335",
+      "sources": ["ps-pn-11-1-2", "ps-pn-11-1-3", "ps-os-4-6"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-approximation-and-choosing-a-model-compute-production": {
+      "reviewedContentHash": "f149dccafa64471001d88cced7172c844ce855b1847897d4678f7ca264a137c0",
+      "sources": ["ps-pn-3-1-5", "ps-os-4-6"]
+    },
+    "probability-statistics-hypergeometric-poisson-review-approximation-and-choosing-a-model-justify-reasoning": {
+      "reviewedContentHash": "4466d2bee9cd84a1621d7e11455b68ffae12e3234a71c519d174e0ffee8a3a5e",
+      "sources": ["ps-pn-3-1-5", "ps-os-4-6"]
+    },
+    "probability-statistics-continuous-random-variables-review-probability-is-area-not-height-compute-production": {
+      "reviewedContentHash": "6d5a49393cf83bbe9c08308dfee883f062fd36e4af06292fab97abfa6113ffd4",
+      "sources": ["ps-pn-4-1-1"]
+    },
+    "probability-statistics-continuous-random-variables-review-probability-is-area-not-height-justify-reasoning": {
+      "reviewedContentHash": "9a1321c2694bcc86f7559dd8390211466ed334dc1416a5688cbf710257fcf485",
+      "sources": ["ps-pn-4-1-1"]
+    },
+    "probability-statistics-continuous-random-variables-review-move-between-density-and-cumulative-probability-compute-production": {
+      "reviewedContentHash": "72e1d219887f1244f504eda7f5fb812b50df5cc7c3d2022cf5b529ac6815a79f",
+      "sources": ["ps-pn-4-1-1", "ps-pn-4-2-3"]
+    },
+    "probability-statistics-continuous-random-variables-review-move-between-density-and-cumulative-probability-justify-reasoning": {
+      "reviewedContentHash": "ce51f4bf76c6f019509fbace24cdd1e05610d62bd60852e964afa2c8c0acdc86",
+      "sources": ["ps-pn-4-1-1", "ps-pn-4-2-3"]
+    },
+    "probability-statistics-continuous-random-variables-review-compute-expectations-by-integration-compute-production": {
+      "reviewedContentHash": "c52099807c61fb9008ac10519363630bd9cd227089bbe19f0b88edaea4914931",
+      "sources": ["ps-pn-4-1-2"]
+    },
+    "probability-statistics-continuous-random-variables-review-uniform-models-and-interval-conditioning-compute-production": {
+      "reviewedContentHash": "f1ad3228e32017b68b8667c40ce8a38831b4d8d1acec2b80bf6e2b2d70202834",
+      "sources": ["ps-pn-4-1-1", "ps-pn-5-2-3"]
+    },
+    "probability-statistics-continuous-random-variables-review-exponential-waiting-times-and-their-limitations-compute-production": {
+      "reviewedContentHash": "38fbd2ea10fb02a9b87d175fe01b066e8496bfe961dbbf6b38352597759c16e4",
+      "sources": ["ps-pn-4-2-2", "ps-pn-4-1-1"]
+    },
+    "probability-statistics-normal-distributions-transformations-review-normal-models-have-a-location-and-a-scale-compute-production": {
+      "reviewedContentHash": "2930d82e28227cc6be6348d3975f9a5316f66e9eadee910d8905f8290f875c8f",
+      "sources": ["ps-pn-4-2-3"]
+    },
+    "probability-statistics-normal-distributions-transformations-review-use-the-normal-cdf-without-confusing-tails-compute-production": {
+      "reviewedContentHash": "c0b7f773f263c6191e30f685f94eaedd62b8bcf9a01e5f6b66f0f288f9adcd2b",
+      "sources": ["ps-pn-4-2-3"]
+    },
+    "probability-statistics-normal-distributions-transformations-review-quantiles-and-affine-changes-of-units-compute-production": {
+      "reviewedContentHash": "2032367e859dce89fec346389277b4bd4f63ef0176d7abe9e7f2215091f9085e",
+      "sources": ["ps-pn-4-2-3", "ps-pn-4-1-3"]
+    },
+    "probability-statistics-normal-distributions-transformations-review-transform-a-distribution-through-its-cdf-compute-production": {
+      "reviewedContentHash": "d7450a1350208290e0320b16eb726ee17830f2a04b193569649ebd8dffd53608",
+      "sources": ["ps-pn-4-1-3"]
+    },
+    "probability-statistics-normal-distributions-transformations-review-account-for-branches-and-point-masses-compute-production": {
+      "reviewedContentHash": "ab3ff8ec60b64c66caed85c36ccd907b31ea9df467f601130b76f33423b54f28",
+      "sources": ["ps-pn-4-1-3"]
+    },
+    "probability-statistics-joint-conditional-distributions-review-a-joint-table-retains-how-variables-occur-together-compute-production": {
+      "reviewedContentHash": "238f1d1a01676fd1994330cde479b9fb8f92eebbcb7260036ca7e975d8b01e52",
+      "sources": ["ps-pn-5-1-1", "ps-pn-5-1-3"]
+    },
+    "probability-statistics-joint-conditional-distributions-review-condition-a-table-and-test-independence-compute-production": {
+      "reviewedContentHash": "c46aadf85d24eafba3442bd55de6b27cb241097328d3634a31c3041b73489b6d",
+      "sources": ["ps-pn-5-1-3", "ps-pn-5-1-1"]
+    },
+    "probability-statistics-joint-conditional-distributions-review-a-joint-density-assigns-probability-to-regions-compute-production": {
+      "reviewedContentHash": "d1f4f3c223be923f54aa18cd460377fe995d5cdd3e01473e0d35dda50bf325c2",
+      "sources": ["ps-pn-5-2-1"]
+    },
+    "probability-statistics-joint-conditional-distributions-review-condition-continuous-variables-using-densities-compute-production": {
+      "reviewedContentHash": "d38378801dc11ac71af2c6d1a02904eb54ad99d1edfe7c55b8da99dbc5cd760d",
+      "sources": ["ps-pn-5-2-3", "ps-pn-5-2-1"]
+    },
+    "probability-statistics-joint-conditional-distributions-review-check-the-whole-joint-model-compute-production": {
+      "reviewedContentHash": "4f898330cd8c468a98146b69edcae1bc993e34b32a1c10e1b0deedbb0f0a8cbb",
+      "sources": ["ps-pn-5-2-3", "ps-pn-5-2-2", "ps-pn-5-2-1"]
+    },
+    "probability-statistics-covariance-correlation-random-vectors-review-covariance-measures-centered-co-variation-compute-production": {
+      "reviewedContentHash": "fb36f957faa8cacb1e73e1b779823aeb0b40eb5c3918fca7c230d22830f9416c",
+      "sources": ["ps-pn-5-3-1"]
+    },
+    "probability-statistics-covariance-correlation-random-vectors-review-variance-of-a-combination-includes-cross-terms-compute-production": {
+      "reviewedContentHash": "90444740a6c997caa70bfa079b48057f9d813d48f51c3156f217a2769af1a070",
+      "sources": ["ps-pn-5-3-1"]
+    },
+    "probability-statistics-covariance-correlation-random-vectors-review-correlation-standardizes-covariance-but-does-not-describe-all-dependence-compute-production": {
+      "reviewedContentHash": "967c4bcf205440f574b47bbbab617434381c7ef35c8f838703564ec15e44ad70",
+      "sources": ["ps-pn-5-3-1", "ps-os-stat-1-4"]
+    },
+    "probability-statistics-covariance-correlation-random-vectors-review-collect-means-and-covariances-into-vectors-and-matrices-compute-production": {
+      "reviewedContentHash": "ee0cc474752fbdabfda3d4ef43851c46889c6dc41d75a8920d582d3d8db41f29",
+      "sources": ["ps-pn-6-1-5", "ps-pn-5-3-1"]
+    },
+    "probability-statistics-covariance-correlation-random-vectors-review-covariance-geometry-validity-and-redundant-features-compute-production": {
+      "reviewedContentHash": "44e5910658189827e88284a1fcbb9e0b821d0ecbaf5e495e3f8ffd932e917074",
+      "sources": ["ps-pn-6-1-5", "ps-pn-5-3-1"]
+    },
+    "probability-statistics-conditional-expectation-review-a-conditional-mean-is-a-function-of-the-information-compute-production": {
+      "reviewedContentHash": "62037e8dea2da846dbe1d77136379424be69b65f01c368019a3fe60d7c0c0a31",
+      "sources": ["ps-pn-5-1-5", "ps-pn-5-2-3"]
+    },
+    "probability-statistics-conditional-expectation-review-average-conditional-means-to-recover-the-overall-mean-compute-production": {
+      "reviewedContentHash": "633c5b535a710dd048e7add2c38af42bbf15b4dff9f4a1f6dd5dc87da5388be8",
+      "sources": ["ps-pn-5-1-5", "ps-pn-5-2-3"]
+    },
+    "probability-statistics-conditional-expectation-review-split-variation-within-and-between-conditions-compute-production": {
+      "reviewedContentHash": "536ff4a5e534ebabe1637ee6f04760aa602adbd05a61d1c5f5552daf5ced7641",
+      "sources": ["ps-pn-5-1-5", "ps-pn-5-2-3"]
+    },
+    "probability-statistics-conditional-expectation-review-conditional-means-give-optimal-squared-error-predictions-compute-production": {
+      "reviewedContentHash": "df1c96422ddca4456bdac14f741829aa1ac68754180e93db98182d20d2b1c8d4",
+      "sources": ["ps-pn-9-1-5", "ps-pn-5-1-5"]
+    },
+    "probability-statistics-conditional-expectation-review-use-conditioning-to-analyze-random-workloads-compute-production": {
+      "reviewedContentHash": "6062461a1cc737faaa4fa1a3939daeda89083efa92f0d9589ff12f824e22abce",
+      "sources": ["ps-pn-5-1-5", "ps-pn-9-1-5"]
+    },
+    "probability-statistics-data-samples-study-design-review-define-the-population-observation-and-question-interpret-production": {
+      "reviewedContentHash": "b1bdbae8467a698b30bdaa630b27760886b429b1f1007a5f18c9fc343626b16c",
+      "sources": ["ps-os-stat-1-1", "ps-os-stat-1-2"]
+    },
+    "probability-statistics-data-samples-study-design-review-define-the-population-observation-and-question-compute-production": {
+      "reviewedContentHash": "54ca383ade51691e349b9679fdf723b42287378d21ce546d54588f3d640c5825",
+      "sources": ["ps-os-stat-1-1", "ps-os-stat-1-2"]
+    },
+    "probability-statistics-data-samples-study-design-review-summarize-location-without-hiding-the-data-compute-production": {
+      "reviewedContentHash": "34d87704cf182808999a6cc4deabc6e333d9d89c7581dfeb441fbe2424f60686",
+      "sources": ["ps-os-stat-2-5", "ps-os-stat-1-2"]
+    },
+    "probability-statistics-data-samples-study-design-review-describe-spread-and-distinguish-empirical-from-model-variation-compute-production": {
+      "reviewedContentHash": "c018df8c17225bcf0555a64dd1143823e20983c9305fb1e1665881be9fb7fdef",
+      "sources": ["ps-os-stat-2-7", "ps-os-stat-1-1"]
+    },
+    "probability-statistics-data-samples-study-design-review-connect-the-sampling-design-to-the-target-population-compute-production": {
+      "reviewedContentHash": "15ab74342f4361dbb8f097c8087ffb27dac79a353b6a50460cb7d5681a5bfd12",
+      "sources": ["ps-os-stat-1-2", "ps-os-stat-1-1"]
+    },
+    "probability-statistics-data-samples-study-design-review-connect-the-sampling-design-to-the-target-population-interpret-production": {
+      "reviewedContentHash": "1641d4dcd60698f1c4174b1b6bcc43c5a02906c623361406208487bc8f4ae7e4",
+      "sources": ["ps-os-stat-1-2", "ps-os-stat-1-1"]
+    },
+    "probability-statistics-data-samples-study-design-review-separate-random-error-systematic-bias-and-causal-evidence-compute-production": {
+      "reviewedContentHash": "3b16e3027627223289c849f45f56ef1aeb8a7031e82a9849a146d3b100d8cadb",
+      "sources": ["ps-os-stat-1-4", "ps-os-stat-1-2"]
+    },
+    "probability-statistics-data-samples-study-design-review-separate-random-error-systematic-bias-and-causal-evidence-interpret-recognition": {
+      "reviewedContentHash": "8d45a3f5b2e1ad3735553e52873a834d5859097d5ede714203f1c85a2c3f8ab1",
+      "sources": ["ps-os-stat-1-4", "ps-os-stat-1-2"]
+    },
+    "probability-statistics-data-samples-study-design-review-separate-random-error-systematic-bias-and-causal-evidence-justify-reasoning": {
+      "reviewedContentHash": "0704d0f2c9fd760fedcf3489e7e9315cd63de5c7ce32e7ddccf17569a47587b2",
+      "sources": ["ps-os-stat-1-4", "ps-os-stat-1-2"]
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem-review-a-statistic-has-a-sampling-distribution-compute-production": {
+      "reviewedContentHash": "ee246943d4780091737dd0b471afdb7605bb2f590ef49ecf4d52eaab001181bd",
+      "sources": ["ps-pn-7-1-1", "ps-pn-7-1-2"]
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem-review-the-law-of-large-numbers-concerns-concentration-compute-production": {
+      "reviewedContentHash": "f0226862928c935aaa6ed298ba9a4fb9345d9a53d28b08624ede42b80f9c3ba0",
+      "sources": ["ps-pn-7-1-1"]
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem-review-the-law-of-large-numbers-concerns-concentration-interpret-recognition": {
+      "reviewedContentHash": "85f6acafe7e722120e8e8064a8e35fc7a2d971aa7d3eec3f7fd4d6df277ccfce",
+      "sources": ["ps-pn-7-1-1"]
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem-review-the-central-limit-theorem-describes-standardized-fluctuations-compute-production": {
+      "reviewedContentHash": "204c607028e033fc6552c21c6fce969b94abe3552373ac1f842b7c85d8b6f12e",
+      "sources": ["ps-pn-7-1-2", "ps-pn-5-3-2"]
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem-review-the-central-limit-theorem-describes-standardized-fluctuations-interpret-recognition": {
+      "reviewedContentHash": "52cb107e7daa599ef37a1102a5b1faf23338ff46176dc13c284355045da82f3e",
+      "sources": ["ps-pn-7-1-2", "ps-pn-5-3-2"]
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem-review-approximate-probabilities-for-means-sums-and-proportions-compute-production": {
+      "reviewedContentHash": "173e2bbd5b50a346ebb37f73ce409765ffe220331c4e4eb77f8dcc11b546262a",
+      "sources": ["ps-pn-7-1-2", "ps-pn-4-2-3"]
+    },
+    "probability-statistics-laws-large-numbers-central-limit-theorem-review-check-dependence-precision-and-the-limits-of-asymptotics-compute-production": {
+      "reviewedContentHash": "35566b3d06cf6006e5b0e645aa4cb1b3945300fd7f289e09864179f28e20752d",
+      "sources": ["ps-pn-5-3-1", "ps-pn-7-1-1", "ps-pn-7-1-2"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-a-mean-can-bound-a-nonnegative-tail-compute-production": {
+      "reviewedContentHash": "cb24a38a89804c3696432726eef59a93bc8e148046f66cc10e118afbdf46fe1f",
+      "sources": ["ps-pn-6-2-2"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-centering-and-squaring-gives-chebyshev-compute-production": {
+      "reviewedContentHash": "6175ac9eae7de9ab28e38950cc22aa5d1c2aac447c3ceb5558fe0bdb46e67840",
+      "sources": ["ps-pn-6-2-2"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-centering-and-squaring-gives-chebyshev-justify-reasoning": {
+      "reviewedContentHash": "690e086c9146d9bf633f4b52614ed31756cb145023d367af35ddb1188c7c40db",
+      "sources": ["ps-pn-6-2-2"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-guarantees-for-averages-and-sample-sizes-compute-production": {
+      "reviewedContentHash": "064da54d4fed54f38fc33a6c8fbc8470006a2987f53b93a5597d417f700dbfb0",
+      "sources": ["ps-pn-6-2-2", "ps-pn-8-2-1"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-monte-carlo-turns-an-expectation-into-an-estimate-compute-production": {
+      "reviewedContentHash": "bda08f88178e4eb00ad68112d5b4927d67b90efc13a260d345da1064d600f086",
+      "sources": ["ps-pn-8-2-1", "ps-pn-6-2-2"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-monte-carlo-turns-an-expectation-into-an-estimate-justify-reasoning": {
+      "reviewedContentHash": "0c818a3165b2871700a31a79d2005cc7def85cabb9aaf352e0eef00e9dca333a",
+      "sources": ["ps-pn-8-2-1", "ps-pn-6-2-2"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-from-individual-failures-to-algorithm-guarantees-compute-production": {
+      "reviewedContentHash": "55a4faa01abdb78b09893d906b8538fb150d3cbe9e185f5e40896d8d414987ff",
+      "sources": ["ps-pn-6-2-2"]
+    },
+    "probability-statistics-concentration-monte-carlo-review-from-individual-failures-to-algorithm-guarantees-compute-recognition": {
+      "reviewedContentHash": "dec3477c61d0a5c1632182ad1aeb7bacc2d63266798797968a58bd2525f49476",
+      "sources": ["ps-pn-6-2-2"]
+    },
+    "probability-statistics-estimation-likelihood-review-a-parameter-an-estimator-and-an-estimate-compute-production": {
+      "reviewedContentHash": "4682bb80f6bd885c9ac0492e5e507117dc1ddd0a2a8492c82452c46ceab80829",
+      "sources": ["ps-pn-8-2-1", "ps-pn-8-2-3"]
+    },
+    "probability-statistics-estimation-likelihood-review-a-parameter-an-estimator-and-an-estimate-justify-reasoning": {
+      "reviewedContentHash": "fef045073a62e1b3f03c81514d3acac0d54b1ecaa103a5253d8135109290fd98",
+      "sources": ["ps-pn-8-2-1", "ps-pn-8-2-3"]
+    },
+    "probability-statistics-estimation-likelihood-review-bias-and-mean-squared-error-compute-production": {
+      "reviewedContentHash": "feb286cc17b3ad2c21ab269beb7ea0c7bef8c602cb7ebe7f79ee13a7326adf6c",
+      "sources": ["ps-pn-8-2-1"]
+    },
+    "probability-statistics-estimation-likelihood-review-bias-and-mean-squared-error-compute-recognition": {
+      "reviewedContentHash": "ea198f62a68b5a87505094c0040ccd6c85914ace75e3d802a38864655e375b42",
+      "sources": ["ps-pn-8-2-1"]
+    },
+    "probability-statistics-estimation-likelihood-review-consistency-and-the-denominator-in-sample-variance-compute-production": {
+      "reviewedContentHash": "bf63dc5a0a054d885ee2f4d1ac83ba047d624f6805bc15079228ae6bd8fe0da8",
+      "sources": ["ps-pn-8-2-1", "ps-pn-8-2-3"]
+    },
+    "probability-statistics-estimation-likelihood-review-consistency-and-the-denominator-in-sample-variance-compute-recognition": {
+      "reviewedContentHash": "fdf7b1cd5fe0643d9de5f8a3a24f5ddf5a6a4022e0fff83c788ca1c869fcb288",
+      "sources": ["ps-pn-8-2-1", "ps-pn-8-2-3"]
+    },
+    "probability-statistics-estimation-likelihood-review-likelihood-keeps-the-data-fixed-compute-production": {
+      "reviewedContentHash": "017cb1510509094b943c07277a39c1c87c84a5cfb7ed0b8ad618e5861ad905b0",
+      "sources": ["ps-pn-8-2-3"]
+    },
+    "probability-statistics-estimation-likelihood-review-likelihood-keeps-the-data-fixed-compute-recognition": {
+      "reviewedContentHash": "3358316ab16b5f87de9d3fda655aa91e0137a21ca388a36e8ad851f636c612a4",
+      "sources": ["ps-pn-8-2-3"]
+    },
+    "probability-statistics-estimation-likelihood-review-log-likelihood-and-elementary-maximization-compute-production": {
+      "reviewedContentHash": "f5da770beee43c72962093bde1440ef168781d61d0964eb94f300f0a162cd77c",
+      "sources": ["ps-pn-8-2-3", "ps-pn-8-2-1"]
+    },
+    "probability-statistics-confidence-intervals-review-coverage-belongs-to-a-procedure-compute-production": {
+      "reviewedContentHash": "db078cdafe647371449af68eb98bd97951525472d53119d6bc2714e0d347f8c1",
+      "sources": ["ps-os-8-1"]
+    },
+    "probability-statistics-confidence-intervals-review-coverage-belongs-to-a-procedure-justify-reasoning": {
+      "reviewedContentHash": "54e7b4451e500f2d7c3484bd8b550db54083a1561a50a039da45f26c46f89dc7",
+      "sources": ["ps-os-8-1"]
+    },
+    "probability-statistics-confidence-intervals-review-a-mean-interval-with-known-population-spread-compute-production": {
+      "reviewedContentHash": "7735dd77c8ac7ec8b5b6e62f038024bf0e6dc5b9619bb6c526a441718ae35541",
+      "sources": ["ps-os-8-1"]
+    },
+    "probability-statistics-confidence-intervals-review-estimating-spread-leads-to-student-t-compute-production": {
+      "reviewedContentHash": "e6f4d2c894f584a4288d040872c136ec1a22c8c8b2eaf755992d4378e5805ac6",
+      "sources": ["ps-os-8-2"]
+    },
+    "probability-statistics-confidence-intervals-review-estimating-spread-leads-to-student-t-compute-recognition": {
+      "reviewedContentHash": "6187b85492c9f903b8958ca010c7851e41602dbd2e140fa8b8ff6e2b865635ed",
+      "sources": ["ps-os-8-2"]
+    },
+    "probability-statistics-confidence-intervals-review-proportion-intervals-and-boundary-limitations-compute-production": {
+      "reviewedContentHash": "5af474345ed4428d5f294fbb914a4dee7158237d6bd5ed8cc44e468ac5d0fdd3",
+      "sources": ["ps-os-8-3"]
+    },
+    "probability-statistics-confidence-intervals-review-proportion-intervals-and-boundary-limitations-justify-reasoning": {
+      "reviewedContentHash": "b20ac43eb7c172a330bdd28946f6e6c21f13305c301ced870facd1f539b1c32c",
+      "sources": ["ps-os-8-3"]
+    },
+    "probability-statistics-confidence-intervals-review-planning-precision-and-checking-conclusions-compute-production": {
+      "reviewedContentHash": "ac3880a083c4ebd53a3441e1068710f5dc7f0bfbe8624b83b8081d644fc25e8f",
+      "sources": ["ps-os-8-1", "ps-os-8-3"]
+    },
+    "probability-statistics-hypothesis-testing-review-state-a-claim-about-the-population-before-examining-evidence-compute-recognition": {
+      "reviewedContentHash": "25d44162502043ae58d755d4dd21190fe75c9c9a86e0068175a76c2b957b195c",
+      "sources": ["ps-os-9-1", "ps-os-9-4"]
+    },
+    "probability-statistics-hypothesis-testing-review-state-a-claim-about-the-population-before-examining-evidence-justify-reasoning": {
+      "reviewedContentHash": "1bd3e9cbb38576035f3c5f34602fb0fd1fbfa834bff215992349a950a4ec6241",
+      "sources": ["ps-os-9-1", "ps-os-9-4"]
+    },
+    "probability-statistics-hypothesis-testing-review-tail-probabilities-under-the-null-model-compute-production": {
+      "reviewedContentHash": "e3adfff618eb00e2cc0997f67331d13b21018ba41e08f437269bb9f9138bd9e7",
+      "sources": ["ps-os-9-4", "ps-os-9-1"]
+    },
+    "probability-statistics-hypothesis-testing-review-tail-probabilities-under-the-null-model-compute-recognition": {
+      "reviewedContentHash": "23f1109b115190c6547f84f476dbf41126b5bc75e41092af6bdb3630a8e37fb1",
+      "sources": ["ps-os-9-4", "ps-os-9-1"]
+    },
+    "probability-statistics-hypothesis-testing-review-tests-for-a-single-population-mean-compute-production": {
+      "reviewedContentHash": "18d0255aaf68560e1bcab3ae52cecc0eebff6a355e6c3cb6e37efc19bfca47fb",
+      "sources": ["ps-os-9-4", "ps-os-8-1", "ps-os-8-2"]
+    },
+    "probability-statistics-hypothesis-testing-review-a-proportion-test-uses-the-null-standard-error-compute-production": {
+      "reviewedContentHash": "5f9a99c6123de01ad0ad2e3d70e24bce7cf39d863cd735fc3699d163a706c1e5",
+      "sources": ["ps-os-9-3", "ps-os-9-4", "ps-os-8-3", "ps-os-9-1"]
+    },
+    "probability-statistics-hypothesis-testing-review-errors-power-and-practical-meaning-compute-production": {
+      "reviewedContentHash": "2553101a40532a6a8a0e8d48346b352d78382351d356dcd982ee0bb4bae3b1ec",
+      "sources": ["ps-os-9-2", "ps-os-9-4", "ps-pn-6-2-2"]
+    },
+    "probability-statistics-hypothesis-testing-review-errors-power-and-practical-meaning-compute-recognition": {
+      "reviewedContentHash": "956655fd2d4825428c82acc2542c577880b3f0be455edc248cda0397d0a62a40",
+      "sources": ["ps-os-9-2", "ps-os-9-4", "ps-pn-6-2-2"]
+    },
+    "probability-statistics-bayesian-estimation-review-model-uncertainty-about-a-parameter-compute-production": {
+      "reviewedContentHash": "94f7aa0fb0e1a638ce34abbaf0c2d26fe932e8f7554ce234618f206f8795931d",
+      "sources": ["ps-pn-9-1"]
+    },
+    "probability-statistics-bayesian-estimation-review-model-uncertainty-about-a-parameter-compute-recognition": {
+      "reviewedContentHash": "f48983cd8ec39bb7339f324ac34bd42356056e9e134d8c5b13ed9f043e1eaa25",
+      "sources": ["ps-pn-9-1"]
+    },
+    "probability-statistics-bayesian-estimation-review-beta-distributions-on-a-probability-parameter-compute-production": {
+      "reviewedContentHash": "f571decccfb97db4a7f08c47624ee3b7343e57eec88101b85093c9f7d45a06ed",
+      "sources": ["ps-pn-9-2-beta"]
+    },
+    "probability-statistics-bayesian-estimation-review-binomial-data-update-both-shape-parameters-compute-production": {
+      "reviewedContentHash": "0b1aecb3d14ef389cbc354385c32271cee6785e5792b52dc65a3bf0cf417cde8",
+      "sources": ["ps-pn-9-2-beta", "ps-pn-9-1"]
+    },
+    "probability-statistics-bayesian-estimation-review-predict-future-observations-by-averaging-over-uncertainty-compute-production": {
+      "reviewedContentHash": "8635c62dd7f988b194039e07deb98c1ee867c31452855fba668632c8864ec2c6",
+      "sources": ["ps-pn-9-2-beta", "ps-pn-9-1"]
+    },
+    "probability-statistics-bayesian-estimation-review-credible-intervals-and-sensitivity-to-assumptions-compute-production": {
+      "reviewedContentHash": "119e7d0278a4e1e18aba9373a770c476c933f375f96142de18eca7ed3c3affc9",
+      "sources": ["ps-pn-9-1", "ps-pn-9-2-beta", "ps-os-8-1"]
+    },
+    "probability-statistics-bayesian-estimation-review-credible-intervals-and-sensitivity-to-assumptions-compute-recognition": {
+      "reviewedContentHash": "66ce8da80b32ec596c77a12503cbd7d1604f052be92a8f9595e98b28e0c7916e",
+      "sources": ["ps-pn-9-1", "ps-pn-9-2-beta", "ps-os-8-1"]
+    },
+    "probability-statistics-regression-interpretation-review-a-fitted-line-and-a-population-model-compute-production": {
+      "reviewedContentHash": "37ab08adcaa59a853c70792d998bec209a8c3839d8c1056389844e87f0b805a3",
+      "sources": ["ps-regression-os-12-3", "ps-regression-mml-9-1-2"]
+    },
+    "probability-statistics-regression-interpretation-review-a-fitted-line-and-a-population-model-compute-recognition": {
+      "reviewedContentHash": "4550c1f6ced156235b9da38c6f13de1444d054d9be730d42ad5bbd2d5e47ebb2",
+      "sources": ["ps-regression-os-12-3", "ps-regression-mml-9-1-2"]
+    },
+    "probability-statistics-regression-interpretation-review-why-gaussian-likelihood-gives-least-squares-compute-production": {
+      "reviewedContentHash": "32eba24f14246ef1c2063acc57c5eec1f47143d38b413f44827f80845e9ad8e7",
+      "sources": ["ps-regression-mml-9-1-2", "ps-regression-islr-3-1"]
+    },
+    "probability-statistics-regression-interpretation-review-why-gaussian-likelihood-gives-least-squares-compute-recognition": {
+      "reviewedContentHash": "d0f9d98e8d47d8ffa892f62e1fae9e320a708c94d6f49e5588aa825ca322c84f",
+      "sources": ["ps-regression-mml-9-1-2", "ps-regression-islr-3-1"]
+    },
+    "probability-statistics-regression-interpretation-review-uncertainty-in-a-coefficient-compute-production": {
+      "reviewedContentHash": "013e0549cd4fb53c0ea88d3721ad0cd4d5f8891a086ec5149ff6d1433035a793",
+      "sources": ["ps-regression-islr-3-1"]
+    },
+    "probability-statistics-regression-interpretation-review-predicting-a-mean-and-predicting-one-new-observation-compute-production": {
+      "reviewedContentHash": "08ece28e9989bd998f2ecb830c400f21c1b5e72947e8ed145aebf79a8ee4e922",
+      "sources": ["ps-regression-psu-3-2-3"]
+    },
+    "probability-statistics-regression-interpretation-review-predicting-a-mean-and-predicting-one-new-observation-justify-reasoning": {
+      "reviewedContentHash": "50f5db9bf2428c1afe82dc481a7d6618ae5cff2c5b2156c9c0a3f2defc0c746d",
+      "sources": ["ps-regression-psu-3-2-3"]
+    },
+    "probability-statistics-regression-interpretation-review-assumptions-diagnostics-and-the-limits-of-a-slope-compute-production": {
+      "reviewedContentHash": "3e6fc1bb0213f0170457e47ab854de3555bb08e52a531dbf4a42f1d8ba8ef9a0",
+      "sources": ["ps-regression-os-12-3", "ps-regression-islr-3-3"]
+    },
+    "probability-statistics-regression-interpretation-review-assumptions-diagnostics-and-the-limits-of-a-slope-compute-recognition": {
+      "reviewedContentHash": "fd7b3f813f5d6915fb4fd34f625e1d4a928bbc840dba2f9ae6fe912b699ac687",
+      "sources": ["ps-regression-os-12-3", "ps-regression-islr-3-3"]
+    },
+    "probability-statistics-regression-interpretation-review-assumptions-diagnostics-and-the-limits-of-a-slope-justify-reasoning": {
+      "reviewedContentHash": "553e494de8d1ea877755fb2d5218579dac753f38514ff8f1999b9c7ba4280cd1",
+      "sources": ["ps-regression-os-12-3", "ps-regression-islr-3-3"]
+    },
+    "probability-statistics-resampling-model-assessment-review-the-empirical-distribution-and-resampling-units-compute-production": {
+      "reviewedContentHash": "246f642502081a547bfba107ac7311a30455e7f2685afb3db314243440d3c088",
+      "sources": ["ps-assessment-islr-5-2"]
+    },
+    "probability-statistics-resampling-model-assessment-review-the-empirical-distribution-and-resampling-units-compute-recognition": {
+      "reviewedContentHash": "563d1270eb3d7662bb59b7acb66ac2c99e837f66da03f8d5124707c702c9bdee",
+      "sources": ["ps-assessment-islr-5-2"]
+    },
+    "probability-statistics-resampling-model-assessment-review-bootstrap-uncertainty-versus-more-simulation-compute-production": {
+      "reviewedContentHash": "cfb9c1eaeaf2c76dbf1d79eb34af65ed630b4511c03fd2802e52832261c2da3b",
+      "sources": ["ps-assessment-islr-5-2"]
+    },
+    "probability-statistics-resampling-model-assessment-review-bootstrap-uncertainty-versus-more-simulation-justify-reasoning": {
+      "reviewedContentHash": "688eddbf2ceabaed3c53f0de3400816b2bd933d9f4938566315fdc47df094c2b",
+      "sources": ["ps-assessment-islr-5-2"]
+    },
+    "probability-statistics-resampling-model-assessment-review-training-validation-and-a-final-test-compute-production": {
+      "reviewedContentHash": "9dd5e6a329f16b6a8ea9186e787951bc26c0acbce1c228e81aa4be2b971b6d80",
+      "sources": ["ps-assessment-islr-5-1", "ps-assessment-mml-8-2-6"]
+    },
+    "probability-statistics-resampling-model-assessment-review-training-validation-and-a-final-test-justify-reasoning": {
+      "reviewedContentHash": "3c484ecf71760b0b7843dc19a98ba0058c77aae8a14514cf912eec52fa2e7ea9",
+      "sources": ["ps-assessment-islr-5-1", "ps-assessment-mml-8-2-6"]
+    },
+    "probability-statistics-resampling-model-assessment-review-reading-a-confusion-matrix-compute-production": {
+      "reviewedContentHash": "85c80ce82ca97f65b327ad388024193233099564d8bd56570da6efe259ad85e9",
+      "sources": ["ps-assessment-islr-4-4"]
+    },
+    "probability-statistics-resampling-model-assessment-review-matching-assessment-to-the-decision-compute-production": {
+      "reviewedContentHash": "c1511b9ad4cec8c4cf020100b82408440f99219d6e0c4082d0ba8e0e6f3664d0",
+      "sources": ["ps-assessment-mml-8-2-6", "ps-assessment-islr-5-1", "ps-assessment-islr-4-4"]
+    },
+    "probability-statistics-resampling-model-assessment-review-matching-assessment-to-the-decision-justify-reasoning": {
+      "reviewedContentHash": "93d56dc6d90bd5947517f6dd72a9b00f6cf3731be669cab30ba0267daa2bec98",
+      "sources": ["ps-assessment-mml-8-2-6", "ps-assessment-islr-5-1", "ps-assessment-islr-4-4"]
     }
   }
 }

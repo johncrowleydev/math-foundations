@@ -1,0 +1,262 @@
+title: Hypergeometric and Poisson Models
+sections:
+  - title: Hypergeometric counts sample without replacement
+    questions:
+      - id: 1
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(8,3,2)$. Find $P(X=2)$.
+        answerLines: 5
+        answer: The ratio is $\binom32/\binom82=3/28$.
+      - id: 2
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(8,3,2)$, using $(N,K,n)$. Find $P(X=1)$.
+        answerLines: 5
+        answer: "Choose one marked and one unmarked: $3\\cdot5/28=15/28$."
+      - id: 3
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(8,3,2)$, using $(N,K,n)$. Find $P(X=0)$.
+        answerLines: 5
+        answer: "Choose two unmarked: $\\binom52/28=10/28=5/14$."
+      - id: 4
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(8,3,2)$, using $(N,K,n)$. Find $P(X\geq1)$.
+        answerLines: 5
+        answer: The complement is $1-5/14=9/14$.
+      - id: 5
+        type: freeform
+        prompt: A sample of six is drawn from ten objects with seven marked. Find the smallest feasible marked count.
+        answerLines: 5
+        answer: Only three unmarked objects exist, so at least $6-3=3$ must be marked.
+      - id: 6
+        type: freeform
+        prompt: A sample of six is drawn uniformly without replacement from ten objects with seven marked. Find the largest feasible marked count.
+        answerLines: 5
+        answer: The sample has only six positions, so the maximum is $\min(6,7)=6$.
+      - id: 7
+        type: freeform
+        prompt: Sample all twelve objects from a population with five marked. Find $P(X=5)$.
+        answerLines: 5
+        answer: The full sample contains all five marked objects with certainty, so the probability is $1$.
+      - id: 8
+        type: freeform
+        prompt: Sample zero objects from a population. Find the marked count.
+        answerLines: 5
+        answer: The empty sample contains no marked objects, so the count is $0$.
+      - id: 9
+        type: freeform
+        prompt: Explain why the lower support bound is $\max(0,n-(N-K))$.
+        answerLines: 5
+        answer: At most $N-K$ sample members can be unmarked, so the remainder of a size-$n$ sample must be marked. Counts also cannot be negative.
+      - id: 10
+        type: freeform
+        prompt: 'True or false: without-replacement category draws are generally independent.'
+        answerLines: 5
+        answer: False. The first draw changes the remaining category counts and hence later conditional probabilities.
+  - title: Finite populations reduce count variance
+    questions:
+      - id: 11
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(12,5,3)$. Find its mean.
+        answerLines: 5
+        answer: The expected count is $3(5/12)=5/4$.
+      - id: 12
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(10,4,5)$. Find the finite-population correction.
+        answerLines: 5
+        answer: The correction is $(10-5)/(10-1)=5/9$.
+      - id: 13
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(10,4,5)$, using $(N,K,n)$. Find its variance.
+        answerLines: 5
+        answer: The variance is $5(2/5)(3/5)(5/9)=2/3$.
+      - id: 14
+        type: freeform
+        prompt: For a full sample of $N>1$ objects, find the marked-count variance.
+        answerLines: 5
+        answer: The correction is zero and the count equals $K$ exactly, so variance is $0$.
+      - id: 15
+        type: freeform
+        prompt: For a single draw from $N>1$ objects, find the finite-population correction.
+        answerLines: 5
+        answer: The factor is $(N-1)/(N-1)=1$.
+      - id: 16
+        type: freeform
+        prompt: $N=6,K=3,n=2$. Find $E[X(X-1)]$.
+        answerLines: 5
+        answer: The ordered-pair formula gives $2\cdot1\cdot3\cdot2/(6\cdot5)=2/5$.
+      - id: 17
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(6,3,2)$, using $(N,K,n)$. Find $E[X^2]$.
+        answerLines: 5
+        answer: The mean is one, so $E[X^2]=E[X(X-1)]+E[X]=2/5+1=7/5$.
+      - id: 18
+        type: freeform
+        prompt: $X\sim\operatorname{Hypergeometric}(6,3,2)$, using $(N,K,n)$. Find its variance.
+        answerLines: 5
+        answer: 'Subtract mean squared: $7/5-1=2/5$.'
+      - id: 19
+        type: freeform
+        prompt: Explain why hypergeometric and binomial counts with the same $n,p$ can have equal means but different variances.
+        answerLines: 5
+        answer: Linearity uses only each trial's marginal success probability, while variance depends on relationships among trials. Without replacement those indicators are dependent and the finite-population correction reduces spread.
+      - id: 20
+        type: freeform
+        prompt: 'True or false: the hypergeometric variance formula with denominator $N-1$ should be used directly at $N=1$.'
+        answerLines: 5
+        answer: False. The formula assumes $N>1$. With one population object, each allowed sample count is deterministic and its variance is computed directly as zero.
+  - title: Poisson counts have an interval-specific mean
+    questions:
+      - id: 21
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(3)$. Find $P(X=0)$ exactly.
+        answerLines: 5
+        answer: The zero-count mass is $e^{-3}3^0/0!=e^{-3}$.
+      - id: 22
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(3)$. Find $P(X=1)$ exactly.
+        answerLines: 5
+        answer: Substitution gives $3e^{-3}$.
+      - id: 23
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(3)$. Find $P(X=2)$ exactly.
+        answerLines: 5
+        answer: The mass is $e^{-3}3^2/2!=9e^{-3}/2$.
+      - id: 24
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(3)$. Find $P(X\leq1)$ exactly.
+        answerLines: 5
+        answer: 'Add zero and one: $e^{-3}+3e^{-3}=4e^{-3}$.'
+      - id: 25
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(3)$. Find $P(X\geq2)$ exactly.
+        answerLines: 5
+        answer: 'Subtract the lower counts from one: $1-4e^{-3}$.'
+      - id: 26
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(5/2)$. Give mean and variance as a pair.
+        answerLines: 5
+        answer: Both moments equal the parameter, so the pair is $(5/2,5/2)$.
+      - id: 27
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(4)$. Find its standard deviation.
+        answerLines: 5
+        answer: The standard deviation is $\sqrt4=2$.
+      - id: 28
+        type: freeform
+        prompt: $X\sim\operatorname{Poisson}(2)$. Find $P(X=3)/P(X=2)$.
+        answerLines: 5
+        answer: The successive-mass ratio is $\lambda/(2+1)=2/3$.
+      - id: 29
+        type: freeform
+        prompt: 'True or false: a Poisson variable of mean $2.5$ can take the value $2.5$.'
+        answerLines: 5
+        answer: False. Its observations are nonnegative integers; the noninteger parameter is a mean.
+      - id: 30
+        type: freeform
+        prompt: Show that the Poisson PMF is normalized using the exponential series.
+        answerLines: 5
+        answer: All masses are nonnegative and their sum is $e^{-\lambda}\sum_{k=0}^\infty\lambda^k/k!=e^{-\lambda}e^\lambda=1$.
+  - title: Rates, exposure, and independent counts
+    questions:
+      - id: 31
+        type: freeform
+        prompt: A constant-rate Poisson process has rate $8$ per hour. Find the count parameter for $15$ minutes.
+        answerLines: 5
+        answer: Fifteen minutes is $1/4$ hour, so the parameter is $8/4=2$.
+      - id: 32
+        type: freeform
+        prompt: A constant-rate Poisson process has rate eight per hour; observe a fifteen-minute interval. Find the zero-count probability exactly.
+        answerLines: 5
+        answer: The count is Poisson with parameter two, giving $P(X=0)=e^{-2}$.
+      - id: 33
+        type: freeform
+        prompt: A process has rate $0.4$ per minute. Find the parameter for five minutes.
+        answerLines: 5
+        answer: Rate times exposure gives $0.4(5)=2$.
+      - id: 34
+        type: freeform
+        prompt: A Poisson spatial model has rate $3$ per meter. Find the mean count on a half-meter segment.
+        answerLines: 5
+        answer: The mean is $3(1/2)=3/2$.
+      - id: 35
+        type: freeform
+        prompt: Independent Poisson counts have parameters $2$ and $5$. Find the parameter of their sum.
+        answerLines: 5
+        answer: The parameters add under independence, giving $2+5=7$.
+      - id: 36
+        type: freeform
+        prompt: Independent Poisson counts have parameters two and five. Consider their sum. Find its variance.
+        answerLines: 5
+        answer: The sum is Poisson with parameter seven, so its variance is $7$.
+      - id: 37
+        type: freeform
+        prompt: For $X\sim\operatorname{Poisson}(2)$, find $\operatorname{Var}(2X)$.
+        answerLines: 5
+        answer: This is scaling one variable, so variance is $4\operatorname{Var}(X)=8$.
+      - id: 38
+        type: freeform
+        prompt: Independent Poisson counts in two disjoint intervals have parameters $1$ and $3$. Find the probability both counts are zero.
+        answerLines: 5
+        answer: 'Multiply the zero masses: $e^{-1}e^{-3}=e^{-4}$.'
+      - id: 39
+        type: freeform
+        prompt: Explain why interval counts over the first hour and first two hours of a Poisson process are not independent when the rate is positive.
+        answerLines: 5
+        answer: The first-hour count is part of the two-hour count. Independent increments concern disjoint intervals; these intervals overlap and share all first-hour events.
+      - id: 40
+        type: freeform
+        prompt: "True or false: knowing a count's average rate is enough to establish a Poisson model."
+        answerLines: 5
+        answer: False. Bursts, dependence, or changing rates can produce counts with the same average and different distributions. The Poisson mechanism is an additional model assumption.
+  - title: Approximation and choosing a model
+    questions:
+      - id: 41
+        type: freeform
+        prompt: A binomial count has $n=200,p=0.01$. Find the matching Poisson approximation parameter.
+        answerLines: 5
+        answer: 'Match the mean: $np=200(0.01)=2$.'
+      - id: 42
+        type: freeform
+        prompt: Approximate $\operatorname{Binomial}(200,0.01)$ by the mean-matched Poisson distribution. Find the probability of no success exactly within the approximation model.
+        answerLines: 5
+        answer: The approximating zero-count probability is $e^{-2}$.
+      - id: 43
+        type: freeform
+        prompt: Using a Poisson model of parameter $1$, give $P(X=0)$ to four decimal places.
+        answerLines: 5
+        answer: The exact value is $e^{-1}$, which rounds to $0.3679$.
+      - id: 44
+        type: freeform
+        prompt: For $X\sim\operatorname{Binomial}(100,0.01)$, give $P(X=0)$ to four decimal places.
+        answerLines: 5
+        answer: The exact binomial probability is $0.99^{100}$, which rounds to $0.3660$.
+      - id: 45
+        type: freeform
+        prompt: For $X\sim\operatorname{Poisson}(2)$, give $P(X\geq1)$ to four decimal places.
+        answerLines: 5
+        answer: The exact probability is $1-e^{-2}$, which rounds to $0.8647$.
+      - id: 46
+        type: freeform
+        prompt: A binomial model has $n=20,p=0.5$. Compare its variance with that of the mean-matched Poisson model as an ordered pair.
+        answerLines: 5
+        answer: The binomial variance is $20(1/2)(1/2)=5$; the Poisson variance equals mean ten. The pair is $(5,10)$.
+      - id: 47
+        type: freeform
+        prompt: 'True or false: a Poisson approximation assigns probability zero to counts above the original binomial trial count.'
+        answerLines: 5
+        answer: False. A positive-parameter Poisson distribution has unbounded nonnegative integer support, even though those values are impossible under the binomial model.
+      - id: 48
+        type: freeform
+        prompt: Explain why a random sample of half a small finite population is poorly described by independent binomial trials.
+        answerLines: 5
+        answer: Without replacement creates substantial dependence and a finite-population variance correction far below one. Matching the marginal marked fraction does not recover the correct count distribution.
+      - id: 49
+        type: freeform
+        prompt: Give the exact no-success probability for ten independent attempts with success probability $1/10$.
+        answerLines: 5
+        answer: All ten must fail, so the exact probability is $(9/10)^{10}=3486784401/10000000000$.
+      - id: 50
+        type: freeform
+        prompt: Explain the distinction between approximation error and arithmetic error in comparing $0.99^{100}$ with $e^{-1}$.
+        answerLines: 5
+        answer: Each expression is mathematically correct for its own model. Their difference reflects replacing a finite binomial distribution by a Poisson approximation; arithmetic error would be evaluating either expression incorrectly.

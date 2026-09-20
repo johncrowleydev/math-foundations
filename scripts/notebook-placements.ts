@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 export const inlinePlacements: Record<string, Record<string, number[]>> = {
   ...JSON.parse(readFileSync('content/linear-algebra-placements.json', 'utf8')),
   ...JSON.parse(readFileSync('content/calculus-placements.json', 'utf8')),
+  ...JSON.parse(readFileSync('content/probability-statistics-placements.json', 'utf8')),
   'propositional-logic': {
     Propositions: [1, 4],
     'Negation: NOT': [9],

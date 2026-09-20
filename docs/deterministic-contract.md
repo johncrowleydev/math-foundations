@@ -97,3 +97,31 @@ input guidance asking for the standard taught form. Examples include
 This conservative boundary is relative to the immutable authored normal form;
 it is not a general-purpose theorem prover. Correct identities already covered
 by the exact normalizer remain accepted. No sampling or provider fallback is used.
+
+### Approximate numerical answers
+
+`approximate-number` uses one existing math field and params
+`{expected: string, tolerance: string, minimum?: string, maximum?: string}`.
+Every parameter is an exact numeric expression; tolerance must be positive and
+expected must satisfy any inclusive bounds. Unknown parameters are rejected.
+Multiple endpoints or table cells use separate requirements.
+
+The answer is correct when its exact distance from `expected` is at most
+`tolerance` and it satisfies `minimum` and `maximum`. Bounds are checked separately:
+with expected `0`, tolerance `0.0001`, and minimum `0`, a negative probability is
+incorrect even inside the tolerance. Both tolerance boundaries are inclusive;
+this is a tolerance check, not a rule requiring a particular number of typed digits.
+For example expected `0.3333`, tolerance `0.00005`, minimum `0`, maximum `1`
+accepts `0.3333` and `1/3`. Use a tolerance appropriate to the precision requested
+and any supplied table. Do not impose probability bounds on signed statistics.
+
+The existing bounded exact parser supports decimals, fractions, arithmetic,
+integer powers, factorials, binomial coefficients, and supported square roots.
+Exact rational/radical sign comparisons determine tolerance membership in both
+TypeScript and Go; no floating-point sampling proves symbolic equivalence.
+Scientific notation, percent signs, distribution functions, and transcendental
+numeric expressions are unsupported here and return input guidance, without an
+attempt or provider fallback. Prompts must state units (for example decimal
+probability or percentage points). Supplied distribution tables and critical
+values support calculations; this validator does not compute CDFs or quantiles.
+Use `exact` or `calculus-expression` when an exact expression is the objective.

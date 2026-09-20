@@ -27,7 +27,9 @@ test('every inline exercise has a current audit with preceding teaching evidence
   validateInlinePrerequisites(content.lessons);
   assert.equal(
     Object.entries(inlineAudit)
-      .filter(([slug]) => !slug.startsWith('calculus-'))
+      .filter(
+        ([slug]) => !slug.startsWith('calculus-') && !slug.startsWith('probability-statistics-'),
+      )
       .reduce((n, [, entries]) => n + Object.keys(entries).length, 0),
     253,
   );

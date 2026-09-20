@@ -1,0 +1,262 @@
+title: Probability Models and Events
+sections:
+  - title: Specify the experiment before calculating
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Two ordered binary reports form $\{PP,PF,FP,FF\}$. How many outcomes have at least one failure?
+        answerLines: 5
+        answer: The outcomes are $PF,FP,FF$, so the number is $3$.
+      - id: 2
+        type: freeform
+        prompt: Two ordered binary reports form $\{PP,PF,FP,FF\}$. How many outcomes have exactly one failure?
+        answerLines: 5
+        answer: Only $PF$ and $FP$ qualify, so the number is $2$.
+      - id: 3
+        type: freeform
+        prompt: A fair die is rolled once. Find the probability of a face greater than $4$.
+        answerLines: 5
+        answer: The qualifying faces are $5,6$, each with probability $1/6$, so the probability is $2/6=1/3$.
+      - id: 4
+        type: freeform
+        prompt: A fair die is rolled once. Find the probability of a face that is both even and greater than $3$.
+        answerLines: 5
+        answer: The event is $\{4,6\}$, so its probability is $2/6=1/3$.
+      - id: 5
+        type: freeform
+        prompt: Four ordered reports $PP,PF,FP,FF$ are equally likely. Find the probability of exactly one failure.
+        answerLines: 5
+        answer: Two of the four outcomes qualify, giving $2/4=1/2$.
+      - id: 6
+        type: freeform
+        prompt: The probabilities of $PP,PF,FP,FF$ are $0.5,0.2,0.1,0.2$. Find the probability of exactly one failure.
+        answerLines: 5
+        answer: 'Add the probabilities of $PF$ and $FP$: $0.2+0.1=0.3=3/10$.'
+      - id: 7
+        type: freeform
+        prompt: 'True or false: writing three possible counts $0,1,2$ makes them equally likely.'
+        answerLines: 5
+        answer: False. A recording rule determines possible values, not their weights; two equally likely binary trials give count probabilities $1/4,1/2,1/4$.
+      - id: 8
+        type: freeform
+        prompt: A survey records whether a household owns a bicycle and whether it owns a car. Describe a sample space retaining both facts.
+        answerLines: 5
+        answer: Use $\{(0,0),(0,1),(1,0),(1,1)\}$, with the first coordinate indicating bicycle ownership and the second car ownership. The labels retain which item is owned.
+      - id: 9
+        type: freeform
+        prompt: A log records only the total number of failed stations. Explain why it cannot answer which station failed when the count is $1$.
+        answerLines: 5
+        answer: Both $PF$ and $FP$ map to the recorded count $1$. Since the map merges these distinct outcomes, the recorded value cannot recover station identity.
+      - id: 10
+        type: freeform
+        prompt: An experiment has outcomes $u,v,w$ with probabilities $1/2,1/3,1/6$. Find $P(\{u,w\})$.
+        answerLines: 5
+        answer: The singleton outcomes are disjoint, so $P(\{u,w\})=1/2+1/6=2/3$.
+  - title: Translate event language into sets
+    questions:
+      - id: 11
+        type: freeform
+        prompt: On a fair die, $A=\{1,2,3\}$ and $B=\{3,4\}$. Find $P(A\cap B)$.
+        answerLines: 5
+        answer: The overlap is $\{3\}$, so $P(A\cap B)=1/6$.
+      - id: 12
+        type: freeform
+        prompt: On a fair die, $A=\{1,2,3\}$ and $B=\{3,4\}$. Find $P(A\cup B)$.
+        answerLines: 5
+        answer: The union is $\{1,2,3,4\}$, giving $4/6=2/3$.
+      - id: 13
+        type: freeform
+        prompt: On a fair die, $A=\{1,2,3\}$ and $B=\{3,4\}$. Find $P(A\cap B^c)$.
+        answerLines: 5
+        answer: The event is $\{1,2\}$, so the probability is $2/6=1/3$.
+      - id: 14
+        type: freeform
+        prompt: On a fair die, $A=\{1,2,3\}$ and $B=\{3,4\}$. Find the probability that exactly one of $A,B$ occurs.
+        answerLines: 5
+        answer: Exactly one means $\{1,2,4\}$, so the probability is $3/6=1/2$.
+      - id: 15
+        type: freeform
+        prompt: "True or false: if $A\\cap B=\\varnothing$, the events can occur together."
+        answerLines: 5
+        answer: False. No outcome belongs to both, so simultaneous occurrence is impossible.
+      - id: 16
+        type: freeform
+        prompt: Translate “at least one of three components fails” into an event using failure events $A,B,C$.
+        answerLines: 5
+        answer: The event is $A\cup B\cup C$. This includes one, two, or three failures.
+      - id: 17
+        type: freeform
+        prompt: Translate “not all three components fail” using $A,B,C$ and complements.
+        answerLines: 5
+        answer: "The event is $(A\\cap B\\cap C)^c=A^c\\cup B^c\\cup C^c$: at least one component does not fail."
+      - id: 18
+        type: freeform
+        prompt: For a fair die, find $P((\{1,3,5\}\cup\{5,6\})^c)$.
+        answerLines: 5
+        answer: The union is $\{1,3,5,6\}$, so the complement is $\{2,4\}$ and its probability is $1/3$.
+      - id: 19
+        type: freeform
+        prompt: 'True or false: the events “at most two arrivals” and “at least two arrivals” are disjoint.'
+        answerLines: 5
+        answer: False. An outcome with exactly two arrivals belongs to both.
+      - id: 20
+        type: freeform
+        prompt: Describe the difference between “neither $A$ nor $B$” and “not both $A$ and $B$,” giving an outcome that separates them.
+        answerLines: 5
+        answer: Neither is $A^c\cap B^c$; not both is $(A\cap B)^c$. An outcome in $A\cap B^c$ satisfies not both but fails neither.
+  - title: Probability weights and the axioms
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Weights on three outcomes are $k,2k,5k$. Find $k$.
+        answerLines: 5
+        answer: Normalization gives $8k=1$, so $k=1/8$. All weights are nonnegative.
+      - id: 22
+        type: freeform
+        prompt: With weights $k,2k,5k$, find the probability of the first two outcomes.
+        answerLines: 5
+        answer: Since $k=1/8$, their total weight is $3k=3/8$.
+      - id: 23
+        type: freeform
+        prompt: Weights are $0.15,0.25,t,0.1$. Find $t$.
+        answerLines: 5
+        answer: The listed weights sum to $0.5+t$, so $t=0.5=1/2$.
+      - id: 24
+        type: freeform
+        prompt: 'True or false: $(-0.2,0.6,0.6)$ is a valid probability list.'
+        answerLines: 5
+        answer: False. The first weight is negative, even though the sum is one.
+      - id: 25
+        type: freeform
+        prompt: 'True or false: $(0,1/3,2/3)$ is a valid finite probability list.'
+        answerLines: 5
+        answer: True. Every weight is nonnegative and their sum is one; a zero weight is permitted.
+      - id: 26
+        type: freeform
+        prompt: A fair twelve-sided die has faces $1$ through $12$. Find the probability of a prime face.
+        answerLines: 5
+        answer: The prime faces are $2,3,5,7,11$, so the probability is $5/12$.
+      - id: 27
+        type: freeform
+        prompt: Disjoint events have probabilities $1/8,1/4,3/8$. Find the probability of their union.
+        answerLines: 5
+        answer: 'Add the disjoint weights: $1/8+2/8+3/8=3/4$.'
+      - id: 28
+        type: freeform
+        prompt: An outcome has weight twice that of each of three other outcomes. Find its probability.
+        answerLines: 5
+        answer: Writing the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.
+      - id: 29
+        type: freeform
+        prompt: Explain why favorable-outcome counting fails for a spinner with three sector probabilities $1/2,1/3,1/6$.
+        answerLines: 5
+        answer: Counting would give every label weight $1/3$, contradicting the supplied sector weights. An event probability must add its actual sector probabilities.
+      - id: 30
+        type: freeform
+        prompt: Prove that $P(\varnothing)=0$ using finite additivity and normalization.
+        answerLines: 5
+        answer: The disjoint union $\Omega\cup\varnothing=\Omega$ gives $1=1+P(\varnothing)$. Subtracting one yields $P(\varnothing)=0$.
+  - title: Complements, overlap, and bounds
+    questions:
+      - id: 31
+        type: freeform
+        prompt: If $P(A)=7/12$, find $P(A^c)$.
+        answerLines: 5
+        answer: The complement has probability $1-7/12=5/12$.
+      - id: 32
+        type: freeform
+        prompt: If $P(A)=0.6$, $P(B)=0.4$, and $P(A\cap B)=0.25$, find $P(A\cup B)$.
+        answerLines: 5
+        answer: Inclusion-exclusion gives $0.6+0.4-0.25=0.75=3/4$.
+      - id: 33
+        type: freeform
+        prompt: $P(A)=0.6$, $P(B)=0.4$, and $P(A\cap B)=0.25$. Find the probability of neither event.
+        answerLines: 5
+        answer: The union probability is $3/4$, so neither has probability $1-3/4=1/4$.
+      - id: 34
+        type: freeform
+        prompt: $P(A)=0.6$, $P(B)=0.4$, and $P(A\cap B)=0.25$. Find the probability of exactly one event.
+        answerLines: 5
+        answer: 'Subtract both copies of the overlap from the marginal sum: $0.6+0.4-2(0.25)=0.5=1/2$.'
+      - id: 35
+        type: freeform
+        prompt: If $P(A)=0.8$ and $P(B)=0.7$, give the smallest possible $P(A\cap B)$.
+        answerLines: 5
+        answer: The union can be at most one, so the minimum overlap is $0.8+0.7-1=0.5=1/2$.
+      - id: 36
+        type: freeform
+        prompt: If $P(A)=0.8$ and $P(B)=0.7$, give the largest possible $P(A\cap B)$.
+        answerLines: 5
+        answer: The overlap cannot exceed the smaller event, so its maximum is $0.7=7/10$.
+      - id: 37
+        type: freeform
+        prompt: Four failure events each have probability $0.02$. Give the union-bound upper bound for any failure.
+        answerLines: 5
+        answer: The union bound gives $4(0.02)=0.08=2/25$, without requiring independence.
+      - id: 38
+        type: freeform
+        prompt: "True or false: $P(A)=0.7$, $P(B)=0.6$, and $P(A\\cap B)=0.1$ are jointly possible."
+        answerLines: 5
+        answer: False. They imply a union probability $0.7+0.6-0.1=1.2$, exceeding one.
+      - id: 39
+        type: freeform
+        prompt: "Prove monotonicity: if $A\\subseteq B$, then $P(A)\\leq P(B)$."
+        answerLines: 5
+        answer: Write $B=A\cup(B\setminus A)$ as a disjoint union. Then $P(B)=P(A)+P(B\setminus A)\geq P(A)$ by nonnegativity.
+      - id: 40
+        type: freeform
+        prompt: Events $A,B,C$ have probabilities $0.4,0.3,0.2$, pairwise intersections $0.1,0.08,0.06$, and triple intersection $0.02$. Find the union probability.
+        answerLines: 5
+        answer: Three-event inclusion-exclusion gives $0.4+0.3+0.2-0.1-0.08-0.06+0.02=0.68=17/25$.
+  - title: Build and audit a complete event model
+    questions:
+      - id: 41
+        type: freeform
+        prompt: If $P(A)=0.7$, $P(B)=0.4$, and neither has probability $0.2$, find the overlap.
+        answerLines: 5
+        answer: The union has probability $0.8$, so the overlap is $0.7+0.4-0.8=0.3=3/10$.
+      - id: 42
+        type: freeform
+        prompt: $P(A)=0.7$, $P(B)=0.4$, and neither has probability $0.2$. Find $P(A\cap B^c)$.
+        answerLines: 5
+        answer: 'Subtract the overlap from $P(A)$: $0.7-0.3=0.4=2/5$.'
+      - id: 43
+        type: freeform
+        prompt: Four disjoint region probabilities are both $0.12$, only $A$ $0.28$, only $B$ $0.18$, and neither $0.42$. Find $P(A)$.
+        answerLines: 5
+        answer: Event $A$ consists of both and only $A$, so $P(A)=0.12+0.28=0.40=2/5$.
+      - id: 44
+        type: freeform
+        prompt: Both $A,B$, only $A$, only $B$, and neither have probabilities $0.12,0.28,0.18,0.42$, respectively. Find $P(B^c)$.
+        answerLines: 5
+        answer: Outside $B$ are only $A$ and neither, giving $0.28+0.42=0.70=7/10$.
+      - id: 45
+        type: freeform
+        prompt: If $A\subseteq B$, $P(A)=0.2$, and $P(B)=0.6$, find $P(B\setminus A)$.
+        answerLines: 5
+        answer: The disjoint remainder has probability $0.6-0.2=0.4=2/5$.
+      - id: 46
+        type: freeform
+        prompt: Two events each have probability $1/2$. Give two possible overlap probabilities showing that their union is not determined.
+        answerLines: 5
+        answer: Disjoint halves have overlap $0$ and union $1$. Identical halves have overlap $1/2$ and union $1/2$. Thus the same marginal probabilities allow different unions.
+      - id: 47
+        type: freeform
+        prompt: 'True or false: two events whose union is the sample space necessarily form a partition.'
+        answerLines: 5
+        answer: False. They must also be disjoint. Taking $A=B=\Omega$ gives coverage with complete overlap.
+      - id: 48
+        type: freeform
+        prompt: A model assigns probabilities $0.45$ and $0.55$ to two exhaustive disjoint outcomes. Find the probability that exactly one occurs.
+        answerLines: 5
+        answer: Every outcome belongs to exactly one partition piece, so the probability is $1$.
+      - id: 49
+        type: freeform
+        prompt: If $P(A)=0.3$ and $P(B)=0.4$, give the largest possible union probability.
+        answerLines: 5
+        answer: The sum is $0.7$ and is achievable with disjoint events, so the maximum is $7/10$.
+      - id: 50
+        type: freeform
+        prompt: A report says “twenty possible labels, so each has probability $1/20$.” Identify the missing modeling assumption.
+        answerLines: 5
+        answer: The labels must be equally likely under the actual selection mechanism. The number of labels alone does not establish equal probabilities; weighting or multiple underlying outcomes can change them.

@@ -1,0 +1,73 @@
+# Data, Samples, and Study Design
+
+Before applying inference formulas, identify what the data represent and how they were collected. We connect numerical summaries to their target quantities, distinguish observations from independent units, and examine what sampling and treatment assignment can justify.
+
+## Define the population, observation, and question
+
+Probability begins with a specified model and asks what outcomes it predicts. Statistics starts with observed data and asks what those observations justify about an underlying population or process. **Descriptive statistics** summarize the collected observations. **Statistical inference** uses a sampling or data-generation model to draw conclusions beyond them, while acknowledging uncertainty.
+
+A population is the collection of units about which a question is asked. A sample is the collection actually observed. A parameter is a numerical feature of the population or model, such as a mean response time $\mu$. A statistic is computed from the sample, such as $\bar x$. The same numerical formula can describe a parameter or a statistic depending on what collection it summarizes.
+
+Suppose a service operator wants the mean duration of all completed requests on a particular day and inspects two hundred randomly selected requests from that day. Requests are the observational units, duration is the variable, all completed requests that day form the population, and the selected two hundred form the sample. The mean of the two hundred durations is a statistic. Generalizing to next month would introduce another assumption: the target process may change over time.
+
+Data types constrain sensible summaries. A category such as operating-system family is qualitative even if encoded using integers. A count of retries is quantitative and discrete. A measured duration is quantitative and often modeled continuously, although the stored number is rounded. A binary indicator is especially useful because its sample mean equals the proportion coded one.
+
+Clarify the unit before counting observations. Ten measurements from each of twenty devices produce two hundred readings, but only twenty devices. Readings from one device can be dependent. If the scientific question concerns devices, treating two hundred rows as two hundred independent devices overstates the information. Record units, time window, inclusion criteria, missingness, and the target quantity before choosing a formula. These choices are part of the mathematical model connecting data to a claim.
+
+Related definitions: [Parameter and statistic](ref:probability-statistics-parameter-statistic); [Observational unit](ref:probability-statistics-observational-unit).
+
+## Summarize location without hiding the data
+
+For numeric observations $x_1,\ldots,x_n$, the sample mean is $\bar x=(1/n)\sum_i x_i$. Every observation contributes, including unusually large or small values. If a value $v_j$ occurs $n_j$ times, the same formula becomes $\bar x=\sum_j n_jv_j/\sum_j n_j$. Frequencies are counts of observations, not extra quantities to average equally.
+
+The median is the middle value after sorting; for an even number of observations, this lesson uses the average of the two middle values. The mode is a most frequent value and need not be unique. These summaries answer different questions. The mean balances total magnitude, the median divides the ordered sample, and the mode identifies frequent values.
+
+Consider durations $1,2,2,3,12$. Their mean is four, median two, and mode two. Replacing twelve by twenty-two increases the mean to six while leaving the median and mode unchanged. This does not make the large observation invalid. It shows that the mean responds to magnitude in a way the median does not. Examine the data-generation process before excluding an extreme value; it could be a recording error, a rare genuine outcome, or evidence against the assumed model.
+
+Combining groups requires their sizes. A group of ten observations with mean four and a group of thirty with mean eight have combined mean $(10\cdot4+30\cdot8)/40=7$. The unweighted mean six describes equally weighted groups, not equally weighted observations. This is the sample counterpart of total expectation.
+
+A frequency table of exact values preserves enough information to calculate the exact mean. A table of intervals generally does not. Substituting each interval midpoint produces an estimate unless all values actually equal those midpoints. Always distinguish a calculation from complete data from one using grouped approximations. Reporting a center together with sample size and information about spread makes the summary much more interpretable than reporting a center alone.
+
+Related definitions: [Sample mean and median](ref:probability-statistics-sample-mean-median).
+
+## Describe spread and distinguish empirical from model variation
+
+The range is the largest observation minus the smallest. It is easy to calculate but depends only on two values. A more comprehensive measure is the sample variance, $s^2=\frac{1}{n-1}\sum_i(x_i-\bar x)^2$ for $n\ge2$. The sample standard deviation is $s=\sqrt{s^2}$. Variance uses squared units, while standard deviation has the observations' original units.
+
+For data $1,2,3$, the mean is two and the squared deviations sum to $1+0+1=2$. Thus $s^2=2/(3-1)=1$ and $s=1$. The denominator is explicitly $n-1$. A different descriptive quantity, the variance of the empirical distribution assigning probability $1/n$ to each observation, uses denominator $n$ and equals $2/3$ here. The two quantities have different definitions and should not be silently interchanged.
+
+Why use $n-1$ when estimating a population variance? The deviations from the fitted sample mean sum to zero, so estimating that center uses one degree of freedom. Under independent identically distributed sampling with finite variance, the resulting $s^2$ has expectation equal to the population variance. This does not mean it equals the population variance in every sample, and its square root is not automatically an unbiased estimator of population standard deviation.
+
+Translation leaves spread unchanged. Multiplying all values by $a$ multiplies variance by $a^2$ and standard deviation by $|a|$. The computational identity $\sum_i(x_i-\bar x)^2=\sum_i x_i^2-n\bar x^2$ can simplify exact hand calculations. For large nearly equal floating-point values, direct subtraction of these two large terms can be numerically delicate; the centered definition remains the conceptual reference.
+
+Distinguish variability among observations from variability among sample statistics. A sample can contain widely spread individual values while its mean is comparatively stable across repeated independent samples. The next lesson makes that distinction precise through the sampling distribution and standard error of the mean.
+
+Related definitions: [Sample variance](ref:probability-statistics-sample-variance).
+
+## Connect the sampling design to the target population
+
+A sampling design specifies how units enter the sample. In a simple random sample without replacement of size $n$ from $N$ units, every subset of size $n$ is equally likely. Each unit has inclusion probability $n/N$, but the inclusion events are dependent because selecting one unit changes the remaining choices. Random sampling does not mean every random mechanism is a simple random sample.
+
+Stratified sampling partitions the population into meaningful groups and randomly samples within each group. This can ensure representation of small or heterogeneous groups. Population summaries must respect the group's population weights, especially if sampling fractions differ. Cluster sampling randomly selects groups and then observes units within the selected groups; observations from a shared cluster can resemble one another. Stratification samples across all defined strata, whereas cluster sampling typically includes only selected clusters.
+
+Systematic sampling chooses a random starting point and then every $k$th unit in an ordered list. It can be convenient, but periodic structure in the list can align with the sampling interval. Convenience sampling uses readily available units without a defined probability design. A voluntary-response poll allows potential participants to select themselves, making response propensity a possible source of bias.
+
+For an original stratified calculation, suppose a target population is $80\%$ desktop and $20\%$ mobile sessions, with mean response times two and five units. The population-weighted mean is $0.8(2)+0.2(5)=2.6$. Sampling equal numbers from the two groups and averaging all records without weights would instead target $3.5$. Equal allocation may be useful for learning about the smaller group, but the desired population summary still uses the actual population proportions.
+
+A sampling frame is the accessible list from which selection occurs. Random selection from an incomplete frame cannot recover excluded groups automatically. Record the frame, selection probabilities, replacements, clustering, and nonresponse. Those details determine whether later independent-sampling formulas fit the data, require an approximation, or need a more specialized analysis.
+
+Related definitions: [Sampling design](ref:probability-statistics-sampling-design); [Sampling frame](ref:probability-statistics-sampling-frame).
+
+## Separate random error, systematic bias, and causal evidence
+
+Two well-drawn samples need not give identical statistics. This variation from sample to sample is sampling error, not necessarily a mistake. Bias is a systematic distortion relative to the target quantity. Increasing sample size can reduce random error under suitable assumptions while leaving selection, measurement, or nonresponse bias intact. A precise answer to the wrong population question is still wrong for the intended purpose.
+
+Missing values deserve a model, not automatic deletion. If the slowest requests are the ones that time out and fail to record duration, the mean of recorded durations targets completed recorded requests, not all attempts. If respondents differ systematically from nonrespondents, a survey response rate alone does not reveal the direction or size of bias. The unobserved values remain unknown; an analyst must state assumptions rather than invent them.
+
+An observational study records naturally occurring exposures and outcomes. A randomized experiment assigns treatments by a chance process. Random assignment makes treatment groups comparable in distribution with respect to pretreatment factors; it does not guarantee exact balance in a finite sample or eliminate random variation. Random sampling helps justify generalization to a population, while random assignment helps identify treatment effects within a study. One does not substitute for the other.
+
+In a software experiment, assigning users randomly to two interface versions and comparing a prespecified outcome is stronger evidence of an interface effect than comparing users who chose different versions. User experience could affect both their choice and their performance, creating confounding. Repeated measures on the same user should retain their pairing; treating them as unrelated observations discards useful structure and may misstate uncertainty.
+
+Careful design also addresses treatment contamination, measurement consistency, and masking when feasible. Report what was measured, how units were selected or assigned, which records were excluded, and whether analyses were chosen after looking at outcomes. Protect participants and disclose limitations. Honest statistical reasoning separates what the data show directly from what additional design or modeling assumptions are needed to support a broader or causal claim.
+
+Related definitions: [Random assignment](ref:probability-statistics-random-assignment); [Selection bias](ref:probability-statistics-selection-bias).

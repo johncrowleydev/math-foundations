@@ -54,7 +54,7 @@ func TestEveryDeterministicValidatorAvoidsProviderAndJobs(t *testing.T) {
 			}
 		}
 	}
-	active := []string{"calculus-expression", "antiderivative", "asymptotic-bound", "binomial-sum", "boolean", "boolean-formula", "boolean-model", "boolean-property", "composition", "elementary-expression", "exact", "expression", "finite-map", "finite-relation", "graph", "indexed-expression", "inequality", "integer-class", "integer-list", "interval", "linear", "matrix", "nested-object", "quantified-formula", "recurrence", "selection", "sequence-pair", "set", "set-expression", "set-model", "square-inverse", "summation", "term", "tuple", "witness"}
+	active := []string{"approximate-number", "calculus-expression", "antiderivative", "asymptotic-bound", "binomial-sum", "boolean", "boolean-formula", "boolean-model", "boolean-property", "composition", "elementary-expression", "exact", "expression", "finite-map", "finite-relation", "graph", "indexed-expression", "inequality", "integer-class", "integer-list", "interval", "linear", "matrix", "nested-object", "quantified-formula", "recurrence", "selection", "sequence-pair", "set", "set-expression", "set-model", "square-inverse", "summation", "term", "tuple", "witness"}
 	if len(correct) != len(active) {
 		t.Fatalf("Update provider-trap coverage for checker families: corpus=%d active=%d", len(correct), len(active))
 	}

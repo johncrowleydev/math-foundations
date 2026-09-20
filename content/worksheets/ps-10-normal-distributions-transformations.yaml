@@ -1,0 +1,262 @@
+title: Normal Distributions and Transformations
+sections:
+  - title: Normal models have a location and a scale
+    questions:
+      - id: 1
+        type: freeform
+        prompt: If $X\sim N(12,25)$, find its standard deviation.
+        answerLines: 5
+        answer: The variance is $25$, so the standard deviation is $\sqrt{25}=5$.
+      - id: 2
+        type: freeform
+        prompt: Under $N(12,25)$, find the standardized score of $22$.
+        answerLines: 5
+        answer: $(22-12)/5=2$.
+      - id: 3
+        type: freeform
+        prompt: Under $N(12,25)$, find the standardized score of $7$.
+        answerLines: 5
+        answer: $(7-12)/5=-1$.
+      - id: 4
+        type: freeform
+        prompt: A normal variable has mean $8$ and standard deviation $3$. Give its variance.
+        answerLines: 5
+        answer: The variance is $3^2=9$.
+      - id: 5
+        type: freeform
+        prompt: For $Z\sim N(0,1)$ and $X=7+2Z$, give $(E[X],\operatorname{Var}(X))$.
+        answerLines: 5
+        answer: The mean is $7$ and variance is $2^2=4$, so $(7,4)$.
+      - id: 6
+        type: freeform
+        prompt: Under $N(40,9)$, what measurement has standardized score $-2$?
+        answerLines: 5
+        answer: $x=40+3(-2)=34$.
+      - id: 7
+        type: freeform
+        prompt: 'True or false: every variable with mean zero and variance one is standard normal.'
+        answerLines: 5
+        answer: False. A variable taking $-1$ and $1$ with equal probabilities has those moments but is discrete.
+      - id: 8
+        type: freeform
+        prompt: For $X\sim N(0,4)$, give the density height $f_X(0)$ exactly.
+        answerLines: 5
+        answer: The standard deviation is two, giving $f_X(0)=1/(2\sqrt{2\pi})$.
+      - id: 9
+        type: freeform
+        prompt: Explain how doubling the standard deviation changes the height of a normal density at its mean.
+        answerLines: 5
+        answer: The peak is $1/(\sigma\sqrt{2\pi})$, so doubling $\sigma$ halves that height while preserving total area.
+      - id: 10
+        type: freeform
+        prompt: A duration is always positive. Explain a limitation of modeling it exactly by a nondegenerate normal distribution.
+        answerLines: 5
+        answer: A normal distribution gives positive probability to every nonempty interval, including negative durations. It may approximate a distribution far from zero, but cannot exactly respect the positive support.
+  - title: Use the normal CDF without confusing tails
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Use $\Phi(1)=0.8413$ to approximate $P(Z>1)$ to four decimal places for standard normal $Z$.
+        answerLines: 5
+        answer: $1-0.8413=0.1587$.
+      - id: 12
+        type: freeform
+        prompt: Use $\Phi(2)=0.9772$ to approximate $P(Z<-2)$ to four decimal places.
+        answerLines: 5
+        answer: By symmetry, $1-0.9772=0.0228$.
+      - id: 13
+        type: freeform
+        prompt: Use $\Phi(2)=0.9772$ to approximate $P(|Z|<2)$ to four decimal places.
+        answerLines: 5
+        answer: $2\Phi(2)-1=2(0.9772)-1=0.9544$.
+      - id: 14
+        type: freeform
+        prompt: Use $\Phi(1)=0.8413$ and $\Phi(2)=0.9772$ to approximate $P(1<Z<2)$ to four decimal places.
+        answerLines: 5
+        answer: $0.9772-0.8413=0.1359$.
+      - id: 15
+        type: freeform
+        prompt: For $X\sim N(10,4)$, use $\Phi(1.5)=0.9332$ to approximate $P(X<13)$ to four decimal places.
+        answerLines: 5
+        answer: 'Standardize: $(13-10)/2=1.5$. The probability is $0.9332$.'
+      - id: 16
+        type: freeform
+        prompt: For $X\sim N(10,4)$, use $\Phi(2)=0.9772$ to approximate $P(X>14)$ to four decimal places.
+        answerLines: 5
+        answer: The score is two, so the probability is $1-0.9772=0.0228$.
+      - id: 17
+        type: freeform
+        prompt: For $X\sim N(10,4)$, use $\Phi(1)=0.8413$ to approximate $P(8<X<12)$ to four decimal places.
+        answerLines: 5
+        answer: The scores are $-1,1$, giving $2(0.8413)-1=0.6826$.
+      - id: 18
+        type: freeform
+        prompt: For $X\sim N(10,4)$, use $\Phi(1)=0.8413$ to approximate $P(X>12\mid X>10)$ to four decimal places.
+        answerLines: 5
+        answer: The numerator is $0.1587$ and denominator is $1/2$, so the conditional probability is $0.3174$.
+      - id: 19
+        type: freeform
+        prompt: "True or false: $P(Z>2)=\\Phi(2)$ for standard normal $Z$."
+        answerLines: 5
+        answer: False. $\Phi(2)$ is the left-tail probability; the right tail is $1-\Phi(2)$.
+      - id: 20
+        type: freeform
+        prompt: Explain why $\Phi(2)-\Phi(-1)$ is positive without using a numerical table.
+        answerLines: 5
+        answer: A CDF is nondecreasing and this normal density is positive between $-1$ and $2$. Their difference is the positive probability of that interval.
+  - title: Quantiles and affine changes of units
+    questions:
+      - id: 21
+        type: freeform
+        prompt: For $N(20,16)$, use $z_{0.95}=1.645$ to find the $95$th percentile to two decimal places.
+        answerLines: 5
+        answer: $20+4(1.645)=26.58$.
+      - id: 22
+        type: freeform
+        prompt: For $N(20,16)$, use $z_{0.05}=-1.645$ to find the $5$th percentile to two decimal places.
+        answerLines: 5
+        answer: $20-4(1.645)=13.42$.
+      - id: 23
+        type: freeform
+        prompt: For $N(50,25)$, use $z_{0.975}=1.96$ to find the upper endpoint of its central $95\%$ interval to one decimal place.
+        answerLines: 5
+        answer: $50+5(1.96)=59.8$.
+      - id: 24
+        type: freeform
+        prompt: For $N(50,25)$, use $z_{0.975}=1.96$ to find the lower endpoint of its central $95\%$ interval to one decimal place.
+        answerLines: 5
+        answer: $50-5(1.96)=40.2$.
+      - id: 25
+        type: freeform
+        prompt: If $X\sim N(3,4)$ and $Y=5-2X$, give the mean and variance of $Y$.
+        answerLines: 5
+        answer: $E[Y]=5-6=-1$ and $\operatorname{Var}(Y)=4(4)=16$, so $(-1,16)$.
+      - id: 26
+        type: freeform
+        prompt: If $X\sim N(3,4)$ and $Y=5-2X$, find the standard deviation of $Y$.
+        answerLines: 5
+        answer: It is $|-2|\sqrt4=4$.
+      - id: 27
+        type: freeform
+        prompt: An equal-tail central normal interval contains $90\%$ probability. What probability is in each tail?
+        answerLines: 5
+        answer: The remaining $10\%$ is split equally, giving $0.05=1/20$.
+      - id: 28
+        type: freeform
+        prompt: For standard normal $Z$, give its median.
+        answerLines: 5
+        answer: Symmetry gives $\Phi(0)=1/2$, so the median is $0$.
+      - id: 29
+        type: freeform
+        prompt: 'True or false: multiplying a normal variable by a negative constant produces a negative variance.'
+        answerLines: 5
+        answer: False. Variance is multiplied by the square of the constant.
+      - id: 30
+        type: freeform
+        prompt: Explain why a normal model's central $95\%$ interval for individual values is not automatically a $95\%$ confidence interval for its mean.
+        answerLines: 5
+        answer: The first describes spread of individual outcomes under a specified distribution. A confidence interval is a data-dependent procedure concerning an unknown parameter, with coverage across samples. They involve different random quantities.
+  - title: Transform a distribution through its CDF
+    questions:
+      - id: 31
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=U^2$, give $F_Y(y)$ on $0<y<4$.
+        answerLines: 5
+        answer: $P(U^2\le y)=P(U\le\sqrt y)=\sqrt y/2$.
+      - id: 32
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=U^2$, give $f_Y(y)$ on $0<y<4$.
+        answerLines: 5
+        answer: Differentiating $\sqrt y/2$ gives $1/(4\sqrt y)$.
+      - id: 33
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=U^2$, find $P(Y<1)$.
+        answerLines: 5
+        answer: $Y<1$ means $U<1$, whose probability is $1/2$.
+      - id: 34
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=U^2$, find $E[Y]$.
+        answerLines: 5
+        answer: $E[U^2]=\int_0^2u^2/2\,du=4/3$.
+      - id: 35
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(1,3)$ and $Y=1/U$, give the two endpoints of the support in increasing order.
+        answerLines: 5
+        answer: The decreasing map takes three to $1/3$ and one to one, so the endpoints are $(1/3,1)$.
+      - id: 36
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(1,3)$ and $Y=1/U$, give $f_Y(y)$ on $1/3<y<1$.
+        answerLines: 5
+        answer: The original density is $1/2$ and the absolute inverse derivative is $1/y^2$, giving $1/(2y^2)$.
+      - id: 37
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=e^U$, give $F_Y(y)$ on $1<y<e^2$.
+        answerLines: 5
+        answer: $P(e^U\le y)=P(U\le\ln y)=\ln y/2$.
+      - id: 38
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=e^U$, give $f_Y(y)$ on $1<y<e^2$.
+        answerLines: 5
+        answer: Differentiating $\ln y/2$ gives $1/(2y)$.
+      - id: 39
+        type: freeform
+        prompt: Explain why the absolute derivative is needed for a decreasing transformation.
+        answerLines: 5
+        answer: A decreasing inverse has negative derivative, but a small interval's width is positive. The absolute derivative measures that width and keeps the transformed density nonnegative.
+      - id: 40
+        type: freeform
+        prompt: For a positive density on $(0,2)$, explain why the formula for $Y=X^2$ cannot be used unchanged if the original support becomes $(-2,2)$.
+        answerLines: 5
+        answer: On the larger support the square map has two inverse branches. The event $X^2\le y$ includes both negative and positive values of $X$; one branch would lose probability.
+  - title: Account for branches and point masses
+    questions:
+      - id: 41
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(-2,2)$ and $Y=X^2$, find $P(Y\le1)$.
+        answerLines: 5
+        answer: The event is $-1\le X\le1$, with probability $2/4=1/2$.
+      - id: 42
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(-2,2)$ and $Y=X^2$, find $P(Y=0)$.
+        answerLines: 5
+        answer: Only $X=0$ maps to zero, and that singleton has probability zero. Thus $P(Y=0)=0$.
+      - id: 43
+        type: freeform
+        prompt: For $X\sim\operatorname{Uniform}(-2,2)$ and $Y=|X|$, give the density for $0<y<2$.
+        answerLines: 5
+        answer: Each inverse branch contributes $1/4$, so the total density is $1/2$.
+      - id: 44
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(-1,1)$ and $Y=\max(0,U)$, find $P(Y=0)$.
+        answerLines: 5
+        answer: All of $(-1,0]$ maps to zero, giving probability $1/2$.
+      - id: 45
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(-1,1)$ and $Y=\max(0,U)$, find $F_Y(1/2)$.
+        answerLines: 5
+        answer: $P(Y\le1/2)=P(U\le1/2)=3/4$.
+      - id: 46
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(-1,1)$ and $Y=\max(0,U)$, find $E[Y]$.
+        answerLines: 5
+        answer: "Only positive inputs contribute: $\\int_0^1u/2\\,du=1/4$."
+      - id: 47
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=\min(U,1)$, find $P(Y=1)$.
+        answerLines: 5
+        answer: The interval $[1,2)$ collapses to one, so its mass is $1/2$.
+      - id: 48
+        type: freeform
+        prompt: For $U\sim\operatorname{Uniform}(0,2)$ and $Y=\min(U,1)$, find $E[Y]$.
+        answerLines: 5
+        answer: $E[Y]=\int_0^1u/2\,du+1(1/2)=1/4+1/2=3/4$.
+      - id: 49
+        type: freeform
+        prompt: 'True or false: a function of a continuous random variable must itself have a density.'
+        answerLines: 5
+        answer: False. A constant or clipping transformation can create point masses.
+      - id: 50
+        type: freeform
+        prompt: Explain why an unbounded density near zero does not imply a positive probability at zero.
+        answerLines: 5
+        answer: Density describes interval area. A singular but integrable density can still have a continuous CDF and zero singleton probability. A point mass instead appears as a jump in the CDF.
