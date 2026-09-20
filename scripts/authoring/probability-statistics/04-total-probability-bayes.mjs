@@ -205,7 +205,7 @@ b.questions = [
   ),
   q(
     r`A case has prior zero and the observed evidence has positive overall probability. Find that case's posterior.`,
-    r`Its joint weight is likelihood times zero, so its normalized posterior remains $0$.`,
+    r`The joint event is contained in a probability-zero case, so its joint probability is zero by monotonicity. Dividing by the positive evidence probability gives posterior $0$.`,
     exact('0'),
   ),
   q(
@@ -310,7 +310,7 @@ c.questions = [
   ),
   q(
     r`Explain why increasing the base rate while holding positive likelihoods fixed increases the positive posterior, when both likelihoods are positive.`,
-    r`The target joint weight grows relative to the nontarget joint weight. Equivalently the prior odds rise and the fixed likelihood ratio preserves that ordering in posterior odds.`,
+    r`The target joint weight grows while the nontarget joint weight shrinks. Since both likelihoods are positive, the target contribution becomes a larger fraction of their total, so its normalized posterior increases.`,
   ),
   q(
     r`A target has prior $1/5$, sensitivity $1$, and false-positive rate $0$. Find its posterior given a positive result.`,

@@ -15,7 +15,7 @@ import {
 const special = citation(
   'pn-3-1-5',
   'pishro-nik',
-  '§3.1.5 Special Distributions: hypergeometric and Poisson',
+  '§3.1.5 Special Distributions',
   'https://www.probabilitycourse.com/chapter3/3_1_5_special_discrete_distr.php',
   'Hypergeometric support and PMF, Poisson PMF and normalization, interval scaling, and the binomial-to-Poisson limit.',
 );

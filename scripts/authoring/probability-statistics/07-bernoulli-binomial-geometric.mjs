@@ -14,7 +14,7 @@ import {
 const models = citation(
   'pn-3-1-5',
   'pishro-nik',
-  '§3.1.5 Special Distributions: Bernoulli, binomial, and geometric',
+  '§3.1.5 Special Distributions',
   'https://www.probabilitycourse.com/chapter3/3_1_5_special_discrete_distr.php',
   'Bernoulli indicators, binomial counts, geometric waiting times, assumptions, and parameter conventions.',
 );
