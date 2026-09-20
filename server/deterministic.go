@@ -468,6 +468,8 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 				return err
 			}
 		}
+	case "calculus-expression", "antiderivative":
+		return validateCalculus(r)
 	case "elementary-expression", "square-inverse":
 		return validateElementary(r)
 	case "finite-map":
@@ -701,6 +703,8 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 		return checkBooleanRequirement(r, response)
 	case "boolean-model":
 		return booleanModel(r, response)
+	case "calculus-expression", "antiderivative":
+		return checkCalculus(r, response)
 	case "elementary-expression":
 		return checkElementary(r, response)
 	case "square-inverse":
