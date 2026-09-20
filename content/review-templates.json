@@ -51760,5 +51760,2967 @@
         }
       }
     ]
+  },
+  {
+    "id": "induction-proof-roles-review",
+    "family": "authored",
+    "lesson": "mathematical-induction",
+    "concept": "induction-principle",
+    "skill": "recall",
+    "objective": "induction-proof-roles",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["induction-principle"],
+    "sourceIds": ["review-dm-induction"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which part of an induction proof establishes the claim at its starting index?",
+      "answer": "The base case establishes the first case independently of the step.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Inductive step",
+            "feedback": "The step propagates truth; it does not establish the first case."
+          },
+          {
+            "id": "option-2",
+            "text": "Base case",
+            "feedback": "This starts the implication chain."
+          },
+          {
+            "id": "option-3",
+            "text": "Induction hypothesis",
+            "feedback": "This is a temporary assumption used inside the step."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which part of an induction proof establishes the claim at its starting index?",
+        "answer": "The base case establishes the first case independently of the step.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Inductive step",
+              "feedback": "The step propagates truth; it does not establish the first case."
+            },
+            {
+              "id": "option-2",
+              "text": "Base case",
+              "feedback": "This starts the implication chain."
+            },
+            {
+              "id": "option-3",
+              "text": "Induction hypothesis",
+              "feedback": "This is a temporary assumption used inside the step."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "What must the inductive step establish for an arbitrary integer $k$ in the stated range?",
+        "answer": "$P(k)\\Rightarrow P(k+1)$: assume the current case and derive the next.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$P(k+1)\\Rightarrow P(k)$",
+              "feedback": "This points backward and does not extend the chain."
+            },
+            {
+              "id": "option-2",
+              "text": "$P(k)$ and $P(k+1)$ are both assumed true",
+              "feedback": "The next case must be proved."
+            },
+            {
+              "id": "option-3",
+              "text": "$P(k)\\Rightarrow P(k+1)$",
+              "feedback": "The implication is proved for every allowed k."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Why do five successful numerical checks not prove $P(n)$ for every integer $n\\geq1$?",
+        "answer": "They leave all later cases unproved; induction also requires a valid general implication step.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "The general implication step is still missing.",
+              "feedback": "Finite checks cannot reach every later index."
+            },
+            {
+              "id": "option-2",
+              "text": "A base case is never allowed to be numerical.",
+              "feedback": "A numerical base case is often exactly what is needed."
+            },
+            {
+              "id": "option-3",
+              "text": "The claim must therefore be false.",
+              "feedback": "The evidence is insufficient, not necessarily refuting."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "induction-hypothesis-term-review",
+    "family": "fixed",
+    "lesson": "mathematical-induction",
+    "concept": "induction-hypothesis",
+    "skill": "recall",
+    "objective": "induction-hypothesis-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["induction-hypothesis"],
+    "sourceIds": ["review-dm-induction"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "In an ordinary induction step proving $P(k+1)$, what is the temporary assumption $P(k)$ called?",
+      "answer": "The induction hypothesis.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": [
+                "induction hypothesis",
+                "induction hypothesis.",
+                "inductive hypothesis",
+                "inductive hypothesis.",
+                "the induction hypothesis",
+                "the induction hypothesis.",
+                "the inductive hypothesis",
+                "the inductive hypothesis."
+              ]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The induction hypothesis.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "loop-invariant-term-review",
+    "family": "fixed",
+    "lesson": "mathematical-induction",
+    "concept": "loop-invariant",
+    "skill": "recall",
+    "objective": "loop-invariant-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["loop-invariant"],
+    "sourceIds": ["review-dm-invariant"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "What term names a property established before a loop and preserved after every allowed iteration?",
+      "answer": "A loop invariant.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": [
+                "loop invariant",
+                "loop invariant.",
+                "a loop invariant",
+                "a loop invariant.",
+                "invariant",
+                "invariant."
+              ]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A loop invariant.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "strong-induction-term-review",
+    "family": "fixed",
+    "lesson": "strong-induction",
+    "concept": "strong-induction",
+    "skill": "recall",
+    "objective": "strong-induction-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["strong-induction"],
+    "sourceIds": ["review-dm-strong"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "Which induction method lets you assume every earlier case in the theorem’s domain when proving the next case?",
+      "answer": "Strong induction.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": ["strong induction", "strong induction."]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Strong induction.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "well-ordering-boundary-review",
+    "family": "authored",
+    "lesson": "strong-induction",
+    "concept": "well-ordering",
+    "skill": "recall",
+    "objective": "well-ordering-domain",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["well-ordering"],
+    "sourceIds": ["review-dm-well-ordering"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "What does the well-ordering principle guarantee for every nonempty set of nonnegative integers?",
+      "answer": "It has a least element.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "A greatest element",
+            "feedback": "An unbounded set such as the nonnegative integers has none."
+          },
+          {
+            "id": "option-2",
+            "text": "Only finitely many elements",
+            "feedback": "The set may be infinite."
+          },
+          {
+            "id": "option-3",
+            "text": "A least element",
+            "feedback": "This is the principle used to choose a smallest counterexample."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "What does the well-ordering principle guarantee for every nonempty set of nonnegative integers?",
+        "answer": "It has a least element.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "A greatest element",
+              "feedback": "An unbounded set such as the nonnegative integers has none."
+            },
+            {
+              "id": "option-2",
+              "text": "Only finitely many elements",
+              "feedback": "The set may be infinite."
+            },
+            {
+              "id": "option-3",
+              "text": "A least element",
+              "feedback": "This is the principle used to choose a smallest counterexample."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Why does repeatedly halving a positive real number not give a termination proof by the nonnegative-integer measure argument?",
+        "answer": "Positive reals permit an infinite strictly decreasing chain; a nonnegative integer measure does not.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "The first positive real number is zero.",
+              "feedback": "Zero is not positive and there is no least positive real."
+            },
+            {
+              "id": "option-2",
+              "text": "The measure is not in the required well-founded integer domain.",
+              "feedback": "1, 1/2, 1/4, … decreases forever."
+            },
+            {
+              "id": "option-3",
+              "text": "Strict decreases are forbidden in termination proofs.",
+              "feedback": "Strict decrease is useful in a well-founded domain."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "permutation-term-review",
+    "family": "fixed",
+    "lesson": "combinatorics",
+    "concept": "permutations",
+    "skill": "recall",
+    "objective": "permutation-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["permutations"],
+    "sourceIds": ["review-dm-counting"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "What is a full ordered arrangement of a set of distinct objects called?",
+      "answer": "A permutation.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": ["permutation", "permutation.", "a permutation", "a permutation."]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A permutation.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "combination-term-review",
+    "family": "fixed",
+    "lesson": "combinatorics",
+    "concept": "combinations",
+    "skill": "recall",
+    "objective": "combination-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["combinations"],
+    "sourceIds": ["review-dm-counting"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "What is an unordered selection, that is, a subset of a specified size, called?",
+      "answer": "A combination.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": ["combination", "combination.", "a combination", "a combination."]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A combination.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "counting-model-distinction-review",
+    "family": "authored",
+    "lesson": "combinatorics",
+    "concept": "counting-principles",
+    "skill": "interpret",
+    "objective": "counting-model-distinction",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["counting-principles"],
+    "sourceIds": ["review-dm-counting"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Choose a chair and a secretary from six people; one person cannot hold both roles. Which count models the outcomes?",
+      "answer": "$6\\cdot5$: the two roles distinguish order.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$\\binom62$",
+            "feedback": "That counts pairs without distinguishing their roles."
+          },
+          {
+            "id": "option-2",
+            "text": "$6+5$",
+            "feedback": "These are successive choices, not disjoint alternatives."
+          },
+          {
+            "id": "option-3",
+            "text": "$6\\cdot5$",
+            "feedback": "Choose the chair, then one of the five remaining people."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Choose a chair and a secretary from six people; one person cannot hold both roles. Which count models the outcomes?",
+        "answer": "$6\\cdot5$: the two roles distinguish order.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\binom62$",
+              "feedback": "That counts pairs without distinguishing their roles."
+            },
+            {
+              "id": "option-2",
+              "text": "$6+5$",
+              "feedback": "These are successive choices, not disjoint alternatives."
+            },
+            {
+              "id": "option-3",
+              "text": "$6\\cdot5$",
+              "feedback": "Choose the chair, then one of the five remaining people."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Choose two people from six for a committee with no roles. Which count models the outcomes?",
+        "answer": "$\\binom62$: swapping the selection order does not create a new committee.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\binom62$",
+              "feedback": "The result is an unordered pair."
+            },
+            {
+              "id": "option-2",
+              "text": "$6\\cdot5$",
+              "feedback": "Every committee is counted twice."
+            },
+            {
+              "id": "option-3",
+              "text": "$6^2$",
+              "feedback": "This both orders the people and allows repetition."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "A trip uses either route A with three continuations or route B with five continuations. Each outcome records its first route and continuation. How many outcomes are there?",
+        "answer": "$3+5=8$ by adding the two disjoint branches.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$3\\cdot5$",
+              "feedback": "An outcome does not choose a continuation from both branches."
+            },
+            {
+              "id": "option-2",
+              "text": "$3+5$",
+              "feedback": "The branches are alternatives with different sizes."
+            },
+            {
+              "id": "option-3",
+              "text": "$2\\cdot3$",
+              "feedback": "The second branch has five continuations, not three."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "pigeonhole-term-review",
+    "family": "fixed",
+    "lesson": "combinatorics",
+    "concept": "pigeonhole",
+    "skill": "recall",
+    "objective": "pigeonhole-principle-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["pigeonhole"],
+    "sourceIds": ["review-dm-pigeonhole"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "What principle guarantees that assigning more than $m$ objects to $m\\geq1$ boxes puts at least two objects in one box?",
+      "answer": "The pigeonhole principle.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": [
+                "pigeonhole principle",
+                "pigeonhole principle.",
+                "the pigeonhole principle",
+                "the pigeonhole principle."
+              ]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The pigeonhole principle.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "inclusion-exclusion-meaning-review",
+    "family": "authored",
+    "lesson": "combinatorics",
+    "concept": "inclusion-exclusion",
+    "skill": "recall",
+    "objective": "inclusion-exclusion-overlap",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["inclusion-exclusion"],
+    "sourceIds": ["review-dm-inclusion-exclusion"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which counting principle corrects $|A|+|B|$ by subtracting the double-counted overlap $|A\\cap B|$?",
+      "answer": "Inclusion–exclusion counts the union by correcting repeated membership.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Product principle",
+            "feedback": "That counts successive choices."
+          },
+          {
+            "id": "option-2",
+            "text": "Inclusion–exclusion",
+            "feedback": "Subtracting the intersection removes one of its two counts."
+          },
+          {
+            "id": "option-3",
+            "text": "Pigeonhole principle",
+            "feedback": "That guarantees repeated occupancy, not a union count."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which counting principle corrects $|A|+|B|$ by subtracting the double-counted overlap $|A\\cap B|$?",
+        "answer": "Inclusion–exclusion counts the union by correcting repeated membership.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Product principle",
+              "feedback": "That counts successive choices."
+            },
+            {
+              "id": "option-2",
+              "text": "Inclusion–exclusion",
+              "feedback": "Subtracting the intersection removes one of its two counts."
+            },
+            {
+              "id": "option-3",
+              "text": "Pigeonhole principle",
+              "feedback": "That guarantees repeated occupancy, not a union count."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Why is $|A\\cup B|=|A|+|B|-|A\\cap B|$ for finite sets?",
+        "answer": "Each element of the overlap was counted twice, so subtract it once.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Elements in the overlap are outside the union.",
+              "feedback": "They are in the union and must remain counted once."
+            },
+            {
+              "id": "option-2",
+              "text": "The two sets must be disjoint.",
+              "feedback": "The correction is precisely what permits overlap."
+            },
+            {
+              "id": "option-3",
+              "text": "Each overlap element needs one of its two counts removed.",
+              "feedback": "It then contributes once to the union."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "counting-short-production-review",
+    "family": "authored",
+    "lesson": "combinatorics",
+    "concept": "counting-principles",
+    "skill": "compute",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["counting-principles"],
+    "sourceIds": ["review-dm-counting"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "A code has one letter from $\\{A,B,C,D\\}$ followed by two decimal digits. Leading zero and repeated digits are allowed. How many codes are possible?",
+      "answer": "$4\\cdot10\\cdot10=400$.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "math",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "exact",
+            "fields": ["answer"],
+            "params": {
+              "expected": ["400"]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "$4\\cdot10\\cdot10=400$.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "A code has one letter from $\\{A,B,C,D\\}$ followed by two decimal digits. Leading zero and repeated digits are allowed. How many codes are possible?",
+        "answer": "$4\\cdot10\\cdot10=400$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["400"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$4\\cdot10\\cdot10=400$.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "A route first chooses A or B. A has four continuations; B has seven. How many complete routes are possible?",
+        "answer": "$4+7=11$ disjoint alternatives.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["11"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$4+7=11$ disjoint alternatives.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "How many ordered pairs of distinct members can be selected from a five-element set?",
+        "answer": "$5\\cdot4=20$; the second entry cannot equal the first.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["20"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$5\\cdot4=20$; the second entry cannot equal the first.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "characteristic-equation-term-review",
+    "family": "fixed",
+    "lesson": "recurrence-relations",
+    "concept": "characteristic-roots",
+    "skill": "recall",
+    "objective": "characteristic-equation-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["characteristic-roots"],
+    "sourceIds": ["review-dm-recurrence"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "For $a_n=p a_{n-1}+q a_{n-2}$, what is the equation $r^2-pr-q=0$ called?",
+      "answer": "The characteristic equation.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": [
+                "characteristic equation",
+                "characteristic equation.",
+                "the characteristic equation",
+                "the characteristic equation."
+              ]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The characteristic equation.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "affine-recurrence-language-review",
+    "family": "authored",
+    "lesson": "recurrence-relations",
+    "concept": "affine-recurrence",
+    "skill": "recall",
+    "objective": "linear-recurrence-language",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["affine-recurrence"],
+    "sourceIds": ["review-dm-recurrence"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "In recurrence terminology, why is $a_n=3a_{n-1}+2$ first-order?",
+      "answer": "It reaches back one index to define the next value.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "It reaches back one index.",
+            "feedback": "The oldest sequence value used is a_(n−1)."
+          },
+          {
+            "id": "option-2",
+            "text": "Its sequence begins at index one.",
+            "feedback": "Starting index and recurrence order are different."
+          },
+          {
+            "id": "option-3",
+            "text": "Its coefficient is one.",
+            "feedback": "The coefficient here is three; that does not determine order."
+          }
+        ],
+        "correctOption": "option-1"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "In recurrence terminology, why is $a_n=3a_{n-1}+2$ first-order?",
+        "answer": "It reaches back one index to define the next value.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "It reaches back one index.",
+              "feedback": "The oldest sequence value used is a_(n−1)."
+            },
+            {
+              "id": "option-2",
+              "text": "Its sequence begins at index one.",
+              "feedback": "Starting index and recurrence order are different."
+            },
+            {
+              "id": "option-3",
+              "text": "Its coefficient is one.",
+              "feedback": "The coefficient here is three; that does not determine order."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which recurrence is homogeneous?",
+        "answer": "$a_n=3a_{n-1}$ has no added term independent of earlier values.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$a_n=3a_{n-1}+2$",
+              "feedback": "The added constant makes this nonhomogeneous."
+            },
+            {
+              "id": "option-2",
+              "text": "$a_n=3a_{n-1}+n$",
+              "feedback": "The added n is also independent of earlier sequence values."
+            },
+            {
+              "id": "option-3",
+              "text": "$a_n=3a_{n-1}$",
+              "feedback": "Every term involves a sequence value."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "recurrence-cold-evaluation-review",
+    "family": "authored",
+    "lesson": "recurrence-relations",
+    "concept": "recursive-definition",
+    "skill": "compute",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["recurrence-unfolding"],
+    "sourceIds": ["review-dm-recurrence"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "Let $a_0=2$ and $a_n=3a_{n-1}-1$ for $n\\geq1$. Compute $a_2$.",
+      "answer": "$a_1=5$, then $a_2=14$.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "math",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "exact",
+            "fields": ["answer"],
+            "params": {
+              "expected": ["14"]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "$a_1=5$, then $a_2=14$.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "Let $a_0=2$ and $a_n=3a_{n-1}-1$ for $n\\geq1$. Compute $a_2$.",
+        "answer": "$a_1=5$, then $a_2=14$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["14"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$a_1=5$, then $a_2=14$.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "Let $b_0=1$, $b_1=3$, and $b_n=b_{n-1}+2b_{n-2}$ for $n\\geq2$. Compute $b_3$.",
+        "answer": "$b_2=5$ and $b_3=5+2\\cdot3=11$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["11"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$b_2=5$ and $b_3=5+2\\cdot3=11$.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "Let $c_1=4$ and $c_n=c_{n-1}+n$ for $n\\geq2$. Compute $c_3$.",
+        "answer": "$c_2=6$ and $c_3=9$; the rule starts at index 2.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "exact",
+              "fields": ["answer"],
+              "params": {
+                "expected": ["9"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$c_2=6$ and $c_3=9$; the rule starts at index 2.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "characteristic-polynomial-production-review",
+    "family": "authored",
+    "lesson": "recurrence-relations",
+    "concept": "characteristic-roots",
+    "skill": "represent",
+    "evidenceLevel": "production",
+    "interactionCost": "medium",
+    "inputCapabilities": ["math-text"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["characteristic-roots"],
+    "sourceIds": ["review-dm-recurrence"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "For $a_n=5a_{n-1}-6a_{n-2}$, write the monic characteristic polynomial in $r$ (the left side when the equation is set equal to zero).",
+      "answer": "The polynomial is $r^2-5r+6$.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "math",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "expression",
+            "fields": ["answer"],
+            "params": {
+              "expected": "r^2-5*r+6",
+              "variables": ["r"]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The polynomial is $r^2-5r+6$.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "medium",
+          "inputCapabilities": ["math-text"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "For $a_n=5a_{n-1}-6a_{n-2}$, write the monic characteristic polynomial in $r$ (the left side when the equation is set equal to zero).",
+        "answer": "The polynomial is $r^2-5r+6$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "expression",
+              "fields": ["answer"],
+              "params": {
+                "expected": "r^2-5*r+6",
+                "variables": ["r"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "The polynomial is $r^2-5r+6$.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "medium",
+            "inputCapabilities": ["math-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Answer from memory in the field.",
+        "prompt": "For $a_n=2a_{n-1}+3a_{n-2}$, write the monic characteristic polynomial in $r$ (the left side when the equation is set equal to zero).",
+        "answer": "The polynomial is $r^2-2r-3$.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "math",
+              "label": "Answer"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "expression",
+              "fields": ["answer"],
+              "params": {
+                "expected": "r^2-2*r-3",
+                "variables": ["r"]
+              },
+              "description": "Supply the requested term or mathematical value.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "The polynomial is $r^2-2r-3$.",
+            "incorrect": "Check the definition and the stated conditions, then try again."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "medium",
+            "inputCapabilities": ["math-text"]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "graph-vertex-edge-language-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "graph-definition",
+    "skill": "recall",
+    "objective": "vertex-edge-distinction",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["graph-definition"],
+    "sourceIds": ["review-dm-graphs"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "In $G=(V,E)$, which statement correctly identifies the basic objects?",
+      "answer": "$V$ is the vertex set and $E$ is the edge set.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$V$ contains edges; $E$ contains vertices.",
+            "feedback": "The roles are reversed."
+          },
+          {
+            "id": "option-2",
+            "text": "$V$ contains paths; $E$ contains coordinates.",
+            "feedback": "A graph need not assign coordinates at all."
+          },
+          {
+            "id": "option-3",
+            "text": "$V$ contains vertices; $E$ contains edges.",
+            "feedback": "Vertices are objects, and edges encode connections."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "In $G=(V,E)$, which statement correctly identifies the basic objects?",
+        "answer": "$V$ is the vertex set and $E$ is the edge set.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$V$ contains edges; $E$ contains vertices.",
+              "feedback": "The roles are reversed."
+            },
+            {
+              "id": "option-2",
+              "text": "$V$ contains paths; $E$ contains coordinates.",
+              "feedback": "A graph need not assign coordinates at all."
+            },
+            {
+              "id": "option-3",
+              "text": "$V$ contains vertices; $E$ contains edges.",
+              "feedback": "Vertices are objects, and edges encode connections."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "In a simple undirected graph, what does one edge record?",
+        "answer": "An unordered pair of distinct vertices.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "A vertex joined to itself",
+              "feedback": "A self-loop is excluded by the simple-graph convention."
+            },
+            {
+              "id": "option-2",
+              "text": "An unordered pair of distinct vertices",
+              "feedback": "The edge has two different endpoints and no direction."
+            },
+            {
+              "id": "option-3",
+              "text": "An ordered pair of vertices",
+              "feedback": "Order describes a directed arc."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "graph-degree-term-review",
+    "family": "fixed",
+    "lesson": "graph-theory",
+    "concept": "graph-degree",
+    "skill": "recall",
+    "objective": "degree-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["graph-degree"],
+    "sourceIds": ["review-dm-graphs"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "What is the number of edges incident to a vertex in a simple undirected graph called?",
+      "answer": "Its degree.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": [
+                "degree",
+                "degree.",
+                "the degree",
+                "the degree.",
+                "vertex degree",
+                "vertex degree."
+              ]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Its degree.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "graph-route-vocabulary-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "graph-routes",
+    "skill": "recall",
+    "objective": "route-vocabulary",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["graph-routes"],
+    "sourceIds": ["review-dm-routes"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which term allows both repeated vertices and repeated edges, provided every consecutive pair is adjacent?",
+      "answer": "A walk permits both kinds of repetition.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Path",
+            "feedback": "A path forbids repeated vertices under this curriculum’s convention."
+          },
+          {
+            "id": "option-2",
+            "text": "Walk",
+            "feedback": "Consecutive adjacency is the only requirement here."
+          },
+          {
+            "id": "option-3",
+            "text": "Trail",
+            "feedback": "A trail forbids repeated edges."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which term allows both repeated vertices and repeated edges, provided every consecutive pair is adjacent?",
+        "answer": "A walk permits both kinds of repetition.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Path",
+              "feedback": "A path forbids repeated vertices under this curriculum’s convention."
+            },
+            {
+              "id": "option-2",
+              "text": "Walk",
+              "feedback": "Consecutive adjacency is the only requirement here."
+            },
+            {
+              "id": "option-3",
+              "text": "Trail",
+              "feedback": "A trail forbids repeated edges."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which term means a walk with no repeated edge, even though vertices may repeat?",
+        "answer": "A trail.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Path",
+              "feedback": "A path also forbids repeated vertices."
+            },
+            {
+              "id": "option-2",
+              "text": "Connected component",
+              "feedback": "That is a maximal connected part of a graph."
+            },
+            {
+              "id": "option-3",
+              "text": "Trail",
+              "feedback": "This is the no-repeated-edge condition."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Under this curriculum’s convention, which condition defines a path?",
+        "answer": "It is a walk with no repeated vertex.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "No repeated vertex",
+              "feedback": "A path may consist of a single vertex."
+            },
+            {
+              "id": "option-2",
+              "text": "It starts and ends at the same vertex",
+              "feedback": "That is a closed walk, not the path definition here."
+            },
+            {
+              "id": "option-3",
+              "text": "It uses every edge",
+              "feedback": "That is the goal of an Euler trail."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Under the simple undirected convention, what is a cycle?",
+        "answer": "A closed walk of length at least three with no repeated vertex except its start at the end.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Any closed walk",
+              "feedback": "A closed walk may repeat edges and other vertices."
+            },
+            {
+              "id": "option-2",
+              "text": "A walk out along one edge and straight back",
+              "feedback": "That repeats the same undirected edge and has length two."
+            },
+            {
+              "id": "option-3",
+              "text": "A closed walk of length at least three, repeating only its start at the end",
+              "feedback": "This excludes backtracking along one edge."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "graph-route-classification-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "graph-routes",
+    "skill": "recognize",
+    "objective": "route-classification-choice",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["graph-routes"],
+    "sourceIds": ["review-dm-routes"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "An undirected graph has edges $\\{a,b\\},\\{b,c\\},\\{c,a\\},\\{a,d\\}$. Which description fits $a,b,c,a,d$?",
+      "answer": "It is a trail but not a path: its four edges are distinct, but a repeats.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Trail but not a path",
+            "feedback": "No edge repeats, but vertex a does."
+          },
+          {
+            "id": "option-2",
+            "text": "Path",
+            "feedback": "Vertex a repeats."
+          },
+          {
+            "id": "option-3",
+            "text": "Not a walk",
+            "feedback": "Every consecutive pair is an edge."
+          }
+        ],
+        "correctOption": "option-1"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "An undirected graph has edges $\\{a,b\\},\\{b,c\\},\\{c,a\\},\\{a,d\\}$. Which description fits $a,b,c,a,d$?",
+        "answer": "It is a trail but not a path: its four edges are distinct, but a repeats.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Trail but not a path",
+              "feedback": "No edge repeats, but vertex a does."
+            },
+            {
+              "id": "option-2",
+              "text": "Path",
+              "feedback": "Vertex a repeats."
+            },
+            {
+              "id": "option-3",
+              "text": "Not a walk",
+              "feedback": "Every consecutive pair is an edge."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "An undirected graph has edges $\\{p,q\\}$ and $\\{q,r\\}$. Which description fits $p,q,p$?",
+        "answer": "It is a walk but not a trail: the same undirected edge is traversed twice.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Cycle",
+              "feedback": "A simple undirected cycle has length at least three."
+            },
+            {
+              "id": "option-2",
+              "text": "Trail",
+              "feedback": "The edge {p,q} repeats."
+            },
+            {
+              "id": "option-3",
+              "text": "Walk but not a trail",
+              "feedback": "Reversing direction does not create a new undirected edge."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "An undirected graph has edges $\\{u,v\\}$ and $\\{v,w\\}$. Which description fits $u,w,v$?",
+        "answer": "It is not a walk: the first requested edge is absent.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Trail but not a path",
+              "feedback": "The sequence fails the walk condition before repetition matters."
+            },
+            {
+              "id": "option-2",
+              "text": "Not a walk",
+              "feedback": "There is no edge {u,w}."
+            },
+            {
+              "id": "option-3",
+              "text": "Path",
+              "feedback": "Distinct vertices alone are insufficient; adjacency must hold."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "graph-component-language-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "graph-connectivity",
+    "skill": "recall",
+    "objective": "connected-component-definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["graph-connectivity"],
+    "sourceIds": ["review-dm-routes"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "What is a connected component of an undirected graph?",
+      "answer": "A maximal connected group of vertices, with their connecting edges.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Any two adjacent vertices",
+            "feedback": "They may lie inside a larger connected component."
+          },
+          {
+            "id": "option-2",
+            "text": "Only the largest connected part",
+            "feedback": "Different components may have different sizes."
+          },
+          {
+            "id": "option-3",
+            "text": "A maximal connected part of the graph",
+            "feedback": "No further vertex can be added while remaining connected."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "What is a connected component of an undirected graph?",
+        "answer": "A maximal connected group of vertices, with their connecting edges.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Any two adjacent vertices",
+              "feedback": "They may lie inside a larger connected component."
+            },
+            {
+              "id": "option-2",
+              "text": "Only the largest connected part",
+              "feedback": "Different components may have different sizes."
+            },
+            {
+              "id": "option-3",
+              "text": "A maximal connected part of the graph",
+              "feedback": "No further vertex can be added while remaining connected."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "What does connected mean for a nonempty undirected graph?",
+        "answer": "Every pair of vertices is joined by a path.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Every vertex has degree at least two",
+              "feedback": "A two-vertex tree is connected and has degree one at both vertices."
+            },
+            {
+              "id": "option-2",
+              "text": "Every pair has a path between them",
+              "feedback": "Direct adjacency is not required."
+            },
+            {
+              "id": "option-3",
+              "text": "Every pair shares an edge",
+              "feedback": "That is the stronger complete-graph condition."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "tree-forest-language-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "trees-forests",
+    "skill": "recall",
+    "objective": "tree-forest-distinction",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["trees-forests"],
+    "sourceIds": ["review-dm-trees"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which condition distinguishes a tree from an arbitrary forest?",
+      "answer": "A tree is nonempty and connected as well as acyclic.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "It is nonempty and connected.",
+            "feedback": "A forest may have several components or be empty."
+          },
+          {
+            "id": "option-2",
+            "text": "It has no cycles.",
+            "feedback": "Both trees and forests are acyclic."
+          },
+          {
+            "id": "option-3",
+            "text": "It has at least three vertices.",
+            "feedback": "One vertex without edges is already a tree."
+          }
+        ],
+        "correctOption": "option-1"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which condition distinguishes a tree from an arbitrary forest?",
+        "answer": "A tree is nonempty and connected as well as acyclic.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "It is nonempty and connected.",
+              "feedback": "A forest may have several components or be empty."
+            },
+            {
+              "id": "option-2",
+              "text": "It has no cycles.",
+              "feedback": "Both trees and forests are acyclic."
+            },
+            {
+              "id": "option-3",
+              "text": "It has at least three vertices.",
+              "feedback": "One vertex without edges is already a tree."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Two disjoint edges form what kind of simple undirected graph?",
+        "answer": "A forest with two components, not a tree.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "A tree",
+              "feedback": "A tree must be connected."
+            },
+            {
+              "id": "option-2",
+              "text": "A cycle",
+              "feedback": "Neither component contains a cycle."
+            },
+            {
+              "id": "option-3",
+              "text": "A forest with two components",
+              "feedback": "It has no cycle, but is disconnected."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "root-leaf-language-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "rooted-trees",
+    "skill": "recall",
+    "objective": "root-leaf-distinction",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["rooted-trees"],
+    "sourceIds": ["review-dm-trees"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "What extra choice turns a tree into a rooted tree?",
+      "answer": "Designate one vertex as the root.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Require every vertex to have two children",
+            "feedback": "That is not the definition of a rooted tree."
+          },
+          {
+            "id": "option-2",
+            "text": "Designate a vertex as the root",
+            "feedback": "The root determines the parent/child relationships."
+          },
+          {
+            "id": "option-3",
+            "text": "Add an edge joining two leaves",
+            "feedback": "That creates a cycle."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "What extra choice turns a tree into a rooted tree?",
+        "answer": "Designate one vertex as the root.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Require every vertex to have two children",
+              "feedback": "That is not the definition of a rooted tree."
+            },
+            {
+              "id": "option-2",
+              "text": "Designate a vertex as the root",
+              "feedback": "The root determines the parent/child relationships."
+            },
+            {
+              "id": "option-3",
+              "text": "Add an edge joining two leaves",
+              "feedback": "That creates a cycle."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "In a rooted tree, what is a leaf?",
+        "answer": "A vertex with no children; this also covers the root of a one-vertex tree.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "A vertex with no children",
+              "feedback": "Leaf is relative to the rooted parent/child structure."
+            },
+            {
+              "id": "option-2",
+              "text": "A vertex with no parent",
+              "feedback": "That describes the root, which may have children."
+            },
+            {
+              "id": "option-3",
+              "text": "Any vertex of degree two",
+              "feedback": "Such a vertex can have a parent and a child."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "dag-term-review",
+    "family": "fixed",
+    "lesson": "graph-theory",
+    "concept": "dag-order",
+    "skill": "recall",
+    "objective": "dag-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["dag-order"],
+    "sourceIds": ["review-dm-dag"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "What does DAG stand for in graph theory?",
+      "answer": "Directed acyclic graph.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": [
+                "directed acyclic graph",
+                "directed acyclic graph.",
+                "a directed acyclic graph",
+                "a directed acyclic graph."
+              ]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Directed acyclic graph.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "topological-order-language-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "dag-order",
+    "skill": "recall",
+    "objective": "topological-order-definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["dag-order"],
+    "sourceIds": ["review-dm-dag"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "What condition defines a topological ordering of a directed graph?",
+      "answer": "Every vertex appears once and each directed edge points from an earlier vertex to a later one.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Vertices are sorted by their names.",
+            "feedback": "Labels do not determine dependency order."
+          },
+          {
+            "id": "option-2",
+            "text": "Every pair of consecutive listed vertices shares an edge.",
+            "feedback": "A topological ordering need not be a path."
+          },
+          {
+            "id": "option-3",
+            "text": "Every edge points forward in a list containing every vertex once.",
+            "feedback": "This respects all prerequisite edges."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "What condition defines a topological ordering of a directed graph?",
+        "answer": "Every vertex appears once and each directed edge points from an earlier vertex to a later one.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Vertices are sorted by their names.",
+              "feedback": "Labels do not determine dependency order."
+            },
+            {
+              "id": "option-2",
+              "text": "Every pair of consecutive listed vertices shares an edge.",
+              "feedback": "A topological ordering need not be a path."
+            },
+            {
+              "id": "option-3",
+              "text": "Every edge points forward in a list containing every vertex once.",
+              "feedback": "This respects all prerequisite edges."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "The only arcs are $a\\to c$ and $b\\to c$. Which statement about topological order is correct?",
+        "answer": "Both a,b,c and b,a,c work; a and b are unconstrained relative to each other.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$c,a,b$ works.",
+              "feedback": "It places c before its prerequisites."
+            },
+            {
+              "id": "option-2",
+              "text": "Both $a,b,c$ and $b,a,c$ work.",
+              "feedback": "Both prerequisites precede c."
+            },
+            {
+              "id": "option-3",
+              "text": "Only $a,b,c$ works.",
+              "feedback": "No arc forces a before b."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "asymptotic-bound-language-review",
+    "family": "authored",
+    "lesson": "asymptotic-growth",
+    "concept": "big-omega-theta",
+    "skill": "recall",
+    "objective": "asymptotic-bound-directions",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["big-omega-theta"],
+    "sourceIds": ["review-dm-asymptotics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which notation expresses an eventual upper bound up to a fixed positive factor?",
+      "answer": "Big O expresses an eventual upper bound.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$\\Theta$",
+            "feedback": "That requires both upper and lower bounds."
+          },
+          {
+            "id": "option-2",
+            "text": "$O$",
+            "feedback": "The function is eventually no larger than a fixed multiple."
+          },
+          {
+            "id": "option-3",
+            "text": "$\\Omega$",
+            "feedback": "That gives an eventual lower bound."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which notation expresses an eventual upper bound up to a fixed positive factor?",
+        "answer": "Big O expresses an eventual upper bound.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\Theta$",
+              "feedback": "That requires both upper and lower bounds."
+            },
+            {
+              "id": "option-2",
+              "text": "$O$",
+              "feedback": "The function is eventually no larger than a fixed multiple."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\Omega$",
+              "feedback": "That gives an eventual lower bound."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which notation expresses an eventual lower bound up to a fixed positive factor?",
+        "answer": "Big Omega expresses an eventual lower bound.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$O$",
+              "feedback": "That gives an eventual upper bound."
+            },
+            {
+              "id": "option-2",
+              "text": "Exact equality",
+              "feedback": "Asymptotic bounds do not specify every value."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\Omega$",
+              "feedback": "The function is eventually at least a fixed positive multiple."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "What does $f(n)=\\Theta(g(n))$ assert?",
+        "answer": "For all sufficiently large n, f lies between two fixed positive multiples of g.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Matching eventual upper and lower bounds",
+              "feedback": "Both comparisons use g, with possibly different constants."
+            },
+            {
+              "id": "option-2",
+              "text": "Only an eventual upper bound",
+              "feedback": "That is insufficient for Theta."
+            },
+            {
+              "id": "option-3",
+              "text": "$f(n)=g(n)$ at every input",
+              "feedback": "The constants and finite beginning may differ."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "big-o-constants-review",
+    "family": "authored",
+    "lesson": "asymptotic-growth",
+    "concept": "big-o",
+    "skill": "interpret",
+    "objective": "fixed-asymptotic-constants",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["big-o"],
+    "sourceIds": ["review-dm-big-o"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "To prove $f(n)=O(g(n))$, may the multiplier $c$ be chosen separately for each input $n$?",
+      "answer": "No. One fixed c and one fixed threshold must work for every later input.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Yes; choose $c=f(n)/g(n)$ each time.",
+            "feedback": "An input-dependent multiplier would make the definition too weak."
+          },
+          {
+            "id": "option-2",
+            "text": "Yes, provided c is positive.",
+            "feedback": "Positivity does not remove the independence requirement."
+          },
+          {
+            "id": "option-3",
+            "text": "No; c must be fixed independently of n.",
+            "feedback": "The existential constants precede the universal input quantifier."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "To prove $f(n)=O(g(n))$, may the multiplier $c$ be chosen separately for each input $n$?",
+        "answer": "No. One fixed c and one fixed threshold must work for every later input.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Yes; choose $c=f(n)/g(n)$ each time.",
+              "feedback": "An input-dependent multiplier would make the definition too weak."
+            },
+            {
+              "id": "option-2",
+              "text": "Yes, provided c is positive.",
+              "feedback": "Positivity does not remove the independence requirement."
+            },
+            {
+              "id": "option-3",
+              "text": "No; c must be fixed independently of n.",
+              "feedback": "The existential constants precede the universal input quantifier."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Suppose $0\\leq f(n)\\leq7n^2$ for every integer $n\\geq50$. What follows regardless of the finitely many earlier values?",
+        "answer": "$f(n)=O(n^2)$ using c=7 and threshold 50.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$f(n)=O(n^2)$",
+              "feedback": "The bound is required only after a fixed threshold."
+            },
+            {
+              "id": "option-2",
+              "text": "$f(n)=\\Theta(n^2)$",
+              "feedback": "No matching lower bound was given."
+            },
+            {
+              "id": "option-3",
+              "text": "$f(n)=7n^2$ for all $n$",
+              "feedback": "An eventual inequality is neither exact equality nor a claim about small inputs."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "dominant-growth-recognition-review",
+    "family": "authored",
+    "lesson": "asymptotic-growth",
+    "concept": "growth-comparison",
+    "skill": "recognize",
+    "objective": "dominant-growth-class",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["growth-comparison"],
+    "sourceIds": ["review-dm-asymptotics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "For positive integer $n$, what is the tight growth class of $7n^3+40n+9$?",
+      "answer": "$\\Theta(n^3)$: the cubic term dominates.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$\\Theta(n^4)$",
+            "feedback": "That is a loose upper bound, not the tight class."
+          },
+          {
+            "id": "option-2",
+            "text": "$\\Theta(n^3)$",
+            "feedback": "The lower-order terms are bounded by constant multiples of n^3."
+          },
+          {
+            "id": "option-3",
+            "text": "$\\Theta(n)$",
+            "feedback": "The cubic contribution eventually exceeds every fixed linear multiple."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For positive integer $n$, what is the tight growth class of $7n^3+40n+9$?",
+        "answer": "$\\Theta(n^3)$: the cubic term dominates.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\Theta(n^4)$",
+              "feedback": "That is a loose upper bound, not the tight class."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\Theta(n^3)$",
+              "feedback": "The lower-order terms are bounded by constant multiples of n^3."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\Theta(n)$",
+              "feedback": "The cubic contribution eventually exceeds every fixed linear multiple."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For integers $n\\geq2$, what is the tight growth class of $n\\log_2 n+3n$?",
+        "answer": "$\\Theta(n\\log n)$: the logarithmic factor grows beyond any fixed constant.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$\\Theta(n)$",
+              "feedback": "The factor log n is unbounded."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\Theta(\\log n)$",
+              "feedback": "The extra factor n cannot be dropped."
+            },
+            {
+              "id": "option-3",
+              "text": "$\\Theta(n\\log n)$",
+              "feedback": "The n term is lower order."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For positive integers, which function eventually grows faster than every fixed power $n^k$?",
+        "answer": "$2^n$ eventually outruns each fixed polynomial power.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$2^n$",
+              "feedback": "Here k is fixed while n grows."
+            },
+            {
+              "id": "option-2",
+              "text": "$\\log_2 n$",
+              "feedback": "Logarithms grow more slowly than positive powers."
+            },
+            {
+              "id": "option-3",
+              "text": "$n^{10}$",
+              "feedback": "For example, it does not outrun n^11."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "worst-case-term-review",
+    "family": "fixed",
+    "lesson": "asymptotic-growth",
+    "concept": "case-complexity",
+    "skill": "recall",
+    "objective": "worst-case-term",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["case-complexity"],
+    "sourceIds": ["review-dm-cost"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Answer from memory in the field.",
+      "prompt": "What case of an algorithm’s cost takes the maximum over all inputs of each fixed size?",
+      "answer": "Worst-case cost.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "Answer"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": [
+                "worst case",
+                "worst case.",
+                "worst-case",
+                "worst-case.",
+                "worst-case cost",
+                "worst-case cost.",
+                "worst case cost",
+                "worst case cost.",
+                "worst-case complexity",
+                "worst-case complexity.",
+                "worst case complexity",
+                "worst case complexity."
+              ]
+            },
+            "description": "Supply the requested term or mathematical value.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Worst-case cost.",
+          "incorrect": "Check the definition and the stated conditions, then try again."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "exact-count-versus-growth-review",
+    "family": "authored",
+    "lesson": "asymptotic-growth",
+    "concept": "loop-counting",
+    "skill": "interpret",
+    "objective": "exact-count-versus-growth",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["loop-counting"],
+    "sourceIds": ["review-dm-asymptotics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "A loop body executes exactly $n(n+1)/2$ times. What does calling this $\\Theta(n^2)$ preserve?",
+      "answer": "The eventual growth scale, not the exact count.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "The quadratic scale up to positive constants",
+            "feedback": "The exact expression contains more information."
+          },
+          {
+            "id": "option-2",
+            "text": "The exact number of iterations for each n",
+            "feedback": "Theta suppresses constants and lower-order terms."
+          },
+          {
+            "id": "option-3",
+            "text": "The number of seconds on every machine",
+            "feedback": "A body count is not a hardware-independent elapsed time."
+          }
+        ],
+        "correctOption": "option-1"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "A loop body executes exactly $n(n+1)/2$ times. What does calling this $\\Theta(n^2)$ preserve?",
+        "answer": "The eventual growth scale, not the exact count.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "The quadratic scale up to positive constants",
+              "feedback": "The exact expression contains more information."
+            },
+            {
+              "id": "option-2",
+              "text": "The exact number of iterations for each n",
+              "feedback": "Theta suppresses constants and lower-order terms."
+            },
+            {
+              "id": "option-3",
+              "text": "The number of seconds on every machine",
+              "feedback": "A body count is not a hardware-independent elapsed time."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Two consecutive loops execute their bodies n times and 3n times. Under unit body cost, what is the total exact count and tight growth?",
+        "answer": "$4n$ executions and $\\Theta(n)$ growth.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$3n^2$ and $\\Theta(n^2)$",
+              "feedback": "Multiplication would model nesting, not consecutive loops."
+            },
+            {
+              "id": "option-2",
+              "text": "$4n$ and exactly n seconds",
+              "feedback": "The cost model counts operations, not universal seconds."
+            },
+            {
+              "id": "option-3",
+              "text": "$4n$ and $\\Theta(n)$",
+              "feedback": "Consecutive blocks add their work."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "graph-scan-growth-transfer-review",
+    "family": "authored",
+    "lesson": "asymptotic-growth",
+    "concept": "cost-model",
+    "skill": "justify",
+    "objective": "graph-scan-growth-transfer",
+    "evidenceLevel": "reasoning",
+    "interactionCost": "high",
+    "inputCapabilities": ["math-text"],
+    "cognitiveLevel": "analyze",
+    "activationConcepts": ["cost-model"],
+    "sourceIds": ["review-dm-search", "review-dm-trees", "review-dm-asymptotics"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Give a short mathematical justification.",
+      "prompt": "A routine visits every vertex of an n-vertex undirected tree and scans its entire adjacency list once. Count one operation per vertex plus one per neighbor entry. Derive the exact total and its tight growth class; explain why the nested loops do not force quadratic work.",
+      "answer": "A tree has n−1 edges. Each undirected edge contributes two neighbor entries, so the exact count is n+2(n−1)=3n−2 and the growth is $\\Theta(n)$. The inner lengths sum to the degree sum 2(n−1), not n for every vertex. This holds for n≥1."
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Give a short mathematical justification.",
+        "prompt": "A routine visits every vertex of an n-vertex undirected tree and scans its entire adjacency list once. Count one operation per vertex plus one per neighbor entry. Derive the exact total and its tight growth class; explain why the nested loops do not force quadratic work.",
+        "answer": "A tree has n−1 edges. Each undirected edge contributes two neighbor entries, so the exact count is n+2(n−1)=3n−2 and the growth is $\\Theta(n)$. The inner lengths sum to the degree sum 2(n−1), not n for every vertex. This holds for n≥1."
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Give a short mathematical justification.",
+        "prompt": "A routine visits every vertex of the complete simple undirected graph on $n\\geq3$ vertices and scans its entire adjacency list once. Count one operation per vertex plus one per neighbor entry. Derive its exact total and tight growth class, and explain why the tree count does not apply.",
+        "answer": "Each of the n vertices has n−1 neighbors, so the count is n+n(n−1)=n^2, giving $\\Theta(n^2)$. The graph has n(n−1)/2 edges rather than the n−1 edges of a tree; the representation alone does not force linear growth in n."
+      }
+    ]
+  },
+  {
+    "id": "topological-order-production-review",
+    "family": "authored",
+    "lesson": "graph-theory",
+    "concept": "dag-order",
+    "skill": "construct",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["dag-order"],
+    "sourceIds": ["review-dm-dag"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Enter complete orders using the stated vertex labels.",
+      "prompt": "A digraph has vertices $a,b,c$ and only arcs $a\\to b$ and $a\\to c$. List every topological ordering, separating the orders with semicolons.",
+      "answer": "$a,b,c$ and $a,c,b$: a precedes both others, whose relative order is free.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "text",
+            "label": "All topological orders"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "validator": "graph",
+            "fields": ["answer"],
+            "params": {
+              "kind": "all-topological-orders",
+              "vertices": ["a", "b", "c"],
+              "edges": [
+                ["a", "b"],
+                ["a", "c"]
+              ],
+              "directed": true
+            },
+            "description": "List exactly all orders that respect every directed edge.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "$a,b,c$ and $a,c,b$: a precedes both others, whose relative order is free.",
+          "incorrect": "Check every prerequisite edge and whether another valid order is missing."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Enter complete orders using the stated vertex labels.",
+        "prompt": "A digraph has vertices $a,b,c$ and only arcs $a\\to b$ and $a\\to c$. List every topological ordering, separating the orders with semicolons.",
+        "answer": "$a,b,c$ and $a,c,b$: a precedes both others, whose relative order is free.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "text",
+              "label": "All topological orders"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "graph",
+              "fields": ["answer"],
+              "params": {
+                "kind": "all-topological-orders",
+                "vertices": ["a", "b", "c"],
+                "edges": [
+                  ["a", "b"],
+                  ["a", "c"]
+                ],
+                "directed": true
+              },
+              "description": "List exactly all orders that respect every directed edge.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "$a,b,c$ and $a,c,b$: a precedes both others, whose relative order is free.",
+            "incorrect": "Check every prerequisite edge and whether another valid order is missing."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Enter complete orders using the stated vertex labels.",
+        "prompt": "A digraph has vertices $a,b,c$ and only arcs $a\\to b$ and $b\\to c$. List every topological ordering, separating orders with semicolons if needed.",
+        "answer": "Only $a,b,c$ respects the chain of prerequisites.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "text",
+              "label": "All topological orders"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "validator": "graph",
+              "fields": ["answer"],
+              "params": {
+                "kind": "all-topological-orders",
+                "vertices": ["a", "b", "c"],
+                "edges": [
+                  ["a", "b"],
+                  ["b", "c"]
+                ],
+                "directed": true
+              },
+              "description": "List exactly all orders that respect every directed edge.",
+              "evidenceLevel": "production"
+            }
+          ],
+          "feedback": {
+            "correct": "Only $a,b,c$ respects the chain of prerequisites.",
+            "incorrect": "Check every prerequisite edge and whether another valid order is missing."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      }
+    ]
   }
 ]

@@ -162,6 +162,12 @@
       "author": "Barbara Illowsky and Susan Dean",
       "edition": "OpenStax, 2023; online text inspected September 2026",
       "url": "https://openstax.org/books/introductory-statistics-2e/pages/preface"
+    },
+    "cornell-cs2110": {
+      "title": "CS 2110: Lecture 5, Analyzing Complexity",
+      "author": "Cornell University CS 2110 course staff",
+      "edition": "Spring 2026 course notes",
+      "url": "https://courses.cis.cornell.edu/courses/cs2110/2026sp/lectures/lec05/"
     }
   },
   "citations": {
@@ -2165,6 +2171,118 @@
       "locator": "§8.1.4, printed pp. 257–258 (PDF pp. 263–264): learning, prediction, and evaluation",
       "supports": "A fit to observed data does not establish accuracy on unseen inputs. Original contrasting functions illustrate the distinction without asserting that this book contains the examples.",
       "url": "https://mml-book.github.io/book/mml-book.pdf#page=263",
+      "checked": "2026-09-20"
+    },
+    "review-dm-induction": {
+      "source": "mcs",
+      "locator": "§5.1.1–5.1.3, printed pp. 138–141",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=146",
+      "supports": "Base case, induction hypothesis, general implication step; original role distinctions.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-invariant": {
+      "source": "mcs",
+      "locator": "§6.2, Definition 6.2.5 and Invariant Principle, printed pp. 177–178",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=185",
+      "supports": "Initialization and preservation of loop invariants; the curriculum uses loop invariant for the resulting property at loop boundaries.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-strong": {
+      "source": "mcs",
+      "locator": "§5.2.1, printed p. 147",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=155",
+      "supports": "Strong induction permits all earlier cases in the stated domain.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-well-ordering": {
+      "source": "mcs",
+      "locator": "Chapter 2 opening and §§2.1–2.2, printed pp. 29–30; §5.3",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=37",
+      "supports": "Nonempty nonnegative-integer sets have a least element; smallest-counterexample reasoning. The positive-real halving counterexample is original and independently checked.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-counting": {
+      "source": "mcs",
+      "locator": "§§15.2–15.5, printed pp. 656–667",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=664",
+      "supports": "Product/sum rules, permutations, subset counting and uniform overcount correction. Original small counts independently enumerated; no source claim for the specific examples.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-pigeonhole": {
+      "source": "mcs",
+      "locator": "§15.8, Rule 15.8.1, printed p. 676",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=684",
+      "supports": "More objects than boxes forces at least one repeated assignment.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-inclusion-exclusion": {
+      "source": "mcs",
+      "locator": "§15.9.1, printed p. 686, equation 15.5",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=694",
+      "supports": "Two-set inclusion–exclusion and the double-counted intersection.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-recurrence": {
+      "source": "mcs",
+      "locator": "§22.1, printed pp. 995–996; §§22.3.1–22.3.3, printed pp. 1002–1008",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=1010",
+      "supports": "Recurrence evaluation, order, homogeneous/inhomogeneous terms, characteristic equation and polynomial. Original recurrence values and polynomial factorizations independently checked; source uses boundary conditions where curriculum says initial conditions.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-graphs": {
+      "source": "mcs",
+      "locator": "§12.1, Definitions 12.1.1–12.1.2, printed pp. 501–503",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=509",
+      "supports": "Vertices, simple undirected edges, adjacency and degree. Unlike this source, the curriculum permits empty graphs; these review prompts do not change that convention.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-routes": {
+      "source": "levin",
+      "locator": "§2.1, vocabulary entries Walk, Path, Cycle, Connected; compared with MIT MCS §§12.7–12.8",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_gt-intro.html",
+      "supports": "Walk/trail/path distinction and connectivity. Levin permits a path to repeat its starting vertex at the end; these original review prompts explicitly retain the curriculum/MIT convention: paths have no repeated vertices, cycles are separate. Graph cases independently checked.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-trees": {
+      "source": "levin",
+      "locator": "§2.2, Definition 2.2.1, tree edge count and Rooted Trees subsection",
+      "url": "https://discrete.openmathbooks.org/dmoi4/sec_trees.html",
+      "supports": "Trees/forests, n−1 tree edges, designated root and child relationships. Rooted leaf here means no children, including a singleton root; this differs from an unrooted degree-one leaf.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-dag": {
+      "source": "mcs",
+      "locator": "§10.5, Definition 10.5.2 and Theorem 10.5.4, printed pp. 432–435",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=440",
+      "supports": "DAG terminology and topological ordering. The original two-prerequisite example has two valid orders.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-asymptotics": {
+      "source": "algorithms",
+      "locator": "Recitation 1, Asymptotic Complexity and Asymptotic Drowning, pp. 1–3",
+      "url": "https://courses.csail.mit.edu/6.006/fall11/rec/rec01.pdf#page=1",
+      "supports": "O/Omega/Theta directions, dominant terms and exact-count versus growth distinctions. Uses nonnegative functions on positive integer sizes as taught. Original examples independently verified.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-cost": {
+      "source": "cornell-cs2110",
+      "locator": "Measuring Runtime, paragraph defining worst-case T(N) as maximum over inputs of size N",
+      "url": "https://courses.cis.cornell.edu/courses/cs2110/2026sp/lectures/lec05/#measuring-runtime",
+      "supports": "Worst-case takes the maximum over inputs of each fixed size; best-case takes the minimum. Original terminology retrieval and contrasting Big O distractor.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-search": {
+      "source": "algorithms",
+      "locator": "Lecture 13, p. 5, Analysis: sum of adjacency-list lengths, undirected 2|E| and vertex overhead",
+      "url": "https://courses.csail.mit.edu/6.006/fall11/lectures/lecture13.pdf#page=5",
+      "supports": "Summed neighbor-entry work plus vertex overhead. Original tree/complete-graph exact counts follow independently from the explicitly stated unit-cost model.",
+      "checked": "2026-09-20"
+    },
+    "review-dm-big-o": {
+      "source": "mcs",
+      "locator": "§14.7.2–14.7.3, Definition 14.7.9 and Proposition 14.7.12, printed pp. 632–633",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=640",
+      "supports": "Fixed constant and threshold preceding all later inputs; polynomial dominant terms and distinction between upper and tight bounds. Curriculum uses eventually nonnegative functions on positive integers.",
       "checked": "2026-09-20"
     }
   },
@@ -6559,6 +6677,130 @@
     "la-fit-scope-recognition-review": {
       "reviewedContentHash": "46f7a42a9006f346d7a1bcd2f603daabdfed0e91b023083b2c57f6e1a50f295a",
       "sources": ["review-la-fit-limits", "review-la-least", "review-la-dot"]
+    },
+    "induction-proof-roles-review": {
+      "reviewedContentHash": "6818698155ab518c39862317c0e56ac6e54448db879057a8eaa47929ce3d31a5",
+      "sources": ["review-dm-induction"]
+    },
+    "induction-hypothesis-term-review": {
+      "reviewedContentHash": "a0b13505130f91372b2345e66c2014cddea5ba018f983424d83b29869731f920",
+      "sources": ["review-dm-induction"]
+    },
+    "loop-invariant-term-review": {
+      "reviewedContentHash": "14dac34055744f885029185f09516ddfb85c35576f36c3945723dc753e5fe458",
+      "sources": ["review-dm-invariant"]
+    },
+    "strong-induction-term-review": {
+      "reviewedContentHash": "714f2634566b87e20d92618ed50b6e6fd6df26e91890d8cca6ee24912fa14155",
+      "sources": ["review-dm-strong"]
+    },
+    "well-ordering-boundary-review": {
+      "reviewedContentHash": "d910267fbc44db18703c0db3ffc88f45f3e3a2e63db30a11df5dd67bda978a71",
+      "sources": ["review-dm-well-ordering"]
+    },
+    "permutation-term-review": {
+      "reviewedContentHash": "ca4856ce2d8fbc0b2fc95674ac9b311d7fed6d9cd69ecc8af8155048302e4b4f",
+      "sources": ["review-dm-counting"]
+    },
+    "combination-term-review": {
+      "reviewedContentHash": "563aa081232712488c78986133b36adfef7f3be30feb25bfd8feb13bf7d6fbc2",
+      "sources": ["review-dm-counting"]
+    },
+    "counting-model-distinction-review": {
+      "reviewedContentHash": "4c54bfa683de02117fe89bafcc17c50219aed8fb4b53b58d12db25b7cb7c41db",
+      "sources": ["review-dm-counting"]
+    },
+    "pigeonhole-term-review": {
+      "reviewedContentHash": "8cbdfcd902973a478780315040206d231ba9c3f2cdf4c96354095d5a1de1966b",
+      "sources": ["review-dm-pigeonhole"]
+    },
+    "inclusion-exclusion-meaning-review": {
+      "reviewedContentHash": "711524e5158026867d813bb0c06108e8ee15e9f29d946b7aacc6741a7279c393",
+      "sources": ["review-dm-inclusion-exclusion"]
+    },
+    "counting-short-production-review": {
+      "reviewedContentHash": "99c95f25024f9b6591648289b422d511a6d6c0f1c3c3d70479a0c5253400af7c",
+      "sources": ["review-dm-counting"]
+    },
+    "characteristic-equation-term-review": {
+      "reviewedContentHash": "95eab415cdcaa1cb3bad27bb15ad98acd47bd0afe527ab2031dbf4706b44edb1",
+      "sources": ["review-dm-recurrence"]
+    },
+    "affine-recurrence-language-review": {
+      "reviewedContentHash": "89491caa1aeab6c43194a8e7959c2426ca4e62e18ed3b0258cb1def23bb44664",
+      "sources": ["review-dm-recurrence"]
+    },
+    "recurrence-cold-evaluation-review": {
+      "reviewedContentHash": "c922899fb3f4f63ad64d32bb799b75c22919cb68e622153fb3d3cbccfd8c3b28",
+      "sources": ["review-dm-recurrence"]
+    },
+    "characteristic-polynomial-production-review": {
+      "reviewedContentHash": "35bdd379eb1c6c541fd49a82080f20cf1805de9dab89c061048206ae8bb050a9",
+      "sources": ["review-dm-recurrence"]
+    },
+    "graph-vertex-edge-language-review": {
+      "reviewedContentHash": "097ea86cf5e44cbcc6bb765cfbb94b25b75c2d8bec720915fa4f4c6c5afbc4f4",
+      "sources": ["review-dm-graphs"]
+    },
+    "graph-degree-term-review": {
+      "reviewedContentHash": "21542f19974802289349a5e598b57dc4dfbcffa186bfc665de8ff6b7b7a6fe9f",
+      "sources": ["review-dm-graphs"]
+    },
+    "graph-route-vocabulary-review": {
+      "reviewedContentHash": "8cf288401b24e504c26ec7203f71671069bea9e0ae42a619ea8b609655006b4e",
+      "sources": ["review-dm-routes"]
+    },
+    "graph-route-classification-review": {
+      "reviewedContentHash": "4b4b81e74787c10a504de30e6511148cfb02434835cbecd86d9a3e9b2ee52fd2",
+      "sources": ["review-dm-routes"]
+    },
+    "graph-component-language-review": {
+      "reviewedContentHash": "628cee7fc0c78532ab19e17eb6629acf08c185c727bbae8508bb9c4549fd41d6",
+      "sources": ["review-dm-routes"]
+    },
+    "tree-forest-language-review": {
+      "reviewedContentHash": "44e8e9cfe19f4116b74ddccdfe482e9301b23bd1deffc7e856d54bc7f634de3e",
+      "sources": ["review-dm-trees"]
+    },
+    "root-leaf-language-review": {
+      "reviewedContentHash": "b7565dee28b7b9af766de6115df6ab281018cae8b94d9806daaf217fbb46b1f5",
+      "sources": ["review-dm-trees"]
+    },
+    "dag-term-review": {
+      "reviewedContentHash": "151a652c934e1f3294c31f5ce3fe29792aaf5869b0f04b25e4906873dec7189d",
+      "sources": ["review-dm-dag"]
+    },
+    "topological-order-language-review": {
+      "reviewedContentHash": "b14eb16cc520e9519771c80f82c6d64fa4ba24a730e48241c5d68a450dd6e5f2",
+      "sources": ["review-dm-dag"]
+    },
+    "asymptotic-bound-language-review": {
+      "reviewedContentHash": "2cba51f4ed392225a1da7f0b1eaf14ba048f02e27cb77d00d044b15cae91d46b",
+      "sources": ["review-dm-asymptotics"]
+    },
+    "big-o-constants-review": {
+      "reviewedContentHash": "dd7ed7da0f3ef6adbcfe001477d7fb171d6fd5d7c5e4e52cbf7b642121f813a3",
+      "sources": ["review-dm-big-o"]
+    },
+    "dominant-growth-recognition-review": {
+      "reviewedContentHash": "9550bd5e22cb09949b6702f562e8355f4a27e29f11a8d43bb130473865bc69d3",
+      "sources": ["review-dm-asymptotics"]
+    },
+    "worst-case-term-review": {
+      "reviewedContentHash": "30eefdfa6ccbf6c76ee58b0736ed658ed8690ae36afc38b0f1f5dbb50da97abe",
+      "sources": ["review-dm-cost"]
+    },
+    "exact-count-versus-growth-review": {
+      "reviewedContentHash": "bf89b9511efc1219aa5d1e3826d49a933d3e626cd772c52fccb10ae94cb06dae",
+      "sources": ["review-dm-asymptotics"]
+    },
+    "graph-scan-growth-transfer-review": {
+      "reviewedContentHash": "e15a36c8f15f598ba163d81c4758939630a9cba9bcf0aa36b9e07da146bd1eb6",
+      "sources": ["review-dm-search", "review-dm-trees", "review-dm-asymptotics"]
+    },
+    "topological-order-production-review": {
+      "reviewedContentHash": "abe14964a3bb94764e3587d8e63e8e32b236610513438dea6d929772cbc80ed6",
+      "sources": ["review-dm-dag"]
     }
   }
 }

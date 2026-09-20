@@ -14323,5 +14323,577 @@
         "error": true
       }
     ]
+  },
+  {
+    "template": "induction-hypothesis-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "induction hypothesis"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " INDUCTION HYPOTHESIS "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "base case"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "loop-invariant-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "loop invariant"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " LOOP INVARIANT "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "termination"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "strong-induction-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "strong induction"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " STRONG INDUCTION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "ordinary induction"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "permutation-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "permutation"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " PERMUTATION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "combination"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "combination-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "combination"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " COMBINATION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "permutation"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "pigeonhole-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "pigeonhole principle"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " PIGEONHOLE PRINCIPLE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "product principle"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "counting-short-production-review",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "400"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "4*10^2"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "360"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "counting-short-production-review",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "11"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "4+7"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "28"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "counting-short-production-review",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "20"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "5*4"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "10"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "characteristic-equation-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "characteristic equation"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " CHARACTERISTIC EQUATION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "initial condition"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "recurrence-cold-evaluation-review",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "14"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "3*(3*2-1)-1"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "5"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "recurrence-cold-evaluation-review",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "11"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "5+2*3"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "8"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "recurrence-cold-evaluation-review",
+    "variant": 3,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "9"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "4+2+3"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "10"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "characteristic-polynomial-production-review",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "r^2-5*r+6"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "(r-2)*(r-3)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "r^2-5*r-6"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "characteristic-polynomial-production-review",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "r^2-2*r-3"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "(r-3)*(r+1)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "r^2+2*r+3"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "graph-degree-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "degree"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " DEGREE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "distance"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "dag-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "directed acyclic graph"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " DIRECTED ACYCLIC GRAPH "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "directed adjacent graph"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "worst-case-term-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "worst case"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": " WORST CASE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "big O"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "topological-order-production-review",
+    "variant": 1,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "a,b,c; a,c,b"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "a,c,b; a,b,c"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "a,b,c"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "c,b,a"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "topological-order-production-review",
+    "variant": 2,
+    "fixtures": [
+      {
+        "response": {
+          "answer": "a,b,c"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "(a,b,c)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "answer": "a,c,b"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "answer": "c,b,a"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   }
 ]
