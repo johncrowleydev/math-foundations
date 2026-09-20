@@ -1,7 +1,7 @@
 import { prepareExtendedExpressions } from './exponential';
 import { logicalExpression, type FunctionTerm } from './fol-terms';
-import { InputError, parseExpression, sameExpressionDomain } from './exact';
-import { comparisonEqual, comparisonFromStrings } from './comparison';
+import { InputError, sameExpressionDomain } from './exact';
+import { comparisonEqual } from './comparison';
 export type QNode =
   | {
       kind: 'quantifier';
