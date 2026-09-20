@@ -143,7 +143,7 @@ sections:
         answer: The farther edge is at distance $2$, the nearer at $2-x$, so subtract their squared-radius areas. The answer is $\pi\cdot \left(4-\left(2-x\right)^{2}\right)$.
       - id: 28
         type: freeform
-        prompt: For that rotation about $y=2$, find the volume.
+        prompt: Rotate $0\le y\le x$, $0\le x\le1$, about $y=2$. Find the volume.
         answerLines: 5
         answer: $\pi\int_0^1[4-(2-x)^2]dx=\pi\int_0^1(4x-x^2)dx=5\pi/3$. The answer is $\frac{5\cdot \pi}{3}$.
       - id: 29
@@ -217,7 +217,7 @@ sections:
         answer: $Q(3)=10+\int_0^3(t-2)dt=10+9/2-6=17/2$ MB. The answer is $\frac{17}{2}$.
       - id: 42
         type: freeform
-        prompt: For that buffer, find the minimum content on $[0,3]$.
+        prompt: A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\le t\le3$. Find the minimum content on $[0,3]$.
         answerLines: 5
         answer: $Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.
       - id: 43

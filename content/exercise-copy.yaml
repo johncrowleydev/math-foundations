@@ -8163,7 +8163,7 @@ calculus-limits-continuity:
     answer: The answer is $6$. Nearby values obey $x+4$, which approaches $6$; the isolated value $19$ is irrelevant.
   '3':
     instructions: ''
-    prompt: For that same explicitly defined function, find $f(2)$.
+    prompt: Let $f(x)=x+4$ for $x\ne2$ and $f(2)=19$. Find $f(2)$.
     answer: The answer is $19$. The special definition gives $f(2)=19$, independently of its limit.
   '4':
     instructions: ''
@@ -8343,7 +8343,7 @@ calculus-limits-continuity:
     answer: The answer is $3$. Here $L=f(-1)=3$, and $|2x+5-3|=2|x+1|$.
   '48':
     instructions: ''
-    prompt: To prove $x^2\to9$ as $x\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?
+    prompt: To prove $x^2\to9$ as $x\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?
     answer: The answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.
   '49':
     instructions: ''
@@ -9252,11 +9252,11 @@ calculus-related-rates-approximation:
     answer: The answer is $4$. $xx'+yy'=0$ gives $3x'-12=0$, so $x'=4$.
   '24':
     instructions: ''
-    prompt: If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.
+    prompt: A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.
     answer: The answer is $\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.
   '25':
     instructions: ''
-    prompt: If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.
+    prompt: A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.
     answer: The answer is $\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.
   '26':
     instructions: ''
@@ -9405,11 +9405,11 @@ calculus-mvt-function-behavior:
     answer: The answer is $\frac{3}{5}$. The bound is $3(0.2)=0.6$.
   '12':
     instructions: ''
-    prompt: If $2\le f'\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.
+    prompt: If $2\le f'\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.
     answer: 'The answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.'
   '13':
     instructions: ''
-    prompt: If $2\le f'\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.
+    prompt: If $2\le f'\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.
     answer: The answer is $15$. The maximum slope bound gives $5(3)=15$.
   '14':
     instructions: ''
@@ -9429,7 +9429,7 @@ calculus-mvt-function-behavior:
     answer: The answer is false. Two ordered inputs must have ordered distinct outputs, so both cannot produce zero.
   '18':
     instructions: ''
-    prompt: Using the derivative bound $|\cos x|\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.
+    prompt: Using the derivative bound $|\cos x|\le1$, give the bound $1|\Delta x|$ on sine-output error for a radian input error of at most $0.03$.
     answer: The answer is $\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.
   '19':
     instructions: ''
@@ -9931,7 +9931,7 @@ calculus-definite-integrals:
     answer: $3(2)-2(4)=6-8=-2$ meters. The answer is $-2$.
   '43':
     instructions: ''
-    prompt: For the same motion, find distance in meters.
+    prompt: Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.
     answer: 'Add absolute contributions: $6+8=14$ meters. The answer is $14$.'
   '44':
     instructions: ''
@@ -10474,7 +10474,7 @@ calculus-applications-integration:
     answer: The farther edge is at distance $2$, the nearer at $2-x$, so subtract their squared-radius areas. The answer is $\pi\cdot \left(4-\left(2-x\right)^{2}\right)$.
   '28':
     instructions: ''
-    prompt: For that rotation about $y=2$, find the volume.
+    prompt: Rotate $0\le y\le x$, $0\le x\le1$, about $y=2$. Find the volume.
     answer: $\pi\int_0^1[4-(2-x)^2]dx=\pi\int_0^1(4x-x^2)dx=5\pi/3$. The answer is $\frac{5\cdot \pi}{3}$.
   '29':
     instructions: ''
@@ -10530,7 +10530,7 @@ calculus-applications-integration:
     answer: $Q(3)=10+\int_0^3(t-2)dt=10+9/2-6=17/2$ MB. The answer is $\frac{17}{2}$.
   '42':
     instructions: ''
-    prompt: For that buffer, find the minimum content on $[0,3]$.
+    prompt: A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\le t\le3$. Find the minimum content on $[0,3]$.
     answer: $Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.
   '43':
     instructions: ''
@@ -10747,7 +10747,7 @@ calculus-numerical-improper:
     answer: The tail equals $e^{-B}$ at $B=3$. The answer is $e^{-3}$.
   '46':
     instructions: ''
-    prompt: A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.
+    prompt: A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give the total absolute error bound obtained by adding these two bounds.
     answer: The triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\frac{3}{1000}$.
   '47':
     instructions: ''
@@ -10876,7 +10876,7 @@ calculus-sequences-series:
     answer: $R_{20}\le\int_{20}^{\infty}x^{-2}dx=1/20$. The answer is $\frac{1}{20}$.
   '28':
     instructions: ''
-    prompt: What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?
+    prompt: What minimum integer $N$ makes the integral-test upper bound for the $\sum_{n=1}^{\infty}1/n^2$ tail at most $1/100$?
     answer: Require $1/N\le1/100$, giving $N\ge100$. The answer is $100$.
   '29':
     instructions: ''
@@ -10948,7 +10948,7 @@ calculus-sequences-series:
     answer: The first omitted magnitude is $1/(10+1)=1/11$. The answer is $\frac{1}{11}$.
   '46':
     instructions: ''
-    prompt: What minimum $N$ guarantees error at most $1/100$ by that bound?
+    prompt: For the alternating harmonic series $\sum_{n=1}^{\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?
     answer: Require $1/(N+1)\le1/100$, giving $N\ge99$. The answer is $99$.
   '47':
     instructions: ''
@@ -10956,7 +10956,7 @@ calculus-sequences-series:
     answer: A common denominator gives $12/12-6/12+4/12-3/12=7/12$. The answer is $\frac{7}{12}$.
   '48':
     instructions: ''
-    prompt: For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.
+    prompt: For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.
     answer: The first omitted term has magnitude $1/10^2=1/100$. The answer is $\frac{1}{100}$.
   '49':
     instructions: ''
@@ -11133,7 +11133,7 @@ calculus-power-series-taylor:
     answer: $1+1/10+1/200=221/200=1.105$. The answer is $\frac{221}{200}$.
   '32':
     instructions: ''
-    prompt: For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.
+    prompt: For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.
     answer: $2(1/10)^3/3!=2/(1000\cdot6)=1/3000$. The answer is $\frac{1}{3000}$.
   '33':
     instructions: ''
@@ -11141,11 +11141,11 @@ calculus-power-series-taylor:
     answer: The next magnitude is $(1/2)^5/5!=1/(32\cdot120)=1/3840$. The answer is $\frac{1}{3840}$.
   '34':
     instructions: ''
-    prompt: Evaluate the same sine polynomial at $x=1/2$.
+    prompt: Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.
     answer: $1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\frac{23}{48}$.
   '35':
     instructions: ''
-    prompt: For $\cos x\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.
+    prompt: For $\cos x\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.
     answer: "The cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$."
   '36':
     instructions: ''
@@ -11193,11 +11193,11 @@ calculus-power-series-taylor:
     answer: Integrating each term gives $b-b^3/3+b^5/10$. The answer is $b-\frac{b^{3}}{3}+\frac{b^{5}}{10}$.
   '47':
     instructions: ''
-    prompt: Use those three terms to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.
+    prompt: Use $1-x^2+x^4/2$ to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.
     answer: $1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\frac{443}{960}$.
   '48':
     instructions: ''
-    prompt: Give the first-omitted-term bound for that three-term integral approximation.
+    prompt: Approximate $\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.
     answer: The next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\cdot42)=1/5376$. The answer is $\frac{1}{5376}$.
   '49':
     instructions: ''
@@ -11760,70 +11760,70 @@ calculus-gradients:
       The gradient (y,x,2z) becomes (-1,-2,4).
   '32':
     instructions: ''
-    prompt: A gradient is $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{11}{5}$.
 
       Take the dot product: $11/5$.
   '33':
     instructions: ''
-    prompt: A gradient is $(1,2)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(1,2)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{5}$.
 
       Cauchy–Schwarz gives the gradient length $\sqrt{5}$.
   '34':
     instructions: ''
-    prompt: A gradient is $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{1}{5}$.
 
       Take the dot product: $1/5$.
   '35':
     instructions: ''
-    prompt: A gradient is $(-1,1)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(-1,1)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{2}$.
 
       Cauchy–Schwarz gives the gradient length $\sqrt{2}$.
   '36':
     instructions: ''
-    prompt: A gradient is $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{8}{5}$.
 
       Take the dot product: $8/5$.
   '37':
     instructions: ''
-    prompt: A gradient is $(0,2)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(0,2)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{4}$.
 
       Cauchy–Schwarz gives the gradient length $\sqrt{4}$.
   '38':
     instructions: ''
-    prompt: A gradient is $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{2}{5}$.
 
       Take the dot product: $2/5$.
   '39':
     instructions: ''
-    prompt: A gradient is $(2,-1)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(2,-1)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{5}$.
 
       Cauchy–Schwarz gives the gradient length $\sqrt{5}$.
   '40':
     instructions: ''
-    prompt: A gradient is $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{-10}{5}$.
 
       Take the dot product: $-10/5$.
   '41':
     instructions: ''
-    prompt: A gradient is $(-2,-1)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{5}$.
 
@@ -11900,7 +11900,7 @@ calculus-multivariable-chain-rule:
       The two contributions give $(t^2+2)+2t(t+1)$.
   '2':
     instructions: ''
-    prompt: At a point, $f_x=1$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=1$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $-4$.
 
@@ -11914,7 +11914,7 @@ calculus-multivariable-chain-rule:
       The two contributions give $(t^2+3)+2t(t+-1)$.
   '4':
     instructions: ''
-    prompt: At a point, $f_x=-1$ and $f_y=3$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=-1$ and $f_y=3$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $-11$.
 
@@ -11928,7 +11928,7 @@ calculus-multivariable-chain-rule:
       The two contributions give $(t^2+-1)+2t(t+2)$.
   '6':
     instructions: ''
-    prompt: At a point, $f_x=2$ and $f_y=-1$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=2$ and $f_y=-1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $7$.
 
@@ -11942,7 +11942,7 @@ calculus-multivariable-chain-rule:
       The two contributions give $(t^2+2)+2t(t+0)$.
   '8':
     instructions: ''
-    prompt: At a point, $f_x=0$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=0$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $-6$.
 
@@ -11956,7 +11956,7 @@ calculus-multivariable-chain-rule:
       The two contributions give $(t^2+1)+2t(t+3)$.
   '10':
     instructions: ''
-    prompt: At a point, $f_x=3$ and $f_y=1$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=3$ and $f_y=1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $3$.
 
@@ -12641,7 +12641,7 @@ calculus-double-integrals:
     answer: The density describes mass per unit area. Multiplying by square meters gives kilograms, whereas multiplying by width alone leaves kilograms per meter.
   '9':
     instructions: ''
-    prompt: A height is between 2 and 5 over area 3. Give lower and upper bounds for its volume as a pair.
+    prompt: A height is between 2 and 5 over area 3. Give the sharp lower and upper volume bounds implied by these height bounds, as a pair.
     answer: |-
       The answer is $\left(6,\ 15\right)$.
 
@@ -12758,7 +12758,7 @@ calculus-double-integrals:
       Solve 2x+y=4 for y:4-2x.
   '27':
     instructions: ''
-    prompt: For that triangle, give the outer x interval endpoints as a pair.
+    prompt: For the triangle x,y>=0 and 2x+y<=4, give the outer x interval endpoints as a pair when integrating y first.
     answer: |-
       The answer is $\left(0,\ 2\right)$.
 
@@ -12801,7 +12801,7 @@ calculus-double-integrals:
       The lowest y is 0 and the highest is 4, giving(0,4).
   '34':
     instructions: ''
-    prompt: For that region, give the upper x bound as a formula in y.
+    prompt: For the region 0<=x<=2 and x squared<=y<=4, give the upper x bound as a formula in y after reversing the integration order.
     answer: |-
       The answer is $\sqrt{y}$.
 
@@ -13022,7 +13022,7 @@ calculus-constrained-optimization:
       The allowed branch is the nonnegative root sqrt(9-x squared).
   '18':
     instructions: ''
-    prompt: For that upper semicircle, give the x interval endpoints.
+    prompt: For the upper semicircle x squared+y squared=9 with y nonnegative, give the x interval endpoints.
     answer: |-
       The answer is $\left(-3,\ 3\right)$.
 
@@ -13054,7 +13054,7 @@ calculus-constrained-optimization:
       Equating 2x and 4y gives x=2y; the sum 9 gives (6,3).
   '23':
     instructions: ''
-    prompt: For that candidate with g=x+y, find lambda using the minus-sign Lagrangian convention.
+    prompt: At the Lagrange candidate for f=x squared+2y squared subject to g=x+y=9, find lambda using the minus-sign Lagrangian convention.
     answer: |-
       The answer is $12$.
 
@@ -13185,7 +13185,7 @@ calculus-constrained-optimization:
       The only feasible point is the origin; its objective value is 0.
   '43':
     instructions: ''
-    prompt: For the same problem, does any lambda solve gradient f=lambda gradient g at the feasible point?
+    prompt: For f=x subject to g=x squared+y squared=0, does any lambda solve gradient f=lambda gradient g at the feasible point?
     answer: |-
       The answer is false.
 
@@ -13304,7 +13304,7 @@ calculus-gradient-descent:
       Here a=4, so 1-alpha a=1-1/2=1/2.
   '12':
     instructions: ''
-    prompt: For that update starting at x=2, find x after three steps.
+    prompt: For $L=2x^2$ with alpha=1/8 starting at x=2, find x after three gradient-descent steps.
     answer: |-
       The answer is $\frac{1}{4}$.
 
@@ -13318,7 +13318,7 @@ calculus-gradient-descent:
       The factor is 1-4 times 3/8=-1/2.
   '14':
     instructions: ''
-    prompt: For that update starting at x=2, find x after three steps.
+    prompt: For $L=2x^2$ with alpha=3/8 starting at x=2, find x after three gradient-descent steps.
     answer: |-
       The answer is $\frac{-1}{4}$.
 
@@ -13432,42 +13432,42 @@ calculus-gradient-descent:
       The gradient is (4x(x squared -1),2y); both components vanish at the origin.
   '32':
     instructions: ''
-    prompt: For that loss, find the value at the origin.
+    prompt: For $L=(x^2-1)^2+y^2$, find the value at the origin.
     answer: |-
       The answer is $1$.
 
       Substitution gives (-1) squared+0=1.
   '33':
     instructions: ''
-    prompt: For that loss, find the value at (1,0).
+    prompt: For $L=(x^2-1)^2+y^2$, find the value at (1,0).
     answer: |-
       The answer is $0$.
 
       Both squared terms vanish, giving 0.
   '34':
     instructions: ''
-    prompt: For that loss, classify the origin as minimum, maximum, or saddle.
+    prompt: For $L=(x^2-1)^2+y^2$, classify the origin as minimum, maximum, or saddle.
     answer: |-
       The answer is **saddle**.
 
       The Hessian has one negative and one positive direction, so it is a saddle.
   '35':
     instructions: ''
-    prompt: Starting that loss at the origin, what next point does ordinary gradient descent produce for any positive step size?
+    prompt: Starting $L=(x^2-1)^2+y^2$ at the origin, what next point does ordinary gradient descent produce for any positive step size?
     answer: |-
       The answer is $\left(0,\ 0\right)$.
 
       The gradient is zero, so the point remains(0,0).
   '36':
     instructions: ''
-    prompt: For that loss, compute the gradient at (2,1).
+    prompt: For $L=(x^2-1)^2+y^2$, compute the gradient at (2,1).
     answer: |-
       The answer is $\left(24,\ 2\right)$.
 
       The components are 4 times 2 times (4-1)=24 and 2, giving(24,2).
   '37':
     instructions: ''
-    prompt: For that loss, start at (2,1) with alpha=1/16. Give the next point.
+    prompt: For $L=(x^2-1)^2+y^2$, start at (2,1) with alpha=1/16. Give the next point.
     answer: |-
       The answer is $\left(\frac{1}{2},\ \frac{7}{8}\right)$.
 
@@ -13496,35 +13496,35 @@ calculus-gradient-descent:
       All predictions are 0, so subtracting the targets gives (-1,-2,-2).
   '42':
     instructions: ''
-    prompt: For those data and theta=(0,0), give the gradient of half the squared residual norm.
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and theta=(0,0), give the gradient of half the squared residual norm.
     answer: |-
       The answer is $\left(-5,\ -6\right)$.
 
       The intercept component sums residuals to -5; the slope component is 0(-1)+1(-2)+2(-2)=-6. The gradient is (-5,-6).
   '43':
     instructions: ''
-    prompt: For those data, start at theta=(0,0) with alpha=1/10. Give the next theta.
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, start at theta=(0,0) with alpha=1/10. Give the next theta.
     answer: |-
       The answer is $\left(\frac{1}{2},\ \frac{3}{5}\right)$.
 
       Subtract one tenth of(-5,-6), obtaining(1/2,3/5).
   '44':
     instructions: ''
-    prompt: For those data, find the initial half-squared loss at theta=(0,0).
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the initial half-squared loss at theta=(0,0).
     answer: |-
       The answer is $\frac{9}{2}$.
 
       The squared residuals sum to 1+4+4=9; half is 9/2.
   '45':
     instructions: ''
-    prompt: For those data, find the half-squared loss at theta=(1/2,3/5).
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the half-squared loss at theta=(1/2,3/5).
     answer: |-
       The answer is $\frac{23}{40}$.
 
       Residuals are -1/2,-9/10,-3/10. Half their squared sum is 23/40.
   '46':
     instructions: ''
-    prompt: For those data, give A transpose b as a pair.
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, give A transpose b as a pair.
     answer: |-
       The answer is $\left(5,\ 6\right)$.
 
@@ -13538,7 +13538,7 @@ calculus-gradient-descent:
       Subtracting equations gives 2b=1, so b=1/2. The first equation then gives a=7/6.
   '48':
     instructions: ''
-    prompt: For those data, find the minimum half-squared loss at theta=(7/6,1/2).
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the minimum half-squared loss at theta=(7/6,1/2).
     answer: |-
       The answer is $\frac{1}{12}$.
 
@@ -13662,7 +13662,7 @@ probability-statistics-probability-models-events:
     answer: 'Add the disjoint weights: $1/8+2/8+3/8=3/4$.'
   '28':
     instructions: ''
-    prompt: An outcome has weight twice that of each of three other outcomes. Find its probability.
+    prompt: A model has exactly four possible outcomes. One outcome has weight twice that of each of the other three. Find its probability.
     answer: Writing the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.
   '29':
     instructions: ''
@@ -16416,11 +16416,11 @@ probability-statistics-laws-large-numbers-central-limit-theorem:
     answer: $9/(100\cdot1^2)=9/100$.
   '13':
     instructions: ''
-    prompt: Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?
+    prompt: Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?
     answer: Require $1/[n(1/10)^2]\le1/20$, so $n\ge2000$. The smallest is $2000$.
   '14':
     instructions: ''
-    prompt: Iid observations have variance two. What upper bound results for error at least $1/2$ in a mean of one hundred observations?
+    prompt: Iid observations have variance two. What Chebyshev upper bound results for error at least $1/2$ in a mean of one hundred observations?
     answer: $2/[100(1/2)^2]=2/25$.
   '15':
     instructions: ''
@@ -16621,7 +16621,7 @@ probability-statistics-concentration-monte-carlo:
     answer: 'The bound is variance divided by squared distance: $4/16=1/4$.'
   '14':
     instructions: ''
-    prompt: Using the same variance 4, what lower bound follows for $P(|X-E[X]|<4)$?
+    prompt: For variance 4, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<4)$?
     answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
   '15':
     instructions: ''
@@ -16629,7 +16629,7 @@ probability-statistics-concentration-monte-carlo:
     answer: 'The bound is variance divided by squared distance: $9/36=1/4$.'
   '16':
     instructions: ''
-    prompt: Using the same variance 9, what lower bound follows for $P(|X-E[X]|<6)$?
+    prompt: For variance 9, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<6)$?
     answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
   '17':
     instructions: ''
@@ -16637,7 +16637,7 @@ probability-statistics-concentration-monte-carlo:
     answer: 'The bound is variance divided by squared distance: $16/64=1/4$.'
   '18':
     instructions: ''
-    prompt: Using the same variance 16, what lower bound follows for $P(|X-E[X]|<8)$?
+    prompt: For variance 16, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<8)$?
     answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
   '19':
     instructions: ''
@@ -16645,7 +16645,7 @@ probability-statistics-concentration-monte-carlo:
     answer: 'The bound is variance divided by squared distance: $1/25=1/25$.'
   '20':
     instructions: ''
-    prompt: Using the same variance 1, what lower bound follows for $P(|X-E[X]|<5)$?
+    prompt: For variance 1, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<5)$?
     answer: 'Take the complement of the at-least event: $1-1/25=24/25$.'
   '21':
     instructions: ''
@@ -16653,7 +16653,7 @@ probability-statistics-concentration-monte-carlo:
     answer: 'The bound is variance divided by squared distance: $25/225=1/9$.'
   '22':
     instructions: ''
-    prompt: Using the same variance 25, what lower bound follows for $P(|X-E[X]|<15)$?
+    prompt: For variance 25, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<15)$?
     answer: 'Take the complement of the at-least event: $1-1/9=8/9$.'
   '23':
     instructions: ''
@@ -16665,7 +16665,7 @@ probability-statistics-concentration-monte-carlo:
     answer: Both variance and squared threshold multiply by the square of the conversion factor, so their ratio is unchanged.
   '25':
     instructions: ''
-    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.1.
+    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.1.
     answer: Require $n\ge 1/(0.1\cdot0.5^2)$ and round upward, giving $n=40$.
   '26':
     instructions: ''
@@ -16673,7 +16673,7 @@ probability-statistics-concentration-monte-carlo:
     answer: Independence gives variance $\sigma^2/n=1/40=1/40$.
   '27':
     instructions: ''
-    prompt: Independent identically distributed observations have variance 4. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.05.
+    prompt: Independent identically distributed observations have variance 4. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.05.
     answer: Require $n\ge 4/(0.05\cdot0.5^2)$ and round upward, giving $n=320$.
   '28':
     instructions: ''
@@ -16681,7 +16681,7 @@ probability-statistics-concentration-monte-carlo:
     answer: Independence gives variance $\sigma^2/n=4/320=1/80$.
   '29':
     instructions: ''
-    prompt: Independent identically distributed observations have variance 9. Using Chebyshev, give a sufficient integer sample size for error at least 1 to have probability at most 0.1.
+    prompt: Independent identically distributed observations have variance 9. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 1 to have probability at most 0.1.
     answer: Require $n\ge 9/(0.1\cdot1^2)$ and round upward, giving $n=90$.
   '30':
     instructions: ''
@@ -16689,7 +16689,7 @@ probability-statistics-concentration-monte-carlo:
     answer: Independence gives variance $\sigma^2/n=9/90=1/10$.
   '31':
     instructions: ''
-    prompt: Independent identically distributed observations have variance 2. Using Chebyshev, give a sufficient integer sample size for error at least 0.2 to have probability at most 0.05.
+    prompt: Independent identically distributed observations have variance 2. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.2 to have probability at most 0.05.
     answer: Require $n\ge 2/(0.05\cdot0.2^2)$ and round upward, giving $n=1000$.
   '32':
     instructions: ''
@@ -16697,7 +16697,7 @@ probability-statistics-concentration-monte-carlo:
     answer: Independence gives variance $\sigma^2/n=2/1000=1/500$.
   '33':
     instructions: ''
-    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.1 to have probability at most 0.01.
+    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.1 to have probability at most 0.01.
     answer: Require $n\ge 1/(0.01\cdot0.1^2)$ and round upward, giving $n=10000$.
   '34':
     instructions: ''
@@ -17484,7 +17484,7 @@ probability-statistics-hypothesis-testing:
     answer: 'Failing to reject is the complementary decision: $1-0.8=0.20$.'
   '49':
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.05/5=0.01$. Independence is not required for the union bound.
   '50':
     instructions: ''
@@ -17492,7 +17492,7 @@ probability-statistics-hypothesis-testing:
     answer: 'Failing to reject is the complementary decision: $1-0.9=0.10$.'
   '51':
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.05/10=0.005$. Independence is not required for the union bound.
   '52':
     instructions: ''
@@ -17500,7 +17500,7 @@ probability-statistics-hypothesis-testing:
     answer: 'Failing to reject is the complementary decision: $1-0.6=0.40$.'
   '53':
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.04/4=0.01$. Independence is not required for the union bound.
   '54':
     instructions: ''
@@ -17508,7 +17508,7 @@ probability-statistics-hypothesis-testing:
     answer: 'Failing to reject is the complementary decision: $1-0.95=0.05$.'
   '55':
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.1/20=0.005$. Independence is not required for the union bound.
   '56':
     instructions: ''
@@ -17516,7 +17516,7 @@ probability-statistics-hypothesis-testing:
     answer: 'Failing to reject is the complementary decision: $1-0.7=0.30$.'
   '57':
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.08/8=0.01$. Independence is not required for the union bound.
   '58':
     instructions: ''

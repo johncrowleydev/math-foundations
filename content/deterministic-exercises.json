@@ -9366,7 +9366,7 @@
         }
       ],
       "feedback": {
-        "correct": "Take the real square [function](ref:function) with $S=\\{-1\\}$ and $W=\\{1\\}$. The left side is empty, but the right is $\\{1\\}$. Equal outputs need not have the same input.",
+        "correct": "Take $f(1)=a$, $f(2)=a$, and $f(3)=b$, with $S=\\{1\\}$ and $W=\\{2\\}$. Then $S\\cap W=\\varnothing$, so $f(S\\cap W)=\\varnothing$, while $f(S)\\cap f(W)=\\{a\\}$. Different inputs can have the same output.",
         "incorrect": "Check the requested values and their labels, then try again."
       },
       "evidence": {
@@ -9421,7 +9421,8 @@
         "error": true
       }
     ],
-    "prompt": "Construct $f:A\\to B$ and subsets $S,W\\subseteq A$ for which $f(S\\cap W)\\ne f(S)\\cap f(W)$. Use $A=\\{1,2,3\\}$ and $B=\\{a,b\\}$, and calculate both sides."
+    "prompt": "Construct $f:A\\to B$ and subsets $S,W\\subseteq A$ for which $f(S\\cap W)\\ne f(S)\\cap f(W)$. Use $A=\\{1,2,3\\}$ and $B=\\{a,b\\}$, and calculate both sides.",
+    "answer": "Take $f(1)=a$, $f(2)=a$, and $f(3)=b$, with $S=\\{1\\}$ and $W=\\{2\\}$. Then $S\\cap W=\\varnothing$, so $f(S\\cap W)=\\varnothing$, while $f(S)\\cap f(W)=\\{a\\}$. Different inputs can have the same output."
   },
   {
     "lesson": "functions",
@@ -16949,7 +16950,7 @@
         }
       ],
       "feedback": {
-        "correct": "No. On $D=\\{1,2\\}$, let $P$ mean odd and $Q$ mean even. Each element satisfies one [predicate](ref:predicate), but neither [predicate](ref:predicate?repeat) holds for every element.",
+        "correct": "No. On $D=\\{a,b\\}$, let $P(a)=T$, $Q(b)=T$, and $P(b)=Q(a)=F$. Each element satisfies one predicate, but neither predicate holds for every element.",
         "incorrect": "Check the requested values and their labels, then try again."
       },
       "evidence": {
@@ -17110,7 +17111,8 @@
         "error": true
       }
     ],
-    "prompt": "Does $\\forall x(P(x)\\lor Q(x))$ imply $(\\forall xP(x))\\lor(\\forall xQ(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
+    "prompt": "Does $\\forall x(P(x)\\lor Q(x))$ imply $(\\forall xP(x))\\lor(\\forall xQ(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false.",
+    "answer": "No. On $D=\\{a,b\\}$, let $P(a)=T$, $Q(b)=T$, and $P(b)=Q(a)=F$. Each element satisfies one predicate, but neither predicate holds for every element."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -17199,7 +17201,7 @@
         }
       ],
       "feedback": {
-        "correct": "No. On $D=\\{1,2\\}$ with $P$ odd and $Q$ even, the separate existentials have different [witnesses](ref:witness) and no element satisfies both.",
+        "correct": "No. On $D=\\{a,b\\}$, let $P(a)=T$, $Q(b)=T$, and $P(b)=Q(a)=F$. The separate existentials have different witnesses, and no element satisfies both predicates.",
         "incorrect": "Check the requested values and their labels, then try again."
       },
       "evidence": {
@@ -17360,7 +17362,8 @@
         "error": true
       }
     ],
-    "prompt": "Does $(\\exists xP(x))\\land(\\exists xQ(x))$ imply $\\exists x(P(x)\\land Q(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
+    "prompt": "Does $(\\exists xP(x))\\land(\\exists xQ(x))$ imply $\\exists x(P(x)\\land Q(x))$?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false.",
+    "answer": "No. On $D=\\{a,b\\}$, let $P(a)=T$, $Q(b)=T$, and $P(b)=Q(a)=F$. The separate existentials have different witnesses, and no element satisfies both predicates."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -18463,7 +18466,7 @@
         }
       ],
       "feedback": {
-        "correct": "Invalid. On $D=\\{a\\}$ take $P(a)=F$, $Q(a)=T$. Both premises are true; no $P$-[witness](ref:witness) exists.",
+        "correct": "Invalid. On $D=\\{a,b\\}$, take $P(a)=P(b)=F$, $Q(a)=T$, and $Q(b)=F$. Both implications are true because their antecedents are false, and $a$ witnesses $\\exists x\\,Q(x)$. No element witnesses $\\exists x\\,P(x)$.",
         "incorrect": "Check the requested values and their labels, then try again."
       },
       "evidence": {
@@ -18624,7 +18627,8 @@
         "error": true
       }
     ],
-    "prompt": "Does the conclusion follow from the premises?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false."
+    "prompt": "Does the conclusion follow from the premises?\n\nSelect the decision and construct a counterexample on the two-element domain $D=\\{a,b\\}$ by selecting exactly the predicate statements that are true. Unselected statements are false; select None if all are false.",
+    "answer": "Invalid. On $D=\\{a,b\\}$, take $P(a)=P(b)=F$, $Q(a)=T$, and $Q(b)=F$. Both implications are true because their antecedents are false, and $a$ witnesses $\\exists x\\,Q(x)$. No element witnesses $\\exists x\\,P(x)$."
   },
   {
     "lesson": "predicates-and-quantifiers",
@@ -24201,7 +24205,7 @@
         }
       ],
       "feedback": {
-        "correct": "Let $A=\\{a\\},B=\\{1,2\\},C=\\{u\\}$, $f(a)=1$, and $g(1)=g(2)=u$. The singleton-domain composition is injective, but $g$ has a collision.",
+        "correct": "Let $f(a)=1$, $f(b)=2$, and $g(1)=u$, $g(2)=v$, $g(3)=u$ on the stated sets. The composition sends $a$ to $u$ and $b$ to $v$, so it is injective. But $g(1)=g(3)$ with $1\\ne3$, so $g$ is not injective on its entire domain.",
         "incorrect": "Check the requested values and their labels, then try again."
       },
       "evidence": {
@@ -24256,7 +24260,8 @@
         "error": true
       }
     ],
-    "prompt": "Construct $f:A\\to B$ and $g:B\\to C$ so that $g\\circ f$ is injective but $g$ is not injective on its entire domain. Use $A=\\{a,b\\}$, $B=\\{1,2,3\\}$, and $C=\\{u,v\\}$."
+    "prompt": "Construct $f:A\\to B$ and $g:B\\to C$ so that $g\\circ f$ is injective but $g$ is not injective on its entire domain. Use $A=\\{a,b\\}$, $B=\\{1,2,3\\}$, and $C=\\{u,v\\}$.",
+    "answer": "Let $f(a)=1$, $f(b)=2$, and $g(1)=u$, $g(2)=v$, $g(3)=u$ on the stated sets. The composition sends $a$ to $u$ and $b$ to $v$, so it is injective. But $g(1)=g(3)$ with $1\\ne3$, so $g$ is not injective on its entire domain."
   },
   {
     "lesson": "proof-by-contrapositive",
@@ -47634,7 +47639,7 @@
         }
       ],
       "feedback": {
-        "correct": "Take $U=\\{u\\}$ and $S=X=\\{u\\}$, with $E=T=\\varnothing$. The expression includes $u$ through $X$, although $u$ is suspended.",
+        "correct": "Take $U=\\{1\\}$ and $S=X=\\{1\\}$, with $E=T=\\varnothing$. The expression includes user 1 through $X$, although user 1 is suspended.",
         "incorrect": "Check the requested values and their labels, then try again."
       },
       "evidence": {
@@ -47685,7 +47690,8 @@
         "error": true
       }
     ],
-    "prompt": "Give finite sets of users showing that $(E\\cap T\\cap S^c)\\cup X$ can admit a suspended user. Use numeric user labels; the universe contains all users you enter."
+    "prompt": "Give finite sets of users showing that $(E\\cap T\\cap S^c)\\cup X$ can admit a suspended user. Use numeric user labels; the universe contains all users you enter.",
+    "answer": "Take $U=\\{1\\}$ and $S=X=\\{1\\}$, with $E=T=\\varnothing$. The expression includes user 1 through $X$, although user 1 is suspended."
   },
   {
     "lesson": "sets-and-set-operations",

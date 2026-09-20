@@ -1383,7 +1383,7 @@
     "quick": "An average weighted by density.",
     "definition": "$E[g(X)]=\\int g(x)f_X(x)\\,dx$ when the expectation exists.",
     "example": "With density $4x^3$ on $(0,1)$, $E[X]=4/5$.",
-    "confusion": "Usually $E[g(X)]\ne g(E[X])$.",
+    "confusion": "Usually $E[g(X)]\\ne g(E[X])$.",
     "lesson": "probability-statistics-continuous-random-variables",
     "section": "Compute expectations by integration",
     "related": [
@@ -1507,7 +1507,7 @@
     "quick": "$\\Phi(z)$ is the standard normal left-tail probability.",
     "definition": "$\\Phi(z)=P(Z\\le z)$ for $Z\\sim N(0,1)$.",
     "example": "$\\Phi(-z)=1-\\Phi(z)$.",
-    "confusion": "A right-tail probability is $1-Phi(z)$.",
+    "confusion": "A right-tail probability is $1-\\Phi(z)$.",
     "lesson": "probability-statistics-normal-distributions-transformations",
     "section": "Use the normal CDF without confusing tails",
     "related": [
@@ -1726,7 +1726,7 @@
     "quick": "Variance includes both squared coefficients and covariance terms.",
     "definition": "$\\operatorname{Var}(aX+bY)=a^2\\operatorname{Var}(X)+b^2\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y)$.",
     "example": "Variances four and nine with covariance three give sum variance nineteen.",
-    "confusion": "A minus sign on $Y$ changes the cross term, not $operatorname{Var}(Y)$.",
+    "confusion": "A minus sign on $Y$ changes the cross term, not $\\operatorname{Var}(Y)$.",
     "lesson": "probability-statistics-covariance-correlation-random-vectors",
     "section": "Variance of a combination includes cross terms",
     "related": [
@@ -1764,7 +1764,7 @@
     "quick": "The matrix of all pairwise component covariances.",
     "definition": "$\\Sigma_{ij}=\\operatorname{Cov}(X_i,X_j)$ and $\\operatorname{Cov}(A\\mathbf X+\\mathbf b)=A\\Sigma A^T$.",
     "example": "Diagonal entries are variances; off-diagonal entries describe co-variation.",
-    "confusion": "A covariance matrix is not generally the matrix $E[mathbf Xmathbf X^T]$ unless the mean is zero.",
+    "confusion": "A covariance matrix is not generally the matrix $E[\\mathbf X\\mathbf X^T]$ unless the mean is zero.",
     "lesson": "probability-statistics-covariance-correlation-random-vectors",
     "section": "Collect means and covariances into vectors and matrices",
     "related": [
@@ -2171,7 +2171,7 @@
     "aliases": ["Shared noise in an average"],
     "linkAliases": [],
     "quick": "A common random component does not disappear when readings are averaged.",
-    "definition": "If $X_i=B+\\varepsilon_i$ with independent components, $\\operatorname{Var}(\\bar X_n)=\\operatorname{Var}(B)+\\operatorname{Var}(\\varepsilon_i)/n$.",
+    "definition": "If $X_i=B+\\varepsilon_i$ with independent components and common noise variance $\\operatorname{Var}(\\varepsilon_i)=\\tau^2$, then $\\operatorname{Var}(\\bar X_n)=\\operatorname{Var}(B)+\\tau^2/n$.",
     "example": "A shared calibration error persists across repeated measurements.",
     "confusion": "More readings are not equivalent to more independent sources of information.",
     "lesson": "probability-statistics-laws-large-numbers-central-limit-theorem",
@@ -2229,7 +2229,7 @@
     "aliases": ["Concentration guarantee"],
     "linkAliases": [],
     "quick": "A bound on the probability of estimation error.",
-    "definition": "Under independence and common finite variance, $P(|\\bar X-\\mu|\\ge\\varepsilon)\\le\\sigma^2/(n\\varepsilon^2)$.",
+    "definition": "Under independence, common mean $\\mu$, and common finite variance $\\sigma^2$, $P(|\\bar X-\\mu|\\ge\\varepsilon)\\le\\sigma^2/(n\\varepsilon^2)$.",
     "example": "With $\\sigma^2=4$, $\\varepsilon=1/2$, $\\delta=1/20$, $n=320$ suffices.",
     "confusion": "A sufficient sample size need not be necessary.",
     "lesson": "probability-statistics-concentration-monte-carlo",

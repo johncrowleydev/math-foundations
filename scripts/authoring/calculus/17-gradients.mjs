@@ -80,7 +80,7 @@ These statements concern first-order local rates. A long straight step in the as
     grad,
     'directional derivative',
     'The local rate of change per unit distance in a specified unit direction.',
-    raw`For gradient $(3,4)$, the greatest unit-direction rate is five.`,
+    raw`For a differentiable function with gradient $(3,4)$, the greatest unit-direction rate is five.`,
     'Normalize a supplied direction vector unless the question explicitly asks for a parameterized path rate.',
   ),
   section(
@@ -148,12 +148,12 @@ for (const [a, b] of [
   );
   sections[3].questions.push(
     q(
-      raw`A gradient is $(${a},${b})$. Find the directional derivative for the unit direction $(3/5,4/5)$.`,
+      raw`A scalar function is differentiable at a point with gradient $(${a},${b})$. Find the directional derivative for the unit direction $(3/5,4/5)$.`,
       raw`Take the dot product: $${3 * a + 4 * b}/5$.`,
       exact(raw`${3 * a + 4 * b}/5`),
     ),
     q(
-      raw`A gradient is $(${a},${b})$. Find the greatest rate of increase over unit directions.`,
+      raw`A scalar function is differentiable at a point with gradient $(${a},${b})$. Find the greatest rate of increase over unit directions.`,
       raw`Cauchy–Schwarz gives the gradient length $\sqrt{${a * a + b * b}}$.`,
       exact(raw`sqrt(${a * a + b * b})`),
     ),
@@ -235,14 +235,26 @@ sections[2].review = [
   ),
 ];
 sections[3].review = [
-  q('For gradient (6,8), give the greatest unit-direction rate.', 'The norm is ten.', exact(10)),
-  q('For gradient (6,8), give the rate in direction (-1,0).', 'The dot product is -6.', exact(-6)),
-  q('For gradient (6,8), give the unit ascent direction.', 'Divide by ten: (3/5,4/5).', {
-    validator: 'tuple',
-    params: { expected: ['3/5', '4/5'] },
-    correct: '(3/5,4/5)',
-    incorrect: '(6,8)',
-  }),
+  q(
+    'For a differentiable scalar function with gradient (6,8), give the greatest unit-direction rate.',
+    'The norm is ten.',
+    exact(10),
+  ),
+  q(
+    'For a differentiable scalar function with gradient (6,8), give the rate in direction (-1,0).',
+    'The dot product is -6.',
+    exact(-6),
+  ),
+  q(
+    'For a differentiable scalar function with gradient (6,8), give the unit ascent direction.',
+    'Divide by ten: (3/5,4/5).',
+    {
+      validator: 'tuple',
+      params: { expected: ['3/5', '4/5'] },
+      correct: '(3/5,4/5)',
+      incorrect: '(6,8)',
+    },
+  ),
 ];
 sections[4].review = [
   q(
@@ -256,7 +268,7 @@ sections[4].review = [
     'The gradient has no direction there and the regular-point hypothesis fails.',
   ),
   q(
-    'For gradient (2,-3) and displacement (3,2), find the linear change.',
+    'For a differentiable scalar function with gradient (2,-3) and displacement (3,2), find the linear change.',
     'The dot product is zero.',
     exact(0),
   ),

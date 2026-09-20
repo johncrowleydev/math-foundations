@@ -164,12 +164,12 @@ Monotonicity also proves uniqueness when combined with an existence theorem. The
           R`The bound is $3(0.2)=0.6$.`,
         ),
         exact(
-          R`If $2\le f'\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.`,
+          R`If $2\le f'\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.`,
           6,
           R`Multiply the minimum slope by interval width: $2(3)=6$.`,
         ),
         exact(
-          R`If $2\le f'\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.`,
+          R`If $2\le f'\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.`,
           15,
           R`The maximum slope bound gives $5(3)=15$.`,
         ),
@@ -194,7 +194,7 @@ Monotonicity also proves uniqueness when combined with an existence theorem. The
           R`Two ordered inputs must have ordered distinct outputs, so both cannot produce zero.`,
         ),
         exact(
-          R`Using the derivative bound $|\cos x|\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.`,
+          R`Using the derivative bound $|\cos x|\le1$, give the bound $1|\Delta x|$ on sine-output error for a radian input error of at most $0.03$.`,
           '3/100',
           R`MVT gives output error at most $1(0.03)=0.03$.`,
         ),
@@ -211,7 +211,7 @@ Monotonicity also proves uniqueness when combined with an existence theorem. The
       ],
       review: [
         exact(
-          R`If $|g'|\le8$ on an interval of width $1/20$, give the bound on the magnitude of its endpoint change.`,
+          R`If $|g'|\le8$ on an interval of width $1/20$, give the mean-value-theorem bound $M|b-a|$ on the magnitude of its endpoint change.`,
           '2/5',
           R`$8(1/20)=2/5$.`,
         ),

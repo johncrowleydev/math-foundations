@@ -390,19 +390,19 @@ s4.questions = [
   q(
     r`Randomly choose four offices and survey every employee in those offices. Name the design: stratified, cluster, or convenience.`,
     `Cluster. Offices are selected as groups and their members are observed.`,
-    term('cluster', 'stratified'),
+    term('cluster', 'stratified', ['cluster sampling']),
     'interpret',
   ),
   q(
     r`After choosing a random start, inspect every fiftieth record. Name the design.`,
     `Systematic. The selection follows a fixed interval after a random start.`,
-    term('systematic', 'convenience'),
+    term('systematic', 'convenience', ['systematic sampling']),
     'interpret',
   ),
   q(
     r`Survey the first thirty people who enter a nearby shop, without random selection. Name the design.`,
     `Convenience. Units are chosen for ease of access.`,
-    term('convenience', 'stratified'),
+    term('convenience', 'stratified', ['convenience sampling']),
     'interpret',
   ),
   q(
@@ -444,7 +444,7 @@ s4.review = [
   q(
     r`Select two schools at random and observe every pupil in those schools. Name the sampling design.`,
     `Cluster. Whole schools are selected as groups.`,
-    term('cluster', 'stratified'),
+    term('cluster', 'stratified', ['cluster sampling']),
     'interpret',
   ),
 ];

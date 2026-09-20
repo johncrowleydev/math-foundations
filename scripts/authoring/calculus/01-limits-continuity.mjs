@@ -48,7 +48,7 @@ For example, let $g(x)=2x+1$ when $x<1$ and $g(x)=x+5$ when $x\ge1$. The left-ha
           R`Nearby values obey $x+4$, which approaches $6$; the isolated value $19$ is irrelevant.`,
         ),
         exact(
-          R`For that same explicitly defined function, find $f(2)$.`,
+          R`Let $f(x)=x+4$ for $x\ne2$ and $f(2)=19$. Find $f(2)$.`,
           19,
           R`The special definition gives $f(2)=19$, independently of its limit.`,
         ),
@@ -513,7 +513,7 @@ A useful way to organize a limit solution is to state the proposed value, identi
           R`Here $L=f(-1)=3$, and $|2x+5-3|=2|x+1|$.`,
         ),
         exact(
-          R`To prove $x^2\to9$ as $x\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?`,
+          R`To prove $x^2\to9$ as $x\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?`,
           7,
           R`The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.`,
         ),

@@ -205,7 +205,7 @@ sections[1].review = [
     tuple([4, 3, 3, 8]),
   ),
   q(
-    'For Hessian diagonal (2,6), find one half of h transpose H h at h=(1,2).',
+    'For the diagonal Hessian H=diag(2,6), find one half of h transpose H h at h=(1,2).',
     'It is one half of (2+24)=13.',
     exact(13),
   ),
@@ -219,7 +219,7 @@ sections[1].review = [
 sections[2].review = [
   q('Find the stationary point of $(x+3)^2+2(y-4)^2$.', 'It is (-3,4).', tuple([-3, 4])),
   q(
-    'For second partials f_xx=-2,f_yy=-6,f_xy=0 at a stationary point, classify it.',
+    'For a twice continuously differentiable function with f_xx=-2,f_yy=-6,f_xy=0 at a stationary point, classify it as a minimum, maximum, or saddle.',
     'D=12 and the first pure partial is negative, so maximum.',
     term('maximum', 'minimum'),
     'analyze',

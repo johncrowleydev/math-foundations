@@ -6827,7 +6827,7 @@ calculus-limits-continuity:
   '3':
     after: Approaching a value from nearby inputs
     instructions: ''
-    prompt: For that same explicitly defined function, find $f(2)$.
+    prompt: Let $f(x)=x+4$ for $x\ne2$ and $f(2)=19$. Find $f(2)$.
     answer: The answer is $19$. The special definition gives $f(2)=19$, independently of its limit.
     concepts:
       - calculus-limit
@@ -6836,7 +6836,7 @@ calculus-limits-continuity:
       - lesson: calculus-limits-continuity
         section: Approaching a value from nearby inputs
         teachingHash: d9a1326b9c52d31510a76a4b27cb11a2501469baaa6bceb4aaa178dad109ce5e
-    exerciseHash: 078b58218a82c88b90ae7d2c57016e56d5764ef4f0b70fbac91ef8de76708c85
+    exerciseHash: f5562945e66425cd8b7e470e6388c89952a45b775c661b7d0f01492cbf02c9d3
   '4':
     after: Approaching a value from nearby inputs
     instructions: ''
@@ -7676,7 +7676,7 @@ calculus-limits-continuity:
   '48':
     after: A precise guarantee with epsilon and delta
     instructions: ''
-    prompt: To prove $x^2\to9$ as $x\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?
+    prompt: To prove $x^2\to9$ as $x\to3$, first assume $|x-3|<1$. What is the least integer upper bound on $|x+3|$ under this restriction?
     answer: The answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.
     concepts:
       - calculus-epsilon-delta
@@ -7697,7 +7697,7 @@ calculus-limits-continuity:
       - lesson: calculus-limits-continuity
         section: A precise guarantee with epsilon and delta
         teachingHash: d061f8eef948c85fbb328a54f6ef1993b25adebfbd16d01155249be072c27a2e
-    exerciseHash: a42acd2cb9e16d65f58a0331194266d382edcaa9653bbf1dbd6513603ffabe39
+    exerciseHash: 1cb27a147afb2681b30506dfaa1366fc81b5ba22051216f49074c49e99705a89
   '49':
     after: A precise guarantee with epsilon and delta
     instructions: ''
@@ -11843,7 +11843,7 @@ calculus-related-rates-approximation:
   '24':
     after: Distances, angles, and moving constraints
     instructions: ''
-    prompt: If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.
+    prompt: A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=6,y=8,x'=1,y'=2$, find $d'$.
     answer: The answer is $\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.
     concepts:
       - calculus-moving-distance
@@ -11858,11 +11858,11 @@ calculus-related-rates-approximation:
       - lesson: calculus-related-rates-approximation
         section: Distances, angles, and moving constraints
         teachingHash: 20d2ec0d5f376b3c86773acd6bfb52d21fd7dec39562d2e6985caea5335b12fd
-    exerciseHash: 4a3f3ccb5ea70e794bb74b8f53695f2df7feae0cdb5d92713a6da48721374c71
+    exerciseHash: 0d12fea48ea08ef01595960387fbdeeca3e8debf4588a3cec1a0b7a39affbd28
   '25':
     after: Distances, angles, and moving constraints
     instructions: ''
-    prompt: If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.
+    prompt: A nonnegative distance $d$ satisfies $d^2=x^2+y^2$. If $x=3,y=4,x'=-2,y'=1$, find $d'$.
     answer: The answer is $\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.
     concepts:
       - calculus-moving-distance
@@ -11877,7 +11877,7 @@ calculus-related-rates-approximation:
       - lesson: calculus-related-rates-approximation
         section: Distances, angles, and moving constraints
         teachingHash: 20d2ec0d5f376b3c86773acd6bfb52d21fd7dec39562d2e6985caea5335b12fd
-    exerciseHash: c3db10b42f8afddf956dc8daae049f3d6102a8d8ca52bc44d29a446c320cbaee
+    exerciseHash: 43e28b5471ec6fa8c8c735c5b3c0367340d00aede9c74e55c0bc3cdbfb321b59
   '26':
     after: Distances, angles, and moving constraints
     instructions: ''
@@ -12593,7 +12593,7 @@ calculus-mvt-function-behavior:
   '12':
     after: Monotonicity, uniqueness, and change bounds
     instructions: ''
-    prompt: If $2\le f'\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.
+    prompt: If $2\le f'\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.
     answer: 'The answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.'
     concepts:
       - calculus-monotonicity-from-derivative
@@ -12605,11 +12605,11 @@ calculus-mvt-function-behavior:
       - lesson: calculus-mvt-function-behavior
         section: Monotonicity, uniqueness, and change bounds
         teachingHash: 21cfe0a0273a9f085866309d218c3e9df6fe46b1b12fbad8d9873a93b57a14a9
-    exerciseHash: 473bb4b1ca8a92f8e4d254dbef9f8cc18855f5bf5bed8b34e53c12e1dd1274cb
+    exerciseHash: 2bfbf164a7dbec0150209387165c3facdc47bd4c39199b65009bdc57c42464de
   '13':
     after: Monotonicity, uniqueness, and change bounds
     instructions: ''
-    prompt: If $2\le f'\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.
+    prompt: If $2\le f'\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.
     answer: The answer is $15$. The maximum slope bound gives $5(3)=15$.
     concepts:
       - calculus-monotonicity-from-derivative
@@ -12621,7 +12621,7 @@ calculus-mvt-function-behavior:
       - lesson: calculus-mvt-function-behavior
         section: Monotonicity, uniqueness, and change bounds
         teachingHash: 21cfe0a0273a9f085866309d218c3e9df6fe46b1b12fbad8d9873a93b57a14a9
-    exerciseHash: 30c8b30ffc631fa89740e8e3494e9a92398525900f7c6b7e4886d3a3466f4804
+    exerciseHash: 981c950cf96e7f9100dc7b117135dd2e9a8dc2de39a563aba4a9448730097365
   '14':
     after: Monotonicity, uniqueness, and change bounds
     instructions: ''
@@ -12689,7 +12689,7 @@ calculus-mvt-function-behavior:
   '18':
     after: Monotonicity, uniqueness, and change bounds
     instructions: ''
-    prompt: Using the derivative bound $|\cos x|\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.
+    prompt: Using the derivative bound $|\cos x|\le1$, give the bound $1|\Delta x|$ on sine-output error for a radian input error of at most $0.03$.
     answer: The answer is $\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.
     concepts:
       - calculus-monotonicity-from-derivative
@@ -12701,7 +12701,7 @@ calculus-mvt-function-behavior:
       - lesson: calculus-mvt-function-behavior
         section: Monotonicity, uniqueness, and change bounds
         teachingHash: 21cfe0a0273a9f085866309d218c3e9df6fe46b1b12fbad8d9873a93b57a14a9
-    exerciseHash: cf045c01dde8e5c68c7c7ba0e97bd7e1f4c0421ff20136a2e1e097de3853c29d
+    exerciseHash: f6c627c46a818c612e2f0f747614b2bf173876451aab657b854cb62444b4a476
   '19':
     after: Monotonicity, uniqueness, and change bounds
     instructions: ''
@@ -15067,7 +15067,7 @@ calculus-definite-integrals:
   '43':
     after: Accumulating rates with units
     instructions: ''
-    prompt: For the same motion, find distance in meters.
+    prompt: Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find distance in meters.
     answer: 'Add absolute contributions: $6+8=14$ meters. The answer is $14$.'
     concepts:
       - calculus-net-change
@@ -15087,7 +15087,7 @@ calculus-definite-integrals:
       - lesson: calculus-definite-integrals
         section: Accumulating rates with units
         teachingHash: 4430274e951b0fde2518c8be6035ca38442a08b10313d122893bd3315fe3d9b8
-    exerciseHash: 5df9a153ad3a281f41b25492d41946148d36390dd37eb5d4c0611e48442bcd62
+    exerciseHash: f5b3caa6e6133134efeaf4c7b843acc04dab1b615777ec6330b98d5c74b9b8a7
   '44':
     after: Accumulating rates with units
     instructions: ''
@@ -17475,7 +17475,7 @@ calculus-applications-integration:
   '28':
     after: Volumes from slices, disks, and washers
     instructions: ''
-    prompt: For that rotation about $y=2$, find the volume.
+    prompt: Rotate $0\le y\le x$, $0\le x\le1$, about $y=2$. Find the volume.
     answer: $\pi\int_0^1[4-(2-x)^2]dx=\pi\int_0^1(4x-x^2)dx=5\pi/3$. The answer is $\frac{5\cdot \pi}{3}$.
     concepts:
       - calculus-cross-sectional-area
@@ -17490,7 +17490,7 @@ calculus-applications-integration:
       - lesson: calculus-applications-integration
         section: Volumes from slices, disks, and washers
         teachingHash: f116c2e5723d7c43a8aef1b2ffe77ae0e5711e866a103ddc9073548d9a663e7c
-    exerciseHash: 6b7905d86a538181c6b6a26a822e6c56292d7063240572753d46579fde69d296
+    exerciseHash: fb3744e3aa921265577d86185c3931f734c2c58dad30e9cb6e0c77c6c42fd013
   '29':
     after: Volumes from slices, disks, and washers
     instructions: ''
@@ -17776,7 +17776,7 @@ calculus-applications-integration:
   '42':
     after: Net change and model interpretation
     instructions: ''
-    prompt: For that buffer, find the minimum content on $[0,3]$.
+    prompt: A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\le t\le3$. Find the minimum content on $[0,3]$.
     answer: $Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.
     concepts:
       - calculus-accumulation-model
@@ -17796,7 +17796,7 @@ calculus-applications-integration:
       - lesson: calculus-applications-integration
         section: Net change and model interpretation
         teachingHash: 2e13d4bf750d1de566f4700306e521a94f22a506409fae9ba6bcee620c26f375
-    exerciseHash: cfa54bae49412a27b419c83715bbf146aeb4f9cdb8e955cf0a591fd44c8adae7
+    exerciseHash: 5ec14613260b60f74d73f9fd684ba17c2d01bd3c0d5e95f904ede856f9483d33
   '43':
     after: Net change and model interpretation
     instructions: ''
@@ -18798,7 +18798,7 @@ calculus-numerical-improper:
   '46':
     after: Comparison and controlled truncation
     instructions: ''
-    prompt: A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.
+    prompt: A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give the total absolute error bound obtained by adding these two bounds.
     answer: The triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\frac{3}{1000}$.
     concepts:
       - calculus-integral-comparison
@@ -18819,7 +18819,7 @@ calculus-numerical-improper:
       - lesson: calculus-numerical-improper
         section: Comparison and controlled truncation
         teachingHash: 2c42ece8638dec9e3883be5b5b31b89454230bf8c5575b4680ef9e3cc54ca76c
-    exerciseHash: efbe1be795f5a04a82e16e9aa9e80ba80bb60715b320891a18a53a739a77d0ef
+    exerciseHash: 7ef03ba112364a966d67690422d7f80c6710840b95f2cacee9171a577baeaf96
   '47':
     after: Comparison and controlled truncation
     instructions: ''
@@ -19357,7 +19357,7 @@ calculus-sequences-series:
   '28':
     after: The term test and integral test
     instructions: ''
-    prompt: What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?
+    prompt: What minimum integer $N$ makes the integral-test upper bound for the $\sum_{n=1}^{\infty}1/n^2$ tail at most $1/100$?
     answer: Require $1/N\le1/100$, giving $N\ge100$. The answer is $100$.
     concepts:
       - calculus-series-term-test
@@ -19372,7 +19372,7 @@ calculus-sequences-series:
       - lesson: calculus-sequences-series
         section: The term test and integral test
         teachingHash: c6e2c598cbb1ba00cf32e3ea82299a05218dadc6c0eef16a3ea2dfc711f341b7
-    exerciseHash: c01a51653e566ea6efc80dc324b6b786f1a1583c31dd7324a9e69fd08f7e630a
+    exerciseHash: 85b5afca18904519195b3b2caae3264029acfe835fef0b08c8af2cd314aa20a7
   '29':
     after: The term test and integral test
     instructions: ''
@@ -19759,7 +19759,7 @@ calculus-sequences-series:
   '46':
     after: Alternating, absolute, and conditional convergence
     instructions: ''
-    prompt: What minimum $N$ guarantees error at most $1/100$ by that bound?
+    prompt: For the alternating harmonic series $\sum_{n=1}^{\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?
     answer: Require $1/(N+1)\le1/100$, giving $N\ge99$. The answer is $99$.
     concepts:
       - calculus-alternating-series-test
@@ -19780,7 +19780,7 @@ calculus-sequences-series:
       - lesson: calculus-sequences-series
         section: Alternating, absolute, and conditional convergence
         teachingHash: 0820036e1422c19c67515be2eca600333a4da6979fc7c9568c6b983c58032151
-    exerciseHash: 4efa85090549049d708e41befde9bb90d5e2e65e36325374317cf0bf737a8c91
+    exerciseHash: 5ce19f8fd60268006fb543cc019a3c59540fefa30e38a16e4a7fe172fc8d2c40
   '47':
     after: Alternating, absolute, and conditional convergence
     instructions: ''
@@ -19809,7 +19809,7 @@ calculus-sequences-series:
   '48':
     after: Alternating, absolute, and conditional convergence
     instructions: ''
-    prompt: For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.
+    prompt: For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.
     answer: The first omitted term has magnitude $1/10^2=1/100$. The answer is $\frac{1}{100}$.
     concepts:
       - calculus-alternating-series-test
@@ -19830,7 +19830,7 @@ calculus-sequences-series:
       - lesson: calculus-sequences-series
         section: Alternating, absolute, and conditional convergence
         teachingHash: 0820036e1422c19c67515be2eca600333a4da6979fc7c9568c6b983c58032151
-    exerciseHash: 865c782e1e1dabc1bdf15ab09a812411bd17ac1b182463c6802828580b51729b
+    exerciseHash: ade47b071ceb0bd6e9da0277960873a108ff1918edf41e0ca727cbb9eeee176b
   '49':
     after: Alternating, absolute, and conditional convergence
     instructions: ''
@@ -20666,7 +20666,7 @@ calculus-power-series-taylor:
   '32':
     after: Remainders and trustworthy approximations
     instructions: ''
-    prompt: For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.
+    prompt: For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.
     answer: $2(1/10)^3/3!=2/(1000\cdot6)=1/3000$. The answer is $\frac{1}{3000}$.
     concepts:
       - calculus-taylor-remainder
@@ -20683,7 +20683,7 @@ calculus-power-series-taylor:
       - lesson: calculus-power-series-taylor
         section: Remainders and trustworthy approximations
         teachingHash: 39de6aff4d33687947e09b0dafa895c32f158096e91ee6bb5ed93488aa51498d
-    exerciseHash: f3501039d5d7d01d66307ae99f1466624381fb60aa59702d6c1c6fe887f718b9
+    exerciseHash: 2bb8a14a4557e1602ea1b193683eb903a4063ade749d84f18e42ec13842e4a2d
   '33':
     after: Remainders and trustworthy approximations
     instructions: ''
@@ -20708,7 +20708,7 @@ calculus-power-series-taylor:
   '34':
     after: Remainders and trustworthy approximations
     instructions: ''
-    prompt: Evaluate the same sine polynomial at $x=1/2$.
+    prompt: Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.
     answer: $1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\frac{23}{48}$.
     concepts:
       - calculus-taylor-remainder
@@ -20725,11 +20725,11 @@ calculus-power-series-taylor:
       - lesson: calculus-power-series-taylor
         section: Remainders and trustworthy approximations
         teachingHash: 39de6aff4d33687947e09b0dafa895c32f158096e91ee6bb5ed93488aa51498d
-    exerciseHash: b9db34a029cffa6d780aead32ab4dc6910c32aa4adec154946d5d61ae5c917f6
+    exerciseHash: 15ab2f841c56b0f16407fd4056e976dcb948b62e265f2fa9a2aba95cc7d739d2
   '35':
     after: Remainders and trustworthy approximations
     instructions: ''
-    prompt: For $\cos x\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.
+    prompt: For $\cos x\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.
     answer: "The cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$."
     concepts:
       - calculus-taylor-remainder
@@ -20746,7 +20746,7 @@ calculus-power-series-taylor:
       - lesson: calculus-power-series-taylor
         section: Remainders and trustworthy approximations
         teachingHash: 39de6aff4d33687947e09b0dafa895c32f158096e91ee6bb5ed93488aa51498d
-    exerciseHash: c31758b891bef677f3431908cfceb81203a549a1400a28150f643e38a00bcb42
+    exerciseHash: 6d0a9016974fe49d95fc3444f19037a3b1910ecd41a451e7714ae6bbb8c47614
   '36':
     after: Remainders and trustworthy approximations
     instructions: ''
@@ -20999,7 +20999,7 @@ calculus-power-series-taylor:
   '47':
     after: Using series for limits and integrals
     instructions: ''
-    prompt: Use those three terms to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.
+    prompt: Use $1-x^2+x^4/2$ to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.
     answer: $1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\frac{443}{960}$.
     concepts:
       - calculus-series-leading-term
@@ -21019,11 +21019,11 @@ calculus-power-series-taylor:
       - lesson: calculus-power-series-taylor
         section: Using series for limits and integrals
         teachingHash: fccb19b7f746c61b309099d28e9f479983e850c44972767cc4a72205dadb8d72
-    exerciseHash: 6dde99c66926e78c33fd2cc869ad0d4ec2ad9d63d2661667c5d3f85d63175c1c
+    exerciseHash: 2c29fa1ae68d450e9f5abd4ff703fac433150e32824b79d050eca73366975270
   '48':
     after: Using series for limits and integrals
     instructions: ''
-    prompt: Give the first-omitted-term bound for that three-term integral approximation.
+    prompt: Approximate $\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.
     answer: The next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\cdot42)=1/5376$. The answer is $\frac{1}{5376}$.
     concepts:
       - calculus-series-leading-term
@@ -21043,7 +21043,7 @@ calculus-power-series-taylor:
       - lesson: calculus-power-series-taylor
         section: Using series for limits and integrals
         teachingHash: fccb19b7f746c61b309099d28e9f479983e850c44972767cc4a72205dadb8d72
-    exerciseHash: dd506d11035852b00771c5c54d973958b23322755de831d2c89114b1fbecf52b
+    exerciseHash: b08f904b3a70c5d9d1c759dacae42362cab46d8b2648c13265dc863da4a9625d
   '49':
     after: Using series for limits and integrals
     instructions: ''
@@ -22720,7 +22720,7 @@ calculus-gradients:
   '32':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{11}{5}$.
 
@@ -22740,11 +22740,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: 210377691f5aaf0cdbde15bedea7bef87cd0ab3362c0b6af81a8761e42a8f43a
+    exerciseHash: f558ea0834a39c06b1a8af88363f8141c2264b5119d02ee471f967c9b87ec482
   '33':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(1,2)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(1,2)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{5}$.
 
@@ -22764,11 +22764,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: 212d0c96ba83e7a2c06cbf3d856aea661af8b9977cd1d87cc899ee1db1cd3921
+    exerciseHash: d81da8c6569acf0eff4489983e445a14f39cb729681eb471ad6b0ef304e13ac3
   '34':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{1}{5}$.
 
@@ -22788,11 +22788,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: cc1d64fbeae138d6ac0768d2363d35e49b60df9c96db35a9a81e253e8cd7b6c0
+    exerciseHash: 21f38e1b4c3c4a929c089876bc8940b9ae631f6e6fca20f5b32262c89eb41f73
   '35':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(-1,1)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(-1,1)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{2}$.
 
@@ -22812,11 +22812,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: c5fc7a05b73472e0b11d67a593b894cb1ddf88e646182f15cd0db5e418670735
+    exerciseHash: 6c0f305d169ffd80a119f49d53a7e816b66ab111c8d4769104f09209d1974825
   '36':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{8}{5}$.
 
@@ -22836,11 +22836,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: e2b45cea0c74bd5a2eca75fdc4305a7966415f7f3bb054e002fa02c21232ed27
+    exerciseHash: 5ab5e9557d3d0ceccef7b1c410838e2c833638646a7ff17f87272f7270335a17
   '37':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(0,2)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(0,2)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{4}$.
 
@@ -22860,11 +22860,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: f1ff999ae43d043264b475fd247ac310a185c50d6ccc24099ac8361774713136
+    exerciseHash: 35d7b6656758555af4454c9e5c9ece0e40f90418eaa8a2dffdd276de3769c98e
   '38':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{2}{5}$.
 
@@ -22884,11 +22884,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: 8f9d82355fdab6d0284f5a1ba7f9f1e64b9d991dea3954d24f2a730a95644fef
+    exerciseHash: c6b74e75a98677fd713d8a7cf5f678dcbb7590af244f878d4b09772c8c3b3fc6
   '39':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(2,-1)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(2,-1)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{5}$.
 
@@ -22908,11 +22908,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: 93355aef30f961eb3a4479382e92a41e83713bd484cbfbf40fb140557b4c6204
+    exerciseHash: 4f646c032ce9aa3f38b1da415465b7df59d59057e9ff527da9476d6725409d4a
   '40':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+    prompt: A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
     answer: |-
       The answer is $\frac{-10}{5}$.
 
@@ -22932,11 +22932,11 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: 44a3913642a7dfc164670766da92c7b588d9a82883668a26b29038439c020462
+    exerciseHash: f3b4f8aadcae5f28e765dacaf3af93f30ae882a1ce6a7d7bdf865f73e18d1d69
   '41':
     after: Directional derivatives and unit directions
     instructions: ''
-    prompt: A gradient is $(-2,-1)$. Find the greatest rate of increase over unit directions.
+    prompt: A scalar function is differentiable at a point with gradient $(-2,-1)$. Find the greatest rate of increase over unit directions.
     answer: |-
       The answer is $\sqrt{5}$.
 
@@ -22956,7 +22956,7 @@ calculus-gradients:
       - lesson: calculus-gradients
         section: Directional derivatives and unit directions
         teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
-    exerciseHash: 0f3749574e8c9caed65ff7428fcc36c1cdf190e94e24ce8b1f246d730c788c7e
+    exerciseHash: 151c07bb4f8e742eff087d1618521d1dd7b4b8bc3747db419b5e4b686ef91ea2
   '42':
     after: Directional derivatives and unit directions
     instructions: ''
@@ -23255,7 +23255,7 @@ calculus-multivariable-chain-rule:
   '2':
     after: A moving input changes several coordinates
     instructions: ''
-    prompt: At a point, $f_x=1$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=1$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $-4$.
 
@@ -23266,7 +23266,7 @@ calculus-multivariable-chain-rule:
       - lesson: calculus-multivariable-chain-rule
         section: A moving input changes several coordinates
         teachingHash: d521938372ba846cf2f395a9ec10291cfa5dda5f77f1a13c845786b9394a352d
-    exerciseHash: bf690964ce71ed376bf757816a42df1c7d83eecf8985a2359b777bb03baeca2a
+    exerciseHash: 2cbebe2f3b264ce62b6d371c9db568f767f619a8154331d85a8914d1c2c6a04b
   '3':
     after: A moving input changes several coordinates
     instructions: ''
@@ -23285,7 +23285,7 @@ calculus-multivariable-chain-rule:
   '4':
     after: A moving input changes several coordinates
     instructions: ''
-    prompt: At a point, $f_x=-1$ and $f_y=3$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=-1$ and $f_y=3$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $-11$.
 
@@ -23296,7 +23296,7 @@ calculus-multivariable-chain-rule:
       - lesson: calculus-multivariable-chain-rule
         section: A moving input changes several coordinates
         teachingHash: d521938372ba846cf2f395a9ec10291cfa5dda5f77f1a13c845786b9394a352d
-    exerciseHash: cddcaf8b503f4f4097ead4821757cd987a2b525cf3f082d27959e7ad01ceec53
+    exerciseHash: 8c5ae25717b495d04f199115d7d6e0105a9974c6cf122912dd77bd500fbe1aad
   '5':
     after: A moving input changes several coordinates
     instructions: ''
@@ -23315,7 +23315,7 @@ calculus-multivariable-chain-rule:
   '6':
     after: A moving input changes several coordinates
     instructions: ''
-    prompt: At a point, $f_x=2$ and $f_y=-1$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=2$ and $f_y=-1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $7$.
 
@@ -23326,7 +23326,7 @@ calculus-multivariable-chain-rule:
       - lesson: calculus-multivariable-chain-rule
         section: A moving input changes several coordinates
         teachingHash: d521938372ba846cf2f395a9ec10291cfa5dda5f77f1a13c845786b9394a352d
-    exerciseHash: 1df263c81daebf2399d120a7e4967b3d24d6217cc3f338ca53b17fdf8cc5d47d
+    exerciseHash: 7623540be799bd66c811e26a7e6e477f4b8619a3342f0e3669b14270168cbc26
   '7':
     after: A moving input changes several coordinates
     instructions: ''
@@ -23345,7 +23345,7 @@ calculus-multivariable-chain-rule:
   '8':
     after: A moving input changes several coordinates
     instructions: ''
-    prompt: At a point, $f_x=0$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=0$ and $f_y=2$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $-6$.
 
@@ -23356,7 +23356,7 @@ calculus-multivariable-chain-rule:
       - lesson: calculus-multivariable-chain-rule
         section: A moving input changes several coordinates
         teachingHash: d521938372ba846cf2f395a9ec10291cfa5dda5f77f1a13c845786b9394a352d
-    exerciseHash: 7d38275109b634f8669041186fa5c3191eaeb2bd61354bcbfa717415cb5474a4
+    exerciseHash: 19c42ad88be45ccfdde46c8e0c8d71b41979812230fbe33f773d2e96b26829ea
   '9':
     after: A moving input changes several coordinates
     instructions: ''
@@ -23375,7 +23375,7 @@ calculus-multivariable-chain-rule:
   '10':
     after: A moving input changes several coordinates
     instructions: ''
-    prompt: At a point, $f_x=3$ and $f_y=1$. Along a path, x'=2 and y'=-3. Find the output rate.
+    prompt: At a point where $f$ is differentiable, $f_x=3$ and $f_y=1$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.
     answer: |-
       The answer is $3$.
 
@@ -23386,7 +23386,7 @@ calculus-multivariable-chain-rule:
       - lesson: calculus-multivariable-chain-rule
         section: A moving input changes several coordinates
         teachingHash: d521938372ba846cf2f395a9ec10291cfa5dda5f77f1a13c845786b9394a352d
-    exerciseHash: ca919489cf2ce64605203b240e0dec524ed93a14bfcbf1da6757d1c62d13c9d6
+    exerciseHash: 959c8306efce6ba8d4cc335144f0cb19632c99b83e0e97739b492107f02ee817
   '11':
     after: Dependency paths organize the sum
     instructions: ''
@@ -25486,7 +25486,7 @@ calculus-double-integrals:
   '9':
     after: Accumulate over an area
     instructions: ''
-    prompt: A height is between 2 and 5 over area 3. Give lower and upper bounds for its volume as a pair.
+    prompt: A height is between 2 and 5 over area 3. Give the sharp lower and upper volume bounds implied by these height bounds, as a pair.
     answer: |-
       The answer is $\left(6,\ 15\right)$.
 
@@ -25497,7 +25497,7 @@ calculus-double-integrals:
       - lesson: calculus-double-integrals
         section: Accumulate over an area
         teachingHash: 2f189c592f6c72b91cf83e8969c11d2e92f5230762bdcc2778165e94f7fbe8fa
-    exerciseHash: f92c35cf92e45167ed84ce7c267e58e6780bd85b1b89791041ae802f03190673
+    exerciseHash: aa25809f2bb517063b6e3810a2a1995fa0ced2ed0981ce4f312a80ae2ecf097a
   '10':
     after: Accumulate over an area
     instructions: ''
@@ -25813,7 +25813,7 @@ calculus-double-integrals:
   '27':
     after: Describe simple regions with variable bounds
     instructions: ''
-    prompt: For that triangle, give the outer x interval endpoints as a pair.
+    prompt: For the triangle x,y>=0 and 2x+y<=4, give the outer x interval endpoints as a pair when integrating y first.
     answer: |-
       The answer is $\left(0,\ 2\right)$.
 
@@ -25830,7 +25830,7 @@ calculus-double-integrals:
       - lesson: calculus-double-integrals
         section: Describe simple regions with variable bounds
         teachingHash: 57bf7f2b2154962fb6da72f3540c3a8db07f1430a212aea8a58abeb523611cc4
-    exerciseHash: 94b89af3da6e87b8ce3efa9431f7e3f361ede7d308903c8be25276076965abfd
+    exerciseHash: 84524bd0fcfe1c4b562ec71db28a4787b51527bde501f080edfc4ddd17069267
   '28':
     after: Describe simple regions with variable bounds
     instructions: ''
@@ -25963,7 +25963,7 @@ calculus-double-integrals:
   '34':
     after: Reverse order by redescribing the same region
     instructions: ''
-    prompt: For that region, give the upper x bound as a formula in y.
+    prompt: For the region 0<=x<=2 and x squared<=y<=4, give the upper x bound as a formula in y after reversing the integration order.
     answer: |-
       The answer is $\sqrt{y}$.
 
@@ -25983,7 +25983,7 @@ calculus-double-integrals:
       - lesson: calculus-double-integrals
         section: Reverse order by redescribing the same region
         teachingHash: 6402968e69ef748df5b2e124707483e6813311aa8cdc04be49808c2b307dbb03
-    exerciseHash: 93888178a0418ee9bbee7f40067f7f89b6ac18d493d7e507e07bd43bfa7f351e
+    exerciseHash: fac9e0150bd49d4a910567b13d6d3d465e43059fe3fb209144f643b5914d8e27
   '35':
     after: Reverse order by redescribing the same region
     instructions: ''
@@ -26660,7 +26660,7 @@ calculus-constrained-optimization:
   '18':
     after: Use substitution when it simplifies the problem
     instructions: ''
-    prompt: For that upper semicircle, give the x interval endpoints.
+    prompt: For the upper semicircle x squared+y squared=9 with y nonnegative, give the x interval endpoints.
     answer: |-
       The answer is $\left(-3,\ 3\right)$.
 
@@ -26674,7 +26674,7 @@ calculus-constrained-optimization:
       - lesson: calculus-constrained-optimization
         section: Use substitution when it simplifies the problem
         teachingHash: 438455564d3ee7958dee683ab2ae53a5aad2f4cd275b2baa8bda84695967038b
-    exerciseHash: 5d421b9fde4a6558ef62c7f978fb7e297dc55ad00e09a453ba1da8107221731f
+    exerciseHash: 9408d51fe9b03b0b3b4002786b0784095fce56871882839a63e1119140a7c300
   '19':
     after: Use substitution when it simplifies the problem
     instructions: ''
@@ -26753,7 +26753,7 @@ calculus-constrained-optimization:
   '23':
     after: Set up and solve the Lagrange equations
     instructions: ''
-    prompt: For that candidate with g=x+y, find lambda using the minus-sign Lagrangian convention.
+    prompt: At the Lagrange candidate for f=x squared+2y squared subject to g=x+y=9, find lambda using the minus-sign Lagrangian convention.
     answer: |-
       The answer is $12$.
 
@@ -26770,7 +26770,7 @@ calculus-constrained-optimization:
       - lesson: calculus-constrained-optimization
         section: Set up and solve the Lagrange equations
         teachingHash: d860c6e075823e1f0416e79e124fca5caa7d8476d26c4d3ad2797c4c931796aa
-    exerciseHash: 12c19c118b11fd1721658029257a715e331adae6aff110f678ffa42f852ebdc6
+    exerciseHash: bd97012e4321112c7d6432292655d21e0ef8d68f3aa4d7f8255fc3c4ad37e5a5
   '24':
     after: Set up and solve the Lagrange equations
     instructions: ''
@@ -27206,7 +27206,7 @@ calculus-constrained-optimization:
   '43':
     after: Recognize singular constraints and modeling limits
     instructions: ''
-    prompt: For the same problem, does any lambda solve gradient f=lambda gradient g at the feasible point?
+    prompt: For f=x subject to g=x squared+y squared=0, does any lambda solve gradient f=lambda gradient g at the feasible point?
     answer: |-
       The answer is false.
 
@@ -27229,7 +27229,7 @@ calculus-constrained-optimization:
       - lesson: calculus-constrained-optimization
         section: Recognize singular constraints and modeling limits
         teachingHash: 66b397acb5f2ea2d9477b7c8764cb74292eeaef222ecd2fe7a7c75b9c6c1f080
-    exerciseHash: cf08754f8efcb24cbee4eafbdf939aa1132713f01b04a61657c4e265653a5195
+    exerciseHash: efc6dffc535077912f9cbf5fdd0356490518123ad9f6a9a5861135aed37e2716
   '44':
     after: Recognize singular constraints and modeling limits
     instructions: ''
@@ -27576,7 +27576,7 @@ calculus-gradient-descent:
   '12':
     after: Understand step sizes through an exact recurrence
     instructions: ''
-    prompt: For that update starting at x=2, find x after three steps.
+    prompt: For $L=2x^2$ with alpha=1/8 starting at x=2, find x after three gradient-descent steps.
     answer: |-
       The answer is $\frac{1}{4}$.
 
@@ -27590,7 +27590,7 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Understand step sizes through an exact recurrence
         teachingHash: e0e7ec5e1e8655dc2650f2cabbb8e7516a9bff182c178d3849c9e992fb8beab3
-    exerciseHash: a370dee4f8d5e3b96313c2ba67dc6203da743c2d01bda674cac962f1ca50c710
+    exerciseHash: d8c12ee4d79804483064aa4be5e56f6fe23890066cb4cccc70c8b4304c84787c
   '13':
     after: Understand step sizes through an exact recurrence
     instructions: ''
@@ -27612,7 +27612,7 @@ calculus-gradient-descent:
   '14':
     after: Understand step sizes through an exact recurrence
     instructions: ''
-    prompt: For that update starting at x=2, find x after three steps.
+    prompt: For $L=2x^2$ with alpha=3/8 starting at x=2, find x after three gradient-descent steps.
     answer: |-
       The answer is $\frac{-1}{4}$.
 
@@ -27626,7 +27626,7 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Understand step sizes through an exact recurrence
         teachingHash: e0e7ec5e1e8655dc2650f2cabbb8e7516a9bff182c178d3849c9e992fb8beab3
-    exerciseHash: e91251ed78c312ccb601860431088c3ddaec0d15b863a37847930c33fe807620
+    exerciseHash: 96acdcc82f5ba96782a93790e96bddcc852bbd1464d2ac5fdf72e1c4075acd76
   '15':
     after: Understand step sizes through an exact recurrence
     instructions: ''
@@ -27960,7 +27960,7 @@ calculus-gradient-descent:
   '32':
     after: Recognize nonconvex behavior and stopping limits
     instructions: ''
-    prompt: For that loss, find the value at the origin.
+    prompt: For $L=(x^2-1)^2+y^2$, find the value at the origin.
     answer: |-
       The answer is $1$.
 
@@ -27980,11 +27980,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Recognize nonconvex behavior and stopping limits
         teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5
-    exerciseHash: 6e9c283f99c0d4918dfad62aa06e92fac9103e65e988f1c31efc35ed5d2a51ff
+    exerciseHash: bdc66d460e91516450a5300f361f3e37b10470dcbcc79726d29236c17b6bf666
   '33':
     after: Recognize nonconvex behavior and stopping limits
     instructions: ''
-    prompt: For that loss, find the value at (1,0).
+    prompt: For $L=(x^2-1)^2+y^2$, find the value at (1,0).
     answer: |-
       The answer is $0$.
 
@@ -28004,11 +28004,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Recognize nonconvex behavior and stopping limits
         teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5
-    exerciseHash: 9b299a6da6649288a73ea43dba4f41989f98ef7ad6fe0fe172e9a53ab7def984
+    exerciseHash: fc36291102ef26cf6ebec08c030c449fcd2c55e53ea10d8fbce76e11f92fb219
   '34':
     after: Recognize nonconvex behavior and stopping limits
     instructions: ''
-    prompt: For that loss, classify the origin as minimum, maximum, or saddle.
+    prompt: For $L=(x^2-1)^2+y^2$, classify the origin as minimum, maximum, or saddle.
     answer: |-
       The answer is **saddle**.
 
@@ -28028,11 +28028,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Recognize nonconvex behavior and stopping limits
         teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5
-    exerciseHash: 53326f1a188f1d83b6d336b37fbf7357c780b3e0a0875e094a4c0349f596745e
+    exerciseHash: 479db31c47800e00fd396c514e2ed4158cc0cabad6b284d4cc1ab6e8fd67c955
   '35':
     after: Recognize nonconvex behavior and stopping limits
     instructions: ''
-    prompt: Starting that loss at the origin, what next point does ordinary gradient descent produce for any positive step size?
+    prompt: Starting $L=(x^2-1)^2+y^2$ at the origin, what next point does ordinary gradient descent produce for any positive step size?
     answer: |-
       The answer is $\left(0,\ 0\right)$.
 
@@ -28052,11 +28052,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Recognize nonconvex behavior and stopping limits
         teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5
-    exerciseHash: d324584a505532a1ab876530857c452b3a5cc0c7be742db6f4305da90e011cd7
+    exerciseHash: 29ed707c8c8a27aa843b4d6ce4ae0a51b6f1d6b0cb7066eed8c581834ee767fd
   '36':
     after: Recognize nonconvex behavior and stopping limits
     instructions: ''
-    prompt: For that loss, compute the gradient at (2,1).
+    prompt: For $L=(x^2-1)^2+y^2$, compute the gradient at (2,1).
     answer: |-
       The answer is $\left(24,\ 2\right)$.
 
@@ -28076,11 +28076,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Recognize nonconvex behavior and stopping limits
         teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5
-    exerciseHash: a9f682159c319c55e32534021b593f37bd735d06a593afb92dab864bd49b7867
+    exerciseHash: 847670100cefcc3ff1ffe8f25d050a4729ff3049772a9d50085882bedf2404e6
   '37':
     after: Recognize nonconvex behavior and stopping limits
     instructions: ''
-    prompt: For that loss, start at (2,1) with alpha=1/16. Give the next point.
+    prompt: For $L=(x^2-1)^2+y^2$, start at (2,1) with alpha=1/16. Give the next point.
     answer: |-
       The answer is $\left(\frac{1}{2},\ \frac{7}{8}\right)$.
 
@@ -28100,7 +28100,7 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Recognize nonconvex behavior and stopping limits
         teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5
-    exerciseHash: 6d8e038cb8e404564fa376394f2ff63673f9964c03bbec074926afd14e75b481
+    exerciseHash: bab2b562ad59efcedd55825eaafdab482f3fc9f26a8a3fa9d399f1b69a377405
   '38':
     after: Recognize nonconvex behavior and stopping limits
     instructions: ''
@@ -28197,7 +28197,7 @@ calculus-gradient-descent:
   '42':
     after: Connect the gradient to least-squares fitting
     instructions: ''
-    prompt: For those data and theta=(0,0), give the gradient of half the squared residual norm.
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and theta=(0,0), give the gradient of half the squared residual norm.
     answer: |-
       The answer is $\left(-5,\ -6\right)$.
 
@@ -28220,11 +28220,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Connect the gradient to least-squares fitting
         teachingHash: 3671d5218a9e17356e3a0631d0295ee3128832e7b191555698a05e1c996fcbb1
-    exerciseHash: 6d2ff6fffdfb9160d51bb3bfaad261debd6964c3f813efc5f73e0950119afdcc
+    exerciseHash: 2bf8eabafa5bb58b45bf631d668bfd6e13030ec2a67f24b8d4f9a193dfd7e40a
   '43':
     after: Connect the gradient to least-squares fitting
     instructions: ''
-    prompt: For those data, start at theta=(0,0) with alpha=1/10. Give the next theta.
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, start at theta=(0,0) with alpha=1/10. Give the next theta.
     answer: |-
       The answer is $\left(\frac{1}{2},\ \frac{3}{5}\right)$.
 
@@ -28247,11 +28247,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Connect the gradient to least-squares fitting
         teachingHash: 3671d5218a9e17356e3a0631d0295ee3128832e7b191555698a05e1c996fcbb1
-    exerciseHash: d48fb23d376307d85a40fc5a30f5c7c503f71205ea2e23fd20f16db987d2ca8c
+    exerciseHash: 43d980b8fe2b6ec0edbce019cc5bee861c2cb8f4b60e395b63aa6b87959c7424
   '44':
     after: Connect the gradient to least-squares fitting
     instructions: ''
-    prompt: For those data, find the initial half-squared loss at theta=(0,0).
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the initial half-squared loss at theta=(0,0).
     answer: |-
       The answer is $\frac{9}{2}$.
 
@@ -28274,11 +28274,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Connect the gradient to least-squares fitting
         teachingHash: 3671d5218a9e17356e3a0631d0295ee3128832e7b191555698a05e1c996fcbb1
-    exerciseHash: 6636528a2f66696f7f4f8afa186d9dd499ecd7d6b6408a8e5172be6c7fbc926a
+    exerciseHash: 10247f0a0074fc5fccf1570baf70e93df3f3026b585d60abd3bb7f949c5f6fcb
   '45':
     after: Connect the gradient to least-squares fitting
     instructions: ''
-    prompt: For those data, find the half-squared loss at theta=(1/2,3/5).
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the half-squared loss at theta=(1/2,3/5).
     answer: |-
       The answer is $\frac{23}{40}$.
 
@@ -28301,11 +28301,11 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Connect the gradient to least-squares fitting
         teachingHash: 3671d5218a9e17356e3a0631d0295ee3128832e7b191555698a05e1c996fcbb1
-    exerciseHash: 4cf848e94da2be008e2c6b67cc03af09a1c38b059a865ca5d69b4c325791e030
+    exerciseHash: d60ed871aa157e68340d89c00d4c2600c9c51fa6c02819bdad3f1fec0ad9603c
   '46':
     after: Connect the gradient to least-squares fitting
     instructions: ''
-    prompt: For those data, give A transpose b as a pair.
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, give A transpose b as a pair.
     answer: |-
       The answer is $\left(5,\ 6\right)$.
 
@@ -28328,7 +28328,7 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Connect the gradient to least-squares fitting
         teachingHash: 3671d5218a9e17356e3a0631d0295ee3128832e7b191555698a05e1c996fcbb1
-    exerciseHash: 5466b9b8a21b5106a0120a0c4f08fbb3fb9498c98a2ce08671721904f9806e09
+    exerciseHash: 5fd5876857dfb8027a9fca543993b9ebc485b0cccc63dc33fa2823566e6281de
   '47':
     after: Connect the gradient to least-squares fitting
     instructions: ''
@@ -28359,7 +28359,7 @@ calculus-gradient-descent:
   '48':
     after: Connect the gradient to least-squares fitting
     instructions: ''
-    prompt: For those data, find the minimum half-squared loss at theta=(7/6,1/2).
+    prompt: For A with rows (1,0),(1,1),(1,2), b=(1,2,2), and loss equal to half the squared residual norm, find the minimum half-squared loss at theta=(7/6,1/2).
     answer: |-
       The answer is $\frac{1}{12}$.
 
@@ -28382,7 +28382,7 @@ calculus-gradient-descent:
       - lesson: calculus-gradient-descent
         section: Connect the gradient to least-squares fitting
         teachingHash: 3671d5218a9e17356e3a0631d0295ee3128832e7b191555698a05e1c996fcbb1
-    exerciseHash: 041b59548538eb1cb065a89c17d55f2f9e0e956803956a9a4c9c53d4a8520e8b
+    exerciseHash: 635ada1e608849403b0f3c38cab44432dc8d627d1997d8e27dd6c875f6669348
   '49':
     after: Connect the gradient to least-squares fitting
     instructions: ''
@@ -28858,7 +28858,7 @@ probability-statistics-probability-models-events:
   '28':
     after: Probability weights and the axioms
     instructions: ''
-    prompt: An outcome has weight twice that of each of three other outcomes. Find its probability.
+    prompt: A model has exactly four possible outcomes. One outcome has weight twice that of each of the other three. Find its probability.
     answer: Writing the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.
     concepts:
       - probability-statistics-probability-model
@@ -28873,7 +28873,7 @@ probability-statistics-probability-models-events:
       - lesson: probability-statistics-probability-models-events
         section: Probability weights and the axioms
         teachingHash: 90ae209e342b75c90ae052b1878755c22e3e37951a98615df979d862f950a737
-    exerciseHash: 0ff9d3e2b80ce52f4f1a757a9e32fdc37992955f49cda5299ddf09a308509c84
+    exerciseHash: 8f0e626e1dae266623d2bafc7510d418f4066f732ce55765b48cfa0488fd88cd
   '29':
     after: Probability weights and the axioms
     instructions: ''
@@ -41479,7 +41479,7 @@ probability-statistics-laws-large-numbers-central-limit-theorem:
   '13':
     after: The law of large numbers concerns concentration
     instructions: ''
-    prompt: Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?
+    prompt: Iid observations have variance one. What smallest integer $n$ makes the Chebyshev bound for error at least $1/10$ at most $1/20$?
     answer: Require $1/[n(1/10)^2]\le1/20$, so $n\ge2000$. The smallest is $2000$.
     concepts:
       - probability-statistics-weak-law
@@ -41490,11 +41490,11 @@ probability-statistics-laws-large-numbers-central-limit-theorem:
       - lesson: probability-statistics-laws-large-numbers-central-limit-theorem
         section: The law of large numbers concerns concentration
         teachingHash: 66a3b3b66dfa47fa7750b442b486fb67ad81d503d290fa8edf10398fd4efaec5
-    exerciseHash: af0af60d39cdfb3aed4819a92a06de18ff2f3c442010ee1aaccd1b83b2bdceda
+    exerciseHash: 751ea54f187ce0478d8b26ee1c44c941f62509705d7c2a8a9722999f0cb882d2
   '14':
     after: The law of large numbers concerns concentration
     instructions: ''
-    prompt: Iid observations have variance two. What upper bound results for error at least $1/2$ in a mean of one hundred observations?
+    prompt: Iid observations have variance two. What Chebyshev upper bound results for error at least $1/2$ in a mean of one hundred observations?
     answer: $2/[100(1/2)^2]=2/25$.
     concepts:
       - probability-statistics-weak-law
@@ -41505,7 +41505,7 @@ probability-statistics-laws-large-numbers-central-limit-theorem:
       - lesson: probability-statistics-laws-large-numbers-central-limit-theorem
         section: The law of large numbers concerns concentration
         teachingHash: 66a3b3b66dfa47fa7750b442b486fb67ad81d503d290fa8edf10398fd4efaec5
-    exerciseHash: d5986c748d9c7afebd5a60b4189f5ca1df32dd839ffd5ab0144322a18f80fd45
+    exerciseHash: 2f5ecc8879ff173a1f217cfc71c79d016f47350869bc3dd34a4a769d0e23a780
   '15':
     after: The law of large numbers concerns concentration
     instructions: ''
@@ -42389,7 +42389,7 @@ probability-statistics-concentration-monte-carlo:
   '14':
     after: Centering and squaring gives Chebyshev
     instructions: ''
-    prompt: Using the same variance 4, what lower bound follows for $P(|X-E[X]|<4)$?
+    prompt: For variance 4, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<4)$?
     answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
     concepts:
       - probability-statistics-chebyshev-bound
@@ -42400,7 +42400,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Centering and squaring gives Chebyshev
         teachingHash: 7ff001bc758341d034e2ba11c22e7c8005023543b45dc7c87cc1c55e4d49c0cf
-    exerciseHash: fea8feea546aa80ba1134af8759ae49c8a124a906d3ae605061f70f4c71adccf
+    exerciseHash: fbbebc8f1edc13a0da5b99fec819fa05bd4bed5b70454c86411257d9452debcc
   '15':
     after: Centering and squaring gives Chebyshev
     instructions: ''
@@ -42419,7 +42419,7 @@ probability-statistics-concentration-monte-carlo:
   '16':
     after: Centering and squaring gives Chebyshev
     instructions: ''
-    prompt: Using the same variance 9, what lower bound follows for $P(|X-E[X]|<6)$?
+    prompt: For variance 9, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<6)$?
     answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
     concepts:
       - probability-statistics-chebyshev-bound
@@ -42430,7 +42430,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Centering and squaring gives Chebyshev
         teachingHash: 7ff001bc758341d034e2ba11c22e7c8005023543b45dc7c87cc1c55e4d49c0cf
-    exerciseHash: dc3ccbe07ddaf6aafa0a9444d8d0cd5808355e85d149a82c7aeb8b37d8349750
+    exerciseHash: 121e791163fcd1e2927fb61c941914fe3ad01846703f8b783932019a9a664121
   '17':
     after: Centering and squaring gives Chebyshev
     instructions: ''
@@ -42449,7 +42449,7 @@ probability-statistics-concentration-monte-carlo:
   '18':
     after: Centering and squaring gives Chebyshev
     instructions: ''
-    prompt: Using the same variance 16, what lower bound follows for $P(|X-E[X]|<8)$?
+    prompt: For variance 16, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<8)$?
     answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
     concepts:
       - probability-statistics-chebyshev-bound
@@ -42460,7 +42460,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Centering and squaring gives Chebyshev
         teachingHash: 7ff001bc758341d034e2ba11c22e7c8005023543b45dc7c87cc1c55e4d49c0cf
-    exerciseHash: aa29dc1500931bb15b06505dec411f8a3d6828cbc08f204983bb9917c8bbdcdb
+    exerciseHash: b580804210a93f79f4e2ba040d4281d47a73f469e3c53182f6ef8a4e1a132a75
   '19':
     after: Centering and squaring gives Chebyshev
     instructions: ''
@@ -42479,7 +42479,7 @@ probability-statistics-concentration-monte-carlo:
   '20':
     after: Centering and squaring gives Chebyshev
     instructions: ''
-    prompt: Using the same variance 1, what lower bound follows for $P(|X-E[X]|<5)$?
+    prompt: For variance 1, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<5)$?
     answer: 'Take the complement of the at-least event: $1-1/25=24/25$.'
     concepts:
       - probability-statistics-chebyshev-bound
@@ -42490,7 +42490,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Centering and squaring gives Chebyshev
         teachingHash: 7ff001bc758341d034e2ba11c22e7c8005023543b45dc7c87cc1c55e4d49c0cf
-    exerciseHash: d8bd71b37e10d81ef7dff9adcc2dfcc305f238213a7996997c82194065750e88
+    exerciseHash: d9679249997fb9cec9524a1553d4a9db261a86c9c21dddd015658a3c1827e2e5
   '21':
     after: Centering and squaring gives Chebyshev
     instructions: ''
@@ -42509,7 +42509,7 @@ probability-statistics-concentration-monte-carlo:
   '22':
     after: Centering and squaring gives Chebyshev
     instructions: ''
-    prompt: Using the same variance 25, what lower bound follows for $P(|X-E[X]|<15)$?
+    prompt: For variance 25, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<15)$?
     answer: 'Take the complement of the at-least event: $1-1/9=8/9$.'
     concepts:
       - probability-statistics-chebyshev-bound
@@ -42520,7 +42520,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Centering and squaring gives Chebyshev
         teachingHash: 7ff001bc758341d034e2ba11c22e7c8005023543b45dc7c87cc1c55e4d49c0cf
-    exerciseHash: 341cb4846a35eb057df7f25c7623908f618b11a3f3a593948db43925c196ba62
+    exerciseHash: 52f623984d2a6e0b4cd7337dd1d6e9d1343c503af596d9dd8d2ef2864ea54329
   '23':
     after: Centering and squaring gives Chebyshev
     instructions: ''
@@ -42554,7 +42554,7 @@ probability-statistics-concentration-monte-carlo:
   '25':
     after: Guarantees for averages and sample sizes
     instructions: ''
-    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.1.
+    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.1.
     answer: Require $n\ge 1/(0.1\cdot0.5^2)$ and round upward, giving $n=40$.
     concepts:
       - probability-statistics-concentration-guarantee
@@ -42568,7 +42568,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Guarantees for averages and sample sizes
         teachingHash: 3900e3db31fadfcd6e208e080a81a4d2d5f43502b991a96b8a91deb112d97cfb
-    exerciseHash: b8098ce6c7ddf32014d0272679620e1d7a806d27d3ffb14472981f729c669a56
+    exerciseHash: 9b20ca4b719c1c0bcd7d2c7b354d05ea2b692c4e7eb659e7c4d2eed7debe7aa5
   '26':
     after: Guarantees for averages and sample sizes
     instructions: ''
@@ -42590,7 +42590,7 @@ probability-statistics-concentration-monte-carlo:
   '27':
     after: Guarantees for averages and sample sizes
     instructions: ''
-    prompt: Independent identically distributed observations have variance 4. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.05.
+    prompt: Independent identically distributed observations have variance 4. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.05.
     answer: Require $n\ge 4/(0.05\cdot0.5^2)$ and round upward, giving $n=320$.
     concepts:
       - probability-statistics-concentration-guarantee
@@ -42604,7 +42604,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Guarantees for averages and sample sizes
         teachingHash: 3900e3db31fadfcd6e208e080a81a4d2d5f43502b991a96b8a91deb112d97cfb
-    exerciseHash: 36ad8b22d8165a47b8f59f403b47bcef5660a5ba28de05749589caaf775e6426
+    exerciseHash: ab37daae8db872a8321a30d7126ecf9d98e6e7a4188f2c612c7fa57162e9f1a7
   '28':
     after: Guarantees for averages and sample sizes
     instructions: ''
@@ -42626,7 +42626,7 @@ probability-statistics-concentration-monte-carlo:
   '29':
     after: Guarantees for averages and sample sizes
     instructions: ''
-    prompt: Independent identically distributed observations have variance 9. Using Chebyshev, give a sufficient integer sample size for error at least 1 to have probability at most 0.1.
+    prompt: Independent identically distributed observations have variance 9. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 1 to have probability at most 0.1.
     answer: Require $n\ge 9/(0.1\cdot1^2)$ and round upward, giving $n=90$.
     concepts:
       - probability-statistics-concentration-guarantee
@@ -42640,7 +42640,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Guarantees for averages and sample sizes
         teachingHash: 3900e3db31fadfcd6e208e080a81a4d2d5f43502b991a96b8a91deb112d97cfb
-    exerciseHash: 5158b832198832006383597424a16bf37a6935b7e00052daf43f95067ad1e103
+    exerciseHash: f4f3977443ae3ae2f69f249f2ee9e79219fa672cdd0fa4683be4fd47797e3240
   '30':
     after: Guarantees for averages and sample sizes
     instructions: ''
@@ -42662,7 +42662,7 @@ probability-statistics-concentration-monte-carlo:
   '31':
     after: Guarantees for averages and sample sizes
     instructions: ''
-    prompt: Independent identically distributed observations have variance 2. Using Chebyshev, give a sufficient integer sample size for error at least 0.2 to have probability at most 0.05.
+    prompt: Independent identically distributed observations have variance 2. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.2 to have probability at most 0.05.
     answer: Require $n\ge 2/(0.05\cdot0.2^2)$ and round upward, giving $n=1000$.
     concepts:
       - probability-statistics-concentration-guarantee
@@ -42676,7 +42676,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Guarantees for averages and sample sizes
         teachingHash: 3900e3db31fadfcd6e208e080a81a4d2d5f43502b991a96b8a91deb112d97cfb
-    exerciseHash: f6975ab395e8ba48e171274fb85bfcadae09ff65c3be306eaeac2c0e1a2fb340
+    exerciseHash: c332e5d38ff2630e07d2b0ffbda5f44be3613b6f1968c1f5b94752ee7db2f7c6
   '32':
     after: Guarantees for averages and sample sizes
     instructions: ''
@@ -42698,7 +42698,7 @@ probability-statistics-concentration-monte-carlo:
   '33':
     after: Guarantees for averages and sample sizes
     instructions: ''
-    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.1 to have probability at most 0.01.
+    prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.1 to have probability at most 0.01.
     answer: Require $n\ge 1/(0.01\cdot0.1^2)$ and round upward, giving $n=10000$.
     concepts:
       - probability-statistics-concentration-guarantee
@@ -42712,7 +42712,7 @@ probability-statistics-concentration-monte-carlo:
       - lesson: probability-statistics-concentration-monte-carlo
         section: Guarantees for averages and sample sizes
         teachingHash: 3900e3db31fadfcd6e208e080a81a4d2d5f43502b991a96b8a91deb112d97cfb
-    exerciseHash: 9ba7f61e9008f59dee1ead892624d2781c1bb8f158d9b4eb18253e8820239ab3
+    exerciseHash: a766dc94741497d09f3a1d2d21f7e227eb74d129be5e65c67859144ad18803c5
   '34':
     after: Guarantees for averages and sample sizes
     instructions: ''
@@ -46306,7 +46306,7 @@ probability-statistics-hypothesis-testing:
   '49':
     after: Errors, power, and practical meaning
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.05/5=0.01$. Independence is not required for the union bound.
     concepts:
       - probability-statistics-test-power
@@ -46327,7 +46327,7 @@ probability-statistics-hypothesis-testing:
       - lesson: probability-statistics-hypothesis-testing
         section: Errors, power, and practical meaning
         teachingHash: 0a2b603c556d600a886994ab363b7dd43381a9d592ead65bbb0275e45386853a
-    exerciseHash: 7821cf6a6068522d866ec225776ee87fca8bc617e306a94adde7a65672e283fd
+    exerciseHash: eaf261aec1fe1b408dc160806bbb390d43acf5aebcf0125ceee508f6c7bb0413
   '50':
     after: Errors, power, and practical meaning
     instructions: ''
@@ -46356,7 +46356,7 @@ probability-statistics-hypothesis-testing:
   '51':
     after: Errors, power, and practical meaning
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.05/10=0.005$. Independence is not required for the union bound.
     concepts:
       - probability-statistics-test-power
@@ -46377,7 +46377,7 @@ probability-statistics-hypothesis-testing:
       - lesson: probability-statistics-hypothesis-testing
         section: Errors, power, and practical meaning
         teachingHash: 0a2b603c556d600a886994ab363b7dd43381a9d592ead65bbb0275e45386853a
-    exerciseHash: 53cfd965ebb112b72040270b1efc81b9117898fb04281f0bffda8baccf442e3f
+    exerciseHash: 9d16c14076798a2ee8ea1a0739691641b6833fc69cd1dd13c01391236509990e
   '52':
     after: Errors, power, and practical meaning
     instructions: ''
@@ -46406,7 +46406,7 @@ probability-statistics-hypothesis-testing:
   '53':
     after: Errors, power, and practical meaning
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.04/4=0.01$. Independence is not required for the union bound.
     concepts:
       - probability-statistics-test-power
@@ -46427,7 +46427,7 @@ probability-statistics-hypothesis-testing:
       - lesson: probability-statistics-hypothesis-testing
         section: Errors, power, and practical meaning
         teachingHash: 0a2b603c556d600a886994ab363b7dd43381a9d592ead65bbb0275e45386853a
-    exerciseHash: be1d9a11531be0f46fa7f8a81f37b91f479a78fbfed679e8456cfa6538a37d65
+    exerciseHash: 636ae37df822eb43615c8a4077806c805ed61b2aff3f4d31b8e2e21c7605d77e
   '54':
     after: Errors, power, and practical meaning
     instructions: ''
@@ -46456,7 +46456,7 @@ probability-statistics-hypothesis-testing:
   '55':
     after: Errors, power, and practical meaning
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.1/20=0.005$. Independence is not required for the union bound.
     concepts:
       - probability-statistics-test-power
@@ -46477,7 +46477,7 @@ probability-statistics-hypothesis-testing:
       - lesson: probability-statistics-hypothesis-testing
         section: Errors, power, and practical meaning
         teachingHash: 0a2b603c556d600a886994ab363b7dd43381a9d592ead65bbb0275e45386853a
-    exerciseHash: ae44accb362f09b4886a569b3cac19bc77bdba74922432212033c84481a89b82
+    exerciseHash: 184ba241cc5607918523425b5f03010b2bc22582df4425072ccd679f9171d23e
   '56':
     after: Errors, power, and practical meaning
     instructions: ''
@@ -46506,7 +46506,7 @@ probability-statistics-hypothesis-testing:
   '57':
     after: Errors, power, and practical meaning
     instructions: ''
-    prompt: To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what per-test significance level suffices?
+    prompt: To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what is the largest common per-test significance level certified by this union bound?
     answer: Use $\alpha/m=0.08/8=0.01$. Independence is not required for the union bound.
     concepts:
       - probability-statistics-test-power
@@ -46527,7 +46527,7 @@ probability-statistics-hypothesis-testing:
       - lesson: probability-statistics-hypothesis-testing
         section: Errors, power, and practical meaning
         teachingHash: 0a2b603c556d600a886994ab363b7dd43381a9d592ead65bbb0275e45386853a
-    exerciseHash: f5d45b8e52e9159c357babf9f6c0f97a5eacd4645c3ff0fe44738f95dbb9de29
+    exerciseHash: 7324e3270b446d72b8c4f8738eae7945220085174da6486d19acc2c926db5dd6
   '58':
     after: Errors, power, and practical meaning
     instructions: ''

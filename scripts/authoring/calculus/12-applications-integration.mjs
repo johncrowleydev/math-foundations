@@ -288,7 +288,7 @@ Radii are distances from the actual axis, not automatically function values. Rot
           r`The farther edge is at distance $2$, the nearer at $2-x$, so subtract their squared-radius areas.`,
         ),
         n(
-          r`For that rotation about $y=2$, find the volume.`,
+          r`Rotate $0\le y\le x$, $0\le x\le1$, about $y=2$. Find the volume.`,
           '5*pi/3',
           r`$\pi\int_0^1[4-(2-x)^2]dx=\pi\int_0^1(4x-x^2)dx=5\pi/3$.`,
         ),
@@ -453,7 +453,7 @@ When communicating an applied result, state the quantity, units, interval, and m
           r`$Q(3)=10+\int_0^3(t-2)dt=10+9/2-6=17/2$ MB.`,
         ),
         n(
-          r`For that buffer, find the minimum content on $[0,3]$.`,
+          r`A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\le t\le3$. Find the minimum content on $[0,3]$.`,
           '8',
           r`$Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB.`,
         ),

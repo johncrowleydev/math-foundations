@@ -143,7 +143,7 @@ sections:
         answer: $R_{20}\le\int_{20}^{\infty}x^{-2}dx=1/20$. The answer is $\frac{1}{20}$.
       - id: 28
         type: freeform
-        prompt: What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?
+        prompt: What minimum integer $N$ makes the integral-test upper bound for the $\sum_{n=1}^{\infty}1/n^2$ tail at most $1/100$?
         answerLines: 5
         answer: Require $1/N\le1/100$, giving $N\ge100$. The answer is $100$.
       - id: 29
@@ -237,7 +237,7 @@ sections:
         answer: The first omitted magnitude is $1/(10+1)=1/11$. The answer is $\frac{1}{11}$.
       - id: 46
         type: freeform
-        prompt: What minimum $N$ guarantees error at most $1/100$ by that bound?
+        prompt: For the alternating harmonic series $\sum_{n=1}^{\infty}(-1)^{n+1}/n$, what minimum $N$ guarantees error at most $1/100$ by the first-omitted-term bound?
         answerLines: 5
         answer: Require $1/(N+1)\le1/100$, giving $N\ge99$. The answer is $99$.
       - id: 47
@@ -247,7 +247,7 @@ sections:
         answer: A common denominator gives $12/12-6/12+4/12-3/12=7/12$. The answer is $\frac{7}{12}$.
       - id: 48
         type: freeform
-        prompt: For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.
+        prompt: For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, give the first-omitted-term error bound after $9$ terms.
         answerLines: 5
         answer: The first omitted term has magnitude $1/10^2=1/100$. The answer is $\frac{1}{100}$.
       - id: 49

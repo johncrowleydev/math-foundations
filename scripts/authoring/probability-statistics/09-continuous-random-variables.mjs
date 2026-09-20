@@ -259,7 +259,7 @@ Symmetry can simplify a calculation only after existence is established. A symme
       'An average weighted by density.',
       r`$E[g(X)]=\int g(x)f_X(x)\,dx$ when the expectation exists.`,
       r`With density $4x^3$ on $(0,1)$, $E[X]=4/5$.`,
-      `Usually $E[g(X)]\ne g(E[X])$.`,
+      r`Usually $E[g(X)]\ne g(E[X])$.`,
     ),
   ],
 );

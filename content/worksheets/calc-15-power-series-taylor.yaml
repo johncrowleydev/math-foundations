@@ -165,7 +165,7 @@ sections:
         answer: $1+1/10+1/200=221/200=1.105$. The answer is $\frac{221}{200}$.
       - id: 32
         type: freeform
-        prompt: For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.
+        prompt: For $e^{0.1}$ approximated by $P_2(x)=1+x+x^2/2$ at $x=0.1$, use $M=2$ for the third derivative to give the Taylor error bound.
         answerLines: 5
         answer: $2(1/10)^3/3!=2/(1000\cdot6)=1/3000$. The answer is $\frac{1}{3000}$.
       - id: 33
@@ -175,12 +175,12 @@ sections:
         answer: The next magnitude is $(1/2)^5/5!=1/(32\cdot120)=1/3840$. The answer is $\frac{1}{3840}$.
       - id: 34
         type: freeform
-        prompt: Evaluate the same sine polynomial at $x=1/2$.
+        prompt: Evaluate the sine polynomial $x-x^3/6$ at $x=1/2$.
         answerLines: 5
         answer: $1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\frac{23}{48}$.
       - id: 35
         type: freeform
-        prompt: For $\cos x\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.
+        prompt: For $\cos x\approx1-x^2/2$ at $x=1/5$, give the Taylor remainder bound using the fourth-derivative bound $M=1$.
         answerLines: 5
         answer: "The cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$."
       - id: 36
@@ -242,12 +242,12 @@ sections:
         answer: Integrating each term gives $b-b^3/3+b^5/10$. The answer is $b-\frac{b^{3}}{3}+\frac{b^{5}}{10}$.
       - id: 47
         type: freeform
-        prompt: Use those three terms to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.
+        prompt: Use $1-x^2+x^4/2$ to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.
         answerLines: 5
         answer: $1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\frac{443}{960}$.
       - id: 48
         type: freeform
-        prompt: Give the first-omitted-term bound for that three-term integral approximation.
+        prompt: Approximate $\int_0^{1/2}e^{-x^2}dx$ by integrating $1-x^2+x^4/2$. Give the first-omitted-term bound for this integral approximation.
         answerLines: 5
         answer: The next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\cdot42)=1/5376$. The answer is $\frac{1}{5376}$.
       - id: 49

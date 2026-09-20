@@ -303,7 +303,7 @@ c.questions = [
     exact('3/4'),
   ),
   q(
-    r`An outcome has weight twice that of each of three other outcomes. Find its probability.`,
+    r`A model has exactly four possible outcomes. One outcome has weight twice that of each of the other three. Find its probability.`,
     r`Writing the four weights as $2k,k,k,k$ gives $5k=1$. The distinguished probability is $2/5$.`,
     exact('2/5'),
   ),
@@ -426,12 +426,12 @@ d.review = [
     exact('11/12'),
   ),
   q(
-    r`For event probabilities $0.45,0.8$, give the lower and upper bounds for their overlap as an ordered pair.`,
+    r`For event probabilities $0.45,0.8$, give the sharp lower and upper bounds for their overlap as an ordered pair.`,
     r`The bounds are $\max(0,0.45+0.8-1)=0.25$ and $\min(0.45,0.8)=0.45$, so the pair is $(1/4,9/20)$.`,
     tuple(['1/4', '9/20']),
   ),
   q(
-    r`Six events each have probability at most $0.005$. Bound the probability that none occurs from below.`,
+    r`Six events each have probability at most $0.005$. Give the lower bound for the probability that none occurs obtained by subtracting the union bound from one.`,
     r`Their union has probability at most $0.03$, so its complement has probability at least $0.97=97/100$.`,
     exact('97/100'),
   ),

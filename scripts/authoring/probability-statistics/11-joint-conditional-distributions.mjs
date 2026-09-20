@@ -251,7 +251,7 @@ s2.quickCheck = quick(
   `The conditioning event determines the denominator.`,
   [
     `Correct. The row total is $P(X=x)$, provided it is positive.`,
-    `This reverses the conditioning and instead gives $P(X=x\mid Y=y)$.`,
+    r`This reverses the conditioning and instead gives $P(X=x\mid Y=y)$.`,
     `The cell is a joint probability; a conditional PMF must sum to one over the retained row.`,
   ],
 );

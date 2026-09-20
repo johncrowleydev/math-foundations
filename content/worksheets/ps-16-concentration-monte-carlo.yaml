@@ -71,7 +71,7 @@ sections:
         answer: 'The bound is variance divided by squared distance: $4/16=1/4$.'
       - id: 14
         type: freeform
-        prompt: Using the same variance 4, what lower bound follows for $P(|X-E[X]|<4)$?
+        prompt: For variance 4, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<4)$?
         answerLines: 5
         answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
       - id: 15
@@ -81,7 +81,7 @@ sections:
         answer: 'The bound is variance divided by squared distance: $9/36=1/4$.'
       - id: 16
         type: freeform
-        prompt: Using the same variance 9, what lower bound follows for $P(|X-E[X]|<6)$?
+        prompt: For variance 9, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<6)$?
         answerLines: 5
         answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
       - id: 17
@@ -91,7 +91,7 @@ sections:
         answer: 'The bound is variance divided by squared distance: $16/64=1/4$.'
       - id: 18
         type: freeform
-        prompt: Using the same variance 16, what lower bound follows for $P(|X-E[X]|<8)$?
+        prompt: For variance 16, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<8)$?
         answerLines: 5
         answer: 'Take the complement of the at-least event: $1-1/4=3/4$.'
       - id: 19
@@ -101,7 +101,7 @@ sections:
         answer: 'The bound is variance divided by squared distance: $1/25=1/25$.'
       - id: 20
         type: freeform
-        prompt: Using the same variance 1, what lower bound follows for $P(|X-E[X]|<5)$?
+        prompt: For variance 1, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<5)$?
         answerLines: 5
         answer: 'Take the complement of the at-least event: $1-1/25=24/25$.'
       - id: 21
@@ -111,7 +111,7 @@ sections:
         answer: 'The bound is variance divided by squared distance: $25/225=1/9$.'
       - id: 22
         type: freeform
-        prompt: Using the same variance 25, what lower bound follows for $P(|X-E[X]|<15)$?
+        prompt: For variance 25, what lower bound follows by taking the complement of the Chebyshev bound for $P(|X-E[X]|<15)$?
         answerLines: 5
         answer: 'Take the complement of the at-least event: $1-1/9=8/9$.'
       - id: 23
@@ -128,7 +128,7 @@ sections:
     questions:
       - id: 25
         type: freeform
-        prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.1.
+        prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.1.
         answerLines: 5
         answer: Require $n\ge 1/(0.1\cdot0.5^2)$ and round upward, giving $n=40$.
       - id: 26
@@ -138,7 +138,7 @@ sections:
         answer: Independence gives variance $\sigma^2/n=1/40=1/40$.
       - id: 27
         type: freeform
-        prompt: Independent identically distributed observations have variance 4. Using Chebyshev, give a sufficient integer sample size for error at least 0.5 to have probability at most 0.05.
+        prompt: Independent identically distributed observations have variance 4. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.5 to have probability at most 0.05.
         answerLines: 5
         answer: Require $n\ge 4/(0.05\cdot0.5^2)$ and round upward, giving $n=320$.
       - id: 28
@@ -148,7 +148,7 @@ sections:
         answer: Independence gives variance $\sigma^2/n=4/320=1/80$.
       - id: 29
         type: freeform
-        prompt: Independent identically distributed observations have variance 9. Using Chebyshev, give a sufficient integer sample size for error at least 1 to have probability at most 0.1.
+        prompt: Independent identically distributed observations have variance 9. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 1 to have probability at most 0.1.
         answerLines: 5
         answer: Require $n\ge 9/(0.1\cdot1^2)$ and round upward, giving $n=90$.
       - id: 30
@@ -158,7 +158,7 @@ sections:
         answer: Independence gives variance $\sigma^2/n=9/90=1/10$.
       - id: 31
         type: freeform
-        prompt: Independent identically distributed observations have variance 2. Using Chebyshev, give a sufficient integer sample size for error at least 0.2 to have probability at most 0.05.
+        prompt: Independent identically distributed observations have variance 2. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.2 to have probability at most 0.05.
         answerLines: 5
         answer: Require $n\ge 2/(0.05\cdot0.2^2)$ and round upward, giving $n=1000$.
       - id: 32
@@ -168,7 +168,7 @@ sections:
         answer: Independence gives variance $\sigma^2/n=2/1000=1/500$.
       - id: 33
         type: freeform
-        prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give a sufficient integer sample size for error at least 0.1 to have probability at most 0.01.
+        prompt: Independent identically distributed observations have variance 1. Using Chebyshev, give the smallest integer sample size certified by this bound for error at least 0.1 to have probability at most 0.01.
         answerLines: 5
         answer: Require $n\ge 1/(0.01\cdot0.1^2)$ and round upward, giving $n=10000$.
       - id: 34

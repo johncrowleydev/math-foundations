@@ -121,7 +121,7 @@ for (const [a, b] of [
       expr(`t^2+${b}+2*t*(t+${a})`, ['t']),
     ),
     q(
-      raw`At a point, $f_x=${a}$ and $f_y=${b}$. Along a path, x'=2 and y'=-3. Find the output rate.`,
+      raw`At a point where $f$ is differentiable, $f_x=${a}$ and $f_y=${b}$. Along a differentiable path through this point, x'=2 and y'=-3. Find the output rate.`,
       raw`The rate is $2(${a})-3(${b})=${2 * a - 3 * b}$.`,
       exact(2 * a - 3 * b),
     ),
@@ -202,7 +202,7 @@ sections[3].quickCheck = quick(
 );
 sections[0].review = [
   q(
-    'Given gradient (4,-1) and path velocity (2,3), find the output rate.',
+    'For a differentiable function with gradient (4,-1) and a differentiable path with velocity (2,3), find the output rate.',
     'The dot product is 8-3=5.',
     exact(5),
   ),

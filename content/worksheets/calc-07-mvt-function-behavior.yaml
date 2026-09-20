@@ -61,12 +61,12 @@ sections:
         answer: The answer is $\frac{3}{5}$. The bound is $3(0.2)=0.6$.
       - id: 12
         type: freeform
-        prompt: If $2\le f'\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.
+        prompt: If $2\le f'\le5$ on $[1,4]$, give the sharp lower bound on $f(4)-f(1)$ implied by these derivative bounds.
         answerLines: 5
         answer: 'The answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.'
       - id: 13
         type: freeform
-        prompt: If $2\le f'\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.
+        prompt: If $2\le f'\le5$ on $[1,4]$, give the sharp upper bound on $f(4)-f(1)$ implied by these derivative bounds.
         answerLines: 5
         answer: The answer is $15$. The maximum slope bound gives $5(3)=15$.
       - id: 14
@@ -91,7 +91,7 @@ sections:
         answer: The answer is false. Two ordered inputs must have ordered distinct outputs, so both cannot produce zero.
       - id: 18
         type: freeform
-        prompt: Using the derivative bound $|\cos x|\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.
+        prompt: Using the derivative bound $|\cos x|\le1$, give the bound $1|\Delta x|$ on sine-output error for a radian input error of at most $0.03$.
         answerLines: 5
         answer: The answer is $\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.
       - id: 19
