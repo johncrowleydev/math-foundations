@@ -387,6 +387,31 @@ sections[4].review = [
     exact(3),
   ),
 ];
+// Exact names matter here; no choices cue which object is being named.
+sections[0].review.push(
+  q(
+    'What term names the rule applied to random sample data to infer an unknown parameter? Give the term, not a formula.',
+    'An estimator is the rule before the sample is observed.',
+    {
+      validator: 'term',
+      params: { accepted: ['estimator', 'an estimator', 'point estimator'] },
+      correct: 'estimator',
+      incorrect: 'estimate',
+    },
+    'recall',
+  ),
+  q(
+    'What term names the numerical result of applying an estimator to the observed sample? Give the term.',
+    'An estimate is the observed value produced by an estimator.',
+    {
+      validator: 'term',
+      params: { accepted: ['estimate', 'an estimate', 'point estimate'] },
+      correct: 'estimate',
+      incorrect: 'estimator',
+    },
+    'recall',
+  ),
+);
 export default lesson(
   17,
   'estimation-likelihood',

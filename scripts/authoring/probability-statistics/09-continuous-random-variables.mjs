@@ -533,6 +533,21 @@ s5.quickCheck = quick(
     `The exponential tail remains positive beyond every finite additional duration; there is no deadline.`,
   ],
 );
+// A cheap calculus/probability bridge; moment calculations retain production evidence.
+s3.review.push(
+  q(
+    r`True or false: for a density f with finite first absolute moment, $E[X]=\int_{-\infty}^{\infty}x f(x)\,dx$.`,
+    'True. Expectation weights each value by its density before accumulating over the support.',
+    truth(true),
+    'recall',
+  ),
+  q(
+    r`True or false: integrating a probability density alone over its full support always gives the expected value of X.`,
+    'False. The integral of the density is one. Expectation instead integrates x times the density, when it exists.',
+    truth(false),
+    'recall',
+  ),
+);
 export default lesson(
   9,
   'continuous-random-variables',

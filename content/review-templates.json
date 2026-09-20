@@ -44602,5 +44602,648 @@
       "prompt": "A validation score improves after hundreds of model choices on the same validation set. Explain why independent final assessment still matters.",
       "answer": "Selection can adapt to chance features of the validation data. An independent final test better assesses the selected procedure on information that did not guide those choices."
     }
+  },
+  {
+    "id": "calculus-multivariable-functions-review-partial-derivatives-hold-other-inputs-fixed-recall-recognition",
+    "family": "authored",
+    "lesson": "calculus-multivariable-functions",
+    "concept": "calculus-multivariable-functions-partial-derivatives-hold-other-inputs-fixed",
+    "skill": "recall",
+    "objective": "calculus-multivariable-functions-partial-derivatives-hold-other-inputs-fixed-recall-recognition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": [
+      "calculus-multivariable-functions-partial-derivatives-hold-other-inputs-fixed"
+    ],
+    "sourceIds": ["os3-4-3"],
+    "question": {
+      "id": 1,
+      "section": "Partial derivatives hold other inputs fixed",
+      "instructions": "Give the requested answer, including reasoning when asked.",
+      "prompt": "True or false: $f_x(a,b)$ measures change in the x direction while y is held at b.",
+      "answer": "The answer is true.\n\nTrue. A partial derivative varies one input and holds the others fixed.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "boolean",
+            "label": "Answer true or false"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "description": "The requested mathematical answer",
+            "validator": "boolean",
+            "fields": ["answer"],
+            "params": {
+              "expected": [true]
+            }
+          }
+        ],
+        "feedback": {
+          "correct": "The answer is true.\n\nTrue. A partial derivative varies one input and holds the others fixed.",
+          "incorrect": "The answer is true.\n\nTrue. A partial derivative varies one input and holds the others fixed."
+        },
+        "evidence": {
+          "level": "recognition",
+          "interactionCost": "low",
+          "inputCapabilities": ["tap"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Partial derivatives hold other inputs fixed",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: $f_x(a,b)$ measures change in the x direction while y is held at b.",
+        "answer": "The answer is true.\n\nTrue. A partial derivative varies one input and holds the others fixed.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "boolean",
+              "label": "Answer true or false"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "The requested mathematical answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [true]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "The answer is true.\n\nTrue. A partial derivative varies one input and holds the others fixed.",
+            "incorrect": "The answer is true.\n\nTrue. A partial derivative varies one input and holds the others fixed."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      },
+      {
+        "id": 2,
+        "section": "Partial derivatives hold other inputs fixed",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: the notation $f_y$ means that both x and y must change together.",
+        "answer": "The answer is false.\n\nFalse. The y partial varies y with x fixed; a moving path can change both inputs.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "boolean",
+              "label": "Answer true or false"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "The requested mathematical answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [false]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "The answer is false.\n\nFalse. The y partial varies y with x fixed; a moving path can change both inputs.",
+            "incorrect": "The answer is false.\n\nFalse. The y partial varies y with x fixed; a moving path can change both inputs."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "calculus-gradients-review-the-gradient-collects-partial-derivatives-recall-recognition",
+    "family": "authored",
+    "lesson": "calculus-gradients",
+    "concept": "calculus-gradients-the-gradient-collects-partial-derivatives",
+    "skill": "recall",
+    "objective": "calculus-gradients-the-gradient-collects-partial-derivatives-recall-recognition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": ["calculus-gradients-the-gradient-collects-partial-derivatives"],
+    "sourceIds": ["os3-4-6"],
+    "question": {
+      "id": 1,
+      "section": "The gradient collects partial derivatives",
+      "instructions": "Give the requested answer, including reasoning when asked.",
+      "prompt": "True or false: for scalar $f(x,y)$, its gradient is the vector $(f_x,f_y)$ in input-coordinate order.",
+      "answer": "The answer is true.\n\nTrue. The gradient collects first partial derivatives in the same order as the inputs.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "boolean",
+            "label": "Answer true or false"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "description": "The requested mathematical answer",
+            "validator": "boolean",
+            "fields": ["answer"],
+            "params": {
+              "expected": [true]
+            }
+          }
+        ],
+        "feedback": {
+          "correct": "The answer is true.\n\nTrue. The gradient collects first partial derivatives in the same order as the inputs.",
+          "incorrect": "The answer is true.\n\nTrue. The gradient collects first partial derivatives in the same order as the inputs."
+        },
+        "evidence": {
+          "level": "recognition",
+          "interactionCost": "low",
+          "inputCapabilities": ["tap"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "The gradient collects partial derivatives",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: for scalar $f(x,y)$, its gradient is the vector $(f_x,f_y)$ in input-coordinate order.",
+        "answer": "The answer is true.\n\nTrue. The gradient collects first partial derivatives in the same order as the inputs.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "boolean",
+              "label": "Answer true or false"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "The requested mathematical answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [true]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "The answer is true.\n\nTrue. The gradient collects first partial derivatives in the same order as the inputs.",
+            "incorrect": "The answer is true.\n\nTrue. The gradient collects first partial derivatives in the same order as the inputs."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      },
+      {
+        "id": 2,
+        "section": "The gradient collects partial derivatives",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: $f_x+f_y$ is the gradient of scalar $f(x,y)$.",
+        "answer": "The answer is false.\n\nFalse. That sum is a scalar; the gradient retains the two components as a vector.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "boolean",
+              "label": "Answer true or false"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "The requested mathematical answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [false]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "The answer is false.\n\nFalse. That sum is a scalar; the gradient retains the two components as a vector.",
+            "incorrect": "The answer is false.\n\nFalse. That sum is a scalar; the gradient retains the two components as a vector."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "calculus-multivariable-chain-rule-review-the-jacobian-is-the-derivative-matrix-recall-recognition",
+    "family": "authored",
+    "lesson": "calculus-multivariable-chain-rule",
+    "concept": "calculus-multivariable-chain-rule-the-jacobian-is-the-derivative-matrix",
+    "skill": "recall",
+    "objective": "calculus-multivariable-chain-rule-the-jacobian-is-the-derivative-matrix-recall-recognition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": [
+      "calculus-multivariable-chain-rule-the-jacobian-is-the-derivative-matrix"
+    ],
+    "sourceIds": ["os3-4-5", "calculus-mml-jacobian"],
+    "question": {
+      "id": 1,
+      "section": "The Jacobian is the derivative matrix",
+      "instructions": "Give the requested answer, including reasoning when asked.",
+      "prompt": "True or false: the Jacobian has one row per output and one column per input.",
+      "answer": "The answer is true.\n\nTrue. Entry (i,j) is the partial derivative of output i with respect to input j.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "kind": "boolean",
+            "label": "Answer true or false"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "description": "The requested mathematical answer",
+            "validator": "boolean",
+            "fields": ["answer"],
+            "params": {
+              "expected": [true]
+            }
+          }
+        ],
+        "feedback": {
+          "correct": "The answer is true.\n\nTrue. Entry (i,j) is the partial derivative of output i with respect to input j.",
+          "incorrect": "The answer is true.\n\nTrue. Entry (i,j) is the partial derivative of output i with respect to input j."
+        },
+        "evidence": {
+          "level": "recognition",
+          "interactionCost": "low",
+          "inputCapabilities": ["tap"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "The Jacobian is the derivative matrix",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: the Jacobian has one row per output and one column per input.",
+        "answer": "The answer is true.\n\nTrue. Entry (i,j) is the partial derivative of output i with respect to input j.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "boolean",
+              "label": "Answer true or false"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "The requested mathematical answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [true]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "The answer is true.\n\nTrue. Entry (i,j) is the partial derivative of output i with respect to input j.",
+            "incorrect": "The answer is true.\n\nTrue. Entry (i,j) is the partial derivative of output i with respect to input j."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      },
+      {
+        "id": 2,
+        "section": "The Jacobian is the derivative matrix",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: a differentiable map with three inputs and two outputs has a 3-by-2 Jacobian.",
+        "answer": "The answer is false.\n\nFalse. It has two output rows and three input columns, so its Jacobian is 2-by-3.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "kind": "boolean",
+              "label": "Answer true or false"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "The requested mathematical answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [false]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "The answer is false.\n\nFalse. It has two output rows and three input columns, so its Jacobian is 2-by-3.",
+            "incorrect": "The answer is false.\n\nFalse. It has two output rows and three input columns, so its Jacobian is 2-by-3."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "probability-statistics-continuous-random-variables-review-compute-expectations-by-integration-recall-recognition",
+    "family": "authored",
+    "lesson": "probability-statistics-continuous-random-variables",
+    "concept": "probability-statistics-continuous-random-variables-compute-expectations-by-integration",
+    "skill": "recall",
+    "objective": "probability-statistics-continuous-random-variables-compute-expectations-by-integration-recall-recognition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": [
+      "probability-statistics-continuous-random-variables-compute-expectations-by-integration"
+    ],
+    "sourceIds": ["ps-pn-4-1-2"],
+    "question": {
+      "id": 1,
+      "section": "Compute expectations by integration",
+      "instructions": "Give the requested answer, including reasoning when asked.",
+      "prompt": "True or false: for a density f with finite first absolute moment, $E[X]=\\int_{-\\infty}^{\\infty}x f(x)\\,dx$.",
+      "answer": "True. Expectation weights each value by its density before accumulating over the support.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "label": "Answer",
+            "kind": "boolean"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "description": "Answer",
+            "validator": "boolean",
+            "fields": ["answer"],
+            "params": {
+              "expected": [true]
+            }
+          }
+        ],
+        "feedback": {
+          "correct": "True. Expectation weights each value by its density before accumulating over the support.",
+          "incorrect": "True. Expectation weights each value by its density before accumulating over the support."
+        },
+        "evidence": {
+          "level": "recognition",
+          "interactionCost": "low",
+          "inputCapabilities": ["tap"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Compute expectations by integration",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: for a density f with finite first absolute moment, $E[X]=\\int_{-\\infty}^{\\infty}x f(x)\\,dx$.",
+        "answer": "True. Expectation weights each value by its density before accumulating over the support.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "label": "Answer",
+              "kind": "boolean"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "Answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [true]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "True. Expectation weights each value by its density before accumulating over the support.",
+            "incorrect": "True. Expectation weights each value by its density before accumulating over the support."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      },
+      {
+        "id": 2,
+        "section": "Compute expectations by integration",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "True or false: integrating a probability density alone over its full support always gives the expected value of X.",
+        "answer": "False. The integral of the density is one. Expectation instead integrates x times the density, when it exists.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "label": "Answer",
+              "kind": "boolean"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "Answer",
+              "validator": "boolean",
+              "fields": ["answer"],
+              "params": {
+                "expected": [false]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "False. The integral of the density is one. Expectation instead integrates x times the density, when it exists.",
+            "incorrect": "False. The integral of the density is one. Expectation instead integrates x times the density, when it exists."
+          },
+          "evidence": {
+            "level": "recognition",
+            "interactionCost": "low",
+            "inputCapabilities": ["tap"]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "probability-statistics-estimation-likelihood-review-a-parameter-an-estimator-and-an-estimate-recall-production",
+    "family": "authored",
+    "lesson": "probability-statistics-estimation-likelihood",
+    "concept": "probability-statistics-estimation-likelihood-a-parameter-an-estimator-and-an-estimate",
+    "skill": "recall",
+    "objective": "probability-statistics-estimation-likelihood-a-parameter-an-estimator-and-an-estimate-recall-production",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "apply",
+    "activationConcepts": [
+      "probability-statistics-estimation-likelihood-a-parameter-an-estimator-and-an-estimate"
+    ],
+    "sourceIds": ["ps-pn-8-2-1", "ps-pn-8-2-3"],
+    "question": {
+      "id": 1,
+      "section": "A parameter, an estimator, and an estimate",
+      "instructions": "Give the requested answer, including reasoning when asked.",
+      "prompt": "What term names the rule applied to random sample data to infer an unknown parameter? Give the term, not a formula.",
+      "answer": "An estimator is the rule before the sample is observed.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "answer",
+            "label": "Answer",
+            "kind": "text"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "answer",
+            "description": "Answer",
+            "validator": "term",
+            "fields": ["answer"],
+            "params": {
+              "accepted": ["estimator", "an estimator", "point estimator"]
+            }
+          }
+        ],
+        "feedback": {
+          "correct": "An estimator is the rule before the sample is observed.",
+          "incorrect": "An estimator is the rule before the sample is observed."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "A parameter, an estimator, and an estimate",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "What term names the rule applied to random sample data to infer an unknown parameter? Give the term, not a formula.",
+        "answer": "An estimator is the rule before the sample is observed.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "label": "Answer",
+              "kind": "text"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "Answer",
+              "validator": "term",
+              "fields": ["answer"],
+              "params": {
+                "accepted": ["estimator", "an estimator", "point estimator"]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "An estimator is the rule before the sample is observed.",
+            "incorrect": "An estimator is the rule before the sample is observed."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      },
+      {
+        "id": 2,
+        "section": "A parameter, an estimator, and an estimate",
+        "instructions": "Give the requested answer, including reasoning when asked.",
+        "prompt": "What term names the numerical result of applying an estimator to the observed sample? Give the term.",
+        "answer": "An estimate is the observed value produced by an estimator.",
+        "assessment": {
+          "version": 1,
+          "inputs": [
+            {
+              "id": "answer",
+              "label": "Answer",
+              "kind": "text"
+            }
+          ],
+          "requirements": [
+            {
+              "id": "answer",
+              "description": "Answer",
+              "validator": "term",
+              "fields": ["answer"],
+              "params": {
+                "accepted": ["estimate", "an estimate", "point estimate"]
+              }
+            }
+          ],
+          "feedback": {
+            "correct": "An estimate is the observed value produced by an estimator.",
+            "incorrect": "An estimate is the observed value produced by an estimator."
+          },
+          "evidence": {
+            "level": "production",
+            "interactionCost": "low",
+            "inputCapabilities": ["short-text"]
+          }
+        }
+      }
+    ]
   }
 ]
