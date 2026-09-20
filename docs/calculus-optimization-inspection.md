@@ -87,3 +87,57 @@ response failed. Open explanations and modeling judgments remain open rather tha
 being represented by final-answer-only graders. All embedded TeX was rendered with
 KaTeX as a syntax check. This record does not replace the central content/source
 validation or the final rendered PWA inspection.
+
+## Independent verification addendum: lessons 16–19
+
+On 2026-09-19, the separately authored modules for multivariable functions,
+gradients, the multivariable chain rule, and multivariable extrema were read from
+the main authoring worktree without modifying them. This was mathematical content
+verification, separate from software review and separate from the grading fixtures.
+
+An independent SymPy calculation checked 231 practice/review answers across those
+four modules. Each polynomial family was reconstructed from its stated function:
+partial derivatives came from differentiation; linearizations from function values
+and evaluated derivatives; path derivatives from direct substitution; Jacobians
+from independently constructed output vectors; Hessians from second derivatives;
+and quadratic changes from exact matrix products. Boolean domain and classification
+answers were checked against the stated inequalities and the function's actual
+sign behavior. Open reasoning solutions were read for their assumptions and scope.
+No numerical or formula discrepancies were found.
+
+The worked-example checks included:
+
+- The cost example `8+2a+5b+ab` at `(2,3)` gives 33. For `x²y+3y²` at `(2,-1)`,
+  the function value is -1 and the two partials are -4 and -2.
+- `xy/(x²+y²)` has distinct axis/diagonal approach values. The related
+  `x²y/(x²+y²)` has the global bound by `|y|`, establishing the claimed zero limit.
+  The curved-path example `x²y/(x⁴+y²)` retains the nonzero value 1/2 on `y=x²`.
+- Expanding `x²+xy` about `(1,2)` gives `3+4h+k+h²+hk`. The example value at
+  `(1.02,1.97)` is exactly 3.0498, compared with its linear prediction 3.05.
+- On `x²+2y²=6` at `(2,1)`, the gradient is `(4,4)` and the tangent line is
+  `x+y=3`. A displacement `(h,-h)` produces exact second-order change `3h²`.
+- The path `x=t+1,y=t²` through `x²y` has derivative 12 at t=1. The shared-
+  intermediate graph `u=t²,v=u+1,w=uv` differentiates to `2t(2t²+1)`.
+- Composing `(s+t,s-t)` with `(u²,uv)` gives Jacobian rows `(6,6)` and `(4,-2)`
+  at `(2,1)`. The ordering and evaluation point agree with the matrix chain rule.
+- For `x³y+2xy²`, the four second partials are `6xy`, `3x²+4y`, `3x²+4y`,
+  and `4x`. The Hessian of `x²+2xy+3y²` has rows `(2,2)` and `(2,6)`.
+- The cross-term example `x²+4xy+y²` gives `6x²` on y=x and `-2x²` on y=-x,
+  proving the asserted saddle despite positive pure second partials.
+
+Source passages inspected for this addendum were OpenStax Volume 3 §§4.1–4.7,
+covering domains/level sets, path-sensitive limits, partial derivatives, sufficient
+differentiability conditions, tangent-plane/differential formulas, scalar chain
+rules, unit directional derivatives, and extrema. The author-hosted MML text was
+also checked at §5.3, Definition 5.6 and the matrix chain-rule examples, printed
+pp.149–154 / PDF pp.155–160; and §§5.7–5.8, equations 5.147–5.159, printed
+pp.164–167 / PDF pp.170–173. These support the explicit output-row/input-column
+Jacobian convention and the finite Hessian quadratic approximation. The lesson
+appropriately does not inherit a general claim that a smooth function equals its
+infinite Taylor series.
+
+One source-placement improvement was reported to the primary author: reuse the
+existing MML Hessian/Taylor citation in lesson 19's stationary-point classification
+section as well as its Hessian section, because that classification section extends
+the discussion from the two-variable OpenStax test to higher-dimensional Hessian
+eigenvalues. No changes were made to the main authoring worktree during this pass.
