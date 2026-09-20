@@ -790,7 +790,7 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 			}
 			domain = append(domain, v)
 		}
-		return samePolynomialDomain(actual, expected, domain)
+		return comparePolynomialDomains(actual, expected, domain, true)
 	}
 	return false, errors.New("Unsupported deterministic validator")
 }

@@ -176,6 +176,14 @@ func checkFiniteRelation(r AssessmentRequirement, response StructuredResponse) (
 		}
 		return false, nil
 	}
+	// Parse every learner field before returning a mathematical verdict.
+	witness, e := parseSetNode(values[1], p.Atoms, 0)
+	if e != nil {
+		return false, e
+	}
+	if witness.kind != "tuple" || len(witness.members) != 3 {
+		return false, errors.New("Enter the ordered witness triple (a,b,c)")
+	}
 	nodes := []*setNode{}
 	for _, s := range p.Universe {
 		node, e := parseSetNode(s, p.Atoms, 0)
@@ -203,13 +211,6 @@ func checkFiniteRelation(r AssessmentRequirement, response StructuredResponse) (
 				return false, nil
 			}
 		}
-	}
-	witness, e := parseSetNode(values[1], p.Atoms, 0)
-	if e != nil {
-		return false, e
-	}
-	if witness.kind != "tuple" || len(witness.members) != 3 {
-		return false, errors.New("Enter the ordered witness triple (a,b,c)")
 	}
 	i, j, k := finiteRelationIndex(nodes, witness.members[0]), finiteRelationIndex(nodes, witness.members[1]), finiteRelationIndex(nodes, witness.members[2])
 	return i >= 0 && j >= 0 && k >= 0 && a[i][j] && a[j][k] && !a[i][k], nil

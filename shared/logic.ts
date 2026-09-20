@@ -10,12 +10,15 @@ export function parseBoolean(source: string, variables: string[]): BooleanNode {
     .replace(/^\$\$?|\$\$?$/g, '')
     .replace(/\\(?:left|right)/g, '')
     .replace(/\\(?:neg|lnot)\b|¬|~/g, ' ! ')
-    .replace(/\\(?:land|wedge)\b|∧|&&|\band\b/gi, ' & ')
-    .replace(/\\(?:lor|vee)\b|∨|\|\||\bor\b/gi, ' | ')
-    .replace(/\\(?:leftrightarrow|iff)\b|↔|<->|<=>/g, ' @ ')
-    .replace(/\\(?:to|rightarrow|implies)\b|→|->|=>/g, ' > ')
-    .replace(/[{}]/g, (m) => (m === '{' ? '(' : ')'));
-  const tokens = s.match(/[A-Za-z][A-Za-z_0-9]*|[!&|>@()]|\S/g) || [];
+    .replace(/\bnot\b/gi, ' ! ')
+    .replace(/\\(?:land|wedge)\b|∧|&&/g, ' & ')
+    .replace(/\band\b/gi, ' & ')
+    .replace(/\\(?:lor|vee)\b|∨|\|\|/g, ' | ')
+    .replace(/\bor\b/gi, ' | ')
+    .replace(/\\(?:leftrightarrow|Leftrightarrow|iff)\b|↔|⇔|<->|<=>/g, ' @ ')
+    .replace(/\\(?:to|rightarrow|Rightarrow|implies)\b|→|⇒|->|=>/g, ' > ')
+    .replace(/\\[,;]/g, ' ');
+  const tokens = s.match(/[A-Za-z][A-Za-z_0-9]*|[!&|>@(){}]|\S/g) || [];
   if (tokens.length > 1024) throw new InputError('Use a shorter formula.');
   let at = 0,
     depth = 0;
@@ -30,9 +33,10 @@ export function parseBoolean(source: string, variables: string[]): BooleanNode {
     if (++depth > 64) throw new InputError('The formula is nested too deeply.');
     let node: BooleanNode;
     if (take('!')) node = { op: 'not', child: primary() };
-    else if (take('(')) {
+    else if (tokens[at] === '(' || tokens[at] === '{') {
+      const close = tokens[at++] === '(' ? ')' : '}';
       node = iff();
-      if (!take(')')) throw new InputError('Close the formula parentheses.');
+      if (!take(close)) throw new InputError('Close the formula parentheses.');
     } else {
       const name = tokens[at++];
       if (!variables.includes(name))

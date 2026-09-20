@@ -111,6 +111,34 @@ func polyDivides(divisor, dividend exactPoly) (bool, error) {
 	return true, nil
 }
 func samePolynomialDomain(a, b rationalPoly, domain []rationalPoly) (bool, error) {
+	return comparePolynomialDomains(a, b, domain, false)
+}
+
+func comparePolynomialDomains(a, b rationalPoly, domain []rationalPoly, realVariables bool) (bool, error) {
+	// A nonzero constant plus same-sign even monomials never vanishes over R.
+	// Keep restrictions with odd powers, mixed signs, or no constant term.
+	neverZero := func(p exactPoly) bool {
+		constant, ok := p[zeroMonomial(len(a.variables))]
+		if !ok {
+			return false
+		}
+		sign, err := constant.sign()
+		if err != nil {
+			return false
+		}
+		for key, coefficient := range p {
+			s, err := coefficient.sign()
+			if err != nil || s != sign {
+				return false
+			}
+			for _, power := range monomialPowers(key) {
+				if power%2 != 0 {
+					return false
+				}
+			}
+		}
+		return true
+	}
 	clean := func(ps []exactPoly) []exactPoly {
 		out := []exactPoly{}
 		for _, p := range ps {
@@ -120,7 +148,7 @@ func samePolynomialDomain(a, b rationalPoly, domain []rationalPoly) (bool, error
 					nonconstant = nonconstant || v != 0
 				}
 			}
-			if nonconstant {
+			if nonconstant && !(realVariables && neverZero(p)) {
 				out = append(out, p)
 			}
 		}

@@ -234,7 +234,7 @@ const validators: Record<
       got = parseExpression(text(a[r.fields[0]]), vars),
       expected = parseExpression(text(r.params.expected), vars),
       domain = r.params.domain ? strlist(r.params.domain).map((s) => parseExpression(s, vars)) : [];
-    return got.eq(expected) && sameExpressionDomain(got, expected, domain);
+    return got.eq(expected) && sameExpressionDomain(got, expected, domain, true);
   },
   witness: (r, a) => {
     const values: Record<string, Exact> = {};
