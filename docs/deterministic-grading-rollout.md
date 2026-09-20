@@ -48,7 +48,7 @@ The client continues to export backup version 2 and accepts existing versions 1 
 
 Restore a backup containing structured work with a client/server release that understands this assessment version. A pre-feature application may not understand newly added fields even though the archive envelope remains version 2. Preserve the original export; do not strip new fields or relabel the archive to force an older importer to accept it. Conflicts retain their original imported archive according to the existing import behavior.
 
-Review import validates the frozen assessment and structured response before restoring the instance and attempts. It cannot turn a deterministic attempt into a model job. Existing grades and deeper historical evidence remain preserved; new recognition responses cannot satisfy production or proof targets.
+Restore recomputes deterministic results whenever the original assessment is available: the server uses frozen Review context or the matching lesson catalog, and archived lesson snapshots retain their original definition. Client backup import performs the same consistency check on available snapshots before writing local data. An imported verdict, grade, or requirement outcome that disagrees rejects the import atomically; it does not silently rewrite history or create a model job. Valid historical feedback and timestamps remain intact, and open work without a verifiable original assessment retains its historical grades. Preserve a rejected archive unchanged for investigation. New recognition responses cannot satisfy production or proof targets.
 
 ## Rollback
 

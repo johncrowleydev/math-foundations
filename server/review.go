@@ -1080,7 +1080,7 @@ func (g *Grading) importReview(v ReviewImport) error {
 			}
 			expected, _ := json.Marshal(instance.Context)
 			received, _ := json.Marshal(a.Review)
-			if string(expected) != string(received) || a.Exercise != instance.Exercise {
+			if string(expected) != string(received) || a.Exercise != instance.Exercise || a.ContentVersion != instance.ContentVersion {
 				return errors.New("Imported attempt review context mismatch")
 			}
 			teaching = instance.Teaching
@@ -1089,42 +1089,20 @@ func (g *Grading) importReview(v ReviewImport) error {
 			continue
 		}
 		var context map[string]json.RawMessage
-		json.Unmarshal(teaching, &context)
-		if a.Mode == "structured" && a.Review != nil {
-			var frozen struct {
-				Assessment *Assessment `json:"assessment"`
-			}
-			if json.Unmarshal(teaching, &frozen) != nil || frozen.Assessment == nil {
-				return errors.New("Missing structured grading context")
-			}
-			if _, err := gradeAssessment(frozen.Assessment, a.Response); err != nil {
-				return err
+		if e = json.Unmarshal(teaching, &context); e != nil {
+			return e
+		}
+		trustedContext := a.Review != nil || a.ContentVersion == g.catalog.Version
+		if !trustedContext {
+			if context, e = archivedAttemptContext(a); e != nil {
+				return e
 			}
 		}
+		if e = validateImportedDeterministicGrade(a, context, trustedContext); e != nil {
+			return e
+		}
 		if a.Review == nil {
-			context = map[string]json.RawMessage{"importedHistoricalContext": json.RawMessage("true")}
-			if len(a.Analytics) > 0 {
-				context["analytics"] = a.Analytics
-			}
-			if a.Presentation != nil {
-				if a.Presentation.Assessment != nil {
-					if a.Mode != "structured" {
-						return errors.New("Archived assessment mode disagrees")
-					}
-					if _, err := gradeAssessment(a.Presentation.Assessment, a.Response); err != nil {
-						return err
-					}
-					context["assessment"], _ = json.Marshal(a.Presentation.Assessment)
-				}
-				question := map[string]any{}
-				for k, v := range a.Presentation.Question {
-					question[k] = v
-				}
-				question["officialAnswer"] = question["answer"]
-				delete(question, "answer")
-				context["question"], _ = json.Marshal(question)
-			}
-
+			context["importedHistoricalContext"] = json.RawMessage("true")
 		}
 		teaching, _ = json.Marshal(context)
 		if !enum(a.Status, "graded", "not_graded", "error", "cancelled") {
