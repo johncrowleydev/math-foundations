@@ -362,6 +362,21 @@ func (c *calcContext) norm(a *calcNode) rationalPoly {
 		return c.norm(cn("/", cn("1"), cn("sin", u)))
 	case "cot":
 		return c.norm(cn("/", cn("cos", u), cn("sin", u)))
+	case "sin", "cos":
+		if u.op == "*" {
+			left, right := calcConstant(u.args[0]), calcConstant(u.args[1])
+			factor, argument := left, u.args[1]
+			if factor == nil {
+				factor = right
+				argument = u.args[0]
+			}
+			if factor != nil && factor.Cmp(big.NewRat(2, 1)) == 0 {
+				if a.op == "sin" {
+					return c.norm(cn("*", cn("2"), cn("*", cn("sin", argument), cn("cos", argument))))
+				}
+				return c.norm(cn("+", cn("*", cn("2"), cn("^", cn("cos", argument), cn("2"))), cn("-1")))
+			}
+		}
 	case "ln":
 		if u.op == "exp" {
 			return c.norm(u.args[0])
@@ -419,6 +434,18 @@ func (c *calcContext) norm(a *calcNode) rationalPoly {
 			return calcMust(parsePolynomial(atom.name, c.variables))
 		}
 	}
+	if a.op == "sqrt" {
+		for _, atom := range c.atoms {
+			if atom.op == "sqrt" {
+				if ratio, ok := c.proportional(x, atom.argument); ok {
+					sign := calcMust(ratio.sign())
+					if sign > 0 {
+						return calcMust(calcMust(parsePolynomial(atom.name, c.variables)).combine(constantPoly(calcMust(exactSqrt(ratio)), c.variables), "*"))
+					}
+				}
+			}
+		}
+	}
 	if len(c.atoms) >= 64 {
 		calcFail("Use fewer distinct function arguments")
 	}
@@ -435,6 +462,27 @@ func (c *calcContext) norm(a *calcNode) rationalPoly {
 	name := "CALC" + strconv.Itoa(len(c.atoms))
 	c.atoms = append(c.atoms, calcAtom{op: a.op, argument: x, name: name, square: square})
 	return calcMust(parsePolynomial(name, c.variables))
+}
+func (c *calcContext) proportional(a, b rationalPoly) (exactNumber, bool) {
+	numerator, denominator := polyMul(a.n, b.d), polyMul(b.n, a.d)
+	if len(numerator) != len(denominator) || len(denominator) == 0 {
+		return exactNumber{}, false
+	}
+	for key, value := range denominator {
+		coefficient, ok := numerator[key]
+		if !ok {
+			return exactNumber{}, false
+		}
+		ratio := calcMust(coefficient.div(value))
+		for k, v := range denominator {
+			other, ok := numerator[k]
+			if !ok || !other.equal(v.mul(ratio)) {
+				return exactNumber{}, false
+			}
+		}
+		return ratio, true
+	}
+	return exactNumber{}, false
 }
 func (c *calcContext) equivalent(a, b rationalPoly) bool {
 	difference := calcMust(a.combine(b, "-"))
@@ -561,6 +609,16 @@ func calcProved(g calcGuard, facts []calcGuard, c *calcContext, depth int) bool 
 	for _, f := range facts {
 		if (f.kind == g.kind || f.kind == "positive") && c.equal(f.node, a) {
 			return true
+		}
+	}
+	for _, f := range facts {
+		if f.kind == g.kind || f.kind == "positive" {
+			if ratio, ok := c.proportional(c.norm(a), c.norm(f.node)); ok {
+				sign := calcMust(ratio.sign())
+				if (g.kind == "nonzero" && sign != 0) || sign > 0 {
+					return true
+				}
+			}
 		}
 	}
 	if g.kind == "nonzero" {

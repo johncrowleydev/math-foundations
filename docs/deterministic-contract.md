@@ -56,7 +56,8 @@ problem. Interval prose is not parsed: encode the facts the checker needs. The
 expected formula's natural domain (or the integrand's domain) also applies. The
 checker retains restrictions before algebraic cancellation; a submitted formula
 with an additional unproved restriction produces input guidance. Simple signs,
-powers, products, sums of nonnegative quantities, and positivity of exponentials
+powers, products, positive scalar multiples of known facts, sums of nonnegative
+quantities, and positivity of exponentials
 are proved exactly. This is a bounded domain checker, not a general inequality solver.
 
 Supported notation includes exact rational and radical constants, `pi`, `e`, the
@@ -68,7 +69,8 @@ are accepted. Use `sin(x)^2`, rather than the unsupported shorthand `sin^2(x)`.
 
 Equivalence uses exact rational polynomial arithmetic over normalized function
 atoms. Square-root, absolute-value-square, and Pythagorean relations, reciprocal
-trigonometric functions, exponential products/sums, and `ln(exp(u))`/`exp(ln(u))`
+trigonometric functions, sine/cosine double-angle identities, positive rational
+scaling of square roots, exponential products/sums, and `ln(exp(u))`/`exp(ln(u))`
 are supported with their domain restrictions. Antiderivatives are checked by
 symbolic differentiation, including chain, product, quotient, and inverse-function
 rules. No numerical sampling proves an identity. General trigonometric addition

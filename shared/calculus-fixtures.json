@@ -2949,5 +2949,366 @@
       "answer": "pi"
     },
     "verdict": "incorrect"
+  },
+  {
+    "name": "sine squared antiderivative double angle",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "sin(x)^2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x/2-sin(2*x)/4+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "cosine squared antiderivative double angle",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "cos(x)^2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x/2+sin(2*x)/4+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "squared sine incorrect sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "sin(x)^2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x/2+sin(2*x)/4+C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "scaled arcsine radius two",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(4-x^2)",
+            "domain": {
+              "positive": ["4-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(x/2)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "scaled arcsine radius four",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(16-x^2)",
+            "domain": {
+              "positive": ["16-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(x/4)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "scaled arcsine missing coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(4-x^2)",
+            "domain": {
+              "positive": ["4-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*asin(x/2)+C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "scaled arcsine explicit equivalent domains",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(16-x^2)",
+            "domain": {
+              "positive": ["16-x^2", "1-x^2/16"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(x/4)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sine double angle product",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sin(2*x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*sin(x)*cos(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "cosine double angle square",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "cos(2*x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(x)^2-sin(x)^2"
+    },
+    "verdict": "correct"
   }
 ]

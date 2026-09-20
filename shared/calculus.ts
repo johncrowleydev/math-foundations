@@ -1,6 +1,6 @@
 /** Bounded symbolic calculus. Exact polynomial arithmetic proves equivalence;
  * numerical probes are deliberately never used as a correctness criterion. */
-import { cleanMath, Exact, Expression, InputError, parseExact, Rational } from './exact';
+import { cleanMath, Exact, Expression, InputError, parseExact, pmul, Rational } from './exact';
 import type { AssessmentRequirement, StructuredResponse } from './assessment';
 
 type Node = { op: string; args: Node[] };
@@ -221,6 +221,16 @@ class Context {
       if (factor?.d === 1n && factor.n >= -32n && factor.n <= 32n)
         return this.norm(n('exp', argument)).pow(Number(factor.n));
     }
+    if (['sin', 'cos'].includes(a.op) && u.op === '*') {
+      const left = constant(u.args[0]),
+        right = constant(u.args[1]);
+      const factor = left || right,
+        argument = left ? u.args[1] : u.args[0];
+      if (factor?.eq(new Rational(2)))
+        return a.op === 'sin'
+          ? this.norm(n('*', n('2'), n('*', n('sin', argument), n('cos', argument))))
+          : this.norm(n('+', n('*', n('2'), n('^', n('cos', argument), n('2'))), n('-1')));
+    }
     if (a.op === 'ln' && u.op === 'exp') return this.norm(u.args[0]);
     if (a.op === 'exp' && u.op === 'ln') return this.norm(u.args[0]);
     if (a.op === 'ln' && u.op === 'e') return Expression.exact(Exact.rational(1));
@@ -247,6 +257,14 @@ class Context {
       return Expression.exact(Exact.rational(0));
     const found = this.atoms.find((f) => f.op === a.op && f.argument.eq(x));
     if (found) return Expression.variable(found.name);
+    if (a.op === 'sqrt') {
+      for (const atom of this.atoms)
+        if (atom.op === 'sqrt') {
+          const ratio = this.proportional(x, atom.argument);
+          if (ratio && ratio.sign() > 0)
+            return Expression.variable(atom.name).mul(Expression.exact(ratio.sqrt()));
+        }
+    }
     if (this.atoms.length >= 64) fail('Use fewer distinct function arguments.');
     const square =
       a.op === 'sqrt'
@@ -259,6 +277,18 @@ class Context {
     const name = 'CALC' + this.atoms.length;
     this.atoms.push({ op: a.op, argument: x, name, square });
     return Expression.variable(name);
+  }
+  proportional(a: Expression, b: Expression): Exact | undefined {
+    const numerator = pmul(a.num, b.den),
+      denominator = pmul(b.num, a.den);
+    const first = denominator.entries().next().value;
+    if (!first || !numerator.has(first[0])) return;
+    const ratio = numerator.get(first[0])!.div(first[1]);
+    if (
+      numerator.size === denominator.size &&
+      [...denominator].every(([key, value]) => numerator.get(key)?.eq(value.mul(ratio)))
+    )
+      return ratio;
   }
   equivalent(a: Expression, b: Expression): boolean {
     let difference = a.add(b.neg());
@@ -324,6 +354,14 @@ function proved(g: Guard, facts: Guard[], ctx: Context, depth = 0): boolean {
     if (!(e instanceof InputError)) throw e;
   }
   if (facts.some((f) => (f.kind === g.kind || f.kind === 'positive') && ctx.equal(f.node, g.node)))
+    return true;
+  if (
+    facts.some((f) => {
+      if (f.kind !== g.kind && f.kind !== 'positive') return false;
+      const ratio = ctx.proportional(ctx.norm(g.node), ctx.norm(f.node));
+      return !!ratio && (g.kind === 'nonzero' ? ratio.sign() !== 0 : ratio.sign() > 0);
+    })
+  )
     return true;
   if (
     g.kind === 'nonzero' &&
