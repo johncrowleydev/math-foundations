@@ -1,12 +1,4 @@
-import {
-  Exact,
-  Expression,
-  Rational,
-  gcd,
-  parseExpression,
-  sameExpressionDomain,
-  type Poly,
-} from './exact';
+import { Exact, Expression, gcd, sameExpressionDomain, type Poly } from './exact';
 export type Comparison = { op: string; left: Expression; right: Expression };
 function difference(n: Comparison): { op: string; value: Expression } {
   let { op, left, right } = n;
@@ -67,13 +59,3 @@ export function comparisonEqual(a: Comparison, b: Comparison, integerDomain: boo
     x.value.eq(y.value.mul(Expression.exact(ratio)))
   );
 }
-export const comparisonFromStrings = (
-  op: string,
-  left: string,
-  right: string,
-  variables: string[],
-): Comparison => ({
-  op,
-  left: parseExpression(left, variables),
-  right: parseExpression(right, variables),
-});
