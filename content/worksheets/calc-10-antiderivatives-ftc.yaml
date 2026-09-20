@@ -1,0 +1,262 @@
+title: Antiderivatives, Fundamental Theorem, and Substitution
+sections:
+  - title: Antiderivatives and the missing constant
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find the general antiderivative of $8x^3-2x$ on $\mathbb R$.
+        answerLines: 5
+        answer: "Increase each exponent and divide: $2x^4-x^2+C$. Its derivative is $8x^3-2x$. The answer is $2\\cdot x^{4}-x^{2}+C$."
+      - id: 2
+        type: freeform
+        prompt: Find the general antiderivative of $x^{-2}$ on $(0,\infty)$.
+        answerLines: 5
+        answer: The power rule gives $x^{-1}/(-1)+C=-1/x+C$. The answer is $\frac{-1}{x}+C$.
+      - id: 3
+        type: freeform
+        prompt: Find the general antiderivative of $\sqrt{x}$ on $(0,\infty)$.
+        answerLines: 5
+        answer: $\sqrt{x}=x^{1/2}$, so the result is $(2/3)x^{3/2}+C$. The answer is $\frac{2\cdot x^{\frac{3}{2}}}{3}+C$.
+      - id: 4
+        type: freeform
+        prompt: Find the general antiderivative of $1/x$ on $(0,\infty)$.
+        answerLines: 5
+        answer: The exceptional power has logarithmic antiderivative $\ln x+C$. The answer is $\ln\left(x\right)+C$.
+      - id: 5
+        type: freeform
+        prompt: Find the general antiderivative of $3e^x+2\cos x$ on $\mathbb R$.
+        answerLines: 5
+        answer: The derivative of $3e^x+2\sin x+C$ is the integrand. The answer is $3\cdot e^{x}+2\cdot \sin\left(x\right)+C$.
+      - id: 6
+        type: freeform
+        prompt: Find one particular antiderivative of $\sin x$ on $\mathbb R$; do not include an arbitrary constant.
+        answerLines: 5
+        answer: $(-\cos x)'=\sin x$, so $-\cos x$ is one valid choice. The answer is $-\cos\left(x\right)$.
+      - id: 7
+        type: freeform
+        prompt: Find $F$ on $\mathbb R$ with $F'(x)=2x+3$ and $F(0)=5$.
+        answerLines: 5
+        answer: Integrating gives $x^2+3x+C$, and $F(0)=5$ makes $C=5$. The answer is $x^{2}+3\cdot x+5$.
+      - id: 8
+        type: freeform
+        prompt: Find the general antiderivative of $1/(1+x^2)$ on $\mathbb R$.
+        answerLines: 5
+        answer: The derivative of $\arctan x$ is $1/(1+x^2)$. The answer is $\arctan\left(x\right)+C$.
+      - id: 9
+        type: freeform
+        prompt: Explain why $Cx^2$ is not the general antiderivative of $2x$.
+        answerLines: 5
+        answer: 'Its derivative is $2Cx$, which equals $2x$ only when $C=1$. The freedom is additive: $x^2+C$ differentiates to $2x$ for every constant.'
+      - id: 10
+        type: freeform
+        prompt: Construct two antiderivatives of $1/x$ on $\mathbb R\setminus\{0\}$ whose difference is not one constant on the whole domain.
+        answerLines: 5
+        answer: Take $F(x)=\ln|x|$ and define $G(x)=\ln|x|$ for $x>0$, $G(x)=\ln|x|+1$ for $x<0$. Both derivatives equal $1/x$, but $G-F$ is $0$ on one component and $1$ on the other.
+  - title: Differentiating accumulated area
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Differentiate $A(x)=\int_2^x(t^3+1)\,dt$.
+        answerLines: 5
+        answer: The integrand is continuous, so $A'(x)=x^3+1$. The answer is $x^{3}+1$.
+      - id: 12
+        type: freeform
+        prompt: Differentiate $B(x)=\int_0^{x^2}e^t\,dt$.
+        answerLines: 5
+        answer: "Evaluate at the upper bound and multiply by its derivative: $e^{x^2}(2x)$. The answer is $2\\cdot x\\cdot e^{x^{2}}$."
+      - id: 13
+        type: freeform
+        prompt: Differentiate $C(x)=\int_x^4\cos t\,dt$.
+        answerLines: 5
+        answer: The moving lower bound contributes $-\cos x$. The answer is $-\cos\left(x\right)$.
+      - id: 14
+        type: freeform
+        prompt: Differentiate $D(x)=\int_x^{2x}t^2\,dt$.
+        answerLines: 5
+        answer: The endpoint contributions are $(2x)^2(2)-x^2=7x^2$. The answer is $7\cdot x^{2}$.
+      - id: 15
+        type: freeform
+        prompt: For $x>0$, differentiate $E(x)=\int_1^{\sqrt{x}}\ln t\,dt$.
+        answerLines: 5
+        answer: The chain rule gives $\ln(\sqrt{x})/(2\sqrt{x})$. The answer is $\frac{\ln\left(\sqrt{x}\right)}{2\cdot \sqrt{x}}$.
+      - id: 16
+        type: freeform
+        prompt: If $A(x)=\int_3^x(t^2+7)\,dt$, find $A(3)$.
+        answerLines: 5
+        answer: Equal bounds make the integral zero. The answer is $0$.
+      - id: 17
+        type: freeform
+        prompt: For $A(x)=\int_0^x(t^2-4)\,dt$, find $A'(1)$.
+        answerLines: 5
+        answer: $A'(1)=1^2-4=-3$. The answer is $-3$.
+      - id: 18
+        type: freeform
+        prompt: Find $A''(x)$ for $A(x)=\int_0^x\sin t\,dt$.
+        answerLines: 5
+        answer: First $A'=\sin x$; differentiating again gives $A''=\cos x$. The answer is $\cos\left(x\right)$.
+      - id: 19
+        type: freeform
+        prompt: Explain why positive $A(x)$ does not force positive $A'(x)$ for an accumulation function.
+        answerLines: 5
+        answer: $A(x)$ records the accumulated history, while $A'(x)=f(x)$ is the current rate. Earlier positive contributions can leave a positive total even after the current rate becomes negative.
+      - id: 20
+        type: freeform
+        prompt: Let $f(t)=0$ for $t<0$ and $f(t)=1$ for $t\ge0$. Is $A(x)=\int_{-1}^xf(t)\,dt$ differentiable at zero? Explain.
+        answerLines: 5
+        answer: For $x<0$, $A(x)=0$; for $x>0$, $A(x)=x$. The left derivative at zero is $0$ and the right derivative is $1$, so there is no derivative there. Continuity of the integrand cannot be omitted from the usual FTC statement.
+  - title: Evaluating definite integrals
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Evaluate $\int_0^2(3x^2+1)\,dx$.
+        answerLines: 5
+        answer: $[x^3+x]_0^2=8+2=10$. The answer is $10$.
+      - id: 22
+        type: freeform
+        prompt: Evaluate $\int_{-1}^2(2x-3)\,dx$.
+        answerLines: 5
+        answer: $[x^2-3x]_{-1}^2=(4-6)-(1+3)=-6$. The answer is $-6$.
+      - id: 23
+        type: freeform
+        prompt: Evaluate $\int_1^4 x^{-2}\,dx$.
+        answerLines: 5
+        answer: $[-1/x]_1^4=-1/4+1=3/4$. The answer is $\frac{3}{4}$.
+      - id: 24
+        type: freeform
+        prompt: Evaluate $\int_1^e1/x\,dx$.
+        answerLines: 5
+        answer: $[\ln x]_1^e=1-0=1$. The answer is $1$.
+      - id: 25
+        type: freeform
+        prompt: Evaluate $\int_0^{\pi/2}\cos x\,dx$.
+        answerLines: 5
+        answer: $[\sin x]_0^{\pi/2}=1$. The answer is $1$.
+      - id: 26
+        type: freeform
+        prompt: Evaluate $\int_0^1 e^x\,dx$.
+        answerLines: 5
+        answer: $[e^x]_0^1=e-1$. The answer is $e-1$.
+      - id: 27
+        type: freeform
+        prompt: Evaluate $\int_2^0 x^3\,dx$.
+        answerLines: 5
+        answer: $[x^4/4]_2^0=0-4=-4$. The answer is $-4$.
+      - id: 28
+        type: freeform
+        prompt: A quantity starts at $6$ and has rate $r(t)=2t+1$ on $[0,3]$. Find its final value.
+        answerLines: 5
+        answer: The change is $[t^2+t]_0^3=12$; add the initial $6$ to obtain $18$.
+      - id: 29
+        type: freeform
+        prompt: Explain algebraically why adding $17$ to an antiderivative cannot change a fixed-bound integral.
+        answerLines: 5
+        answer: The evaluated difference becomes $(F(b)+17)-(F(a)+17)=F(b)-F(a)$. The additive shift cancels exactly.
+      - id: 30
+        type: freeform
+        prompt: A student writes $\int_{-1}^1x^{-2}\,dx=[-1/x]_{-1}^1=-2$. Identify the invalid step.
+        answerLines: 5
+        answer: The integrand is undefined and unbounded at zero, so the ordinary FTC hypotheses fail across the interval. The negative result also contradicts positivity. The two one-sided improper contributions must be considered separately and both diverge.
+  - title: Substitution reverses the chain rule
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Find the general antiderivative of $2x(x^2+1)^3$ on $\mathbb R$.
+        answerLines: 5
+        answer: Let $u=x^2+1$, $du=2x\,dx$; integrate $u^3$ to get $(x^2+1)^4/4+C$. The answer is $\frac{\left(x^{2}+1\right)^{4}}{4}+C$.
+      - id: 32
+        type: freeform
+        prompt: Find the general antiderivative of $e^{3x}$ on $\mathbb R$.
+        answerLines: 5
+        answer: The chain factor $3$ is compensated by dividing by $3$. The answer is $\frac{e^{3\cdot x}}{3}+C$.
+      - id: 33
+        type: freeform
+        prompt: Find the general antiderivative of $\cos(2x)$ on $\mathbb R$.
+        answerLines: 5
+        answer: $[\sin(2x)/2]'=\cos(2x)$. The answer is $\frac{\sin\left(2\cdot x\right)}{2}+C$.
+      - id: 34
+        type: freeform
+        prompt: Find the general antiderivative of $2x/(x^2+5)$ on $\mathbb R$.
+        answerLines: 5
+        answer: Use $u=x^2+5>0$, $du=2x\,dx$, giving $\ln(x^2+5)+C$. The answer is $\ln\left(x^{2}+5\right)+C$.
+      - id: 35
+        type: freeform
+        prompt: Find the general antiderivative of $1/(4+x^2)$ on $\mathbb R$.
+        answerLines: 5
+        answer: With $u=x/2$, the integral is $(1/2)\int1/(1+u^2)\,du$. The answer is $\frac{\arctan\left(\frac{x}{2}\right)}{2}+C$.
+      - id: 36
+        type: freeform
+        prompt: Find the general antiderivative of $x/\sqrt{x^2+1}$ on $\mathbb R$.
+        answerLines: 5
+        answer: Using $u=x^2+1$ gives $(1/2)\int u^{-1/2}\,du=\sqrt{u}+C$. The answer is $\sqrt{x^{2}+1}+C$.
+      - id: 37
+        type: freeform
+        prompt: Find the general antiderivative of $\ln x/x$ on $(0,\infty)$.
+        answerLines: 5
+        answer: Use $u=\ln x$ and $du=dx/x$, giving $u^2/2+C$. The answer is $\frac{\ln\left(x\right)^{2}}{2}+C$.
+      - id: 38
+        type: freeform
+        prompt: Find the general antiderivative of $\sin^2x\cos x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Use $u=\sin x$, $du=\cos x\,dx$, giving $u^3/3+C$. The answer is $\frac{\sin\left(x\right)^{3}}{3}+C$.
+      - id: 39
+        type: freeform
+        prompt: Explain the error in $\int e^{x^2}\,dx=e^{x^2}+C$ by differentiating the proposed answer.
+        answerLines: 5
+        answer: The derivative is $2xe^{x^2}$, which contains an extra factor $2x$. The integrand does not have the chain factor needed for this substitution shortcut.
+      - id: 40
+        type: freeform
+        prompt: Two students obtain $\tfrac12\ln(2x+2)$ and $\tfrac12\ln(x+1)$ as particular antiderivatives of $1/(2x+2)$ on $x>-1$. Reconcile them.
+        answerLines: 5
+        answer: Since $\ln(2x+2)=\ln2+\ln(x+1)$ on that interval, their answers differ by the constant $(\ln2)/2$. Both derivatives equal $1/(2x+2)$.
+  - title: Changing bounds and checking the model
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Evaluate $\int_0^1 2x(x^2+2)\,dx$.
+        answerLines: 5
+        answer: "Use $u=x^2+2$ with bounds $2,3$: $[u^2/2]_2^3=(9-4)/2=5/2$. The answer is $\\frac{5}{2}$."
+      - id: 42
+        type: freeform
+        prompt: Evaluate $\int_0^2 2x/(x^2+1)\,dx$.
+        answerLines: 5
+        answer: The new bounds are $1,5$, giving $\int_1^5du/u=\ln5$. The answer is $\ln\left(5\right)$.
+      - id: 43
+        type: freeform
+        prompt: Evaluate $\int_0^{\pi/4}2\cos(2x)\,dx$.
+        answerLines: 5
+        answer: Set $u=2x$; $u$ runs from $0$ to $\pi/2$, giving $[\sin u]_0^{\pi/2}=1$. The answer is $1$.
+      - id: 44
+        type: freeform
+        prompt: Evaluate $\int_0^1 e^{-x}\,dx$.
+        answerLines: 5
+        answer: An antiderivative is $-e^{-x}$, so the value is $1-e^{-1}$.
+      - id: 45
+        type: freeform
+        prompt: Evaluate $\int_1^e\ln x/x\,dx$.
+        answerLines: 5
+        answer: Set $u=\ln x$; the bounds become $0,1$ and $\int_0^1u\,du=1/2$. The answer is $\frac{1}{2}$.
+      - id: 46
+        type: freeform
+        prompt: For $u=3x+1$, what is the new upper bound when the original upper bound is $x=2$?
+        answerLines: 5
+        answer: 'Evaluate the substitution at the endpoint: $u=3(2)+1=7$. The answer is $7$.'
+      - id: 47
+        type: freeform
+        prompt: Evaluate $\int_{-1}^1 2x\cos(x^2)\,dx$.
+        answerLines: 5
+        answer: The antiderivative is $\sin(x^2)$, with identical values at both endpoints. Equivalently, the integrand is odd. The answer is $0$.
+      - id: 48
+        type: freeform
+        prompt: Evaluate $\int_0^3 x/\sqrt{x^2+7}\,dx$.
+        answerLines: 5
+        answer: The antiderivative is $\sqrt{x^2+7}$, giving $4-\sqrt7$. The answer is $4-\sqrt{7}$.
+      - id: 49
+        type: freeform
+        prompt: Diagnose $\int_0^2 2x(x^2+1)^2\,dx=\int_0^2u^2\,du$ after setting $u=x^2+1$.
+        answerLines: 5
+        answer: The differential was transformed correctly but the bounds were not. Original $x$ endpoints $0,2$ correspond to $u$ endpoints $1,5$. The correct transformed integral is $\int_1^5u^2\,du$.
+      - id: 50
+        type: freeform
+        prompt: Why can equal transformed endpoints be correct even when the original endpoints differ?
+        answerLines: 5
+        answer: For a derivative-matched integrand $f(g(x))g'(x)$, an antiderivative is $F(g(x))$. If $g(a)=g(b)$, its endpoint values agree and the signed integral is zero. The inner coordinate may retrace values, causing cancellation.

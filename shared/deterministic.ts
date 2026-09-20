@@ -1,3 +1,4 @@
+import { checkCalculus, validateCalculus } from './calculus';
 import { checkIntegerClass, validateIntegerClass } from './integer-class';
 import { checkComposition, validateComposition } from './composition';
 import { symbolicFormRequirement, validateSymbolicForm } from './symbolic-forms';
@@ -84,6 +85,8 @@ const validators: Record<
   string,
   (r: AssessmentRequirement, response: StructuredResponse) => boolean
 > = {
+  'calculus-expression': checkCalculus,
+  antiderivative: checkCalculus,
   linear: linearRequirement,
   'integer-class': checkIntegerClass,
   composition: checkComposition,
@@ -520,6 +523,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
     if (r.validator === 'finite-relation') validateFiniteRelationRequirement(r);
     if (r.validator === 'graph') validateGraphRequirement(r);
     if (r.validator === 'sequence-pair') validateSequencePair(r);
+    if (['calculus-expression', 'antiderivative'].includes(r.validator)) validateCalculus(r);
     if (['elementary-expression', 'square-inverse'].includes(r.validator)) validateElementary(r);
     if (['set-expression', 'set-model', 'nested-object'].includes(r.validator))
       validateSetRequirement(r);

@@ -1,0 +1,262 @@
+title: Power Series and Taylor Approximation
+sections:
+  - title: Power series and convergence intervals
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find the center of $\sum_{n=0}^{\infty}(x-4)^n/2^n$.
+        answerLines: 5
+        answer: The powers are of $x-4$, so the center is $4$.
+      - id: 2
+        type: freeform
+        prompt: Find the radius of $\sum_{n=0}^{\infty}(x-4)^n/2^n$.
+        answerLines: 5
+        answer: The ratio magnitude is $|x-4|/2$, below one exactly within distance $2$.
+      - id: 3
+        type: freeform
+        prompt: Find the radius of $\sum_{n=1}^{\infty}x^n/n$.
+        answerLines: 5
+        answer: Its ratio limit is $|x|$, giving radius $1$.
+      - id: 4
+        type: freeform
+        prompt: At $x=1$, does $\sum_{n=1}^{\infty}x^n/n$ converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: It becomes the harmonic series. The answer is **diverges**.
+      - id: 5
+        type: freeform
+        prompt: At $x=-1$, does $\sum_{n=1}^{\infty}x^n/n$ converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: It becomes an alternating harmonic series with decreasing magnitudes tending to zero. The answer is **converges**.
+      - id: 6
+        type: freeform
+        prompt: Find the radius of $\sum_{n=0}^{\infty}n!x^n$.
+        answerLines: 5
+        answer: For any nonzero $x$, the ratio is $(n+1)|x|\to\infty$. Only the center converges. The answer is $0$.
+      - id: 7
+        type: freeform
+        prompt: Is the radius of $\sum_{n=0}^{\infty}x^n/n!$ finite or infinite?
+        answerLines: 5
+        answer: For every fixed $x$, the ratio $|x|/(n+1)$ tends to zero. The answer is **infinite**.
+      - id: 8
+        type: freeform
+        prompt: Find the radius of $\sum_{n=1}^{\infty}(x+1)^n/(n\,2^n)$.
+        answerLines: 5
+        answer: The ratio limit is $|x+1|/2$, so the radius around $-1$ is $2$.
+      - id: 9
+        type: freeform
+        prompt: Determine the full convergence interval of $\sum_{n=1}^{\infty}(x+1)^n/(n\,2^n)$.
+        answerLines: 5
+        answer: The interior is $-3<x<1$. At $x=-3$ the series is $\sum(-1)^n/n$, which converges; at $x=1$ it is harmonic and diverges. Therefore the interval is $[-3,1)$.
+      - id: 10
+        type: freeform
+        prompt: Why do ratio-test calculations usually leave the endpoints of a finite-radius power series unresolved?
+        answerLines: 5
+        answer: At the boundary the ratio limit becomes $1$, precisely the test's inconclusive value. Substituting each endpoint may reveal alternating, harmonic, or other behavior that the radius calculation cannot distinguish.
+  - title: Taylor polynomials from matching derivatives
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Find the degree-two Maclaurin polynomial for $e^x$.
+        answerLines: 5
+        answer: The value and first two derivatives at zero are all $1$, so $P_2=1+x+x^2/2$. The answer is $1+x+\frac{x^{2}}{2}$.
+      - id: 12
+        type: freeform
+        prompt: Find the degree-three Maclaurin polynomial for $\sin x$.
+        answerLines: 5
+        answer: The derivative values $0,1,0,-1$ give $x-x^3/3!$. The answer is $x-\frac{x^{3}}{6}$.
+      - id: 13
+        type: freeform
+        prompt: Find the degree-four Maclaurin polynomial for $\cos x$.
+        answerLines: 5
+        answer: The nonzero derivative values through order four are $1,-1,1$, giving $1-x^2/2!+x^4/4!$. The answer is $1-\frac{x^{2}}{2}+\frac{x^{4}}{24}$.
+      - id: 14
+        type: freeform
+        prompt: Find the degree-two Taylor polynomial for $\ln x$ centered at $1$.
+        answerLines: 5
+        answer: At $1$, the value is $0$, slope is $1$, and second derivative is $-1$. The answer is $x-1-\frac{\left(x-1\right)^{2}}{2}$.
+      - id: 15
+        type: freeform
+        prompt: Find the degree-two Taylor polynomial for $x^3$ centered at $1$.
+        answerLines: 5
+        answer: The needed derivative values are $1,3,6$; divide the quadratic coefficient by $2!$. The answer is $1+3\cdot \left(x-1\right)+3\cdot \left(x-1\right)^{2}$.
+      - id: 16
+        type: freeform
+        prompt: If $f''(a)=12$, what is the coefficient of $(x-a)^2$ in its Taylor polynomial?
+        answerLines: 5
+        answer: The coefficient is $f''(a)/2!=12/2=6$. The answer is $6$.
+      - id: 17
+        type: freeform
+        prompt: If $f^{(3)}(a)=-18$, what is the cubic Taylor coefficient?
+        answerLines: 5
+        answer: 'Divide by $3!=6$: $-18/6=-3$. The answer is $-3$.'
+      - id: 18
+        type: freeform
+        prompt: Use $P_2(x)=1+x+x^2/2$ to approximate $e^{0.2}$. Give the polynomial value exactly.
+        answerLines: 5
+        answer: $1+1/5+(1/5)^2/2=1+1/5+1/50=61/50$. The answer is $\frac{61}{50}$.
+      - id: 19
+        type: freeform
+        prompt: Derive the factorial in the Taylor coefficient by differentiating a power term.
+        answerLines: 5
+        answer: Differentiating $c_k(x-a)^k$ exactly $k$ times gives $k!c_k$. At $a$, lower-degree terms have already vanished and higher-degree terms still contain powers of $x-a$, so matching the $k$th derivative forces $c_k=f^{(k)}(a)/k!$.
+      - id: 20
+        type: freeform
+        prompt: Explain why the third-order Maclaurin polynomial for cosine has no cubic term.
+        answerLines: 5
+        answer: The third derivative is $\sin x$, whose value at zero is zero. Its cubic coefficient is therefore zero, leaving the degree-two polynomial $1-x^2/2$ even though derivatives are matched through order three.
+  - title: Standard series and legal operations
+    questions:
+      - id: 21
+        type: freeform
+        prompt: What is the coefficient of $x^4$ in the Maclaurin series for $e^x$?
+        answerLines: 5
+        answer: The coefficient is $1/4!=1/24$. The answer is $\frac{1}{24}$.
+      - id: 22
+        type: freeform
+        prompt: What is the coefficient of $x^5$ in the Maclaurin series for $\sin x$?
+        answerLines: 5
+        answer: The fifth-power sine term is $x^5/5!=x^5/120$. The answer is $\frac{1}{120}$.
+      - id: 23
+        type: freeform
+        prompt: What is the coefficient of $x^4$ in the Maclaurin series for $e^{-x^2}$?
+        answerLines: 5
+        answer: The quadratic term of $e^u$ is $u^2/2$, which becomes $x^4/2$ at $u=-x^2$. The answer is $\frac{1}{2}$.
+      - id: 24
+        type: freeform
+        prompt: Give the terms through degree three in the Maclaurin expansion of $1/(1-2x)$.
+        answerLines: 5
+        answer: Substitute $2x$ into the geometric expansion and keep powers through three. The answer is $1+2\cdot x+4\cdot x^{2}+8\cdot x^{3}$.
+      - id: 25
+        type: freeform
+        prompt: Find the radius of that expansion of $1/(1-2x)$.
+        answerLines: 5
+        answer: The geometric condition $|2x|<1$ gives radius $1/2$. The answer is $\frac{1}{2}$.
+      - id: 26
+        type: freeform
+        prompt: Give the terms through degree three of $\ln(1+x)$ at zero.
+        answerLines: 5
+        answer: Integrating $1-x+x^2-\cdots$ termwise gives $x-x^2/2+x^3/3$. The answer is $x-\frac{x^{2}}{2}+\frac{x^{3}}{3}$.
+      - id: 27
+        type: freeform
+        prompt: Give the terms through degree five of $\arctan x$ at zero.
+        answerLines: 5
+        answer: Integrate $1-x^2+x^4$ from zero to $x$. The answer is $x-\frac{x^{3}}{3}+\frac{x^{5}}{5}$.
+      - id: 28
+        type: freeform
+        prompt: What is the coefficient of $x^3$ in the binomial series for $\sqrt{1+x}$?
+        answerLines: 5
+        answer: It is $(1/2)(-1/2)(-3/2)/3!=3/(8\cdot6)=1/16$. The answer is $\frac{1}{16}$.
+      - id: 29
+        type: freeform
+        prompt: Explain why differentiating a convergent power series may change whether an endpoint converges.
+        answerLines: 5
+        answer: Termwise differentiation multiplies coefficients by their indices, affecting borderline decay. For example, $\sum x^n/n$ converges at $x=-1$, but its differentiated series becomes a geometric-type series whose terms there do not approach zero.
+      - id: 30
+        type: freeform
+        prompt: Derive the first four terms of $e^{-x^2}$ from the exponential series and state its real validity range.
+        answerLines: 5
+        answer: 'Replace the exponential argument by $-x^2$: $1+(-x^2)+(-x^2)^2/2!+(-x^2)^3/3!=1-x^2+x^4/2-x^6/6$. The exponential series converges for every real argument, so the full substituted series is valid for every real $x$.'
+  - title: Remainders and trustworthy approximations
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Use $P_2(x)=1+x+x^2/2$ to approximate $e^{0.1}$. Give the polynomial value.
+        answerLines: 5
+        answer: $1+1/10+1/200=221/200=1.105$. The answer is $\frac{221}{200}$.
+      - id: 32
+        type: freeform
+        prompt: For that approximation, use $M=2$ for the third derivative to give the Taylor error bound.
+        answerLines: 5
+        answer: $2(1/10)^3/3!=2/(1000\cdot6)=1/3000$. The answer is $\frac{1}{3000}$.
+      - id: 33
+        type: freeform
+        prompt: Using $\sin x\approx x-x^3/6$ at $x=1/2$, give the first-omitted-term error bound.
+        answerLines: 5
+        answer: The next magnitude is $(1/2)^5/5!=1/(32\cdot120)=1/3840$. The answer is $\frac{1}{3840}$.
+      - id: 34
+        type: freeform
+        prompt: Evaluate the same sine polynomial at $x=1/2$.
+        answerLines: 5
+        answer: $1/2-(1/8)/6=1/2-1/48=23/48$. The answer is $\frac{23}{48}$.
+      - id: 35
+        type: freeform
+        prompt: For $\cos x\approx1-x^2/2$ at $x=1/5$, use the fourth-derivative bound $M=1$ to bound the error.
+        answerLines: 5
+        answer: "The cubic coefficient is zero, so use order three: $(1/5)^4/4!=1/(625\\cdot24)=1/15000$. The answer is $\\frac{1}{15000}$."
+      - id: 36
+        type: freeform
+        prompt: If $M=6$, $|x-a|=1/10$, and $N=2$, find the Taylor remainder bound.
+        answerLines: 5
+        answer: $6(1/10)^3/3!=1/1000$. The answer is $\frac{1}{1000}$.
+      - id: 37
+        type: freeform
+        prompt: How many nonzero terms are in the polynomial $x-x^3/6+x^5/120$?
+        answerLines: 5
+        answer: There are three monomials with nonzero coefficients, despite the polynomial having degree five. The answer is $3$.
+      - id: 38
+        type: freeform
+        prompt: At $x=1/2$, is $x-x^3/6$ an upper or lower bound for $\sin x$? Enter upper or lower.
+        answerLines: 5
+        answer: The first omitted sine-series term is positive, and the alternating remainder has that sign. The answer is **lower**.
+      - id: 39
+        type: freeform
+        prompt: Why must the derivative bound in Taylor's theorem cover the whole interval between the center and target?
+        answerLines: 5
+        answer: The remainder uses an unknown intermediate point $\xi$. A derivative value at the center does not bound its value at that point; a uniform interval bound does.
+      - id: 40
+        type: freeform
+        prompt: Explain the additional condition needed to conclude that a function equals its infinite Taylor series.
+        answerLines: 5
+        answer: The remainder $f(x)-P_N(x)$ must tend to zero as $N$ increases. Derivative matching determines the coefficients, but only a vanishing remainder establishes equality with the limiting series.
+  - title: Using series for limits and integrals
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(\sin x-x)/x^3$.
+        answerLines: 5
+        answer: The expansion $\sin x=x-x^3/6+O(x^5)$ leaves $-1/6+O(x^2)$ after division. The answer is $\frac{-1}{6}$.
+      - id: 42
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(e^x-1-x)/x^2$.
+        answerLines: 5
+        answer: The first noncancelled term is $x^2/2$, and the divided remainder tends to zero. The answer is $\frac{1}{2}$.
+      - id: 43
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(1-\cos x)/x^2$.
+        answerLines: 5
+        answer: $1-\cos x=x^2/2+O(x^4)$. The answer is $\frac{1}{2}$.
+      - id: 44
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(\cos x-1+x^2/2)/x^4$.
+        answerLines: 5
+        answer: The fourth-order term is $x^4/24$ and the remainder is of higher order. The answer is $\frac{1}{24}$.
+      - id: 45
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}[\ln(1+x)-x]/x^2$.
+        answerLines: 5
+        answer: $\ln(1+x)=x-x^2/2+O(x^3)$, so the ratio tends to $-1/2$. The answer is $\frac{-1}{2}$.
+      - id: 46
+        type: freeform
+        prompt: Integrate the polynomial $1-x^2+x^4/2$ from $0$ to $b$ and give the resulting polynomial in $b$.
+        answerLines: 5
+        answer: Integrating each term gives $b-b^3/3+b^5/10$. The answer is $b-\frac{b^{3}}{3}+\frac{b^{5}}{10}$.
+      - id: 47
+        type: freeform
+        prompt: Use those three terms to approximate $\int_0^{1/2}e^{-x^2}dx$. Give the polynomial-integral value.
+        answerLines: 5
+        answer: $1/2-1/24+1/320=(480-40+3)/960=443/960$. The answer is $\frac{443}{960}$.
+      - id: 48
+        type: freeform
+        prompt: Give the first-omitted-term bound for that three-term integral approximation.
+        answerLines: 5
+        answer: The next integrated magnitude is $b^7/42$; at $b=1/2$ this is $1/(128\cdot42)=1/5376$. The answer is $\frac{1}{5376}$.
+      - id: 49
+        type: freeform
+        prompt: Why is the quadratic cosine approximation insufficient to determine $(\cos x-1+x^2/2)/x^4$?
+        answerLines: 5
+        answer: Its terms cancel completely in the numerator. The remaining behavior begins at degree four, so one must retain that coefficient and control the higher-order remainder before dividing by $x^4$.
+      - id: 50
+        type: freeform
+        prompt: Explain why the three-term approximation $443/960$ to $\int_0^{1/2}e^{-x^2}dx$ is an upper bound.
+        answerLines: 5
+        answer: The integrated series alternates with decreasing magnitudes at $b=1/2$. The first omitted term is negative, so the actual sum lies below the retained three-term partial sum.

@@ -71,6 +71,64 @@ const figureBase = z.object({
 const figureSchema = z.discriminatedUnion('kind', [
   figureBase
     .extend({
+      kind: z.literal('cartesian'),
+      bounds: z
+        .object({ x: z.tuple([z.number(), z.number()]), y: z.tuple([z.number(), z.number()]) })
+        .strict(),
+      curves: z
+        .array(
+          z
+            .object({
+              id: text,
+              label: text,
+              points: z
+                .array(z.tuple([z.number(), z.number()]))
+                .min(2)
+                .max(1000),
+              dashed: z.boolean().default(false),
+            })
+            .strict(),
+        )
+        .max(4),
+      regions: z
+        .array(
+          z
+            .object({
+              points: z
+                .array(z.tuple([z.number(), z.number()]))
+                .min(3)
+                .max(1000),
+            })
+            .strict(),
+        )
+        .default([]),
+      markers: z
+        .array(
+          z
+            .object({
+              at: z.tuple([z.number(), z.number()]),
+              label: text,
+              open: z.boolean().default(false),
+            })
+            .strict(),
+        )
+        .default([]),
+      arrows: z
+        .array(
+          z
+            .object({
+              from: z.tuple([z.number(), z.number()]),
+              to: z.tuple([z.number(), z.number()]),
+              label: text,
+              dashed: z.boolean().default(false),
+            })
+            .strict(),
+        )
+        .default([]),
+    })
+    .strict(),
+  figureBase
+    .extend({
       kind: z.literal('coordinates'),
       extent: z.number().positive(),
       arrows: z.array(
@@ -229,6 +287,12 @@ export async function loadTeaching() {
       if (!ids.has(b.reference)) throw Error('Unknown symbol reference: ' + b.reference);
   }
   for (const f of figures) {
+    if (f.kind === 'cartesian') {
+      if (f.bounds.x[0] >= f.bounds.x[1] || f.bounds.y[0] >= f.bounds.y[1])
+        throw Error('Invalid Cartesian bounds: ' + f.id);
+      if (new Set(f.curves.map((c) => c.id)).size !== f.curves.length)
+        throw Error('Duplicate Cartesian curve: ' + f.id);
+    }
     for (const latex of Object.values(f.mathLabels)) validateMath('$$\n' + latex + '\n$$');
     const requiredLabels: string[] = [];
     if (f.kind === 'graph') requiredLabels.push(...f.nodes.map((n) => n.id));

@@ -73,6 +73,7 @@ for (const file of [
   'content/deterministic-exercises.json',
   'content/deterministic-linear.json',
   'content/deterministic-algorithms.json',
+  'content/deterministic-calculus.json',
 ])
   deterministicExercises.push(
     ...JSON.parse(await readFile(file, 'utf8')).map(validateDeterministicEntry),

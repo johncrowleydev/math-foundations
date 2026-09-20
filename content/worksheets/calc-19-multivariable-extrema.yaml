@@ -1,0 +1,397 @@
+title: Higher Derivatives and Multivariable Extrema
+sections:
+  - title: Differentiate the partial derivatives
+    questions:
+      - id: 1
+        type: freeform
+        prompt: For $f=1x^3y+2xy^2$, find f_xy (first x, then y).
+        answerLines: 5
+        answer: |-
+          The answer is $3\cdot x^{2}+4\cdot y$.
+
+          Differentiate $f_x=3x^2y+2y^2$ in y to get $3x^2+4y$.
+      - id: 2
+        type: freeform
+        prompt: For $f=1x^3y+2xy^2$, find f_yy.
+        answerLines: 5
+        answer: |-
+          The answer is $4\cdot x$.
+
+          The y partial is $1x^3+4xy$; another y derivative is $4x$.
+      - id: 3
+        type: freeform
+        prompt: For $f=-1x^3y+3xy^2$, find f_xy (first x, then y).
+        answerLines: 5
+        answer: |-
+          The answer is $-3\cdot x^{2}+6\cdot y$.
+
+          Differentiate $f_x=-3x^2y+3y^2$ in y to get $-3x^2+6y$.
+      - id: 4
+        type: freeform
+        prompt: For $f=-1x^3y+3xy^2$, find f_yy.
+        answerLines: 5
+        answer: |-
+          The answer is $6\cdot x$.
+
+          The y partial is $-1x^3+6xy$; another y derivative is $6x$.
+      - id: 5
+        type: freeform
+        prompt: For $f=2x^3y+-1xy^2$, find f_xy (first x, then y).
+        answerLines: 5
+        answer: |-
+          The answer is $6\cdot x^{2}+-2\cdot y$.
+
+          Differentiate $f_x=6x^2y+-1y^2$ in y to get $6x^2+-2y$.
+      - id: 6
+        type: freeform
+        prompt: For $f=2x^3y+-1xy^2$, find f_yy.
+        answerLines: 5
+        answer: |-
+          The answer is $-2\cdot x$.
+
+          The y partial is $2x^3+-2xy$; another y derivative is $-2x$.
+      - id: 7
+        type: freeform
+        prompt: For $f=3x^3y+2xy^2$, find f_xy (first x, then y).
+        answerLines: 5
+        answer: |-
+          The answer is $9\cdot x^{2}+4\cdot y$.
+
+          Differentiate $f_x=9x^2y+2y^2$ in y to get $9x^2+4y$.
+      - id: 8
+        type: freeform
+        prompt: For $f=3x^3y+2xy^2$, find f_yy.
+        answerLines: 5
+        answer: |-
+          The answer is $4\cdot x$.
+
+          The y partial is $3x^3+4xy$; another y derivative is $4x$.
+      - id: 9
+        type: freeform
+        prompt: For $f=-2x^3y+-3xy^2$, find f_xy (first x, then y).
+        answerLines: 5
+        answer: |-
+          The answer is $-6\cdot x^{2}+-6\cdot y$.
+
+          Differentiate $f_x=-6x^2y+-3y^2$ in y to get $-6x^2+-6y$.
+      - id: 10
+        type: freeform
+        prompt: For $f=-2x^3y+-3xy^2$, find f_yy.
+        answerLines: 5
+        answer: |-
+          The answer is $-6\cdot x$.
+
+          The y partial is $-2x^3+-6xy$; another y derivative is $-6x$.
+  - title: The Hessian and quadratic approximation
+    questions:
+      - id: 11
+        type: freeform
+        prompt: For $f=1x^2+2xy+2y^2$, give Hessian entries in row-major order.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 2,\ 2,\ 4\right)$.
+
+          The matrix rows are (2,2) and (2,4).
+      - id: 12
+        type: freeform
+        prompt: For $f=1x^2+2xy+2y^2$, find the quadratic change at the origin for displacement (1/10,1/10).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{5}{100}$.
+
+          The exact quadratic value is $(1+2+2)/100$.
+      - id: 13
+        type: freeform
+        prompt: For $f=-1x^2+2xy+3y^2$, give Hessian entries in row-major order.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-2,\ 2,\ 2,\ 6\right)$.
+
+          The matrix rows are (-2,2) and (2,6).
+      - id: 14
+        type: freeform
+        prompt: For $f=-1x^2+2xy+3y^2$, find the quadratic change at the origin for displacement (1/10,1/10).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{4}{100}$.
+
+          The exact quadratic value is $(-1+2+3)/100$.
+      - id: 15
+        type: freeform
+        prompt: For $f=2x^2+2xy+-1y^2$, give Hessian entries in row-major order.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 2,\ 2,\ -2\right)$.
+
+          The matrix rows are (4,2) and (2,-2).
+      - id: 16
+        type: freeform
+        prompt: For $f=2x^2+2xy+-1y^2$, find the quadratic change at the origin for displacement (1/10,1/10).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{3}{100}$.
+
+          The exact quadratic value is $(2+2+-1)/100$.
+      - id: 17
+        type: freeform
+        prompt: For $f=3x^2+2xy+2y^2$, give Hessian entries in row-major order.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(6,\ 2,\ 2,\ 4\right)$.
+
+          The matrix rows are (6,2) and (2,4).
+      - id: 18
+        type: freeform
+        prompt: For $f=3x^2+2xy+2y^2$, find the quadratic change at the origin for displacement (1/10,1/10).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{7}{100}$.
+
+          The exact quadratic value is $(3+2+2)/100$.
+      - id: 19
+        type: freeform
+        prompt: For $f=-2x^2+2xy+-3y^2$, give Hessian entries in row-major order.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-4,\ 2,\ 2,\ -6\right)$.
+
+          The matrix rows are (-4,2) and (2,-6).
+      - id: 20
+        type: freeform
+        prompt: For $f=-2x^2+2xy+-3y^2$, find the quadratic change at the origin for displacement (1/10,1/10).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-3}{100}$.
+
+          The exact quadratic value is $(-2+2+-3)/100$.
+  - title: Stationary points and the second derivative test
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find the stationary point of $f=(x-1)^2+2(y-2)^2$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ 2\right)$.
+
+          Set both first partials to zero: (1,2).
+      - id: 22
+        type: freeform
+        prompt: For $f=x^2-2y^2$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **saddle**.
+
+          The discriminant is negative, and coordinate directions give both signs: saddle.
+      - id: 23
+        type: freeform
+        prompt: Find the stationary point of $f=(x--1)^2+3(y-3)^2$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-1,\ 3\right)$.
+
+          Set both first partials to zero: (-1,3).
+      - id: 24
+        type: freeform
+        prompt: For $f=x^2-3y^2$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **saddle**.
+
+          The discriminant is negative, and coordinate directions give both signs: saddle.
+      - id: 25
+        type: freeform
+        prompt: Find the stationary point of $f=(x-2)^2+1(y--1)^2$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ -1\right)$.
+
+          Set both first partials to zero: (2,-1).
+      - id: 26
+        type: freeform
+        prompt: For $f=x^2-1y^2$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **saddle**.
+
+          The discriminant is negative, and coordinate directions give both signs: saddle.
+      - id: 27
+        type: freeform
+        prompt: Find the stationary point of $f=(x-3)^2+2(y-2)^2$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(3,\ 2\right)$.
+
+          Set both first partials to zero: (3,2).
+      - id: 28
+        type: freeform
+        prompt: For $f=x^2-2y^2$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **saddle**.
+
+          The discriminant is negative, and coordinate directions give both signs: saddle.
+      - id: 29
+        type: freeform
+        prompt: Find the stationary point of $f=(x--2)^2+3(y--3)^2$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-2,\ -3\right)$.
+
+          Set both first partials to zero: (-2,-3).
+      - id: 30
+        type: freeform
+        prompt: For $f=x^2-3y^2$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **saddle**.
+
+          The discriminant is negative, and coordinate directions give both signs: saddle.
+  - title: When the test cannot decide
+    questions:
+      - id: 31
+        type: freeform
+        prompt: For $f=1x^4+2y^4$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **minimum**.
+
+          Both terms are nonnegative and vanish together only at the origin, so it is a minimum.
+      - id: 32
+        type: freeform
+        prompt: For $f=1x^4-2y^4$, explain the classification of the origin without relying on its zero Hessian.
+        answerLines: 5
+        answer: Along y=0 the value is positive off the origin, while along x=0 it is negative. Therefore it is a saddle.
+      - id: 33
+        type: freeform
+        prompt: For $f=1x^4+3y^4$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **minimum**.
+
+          Both terms are nonnegative and vanish together only at the origin, so it is a minimum.
+      - id: 34
+        type: freeform
+        prompt: For $f=1x^4-3y^4$, explain the classification of the origin without relying on its zero Hessian.
+        answerLines: 5
+        answer: Along y=0 the value is positive off the origin, while along x=0 it is negative. Therefore it is a saddle.
+      - id: 35
+        type: freeform
+        prompt: For $f=2x^4+1y^4$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **minimum**.
+
+          Both terms are nonnegative and vanish together only at the origin, so it is a minimum.
+      - id: 36
+        type: freeform
+        prompt: For $f=2x^4-1y^4$, explain the classification of the origin without relying on its zero Hessian.
+        answerLines: 5
+        answer: Along y=0 the value is positive off the origin, while along x=0 it is negative. Therefore it is a saddle.
+      - id: 37
+        type: freeform
+        prompt: For $f=3x^4+2y^4$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **minimum**.
+
+          Both terms are nonnegative and vanish together only at the origin, so it is a minimum.
+      - id: 38
+        type: freeform
+        prompt: For $f=3x^4-2y^4$, explain the classification of the origin without relying on its zero Hessian.
+        answerLines: 5
+        answer: Along y=0 the value is positive off the origin, while along x=0 it is negative. Therefore it is a saddle.
+      - id: 39
+        type: freeform
+        prompt: For $f=2x^4+3y^4$, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **minimum**.
+
+          Both terms are nonnegative and vanish together only at the origin, so it is a minimum.
+      - id: 40
+        type: freeform
+        prompt: For $f=2x^4-3y^4$, explain the classification of the origin without relying on its zero Hessian.
+        answerLines: 5
+        answer: Along y=0 the value is positive off the origin, while along x=0 it is negative. Therefore it is a saddle.
+  - title: Global extrema require the whole feasible set
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Find the maximum value of $x^2+y^2$ on $0\leq x\leq2$, $0\leq y\leq3$.
+        answerLines: 5
+        answer: |-
+          The answer is $13$.
+
+          Both squares increase on the nonnegative intervals, so the corner (2,3) gives 13.
+      - id: 42
+        type: freeform
+        prompt: Does $x^2+y^2$ attain its supremum on the open disk $x^2+y^2<2$?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No: values approach 2 but the boundary is excluded.
+      - id: 43
+        type: freeform
+        prompt: Find the maximum value of $x^2+y^2$ on $0\leq x\leq2$, $0\leq y\leq4$.
+        answerLines: 5
+        answer: |-
+          The answer is $20$.
+
+          Both squares increase on the nonnegative intervals, so the corner (2,4) gives 20.
+      - id: 44
+        type: freeform
+        prompt: Does $x^2+y^2$ attain its supremum on the open disk $x^2+y^2<2$?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No: values approach 2 but the boundary is excluded.
+      - id: 45
+        type: freeform
+        prompt: Find the maximum value of $x^2+y^2$ on $0\leq x\leq3$, $0\leq y\leq2$.
+        answerLines: 5
+        answer: |-
+          The answer is $13$.
+
+          Both squares increase on the nonnegative intervals, so the corner (3,2) gives 13.
+      - id: 46
+        type: freeform
+        prompt: Does $x^2+y^2$ attain its supremum on the open disk $x^2+y^2<3$?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No: values approach 3 but the boundary is excluded.
+      - id: 47
+        type: freeform
+        prompt: Find the maximum value of $x^2+y^2$ on $0\leq x\leq4$, $0\leq y\leq3$.
+        answerLines: 5
+        answer: |-
+          The answer is $25$.
+
+          Both squares increase on the nonnegative intervals, so the corner (4,3) gives 25.
+      - id: 48
+        type: freeform
+        prompt: Does $x^2+y^2$ attain its supremum on the open disk $x^2+y^2<4$?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No: values approach 4 but the boundary is excluded.
+      - id: 49
+        type: freeform
+        prompt: Find the maximum value of $x^2+y^2$ on $0\leq x\leq3$, $0\leq y\leq4$.
+        answerLines: 5
+        answer: |-
+          The answer is $25$.
+
+          Both squares increase on the nonnegative intervals, so the corner (3,4) gives 25.
+      - id: 50
+        type: freeform
+        prompt: Does $x^2+y^2$ attain its supremum on the open disk $x^2+y^2<3$?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No: values approach 3 but the boundary is excluded.

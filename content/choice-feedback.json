@@ -1783,5 +1783,440 @@
       "option-2": "Identical columns allow a nonzero change (h,-h) in the coefficients without changing the fitted output.",
       "option-3": "The normal equations remain consistent. Dependence gives multiple coefficient solutions, rather than no solution."
     }
+  },
+  {
+    "lesson": "calculus-limits-continuity",
+    "id": 10001,
+    "sourceHash": "22d99a2cc1c457ba4d40f77f23d6b855effebf624ffa9d88e805afd5c0bea6d9",
+    "responses": {
+      "option-1": "A limit uses nearby inputs different from the target itself. Reassigning only $f(a)$ can therefore change the point value while leaving $\\lim_{x\\to a}f(x)$ unchanged.",
+      "option-2": "Changing values at inputs greater than $a$ does not itself reassign $f(a)$. It also changes the right-hand branch used by the limit, so its nearby behavior must be checked again.",
+      "option-3": "Different constants on the two sides produce unequal one-sided limits. They do not preserve a finite two-sided limit, and choosing a value at the center cannot reconcile them."
+    }
+  },
+  {
+    "lesson": "calculus-limits-continuity",
+    "id": 10002,
+    "sourceHash": "ddaa039383ab62888a9782d48b0da4b7d39173fcc0409e792117c8e139a413a9",
+    "responses": {
+      "option-1": "The IVT supplies existence, not uniqueness. A continuous function can cross zero several times while still having endpoint values $-2$ and $4$.",
+      "option-2": "Zero lies strictly between $-2$ and $4$. Continuity forces the function to take that intermediate value at some input strictly between $0$ and $3$.",
+      "option-3": "The theorem does not locate the root at the midpoint. For example, the line $f(x)=2x-2$ has the stated endpoint values but reaches zero at $x=1$, not $x=3/2$."
+    }
+  },
+  {
+    "lesson": "calculus-derivatives",
+    "id": 10001,
+    "sourceHash": "2df2cdd5b8e8f4bc00a0d804eb4463a997c59d540632aefc67bede35f98e438c",
+    "responses": {
+      "option-1": "A negative increment is valid as long as it is nonzero. Both the output difference and the input difference use the same orientation, so a left-side secant slope is well defined.",
+      "option-2": "The second input is $a+h=2-0.1=1.9$. Substituting the same increment into the simplified quotient gives $4+h=3.9$.",
+      "option-3": "The input $2.1$ and slope $4.1$ correspond to $h=+0.1$. The given negative increment approaches from the left, so both values must instead decrease."
+    }
+  },
+  {
+    "lesson": "calculus-derivatives",
+    "id": 10002,
+    "sourceHash": "4f82406831c41e27a1d11f88ecabb1f168074e000a0d570454215058e7cc33fd",
+    "responses": {
+      "option-1": "Continuity does not control whether the two one-sided slopes agree. The function $|x|$ is continuous at zero but has left slope $-1$ and right slope $1$, so it is not differentiable there.",
+      "option-2": "When the difference quotient has a finite limit, the function increment equals that quotient times an increment tending to zero. The function increment therefore tends to zero, establishing continuity.",
+      "option-3": "A vertical tangent corresponds to unbounded slope, not zero slope. Zero derivative describes a horizontal tangent; an unbounded quotient does not give a finite ordinary derivative."
+    }
+  },
+  {
+    "lesson": "calculus-differentiation-rules",
+    "id": 10001,
+    "sourceHash": "998f700652812bc90c3a166e41907860f8cb28b382386a08b8b52ffb6c479e7d",
+    "responses": {
+      "option-1": "Multiplying the two derivatives loses the contributions from each factor's current value. For $u=v=x$, this proposal gives $1$, but the derivative of their product $x^2$ is $2x$.",
+      "option-2": "Each factor can change the product. Differentiating the first while retaining the second gives $u'v$; retaining the first while differentiating the second gives $uv'$. Their contributions add.",
+      "option-3": "This is the sum rule for $u+v$. A product also depends on the factors' values, so its derivative needs the multipliers $v$ and $u$ in the two terms."
+    }
+  },
+  {
+    "lesson": "calculus-differentiation-rules",
+    "id": 10002,
+    "sourceHash": "50cb2d05f3ca196289fe650baf9f42345b9f6e274f61a518e269a8d50931e724",
+    "responses": {
+      "option-1": "The basic limit $\\sin h/h\\to1$ uses radians. Changing the angle unit rescales the input increment and introduces a conversion factor into the derivative.",
+      "option-2": "Degrees are a valid angle unit. With numerical degree input $\\theta$, the radian cosine is $\\cos(\\pi\\theta/180)$, whose derivative includes the factor $\\pi/180$.",
+      "option-3": "The slope varies throughout the curve, not only at right angles. For instance, $-\\sin x$ has different values at $x=0$ and $x=\\pi/6$, neither requiring a right-angle event."
+    }
+  },
+  {
+    "lesson": "calculus-chain-implicit-inverse",
+    "id": 10001,
+    "sourceHash": "729dc52798dd65555b03b68e1f49bc7dc0ece8267dab9d748a82e0ff001e6aba",
+    "responses": {
+      "option-1": "The number $2$ is the input to the inner function, not the input received by $f$. The outer derivative must be evaluated at the inner output $g(2)=7$.",
+      "option-2": "At the original input $2$, the inner function produces $7$. Thus the chain rule uses the outer rate $f'(7)$ and multiplies it by the inner rate $g'(2)$.",
+      "option-3": "The outer function is $f$, so the requested outer derivative cannot be a derivative of $g$. The inner derivative in the full chain rule is $g'(2)$, evaluated at the original input."
+    }
+  },
+  {
+    "lesson": "calculus-chain-implicit-inverse",
+    "id": 10002,
+    "sourceHash": "aeb1fda35de367c4c1d0975ee6bd106dc9cfd5e9f2559671d838cacf99f8968c",
+    "responses": {
+      "option-1": "This is the derivative of the cube with respect to its own input $y$. Differentiating with respect to $x$ also requires the rate at which $y$ changes with $x$.",
+      "option-2": "Apply the chain rule to $[y(x)]^3$: the outer power contributes $3y^2$, and the inner function contributes $y'=dy/dx$.",
+      "option-3": "The problem says $y$ depends on $x$, so it cannot generally be treated as a constant. For example, if $y=x$, then the derivative of $y^3=x^3$ is $3x^2$, not identically zero."
+    }
+  },
+  {
+    "lesson": "calculus-exponential-logarithmic",
+    "id": 10001,
+    "sourceHash": "9d90ef163bf9c18984f067f9476b42cec3cc01ef9d7c2a28d43755d4e24f6f8e",
+    "responses": {
+      "option-1": "The exponent $x$ varies, so the fixed-exponent power rule is not the relevant rule. Rewrite $a^x=e^{x\\ln a}$; differentiating the exponent produces $\\ln a$, not $x$.",
+      "option-2": "Because $a$ is fixed and positive, $\\ln a$ is a constant. The chain rule applied to $e^{x\\ln a}$ gives $a^x\\ln a$.",
+      "option-3": "A reciprocal base-log factor occurs in $d(\\log_a x)/dx=1/(x\\ln a)$ for a valid logarithm base. Differentiating $a^x$ instead multiplies by $\\ln a$ through the chain rule."
+    }
+  },
+  {
+    "lesson": "calculus-exponential-logarithmic",
+    "id": 10002,
+    "sourceHash": "afcb5d9e9b9beae8b8ff0faf9627e4145824927be945d70844b116d9b90a0d10",
+    "responses": {
+      "option-1": "The equation gives $y'/y$, the derivative divided by the current value. It has not yet isolated the requested absolute derivative $y'$.",
+      "option-2": "Multiply both sides by $y=x^x$. The result is $y'=x^x(\\ln x+1)$ on the positive domain used for logarithmic differentiation.",
+      "option-3": "There is already a division by $y$ on the left. Dividing again would move farther from isolating $y'$; multiplying by the original function cancels that denominator."
+    }
+  },
+  {
+    "lesson": "calculus-related-rates-approximation",
+    "id": 10001,
+    "sourceHash": "59dd3d1e49d81746e370ac7b4c217564befa4b84c8288b35a03c066467999b84",
+    "responses": {
+      "option-1": "An instantaneous measurement can replace a changing variable by a constant too early. Writing $A=25$ from a square's current side $5$ would erase the side's ongoing change before the area rate is calculated.",
+      "option-2": "First differentiate the relation that holds throughout the process, retaining all time dependencies. Then insert the measured values and rates for the instant in question into that rate equation.",
+      "option-3": "Measurements alone give quantities at one instant, not the relationship between their rates. Differentiating the model supplies that relationship, such as $A'=2ss'$ for a changing square."
+    }
+  },
+  {
+    "lesson": "calculus-related-rates-approximation",
+    "id": 10002,
+    "sourceHash": "986d3ea03a6aad9ad44684cae3d138e9817724c3faefc85c6ef23761aa93ade1",
+    "responses": {
+      "option-1": "Differentiability makes the error of the tangent model small relative to a sufficiently small input increment. That is the local justification for replacing the function change by $f'(a)h$.",
+      "option-2": "The derivative can vary away from the anchor. For example, $x^2$ has changing derivative $2x$ but still has a useful tangent approximation near every input.",
+      "option-3": "The approximate sign permits a nonzero error. For $f(x)=x^2$, the tangent prediction at $a+h$ omits the term $h^2$; it becomes accurate locally without being exact for nonzero $h$."
+    }
+  },
+  {
+    "lesson": "calculus-mvt-function-behavior",
+    "id": 10001,
+    "sourceHash": "33e927ea879791becf5b09e8be7570148bbe4e673a9ca87b852df2f823e7fa24",
+    "responses": {
+      "option-1": "Endpoint derivatives do not control the function throughout the interval. The MVT requires differentiability at every interior point, while continuity rather than differentiability is required at the endpoints.",
+      "option-2": "These hypotheses let the MVT connect the endpoint secant slope to a derivative at an interior point. A corner or jump inside the interval can break that connection.",
+      "option-3": "Equal endpoint values are the extra condition in Rolle's theorem. The MVT permits different endpoint values and matches their possibly nonzero average slope."
+    }
+  },
+  {
+    "lesson": "calculus-mvt-function-behavior",
+    "id": 10002,
+    "sourceHash": "7ca9f78e5ef21dc9507ac8c7e20f578daee78daf56fd6cddf68f185c538322ec",
+    "responses": {
+      "option-1": "The numerator approaches $1$ and the denominator approaches $2$. Direct substitution gives $1/2$; this is not an indeterminate form, so differentiating the numerator and denominator is unjustified.",
+      "option-2": "Both $e^x-1$ and $x$ approach zero. Their derivatives are defined nearby, the denominator derivative is $1\\ne0$, and the derivative quotient $e^x$ has limit $1$, so the rule applies here.",
+      "option-3": "The numerator stays at $1$ while only the denominator approaches zero. This is not the $0/0$ form: its one-sided values are unbounded with opposite signs, so L'Hôpital's vanishing-quotient rule does not apply."
+    }
+  },
+  {
+    "lesson": "calculus-single-variable-optimization",
+    "id": 10001,
+    "sourceHash": "f9bd34a60a949b63ecc2867c9bdda04bc8ea143f59f77bd2c622d9ffbda78aea",
+    "responses": {
+      "option-1": "Zero second derivative does not guarantee a concavity change. For $f(x)=x^4$, both derivatives vanish at zero, but the graph stays concave up on both sides and has no inflection there.",
+      "option-2": "An extremum is still possible. The function $-x^4$ has a maximum at zero even though its first and second derivatives are both zero there.",
+      "option-3": "The test requires a strictly positive or negative second derivative to classify the stationary point. When it is zero, a minimum, maximum, or neither is possible; inspect the first-derivative signs or compare function values."
+    }
+  },
+  {
+    "lesson": "calculus-single-variable-optimization",
+    "id": 10002,
+    "sourceHash": "f0708dcef5636b434e47265256ab8d63984a2eca2c40a4dab49e097ce95c643d",
+    "responses": {
+      "option-1": "The candidate must satisfy the permitted dimensions or other constraints, and its objective value must be best among feasible alternatives, including relevant boundary cases. A derivative equation alone establishes neither fact.",
+      "option-2": "Geometric lengths are generally real-valued, so integrality is not a default constraint. Requiring an integer without a stated design restriction would solve a different optimization problem.",
+      "option-3": "A root of the derivative has derivative zero, not positive. Positive derivative indicates local increase; identifying an optimum requires sign changes, value comparisons, or another justified extremum argument."
+    }
+  },
+  {
+    "lesson": "calculus-definite-integrals",
+    "id": 10001,
+    "sourceHash": "2ecb405a5741780510299283c0268d774f59ff5e8cd6a139aff8b9d1def43a71",
+    "responses": {
+      "option-1": "Adding the heights gives $2+8=10$, but accumulation also depends on how long each height lasts. Multiply each value by its own width before adding.",
+      "option-2": "The first contribution is $2\\cdot3=6$ and the second is $8\\cdot1=8$. Their sum is $14$.",
+      "option-3": "The unweighted mean height $5$ times total width $4$ gives $20$, but that treats the two heights as lasting equally long. The lower height actually lasts three times as long."
+    }
+  },
+  {
+    "lesson": "calculus-definite-integrals",
+    "id": 10002,
+    "sourceHash": "bbf980e95ff0f4762f0edd6a9e711323161bdf5307086116709322e8456e0936",
+    "responses": {
+      "option-1": "Subtracting the negative-region magnitude gives displacement, $6-4=2$. Distance also counts the motion in the negative direction, so those magnitudes must be added.",
+      "option-2": "Distance counts travel in both directions positively: $6+4=10$. The sign of velocity affects displacement, but not whether that travel contributes to distance.",
+      "option-3": "A distance cannot be negative. Reversing the subtraction gives $4-6=-2$, whereas total distance requires adding the two nonnegative region magnitudes."
+    }
+  },
+  {
+    "lesson": "calculus-antiderivatives-ftc",
+    "id": 10001,
+    "sourceHash": "ee917f7514a65ba4031d66cc89036f938d7177a42f0c700b49cf05d9f1ae6b4b",
+    "responses": {
+      "option-1": "The function $x^4$ is one valid antiderivative, but it omits other valid choices such as $x^4+7$. The question asks for the entire family.",
+      "option-2": "Differentiating $Cx^4$ gives $4Cx^3$, which matches $4x^3$ only when $C=1$. An arbitrary multiplicative constant changes the required derivative.",
+      "option-3": "Every additive constant differentiates to zero, so each $x^4+C$ has derivative $4x^3$. The mean value theorem shows that all antiderivatives on this interval differ by just such a constant."
+    }
+  },
+  {
+    "lesson": "calculus-antiderivatives-ftc",
+    "id": 10002,
+    "sourceHash": "47304cd1ad9e215bb51fdda5538f45030bb775aa5fb1759718129120d9da39e8",
+    "responses": {
+      "option-1": "The fundamental theorem evaluates the antiderivative at the upper bound and subtracts its value at the lower bound. Any additive constant cancels in $F(b)-F(a)$.",
+      "option-2": "These are endpoint values of the integrand, not of an antiderivative. Their difference measures a change in $f$ itself and generally does not equal the accumulated integral of $f$.",
+      "option-3": "An upper-endpoint value alone omits the starting level $F(a)$. A fixed-bound integral is a particular number, so an arbitrary constant must not remain in its answer."
+    }
+  },
+  {
+    "lesson": "calculus-integration-techniques",
+    "id": 10001,
+    "sourceHash": "a95536ea3e189ef6273012ebc161d6aa16a570e1b323a42ea0ce6f67c3b77ad1",
+    "responses": {
+      "option-1": "This gives $du=dx/x$ and $v=x^2/2$. The remaining integral is $\\tfrac12\\int x\\,dx$, a simpler power-rule calculation.",
+      "option-2": "This is a legal choice, but finding $v$ already requires integrating $\\ln x$, and the resulting integral retains logarithmic terms. Differentiating the logarithm instead removes that difficulty immediately."
+    }
+  },
+  {
+    "lesson": "calculus-integration-techniques",
+    "id": 10002,
+    "sourceHash": "76e729c94c9c4b7e9ae11202c90042372802eda8aa60b9cfdcf7014a0f22a292",
+    "responses": {
+      "option-1": "This is neither an identity for $\\sin^2x$ nor its antiderivative: differentiating it gives $\\sin^2x\\cos x$, with an extra chain-rule factor.",
+      "option-2": "The identity $\\sin^2x=(1-\\cos2x)/2$ is valid for every real $x$. It reduces the integral to a constant term and a cosine term with a simple chain factor.",
+      "option-3": "The expression $1-\\cos x$ equals $2\\sin^2(x/2)$, not $\\sin^2x$. The correct power-reduction identity needs both the doubled angle and the factor $1/2$."
+    }
+  },
+  {
+    "lesson": "calculus-applications-integration",
+    "id": 10001,
+    "sourceHash": "24986fff2fe0ffd61968d3d42804d1def06e7fee5850dc82eeacfd452ff50300",
+    "responses": {
+      "option-1": "A single signed difference allows the two sides of a crossing to cancel. Taking an absolute value after that cancellation cannot recover the area that was lost.",
+      "option-2": "On each piece the upper-minus-lower height is nonnegative, so every strip contributes positive area. Splitting where the ordering changes preserves both regions."
+    }
+  },
+  {
+    "lesson": "calculus-applications-integration",
+    "id": 10002,
+    "sourceHash": "1155c597b41785f7eb4c7ef3c2bb8f6330fe3784423df0392626a45382c8d225",
+    "responses": {
+      "option-1": "This is the slice's side length, not its area. Multiplying a length by slice thickness gives square units, while volume requires cubic units.",
+      "option-2": "A square with side $s(x)$ has area $s(x)^2$. Multiplying that area by thickness and taking the limit gives $V=\\int s(x)^2\\,dx$.",
+      "option-3": "The expression $4s(x)$ is the square's perimeter. Adding perimeter times thickness does not add the solid's interior slice volumes."
+    }
+  },
+  {
+    "lesson": "calculus-numerical-improper",
+    "id": 10001,
+    "sourceHash": "f78806a640288d98fe804e4f32048e5e7d80c221c59d350ed7b6f7177b1639fc",
+    "responses": {
+      "option-1": "The weight does not describe measurement accuracy. Each trapezoid uses both endpoint heights, so shared endpoints appear twice when their areas are added.",
+      "option-2": "An interior endpoint is the right boundary of one trapezoid and the left boundary of the next. Adding both contributions gives its factor of two.",
+      "option-3": "The weights depend on the approximation rule. Midpoint samples each have weight one, and Simpson's interior weights alternate four and two; doubling is specific to the shared trapezoid endpoints."
+    }
+  },
+  {
+    "lesson": "calculus-numerical-improper",
+    "id": 10002,
+    "sourceHash": "2b5fa61018bbff77d2cae376558a1eef29ede6f3a8634014b59117a23d90c68a",
+    "responses": {
+      "option-1": "This is the convergence threshold for the tail integral from $1$ to infinity. Near zero, $p>1$ creates a singularity whose truncated area grows without bound.",
+      "option-2": "For $p<1$, the antiderivative term $\\varepsilon^{1-p}$ tends to zero as the lower cutoff approaches zero. The limiting integral is $1/(1-p)$.",
+      "option-3": "At $p=1$, the truncated integral is $-\\ln\\varepsilon$. It grows without bound as $\\varepsilon$ approaches zero, so this boundary case diverges."
+    }
+  },
+  {
+    "lesson": "calculus-sequences-series",
+    "id": 10001,
+    "sourceHash": "5444ad7123dfd1a4be97921274a269127993b080933aae6fa84d7cbf0e01370c",
+    "responses": {
+      "option-1": "Convergent series must have terms tending to zero, but that condition alone is insufficient. The harmonic terms $1/n$ approach zero while their running totals diverge.",
+      "option-2": "The partial sum $S_N=a_1+\\cdots+a_N$ is a finite running total. A series converges precisely when these totals approach one finite value.",
+      "option-3": "The indices count terms and grow without bound. They are not the numerical quantities whose convergence defines the sum."
+    }
+  },
+  {
+    "lesson": "calculus-sequences-series",
+    "id": 10002,
+    "sourceHash": "6331eb541b928523623e0aa594f60e40595b5a1c24c869cff7bbf64a6aa866c4",
+    "responses": {
+      "option-1": "Absolute convergence would require the sum of the term magnitudes to converge. The question explicitly says that this absolute-value series diverges.",
+      "option-2": "The signed sum converges, but the magnitude sum does not. Those two facts together are exactly the definition of conditional convergence.",
+      "option-3": "The signed series is stated to converge. Divergence of its magnitude series rules out absolute convergence, but it does not undo convergence produced by cancellation."
+    }
+  },
+  {
+    "lesson": "calculus-power-series-taylor",
+    "id": 10001,
+    "sourceHash": "fc0c61be22b49a0de03d075382b5f7e3c09c042cbb27cb36ae19d497ceca047f",
+    "responses": {
+      "option-1": "Absolute convergence is guaranteed when $|x-2|<3$, which is exactly the open interval $-1<x<5$.",
+      "option-2": "The endpoints satisfy $|x-2|=3$, where the radius rule alone is silent. Either, both, or neither endpoint may converge, depending on the coefficients.",
+      "option-3": "Divergence is guaranteed outside the radius, where $|x-2|>3$, not automatically at equality. Each endpoint needs its own series test."
+    }
+  },
+  {
+    "lesson": "calculus-power-series-taylor",
+    "id": 10002,
+    "sourceHash": "e9ff2efba681391bcd15d5c25e4eea35b40e185777e37da467d6d1bc04b977ed",
+    "responses": {
+      "option-1": "The intermediate point need not be the center. A derivative that is small at the center may become larger elsewhere between the center and the target, so that single value need not bound the remainder.",
+      "option-2": "A bound valid throughout the interval also bounds the derivative at the unknown intermediate point. It therefore turns the remainder formula into a guaranteed numerical error estimate.",
+      "option-3": "Printing more decimal places changes how an approximation is displayed, not how far it lies from the true value. A mathematical remainder bound must control the omitted contribution."
+    }
+  },
+  {
+    "lesson": "calculus-multivariable-functions",
+    "id": 10001,
+    "sourceHash": "215e31937f47d5537a9dfd9eba6811a8f5dc6112d3bde69022ebfa3566957343",
+    "responses": {
+      "option-1": "Correct. The ordered pair supplies the two input coordinates; the function returns one scalar.",
+      "option-2": "These would be two outputs. A scalar function has one output for each permitted input pair.",
+      "option-3": "The height is the output on the graph. Its input is the pair of coordinates below it."
+    }
+  },
+  {
+    "lesson": "calculus-multivariable-functions",
+    "id": 10002,
+    "sourceHash": "06000228635e857513f9da6336750f11a0dc0352712fc630b606b1c26cf75e4d",
+    "responses": {
+      "option-1": "Coordinate partials inspect only the axes. A function can have both partials and still have incompatible diagonal limits.",
+      "option-2": "Correct. Existing coordinate partials do not control all approaches; the lesson gives a discontinuous counterexample."
+    }
+  },
+  {
+    "lesson": "calculus-gradients",
+    "id": 10001,
+    "sourceHash": "5ebaccc30ce62213323a870dc65b623edf55c89624e1ef52325aa393facb7c5a",
+    "responses": {
+      "option-1": "The differential keeps only the linear terms. A finite displacement can also contribute quadratic or higher-order terms.",
+      "option-2": "Correct. It approximates the finite change to first order; equality needs additional information, such as an affine function."
+    }
+  },
+  {
+    "lesson": "calculus-gradients",
+    "id": 10002,
+    "sourceHash": "3b10ed1913b4c27bd3c1d086edb248714c7a19ee89805e13e89c41181ac2dbb0",
+    "responses": {
+      "option-1": "This vector has length ten, so its dot product with the gradient gives a rate along a speed-ten path.",
+      "option-2": "Correct. Dividing both coordinates by ten gives a unit vector in the requested direction.",
+      "option-3": "Swapping coordinates changes the direction and still leaves a vector of length ten."
+    }
+  },
+  {
+    "lesson": "calculus-multivariable-chain-rule",
+    "id": 10001,
+    "sourceHash": "d7ec9c1de0dd152edcecc240791607054194f81a251ce81dbf74a93aeced2498",
+    "responses": {
+      "option-1": "Correct. Each changing coordinate contributes to the total first-order change, and those contributions add.",
+      "option-2": "Multiply derivatives along each dependency path, then add the different paths. Multiplying the complete contributions loses that sum.",
+      "option-3": "Both coordinates contribute, even when one contribution is smaller or has the opposite sign."
+    }
+  },
+  {
+    "lesson": "calculus-multivariable-chain-rule",
+    "id": 10002,
+    "sourceHash": "ad895715ffe14c456efe5813005e508e2fa39dcab1a872caf00c332e08663715",
+    "responses": {
+      "option-1": "Correct. The original displacement first enters G, so its Jacobian is the rightmost factor in the product.",
+      "option-2": "F receives the intermediate output of G. Its Jacobian acts after the input displacement has passed through G."
+    }
+  },
+  {
+    "lesson": "calculus-multivariable-extrema",
+    "id": 10001,
+    "sourceHash": "77dff22faf6e970c4952dd3d880acd2477f49f722c7ca326ed1e110243bb0312",
+    "responses": {
+      "option-1": "A minimum would require positive discriminant and positive first pure second derivative under this test.",
+      "option-2": "A maximum would require positive discriminant and negative first pure second derivative under this test.",
+      "option-3": "Correct. Negative discriminant gives both positive and negative quadratic changes, hence a saddle."
+    }
+  },
+  {
+    "lesson": "calculus-multivariable-extrema",
+    "id": 10002,
+    "sourceHash": "8c727454b832ed213cd4326db001781a4765e931939ed89ca1d61e22f06011d5",
+    "responses": {
+      "option-1": "A zero discriminant does not exclude extrema: a sum of fourth powers has a minimum at the origin.",
+      "option-2": "Correct. The quadratic information is insufficient; inspect the function or higher-order terms.",
+      "option-3": "A minimum is possible but not guaranteed. A difference of fourth powers has a saddle with the same zero discriminant."
+    }
+  },
+  {
+    "lesson": "calculus-double-integrals",
+    "id": 10001,
+    "sourceHash": "54cdba0a48676e1850c95c61ceb61efa01e84267e35d01def9d96768442cdbc3",
+    "responses": {
+      "option-1": "Correct. During the inner y integral, x is a fixed parameter; the outer integral will vary it later.",
+      "option-2": "The differential dy identifies y as the variable being integrated, so y varies during this step.",
+      "option-3": "An iterated integral varies one coordinate at a time. Letting both vary would not implement the stated inner integral."
+    }
+  },
+  {
+    "lesson": "calculus-double-integrals",
+    "id": 10002,
+    "sourceHash": "ec4b7428249156a768f44a68b59cb599b6fb618e0c8aea5de94b3f2a2d096013",
+    "responses": {
+      "option-1": "The bounds usually change because horizontal and vertical slices describe the region differently.",
+      "option-2": "Correct. Reversing order changes the description of the same region, while preserving the function being accumulated.",
+      "option-3": "The inner variable changes when the order is reversed; preserving it would keep the original order."
+    }
+  },
+  {
+    "lesson": "calculus-constrained-optimization",
+    "id": 10001,
+    "sourceHash": "2694073d7fe006a1d71c61f6d1089936927ecd0f541b8399c2aab833facf1d1b",
+    "responses": {
+      "option-1": "The objective need not be zero. Its value is compared at feasible candidates.",
+      "option-2": "Correct. The original constraint is needed to ensure that the candidate lies in the feasible set.",
+      "option-3": "The multiplier is an unknown to solve for and need not vanish at an optimum."
+    }
+  },
+  {
+    "lesson": "calculus-constrained-optimization",
+    "id": 10002,
+    "sourceHash": "4315d6423d5a19e97fddd7e49e825b12e1ce4fcd3861f3ade3b476395783832f",
+    "responses": {
+      "option-1": "A singular feasible point can still optimize the objective. Failure of the theorem’s hypothesis does not exclude it.",
+      "option-2": "Correct. Check the singular point directly or use a regular description of the feasible set.",
+      "option-3": "A zero constraint gradient says nothing by itself about whether the objective is constant."
+    }
+  },
+  {
+    "lesson": "calculus-gradient-descent",
+    "id": 10001,
+    "sourceHash": "f7bea7ec2f59e8b9fc71b679ce89f0fbccb24c94ba7ed6e0d23d33008293fc90",
+    "responses": {
+      "option-1": "The gradient points toward greatest first-order increase, so adding a positive multiple normally moves uphill locally.",
+      "option-2": "Correct. Subtracting a positive multiple of the gradient gives the steepest first-order decrease in Euclidean coordinates.",
+      "option-3": "A fixed coordinate direction ignores the current objective sensitivities and is not the gradient-descent update."
+    }
+  },
+  {
+    "lesson": "calculus-gradient-descent",
+    "id": 10002,
+    "sourceHash": "b1d9e408e7676588567a6a062de862b27c9299b3035d890d3d74b436f3f38b5d",
+    "responses": {
+      "option-1": "For a nonconvex objective, a stationary point can be a saddle or local maximum; global minimality does not follow.",
+      "option-2": "Correct. A zero gradient makes the ordinary update displacement zero, whatever the objective value.",
+      "option-3": "Stationarity concerns derivatives. Adding a constant changes the loss value without changing its gradient."
+    }
   }
 ]

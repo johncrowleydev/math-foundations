@@ -1,0 +1,385 @@
+title: Basic Constrained Optimization
+sections:
+  - title: Optimize over the feasible set
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Is (2,4) feasible for x+y=6 with x,y nonnegative?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          Both coordinates are nonnegative and sum to 6, so yes.
+      - id: 2
+        type: freeform
+        prompt: Is the origin feasible for x+y=6?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          Its coordinate sum is 0, so it violates the equality.
+      - id: 3
+        type: freeform
+        prompt: Find the objective $x^2+y^2$ at the feasible point (2,4).
+        answerLines: 5
+        answer: |-
+          The answer is $20$.
+
+          Substitution gives 4+16=20.
+      - id: 4
+        type: freeform
+        prompt: For the line x+2y=8, give one normal vector as the ordered pair from its constraint gradient.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ 2\right)$.
+
+          Differentiate g=x+2y to get(1,2).
+      - id: 5
+        type: freeform
+        prompt: For the line x+2y=8, is (2,-1) a tangent direction?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          Its dot product with the normal(1,2) is 2-2=0, so yes.
+      - id: 6
+        type: freeform
+        prompt: At (3,3), compute the gradient of $x^2+y^2$ as a pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(6,\ 6\right)$.
+
+          The gradient is (2x,2y), hence(6,6).
+      - id: 7
+        type: freeform
+        prompt: Find the minimum of $x^2+y^2$ on x+y=4.
+        answerLines: 5
+        answer: |-
+          The answer is $8$.
+
+          Substitution gives 2(x-2) squared+8, so the minimum value is 8.
+      - id: 8
+        type: freeform
+        prompt: Does a constrained minimum require the full objective gradient to vanish?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. The gradient may be nonzero but perpendicular to every feasible tangent direction.
+      - id: 9
+        type: freeform
+        prompt: Explain why adding x,y nonnegative to x+y=6 changes the maximum problem.
+        answerLines: 5
+        answer: It replaces an unbounded line by a closed bounded segment. Squared distance grows without bound on the line but has finite endpoint maxima on the segment.
+      - id: 10
+        type: freeform
+        prompt: Why should both the optimizing point and the objective value be reported?
+        answerLines: 5
+        answer: The point specifies the choice of inputs; the value specifies the achieved cost or benefit. They answer different parts of the optimization problem.
+  - title: Use substitution when it simplifies the problem
+    questions:
+      - id: 11
+        type: freeform
+        prompt: For x+y=8, express $x^2+y^2$ as a function of x.
+        answerLines: 5
+        answer: |-
+          The answer is $x^{2}+\left(8-x\right)^{2}$.
+
+          Substitute y=8-x: x squared+(8-x) squared.
+      - id: 12
+        type: freeform
+        prompt: Minimize $x^2+y^2$ on x+y=8; give the minimizing pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 4\right)$.
+
+          The reduced derivative is 4x-16, so x=4 and y=4.
+      - id: 13
+        type: freeform
+        prompt: Find the maximum of $x^2+y^2$ on x+y=8 with x,y nonnegative.
+        answerLines: 5
+        answer: |-
+          The answer is $64$.
+
+          The endpoints(0,8) and(8,0) give 64; the interior candidate gives 32. The maximum is 64.
+      - id: 14
+        type: freeform
+        prompt: A rectangle has perimeter 12 and positive sides. Find its largest area.
+        answerLines: 5
+        answer: |-
+          The answer is $9$.
+
+          The area is x(6-x), maximized at x=3, giving 9.
+      - id: 15
+        type: freeform
+        prompt: A rectangle has perimeter 28 and positive sides. Give the maximizing side lengths as a pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(7,\ 7\right)$.
+
+          The area x(14-x) is maximized at x=7; y=7.
+      - id: 16
+        type: freeform
+        prompt: Does a positive-sided rectangle of fixed perimeter have an attained minimum area?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. Its area approaches 0 as a side approaches 0, but zero sides are excluded.
+      - id: 17
+        type: freeform
+        prompt: For $x^2+y^2=9$ with y nonnegative, express y as a function of x.
+        answerLines: 5
+        answer: |-
+          The answer is $\sqrt{9-x^{2}}$.
+
+          The allowed branch is the nonnegative root sqrt(9-x squared).
+      - id: 18
+        type: freeform
+        prompt: For that upper semicircle, give the x interval endpoints.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-3,\ 3\right)$.
+
+          Real square roots require 9-x squared>=0, hence[-3,3].
+      - id: 19
+        type: freeform
+        prompt: Why is substituting $y=\sqrt{1-x^2}$ insufficient for optimizing over the full unit circle?
+        answerLines: 5
+        answer: It excludes every point with negative y. Both square-root branches or a full-circle parameterization must be considered.
+      - id: 20
+        type: freeform
+        prompt: Minimize $x^2+3y^2$ subject to x+y=4; give the minimizing pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(3,\ 1\right)$.
+
+          Substitute y=4-x; the derivative is 8x-24, yielding x=3,y=1.
+  - title: Set up and solve the Lagrange equations
+    questions:
+      - id: 21
+        type: freeform
+        prompt: For $f=x^2+2y^2$ and g=x+y, give the two components of the objective gradient at (2,3).
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 12\right)$.
+
+          Differentiate to (2x,4y); at (2,3) this is (4,12).
+      - id: 22
+        type: freeform
+        prompt: Minimize $x^2+2y^2$ on x+y=9; give the candidate pair from Lagrange equations.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(6,\ 3\right)$.
+
+          Equating 2x and 4y gives x=2y; the sum 9 gives (6,3).
+      - id: 23
+        type: freeform
+        prompt: For that candidate with g=x+y, find lambda using the minus-sign Lagrangian convention.
+        answerLines: 5
+        answer: |-
+          The answer is $12$.
+
+          The equations give lambda=2x=12, also 4y=12.
+      - id: 24
+        type: freeform
+        prompt: Find the candidate value of $x^2+2y^2$ on x+y=9.
+        answerLines: 5
+        answer: |-
+          The answer is $54$.
+
+          At(6,3), the objective is 36+18=54.
+      - id: 25
+        type: freeform
+        prompt: Minimize $2x^2+y^2$ on x+y=6; give the candidate pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 4\right)$.
+
+          The gradient equations give 4x=2y, hence y=2x and(2,4).
+      - id: 26
+        type: freeform
+        prompt: Minimize $x^2+y^2+z^2$ subject to x+y+z=12; give the candidate triple.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 4,\ 4\right)$.
+
+          All three gradient components equal lambda, so x=y=z=4.
+      - id: 27
+        type: freeform
+        prompt: For $L=x^2+y^2-\lambda(x+y-6)$, give its lambda partial as an expression in x,y.
+        answerLines: 5
+        answer: |-
+          The answer is $6-x-y$.
+
+          Differentiating in lambda gives-(x+y-6)=6-x-y.
+      - id: 28
+        type: freeform
+        prompt: Can a point satisfying only the gradient proportionality equation be accepted without checking the constraint?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. It must also belong to the feasible set.
+      - id: 29
+        type: freeform
+        prompt: Explain how using $L=f+\lambda(g-c)$ changes the reported multiplier.
+        answerLines: 5
+        answer: The first-order equations become gradient f=-lambda gradient g. Its lambda is the negative of the multiplier under the minus convention; feasible candidate locations are unchanged.
+      - id: 30
+        type: freeform
+        prompt: Why is dividing by x unsafe when solving multiplier equations on a circle?
+        answerLines: 5
+        answer: A branch with x=0 may contain valid candidates. It must be examined before canceling or dividing by x.
+  - title: Compare all candidates and boundaries
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Find the maximum value of xy on $x^2+y^2=4$.
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          The bound 2|xy|<=4 gives|xy|<=2; equal same-sign coordinates attain maximum 2.
+      - id: 32
+        type: freeform
+        prompt: Find the minimum value of xy on $x^2+y^2=4$.
+        answerLines: 5
+        answer: |-
+          The answer is $-2$.
+
+          Opposite-sign equal-magnitude coordinates attain xy=-2.
+      - id: 33
+        type: freeform
+        prompt: Find the minimum of xy on the first-quadrant arc $x^2+y^2=4$, including endpoints.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          The product is nonnegative and equals 0 at (2,0) and(0,2), so the minimum is 0.
+      - id: 34
+        type: freeform
+        prompt: Find the maximum of $x^2$ on the unit circle.
+        answerLines: 5
+        answer: |-
+          The answer is $1$.
+
+          The constraint gives x squared<=1; equality occurs at (1,0) and(-1,0).
+      - id: 35
+        type: freeform
+        prompt: Find the minimum of $x^2$ on the unit circle.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          The value is nonnegative and reaches 0 at (0,1) and(0,-1).
+      - id: 36
+        type: freeform
+        prompt: For xy on the unit circle, how many distinct maximizing points are there?
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          The same-sign points are (1/sqrt(2),1/sqrt(2)) and their simultaneous negatives, giving 2.
+      - id: 37
+        type: freeform
+        prompt: For xy on the unit circle, how many distinct minimizing points are there?
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          There are two opposite-sign points, giving 2.
+      - id: 38
+        type: freeform
+        prompt: Does a continuous function on a nonempty closed bounded feasible set attain both global extrema?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          Yes. The extreme value theorem guarantees attainment.
+      - id: 39
+        type: freeform
+        prompt: Explain why an endpoint of a restricted arc can be a minimum without satisfying the stationary equations for the full circle.
+        answerLines: 5
+        answer: The restricted arc permits movement in only one feasible direction at its endpoint. The full-circle stationary condition assumes a smooth two-sided neighborhood along the curve.
+      - id: 40
+        type: freeform
+        prompt: For xy on $x^2+y^2=1$ with x,y strictly positive, is its infimum 0 attained?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. The product approaches 0 at excluded axis endpoints but is positive at every feasible point.
+  - title: Recognize singular constraints and modeling limits
+    questions:
+      - id: 41
+        type: freeform
+        prompt: For g=x squared+y squared, compute its gradient at the origin.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 0\right)$.
+
+          The gradient is (2x,2y), which is (0,0).
+      - id: 42
+        type: freeform
+        prompt: For f=x subject to x squared+y squared=0, what is the minimum value?
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          The only feasible point is the origin; its objective value is 0.
+      - id: 43
+        type: freeform
+        prompt: For the same problem, does any lambda solve gradient f=lambda gradient g at the feasible point?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. The equation would require(1,0)=lambda(0,0).
+      - id: 44
+        type: freeform
+        prompt: For g=(x+y-2) squared, give its gradient at (1,1).
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 0\right)$.
+
+          Both components are 2(x+y-2), so both vanish at (1,1).
+      - id: 45
+        type: freeform
+        prompt: For the regular representation g=x+y of that same line, give the gradient.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ 1\right)$.
+
+          The gradient is the constant pair (1,1).
+      - id: 46
+        type: freeform
+        prompt: Does the equality x+y=2 describe the same feasible set as (x+y-2) squared=0?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          Yes. A real square equals 0 exactly when its base equals 0.
+      - id: 47
+        type: freeform
+        prompt: Does an empty multiplier candidate list prove that no constrained optimum exists?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. Singular points may be omitted by the regular multiplier theorem.
+      - id: 48
+        type: freeform
+        prompt: Find the minimum value of x on x squared+y squared=0 and explain why the constraint needs direct inspection.
+        answerLines: 5
+        answer: Only the origin is feasible, giving 0. The constraint gradient vanishes there, so the regular multiplier theorem does not apply.
+      - id: 49
+        type: freeform
+        prompt: Explain why a mathematical optimum for a positive-length model cannot use a zero-length side.
+        answerLines: 5
+        answer: A zero side violates the stated feasible domain. It can describe a limiting value but cannot be an attained feasible optimum.
+      - id: 50
+        type: freeform
+        prompt: What should be done if the original constraint equation has zero gradient on every feasible point but a simpler equivalent regular equation is available?
+        answerLines: 5
+        answer: Use the regular equation, verify it describes the same set, and still inspect any exceptional or boundary points required by the model.

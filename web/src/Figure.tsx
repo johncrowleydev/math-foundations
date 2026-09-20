@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { Sources, type SourceCatalog } from './Sources';
 import type { Figure as Definition } from './types';
 import { MathText, Rich, Modal } from './Rich';
+import { CartesianFigure } from './CartesianFigure';
 const accent = '#315fa0',
   ink = '#35404a',
   light = '#e5edf8';
@@ -20,7 +21,9 @@ export function Figure({ figure: f, sources }: { figure: Definition; sources?: S
   );
   let drawing;
   let viewBox = '0 0 620 355';
-  if (f.kind === 'coordinates') {
+  if (f.kind === 'cartesian') {
+    drawing = <CartesianFigure figure={f} uid={uid} />;
+  } else if (f.kind === 'coordinates') {
     const points = [
       [0, 0],
       ...(f.arrows || []).flatMap((a) => [a.from, a.to]),

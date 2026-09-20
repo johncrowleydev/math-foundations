@@ -1,0 +1,73 @@
+# Single-Variable Optimization
+
+Optimization asks which feasible input gives the best value of an objective. Derivatives help locate candidates, but a candidate is not yet a solution: the domain, endpoints, points of nondifferentiability, and behavior far away can all matter. This lesson combines the preceding sign and theorem work into a complete method for one-variable problems. We first distinguish local and absolute extrema, then classify candidates, compare values on closed intervals, and build geometric and economic models. A successful solution reports the input, its objective value when requested, and a reason no feasible competitor is better.
+
+## Objectives, feasible inputs, and extrema
+
+An objective function assigns a value to each candidate input. The feasible domain specifies which inputs the problem permits. A maximum or minimum is always relative to that domain: the same formula on a different interval may have a different best input or no best input at all. For $f(x)=x^2$, the minimum over the real line is zero at $x=0$, but on $[2,5]$ the minimum is $4$ at $2$.
+
+A local minimum at an interior point is no larger than values sufficiently nearby; an absolute minimum is no larger than any value in the full feasible domain. Local and absolute maxima reverse the inequality. The adjective “local” limits the comparison neighborhood, not the precision of the result. A point can be both local and absolute, and there can be several inputs attaining the same absolute value.
+
+Fermat's theorem says that a differentiable function with a local extremum at an interior point $c$ must satisfy $f'(c)=0$. A short reason comes from the difference quotient: at a local minimum, small positive increments give nonnegative quotients and small negative increments give nonpositive quotients. If both limits agree finitely, the value must be zero. The conclusion is necessary, not sufficient. The function $x^3$ has derivative zero at zero but no extremum there.
+
+We call an interior domain input critical if its derivative is zero or does not exist. The point must belong to the original domain. Thus zero is critical for $|x|$, while zero is not a critical input of $1/x$ because the function is undefined there. Endpoints are considered separately when seeking absolute extrema.
+
+The extreme value theorem guarantees that a continuous function on a closed, bounded interval attains both an absolute maximum and an absolute minimum. It ensures candidates really have winners, but does not identify them. On an open interval the guarantee can fail: $f(x)=x$ on $(0,1)$ approaches both boundary values without attaining either. On an unbounded domain, existence also requires further analysis.
+
+Related definitions: [Objective and feasible domain](ref:calculus-objective-feasible-domain); [Critical input](ref:calculus-critical-input); [Extreme value theorem](ref:calculus-extreme-value-theorem).
+
+## First and second derivative tests
+
+To classify an isolated critical input, inspect how the function behaves on each side. The first derivative test uses a function continuous at the candidate and differentiable nearby except possibly at that point. A change of derivative sign from negative to positive gives a local minimum; positive to negative gives a local maximum. If the derivative keeps the same nonzero sign on both adjacent intervals, the candidate is neither. The argument follows from decrease followed by increase, or the reverse.
+
+For $f(x)=x^3-3x$, the derivative $3(x-1)(x+1)$ vanishes at $-1$ and $1$. Its signs are positive, negative, positive across the three intervals. Thus $-1$ is a local maximum and $1$ a local minimum. Their values are $2$ and $-2$. The labels belong to the function values at those inputs; the derivative merely provides evidence for the classification.
+
+A second derivative test gives a convenient shortcut at a stationary input $c$ with $f'(c)=0$. Under twice-differentiable local behavior, $f''(c)>0$ indicates a local minimum and $f''(c)<0$ a local maximum. If the second derivative is continuous nearby, the sign persists locally and reduces the argument to the first derivative test. For $f(x)=x^2-4x+9$, the stationary input is $2$ and $f''=2>0$, so it is a minimum.
+
+If $f''(c)=0$, the test is inconclusive. The examples $x^4$, $-x^4$, and $x^3$ all have first and second derivatives zero at zero, but yield a minimum, maximum, and neither, respectively. Return to a sign chart, exact comparison, or another justified argument. “Inconclusive” describes the test, not the absence of an extremum.
+
+Nondifferentiable candidates can still be handled by the first derivative test. For $|x-2|$, the slopes are $-1$ before $2$ and $1$ afterward, so there is a minimum at the corner. A second derivative formula away from the corner cannot classify that missing derivative at the join.
+
+Related definitions: [First derivative test](ref:calculus-first-derivative-test); [Second derivative test](ref:calculus-second-derivative-test).
+
+## Absolute extrema and boundary comparisons
+
+For a continuous function on a closed bounded interval, absolute extrema can occur at interior critical inputs or at endpoints. The closed-interval method is therefore to find all interior inputs where the derivative vanishes or fails to exist, evaluate the original function at those inputs and both endpoints, and compare the values. Do not compare derivative values: the objective itself decides which candidate is best.
+
+Consider $f(x)=x^3-3x$ on $[-2,3]$. The interior critical inputs are $-1$ and $1$. The candidate values are $f(-2)=-2$, $f(-1)=2$, $f(1)=-2$, and $f(3)=18$. The absolute minimum value is $-2$, attained at both $-2$ and $1$; the absolute maximum is $18$ at $3$. The local maximum at $-1$ is not the absolute maximum on this interval. A correct answer must include tied attaining inputs when asked for them.
+
+Nondifferentiable points cannot be skipped. For $f(x)=|x-1|$ on $[-2,4]$, the corner at $1$ yields value zero, while both endpoints yield $3$. Thus the minimum is at the corner, and the maximum is tied at the endpoints. Solving only $f'=0$ would produce no candidates and miss the minimum entirely.
+
+On an open interval, test whether a boundary value is approached but not attained. The function $x^2$ on $(0,2]$ has maximum $4$ at $2$, but no minimum: values approach zero while zero is excluded. On an unbounded interval, examine long-run behavior or give an inequality proving an attained bound. A local minimum by itself is not a proof of global optimality.
+
+Constraints can move the optimum to a boundary even for smooth formulas. The unconstrained minimizer of $(x-5)^2$ is $5$, but on $[0,3]$ the function decreases throughout the feasible interval, so the constrained minimum is at $3$. Reporting an infeasible stationary point would optimize a different problem. Write the domain beside the objective before calculating.
+
+Related definitions: [Closed-interval method](ref:calculus-closed-interval-method); [Attainment of an extremum](ref:calculus-attainment).
+
+## Geometric design with constraints
+
+A word problem must become a one-variable objective before differentiation can help. Draw the relevant dimensions, write the quantity to optimize, then use the constraint to eliminate a variable. Derive the feasible interval from physical requirements such as positive lengths. After finding a candidate, translate the result back into every requested dimension and objective value.
+
+Suppose a rectangle must have perimeter $32$ meters. With side lengths $x,y>0$, the constraint is $2x+2y=32$, hence $y=16-x$ and $0<x<16$. Area becomes $A(x)=x(16-x)$. Its derivative $16-2x$ vanishes at $8$, increasing before that input and decreasing after it. Thus the maximum occurs at $x=y=8$, with area $64$ square meters. The rectangle is a square because of this particular perimeter constraint, not because every rectangular optimization favors equal sides.
+
+If a wall supplies one side and only three sides require a total of $24$ meters of fence, let $x$ be each side perpendicular to the wall and $y$ the opposite side. The constraint is $2x+y=24$, giving area $A=x(24-2x)$ for $0<x<12$. The derivative is $24-4x$, so $x=6,y=12$ maximizes area at $72$. The different constraint changes the optimal proportions.
+
+For an open-top box cut from a square sheet of side $12$, cutting corner squares of side $x$ produces volume $V=x(12-2x)^2$ with $0<x<6$. Differentiation gives $V'=(12-2x)(12-6x)$. The interior critical input is $2$, while $6$ is a degenerate boundary. The derivative is positive before $2$ and negative afterward within the feasible interval, so the maximum volume is $2\cdot8^2=128$.
+
+Boundary checks clarify existence on these open geometric domains: area or volume tends to zero at the degenerate endpoints, while the interior candidate has positive value and the sign chart confirms it is best. If zero dimensions are allowed mathematically, the closed interval includes those zero-valued cases explicitly. State which interpretation the design uses rather than silently changing the feasible set.
+
+Related definitions: [Constraint elimination](ref:calculus-constraint-elimination); [Degenerate geometric boundary](ref:calculus-degenerate-boundary).
+
+## Cost, distance, and discrete decisions
+
+Economic optimization separates revenue, cost, and profit. If price depends on quantity, revenue is price times quantity, and profit is revenue minus cost. For a continuous model with price $p(q)=30-q$ and cost $C(q)=6q+20$, profit is $\Pi(q)=q(30-q)-(6q+20)=-q^2+24q-20$. If feasible production is $0\le q\le20$, its derivative $24-2q$ vanishes at $12$. The concave quadratic has its global feasible maximum there, with profit $124$. Maximizing revenue alone would solve a different objective.
+
+Capacity can override an interior optimum. With the same model and capacity $q\le8$, profit is increasing throughout the feasible interval, so the maximum occurs at $8$. A derivative calculation is not permission to ignore the constraint. Fixed costs change profit values but not this model's marginal profit, because their derivative is zero; other changes to the cost model can shift the optimum.
+
+Distance objectives often simplify by squaring. To find the closest point $(x,2x)$ on a line to $(3,0)$, minimize $D(x)=(x-3)^2+(2x)^2=5x^2-6x+9$. Squaring preserves the minimizing input because square root is strictly increasing on nonnegative values. The derivative gives $10x-6=0$, so $x=3/5$ and the closest point is $(3/5,6/5)$. The positive quadratic coefficient proves the minimum globally, not just locally.
+
+A continuous model may represent decisions that must be integral, such as numbers of items. Locate the continuous optimum, then compare feasible integers near it when the model's shape justifies that reduction. For a concave quadratic with vertex $q=7.4$, the integer maximum lies at $7$ or $8$; evaluate both. For a general non-unimodal objective, blindly rounding one stationary point is not sufficient.
+
+Report what the mathematical model establishes and preserve meaningful units. A negative optimal profit may still be the largest profit among the permitted choices. If shutting down has a different cost structure from positive production, that alternative must be modeled explicitly rather than inferred from a smooth formula that does not describe it.
+
+Related definitions: [Profit objective](ref:calculus-profit-objective); [Squared-distance objective](ref:calculus-squared-distance-objective); [Discrete candidate comparison](ref:calculus-discrete-optimization-check).

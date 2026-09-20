@@ -1,0 +1,262 @@
+title: Single-Variable Optimization
+sections:
+  - title: Objectives, feasible inputs, and extrema
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find the absolute minimum value of $x^2$ on $[2,5]$.
+        answerLines: 5
+        answer: The answer is $4$. The function increases on this positive interval, so its minimum is $2^2=4$.
+      - id: 2
+        type: freeform
+        prompt: Find the input attaining the minimum of $(x-3)^2+2$ on the real line.
+        answerLines: 5
+        answer: The answer is $3$. The square is nonnegative and vanishes exactly at $x=3$.
+      - id: 3
+        type: freeform
+        prompt: Find the minimum value of $(x-3)^2+2$ on the real line.
+        answerLines: 5
+        answer: The answer is $2$. At $x=3$ the squared term is zero, leaving $2$.
+      - id: 4
+        type: freeform
+        prompt: Does $f'(c)=0$ alone prove an extremum at $c$?
+        answerLines: 5
+        answer: The answer is false. The function $x^3$ has derivative zero at zero but passes through without a maximum or minimum.
+      - id: 5
+        type: freeform
+        prompt: Is zero a critical input of $f(x)=1/x$?
+        answerLines: 5
+        answer: The answer is false. Zero is not in the function's domain, so it cannot be a critical input of that function.
+      - id: 6
+        type: freeform
+        prompt: Is zero a critical input of $f(x)=|x|$?
+        answerLines: 5
+        answer: The answer is true. The function is defined there and its derivative does not exist.
+      - id: 7
+        type: freeform
+        prompt: Does $f(x)=x$ attain an absolute maximum on $(0,1)$?
+        answerLines: 5
+        answer: The answer is false. Every permitted input can be increased slightly while staying below $1$, giving a larger value.
+      - id: 8
+        type: freeform
+        prompt: Does the extreme value theorem guarantee extrema for a continuous function on $[1,4]$?
+        answerLines: 5
+        answer: The answer is true. The interval is closed and bounded, so both extrema are attained.
+      - id: 9
+        type: freeform
+        prompt: Prove the necessary zero-derivative condition at a differentiable interior local minimum.
+        answerLines: 5
+        answer: For sufficiently small $h$, $f(c+h)-f(c)\ge0$. Positive $h$ give quotient at least zero; negative $h$ give quotient at most zero. Their common finite limit must be both nonnegative and nonpositive, hence zero.
+      - id: 10
+        type: freeform
+        prompt: Give a function and domain where a local minimum is not an absolute minimum.
+        answerLines: 5
+        answer: On the real line, $f(x)=x^3-3x$ has a local minimum at $1$ because its derivative changes from negative to positive there. It has no absolute minimum because $f(x)\to-\infty$ as $x\to-\infty$.
+  - title: First and second derivative tests
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Find the stationary input of $x^2-8x+3$.
+        answerLines: 5
+        answer: The answer is $4$. Set $2x-8=0$, giving $x=4$.
+      - id: 12
+        type: freeform
+        prompt: Classify the stationary input $4$ of $x^2-8x+3$ as local minimum or local maximum.
+        answerLines: 5
+        answer: The answer is **local minimum**. The second derivative is $2>0$.
+      - id: 13
+        type: freeform
+        prompt: Find the stationary input of $-2x^2+12x-1$.
+        answerLines: 5
+        answer: The answer is $3$. Set $-4x+12=0$, giving $x=3$.
+      - id: 14
+        type: freeform
+        prompt: Classify the stationary input $3$ of $-2x^2+12x-1$.
+        answerLines: 5
+        answer: The answer is **local maximum**. The second derivative is $-4<0$.
+      - id: 15
+        type: freeform
+        prompt: For $f(x)=x^3-3x$, classify the critical input $-1$.
+        answerLines: 5
+        answer: The answer is **local maximum**. The derivative changes from positive to negative across $-1$.
+      - id: 16
+        type: freeform
+        prompt: For $f(x)=x^3-3x$, classify the critical input $1$.
+        answerLines: 5
+        answer: The answer is **local minimum**. The derivative changes from negative to positive across $1$.
+      - id: 17
+        type: freeform
+        prompt: Classify the critical input $0$ of $f(x)=x^3$ as minimum, maximum, or neither.
+        answerLines: 5
+        answer: The answer is **neither**. The derivative $3x^2$ is positive on both sides, so the function keeps increasing.
+      - id: 18
+        type: freeform
+        prompt: Classify $x=2$ for $f(x)=|x-2|$ as minimum, maximum, or neither.
+        answerLines: 5
+        answer: The answer is **minimum**. The function decreases before $2$ and increases afterward, producing a corner minimum.
+      - id: 19
+        type: freeform
+        prompt: Give three examples showing all possible outcomes when $f'(0)=f''(0)=0$.
+        answerLines: 5
+        answer: For $x^4$ zero is a minimum, for $-x^4$ a maximum, and for $x^3$ neither. All three first and second derivatives vanish there.
+      - id: 20
+        type: freeform
+        prompt: Use the first derivative test to classify both critical inputs of $f(x)=x^3-12x$.
+        answerLines: 5
+        answer: $f'=3(x-2)(x+2)$ has signs positive on $x<-2$, negative on $-2<x<2$, and positive on $x>2$. Hence $-2$ is a local maximum and $2$ a local minimum.
+  - title: Absolute extrema and boundary comparisons
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find the absolute minimum value of $x^2-4x$ on $[0,5]$.
+        answerLines: 5
+        answer: The answer is $-4$. The critical input is $2$; candidate values are $0,-4,5$, so the minimum is $-4$.
+      - id: 22
+        type: freeform
+        prompt: Find the absolute maximum value of $x^2-4x$ on $[0,5]$.
+        answerLines: 5
+        answer: 'The answer is $5$. Compare the values at $0,2,5$: the largest is $5$ at the right endpoint.'
+      - id: 23
+        type: freeform
+        prompt: Find the input attaining the minimum of $(x-5)^2$ on $[0,3]$.
+        answerLines: 5
+        answer: The answer is $3$. The function decreases on the feasible interval, so its minimum is at $3$.
+      - id: 24
+        type: freeform
+        prompt: Find the maximum value of $x^3-3x$ on $[-2,3]$.
+        answerLines: 5
+        answer: The answer is $18$. The endpoint and critical values are $-2,2,-2,18$, whose maximum is $18$.
+      - id: 25
+        type: freeform
+        prompt: Find the minimum value of $|x-1|$ on $[-2,4]$.
+        answerLines: 5
+        answer: The answer is $0$. The corner at $1$ is feasible and gives zero; all absolute values are nonnegative.
+      - id: 26
+        type: freeform
+        prompt: Find the maximum value of $|x-1|$ on $[-2,4]$.
+        answerLines: 5
+        answer: The answer is $3$. Both endpoints are distance $3$ from $1$, greater than all interior distances.
+      - id: 27
+        type: freeform
+        prompt: Does $x^2$ attain a minimum on $(0,2]$?
+        answerLines: 5
+        answer: The answer is false. Its values approach zero as $x\to0^+$, but the required input is excluded.
+      - id: 28
+        type: freeform
+        prompt: Find the maximum value of $x^2$ on $(0,2]$.
+        answerLines: 5
+        answer: The answer is $4$. The included endpoint $2$ gives $4$, and every permitted smaller positive input gives less.
+      - id: 29
+        type: freeform
+        prompt: List every input attaining an absolute extremum of $x^3-3x$ on $[-2,2]$, with values.
+        answerLines: 5
+        answer: Critical inputs are $-1,1$. Candidate values are $f(-2)=-2,f(-1)=2,f(1)=-2,f(2)=2$. Minimum $-2$ occurs at $-2$ and $1$; maximum $2$ occurs at $-1$ and $2$.
+      - id: 30
+        type: freeform
+        prompt: Explain why solving $f'=0$ is not a complete procedure for optimizing a continuous function on a closed interval.
+        answerLines: 5
+        answer: An absolute extremum may occur at an endpoint, where Fermat's interior condition does not apply, or at an interior nondifferentiable point. All such candidates must be considered and their original function values compared.
+  - title: Geometric design with constraints
+    questions:
+      - id: 31
+        type: freeform
+        prompt: A rectangle has perimeter $40$ meters. Find the side length of the area-maximizing square in meters.
+        answerLines: 5
+        answer: The answer is $10$. Write $y=20-x$, so $A'=20-2x=0$ at $x=10$ and $y=10$.
+      - id: 32
+        type: freeform
+        prompt: A rectangle has perimeter $40$ meters. Find its maximum area in square meters.
+        answerLines: 5
+        answer: The answer is $100$. The optimal dimensions are $10$ by $10$, giving area $100$.
+      - id: 33
+        type: freeform
+        prompt: A wall supplies one side of a rectangular enclosure; $30$ meters of fence covers the other three. Let $x$ denote each perpendicular side. Give area as a function of $x$.
+        answerLines: 5
+        answer: The answer is $30\cdot x-2\cdot x^{2}$. The remaining side is $30-2x$, so $A=x(30-2x)$ on $0<x<15$.
+      - id: 34
+        type: freeform
+        prompt: For the three-sided fence model $A(x)=x(30-2x)$ on $0<x<15$, find the maximizing $x$.
+        answerLines: 5
+        answer: The answer is $\frac{15}{2}$. $A'=30-4x=0$ gives $x=15/2$; the derivative changes from positive to negative.
+      - id: 35
+        type: freeform
+        prompt: For that $30$-meter three-sided enclosure, find the optimal side parallel to the wall.
+        answerLines: 5
+        answer: The answer is $15$. At $x=15/2$, the remaining side is $30-2x=15$.
+      - id: 36
+        type: freeform
+        prompt: A box cut from a square sheet of side $18$ has volume $V=x(18-2x)^2$. Find the maximizing cut size on $0<x<9$.
+        answerLines: 5
+        answer: The answer is $3$. $V'=(18-2x)(18-6x)$; the interior root is $x=3$ with positive-to-negative sign change.
+      - id: 37
+        type: freeform
+        prompt: For the $18$-unit square sheet with optimal cut size $3$, find the box volume.
+        answerLines: 5
+        answer: The answer is $432$. The base side is $18-6=12$, so volume is $3(12)^2=432$.
+      - id: 38
+        type: freeform
+        prompt: Two positive lengths have sum $14$. Find the maximum possible product.
+        answerLines: 5
+        answer: The answer is $49$. The product $x(14-x)$ is maximized at $x=7$, giving $49$.
+      - id: 39
+        type: freeform
+        prompt: Derive and solve the maximum-area rectangle problem with perimeter $P>0$.
+        answerLines: 5
+        answer: The constraint gives $y=P/2-x$, so $A=x(P/2-x)$ on $0<x<P/2$. Its derivative $P/2-2x$ changes from positive to negative at $x=P/4$. Both sides equal $P/4$, and maximum area is $P^2/16$.
+      - id: 40
+        type: freeform
+        prompt: Why is “the optimum is a square” wrong for a wall-backed enclosure using three fenced sides?
+        answerLines: 5
+        answer: Its constraint is $2x+y=F$, not $2x+2y=F$. Maximizing $x(F-2x)$ gives $x=F/4$ and $y=F/2$, so the wall-parallel side is twice each perpendicular side.
+  - title: Cost, distance, and discrete decisions
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Price is $p(q)=20-q$ and cost is $C(q)=4q+10$. Write profit as a function of $q$.
+        answerLines: 5
+        answer: The answer is $-q^{2}+16\cdot q-10$. Revenue is $q(20-q)$; subtracting cost gives $-q^2+16q-10$.
+      - id: 42
+        type: freeform
+        prompt: Maximize $\Pi(q)=-q^2+16q-10$ over $0\le q\le15$. Give the maximizing input.
+        answerLines: 5
+        answer: The answer is $8$. $\Pi'=16-2q$ vanishes at $8$, and the concave quadratic rises before and falls after it.
+      - id: 43
+        type: freeform
+        prompt: Find the maximum value of $\Pi(q)=-q^2+16q-10$ on $[0,15]$.
+        answerLines: 5
+        answer: The answer is $54$. At $q=8$, profit is $-64+128-10=54$.
+      - id: 44
+        type: freeform
+        prompt: Maximize the same profit $\Pi(q)=-q^2+16q-10$ under capacity $0\le q\le5$. Give the maximizing input.
+        answerLines: 5
+        answer: The answer is $5$. The derivative is positive on this entire interval, so the right endpoint is optimal.
+      - id: 45
+        type: freeform
+        prompt: A cost is $C(q)=q^2+54/q$ for $q>0$. Find the minimizing $q$.
+        answerLines: 5
+        answer: The answer is $3$. $C'=2q-54/q^2=0$ gives $q^3=27$. The derivative changes from negative to positive, so $q=3$ is the global minimum.
+      - id: 46
+        type: freeform
+        prompt: For points $(x,x)$ on the line $y=x$, find the $x$ coordinate of the point closest to $(4,0)$.
+        answerLines: 5
+        answer: The answer is $2$. Minimize $(x-4)^2+x^2$, whose derivative is $4x-8$; its unique minimum is at $2$.
+      - id: 47
+        type: freeform
+        prompt: Find the minimum squared distance from $(4,0)$ to a point on $y=x$.
+        answerLines: 5
+        answer: The answer is $8$. At the minimizing point $(2,2)$, the squared distance is $(2-4)^2+2^2=8$.
+      - id: 48
+        type: freeform
+        prompt: For integer $q\in\{0,1,\ldots,10\}$, maximize $P(q)=-(q-7.4)^2+20$. Give the maximizing integer.
+        answerLines: 5
+        answer: 'The answer is $7$. The continuous vertex is $7.4$. Compare $7$ and $8$: squared deviations are $0.16$ and $0.36$, so $7$ gives the larger value.'
+      - id: 49
+        type: freeform
+        prompt: Find the closest point on $y=3x$ to $(5,0)$ and justify global optimality.
+        answerLines: 5
+        answer: Minimize $D=(x-5)^2+9x^2=10x^2-10x+25$. Completing the square gives $10(x-1/2)^2+45/2$, globally minimized at $x=1/2$. The point is $(1/2,3/2)$.
+      - id: 50
+        type: freeform
+        prompt: Explain why a continuous stationary point outside a production capacity interval cannot be reported as the constrained optimum.
+        answerLines: 5
+        answer: It is not feasible. The objective must be compared over the actual allowed interval, where it may keep increasing up to capacity or decreasing from a boundary. The stationary point belongs to an unconstrained problem instead.

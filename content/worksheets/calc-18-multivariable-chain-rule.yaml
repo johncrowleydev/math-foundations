@@ -1,0 +1,422 @@
+title: Multivariable Chain Rule and Jacobians
+sections:
+  - title: A moving input changes several coordinates
+    questions:
+      - id: 1
+        type: freeform
+        prompt: For $z=xy$, $x=t+1$ and $y=t^2+2$, find dz/dt.
+        answerLines: 5
+        answer: |-
+          The answer is $t^{2}+2+2\cdot t\cdot \left(t+1\right)$.
+
+          The two contributions give $(t^2+2)+2t(t+1)$.
+      - id: 2
+        type: freeform
+        prompt: At a point, $f_x=1$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.
+        answerLines: 5
+        answer: |-
+          The answer is $-4$.
+
+          The rate is $2(1)-3(2)=-4$.
+      - id: 3
+        type: freeform
+        prompt: For $z=xy$, $x=t+-1$ and $y=t^2+3$, find dz/dt.
+        answerLines: 5
+        answer: |-
+          The answer is $t^{2}+3+2\cdot t\cdot \left(t+-1\right)$.
+
+          The two contributions give $(t^2+3)+2t(t+-1)$.
+      - id: 4
+        type: freeform
+        prompt: At a point, $f_x=-1$ and $f_y=3$. Along a path, x'=2 and y'=-3. Find the output rate.
+        answerLines: 5
+        answer: |-
+          The answer is $-11$.
+
+          The rate is $2(-1)-3(3)=-11$.
+      - id: 5
+        type: freeform
+        prompt: For $z=xy$, $x=t+2$ and $y=t^2+-1$, find dz/dt.
+        answerLines: 5
+        answer: |-
+          The answer is $t^{2}+-1+2\cdot t\cdot \left(t+2\right)$.
+
+          The two contributions give $(t^2+-1)+2t(t+2)$.
+      - id: 6
+        type: freeform
+        prompt: At a point, $f_x=2$ and $f_y=-1$. Along a path, x'=2 and y'=-3. Find the output rate.
+        answerLines: 5
+        answer: |-
+          The answer is $7$.
+
+          The rate is $2(2)-3(-1)=7$.
+      - id: 7
+        type: freeform
+        prompt: For $z=xy$, $x=t+0$ and $y=t^2+2$, find dz/dt.
+        answerLines: 5
+        answer: |-
+          The answer is $t^{2}+2+2\cdot t\cdot \left(t+0\right)$.
+
+          The two contributions give $(t^2+2)+2t(t+0)$.
+      - id: 8
+        type: freeform
+        prompt: At a point, $f_x=0$ and $f_y=2$. Along a path, x'=2 and y'=-3. Find the output rate.
+        answerLines: 5
+        answer: |-
+          The answer is $-6$.
+
+          The rate is $2(0)-3(2)=-6$.
+      - id: 9
+        type: freeform
+        prompt: For $z=xy$, $x=t+3$ and $y=t^2+1$, find dz/dt.
+        answerLines: 5
+        answer: |-
+          The answer is $t^{2}+1+2\cdot t\cdot \left(t+3\right)$.
+
+          The two contributions give $(t^2+1)+2t(t+3)$.
+      - id: 10
+        type: freeform
+        prompt: At a point, $f_x=3$ and $f_y=1$. Along a path, x'=2 and y'=-3. Find the output rate.
+        answerLines: 5
+        answer: |-
+          The answer is $3$.
+
+          The rate is $2(3)-3(1)=3$.
+  - title: Dependency paths organize the sum
+    questions:
+      - id: 11
+        type: freeform
+        prompt: For $u=s+t$, $v=s-t$, and $z=1u^2+2v$, find z_s in terms of s and t.
+        answerLines: 5
+        answer: |-
+          The answer is $2\cdot \left(s+t\right)+2$.
+
+          Both inner s derivatives are one, giving $2(s+t)+2$.
+      - id: 12
+        type: freeform
+        prompt: For the explicit definitions $u=s+t$, $v=s-t$, $z=1u^2+2v$, find z_t.
+        answerLines: 5
+        answer: |-
+          The answer is $2\cdot \left(s+t\right)-2$.
+
+          The v branch has derivative -1, so $z_t=2(s+t)-(2)$.
+      - id: 13
+        type: freeform
+        prompt: For $u=s+t$, $v=s-t$, and $z=-1u^2+3v$, find z_s in terms of s and t.
+        answerLines: 5
+        answer: |-
+          The answer is $-2\cdot \left(s+t\right)+3$.
+
+          Both inner s derivatives are one, giving $-2(s+t)+3$.
+      - id: 14
+        type: freeform
+        prompt: For the explicit definitions $u=s+t$, $v=s-t$, $z=-1u^2+3v$, find z_t.
+        answerLines: 5
+        answer: |-
+          The answer is $-2\cdot \left(s+t\right)-3$.
+
+          The v branch has derivative -1, so $z_t=-2(s+t)-(3)$.
+      - id: 15
+        type: freeform
+        prompt: For $u=s+t$, $v=s-t$, and $z=2u^2+-1v$, find z_s in terms of s and t.
+        answerLines: 5
+        answer: |-
+          The answer is $4\cdot \left(s+t\right)+-1$.
+
+          Both inner s derivatives are one, giving $4(s+t)+-1$.
+      - id: 16
+        type: freeform
+        prompt: For the explicit definitions $u=s+t$, $v=s-t$, $z=2u^2+-1v$, find z_t.
+        answerLines: 5
+        answer: |-
+          The answer is $4\cdot \left(s+t\right)--1$.
+
+          The v branch has derivative -1, so $z_t=4(s+t)-(-1)$.
+      - id: 17
+        type: freeform
+        prompt: For $u=s+t$, $v=s-t$, and $z=0u^2+2v$, find z_s in terms of s and t.
+        answerLines: 5
+        answer: |-
+          The answer is $0\cdot \left(s+t\right)+2$.
+
+          Both inner s derivatives are one, giving $0(s+t)+2$.
+      - id: 18
+        type: freeform
+        prompt: For the explicit definitions $u=s+t$, $v=s-t$, $z=0u^2+2v$, find z_t.
+        answerLines: 5
+        answer: |-
+          The answer is $0\cdot \left(s+t\right)-2$.
+
+          The v branch has derivative -1, so $z_t=0(s+t)-(2)$.
+      - id: 19
+        type: freeform
+        prompt: For $u=s+t$, $v=s-t$, and $z=3u^2+1v$, find z_s in terms of s and t.
+        answerLines: 5
+        answer: |-
+          The answer is $6\cdot \left(s+t\right)+1$.
+
+          Both inner s derivatives are one, giving $6(s+t)+1$.
+      - id: 20
+        type: freeform
+        prompt: For the explicit definitions $u=s+t$, $v=s-t$, $z=3u^2+1v$, find z_t.
+        answerLines: 5
+        answer: |-
+          The answer is $6\cdot \left(s+t\right)-1$.
+
+          The v branch has derivative -1, so $z_t=6(s+t)-(1)$.
+  - title: The Jacobian is the derivative matrix
+    questions:
+      - id: 21
+        type: freeform
+        prompt: For $F(x,y)=(x^2+y,xy)$, give its Jacobian entries at $(1,2)$ in row-major order as a four-tuple.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 1,\ 2,\ 1\right)$.
+
+          The rows are (2x,1) and (y,x), so the tuple is (2,1,2,1).
+      - id: 22
+        type: freeform
+        prompt: For the map $G(s,t)=(s+t,s-t,1s+2t)$, give the final row of its Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ 2\right)$.
+
+          Differentiate the last output in input order (s,t): (1,2).
+      - id: 23
+        type: freeform
+        prompt: For $F(x,y)=(x^2+y,xy)$, give its Jacobian entries at $(-1,3)$ in row-major order as a four-tuple.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-2,\ 1,\ 3,\ -1\right)$.
+
+          The rows are (2x,1) and (y,x), so the tuple is (-2,1,3,-1).
+      - id: 24
+        type: freeform
+        prompt: For the map $G(s,t)=(s+t,s-t,-1s+3t)$, give the final row of its Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-1,\ 3\right)$.
+
+          Differentiate the last output in input order (s,t): (-1,3).
+      - id: 25
+        type: freeform
+        prompt: For $F(x,y)=(x^2+y,xy)$, give its Jacobian entries at $(2,-1)$ in row-major order as a four-tuple.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 1,\ -1,\ 2\right)$.
+
+          The rows are (2x,1) and (y,x), so the tuple is (4,1,-1,2).
+      - id: 26
+        type: freeform
+        prompt: For the map $G(s,t)=(s+t,s-t,2s+-1t)$, give the final row of its Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ -1\right)$.
+
+          Differentiate the last output in input order (s,t): (2,-1).
+      - id: 27
+        type: freeform
+        prompt: For $F(x,y)=(x^2+y,xy)$, give its Jacobian entries at $(0,2)$ in row-major order as a four-tuple.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 1,\ 2,\ 0\right)$.
+
+          The rows are (2x,1) and (y,x), so the tuple is (0,1,2,0).
+      - id: 28
+        type: freeform
+        prompt: For the map $G(s,t)=(s+t,s-t,0s+2t)$, give the final row of its Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 2\right)$.
+
+          Differentiate the last output in input order (s,t): (0,2).
+      - id: 29
+        type: freeform
+        prompt: For $F(x,y)=(x^2+y,xy)$, give its Jacobian entries at $(3,1)$ in row-major order as a four-tuple.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(6,\ 1,\ 1,\ 3\right)$.
+
+          The rows are (2x,1) and (y,x), so the tuple is (6,1,1,3).
+      - id: 30
+        type: freeform
+        prompt: For the map $G(s,t)=(s+t,s-t,3s+1t)$, give the final row of its Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(3,\ 1\right)$.
+
+          Differentiate the last output in input order (s,t): (3,1).
+      - id: 31
+        type: freeform
+        prompt: Why does a map from two inputs to three outputs have a 3-by-2 Jacobian?
+        answerLines: 5
+        answer: Each of the three output functions contributes a row of derivatives with respect to the two inputs.
+  - title: Composition becomes matrix multiplication
+    questions:
+      - id: 32
+        type: freeform
+        prompt: Let $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$. At $(1,2)$, give the first row of the composition Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(6,\ 6\right)$.
+
+          The first output is $(s+t)^2$, so both entries are $2(s+t)=6$.
+      - id: 33
+        type: freeform
+        prompt: For the explicit maps $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$, give the second composition-Jacobian row at $(1,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ -4\right)$.
+
+          The second output is $s^2-t^2$, giving (2,-4).
+      - id: 34
+        type: freeform
+        prompt: Let $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$. At $(-1,3)$, give the first row of the composition Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 4\right)$.
+
+          The first output is $(s+t)^2$, so both entries are $2(s+t)=4$.
+      - id: 35
+        type: freeform
+        prompt: For the explicit maps $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$, give the second composition-Jacobian row at $(-1,3)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-2,\ -6\right)$.
+
+          The second output is $s^2-t^2$, giving (-2,-6).
+      - id: 36
+        type: freeform
+        prompt: Let $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$. At $(2,-1)$, give the first row of the composition Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 2\right)$.
+
+          The first output is $(s+t)^2$, so both entries are $2(s+t)=2$.
+      - id: 37
+        type: freeform
+        prompt: For the explicit maps $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$, give the second composition-Jacobian row at $(2,-1)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 2\right)$.
+
+          The second output is $s^2-t^2$, giving (4,2).
+      - id: 38
+        type: freeform
+        prompt: Let $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$. At $(0,2)$, give the first row of the composition Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 4\right)$.
+
+          The first output is $(s+t)^2$, so both entries are $2(s+t)=4$.
+      - id: 39
+        type: freeform
+        prompt: For the explicit maps $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$, give the second composition-Jacobian row at $(0,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ -4\right)$.
+
+          The second output is $s^2-t^2$, giving (0,-4).
+      - id: 40
+        type: freeform
+        prompt: Let $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$. At $(3,1)$, give the first row of the composition Jacobian.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(8,\ 8\right)$.
+
+          The first output is $(s+t)^2$, so both entries are $2(s+t)=8$.
+      - id: 41
+        type: freeform
+        prompt: For the explicit maps $G(s,t)=(s+t,s-t)$ and $F(u,v)=(u^2,uv)$, give the second composition-Jacobian row at $(3,1)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(6,\ -2\right)$.
+
+          The second output is $s^2-t^2$, giving (6,-2).
+  - title: Implicit dependencies and computation graphs
+    questions:
+      - id: 42
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_w$ at $(w,b)=(1,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-2$.
+
+          The residual is -1; multiply it by x=2 to get -2.
+      - id: 43
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_b$ at $(w,b)=(1,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-1$.
+
+          The residual is -1, and the prediction's b derivative is one.
+      - id: 44
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_w$ at $(w,b)=(-1,3)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-8$.
+
+          The residual is -4; multiply it by x=2 to get -8.
+      - id: 45
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_b$ at $(w,b)=(-1,3)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-4$.
+
+          The residual is -4, and the prediction's b derivative is one.
+      - id: 46
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_w$ at $(w,b)=(2,-1)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-4$.
+
+          The residual is -2; multiply it by x=2 to get -4.
+      - id: 47
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_b$ at $(w,b)=(2,-1)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-2$.
+
+          The residual is -2, and the prediction's b derivative is one.
+      - id: 48
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_w$ at $(w,b)=(0,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-6$.
+
+          The residual is -3; multiply it by x=2 to get -6.
+      - id: 49
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_b$ at $(w,b)=(0,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $-3$.
+
+          The residual is -3, and the prediction's b derivative is one.
+      - id: 50
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_w$ at $(w,b)=(3,1)$.
+        answerLines: 5
+        answer: |-
+          The answer is $4$.
+
+          The residual is 2; multiply it by x=2 to get 4.
+      - id: 51
+        type: freeform
+        prompt: For fixed data x=2,y=5 and $L=(wx+b-y)^2/2$, find $L_b$ at $(w,b)=(3,1)$.
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          The residual is 2, and the prediction's b derivative is one.
+      - id: 52
+        type: freeform
+        prompt: Explain why $-H_x/H_y$ needs $H_y$ nonzero.
+        answerLines: 5
+        answer: The derivation solves a local linear equation for the dependent-variable rate. A zero coefficient cannot be divided out and may signal that this dependent-variable description fails.

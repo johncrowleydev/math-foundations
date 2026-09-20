@@ -1,0 +1,262 @@
+title: Limits and Continuity
+sections:
+  - title: Approaching a value from nearby inputs
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A table for $f$ near $2$ has outputs $4.9,4.99$ from the left and $5.1,5.01$ from the right. What limit does it suggest?
+        answerLines: 5
+        answer: 'The answer is $5$. It suggests $5$: both columns approach $5$. A finite table alone does not prove this.'
+      - id: 2
+        type: freeform
+        prompt: Let $f(x)=x+4$ for $x\ne2$ and $f(2)=19$. Find $\lim_{x\to2}f(x)$.
+        answerLines: 5
+        answer: The answer is $6$. Nearby values obey $x+4$, which approaches $6$; the isolated value $19$ is irrelevant.
+      - id: 3
+        type: freeform
+        prompt: For that same explicitly defined function, find $f(2)$.
+        answerLines: 5
+        answer: The answer is $19$. The special definition gives $f(2)=19$, independently of its limit.
+      - id: 4
+        type: freeform
+        prompt: Let $g(x)=3x$ for $x<2$ and $g(x)=x-1$ for $x\ge2$. Find its left-hand limit at $2$.
+        answerLines: 5
+        answer: The answer is $6$. Inputs just below $2$ use $3x$, tending to $6$.
+      - id: 5
+        type: freeform
+        prompt: Let $g(x)=3x$ for $x<2$ and $g(x)=x-1$ for $x\ge2$. Find its right-hand limit at $2$.
+        answerLines: 5
+        answer: The answer is $1$. Inputs just above $2$ use $x-1$, tending to $1$.
+      - id: 6
+        type: freeform
+        prompt: If a function has left-hand limit $6$ and right-hand limit $1$ at $2$, give its two-sided limit, or enter DNE.
+        answerLines: 5
+        answer: 'The answer is **DNE**. DNE: a two-sided finite limit requires equal one-sided limits.'
+      - id: 7
+        type: freeform
+        prompt: Find $\lim_{x\to0^-}|x|/x$.
+        answerLines: 5
+        answer: The answer is $-1$. For $x<0$, $|x|=-x$, so the quotient is constantly $-1$.
+      - id: 8
+        type: freeform
+        prompt: Find $\lim_{x\to0^+}|x|/x$.
+        answerLines: 5
+        answer: The answer is $1$. For $x>0$, $|x|=x$, so the quotient is constantly $1$.
+      - id: 9
+        type: freeform
+        prompt: Construct two functions with the same limit at $4$ but different values at $4$. Explain why the limits agree.
+        answerLines: 5
+        answer: Take $f(x)=x$ everywhere and $g(x)=x$ except $g(4)=0$. Both equal $x$ at all nearby inputs other than $4$, so both limits are $4$, while their values at $4$ differ.
+      - id: 10
+        type: freeform
+        prompt: Explain why sampling a million nearby inputs still cannot establish a limit for an otherwise unspecified function.
+        answerLines: 5
+        answer: A finite sample leaves other nearby inputs unconstrained. A function can match every sampled value yet behave differently on a sequence of unsampled inputs approaching the target.
+  - title: Limit laws, cancellation, and squeezing
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Evaluate $\lim_{x\to-1}(2x^3-x+4)$.
+        answerLines: 5
+        answer: The answer is $3$. Substitution into the polynomial gives $-2+1+4=3$.
+      - id: 12
+        type: freeform
+        prompt: Evaluate $\lim_{x\to2}(x^2+5)/(x+1)$.
+        answerLines: 5
+        answer: The answer is $3$. The denominator tends to $3\ne0$, so the quotient tends to $9/3=3$.
+      - id: 13
+        type: freeform
+        prompt: Evaluate $\lim_{x\to5}(x^2-25)/(x-5)$.
+        answerLines: 5
+        answer: The answer is $10$. Cancel $x-5$ for $x\ne5$; the remaining $x+5$ tends to $10$.
+      - id: 14
+        type: freeform
+        prompt: Evaluate $\lim_{x\to1}(x^3-1)/(x-1)$.
+        answerLines: 5
+        answer: The answer is $3$. Factor $x^3-1=(x-1)(x^2+x+1)$; the limit is $3$.
+      - id: 15
+        type: freeform
+        prompt: Evaluate $\lim_{x\to4}(\sqrt{x}-2)/(x-4)$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{4}$. Conjugate multiplication gives $1/(\sqrt{x}+2)$, whose limit is $1/4$.
+      - id: 16
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(\sqrt{1+x}-1)/x$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{2}$. For $x\ne0$, the quotient is $1/(\sqrt{1+x}+1)$, tending to $1/2$.
+      - id: 17
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}x^2\cos(1/x)$.
+        answerLines: 5
+        answer: The answer is $0$. Its absolute value is at most $x^2$, which tends to zero, so squeeze applies.
+      - id: 18
+        type: freeform
+        prompt: If $\lim f=2$ and $\lim g=-3$ at the same input, find $\lim(4f-g^2)$.
+        answerLines: 5
+        answer: The answer is $-1$. The limit laws give $4(2)-(-3)^2=8-9=-1$.
+      - id: 19
+        type: freeform
+        prompt: Explain why the product law alone cannot evaluate $\lim_{x\to0}x\cos(1/x)$, then evaluate it.
+        answerLines: 5
+        answer: The cosine factor has no limit, so the product law's hypotheses fail. But $|x\cos(1/x)|\le|x|$, so squeezing gives $0$.
+      - id: 20
+        type: freeform
+        prompt: Give examples showing that a $0/0$ substitution can lead to different finite limits.
+        answerLines: 5
+        answer: At $0$, $x/x$ tends to $1$ while $x^2/x=x$ tends to $0$. Both unreduced expressions have vanishing numerator and denominator.
+  - title: Unbounded behavior and limits at infinity
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find $\lim_{x\to3^+}1/(x-3)$. Enter infinity or -infinity for unbounded behavior.
+        answerLines: 5
+        answer: The answer is **infinity**. The denominator is positive and shrinks to zero, so the quotient grows without bound.
+      - id: 22
+        type: freeform
+        prompt: Find $\lim_{x\to3^-}1/(x-3)$. Enter infinity or -infinity.
+        answerLines: 5
+        answer: The answer is **-infinity**. The denominator is negative and approaches zero, so the quotient decreases without bound.
+      - id: 23
+        type: freeform
+        prompt: Find $\lim_{x\to-1}[-2/(x+1)^2]$. Enter infinity or -infinity.
+        answerLines: 5
+        answer: The answer is **-infinity**. The denominator is positive and tends to zero; the negative numerator makes the limit $-\infty$.
+      - id: 24
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}(4x^2+1)/(2x^2-3)$.
+        answerLines: 5
+        answer: 'The answer is $2$. Divide by $x^2$: the limit is $4/2=2$.'
+      - id: 25
+        type: freeform
+        prompt: Evaluate $\lim_{x\to-\infty}(5x-1)/(x^2+7)$.
+        answerLines: 5
+        answer: The answer is $0$. Dividing by $x^2$ leaves numerator $5/x-1/x^2\to0$ and denominator tending to $1$.
+      - id: 26
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}\sqrt{x^2+4}/x$.
+        answerLines: 5
+        answer: The answer is $1$. Here $x>0$ eventually; the expression is $\sqrt{1+4/x^2}\to1$.
+      - id: 27
+        type: freeform
+        prompt: Evaluate $\lim_{x\to-\infty}\sqrt{x^2+4}/x$.
+        answerLines: 5
+        answer: The answer is $-1$. Here $|x|=-x$; the expression is $-\sqrt{1+4/x^2}\to-1$.
+      - id: 28
+        type: freeform
+        prompt: "True or false: every zero of a rational expression's denominator is a vertical asymptote."
+        answerLines: 5
+        answer: The answer is false. A common factor can cancel and leave a finite limit; $(x-1)/(x-1)$ has a hole at $1$.
+      - id: 29
+        type: freeform
+        prompt: Explain why $\infty-\infty$ cannot be evaluated as zero in a limit.
+        answerLines: 5
+        answer: The two unbounded quantities may grow at different rates. As $x\to\infty$, $(x+1)-x=1$ but $2x-x=x\to\infty$. Infinity is not an ordinary real number permitting cancellation.
+      - id: 30
+        type: freeform
+        prompt: Construct a function with horizontal asymptote $y=0$ that crosses that line infinitely often.
+        answerLines: 5
+        answer: For $x>0$, take $f(x)=\sin x/x$. The bound $|f(x)|\le1/x$ gives limit $0$, and $f(n\pi)=0$ for every positive integer $n$.
+  - title: Continuity and the intermediate value theorem
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Set $f(x)=(x^2-36)/(x-6)$ for $x\ne6$. What value of $f(6)$ makes it continuous?
+        answerLines: 5
+        answer: The answer is $12$. The reduced expression is $x+6$, whose limit is $12$.
+      - id: 32
+        type: freeform
+        prompt: Set $f(x)=(x^3-8)/(x-2)$ for $x\ne2$. What value at $2$ makes it continuous?
+        answerLines: 5
+        answer: The answer is $12$. Factoring leaves $x^2+2x+4$, which tends to $12$.
+      - id: 33
+        type: freeform
+        prompt: Let $f(x)=kx+2$ for $x<1$ and $f(x)=x^2+4$ for $x\ge1$. Find $k$ for continuity.
+        answerLines: 5
+        answer: The answer is $3$. The left limit $k+2$ must equal the right value $5$, so $k=3$.
+      - id: 34
+        type: freeform
+        prompt: A function has $f(0)=2$ and $\lim_{x\to0}f(x)=3$. Is it continuous at zero?
+        answerLines: 5
+        answer: The answer is false. The finite limit differs from the assigned value, violating continuity.
+      - id: 35
+        type: freeform
+        prompt: Is $1/(x-4)$ continuous at every point of its domain?
+        answerLines: 5
+        answer: The answer is true. It is a rational function with nonzero denominator at every point of its domain; $4$ is excluded.
+      - id: 36
+        type: freeform
+        prompt: Does the IVT guarantee a zero of $x^3+x-4$ between $1$ and $2$?
+        answerLines: 5
+        answer: The answer is true. The polynomial is continuous, with values $-2$ and $6$, so zero lies between them.
+      - id: 37
+        type: freeform
+        prompt: Does the IVT alone guarantee that the root of a continuous function with opposite endpoint signs is unique?
+        answerLines: 5
+        answer: The answer is false. It guarantees at least one root; the function may cross zero several times.
+      - id: 38
+        type: freeform
+        prompt: For $f(x)=\sqrt{x}$ on $[0,9]$, what one-sided limit is needed at the left endpoint? Give its value.
+        answerLines: 5
+        answer: The answer is $0$. The right-hand limit as $x\to0^+$ is $0=f(0)$.
+      - id: 39
+        type: freeform
+        prompt: Use the IVT to show $x^5+x=3$ has a solution between $1$ and $2$.
+        answerLines: 5
+        answer: Let $p(x)=x^5+x-3$. It is continuous on $[1,2]$, with $p(1)=-1$ and $p(2)=31$. The IVT yields $c\in(1,2)$ with $p(c)=0$, which is the required equation.
+      - id: 40
+        type: freeform
+        prompt: A sensor's recorded output jumps from $-1$ to $1$. Why must you establish continuity before claiming it recorded zero in between?
+        answerLines: 5
+        answer: An actual continuous output would pass through zero, but a discontinuous record can skip it. The piecewise function equal to $-1$ before a time and $1$ thereafter is a counterexample.
+  - title: A precise guarantee with epsilon and delta
+    questions:
+      - id: 41
+        type: freeform
+        prompt: For $f(x)=5x-2$ at $a=1$, the output error is $5|x-1|$. If $\epsilon=0.1$, give the largest positive $\delta$ that works.
+        answerLines: 5
+        answer: The answer is $\frac{1}{50}$. Requiring $|x-1|<0.1/5=1/50$ makes the error less than $0.1$.
+      - id: 42
+        type: freeform
+        prompt: For $f(x)=-4x$ at $a=2$, let $\epsilon=0.2$. Give the largest working $\delta$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{20}$. The error is $4|x-2|$, so $\delta=0.2/4=1/20$.
+      - id: 43
+        type: freeform
+        prompt: In the limit definition, may the chosen $\delta$ depend on $\epsilon$?
+        answerLines: 5
+        answer: The answer is true. Yes. The input tolerance is chosen after the requested output tolerance.
+      - id: 44
+        type: freeform
+        prompt: After choosing $\epsilon$, may you choose a different $\delta$ for each tested input $x$?
+        answerLines: 5
+        answer: The answer is false. One delta must control all inputs in the resulting punctured neighborhood.
+      - id: 45
+        type: freeform
+        prompt: For the constant function $f(x)=8$ and proposed limit $8$, what is $|f(x)-8|$?
+        answerLines: 5
+        answer: The answer is $0$. The output error is identically zero, so every positive input tolerance works.
+      - id: 46
+        type: freeform
+        prompt: If a positive $\delta$ works for a given $\epsilon$, does $\delta/2$ also work?
+        answerLines: 5
+        answer: The answer is true. Its permitted input set is smaller, so the already established implication still holds.
+      - id: 47
+        type: freeform
+        prompt: For $f(x)=2x+5$ at $a=-1$, what limit does the error identity $|f(x)-L|=2|x+1|$ use?
+        answerLines: 5
+        answer: The answer is $3$. Here $L=f(-1)=3$, and $|2x+5-3|=2|x+1|$.
+      - id: 48
+        type: freeform
+        prompt: To prove $x^2\to9$ as $x\to3$, first assume $|x-3|<1$. What integer upper bound on $|x+3|$ follows?
+        answerLines: 5
+        answer: The answer is $7$. The condition gives $2<x<4$, hence $5<x+3<7$ and $|x+3|<7$.
+      - id: 49
+        type: freeform
+        prompt: Prove directly that $\lim_{x\to-2}(2x-1)=-5$.
+        answerLines: 5
+        answer: Given $\epsilon>0$, choose $\delta=\epsilon/2$. If $0<|x+2|<\delta$, then $|(2x-1)-(-5)|=2|x+2|<2\delta=\epsilon$.
+      - id: 50
+        type: freeform
+        prompt: Prove directly that $\lim_{x\to3}x^2=9$ using a preliminary radius of $1$.
+        answerLines: 5
+        answer: Given $\epsilon>0$, set $\delta=\min(1,\epsilon/7)$. If $0<|x-3|<\delta$, then $2<x<4$ and $|x+3|<7$. Hence $|x^2-9|=|x-3||x+3|<7|x-3|<7\delta\le\epsilon$.

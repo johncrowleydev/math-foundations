@@ -1,0 +1,3789 @@
+[
+  {
+    "name": "power derivative reordered",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "3*x^2+2*x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x*(2+3*x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "missing chain factor",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "6*x*cos(3*x^2)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(3*x^2)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "chain derivative implicit multiplication",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "6*x*cos(3*x^2)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "6x cos(3x^2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "TeX trig derivative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "2*x*cos(x^2)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2x\\cos\\left(x^{2}\\right)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "TeX rational derivative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "1/(2*sqrt(x))"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\frac{1}{2\\sqrt{x}}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "trig pythagorean",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sin(x)^2+cos(x)^2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "tangent secant identity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "1/cos(x)^2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sec(x)^2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "rational equivalent with domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x+1",
+            "domain": {
+              "nonzero": ["x-1"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x^2-1)/(x-1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "extra canceled pole preserved",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x+1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x^2-1)/(x-1)"
+    },
+    "error": true
+  },
+  {
+    "name": "ln exp identity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(exp(x))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exp ln domain retained",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exp(ln(x))"
+    },
+    "error": true
+  },
+  {
+    "name": "exp ln on positive domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exp(ln(x))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "half power",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "1/(2*sqrt(x))",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^(-1/2)/2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "multivariable partial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x", "y"],
+            "expected": "2*x*y+cos(x*y)*y"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "y*(2*x+cos(x*y))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "radical exact constant",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sqrt(8)*x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*sqrt(2)*x"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "pi exact symbolic constant",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "2*pi*x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x*pi*2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "wrong sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "-sin(x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sin(x)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "unknown variable",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "y"
+    },
+    "error": true
+  },
+  {
+    "name": "unsupported function",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "gamma(x)"
+    },
+    "error": true
+  },
+  {
+    "name": "unclosed expression",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sin(x"
+    },
+    "error": true
+  },
+  {
+    "name": "deep expression",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "((((((((((((((((((((((((((((((x))))))))))))))))))))))))))))))"
+    },
+    "error": true
+  },
+  {
+    "name": "large exponent",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^10000"
+    },
+    "error": true
+  },
+  {
+    "name": "polynomial family",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "3*x^2",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^3+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "expanded polynomial family",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x+2",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x+1)^2+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "family missing C",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "family C canceled",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+C-C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "family C squared",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+C^2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "family variable constant",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+x*C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "particular arbitrary numeric constant",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "particular"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+17"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "particular rejects C",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "particular"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "exponential chain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "3*exp(3*x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exp(3*x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sin chain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "cos(2*x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sin(2*x)/2+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "cos sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "sin(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-cos(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "cos wrong sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "sin(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(x)+C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "log positive",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/x",
+            "mode": "family",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log abs punctured domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/x",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(abs(x))+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log wrong domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/x",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(x)+C"
+    },
+    "error": true
+  },
+  {
+    "name": "arctangent",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/(1+x^2)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "atan(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "arcsine",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/sqrt(1-x^2)",
+            "mode": "family",
+            "domain": {
+              "positive": ["1-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "reciprocal trig",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/cos(x)^2",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "tan(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "square root",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/(2*sqrt(x))",
+            "mode": "family",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "initial polynomial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "initial-value",
+            "initial": {
+              "at": "1",
+              "value": "3"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "wrong initial constant",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "initial-value",
+            "initial": {
+              "at": "1",
+              "value": "3"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+3"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "initial trigonometric zero",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "cos(x)",
+            "mode": "initial-value",
+            "initial": {
+              "at": "0",
+              "value": "2"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sin(x)+2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "root cancellation on domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sqrt(x)",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x/sqrt(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "root product",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x",
+            "domain": {
+              "nonnegative": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x)*sqrt(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "trig product identity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sin(x)*sin(x)+cos(x)*cos(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponential product identity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "exp(2*x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exp(x)*exp(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponential addition identity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x", "y"],
+            "expected": "exp(x+y)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exp(x)*exp(y)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponential negative identity",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "exp(-x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1/exp(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "natural base exponential",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "exp(x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "e^x"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponent decimal rational",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sqrt(x)",
+            "domain": {
+              "nonnegative": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^0.5"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "negative square root rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sqrt(x)",
+            "domain": {
+              "nonnegative": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-sqrt(x)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sqrt product cannot accept sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x",
+            "domain": {
+              "nonnegative": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x)*sqrt(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "fractional power simplified",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "sqrt(x)",
+            "mode": "family",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*x^(3/2)/3+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integration by parts",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "x*exp(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x-1)*exp(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integration by parts trig",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "x*cos(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x*sin(x)+cos(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "log chain",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x/(x^2+1)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(x^2+1)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "general exponential base",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2^x",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^x/ln(2)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "natural exponential base",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "exp(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "e^x+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "cotangent primitive",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "cos(x)/sin(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(abs(sin(x)))+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "csc cot derivative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "-csc(x)*cot(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "csc(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sec tan derivative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "sec(x)*tan(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sec(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inverse cosine derivative",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "-1/sqrt(1-x^2)",
+            "mode": "family",
+            "domain": {
+              "positive": ["1-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "acos(x)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "initial singular point rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "1/x",
+            "mode": "initial-value",
+            "initial": {
+              "at": "0",
+              "value": "0"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(abs(x))"
+    },
+    "error": true
+  },
+  {
+    "name": "empty input",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": ""
+    },
+    "error": true
+  },
+  {
+    "name": "canceled domain cannot hide log",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x+0*ln(x)"
+    },
+    "error": true
+  },
+  {
+    "name": "canceled domain cannot hide reciprocal",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x+0/(x-1)"
+    },
+    "error": true
+  },
+  {
+    "name": "same pole in different form",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "1/x"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2/(2*x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "initial value outside stated interval",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "2*x",
+            "mode": "initial-value",
+            "domain": {
+              "positive": ["x"]
+            },
+            "initial": {
+              "at": "0",
+              "value": "0"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2"
+    },
+    "error": true
+  },
+  {
+    "name": "initial value at canceled integrand pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "x/x",
+            "mode": "initial-value",
+            "initial": {
+              "at": "0",
+              "value": "0"
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x"
+    },
+    "error": true
+  },
+  {
+    "name": "constant logarithm",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "ln(5)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(5)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "constant pi fraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "pi/2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*pi/4"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "constant exponential subtraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "e-1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-1+e"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "wrong constant multiple",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": [],
+            "expected": "pi/2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "pi"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "sine squared antiderivative double angle",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "sin(x)^2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x/2-sin(2*x)/4+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "cosine squared antiderivative double angle",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "cos(x)^2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x/2+sin(2*x)/4+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "squared sine incorrect sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "sin(x)^2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x/2+sin(2*x)/4+C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "scaled arcsine radius two",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(4-x^2)",
+            "domain": {
+              "positive": ["4-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(x/2)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "scaled arcsine radius four",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(16-x^2)",
+            "domain": {
+              "positive": ["16-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(x/4)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "scaled arcsine missing coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(4-x^2)",
+            "domain": {
+              "positive": ["4-x^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*asin(x/2)+C"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "scaled arcsine explicit equivalent domains",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "mode": "family",
+            "integrand": "1/sqrt(16-x^2)",
+            "domain": {
+              "positive": ["16-x^2", "1-x^2/16"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(x/4)+C"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "sine double angle product",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sin(2*x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*sin(x)*cos(x)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "cosine double angle square",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "cos(2*x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(x)^2-sin(x)^2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "unresolved complementary angle guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sin(x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(pi/2-x)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved logarithm power guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "2*ln(x)",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(x^2)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved logarithm product guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x", "y"],
+            "expected": "ln(x*y)",
+            "domain": {
+              "positive": ["x", "y"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(x)+ln(y)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved radical branch guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x^2)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved constant trig evaluation guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(pi/2)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved inverse composition guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x",
+            "domain": {
+              "positive": ["1-sin(x)^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(sin(x))"
+    },
+    "error": true
+  },
+  {
+    "name": "wrong trig function same argument",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sin(x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(x)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong logarithm coefficient same argument",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "2*ln(x)",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "3*ln(x)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong constant logarithm coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "ln(5)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*ln(5)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong numeric answer to variable power",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x^x*(ln(x)+1)",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong shifted derivative polynomial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "6*x*cos(3*x^2)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "6*x*cos(3*x^2)+1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "unresolved antiderivative identity guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "sin(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-sin(pi/2-x)+C"
+    },
+    "error": true
+  }
+]

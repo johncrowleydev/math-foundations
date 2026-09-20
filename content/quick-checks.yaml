@@ -543,3 +543,460 @@ linear-algebra-least-squares:
     answer: 0
     explanation: The residual must be perpendicular to every column of the model matrix.
     teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48
+calculus-limits-continuity:
+  - id: quick-1
+    after: Approaching a value from nearby inputs
+    prompt: Which change can alter a function value without altering its limit at that input?
+    options:
+      - Changing only the value at the input
+      - Changing all values just to its right
+      - Replacing both nearby branches by different constants
+    answer: 0
+    explanation: The limit ignores the isolated input itself. Changing a whole nearby branch can change or destroy the limit.
+    teachingHash: d9a1326b9c52d31510a76a4b27cb11a2501469baaa6bceb4aaa178dad109ce5e
+  - id: quick-2
+    after: Continuity and the intermediate value theorem
+    prompt: A continuous function has $f(0)=-2$ and $f(3)=4$. What does the IVT guarantee?
+    options:
+      - Exactly one root
+      - At least one root in $(0,3)$
+      - A root at the midpoint
+    answer: 1
+    explanation: Continuity forces the intermediate value zero to occur. Neither uniqueness nor a particular location follows.
+    teachingHash: c85558eee6c48399f50c9a6efc6feb811a61bb581fb305aeb418c50d20b6bd92
+calculus-derivatives:
+  - id: quick-1
+    after: Average rates and secant lines
+    prompt: For $f(x)=x^2$ at $a=2$, the nonzero-increment quotient is $4+h$. What does $h=-0.1$ represent?
+    options:
+      - An invalid interval
+      - A nearby input $1.9$ and secant slope $3.9$
+      - A nearby input $2.1$ and slope $4.1$
+    answer: 1
+    explanation: A negative increment approaches from the left; consistent numerator and denominator signs still give a valid slope.
+    teachingHash: b0798fd447d47f249c921625c889cc4d76aa8244232d8d1ba83146a73e471df0
+  - id: quick-2
+    after: Where differentiability fails
+    prompt: Which statement is always valid at an interior point?
+    options:
+      - Continuity implies differentiability
+      - Differentiability implies continuity
+      - A vertical tangent has derivative zero
+    answer: 1
+    explanation: A finite derivative forces the function increment to tend to zero. Corners show the converse fails; vertical slopes are not zero.
+    teachingHash: 935ef9dc958388fee5c748503682912a2208d8520ffb8443895b7ec041dc7760
+calculus-differentiation-rules:
+  - id: quick-1
+    after: Products have two contributions
+    prompt: Which is the derivative of $u(x)v(x)$?
+    options:
+      - $u'v'$
+      - $u'v+uv'$
+      - $u'+v'$
+    answer: 1
+    explanation: A change in either factor changes the product, producing two first-order contributions.
+    teachingHash: ad1bfb29890b9d37cf7c843735dfd73c2ad8185396c746ffbf5a667e854acb97
+  - id: quick-2
+    after: Trigonometric derivatives and radians
+    prompt: Why is $d(\cos x)/dx=-\sin x$ stated with radian input?
+    options:
+      - Radians determine the input scale used by the small-angle limits
+      - Degrees cannot describe angles
+      - The derivative changes only at right angles
+    answer: 0
+    explanation: A derivative measures output change per input unit. Changing angle units changes that scale.
+    teachingHash: ef6e0be031632fedf0c0b810e8a36d6da625ce8984ef89e5fdbdf62beb46e24c
+calculus-chain-implicit-inverse:
+  - id: quick-1
+    after: Composition and local rate multiplication
+    prompt: Given $g(2)=7$, which outer derivative appears in $(f\circ g)'(2)$?
+    options:
+      - $f'(2)$
+      - $f'(7)$
+      - $g'(7)$
+    answer: 1
+    explanation: The outer function receives the inner output $7$, so its derivative is evaluated there.
+    teachingHash: fef3163069e77bb7b7f8b9da6d80928b949af3dd1394812bfef682ea031f7ecb
+  - id: quick-2
+    after: Implicit differentiation of curves
+    prompt: When $y$ depends on $x$, what is $d(y^3)/dx$?
+    options:
+      - $3y^2$
+      - $3y^2y'$
+      - $0$
+    answer: 1
+    explanation: The outer cube derivative must be multiplied by the derivative of the dependent variable.
+    teachingHash: 6688ce39b6f3da2ea2ba8026dc01d30e9de6ad11bffec23ac7e5b90d21e0970a
+calculus-exponential-logarithmic:
+  - id: quick-1
+    after: Other bases and valid logarithm identities
+    prompt: What factor accompanies $a^x$ in its derivative for fixed positive $a$?
+    options:
+      - $x$
+      - $\ln a$
+      - $1/\ln a$
+    answer: 1
+    explanation: Writing the function as $e^{x\ln a}$ shows that the exponent has derivative $\ln a$.
+    teachingHash: 50cf57245cedea021949328666938801feff9af9f893d7173d99d1f72258e4fb
+  - id: quick-2
+    after: Logarithmic differentiation
+    prompt: After differentiating $\ln y=x\ln x$, you obtain $y'/y=\ln x+1$. What remains?
+    options:
+      - Nothing; this is already the derivative
+      - Multiply by the original function $y=x^x$
+      - Divide by $x^x$
+    answer: 1
+    explanation: Implicit differentiation of a logarithm gives a relative rate. Multiplying by the original value recovers the absolute derivative.
+    teachingHash: fd780a9c6083fcdd13867f3ac9a86bbf8062e7e2c784dd0d9275ad61461d43b7
+calculus-related-rates-approximation:
+  - id: quick-1
+    after: Model first, differentiate second
+    prompt: When should you substitute measurements that hold only at the instant of interest?
+    options:
+      - Before forming a model equation
+      - After differentiating the time-dependent equation
+      - Instead of differentiating
+    answer: 1
+    explanation: Substituting an instantaneous value too early can incorrectly turn a changing quantity into a constant.
+    teachingHash: e68d179e5b82887395072d87da6a666fed9267ba8c8421500f1108da0198ae8a
+  - id: quick-2
+    after: Linear approximation from a tangent
+    prompt: What does $f(a+h)\approx f(a)+f'(a)h$ require in general?
+    options:
+      - A sufficiently small increment around a differentiable anchor
+      - That the derivative is constant everywhere
+      - That every estimate is exact
+    answer: 0
+    explanation: Differentiability supports a local first-order model. Exactness for all increments is a special property of affine functions.
+    teachingHash: 63df6686ed28cede20c5131666a6c685e2f20331b58d3cda80f9b55cd97fa909
+calculus-mvt-function-behavior:
+  - id: quick-1
+    after: Rolle’s theorem and the mean value theorem
+    prompt: Which hypothesis belongs to the MVT?
+    options:
+      - Differentiability only at the endpoints
+      - Continuity on the closed interval and differentiability inside it
+      - Equal endpoint values are always required
+    answer: 1
+    explanation: Equal endpoints are the additional special condition for Rolle’s theorem. The MVT permits any endpoint values.
+    teachingHash: da697a0a5975fb09ad35a9fdab0be30790e9930653c33ed863a9b9a9424d4987
+  - id: quick-2
+    after: L’Hôpital’s rule for vanishing quotients
+    prompt: Which limit has the required indeterminate form for a possible direct L’Hôpital application?
+    options:
+      - $\lim_{x\to0}(x+1)/(x+2)$
+      - $\lim_{x\to0}(e^x-1)/x$
+      - $\lim_{x\to0}1/x$
+    answer: 1
+    explanation: Only the middle quotient has numerator and denominator both approaching zero. The other conditions still need checking.
+    teachingHash: 7ecb0f3df7ec4d10a159a46edeb77fab417c51ad296290d419746c4322a402d0
+calculus-single-variable-optimization:
+  - id: quick-1
+    after: First and second derivative tests
+    prompt: A stationary point has $f''(c)=0$. What follows?
+    options:
+      - It is an inflection point
+      - It is not an extremum
+      - The second derivative test is inconclusive
+    answer: 2
+    explanation: The functions $x^4$, $-x^4$, and $x^3$ demonstrate different outcomes with the same zero first and second derivatives.
+    teachingHash: daf6417298c8ba8f9a8ed14765eb0bb1f91fead8021cbcf94c888b15bb3cd868
+  - id: quick-2
+    after: Geometric design with constraints
+    prompt: After eliminating a variable using a geometric constraint, what must be established before accepting a derivative root?
+    options:
+      - That it is feasible and gives the best objective value
+      - That it is an integer
+      - That the objective derivative is positive there
+    answer: 0
+    explanation: A root may be outside the allowed dimensions or fail to be a maximum. Feasibility and comparison are essential.
+    teachingHash: d0b5415690135cb63ee692e1ac4563d16420f195defab5d138119e30ee04d644
+calculus-definite-integrals:
+  - id: quick-1
+    after: From samples to Riemann sums
+    prompt: Two sampled values are $2$ and $8$, sustained for widths $3$ and $1$. What is the accumulated estimate?
+    options:
+      - '10'
+      - '14'
+      - '20'
+    answer: 1
+    explanation: 'The widths matter: $2(3)+8(1)=14$.'
+    teachingHash: 5fd30bf268d16fb97159f685987f8300a85895e925f5244bf4de9cd165acfe33
+  - id: quick-2
+    after: Signed area and total area
+    prompt: A velocity graph has positive area $6$ and negative area $4$. What is the distance traveled?
+    options:
+      - '2'
+      - '10'
+      - '-2'
+    answer: 1
+    explanation: 'Distance adds the magnitudes of motion in both directions: $6+4=10$.'
+    teachingHash: 00b021b1f19aa6260ab95e0be14c83cdeb5bd1b3021c614c29d8b2a2709fe336
+calculus-antiderivatives-ftc:
+  - id: quick-1
+    after: Antiderivatives and the missing constant
+    prompt: Which describes every antiderivative of $4x^3$ on $\mathbb R$?
+    options:
+      - $x^4$
+      - $Cx^4$
+      - $x^4+C$
+    answer: 2
+    explanation: Differentiation loses an additive constant, and the mean value theorem shows this is the only freedom on an interval.
+    teachingHash: 6a5f5bac2843d744b8f767796c4e7fc76ee62f33b18f03ccf3448ae9136f1b42
+  - id: quick-2
+    after: Evaluating definite integrals
+    prompt: If $F'=f$ and both are valid across $[a,b]$, which evaluates $\int_a^b f$?
+    options:
+      - $F(b)-F(a)$
+      - $f(b)-f(a)$
+      - $F(b)+C$
+    answer: 0
+    explanation: The endpoint difference uses an antiderivative. Its arbitrary constant cancels.
+    teachingHash: a8d5255b14943326f18c68c0e03d28e9b0a482d3959640764acb9e6e08f33c67
+calculus-integration-techniques:
+  - id: quick-1
+    after: Integration by parts
+    prompt: For $\int x\ln x\,dx$, which choice makes the remaining integral simpler?
+    options:
+      - $u=\ln x,\ dv=x\,dx$
+      - $u=x,\ dv=\ln x\,dx$
+    answer: 0
+    explanation: The first choice differentiates the logarithm to $1/x$ and integrates the polynomial directly.
+    teachingHash: 83518570ad18ea460c01274c52669212a843b0cd95b495f51052f712237b0f72
+  - id: quick-2
+    after: Products and powers of trigonometric functions
+    prompt: Which rewrite is useful for integrating $\sin^2x$?
+    options:
+      - $\sin^3x/3$
+      - $(1-\cos2x)/2$
+      - $1-\cos x$
+    answer: 1
+    explanation: The half-angle identity replaces the even power with a constant and an elementary cosine term.
+    teachingHash: 584d7f251b915034c260acd931e441486fb1556d9d1d7405d88bc56da51e3020
+calculus-applications-integration:
+  - id: quick-1
+    after: Area between curves
+    prompt: When two curves exchange which is on top, how should total area be computed?
+    options:
+      - Subtract once over the whole interval, then take an absolute value
+      - Split at the exchange and use upper minus lower on each piece
+    answer: 1
+    explanation: Splitting prevents positive and negative separations from cancelling.
+    teachingHash: b5b564407f69b0dd84d9ebe532c9d0f885adfb566d560bf3020e49f13c801d51
+  - id: quick-2
+    after: Volumes from slices, disks, and washers
+    prompt: A solid's slice is a square of side $s(x)$. What should be integrated for volume?
+    options:
+      - $s(x)$
+      - $s(x)^2$
+      - $4s(x)$
+    answer: 1
+    explanation: The slice contributes area times thickness, and a square's area is the square of its side.
+    teachingHash: f116c2e5723d7c43a8aef1b2ffe77ae0e5711e866a103ddc9073548d9a663e7c
+calculus-numerical-improper:
+  - id: quick-1
+    after: Midpoint and trapezoidal approximations
+    prompt: In $T_n$, why are interior sample heights doubled?
+    options:
+      - They are measured twice as accurately
+      - Each borders two adjacent trapezoids
+      - All integration methods double them
+    answer: 1
+    explanation: Adding the separate trapezoid areas counts each shared endpoint in both neighbors.
+    teachingHash: 01350b68d3266e54998c9a99f2e7af64059b445d977ee63bd826ffcda98dc8ef
+  - id: quick-2
+    after: Endpoint and interior singularities
+    prompt: Which condition makes $\int_0^1x^{-p}\,dx$ converge?
+    options:
+      - $p>1$
+      - $p<1$
+      - $p=1$
+    answer: 1
+    explanation: Near zero the antiderivative term tends to a finite limit only when $1-p>0$.
+    teachingHash: 4a04d226db9119acf0f17c523bef25460527bbf28ef92e93e3a6a7e5c65606ee
+calculus-sequences-series:
+  - id: quick-1
+    after: Partial sums, geometric series, and telescoping
+    prompt: Which sequence's convergence defines convergence of a series?
+    options:
+      - Its individual terms alone
+      - Its partial sums
+      - Its indices
+    answer: 1
+    explanation: Series convergence is defined through the sequence of finite running totals.
+    teachingHash: e1b8202d6797600f034138fdc1f710d6475470d533031c821717f5b02457d926
+  - id: quick-2
+    after: Alternating, absolute, and conditional convergence
+    prompt: A signed series converges, but its absolute-value series diverges. What is its classification?
+    options:
+      - Absolutely convergent
+      - Conditionally convergent
+      - Divergent
+    answer: 1
+    explanation: Conditional convergence means convergence that depends on the signs rather than convergence of total magnitudes.
+    teachingHash: 0820036e1422c19c67515be2eca600333a4da6979fc7c9568c6b983c58032151
+calculus-power-series-taylor:
+  - id: quick-1
+    after: Power series and convergence intervals
+    prompt: A power series centered at $2$ has radius $3$. What is guaranteed without testing endpoints?
+    options:
+      - Convergence for $-1<x<5$
+      - Convergence at both $-1$ and $5$
+      - Divergence at both endpoints
+    answer: 0
+    explanation: The radius settles the open interior and exterior; endpoint behavior requires separate tests.
+    teachingHash: 8a70c11f225b8ba9c0c7557ec96803c51c2923c39b026bb796a7831ed0b17e10
+  - id: quick-2
+    after: Remainders and trustworthy approximations
+    prompt: A Taylor remainder estimate uses a derivative at an unknown intermediate point. What makes the estimate usable?
+    options:
+      - The derivative value at the center alone
+      - A bound on that derivative throughout the interval
+      - The number of decimal places in the approximation
+    answer: 1
+    explanation: A uniform bound controls the unknown intermediate derivative value.
+    teachingHash: 39de6aff4d33687947e09b0dafa895c32f158096e91ee6bb5ed93488aa51498d
+calculus-multivariable-functions:
+  - id: quick-1
+    after: Several inputs, one output
+    prompt: What is an input to a two-variable scalar function?
+    options:
+      - An ordered pair
+      - Two unrelated output values
+      - A surface height alone
+    answer: 0
+    explanation: The input is an ordered pair; the output is one scalar.
+    teachingHash: 11f5dd9c415b349506759ec7188543b855c34115a40e8fcd23a16820a27562d4
+  - id: quick-2
+    after: Coordinate information has limits
+    prompt: Both coordinate partials exist at a point. Must the function be continuous there?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: Coordinate difference quotients do not control all nearby approaches.
+    teachingHash: e2d63030428d556dc1773de402b05db5ff828759980d7179e3b2be1a24b5e288
+calculus-gradients:
+  - id: quick-1
+    after: Tangent planes and differentials
+    prompt: Is a total differential always the exact finite change?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: It is the first-order change; higher-order terms may remain.
+    teachingHash: ced79bf9de0c7cdd7997862bc17328051ee67f992d3b86f18011d0a2ae00d743
+  - id: quick-2
+    after: Directional derivatives and unit directions
+    prompt: A direction is specified by $(6,8)$. Which vector gives a rate per unit distance?
+    options:
+      - $(6,8)$
+      - $(3/5,4/5)$
+      - $(8,6)$
+    answer: 1
+    explanation: Its length is ten, so divide both components by ten.
+    teachingHash: b45bcf0558dea855bd621696f80176f4123d454d22c0fa80bc255d353f2c07d7
+calculus-multivariable-chain-rule:
+  - id: quick-1
+    after: A moving input changes several coordinates
+    prompt: When both x and y depend on t, how do their chain-rule contributions combine?
+    options:
+      - Add them
+      - Multiply the two complete contributions
+      - Keep only the larger one
+    answer: 0
+    explanation: Each input transmits part of the first-order output change; the parts add.
+    teachingHash: d521938372ba846cf2f395a9ec10291cfa5dda5f77f1a13c845786b9394a352d
+  - id: quick-2
+    after: Composition becomes matrix multiplication
+    prompt: Which Jacobian acts first on an input displacement in F composed with G?
+    options:
+      - The inner map G
+      - The outer map F
+    answer: 0
+    explanation: The displacement first passes through the derivative of G, which appears on the right.
+    teachingHash: 2895a6e75284c5589d062492fdaa5c49d7ec4e1708bd3dd1b63831e8ee7e164d
+calculus-multivariable-extrema:
+  - id: quick-1
+    after: Stationary points and the second derivative test
+    prompt: At a stationary point, D is negative. What does the second derivative test give?
+    options:
+      - Minimum
+      - Maximum
+      - Saddle
+    answer: 2
+    explanation: A negative discriminant means the quadratic form has directions of both signs.
+    teachingHash: bd5f1c24eaaca03dcfbdc6edfb0ab65f98b9abd69f0d00a6847a36f9f52b7910
+  - id: quick-2
+    after: When the test cannot decide
+    prompt: If D=0, which conclusion follows?
+    options:
+      - No extremum exists
+      - The test is inconclusive
+      - There is a minimum
+    answer: 1
+    explanation: Further analysis of the actual function is needed.
+    teachingHash: 479a5370cff68e5fc429bc14dc8a90640271fb274c4d051cfbe2b1c4625c4974
+calculus-double-integrals:
+  - id: quick-1
+    after: Evaluate iterated integrals
+    prompt: In an integral with inner differential dy, what is held constant during that step?
+    options:
+      - x
+      - y
+      - Neither
+    answer: 0
+    explanation: The inner integral varies y while x is the parameter.
+    teachingHash: 77b7b1b760c08dc24c60dabb0639208833e233405764712385ba014f88e25685
+  - id: quick-2
+    after: Reverse order by redescribing the same region
+    prompt: What must remain the same when reversing integration order?
+    options:
+      - Every written bound
+      - The region and integrand
+      - The inner variable
+    answer: 1
+    explanation: Bounds change so the same points are described in the new order.
+    teachingHash: 6402968e69ef748df5b2e124707483e6813311aa8cdc04be49808c2b307dbb03
+calculus-constrained-optimization:
+  - id: quick-1
+    after: Set up and solve the Lagrange equations
+    prompt: Which equation must accompany gradient f=lambda gradient g?
+    options:
+      - f=0
+      - The original constraint g=c
+      - lambda=0
+    answer: 1
+    explanation: The gradient relation alone does not require feasibility.
+    teachingHash: d860c6e075823e1f0416e79e124fca5caa7d8476d26c4d3ad2797c4c931796aa
+  - id: quick-2
+    after: Recognize singular constraints and modeling limits
+    prompt: If the constraint gradient vanishes at a candidate, what follows?
+    options:
+      - The point cannot optimize
+      - The basic multiplier theorem does not apply there
+      - The objective is constant
+    answer: 1
+    explanation: Inspect the singular point directly or use a valid alternative description.
+    teachingHash: 66b397acb5f2ea2d9477b7c8764cb74292eeaef222ecd2fe7a7c75b9c6c1f080
+calculus-gradient-descent:
+  - id: quick-1
+    after: Take a step using the current gradient
+    prompt: Which direction is used in gradient descent?
+    options:
+      - The gradient
+      - The negative gradient
+      - A fixed coordinate direction
+    answer: 1
+    explanation: The negative gradient gives steepest first-order decrease under the Euclidean convention.
+    teachingHash: 457a7f18dd23b2e85d092d308a3bb574986be87fcb938d324b315323f7680c4e
+  - id: quick-2
+    after: Recognize nonconvex behavior and stopping limits
+    prompt: A nonconvex objective has zero gradient at an iterate. What is certain?
+    options:
+      - It is a global minimum
+      - The ordinary update is zero
+      - The loss is zero
+    answer: 1
+    explanation: Stationarity gives no movement, but the point can be a saddle or another nonminimum.
+    teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5

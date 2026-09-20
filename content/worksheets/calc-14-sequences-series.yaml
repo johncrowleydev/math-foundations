@@ -1,0 +1,314 @@
+title: Sequences and Infinite Series
+sections:
+  - title: Sequences and limits
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find $\lim_{n\to\infty}(3n+2)/(n+1)$.
+        answerLines: 5
+        answer: "Divide by $n$: $(3+2/n)/(1+1/n)\\to3$. The answer is $3$."
+      - id: 2
+        type: freeform
+        prompt: Find $\lim_{n\to\infty}n^2/(2n^2+1)$.
+        answerLines: 5
+        answer: After dividing by $n^2$, the limit is $1/(2+0)=1/2$. The answer is $\frac{1}{2}$.
+      - id: 3
+        type: freeform
+        prompt: Find $\lim_{n\to\infty}(-1)^n/n$.
+        answerLines: 5
+        answer: Its absolute value is $1/n\to0$, so the squeeze theorem gives zero. The answer is $0$.
+      - id: 4
+        type: freeform
+        prompt: Find $\lim_{n\to\infty}(1/3)^n$.
+        answerLines: 5
+        answer: A geometric sequence with ratio magnitude below one tends to zero. The answer is $0$.
+      - id: 5
+        type: freeform
+        prompt: Find $\lim_{n\to\infty}\sqrt{n^2+n}-n$.
+        answerLines: 5
+        answer: Rationalize to $n/(\sqrt{n^2+n}+n)=1/(\sqrt{1+1/n}+1)\to1/2$. The answer is $\frac{1}{2}$.
+      - id: 6
+        type: freeform
+        prompt: If $a_n=2-1/n$, find $a_4$.
+        answerLines: 5
+        answer: $a_4=2-1/4=7/4$. The answer is $\frac{7}{4}$.
+      - id: 7
+        type: freeform
+        prompt: Does the sequence $(-1)^n$ converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: Its even and odd subsequences have distinct constant values, so no common limit exists. The answer is **diverges**.
+      - id: 8
+        type: freeform
+        prompt: An increasing real sequence is bounded above. Does it converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: The monotone convergence theorem applies because both monotonicity and the appropriate bound are supplied. The answer is **converges**.
+      - id: 9
+        type: freeform
+        prompt: Prove that $1/n\to0$ directly from the epsilon definition.
+        answerLines: 5
+        answer: Given $\varepsilon>0$, choose an integer $N>1/\varepsilon$. For $n\ge N$, $|1/n-0|\le1/N<\varepsilon$, as required.
+      - id: 10
+        type: freeform
+        prompt: For $a_1=1$, $a_{n+1}=(a_n+2)/2$, prove convergence and identify the limit.
+        answerLines: 5
+        answer: Inductively $a_n<2$, since averaging a number below $2$ with $2$ stays below $2$. Also $a_{n+1}-a_n=(2-a_n)/2>0$. Bounded monotone convergence gives a limit, and $L=(L+2)/2$ forces $L=2$.
+  - title: Partial sums, geometric series, and telescoping
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Find $\sum_{n=0}^{\infty}3(1/2)^n$.
+        answerLines: 5
+        answer: First term $3$ and ratio $1/2$ give $3/(1-1/2)=6$. The answer is $6$.
+      - id: 12
+        type: freeform
+        prompt: Find $\sum_{n=1}^{\infty}(1/2)^n$.
+        answerLines: 5
+        answer: The first term is $1/2$, so the sum is $(1/2)/(1-1/2)=1$. The answer is $1$.
+      - id: 13
+        type: freeform
+        prompt: Find $\sum_{n=0}^{\infty}(-1/3)^n$.
+        answerLines: 5
+        answer: The ratio is $-1/3$, giving $1/(1+1/3)=3/4$. The answer is $\frac{3}{4}$.
+      - id: 14
+        type: freeform
+        prompt: Find $\sum_{n=2}^{\infty}(1/3)^n$.
+        answerLines: 5
+        answer: The first term is $1/9$, so $(1/9)/(1-1/3)=1/6$. The answer is $\frac{1}{6}$.
+      - id: 15
+        type: freeform
+        prompt: Find $S_3$ for the series with terms $a_n=1/n$, starting at $n=1$.
+        answerLines: 5
+        answer: $S_3=1+1/2+1/3=11/6$. The answer is $\frac{11}{6}$.
+      - id: 16
+        type: freeform
+        prompt: Give the finite sum $\sum_{n=1}^N1/[n(n+1)]$ as a formula in $N$.
+        answerLines: 5
+        answer: Writing each term as $1/n-1/(n+1)$ cancels all interior terms, leaving $1-1/(N+1)$. The answer is $1-\frac{1}{N+1}$.
+      - id: 17
+        type: freeform
+        prompt: Evaluate $\sum_{n=1}^{\infty}1/[n(n+1)]$.
+        answerLines: 5
+        answer: The partial sum is $1-1/(N+1)$, tending to $1$.
+      - id: 18
+        type: freeform
+        prompt: Evaluate $\sum_{n=1}^{\infty}[1/(n+1)-1/(n+2)]$.
+        answerLines: 5
+        answer: The partial sum leaves $1/2-1/(N+2)$, whose limit is $1/2$. The answer is $\frac{1}{2}$.
+      - id: 19
+        type: freeform
+        prompt: Derive the finite geometric sum by multiplying and subtracting.
+        answerLines: 5
+        answer: For $S_N=a+ar+\cdots+ar^N$, $rS_N=ar+\cdots+ar^{N+1}$. Subtraction leaves $(1-r)S_N=a-ar^{N+1}$, giving the formula when $r\ne1$.
+      - id: 20
+        type: freeform
+        prompt: Explain why changing the first ten terms of a series cannot change whether it converges.
+        answerLines: 5
+        answer: Every partial sum after the tenth changes by the same fixed difference between the two ten-term totals. Adding a fixed constant preserves convergence or divergence of the running totals.
+  - title: The term test and integral test
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}n/(n+1)$ as converges or diverges.
+        answerLines: 5
+        answer: Its terms tend to $1$, not zero, so the term test proves divergence. The answer is **diverges**.
+      - id: 22
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}1/n^2$ as converges or diverges.
+        answerLines: 5
+        answer: This is a $p$-series with $p=2>1$. The answer is **converges**.
+      - id: 23
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}1/\sqrt n$ as converges or diverges.
+        answerLines: 5
+        answer: Its $p$ exponent is $1/2\le1$. The answer is **diverges**.
+      - id: 24
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}1/n$ as converges or diverges.
+        answerLines: 5
+        answer: The harmonic series corresponds to $p=1$ and its integral grows logarithmically. The answer is **diverges**.
+      - id: 25
+        type: freeform
+        prompt: Classify $\sum_{n=2}^{\infty}1/[n(\ln n)^2]$ as converges or diverges.
+        answerLines: 5
+        answer: Its positive decreasing integral becomes $\int u^{-2}du$ under $u=\ln x$, so it converges. The answer is **converges**.
+      - id: 26
+        type: freeform
+        prompt: Classify $\sum_{n=2}^{\infty}1/[n\ln n]$ as converges or diverges.
+        answerLines: 5
+        answer: Its positive decreasing integral has antiderivative $\ln\ln x$, unbounded on the tail. The answer is **diverges**.
+      - id: 27
+        type: freeform
+        prompt: For $\sum1/n^2$, use the integral-test upper bound to bound the tail after $N=20$.
+        answerLines: 5
+        answer: $R_{20}\le\int_{20}^{\infty}x^{-2}dx=1/20$. The answer is $\frac{1}{20}$.
+      - id: 28
+        type: freeform
+        prompt: What minimum integer $N$ makes that upper bound for the $1/n^2$ tail at most $1/100$?
+        answerLines: 5
+        answer: Require $1/N\le1/100$, giving $N\ge100$. The answer is $100$.
+      - id: 29
+        type: freeform
+        prompt: Prove that series convergence forces $a_n\to0$, using partial sums.
+        answerLines: 5
+        answer: Since $a_n=S_n-S_{n-1}$ and both partial-sum sequences approach the same finite sum $S$, limit subtraction gives $a_n\to S-S=0$.
+      - id: 30
+        type: freeform
+        prompt: Explain why the integral test cannot simply be applied to an arbitrary sign-changing function that agrees with the terms at integers.
+        answerLines: 5
+        answer: The rectangle inequalities rely on positive, decreasing heights. An arbitrary interpolating function may oscillate or have large signed areas between integers, unrelated to the series. The test's continuity, positivity, and monotonicity assumptions prevent that mismatch.
+  - title: Direct and limit comparison
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Classify $\sum1/(n^2+1)$ for $n\ge1$ as converges or diverges.
+        answerLines: 5
+        answer: It is bounded above termwise by the convergent positive series $\sum1/n^2$. The answer is **converges**.
+      - id: 32
+        type: freeform
+        prompt: Classify $\sum1/(n-1/2)$ for $n\ge1$ as converges or diverges.
+        answerLines: 5
+        answer: Its terms exceed $1/n$, whose series diverges. The answer is **diverges**.
+      - id: 33
+        type: freeform
+        prompt: Compute the limit-comparison ratio limit of $(3n+1)/(n^3+2)$ to $1/n^2$.
+        answerLines: 5
+        answer: The ratio is $(3n^3+n^2)/(n^3+2)$, tending to $3$.
+      - id: 34
+        type: freeform
+        prompt: Classify $\sum(3n+1)/(n^3+2)$ for $n\ge1$ as converges or diverges.
+        answerLines: 5
+        answer: Limit comparison with $1/n^2$ has positive finite limit $3$. The answer is **converges**.
+      - id: 35
+        type: freeform
+        prompt: Compute the ratio limit of $1/\sqrt{n^2+1}$ to $1/n$.
+        answerLines: 5
+        answer: The ratio is $n/\sqrt{n^2+1}=1/\sqrt{1+1/n^2}\to1$. The answer is $1$.
+      - id: 36
+        type: freeform
+        prompt: Classify $\sum1/\sqrt{n^2+1}$ for $n\ge1$ as converges or diverges.
+        answerLines: 5
+        answer: Limit comparison with the harmonic series has limit $1$. The answer is **diverges**.
+      - id: 37
+        type: freeform
+        prompt: Classify $\sum(2n^2+1)/(n^3+5)$ for $n\ge1$ as converges or diverges.
+        answerLines: 5
+        answer: 'Compare with $1/n$: the ratio tends to $2$, so harmonic divergence transfers. The answer is **diverges**.'
+      - id: 38
+        type: freeform
+        prompt: If $0\le a_n\le1/n$, does this alone prove convergence? Enter yes or no.
+        answerLines: 5
+        answer: Both $a_n=1/n$ and $a_n=1/n^2$ satisfy the inequality but have different convergence behavior. The answer is **no**.
+      - id: 39
+        type: freeform
+        prompt: Explain why a positive finite ratio limit yields two-sided constant bounds.
+        answerLines: 5
+        answer: For limit $L>0$, choose an error margin $L/2$. Eventually $L/2<a_n/b_n<3L/2$. Multiplying by positive $b_n$ gives $(L/2)b_n<a_n<(3L/2)b_n$, enabling comparison both ways.
+      - id: 40
+        type: freeform
+        prompt: Give two examples showing that $a_n/(1/n)\to0$ does not decide convergence of $\sum a_n$.
+        answerLines: 5
+        answer: For $a_n=1/n^2$, the ratio is $1/n\to0$ and the series converges. For $a_n=1/[n\ln n]$ with $n\ge2$, the ratio is $1/\ln n\to0$ but the series diverges by the integral test.
+  - title: Alternating, absolute, and conditional convergence
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}(-1)^{n+1}/n$ as absolute, conditional, or divergent.
+        answerLines: 5
+        answer: The magnitudes decrease to zero, so alternation gives convergence; the harmonic absolute series diverges. The answer is **conditional**.
+      - id: 42
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}(-1)^n/n^2$ as absolute, conditional, or divergent.
+        answerLines: 5
+        answer: The absolute series is a convergent $p$-series with $p=2$. The answer is **absolute**.
+      - id: 43
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}(-1)^n$ as absolute, conditional, or divergent.
+        answerLines: 5
+        answer: Its terms do not approach zero, so the term test rules out convergence. The answer is **divergent**.
+      - id: 44
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}(-1)^{n+1}/\sqrt n$ as absolute, conditional, or divergent.
+        answerLines: 5
+        answer: Magnitudes decrease to zero, but the absolute $p$-series with $p=1/2$ diverges. The answer is **conditional**.
+      - id: 45
+        type: freeform
+        prompt: Find the alternating-series error bound after $10$ terms of $\sum_{n=1}^{\infty}(-1)^{n+1}/n$.
+        answerLines: 5
+        answer: The first omitted magnitude is $1/(10+1)=1/11$. The answer is $\frac{1}{11}$.
+      - id: 46
+        type: freeform
+        prompt: What minimum $N$ guarantees error at most $1/100$ by that bound?
+        answerLines: 5
+        answer: Require $1/(N+1)\le1/100$, giving $N\ge99$. The answer is $99$.
+      - id: 47
+        type: freeform
+        prompt: Find $S_4$ for $1-1/2+1/3-1/4+\cdots$.
+        answerLines: 5
+        answer: A common denominator gives $12/12-6/12+4/12-3/12=7/12$. The answer is $\frac{7}{12}$.
+      - id: 48
+        type: freeform
+        prompt: For $\sum_{n=1}^{\infty}(-1)^{n+1}/n^2$, bound the error after $9$ terms.
+        answerLines: 5
+        answer: The first omitted term has magnitude $1/10^2=1/100$. The answer is $\frac{1}{100}$.
+      - id: 49
+        type: freeform
+        prompt: Explain why the fourth alternating harmonic partial sum is a lower bound for the sum.
+        answerLines: 5
+        answer: The first omitted term is positive. Under decreasing magnitudes, later negative terms cannot cancel more than the preceding positive increments, so the remainder is positive and no larger than the fifth term.
+      - id: 50
+        type: freeform
+        prompt: Describe how to establish conditional convergence without confusing it with simple convergence.
+        answerLines: 5
+        answer: First prove the signed series converges, for example with the alternating-series test. Then separately prove the absolute-value series diverges. Both conclusions are necessary for the conditional classification.
+  - title: Ratio and root tests, with method selection
+    questions:
+      - id: 51
+        type: freeform
+        prompt: Find the ratio-test limit for $a_n=2^n/n!$.
+        answerLines: 5
+        answer: $|a_{n+1}/a_n|=2/(n+1)\to0$. The answer is $0$.
+      - id: 52
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}2^n/n!$ as converges or diverges.
+        answerLines: 5
+        answer: The ratio limit is $0<1$, proving absolute convergence. The answer is **converges**.
+      - id: 53
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}n!/3^n$ as converges or diverges.
+        answerLines: 5
+        answer: The successive ratio $(n+1)/3$ tends to infinity. The answer is **diverges**.
+      - id: 54
+        type: freeform
+        prompt: Find the ratio-test limit for $a_n=n/2^n$.
+        answerLines: 5
+        answer: The ratio is $(n+1)/(2n)\to1/2$. The answer is $\frac{1}{2}$.
+      - id: 55
+        type: freeform
+        prompt: Find the root-test limit for $a_n=((2n+1)/(3n+1))^n$.
+        answerLines: 5
+        answer: Taking the $n$th root leaves $(2n+1)/(3n+1)\to2/3$. The answer is $\frac{2}{3}$.
+      - id: 56
+        type: freeform
+        prompt: Classify $\sum_{n=1}^{\infty}((2n+1)/(3n+1))^n$ as converges or diverges.
+        answerLines: 5
+        answer: Its root limit is $2/3<1$. The answer is **converges**.
+      - id: 57
+        type: freeform
+        prompt: Find the ratio-test limit for $a_n=1/n^2$.
+        answerLines: 5
+        answer: $a_{n+1}/a_n=n^2/(n+1)^2\to1$. This limit alone is inconclusive. The answer is $1$.
+      - id: 58
+        type: freeform
+        prompt: A root-test limit equals $1$. Enter converges, diverges, or inconclusive for this test's conclusion.
+        answerLines: 5
+        answer: Both convergence and divergence are possible when the limit is one. The answer is **inconclusive**.
+      - id: 59
+        type: freeform
+        prompt: Explain why a ratio limit below one leads to a geometric upper bound on the tail.
+        answerLines: 5
+        answer: Choose $q$ strictly between the limit and $1$. Eventually $|a_{n+1}|\le q|a_n|$. Iterating gives $|a_{N+k}|\le|a_N|q^k$, whose geometric sum converges.
+      - id: 60
+        type: freeform
+        prompt: Choose and justify tests for $\sum1/n^3$, $\sum3^n/n!$, and $\sum(-1)^n/\sqrt n$.
+        answerLines: 5
+        answer: Use the $p$-series test with $p=3$ for the first. Use the ratio test, whose ratio tends to zero, for the factorial denominator. For the third, decreasing magnitudes give alternating convergence, while the absolute $p=1/2$ series diverges, so convergence is conditional.

@@ -1,0 +1,382 @@
+title: Gradient Descent and Model Fitting
+sections:
+  - title: Take a step using the current gradient
+    questions:
+      - id: 1
+        type: freeform
+        prompt: At point (3,1), gradient (4,8), and step size 1/4, give the next point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ -1\right)$.
+
+          Subtract (1,2) from (3,1), obtaining(2,-1).
+      - id: 2
+        type: freeform
+        prompt: At point (1,-2), gradient (-3,4), and step size 1/2, give the next point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(\frac{5}{2},\ -4\right)$.
+
+          The displacement is (3/2,-2), so the next point is (5/2,-4).
+      - id: 3
+        type: freeform
+        prompt: For $L=x^2+y^2$, start at (2,-1) with alpha=1/4. Give one update.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ \frac{-1}{2}\right)$.
+
+          The gradient is (4,-2). Subtract (1,-1/2), giving(1,-1/2).
+      - id: 4
+        type: freeform
+        prompt: For $L=(x-2)^2$, start at x=5 with alpha=1/6. Find the next x.
+        answerLines: 5
+        answer: |-
+          The answer is $4$.
+
+          The derivative at 5 is 6; subtract (1/6)6=1 to obtain 4.
+      - id: 5
+        type: freeform
+        prompt: For $L=x^2+3y^2$, compute the gradient at (1,2).
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 12\right)$.
+
+          The gradient is (2x,6y), hence(2,12).
+      - id: 6
+        type: freeform
+        prompt: For gradient (3,4) and alpha=1/10, find the first-order predicted change in loss.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-5}{2}$.
+
+          It is-alpha times the squared gradient norm:-(1/10)(9+16)=-5/2.
+      - id: 7
+        type: freeform
+        prompt: For $L=x^2+y^2$, what is the loss at the updated point (1,-1/2)?
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{5}{4}$.
+
+          Substitute to obtain 1+1/4=5/4.
+      - id: 8
+        type: freeform
+        prompt: Do all components of an ordinary simultaneous gradient update use the same old parameter vector?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          Yes. The gradient is evaluated once at the current vector before applying the update.
+      - id: 9
+        type: freeform
+        prompt: Explain why a negative first-order predicted change does not guarantee improvement for a large finite step.
+        answerLines: 5
+        answer: The linear approximation is local. Curvature can make a large step leave the decreasing neighborhood and land at a larger objective value.
+      - id: 10
+        type: freeform
+        prompt: Distinguish the gradient from the update displacement.
+        answerLines: 5
+        answer: The gradient is the vector of partial derivatives. The displacement is its negative multiplied by the step size, so it includes both direction reversal and scale.
+  - title: Understand step sizes through an exact recurrence
+    questions:
+      - id: 11
+        type: freeform
+        prompt: For $L=2x^2$ with alpha=1/8, give the error multiplier.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{2}$.
+
+          Here a=4, so 1-alpha a=1-1/2=1/2.
+      - id: 12
+        type: freeform
+        prompt: For that update starting at x=2, find x after three steps.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{4}$.
+
+          Multiply 2 by (1/2) cubed to obtain 1/4.
+      - id: 13
+        type: freeform
+        prompt: For $L=2x^2$ with alpha=3/8, give the error multiplier.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-1}{2}$.
+
+          The factor is 1-4 times 3/8=-1/2.
+      - id: 14
+        type: freeform
+        prompt: For that update starting at x=2, find x after three steps.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-1}{4}$.
+
+          Multiply 2 by (-1/2) cubed to obtain -1/4.
+      - id: 15
+        type: freeform
+        prompt: For $L=2x^2$ with alpha=1/2 and a nonzero start, does the sequence converge?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. The factor is -1, so it alternates without shrinking.
+      - id: 16
+        type: freeform
+        prompt: For $L=(3/2)(x-4)^2$, what positive alpha reaches 4 in one step from every x?
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{3}$.
+
+          The curvature parameter a is 3; alpha=1/a=1/3.
+      - id: 17
+        type: freeform
+        prompt: For $L=x^2+10y^2$, give the upper endpoint of the open step-size interval guaranteeing convergence from every start.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{10}$.
+
+          The y factor needs alpha<2/20=1/10, tighter than the x condition.
+      - id: 18
+        type: freeform
+        prompt: For $L=2x^2$ with alpha=3/4, give the error multiplier.
+        answerLines: 5
+        answer: |-
+          The answer is $-2$.
+
+          It is 1-4 times 3/4=-2, whose magnitude exceeds 1.
+      - id: 19
+        type: freeform
+        prompt: Explain why overshooting does not necessarily mean divergence.
+        answerLines: 5
+        answer: When the multiplier is negative with magnitude less than 1, errors alternate sides but shrink, so the iterates still converge.
+      - id: 20
+        type: freeform
+        prompt: Why does the steeper direction restrict a shared step size on an anisotropic quadratic?
+        answerLines: 5
+        answer: Every directional error factor must have magnitude below 1. Larger curvature reaches the unstable threshold at a smaller step size.
+  - title: Use convexity to interpret stationary points
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Is the unit disk a convex set?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          Yes. Every segment between two points in the disk stays in the disk.
+      - id: 22
+        type: freeform
+        prompt: Is the unit circle, with only its boundary points, a convex set?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. A segment joining opposite points passes through the interior, which is not in that boundary set.
+      - id: 23
+        type: freeform
+        prompt: Find the Hessian diagonal entries of $L=2x^2+5y^2$ as a pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ 10\right)$.
+
+          The second partials are 4 and 10, giving(4,10).
+      - id: 24
+        type: freeform
+        prompt: For $L=(x+y)^2$, is the minimizer unique?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. Every point on x+y=0 has zero loss.
+      - id: 25
+        type: freeform
+        prompt: For $L=x^2+2y^2$, give the minimizing point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 0\right)$.
+
+          The gradient equations 2x=0 and 4y=0 give(0,0), and positive definiteness makes it unique.
+      - id: 26
+        type: freeform
+        prompt: For $L=x^2$, compare the value at the midpoint of 0 and 2 with the average endpoint value. Give the two values as a pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ 2\right)$.
+
+          The midpoint value is 1; the endpoint average is (0+4)/2=2, giving(1,2).
+      - id: 27
+        type: freeform
+        prompt: Does exp(x) attain its infimum on the real line?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. It is always positive and approaches 0 only as x tends to negative infinity.
+      - id: 28
+        type: freeform
+        prompt: Does positive-semidefinite curvature at a single point prove convexity on the whole domain?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. The relevant Hessian condition must hold throughout an appropriate convex domain.
+      - id: 29
+        type: freeform
+        prompt: Use the supporting-plane inequality to explain why a stationary point of a differentiable convex function is a global minimum.
+        answerLines: 5
+        answer: When the gradient is zero, the inequality becomes L(v)>=L(u) for every domain point v. Thus no point has a smaller value.
+      - id: 30
+        type: freeform
+        prompt: Explain why convexity does not excuse a badly chosen step size.
+        answerLines: 5
+        answer: Convexity describes the objective geometry, while a finite update can overshoot. Even a convex quadratic diverges when the error multiplier has magnitude above 1.
+  - title: Recognize nonconvex behavior and stopping limits
+    questions:
+      - id: 31
+        type: freeform
+        prompt: For $L=(x^2-1)^2+y^2$, compute its gradient at the origin.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 0\right)$.
+
+          The gradient is (4x(x squared -1),2y); both components vanish at the origin.
+      - id: 32
+        type: freeform
+        prompt: For that loss, find the value at the origin.
+        answerLines: 5
+        answer: |-
+          The answer is $1$.
+
+          Substitution gives (-1) squared+0=1.
+      - id: 33
+        type: freeform
+        prompt: For that loss, find the value at (1,0).
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          Both squared terms vanish, giving 0.
+      - id: 34
+        type: freeform
+        prompt: For that loss, classify the origin as minimum, maximum, or saddle.
+        answerLines: 5
+        answer: |-
+          The answer is **saddle**.
+
+          The Hessian has one negative and one positive direction, so it is a saddle.
+      - id: 35
+        type: freeform
+        prompt: Starting that loss at the origin, what next point does ordinary gradient descent produce for any positive step size?
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 0\right)$.
+
+          The gradient is zero, so the point remains(0,0).
+      - id: 36
+        type: freeform
+        prompt: For that loss, compute the gradient at (2,1).
+        answerLines: 5
+        answer: |-
+          The answer is $\left(24,\ 2\right)$.
+
+          The components are 4 times 2 times (4-1)=24 and 2, giving(24,2).
+      - id: 37
+        type: freeform
+        prompt: For that loss, start at (2,1) with alpha=1/16. Give the next point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(\frac{1}{2},\ \frac{7}{8}\right)$.
+
+          Subtract (24/16,2/16)=(3/2,1/8), giving(1/2,7/8).
+      - id: 38
+        type: freeform
+        prompt: Does a very small parameter change always prove that the current point is near a minimum?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. A tiny step size can make movement small even with a substantial gradient.
+      - id: 39
+        type: freeform
+        prompt: Explain why repeated runs reaching similar losses do not alone prove global optimality.
+        answerLines: 5
+        answer: The runs inspect only particular trajectories and can repeatedly enter the same local region. A global claim requires a bound or structural argument covering all feasible points.
+      - id: 40
+        type: freeform
+        prompt: An iteration stops at its preset step limit. What conclusion is justified?
+        answerLines: 5
+        answer: Only that the allotted number of updates was used. Report the current point and loss; the stopping event itself does not establish convergence or optimality.
+  - title: Connect the gradient to least-squares fitting
+    questions:
+      - id: 41
+        type: freeform
+        prompt: A has rows (1,0),(1,1),(1,2), b=(1,2,2), and theta=(0,0). Give the residual vector A theta-b.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-1,\ -2,\ -2\right)$.
+
+          All predictions are 0, so subtracting the targets gives (-1,-2,-2).
+      - id: 42
+        type: freeform
+        prompt: For those data and theta=(0,0), give the gradient of half the squared residual norm.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-5,\ -6\right)$.
+
+          The intercept component sums residuals to -5; the slope component is 0(-1)+1(-2)+2(-2)=-6. The gradient is (-5,-6).
+      - id: 43
+        type: freeform
+        prompt: For those data, start at theta=(0,0) with alpha=1/10. Give the next theta.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(\frac{1}{2},\ \frac{3}{5}\right)$.
+
+          Subtract one tenth of(-5,-6), obtaining(1/2,3/5).
+      - id: 44
+        type: freeform
+        prompt: For those data, find the initial half-squared loss at theta=(0,0).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{9}{2}$.
+
+          The squared residuals sum to 1+4+4=9; half is 9/2.
+      - id: 45
+        type: freeform
+        prompt: For those data, find the half-squared loss at theta=(1/2,3/5).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{23}{40}$.
+
+          Residuals are -1/2,-9/10,-3/10. Half their squared sum is 23/40.
+      - id: 46
+        type: freeform
+        prompt: For those data, give A transpose b as a pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(5,\ 6\right)$.
+
+          The intercept sum is 1+2+2=5; the slope weighted sum is 0+2+4=6. Thus(5,6).
+      - id: 47
+        type: freeform
+        prompt: Solve 3a+3b=5 and 3a+5b=6 for the intercept a and slope b.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(\frac{7}{6},\ \frac{1}{2}\right)$.
+
+          Subtracting equations gives 2b=1, so b=1/2. The first equation then gives a=7/6.
+      - id: 48
+        type: freeform
+        prompt: For those data, find the minimum half-squared loss at theta=(7/6,1/2).
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{12}$.
+
+          Predictions are 7/6,5/3,13/6; residuals are 1/6,-1/3,1/6. Half their squared sum is 1/12.
+      - id: 49
+        type: freeform
+        prompt: Explain why A transpose A is positive semidefinite.
+        answerLines: 5
+        answer: For every vector h, the quadratic form h transpose A transpose A h is the squared norm of A h, which cannot be negative.
+      - id: 50
+        type: freeform
+        prompt: Why does minimizing the training squared error not by itself establish accurate future predictions?
+        answerLines: 5
+        answer: It optimizes agreement with the supplied observations under the chosen model. Future behavior also depends on model suitability and how the observed data relate to new cases.

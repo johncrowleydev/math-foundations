@@ -1,0 +1,262 @@
+title: Related Rates and Local Approximation
+sections:
+  - title: Model first, differentiate second
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A square has side $4$ cm growing at $3$ cm/s. Find its area rate in $\mathrm{cm}^2/\mathrm{s}$.
+        answerLines: 5
+        answer: The answer is $24$. $A'=2ss'=2(4)(3)=24$.
+      - id: 2
+        type: freeform
+        prompt: A square has side $6$ cm shrinking at $1/2$ cm/s. Find its area rate in $\mathrm{cm}^2/\mathrm{s}$.
+        answerLines: 5
+        answer: The answer is $-6$. The signed side rate is $-1/2$, so $A'=2(6)(-1/2)=-6$.
+      - id: 3
+        type: freeform
+        prompt: A rectangle has $l=7,w=2,l'=3,w'=1$ in meters and minutes. Find its area rate in square meters per minute.
+        answerLines: 5
+        answer: The answer is $13$. $A'=l'w+lw'=3(2)+7(1)=13$.
+      - id: 4
+        type: freeform
+        prompt: A rectangle has $l=10,w=4,l'=1,w'=-1$ in meters and minutes. Find its area rate.
+        answerLines: 5
+        answer: The answer is $-6$. $A'=1(4)+10(-1)=-6$ square meters per minute.
+      - id: 5
+        type: freeform
+        prompt: For a rectangle, $l'=2$ cm/s and $w'=-1$ cm/s. Find its perimeter rate in cm/s.
+        answerLines: 5
+        answer: The answer is $2$. From $P=2l+2w$, $P'=2(2)+2(-1)=2$.
+      - id: 6
+        type: freeform
+        prompt: A square's area grows at $20$ square meters per minute when its side is $5$ meters. Find the side rate in meters per minute.
+        answerLines: 5
+        answer: The answer is $2$. Solve $20=2(5)s'$, giving $s'=2$.
+      - id: 7
+        type: freeform
+        prompt: The relation $y=x^2$ holds over time. At $x=3$ and $x'=-2$, find $y'$.
+        answerLines: 5
+        answer: "The answer is $-12$. Differentiate with respect to time: $y'=2xx'=2(3)(-2)=-12$."
+      - id: 8
+        type: freeform
+        prompt: The relation $y=4x+7$ holds over time. If $x'=3$, find $y'$.
+        answerLines: 5
+        answer: The answer is $12$. The constant contributes zero, giving $y'=4x'=12$.
+      - id: 9
+        type: freeform
+        prompt: Explain why setting $s=5$ before differentiating $A=s^2$ gives the wrong rate for a growing square.
+        answerLines: 5
+        answer: The equality $s=5$ describes only the instant of interest. Replacing the function $s(t)$ by the constant $5$ erases its change, so the resulting constant-area equation no longer describes the process.
+      - id: 10
+        type: freeform
+        prompt: A rectangle's length increases while its width decreases. Explain what determines whether its area is increasing.
+        answerLines: 5
+        answer: The sign of $A'=l'w+lw'$ decides. The positive contribution from the growing length must be compared with the negative contribution from the shrinking width; neither rate alone suffices.
+  - title: Circles, spheres, and similar shapes
+    questions:
+      - id: 11
+        type: freeform
+        prompt: A circle has $r=3$ cm and $r'=2$ cm/s. Find $A'/\pi$.
+        answerLines: 5
+        answer: The answer is $12$. $A'=2\pi(3)(2)=12\pi$, so $A'/\pi=12$.
+      - id: 12
+        type: freeform
+        prompt: A circle's radius changes at $-3$ cm/s. Find $C'/\pi$.
+        answerLines: 5
+        answer: The answer is $-6$. $C'=2\pi r'=-6\pi$.
+      - id: 13
+        type: freeform
+        prompt: A sphere has radius $2$ m and $r'=3$ m/min. Find $V'/\pi$.
+        answerLines: 5
+        answer: The answer is $48$. $V'=4\pi(2)^2(3)=48\pi$.
+      - id: 14
+        type: freeform
+        prompt: A sphere has $V'=36\pi$ cubic cm/s and radius $3$ cm. Find $r'$ in cm/s.
+        answerLines: 5
+        answer: The answer is $1$. $36\pi=4\pi(9)r'$, so $r'=1$.
+      - id: 15
+        type: freeform
+        prompt: A sphere with constant positive volume inflow doubles its radius. What is the new radius rate divided by the old radius rate?
+        answerLines: 5
+        answer: The answer is $\frac{1}{4}$. The rate is inversely proportional to $r^2$, so doubling radius divides the rate by $4$.
+      - id: 16
+        type: freeform
+        prompt: A conical tank has water radius $r=h/3$. Express $V$ as $k\pi h^3$ and give $k$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{27}$. $V=(\pi/3)(h^2/9)h=\pi h^3/27$.
+      - id: 17
+        type: freeform
+        prompt: In a cone with $r=h/3$, water enters at $\pi$ cubic meters per minute. Find $h'$ when $h=3$ meters.
+        answerLines: 5
+        answer: The answer is $1$. $V'=\pi h^2h'/9$; at $h=3$, $\pi=\pi h'$.
+      - id: 18
+        type: freeform
+        prompt: A cylinder has fixed radius $2$ m and height rate $3$ m/min. Find $V'/\pi$.
+        answerLines: 5
+        answer: The answer is $12$. $V'=\pi(2)^2(3)=12\pi$.
+      - id: 19
+        type: freeform
+        prompt: Derive the volume rate for a cylinder whose radius and height both vary.
+        answerLines: 5
+        answer: Starting from $V=\pi r^2h$, the product and chain rules give $V'=2\pi rr'h+\pi r^2h'$. Each changing dimension contributes a term.
+      - id: 20
+        type: freeform
+        prompt: Why may $r=h/3$ be substituted into a cone's volume formula before differentiating, while $h=3$ at one instant may not?
+        answerLines: 5
+        answer: The similarity relation holds for all stages of filling and preserves the variable height. The measurement $h=3$ fixes only one instant and would incorrectly replace a changing function by a constant.
+  - title: Distances, angles, and moving constraints
+    questions:
+      - id: 21
+        type: freeform
+        prompt: A $13$ m ladder has foot distance $5$ m, top height $12$ m, and foot rate $3$ m/s outward. Find the signed top rate in m/s.
+        answerLines: 5
+        answer: The answer is $\frac{-5}{4}$. $y'=-xx'/y=-5(3)/12=-5/4$.
+      - id: 22
+        type: freeform
+        prompt: A $10$ m ladder has $x=8,y=6$ and $x'=3/2$. Find $y'$.
+        answerLines: 5
+        answer: The answer is $-2$. $y'=-8(3/2)/6=-2$.
+      - id: 23
+        type: freeform
+        prompt: For a ladder, $x=3,y=4$ and $y'=-3$. Find $x'$.
+        answerLines: 5
+        answer: The answer is $4$. $xx'+yy'=0$ gives $3x'-12=0$, so $x'=4$.
+      - id: 24
+        type: freeform
+        prompt: If $d^2=x^2+y^2$, $x=6,y=8,x'=1,y'=2$, find $d'$.
+        answerLines: 5
+        answer: The answer is $\frac{11}{5}$. $d=10$, so $d'=(6+16)/10=11/5$.
+      - id: 25
+        type: freeform
+        prompt: If $d^2=x^2+y^2$, $x=3,y=4,x'=-2,y'=1$, find $d'$.
+        answerLines: 5
+        answer: The answer is $\frac{-2}{5}$. The separation is $5$, and $d'=(-6+4)/5=-2/5$.
+      - id: 26
+        type: freeform
+        prompt: An observer is $3$ m horizontally from a rising object at height $4$ m. Its height rate is $5$ m/s. Find the angular rate in radians per second.
+        answerLines: 5
+        answer: The answer is $\frac{3}{5}$. $\theta'=ah'/(a^2+h^2)=3(5)/25=3/5$.
+      - id: 27
+        type: freeform
+        prompt: For fixed $a=5$, a rising object is at height $h=0$ with $h'=2$. Find its elevation-angle rate in radians per time unit.
+        answerLines: 5
+        answer: The answer is $\frac{2}{5}$. $\theta'=5(2)/(25+0)=2/5$.
+      - id: 28
+        type: freeform
+        prompt: A point moves along $y=x^2$. At $x=2$ its vertical rate is $8$. Find its horizontal rate.
+        answerLines: 5
+        answer: The answer is $2$. $y'=2xx'$ gives $8=4x'$, so $x'=2$.
+      - id: 29
+        type: freeform
+        prompt: Derive the observer's angular-rate formula from $\tan\theta=h/a$, with $a$ fixed.
+        answerLines: 5
+        answer: "Differentiate: $\\sec^2\\theta\\,\\theta'=h'/a$. Substitute $\\sec^2\\theta=1+h^2/a^2$ and solve: $\\theta'=ah'/(a^2+h^2)$."
+      - id: 30
+        type: freeform
+        prompt: Why should a negative separation rate be retained instead of reported as a positive speed?
+        answerLines: 5
+        answer: The requested derivative describes whether separation increases or decreases. A negative value means the objects are approaching. Taking its absolute value would erase that information and answer a different question.
+  - title: Linear approximation from a tangent
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Find the linearization of $x^2$ at $a=3$, written as a function of $x$.
+        answerLines: 5
+        answer: The answer is $6\cdot x-9$. $f(3)=9$ and $f'(3)=6$, so $L(x)=9+6(x-3)=6x-9$.
+      - id: 32
+        type: freeform
+        prompt: Use the linearization of $x^2$ at $3$ to estimate $(3.02)^2$.
+        answerLines: 5
+        answer: The answer is $\frac{228}{25}$. The prediction is $9+6(0.02)=9.12=228/25$.
+      - id: 33
+        type: freeform
+        prompt: Use the linearization of $\sqrt{x}$ at $16$ to estimate $\sqrt{16.08}$.
+        answerLines: 5
+        answer: The answer is $\frac{401}{100}$. $f(16)=4$ and $f'(16)=1/8$, so the estimate is $4+0.08/8=4.01$.
+      - id: 34
+        type: freeform
+        prompt: Use the linearization of $1/x$ at $2$ to estimate $1/2.04$.
+        answerLines: 5
+        answer: The answer is $\frac{49}{100}$. $L=1/2-(0.04)/4=0.49$.
+      - id: 35
+        type: freeform
+        prompt: Use the linearization of $e^x$ at $0$ to estimate $e^{0.03}$.
+        answerLines: 5
+        answer: The answer is $\frac{103}{100}$. The anchor value and slope are both $1$, giving $1+0.03=1.03$.
+      - id: 36
+        type: freeform
+        prompt: Use the linearization of $\ln x$ at $1$ to estimate $\ln(1.02)$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{50}$. $L(x)=x-1$, so the estimate is $0.02=1/50$.
+      - id: 37
+        type: freeform
+        prompt: If $f(5)=12$ and $f'(5)=-3$, estimate $f(5.1)$ linearly.
+        answerLines: 5
+        answer: The answer is $\frac{117}{10}$. $12+(-3)(0.1)=11.7$.
+      - id: 38
+        type: freeform
+        prompt: If $f(2)=8$ and $f'(2)=4$, estimate $f(1.95)$ linearly.
+        answerLines: 5
+        answer: The answer is $\frac{39}{5}$. The increment is $-0.05$, so the estimate is $8-0.2=7.8$.
+      - id: 39
+        type: freeform
+        prompt: Derive the exact linearization error for $f(x)=x^2$ at an arbitrary anchor $a$.
+        answerLines: 5
+        answer: At input $a+h$, the linear model gives $a^2+2ah$. The exact value is $a^2+2ah+h^2$, so the error is $h^2$, and error divided by $h$ tends to zero.
+      - id: 40
+        type: freeform
+        prompt: Explain why the linearization of $1/x$ at $1$ should not be used to predict its value at $100$.
+        answerLines: 5
+        answer: It gives $2-100=-98$, while the original function is positive and equals $0.01$. The tangent is a local model near $1$; the large interval changes the slope substantially.
+  - title: Differentials, measurement error, and sensitivity
+    questions:
+      - id: 41
+        type: freeform
+        prompt: For $y=x^2$ at $x=5$ with $dx=0.02$, find $dy$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{5}$. $dy=2x\,dx=10(0.02)=0.2$.
+      - id: 42
+        type: freeform
+        prompt: For $y=x^2$ at $x=5$ with $\Delta x=0.02$, find the exact $\Delta y$.
+        answerLines: 5
+        answer: The answer is $\frac{501}{2500}$. $(5.02)^2-25=0.2004=501/2500$.
+      - id: 43
+        type: freeform
+        prompt: For $y=1/x$ at $x=4$ with $dx=0.08$, find $dy$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{200}$. $dy=-dx/x^2=-0.08/16=-0.005$.
+      - id: 44
+        type: freeform
+        prompt: A sphere's radius has a small relative change $dr/r=0.02$. Give the differential estimate $dV/V$.
+        answerLines: 5
+        answer: The answer is $\frac{3}{50}$. The first-order relative volume change is $3(0.02)=0.06$.
+      - id: 45
+        type: freeform
+        prompt: A circle's radius has small relative change $dr/r=-0.01$. Find $dA/A$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{50}$. For $A=\pi r^2$, $dA/A=2dr/r=-0.02$.
+      - id: 46
+        type: freeform
+        prompt: For $y=x^4$ at positive inputs, what is the relative sensitivity $xy'/y$?
+        answerLines: 5
+        answer: The answer is $4$. $x(4x^3)/x^4=4$.
+      - id: 47
+        type: freeform
+        prompt: For $y=\sqrt{x}$ at positive inputs, what is $xy'/y$?
+        answerLines: 5
+        answer: The answer is $\frac{1}{2}$. $x/[2\sqrt{x}\sqrt{x}]=1/2$.
+      - id: 48
+        type: freeform
+        prompt: Does a differential error estimate automatically supply a rigorous maximum-error bound?
+        answerLines: 5
+        answer: The answer is false. No. It retains only the linear change; a bound on neglected behavior or an exact calculation is needed for a guarantee.
+      - id: 49
+        type: freeform
+        prompt: Compare exact and first-order fractional area changes when a circle's radius increases by a fraction $\eta$.
+        answerLines: 5
+        answer: The exact area multiplier is $(1+\eta)^2$, so the exact fractional change is $2\eta+\eta^2$. The differential predicts $2\eta$ and omits the quadratic term.
+      - id: 50
+        type: freeform
+        prompt: Explain why relative output error is not useful at a point where the modeled output equals zero.
+        answerLines: 5
+        answer: Relative error divides by the output, so it is undefined at zero. Absolute error or another meaningful reference scale must be used instead.

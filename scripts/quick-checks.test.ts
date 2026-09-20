@@ -5,7 +5,14 @@ import { quickChecks, validateQuickChecks } from './quick-checks.js';
 const { lessons } = await loadContent();
 test('all quick checks have valid math, unique choices, and current preceding teaching', () => {
   validateQuickChecks(lessons);
-  assert.equal(Object.values(quickChecks).flat().length, 54);
+  assert.equal(
+    Object.entries(quickChecks)
+      .filter(([slug]) => !slug.startsWith('calculus-'))
+      .flatMap(([, checks]) => checks).length,
+    54,
+  );
+  for (const lesson of lessons.filter((l) => l.subject === 'Calculus'))
+    assert.equal((quickChecks[lesson.slug] || []).length, lesson.number === 0 ? 0 : 2);
 });
 test('moving a quick check or changing its teaching requires another prerequisite audit', () => {
   const changed = structuredClone(quickChecks);

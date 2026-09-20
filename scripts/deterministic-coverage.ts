@@ -428,13 +428,23 @@ export async function loadCoverageInput(root = process.cwd()): Promise<CoverageI
       json<ReviewTemplate[]>(root, 'content/review-templates.json'),
       json<CoverageInput['published']>(root, 'output/grading-catalog.json'),
     ]);
+  // This ledger audits the original conversion project. Later subjects are
+  // validated by the content pipeline without expanding its historical scope.
+  const lessonKeys = new Set(audit.exercises.map((q) => q.key));
+  const templateIds = new Set(audit.dedicatedReviewQuestions.map((q) => q.template));
   return {
     audit,
     lessonLedgers,
     reviewLedger: { path: reviewPath, rows: reviewRows },
     authoredCatalogs,
-    authoredReview,
-    published,
+    authoredReview: authoredReview.filter((t) => templateIds.has(t.id)),
+    published: {
+      ...published,
+      exercises: Object.fromEntries(
+        Object.entries(published.exercises).filter(([key]) => lessonKeys.has(key)),
+      ),
+      reviewTemplates: published.reviewTemplates.filter((t) => templateIds.has(t.id)),
+    },
   };
 }
 const markdown = (s: string) => s.replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');

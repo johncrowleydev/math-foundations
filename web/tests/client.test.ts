@@ -94,6 +94,7 @@ test('all content, figures and inline targets are bundled from the shared curric
   assert.deepEqual(t, JSON.parse(await readFile('../output/content/teaching.json', 'utf8')));
   validateExerciseKeys(n.lessons);
   const kinds = new Set([
+    'cartesian',
     'coordinates',
     'graph',
     'mapping',

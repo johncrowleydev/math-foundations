@@ -1,0 +1,262 @@
+title: Definite Integrals and Accumulation
+sections:
+  - title: From samples to Riemann sums
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find the equal width for $[2,8]$ divided into $3$ subintervals.
+        answerLines: 5
+        answer: $\Delta x=(8-2)/3=2$. The answer is $2$.
+      - id: 2
+        type: freeform
+        prompt: Find the left sum for $f(x)=x^2$ on $[0,3]$ with $3$ equal intervals.
+        answerLines: 5
+        answer: The width is $1$ and the left samples are $0,1,2$, so $L_3=0+1+4=5$. The answer is $5$.
+      - id: 3
+        type: freeform
+        prompt: Find the right sum for $f(x)=x^2$ on $[0,3]$ with $3$ equal intervals.
+        answerLines: 5
+        answer: $R_3=1(1+4+9)=14$. The answer is $14$.
+      - id: 4
+        type: freeform
+        prompt: Find the midpoint sum for $f(x)=2x+1$ on $[0,4]$ with $2$ intervals.
+        answerLines: 5
+        answer: The midpoints are $1,3$ and the width is $2$, giving $2(3+7)=20$. The answer is $20$.
+      - id: 5
+        type: freeform
+        prompt: On widths $1,2,1$, sampled flow rates are $4,3,6$ liters/minute. Find the estimated liters delivered.
+        answerLines: 5
+        answer: 'Weight each rate by its interval: $4(1)+3(2)+6(1)=16$ liters. The answer is $16$.'
+      - id: 6
+        type: freeform
+        prompt: Find the right sum for $f(x)=-x$ on $[0,2]$ with $2$ intervals.
+        answerLines: 5
+        answer: $R_2=(-1)(1)+(-2)(1)=-3$. The answer is $-3$.
+      - id: 7
+        type: freeform
+        prompt: For $[2,5]$ with $n$ equal intervals, give the right endpoint $x_i$ in terms of $i,n$.
+        answerLines: 5
+        answer: "Start at $2$ and advance $i$ widths of $3/n$: $x_i=2+3i/n$. The answer is $2+\\frac{3\\cdot i}{n}$."
+      - id: 8
+        type: freeform
+        prompt: For an increasing function, is its left sum an underestimate or overestimate of its integral? Enter one word.
+        answerLines: 5
+        answer: Each left value is no greater than later values in its interval. Multiplying by positive widths and adding preserves the inequality. The answer is **underestimate**.
+      - id: 9
+        type: freeform
+        prompt: Why does averaging sampled rates without using interval lengths fail for unequally spaced measurements?
+        answerLines: 5
+        answer: An average assigns equal weight to each sample, whereas a rate sustained for twice as long contributes twice as much. The sum must use the actual widths; for rates $1,9$ over lengths $9,1$, the contribution is $18$, while the unweighted mean times total time would incorrectly give $50$.
+      - id: 10
+        type: freeform
+        prompt: Construct a continuous nonconstant function for which the one-interval midpoint rule on $[0,2]$ is exact. Explain why.
+        answerLines: 5
+        answer: Take $f(x)=3x+2$. Its graph is a line whose average endpoint height is $5$, exactly its midpoint height. The trapezoid area is $2(2+8)/2=10$, matching the midpoint rectangle $2f(1)=10$.
+  - title: The integral as a limit
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Evaluate $\int_0^3 x\,dx$ geometrically.
+        answerLines: 5
+        answer: A triangle has base $3$ and height $3$, so its area is $9/2$. The answer is $\frac{9}{2}$.
+      - id: 12
+        type: freeform
+        prompt: For $f(x)=x$ on $[0,2]$, find the limit of $R_n=2+2/n$.
+        answerLines: 5
+        answer: $2/n\to0$, so the limit is $2$.
+      - id: 13
+        type: freeform
+        prompt: Give $R_n$ for $f(x)=x$ on $[0,1]$ with equal right rectangles, as a formula in $n$.
+        answerLines: 5
+        answer: $R_n=n^{-2}\sum i=n(n+1)/(2n^2)=(n+1)/(2n)$. The answer is $\frac{n+1}{2\cdot n}$.
+      - id: 14
+        type: freeform
+        prompt: A function equals $2$ on $[0,3]$ except that $f(1)=100$. Evaluate its integral.
+        answerLines: 5
+        answer: 'Changing one bounded point value does not change the integral of the constant function: $2(3)=6$. The answer is $6$.'
+      - id: 15
+        type: freeform
+        prompt: Find $\int_1^4 5\,dt$.
+        answerLines: 5
+        answer: Constant height $5$ times width $3$ is $15$.
+      - id: 16
+        type: freeform
+        prompt: What name is given to $f$ in $\int_a^b f(x)\,dx$?
+        answerLines: 5
+        answer: The integrand is the function being accumulated. The answer is **integrand**.
+      - id: 17
+        type: freeform
+        prompt: Is continuity on a closed interval sufficient or necessary for Riemann integrability? Enter sufficient or necessary.
+        answerLines: 5
+        answer: Continuity guarantees integrability, but bounded step functions show it is not necessary. The answer is **sufficient**.
+      - id: 18
+        type: freeform
+        prompt: Explain why $\int_1^3 u^2\,du$ and $\int_1^3 x^2\,dx$ agree.
+        answerLines: 5
+        answer: The variable is a dummy label. Both sums sample the square of a point between $1$ and $3$ and multiply by widths; relabeling those points does not alter any sum or its limit.
+      - id: 19
+        type: freeform
+        prompt: Why can a sequence of partitions with more and more intervals still fail to approximate an integral?
+        answerLines: 5
+        answer: If one interval retains a fixed positive width, its variation is never resolved. For example, repeatedly subdividing only $[0,1]$ while leaving $[1,2]$ whole allows its sample to retain a fixed error. The largest width must tend to zero.
+      - id: 20
+        type: freeform
+        prompt: Show that the rational-indicator function on $[0,1]$ has no Riemann integral.
+        answerLines: 5
+        answer: Every interval contains rational and irrational points. Rational choices give sums equal to $1$ for every partition, while irrational choices give sums equal to $0$. Refining does not reconcile these two limits.
+  - title: Signed area and total area
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find the signed integral of $x-2$ on $[0,4]$.
+        answerLines: 5
+        answer: The two triangles each have area $2$ and opposite signs, so they cancel. The answer is $0$.
+      - id: 22
+        type: freeform
+        prompt: Find the total area between $y=x-2$ and the axis on $[0,4]$.
+        answerLines: 5
+        answer: 'The two triangle areas add: $2+2=4$. The answer is $4$.'
+      - id: 23
+        type: freeform
+        prompt: Positive regions have total area $11$ and negative regions have total area $4$. Find the signed integral.
+        answerLines: 5
+        answer: $11-4=7$. The answer is $7$.
+      - id: 24
+        type: freeform
+        prompt: The signed integral is $-3$ and the total area is $13$. Find the area above the axis.
+        answerLines: 5
+        answer: If $P-N=-3$ and $P+N=13$, adding gives $2P=10$, hence $P=5$. The answer is $5$.
+      - id: 25
+        type: freeform
+        prompt: Evaluate $\int_{-2}^2(x^3-4x)\,dx$.
+        answerLines: 5
+        answer: Both terms are odd, so their sum has cancelling contributions on the symmetric interval. The answer is $0$.
+      - id: 26
+        type: freeform
+        prompt: Given an even integrable $f$ with $\int_0^3 f=7$, find $\int_{-3}^3 f$.
+        answerLines: 5
+        answer: 'Even symmetry doubles the positive-half integral: $2(7)=14$. The answer is $14$.'
+      - id: 27
+        type: freeform
+        prompt: Find $\int_0^2\sqrt{4-x^2}\,dx$ from circle geometry.
+        answerLines: 5
+        answer: This is a quarter circle of radius $2$, so its area is $\pi(2^2)/4=\pi$. The answer is $\pi$.
+      - id: 28
+        type: freeform
+        prompt: Find $\int_{-2}^1 |x|\,dx$ from triangle areas.
+        answerLines: 5
+        answer: The left triangle has area $2$ and the right has area $1/2$, totaling $5/2$. The answer is $\frac{5}{2}$.
+      - id: 29
+        type: freeform
+        prompt: Give a continuous nonzero function with integral zero on $[0,2]$ and explain the cancellation.
+        answerLines: 5
+        answer: Take $f(x)=x-1$. Its negative and positive triangular regions each have area $1/2$. It is nonzero at most points but the signed integral is zero.
+      - id: 30
+        type: freeform
+        prompt: For an integrable function on $[a,b]$ with $a<b$, prove $|\int_a^b f|\le\int_a^b|f|$ using positive and negative region areas.
+        answerLines: 5
+        answer: Let those nonnegative areas be $P,N$. Then $|P-N|\le P+N$, since subtracting a nonnegative contribution cannot exceed adding both. This is exactly the stated inequality.
+  - title: Algebra and bounds for integrals
+    questions:
+      - id: 31
+        type: freeform
+        prompt: If $\int_0^2 f=4$ and $\int_2^5f=-7$, find $\int_0^5f$.
+        answerLines: 5
+        answer: 'Add adjacent contributions: $4-7=-3$. The answer is $-3$.'
+      - id: 32
+        type: freeform
+        prompt: If $\int_1^4f=6$, find $\int_4^1 3f$.
+        answerLines: 5
+        answer: 'Reverse the bounds and multiply by $3$: $-3(6)=-18$. The answer is $-18$.'
+      - id: 33
+        type: freeform
+        prompt: Given $\int_0^2f=3$ and $\int_0^2g=-1$, evaluate $\int_0^2(2f-5g+4)$.
+        answerLines: 5
+        answer: Linearity gives $2(3)-5(-1)+4(2)=19$. The answer is $19$.
+      - id: 34
+        type: freeform
+        prompt: Evaluate $\int_7^7(x^2+1)\,dx$.
+        answerLines: 5
+        answer: The bounds coincide, so no interval is accumulated. The answer is $0$.
+      - id: 35
+        type: freeform
+        prompt: If $\int_0^6 f=9$ and $\int_0^2 f=11$, find $\int_2^6f$.
+        answerLines: 5
+        answer: 'Subtract the known initial contribution: $9-11=-2$. The answer is $-2$.'
+      - id: 36
+        type: freeform
+        prompt: For $-2\le f\le3$ on $[1,5]$, give the smallest integral value permitted by these bounds.
+        answerLines: 5
+        answer: The lower bound is $-2(5-1)=-8$. The answer is $-8$.
+      - id: 37
+        type: freeform
+        prompt: For $-2\le f\le3$ on $[1,5]$, give the largest integral value permitted by these bounds.
+        answerLines: 5
+        answer: The upper bound is $3(5-1)=12$. The answer is $12$.
+      - id: 38
+        type: freeform
+        prompt: If $\int_0^2 f=5$, evaluate $\int_0^2(3-f)\,dx$.
+        answerLines: 5
+        answer: The constant contributes $3(2)=6$, so the result is $6-5=1$. The answer is $1$.
+      - id: 39
+        type: freeform
+        prompt: Disprove the rule $\int_0^1 fg=(\int_0^1 f)(\int_0^1 g)$ using a simple pair of functions.
+        answerLines: 5
+        answer: Set $f(x)=g(x)=x$. The left side is the area integral of $x^2$, which is $1/3$, whereas the right side is $(1/2)^2=1/4$. Products do not commute with accumulation this way.
+      - id: 40
+        type: freeform
+        prompt: A continuous nonnegative function on $[a,b]$, where $a<b$, has integral zero. Explain why it must be zero everywhere.
+        answerLines: 5
+        answer: If it were positive at one point, continuity would keep it above some positive height on a neighborhood of positive width (one-sided at an endpoint). That rectangle would give positive integral, contradicting zero.
+  - title: Accumulating rates with units
+    questions:
+      - id: 41
+        type: freeform
+        prompt: A tank begins with $30$ liters and has net flow $-4$ liters/minute for $5$ minutes. Find final liters.
+        answerLines: 5
+        answer: The change is $-4(5)=-20$ liters; $30-20=10$. The answer is $10$.
+      - id: 42
+        type: freeform
+        prompt: Velocity is $3$ m/s for $2$ seconds, then $-2$ m/s for $4$ seconds. Find displacement in meters.
+        answerLines: 5
+        answer: $3(2)-2(4)=6-8=-2$ meters. The answer is $-2$.
+      - id: 43
+        type: freeform
+        prompt: For the same motion, find distance in meters.
+        answerLines: 5
+        answer: 'Add absolute contributions: $6+8=14$ meters. The answer is $14$.'
+      - id: 44
+        type: freeform
+        prompt: Position initially equals $7$ meters and displacement is $-11$ meters. Find the final coordinate.
+        answerLines: 5
+        answer: $7+(-11)=-4$ meters. The answer is $-4$.
+      - id: 45
+        type: freeform
+        prompt: A $5$ cm wire has constant density $2.4$ g/cm. Find its mass in grams.
+        answerLines: 5
+        answer: Density times length gives $2.4(5)=12$ grams. The answer is $12$.
+      - id: 46
+        type: freeform
+        prompt: A battery draws $2$ watts for $3$ hours and $5$ watts for $1$ hour. Find energy in watt-hours.
+        answerLines: 5
+        answer: $2(3)+5(1)=11$ watt-hours. The answer is $11$.
+      - id: 47
+        type: freeform
+        prompt: A reservoir initially holds $12$ liters. With constant net outflow $3$ liters/minute, at what time in minutes does the model first reach zero?
+        answerLines: 5
+        answer: Solve $12-3t=0$, giving $t=4$. The model requires reconsideration afterward. The answer is $4$.
+      - id: 48
+        type: freeform
+        prompt: Integrating meters per second with respect to seconds gives what unit? Enter meters, seconds, or meters per second.
+        answerLines: 5
+        answer: "The seconds cancel: $(\\mathrm{m}/\\mathrm{s})\\mathrm{s}=\\mathrm{m}$. The answer is **meters**."
+      - id: 49
+        type: freeform
+        prompt: Why can a velocity graph determine displacement but not final position by itself?
+        answerLines: 5
+        answer: Integration supplies the change in position. Any two position functions differing by a constant have the same velocity, so the starting coordinate is additional necessary information.
+      - id: 50
+        type: freeform
+        prompt: A data system samples CPU power every minute. Explain what information is needed to turn the samples into an energy estimate, and identify one source of uncertainty.
+        answerLines: 5
+        answer: Specify the interval widths and an interpolation or sampling rule, then sum power times time, converting minutes to the desired time unit. Unsampled variation between measurements causes approximation error; samples alone do not determine the exact continuous power history.

@@ -85,6 +85,10 @@ export type Syntax = {
   requires?: string[];
 };
 export type Figure = {
+  bounds?: { x: [number, number]; y: [number, number] };
+  curves?: { id: string; label: string; points: [number, number][]; dashed: boolean }[];
+  regions?: { points: [number, number][] }[];
+  markers?: { at: [number, number]; label: string; open: boolean }[];
   extent?: number;
   arrows?: {
     label: string;

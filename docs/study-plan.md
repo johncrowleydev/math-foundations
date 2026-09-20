@@ -32,15 +32,17 @@ Download generated PDFs with answer keys from each lesson in the study app.
 
 Target: begin the first CU Boulder MS-CS algorithms pathway course around the start of 2027.
 
-| Dates           | Focus                                  |
-| --------------- | -------------------------------------- |
-| Sep 5 – Oct 4   | Discrete math and proofs               |
-| Oct 5 – Nov 1   | Linear algebra                         |
-| Nov 2 – Nov 29  | Calculus                               |
-| Nov 30 – Dec 20 | Probability and statistics             |
-| Dec 21 – Jan 1  | Review, mixed problems, and weak areas |
+| Dates                            | Focus                                                           |
+| -------------------------------- | --------------------------------------------------------------- |
+| Sep 5 – Oct 4                    | Discrete math and proofs                                        |
+| Oct 5 – Nov 1                    | Linear algebra                                                  |
+| After linear algebra             | Calculus, paced by working fluency across the expanded sequence |
+| After calculus                   | Probability and statistics                                      |
+| Throughout and before coursework | Review, mixed problems, and weak areas                          |
 
 Algebra, functions, exponents, logarithms, inequalities, and summation notation should be refreshed as needed throughout rather than treated as a separate major phase.
+
+The calculus subject now includes single-variable foundations, integration and series, followed by multivariable calculus. Its completeness takes precedence over the original four-week estimate; the later dates are flexible.
 
 ## 1. Discrete Mathematics and Proofs
 
@@ -110,27 +112,26 @@ Develop enough fluency that vectors and matrices feel like ordinary mathematical
 
 ## 3. Calculus
 
-Focus on the parts most useful for CS, optimization, and ML rather than exhaustively reproducing a traditional calculus sequence.
+Develop change, accumulation and approximation before applying them to functions of several variables, optimization and model fitting. Assume precalculus and the existing linear algebra material, with local prerequisite refreshers.
 
 ### Topics
 
-- Limits
-- Derivatives
-- Product rule
-- Quotient rule
-- Chain rule
-- Exponential and logarithmic derivatives
-- Basic integration
-- Functions of several variables
-- Partial derivatives
-- Gradients
-- Multivariable chain rule
-- Maxima and minima
-- Basic optimization
+- Reading-only 00 Introduction
+- Limits, continuity, the intermediate value theorem and an accessible epsilon–delta introduction
+- Derivative definitions; algebraic, trigonometric, inverse, exponential and logarithmic rules
+- Related rates, linear approximation, mean value theorem, function behavior and optimization
+- Riemann sums, definite integrals, antiderivatives, the fundamental theorem and substitution
+- Integration techniques, applications, numerical approximation and improper integrals
+- Sequences, convergence tests, power series, Taylor polynomials and remainder bounds
+- Multivariable domains, limits, partial derivatives, linearization and gradients
+- Dependency paths, Jacobians, Hessians and local/global extrema
+- Double integrals, equality constraints, gradient descent and least-squares connections
+
+The subject has 22 instructional lessons following Introduction. Differential-equation courses, rigorous real analysis, extensive polar/parametric techniques, triple integrals, vector-calculus integral theorems and advanced optimization algorithms remain outside this sequence.
 
 ### Goal
 
-Be able to differentiate common expressions and understand the mathematics behind gradients and optimization.
+Compute and interpret derivatives and integrals, justify convergence and approximation claims at an introductory level, and connect multivariable derivatives to gradients, constraints and model fitting. Practice and dedicated review combine exact computational answers with open explanations, proofs and modeling judgments. Deterministic grading is an authoring preference, with roughly 70% as a loose aim rather than a threshold.
 
 ## 4. Probability and Statistics
 

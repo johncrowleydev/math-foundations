@@ -1,0 +1,262 @@
+title: Applications of Integration
+sections:
+  - title: Area between curves
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find the area between $y=x$ and $y=x^2$ on $[0,1]$.
+        answerLines: 5
+        answer: "Integrate upper minus lower: $\\int_0^1(x-x^2)dx=1/2-1/3=1/6$. The answer is $\\frac{1}{6}$."
+      - id: 2
+        type: freeform
+        prompt: Find the enclosed area between $y=4$ and $y=x^2$.
+        answerLines: 5
+        answer: Intersections are $x=\pm2$. The area is $\int_{-2}^2(4-x^2)dx=16-16/3=32/3$. The answer is $\frac{32}{3}$.
+      - id: 3
+        type: freeform
+        prompt: Find the area between $y=x$ and $y=-x$ on $[-1,1]$.
+        answerLines: 5
+        answer: The separation is $2|x|$, so the two equal triangular contributions total $2$.
+      - id: 4
+        type: freeform
+        prompt: Find the area between $y=-1$ and $y=-3$ on $[2,5]$.
+        answerLines: 5
+        answer: The upper-minus-lower height is $-1-(-3)=2$; multiply by width $3$. The answer is $6$.
+      - id: 5
+        type: freeform
+        prompt: Find the enclosed area between $x=y^2$ and $x=2-y$.
+        answerLines: 5
+        answer: Solve $y^2=2-y$ for $y=-2,1$. Then $\int_{-2}^1(2-y-y^2)dy=9/2$. The answer is $\frac{9}{2}$.
+      - id: 6
+        type: freeform
+        prompt: Find the area between $y=\sin x$ and the axis on $[0,\pi]$.
+        answerLines: 5
+        answer: Sine is nonnegative there, so the area is $[-\cos x]_0^\pi=2$. The answer is $2$.
+      - id: 7
+        type: freeform
+        prompt: For the region between $y=2x$ and $y=x^2$ on $[0,2]$, give the vertical strip height.
+        answerLines: 5
+        answer: The line lies above the parabola on the interval, so height is $2x-x^2$. The answer is $2\cdot x-x^{2}$.
+      - id: 8
+        type: freeform
+        prompt: Find the area between $y=2x$ and $y=x^2$ on $[0,2]$.
+        answerLines: 5
+        answer: $\int_0^2(2x-x^2)dx=[x^2-x^3/3]_0^2=4/3$. The answer is $\frac{4}{3}$.
+      - id: 9
+        type: freeform
+        prompt: Explain why $|\int_a^b(f-g)|$ need not equal the total area between the curves.
+        answerLines: 5
+        answer: If the curves cross, positive and negative separations cancel before the absolute value is taken. The example $f=x,g=-x$ on $[-1,1]$ gives zero by that expression but true area $2$.
+      - id: 10
+        type: freeform
+        prompt: Describe a complete setup procedure for an area bounded by two curves when no bounds are supplied.
+        answerLines: 5
+        answer: Solve their intersection equations, identify which bounded region is intended, choose a slicing direction, determine upper/lower or right/left ordering on each segment, and integrate the nonnegative separation. A sketch helps identify components but algebra checks the bounds.
+  - title: Average value and representative levels
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Find the average of $x^2$ on $[0,3]$.
+        answerLines: 5
+        answer: $\frac13\int_0^3x^2dx=9/3=3$. The answer is $3$.
+      - id: 12
+        type: freeform
+        prompt: Find the average of $2x+1$ on $[1,4]$.
+        answerLines: 5
+        answer: The integral is $[x^2+x]_1^4=18$; divide by length $3$. The answer is $6$.
+      - id: 13
+        type: freeform
+        prompt: Find the average of $\sin x$ on $[0,\pi]$.
+        answerLines: 5
+        answer: Its integral is $2$, and the interval length is $\pi$. The answer is $\frac{2}{\pi}$.
+      - id: 14
+        type: freeform
+        prompt: Find the average of $e^x$ on $[0,1]$.
+        answerLines: 5
+        answer: The interval length is $1$, so the average equals the integral $e-1$.
+      - id: 15
+        type: freeform
+        prompt: Find the point $c\in[0,2]$ where $f(x)=x^2$ equals its average.
+        answerLines: 5
+        answer: The average is $(1/2)(8/3)=4/3$. Solve $c^2=4/3$ and choose the nonnegative root $2/\sqrt3$. The answer is $\frac{2}{\sqrt{3}}$.
+      - id: 16
+        type: freeform
+        prompt: For $v(t)=t-1$ on $[0,2]$, find average velocity.
+        answerLines: 5
+        answer: The negative and positive triangular contributions cancel, so displacement and average velocity are zero. The answer is $0$.
+      - id: 17
+        type: freeform
+        prompt: For $v(t)=t-1$ on $[0,2]$, find average speed.
+        answerLines: 5
+        answer: Total distance is $1$ and elapsed time is $2$, giving $1/2$. The answer is $\frac{1}{2}$.
+      - id: 18
+        type: freeform
+        prompt: A process uses $18$ joules during $6$ seconds. Find average power in watts.
+        answerLines: 5
+        answer: 'Average rate is total energy divided by time: $18/6=3$ watts. The answer is $3$.'
+      - id: 19
+        type: freeform
+        prompt: Explain why a continuous function must attain its average value on a closed interval.
+        answerLines: 5
+        answer: If $m$ and $M$ are its minimum and maximum, integral bounds give $m\le f_{avg}\le M$. Continuity and the intermediate value theorem then supply a point taking that value.
+      - id: 20
+        type: freeform
+        prompt: Give a continuous function for which more than one point attains its average on $[-1,1]$.
+        answerLines: 5
+        answer: For $f(x)=x^2$, the average is $1/3$, attained at both $x=1/\sqrt3$ and $x=-1/\sqrt3$. Existence does not imply uniqueness.
+  - title: Volumes from slices, disks, and washers
+    questions:
+      - id: 21
+        type: freeform
+        prompt: A solid has cross-sectional area $A(x)=x^2+1$ for $0\le x\le2$. Find volume.
+        answerLines: 5
+        answer: $\int_0^2(x^2+1)dx=8/3+2=14/3$. The answer is $\frac{14}{3}$.
+      - id: 22
+        type: freeform
+        prompt: Square slices have side $x+1$ for $0\le x\le2$. Find volume.
+        answerLines: 5
+        answer: "Integrate the squared side: $\\int_0^2(x+1)^2dx=26/3$. The answer is $\\frac{26}{3}$."
+      - id: 23
+        type: freeform
+        prompt: Rotate the region $0\le y\le x$, $0\le x\le2$, about the horizontal axis. Find volume.
+        answerLines: 5
+        answer: Disk area is $\pi x^2$, so $V=\pi[x^3/3]_0^2=8\pi/3$. The answer is $\frac{8\cdot \pi}{3}$.
+      - id: 24
+        type: freeform
+        prompt: Rotate $0\le y\le\sqrt{x}$, $0\le x\le4$, about the horizontal axis. Find volume.
+        answerLines: 5
+        answer: Disk area is $\pi(\sqrt{x})^2=\pi x$, giving $\pi[x^2/2]_0^4=8\pi$. The answer is $8\cdot \pi$.
+      - id: 25
+        type: freeform
+        prompt: Washers have outer radius $3$ and inner radius $1$ along a length $2$. Find volume.
+        answerLines: 5
+        answer: Each area is $\pi(9-1)=8\pi$; multiply by length $2$. The answer is $16\cdot \pi$.
+      - id: 26
+        type: freeform
+        prompt: Rotate the region between $y=2$ and $y=x$ for $0\le x\le2$ about the horizontal axis. Find volume.
+        answerLines: 5
+        answer: Use $\pi\int_0^2(4-x^2)dx=\pi(8-8/3)=16\pi/3$. The answer is $\frac{16\cdot \pi}{3}$.
+      - id: 27
+        type: freeform
+        prompt: Rotate $0\le y\le x$ on $[0,1]$ about $y=2$. Give the washer area as a function of $x$.
+        answerLines: 5
+        answer: The farther edge is at distance $2$, the nearer at $2-x$, so subtract their squared-radius areas. The answer is $\pi\cdot \left(4-\left(2-x\right)^{2}\right)$.
+      - id: 28
+        type: freeform
+        prompt: For that rotation about $y=2$, find the volume.
+        answerLines: 5
+        answer: $\pi\int_0^1[4-(2-x)^2]dx=\pi\int_0^1(4x-x^2)dx=5\pi/3$. The answer is $\frac{5\cdot \pi}{3}$.
+      - id: 29
+        type: freeform
+        prompt: Explain why a washer area is $\pi(R^2-r^2)$ rather than $\pi(R-r)^2$.
+        answerLines: 5
+        answer: A washer is the outer disk with the inner disk removed, so their areas subtract. Squaring the radial thickness gives the area of a different disk. For $R=2,r=1$, the true area is $3\pi$, not $\pi$.
+      - id: 30
+        type: freeform
+        prompt: Derive the cone volume formula from slices for height $h$ and base radius $R$.
+        answerLines: 5
+        answer: Measure $x$ from the tip. Similar triangles give radius $Rx/h$. Integrating $\pi R^2x^2/h^2$ from $0$ to $h$ yields $\pi R^2h/3$.
+  - title: Density and work from variable contributions
+    questions:
+      - id: 31
+        type: freeform
+        prompt: A rod on $[0,3]$ cm has density $\rho(x)=1+2x$ g/cm. Find mass in grams.
+        answerLines: 5
+        answer: $\int_0^3(1+2x)dx=[x+x^2]_0^3=12$ grams. The answer is $12$.
+      - id: 32
+        type: freeform
+        prompt: Density is $3x^2$ kg/m on $[1,2]$ m. Find mass in kilograms.
+        answerLines: 5
+        answer: $[x^3]_1^2=8-1=7$ kilograms. The answer is $7$.
+      - id: 33
+        type: freeform
+        prompt: A force $F(x)=2x+1$ newtons moves an object from $x=0$ to $x=3$ meters. Find work in joules.
+        answerLines: 5
+        answer: $W=[x^2+x]_0^3=12$ joules. The answer is $12$.
+      - id: 34
+        type: freeform
+        prompt: A resisting force component is $-4$ newtons during displacement from $0$ to $5$ meters. Find its work.
+        answerLines: 5
+        answer: $W=\int_0^5-4dx=-20$ joules; the force opposes displacement. The answer is $-20$.
+      - id: 35
+        type: freeform
+        prompt: A spring needs $15$ newtons at extension $0.3$ meters. Find its spring constant in newtons/meter.
+        answerLines: 5
+        answer: $k=F/x=15/0.3=50$. The answer is $50$.
+      - id: 36
+        type: freeform
+        prompt: For spring constant $50$ N/m, find work to stretch from $0$ to $0.2$ meters.
+        answerLines: 5
+        answer: $W=50(0.2)^2/2=1$ joule. The answer is $1$.
+      - id: 37
+        type: freeform
+        prompt: For spring constant $40$ N/m, find work to stretch from $0.1$ to $0.4$ meters.
+        answerLines: 5
+        answer: $W=20[(0.4)^2-(0.1)^2]=20(0.15)=3$ joules. The answer is $3$.
+      - id: 38
+        type: freeform
+        prompt: A rope of length $6$ m weighs $2$ N/m. Find ideal work to pull it onto its top platform.
+        answerLines: 5
+        answer: $\int_0^6 2y\,dy=[y^2]_0^6=36$ joules. The answer is $36$.
+      - id: 39
+        type: freeform
+        prompt: Why is total rope weight times full rope length not the correct lifting work when pulling the rope onto its top platform?
+        answerLines: 5
+        answer: Different pieces travel different distances. Only the bottom travels the full length; the top travels essentially zero. Summing each piece's weight times its own distance gives $wL^2/2$, half of the naive $wL^2$ for a uniform rope.
+      - id: 40
+        type: freeform
+        prompt: Distinguish the spring's restoring-force work from the applied work when slowly stretching it from $0$ to $b$.
+        answerLines: 5
+        answer: The restoring force is $-kx$ and does work $-kb^2/2$. The balancing applied force is $kx$ and does work $kb^2/2$. They have opposite signs because the two forces point in opposite directions.
+  - title: Net change and model interpretation
+    questions:
+      - id: 41
+        type: freeform
+        prompt: A buffer begins at $10$ MB with input $4+t$ and output $6$ MB/s for $0\le t\le3$. Find content at $t=3$.
+        answerLines: 5
+        answer: $Q(3)=10+\int_0^3(t-2)dt=10+9/2-6=17/2$ MB. The answer is $\frac{17}{2}$.
+      - id: 42
+        type: freeform
+        prompt: For that buffer, find the minimum content on $[0,3]$.
+        answerLines: 5
+        answer: $Q'=t-2$ changes from negative to positive at $t=2$; $Q(2)=10+2-4=8$ MB. The answer is $8$.
+      - id: 43
+        type: freeform
+        prompt: Find displacement for $v(t)=t^2-1$ on $[0,2]$.
+        answerLines: 5
+        answer: $[t^3/3-t]_0^2=8/3-2=2/3$. The answer is $\frac{2}{3}$.
+      - id: 44
+        type: freeform
+        prompt: Find distance for $v(t)=t^2-1$ on $[0,2]$.
+        answerLines: 5
+        answer: 'Split at $t=1$: the negative part has magnitude $2/3$ and the positive part is $4/3$, totaling $2$.'
+      - id: 45
+        type: freeform
+        prompt: A stock begins with $7$ units and has net rate $-2$ units/hour. When does the continuous model first reach zero?
+        answerLines: 5
+        answer: Solve $7-2t=0$, giving $t=7/2$ hours. The answer is $\frac{7}{2}$.
+      - id: 46
+        type: freeform
+        prompt: Power is $P(t)=3+t$ watts for $0\le t\le4$ seconds. Find energy in joules.
+        answerLines: 5
+        answer: $\int_0^4(3+t)dt=12+8=20$ joules. The answer is $20$.
+      - id: 47
+        type: freeform
+        prompt: For $P(t)=3+t$ on $[0,4]$, find average power in watts.
+        answerLines: 5
+        answer: Energy $20$ joules divided by $4$ seconds gives $5$ watts.
+      - id: 48
+        type: freeform
+        prompt: A quantity begins at $5$ and has rate $2t-3$. Give $Q(t)$ under this model.
+        answerLines: 5
+        answer: $Q(t)=5+\int_0^t(2s-3)ds=5+t^2-3t$. The answer is $5+t^{2}-3\cdot t$.
+      - id: 49
+        type: freeform
+        prompt: A tank model predicts negative volume after some time. Explain what conclusion should replace that prediction.
+        answerLines: 5
+        answer: The assumptions have ceased to describe the physical tank at or before the first zero. Outflow cannot continue unchanged without available fluid. Report the first emptying time and revise the model beyond it rather than interpreting negative volume literally.
+      - id: 50
+        type: freeform
+        prompt: Explain the difference between exact integration of a fitted rate curve and exact knowledge of a real accumulated quantity.
+        answerLines: 5
+        answer: The integral can be exact for the fitted mathematical function while the function itself only approximates real measurements. Model error, measurement error, and unsampled behavior remain even if the symbolic integration has no computational error.
