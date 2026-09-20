@@ -376,7 +376,7 @@ try {
   await page.getByRole('link', { name: 'Review Library', exact: true }).click();
   await items.first().waitFor();
 
-  // Audit authored Lessons 1–2 through the effective Library, not just its source file.
+  // Audit every dedicated template through the effective Library, not just its source file.
   const authoredSource = JSON.parse(await readFile(join(root, 'content/review-templates.json')));
   const contentScreenshots = join(root, 'docs/screenshots/review-content');
   const auditDirectory = join(root, 'output/review-audit-after');
@@ -458,7 +458,7 @@ try {
     }
   }
   const coverageAudit = {};
-  for (const lesson of ['propositional-logic', 'predicates-and-quantifiers']) {
+  for (const lesson of [...new Set(catalog.items.map((item) => item.lesson))].sort()) {
     await clear();
     await filtersOpen();
     await library.getByLabel(/^Lesson/).selectOption(lesson);
@@ -469,11 +469,23 @@ try {
       count: await count.innerText(),
       rows: await rows.allTextContents(),
     };
-    await library
-      .getByLabel(/^Concept/)
-      .selectOption(lesson === 'propositional-logic' ? 'implication' : 'quantifier-order');
-    await library.locator('.library-filters summary').click();
-    await contentScreenshot(lesson + '-coverage', library.locator('.library-coverage'));
+    const expectedTargets = new Set(
+      catalog.items
+        .filter((item) => item.lesson === lesson)
+        .map((item) => JSON.stringify([item.concept, item.skill, item.objective || ''])),
+    );
+    assert.equal(
+      await rows.count(),
+      expectedTargets.size,
+      `${lesson}: every effective target is grouped`,
+    );
+    if (['propositional-logic', 'predicates-and-quantifiers'].includes(lesson)) {
+      await library
+        .getByLabel(/^Concept/)
+        .selectOption(lesson === 'propositional-logic' ? 'implication' : 'quantifier-order');
+      await library.locator('.library-filters summary').click();
+      await contentScreenshot(lesson + '-coverage', library.locator('.library-coverage'));
+    }
   }
   await writeFile(join(auditDirectory, 'coverage.json'), JSON.stringify(coverageAudit, null, 2));
   await clear();
@@ -504,6 +516,37 @@ try {
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
   await clear();
+
+  // A moved lesson keeps historical exercise keys, but filters and navigation use its current slug.
+  const curriculumScreenshots = join(root, 'docs/screenshots/review-coverage');
+  await mkdir(curriculumScreenshots, { recursive: true });
+  for (const lesson of ['linear-algebra-rank-inverses', 'linear-algebra-least-squares']) {
+    const example = catalog.items.find((item) => item.lesson === lesson && item.originalExercise);
+    assert.ok(example, `${lesson}: relocated exercises remain in the effective pool`);
+    await clear();
+    await filtersOpen();
+    await library.getByLabel(/^Lesson/).selectOption(lesson);
+    await expectCount(catalog.items.filter((item) => item.lesson === lesson).length);
+    await library.getByLabel('Search catalog', { exact: true }).fill(example.id);
+    await library.getByRole('button', { name: 'Templates', exact: true }).click();
+    const rendered = library.locator(`[data-template-id="${example.id}"]`);
+    await rendered.locator('summary').click();
+    const link = rendered.getByRole('link', { name: 'Open original lesson exercise' });
+    assert.equal(
+      await link.getAttribute('href'),
+      `#/practice/${lesson}/${example.originalExercise.split('-').at(-1)}`,
+    );
+    await library.locator('.library-filters summary').click();
+    await page.screenshot({ path: join(curriculumScreenshots, lesson + '-desktop.png') });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await assertNoOverflow();
+    await page.screenshot({ path: join(curriculumScreenshots, lesson + '-phone.png') });
+    await link.click();
+    await page.waitForURL(`**/#/practice/${lesson}/${example.originalExercise.split('-').at(-1)}`);
+    await page.goto(baseURL + '/#/review-library/' + lesson);
+    await items.first().waitFor();
+    await page.setViewportSize({ width: 1440, height: 1000 });
+  }
 
   await page.route('**/api/v1/review/catalog', (route) =>
     route.fulfill({ status: 503, body: 'Catalog unavailable' }),

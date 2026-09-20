@@ -13,6 +13,7 @@ import type { ReviewCatalog, ReviewCatalogItem, ReviewCatalogPreview } from './r
 import { routeHash } from './routing';
 import type { Curriculum, Question } from './types';
 import { StructuredAnswer } from './StructuredAnswer';
+import { exerciseKey } from './exerciseIdentity';
 
 const provenanceName = (value: string) =>
   value === 'lesson-exercise' ? 'Lesson exercise' : 'Review template';
@@ -349,7 +350,7 @@ function CatalogItem({ item, data }: { item: ReviewCatalogItem; data: Curriculum
   const [expanded, setExpanded] = useState(false);
   const lesson = data.lessons.find((l) => l.slug === item.lesson);
   const original = item.originalExercise
-    ? lesson?.questions.find((q) => `${item.lesson}-${q.id}` === item.originalExercise)
+    ? lesson?.questions.find((q) => exerciseKey(lesson, q.id) === item.originalExercise)
     : undefined;
   const concept = data.evidence.concepts.find((c) => c.id === item.concept)?.name || item.concept;
   return (

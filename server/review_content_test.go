@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"strings"
 	"testing"
 )
 
@@ -26,6 +25,14 @@ func TestLessonReviewContentPreservesExistingEffectiveTemplates(t *testing.T) {
 	g := &Grading{}
 	if err := json.Unmarshal(raw, &g.catalog); err != nil {
 		t.Fatal(err)
+	}
+	lessons := map[string]bool{}
+	for _, exercise := range g.catalog.Exercises {
+		var location struct{ LessonSlug string }
+		if err := json.Unmarshal(exercise, &location); err != nil {
+			t.Fatal(err)
+		}
+		lessons[location.LessonSlug] = true
 	}
 	legacy := map[string]bool{
 		"witness-definition": true, "witness-definition-variants": true,
@@ -57,8 +64,8 @@ func TestLessonReviewContentPreservesExistingEffectiveTemplates(t *testing.T) {
 		if legacy[template.ID] {
 			continue
 		}
-		if template.Lesson != "propositional-logic" && template.Lesson != "predicates-and-quantifiers" && !strings.HasPrefix(template.Lesson, "calculus-") && !strings.HasPrefix(template.Lesson, "probability-statistics-") {
-			t.Errorf("new dedicated template outside Lessons 1–2: %s", template.ID)
+		if !lessons[template.Lesson] {
+			t.Errorf("dedicated template has no instructional lesson: %s", template.ID)
 		}
 		questions := append([]map[string]any{template.Question}, template.Variants...)
 		for _, question := range questions {

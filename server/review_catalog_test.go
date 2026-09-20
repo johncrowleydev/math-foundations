@@ -8,6 +8,47 @@ import (
 	"time"
 )
 
+func TestReviewLessonLocationIsSeparateFromExerciseIdentity(t *testing.T) {
+	g := reviewFixture(t)
+	g.catalog.ReviewTemplates = nil
+	g.catalog.Exercises = map[string]json.RawMessage{
+		"linear-algebra-bases-41": json.RawMessage(`{
+			"lesson":"Rank, Nullity, Determinants, and Inverses",
+			"lessonSlug":"linear-algebra-rank-inverses",
+			"question":{"prompt":"Name the dimension of the null space.","officialAnswer":"Nullity"},
+			"analytics":{"concepts":[{"concept":"nullity","role":"primary"}],"skills":[{"skill":"recall","role":"primary"}]}
+		}`),
+		"legacy-2": json.RawMessage(`{
+			"lesson":"Legacy","question":{"prompt":"Recall a definition.","officialAnswer":"A definition"},
+			"analytics":{"concepts":[{"concept":"legacy","role":"primary"}],"skills":[{"skill":"recall","role":"primary"}]}
+		}`),
+	}
+	catalog := g.reviewCatalog()
+	if len(catalog.Items) != 2 {
+		t.Fatalf("effective templates: %d", len(catalog.Items))
+	}
+	for _, item := range catalog.Items {
+		if item.Concept == "legacy" {
+			if item.Lesson != "legacy" {
+				t.Fatal("older catalog lost namespace fallback")
+			}
+			continue
+		}
+		if item.Lesson != "linear-algebra-rank-inverses" || item.Origin != "lesson:linear-algebra-rank-inverses" || item.OriginalExercise != "linear-algebra-bases-41" || item.SourceTarget != "exercise:linear-algebra-bases-41" || item.ID != "exercise-linear-algebra-bases-41-nullity-recall" {
+			t.Fatalf("lesson location changed stable exercise identity: %+v", item)
+		}
+	}
+	now := time.Now().UnixMilli()
+	session, err := g.planReview(ReviewSessionRequest{Kind: "focused-practice", Mode: "regular", Lesson: "linear-algebra-rank-inverses"}, now)
+	if err != nil || len(session.Instances) != 1 || session.Instances[0].SourceTarget != "exercise:linear-algebra-bases-41" {
+		t.Fatalf("practice could not select relocated lesson: %+v %v", session, err)
+	}
+	oldLesson, err := g.planReview(ReviewSessionRequest{Kind: "focused-practice", Mode: "regular", Lesson: "linear-algebra-bases"}, now)
+	if err != nil || len(oldLesson.Instances) != 0 {
+		t.Fatalf("old namespace still acts as lesson location: %+v %v", oldLesson, err)
+	}
+}
+
 // CI builds the real catalog before Go tests. Keep standalone Go development
 // possible, while exercising the TypeScript-authoring/Go-grading boundary there.
 func TestPublishedReviewCatalogPlanningAndDeterministicGrading(t *testing.T) {

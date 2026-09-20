@@ -211,6 +211,7 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 		raw := g.catalog.Exercises[key]
 		var item struct {
 			Lesson     string
+			LessonSlug string
 			Question   map[string]any
 			Choice     *ChoiceAssessment
 			Assessment *Assessment
@@ -263,9 +264,13 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 					cost = item.Assessment.Evidence.InteractionCost
 					caps = item.Assessment.Evidence.InputCapabilities
 				}
-				lesson := key
-				if i := strings.LastIndex(key, "-"); i >= 0 {
-					lesson = key[:i]
+				lesson := item.LessonSlug
+				if lesson == "" {
+					// Older catalogs retain only the stable exercise namespace.
+					lesson = key
+					if i := strings.LastIndex(key, "-"); i >= 0 {
+						lesson = key[:i]
+					}
 				}
 				result = append(result, ReviewTemplate{ReviewTarget: ReviewTarget{Concept: c.Concept, Skill: s.Skill}, ID: "exercise-" + key + "-" + c.Concept + "-" + s.Skill, Family: "fixed", SourceTarget: "exercise:" + key, Lesson: lesson, EvidenceLevel: level, CognitiveLevel: s.Skill, InteractionCost: cost, InputCapabilities: caps, Question: q, Analytics: item.Analytics, Teaching: raw})
 			}
