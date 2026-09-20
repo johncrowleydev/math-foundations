@@ -291,13 +291,33 @@ try {
     'Passed automatic recovery of rejected correct choice without resubmitting the answer',
   );
 
-  await focused('regular', 'predicates-and-quantifiers', 'quantifier-order', 'construct');
+  // These targets are explicitly open reasoning families. Construct/transform
+  // targets also include structured responses and cannot guarantee this editor.
+  const typedSession = await focused(
+    'regular',
+    'predicates-and-quantifiers',
+    'quantifier-order',
+    'counterexample',
+  );
+  assert.ok(
+    typedSession.instances.every((i) => !i.question.assessment && !i.question.choice),
+    'The typed-response family remains free response',
+  );
   const editor = review.getByRole('textbox', { name: 'Answer editor', exact: true });
   await editor.fill('For each integer x, choose y = -x.');
   const typed = await submit('Typed Regular response', undefined);
   assert.equal(typed.mode, 'type');
 
-  await focused('regular', 'predicates-and-quantifiers', 'quantifier-negation', 'transform');
+  const draftSession = await focused(
+    'regular',
+    'predicates-and-quantifiers',
+    'uniqueness',
+    'prove',
+  );
+  assert.ok(
+    draftSession.instances.every((i) => !i.question.assessment && !i.question.choice),
+    'The draft-restoration family remains free response',
+  );
   await editor.fill('There exists an x for which P(x) is false.');
   // A real blur pauses and saves the draft before navigating away.
   await page.evaluate(() => window.dispatchEvent(new Event('blur')));

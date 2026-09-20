@@ -13,6 +13,7 @@ import {
 } from './storage';
 import type { Attempt, RecordData } from './types';
 import { deterministicAttempt } from './structuredAnswer';
+import { validServerAttempt } from './serverAttempt';
 export let syncStatus = 'Not connected';
 export let initialSyncComplete = false;
 
@@ -147,6 +148,31 @@ export function attemptSubmission(a: Attempt) {
   }
   return submission;
 }
+// A 2xx response is not sufficient acknowledgement of a durable submission.
+// Keep the local answer and outbox entry unless the API returns this attempt.
+export function acknowledgedAttempt(value: unknown, submitted: Attempt): Attempt {
+  const a = value;
+  if (
+    !validServerAttempt(a) ||
+    a.id !== submitted.id ||
+    a.exercise !== submitted.exercise ||
+    a.submitted !== submitted.submitted ||
+    a.contentVersion !== submitted.contentVersion ||
+    a.mode !== submitted.mode ||
+    a.text !== submitted.text ||
+    a.revealed !== submitted.revealed ||
+    a.status === 'queued' ||
+    (a.status === 'graded' && (!a.grades.length || a.verdict !== a.grades.at(-1)?.verdict)) ||
+    (a.mode === 'choice' && a.choiceId !== submitted.choiceId) ||
+    (a.mode === 'structured' &&
+      (Object.keys(a.response!).length !== Object.keys(submitted.response || {}).length ||
+        Object.entries(submitted.response || {}).some(
+          ([key, value]) => JSON.stringify(a.response![key]) !== JSON.stringify(value),
+        )))
+  )
+    throw Error('Invalid server acknowledgement; your answer remains queued.');
+  return a;
+}
 export async function sync() {
   if (busy || !authSession()) return;
   busy = true;
@@ -179,7 +205,10 @@ export async function sync() {
           const submission = attemptSubmission(a);
           for (const h of [...submission.images, ...(submission.photos || []).map((p) => p.hash)])
             await upload(h);
-          const saved = await (await apiRequest('/attempts', 'POST', submission)).json();
+          const saved = acknowledgedAttempt(
+            await (await apiRequest('/attempts', 'POST', submission)).json(),
+            a,
+          );
           await put('attempts', a.id, saved);
         } else if (op.kind === 'review-import') {
           for (const a of op.data.attempts as Attempt[])

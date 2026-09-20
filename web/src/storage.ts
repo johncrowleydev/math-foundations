@@ -5,6 +5,7 @@ import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
 import { validResponse, validPresentation } from './structuredAnswer';
 import { validateImportedGrades } from './importGrading';
+import { validServerAttempt } from './serverAttempt';
 import type { EvidenceCatalog } from './evidenceTypes';
 import {
   validAttemptEffort,
@@ -147,6 +148,18 @@ export async function recoverEffortRejections() {
   return recovered;
 }
 export async function integrate(records: RecordData[], cursor: number) {
+  // Validate the whole incoming attempt batch before opening a write transaction:
+  // a truncated change-feed record must not erase an answer or acknowledge its queue.
+  for (const record of records) {
+    if (
+      record.key.startsWith('attempt/') &&
+      (!validServerAttempt(record.payload) ||
+        record.key !== 'attempt/' + record.payload.id ||
+        !Number.isSafeInteger(record.revision) ||
+        record.revision <= 0)
+    )
+      throw Error('Invalid server attempt; local work remains unchanged.');
+  }
   const d = await db;
   const tx = d.transaction(
     ['records', 'attempts', 'outbox', 'settings', 'drafts', 'media'],
