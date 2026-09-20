@@ -82,6 +82,7 @@ const gradingExercises = Object.fromEntries(
         exerciseKey(lesson, q.id),
         {
           lesson: lesson.title,
+          lessonSlug: lesson.slug,
           analytics: snapshot(evidence, exerciseKey(lesson, q.id)),
           choice: q.choice,
           assessment: q.assessment,

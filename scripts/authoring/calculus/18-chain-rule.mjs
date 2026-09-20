@@ -281,6 +281,21 @@ const jacobianSource = {
     'Jacobian output-row/input-column dimensions and matrix chain rule. This lesson writes scalar gradients as columns, the transpose of the book’s scalar derivative row.',
 };
 for (const i of [2, 3, 4]) sections[i].sources.push(jacobianSource);
+// Keep matrix interpretation available in Quick without replacing construction.
+sections[2].review.push(
+  q(
+    'True or false: the Jacobian has one row per output and one column per input.',
+    'True. Entry (i,j) is the partial derivative of output i with respect to input j.',
+    truth(true),
+    'recall',
+  ),
+  q(
+    'True or false: a differentiable map with three inputs and two outputs has a 3-by-2 Jacobian.',
+    'False. It has two output rows and three input columns, so its Jacobian is 2-by-3.',
+    truth(false),
+    'recall',
+  ),
+);
 export default {
   number: 18,
   slug: 'calculus-multivariable-chain-rule',

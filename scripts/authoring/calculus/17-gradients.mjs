@@ -261,6 +261,21 @@ sections[4].review = [
     exact(0),
   ),
 ];
+// Recall the object before asking for longer gradient calculations.
+sections[2].review.push(
+  q(
+    raw`True or false: for scalar $f(x,y)$, its gradient is the vector $(f_x,f_y)$ in input-coordinate order.`,
+    'True. The gradient collects first partial derivatives in the same order as the inputs.',
+    truth(true),
+    'recall',
+  ),
+  q(
+    raw`True or false: $f_x+f_y$ is the gradient of scalar $f(x,y)$.`,
+    'False. That sum is a scalar; the gradient retains the two components as a vector.',
+    truth(false),
+    'recall',
+  ),
+);
 export default {
   number: 17,
   slug: 'calculus-gradients',

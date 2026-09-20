@@ -262,6 +262,21 @@ sections[4].review = [
   q('For $f=x^2-2y^2$, find $f_y(0,0)$.', 'The derivative is -4y and evaluates to zero.', exact(0)),
 ];
 sections[4].sources.push(source('4.4', 'Tangent Planes and Linear Approximations'));
+// Low-cost retrieval of the coordinate-slice meaning, separate from computation.
+sections[3].review.push(
+  q(
+    raw`True or false: $f_x(a,b)$ measures change in the x direction while y is held at b.`,
+    'True. A partial derivative varies one input and holds the others fixed.',
+    truth(true),
+    'recall',
+  ),
+  q(
+    raw`True or false: the notation $f_y$ means that both x and y must change together.`,
+    'False. The y partial varies y with x fixed; a moving path can change both inputs.',
+    truth(false),
+    'recall',
+  ),
+);
 export default {
   number: 16,
   slug: 'calculus-multivariable-functions',
