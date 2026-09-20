@@ -385,6 +385,9 @@ func validateRequirement(r AssessmentRequirement, fields map[string]answerField)
 				return errors.New("Unknown expected selection")
 			}
 		}
+	case "approximate-number":
+		_, e := approximateParams(r)
+		return e
 	case "exact", "tuple":
 		var p struct {
 			Expected []string `json:"expected"`
@@ -697,6 +700,8 @@ func checkRequirement(r AssessmentRequirement, response StructuredResponse) (boo
 			}
 		}
 		return reflect.DeepEqual(stringSet(xs), stringSet(p.Expected)), nil
+	case "approximate-number":
+		return checkApproximate(r, response)
 	case "exact", "tuple", "matrix":
 		return checkExactRequirement(r, response)
 	case "boolean-formula":

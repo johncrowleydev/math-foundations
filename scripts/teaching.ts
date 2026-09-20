@@ -68,10 +68,27 @@ const figureBase = z.object({
   limitations: text,
   mathLabels: z.record(z.string(), text).default({}),
 });
-const figureSchema = z.discriminatedUnion('kind', [
+export const figureSchema = z.discriminatedUnion('kind', [
   figureBase
     .extend({
       kind: z.literal('cartesian'),
+      axisLabels: z
+        .object({ x: text.max(64).optional(), y: text.max(64).optional() })
+        .strict()
+        .optional(),
+      ticks: z
+        .object({
+          x: z
+            .array(z.object({ value: z.number(), label: text.max(24) }).strict())
+            .max(12)
+            .optional(),
+          y: z
+            .array(z.object({ value: z.number(), label: text.max(24) }).strict())
+            .max(12)
+            .optional(),
+        })
+        .strict()
+        .optional(),
       bounds: z
         .object({ x: z.tuple([z.number(), z.number()]), y: z.tuple([z.number(), z.number()]) })
         .strict(),
@@ -107,7 +124,7 @@ const figureSchema = z.discriminatedUnion('kind', [
           z
             .object({
               at: z.tuple([z.number(), z.number()]),
-              label: text,
+              label: text.optional(),
               open: z.boolean().default(false),
             })
             .strict(),
@@ -126,7 +143,25 @@ const figureSchema = z.discriminatedUnion('kind', [
         )
         .default([]),
     })
-    .strict(),
+    .strict()
+    .superRefine((f, ctx) => {
+      for (const axis of ['x', 'y'] as const) {
+        const ticks = f.ticks?.[axis];
+        if (
+          ticks?.some(
+            (tick, i) =>
+              tick.value < f.bounds[axis][0] ||
+              tick.value > f.bounds[axis][1] ||
+              (i > 0 && tick.value <= ticks[i - 1].value),
+          )
+        )
+          ctx.addIssue({
+            code: 'custom',
+            path: ['ticks', axis],
+            message: 'Cartesian ticks must increase within the axis bounds.',
+          });
+      }
+    }),
   figureBase
     .extend({
       kind: z.literal('coordinates'),

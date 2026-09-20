@@ -391,3 +391,38 @@ test('non-strict order never receives the strict-order binding', () => {
     assert.ok(!f.bindings.some((b) => b.symbol === '\\prec'), f.id);
   }
 });
+
+test('Cartesian statistical annotations are optional and authored ticks stay bounded', async () => {
+  const { figureSchema } = await import('./teaching.js');
+  const original = teaching.figures.find((f) => f.kind === 'cartesian')!;
+  assert.ok(original);
+  assert.deepEqual(figureSchema.parse(original), original);
+  assert.equal('axisLabels' in figureSchema.parse(original), false);
+  assert.equal('ticks' in figureSchema.parse(original), false);
+  const annotated = {
+    ...original,
+    bounds: { x: [0, 2], y: [0, 0.01] },
+    axisLabels: { x: 'Outcome', y: 'Probability' },
+    ticks: {
+      x: [
+        { value: 0, label: '0' },
+        { value: 2, label: '2' },
+      ],
+      y: [{ value: 0.005, label: '0.005' }],
+    },
+    markers: [{ at: [1, 0.005], open: false }],
+  };
+  assert.deepEqual(figureSchema.parse(annotated), annotated);
+  for (const ticks of [
+    [{ value: 3, label: '3' }],
+    [
+      { value: 1, label: '1' },
+      { value: 0, label: '0' },
+    ],
+    [
+      { value: 0, label: '0' },
+      { value: 0, label: '0' },
+    ],
+  ])
+    assert.throws(() => figureSchema.parse({ ...annotated, ticks: { x: ticks } }));
+});

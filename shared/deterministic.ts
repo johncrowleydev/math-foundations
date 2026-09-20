@@ -1,3 +1,4 @@
+import { checkApproximate, validateApproximate } from './approximate';
 import { checkCalculus, validateCalculus } from './calculus';
 import { checkIntegerClass, validateIntegerClass } from './integer-class';
 import { checkComposition, validateComposition } from './composition';
@@ -126,6 +127,7 @@ const validators: Record<
       strlist(r.params.expected),
     );
   },
+  'approximate-number': checkApproximate,
   exact: (r, a) =>
     r.fields
       .map((f) => parseExact(text(a[f])))
@@ -696,6 +698,7 @@ export function validateAssessment(value: unknown): asserts value is Assessment 
       if (r.params.domain)
         strlist(r.params.domain).forEach((s) => parseExpression(s, r.params.variables as string[]));
     }
+    if (r.validator === 'approximate-number') validateApproximate(r);
     if (r.validator === 'exact' || r.validator === 'tuple')
       strlist(r.params.expected).forEach(parseExact);
     if (r.validator === 'matrix') {

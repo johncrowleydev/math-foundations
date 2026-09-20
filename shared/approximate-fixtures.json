@@ -1,0 +1,1112 @@
+[
+  {
+    "name": "decimal target",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0.3333"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "fuller precision fraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1/3"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inclusive upper tolerance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0.33335"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inclusive lower tolerance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0.33325"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "just above tolerance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0.33335000000000000001"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "just below tolerance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0.33324999999999999999"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong probability",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0.33"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "percentage unit error",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "33.33"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "percent syntax",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "33.33%"
+    },
+    "error": true
+  },
+  {
+    "name": "scientific notation guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "3.333e-1"
+    },
+    "error": true
+  },
+  {
+    "name": "distribution syntax",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "normalcdf(0)"
+    },
+    "error": true
+  },
+  {
+    "name": "nonfinite syntax",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "NaN"
+    },
+    "error": true
+  },
+  {
+    "name": "infinity syntax",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "Infinity"
+    },
+    "error": true
+  },
+  {
+    "name": "zero denominator",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1/0"
+    },
+    "error": true
+  },
+  {
+    "name": "unclosed expression",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(1/3"
+    },
+    "error": true
+  },
+  {
+    "name": "unknown variable",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "p"
+    },
+    "error": true
+  },
+  {
+    "name": "parser exponent bound",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0.3333",
+            "tolerance": "0.00005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2^101"
+    },
+    "error": true
+  },
+  {
+    "name": "negative probability",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0",
+            "tolerance": ".0001",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-0.00001"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "zero probability",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "0",
+            "tolerance": ".0001",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "probability above one",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1",
+            "tolerance": ".0001",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1.00001"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "one probability",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1",
+            "tolerance": ".0001",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "negative z score",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "-1.95996",
+            "tolerance": ".00005"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-1.96"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "standard deviation radical",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1.4142",
+            "tolerance": ".00005",
+            "minimum": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exact radical boundary",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "sqrt(2)",
+            "tolerance": ".01"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(2)+1/100"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "one sided maximum",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "value",
+          "description": "Correct numerical value",
+          "validator": "approximate-number",
+          "fields": ["answer"],
+          "params": {
+            "expected": "-2",
+            "tolerance": ".01",
+            "maximum": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "confidence endpoints",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "lower",
+          "kind": "math",
+          "label": "Lower endpoint"
+        },
+        {
+          "id": "upper",
+          "kind": "math",
+          "label": "Upper endpoint"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "lower",
+          "description": "lower",
+          "validator": "approximate-number",
+          "fields": ["lower"],
+          "params": {
+            "expected": ".21",
+            "tolerance": ".005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        },
+        {
+          "id": "upper",
+          "description": "upper",
+          "validator": "approximate-number",
+          "fields": ["upper"],
+          "params": {
+            "expected": ".39",
+            "tolerance": ".005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "lower": ".212",
+      "upper": ".387"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "one incorrect endpoint",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "lower",
+          "kind": "math",
+          "label": "Lower endpoint"
+        },
+        {
+          "id": "upper",
+          "kind": "math",
+          "label": "Upper endpoint"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "lower",
+          "description": "lower",
+          "validator": "approximate-number",
+          "fields": ["lower"],
+          "params": {
+            "expected": ".21",
+            "tolerance": ".005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        },
+        {
+          "id": "upper",
+          "description": "upper",
+          "validator": "approximate-number",
+          "fields": ["upper"],
+          "params": {
+            "expected": ".39",
+            "tolerance": ".005",
+            "minimum": "0",
+            "maximum": "1"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "lower": ".212",
+      "upper": ".41"
+    },
+    "verdict": "incorrect"
+  }
+]
