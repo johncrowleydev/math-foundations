@@ -17,7 +17,7 @@ func backupCommand(root string, args []string) error {
 		if len(args) != 2 {
 			return fmt.Errorf("usage: foundations-server backup NEW_RECOVERY_DIRECTORY")
 		}
-		db, err := openBackupDatabase(filepath.Join(root, "notebook.db"))
+		db, err := openBackupDatabase(filepath.Join(root, "notebook.db"), false)
 		if err != nil {
 			return err
 		}

@@ -31,7 +31,7 @@ type backupManifest struct {
 
 // No openDB: inspecting a recovery point must never migrate it. URI escaping
 // keeps spaces, '?' and '#' in operator-supplied paths out of SQLite options.
-func openBackupDatabase(path string) (*sql.DB, error) {
+func openBackupDatabase(path string, immutable bool) (*sql.DB, error) {
 	if err := regularBackupFile(path); err != nil {
 		return nil, err
 	}
@@ -40,6 +40,11 @@ func openBackupDatabase(path string) (*sql.DB, error) {
 		return nil, err
 	}
 	u := url.URL{Scheme: "file", Path: abs, RawQuery: "mode=ro"}
+	if immutable {
+		// Final snapshots are standalone VACUUM output. Ignore unrelated WAL/SHM
+		// files and never create SQLite sidecars while inspecting an archive.
+		u.RawQuery += "&immutable=1"
+	}
 	db, err := sql.Open("sqlite", u.String())
 	if err != nil {
 		return nil, err
@@ -53,7 +58,7 @@ func openBackupDatabase(path string) (*sql.DB, error) {
 }
 
 func snapshotMedia(path string) ([]string, error) {
-	db, err := openBackupDatabase(path)
+	db, err := openBackupDatabase(path, true)
 	if err != nil {
 		return nil, err
 	}
@@ -249,8 +254,10 @@ func pruneBackups(directory string, now time.Time) error {
 			if err != nil {
 				return err
 			}
+			if err = os.Remove(retired); err != nil {
+				return err
+			}
 			if err = os.Rename(path, retired); err != nil {
-				os.Remove(retired)
 				return err
 			}
 			if err = syncBackupPath(directory); err != nil {
