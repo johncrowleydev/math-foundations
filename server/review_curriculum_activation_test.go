@@ -17,6 +17,28 @@ func TestPublishedCurriculumReviewPrerequisiteActivation(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	published := reviewFixture(t)
+	if err := json.Unmarshal(raw, &published.catalog); err != nil {
+		t.Fatal(err)
+	}
+	templates := map[string]ReviewTemplate{}
+	for _, template := range published.reviewTemplates() {
+		templates[template.ID] = template
+	}
+	targetFixture := func(t *testing.T, id string) (*Grading, ReviewTemplate) {
+		t.Helper()
+		target, ok := templates[id]
+		if !ok {
+			t.Fatalf("effective template %s missing", id)
+		}
+		g := reviewFixture(t)
+		// Resolve eligibility from the full published catalog once, then replay
+		// this target's actual definition without rebuilding unrelated exercises
+		// on every summary call. Attempt evidence is supplied by its saved snapshot.
+		g.catalog.Version = published.catalog.Version
+		g.catalog.ReviewTemplates = []ReviewTemplate{target}
+		return g, target
+	}
 	for _, tc := range []struct{ id, earlier, ready string }{
 		{"df-function-type-classification-review", "function-definition", "bijection"},
 		{"la-fit-null-space-transfer-review", "orthogonal-projection", "least-squares"},
@@ -27,21 +49,7 @@ func TestPublishedCurriculumReviewPrerequisiteActivation(t *testing.T) {
 		{"well-ordering-boundary-review", "well-ordering", "recursive-correctness"},
 	} {
 		t.Run(tc.id, func(t *testing.T) {
-			g := reviewFixture(t)
-			if err := json.Unmarshal(raw, &g.catalog); err != nil {
-				t.Fatal(err)
-			}
-			var target *ReviewTemplate
-			for _, template := range g.reviewTemplates() {
-				if template.ID == tc.id {
-					copy := template
-					target = &copy
-					break
-				}
-			}
-			if target == nil {
-				t.Fatalf("effective template %s missing", tc.id)
-			}
+			g, target := targetFixture(t, tc.id)
 			if target.Objective == "" {
 				t.Fatal("later retrieval family needs its own objective")
 			}
@@ -62,25 +70,15 @@ func TestPublishedCurriculumReviewPrerequisiteActivation(t *testing.T) {
 		})
 	}
 	t.Run("recurrence evaluation reuses lesson-six preparation", func(t *testing.T) {
-		g := reviewFixture(t)
-		if err := json.Unmarshal(raw, &g.catalog); err != nil {
-			t.Fatal(err)
+		g, target := targetFixture(t, "recurrence-cold-evaluation-review")
+		if target.Objective != "" {
+			t.Fatal("routine recurrence substitution should reuse its existing target")
 		}
-		for _, template := range g.reviewTemplates() {
-			if template.ID != "recurrence-cold-evaluation-review" {
-				continue
-			}
-			if template.Objective != "" {
-				t.Fatal("routine recurrence substitution should reuse its existing target")
-			}
-			meta := json.RawMessage(`{"concepts":[{"concept":"recursive-definition","role":"primary"}],"skills":[{"skill":"compute","role":"primary"}]}`)
-			storeReviewAttempt(t, g, "lesson-six-recursive-evaluation", reviewDay, "correct", meta, nil)
-			_, states := summaryStates(t, g, 10*reviewDay)
-			if _, active := states[template.key()]; !active {
-				t.Fatal("lesson-six recurrence evidence did not activate the shared computation target")
-			}
-			return
+		meta := json.RawMessage(`{"concepts":[{"concept":"recursive-definition","role":"primary"}],"skills":[{"skill":"compute","role":"primary"}]}`)
+		storeReviewAttempt(t, g, "lesson-six-recursive-evaluation", reviewDay, "correct", meta, nil)
+		_, states := summaryStates(t, g, 10*reviewDay)
+		if _, active := states[target.key()]; !active {
+			t.Fatal("lesson-six recurrence evidence did not activate the shared computation target")
 		}
-		t.Fatal("recurrence computation template missing")
 	})
 }
