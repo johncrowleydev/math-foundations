@@ -2284,6 +2284,13 @@
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=640",
       "supports": "Fixed constant and threshold preceding all later inputs; polynomial dominant terms and distinction between upper and tight bounds. Curriculum uses eventually nonnegative functions on positive integers.",
       "checked": "2026-09-20"
+    },
+    "review-dm-growth-hierarchy": {
+      "source": "mcs",
+      "locator": "§14.7.1, Lemmas 14.7.2–14.7.3 and Corollary 14.7.4, printed pp. 630–631",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=638",
+      "supports": "Polynomial, logarithmic and exponential growth hierarchy, especially each fixed polynomial power being little-o of an exponential with fixed base greater than one. Original recognition variants retain the curriculum’s positive-integer input convention.",
+      "checked": "2026-09-20"
     }
   },
   "lessons": {
@@ -6695,7 +6702,7 @@
       "sources": ["review-dm-strong"]
     },
     "well-ordering-boundary-review": {
-      "reviewedContentHash": "d910267fbc44db18703c0db3ffc88f45f3e3a2e63db30a11df5dd67bda978a71",
+      "reviewedContentHash": "b8f56ff035b36a4f1e679c4ab2a403ef7a6d69e3e814277b0ee40a33d8a1aacf",
       "sources": ["review-dm-well-ordering"]
     },
     "permutation-term-review": {
@@ -6707,7 +6714,7 @@
       "sources": ["review-dm-counting"]
     },
     "counting-model-distinction-review": {
-      "reviewedContentHash": "4c54bfa683de02117fe89bafcc17c50219aed8fb4b53b58d12db25b7cb7c41db",
+      "reviewedContentHash": "9cf769b62d629e3e55b11b7728383657a0ea59d7e01f1261d39c0908c679d0c9",
       "sources": ["review-dm-counting"]
     },
     "pigeonhole-term-review": {
@@ -6731,7 +6738,7 @@
       "sources": ["review-dm-recurrence"]
     },
     "recurrence-cold-evaluation-review": {
-      "reviewedContentHash": "c922899fb3f4f63ad64d32bb799b75c22919cb68e622153fb3d3cbccfd8c3b28",
+      "reviewedContentHash": "d89b5f5f14ccb9c37c20b2459061a7fa9c753150d2cdd0ff1a67eac31ac58f1d",
       "sources": ["review-dm-recurrence"]
     },
     "characteristic-polynomial-production-review": {
@@ -6779,12 +6786,12 @@
       "sources": ["review-dm-asymptotics"]
     },
     "big-o-constants-review": {
-      "reviewedContentHash": "dd7ed7da0f3ef6adbcfe001477d7fb171d6fd5d7c5e4e52cbf7b642121f813a3",
+      "reviewedContentHash": "5bb8f82e425d299fac7fb7206c7e7b71852555cf2952a14ddde855a7682f2428",
       "sources": ["review-dm-big-o"]
     },
     "dominant-growth-recognition-review": {
-      "reviewedContentHash": "9550bd5e22cb09949b6702f562e8355f4a27e29f11a8d43bb130473865bc69d3",
-      "sources": ["review-dm-asymptotics"]
+      "reviewedContentHash": "0382811c24ee2fbe7e0d234bc73910676b0ebb89718739e2438e17baf42354fb",
+      "sources": ["review-dm-asymptotics", "review-dm-growth-hierarchy"]
     },
     "worst-case-term-review": {
       "reviewedContentHash": "30eefdfa6ccbf6c76ee58b0736ed658ed8690ae36afc38b0f1f5dbb50da97abe",
@@ -6795,7 +6802,7 @@
       "sources": ["review-dm-asymptotics"]
     },
     "graph-scan-growth-transfer-review": {
-      "reviewedContentHash": "e15a36c8f15f598ba163d81c4758939630a9cba9bcf0aa36b9e07da146bd1eb6",
+      "reviewedContentHash": "c93129655609eb4b01d9ee2683c38e60339ebe12221cb5db41391c5f0fb8d4f0",
       "sources": ["review-dm-search", "review-dm-trees", "review-dm-asymptotics"]
     },
     "topological-order-production-review": {
