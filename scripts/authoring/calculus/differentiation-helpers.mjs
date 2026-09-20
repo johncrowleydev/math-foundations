@@ -1,3 +1,4 @@
+import { answerStatement } from './answer-format.mjs';
 export const R = String.raw;
 const chapters = {
   2.2: 'the-limit-of-a-function',
@@ -39,7 +40,7 @@ export const term = (id, name, quick, definition, example, confusion) => ({
 });
 const checked = (prompt, answer, validator, params, correct, skill = 'compute') => ({
   prompt,
-  answer,
+  answer: `${answerStatement({ validator, params, correct })} ${answer}`,
   skill,
   check: { validator, params, correct, incorrect: correct === '0' ? '1' : '0' },
 });
@@ -59,7 +60,7 @@ export const text = (prompt, expected, answer, alternatives = []) =>
   checked(prompt, answer, 'term', { accepted: [expected, ...alternatives] }, expected, 'interpret');
 export const bool = (prompt, expected, answer) => ({
   prompt,
-  answer,
+  answer: `${answerStatement({ validator: 'boolean', correct: expected })} ${answer}`,
   skill: 'interpret',
   check: {
     validator: 'boolean',
