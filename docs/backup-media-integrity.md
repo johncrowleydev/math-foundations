@@ -83,6 +83,8 @@ Pruning holds the same `.backup.lock` as creation. It renames each expired point
 
 Each recovery point owns ordinary copies of its media. Removing expired A cannot remove B's copy of the same hash. Once all points requiring hash X expire, no backup copy remains; the live collector can already have deleted its own X after transcription. C, created after retirement and requiring no X, does not retain it. This guarantees eventual cleanup without coupling the live collector to a scan of historical databases.
 
+Automatic expiry recognizes the standard `notebook-YYYYMMDD-HHMMSS` directories. Manually named recovery points, completed restore directories and rollback directories remain operator-managed. An interrupted restore can leave a `.restore-*` staging directory; remove it only after confirming no restore process is active. The backup pruner does not collect restore staging.
+
 ## Restore procedure
 
 Choose a completed point and stop scheduled backups so pruning cannot race the restore. The following example stages the selected database and media together without touching live data; substitute the chosen recovery-point name:
@@ -170,3 +172,15 @@ Retention coverage uses A and B referencing image X and C created after live ret
 | `TestRestoreRejectsIncompleteOrCorruptRecoveryPoint`      | Missing/corrupt media, database or manifest; unsupported manifest version, missing inventory hash and traversal-like hash.                                                             |
 | `TestBackupPruningPreservesOtherRecoveryPoints`           | Runs actual pruning over A/B/C, restores B after A is removed, then expires B while C remains complete.                                                                                |
 | `TestLegacyBackupAuditReportsMediaLostAfterRetirement`    | Reports the missing media in an older database-only snapshot after normal live retirement.                                                                                             |
+
+Additional failure/concurrency tests cover:
+
+- `TestBackupCopyWriteFailureDoesNotPublish`: a subprocess ignores `SIGXFSZ` and limits its file size to 1 MiB. The small SQLite snapshot succeeds, then copying a larger synthetic media object returns a real `EFBIG` write error. No final recovery point or temporary directory remains; the prior point still verifies after pruning, and an unrestricted retry succeeds.
+- `TestBackupFinalizationPreservesCollidingDestination`: an already complete, verified stage fails publication because the destination exists. The destination database, manifest and media remain byte-identical, and the staged copy remains valid.
+- `TestBackupPruningWaitsForActiveCreationAndRecoversAfterExit`, `TestBackupProcessLockPreventsLiveMediaRetirement` and `TestBackupCreationWaitsForMediaRetentionLock`: separate OS processes exercise both file locks, collector deferral, blocked creation/pruning and lock release after process exit.
+- `TestBackupPruningCleansAbandonedStagesAndRetainsUnrelatedFiles`: abandoned backup/pruning stages are removed, legacy files respect their age policy, and unrelated files remain.
+- `TestBackupCLIRoundTripAndReadOnlyAudit` and the other CLI tests: the actual command dispatcher backs up committed live WAL data, verifies and restores without auth, reports missing historical hashes, preserves source bytes and avoids source sidecars or unrelated live initialization. Operator paths include spaces, `#` and `?`.
+- `TestBackupCLIKilledCreatorReleasesLocks`: a real creator is killed while holding the backup lock and waiting for the media-retirement lock, before its snapshot. No point is published and the next backup succeeds. Abandoned-stage cleanup is exercised separately; this is not a claim that the kill was injected midway through copying.
+- `TestDeploymentBackupScriptCreatesAndPrunes` and `TestDeploymentBackupScriptFailureDoesNotPrune`: the production shell script runs against isolated temporary data, creates/verifies recovery points, prunes expired points and skips pruning after a failed backup.
+
+The tests inject a genuine media-write failure and a publication collision, not a full disk or an `fsync` failure. Those other I/O failures follow checked error returns before publication; files and directories are synced before success. Power-loss durability still depends on the filesystem and storage device honoring those synchronization requests. The new copy/finalization tests pass both ordinary and race-enabled targeted Go runs. Full repository validation is recorded with the change's delivery results.
