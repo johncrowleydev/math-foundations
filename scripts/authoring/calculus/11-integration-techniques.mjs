@@ -342,7 +342,7 @@ These are choices guided by structure, not a requirement to memorize a separate 
           'Using a trig identity to simplify a radical.',
           r`For $a>0$, $x=a\sin\theta$ simplifies $\sqrt{a^2-x^2}$ on $-\pi/2\le\theta\le\pi/2$.`,
           r`With $x=2\sin\theta$, $\sqrt{4-x^2}=2\cos\theta$ on the chosen angle interval.`,
-          'In general $\sqrt{z^2}=|z|$, so angle restrictions matter.',
+          r`In general $\sqrt{z^2}=|z|$, so angle restrictions matter.`,
         ),
       ],
       body: r`Some radicals resemble a trigonometric identity. For $\sqrt{a^2-x^2}$ with $a>0$, let $x=a\sin\theta$. Then $a^2-x^2=a^2(1-\sin^2\theta)=a^2\cos^2\theta$. Choosing $-\pi/2\le\theta\le\pi/2$ makes cosine nonnegative, so the radical becomes $a\cos\theta$. Without that angle restriction the correct expression would be $a|\cos\theta|$.

@@ -274,7 +274,7 @@ The cancellation argument requires a symmetric interval. The integral of the odd
           'construct',
         ),
         o(
-          r`Prove $|\int_a^b f|\le\int_a^b|f|$ using positive and negative region areas.`,
+          r`For an integrable function on $[a,b]$ with $a<b$, prove $|\int_a^b f|\le\int_a^b|f|$ using positive and negative region areas.`,
           r`Let those nonnegative areas be $P,N$. Then $|P-N|\le P+N$, since subtracting a nonnegative contribution cannot exceed adding both. This is exactly the stated inequality.`,
           'prove',
         ),
@@ -372,7 +372,7 @@ For $1\le f\le4$ on $[2,5]$, the integral must lie between $3$ and $12$. An answ
           'construct',
         ),
         o(
-          r`A continuous nonnegative function on $[a,b]$ has integral zero. Explain why it must be zero everywhere.`,
+          r`A continuous nonnegative function on $[a,b]$, where $a<b$, has integral zero. Explain why it must be zero everywhere.`,
           r`If it were positive at one point, continuity would keep it above some positive height on a neighborhood of positive width (one-sided at an endpoint). That rectangle would give positive integral, contradicting zero.`,
           'prove',
         ),

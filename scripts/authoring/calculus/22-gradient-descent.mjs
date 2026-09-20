@@ -1,5 +1,6 @@
 import {
   raw,
+  source,
   section,
   q,
   exact,
@@ -117,14 +118,7 @@ The Hessian is $A^TA$, which is positive semidefinite because $h^TA^TAh=\|Ah\|^2
   ),
 ];
 sections[4].sources.push(convex);
-sections[3].sources.push({
-  id: 'os3-4-7',
-  source: 'openstax-calculus-3',
-  locator: '§4.7 Maxima/Minima Problems',
-  url: 'https://openstax.org/books/calculus-volume-3/pages/4-7-maxima-minima-problems',
-  supports:
-    'Stationary-point and saddle classification using the second derivative test, supporting the original nonconvex example.',
-});
+sections[3].sources.push(source('4.7', 'Maxima/Minima Problems'));
 sections[0].questions = [
   q(
     'At point (3,1), gradient (4,8), and step size 1/4, give the next point.',

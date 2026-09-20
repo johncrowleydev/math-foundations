@@ -1,0 +1,262 @@
+title: Exponential and Logarithmic Differentiation
+sections:
+  - title: The natural exponential and logarithm
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Differentiate $e^{4x}$ for real $x$.
+        answerLines: 5
+        answer: The answer is $4\cdot e^{4\cdot x}$. The exponential remains and is multiplied by inner derivative $4$.
+      - id: 2
+        type: freeform
+        prompt: Differentiate $e^{-x^2}$ for real $x$.
+        answerLines: 5
+        answer: The answer is $-2\cdot x\cdot e^{-x^{2}}$. The exponent has derivative $-2x$, so the chain rule gives $-2xe^{-x^2}$.
+      - id: 3
+        type: freeform
+        prompt: Differentiate $\ln x$ on $x>0$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{x}$. The natural logarithm derivative is $1/x$ on its positive domain.
+      - id: 4
+        type: freeform
+        prompt: Differentiate $\ln(3x+2)$ where $3x+2>0$.
+        answerLines: 5
+        answer: The answer is $\frac{3}{3\cdot x+2}$. Divide the inner derivative $3$ by its value $3x+2$.
+      - id: 5
+        type: freeform
+        prompt: Differentiate $\ln(x^2+5)$ for real $x$.
+        answerLines: 5
+        answer: The answer is $\frac{2\cdot x}{x^{2}+5}$. The positive argument has derivative $2x$, giving the ratio $2x/(x^2+5)$.
+      - id: 6
+        type: freeform
+        prompt: Differentiate $\ln|x-2|$ on either interval avoiding $x=2$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{x-2}$. The absolute-log rule gives inner derivative $1$ over inner value $x-2$.
+      - id: 7
+        type: freeform
+        prompt: Find the derivative of $e^{2x}$ at $x=0$.
+        answerLines: 5
+        answer: The answer is $2$. The derivative is $2e^{2x}$; at zero it equals $2$.
+      - id: 8
+        type: freeform
+        prompt: Find the derivative of $\ln x$ at $x=4$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{4}$. The derivative value is $1/4$.
+      - id: 9
+        type: freeform
+        prompt: Derive $(\ln x)'$ from the inverse relationship with $e^x$.
+        answerLines: 5
+        answer: If $y=\ln x$, then $e^y=x$. The chain rule yields $e^y y'=1$, so $y'=1/e^y=1/x$, with $x>0$.
+      - id: 10
+        type: freeform
+        prompt: Explain why $\ln|x|$ and $\ln x$ have the same derivative on positive inputs but different real domains.
+        answerLines: 5
+        answer: For $x>0$, the functions are identical. The absolute value also supplies a positive logarithm argument when $x<0$, where its derivative is still $1/x$. Neither is defined at zero, and $\ln x$ has no negative real inputs.
+  - title: Other bases and valid logarithm identities
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Differentiate $2^x$ for real $x$.
+        answerLines: 5
+        answer: The answer is $2^{x}\cdot \ln\left(2\right)$. A fixed base contributes the factor $\ln2$.
+      - id: 12
+        type: freeform
+        prompt: Differentiate $5^{2x}$ for real $x$.
+        answerLines: 5
+        answer: The answer is $2\cdot 5^{2\cdot x}\cdot \ln\left(5\right)$. Multiply by both $\ln5$ and inner derivative $2$.
+      - id: 13
+        type: freeform
+        prompt: Differentiate $(1/2)^x$ for real $x$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{2}^{x}\cdot \ln\left(\frac{1}{2}\right)$. The derivative is the original exponential times $\ln(1/2)$, a negative number.
+      - id: 14
+        type: freeform
+        prompt: Differentiate $\log_3 x$ on $x>0$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{x\cdot \ln\left(3\right)}$. Change base to $\ln x/\ln3$ and differentiate.
+      - id: 15
+        type: freeform
+        prompt: Differentiate $\log_2(x+1)$ on $x>-1$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{\left(x+1\right)\cdot \ln\left(2\right)}$. The inner derivative is $1$ and the base contributes denominator $\ln2$.
+      - id: 16
+        type: freeform
+        prompt: Differentiate $\ln(x^2)$ for $x\ne0$.
+        answerLines: 5
+        answer: The answer is $\frac{2}{x}$. The chain rule gives $2x/x^2=2/x$ on the original domain.
+      - id: 17
+        type: freeform
+        prompt: Differentiate $\ln(x^3)$ on $x>0$.
+        answerLines: 5
+        answer: The answer is $\frac{3}{x}$. The positive-domain identity $\ln(x^3)=3\ln x$ yields $3/x$.
+      - id: 18
+        type: freeform
+        prompt: For positive $u,v$, is $\ln(u+v)=\ln u+\ln v$ an identity?
+        answerLines: 5
+        answer: The answer is false. The right side equals $\ln(uv)$, not $\ln(u+v)$. For $u=v=1$, the claimed equality would be $\ln2=0$.
+      - id: 19
+        type: freeform
+        prompt: Derive the formula for $(a^x)'$ from the natural exponential rule.
+        answerLines: 5
+        answer: Write $a^x=e^{x\ln a}$ for fixed $a>0$. The chain rule gives $e^{x\ln a}\ln a=a^x\ln a$.
+      - id: 20
+        type: freeform
+        prompt: Explain why $2\ln|x|$ is a more faithful simplification of $\ln(x^2)$ than $2\ln x$.
+        answerLines: 5
+        answer: The original argument $x^2$ is positive for every nonzero real $x$. The absolute-value form preserves both positive and negative inputs, whereas $2\ln x$ is only real for positive $x$.
+  - title: Logarithmic differentiation
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Differentiate $x^x$ on $x>0$.
+        answerLines: 5
+        answer: The answer is $x^{x}\cdot \left(\ln\left(x\right)+1\right)$. From $\ln y=x\ln x$, obtain $y'/y=\ln x+1$, then multiply by $x^x$.
+      - id: 22
+        type: freeform
+        prompt: Differentiate $x^{2x}$ on $x>0$.
+        answerLines: 5
+        answer: The answer is $x^{2\cdot x}\cdot \left(2\cdot \ln\left(x\right)+2\right)$. The logarithm is $2x\ln x$, whose derivative is $2\ln x+2$.
+      - id: 23
+        type: freeform
+        prompt: Differentiate $(x+1)^x$ on $x>-1$.
+        answerLines: 5
+        answer: The answer is $\left(x+1\right)^{x}\cdot \left(\ln\left(x+1\right)+\frac{x}{x+1}\right)$. Differentiate $x\ln(x+1)$ and multiply by the original power.
+      - id: 24
+        type: freeform
+        prompt: Differentiate $x^{\sin x}$ on $x>0$, using radians.
+        answerLines: 5
+        answer: The answer is $x^{\sin\left(x\right)}\cdot \left(\cos\left(x\right)\cdot \ln\left(x\right)+\frac{\sin\left(x\right)}{x}\right)$. The logarithm is $\sin x\ln x$, giving two product-rule terms.
+      - id: 25
+        type: freeform
+        prompt: Differentiate $(\sin x)^x$ on $0<x<\pi$.
+        answerLines: 5
+        answer: The answer is $\sin\left(x\right)^{x}\cdot \left(\ln\left(\sin\left(x\right)\right)+\frac{x\cdot \cos\left(x\right)}{\sin\left(x\right)}\right)$. The sine is positive on this interval, so differentiate $x\ln(\sin x)$ and multiply by $(\sin x)^x$.
+      - id: 26
+        type: freeform
+        prompt: For $f(x)=x^x$ on $x>0$, find $f'(1)$.
+        answerLines: 5
+        answer: The answer is $1$. $1^1(\ln1+1)=1$.
+      - id: 27
+        type: freeform
+        prompt: For positive $x$, let $y=x^3(x+1)^2$. Find the logarithmic derivative $y'/y$.
+        answerLines: 5
+        answer: The answer is $\frac{3}{x}+\frac{2}{x+1}$. $\ln y=3\ln x+2\ln(x+1)$, so $y'/y=3/x+2/(x+1)$.
+      - id: 28
+        type: freeform
+        prompt: For positive $x$, let $y=x^2/(x+3)$. Find $y'/y$.
+        answerLines: 5
+        answer: The answer is $\frac{2}{x}-\frac{1}{x+3}$. The logarithm is $2\ln x-\ln(x+3)$, whose derivative is the stated difference.
+      - id: 29
+        type: freeform
+        prompt: Derive the variable-power derivative for $y=u(x)^{v(x)}$ assuming $u(x)>0$.
+        answerLines: 5
+        answer: "Take logarithms: $\\ln y=v\\ln u$. Differentiate to get $y'/y=v'\\ln u+vu'/u$. Multiply by $u^v$ to recover $y'$."
+      - id: 30
+        type: freeform
+        prompt: Explain why using $\ln y$ to differentiate $y=x^2$ excludes a point where $y$ itself is differentiable.
+        answerLines: 5
+        answer: The logarithm is undefined at $x=0$, and the intermediate ratio $y'/y$ divides by zero there. But differentiating the original polynomial gives $y'=2x$, including derivative zero at $0$.
+  - title: Growth, decay, and relative rates
+    questions:
+      - id: 31
+        type: freeform
+        prompt: For $P(t)=100e^{0.04t}$, find the constant relative rate per time unit.
+        answerLines: 5
+        answer: The answer is $\frac{1}{25}$. $P'/P=0.04=1/25$.
+      - id: 32
+        type: freeform
+        prompt: For $P(t)=100e^{0.04t}$, find $P'(0)$.
+        answerLines: 5
+        answer: The answer is $4$. $P'=4e^{0.04t}$, so the initial absolute rate is $4$.
+      - id: 33
+        type: freeform
+        prompt: For $Q(t)=60e^{-t/3}$, find $Q'(0)$.
+        answerLines: 5
+        answer: The answer is $-20$. The derivative is $-20e^{-t/3}$, giving $-20$ initially.
+      - id: 34
+        type: freeform
+        prompt: For $Q(t)=60e^{-t/3}$, find its relative rate.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{3}$. Dividing $Q'$ by $Q$ cancels the current amount and leaves $-1/3$.
+      - id: 35
+        type: freeform
+        prompt: A positive quantity is $50$ units and increasing at $2$ units per hour. Find its instantaneous relative rate per hour.
+        answerLines: 5
+        answer: The answer is $\frac{1}{25}$. $P'/P=2/50=1/25$.
+      - id: 36
+        type: freeform
+        prompt: A positive amount is $120$ units with relative rate $-0.05$ per minute. Find its absolute rate in units per minute.
+        answerLines: 5
+        answer: 'The answer is $-6$. Multiply relative rate by current amount: $-0.05(120)=-6$.'
+      - id: 37
+        type: freeform
+        prompt: For $P(t)=(t+1)^2$ on $t>-1$, find $P'(t)/P(t)$.
+        answerLines: 5
+        answer: The answer is $\frac{2}{t+1}$. $P'=2(t+1)$, so the ratio simplifies to $2/(t+1)$.
+      - id: 38
+        type: freeform
+        prompt: For $Q(t)=Q_0e^{-(\ln2)t/6}$ with $Q_0>0$, give the half-life in time units.
+        answerLines: 5
+        answer: The answer is $6$. At $t=6$, the multiplier is $e^{-\ln2}=1/2$.
+      - id: 39
+        type: freeform
+        prompt: Derive the doubling time for $P(t)=P_0e^{kt}$ with $P_0,k>0$.
+        answerLines: 5
+        answer: Solve $P_0e^{kT}=2P_0$. Division by $P_0$ gives $e^{kT}=2$; taking logs yields $T=\ln2/k$.
+      - id: 40
+        type: freeform
+        prompt: Explain why a constant instantaneous relative growth rate $0.1$ per year does not mean exactly ten percent growth over a full year.
+        answerLines: 5
+        answer: The exponential multiplier over one year is $e^{0.1}$, so the exact fractional increase is $e^{0.1}-1$, not $0.1$. The latter is the first-order approximation as the time increment shrinks.
+  - title: Mixed formulas and model sensitivities
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Differentiate $xe^x$ for real $x$.
+        answerLines: 5
+        answer: The answer is $e^{x}\cdot \left(1+x\right)$. The product rule gives $e^x+xe^x=e^x(1+x)$.
+      - id: 42
+        type: freeform
+        prompt: Differentiate $x^2e^{-x}$ for real $x$.
+        answerLines: 5
+        answer: The answer is $e^{-x}\cdot \left(2\cdot x-x^{2}\right)$. The two terms are $2xe^{-x}$ and $-x^2e^{-x}$.
+      - id: 43
+        type: freeform
+        prompt: Differentiate $\ln x/x$ on $x>0$.
+        answerLines: 5
+        answer: The answer is $\frac{1-\ln\left(x\right)}{x^{2}}$. The quotient numerator is $1-\ln x$.
+      - id: 44
+        type: freeform
+        prompt: Differentiate $e^x\sin x$ with radian arguments.
+        answerLines: 5
+        answer: "The answer is $e^{x}\\cdot \\left(\\sin\\left(x\\right)+\\cos\\left(x\\right)\\right)$. Both factors change: $e^x\\sin x+e^x\\cos x$."
+      - id: 45
+        type: freeform
+        prompt: Differentiate $\ln(1+e^x)$ for real $x$.
+        answerLines: 5
+        answer: The answer is $\frac{e^{x}}{1+e^{x}}$. The logarithm argument is positive, and its derivative is $e^x$.
+      - id: 46
+        type: freeform
+        prompt: Differentiate $1/(1+e^{-x})$ for real $x$.
+        answerLines: 5
+        answer: The answer is $\frac{e^{-x}}{\left(1+e^{-x}\right)^{2}}$. The reciprocal's negative sign cancels the derivative sign from $e^{-x}$.
+      - id: 47
+        type: freeform
+        prompt: Find the derivative of $1/(1+e^{-x})$ at zero.
+        answerLines: 5
+        answer: The answer is $\frac{1}{4}$. The formula gives $1/(1+1)^2=1/4$.
+      - id: 48
+        type: freeform
+        prompt: For $L(p)=-\ln p$, find $L'(1/4)$.
+        answerLines: 5
+        answer: The answer is $-4$. $L'(p)=-1/p$, giving $-4$.
+      - id: 49
+        type: freeform
+        prompt: Show algebraically that $\sigma'(x)=\sigma(x)(1-\sigma(x))$ for $\sigma(x)=1/(1+e^{-x})$.
+        answerLines: 5
+        answer: Differentiate to obtain $e^{-x}/(1+e^{-x})^2$. Also $1-\sigma=e^{-x}/(1+e^{-x})$, so multiplication by $\sigma$ yields the identical expression.
+      - id: 50
+        type: freeform
+        prompt: Explain how factoring the derivative of $x^2e^{-x}$ helps analyze the model.
+        answerLines: 5
+        answer: The derivative is $xe^{-x}(2-x)$. Since the exponential is positive, only $x$ and $2-x$ determine its sign. On positive inputs the rate is positive before $2$, zero at $2$, and negative after $2$.

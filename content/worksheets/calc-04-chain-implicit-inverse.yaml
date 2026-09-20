@@ -1,0 +1,262 @@
+title: Chain Rule, Implicit and Inverse Differentiation
+sections:
+  - title: Composition and local rate multiplication
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Differentiate $(2x-3)^5$.
+        answerLines: 5
+        answer: The answer is $10\cdot \left(2\cdot x-3\right)^{4}$. The outer derivative is $5(2x-3)^4$; multiply by inner derivative $2$.
+      - id: 2
+        type: freeform
+        prompt: Differentiate $(x^2+1)^3$.
+        answerLines: 5
+        answer: The answer is $6\cdot x\cdot \left(x^{2}+1\right)^{2}$. Multiply $3(x^2+1)^2$ by $2x$.
+      - id: 3
+        type: freeform
+        prompt: Differentiate $1/(4x+1)$ for $4x+1\ne0$.
+        answerLines: 5
+        answer: The answer is $\frac{-4}{\left(4\cdot x+1\right)^{2}}$. Write the outer power as $u^{-1}$ and multiply its derivative by $4$.
+      - id: 4
+        type: freeform
+        prompt: Differentiate $\sqrt{5x+2}$ on $5x+2>0$.
+        answerLines: 5
+        answer: The answer is $\frac{5}{2\cdot \sqrt{5\cdot x+2}}$. The square-root derivative at the inner value is $1/(2\sqrt{5x+2})$; multiply by $5$.
+      - id: 5
+        type: freeform
+        prompt: Differentiate $\sin(3x)$ with radian arguments.
+        answerLines: 5
+        answer: The answer is $3\cdot \cos\left(3\cdot x\right)$. Differentiate the outer sine and multiply by the inner rate $3$.
+      - id: 6
+        type: freeform
+        prompt: Differentiate $\cos(x^2)$ with radian arguments.
+        answerLines: 5
+        answer: The answer is $-2\cdot x\cdot \sin\left(x^{2}\right)$. The outer derivative is negative sine and the inner derivative is $2x$.
+      - id: 7
+        type: freeform
+        prompt: Given $g(1)=4,g'(1)=2,f'(4)=-3$, calculate $(f\circ g)'(1)$.
+        answerLines: 5
+        answer: 'The answer is $-6$. Evaluate the outer rate at $g(1)=4$ and multiply: $(-3)(2)=-6$.'
+      - id: 8
+        type: freeform
+        prompt: A sensor changes at $2$ volts per degree, and a display changes at $7$ units per volt. Find the composed sensitivity in units per degree.
+        answerLines: 5
+        answer: "The answer is $14$. Multiply the linked rates: $7\\cdot2=14$."
+      - id: 9
+        type: freeform
+        prompt: Explain why differentiating $(x^2+1)^4$ as $4(x^2+1)^3$ misses a dependency.
+        answerLines: 5
+        answer: That expression is the rate with respect to the inner value $u=x^2+1$. Since $u$ itself changes at rate $2x$ with respect to $x$, the required derivative is $8x(x^2+1)^3$.
+      - id: 10
+        type: freeform
+        prompt: State exactly which table entries are needed to compute $(f\circ g)'(a)$.
+        answerLines: 5
+        answer: We need $g(a)$ to locate the outer input, $g'(a)$ for the inner rate, and $f'(g(a))$ for the outer rate. The result is their rate product.
+  - title: Nested rules and angle conversion
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Differentiate $\sin((x+1)^2)$ with radian arguments.
+        answerLines: 5
+        answer: The answer is $2\cdot \left(x+1\right)\cdot \cos\left(\left(x+1\right)^{2}\right)$. The square contributes $2(x+1)$ after the outer sine becomes cosine.
+      - id: 12
+        type: freeform
+        prompt: Differentiate $(\sin x)^3$ with radian input.
+        answerLines: 5
+        answer: The answer is $3\cdot \sin\left(x\right)^{2}\cdot \cos\left(x\right)$. Apply the power derivative to the sine value, then multiply by $\cos x$.
+      - id: 13
+        type: freeform
+        prompt: Differentiate $\cos(\sin x)$ with radian arguments.
+        answerLines: 5
+        answer: The answer is $-\sin\left(\sin\left(x\right)\right)\cdot \cos\left(x\right)$. The outer cosine contributes $-\sin(\sin x)$ and the inner sine contributes $\cos x$.
+      - id: 14
+        type: freeform
+        prompt: Differentiate $x\sin(2x)$ with radian arguments.
+        answerLines: 5
+        answer: The answer is $\sin\left(2\cdot x\right)+2\cdot x\cdot \cos\left(2\cdot x\right)$. The product rule gives two terms; the second includes inner derivative $2$.
+      - id: 15
+        type: freeform
+        prompt: Differentiate $x^2(x^3+1)^4$.
+        answerLines: 5
+        answer: The answer is $2\cdot x\cdot \left(x^{3}+1\right)^{4}+12\cdot x^{4}\cdot \left(x^{3}+1\right)^{3}$. The first product term differentiates $x^2$; the second multiplies $x^2$ by $4(x^3+1)^3(3x^2)$.
+      - id: 16
+        type: freeform
+        prompt: Differentiate $\tan(5x)$ where $\cos(5x)\ne0$, with radian arguments.
+        answerLines: 5
+        answer: The answer is $5\cdot \sec\left(5\cdot x\right)^{2}$. The outer derivative is squared secant and the inner derivative is $5$.
+      - id: 17
+        type: freeform
+        prompt: For real $x$, differentiate $S(x)=\sin(\pi x/180)$, where $x$ counts degrees.
+        answerLines: 5
+        answer: The answer is $\frac{\pi\cdot \cos\left(\frac{\pi\cdot x}{180}\right)}{180}$. The radian conversion is the inner function, whose derivative is $\pi/180$.
+      - id: 18
+        type: freeform
+        prompt: For $f(x)=(x^2+1)^3$, find $f'(0)$.
+        answerLines: 5
+        answer: The answer is $0$. $f'(x)=6x(x^2+1)^2$, so the inner rate vanishes at zero.
+      - id: 19
+        type: freeform
+        prompt: Write a dependency chain and derive the derivative of $\sqrt{1+\sin x}$ wherever $1+\sin x>0$.
+        answerLines: 5
+        answer: Use $x\mapsto\sin x\mapsto1+\sin x\mapsto\sqrt{1+\sin x}$. The rates multiply to $\cos x/[2\sqrt{1+\sin x}]$. Positivity ensures the outer root derivative is defined.
+      - id: 20
+        type: freeform
+        prompt: Explain why the product rule is needed for $x\cos(x^2)$ even though a composition is visible.
+        answerLines: 5
+        answer: The full output is a product of $x$ and $\cos(x^2)$. Differentiating the first factor gives $\cos(x^2)$; differentiating the second gives $-2x\sin(x^2)$, multiplied by $x$. Thus the answer is $\cos(x^2)-2x^2\sin(x^2)$.
+  - title: Implicit differentiation of curves
+    questions:
+      - id: 21
+        type: freeform
+        prompt: For $x^2+y^2=10$, find $dy/dx$ where $y\ne0$.
+        answerLines: 5
+        answer: The answer is $\frac{-x}{y}$. Differentiate to get $2x+2yy'=0$, then divide by $2y$.
+      - id: 22
+        type: freeform
+        prompt: Find the slope of $x^2+y^2=10$ at $(1,3)$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{3}$. The point is on the circle and $y'=-x/y=-1/3$.
+      - id: 23
+        type: freeform
+        prompt: For $xy=6$, find $dy/dx$ where $x\ne0$.
+        answerLines: 5
+        answer: The answer is $\frac{-y}{x}$. The product rule gives $y+xy'=0$, so $y'=-y/x$.
+      - id: 24
+        type: freeform
+        prompt: Find the slope of $xy=6$ at $(2,3)$.
+        answerLines: 5
+        answer: The answer is $\frac{-3}{2}$. $y'=-y/x=-3/2$.
+      - id: 25
+        type: freeform
+        prompt: For $x^2+xy+y^2=7$, find $dy/dx$ where $x+2y\ne0$.
+        answerLines: 5
+        answer: The answer is $\frac{-\left(2\cdot x+y\right)}{x+2\cdot y}$. Collecting derivative terms gives $(x+2y)y'=-(2x+y)$.
+      - id: 26
+        type: freeform
+        prompt: Find the slope of $x^2+xy+y^2=7$ at $(1,2)$.
+        answerLines: 5
+        answer: The answer is $\frac{-4}{5}$. The formula gives $-(2+2)/(1+4)=-4/5$.
+      - id: 27
+        type: freeform
+        prompt: For $y^3+x=2$, find $dy/dx$ where $y\ne0$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{3\cdot y^{2}}$. $3y^2y'+1=0$, hence $y'=-1/(3y^2)$.
+      - id: 28
+        type: freeform
+        prompt: For the curve $y^3+x=2$, find its slope at $(1,1)$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{3}$. The point satisfies the curve equation, and $y'=-1/(3y^2)=-1/3$.
+      - id: 29
+        type: freeform
+        prompt: Find the tangent line to $x^2+y^2=25$ at $(-3,4)$.
+        answerLines: 5
+        answer: The point lies on the circle. Differentiation gives $y'=-x/y=3/4$, so the tangent is $y-4=(3/4)(x+3)$.
+      - id: 30
+        type: freeform
+        prompt: Why does a $0/0$ result in an implicit slope formula require more investigation? Use $xy=0$ at the origin.
+        answerLines: 5
+        answer: The formula $y'=-y/x$ cannot be evaluated at the origin. The original relation is the union of the axes, with horizontal and vertical branches. A single finite derivative of the whole relation is not determined by that quotient.
+  - title: Rates of inverse functions
+    questions:
+      - id: 31
+        type: freeform
+        prompt: An invertible differentiable function has $f(3)=8$ and $f'(3)=5$. Find $(f^{-1})'(8)$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{5}$. The matching original input is $3$, so invert its slope $5$.
+      - id: 32
+        type: freeform
+        prompt: An invertible differentiable function has $f(-1)=4$ and $f'(-1)=-2$. Find $(f^{-1})'(4)$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{2}$. The inverse slope is the reciprocal of $-2$.
+      - id: 33
+        type: freeform
+        prompt: For $f(x)=x^3+x$, find $(f^{-1})'(2)$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{4}$. $f(1)=2$ and $f'(1)=3+1=4$, so the inverse derivative is $1/4$.
+      - id: 34
+        type: freeform
+        prompt: For $f(x)=x^3+2x$, find $(f^{-1})'(3)$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{5}$. $f(1)=3$ and $f'(1)=5$, so the inverse slope is $1/5$.
+      - id: 35
+        type: freeform
+        prompt: Restrict $f(x)=x^2$ to $x\ge0$. Find the derivative of its inverse at $9$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{6}$. The original input is $3$; $f'(3)=6$, so the inverse rate is $1/6$.
+      - id: 36
+        type: freeform
+        prompt: Restrict $f(x)=x^2$ to $x\le0$. Find the derivative of its inverse at $9$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{6}$. This branch has original input $-3$ and slope $-6$, giving inverse slope $-1/6$.
+      - id: 37
+        type: freeform
+        prompt: Is invertibility alone sufficient for a finite derivative of the inverse at every point?
+        answerLines: 5
+        answer: The answer is false. The inverse of $x^3$ is $x^{1/3}$, whose derivative at zero is not finite.
+      - id: 38
+        type: freeform
+        prompt: Does $f^{-1}(x)$ mean $1/f(x)$?
+        answerLines: 5
+        answer: The answer is false. It denotes the inverse mapping, which reverses inputs and outputs; reciprocal values are a different operation.
+      - id: 39
+        type: freeform
+        prompt: Derive the inverse derivative formula from $f(f^{-1}(x))=x$ and identify the condition needed for division.
+        answerLines: 5
+        answer: The chain rule gives $f'(f^{-1}(x))(f^{-1})'(x)=1$. Divide by the original derivative, which must be nonzero, to obtain $(f^{-1})'(x)=1/f'(f^{-1}(x))$.
+      - id: 40
+        type: freeform
+        prompt: Explain why restricting $x^2$ to positive or negative inputs changes the sign of the inverse derivative.
+        answerLines: 5
+        answer: The two inverses are $\sqrt{x}$ and $-\sqrt{x}$. Their corresponding original inputs have slopes $2\sqrt{x}$ and $-2\sqrt{x}$, so reciprocating gives opposite signs.
+  - title: Inverse trigonometric derivatives
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Differentiate $\arcsin x$ on $|x|<1$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{\sqrt{1-x^{2}}}$. Use the principal inverse-sine derivative; $1-x^2>0$.
+      - id: 42
+        type: freeform
+        prompt: Differentiate $\arccos x$ on $|x|<1$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{\sqrt{1-x^{2}}}$. Arccosine contributes the negative reciprocal square root.
+      - id: 43
+        type: freeform
+        prompt: Differentiate $\arctan x$ on the real line.
+        answerLines: 5
+        answer: The answer is $\frac{1}{1+x^{2}}$. The inverse tangent derivative is $1/(1+x^2)$.
+      - id: 44
+        type: freeform
+        prompt: Differentiate $\arcsin(3x)$ on $|x|<1/3$.
+        answerLines: 5
+        answer: The answer is $\frac{3}{\sqrt{1-9\cdot x^{2}}}$. The inner derivative is $3$; the principal denominator is $\sqrt{1-(3x)^2}$.
+      - id: 45
+        type: freeform
+        prompt: Differentiate $\arccos(x^2)$ on $|x|<1$.
+        answerLines: 5
+        answer: The answer is $\frac{-2\cdot x}{\sqrt{1-x^{4}}}$. Multiply the outer negative reciprocal root by $2x$.
+      - id: 46
+        type: freeform
+        prompt: Differentiate $\arctan(2x)$ for real $x$.
+        answerLines: 5
+        answer: The answer is $\frac{2}{1+4\cdot x^{2}}$. The chain rule gives $2/[1+(2x)^2]$.
+      - id: 47
+        type: freeform
+        prompt: Differentiate $\arctan(x^2)$ for real $x$.
+        answerLines: 5
+        answer: The answer is $\frac{2\cdot x}{1+x^{4}}$. The outer derivative is $1/[1+(x^2)^2]$ and the inner derivative is $2x$.
+      - id: 48
+        type: freeform
+        prompt: Find the derivative of $\arctan x$ at $x=1$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{2}$. $1/(1+1^2)=1/2$.
+      - id: 49
+        type: freeform
+        prompt: Derive the derivative of $\arcsin x$ and explain why the square root has the positive sign.
+        answerLines: 5
+        answer: Let $y=\arcsin x$. Then $\sin y=x$ and $\cos y\,y'=1$. On $-\pi/2<y<\pi/2$, cosine is positive, so $\cos y=\sqrt{1-x^2}$. Hence $y'=1/\sqrt{1-x^2}$ for $|x|<1$.
+      - id: 50
+        type: freeform
+        prompt: Explain why differentiability fails at an endpoint of the arcsine domain even though the function is defined there.
+        answerLines: 5
+        answer: The corresponding sine derivative is zero at $\pm\pi/2$. The inverse slope grows without bound as $x$ approaches $\pm1$ from inside the domain, so the inverse has no finite endpoint derivative.

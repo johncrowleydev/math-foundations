@@ -239,7 +239,7 @@ In computing examples, the same distinction separates average resource rate from
           'Subtract the inner disk area from the outer disk area.',
           r`A washer with radii $R\ge r\ge0$ has area $\pi(R^2-r^2)$.`,
           r`Radii $3$ and $1$ give area $8\pi$.`,
-          'The area is not $\pi(R-r)^2$.',
+          r`The area is not $\pi(R-r)^2$.`,
         ),
       ],
       body: r`A thin slab with cross-sectional area $A(x)$ and thickness $\Delta x$ has approximate volume $A(x)\Delta x$. Summing parallel slices and taking a limit gives $V=\int_a^b A(x)\,dx$. Area times length produces cubic units. The cross-section need not be circular: square, triangular, and varying irregular sections all fit the same principle when their areas are known.

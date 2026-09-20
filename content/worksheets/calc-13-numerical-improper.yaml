@@ -1,0 +1,262 @@
+title: Numerical and Improper Integration
+sections:
+  - title: Midpoint and trapezoidal approximations
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find $M_2$ for $x^2$ on $[0,2]$.
+        answerLines: 5
+        answer: Width $1$ times midpoint heights $1/4$ and $9/4$ gives $5/2$. The answer is $\frac{5}{2}$.
+      - id: 2
+        type: freeform
+        prompt: Find $T_2$ for $x^2$ on $[0,2]$.
+        answerLines: 5
+        answer: $T_2=(1/2)[0+2(1)+4]=3$. The answer is $3$.
+      - id: 3
+        type: freeform
+        prompt: Find $T_2$ for $f(x)=3x+1$ on $[0,2]$.
+        answerLines: 5
+        answer: The endpoint heights are $1,4,7$, so $(1/2)(1+8+7)=8$. The line interpolation is exact. The answer is $8$.
+      - id: 4
+        type: freeform
+        prompt: Find $M_2$ for $f(x)=x^2+2$ on $[0,2]$.
+        answerLines: 5
+        answer: The two midpoint heights are $9/4$ and $17/4$, totaling $26/4=13/2$. The answer is $\frac{13}{2}$.
+      - id: 5
+        type: freeform
+        prompt: At $x=0,1,3$, function values are $2,4,5$. Find the sum of the two unequal-width trapezoids.
+        answerLines: 5
+        answer: The areas are $1(2+4)/2=3$ and $2(4+5)/2=9$, totaling $12$.
+      - id: 6
+        type: freeform
+        prompt: Find $T_1$ for $1/x$ on $[1,2]$.
+        answerLines: 5
+        answer: Width $1$ times average endpoint height $(1+1/2)/2$ is $3/4$. The answer is $\frac{3}{4}$.
+      - id: 7
+        type: freeform
+        prompt: Find $M_1$ for $1/x$ on $[1,2]$.
+        answerLines: 5
+        answer: The midpoint is $3/2$, whose height is $2/3$, and the width is $1$. The answer is $\frac{2}{3}$.
+      - id: 8
+        type: freeform
+        prompt: For a concave-up function, is the trapezoidal rule an underestimate or overestimate?
+        answerLines: 5
+        answer: Each chord lies above the curve, so its signed area is at least the curve's integral. The answer is **overestimate**.
+      - id: 9
+        type: freeform
+        prompt: Derive why interior function values have coefficient two in the composite trapezoidal formula.
+        answerLines: 5
+        answer: Each interval contributes $h[f(x_{i-1})+f(x_i)]/2$. Adding intervals includes every interior endpoint once as a right endpoint and once as a left endpoint, while the outer endpoints occur only once.
+      - id: 10
+        type: freeform
+        prompt: Why does a decreasing function not automatically make the trapezoidal estimate too small?
+        answerLines: 5
+        answer: Trapezoidal error direction depends on concavity, not whether heights increase. The decreasing concave-up function $1/x$ on $[1,2]$ has chords above the curve and therefore an overestimate.
+  - title: Simpson’s rule and error control
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Find $S_2$ for $x^2$ on $[0,2]$.
+        answerLines: 5
+        answer: With $h=1$, $S_2=(1/3)[0+4(1)+4]=8/3$. The answer is $\frac{8}{3}$.
+      - id: 12
+        type: freeform
+        prompt: Find $S_2$ for $x^3$ on $[0,2]$.
+        answerLines: 5
+        answer: $S_2=(1/3)[0+4(1)+8]=4$, exactly matching the cubic integral. The answer is $4$.
+      - id: 13
+        type: freeform
+        prompt: Find $S_2$ for $x^4$ on $[0,2]$.
+        answerLines: 5
+        answer: $S_2=(1/3)[0+4(1)+16]=20/3$. The answer is $\frac{20}{3}$.
+      - id: 14
+        type: freeform
+        prompt: The true integral is $10$ and an estimate is $9.8$. Find absolute error.
+        answerLines: 5
+        answer: $|10-9.8|=0.2=1/5$. The answer is $\frac{1}{5}$.
+      - id: 15
+        type: freeform
+        prompt: The true integral is $10$ and an estimate is $9.8$. Find relative error as a number, not a percentage.
+        answerLines: 5
+        answer: Absolute error $0.2$ divided by $10$ is $0.02=1/50$. The answer is $\frac{1}{50}$.
+      - id: 16
+        type: freeform
+        prompt: With $K_2=2$, interval length $1$, and $n=10$, find the trapezoidal error bound.
+        answerLines: 5
+        answer: $2/(12\cdot10^2)=1/600$. The answer is $\frac{1}{600}$.
+      - id: 17
+        type: freeform
+        prompt: With $K_2=6$, interval length $2$, and $n=4$, find the midpoint error bound.
+        answerLines: 5
+        answer: $6(2^3)/(24\cdot4^2)=48/384=1/8$. The answer is $\frac{1}{8}$.
+      - id: 18
+        type: freeform
+        prompt: For $x^2$ on $[0,1]$, what minimum integer $n$ guarantees trapezoidal error at most $1/600$ using $K_2=2$?
+        answerLines: 5
+        answer: Solve $1/(6n^2)\le1/600$, so $n^2\ge100$ and $n\ge10$. The answer is $10$.
+      - id: 19
+        type: freeform
+        prompt: Why does the Simpson error bound establish exactness for every cubic polynomial?
+        answerLines: 5
+        answer: A cubic has fourth derivative identically zero. Thus one may choose $K_4=0$, forcing the absolute error bound to be zero under the rule's equal-width, even-interval assumptions.
+      - id: 20
+        type: freeform
+        prompt: Explain why agreement between two successive numerical estimates is not by itself a rigorous error bound.
+        answerLines: 5
+        answer: Both sample patterns may miss the same narrow feature or share a bias. Small difference between estimates measures their mutual agreement, not necessarily proximity to the exact integral. A proved bound needs additional smoothness information or another justified argument.
+  - title: Infinite intervals as limits
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Evaluate $\int_1^\infty x^{-2}\,dx$.
+        answerLines: 5
+        answer: The truncation is $1-1/b$, whose limit is $1$.
+      - id: 22
+        type: freeform
+        prompt: Evaluate $\int_2^\infty x^{-3}\,dx$.
+        answerLines: 5
+        answer: $[-1/(2x^2)]_2^b=1/8-1/(2b^2)\to1/8$. The answer is $\frac{1}{8}$.
+      - id: 23
+        type: freeform
+        prompt: Evaluate $\int_0^\infty e^{-2x}\,dx$.
+        answerLines: 5
+        answer: The finite result is $(1-e^{-2b})/2$, tending to $1/2$. The answer is $\frac{1}{2}$.
+      - id: 24
+        type: freeform
+        prompt: Evaluate $\int_1^\infty x^{-3/2}\,dx$.
+        answerLines: 5
+        answer: $[-2x^{-1/2}]_1^b=2-2/\sqrt b\to2$. The answer is $2$.
+      - id: 25
+        type: freeform
+        prompt: Evaluate $\int_{-\infty}^0 e^x\,dx$.
+        answerLines: 5
+        answer: $\int_a^0e^xdx=1-e^a\to1$ as $a\to-\infty$. The answer is $1$.
+      - id: 26
+        type: freeform
+        prompt: Does $\int_1^\infty1/x\,dx$ converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: Its truncation equals $\ln b$, which grows without bound. The answer is **diverges**.
+      - id: 27
+        type: freeform
+        prompt: Does $\int_1^\infty x^{-1/2}\,dx$ converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: This has $p=1/2\le1$; the truncation $2\sqrt b-2$ is unbounded. The answer is **diverges**.
+      - id: 28
+        type: freeform
+        prompt: For $\int_1^\infty x^{-p}dx$ with $p=4$, find the value.
+        answerLines: 5
+        answer: Since $p>1$, the value is $1/(p-1)=1/3$. The answer is $\frac{1}{3}$.
+      - id: 29
+        type: freeform
+        prompt: Explain why an infinite interval can have finite area under a positive graph.
+        answerLines: 5
+        answer: The interval lengths keep accumulating, but heights can decrease fast enough that the total contributions approach a finite limit. For $x^{-2}$ on $[1,b]$, the total is $1-1/b<1$, approaching $1$ despite unbounded interval length.
+      - id: 30
+        type: freeform
+        prompt: Does $\int_0^\infty\sin x\,dx$ converge? Justify with truncations.
+        answerLines: 5
+        answer: $\int_0^b\sin xdx=1-\cos b$. Along $b=2k\pi$ this is $0$, while along $b=(2k+1)\pi$ it is $2$. There is no limit, so the improper integral diverges.
+  - title: Endpoint and interior singularities
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Evaluate $\int_0^1x^{-1/2}\,dx$.
+        answerLines: 5
+        answer: The truncated value $2-2\sqrt\varepsilon$ tends to $2$.
+      - id: 32
+        type: freeform
+        prompt: Evaluate $\int_0^8x^{-2/3}\,dx$.
+        answerLines: 5
+        answer: $[3x^{1/3}]_\varepsilon^8=6-3\varepsilon^{1/3}\to6$. The answer is $6$.
+      - id: 33
+        type: freeform
+        prompt: Evaluate $\int_0^1x^{-1/3}\,dx$.
+        answerLines: 5
+        answer: $[(3/2)x^{2/3}]_\varepsilon^1\to3/2$. The answer is $\frac{3}{2}$.
+      - id: 34
+        type: freeform
+        prompt: Evaluate $\int_0^1(1-x)^{-1/2}\,dx$.
+        answerLines: 5
+        answer: Use the upper-endpoint limit of $-2\sqrt{1-x}$, giving $2$.
+      - id: 35
+        type: freeform
+        prompt: Does $\int_0^1x^{-2}\,dx$ converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: The truncation equals $1/\varepsilon-1$, which is unbounded. The answer is **diverges**.
+      - id: 36
+        type: freeform
+        prompt: Does the ordinary improper integral $\int_{-1}^1 1/x\,dx$ converge or diverge? Enter converges or diverges.
+        answerLines: 5
+        answer: The two one-sided integrals diverge separately; symmetric cancellation does not define the ordinary improper integral. The answer is **diverges**.
+      - id: 37
+        type: freeform
+        prompt: Evaluate $\int_{-1}^1|x|^{-1/2}\,dx$ as an improper integral.
+        answerLines: 5
+        answer: Each one-sided contribution equals $2$, and both converge, so the sum is $4$.
+      - id: 38
+        type: freeform
+        prompt: For $p=3/4$, evaluate $\int_0^1x^{-p}\,dx$.
+        answerLines: 5
+        answer: Since $p<1$, the value is $1/(1-p)=4$. The answer is $4$.
+      - id: 39
+        type: freeform
+        prompt: Explain why a pole at an interior point requires two limits rather than one symmetric limit.
+        answerLines: 5
+        answer: The two regions are independent accumulations. A common shrinking cutoff imposes a cancellation relationship that can conceal divergence on either side. Ordinary improper integration requires each side to have its own finite limit.
+      - id: 40
+        type: freeform
+        prompt: Compare $(x^2-1)/(x-1)$ near $x=1$ with $1/(x-1)^2$. Which defect is removable, and why?
+        answerLines: 5
+        answer: The first agrees with $x+1$ away from the point and has finite limit $2$, so its hole can be filled continuously. The second grows without bound near $1$, so no assigned point value makes it continuous or removes the singular behavior.
+  - title: Comparison and controlled truncation
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Using $0\le1/(1+x^2)\le1/x^2$ for $x\ge1$, classify $\int_1^\infty1/(1+x^2)\,dx$ as converges or diverges.
+        answerLines: 5
+        answer: The upper comparison integral $\int_1^\infty x^{-2}dx$ converges. The answer is **converges**.
+      - id: 42
+        type: freeform
+        prompt: For $x\ge1$, $(x+1)/x^2\ge1/x$. Classify its tail integral as converges or diverges.
+        answerLines: 5
+        answer: It is at least the nonnegative harmonic integrand, whose tail integral diverges. The answer is **diverges**.
+      - id: 43
+        type: freeform
+        prompt: Find the omitted tail $\int_{10}^\infty x^{-2}dx$.
+        answerLines: 5
+        answer: The tail formula is $1/B$ with $B=10$. The answer is $\frac{1}{10}$.
+      - id: 44
+        type: freeform
+        prompt: Find the minimum real cutoff $B\ge1$ making $\int_B^\infty x^{-2}dx\le1/100$.
+        answerLines: 5
+        answer: Require $1/B\le1/100$, so $B\ge100$. The answer is $100$.
+      - id: 45
+        type: freeform
+        prompt: Find $\int_3^\infty e^{-x}dx$.
+        answerLines: 5
+        answer: The tail equals $e^{-B}$ at $B=3$. The answer is $e^{-3}$.
+      - id: 46
+        type: freeform
+        prompt: A retained-interval quadrature error is at most $1/1000$ and an omitted-tail error at most $1/500$. Give a total absolute error bound.
+        answerLines: 5
+        answer: The triangle inequality gives $1/1000+2/1000=3/1000$. The answer is $\frac{3}{1000}$.
+      - id: 47
+        type: freeform
+        prompt: Using the stated comparison bound $\int_B^\infty e^{-x^2}dx\le e^{-B^2}/2$, give the bound for $B=2$.
+        answerLines: 5
+        answer: Substitute $B=2$ to obtain $e^{-4}/2$. The answer is $\frac{e^{-4}}{2}$.
+      - id: 48
+        type: freeform
+        prompt: If $0\le f\le g$ and $\int g$ diverges, does this alone determine convergence of $\int f$? Enter yes or no.
+        answerLines: 5
+        answer: A smaller nonnegative function can have either behavior; being below a divergent upper benchmark gives no conclusion. The answer is **no**.
+      - id: 49
+        type: freeform
+        prompt: Prove convergence of $\int_1^\infty e^{-x^2}dx$ using $e^{-x^2}\le xe^{-x^2}$.
+        answerLines: 5
+        answer: For $x\ge1$ the comparison is valid and both functions are nonnegative. Substitution gives $\int_1^\infty xe^{-x^2}dx=e^{-1}/2$, a finite number. Comparison therefore proves convergence of the smaller integral.
+      - id: 50
+        type: freeform
+        prompt: Why should a numerical approximation to an improper integral include both a cutoff argument and a finite-interval error argument?
+        answerLines: 5
+        answer: 'They control different missing information: the cutoff argument bounds the omitted domain, while quadrature analysis bounds approximation within the retained domain. Either contribution can dominate, so controlling only one cannot guarantee the total error.'

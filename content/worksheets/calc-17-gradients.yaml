@@ -1,0 +1,410 @@
+title: Linearization, Gradients, and Directional Derivatives
+sections:
+  - title: One approximation for every small displacement
+    questions:
+      - id: 1
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(1,2)$, give the coefficient of the x displacement in its linearization.
+        answerLines: 5
+        answer: |-
+          The answer is $4$.
+
+          The x partial is 2x+y, giving 4.
+      - id: 2
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(1,2)$, give the coefficient of the y displacement.
+        answerLines: 5
+        answer: |-
+          The answer is $1$.
+
+          The y partial is x, giving 1.
+      - id: 3
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(-1,1)$, give the coefficient of the x displacement in its linearization.
+        answerLines: 5
+        answer: |-
+          The answer is $-1$.
+
+          The x partial is 2x+y, giving -1.
+      - id: 4
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(-1,1)$, give the coefficient of the y displacement.
+        answerLines: 5
+        answer: |-
+          The answer is $-1$.
+
+          The y partial is x, giving -1.
+      - id: 5
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(0,2)$, give the coefficient of the x displacement in its linearization.
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          The x partial is 2x+y, giving 2.
+      - id: 6
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(0,2)$, give the coefficient of the y displacement.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          The y partial is x, giving 0.
+      - id: 7
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(2,-1)$, give the coefficient of the x displacement in its linearization.
+        answerLines: 5
+        answer: |-
+          The answer is $3$.
+
+          The x partial is 2x+y, giving 3.
+      - id: 8
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(2,-1)$, give the coefficient of the y displacement.
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          The y partial is x, giving 2.
+      - id: 9
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(-2,-1)$, give the coefficient of the x displacement in its linearization.
+        answerLines: 5
+        answer: |-
+          The answer is $-5$.
+
+          The x partial is 2x+y, giving -5.
+      - id: 10
+        type: freeform
+        prompt: For $f=x^2+xy$ at $(-2,-1)$, give the coefficient of the y displacement.
+        answerLines: 5
+        answer: |-
+          The answer is $-2$.
+
+          The y partial is x, giving -2.
+      - id: 11
+        type: freeform
+        prompt: Explain why coordinate partials alone do not validate a tangent plane.
+        answerLines: 5
+        answer: They test only coordinate approaches; differentiability requires a remainder bound for every displacement.
+  - title: Tangent planes and differentials
+    questions:
+      - id: 12
+        type: freeform
+        prompt: Give the linearization of $f=x^2+xy$ at $(1,2)$ as a formula in x and y.
+        answerLines: 5
+        answer: |-
+          The answer is $3+4\cdot \left(x-1\right)+1\cdot \left(y-2\right)$.
+
+          Use the base value 3 and slopes 4, 1.
+      - id: 13
+        type: freeform
+        prompt: For the area $A=lw$ at $(l,w)=(3,4)$, find dA when $dl=1/100$ and $dw=2/100$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{10}{100}$.
+
+          The differential is $4dl+3dw=10/100$.
+      - id: 14
+        type: freeform
+        prompt: Give the linearization of $f=x^2+xy$ at $(-1,1)$ as a formula in x and y.
+        answerLines: 5
+        answer: |-
+          The answer is $0+-1\cdot \left(x--1\right)+-1\cdot \left(y-1\right)$.
+
+          Use the base value 0 and slopes -1, -1.
+      - id: 15
+        type: freeform
+        prompt: For the area $A=lw$ at $(l,w)=(3,4)$, find dA when $dl=-1/100$ and $dw=1/100$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-1}{100}$.
+
+          The differential is $4dl+3dw=-1/100$.
+      - id: 16
+        type: freeform
+        prompt: Give the linearization of $f=x^2+xy$ at $(0,2)$ as a formula in x and y.
+        answerLines: 5
+        answer: |-
+          The answer is $0+2\cdot \left(x-0\right)+0\cdot \left(y-2\right)$.
+
+          Use the base value 0 and slopes 2, 0.
+      - id: 17
+        type: freeform
+        prompt: For the area $A=lw$ at $(l,w)=(3,4)$, find dA when $dl=0/100$ and $dw=2/100$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{6}{100}$.
+
+          The differential is $4dl+3dw=6/100$.
+      - id: 18
+        type: freeform
+        prompt: Give the linearization of $f=x^2+xy$ at $(2,-1)$ as a formula in x and y.
+        answerLines: 5
+        answer: |-
+          The answer is $2+3\cdot \left(x-2\right)+2\cdot \left(y--1\right)$.
+
+          Use the base value 2 and slopes 3, 2.
+      - id: 19
+        type: freeform
+        prompt: For the area $A=lw$ at $(l,w)=(3,4)$, find dA when $dl=2/100$ and $dw=-1/100$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{5}{100}$.
+
+          The differential is $4dl+3dw=5/100$.
+      - id: 20
+        type: freeform
+        prompt: Give the linearization of $f=x^2+xy$ at $(-2,-1)$ as a formula in x and y.
+        answerLines: 5
+        answer: |-
+          The answer is $6+-5\cdot \left(x--2\right)+-2\cdot \left(y--1\right)$.
+
+          Use the base value 6 and slopes -5, -2.
+      - id: 21
+        type: freeform
+        prompt: For the area $A=lw$ at $(l,w)=(3,4)$, find dA when $dl=-2/100$ and $dw=-1/100$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-11}{100}$.
+
+          The differential is $4dl+3dw=-11/100$.
+  - title: The gradient collects partial derivatives
+    questions:
+      - id: 22
+        type: freeform
+        prompt: Find the gradient of $f=x^2+3y^2$ at $(1,2)$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 12\right)$.
+
+          Evaluate (2x,6y), obtaining (2,12).
+      - id: 23
+        type: freeform
+        prompt: Find the gradient of $F=xy+z^2$ at $(1,2,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 1,\ 4\right)$.
+
+          The gradient (y,x,2z) becomes (2,1,4).
+      - id: 24
+        type: freeform
+        prompt: Find the gradient of $f=x^2+3y^2$ at $(-1,1)$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-2,\ 6\right)$.
+
+          Evaluate (2x,6y), obtaining (-2,6).
+      - id: 25
+        type: freeform
+        prompt: Find the gradient of $F=xy+z^2$ at $(-1,1,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ -1,\ 4\right)$.
+
+          The gradient (y,x,2z) becomes (1,-1,4).
+      - id: 26
+        type: freeform
+        prompt: Find the gradient of $f=x^2+3y^2$ at $(0,2)$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 12\right)$.
+
+          Evaluate (2x,6y), obtaining (0,12).
+      - id: 27
+        type: freeform
+        prompt: Find the gradient of $F=xy+z^2$ at $(0,2,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(2,\ 0,\ 4\right)$.
+
+          The gradient (y,x,2z) becomes (2,0,4).
+      - id: 28
+        type: freeform
+        prompt: Find the gradient of $f=x^2+3y^2$ at $(2,-1)$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(4,\ -6\right)$.
+
+          Evaluate (2x,6y), obtaining (4,-6).
+      - id: 29
+        type: freeform
+        prompt: Find the gradient of $F=xy+z^2$ at $(2,-1,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-1,\ 2,\ 4\right)$.
+
+          The gradient (y,x,2z) becomes (-1,2,4).
+      - id: 30
+        type: freeform
+        prompt: Find the gradient of $f=x^2+3y^2$ at $(-2,-1)$ as an ordered pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-4,\ -6\right)$.
+
+          Evaluate (2x,6y), obtaining (-4,-6).
+      - id: 31
+        type: freeform
+        prompt: Find the gradient of $F=xy+z^2$ at $(-2,-1,2)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-1,\ -2,\ 4\right)$.
+
+          The gradient (y,x,2z) becomes (-1,-2,4).
+  - title: Directional derivatives and unit directions
+    questions:
+      - id: 32
+        type: freeform
+        prompt: A gradient is $(1,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{11}{5}$.
+
+          Take the dot product: $11/5$.
+      - id: 33
+        type: freeform
+        prompt: A gradient is $(1,2)$. Find the greatest rate of increase over unit directions.
+        answerLines: 5
+        answer: |-
+          The answer is $\sqrt{5}$.
+
+          Cauchy–Schwarz gives the gradient length $\sqrt{5}$.
+      - id: 34
+        type: freeform
+        prompt: A gradient is $(-1,1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{5}$.
+
+          Take the dot product: $1/5$.
+      - id: 35
+        type: freeform
+        prompt: A gradient is $(-1,1)$. Find the greatest rate of increase over unit directions.
+        answerLines: 5
+        answer: |-
+          The answer is $\sqrt{2}$.
+
+          Cauchy–Schwarz gives the gradient length $\sqrt{2}$.
+      - id: 36
+        type: freeform
+        prompt: A gradient is $(0,2)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{8}{5}$.
+
+          Take the dot product: $8/5$.
+      - id: 37
+        type: freeform
+        prompt: A gradient is $(0,2)$. Find the greatest rate of increase over unit directions.
+        answerLines: 5
+        answer: |-
+          The answer is $\sqrt{4}$.
+
+          Cauchy–Schwarz gives the gradient length $\sqrt{4}$.
+      - id: 38
+        type: freeform
+        prompt: A gradient is $(2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{2}{5}$.
+
+          Take the dot product: $2/5$.
+      - id: 39
+        type: freeform
+        prompt: A gradient is $(2,-1)$. Find the greatest rate of increase over unit directions.
+        answerLines: 5
+        answer: |-
+          The answer is $\sqrt{5}$.
+
+          Cauchy–Schwarz gives the gradient length $\sqrt{5}$.
+      - id: 40
+        type: freeform
+        prompt: A gradient is $(-2,-1)$. Find the directional derivative for the unit direction $(3/5,4/5)$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-10}{5}$.
+
+          Take the dot product: $-10/5$.
+      - id: 41
+        type: freeform
+        prompt: A gradient is $(-2,-1)$. Find the greatest rate of increase over unit directions.
+        answerLines: 5
+        answer: |-
+          The answer is $\sqrt{5}$.
+
+          Cauchy–Schwarz gives the gradient length $\sqrt{5}$.
+      - id: 42
+        type: freeform
+        prompt: Can the zero vector be used as a unit direction?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No: its norm is zero, so normalization is undefined.
+  - title: Gradients and contour geometry
+    questions:
+      - id: 43
+        type: freeform
+        prompt: At $(1,2)$, find a vector perpendicular to the gradient of $x^2+y^2$ by giving $(-y,x)$ at that point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-2,\ 1\right)$.
+
+          This vector is (-2,1); its dot product with (2x,2y) is zero.
+      - id: 44
+        type: freeform
+        prompt: At $(1,2)$, write the tangent-line equation for the level curve of $x^2+y^2$ and justify it.
+        answerLines: 5
+        answer: The point is nonzero. The normal is (2,4), so the equation is $2(x-(1))+4(y-(2))=0$. Its direction is perpendicular to the gradient.
+      - id: 45
+        type: freeform
+        prompt: At $(-1,1)$, find a vector perpendicular to the gradient of $x^2+y^2$ by giving $(-y,x)$ at that point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-1,\ -1\right)$.
+
+          This vector is (-1,-1); its dot product with (2x,2y) is zero.
+      - id: 46
+        type: freeform
+        prompt: At $(-1,1)$, write the tangent-line equation for the level curve of $x^2+y^2$ and justify it.
+        answerLines: 5
+        answer: The point is nonzero. The normal is (-2,2), so the equation is $-2(x-(-1))+2(y-(1))=0$. Its direction is perpendicular to the gradient.
+      - id: 47
+        type: freeform
+        prompt: At $(0,2)$, find a vector perpendicular to the gradient of $x^2+y^2$ by giving $(-y,x)$ at that point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(-2,\ 0\right)$.
+
+          This vector is (-2,0); its dot product with (2x,2y) is zero.
+      - id: 48
+        type: freeform
+        prompt: At $(0,2)$, write the tangent-line equation for the level curve of $x^2+y^2$ and justify it.
+        answerLines: 5
+        answer: The point is nonzero. The normal is (0,4), so the equation is $0(x-(0))+4(y-(2))=0$. Its direction is perpendicular to the gradient.
+      - id: 49
+        type: freeform
+        prompt: At $(2,-1)$, find a vector perpendicular to the gradient of $x^2+y^2$ by giving $(-y,x)$ at that point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ 2\right)$.
+
+          This vector is (1,2); its dot product with (2x,2y) is zero.
+      - id: 50
+        type: freeform
+        prompt: At $(2,-1)$, write the tangent-line equation for the level curve of $x^2+y^2$ and justify it.
+        answerLines: 5
+        answer: The point is nonzero. The normal is (4,-2), so the equation is $4(x-(2))+-2(y-(-1))=0$. Its direction is perpendicular to the gradient.
+      - id: 51
+        type: freeform
+        prompt: At $(-2,-1)$, find a vector perpendicular to the gradient of $x^2+y^2$ by giving $(-y,x)$ at that point.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(1,\ -2\right)$.
+
+          This vector is (1,-2); its dot product with (2x,2y) is zero.
+      - id: 52
+        type: freeform
+        prompt: At $(-2,-1)$, write the tangent-line equation for the level curve of $x^2+y^2$ and justify it.
+        answerLines: 5
+        answer: The point is nonzero. The normal is (-4,-2), so the equation is $-4(x-(-2))+-2(y-(-1))=0$. Its direction is perpendicular to the gradient.

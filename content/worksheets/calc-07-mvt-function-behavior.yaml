@@ -1,0 +1,262 @@
+title: Mean Value Theorem and Function Behavior
+sections:
+  - title: Rolle’s theorem and the mean value theorem
+    questions:
+      - id: 1
+        type: freeform
+        prompt: For $f(x)=x^2$ on $[2,6]$, find the MVT point $c$.
+        answerLines: 5
+        answer: The answer is $4$. The average slope is $(36-4)/4=8$; $2c=8$ gives $c=4$.
+      - id: 2
+        type: freeform
+        prompt: For $f(x)=x^2-6x$ on $[0,6]$, find the Rolle point.
+        answerLines: 5
+        answer: The answer is $3$. Endpoints both give zero, and $f'(c)=2c-6=0$ yields $c=3$.
+      - id: 3
+        type: freeform
+        prompt: For $f(x)=\sqrt{x}$ on $[0,16]$, find the MVT point.
+        answerLines: 5
+        answer: The answer is $4$. The secant slope is $4/16=1/4$. Solve $1/(2\sqrt{c})=1/4$, obtaining $c=4$.
+      - id: 4
+        type: freeform
+        prompt: For $f(x)=1/x$ on $[1,4]$, find the MVT point.
+        answerLines: 5
+        answer: The answer is $2$. The average slope is $(1/4-1)/3=-1/4$. Solve $-1/c^2=-1/4$ in $(1,4)$, giving $c=2$.
+      - id: 5
+        type: freeform
+        prompt: Does Rolle’s theorem apply to $|x|$ on $[-1,1]$?
+        answerLines: 5
+        answer: The answer is false. It fails differentiability at the interior point zero.
+      - id: 6
+        type: freeform
+        prompt: Does the MVT require derivatives at the two interval endpoints?
+        answerLines: 5
+        answer: The answer is false. It requires continuity on the closed interval and differentiability only in its open interior.
+      - id: 7
+        type: freeform
+        prompt: Does the MVT guarantee a unique point $c$?
+        answerLines: 5
+        answer: The answer is false. For a linear function every interior point has the secant slope, so uniqueness does not follow.
+      - id: 8
+        type: freeform
+        prompt: A differentiable position function increases by $150$ meters in $30$ seconds and is continuous on the closed interval. What velocity must occur at an interior time?
+        answerLines: 5
+        answer: The answer is $5$. The MVT guarantees the average velocity $150/30=5$ meters per second.
+      - id: 9
+        type: freeform
+        prompt: Prove the MVT from Rolle’s theorem by subtracting a secant line.
+        answerLines: 5
+        answer: Set $m=(f(b)-f(a))/(b-a)$ and $g(x)=f(x)-[f(a)+m(x-a)]$. Then $g(a)=g(b)=0$, and $g$ inherits the required continuity and differentiability. Rolle gives $g'(c)=0$, so $f'(c)=m$.
+      - id: 10
+        type: freeform
+        prompt: Explain exactly why $1/x$ on $[-1,1]$ cannot be used with the MVT despite having endpoint values.
+        answerLines: 5
+        answer: It is undefined at the interior point zero, so it is not continuous on the closed interval. The theorem requires the entire interval, not just defined endpoints.
+  - title: Monotonicity, uniqueness, and change bounds
+    questions:
+      - id: 11
+        type: freeform
+        prompt: If $|f'|\le3$ between inputs $2$ and $2.2$, give the guaranteed upper bound $3|2.2-2|$ on output change magnitude.
+        answerLines: 5
+        answer: The answer is $\frac{3}{5}$. The bound is $3(0.2)=0.6$.
+      - id: 12
+        type: freeform
+        prompt: If $2\le f'\le5$ on $[1,4]$, give the lower bound on $f(4)-f(1)$.
+        answerLines: 5
+        answer: 'The answer is $6$. Multiply the minimum slope by interval width: $2(3)=6$.'
+      - id: 13
+        type: freeform
+        prompt: If $2\le f'\le5$ on $[1,4]$, give the upper bound on $f(4)-f(1)$.
+        answerLines: 5
+        answer: The answer is $15$. The maximum slope bound gives $5(3)=15$.
+      - id: 14
+        type: freeform
+        prompt: If $f'=0$ throughout $[0,5]$ and $f(2)=9$, find $f(4)$.
+        answerLines: 5
+        answer: The answer is $9$. The function is constant on the interval, so all values are $9$.
+      - id: 15
+        type: freeform
+        prompt: Classify $f(x)=x^3+2x$ on the real line as strictly increasing or strictly decreasing.
+        answerLines: 5
+        answer: The answer is **strictly increasing**. Its derivative $3x^2+2$ is positive everywhere.
+      - id: 16
+        type: freeform
+        prompt: Classify $f(x)=-x^3-x$ on the real line as strictly increasing or strictly decreasing.
+        answerLines: 5
+        answer: The answer is **strictly decreasing**. Its derivative $-3x^2-1$ is negative everywhere.
+      - id: 17
+        type: freeform
+        prompt: Can a strictly increasing function have two distinct zeros?
+        answerLines: 5
+        answer: The answer is false. Two ordered inputs must have ordered distinct outputs, so both cannot produce zero.
+      - id: 18
+        type: freeform
+        prompt: Using the derivative bound $|\cos x|\le1$, give a guaranteed sine-output error bound for a radian input error of at most $0.03$.
+        answerLines: 5
+        answer: The answer is $\frac{3}{100}$. MVT gives output error at most $1(0.03)=0.03$.
+      - id: 19
+        type: freeform
+        prompt: Prove that equal derivatives on an interval imply the two functions differ by a constant.
+        answerLines: 5
+        answer: For $h=f-g$, equality of derivatives gives $h'=0$. Apply MVT between any two inputs to obtain $h(v)-h(u)=h'(c)(v-u)=0$. Thus $h$ is constant.
+      - id: 20
+        type: freeform
+        prompt: Prove $x^3+x-3=0$ has exactly one real solution.
+        answerLines: 5
+        answer: The polynomial is continuous and has values $-1$ at $1$ and $7$ at $2$, so IVT gives a root. Its derivative $3x^2+1>0$ makes it strictly increasing on the real line, so it has at most one root.
+  - title: Reading derivative signs and concavity
+    questions:
+      - id: 21
+        type: freeform
+        prompt: For $f(x)=x^3-3x$, is $f$ increasing or decreasing on $(0,1)$?
+        answerLines: 5
+        answer: The answer is **decreasing**. $f'=3x^2-3<0$ on that interval.
+      - id: 22
+        type: freeform
+        prompt: For $f(x)=x^3-3x$, is $f$ increasing or decreasing on $(2,3)$?
+        answerLines: 5
+        answer: The answer is **increasing**. $f'=3x^2-3>0$ there.
+      - id: 23
+        type: freeform
+        prompt: For $f(x)=x^3-3x$, state the concavity on $(-2,-1)$.
+        answerLines: 5
+        answer: The answer is **concave down**. $f''=6x<0$ on negative inputs.
+      - id: 24
+        type: freeform
+        prompt: For $f(x)=x^3-3x$, state the concavity on $(1,2)$.
+        answerLines: 5
+        answer: The answer is **concave up**. $f''=6x>0$ on positive inputs.
+      - id: 25
+        type: freeform
+        prompt: Find the inflection input of $f(x)=x^3-6x^2$.
+        answerLines: 5
+        answer: The answer is $2$. $f''=6x-12$ changes sign at $x=2$, and the polynomial is continuous there.
+      - id: 26
+        type: freeform
+        prompt: Does $x^4$ have an inflection point at zero?
+        answerLines: 5
+        answer: The answer is false. Its second derivative is $12x^2$, positive on both sides, so concavity does not change.
+      - id: 27
+        type: freeform
+        prompt: A function has $f'<0$ and $f''>0$ throughout an interval. State its concavity.
+        answerLines: 5
+        answer: The answer is **concave up**. The positive second derivative means slopes increase, even though the function itself decreases.
+      - id: 28
+        type: freeform
+        prompt: A function has $f'>0$ and $f''<0$ throughout an interval. Is it increasing or decreasing?
+        answerLines: 5
+        answer: The answer is **increasing**. The first derivative controls rise/fall; positive slope means increasing.
+      - id: 29
+        type: freeform
+        prompt: Construct a function that decreases while remaining concave up, and verify both properties.
+        answerLines: 5
+        answer: Take $f(x)=e^{-x}$. Its derivative $-e^{-x}<0$ shows decrease, and its second derivative $e^{-x}>0$ shows concavity up.
+      - id: 30
+        type: freeform
+        prompt: Explain why solving $f''(x)=0$ is insufficient to list all inflection points.
+        answerLines: 5
+        answer: A zero may have no concavity change, as for $x^4$ at zero. Also a concavity change can occur where the second derivative is undefined. Candidates must be checked against actual concavity and the original function's continuity.
+  - title: L’Hôpital’s rule for vanishing quotients
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(e^{2x}-1)/x$ using L’Hôpital’s rule.
+        answerLines: 5
+        answer: The answer is $2$. The form is $0/0$; the derivative quotient is $2e^{2x}\to2$.
+      - id: 32
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}\sin(5x)/x$ using radians.
+        answerLines: 5
+        answer: The answer is $5$. The form is $0/0$; differentiating gives $5\cos(5x)\to5$.
+      - id: 33
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}\ln(1+3x)/x$.
+        answerLines: 5
+        answer: The answer is $3$. The logarithm is defined nearby; the derivative quotient is $3/(1+3x)\to3$.
+      - id: 34
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(1-\cos(2x))/x^2$.
+        answerLines: 5
+        answer: The answer is $2$. After one differentiation the quotient is $\sin(2x)/x$, still $0/0$; a second gives $2\cos(2x)\to2$.
+      - id: 35
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(e^x-1-x)/x^2$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{2}$. The first derivative quotient is $(e^x-1)/(2x)$; the second is $e^x/2\to1/2$.
+      - id: 36
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(\tan x-x)/x^3$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{3}$. One derivative gives $\tan^2x/(3x^2)$. Since $\tan x/x\to1$, the limit is $1/3$.
+      - id: 37
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0}(2+x)/(4+x)$ by the appropriate method.
+        answerLines: 5
+        answer: The answer is $\frac{1}{2}$. The denominator tends to $4\ne0$, so substitution gives $2/4=1/2$; L’Hôpital is not applicable.
+      - id: 38
+        type: freeform
+        prompt: Does the rule instruct you to differentiate the entire quotient with the quotient rule?
+        answerLines: 5
+        answer: The answer is false. It compares the original limit with the quotient of separate derivatives, $f'/g'$.
+      - id: 39
+        type: freeform
+        prompt: Justify every application of L’Hôpital when evaluating $(1-\cos x)/x^2$ at zero.
+        answerLines: 5
+        answer: Initially both numerator and denominator vanish, their derivatives exist near zero, and $2x\ne0$ away from zero. The derivative quotient $\sin x/(2x)$ is again $0/0$ with nonzero denominator derivative $2$. Its derivative quotient is $\cos x/2\to1/2$, establishing both successive limits.
+      - id: 40
+        type: freeform
+        prompt: Give a numerical counterexample to applying L’Hôpital to an arbitrary quotient with a finite nonzero denominator limit.
+        answerLines: 5
+        answer: As $x\to0$, $(1+x)/(3+x)\to1/3$ by substitution. The quotient of derivatives is $1$, showing the indiscriminate procedure fails.
+  - title: Infinite quotients and transformed indeterminate forms
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}\ln x/x$.
+        answerLines: 5
+        answer: The answer is $0$. The infinite-over-infinite form passes to derivative quotient $1/x\to0$.
+      - id: 42
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}x/e^x$.
+        answerLines: 5
+        answer: The answer is $0$. L’Hôpital gives $1/e^x\to0$.
+      - id: 43
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}x^2/e^x$.
+        answerLines: 5
+        answer: The answer is $0$. Two applications give $2/e^x\to0$.
+      - id: 44
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0^+}x\ln x$.
+        answerLines: 5
+        answer: The answer is $0$. Rewrite as $\ln x/(1/x)$; the derivative quotient is $-x\to0$.
+      - id: 45
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0^+}x^x$.
+        answerLines: 5
+        answer: The answer is $1$. The logarithm is $x\ln x\to0$, so the original positive quantity tends to $e^0=1$.
+      - id: 46
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}(\sqrt{x^2+2x}-x)$.
+        answerLines: 5
+        answer: The answer is $1$. Rationalizing gives $2/(\sqrt{1+2/x}+1)\to1$.
+      - id: 47
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}\ln(x^2)/\ln x$.
+        answerLines: 5
+        answer: The answer is $2$. For positive $x$, the numerator equals $2\ln x$, so the quotient is $2$ eventually.
+      - id: 48
+        type: freeform
+        prompt: Evaluate $\lim_{x\to0^+}x^{2x}$.
+        answerLines: 5
+        answer: The answer is $1$. Its logarithm is $2x\ln x\to0$, hence the power tends to $1$.
+      - id: 49
+        type: freeform
+        prompt: Evaluate $\lim_{x\to\infty}(1+1/x)^x$ by taking logarithms and justify the transformation back.
+        answerLines: 5
+        answer: Let $y=(1+1/x)^x>0$. Then $\ln y=\ln(1+1/x)/(1/x)$, a $0/0$ form. Differentiating numerator and denominator gives $1/(1+1/x)\to1$. Continuity of the exponential gives $y\to e$.
+      - id: 50
+        type: freeform
+        prompt: Explain why the phrase “exponential beats polynomial” is not a substitute for checking the signs and target direction of a limit.
+        answerLines: 5
+        answer: For positive $x\to\infty$, $e^x$ dominates fixed powers. But $e^x\to0$ as $x\to-\infty$, so the same quotient may behave completely differently. The precise functions and direction of approach determine which comparison applies.

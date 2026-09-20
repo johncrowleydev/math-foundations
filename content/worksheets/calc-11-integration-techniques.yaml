@@ -1,0 +1,262 @@
+title: Basic Integration Techniques
+sections:
+  - title: Integration by parts
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find the general antiderivative of $xe^x$ on $\mathbb R$.
+        answerLines: 5
+        answer: With $u=x$ and $dv=e^x dx$, obtain $xe^x-e^x+C$. The answer is $\left(x-1\right)\cdot e^{x}+C$.
+      - id: 2
+        type: freeform
+        prompt: Find the general antiderivative of $x\cos x$ on $\mathbb R$.
+        answerLines: 5
+        answer: "Take $u=x$, $v=\\sin x$: $x\\sin x-\\int\\sin x\\,dx=x\\sin x+\\cos x+C$. The answer is $x\\cdot \\sin\\left(x\\right)+\\cos\\left(x\\right)+C$."
+      - id: 3
+        type: freeform
+        prompt: Find the general antiderivative of $x\sin x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Take $u=x$, $v=-\cos x$, giving $-x\cos x+\sin x+C$. The answer is $-x\cdot \cos\left(x\right)+\sin\left(x\right)+C$.
+      - id: 4
+        type: freeform
+        prompt: Find the general antiderivative of $\ln x$ on $(0,\infty)$.
+        answerLines: 5
+        answer: Use $u=\ln x$, $dv=dx$; the remaining integral is $\int1dx$. The answer is $x\cdot \ln\left(x\right)-x+C$.
+      - id: 5
+        type: freeform
+        prompt: Find the general antiderivative of $x\ln x$ on $(0,\infty)$.
+        answerLines: 5
+        answer: Take $u=\ln x$, $v=x^2/2$, giving $(x^2/2)\ln x-(1/2)\int xdx$. The answer is $\frac{x^{2}\cdot \ln\left(x\right)}{2}-\frac{x^{2}}{4}+C$.
+      - id: 6
+        type: freeform
+        prompt: Find the general antiderivative of $x^2e^x$ on $\mathbb R$.
+        answerLines: 5
+        answer: "Two passes of parts lower the polynomial degree: $x^2e^x-2(xe^x-e^x)+C$. The answer is $e^{x}\\cdot \\left(x^{2}-2\\cdot x+2\\right)+C$."
+      - id: 7
+        type: freeform
+        prompt: Evaluate $\int_0^1xe^x\,dx$.
+        answerLines: 5
+        answer: $[(x-1)e^x]_0^1=0-(-1)=1$. The answer is $1$.
+      - id: 8
+        type: freeform
+        prompt: Evaluate $\int_0^\pi x\sin x\,dx$.
+        answerLines: 5
+        answer: $[-x\cos x+\sin x]_0^\pi=\pi$. The answer is $\pi$.
+      - id: 9
+        type: freeform
+        prompt: Derive the integration-by-parts formula from the product rule.
+        answerLines: 5
+        answer: Integrate $(uv)'=u'v+uv'$ to get $uv=\int u'v\,dx+\int uv'\,dx$, up to an additive constant absorbed in the final indefinite answer. Rearranging gives $\int uv'\,dx=uv-\int vu'\,dx$.
+      - id: 10
+        type: freeform
+        prompt: Explain why choosing $u=e^x$ for $\int x^2e^x\,dx$ is usually less useful than choosing $u=x^2$.
+        answerLines: 5
+        answer: Differentiating $e^x$ does not simplify it, while integrating $x^2$ raises the degree. The remaining integral contains $x^3e^x$. Choosing the polynomial as $u$ instead lowers its degree and eventually reaches an elementary exponential integral.
+  - title: Rational functions and partial fractions
+    questions:
+      - id: 11
+        type: freeform
+        prompt: In $1/[x(x+1)]=A/x+B/(x+1)$, find $A$.
+        answerLines: 5
+        answer: Clearing denominators gives $1=A(x+1)+Bx$; at $x=0$, $A=1$. The answer is $1$.
+      - id: 12
+        type: freeform
+        prompt: In $1/[x(x+1)]=A/x+B/(x+1)$, find $B$.
+        answerLines: 5
+        answer: The coefficient of $x$ must vanish, so $A+B=0$. With $A=1$, $B=-1$. The answer is $-1$.
+      - id: 13
+        type: freeform
+        prompt: Find the general antiderivative of $1/[x(x+1)]$ on $(0,\infty)$.
+        answerLines: 5
+        answer: Decompose as $1/x-1/(x+1)$, then integrate each logarithmic derivative. The answer is $\ln\left(x\right)-\ln\left(x+1\right)+C$.
+      - id: 14
+        type: freeform
+        prompt: Find the general antiderivative of $(x+1)/x^2$ on $(0,\infty)$.
+        answerLines: 5
+        answer: Rewrite as $1/x+1/x^2$ and use logarithm plus power rule. The answer is $\ln\left(x\right)-\frac{1}{x}+C$.
+      - id: 15
+        type: freeform
+        prompt: Find the general antiderivative of $(x^2+1)/(x+1)$ on $(-1,\infty)$.
+        answerLines: 5
+        answer: Division gives $x-1+2/(x+1)$, leading to $x^2/2-x+2\ln(x+1)+C$. The answer is $\frac{x^{2}}{2}-x+2\cdot \ln\left(x+1\right)+C$.
+      - id: 16
+        type: freeform
+        prompt: Find the general antiderivative of $(2x+3)/(x^2+1)$ on $\mathbb R$.
+        answerLines: 5
+        answer: Split into a logarithmic derivative and $3$ times the inverse-tangent derivative. The answer is $\ln\left(x^{2}+1\right)+3\cdot \arctan\left(x\right)+C$.
+      - id: 17
+        type: freeform
+        prompt: Evaluate $\int_1^2[1/x-1/(x+1)]\,dx$.
+        answerLines: 5
+        answer: $[\ln x-\ln(x+1)]_1^2=(\ln2-\ln3)-(-\ln2)$. The answer is $2\cdot \ln\left(2\right)-\ln\left(3\right)$.
+      - id: 18
+        type: freeform
+        prompt: Give the polynomial quotient when $x^3+1$ is divided by $x+1$.
+        answerLines: 5
+        answer: Multiplying $(x+1)(x^2-x+1)$ recovers $x^3+1$, with no remainder. The answer is $x^{2}-x+1$.
+      - id: 19
+        type: freeform
+        prompt: Why must the numerator over an irreducible quadratic be allowed to be linear rather than only constant?
+        answerLines: 5
+        answer: A proper remainder over a degree-two factor can have degree one. For example, $x/(x^2+1)$ cannot be represented by $A/(x^2+1)$ with constant $A$. Allowing $Ax+B$ spans both possible numerator coefficients.
+      - id: 20
+        type: freeform
+        prompt: Explain why cancelling $(x-1)$ from $(x^2-1)/(x-1)$ does not authorize ordinary integration across the original hole without comment.
+        answerLines: 5
+        answer: The original expression is undefined at $x=1$, whereas the simplified function $x+1$ is defined there. One may explicitly fill the removable hole without changing the bounded integral, but the extension is a stated interpretation, not an algebraic restoration of the original domain.
+  - title: Products and powers of trigonometric functions
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find the general antiderivative of $\sin^3x\cos x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Use $u=\sin x$, giving $u^4/4+C$. The answer is $\frac{\sin\left(x\right)^{4}}{4}+C$.
+      - id: 22
+        type: freeform
+        prompt: Find the general antiderivative of $\cos^3x\sin x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Use $u=\cos x$, whose differential contributes a minus sign. The answer is $\frac{-\cos\left(x\right)^{4}}{4}+C$.
+      - id: 23
+        type: freeform
+        prompt: Find the general antiderivative of $\sin^3x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Write $\sin^3x=(1-\cos^2x)\sin x$ and substitute $u=\cos x$. The answer is $-\cos\left(x\right)+\frac{\cos\left(x\right)^{3}}{3}+C$.
+      - id: 24
+        type: freeform
+        prompt: Find the general antiderivative of $\cos^3x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Write $\cos^3x=(1-\sin^2x)\cos x$ and use $u=\sin x$. The answer is $\sin\left(x\right)-\frac{\sin\left(x\right)^{3}}{3}+C$.
+      - id: 25
+        type: freeform
+        prompt: Find the general antiderivative of $\sin^2x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Use $(1-\cos2x)/2$ and integrate each term. The answer is $\frac{x}{2}-\frac{\sin\left(2\cdot x\right)}{4}+C$.
+      - id: 26
+        type: freeform
+        prompt: Find the general antiderivative of $\cos^2x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Use $(1+\cos2x)/2$, compensating the chain factor in the sine term. The answer is $\frac{x}{2}+\frac{\sin\left(2\cdot x\right)}{4}+C$.
+      - id: 27
+        type: freeform
+        prompt: Evaluate $\int_0^\pi\sin^2x\,dx$.
+        answerLines: 5
+        answer: The antiderivative is $x/2-\sin2x/4$; the sine endpoints vanish. The answer is $\frac{\pi}{2}$.
+      - id: 28
+        type: freeform
+        prompt: Evaluate $\int_0^{\pi/2}\sin^3x\,dx$.
+        answerLines: 5
+        answer: $[-\cos x+\cos^3x/3]_0^{\pi/2}=0-(-1+1/3)=2/3$. The answer is $\frac{2}{3}$.
+      - id: 29
+        type: freeform
+        prompt: Explain the error in $\int\sin^2x\,dx=\sin^3x/3+C$.
+        answerLines: 5
+        answer: Differentiation gives $\sin^2x\cos x$, with an unwanted factor $\cos x$. The power rule applies to the integration variable; a composition needs its chain factor.
+      - id: 30
+        type: freeform
+        prompt: Find a general antiderivative of $\tan^2x$ on $(-\pi/2,\pi/2)$ and verify it.
+        answerLines: 5
+        answer: Since $\tan^2x=\sec^2x-1$, an antiderivative family is $\tan x-x+C$. Its derivative is $\sec^2x-1=\tan^2x$, valid throughout the pole-free interval.
+  - title: Trigonometric substitution and domains
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Find the general antiderivative of $1/\sqrt{4-x^2}$ on $(-2,2)$.
+        answerLines: 5
+        answer: Use $x=2\sin\theta$; the differential cancels the radical and leaves $\theta=\arcsin(x/2)$. The answer is $\arcsin\left(\frac{x}{2}\right)+C$.
+      - id: 32
+        type: freeform
+        prompt: Find the general antiderivative of $1/\sqrt{1-x^2}$ on $(-1,1)$.
+        answerLines: 5
+        answer: This is the derivative of $\arcsin x$. The answer is $\arcsin\left(x\right)+C$.
+      - id: 33
+        type: freeform
+        prompt: Find the general antiderivative of $x/\sqrt{x^2+4}$ on $\mathbb R$.
+        answerLines: 5
+        answer: Direct substitution $u=x^2+4$ is simpler than a trigonometric substitution. The answer is $\sqrt{x^{2}+4}+C$.
+      - id: 34
+        type: freeform
+        prompt: Evaluate $\int_0^1 dx/\sqrt{4-x^2}$.
+        answerLines: 5
+        answer: $[\arcsin(x/2)]_0^1=\pi/6$. The answer is $\frac{\pi}{6}$.
+      - id: 35
+        type: freeform
+        prompt: Evaluate $\int_0^2\sqrt{4-x^2}\,dx$.
+        answerLines: 5
+        answer: This is the area of a quarter circle of radius $2$, namely $\pi$.
+      - id: 36
+        type: freeform
+        prompt: If $x=3\sin\theta$, give $dx/d\theta$ as an expression in $\theta$.
+        answerLines: 5
+        answer: "Differentiate the substitution: $dx/d\\theta=3\\cos\\theta$. The answer is $3\\cdot \\cos\\left(theta\\right)$."
+      - id: 37
+        type: freeform
+        prompt: On $-\pi/2<\theta<\pi/2$, simplify $\sqrt{9-9\sin^2\theta}$.
+        answerLines: 5
+        answer: The radicand is $9\cos^2\theta$ and cosine is positive on the specified interval. The answer is $3\cdot \cos\left(theta\right)$.
+      - id: 38
+        type: freeform
+        prompt: "For a radical $\\sqrt{a^2+x^2}$, which usual substitution is appropriate: sine, tangent, or secant?"
+        answerLines: 5
+        answer: $x=a\tan\theta$ invokes $1+\tan^2\theta=\sec^2\theta$. The answer is **tangent**.
+      - id: 39
+        type: freeform
+        prompt: Why is $\sqrt{a^2\cos^2\theta}=a\cos\theta$ false for unrestricted $\theta$, even when $a>0$?
+        answerLines: 5
+        answer: The square root is nonnegative, so it equals $a|\cos\theta|$. At $\theta=\pi$, the proposed right side is $-a$ while the radical is $a$. An angle restriction is required.
+      - id: 40
+        type: freeform
+        prompt: Derive $\int\sqrt{1-x^2}\,dx$ on $(-1,1)$ using $x=\sin\theta$.
+        answerLines: 5
+        answer: The integral becomes $\int\cos^2\theta\,d\theta=\theta/2+\sin\theta\cos\theta/2+C$. Since $\theta=\arcsin x$ and cosine is positive, this is $(\arcsin x+x\sqrt{1-x^2})/2+C$.
+  - title: Choosing, combining, and checking methods
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Find the general antiderivative of $xe^{x^2}$ on $\mathbb R$.
+        answerLines: 5
+        answer: Use $u=x^2$, so $x\,dx=du/2$. The answer is $\frac{e^{x^{2}}}{2}+C$.
+      - id: 42
+        type: freeform
+        prompt: Find the general antiderivative of $e^x\cos x$ on $\mathbb R$.
+        answerLines: 5
+        answer: Two applications of parts give $I=e^x\cos x+e^x\sin x-I$, hence the stated family. The answer is $\frac{e^{x}\cdot \left(\cos\left(x\right)+\sin\left(x\right)\right)}{2}+C$.
+      - id: 43
+        type: freeform
+        prompt: Find the general antiderivative of $x\ln(x^2+1)$ on $\mathbb R$.
+        answerLines: 5
+        answer: Substitute $u=x^2+1$ to obtain $(1/2)\int\ln u\,du$, then use parts. The answer is $\frac{\left(x^{2}+1\right)\cdot \ln\left(x^{2}+1\right)-\left(x^{2}+1\right)}{2}+C$.
+      - id: 44
+        type: freeform
+        prompt: Find the general antiderivative of $x^3/(x^2+1)$ on $\mathbb R$.
+        answerLines: 5
+        answer: Division gives $x-x/(x^2+1)$; integrate the first term and substitute in the second. The answer is $\frac{x^{2}}{2}-\frac{\ln\left(x^{2}+1\right)}{2}+C$.
+      - id: 45
+        type: freeform
+        prompt: Evaluate $\int_0^1 x/(x^2+1)\,dx$.
+        answerLines: 5
+        answer: The antiderivative is $\ln(x^2+1)/2$ and the endpoint difference is $\ln2/2$. The answer is $\frac{\ln\left(2\right)}{2}$.
+      - id: 46
+        type: freeform
+        prompt: Evaluate $\int_0^1x^3/(x^2+1)\,dx$.
+        answerLines: 5
+        answer: Using $x^2/2-\ln(x^2+1)/2$ gives $(1-\ln2)/2$. The answer is $\frac{1-\ln\left(2\right)}{2}$.
+      - id: 47
+        type: freeform
+        prompt: "Which first method best fits $\\int x^2\\ln x\\,dx$: parts, partial fractions, or trigonometric substitution?"
+        answerLines: 5
+        answer: Differentiating the logarithm simplifies it, while the polynomial factor is easy to integrate. The answer is **parts**.
+      - id: 48
+        type: freeform
+        prompt: "Which first method best fits $\\int 2x\\cos(x^2)\\,dx$: substitution or parts?"
+        answerLines: 5
+        answer: The derivative of the inner $x^2$ is already present as $2x$. The answer is **substitution**.
+      - id: 49
+        type: freeform
+        prompt: A numerical check matches a proposed antiderivative's derivative at three points. Why is that not a proof?
+        answerLines: 5
+        answer: Distinct functions can agree at finitely many points. For example, adding a nonzero polynomial with derivative vanishing at those points would evade that check. Symbolic differentiation and equality on the stated interval are needed.
+      - id: 50
+        type: freeform
+        prompt: Explain why a continuous integrand with no known elementary antiderivative can still have a well-defined definite integral.
+        answerLines: 5
+        answer: The Riemann-sum definition requires a common limit, and continuity on a closed interval guarantees it. An elementary expression for an antiderivative is a computational convenience, not part of the definition of integrability.

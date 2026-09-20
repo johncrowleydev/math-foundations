@@ -1,0 +1,262 @@
+title: Derivatives
+sections:
+  - title: Average rates and secant lines
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Find the average rate of $f(x)=x^2$ on $[2,5]$.
+        answerLines: 5
+        answer: The answer is $7$. $(25-4)/(5-2)=21/3=7$.
+      - id: 2
+        type: freeform
+        prompt: Find the average rate of $f(x)=x^3$ on $[-1,2]$.
+        answerLines: 5
+        answer: The answer is $3$. $(8-(-1))/(2-(-1))=9/3=3$.
+      - id: 3
+        type: freeform
+        prompt: Find the average rate of $f(x)=4-3x$ on $[1,7]$.
+        answerLines: 5
+        answer: The answer is $-3$. The slope of this line is constant; $(f(7)-f(1))/6=-18/6=-3$.
+      - id: 4
+        type: freeform
+        prompt: A tank contains $40$ liters at minute $2$ and $25$ liters at minute $5$. Find its average volume rate in liters per minute.
+        answerLines: 5
+        answer: The answer is $-5$. $(25-40)/(5-2)=-15/3=-5$.
+      - id: 5
+        type: freeform
+        prompt: For $f(x)=x^2$ at $a=3$, simplify $[f(3+h)-f(3)]/h$ for $h\ne0$.
+        answerLines: 5
+        answer: The answer is $6+h$. Expanding the numerator gives $6h+h^2$, so the quotient is $6+h$.
+      - id: 6
+        type: freeform
+        prompt: For $f(x)=x^2$ at $a=3$, find the secant slope with increment $h=-1/2$.
+        answerLines: 5
+        answer: The answer is $\frac{11}{2}$. The quotient is $6+h$, giving $6-1/2=11/2$.
+      - id: 7
+        type: freeform
+        prompt: A position changes from $8$ meters to $2$ meters over $3$ seconds. Find average velocity in meters per second.
+        answerLines: 5
+        answer: The answer is $-2$. The displacement is $2-8=-6$ meters; dividing by $3$ seconds gives $-2$.
+      - id: 8
+        type: freeform
+        prompt: Does zero average velocity force a moving object to have stayed still throughout the interval?
+        answerLines: 5
+        answer: The answer is false. No. It may travel away and return, producing zero displacement despite nonzero distance.
+      - id: 9
+        type: freeform
+        prompt: Derive the secant slope of $f(x)=x^2$ between arbitrary distinct inputs $a,b$.
+        answerLines: 5
+        answer: $(b^2-a^2)/(b-a)=(b-a)(b+a)/(b-a)=a+b$ because $a\ne b$.
+      - id: 10
+        type: freeform
+        prompt: Explain the units of a secant slope when input is kilograms and output is cost in dollars.
+        answerLines: 5
+        answer: The quotient divides a dollar change by a kilogram change, so its units are dollars per kilogram. It represents average additional cost per additional kilogram over the specified interval.
+  - title: The derivative at a point
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Use the difference quotient to find the derivative of $f(x)=x^2$ at $x=4$.
+        answerLines: 5
+        answer: The answer is $8$. $[(4+h)^2-16]/h=8+h\to8$.
+      - id: 12
+        type: freeform
+        prompt: Find $f'(2)$ from the definition for $f(x)=3x^2+1$.
+        answerLines: 5
+        answer: The answer is $12$. The numerator is $12h+3h^2$, so the quotient $12+3h$ tends to $12$.
+      - id: 13
+        type: freeform
+        prompt: Find $f'(0)$ from the definition for $f(x)=x^3$.
+        answerLines: 5
+        answer: The answer is $0$. The quotient is $h^3/h=h^2$, tending to $0$.
+      - id: 14
+        type: freeform
+        prompt: Find $f'(1)$ from the definition for $f(x)=1/x$.
+        answerLines: 5
+        answer: The answer is $-1$. $[1/(1+h)-1]/h=-1/(1+h)\to-1$.
+      - id: 15
+        type: freeform
+        prompt: Find $f'(9)$ from the definition for $f(x)=\sqrt{x}$.
+        answerLines: 5
+        answer: The answer is $\frac{1}{6}$. Conjugate multiplication gives $1/(\sqrt{9+h}+3)\to1/6$.
+      - id: 16
+        type: freeform
+        prompt: Find $f'(a)$ for the constant function $f(x)=17$.
+        answerLines: 5
+        answer: The answer is $0$. Every nonzero-increment quotient is $(17-17)/h=0$.
+      - id: 17
+        type: freeform
+        prompt: Evaluate $\lim_{h\to0}[(2+h)^3-8]/h$.
+        answerLines: 5
+        answer: The answer is $12$. Expansion gives $12+6h+h^2$, whose limit is $12$.
+      - id: 18
+        type: freeform
+        prompt: If the derivative at a point is zero, must the function be constant near that point?
+        answerLines: 5
+        answer: The answer is false. No. The function $x^2$ has derivative zero at $0$ but varies on every neighborhood.
+      - id: 19
+        type: freeform
+        prompt: Derive $f'(a)$ for $f(x)=x^2$ directly for an arbitrary real $a$.
+        answerLines: 5
+        answer: For $h\ne0$, $[(a+h)^2-a^2]/h=2a+h$. Taking the limit gives $f'(a)=2a$.
+      - id: 20
+        type: freeform
+        prompt: Explain why $[f(a+0)-f(a)]/0$ is not another way to write the derivative.
+        answerLines: 5
+        answer: That quotient is undefined. The derivative is a limit of quotients with nonzero denominators and may exist even though the quotient has no value at zero.
+  - title: Derivative functions and successive rates
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find the derivative function of $f(x)=x^2+8$ directly.
+        answerLines: 5
+        answer: The answer is $2\cdot x$. The constants cancel in the quotient, leaving $2x+h\to2x$.
+      - id: 22
+        type: freeform
+        prompt: Find the derivative function of $f(x)=5x-9$.
+        answerLines: 5
+        answer: The answer is $5$. The numerator is $5h$, so the quotient and its limit are $5$.
+      - id: 23
+        type: freeform
+        prompt: Find the derivative function of $f(x)=x^3$.
+        answerLines: 5
+        answer: The answer is $3\cdot x^{2}$. The quotient is $3x^2+3xh+h^2$, which tends to $3x^2$.
+      - id: 24
+        type: freeform
+        prompt: Find the derivative function of $f(x)=1/x$ on $x\ne0$.
+        answerLines: 5
+        answer: The answer is $\frac{-1}{x^{2}}$. The quotient simplifies to $-1/[x(x+h)]$, giving $-1/x^2$.
+      - id: 25
+        type: freeform
+        prompt: For $f(x)=x^3$, find $f'(-2)$.
+        answerLines: 5
+        answer: The answer is $12$. The derivative is $3x^2$; at $-2$ it equals $12$.
+      - id: 26
+        type: freeform
+        prompt: A position function has velocity $v(t)=t^2+3$. Find its acceleration as a function of $t$.
+        answerLines: 5
+        answer: The answer is $2\cdot t$. Differentiating velocity gives $a(t)=2t$.
+      - id: 27
+        type: freeform
+        prompt: If $f(x)=x^2+7$, find $f''(3)$.
+        answerLines: 5
+        answer: The answer is $2$. The first derivative is $2x$ and the second derivative is constantly $2$.
+      - id: 28
+        type: freeform
+        prompt: Is $d^2y/dx^2$ generally equal to $(dy/dx)^2$?
+        answerLines: 5
+        answer: The answer is false. For $y=x^2$ the two expressions are $2$ and $4x^2$, which differ.
+      - id: 29
+        type: freeform
+        prompt: Prove that adding a constant $C$ to a differentiable function does not change its derivative.
+        answerLines: 5
+        answer: For $g=f+C$, the difference $g(x+h)-g(x)$ equals $f(x+h)+C-f(x)-C=f(x+h)-f(x)$. Thus their difference quotients and limits agree.
+      - id: 30
+        type: freeform
+        prompt: Explain the domain difference between $\sqrt{x}$ and its ordinary derivative.
+        answerLines: 5
+        answer: The original function is defined for $x\ge0$. At positive inputs its derivative is $1/(2\sqrt{x})$. At zero, the right-hand difference quotient $1/\sqrt{h}$ diverges rather than approaching a finite derivative.
+  - title: Tangent lines, velocity, and sensitivity
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Give the tangent line's right-hand side $y=\dots$ for $f(x)=x^2$ at $x=3$.
+        answerLines: 5
+        answer: The answer is $6\cdot x-9$. The point is $(3,9)$ and slope $6$, so $y=9+6(x-3)=6x-9$.
+      - id: 32
+        type: freeform
+        prompt: Give the tangent line's right-hand side for $f(x)=x^3$ at $x=-1$.
+        answerLines: 5
+        answer: The answer is $3\cdot x+2$. The point is $(-1,-1)$ and slope $3$, so $y=-1+3(x+1)=3x+2$.
+      - id: 33
+        type: freeform
+        prompt: The tangent slope at a point is $-4$. Find the normal slope.
+        answerLines: 5
+        answer: The answer is $\frac{1}{4}$. Perpendicular slopes satisfy $m_n m_t=-1$, giving $m_n=1/4$.
+      - id: 34
+        type: freeform
+        prompt: A particle has $s(t)=t^2-6t$ meters. Find velocity at $t=2$ seconds.
+        answerLines: 5
+        answer: The answer is $-2$. The derivative is $v(t)=2t-6$, so $v(2)=-2$ meters per second.
+      - id: 35
+        type: freeform
+        prompt: For $s(t)=t^2-6t$ meters, find speed at $t=2$ seconds.
+        answerLines: 5
+        answer: The answer is $2$. The velocity is $-2$ meters per second, so its magnitude is $2$.
+      - id: 36
+        type: freeform
+        prompt: For $s(t)=t^2-6t$, find the instant when velocity vanishes.
+        answerLines: 5
+        answer: The answer is $3$. Set $2t-6=0$, giving $t=3$.
+      - id: 37
+        type: freeform
+        prompt: An object has velocity $-5$ and acceleration $2$ in consistent units. Is it speeding up or slowing down?
+        answerLines: 5
+        answer: The answer is **slowing down**. Velocity and acceleration have opposite signs, so the magnitude of velocity is decreasing.
+      - id: 38
+        type: freeform
+        prompt: A continuous cost model is $C(q)=q^2+10q+50$ dollars. Find marginal cost at $q=4$ in dollars per unit.
+        answerLines: 5
+        answer: The answer is $18$. $C'(q)=2q+10$, so $C'(4)=18$.
+      - id: 39
+        type: freeform
+        prompt: Find the tangent and normal lines to $y=x^2$ at zero, explaining the vertical-line case.
+        answerLines: 5
+        answer: 'The point is $(0,0)$ and tangent slope is zero, so the tangent is $y=0$. The perpendicular normal is vertical: $x=0$, not a line with a finite slope.'
+      - id: 40
+        type: freeform
+        prompt: A cost derivative is $12$ dollars per unit at output $100$. Explain what this says and what it does not guarantee.
+        answerLines: 5
+        answer: Near $100$ units, a small output change $\Delta q$ is predicted to change cost by about $12\Delta q$ dollars. It does not guarantee a constant marginal cost for large changes or an exact cost of the next discrete item.
+  - title: Where differentiability fails
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Find the left-hand difference-quotient limit for $f(x)=|x|$ at zero.
+        answerLines: 5
+        answer: The answer is $-1$. For $h<0$, $|h|/h=-1$.
+      - id: 42
+        type: freeform
+        prompt: Find the right-hand difference-quotient limit for $f(x)=|x|$ at zero.
+        answerLines: 5
+        answer: The answer is $1$. For $h>0$, $|h|/h=1$.
+      - id: 43
+        type: freeform
+        prompt: Is $|x|$ differentiable at zero?
+        answerLines: 5
+        answer: The answer is false. The one-sided quotient limits $-1$ and $1$ differ.
+      - id: 44
+        type: freeform
+        prompt: Does differentiability at $a$ imply continuity at $a$?
+        answerLines: 5
+        answer: The answer is true. The function increment equals the finite-limit quotient times $h$, so it tends to zero.
+      - id: 45
+        type: freeform
+        prompt: Does continuity at $a$ imply differentiability at $a$?
+        answerLines: 5
+        answer: The answer is false. The continuous function $|x|$ at zero is a counterexample.
+      - id: 46
+        type: freeform
+        prompt: For $f(x)=x^2$ when $x\le2$ and $f(x)=mx+b$ when $x>2$, what $m$ is necessary for differentiability at $2$?
+        answerLines: 5
+        answer: The answer is $4$. The left derivative is $2(2)=4$, which the right linear slope must match.
+      - id: 47
+        type: freeform
+        prompt: For $f(x)=x^2$ when $x\le2$ and $f(x)=4x+b$ when $x>2$, what $b$ makes it differentiable at $2$?
+        answerLines: 5
+        answer: The answer is $-4$. Continuity requires $4=8+b$, so $b=-4$; slopes already match.
+      - id: 48
+        type: freeform
+        prompt: Classify the failure for $x^{1/3}$ at zero as corner, vertical tangent, or jump.
+        answerLines: 5
+        answer: The answer is **vertical tangent**. Its difference quotient is $h^{-2/3}\to+\infty$ from both sides.
+      - id: 49
+        type: freeform
+        prompt: Show that redefining $f(0)=1$ while keeping $f(x)=x^2$ for $x\ne0$ destroys differentiability at zero.
+        answerLines: 5
+        answer: The nearby limit is $0$, not the assigned value $1$, so continuity fails. Differentiability would imply continuity and is therefore impossible. Directly, the quotient $(h^2-1)/h=h-1/h$ has no finite limit.
+      - id: 50
+        type: freeform
+        prompt: Prove that differentiability at an interior point implies continuity there.
+        answerLines: 5
+        answer: Write $f(a+h)-f(a)=h\,[f(a+h)-f(a)]/h$ for nonzero $h$. The two factors tend to $0$ and the finite value $f'(a)$, respectively. Their product tends to zero, giving $\lim_{h\to0}f(a+h)=f(a)$.

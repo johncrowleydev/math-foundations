@@ -1,0 +1,400 @@
+title: Multivariable Functions and Partial Derivatives
+sections:
+  - title: Several inputs, one output
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Evaluate $f(1,2)$ for $f(x,y)=2x^2+xy-y$.
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          Substitution gives $2(1)^2+(1)(2)-(2)=2$.
+      - id: 2
+        type: freeform
+        prompt: Is $(1,2)$ in the domain of $\sqrt{9-x^2-y^2}$?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          5 does not exceed 9, so the radicand is nonnegative.
+      - id: 3
+        type: freeform
+        prompt: Evaluate $f(-2,1)$ for $f(x,y)=2x^2+xy-y$.
+        answerLines: 5
+        answer: |-
+          The answer is $5$.
+
+          Substitution gives $2(-2)^2+(-2)(1)-(1)=5$.
+      - id: 4
+        type: freeform
+        prompt: Is $(-2,1)$ in the domain of $\sqrt{9-x^2-y^2}$?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          5 does not exceed 9, so the radicand is nonnegative.
+      - id: 5
+        type: freeform
+        prompt: Evaluate $f(0,3)$ for $f(x,y)=2x^2+xy-y$.
+        answerLines: 5
+        answer: |-
+          The answer is $-3$.
+
+          Substitution gives $2(0)^2+(0)(3)-(3)=-3$.
+      - id: 6
+        type: freeform
+        prompt: Is $(0,3)$ in the domain of $\sqrt{9-x^2-y^2}$?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          9 does not exceed 9, so the radicand is nonnegative.
+      - id: 7
+        type: freeform
+        prompt: Evaluate $f(3,-1)$ for $f(x,y)=2x^2+xy-y$.
+        answerLines: 5
+        answer: |-
+          The answer is $16$.
+
+          Substitution gives $2(3)^2+(3)(-1)-(-1)=16$.
+      - id: 8
+        type: freeform
+        prompt: Is $(3,-1)$ in the domain of $\sqrt{9-x^2-y^2}$?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          10 exceeds 9, so the radicand is not nonnegative.
+      - id: 9
+        type: freeform
+        prompt: Evaluate $f(-1,-2)$ for $f(x,y)=2x^2+xy-y$.
+        answerLines: 5
+        answer: |-
+          The answer is $6$.
+
+          Substitution gives $2(-1)^2+(-1)(-2)-(-2)=6$.
+      - id: 10
+        type: freeform
+        prompt: Is $(-1,-2)$ in the domain of $\sqrt{9-x^2-y^2}$?
+        answerLines: 5
+        answer: |-
+          The answer is true.
+
+          5 does not exceed 9, so the radicand is nonnegative.
+      - id: 11
+        type: freeform
+        prompt: Explain why the formula domain and feasible domain of a production model may differ.
+        answerLines: 5
+        answer: A polynomial can accept every real input while counts or capacities may require nonnegative, integral, or bounded values. The model supplies these additional restrictions.
+  - title: Slices and level curves
+    questions:
+      - id: 12
+        type: freeform
+        prompt: For $f(x,y)=x^2+2y^2$, give the slice obtained by fixing $y=2$ as a formula in $x$.
+        answerLines: 5
+        answer: |-
+          The answer is $x^{2}+8$.
+
+          Replace y with 2: $x^2+8$.
+      - id: 13
+        type: freeform
+        prompt: At what level does $(1,2)$ lie for $f(x,y)=x^2+2y^2$?
+        answerLines: 5
+        answer: |-
+          The answer is $9$.
+
+          The level is the output $9$.
+      - id: 14
+        type: freeform
+        prompt: For $f(x,y)=x^2+2y^2$, give the slice obtained by fixing $y=1$ as a formula in $x$.
+        answerLines: 5
+        answer: |-
+          The answer is $x^{2}+2$.
+
+          Replace y with 1: $x^2+2$.
+      - id: 15
+        type: freeform
+        prompt: At what level does $(-2,1)$ lie for $f(x,y)=x^2+2y^2$?
+        answerLines: 5
+        answer: |-
+          The answer is $6$.
+
+          The level is the output $6$.
+      - id: 16
+        type: freeform
+        prompt: For $f(x,y)=x^2+2y^2$, give the slice obtained by fixing $y=3$ as a formula in $x$.
+        answerLines: 5
+        answer: |-
+          The answer is $x^{2}+18$.
+
+          Replace y with 3: $x^2+18$.
+      - id: 17
+        type: freeform
+        prompt: At what level does $(0,3)$ lie for $f(x,y)=x^2+2y^2$?
+        answerLines: 5
+        answer: |-
+          The answer is $18$.
+
+          The level is the output $18$.
+      - id: 18
+        type: freeform
+        prompt: For $f(x,y)=x^2+2y^2$, give the slice obtained by fixing $y=-1$ as a formula in $x$.
+        answerLines: 5
+        answer: |-
+          The answer is $x^{2}+2$.
+
+          Replace y with -1: $x^2+2$.
+      - id: 19
+        type: freeform
+        prompt: At what level does $(3,-1)$ lie for $f(x,y)=x^2+2y^2$?
+        answerLines: 5
+        answer: |-
+          The answer is $11$.
+
+          The level is the output $11$.
+      - id: 20
+        type: freeform
+        prompt: For $f(x,y)=x^2+2y^2$, give the slice obtained by fixing $y=-2$ as a formula in $x$.
+        answerLines: 5
+        answer: |-
+          The answer is $x^{2}+8$.
+
+          Replace y with -2: $x^2+8$.
+      - id: 21
+        type: freeform
+        prompt: At what level does $(-1,-2)$ lie for $f(x,y)=x^2+2y^2$?
+        answerLines: 5
+        answer: |-
+          The answer is $9$.
+
+          The level is the output $9$.
+      - id: 22
+        type: freeform
+        prompt: For $x^2-y^2=0$, describe the level set without calling it a single smooth curve.
+        answerLines: 5
+        answer: It is the union of the two intersecting lines y=x and y=-x.
+  - title: Limits require every approach
+    questions:
+      - id: 23
+        type: freeform
+        prompt: For $f(x,y)=-3xy/(x^2+y^2)$, find its value along $y=x\ne0$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-3}{2}$.
+
+          Cancel $x^2$ on this punctured path to obtain $-3/2$.
+      - id: 24
+        type: freeform
+        prompt: Define $p(0,0)=0$ and $p(x,y)=-3x^2y/(x^2+y^2)$ elsewhere. Prove continuity at the origin.
+        answerLines: 5
+        answer: The bound $|p(x,y)|\leq3|y|\leq3\sqrt{x^2+y^2}$ tends to zero. Thus the limit equals the assigned value.
+      - id: 25
+        type: freeform
+        prompt: For $f(x,y)=-1xy/(x^2+y^2)$, find its value along $y=x\ne0$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{-1}{2}$.
+
+          Cancel $x^2$ on this punctured path to obtain $-1/2$.
+      - id: 26
+        type: freeform
+        prompt: Define $p(0,0)=0$ and $p(x,y)=-1x^2y/(x^2+y^2)$ elsewhere. Prove continuity at the origin.
+        answerLines: 5
+        answer: The bound $|p(x,y)|\leq1|y|\leq1\sqrt{x^2+y^2}$ tends to zero. Thus the limit equals the assigned value.
+      - id: 27
+        type: freeform
+        prompt: For $f(x,y)=1xy/(x^2+y^2)$, find its value along $y=x\ne0$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{2}$.
+
+          Cancel $x^2$ on this punctured path to obtain $1/2$.
+      - id: 28
+        type: freeform
+        prompt: Define $p(0,0)=0$ and $p(x,y)=1x^2y/(x^2+y^2)$ elsewhere. Prove continuity at the origin.
+        answerLines: 5
+        answer: The bound $|p(x,y)|\leq1|y|\leq1\sqrt{x^2+y^2}$ tends to zero. Thus the limit equals the assigned value.
+      - id: 29
+        type: freeform
+        prompt: For $f(x,y)=2xy/(x^2+y^2)$, find its value along $y=x\ne0$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{2}{2}$.
+
+          Cancel $x^2$ on this punctured path to obtain $2/2$.
+      - id: 30
+        type: freeform
+        prompt: Define $p(0,0)=0$ and $p(x,y)=2x^2y/(x^2+y^2)$ elsewhere. Prove continuity at the origin.
+        answerLines: 5
+        answer: The bound $|p(x,y)|\leq2|y|\leq2\sqrt{x^2+y^2}$ tends to zero. Thus the limit equals the assigned value.
+      - id: 31
+        type: freeform
+        prompt: For $f(x,y)=4xy/(x^2+y^2)$, find its value along $y=x\ne0$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{4}{2}$.
+
+          Cancel $x^2$ on this punctured path to obtain $4/2$.
+      - id: 32
+        type: freeform
+        prompt: Define $p(0,0)=0$ and $p(x,y)=4x^2y/(x^2+y^2)$ elsewhere. Prove continuity at the origin.
+        answerLines: 5
+        answer: The bound $|p(x,y)|\leq4|y|\leq4\sqrt{x^2+y^2}$ tends to zero. Thus the limit equals the assigned value.
+  - title: Partial derivatives hold other inputs fixed
+    questions:
+      - id: 33
+        type: freeform
+        prompt: For $f(x,y)=1x^2y+2y^2$, find $f_x$.
+        answerLines: 5
+        answer: |-
+          The answer is $2\cdot x\cdot y$.
+
+          Holding y fixed gives $2xy$.
+      - id: 34
+        type: freeform
+        prompt: For $f(x,y)=1x^2y+2y^2$, find $f_y$.
+        answerLines: 5
+        answer: |-
+          The answer is $1\cdot x^{2}+4\cdot y$.
+
+          Holding x fixed gives $1x^2+4y$.
+      - id: 35
+        type: freeform
+        prompt: For $f(x,y)=-2x^2y+1y^2$, find $f_x$.
+        answerLines: 5
+        answer: |-
+          The answer is $-4\cdot x\cdot y$.
+
+          Holding y fixed gives $-4xy$.
+      - id: 36
+        type: freeform
+        prompt: For $f(x,y)=-2x^2y+1y^2$, find $f_y$.
+        answerLines: 5
+        answer: |-
+          The answer is $-2\cdot x^{2}+2\cdot y$.
+
+          Holding x fixed gives $-2x^2+2y$.
+      - id: 37
+        type: freeform
+        prompt: For $f(x,y)=0x^2y+3y^2$, find $f_x$.
+        answerLines: 5
+        answer: |-
+          The answer is $0\cdot x\cdot y$.
+
+          Holding y fixed gives $0xy$.
+      - id: 38
+        type: freeform
+        prompt: For $f(x,y)=0x^2y+3y^2$, find $f_y$.
+        answerLines: 5
+        answer: |-
+          The answer is $0\cdot x^{2}+6\cdot y$.
+
+          Holding x fixed gives $0x^2+6y$.
+      - id: 39
+        type: freeform
+        prompt: For $f(x,y)=3x^2y+-1y^2$, find $f_x$.
+        answerLines: 5
+        answer: |-
+          The answer is $6\cdot x\cdot y$.
+
+          Holding y fixed gives $6xy$.
+      - id: 40
+        type: freeform
+        prompt: For $f(x,y)=3x^2y+-1y^2$, find $f_y$.
+        answerLines: 5
+        answer: |-
+          The answer is $3\cdot x^{2}+-2\cdot y$.
+
+          Holding x fixed gives $3x^2+-2y$.
+      - id: 41
+        type: freeform
+        prompt: For $f(x,y)=-1x^2y+-2y^2$, find $f_x$.
+        answerLines: 5
+        answer: |-
+          The answer is $-2\cdot x\cdot y$.
+
+          Holding y fixed gives $-2xy$.
+      - id: 42
+        type: freeform
+        prompt: For $f(x,y)=-1x^2y+-2y^2$, find $f_y$.
+        answerLines: 5
+        answer: |-
+          The answer is $-1\cdot x^{2}+-4\cdot y$.
+
+          Holding x fixed gives $-1x^2+-4y$.
+      - id: 43
+        type: freeform
+        prompt: Find the x partial of $\sin(xy)$.
+        answerLines: 5
+        answer: |-
+          The answer is $y\cdot \cos\left(x\cdot y\right)$.
+
+          The inner derivative with y fixed is y, giving $y\cos(xy)$.
+  - title: Coordinate information has limits
+    questions:
+      - id: 44
+        type: freeform
+        prompt: Let $f(0,0)=0$ and $f(x,y)=-3xy/(x^2+y^2)$ elsewhere. Find $f_x(0,0)$.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          Along y=0 the function is zero, so its x difference quotient is zero and $f_x(0,0)=0$.
+      - id: 45
+        type: freeform
+        prompt: For $f(x,y)=x^2-3y^2$, explain why zero first partials at the origin do not establish a minimum.
+        answerLines: 5
+        answer: Both first partials vanish there. On y=0 the output is positive off the origin; on x=0 it is negative. Every neighborhood contains both signs.
+      - id: 46
+        type: freeform
+        prompt: Let $f(0,0)=0$ and $f(x,y)=-1xy/(x^2+y^2)$ elsewhere. Find $f_x(0,0)$.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          Along y=0 the function is zero, so its x difference quotient is zero and $f_x(0,0)=0$.
+      - id: 47
+        type: freeform
+        prompt: For $f(x,y)=x^2-1y^2$, explain why zero first partials at the origin do not establish a minimum.
+        answerLines: 5
+        answer: Both first partials vanish there. On y=0 the output is positive off the origin; on x=0 it is negative. Every neighborhood contains both signs.
+      - id: 48
+        type: freeform
+        prompt: Let $f(0,0)=0$ and $f(x,y)=1xy/(x^2+y^2)$ elsewhere. Find $f_x(0,0)$.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          Along y=0 the function is zero, so its x difference quotient is zero and $f_x(0,0)=0$.
+      - id: 49
+        type: freeform
+        prompt: For $f(x,y)=x^2-1y^2$, explain why zero first partials at the origin do not establish a minimum.
+        answerLines: 5
+        answer: Both first partials vanish there. On y=0 the output is positive off the origin; on x=0 it is negative. Every neighborhood contains both signs.
+      - id: 50
+        type: freeform
+        prompt: Let $f(0,0)=0$ and $f(x,y)=2xy/(x^2+y^2)$ elsewhere. Find $f_x(0,0)$.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          Along y=0 the function is zero, so its x difference quotient is zero and $f_x(0,0)=0$.
+      - id: 51
+        type: freeform
+        prompt: For $f(x,y)=x^2-2y^2$, explain why zero first partials at the origin do not establish a minimum.
+        answerLines: 5
+        answer: Both first partials vanish there. On y=0 the output is positive off the origin; on x=0 it is negative. Every neighborhood contains both signs.
+      - id: 52
+        type: freeform
+        prompt: Let $f(0,0)=0$ and $f(x,y)=4xy/(x^2+y^2)$ elsewhere. Find $f_x(0,0)$.
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          Along y=0 the function is zero, so its x difference quotient is zero and $f_x(0,0)=0$.
+      - id: 53
+        type: freeform
+        prompt: For $f(x,y)=x^2-4y^2$, explain why zero first partials at the origin do not establish a minimum.
+        answerLines: 5
+        answer: Both first partials vanish there. On y=0 the output is positive off the origin; on x=0 it is negative. Every neighborhood contains both signs.

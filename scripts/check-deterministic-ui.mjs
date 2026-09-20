@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
 const screenshots = join(root, 'docs/screenshots/deterministic');
+const calculusScreenshots = join(root, 'docs/screenshots/calculus');
 const temporary = await mkdtemp(join(tmpdir(), 'foundations-deterministic-ui-'));
 const children = [];
 let browser;
@@ -57,6 +58,7 @@ async function ready(url, child) {
 
 try {
   await mkdir(screenshots, { recursive: true });
+  await mkdir(calculusScreenshots, { recursive: true });
   const binary = join(temporary, 'foundations-api');
   run('go', ['build', '-o', binary, '.'], { cwd: join(root, 'server') });
   const password = randomBytes(24).toString('hex');
@@ -132,8 +134,13 @@ try {
   const notebook = JSON.parse(await readFile(join(root, 'web/public/notebook.json'), 'utf8'));
   const definitions = (
     await Promise.all(
-      ['deterministic-exercises', 'deterministic-linear', 'deterministic-algorithms'].map(
-        async (name) => JSON.parse(await readFile(join(root, 'content', name + '.json'), 'utf8')),
+      [
+        'deterministic-exercises',
+        'deterministic-linear',
+        'deterministic-algorithms',
+        'deterministic-calculus',
+      ].map(async (name) =>
+        JSON.parse(await readFile(join(root, 'content', name + '.json'), 'utf8')),
       ),
     )
   ).flat();
@@ -171,7 +178,9 @@ try {
   };
   const shot = async (name, target = exercise()) => {
     await target.evaluate((e) => e.scrollIntoView({ block: 'start' }));
-    await page.screenshot({ path: join(screenshots, name + '.png') });
+    await page.screenshot({
+      path: join(name.startsWith('calculus-') ? calculusScreenshots : screenshots, name + '.png'),
+    });
     console.log('Captured ' + name);
   };
   const enterMath = async (label, value) => {
@@ -375,6 +384,15 @@ try {
   await page.getByRole('dialog').getByRole('button', { name: 'Close', exact: true }).click();
 
   // Real authored forms, including mathematically different accepted answers.
+  const calculusCase = (validator, predicate, name, width) => {
+    const entry = definitions.find(
+      (d) =>
+        d.lesson.startsWith('calculus-') &&
+        d.assessment.requirements.some((r) => r.validator === validator && predicate(r.params)),
+    );
+    assert.ok(entry, 'Authored calculus case: ' + name);
+    return [entry.lesson, entry.id, name, width];
+  };
   const cases = [
     ['linear-algebra-matrices', 1, 'matrix-shape-desktop', 1440],
     ['linear-algebra-matrices', 29, 'matrix-grid-desktop', 1440],
@@ -390,10 +408,37 @@ try {
     ['linear-algebra-eigenvalues', 11, null, 390],
     ['linear-algebra-eigenvalues', 45, 'typed-formula-and-reason-phone', 390],
     ['linear-algebra-svd', 23, null, 390],
+    calculusCase(
+      'calculus-expression',
+      (p) => p.variables.length === 0,
+      'calculus-constant-phone',
+      390,
+    ),
+    calculusCase(
+      'calculus-expression',
+      (p) => p.expected.includes('cos'),
+      'calculus-derivative-desktop',
+      1440,
+    ),
+    calculusCase('antiderivative', (p) => p.mode === 'family', 'calculus-family-phone', 390),
+    calculusCase(
+      'antiderivative',
+      (p) => p.mode === 'initial-value',
+      'calculus-initial-value-desktop',
+      1440,
+    ),
   ];
   for (const [slug, id, name, width] of cases) {
     await page.setViewportSize({ width, height: width > 500 ? 1000 : 844 });
     q = await open(slug, id);
+    if (name === 'calculus-family-phone') {
+      await fill(q, definition(slug, id).fixtures.find((f) => f.verdict === 'incorrect').response);
+      await context.setOffline(true);
+      await submit('Incorrect');
+      await page.reload();
+      await exercise().getByText('Incorrect', { exact: true }).waitFor();
+      await exercise().getByRole('button', { name: 'Try again', exact: true }).click();
+    }
     await fill(q, responseFor(slug, id, true));
     await noOverflow();
     if (slug === 'recurrence-relations') {
@@ -466,6 +511,12 @@ try {
       await first.fill('2');
     }
     await submit();
+    if (name === 'calculus-family-phone') {
+      await page.reload();
+      await exercise().getByText('Correct', { exact: true }).waitFor();
+      await shot('calculus-offline-restored-phone');
+      await context.setOffline(false);
+    }
     console.log('Graded ' + slug + '/' + id);
   }
   // Authoring preview is read-only; inspecting the library creates no review work.
@@ -505,16 +556,55 @@ try {
   await page.screenshot({ path: join(screenshots, 'finite-relation-review-phone.png') });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   assert.deepEqual(mutations, [], 'Library inspection creates no review mutations');
+  const calculusReview = catalog.items.find(
+    (item) =>
+      item.provenance === 'review-template' &&
+      item.lesson.startsWith('calculus-') &&
+      item.question?.assessment?.requirements.some((r) => r.validator === 'antiderivative'),
+  );
+  assert.ok(calculusReview, 'Dedicated calculus review uses the calculus grader');
+  await page.goto(baseURL + '/#/review-library/' + calculusReview.lesson);
+  await library.getByLabel('Search catalog').fill(calculusReview.id);
+  const calculusPreview = library.locator(`[data-template-id="${calculusReview.id}"]`);
+  await calculusPreview.locator('summary').first().click();
+  await calculusPreview.locator('.structured-answer').first().waitFor();
+  await shot('calculus-review-phone', calculusPreview.locator('.library-question').first());
+  const teaching = JSON.parse(await readFile(join(root, 'web/public/teaching.json'), 'utf8'));
+  for (const figure of teaching.figures.filter((f) => f.kind === 'cartesian')) {
+    await page.goto(baseURL + '/#/read/' + figure.lesson);
+    const target = page.locator('figure').filter({ hasText: figure.title });
+    await target.waitFor();
+    for (const width of [1440, 390]) {
+      await page.setViewportSize({ width, height: width > 500 ? 1000 : 844 });
+      await target.scrollIntoViewIfNeeded();
+      assert.equal(
+        await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+        false,
+      );
+      await target.screenshot({
+        path: join(calculusScreenshots, figure.id + '-' + width + '.png'),
+      });
+    }
+  }
+  await page.goto(baseURL + '/#/read/calculus-introduction');
+  await page.locator('.reader h1').getByText('Introduction', { exact: true }).waitFor();
+  assert.equal(await page.locator('.reader .exercise').count(), 0);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: width > 500 ? 1000 : 844 });
+    await page.screenshot({
+      path: join(calculusScreenshots, 'calculus-introduction-' + width + '.png'),
+    });
+  }
   assert.deepEqual(errors, [], 'No browser runtime errors');
   const uploadDeadline = Date.now() + 30000;
   while (
-    new Set(submissions.map((a) => a.id)).size < cases.length + 2 &&
+    new Set(submissions.map((a) => a.id)).size < cases.length + 3 &&
     Date.now() < uploadDeadline
   )
     await new Promise((resolve) => setTimeout(resolve, 100));
   assert.equal(
     new Set(submissions.map((a) => a.id)).size,
-    cases.length + 2,
+    cases.length + 3,
     'Every real deterministic attempt uploaded',
   );
   for (const a of submissions) {
@@ -596,15 +686,25 @@ try {
   );
   await restoredContext.close();
   const ids = [...new Set(submissions.map((a) => a.id))];
+  const familyCase = cases.find((c) => c[2] === 'calculus-family-phone');
+  const familyWrong = definition(familyCase[0], familyCase[1]).fixtures.find(
+    (f) => f.verdict === 'incorrect',
+  ).response;
   for (const id of ids) {
     const answer = await context.request.get(baseURL + '/api/v1/attempts/' + id);
     assert.equal(answer.status(), 200);
     const attempt = await answer.json();
     assert.equal(attempt.status, 'graded', 'Server grades deterministically');
     assert.equal(attempt.grades.at(-1).model, 'deterministic');
+    const submitted = submissions.find((s) => s.id === id);
+    const wrongFamily =
+      submitted.exercise === familyCase[0] + '-' + familyCase[1] &&
+      Object.entries(familyWrong).every(
+        ([field, value]) => JSON.stringify(submitted.response[field]) === JSON.stringify(value),
+      );
     assert.equal(
       attempt.grades.at(-1).verdict,
-      id === ids[0] ? 'incorrect' : 'correct',
+      id === ids[0] || wrongFamily ? 'incorrect' : 'correct',
       'Authoritative server grade agrees with the expected offline result',
     );
     assert.ok(attempt.presentation?.question?.assessment, 'Server freezes the historic question');

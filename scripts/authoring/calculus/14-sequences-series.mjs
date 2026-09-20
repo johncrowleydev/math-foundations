@@ -238,7 +238,7 @@ A finite initial change affects the sum but not convergence. Adding, removing, o
         ),
       ],
       quickCheck: qc(
-        r`What must approach a finite limit for a series to converge?`,
+        r`Which sequence's convergence defines convergence of a series?`,
         ['Its individual terms alone', 'Its partial sums', 'Its indices'],
         1,
         r`Series convergence is defined through the sequence of finite running totals.`,

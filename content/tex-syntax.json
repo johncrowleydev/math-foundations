@@ -651,6 +651,244 @@
       "group": "linear algebra",
       "example": "\\sigma_1=3",
       "explanation": "Lowercase sigma names an individual singular value. A subscript labels which value. Uppercase \\Sigma names the entire rectangular diagonal matrix; TeX is case-sensitive."
+    },
+    {
+      "id": "tex-calculus-partial",
+      "command": "partial",
+      "group": "calculus",
+      "example": "\\frac{\\partial f}{\\partial x}",
+      "explanation": "Use partial for the curved derivative symbol; frac groups its numerator and denominator."
+    },
+    {
+      "id": "tex-calculus-nabla",
+      "command": "nabla",
+      "group": "calculus",
+      "example": "\\nabla f",
+      "explanation": "Use nabla before the scalar function whose gradient is being described."
+    },
+    {
+      "id": "tex-calculus-int",
+      "command": "int",
+      "group": "calculus",
+      "example": "\\int_a^b f(x)\\,dx",
+      "explanation": "Use int for an integral and subscripts/superscripts for its limits."
+    },
+    {
+      "id": "tex-calculus-iint",
+      "command": "iint",
+      "group": "calculus",
+      "example": "\\iint_R f(x,y)\\,dA",
+      "explanation": "Use iint for a double integral; its subscript names the region."
+    },
+    {
+      "id": "tex-calculus-lim",
+      "command": "lim",
+      "group": "calculus",
+      "example": "\\lim_{x\\to a}f(x)",
+      "explanation": "Use lim with a grouped subscript naming the approaching input."
+    },
+    {
+      "id": "tex-calculus-sin",
+      "command": "sin",
+      "group": "calculus",
+      "example": "\\sin(x)",
+      "explanation": "Use sin for the sine function and parentheses to make its argument explicit."
+    },
+    {
+      "id": "tex-calculus-tan",
+      "command": "tan",
+      "group": "calculus",
+      "example": "\\tan(x)",
+      "explanation": "Use tan for the tangent function."
+    },
+    {
+      "id": "tex-calculus-sec",
+      "command": "sec",
+      "group": "calculus",
+      "example": "\\sec(x)",
+      "explanation": "Use sec for the secant function."
+    },
+    {
+      "id": "tex-calculus-csc",
+      "command": "csc",
+      "group": "calculus",
+      "example": "\\csc(x)",
+      "explanation": "Use csc for the cosecant function."
+    },
+    {
+      "id": "tex-calculus-cot",
+      "command": "cot",
+      "group": "calculus",
+      "example": "\\cot(x)",
+      "explanation": "Use cot for the cotangent function."
+    },
+    {
+      "id": "tex-calculus-arcsin",
+      "command": "arcsin",
+      "group": "calculus",
+      "example": "\\arcsin(x)",
+      "explanation": "Use arcsin for inverse sine, with its principal-value convention supplied by the lesson."
+    },
+    {
+      "id": "tex-calculus-arccos",
+      "command": "arccos",
+      "group": "calculus",
+      "example": "\\arccos(x)",
+      "explanation": "Use arccos for inverse cosine."
+    },
+    {
+      "id": "tex-calculus-arctan",
+      "command": "arctan",
+      "group": "calculus",
+      "example": "\\arctan(x)",
+      "explanation": "Use arctan for inverse tangent."
+    },
+    {
+      "id": "tex-calculus-ln",
+      "command": "ln",
+      "group": "calculus",
+      "example": "\\ln(x)",
+      "explanation": "Use ln for the natural logarithm."
+    },
+    {
+      "id": "tex-calculus-tfrac",
+      "command": "tfrac",
+      "group": "calculus",
+      "example": "\\tfrac{a}{b}",
+      "explanation": "Use tfrac with numerator and denominator groups for a compact fraction."
+    },
+    {
+      "id": "tex-calculus-dfrac",
+      "command": "dfrac",
+      "group": "calculus",
+      "example": "\\dfrac{a}{b}",
+      "explanation": "Use dfrac with two groups for a display-size fraction."
+    },
+    {
+      "id": "tex-calculus-epsilon",
+      "command": "epsilon",
+      "group": "calculus",
+      "example": "\\epsilon",
+      "explanation": "Use epsilon for the Greek symbol representing a positive tolerance when specified."
+    },
+    {
+      "id": "tex-calculus-delta",
+      "command": "delta",
+      "group": "calculus",
+      "example": "\\delta",
+      "explanation": "Use delta for the Greek symbol; its meaning is given by the limit statement."
+    },
+    {
+      "id": "tex-calculus-alpha",
+      "command": "alpha",
+      "group": "calculus",
+      "example": "\\alpha",
+      "explanation": "Use alpha for a parameter such as a step size, as defined in context."
+    },
+    {
+      "id": "tex-calculus-pi",
+      "command": "pi",
+      "group": "calculus",
+      "example": "\\pi",
+      "explanation": "Use pi for the circle constant."
+    },
+    {
+      "id": "tex-calculus-approx",
+      "command": "approx",
+      "group": "calculus",
+      "example": "a\\approx b",
+      "explanation": "Use approx to distinguish an approximation from equality."
+    },
+    {
+      "id": "tex-calculus-capital-delta",
+      "command": "Delta",
+      "group": "calculus",
+      "example": "\\Delta x",
+      "explanation": "Use capital Delta before a quantity to denote its finite change."
+    },
+    {
+      "id": "tex-calculus-min",
+      "command": "min",
+      "group": "calculus",
+      "example": "\\min(a,b)",
+      "explanation": "Use min for the smaller of the listed values."
+    },
+    {
+      "id": "tex-calculus-beta",
+      "command": "beta",
+      "group": "calculus",
+      "example": "\\beta",
+      "explanation": "Use beta for a parameter named in the surrounding mathematics."
+    },
+    {
+      "id": "tex-calculus-xi",
+      "command": "xi",
+      "group": "calculus",
+      "example": "\\xi",
+      "explanation": "Use xi for the Greek symbol naming an intermediate point in a remainder formula."
+    },
+    {
+      "id": "tex-calculus-downarrow",
+      "command": "downarrow",
+      "group": "calculus",
+      "example": "x\\downarrow a",
+      "explanation": "Use downarrow to describe decreasing toward a from above."
+    },
+    {
+      "id": "tex-calculus-le",
+      "command": "le",
+      "group": "calculus",
+      "example": "a\\le b",
+      "explanation": "Use le for less than or equal to; leq gives the same relation."
+    },
+    {
+      "id": "tex-calculus-ge",
+      "command": "ge",
+      "group": "calculus",
+      "example": "a\\ge b",
+      "explanation": "Use ge for greater than or equal to; geq gives the same relation."
+    },
+    {
+      "id": "tex-calculus-not",
+      "command": "not",
+      "group": "calculus",
+      "example": "a\\not=b",
+      "explanation": "Use not immediately before a relation to negate it."
+    },
+    {
+      "id": "tex-calculus-capital-pi",
+      "command": "Pi",
+      "group": "calculus",
+      "example": "\\Pi",
+      "explanation": "Use capital Pi for the Greek letter; here it names a profit function. It is distinct from the circle constant pi."
+    },
+    {
+      "id": "tex-calculus-dots",
+      "command": "dots",
+      "group": "calculus",
+      "example": "1,2,\\dots",
+      "explanation": "Use dots for an ellipsis indicating a stated continuing pattern."
+    },
+    {
+      "id": "tex-calculus-eta",
+      "command": "eta",
+      "group": "calculus",
+      "example": "\\eta",
+      "explanation": "Use eta for a named tolerance or parameter, with its meaning stated in the argument."
+    },
+    {
+      "id": "tex-calculus-implies",
+      "command": "implies",
+      "group": "calculus",
+      "example": "P\\implies Q",
+      "explanation": "Use implies between a hypothesis and its consequence."
+    },
+    {
+      "id": "tex-calculus-longrightarrow",
+      "command": "longrightarrow",
+      "group": "calculus",
+      "example": "x\\longrightarrow a",
+      "explanation": "Use longrightarrow for a longer approach arrow."
     }
   ]
 }

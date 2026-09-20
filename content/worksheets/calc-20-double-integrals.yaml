@@ -1,0 +1,382 @@
+title: Introductory Double Integrals
+sections:
+  - title: Accumulate over an area
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A constant height 5 covers a rectangle of side lengths 2 and 3. Find its volume.
+        answerLines: 5
+        answer: |-
+          The answer is $30$.
+
+          The area is 6; height times area is 5 times 6=30.
+      - id: 2
+        type: freeform
+        prompt: A grid has cell widths 1/4 and 1/3. Find each cell area.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{12}$.
+
+          Multiply the widths: (1/4)(1/3)=1/12.
+      - id: 3
+        type: freeform
+        prompt: Four equal-area cells each have area 1/2 and sampled densities 2,4,6,8. Find the estimated mass.
+        answerLines: 5
+        answer: |-
+          The answer is $10$.
+
+          The sum of sampled densities is 20; multiplying by 1/2 gives 10.
+      - id: 4
+        type: freeform
+        prompt: On the unit square, use its center to estimate the integral of $x^2+y^2$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{2}$.
+
+          The center height is 1/4+1/4=1/2 and the area is 1, giving 1/2.
+      - id: 5
+        type: freeform
+        prompt: On [0,2] by [0,2], use the center to estimate the integral of $x+3y$.
+        answerLines: 5
+        answer: |-
+          The answer is $16$.
+
+          At (1,1), the height is 4; area 4 gives 16.
+      - id: 6
+        type: freeform
+        prompt: Find the signed integral of x over [-2,2] by [0,3].
+        answerLines: 5
+        answer: |-
+          The answer is $0$.
+
+          For every positive-x contribution there is an equal negative-x contribution; the total is zero.
+      - id: 7
+        type: freeform
+        prompt: Does a zero signed double integral force its continuous integrand to be zero everywhere?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. The function x on a symmetric rectangle has integral zero but is usually nonzero.
+      - id: 8
+        type: freeform
+        prompt: Explain why cell area, not cell width, multiplies a sampled density measured in kilograms per square meter.
+        answerLines: 5
+        answer: The density describes mass per unit area. Multiplying by square meters gives kilograms, whereas multiplying by width alone leaves kilograms per meter.
+      - id: 9
+        type: freeform
+        prompt: A height is between 2 and 5 over area 3. Give lower and upper bounds for its volume as a pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(6,\ 15\right)$.
+
+          Multiply the area by both height bounds: (6,15).
+      - id: 10
+        type: freeform
+        prompt: Why does one accurate midpoint estimate not prove that midpoint sampling is exact for every function?
+        answerLines: 5
+        answer: Exactness depends on the function and grid. Curvature generally creates errors; for example the unit-square midpoint estimate of x squared plus y squared is 1/2, whereas its integral is 2/3.
+  - title: Evaluate iterated integrals
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Evaluate $\int_0^2\int_0^1(2x+3y)\,dy\,dx$.
+        answerLines: 5
+        answer: |-
+          The answer is $7$.
+
+          The inner result is 2x+3/2. Integrating from 0 to 2 gives 4+3=7.
+      - id: 12
+        type: freeform
+        prompt: Evaluate $\int_0^1\int_0^2xy\,dx\,dy$.
+        answerLines: 5
+        answer: |-
+          The answer is $1$.
+
+          The inner integral is 2y; its integral from 0 to 1 is 1.
+      - id: 13
+        type: freeform
+        prompt: Evaluate $\int_0^2\int_1^3 y\,dy\,dx$.
+        answerLines: 5
+        answer: |-
+          The answer is $8$.
+
+          The inner value is (9-1)/2=4; the outer interval has length 2, so the total is 8.
+      - id: 14
+        type: freeform
+        prompt: Evaluate $\int_{-1}^1\int_0^2x^2\,dy\,dx$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{4}{3}$.
+
+          The inner result is 2x squared. Its symmetric integral is 4/3.
+      - id: 15
+        type: freeform
+        prompt: Find the inner result $\int_0^2(x+y^2)\,dy$ as a formula in x.
+        answerLines: 5
+        answer: |-
+          The answer is $2\cdot x+\frac{8}{3}$.
+
+          Holding x constant gives 2x+8/3.
+      - id: 16
+        type: freeform
+        prompt: Find $\int_0^1\int_0^1(x^2+y^2)\,dy\,dx$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{2}{3}$.
+
+          Integrating each term gives 1/3+1/3=2/3.
+      - id: 17
+        type: freeform
+        prompt: Evaluate $\int_0^2\int_0^3 x^2y\,dy\,dx$.
+        answerLines: 5
+        answer: |-
+          The answer is $12$.
+
+          The separated factors integrate to 8/3 and 9/2; their product is 12.
+      - id: 18
+        type: freeform
+        prompt: Does the inner definite integral in $\int_0^1\int_0^2 f(x,y)\,dx\,dy$ need an arbitrary C?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. Subtracting endpoint values fixes the inner result as a function of y.
+      - id: 19
+        type: freeform
+        prompt: Explain why the product shortcut for xy on a rectangle cannot be applied unchanged on a triangle.
+        answerLines: 5
+        answer: On a triangle, one coordinate range depends on the other. The region is not the Cartesian product of two independent intervals, so the two factors cannot be separated in that way.
+      - id: 20
+        type: freeform
+        prompt: What continuity assumption is sufficient to evaluate a rectangular double integral in either order?
+        answerLines: 5
+        answer: Continuity of the integrand throughout the closed rectangle is sufficient for the version of Fubini used here.
+  - title: Describe simple regions with variable bounds
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find the area of $0\leq x\leq 3$, $0\leq y\leq 3-x$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{9}{2}$.
+
+          Integrate 3-x from 0 to 3:9-9/2=9/2.
+      - id: 22
+        type: freeform
+        prompt: Integrate x over $0\leq x\leq 3$, $0\leq y\leq 3-x$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{9}{2}$.
+
+          Integrate x(3-x):[3x squared/2-x cubed/3] from 0 to 3=9/2.
+      - id: 23
+        type: freeform
+        prompt: Find the area between $y=x^2$ and $y=2x$ for $0\leq x\leq 2$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{4}{3}$.
+
+          The upper curve is 2x. Integrating 2x-x squared gives 4-8/3=4/3.
+      - id: 24
+        type: freeform
+        prompt: Integrate y over $0\leq x\leq 1$, $0\leq y\leq x$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{6}$.
+
+          The inner integral is x squared/2. Integrating it gives 1/6.
+      - id: 25
+        type: freeform
+        prompt: Integrate xy over $0\leq x\leq 1$, $0\leq y\leq x$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{8}$.
+
+          The inner integral is x cubed/2. Its integral is 1/8.
+      - id: 26
+        type: freeform
+        prompt: A triangle has $x,y\geq 0$ and $2x+y\leq 4$. Give the upper y bound as a formula in x.
+        answerLines: 5
+        answer: |-
+          The answer is $4-2\cdot x$.
+
+          Solve 2x+y=4 for y:4-2x.
+      - id: 27
+        type: freeform
+        prompt: For that triangle, give the outer x interval endpoints as a pair.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 2\right)$.
+
+          On y=0 the sloping boundary reaches x=2; the interval is[0,2].
+      - id: 28
+        type: freeform
+        prompt: Find the area between $y=x^3$ and $y=x$ on $[0,1]$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{4}$.
+
+          The area is the integral of x-x cubed:1/2-1/4=1/4.
+      - id: 29
+        type: freeform
+        prompt: Explain why an inner y bound written as 2-y is not a valid vertical-slice upper limit.
+        answerLines: 5
+        answer: During the inner integral y is the running coordinate. Its endpoints must be fixed for each outer x, rather than depending on that same running y.
+      - id: 30
+        type: freeform
+        prompt: What must be checked before using upper curve minus lower curve to find area?
+        answerLines: 5
+        answer: Find intersections, determine the coordinate interval, and determine which curve is above on each part. Split if the order changes.
+  - title: Reverse order by redescribing the same region
+    questions:
+      - id: 31
+        type: freeform
+        prompt: For $0\leq x\leq y\leq 3$, give the outer y interval endpoints when x is integrated first.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 3\right)$.
+
+          The y coordinate ranges from 0 through 3, so the endpoints are (0,3).
+      - id: 32
+        type: freeform
+        prompt: For $0\leq x\leq y\leq 3$, give the upper x bound as a formula in y.
+        answerLines: 5
+        answer: |-
+          The answer is $y$.
+
+          At a fixed y, x runs from 0 to y, so the upper bound is y.
+      - id: 33
+        type: freeform
+        prompt: The region is $0\leq x\leq 2$, $x^2\leq y\leq 4$. Give the outer y interval endpoints after reversal.
+        answerLines: 5
+        answer: |-
+          The answer is $\left(0,\ 4\right)$.
+
+          The lowest y is 0 and the highest is 4, giving(0,4).
+      - id: 34
+        type: freeform
+        prompt: For that region, give the upper x bound as a formula in y.
+        answerLines: 5
+        answer: |-
+          The answer is $\sqrt{y}$.
+
+          The condition x squared<=y with x>=0 becomes x<=sqrt(y).
+      - id: 35
+        type: freeform
+        prompt: Evaluate $\int_0^1\int_x^1 2y\,dy\,dx$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{2}{3}$.
+
+          After reversal, integrate 2y over x from 0 to y, then integrate 2y squared over y from 0 to 1:2/3.
+      - id: 36
+        type: freeform
+        prompt: Evaluate $\int_0^1\int_x^1 y^3\,dy\,dx$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{5}$.
+
+          Reversal gives the integral of y times y cubed from 0 to 1, namely 1/5.
+      - id: 37
+        type: freeform
+        prompt: Find the area of $0\leq y\leq 1$, $y\leq x\leq 2$.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{3}{2}$.
+
+          Integrating horizontal width 2-y gives 2-1/2=3/2.
+      - id: 38
+        type: freeform
+        prompt: Does replacing dy dx by dx dy while keeping the bounds 0<=x<=1 and x<=y<=1 correctly reverse the order?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. The new inner bounds must describe x at fixed y:0<=x<=y, with 0<=y<=1.
+      - id: 39
+        type: freeform
+        prompt: Explain why reversing $\int_0^1\int_x^1 e^{y^2}\,dy\,dx$ helps.
+        answerLines: 5
+        answer: Integrating x first contributes a factor y. Then substitution u=y squared evaluates the remaining integral of y exp(y squared), even though the original inner antiderivative is not elementary.
+      - id: 40
+        type: freeform
+        prompt: Describe why vertical slices of $0\leq y\leq 1$, $y\leq x\leq 2$ need a split at x=1.
+        answerLines: 5
+        answer: For x from 0 to 1 the top is y=x. For x from 1 to 2 the top is y=1. A single upper expression would omit or add points.
+  - title: Volumes, averages, and normalized accumulation
+    questions:
+      - id: 41
+        type: freeform
+        prompt: A surface has integral 18 over a region of area 6. Find its area average.
+        answerLines: 5
+        answer: |-
+          The answer is $3$.
+
+          Divide the integral by area:18/6=3.
+      - id: 42
+        type: freeform
+        prompt: Find the average of x+2y on [0,2] by [0,1].
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          The integral is 4 and area is 2, so the average is 2.
+      - id: 43
+        type: freeform
+        prompt: Find the volume between top 4+x+y and bottom x over the unit square.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{9}{2}$.
+
+          The height difference is 4+y. Its unit-square integral is 4+1/2=9/2.
+      - id: 44
+        type: freeform
+        prompt: A nonnegative density 3x is defined on the unit square. Find its total mass.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{3}{2}$.
+
+          The y integral contributes length 1 and the x integral of 3x is 3/2.
+      - id: 45
+        type: freeform
+        prompt: Find k so the density kx on the unit square has total integral 1.
+        answerLines: 5
+        answer: |-
+          The answer is $2$.
+
+          Its total is k/2, so k=2.
+      - id: 46
+        type: freeform
+        prompt: For density 2x on the unit square, find the accumulated share with 0<=x<=1/2.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{1}{4}$.
+
+          Integrate 2x over[0,1/2] and unit y length: x squared at 1/2 gives 1/4.
+      - id: 47
+        type: freeform
+        prompt: For density 2x on the unit square, find the accumulated share with 1/2<=x<=1.
+        answerLines: 5
+        answer: |-
+          The answer is $\frac{3}{4}$.
+
+          Subtract squared endpoints:1-1/4=3/4.
+      - id: 48
+        type: freeform
+        prompt: Can the area average of a continuous function taking values only between 2 and 5 be 7?
+        answerLines: 5
+        answer: |-
+          The answer is false.
+
+          No. Integrating the pointwise bounds and dividing by area keeps the average between 2 and 5.
+      - id: 49
+        type: freeform
+        prompt: Explain the difference between normalizing a density and taking an area average.
+        answerLines: 5
+        answer: Normalization divides the density by its total integral so the new total is 1. An area average divides the accumulated quantity by the region area to obtain an average function value.
+      - id: 50
+        type: freeform
+        prompt: A height changes sign. Why can its signed integral differ from the total geometric volume between its graph and the plane?
+        answerLines: 5
+        answer: Negative heights subtract in the signed integral. Geometric volume adds the magnitudes on both sides, so it uses the integral of the absolute height.

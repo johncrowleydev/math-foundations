@@ -224,7 +224,7 @@ When cancellation produces a simpler derivative, keep the original domain in the
         R`What factor accompanies $a^x$ in its derivative for fixed positive $a$?`,
         [R`$x$`, R`$\ln a$`, R`$1/\ln a$`],
         1,
-        'Writing the function as $e^{x\ln a}$ shows that the exponent has derivative $\ln a$.',
+        R`Writing the function as $e^{x\ln a}$ shows that the exponent has derivative $\ln a$.`,
       ),
     },
     {

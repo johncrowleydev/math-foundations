@@ -164,8 +164,13 @@ const counts = {
   formulas: teaching.formulas.length,
   concepts: concepts.length,
 };
-if (counts.lessons !== 29 || counts.exercises !== 2010 || counts.quickChecks !== 54)
-  throw new Error('Curriculum coverage changed: ' + JSON.stringify(counts));
+const historical = units.filter((u) => !u.lesson.startsWith('calculus-'));
+if (
+  notebook.lessons.filter((l: any) => l.subject !== 'Calculus').length !== 29 ||
+  historical.filter((u) => u.source.startsWith('question:')).length !== 2010 ||
+  historical.filter((u) => u.source.startsWith('quick:')).length !== 54
+)
+  throw new Error('Historical curriculum coverage changed.');
 await mkdir('output', { recursive: true });
 await writeFile(
   'output/curriculum-inventory.json',
