@@ -409,6 +409,12 @@ decomposition (A04).
   deletion/backup behavior and storage retention. **Deferred** to a focused repair;
   no production data, timer, or deployment script was changed.
 
+Follow-up: [backup and media recovery integrity](backup-media-integrity.md)
+documents the focused repair: self-contained database/media snapshots, atomic
+publication, retention locks, verified restoration and pruning regressions. The
+former `-mtime +35` policy actually becomes eligible at 36 completed days; that
+threshold is preserved. Historical database-only backups are not repaired.
+
 ### A14 — HIGH VALUE: a historical generator overwrites modern Review fixtures
 
 - **Files/evidence:** `scripts/authoring/deterministic-review.py:216–218` writes

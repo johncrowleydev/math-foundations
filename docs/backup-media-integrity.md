@@ -184,3 +184,23 @@ Additional failure/concurrency tests cover:
 - `TestDeploymentBackupScriptCreatesAndPrunes` and `TestDeploymentBackupScriptFailureDoesNotPrune`: the production shell script runs against isolated temporary data, creates/verifies recovery points, prunes expired points and skips pruning after a failed backup.
 
 The tests inject a genuine media-write failure and a publication collision, not a full disk or an `fsync` failure. Those other I/O failures follow checked error returns before publication; files and directories are synced before success. Power-loss durability still depends on the filesystem and storage device honoring those synchronization requests. The new copy/finalization tests pass both ordinary and race-enabled targeted Go runs. Full repository validation is recorded with the change's delivery results.
+
+## Validation results
+
+All checks below passed on the completed implementation. The four new backup test files add 24 substantive tests, plus subprocess helpers and table-driven cases.
+
+| Check                                 | Result                                                                                                                                                              |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm test`                            | 2,016 tests; includes content/source validation and shared/adversarial deterministic fixtures.                                                                      |
+| `npm run typecheck`                   | Passed.                                                                                                                                                             |
+| `npm run web:build`                   | Passed; existing large-bundle advisory remains.                                                                                                                     |
+| `npm run web:test`                    | 94 tests, including offline/sync preservation checks.                                                                                                               |
+| `npm run format:check`                | Passed.                                                                                                                                                             |
+| `go test -count=1 ./...`              | Passed, including backup commands/scripts, media retirement, restore integrity, provider traps and frozen Review history.                                           |
+| `go test -race -count=1 ./...`        | Passed.                                                                                                                                                             |
+| `scripts/check-offline-hardening.mjs` | Production PWA and isolated real API: offline work, malformed/interrupted replies, frozen Review/catalog upgrades and export/restore passed.                        |
+| `scripts/check-review-ui.mjs`         | Passed against a dedicated local development server; synthetic API, cached Review and queued sync. Only screenshot output was redirected to ignored test artifacts. |
+| Linux ARM64, `CGO_ENABLED=0` build    | Passed with the deployment target; no new runtime command dependency.                                                                                               |
+| `sh -n server/deploy/backup.sh`       | Passed; execution with temporary DB/media and paths containing spaces is covered by the Go integration tests.                                                       |
+
+The first standalone Review browser invocation lacked its required development server; the corrected isolated invocation passed. No product changes were needed for that setup error. Test logs and browser artifacts are local, ignored files under `output/backup-media-integrity/` and `output/offline-hardening/`. No production access, deployment or merge was performed.
