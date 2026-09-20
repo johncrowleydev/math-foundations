@@ -68,6 +68,5 @@ including rounded answers, offline retries, reload, and export/import restoratio
 without provider calls or media uploads. Existing server tests also checked frozen
 review definitions after catalog replacement.
 
-This branch is based on `content/calculus-foundations` while calculus PR #7 is
-open. A probability/statistics PR should use that stacking base, then target
-`main` once calculus has merged. No merge or deployment is part of authorship.
+This subject builds on calculus PR #7, merged into `main` on 2026-09-20.
+The probability/statistics pull request targets `main`.
