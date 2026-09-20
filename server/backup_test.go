@@ -621,17 +621,13 @@ func TestBackupProcessLockPreventsLiveMediaRetirement(t *testing.T) {
 	}()
 	select {
 	case <-done:
-	case <-time.After(50 * time.Millisecond):
+	case <-time.After(5 * time.Second):
+		t.Fatal("retirement blocked behind a backup instead of skipping this cleanup pass")
 	}
 	if _, err := os.Stat(filepath.Join(mediaRoot, a.Images[0])); err != nil {
 		t.Fatal("live retirement invalidated an in-progress backup", err)
 	}
 	stop()
-	select {
-	case <-done:
-	case <-time.After(5 * time.Second):
-		t.Fatal("retirement remained blocked after backup process exited")
-	}
 	g.removeRetiredMedia()
 	if _, err := os.Stat(filepath.Join(mediaRoot, a.Images[0])); !os.IsNotExist(err) {
 		t.Fatalf("live media was not retired after backup lock release: %v", err)
@@ -655,6 +651,16 @@ func TestBackupCreationWaitsForMediaRetentionLock(t *testing.T) {
 	if _, err := os.Stat(point); !os.IsNotExist(err) {
 		t.Fatalf("backup published before owning the media-retention lock: %v", err)
 	}
+	// The external process represents a collector already holding the media
+	// lock. Finish its transcription and deletion while backup creation waits.
+	// A snapshot taken before acquiring the lock would now contain a stale
+	// reference and fail copying; a snapshot taken afterward needs no image.
+	if !g.step(context.Background()) {
+		t.Fatal("expected pending grading work")
+	}
+	if err := os.Remove(filepath.Join(mediaRoot, a.Images[0])); err != nil {
+		t.Fatal(err)
+	}
 	stop()
 	select {
 	case err := <-done:
@@ -666,5 +672,17 @@ func TestBackupCreationWaitsForMediaRetentionLock(t *testing.T) {
 	}
 	if err := verifyBackup(point); err != nil {
 		t.Fatal(err)
+	}
+	db, err := openBackupDatabase(filepath.Join(point, "notebook.db"), true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+	saved, err := loadAttempt(db, a.ID)
+	if err != nil || saved.Status != "graded" || saved.Transcription != "p implies q" || len(saved.Images) != 0 || len(saved.Photos) != 0 {
+		t.Fatalf("snapshot must reflect retirement completed before lock acquisition: %+v, %v", saved, err)
+	}
+	if hashes := backupMediaNames(t, point); len(hashes) != 0 {
+		t.Fatalf("post-retirement snapshot retained obsolete media: %v", hashes)
 	}
 }
