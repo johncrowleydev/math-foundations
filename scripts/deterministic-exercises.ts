@@ -29,6 +29,7 @@ const entrySchema = z
       .min(2),
     instructions: z.string().optional(),
     prompt: z.string().optional(),
+    answer: z.string().min(1).optional(),
   })
   .strict();
 export type DeterministicEntry = Omit<z.infer<typeof entrySchema>, 'assessment' | 'fixtures'> & {
@@ -66,6 +67,11 @@ export function validateDeterministicEntry(raw: unknown): DeterministicEntry {
   validateMath(entry.assessment.feedback.incorrect);
   if (entry.instructions) validateMath(entry.instructions);
   if (entry.prompt) validateMath(entry.prompt);
+  if (entry.answer) {
+    validateMath(entry.answer);
+    if (entry.answer !== entry.assessment.feedback.correct)
+      throw Error('Converted answer must match correct feedback: ' + entry.lesson + '-' + entry.id);
+  }
   return entry as DeterministicEntry;
 }
 export const deterministicExercises: DeterministicEntry[] = [];
@@ -119,6 +125,7 @@ export function promoteDeterministic<
         ...q,
         ...(entry.instructions !== undefined ? { instructions: entry.instructions } : {}),
         ...(entry.prompt !== undefined ? { prompt: entry.prompt } : {}),
+        ...(entry.answer !== undefined ? { answer: entry.answer } : {}),
         assessment: entry.assessment,
       };
     }),

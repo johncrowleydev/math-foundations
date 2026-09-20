@@ -48,6 +48,7 @@ type Entry = {
   assessment: Assessment;
   prompt?: string;
   instructions?: string;
+  answer?: string;
 };
 type ReviewTemplate = {
   id: string;
@@ -255,6 +256,7 @@ export function assembleCoverage(input: CoverageInput) {
         ...old,
         ...(entry.prompt === undefined ? {} : { prompt: entry.prompt }),
         ...(entry.instructions === undefined ? {} : { instructions: entry.instructions }),
+        ...(entry.answer === undefined ? {} : { officialAnswer: entry.answer }),
       };
       assert(
         isDeepStrictEqual(intended, q.question),

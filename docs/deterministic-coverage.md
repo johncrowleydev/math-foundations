@@ -1,6 +1,6 @@
 # Deterministic grading coverage
 
-Validated against published grading catalog `a25d91aeff7527814735ef0a68eaef24666bbd100c2db65e9ef2bdbd135e4778`.
+Validated against published grading catalog `d4d98598783863596f71298f6961a6b003715c723b33a7ebd32dc1a215636a2f`.
 
 2,064 lesson exercises: **1,389 new structured assessments**, **183 existing choices**, and **492 open responses**. The deterministic total is **1,572** (76.2%).
 
