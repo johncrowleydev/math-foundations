@@ -54,9 +54,9 @@ Run `sudo /opt/math-foundations/current/rotate-key.sh` to rotate credentials. It
 
 ### Weekly backups and restoration
 
-`foundations-backup.timer` runs **weekly**, Sunday 04:00 UTC with up to 15 minutes of jitter. Missed runs execute after the host resumes. `VACUUM INTO` creates a consistent SQLite snapshot while the service runs. Retention is 35 days, keeping at least four weekly recovery points. A one-time installation backup verifies the job.
+`foundations-backup.timer` runs **weekly**, Sunday 04:00 UTC with up to 15 minutes of jitter. Missed runs execute after the host resumes. `VACUUM INTO` creates a consistent SQLite snapshot while the service runs. Installation enables the timer; it does not itself execute a one-time backup.
 
-Photos remain immutable on the volume, including those needed by retained versions and backups. To restore, stop `foundations`, preserve the current database and WAL/SHM files in a separate recovery directory, copy a selected snapshot to `notebook.db`, set ownership to `foundations` and mode `0600`, and restart. Keep the media directory. When restoring an older database, clients must replay their local state from a reset cursor; existing local work is still available. Same-volume snapshots do not cover loss of the entire volume.
+The current [backup and media recovery procedure](backup-media-integrity.md) replaces the former database-only format. Each completed recovery point includes its required media, independently of later live-media retirement. Follow that procedure for retention, verification and restoring the database together with its media. Historical database-only backups may already reference deleted media and are not repaired automatically. Same-volume snapshots do not cover loss of the entire volume.
 
 `MediaStore` isolates blob access from the record database. A future S3 implementation can retain the same identifiers and authenticated client API. S3 and off-server backup storage are not dependencies of this release.
 
