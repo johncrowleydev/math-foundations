@@ -66,13 +66,14 @@ export function finiteRelationRequirement(
       nodes.some((_, j) => nodes.some((_, k) => a[i][j] && a[j][k] && !a[i][k])),
     );
   }
+  // Parse every learner field before returning a mathematical verdict.
+  const witness = parseSetNode(value(1), atoms);
+  if (witness.kind !== 'tuple' || witness.members.length !== 3)
+    throw new InputError('Enter the ordered witness triple (a,b,c).');
   const nodes = p.universe!.map((x) => parseSetNode(x, atoms));
   if (carrier([first]).some((x) => index(nodes, x) < 0)) return false;
   const a = matrix(first, nodes);
   if (a.some((row, i) => !row[i] || row.some((v, j) => v !== a[j][i]))) return false;
-  const witness = parseSetNode(value(1), atoms);
-  if (witness.kind !== 'tuple' || witness.members.length !== 3)
-    throw new InputError('Enter the ordered witness triple (a,b,c).');
   const [i, j, k] = witness.members.map((x) => index(nodes, x));
   return i >= 0 && j >= 0 && k >= 0 && a[i][j] && a[j][k] && !a[i][k];
 }

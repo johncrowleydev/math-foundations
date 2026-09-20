@@ -399,7 +399,7 @@ export function parseExpression(source: string, variables: string[] = []): Expre
       const a = group(),
         b = group();
       x = a.div(b);
-    } else if (t === 'binom' || t === 'choose' || t === '\\binom') {
+    } else if (t === 'binom' || t === 'binomial' || t === 'choose' || t === '\\binom') {
       at++;
       let a: bigint, b: bigint;
       if (t === '\\binom') {
@@ -433,6 +433,10 @@ export function parseExpression(source: string, variables: string[] = []): Expre
     if (take('^')) {
       const n = unary().exact().integer();
       if (n < -100n || n > 100n) fail('Use an integer exponent between −100 and 100.');
+      // Source answers must not rely on an evaluated 0^0. Internal polynomial
+      // powers and symbolic x^0 normalization retain their algebraic convention.
+      if (n === 0n && !x.num.size)
+        fail('Do not use 0^0 in a numerical answer. State the requested value directly.');
       x = x.pow(Number(n));
     }
     return x;
@@ -447,6 +451,7 @@ export function parseExpression(source: string, variables: string[] = []): Expre
         t === '\\sqrt' ||
         t === 'sqrt' ||
         t === 'binom' ||
+        t === 'binomial' ||
         t === '\\binom' ||
         t === 'choose' ||
         /^(?:\d|\.)/.test(t) ||
@@ -514,9 +519,29 @@ export function sameExpressionDomain(
   a: Expression,
   b: Expression,
   domain: Expression[] = [],
+  realVariables = false,
 ): boolean {
   const restrictions = domain.map((d) => d.num);
-  const clean = (ps: Poly[]) => ps.filter((p) => [...p.keys()].some((k) => k !== ''));
+  // A nonzero constant plus same-sign even monomials cannot vanish over R.
+  // Such denominators impose no restriction (for example x^2 + 1), even if
+  // their factors were canceled. Do not discard sums of squares lacking the
+  // nonzero constant, or polynomials with odd powers or mixed signs.
+  const neverZero = (poly: Poly): boolean => {
+    const constant = poly.get('');
+    if (!constant) return false;
+    try {
+      const sign = constant.sign();
+      return [...poly].every(
+        ([key, coefficient]) =>
+          coefficient.sign() === sign && Object.values(powers(key)).every((n) => n % 2 === 0),
+      );
+    } catch (e) {
+      if (!(e instanceof InputError)) throw e;
+      return false;
+    }
+  };
+  const clean = (ps: Poly[]) =>
+    ps.filter((p) => [...p.keys()].some((k) => k !== '') && !(realVariables && neverZero(p)));
   const left = clean([...a.exclusions, ...restrictions]),
     right = clean([...b.exclusions, ...restrictions]);
   const covers = (from: Poly[], to: Poly[]) =>

@@ -730,7 +730,10 @@ func calcProved(g calcGuard, facts []calcGuard, c *calcContext, depth int) bool 
 		}
 		return p(g.kind, u) && p("positive", v)
 	case "+":
-		return g.kind != "nonzero" && ((p("positive", u) && p("nonnegative", v)) || (p("nonnegative", u) && p("positive", v)) || (g.kind == "nonnegative" && p("nonnegative", u) && p("nonnegative", v)))
+		if g.kind == "nonzero" {
+			return p("positive", a)
+		}
+		return (p("positive", u) && p("nonnegative", v)) || (p("nonnegative", u) && p("positive", v)) || (g.kind == "nonnegative" && p("nonnegative", u) && p("nonnegative", v))
 	case "^":
 		if q := calcConstant(v); q != nil && q.IsInt() {
 			if q.Num().Bit(0) == 0 {

@@ -8,6 +8,17 @@ Initial validators: `boolean` params `{expected: boolean[]}`; `term` `{accepted:
 
 Evidence level belongs to each assessment, including variant-specific definitions. Preserve deeper existing target requirements and history. No deterministic retry/recheck/restoration can create model jobs. A deterministic question with wrong/unsupported submission mode fails rather than falling back. Catalog and deterministic readiness are independent of model-provider readiness.
 
+### Explicit numerical zero powers
+
+The ordinary exact-arithmetic source parser returns input guidance when the
+parsed base and exponent both evaluate to zero, including `0^0` and
+`(2-2)^(3-3)`. The recurrence prompts `sequences-and-summations-18` and
+`recurrence-relations-8` explicitly require answers that do not rely on that
+notation; `9*0^0` and `7*0^0` must not bypass those instructions. This is a bounded
+input policy, not a claim that every mathematical context uses the same convention.
+Internal polynomial powers and symbolic `x^0` normalization retain their existing
+algebraic convention; nonzero constants raised to zero and `0!` remain supported.
+
 ### Calculus expressions and antiderivatives
 
 The `calculus-expression` and `antiderivative` validators use the existing version-1

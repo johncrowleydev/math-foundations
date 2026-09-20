@@ -502,6 +502,11 @@ func (p *mathParser) power() (rationalPoly, error) {
 		if !ok || !r.IsInt() || !r.Num().IsInt64() || r.Num().Int64() < -100 || r.Num().Int64() > 100 {
 			return v, errors.New("Use an integer power from -100 to 100")
 		}
+		// Keep the internal polynomial zero-power convention; source answers
+		// must not rely on an explicitly evaluated zero-to-zero power.
+		if r.Sign() == 0 && len(v.n) == 0 {
+			return v, errors.New("Do not use 0^0 in a numerical answer. State the requested value directly")
+		}
 		return v.power(int(r.Num().Int64()))
 	}
 	return v, nil
@@ -589,7 +594,7 @@ func (p *mathParser) atom() (rationalPoly, error) {
 		}
 		ar, ao := av.rat()
 		br, bo := bv.rat()
-		if !ao || !bo || !ar.IsInt() || !br.IsInt() || !ar.Num().IsInt64() || !br.Num().IsInt64() || ar.Sign() < 0 || br.Sign() < 0 || ar.Num().Int64() > 1000 {
+		if !ao || !bo || !ar.IsInt() || !br.IsInt() || !ar.Num().IsInt64() || !br.Num().IsInt64() || ar.Sign() < 0 || br.Sign() < 0 || ar.Num().Int64() > 1000 || br.Num().Int64() > 1000 {
 			return a, errors.New("Use integers 0 <= k <= n <= 1000")
 		}
 		if br.Cmp(ar) > 0 {

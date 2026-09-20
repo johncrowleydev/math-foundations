@@ -21,9 +21,18 @@ function list(s: string): string[] {
   s = s
     .trim()
     .replace(/\\(?:left|right)/g, '')
-    .replace(/\\[{}]/g, '')
-    .replace(/[{}()[\]]/g, '')
+    .replace(/\\([{}])/g, '$1')
     .replace(/(?:→|->|\\to)/g, ',');
+  const delimiters: string[] = [];
+  const opening = '{([',
+    closing = '})]';
+  for (const c of s) {
+    if (opening.includes(c)) delimiters.push(c);
+    else if (closing.includes(c) && delimiters.pop() !== opening[closing.indexOf(c)])
+      throw new InputError('Check the vertex-list delimiters.');
+  }
+  if (delimiters.length) throw new InputError('Close the vertex-list delimiters.');
+  s = s.replace(/[{}()[\]]/g, '');
   if (!s || /,\s*,|^\s*,|,\s*$/.test(s))
     throw new InputError('Enter vertex labels separated by commas or spaces.');
   const xs = s.split(/[\s,]+/);

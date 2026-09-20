@@ -442,12 +442,11 @@ function proved(g: Guard, facts: Guard[], ctx: Context, depth = 0): boolean {
       ? p('nonzero', u) && p('nonzero', v)
       : p(g.kind, u) && p('positive', v);
   if (g.node.op === '+')
-    return (
-      g.kind !== 'nonzero' &&
-      ((p('positive', u) && p('nonnegative', v)) ||
-        (p('nonnegative', u) && p('positive', v)) ||
-        (g.kind === 'nonnegative' && p('nonnegative', u) && p('nonnegative', v)))
-    );
+    return g.kind === 'nonzero'
+      ? p('positive', g.node)
+      : (p('positive', u) && p('nonnegative', v)) ||
+          (p('nonnegative', u) && p('positive', v)) ||
+          (g.kind === 'nonnegative' && p('nonnegative', u) && p('nonnegative', v));
   if (g.node.op === '^') {
     const c = constant(v);
     if (c?.d === 1n) {

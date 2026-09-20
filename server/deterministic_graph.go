@@ -68,7 +68,25 @@ func graphList(s string) ([]string, error) {
 		return nil, errors.New("Use a shorter vertex list")
 	}
 	s = strings.TrimSpace(s)
-	for _, x := range []string{"\\left", "\\right", "\\{", "\\}", "{", "}", "(", ")", "[", "]"} {
+	for _, x := range []string{"\\left", "\\right"} {
+		s = strings.ReplaceAll(s, x, "")
+	}
+	s = strings.NewReplacer("\\{", "{", "\\}", "}").Replace(s)
+	delimiters := []rune{}
+	for _, c := range s {
+		if strings.ContainsRune("{([", c) {
+			delimiters = append(delimiters, c)
+		} else if i := strings.IndexRune("})]", c); i >= 0 {
+			if len(delimiters) == 0 || delimiters[len(delimiters)-1] != rune("{(["[i]) {
+				return nil, errors.New("Check the vertex-list delimiters")
+			}
+			delimiters = delimiters[:len(delimiters)-1]
+		}
+	}
+	if len(delimiters) > 0 {
+		return nil, errors.New("Close the vertex-list delimiters")
+	}
+	for _, x := range []string{"{", "}", "(", ")", "[", "]"} {
 		s = strings.ReplaceAll(s, x, "")
 	}
 	for _, x := range []string{"→", "->", "\\to"} {
