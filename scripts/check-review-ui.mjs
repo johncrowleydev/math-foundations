@@ -222,6 +222,12 @@ async function overview() {
   await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
   await review.getByRole('button', { name: 'Start Regular review', exact: true }).waitFor();
 }
+async function waitForAttemptUpload() {
+  await page.waitForFunction(async () => {
+    const storage = await import('/src/storage.ts');
+    return !(await storage.all('outbox')).some((operation) => operation.kind === 'attempt');
+  });
+}
 try {
   await page.goto(baseURL + '/#/review/propositional-logic');
   await review.getByRole('button', { name: 'Start Quick review', exact: true }).waitFor();
@@ -242,11 +248,20 @@ try {
   await review.getByRole('radiogroup', { name: 'Answer choices' }).waitFor();
   await screenshot('quick');
   await review.getByRole('radio', { name: 'A witness', exact: true }).check();
+  const uploaded = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname.endsWith('/attempts') &&
+      response.request().method() === 'POST' &&
+      response.ok(),
+  );
   await review.getByRole('button', { name: 'Submit', exact: true }).click();
   await page.waitForFunction(
     () => document.querySelector('.attempt-status strong')?.textContent === 'Correct',
   );
-  await page.waitForTimeout(300);
+  // A local Correct verdict precedes synchronization; wait for its acknowledgement
+  // and durable queue removal instead of assuming the network finishes in 300ms.
+  await uploaded;
+  await waitForAttemptUpload();
   assert.equal(submissions.length, 1);
   assert.equal(submissions[0].review.kind, 'scheduled-review');
   assert.equal(submissions[0].review.templateId, 'witness-definition-variants');
@@ -301,7 +316,7 @@ try {
     const sync = await import('/src/sync.ts');
     await sync.sync();
   });
-  await page.waitForTimeout(300);
+  await waitForAttemptUpload();
   assert.equal(submissions.length, 2);
   assert.equal(submissions[1].review.kind, 'focused-practice');
   await overview();

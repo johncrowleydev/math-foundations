@@ -13,6 +13,8 @@ Baseline: `3719ac2` (main after PR #9), inspected September 20, 2026. All browse
 
 The rapid-activation test is deliberately adversarial, using synchronous DOM activation. It does not claim eight ordinary physical clicks occurred within one rendering frame. The correctness fixes preserve exercise IDs, attempt IDs, original responses, and the existing server-owned scheduler.
 
+A second LOW test defect reproduced during combined browser execution: `check-review-ui.mjs` asserted a server upload 300 milliseconds after the local Correct verdict. The local grade legitimately appears before background synchronization, so the assertion intermittently observed zero uploads. The check now waits for the successful POST response and durable outbox removal before asserting the exact submission count and Review context. Its reconnect check also waits for queue removal. No product behavior or correctness assertion was weakened.
+
 ## Scenarios and evidence
 
 `scripts/check-offline-hardening.mjs` runs the production build with an active service worker and the real Go API. It checks:
