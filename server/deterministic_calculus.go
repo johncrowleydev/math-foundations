@@ -484,7 +484,7 @@ func (c *calcContext) proportional(a, b rationalPoly) (exactNumber, bool) {
 	}
 	return exactNumber{}, false
 }
-func (c *calcContext) equivalent(a, b rationalPoly) bool {
+func (c *calcContext) difference(a, b rationalPoly) rationalPoly {
 	difference := calcMust(a.combine(b, "-"))
 	for i := len(c.atoms) - 1; i >= 0; i-- {
 		atom := c.atoms[i]
@@ -516,7 +516,79 @@ func (c *calcContext) equivalent(a, b rationalPoly) bool {
 		}
 		difference = calcMust(reduce(difference.n).combine(reduce(difference.d), "/"))
 	}
-	return len(difference.n) == 0
+	return difference
+}
+func (c *calcContext) equivalent(a, b rationalPoly) bool { return len(c.difference(a, b).n) == 0 }
+func (c *calcContext) activeAtoms(value rationalPoly) map[string]bool {
+	found := map[string]bool{}
+	var collect func(rationalPoly)
+	collect = func(value rationalPoly) {
+		for _, poly := range []exactPoly{value.n, value.d} {
+			for key := range poly {
+				for i, power := range strings.Split(strings.TrimSuffix(key, ","), ",") {
+					if power == "0" {
+						continue
+					}
+					name := c.variables[i]
+					for _, atom := range c.atoms {
+						if atom.name == name && !found[name] {
+							found[name] = true
+							collect(atom.argument)
+						}
+					}
+				}
+			}
+		}
+	}
+	collect(value)
+	return found
+}
+func (c *calcContext) answerEqual(actual, expected *calcNode) bool {
+	a, b := c.norm(actual), c.norm(expected)
+	difference := c.difference(a, b)
+	if len(difference.n) == 0 {
+		return true
+	}
+	residual, got, wanted := c.activeAtoms(difference), c.activeAtoms(a), c.activeAtoms(b)
+	family := func(op string) string {
+		if enum(op, "sin", "cos") {
+			return "trigonometric"
+		}
+		return op
+	}
+	for _, atom := range c.atoms {
+		if !residual[atom.name] || !got[atom.name] || wanted[atom.name] {
+			continue
+		}
+		changedArgument, matched := false, false
+		for _, other := range c.atoms {
+			if wanted[other.name] {
+				same := c.equivalent(other.argument, atom.argument)
+				if family(other.op) == family(atom.op) && !same {
+					changedArgument = true
+				}
+				if other.op == atom.op && same {
+					matched = true
+				}
+			}
+		}
+		nested := len(c.activeAtoms(atom.argument)) > 0
+		constantArgument := true
+		for _, poly := range []exactPoly{atom.argument.n, atom.argument.d} {
+			for key := range poly {
+				for i, power := range strings.Split(strings.TrimSuffix(key, ","), ",") {
+					if power != "0" && !enum(c.variables[i], "pi", "e") {
+						constantArgument = false
+					}
+				}
+			}
+		}
+		branch := enum(atom.op, "sqrt", "abs", "asin", "acos", "atan") && !matched
+		if changedArgument || nested || constantArgument || branch {
+			calcFail("This form needs an identity outside the supported symbolic rules. Rewrite it using the function arguments in the question or the standard taught form")
+		}
+	}
+	return false
 }
 func (c *calcContext) equal(a, b *calcNode) bool { return c.equivalent(c.norm(a), c.norm(b)) }
 
@@ -765,7 +837,7 @@ func checkCalculus(r AssessmentRequirement, response StructuredResponse) (ok boo
 		}
 		allowed := append(facts, calcGuards(expected, false)...)
 		calcCheckGuards(calcGuards(answer, false), allowed, c)
-		return c.equal(answer, expected), nil
+		return c.answerEqual(answer, expected), nil
 	}
 	integrand := calcParse(p.Integrand, vs)
 	variable := vs[0]
@@ -778,7 +850,7 @@ func checkCalculus(r AssessmentRequirement, response StructuredResponse) (ok boo
 	} else if calcHasC(answer) {
 		return false, nil
 	}
-	correct := c.equal(calcDerivative(answer, variable), integrand)
+	correct := c.answerEqual(calcDerivative(answer, variable), integrand)
 	if p.Mode == "initial-value" {
 		at := calcParse(p.Initial.At, nil)
 		target := calcParse(p.Initial.Value, nil)
@@ -788,7 +860,7 @@ func checkCalculus(r AssessmentRequirement, response StructuredResponse) (ok boo
 			checks = append(checks, calcGuard{g.kind, calcSubstitute(g.node, variable, at)})
 		}
 		calcCheckGuards(checks, nil, c)
-		return correct && c.equal(value, target), nil
+		return correct && c.answerEqual(value, target), nil
 	}
 	return correct, nil
 }

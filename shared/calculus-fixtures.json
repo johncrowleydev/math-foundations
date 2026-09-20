@@ -3310,5 +3310,480 @@
       "answer": "cos(x)^2-sin(x)^2"
     },
     "verdict": "correct"
+  },
+  {
+    "name": "unresolved complementary angle guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sin(x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(pi/2-x)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved logarithm power guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "2*ln(x)",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(x^2)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved logarithm product guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x", "y"],
+            "expected": "ln(x*y)",
+            "domain": {
+              "positive": ["x", "y"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "ln(x)+ln(y)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved radical branch guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "sqrt(x^2)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved constant trig evaluation guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(pi/2)"
+    },
+    "error": true
+  },
+  {
+    "name": "unresolved inverse composition guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x",
+            "domain": {
+              "positive": ["1-sin(x)^2"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "asin(sin(x))"
+    },
+    "error": true
+  },
+  {
+    "name": "wrong trig function same argument",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "sin(x)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "cos(x)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong logarithm coefficient same argument",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "2*ln(x)",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "3*ln(x)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong constant logarithm coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "ln(5)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "2*ln(5)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong numeric answer to variable power",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "x^x*(ln(x)+1)",
+            "domain": {
+              "positive": ["x"]
+            }
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "wrong shifted derivative polynomial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["x"],
+            "expected": "6*x*cos(3*x^2)"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "6*x*cos(3*x^2)+1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "unresolved antiderivative identity guidance",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "description": "Correct calculus expression",
+          "validator": "antiderivative",
+          "fields": ["answer"],
+          "params": {
+            "variable": "x",
+            "integrand": "sin(x)",
+            "mode": "family"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the calculation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-sin(pi/2-x)+C"
+    },
+    "error": true
   }
 ]

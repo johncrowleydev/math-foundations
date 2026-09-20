@@ -84,3 +84,16 @@ exact-arithmetic size limits and an additional symbolic work limit apply. Unsupp
 notation, unresolved domain restrictions, and exceeded bounds return input guidance.
 The shared `calculus-fixtures.json` corpus verifies browser/server conformance,
 and the existing provider-trap tests cover new, retried, reviewed, and restored attempts.
+
+For a supported form that does not normalize to the authored answer, a remaining
+nonzero rational/algebraic residual establishes an incorrect response. The checker
+also recognizes coefficient, sign, and chain-factor mistakes expressed using the
+same normalized function terms. It does not treat every unfamiliar function atom
+as evidence of an error: if the remaining response introduces a different argument
+within a function family, an unresolved nested composition, an unevaluated constant
+function, or an unrecognized radical/inverse-function branch identity, it returns
+input guidance asking for the standard taught form. Examples include
+`cos(pi/2-x)` against `sin(x)` and `ln(x^2)` against `2*ln(x)` on a positive domain.
+This conservative boundary is relative to the immutable authored normal form;
+it is not a general-purpose theorem prover. Correct identities already covered
+by the exact normalizer remain accepted. No sampling or provider fallback is used.

@@ -290,7 +290,7 @@ class Context {
     )
       return ratio;
   }
-  equivalent(a: Expression, b: Expression): boolean {
+  difference(a: Expression, b: Expression): Expression {
     let difference = a.add(b.neg());
     // Reduce square-root and trigonometric square relations in reverse atom
     // order: each relation contains only earlier atoms, so reduction terminates.
@@ -314,7 +314,59 @@ class Context {
       };
       difference = reduce(difference.num).div(reduce(difference.den));
     }
-    return difference.num.size === 0;
+    return difference;
+  }
+  equivalent(a: Expression, b: Expression): boolean {
+    return this.difference(a, b).num.size === 0;
+  }
+  activeAtoms(value: Expression): Set<string> {
+    const found = new Set<string>();
+    const collect = (value: Expression) => {
+      for (const key of [...value.num.keys(), ...value.den.keys()])
+        for (const part of key ? key.split('|') : []) {
+          const name = part.split(':')[0],
+            atom = this.atoms.find((a) => a.name === name);
+          if (atom && !found.has(name)) {
+            found.add(name);
+            collect(atom.argument);
+          }
+        }
+    };
+    collect(value);
+    return found;
+  }
+  answerEqual(actual: Node, expected: Node): boolean {
+    const a = this.norm(actual),
+      b = this.norm(expected),
+      difference = this.difference(a, b);
+    if (!difference.num.size) return true;
+    const residual = this.activeAtoms(difference),
+      got = this.activeAtoms(a),
+      wanted = this.activeAtoms(b);
+    const family = (op: string) => (['sin', 'cos'].includes(op) ? 'trigonometric' : op);
+    for (const atom of this.atoms) {
+      if (!residual.has(atom.name) || !got.has(atom.name) || wanted.has(atom.name)) continue;
+      const matching = [...wanted].map((name) => this.atoms.find((a) => a.name === name)!);
+      const changedArgument = matching.some(
+        (other) =>
+          family(other.op) === family(atom.op) && !this.equivalent(other.argument, atom.argument),
+      );
+      const nested = this.activeAtoms(atom.argument).size > 0;
+      const names = [...atom.argument.num.keys(), ...atom.argument.den.keys()].flatMap((key) =>
+        key ? key.split('|').map((part) => part.split(':')[0]) : [],
+      );
+      const constantArgument = names.every((name) => name === 'pi' || name === 'e');
+      const unrecognizedBranch =
+        ['sqrt', 'abs', 'asin', 'acos', 'atan'].includes(atom.op) &&
+        !matching.some(
+          (other) => other.op === atom.op && this.equivalent(other.argument, atom.argument),
+        );
+      if (changedArgument || nested || constantArgument || unrecognizedBranch)
+        fail(
+          'This form needs an identity outside the supported symbolic rules. Rewrite it using the function arguments in the question or the standard taught form.',
+        );
+    }
+    return false;
   }
   equal(a: Node, b: Node) {
     return this.equivalent(this.norm(a), this.norm(b));
@@ -473,7 +525,7 @@ export function checkCalculus(r: AssessmentRequirement, response: StructuredResp
     // The expected formula defines the natural domain when no narrower one is stated.
     const allowed = [...facts, ...guards(expected)];
     checkGuards(guards(answer), allowed, ctx);
-    return ctx.equal(answer, expected);
+    return ctx.answerEqual(answer, expected);
   }
   const integrand = parse(p.integrand as string, variables),
     variable = variables[0];
@@ -484,7 +536,7 @@ export function checkCalculus(r: AssessmentRequirement, response: StructuredResp
     // Require one freely additive constant, not x*C, C^2 or a cancellable token.
     if (!ctx.equal(derivative(answer, 'C'), one())) return false;
   } else if (hasC(answer)) return false;
-  const correct = ctx.equal(derivative(answer, variable), integrand);
+  const correct = ctx.answerEqual(derivative(answer, variable), integrand);
   if (p.mode === 'initial-value') {
     const at = parse(p.initial!.at, []),
       target = parse(p.initial!.value, []),
@@ -497,7 +549,7 @@ export function checkCalculus(r: AssessmentRequirement, response: StructuredResp
       [],
       ctx,
     );
-    return correct && ctx.equal(value, target);
+    return correct && ctx.answerEqual(value, target);
   }
   return correct;
 }
