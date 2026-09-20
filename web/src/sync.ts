@@ -13,7 +13,7 @@ import {
 } from './storage';
 import type { Attempt, RecordData } from './types';
 import { deterministicAttempt } from './structuredAnswer';
-import { validServerAttempt } from './serverAttempt';
+import { preservesAttempt, preservesConfirmedAttempt, validServerAttempt } from './serverAttempt';
 export let syncStatus = 'Not connected';
 export let initialSyncComplete = false;
 
@@ -88,14 +88,31 @@ export async function mutation(key: string, payload: Record<string, unknown>, re
   void sync();
 }
 export async function cancelGrading(a: Attempt) {
-  const current: Attempt = a.activeJob ? a : await (await apiRequest('/attempts/' + a.id)).json();
+  const retained = async (value: unknown, original: Attempt) => {
+    const next = acknowledgedAttempt(value, original);
+    const record = await get<RecordData>('records', 'attempt/' + a.id);
+    const cached = await get<Attempt>('attempts', a.id);
+    if (
+      [original, cached, record?.payload as Attempt | undefined].some(
+        (old) => old && !preservesConfirmedAttempt(next, old),
+      )
+    )
+      throw Error('Invalid server cancellation response; saved history remains unchanged.');
+    return next;
+  };
+  const current: Attempt = a.activeJob
+    ? a
+    : await retained(await (await apiRequest('/attempts/' + a.id)).json(), a);
   if (!current.activeJob) {
     await put('attempts', a.id, current);
     return;
   }
-  const saved = await (
-    await apiRequest('/attempts/' + a.id + '/cancel', 'POST', { job: current.activeJob })
-  ).json();
+  const saved = await retained(
+    await (
+      await apiRequest('/attempts/' + a.id + '/cancel', 'POST', { job: current.activeJob })
+    ).json(),
+    current,
+  );
   await put('attempts', a.id, saved);
 }
 export async function recheck(a: Attempt, reason: string) {
@@ -154,23 +171,17 @@ export function acknowledgedAttempt(value: unknown, submitted: Attempt): Attempt
   const a = value;
   if (
     !validServerAttempt(a) ||
-    a.id !== submitted.id ||
-    a.exercise !== submitted.exercise ||
-    a.submitted !== submitted.submitted ||
-    a.contentVersion !== submitted.contentVersion ||
-    a.mode !== submitted.mode ||
-    a.text !== submitted.text ||
-    a.revealed !== submitted.revealed ||
-    a.status === 'queued' ||
+    !preservesAttempt(a, {
+      ...attemptSubmission(submitted),
+      status: submitted.status,
+      grades: submitted.grades,
+      presentation: submitted.presentation,
+      analytics: submitted.analytics,
+      transcription: submitted.transcription,
+    }) ||
     (a.status === 'graded' &&
       ((!a.grades.length && deterministicAttempt(submitted)) ||
-        (a.grades.length > 0 && a.verdict !== a.grades.at(-1)?.verdict))) ||
-    (a.mode === 'choice' && a.choiceId !== submitted.choiceId) ||
-    (a.mode === 'structured' &&
-      (Object.keys(a.response!).length !== Object.keys(submitted.response || {}).length ||
-        Object.entries(submitted.response || {}).some(
-          ([key, value]) => JSON.stringify(a.response![key]) !== JSON.stringify(value),
-        )))
+        (a.grades.length > 0 && a.verdict !== a.grades.at(-1)?.verdict)))
   )
     throw Error('Invalid server acknowledgement; your answer remains queued.');
   return a;

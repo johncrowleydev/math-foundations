@@ -99,7 +99,22 @@ test('offline review context, server states and unfinished sessions survive expo
   assert.equal((await get<any>('records', 'review-state/target')).revision, 0);
   const received = record(
     'attempt/' + attempt.id,
-    { ...attempt, status: 'graded', verdict: 'correct' },
+    {
+      ...attempt,
+      status: 'graded',
+      verdict: 'correct',
+      presentation: { question: session.instances[0].question },
+      analytics: {
+        version: 'v',
+        provenance: 'submission',
+        concepts: [{ concept: context.concept, role: 'primary' }],
+        skills: [{ skill: context.skill, role: 'primary' }],
+        representations: [],
+        conceptDefinitions: [],
+        skillDefinitions: [],
+        representationDefinitions: [],
+      },
+    },
     12,
   );
   await integrate([received], 12);

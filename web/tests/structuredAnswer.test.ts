@@ -298,6 +298,14 @@ test('late transcription of an earlier open answer cannot clear converted scratc
           images: [],
           transcription: 'Old final answer',
           status: 'graded',
+          grades: [
+            {
+              at: 100,
+              verdict: 'correct',
+              feedback: 'Correct.',
+              transcription: 'Old final answer',
+            },
+          ],
         },
         versions: [],
         conflicts: [],

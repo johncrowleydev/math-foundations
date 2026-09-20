@@ -5,7 +5,12 @@ import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
 import { validResponse, validPresentation } from './structuredAnswer';
 import { validateImportedGrades } from './importGrading';
-import { validServerAttempt } from './serverAttempt';
+import {
+  hasRetainedTranscription,
+  preservesAttempt,
+  preservesConfirmedAttempt,
+  validServerAttempt,
+} from './serverAttempt';
 import type { EvidenceCatalog } from './evidenceTypes';
 import {
   validAttemptEffort,
@@ -150,21 +155,53 @@ export async function recoverEffortRejections() {
 export async function integrate(records: RecordData[], cursor: number) {
   // Validate the whole incoming attempt batch before opening a write transaction:
   // a truncated change-feed record must not erase an answer or acknowledge its queue.
+  const attemptKeys = new Set<string>();
   for (const record of records) {
     if (
       record.key.startsWith('attempt/') &&
       (!validServerAttempt(record.payload) ||
         record.key !== 'attempt/' + record.payload.id ||
         !Number.isSafeInteger(record.revision) ||
-        record.revision <= 0)
+        record.revision <= 0 ||
+        attemptKeys.has(record.key))
     )
       throw Error('Invalid server attempt; local work remains unchanged.');
+    if (record.key.startsWith('attempt/')) attemptKeys.add(record.key);
   }
   const d = await db;
   const tx = d.transaction(
     ['records', 'attempts', 'outbox', 'settings', 'drafts', 'media'],
     'readwrite',
   );
+  // Read and compare inside the same transaction, before any writes. This also
+  // checks the queued submission if the local attempt cache is already damaged.
+  try {
+    for (const record of records) {
+      if (!record.key.startsWith('attempt/')) continue;
+      const old: RecordData | undefined = await tx.objectStore('records').get(record.key);
+      const latest = old && old.revision >= record.revision ? old : record;
+      const next = latest.payload as Attempt;
+      const saved = await tx.objectStore('attempts').get(next.id);
+      const queued = await tx.objectStore('outbox').get(next.id);
+      const originals = [saved, queued?.kind === 'attempt' ? queued.data : undefined];
+      if (
+        originals.some((original) => original && !preservesAttempt(next, original)) ||
+        (old &&
+          !(old.revision > 0
+            ? preservesConfirmedAttempt(next, old.payload as Attempt)
+            : preservesAttempt(next, old.payload as Attempt))) ||
+        // A POST can be acknowledged before its first change-feed record arrives.
+        // Without a pending submission or an imported revision-zero record, the
+        // cached grade history is already confirmed and must also be retained.
+        (saved && !queued && !old && !preservesConfirmedAttempt(next, saved, true))
+      )
+        throw Error('Server attempt changed immutable context');
+    }
+  } catch {
+    tx.abort();
+    await tx.done.catch(() => {});
+    throw Error('Invalid server attempt; local work remains unchanged.');
+  }
   let updated = false;
   const retired = new Set<string>();
   const changedDrafts = new Set<string>();
@@ -178,7 +215,7 @@ export async function integrate(records: RecordData[], cursor: number) {
     if (r.key.startsWith('attempt/')) {
       const a = latest.payload as Attempt;
       const saved = await tx.objectStore('attempts').get(a.id);
-      if (a.transcription) {
+      if (hasRetainedTranscription(a)) {
         for (const h of [
           ...(saved?.images || []),
           ...(saved?.photos || []).map((p: any) => p.hash),

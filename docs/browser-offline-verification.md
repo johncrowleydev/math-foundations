@@ -15,11 +15,24 @@ The rapid-activation test is deliberately adversarial, using synchronous DOM act
 
 A second LOW test defect reproduced during combined browser execution: `check-review-ui.mjs` asserted a server upload 300 milliseconds after the local Correct verdict. The local grade legitimately appears before background synchronization, so the assertion intermittently observed zero uploads. The check now waits for the successful POST response and durable outbox removal before asserting the exact submission count and Review context. Its reconnect check also waits for queue removal. No product behavior or correctness assertion was weakened.
 
+### PR #10 preservation follow-up
+
+The blocking comment identified a HIGH gap in the first fix: a well-shaped response could preserve the answer fields while removing or changing its immutable Review, effort, assistance, uncertainty, presentation, or analytics context. New regressions reproduced this for upload acknowledgements and downloaded records. The comparison now covers every immutable submission field, including nested Review parameters and explicit false/zero values. Existing frozen questions and analytical snapshots must survive unchanged. Review attempts require a valid context, matching instance/exercise identity, and a frozen presentation.
+
+Download validation compares against the attempt cache, original queued submission, and any confirmed record inside the same transaction, before any writes. A malformed batch leaves attempts, records, queue, cursor, drafts, and media unchanged. Duplicate attempt keys and a server reply claiming local-only `queued` status are rejected. Confirmed grade history remains append-only, including cancellation replies and the interval between an upload acknowledgement and its first change-feed record.
+
+Compatibility exceptions follow the actual API: ordinary lesson presentations omit display/placement fields; assessment objects may appear at both presentation levels; JSON object ordering is irrelevant; structured submissions omit scratchwork; Go omits empty photo arrays and serializes some legacy missing answers as null. Missing historical snapshots may be backfilled. Dedicated Review templates currently lack analytics and can return null, so absence is accepted only when no existing snapshot would be lost. The check does not manufacture analytical evidence. Imported revision-zero records can receive server grade defaults, while confirmed records retain their original grades.
+
+Photo/handwriting media can retire only with a retained, nonblank transcription supported by a non-`not_graded` grade, and with images, photo references, and ink retired together. Existing transcriptions cannot change. Already-retired legacy history with incomplete grades remains readable but cannot authorize deleting local draft scratchwork or media. Regression fixtures for legitimate retirement now include the transcription grade actually produced by the server.
+
+The production-PWA test intercepts a Review POST without forwarding it, returning the same answer and grade envelope but removing Review/context fields. It verifies that the complete local attempt and one queued submission survive reload, that the server has no copy, and that a later genuine acknowledgement synchronizes once against the frozen definition after a catalog upgrade. Synthetic Review fixtures now return realistic frozen presentations and, where present, analytical snapshots rather than echoing only the stripped submission payload.
+
 ## Scenarios and evidence
 
 `scripts/check-offline-hardening.mjs` runs the production build with an active service worker and the real Go API. It checks:
 
 - Malformed acknowledgement, reload before synchronization, retained outbox ID, and eventual single server acceptance.
+- Well-shaped but truncated Review acknowledgement; preserved immutable context and queue across reload before the server receives the answer.
 - Offline incorrect answer followed by a correct retry; both upload in order and remain separate observations.
 - Multiple offline exercises, a durable draft, close/new-tab reopen in the same browser context, and restored scratchwork.
 - Back/forward navigation and a 390 × 844 viewport without horizontal overflow.
@@ -45,7 +58,7 @@ Go provider-trap and frozen-definition/restore tests run in the full server suit
 
 ## Validation
 
-On the offline-hardening branch: `npm test` (835 passing), `npm run typecheck`, `npm run web:build`, `npm run web:test` (82 passing), `npm run format:check`, `go test -count=1 ./...`, and `go test -race -count=1 ./...` passed. The server suite includes deterministic shared fixtures, provider traps and frozen Review restore. Browser commands above use the existing installed Playwright/Chrome runtime, selected through `PLAYWRIGHT_MODULE`/`CHROME_BIN`.
+On the offline-hardening branch: `npm test` (835 passing), `npm run typecheck`, `npm run web:build`, `npm run web:test` (94 passing after the preservation follow-up), `npm run format:check`, `go test -count=1 ./...`, and `go test -race -count=1 ./...` passed. The server suite includes deterministic shared fixtures, provider traps and frozen Review restore. Browser commands above use the existing installed Playwright/Chrome runtime, selected through `PLAYWRIGHT_MODULE`/`CHROME_BIN`. The follow-up additionally reran the production offline hardening, real-API deterministic, and synthetic Review browser suites.
 
 The production build retains the pre-existing large-chunk advisory. No scheduler interval, evidence-depth rule, or curriculum coverage target changed in this branch.
 

@@ -382,6 +382,41 @@ try {
   await review.getByRole('radio').nth(correctIndex).check();
   await review.getByRole('button', { name: 'Submit', exact: true }).click();
   await review.getByText('Correct', { exact: true }).waitFor();
+  const queuedReview = (await readStore('attempts')).find((a) => a.exercise === frozen.exercise);
+  assert.ok(queuedReview.review && queuedReview.presentation);
+  assert.deepEqual(queuedReview.analytics, frozen.analytics);
+  const incompleteReview = structuredClone(queuedReview);
+  delete incompleteReview.review;
+  delete incompleteReview.presentation;
+  delete incompleteReview.analytics;
+  delete incompleteReview.startedAt;
+  delete incompleteReview.activeDurationMs;
+  delete incompleteReview.assistance;
+  delete incompleteReview.unsure;
+  let truncatedReplies = 0;
+  await context.route('**/api/v1/attempts', async (route) => {
+    if (route.request().method() !== 'POST') return route.continue();
+    truncatedReplies++;
+    await route.fulfill({ status: 201, json: incompleteReview });
+  });
+  await context.setOffline(false);
+  await page.evaluate(() => window.dispatchEvent(new Event('online')));
+  await waitFor(
+    async () => truncatedReplies > 0,
+    'Well-shaped truncated Review reply was exercised',
+  );
+  await page.reload();
+  await waitFor(async () => truncatedReplies > 1, 'Reload retries the retained Review submission');
+  assert.deepEqual(
+    (await readStore('attempts')).find((a) => a.id === queuedReview.id),
+    queuedReview,
+  );
+  assert.equal((await readStore('outbox')).filter((op) => op.id === queuedReview.id).length, 1);
+  assert.equal((await serverAttempts()).filter((a) => a.id === queuedReview.id).length, 0);
+  await context.unroute('**/api/v1/attempts');
+  console.log(
+    'Passed well-shaped truncated Review acknowledgement: original context and queue survive reload',
+  );
   let delayed;
   await context.route('**/api/v1/attempts', async (route) => {
     if (route.request().method() !== 'POST') return route.continue();

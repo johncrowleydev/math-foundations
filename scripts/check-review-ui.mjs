@@ -81,6 +81,7 @@ let serial = 0;
 const submissions = [];
 const plans = [];
 const records = [];
+const instances = new Map();
 const deepDueDates = targets.filter((t) => !t.quick).map((t) => t.dueAt);
 function summary() {
   return {
@@ -97,11 +98,21 @@ function instance(request) {
   const quick = request.mode === 'quick';
   const target = quick ? targets[0] : targets[2];
   const id = 'synthetic-instance-' + ++serial;
-  return {
+  const issued = {
     id,
     exercise: 'review-' + id,
     lesson: quick ? 'propositional-logic' : 'sets',
     contentVersion: 'synthetic-fixture',
+    analytics: {
+      version: 'synthetic-evidence',
+      provenance: 'submission',
+      concepts: [{ concept: target.concept, role: 'primary' }],
+      skills: [{ skill: target.skill, role: 'primary' }],
+      representations: [],
+      conceptDefinitions: [],
+      skillDefinitions: [],
+      representationDefinitions: [],
+    },
     question: quick
       ? {
           id: 900001,
@@ -153,6 +164,8 @@ function instance(request) {
       parameters: { variant: 0 },
     },
   };
+  instances.set(id, issued);
+  return issued;
 }
 await page.route('**/api/**', async (route) => {
   if (apiOffline) return route.abort('internetdisconnected');
@@ -178,6 +191,8 @@ await page.route('**/api/**', async (route) => {
       quickCompleted = true;
     body = {
       ...attempt,
+      presentation: { question: instances.get(attempt.review.instanceId).question },
+      analytics: instances.get(attempt.review.instanceId).analytics,
       status: 'graded',
       verdict: 'correct',
       grades: [
