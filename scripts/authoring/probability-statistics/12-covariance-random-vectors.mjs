@@ -228,7 +228,16 @@ The range can be understood without memorizing a separate inequality. Standardiz
 Zero correlation is not absence of every relationship. Let $X$ take $-1,0,1$ with equal probabilities and let $Y=X^2$. Symmetry gives $E[X]=E[X^3]=0$, so $\operatorname{Cov}(X,Y)=0$. Yet observing $X$ determines $Y$ exactly. Both variances are positive, making this a genuine zero-correlation dependent pair.
 
 A correlation coefficient also does not establish causation. The mathematical joint model describes association. A common cause, selection effects, or reverse direction can explain the same correlation. Later study-design material will separate randomized interventions from observing variables together. For now, interpret correlation as a normalized feature of the joint distribution, never as a complete account of it.`,
-  [cov],
+  [
+    cov,
+    citation(
+      'os-stat-1-4',
+      'openstax-statistics-2e',
+      '§1.4 Experimental Design and Ethics',
+      'https://openstax.org/books/introductory-statistics-2e/pages/1-4-experimental-design-and-ethics',
+      'Observational studies, explanatory/response variables, random assignment, masking, and responsible reporting.',
+    ),
+  ],
   [
     termEntry(
       'correlation',

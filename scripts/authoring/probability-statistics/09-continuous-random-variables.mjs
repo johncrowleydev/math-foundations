@@ -143,7 +143,16 @@ A density need not be continuous. Suppose $f(x)=1/4$ on $(0,2)$ and $f(x)=1/2$ o
 A **quantile** converts a cumulative probability back into a location. When $F$ is strictly increasing on its support, the $p$-quantile solves $F(q_p)=p$. More generally one uses the smallest location at which the CDF reaches the requested level. The median is a half-probability quantile. For the density $3x^2$, $q_p=p^{1/3}$ and the median is $(1/2)^{1/3}$. A quantile has the variable's units; its percentile level is dimensionless.
 
 When a CDF has a flat portion, the equation $F(q)=p$ can have more than one solution at that level. The smallest-location convention selects a definite quantile, but an exercise asking for any median may permit several answers. Our direct quantile computations use strictly increasing portions so the requested threshold is unique.`,
-  [pdf],
+  [
+    pdf,
+    citation(
+      'pn-4-2-3',
+      'pishro-nik',
+      '§4.2.3 Normal (Gaussian) Distribution',
+      'https://www.probabilitycourse.com/chapter4/4_2_3_normal.php',
+      'Normal density, mean/variance convention, standardization, CDF symmetry, and probability calculations.',
+    ),
+  ],
   [
     termEntry(
       'continuous-cdf',
