@@ -119,3 +119,5 @@ Passed on this scoped branch:
 - Prettier checking of all changed files.
 
 Full curriculum, Go/race, cross-language and browser checks are intentionally recorded once in the combined verification pass, rather than represented here as completed on this isolated concern branch.
+
+The first combined run caught omitted inspection bookkeeping for these six published explanations: their curriculum-unit hashes still described the old answers, and two TeX inventories omitted `\\varnothing` and `\\ne` now used by the repaired answers. The integrating pass recorded only the six already-inspected answers, retained their historical syntax support, and added those two previously taught symbols. No unrelated inspection record was refreshed. The corrected Functions 73 explanation was visually checked on [desktop](../screenshots/final-curriculum/finite-image-counterexample-desktop.png) and [phone](../screenshots/final-curriculum/finite-image-counterexample-phone.png).
