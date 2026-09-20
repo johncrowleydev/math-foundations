@@ -13303,5 +13303,1025 @@
         "error": true
       }
     ]
+  },
+  {
+    "template": "la-vector-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "vector"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " VECTOR "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "scalar"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not vector"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-scalar-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "scalar"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " SCALAR "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "vector"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not scalar"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-linear-combination-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "linear combination"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " LINEAR COMBINATION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "span"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not linear combination"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-dot-product-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "dot product"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " DOT PRODUCT "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "cross product"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not dot product"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-orthogonal-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "orthogonal"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " ORTHOGONAL "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "parallel"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not orthogonal"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-transpose-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "transpose"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " TRANSPOSE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "inverse"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not transpose"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-consistent-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "consistent"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " CONSISTENT "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "independent"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not consistent"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-free-variable-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "free variable"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " FREE VARIABLE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "pivot variable"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not free variable"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-homogeneous-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "homogeneous"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " HOMOGENEOUS "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "consistent"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not homogeneous"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-span-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "span"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " SPAN "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "linear combination"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not span"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-linear-independence-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "linear independence"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " LINEAR INDEPENDENCE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "orthogonality"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not linear independence"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-null-space-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "null space"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " NULL SPACE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "column space"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not null space"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-basis-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "basis"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " BASIS "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "span"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not basis"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-coordinate-vector-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "coordinate vector"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " COORDINATE VECTOR "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "basis"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not coordinate vector"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-dimension-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "dimension"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " DIMENSION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "ambient dimension"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not dimension"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-rank-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "rank"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " RANK "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "nullity"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not rank"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-nullity-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "nullity"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " NULLITY "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "rank"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not nullity"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-determinant-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "determinant"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " DETERMINANT "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "trace"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not determinant"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-inverse-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "inverse"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " INVERSE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "transpose"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not inverse"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-linear-transformation-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "linear transformation"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " LINEAR TRANSFORMATION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "affine map"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not linear transformation"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-kernel-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "kernel"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " KERNEL "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "image"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not kernel"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-image-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "image"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " IMAGE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "kernel"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not image"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-orthogonal-projection-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "orthogonal projection"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " ORTHOGONAL PROJECTION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "residual"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not orthogonal projection"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-residual-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "residual"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " RESIDUAL "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "projection"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not residual"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-least-squares-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "least squares"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " LEAST SQUARES "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "interpolation"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not least squares"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-normal-equations-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "normal equations"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " NORMAL EQUATIONS "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "homogeneous equations"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not normal equations"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-eigenvector-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "eigenvector"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " EIGENVECTOR "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "eigenvalue"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not eigenvector"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-eigenvalue-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "eigenvalue"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " EIGENVALUE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "eigenvector"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not eigenvalue"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-singular-value-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "singular value"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " SINGULAR VALUE "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "eigenvalue"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not singular value"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
+  },
+  {
+    "template": "la-svd-terminology-review",
+    "variant": null,
+    "fixtures": [
+      {
+        "response": {
+          "term": "singular value decomposition"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": " SINGULAR VALUE DECOMPOSITION "
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "term": "eigendecomposition"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "term": "not singular value decomposition"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {},
+        "error": true
+      }
+    ]
   }
 ]

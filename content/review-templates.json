@@ -48728,5 +48728,3037 @@
         }
       }
     ]
+  },
+  {
+    "id": "la-vector-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-vectors",
+    "concept": "vector-coordinates",
+    "skill": "recall",
+    "objective": "la-vector-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["vector-coordinates"],
+    "sourceIds": ["review-la-vectors"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What do we call an ordered list of real components treated as one object, such as a displacement or a data record?",
+      "answer": "A coordinate vector; component order matters.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "vector",
+                "coordinate vector",
+                "real coordinate vector",
+                "vector.",
+                "a vector",
+                "a vector.",
+                "an vector",
+                "an vector.",
+                "the vector",
+                "the vector.",
+                "coordinate vector.",
+                "a coordinate vector",
+                "a coordinate vector.",
+                "an coordinate vector",
+                "an coordinate vector.",
+                "the coordinate vector",
+                "the coordinate vector.",
+                "real coordinate vector.",
+                "a real coordinate vector",
+                "a real coordinate vector.",
+                "an real coordinate vector",
+                "an real coordinate vector.",
+                "the real coordinate vector",
+                "the real coordinate vector."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A coordinate vector; component order matters.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-scalar-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-vectors",
+    "concept": "vector-operations",
+    "skill": "recall",
+    "objective": "la-scalar-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["vector-operations"],
+    "sourceIds": ["review-la-vectors"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What term names an ordinary real number used to multiply every component of a vector?",
+      "answer": "A scalar.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "scalar",
+                "scalar.",
+                "a scalar",
+                "a scalar.",
+                "an scalar",
+                "an scalar.",
+                "the scalar",
+                "the scalar."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A scalar.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-linear-combination-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-vectors",
+    "concept": "linear-combinations",
+    "skill": "recall",
+    "objective": "la-linear-combination-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["linear-combinations"],
+    "sourceIds": ["review-la-vectors"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What is a sum of scalar multiples of specified vectors called?",
+      "answer": "A linear combination. A span is the set of all such combinations.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "linear combination",
+                "linear combination.",
+                "a linear combination",
+                "a linear combination.",
+                "an linear combination",
+                "an linear combination.",
+                "the linear combination",
+                "the linear combination."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A linear combination. A span is the set of all such combinations.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-dot-product-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-dot-products",
+    "concept": "dot-product",
+    "skill": "recall",
+    "objective": "la-dot-product-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["dot-product"],
+    "sourceIds": ["review-la-dot"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "For two real vectors of equal size, what operation multiplies corresponding components and adds the results to produce one scalar?",
+      "answer": "The dot product (the Euclidean inner product).",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "dot product",
+                "inner product",
+                "euclidean inner product",
+                "dot product.",
+                "a dot product",
+                "a dot product.",
+                "an dot product",
+                "an dot product.",
+                "the dot product",
+                "the dot product.",
+                "inner product.",
+                "a inner product",
+                "a inner product.",
+                "an inner product",
+                "an inner product.",
+                "the inner product",
+                "the inner product.",
+                "euclidean inner product.",
+                "a euclidean inner product",
+                "a euclidean inner product.",
+                "an euclidean inner product",
+                "an euclidean inner product.",
+                "the euclidean inner product",
+                "the euclidean inner product."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The dot product (the Euclidean inner product).",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-orthogonal-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-dot-products",
+    "concept": "orthogonality",
+    "skill": "recall",
+    "objective": "la-orthogonal-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["orthogonality"],
+    "sourceIds": ["review-la-dot"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What adjective describes two real vectors whose dot product is zero?",
+      "answer": "Orthogonal. This dot-product definition also applies when one vector is zero.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "orthogonal",
+                "perpendicular",
+                "orthogonal.",
+                "a orthogonal",
+                "a orthogonal.",
+                "an orthogonal",
+                "an orthogonal.",
+                "the orthogonal",
+                "the orthogonal.",
+                "perpendicular.",
+                "a perpendicular",
+                "a perpendicular.",
+                "an perpendicular",
+                "an perpendicular.",
+                "the perpendicular",
+                "the perpendicular."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Orthogonal. This dot-product definition also applies when one vector is zero.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-transpose-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-matrices",
+    "concept": "matrix-shape",
+    "skill": "recall",
+    "objective": "la-transpose-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["matrix-shape"],
+    "sourceIds": ["review-la-transpose"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What operation on a matrix exchanges its rows and columns?",
+      "answer": "Transposition produces the transpose, not generally the inverse.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "transpose",
+                "transposition",
+                "matrix transpose",
+                "transpose.",
+                "a transpose",
+                "a transpose.",
+                "an transpose",
+                "an transpose.",
+                "the transpose",
+                "the transpose.",
+                "transposition.",
+                "a transposition",
+                "a transposition.",
+                "an transposition",
+                "an transposition.",
+                "the transposition",
+                "the transposition.",
+                "matrix transpose.",
+                "a matrix transpose",
+                "a matrix transpose.",
+                "an matrix transpose",
+                "an matrix transpose.",
+                "the matrix transpose",
+                "the matrix transpose."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Transposition produces the transpose, not generally the inverse.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-consistent-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-systems",
+    "concept": "system-consistency",
+    "skill": "recall",
+    "objective": "la-consistent-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["system-consistency"],
+    "sourceIds": ["review-la-systems"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "A system of equations has at least one simultaneous solution. What adjective describes the system?",
+      "answer": "Consistent; it need not have exactly one solution.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "consistent",
+                "consistent.",
+                "a consistent",
+                "a consistent.",
+                "an consistent",
+                "an consistent.",
+                "the consistent",
+                "the consistent."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Consistent; it need not have exactly one solution.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-free-variable-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-systems",
+    "concept": "free-variables",
+    "skill": "recall",
+    "objective": "la-free-variable-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["free-variables"],
+    "sourceIds": ["review-la-free"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "In an echelon form of a consistent linear system, what do we call a variable whose coefficient column has no pivot?",
+      "answer": "A free variable; it can parameterize the solution set.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "free variable",
+                "free variable.",
+                "a free variable",
+                "a free variable.",
+                "an free variable",
+                "an free variable.",
+                "the free variable",
+                "the free variable."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A free variable; it can parameterize the solution set.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-homogeneous-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-systems",
+    "concept": "homogeneous-system",
+    "skill": "recall",
+    "objective": "la-homogeneous-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["homogeneous-system"],
+    "sourceIds": ["review-la-homogeneous"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What adjective describes a linear system whose right-hand side is the zero vector?",
+      "answer": "Homogeneous. It is necessarily consistent, but consistency alone does not specify a zero right-hand side.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "homogeneous",
+                "homogeneous system",
+                "homogeneous.",
+                "a homogeneous",
+                "a homogeneous.",
+                "an homogeneous",
+                "an homogeneous.",
+                "the homogeneous",
+                "the homogeneous.",
+                "homogeneous system.",
+                "a homogeneous system",
+                "a homogeneous system.",
+                "an homogeneous system",
+                "an homogeneous system.",
+                "the homogeneous system",
+                "the homogeneous system."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Homogeneous. It is necessarily consistent, but consistency alone does not specify a zero right-hand side.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-span-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-span",
+    "concept": "span",
+    "skill": "recall",
+    "objective": "la-span-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["span"],
+    "sourceIds": ["review-la-span"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What is the set of all real linear combinations of a given list of vectors called?",
+      "answer": "The span of the list.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "span",
+                "linear span",
+                "span.",
+                "a span",
+                "a span.",
+                "an span",
+                "an span.",
+                "the span",
+                "the span.",
+                "linear span.",
+                "a linear span",
+                "a linear span.",
+                "an linear span",
+                "an linear span.",
+                "the linear span",
+                "the linear span."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The span of the list.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-linear-independence-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-span",
+    "concept": "linear-independence",
+    "skill": "recall",
+    "objective": "la-linear-independence-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["linear-independence"],
+    "sourceIds": ["review-la-independence"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "A list of vectors has only the all-zero coefficient solution to its zero linear-combination equation. What property does the list have?",
+      "answer": "Linear independence; perpendicularity is not required.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "linear independence",
+                "linearly independent",
+                "independence",
+                "linear independence.",
+                "a linear independence",
+                "a linear independence.",
+                "an linear independence",
+                "an linear independence.",
+                "the linear independence",
+                "the linear independence.",
+                "linearly independent.",
+                "a linearly independent",
+                "a linearly independent.",
+                "an linearly independent",
+                "an linearly independent.",
+                "the linearly independent",
+                "the linearly independent.",
+                "independence.",
+                "a independence",
+                "a independence.",
+                "an independence",
+                "an independence.",
+                "the independence",
+                "the independence."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Linear independence; perpendicularity is not required.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-null-space-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-span",
+    "concept": "matrix-spaces",
+    "skill": "recall",
+    "objective": "la-null-space-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["matrix-spaces"],
+    "sourceIds": ["review-la-spaces"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What is the subspace of inputs satisfying $Ax=0$ called?",
+      "answer": "The null space of A (the kernel of its linear map).",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "null space",
+                "nullspace",
+                "kernel",
+                "null space.",
+                "a null space",
+                "a null space.",
+                "an null space",
+                "an null space.",
+                "the null space",
+                "the null space.",
+                "nullspace.",
+                "a nullspace",
+                "a nullspace.",
+                "an nullspace",
+                "an nullspace.",
+                "the nullspace",
+                "the nullspace.",
+                "kernel.",
+                "a kernel",
+                "a kernel.",
+                "an kernel",
+                "an kernel.",
+                "the kernel",
+                "the kernel."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The null space of A (the kernel of its linear map).",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-basis-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-bases",
+    "concept": "basis",
+    "skill": "recall",
+    "objective": "la-basis-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["basis"],
+    "sourceIds": ["review-la-basis"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What do we call a list that both spans a specified subspace and is linearly independent?",
+      "answer": "A basis of that subspace.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "basis",
+                "basis.",
+                "a basis",
+                "a basis.",
+                "an basis",
+                "an basis.",
+                "the basis",
+                "the basis."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A basis of that subspace.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-coordinate-vector-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-bases",
+    "concept": "basis-coordinates",
+    "skill": "recall",
+    "objective": "la-coordinate-vector-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["basis-coordinates"],
+    "sourceIds": ["review-la-coordinates"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "A vector is reconstructed from an ordered basis using a unique ordered list of coefficients. What is that coefficient list called relative to the basis?",
+      "answer": "Its coordinate vector relative to the ordered basis.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "coordinate vector",
+                "coordinates",
+                "basis coordinates",
+                "coordinate list",
+                "coordinate vector.",
+                "a coordinate vector",
+                "a coordinate vector.",
+                "an coordinate vector",
+                "an coordinate vector.",
+                "the coordinate vector",
+                "the coordinate vector.",
+                "coordinates.",
+                "a coordinates",
+                "a coordinates.",
+                "an coordinates",
+                "an coordinates.",
+                "the coordinates",
+                "the coordinates.",
+                "basis coordinates.",
+                "a basis coordinates",
+                "a basis coordinates.",
+                "an basis coordinates",
+                "an basis coordinates.",
+                "the basis coordinates",
+                "the basis coordinates.",
+                "coordinate list.",
+                "a coordinate list",
+                "a coordinate list.",
+                "an coordinate list",
+                "an coordinate list.",
+                "the coordinate list",
+                "the coordinate list."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Its coordinate vector relative to the ordered basis.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-dimension-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-bases",
+    "concept": "basis",
+    "skill": "recall",
+    "objective": "la-dimension-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["basis"],
+    "sourceIds": ["review-la-basis"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What term names the number of vectors in a basis of a finite-dimensional subspace?",
+      "answer": "The dimension of the subspace, which may be less than its ambient dimension.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "dimension",
+                "dimension.",
+                "a dimension",
+                "a dimension.",
+                "an dimension",
+                "an dimension.",
+                "the dimension",
+                "the dimension."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The dimension of the subspace, which may be less than its ambient dimension.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-rank-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-rank-inverses",
+    "concept": "rank-nullity",
+    "skill": "recall",
+    "objective": "la-rank-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["rank-nullity"],
+    "sourceIds": ["review-la-rank"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What is the dimension of a matrix’s column space called?",
+      "answer": "The rank of the matrix.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "rank",
+                "matrix rank",
+                "rank.",
+                "a rank",
+                "a rank.",
+                "an rank",
+                "an rank.",
+                "the rank",
+                "the rank.",
+                "matrix rank.",
+                "a matrix rank",
+                "a matrix rank.",
+                "an matrix rank",
+                "an matrix rank.",
+                "the matrix rank",
+                "the matrix rank."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The rank of the matrix.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-nullity-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-rank-inverses",
+    "concept": "rank-nullity",
+    "skill": "recall",
+    "objective": "la-nullity-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["rank-nullity"],
+    "sourceIds": ["review-la-rank"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What is the dimension of a matrix’s null space called?",
+      "answer": "The nullity of the matrix.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "nullity",
+                "nullity.",
+                "a nullity",
+                "a nullity.",
+                "an nullity",
+                "an nullity.",
+                "the nullity",
+                "the nullity."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The nullity of the matrix.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-determinant-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-rank-inverses",
+    "concept": "determinant",
+    "skill": "recall",
+    "objective": "la-determinant-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["determinant"],
+    "sourceIds": ["review-la-inverse"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "For a two-by-two matrix with rows $(a,b)$ and $(c,d)$, what is the scalar $ad-bc$ called?",
+      "answer": "The determinant; it is zero exactly when this two-by-two matrix is singular.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "determinant",
+                "determinant.",
+                "a determinant",
+                "a determinant.",
+                "an determinant",
+                "an determinant.",
+                "the determinant",
+                "the determinant."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The determinant; it is zero exactly when this two-by-two matrix is singular.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-inverse-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-rank-inverses",
+    "concept": "matrix-inverse",
+    "skill": "recall",
+    "objective": "la-inverse-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["matrix-inverse"],
+    "sourceIds": ["review-la-inverse"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "For a square matrix $A$, a matrix $B$ satisfies $AB=BA=I$. What is $B$ called relative to $A$?",
+      "answer": "The inverse of A.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "inverse",
+                "inverse matrix",
+                "matrix inverse",
+                "inverse of a",
+                "inverse.",
+                "a inverse",
+                "a inverse.",
+                "an inverse",
+                "an inverse.",
+                "the inverse",
+                "the inverse.",
+                "inverse matrix.",
+                "a inverse matrix",
+                "a inverse matrix.",
+                "an inverse matrix",
+                "an inverse matrix.",
+                "the inverse matrix",
+                "the inverse matrix.",
+                "matrix inverse.",
+                "a matrix inverse",
+                "a matrix inverse.",
+                "an matrix inverse",
+                "an matrix inverse.",
+                "the matrix inverse",
+                "the matrix inverse.",
+                "inverse of a.",
+                "a inverse of a",
+                "a inverse of a.",
+                "an inverse of a",
+                "an inverse of a.",
+                "the inverse of a",
+                "the inverse of a."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The inverse of A.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-linear-transformation-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-transformations",
+    "concept": "linear-map",
+    "skill": "recall",
+    "objective": "la-linear-transformation-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["linear-map"],
+    "sourceIds": ["review-la-linear-map"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What do we call a function between real vector spaces that preserves vector addition and scalar multiplication?",
+      "answer": "A linear transformation (linear map).",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "linear transformation",
+                "linear map",
+                "linear mapping",
+                "linear transformation.",
+                "a linear transformation",
+                "a linear transformation.",
+                "an linear transformation",
+                "an linear transformation.",
+                "the linear transformation",
+                "the linear transformation.",
+                "linear map.",
+                "a linear map",
+                "a linear map.",
+                "an linear map",
+                "an linear map.",
+                "the linear map",
+                "the linear map.",
+                "linear mapping.",
+                "a linear mapping",
+                "a linear mapping.",
+                "an linear mapping",
+                "an linear mapping.",
+                "the linear mapping",
+                "the linear mapping."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A linear transformation (linear map).",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-kernel-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-transformations",
+    "concept": "kernel-image",
+    "skill": "recall",
+    "objective": "la-kernel-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["kernel-image"],
+    "sourceIds": ["review-la-kernel-image"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What term used for a linear map names the set of inputs that it sends to the zero output?",
+      "answer": "The kernel, also called the null space.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "kernel",
+                "null space",
+                "nullspace",
+                "kernel.",
+                "a kernel",
+                "a kernel.",
+                "an kernel",
+                "an kernel.",
+                "the kernel",
+                "the kernel.",
+                "null space.",
+                "a null space",
+                "a null space.",
+                "an null space",
+                "an null space.",
+                "the null space",
+                "the null space.",
+                "nullspace.",
+                "a nullspace",
+                "a nullspace.",
+                "an nullspace",
+                "an nullspace.",
+                "the nullspace",
+                "the nullspace."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The kernel, also called the null space.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-image-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-transformations",
+    "concept": "kernel-image",
+    "skill": "recall",
+    "objective": "la-image-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["kernel-image"],
+    "sourceIds": ["review-la-kernel-image"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What term names the set of outputs actually attained by a linear map, rather than its entire declared codomain?",
+      "answer": "The image or range; it can be a proper subspace of the codomain.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "image",
+                "range",
+                "image.",
+                "a image",
+                "a image.",
+                "an image",
+                "an image.",
+                "the image",
+                "the image.",
+                "range.",
+                "a range",
+                "a range.",
+                "an range",
+                "an range.",
+                "the range",
+                "the range."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The image or range; it can be a proper subspace of the codomain.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-orthogonal-projection-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-projections",
+    "concept": "orthogonal-projection",
+    "skill": "recall",
+    "objective": "la-orthogonal-projection-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["orthogonal-projection"],
+    "sourceIds": ["review-la-projection"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What is the closest vector to $b$ in a specified subspace called?",
+      "answer": "The orthogonal projection of b onto the subspace.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "orthogonal projection",
+                "projection",
+                "orthogonal projection.",
+                "a orthogonal projection",
+                "a orthogonal projection.",
+                "an orthogonal projection",
+                "an orthogonal projection.",
+                "the orthogonal projection",
+                "the orthogonal projection.",
+                "projection.",
+                "a projection",
+                "a projection.",
+                "an projection",
+                "an projection.",
+                "the projection",
+                "the projection."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The orthogonal projection of b onto the subspace.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-residual-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-projections",
+    "concept": "orthogonal-projection",
+    "skill": "recall",
+    "objective": "la-residual-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["orthogonal-projection"],
+    "sourceIds": ["review-la-projection"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "Using this curriculum’s sign convention, what do we call the target minus its projected or fitted output?",
+      "answer": "The residual: b−p for a projection, or b−Ax for a fitted output.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "residual",
+                "residual vector",
+                "residual.",
+                "a residual",
+                "a residual.",
+                "an residual",
+                "an residual.",
+                "the residual",
+                "the residual.",
+                "residual vector.",
+                "a residual vector",
+                "a residual vector.",
+                "an residual vector",
+                "an residual vector.",
+                "the residual vector",
+                "the residual vector."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The residual: b−p for a projection, or b−Ax for a fitted output.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-least-squares-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-least-squares",
+    "concept": "least-squares",
+    "skill": "recall",
+    "objective": "la-least-squares-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["least-squares"],
+    "sourceIds": ["review-la-least"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What fitting method chooses coefficients to minimize the sum of squared discrepancies between observations and model outputs?",
+      "answer": "Least squares; an exact fit need not exist.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "least squares",
+                "least-squares",
+                "least squares fitting",
+                "least-squares fitting",
+                "least squares.",
+                "a least squares",
+                "a least squares.",
+                "an least squares",
+                "an least squares.",
+                "the least squares",
+                "the least squares.",
+                "least-squares.",
+                "a least-squares",
+                "a least-squares.",
+                "an least-squares",
+                "an least-squares.",
+                "the least-squares",
+                "the least-squares.",
+                "least squares fitting.",
+                "a least squares fitting",
+                "a least squares fitting.",
+                "an least squares fitting",
+                "an least squares fitting.",
+                "the least squares fitting",
+                "the least squares fitting.",
+                "least-squares fitting.",
+                "a least-squares fitting",
+                "a least-squares fitting.",
+                "an least-squares fitting",
+                "an least-squares fitting.",
+                "the least-squares fitting",
+                "the least-squares fitting."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "Least squares; an exact fit need not exist.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-normal-equations-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-least-squares",
+    "concept": "least-squares",
+    "skill": "recall",
+    "objective": "la-normal-equations-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["least-squares"],
+    "sourceIds": ["review-la-least"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What name is given to $A^TAx=A^Tb$, the equations characterizing least-squares coefficients?",
+      "answer": "The normal equations; normal refers to the perpendicular residual.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "normal equations",
+                "normal equations.",
+                "a normal equations",
+                "a normal equations.",
+                "an normal equations",
+                "an normal equations.",
+                "the normal equations",
+                "the normal equations."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The normal equations; normal refers to the perpendicular residual.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-eigenvector-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-eigenvalues",
+    "concept": "eigenvector",
+    "skill": "recall",
+    "objective": "la-eigenvector-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["eigenvector"],
+    "sourceIds": ["review-la-eigen"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "For a square matrix $A$, a nonzero vector $v$ satisfies $Av=\\lambda v$ for a scalar $\\lambda$. What is $v$ called?",
+      "answer": "An eigenvector of A.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "eigenvector",
+                "eigen vector",
+                "eigenvector.",
+                "a eigenvector",
+                "a eigenvector.",
+                "an eigenvector",
+                "an eigenvector.",
+                "the eigenvector",
+                "the eigenvector.",
+                "eigen vector.",
+                "a eigen vector",
+                "a eigen vector.",
+                "an eigen vector",
+                "an eigen vector.",
+                "the eigen vector",
+                "the eigen vector."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "An eigenvector of A.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-eigenvalue-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-eigenvalues",
+    "concept": "eigenvector",
+    "skill": "recall",
+    "objective": "la-eigenvalue-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["eigenvector"],
+    "sourceIds": ["review-la-eigen"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "For a square matrix $A$ and nonzero vector $v$, $Av=\\lambda v$. What is the scalar $\\lambda$ called?",
+      "answer": "An eigenvalue of A; an eigenvalue may be zero.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "eigenvalue",
+                "eigen value",
+                "eigenvalue.",
+                "a eigenvalue",
+                "a eigenvalue.",
+                "an eigenvalue",
+                "an eigenvalue.",
+                "the eigenvalue",
+                "the eigenvalue.",
+                "eigen value.",
+                "a eigen value",
+                "a eigen value.",
+                "an eigen value",
+                "an eigen value.",
+                "the eigen value",
+                "the eigen value."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "An eigenvalue of A; an eigenvalue may be zero.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-singular-value-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-svd",
+    "concept": "singular-values",
+    "skill": "recall",
+    "objective": "la-singular-value-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["singular-values"],
+    "sourceIds": ["review-la-svd"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What is an individual nonnegative diagonal scale factor in the matrix $\\Sigma$ of an SVD called?",
+      "answer": "A singular value; it describes a length scale between paired input and output directions.",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "singular value",
+                "singular value.",
+                "a singular value",
+                "a singular value.",
+                "an singular value",
+                "an singular value.",
+                "the singular value",
+                "the singular value."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "A singular value; it describes a length scale between paired input and output directions.",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-svd-terminology-review",
+    "family": "fixed",
+    "lesson": "linear-algebra-svd",
+    "concept": "svd",
+    "skill": "recall",
+    "objective": "la-svd-terminology",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["svd"],
+    "sourceIds": ["review-la-svd"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the mathematical term. Enter a short phrase.",
+      "prompt": "What decomposition writes a real matrix as $A=U\\Sigma V^T$, with orthogonal $U,V$ and a rectangular diagonal matrix of nonnegative scale factors?",
+      "answer": "The singular value decomposition (SVD).",
+      "assessment": {
+        "version": 1,
+        "inputs": [
+          {
+            "id": "term",
+            "kind": "text",
+            "label": "Term"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "term",
+            "validator": "term",
+            "fields": ["term"],
+            "params": {
+              "accepted": [
+                "singular value decomposition",
+                "svd",
+                "singular value decomposition.",
+                "a singular value decomposition",
+                "a singular value decomposition.",
+                "an singular value decomposition",
+                "an singular value decomposition.",
+                "the singular value decomposition",
+                "the singular value decomposition.",
+                "svd.",
+                "a svd",
+                "a svd.",
+                "an svd",
+                "an svd.",
+                "the svd",
+                "the svd."
+              ]
+            },
+            "description": "Names the requested mathematical term.",
+            "evidenceLevel": "production"
+          }
+        ],
+        "feedback": {
+          "correct": "The singular value decomposition (SVD).",
+          "incorrect": "Use the term for the precise definition in the question."
+        },
+        "evidence": {
+          "level": "production",
+          "interactionCost": "low",
+          "inputCapabilities": ["short-text"]
+        }
+      }
+    }
+  },
+  {
+    "id": "la-combination-distinction-review",
+    "family": "authored",
+    "lesson": "linear-algebra-vectors",
+    "concept": "linear-combinations",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["linear-combinations"],
+    "sourceIds": ["review-la-vectors"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which construction is always a linear combination of supplied real vectors $u$ and $v$?",
+      "answer": "$3u-2v$ is a sum of scalar multiples.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$3u-2v$",
+            "feedback": "Scaling the supplied vectors and adding is exactly the permitted construction."
+          },
+          {
+            "id": "option-2",
+            "text": "Squaring every component of $u$",
+            "feedback": "Componentwise squaring is not a linear-combination operation."
+          },
+          {
+            "id": "option-3",
+            "text": "Appending the components of $v$ to $u$",
+            "feedback": "Concatenation changes the coordinate space rather than combining the supplied vectors."
+          }
+        ],
+        "correctOption": "option-1"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which construction is always a linear combination of supplied real vectors $u$ and $v$?",
+        "answer": "$3u-2v$ is a sum of scalar multiples.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$3u-2v$",
+              "feedback": "Scaling the supplied vectors and adding is exactly the permitted construction."
+            },
+            {
+              "id": "option-2",
+              "text": "Squaring every component of $u$",
+              "feedback": "Componentwise squaring is not a linear-combination operation."
+            },
+            {
+              "id": "option-3",
+              "text": "Appending the components of $v$ to $u$",
+              "feedback": "Concatenation changes the coordinate space rather than combining the supplied vectors."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "The only supplied vectors are $u=(1,2)$ and $v=(2,4)$. Which vector cannot be a real linear combination of them?",
+        "answer": "$(1,0)$ is outside the line of multiples of $(1,2)$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$(0,0)$",
+              "feedback": "Zero coefficients produce the zero vector."
+            },
+            {
+              "id": "option-2",
+              "text": "$(-3,-6)$",
+              "feedback": "This is $-3u$; negative coefficients are allowed."
+            },
+            {
+              "id": "option-3",
+              "text": "$(1,0)$",
+              "feedback": "Every combination has second component twice the first."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-orthogonality-cases-review",
+    "family": "authored",
+    "lesson": "linear-algebra-dot-products",
+    "concept": "orthogonality",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["orthogonality"],
+    "sourceIds": ["review-la-dot"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Which vector is orthogonal to $(2,-1)$?",
+      "answer": "$(1,2)$ gives dot product zero.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$(2,-1)$",
+            "feedback": "Its dot product with itself is five, not zero."
+          },
+          {
+            "id": "option-2",
+            "text": "$(1,2)$",
+            "feedback": "The dot product is $2-2=0$."
+          },
+          {
+            "id": "option-3",
+            "text": "$(-1,2)$",
+            "feedback": "The dot product is $-2-2=-4$."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which vector is orthogonal to $(2,-1)$?",
+        "answer": "$(1,2)$ gives dot product zero.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$(2,-1)$",
+              "feedback": "Its dot product with itself is five, not zero."
+            },
+            {
+              "id": "option-2",
+              "text": "$(1,2)$",
+              "feedback": "The dot product is $2-2=0$."
+            },
+            {
+              "id": "option-3",
+              "text": "$(-1,2)$",
+              "feedback": "The dot product is $-2-2=-4$."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Under the dot-product definition, which statement about the zero vector is correct?",
+        "answer": "Zero is orthogonal to every compatible vector, although an angle involving zero is undefined.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "It is orthogonal to every compatible real vector.",
+              "feedback": "Every dot product with zero is zero."
+            },
+            {
+              "id": "option-2",
+              "text": "It has a well-defined right angle with every vector.",
+              "feedback": "A zero vector has no direction, so its angle is undefined."
+            },
+            {
+              "id": "option-3",
+              "text": "It has length one.",
+              "feedback": "Its length is zero."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-product-shape-order-review",
+    "family": "authored",
+    "lesson": "linear-algebra-matrices",
+    "concept": "matrix-product",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["matrix-product"],
+    "sourceIds": ["review-la-matrix"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Matrix $A$ is $2\\times3$ and $B$ is $3\\times4$. Which statement is correct?",
+      "answer": "$AB$ is $2\\times4$. In $BA$, four does not match two.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Both $AB$ and $BA$ are $2\\times4$.",
+            "feedback": "The inner dimensions of $BA$ do not match."
+          },
+          {
+            "id": "option-2",
+            "text": "$AB$ is $2\\times4$; $BA$ is undefined.",
+            "feedback": "For $AB$, the inner threes match and the outer sizes remain."
+          },
+          {
+            "id": "option-3",
+            "text": "$AB$ is $3\\times3$.",
+            "feedback": "The outer dimensions determine the product size."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Matrix $A$ is $2\\times3$ and $B$ is $3\\times4$. Which statement is correct?",
+        "answer": "$AB$ is $2\\times4$. In $BA$, four does not match two.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Both $AB$ and $BA$ are $2\\times4$.",
+              "feedback": "The inner dimensions of $BA$ do not match."
+            },
+            {
+              "id": "option-2",
+              "text": "$AB$ is $2\\times4$; $BA$ is undefined.",
+              "feedback": "For $AB$, the inner threes match and the outer sizes remain."
+            },
+            {
+              "id": "option-3",
+              "text": "$AB$ is $3\\times3$.",
+              "feedback": "The outer dimensions determine the product size."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "First apply a $3\\times2$ matrix $B$ to a two-component vector, then a $2\\times3$ matrix $A$. Which matrix represents the whole map?",
+        "answer": "$AB$ represents $A(Bx)$ and takes two-component inputs to two-component outputs.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$BA$, a $3\\times3$ matrix",
+              "feedback": "That reverses which transformation acts first."
+            },
+            {
+              "id": "option-2",
+              "text": "$A+B$",
+              "feedback": "The shapes differ, and addition does not represent composition."
+            },
+            {
+              "id": "option-3",
+              "text": "$AB$, a $2\\times2$ matrix",
+              "feedback": "The right factor acts first; the intermediate space has dimension three."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-independence-cases-review",
+    "family": "authored",
+    "lesson": "linear-algebra-span",
+    "concept": "linear-independence",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["linear-independence"],
+    "sourceIds": ["review-la-independence"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "Are $(1,0)$, $(0,1)$, and $(1,1)$ linearly independent?",
+      "answer": "They are dependent because $(1,0)+(0,1)-(1,1)=0$.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "No: the third is the sum of the first two.",
+            "feedback": "The coefficients $(1,1,-1)$ give a nontrivial zero combination."
+          },
+          {
+            "id": "option-2",
+            "text": "Yes: no two are scalar multiples.",
+            "feedback": "Pairwise nonparallel does not establish independence of three vectors."
+          },
+          {
+            "id": "option-3",
+            "text": "Yes: they span the plane.",
+            "feedback": "Spanning and independence are different requirements."
+          }
+        ],
+        "correctOption": "option-1"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Are $(1,0)$, $(0,1)$, and $(1,1)$ linearly independent?",
+        "answer": "They are dependent because $(1,0)+(0,1)-(1,1)=0$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "No: the third is the sum of the first two.",
+              "feedback": "The coefficients $(1,1,-1)$ give a nontrivial zero combination."
+            },
+            {
+              "id": "option-2",
+              "text": "Yes: no two are scalar multiples.",
+              "feedback": "Pairwise nonparallel does not establish independence of three vectors."
+            },
+            {
+              "id": "option-3",
+              "text": "Yes: they span the plane.",
+              "feedback": "Spanning and independence are different requirements."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which list is linearly independent in $\\mathbb{R}^2$?",
+        "answer": "$(1,2),(1,-2)$ are independent: $a+b=0$ and $2a-2b=0$ force $a=b=0$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$(1,2),(2,4)$",
+              "feedback": "The second is twice the first."
+            },
+            {
+              "id": "option-2",
+              "text": "$(0,0),(0,1)$",
+              "feedback": "Any list containing zero is dependent."
+            },
+            {
+              "id": "option-3",
+              "text": "$(1,2),(1,-2)$",
+              "feedback": "The zero-combination equations force both coefficients to vanish."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-rectangular-rank-nullity-review",
+    "family": "authored",
+    "lesson": "linear-algebra-rank-inverses",
+    "concept": "rank-nullity",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["rank-nullity"],
+    "sourceIds": ["review-la-rank"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "A $3\\times5$ matrix has rank three. What is its nullity?",
+      "answer": "Nullity is $5-3=2$.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Zero",
+            "feedback": "Rank equals the row count, but there are five input coordinates."
+          },
+          {
+            "id": "option-2",
+            "text": "Two",
+            "feedback": "Nullity is five input columns minus rank three."
+          },
+          {
+            "id": "option-3",
+            "text": "Three",
+            "feedback": "Rank and nullity need not be equal."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "A $3\\times5$ matrix has rank three. What is its nullity?",
+        "answer": "Nullity is $5-3=2$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Zero",
+              "feedback": "Rank equals the row count, but there are five input coordinates."
+            },
+            {
+              "id": "option-2",
+              "text": "Two",
+              "feedback": "Nullity is five input columns minus rank three."
+            },
+            {
+              "id": "option-3",
+              "text": "Three",
+              "feedback": "Rank and nullity need not be equal."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "A $5\\times3$ matrix has rank three. What is its nullity?",
+        "answer": "Nullity is $3-3=0$, despite there being five output coordinates.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Zero",
+              "feedback": "All three input columns are pivot columns."
+            },
+            {
+              "id": "option-2",
+              "text": "Two",
+              "feedback": "Five is the output dimension; use the number of columns."
+            },
+            {
+              "id": "option-3",
+              "text": "Three",
+              "feedback": "Nullity is not the rank."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-linearity-boundaries-review",
+    "family": "authored",
+    "lesson": "linear-algebra-transformations",
+    "concept": "linear-map",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["linear-map"],
+    "sourceIds": ["review-la-linear-map"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "For real inputs, $T(x,y)=(x^2,y)$ sends zero to zero. Is it linear?",
+      "answer": "It fails scaling, so it is not linear.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Yes: sending zero to zero is enough.",
+            "feedback": "That is only a necessary condition."
+          },
+          {
+            "id": "option-2",
+            "text": "No: $T(2,0)=(4,0)$ differs from $2T(1,0)=(2,0)$.",
+            "feedback": "This violates scalar multiplication."
+          },
+          {
+            "id": "option-3",
+            "text": "No: linear maps must have square matrices.",
+            "feedback": "Linear maps may connect spaces of different dimensions."
+          }
+        ],
+        "correctOption": "option-2"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For real inputs, $T(x,y)=(x^2,y)$ sends zero to zero. Is it linear?",
+        "answer": "It fails scaling, so it is not linear.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Yes: sending zero to zero is enough.",
+              "feedback": "That is only a necessary condition."
+            },
+            {
+              "id": "option-2",
+              "text": "No: $T(2,0)=(4,0)$ differs from $2T(1,0)=(2,0)$.",
+              "feedback": "This violates scalar multiplication."
+            },
+            {
+              "id": "option-3",
+              "text": "No: linear maps must have square matrices.",
+              "feedback": "Linear maps may connect spaces of different dimensions."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "Which real map is linear?",
+        "answer": "$T(x,y)=(x-2y,3x)$ preserves addition and scalar multiplication.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$T(x,y)=(x+1,y)$",
+              "feedback": "The nonzero fixed offset sends zero to a nonzero vector."
+            },
+            {
+              "id": "option-2",
+              "text": "$T(x,y)=(xy,y)$",
+              "feedback": "The product of input components violates linearity."
+            },
+            {
+              "id": "option-3",
+              "text": "$T(x,y)=(x-2y,3x)$",
+              "feedback": "Each component is a linear combination with no fixed offset."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-projection-certificates-review",
+    "family": "authored",
+    "lesson": "linear-algebra-projections",
+    "concept": "orthogonal-projection",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["orthogonal-projection"],
+    "sourceIds": ["review-la-projection"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "For the horizontal-axis subspace and $b=(3,2)$, which candidate is the orthogonal projection?",
+      "answer": "Both membership and perpendicular residual are required, so $p=(3,0)$.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "$p=(3,0)$",
+            "feedback": "It lies on the axis and $b-p=(0,2)$ is perpendicular to the axis."
+          },
+          {
+            "id": "option-2",
+            "text": "$p=(0,0)$",
+            "feedback": "It is on the axis, but its residual $(3,2)$ is not perpendicular to that axis."
+          },
+          {
+            "id": "option-3",
+            "text": "$p=(3,2)$",
+            "feedback": "Its residual is zero, but the candidate is outside the subspace."
+          }
+        ],
+        "correctOption": "option-1"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For the horizontal-axis subspace and $b=(3,2)$, which candidate is the orthogonal projection?",
+        "answer": "Both membership and perpendicular residual are required, so $p=(3,0)$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "$p=(3,0)$",
+              "feedback": "It lies on the axis and $b-p=(0,2)$ is perpendicular to the axis."
+            },
+            {
+              "id": "option-2",
+              "text": "$p=(0,0)$",
+              "feedback": "It is on the axis, but its residual $(3,2)$ is not perpendicular to that axis."
+            },
+            {
+              "id": "option-3",
+              "text": "$p=(3,2)$",
+              "feedback": "Its residual is zero, but the candidate is outside the subspace."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "For $W=\\operatorname{span}\\{(1,1)\\}$ and $b=(2,0)$, a proposed projection is $p=(2,2)$. What fails?",
+        "answer": "The residual is not perpendicular to the line; the actual projection is $(1,1)$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Membership in $W$",
+              "feedback": "It is twice $(1,1)$, so membership holds."
+            },
+            {
+              "id": "option-2",
+              "text": "Perpendicularity of the residual to $W$",
+              "feedback": "The residual $(0,-2)$ has dot product $-2$ with $(1,1)$."
+            },
+            {
+              "id": "option-3",
+              "text": "Nothing; membership alone proves it is a projection.",
+              "feedback": "The perpendicular-residual condition is also needed."
+            }
+          ],
+          "correctOption": "option-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-rectangular-svd-rank-review",
+    "family": "authored",
+    "lesson": "linear-algebra-svd",
+    "concept": "svd-rank",
+    "skill": "recognize",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recognize",
+    "activationConcepts": ["svd-rank"],
+    "sourceIds": ["review-la-svd", "review-la-rank"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "A real $2\\times3$ matrix has listed singular values 5 and 2. Which pair gives its rank and nullity?",
+      "answer": "Rank is two; nullity is $3-2=1$.",
+      "choice": {
+        "options": [
+          {
+            "id": "option-1",
+            "text": "Rank two, nullity zero",
+            "feedback": "There are three input columns, including an erased input direction."
+          },
+          {
+            "id": "option-2",
+            "text": "Rank three, nullity zero",
+            "feedback": "Two singular values cannot supply three independent output directions."
+          },
+          {
+            "id": "option-3",
+            "text": "Rank two, nullity one",
+            "feedback": "There are two positive singular values and three input coordinates."
+          }
+        ],
+        "correctOption": "option-3"
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "A real $2\\times3$ matrix has listed singular values 5 and 2. Which pair gives its rank and nullity?",
+        "answer": "Rank is two; nullity is $3-2=1$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Rank two, nullity zero",
+              "feedback": "There are three input columns, including an erased input direction."
+            },
+            {
+              "id": "option-2",
+              "text": "Rank three, nullity zero",
+              "feedback": "Two singular values cannot supply three independent output directions."
+            },
+            {
+              "id": "option-3",
+              "text": "Rank two, nullity one",
+              "feedback": "There are two positive singular values and three input coordinates."
+            }
+          ],
+          "correctOption": "option-3"
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "A real $3\\times2$ matrix has listed singular values 5 and 0. Which pair gives its rank and nullity?",
+        "answer": "Rank is one; nullity is $2-1=1$.",
+        "choice": {
+          "options": [
+            {
+              "id": "option-1",
+              "text": "Rank one, nullity one",
+              "feedback": "One positive singular value gives rank one; there are two input columns."
+            },
+            {
+              "id": "option-2",
+              "text": "Rank one, nullity two",
+              "feedback": "Nullity uses the input dimension two, not the output dimension three."
+            },
+            {
+              "id": "option-3",
+              "text": "Rank two, nullity zero",
+              "feedback": "A zero singular value does not contribute to rank."
+            }
+          ],
+          "correctOption": "option-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "la-fit-null-space-transfer-review",
+    "family": "authored",
+    "lesson": "linear-algebra-least-squares",
+    "concept": "least-squares",
+    "skill": "justify",
+    "objective": "la-fit-null-space-transfer",
+    "evidenceLevel": "reasoning",
+    "interactionCost": "high",
+    "inputCapabilities": ["math-text", "handwriting", "photo"],
+    "cognitiveLevel": "justify",
+    "activationConcepts": ["least-squares"],
+    "sourceIds": ["review-la-least", "review-la-spaces", "review-la-projection"],
+    "variants": [
+      {
+        "id": 1,
+        "section": "Cumulative review",
+        "instructions": "Show the short calculations and explain the geometry.",
+        "prompt": "Let $A$ have rows $(1,2),(0,0)$ and let $b=(3,4)$. Find every least-squares coefficient vector $x$. Give the fitted output and residual, and explain using the column space and null space why the fitted output is unique although the coefficients are not.",
+        "answer": "Every output is $(x_1+2x_2,0)$, so the closest output to $(3,4)$ is $(3,0)$ with residual $(0,4)$. All coefficients are $x=(3-2t,t)$ for real $t$. The residual is perpendicular to the horizontal column space. Any other output $(s,0)$ has squared error $(3-s)^2+16$, uniquely minimized by $s=3$. The difference $t(-2,1)$ lies in the null space, so all listed coefficients give the same output."
+      },
+      {
+        "id": 2,
+        "section": "Cumulative review",
+        "instructions": "Show the short calculations and explain the geometry.",
+        "prompt": "Let $A$ have rows $(1,1),(1,1)$ and let $b=(1,5)$. Find every least-squares coefficient vector $x$. Give the fitted output and residual, and explain using the column space and null space why the fitted output is unique although the coefficients are not.",
+        "answer": "Every output is $(s,s)$ with $s=x_1+x_2$. Its squared error is $(1-s)^2+(5-s)^2=2(s-3)^2+8$, uniquely minimized at $s=3$. The fitted output is $(3,3)$ and residual is $(-2,2)$, perpendicular to the column direction $(1,1)$. All coefficients are $x=(3-t,t)$ for real $t$; differences $t(-1,1)$ lie in the null space. Thus a unique closest output does not imply unique coefficients."
+      }
+    ],
+    "question": {
+      "id": 1,
+      "section": "Cumulative review",
+      "instructions": "Show the short calculations and explain the geometry.",
+      "prompt": "Let $A$ have rows $(1,2),(0,0)$ and let $b=(3,4)$. Find every least-squares coefficient vector $x$. Give the fitted output and residual, and explain using the column space and null space why the fitted output is unique although the coefficients are not.",
+      "answer": "Every output is $(x_1+2x_2,0)$, so the closest output to $(3,4)$ is $(3,0)$ with residual $(0,4)$. All coefficients are $x=(3-2t,t)$ for real $t$. The residual is perpendicular to the horizontal column space. Any other output $(s,0)$ has squared error $(3-s)^2+16$, uniquely minimized by $s=3$. The difference $t(-2,1)$ lies in the null space, so all listed coefficients give the same output."
+    }
+  },
+  {
+    "lesson": "linear-algebra-least-squares",
+    "concept": "fit-interpretation",
+    "family": "authored",
+    "activationConcepts": ["fit-interpretation"],
+    "id": "la-fit-interpretation-reasoning-review",
+    "skill": "justify",
+    "evidenceLevel": "reasoning",
+    "interactionCost": "high",
+    "inputCapabilities": ["math-text", "handwriting", "photo"],
+    "cognitiveLevel": "justify",
+    "sourceIds": ["review-la-fit-limits", "review-la-least", "review-la-dot"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Explain using the supplied functions.",
+      "prompt": "A line $f(t)=1+2t$ fits observations $(0,1)$ and $(1,3)$ with zero residual. Another possible data-generating rule is $g(t)=1+2t+t(t-1)$. Compare the two rules at the observed inputs and at $t=2$. Explain precisely what the zero training residual establishes and why it does not guarantee the new prediction.",
+      "answer": "Both rules give 1 at zero and 3 at one, so the observations cannot distinguish them. At two, f gives 5 while g gives 7. Zero training residual establishes exact agreement with those observations under the selected model, not that the selected model describes the true rule or will predict unobserved inputs accurately."
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Explain using the supplied functions.",
+        "prompt": "A line $f(t)=1+2t$ fits observations $(0,1)$ and $(1,3)$ with zero residual. Another possible data-generating rule is $g(t)=1+2t+t(t-1)$. Compare the two rules at the observed inputs and at $t=2$. Explain precisely what the zero training residual establishes and why it does not guarantee the new prediction.",
+        "answer": "Both rules give 1 at zero and 3 at one, so the observations cannot distinguish them. At two, f gives 5 while g gives 7. Zero training residual establishes exact agreement with those observations under the selected model, not that the selected model describes the true rule or will predict unobserved inputs accurately."
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Explain the objective change; show a short calculation.",
+        "prompt": "Fit one constant $c$ to observations 1 and 5 by ordinary least squares. Then multiply the first observation equation and its fitted expression by two, giving discrepancies $2c-2$ and $c-5$. A learner says that this reversible equation scaling cannot change the best fit. Find the best constant before and after scaling and explain the mistake.",
+        "answer": "Before scaling the objective is $(c-1)^2+(c-5)^2=2(c-3)^2+8$, minimized at 3. After scaling it is $4(c-1)^2+(c-5)^2=5(c-9/5)^2+64/5$, minimized at $9/5$. The first observation now has four times the squared-error weight. Reversible row scaling preserves exact solutions, but this inconsistent fitting problem minimizes a distance whose weights changed."
+      }
+    ]
+  },
+  {
+    "lesson": "linear-algebra-least-squares",
+    "concept": "fit-interpretation",
+    "family": "authored",
+    "activationConcepts": ["fit-interpretation"],
+    "id": "la-fit-scope-recognition-review",
+    "skill": "interpret",
+    "objective": "la-fit-scope-recognition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "interpret",
+    "sourceIds": ["review-la-fit-limits", "review-la-least", "review-la-dot"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Select one answer.",
+      "prompt": "A fitted model has zero residual on the observations used to fit it. What does this establish?",
+      "answer": "The model reproduces those observations exactly; performance on unseen inputs still needs evidence.",
+      "choice": {
+        "correctOption": "option-2",
+        "options": [
+          {
+            "id": "option-1",
+            "text": "It must predict every future observation correctly.",
+            "feedback": "Exact agreement on observed inputs does not establish agreement elsewhere."
+          },
+          {
+            "id": "option-2",
+            "text": "It reproduces the observed outputs exactly.",
+            "feedback": "This is exactly what zero residual says."
+          },
+          {
+            "id": "option-3",
+            "text": "Its coefficient vector must be unique.",
+            "feedback": "Dependent columns can give many coefficients for one fitted output."
+          }
+        ]
+      }
+    },
+    "variants": [
+      {
+        "id": 1,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "A fitted model has zero residual on the observations used to fit it. What does this establish?",
+        "answer": "The model reproduces those observations exactly; performance on unseen inputs still needs evidence.",
+        "choice": {
+          "correctOption": "option-2",
+          "options": [
+            {
+              "id": "option-1",
+              "text": "It must predict every future observation correctly.",
+              "feedback": "Exact agreement on observed inputs does not establish agreement elsewhere."
+            },
+            {
+              "id": "option-2",
+              "text": "It reproduces the observed outputs exactly.",
+              "feedback": "This is exactly what zero residual says."
+            },
+            {
+              "id": "option-3",
+              "text": "Its coefficient vector must be unique.",
+              "feedback": "Dependent columns can give many coefficients for one fitted output."
+            }
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "section": "Review",
+        "instructions": "Select one answer.",
+        "prompt": "One row of a least-squares problem, including its right-hand side, is multiplied by three. What happens to that observation’s contribution to the squared-error objective?",
+        "answer": "It is multiplied by nine, so the best fit can change.",
+        "choice": {
+          "correctOption": "option-3",
+          "options": [
+            {
+              "id": "option-1",
+              "text": "It is unchanged because the equation is equivalent.",
+              "feedback": "Equivalent exact equations can define different weighted errors when no exact fit exists."
+            },
+            {
+              "id": "option-2",
+              "text": "It is multiplied by three.",
+              "feedback": "Least squares squares the scaled discrepancy."
+            },
+            {
+              "id": "option-3",
+              "text": "It is multiplied by nine.",
+              "feedback": "The new squared discrepancy is $(3r)^2=9r^2$."
+            }
+          ]
+        }
+      }
+    ]
   }
 ]
