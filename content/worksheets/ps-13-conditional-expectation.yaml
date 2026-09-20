@@ -1,0 +1,262 @@
+title: Conditional Expectation
+sections:
+  - title: A conditional mean is a function of the information
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Given $X=0$, a variable $Y$ is zero or four with equal probabilities. Find $E[Y\mid X=0]$.
+        answerLines: 5
+        answer: $(0+4)/2=2$.
+      - id: 2
+        type: freeform
+        prompt: Given $X=1$, $Y$ takes $1,3,7$ with probabilities $1/4,1/2,1/4$. Find its conditional mean.
+        answerLines: 5
+        answer: $1/4+3/2+7/4=7/2$.
+      - id: 3
+        type: freeform
+        prompt: If $Y\mid X=x$ is uniform on $(0,x)$ for $x>0$, give $E[Y\mid X=x]$.
+        answerLines: 5
+        answer: The midpoint is $x/2$.
+      - id: 4
+        type: freeform
+        prompt: If $Y\mid X=x$ is uniform on $(x,1)$ for $0<x<1$, give its conditional mean.
+        answerLines: 5
+        answer: The midpoint is $(x+1)/2$.
+      - id: 5
+        type: freeform
+        prompt: If $E[Y\mid X=x]=2x+1$, give $E[3Y-4\mid X=x]$.
+        answerLines: 5
+        answer: Conditional linearity gives $3(2x+1)-4=6x-1$.
+      - id: 6
+        type: freeform
+        prompt: If $E[Y\mid X=x]=2x+1$, give $E[XY\mid X=x]$.
+        answerLines: 5
+        answer: The observed $x$ is fixed inside the expectation, so the answer is $x(2x+1)=2x^2+x$.
+      - id: 7
+        type: freeform
+        prompt: If $Y=3X-2$ exactly, give $E[Y\mid X=x]$.
+        answerLines: 5
+        answer: Knowing $X=x$ determines $Y=3x-2$, so the mean is $3x-2$.
+      - id: 8
+        type: freeform
+        prompt: Independent variables satisfy $E[Y]=8$. Find $E[Y\mid X=x]$ wherever the conditional model is defined.
+        answerLines: 5
+        answer: Independence leaves the distribution of $Y$ unchanged, so the conditional mean is $8$.
+      - id: 9
+        type: freeform
+        prompt: Explain why a conditional mean need not be one of the possible values of the response.
+        answerLines: 5
+        answer: It is a weighted average, not a sampled value. A response equally likely to be zero or four has conditional mean two.
+      - id: 10
+        type: freeform
+        prompt: Describe the difference between $E[Y\mid X=2]$ and $E[Y\mid X]$.
+        answerLines: 5
+        answer: The first is a fixed number obtained by averaging under the condition $X=2$. The second is the function of the random input $X$ whose value at each outcome is the appropriate conditional mean.
+  - title: Average conditional means to recover the overall mean
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Conditional means are $2,8$ with regime probabilities $3/4,1/4$. Find the overall mean.
+        answerLines: 5
+        answer: $(3/4)(2)+(1/4)(8)=7/2$.
+      - id: 12
+        type: freeform
+        prompt: Conditional means are $-1,3,6$ with probabilities $1/2,1/3,1/6$. Find the overall mean.
+        answerLines: 5
+        answer: $-1/2+1+1=3/2$.
+      - id: 13
+        type: freeform
+        prompt: If $E[Y\mid X]=3X+2$ and $E[X]=4$, find $E[Y]$.
+        answerLines: 5
+        answer: $E[3X+2]=3(4)+2=14$.
+      - id: 14
+        type: freeform
+        prompt: If $E[Y\mid X]=X^2$, $E[X]=2$, and $\operatorname{Var}(X)=3$, find $E[Y]$.
+        answerLines: 5
+        answer: $E[X^2]=\operatorname{Var}(X)+E[X]^2=3+4=7$.
+      - id: 15
+        type: freeform
+        prompt: Let $X$ be uniform on $(0,2)$, and let $E[Y\mid X=x]=x/2$. Find $E[Y]$.
+        answerLines: 5
+        answer: $E[X]/2=1/2$.
+      - id: 16
+        type: freeform
+        prompt: Let $X$ have density $2x$ on $(0,1)$ and $E[Y\mid X=x]=x^2$. Find $E[Y]$.
+        answerLines: 5
+        answer: $\int_0^1x^2(2x)\,dx=1/2$.
+      - id: 17
+        type: freeform
+        prompt: If $K\mid N=n$ is binomial with parameters $n,1/4$, and $E[N]=12$, find $E[K]$.
+        answerLines: 5
+        answer: $E[K]=E[N]/4=3$.
+      - id: 18
+        type: freeform
+        prompt: An event has conditional probabilities $1/5,4/5$ in equally likely regimes. Find its overall probability.
+        answerLines: 5
+        answer: $(1/2)(1/5)+(1/2)(4/5)=1/2$.
+      - id: 19
+        type: freeform
+        prompt: Explain why $E[Y]=E[X]^2$ does not follow from $E[Y\mid X]=X^2$.
+        answerLines: 5
+        answer: The tower property gives $E[Y]=E[X^2]$, which differs from $E[X]^2$ by $\operatorname{Var}(X)$.
+      - id: 20
+        type: freeform
+        prompt: Prove total expectation for finite discrete variables from their joint PMF.
+        answerLines: 5
+        answer: Sum $E[Y\mid X=x]P(X=x)=\sum_y y\,p(x,y)$ over $x$. Reversing the finite sums gives $\sum_y y\sum_xp(x,y)=\sum_y y p_Y(y)=E[Y]$.
+  - title: Split variation within and between conditions
+    questions:
+      - id: 21
+        type: freeform
+        prompt: If $E[Y\mid X=x]=2$ and $E[Y^2\mid X=x]=7$, find the conditional variance.
+        answerLines: 5
+        answer: $7-2^2=3$.
+      - id: 22
+        type: freeform
+        prompt: Conditional variances are $1,9$ with probabilities $3/4,1/4$. Find their average.
+        answerLines: 5
+        answer: $(3/4)(1)+(1/4)(9)=3$.
+      - id: 23
+        type: freeform
+        prompt: Conditional means are $2,8$ with probabilities $3/4,1/4$. Find the variance of the conditional mean.
+        answerLines: 5
+        answer: The mean is $7/2$; the variance is $(3/4)(-3/2)^2+(1/4)(9/2)^2=27/4$.
+      - id: 24
+        type: freeform
+        prompt: Regimes have probabilities $3/4,1/4$, means $2,8$, and variances $1,9$. Find total variance.
+        answerLines: 5
+        answer: Average within variance is three and between variance is $27/4$, so total variance is $39/4$.
+      - id: 25
+        type: freeform
+        prompt: If total variance is $12$ and average conditional variance is $5$, find variance of the conditional mean.
+        answerLines: 5
+        answer: Total variance gives $12-5=7$.
+      - id: 26
+        type: freeform
+        prompt: If $E[Y\mid X]=3X+1$, $\operatorname{Var}(X)=2$, and $\operatorname{Var}(Y\mid X)=4$, find $\operatorname{Var}(Y)$.
+        answerLines: 5
+        answer: $4+\operatorname{Var}(3X+1)=4+9(2)=22$.
+      - id: 27
+        type: freeform
+        prompt: If $Y\mid X=x$ is uniform on $(0,x)$ for $x>0$, give its conditional variance.
+        answerLines: 5
+        answer: The interval width is $x$, so the conditional variance is $x^2/12$.
+      - id: 28
+        type: freeform
+        prompt: If $X$ is uniform on $(0,2)$ and $Y\mid X=x$ is uniform on $(0,x)$, find $\operatorname{Var}(Y)$.
+        answerLines: 5
+        answer: $E[X^2]/12+\operatorname{Var}(X/2)=(4/3)/12+(1/3)/4=1/9+1/12=7/36$.
+      - id: 29
+        type: freeform
+        prompt: "True or false: $\\operatorname{Var}(Y\\mid X=x)\\le\\operatorname{Var}(Y)$ must hold for every $x$."
+        answerLines: 5
+        answer: False. Total variance bounds the average conditional variance, allowing particular conditions to have larger variance.
+      - id: 30
+        type: freeform
+        prompt: Derive total variance by adding and subtracting the second moment of $E[Y\mid X]$.
+        answerLines: 5
+        answer: Let $M=E[Y\mid X]$. Then $E[\operatorname{Var}(Y\mid X)]=E[Y^2]-E[M^2]$ and $\operatorname{Var}(M)=E[M^2]-E[Y]^2$. Adding gives $\operatorname{Var}(Y)$.
+  - title: Conditional means give optimal squared-error predictions
+    questions:
+      - id: 31
+        type: freeform
+        prompt: A conditional response has mean four and variance nine. What prediction minimizes squared error?
+        answerLines: 5
+        answer: Predict its conditional mean, $4$.
+      - id: 32
+        type: freeform
+        prompt: A conditional response has mean four and variance nine. Find the MSE of prediction six.
+        answerLines: 5
+        answer: $9+(4-6)^2=13$.
+      - id: 33
+        type: freeform
+        prompt: A conditional response has mean four and variance nine. Find the minimum possible MSE.
+        answerLines: 5
+        answer: At the conditional mean, the extra square vanishes; minimum MSE is $9$.
+      - id: 34
+        type: freeform
+        prompt: A binary response has conditional success probability $3/10$. Give its optimal real-valued squared-error prediction.
+        answerLines: 5
+        answer: The conditional mean is its success probability, $3/10$.
+      - id: 35
+        type: freeform
+        prompt: A binary response has conditional success probability $3/10$. Find the minimum conditional MSE.
+        answerLines: 5
+        answer: Its conditional variance is $(3/10)(7/10)=21/100$.
+      - id: 36
+        type: freeform
+        prompt: The average conditional variance is three. A predictor differs from the conditional mean by exactly two for every input. Find its MSE.
+        answerLines: 5
+        answer: $3+E[2^2]=7$.
+      - id: 37
+        type: freeform
+        prompt: If $E[Y\mid X=x]=x^2+1$, give the squared-error optimal prediction at $x=3$.
+        answerLines: 5
+        answer: $3^2+1=10$.
+      - id: 38
+        type: freeform
+        prompt: For residual $R=Y-E[Y\mid X]$ with finite second moments, find $E[R]$.
+        answerLines: 5
+        answer: Total expectation gives $E[R]=E[Y]-E[E[Y\mid X]]=0$.
+      - id: 39
+        type: freeform
+        prompt: Explain why a zero conditional residual mean does not imply independent residuals and inputs.
+        answerLines: 5
+        answer: The conditional residual variance or shape can depend on the input even when each conditional mean is zero. Independence would require the whole conditional residual distribution to be unchanged.
+      - id: 40
+        type: freeform
+        prompt: Derive the conditional squared-error decomposition for a fixed prediction $a$.
+        answerLines: 5
+        answer: Write $Y-a=(Y-m)+(m-a)$ with $m=E[Y\mid X=x]$. Expand the square. The cross term has conditional expectation zero, leaving $\operatorname{Var}(Y\mid X=x)+(m-a)^2$.
+  - title: Use conditioning to analyze random workloads
+    questions:
+      - id: 41
+        type: freeform
+        prompt: A count $N$ has mean five and variance two. Iid contributions independent of $N$ have mean three and variance four. Find the random sum's mean.
+        answerLines: 5
+        answer: $3E[N]=3(5)=15$.
+      - id: 42
+        type: freeform
+        prompt: For count mean five/variance two and iid contributions independent of the count with mean three/variance four, find total variance.
+        answerLines: 5
+        answer: $4(5)+3^2(2)=38$.
+      - id: 43
+        type: freeform
+        prompt: If $N$ has mean four and variance four, and iid independent-of-count contributions have mean two and variance three, find the sum's variance.
+        answerLines: 5
+        answer: $3(4)+2^2(4)=28$.
+      - id: 44
+        type: freeform
+        prompt: A random count has mean ten and variance six. Every contribution is the constant two. Find the total variance.
+        answerLines: 5
+        answer: The total is $2N$, so variance is $4(6)=24$.
+      - id: 45
+        type: freeform
+        prompt: A random count has mean seven. Iid contributions independent of it have mean zero and variance three; the count has finite second moment. Find the sum's variance.
+        answerLines: 5
+        answer: The count-variation term is zero, leaving $3E[N]=21$.
+      - id: 46
+        type: freeform
+        prompt: A rare regime has probability $1/10$ and response $-10$ or $10$ equally likely; elsewhere the response is zero. Find its overall variance.
+        answerLines: 5
+        answer: The mean is zero and $E[Y^2]=(1/10)(100)=10$, so variance is $10$.
+      - id: 47
+        type: freeform
+        prompt: Within a specified regime, a response is $-10$ or $10$ equally likely. Find its conditional variance.
+        answerLines: 5
+        answer: The conditional mean is zero and second moment is one hundred, so variance is $100$.
+      - id: 48
+        type: freeform
+        prompt: If $K\mid N=n$ is binomial with parameters $n,1/2$, and $E[N]=6,\operatorname{Var}(N)=4$, find $\operatorname{Var}(K)$.
+        answerLines: 5
+        answer: $E[N]/4+\operatorname{Var}(N)/4=6/4+4/4=5/2$.
+      - id: 49
+        type: freeform
+        prompt: A workload is a sum of $N$ iid contributions, independent of $N$, all with finite second moments. Explain why replacing the random batch size by its mean can preserve the mean workload but lose a variance term.
+        answerLines: 5
+        answer: The conditional mean is linear in the count, so averaging yields $\mu E[N]$. But its variation across counts contributes $\mu^2\operatorname{Var}(N)$ to total variance, which a fixed-count approximation omits.
+      - id: 50
+        type: freeform
+        prompt: A process stops as soon as a contribution exceeds a threshold. Explain why the independent-count random-sum formula cannot be applied automatically.
+        answerLines: 5
+        answer: The stopping count is determined by the contributions, so it is not independent of them. One must establish suitable conditional moments or a different theorem before using a simplified formula.

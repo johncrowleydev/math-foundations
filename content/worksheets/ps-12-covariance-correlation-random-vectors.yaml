@@ -1,0 +1,262 @@
+title: Covariance, Correlation, and Random Vectors
+sections:
+  - title: Covariance measures centered co-variation
+    questions:
+      - id: 1
+        type: freeform
+        prompt: If $E[X]=2,E[Y]=3,E[XY]=8$, find $\operatorname{Cov}(X,Y)$.
+        answerLines: 5
+        answer: $8-2(3)=2$.
+      - id: 2
+        type: freeform
+        prompt: If $E[X]=-1,E[Y]=4,E[XY]=-6$, find the covariance.
+        answerLines: 5
+        answer: $-6-(-1)(4)=-2$.
+      - id: 3
+        type: freeform
+        prompt: If $\operatorname{Var}(X)=5$, find $\operatorname{Cov}(X,X)$.
+        answerLines: 5
+        answer: Covariance with itself is variance, so the result is $5$.
+      - id: 4
+        type: freeform
+        prompt: If $\operatorname{Cov}(X,Y)=3$, find $\operatorname{Cov}(2X+7,4Y-1)$.
+        answerLines: 5
+        answer: Translations disappear and scaling gives $2(4)(3)=24$.
+      - id: 5
+        type: freeform
+        prompt: If $\operatorname{Cov}(X,Y)=3$, find $\operatorname{Cov}(-2X,Y+9)$.
+        answerLines: 5
+        answer: $(-2)(1)(3)=-6$.
+      - id: 6
+        type: freeform
+        prompt: For fair binary marginals with $P(X=1,Y=1)=3/8$, find the covariance.
+        answerLines: 5
+        answer: $E[XY]-E[X]E[Y]=3/8-1/4=1/8$.
+      - id: 7
+        type: freeform
+        prompt: For fair binary marginals with $P(X=1,Y=1)=1/8$, find the covariance.
+        answerLines: 5
+        answer: $1/8-1/4=-1/8$.
+      - id: 8
+        type: freeform
+        prompt: Independent variables have finite second moments. Find their covariance.
+        answerLines: 5
+        answer: Independence gives $E[XY]=E[X]E[Y]$, so the covariance is $0$.
+      - id: 9
+        type: freeform
+        prompt: Explain why adding a constant to $X$ does not change its covariance with $Y$.
+        answerLines: 5
+        answer: The mean shifts by the same constant. Thus $(X+b)-E[X+b]=X-E[X]$, leaving the centered product unchanged.
+      - id: 10
+        type: freeform
+        prompt: Derive $\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$ from the centered definition.
+        answerLines: 5
+        answer: Expand to $XY-XE[Y]-YE[X]+E[X]E[Y]$. Taking expectations produces $E[XY]-2E[X]E[Y]+E[X]E[Y]$, which is the stated identity.
+  - title: Variance of a combination includes cross terms
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Given variances $4,9$ and covariance $3$, find $\operatorname{Var}(X+Y)$.
+        answerLines: 5
+        answer: $4+9+2(3)=19$.
+      - id: 12
+        type: freeform
+        prompt: Given variances $4,9$ and covariance $3$, find $\operatorname{Var}(X-Y)$.
+        answerLines: 5
+        answer: $4+9-2(3)=7$.
+      - id: 13
+        type: freeform
+        prompt: Given variances $4,9$ and covariance $3$, find $\operatorname{Var}(2X-Y+5)$.
+        answerLines: 5
+        answer: $4(4)+9+2(2)(-1)(3)=16+9-12=13$.
+      - id: 14
+        type: freeform
+        prompt: Independent variables have variances $2,5$. Find $\operatorname{Var}(3X+2Y)$.
+        answerLines: 5
+        answer: $9(2)+4(5)=38$.
+      - id: 15
+        type: freeform
+        prompt: Two variables each have variance $9$ and covariance $3$. Find the variance of their average.
+        answerLines: 5
+        answer: $(9+9+2(3))/4=6$.
+      - id: 16
+        type: freeform
+        prompt: If $Y=X$ and $\operatorname{Var}(X)=6$, find $\operatorname{Var}((X+Y)/2)$.
+        answerLines: 5
+        answer: The average equals $X$, so its variance is $6$.
+      - id: 17
+        type: freeform
+        prompt: Three pairwise uncorrelated variables have variances $1,2,3$. Find the variance of their sum.
+        answerLines: 5
+        answer: All cross terms vanish, leaving $1+2+3=6$.
+      - id: 18
+        type: freeform
+        prompt: Independent variables have variances one and four. Find $\operatorname{Cov}(X+Y,X-Y)$.
+        answerLines: 5
+        answer: Expand by bilinearity to $\operatorname{Var}(X)-\operatorname{Var}(Y)=1-4=-3$.
+      - id: 19
+        type: freeform
+        prompt: Explain why $\operatorname{Var}(X-Y)$ is not $\operatorname{Var}(X)-\operatorname{Var}(Y)$ even under independence.
+        answerLines: 5
+        answer: The coefficient of $Y$ is squared in its variance contribution. Under independence the correct value is $\operatorname{Var}(X)+\operatorname{Var}(Y)$.
+      - id: 20
+        type: freeform
+        prompt: Derive the variance of the mean of $n$ pairwise uncorrelated variables each with variance $v$.
+        answerLines: 5
+        answer: The sum has variance $nv$. Dividing the sum by $n$ multiplies variance by $1/n^2$, giving $v/n$.
+  - title: Correlation standardizes covariance but does not describe all dependence
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Standard deviations are $2,3$ and covariance is $3$. Find correlation.
+        answerLines: 5
+        answer: $3/(2\cdot3)=1/2$.
+      - id: 22
+        type: freeform
+        prompt: Standard deviations are $4,5$ and correlation is $-3/5$. Find covariance.
+        answerLines: 5
+        answer: $(-3/5)(4)(5)=-12$.
+      - id: 23
+        type: freeform
+        prompt: If $\rho(X,Y)=2/5$, find $\rho(3X+8,2Y-1)$.
+        answerLines: 5
+        answer: Positive changes of scale and translations preserve correlation, so it remains $2/5$.
+      - id: 24
+        type: freeform
+        prompt: If $\rho(X,Y)=2/5$, find $\rho(-X,2Y)$.
+        answerLines: 5
+        answer: One negative scaling reverses the sign, giving $-2/5$.
+      - id: 25
+        type: freeform
+        prompt: If $X$ has positive finite variance and $Y=7-3X$, find $\rho(X,Y)$.
+        answerLines: 5
+        answer: The exact affine relation has negative slope, so correlation is $-1$.
+      - id: 26
+        type: freeform
+        prompt: 'True or false: correlation with a constant variable equals zero.'
+        answerLines: 5
+        answer: False. Its zero standard deviation makes the correlation denominator zero, so correlation is undefined.
+      - id: 27
+        type: freeform
+        prompt: Let $X$ be uniform on $\{-1,0,1\}$ and $Y=X^2$. Find $E[Y]$.
+        answerLines: 5
+        answer: $E[Y]=(1+0+1)/3=2/3$.
+      - id: 28
+        type: freeform
+        prompt: For that explicitly defined pair $X\in\{-1,0,1\}$ uniformly and $Y=X^2$, find covariance.
+        answerLines: 5
+        answer: $E[XY]=E[X^3]=0$ and $E[X]=0$, so covariance is $0$.
+      - id: 29
+        type: freeform
+        prompt: Explain why the pair $X\in\{-1,0,1\}$ uniformly and $Y=X^2$ is dependent despite zero covariance.
+        answerLines: 5
+        answer: For example, $P(Y=0\mid X=0)=1$, whereas $P(Y=0)=1/3$. The conditional distribution changes.
+      - id: 30
+        type: freeform
+        prompt: Show that correlation cannot exceed one in absolute value using standardized variables.
+        answerLines: 5
+        answer: For standardized $U,V$, nonnegativity of $E[(U-V)^2]=2-2\rho$ gives $\rho\le1$, and of $E[(U+V)^2]=2+2\rho$ gives $\rho\ge-1$.
+  - title: Collect means and covariances into vectors and matrices
+    questions:
+      - id: 31
+        type: freeform
+        prompt: A vector has component variances $4,9$ and covariance $3$. Fill its covariance matrix in component order $1,2$.
+        answerLines: 5
+        answer: The matrix is $\begin{pmatrix}4&3\\3&9\end{pmatrix}$; variances go on the diagonal and covariance appears symmetrically.
+      - id: 32
+        type: freeform
+        prompt: A three-dimensional random vector is mapped by a $2\times3$ matrix. Give the dimensions of the output covariance matrix as $(\text{rows},\text{columns})$.
+        answerLines: 5
+        answer: There are two output coordinates, so the covariance dimensions are $(2,2)$.
+      - id: 33
+        type: freeform
+        prompt: The mean vector is $(2,-1)^T$. For $Y=X_1+3X_2+4$, find $E[Y]$.
+        answerLines: 5
+        answer: $2+3(-1)+4=3$.
+      - id: 34
+        type: freeform
+        prompt: For covariance matrix $\begin{pmatrix}4&3\\3&9\end{pmatrix}$, find the variance of $X_1+X_2$.
+        answerLines: 5
+        answer: The quadratic form is $4+9+2(3)=19$.
+      - id: 35
+        type: freeform
+        prompt: Independent variables have variances one and four. Fill the covariance matrix of $(X+Y,X-Y)^T$.
+        answerLines: 5
+        answer: Both variances are five; covariance is $1-4=-3$. The matrix is $\begin{pmatrix}5&-3\\-3&5\end{pmatrix}$.
+      - id: 36
+        type: freeform
+        prompt: For covariance matrix $\begin{pmatrix}4&3\\3&9\end{pmatrix}$, find the covariance between $2X_1$ and $-X_2$.
+        answerLines: 5
+        answer: Scaling gives $2(-1)(3)=-6$.
+      - id: 37
+        type: freeform
+        prompt: If $E[\mathbf X]=(1,2)^T$ and $\Sigma=\begin{pmatrix}3&1\\1&4\end{pmatrix}$, find $E[X_1X_2]$.
+        answerLines: 5
+        answer: $E[X_1X_2]=\Sigma_{12}+E[X_1]E[X_2]=1+2=3$.
+      - id: 38
+        type: freeform
+        prompt: 'True or false: adding a fixed vector to a random vector changes its covariance matrix.'
+        answerLines: 5
+        answer: False. Centering cancels the fixed shift.
+      - id: 39
+        type: freeform
+        prompt: Derive $\operatorname{Cov}(A\mathbf X+\mathbf b)=A\Sigma A^T$ from the definition.
+        answerLines: 5
+        answer: The centered output is $A(\mathbf X-\boldsymbol\mu)$. Its outer product is $A(\mathbf X-\boldsymbol\mu)(\mathbf X-\boldsymbol\mu)^TA^T$. Taking expectations gives $A\Sigma A^T$.
+      - id: 40
+        type: freeform
+        prompt: Explain the difference between $E[\mathbf X\mathbf X^T]$ and the covariance matrix.
+        answerLines: 5
+        answer: "The first contains raw second moments. The covariance matrix subtracts the mean outer product: $\\Sigma=E[\\mathbf X\\mathbf X^T]-\\boldsymbol\\mu\\boldsymbol\\mu^T$."
+  - title: Covariance geometry, validity, and redundant features
+    questions:
+      - id: 41
+        type: freeform
+        prompt: For $\Sigma=\begin{pmatrix}1&2\\2&1\end{pmatrix}$, compute the quadratic form for $(1,-1)^T$.
+        answerLines: 5
+        answer: $1+1-2(2)=-2$.
+      - id: 42
+        type: freeform
+        prompt: Can $\begin{pmatrix}1&2\\2&1\end{pmatrix}$ be a covariance matrix? Answer true or false.
+        answerLines: 5
+        answer: False. It gives negative variance $-2$ in direction $(1,-1)^T$.
+      - id: 43
+        type: freeform
+        prompt: If $\operatorname{Var}(X)=4$ and $\operatorname{Var}(Y)=9$, what is the largest possible covariance?
+        answerLines: 5
+        answer: $|\operatorname{Cov}(X,Y)|\le\sqrt{4\cdot9}=6$, so the largest is $6$.
+      - id: 44
+        type: freeform
+        prompt: If $\operatorname{Var}(X)=1$ and $Y=2X$, find $\operatorname{Var}(2X-Y)$.
+        answerLines: 5
+        answer: The combination is identically zero, so its variance is $0$.
+      - id: 45
+        type: freeform
+        prompt: For $\Sigma=\begin{pmatrix}2&1\\1&2\end{pmatrix}$, find the variance along unit direction $(1,1)^T/\sqrt2$.
+        answerLines: 5
+        answer: The quadratic form is $(2+2+2)/2=3$.
+      - id: 46
+        type: freeform
+        prompt: For $\Sigma=\begin{pmatrix}2&1\\1&2\end{pmatrix}$, find the variance along unit direction $(1,-1)^T/\sqrt2$.
+        answerLines: 5
+        answer: The quadratic form is $(2+2-2)/2=1$.
+      - id: 47
+        type: freeform
+        prompt: A covariance matrix has eigenvalues $1,4,7$. What is the greatest variance of a unit-length linear projection?
+        answerLines: 5
+        answer: The largest possible Rayleigh quotient is the largest eigenvalue, $7$.
+      - id: 48
+        type: freeform
+        prompt: 'True or false: a singular covariance matrix is necessarily invalid.'
+        answerLines: 5
+        answer: False. Exact affine dependence among features can produce a valid singular covariance matrix.
+      - id: 49
+        type: freeform
+        prompt: Prove covariance matrices are positive semidefinite.
+        answerLines: 5
+        answer: For any vector $a$, $a^T\Sigma a=E[(a^T(\mathbf X-\boldsymbol\mu))^2]\ge0$. This is the variance of a scalar projection.
+      - id: 50
+        type: freeform
+        prompt: Explain why the direction vector must have unit length when comparing projected variances to find the greatest-variance direction.
+        answerLines: 5
+        answer: Scaling the direction by $c$ multiplies projected variance by $c^2$. Without a length restriction, arbitrarily large values could be produced merely by scaling, rather than by choosing a different direction.

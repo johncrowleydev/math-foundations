@@ -26,7 +26,8 @@ test('all inline exercises attach to an existing teaching heading and preserve q
     const ids = (lesson.worksheetData?.sections || []).flatMap((s) => s.questions.map((q) => q.id));
     const placed = placeNotebookExercises(lesson.slug, headings(lesson.markdown), ids);
     const inline = placed.sectionQuestionIds.flat();
-    if (lesson.subject !== 'Calculus') inlineCount += inline.length;
+    if (['Discrete mathematics', 'Linear algebra'].includes(lesson.subject))
+      inlineCount += inline.length;
     const all = [...inline, ...placed.practiceIds];
     assert.equal(new Set(all).size, ids.length);
     assert.deepEqual(
@@ -115,7 +116,7 @@ test('all curriculum exercises adapt with valid math, stable IDs, and no printed
         assert.equal(adapted.id, source.id);
         assert.deepEqual(adapted.table, source.table);
         assert.equal(adapted.math, source.math);
-        if (l.subject !== 'Calculus') count++;
+        if (['Discrete mathematics', 'Linear algebra'].includes(l.subject)) count++;
       }
   assert.equal(count, 2010);
 });

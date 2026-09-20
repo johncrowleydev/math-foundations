@@ -1,0 +1,312 @@
+title: Point Estimation and Likelihood
+sections:
+  - title: A parameter, an estimator, and an estimate
+    questions:
+      - id: 1
+        type: freeform
+        prompt: There are 3 successes in 10 Bernoulli trials. Give the observed sample-proportion estimate.
+        answerLines: 5
+        answer: "Divide successes by trials: $\\hat p=3/10=3/10$."
+      - id: 2
+        type: freeform
+        prompt: For observations consisting of 3 ones and 7 zeros, give the sample mean after applying the transformation $Y_i=2X_i-1$.
+        answerLines: 5
+        answer: The transformed average is $2(3/10)-1=-2/5$. It estimates the mean of the transformed variable.
+      - id: 3
+        type: freeform
+        prompt: There are 7 successes in 20 Bernoulli trials. Give the observed sample-proportion estimate.
+        answerLines: 5
+        answer: "Divide successes by trials: $\\hat p=7/20=7/20$."
+      - id: 4
+        type: freeform
+        prompt: For observations consisting of 7 ones and 13 zeros, give the sample mean after applying the transformation $Y_i=2X_i-1$.
+        answerLines: 5
+        answer: The transformed average is $2(7/20)-1=-3/10$. It estimates the mean of the transformed variable.
+      - id: 5
+        type: freeform
+        prompt: There are 0 successes in 12 Bernoulli trials. Give the observed sample-proportion estimate.
+        answerLines: 5
+        answer: "Divide successes by trials: $\\hat p=0/12=0$."
+      - id: 6
+        type: freeform
+        prompt: For observations consisting of 0 ones and 12 zeros, give the sample mean after applying the transformation $Y_i=2X_i-1$.
+        answerLines: 5
+        answer: The transformed average is $2(0/12)-1=-1$. It estimates the mean of the transformed variable.
+      - id: 7
+        type: freeform
+        prompt: There are 9 successes in 9 Bernoulli trials. Give the observed sample-proportion estimate.
+        answerLines: 5
+        answer: "Divide successes by trials: $\\hat p=9/9=1$."
+      - id: 8
+        type: freeform
+        prompt: For observations consisting of 9 ones and 0 zeros, give the sample mean after applying the transformation $Y_i=2X_i-1$.
+        answerLines: 5
+        answer: The transformed average is $2(9/9)-1=1$. It estimates the mean of the transformed variable.
+      - id: 9
+        type: freeform
+        prompt: There are 11 successes in 25 Bernoulli trials. Give the observed sample-proportion estimate.
+        answerLines: 5
+        answer: "Divide successes by trials: $\\hat p=11/25=11/25$."
+      - id: 10
+        type: freeform
+        prompt: For observations consisting of 11 ones and 14 zeros, give the sample mean after applying the transformation $Y_i=2X_i-1$.
+        answerLines: 5
+        answer: The transformed average is $2(11/25)-1=-3/25$. It estimates the mean of the transformed variable.
+      - id: 11
+        type: freeform
+        prompt: Explain why subtracting the unknown parameter from the sample mean does not give an observable statistic.
+        answerLines: 5
+        answer: Its value depends on an unknown quantity as well as the data, so it cannot be calculated from the sample alone.
+      - id: 12
+        type: freeform
+        prompt: A rate parameter is measured per second. State the units of its estimate and of the estimator MSE.
+        answerLines: 5
+        answer: The estimate has inverse-second units; MSE has squared inverse-second units.
+  - title: Bias and mean squared error
+    questions:
+      - id: 13
+        type: freeform
+        prompt: An estimator has mean 8 when the parameter is 10. Give its bias.
+        answerLines: 5
+        answer: 'Bias is mean minus target: $8-(10)=-2$.'
+      - id: 14
+        type: freeform
+        prompt: At parameter 10, an estimator has mean 8 and variance 3. Give its mean squared error.
+        answerLines: 5
+        answer: Its bias is $-2$, so MSE is $3+(-2)^2=7$.
+      - id: 15
+        type: freeform
+        prompt: An estimator has mean 12 when the parameter is 10. Give its bias.
+        answerLines: 5
+        answer: 'Bias is mean minus target: $12-(10)=2$.'
+      - id: 16
+        type: freeform
+        prompt: At parameter 10, an estimator has mean 12 and variance 4. Give its mean squared error.
+        answerLines: 5
+        answer: Its bias is $2$, so MSE is $4+(2)^2=8$.
+      - id: 17
+        type: freeform
+        prompt: An estimator has mean 5 when the parameter is 5. Give its bias.
+        answerLines: 5
+        answer: 'Bias is mean minus target: $5-(5)=0$.'
+      - id: 18
+        type: freeform
+        prompt: At parameter 5, an estimator has mean 5 and variance 9. Give its mean squared error.
+        answerLines: 5
+        answer: Its bias is $0$, so MSE is $9+(0)^2=9$.
+      - id: 19
+        type: freeform
+        prompt: An estimator has mean -1 when the parameter is 2. Give its bias.
+        answerLines: 5
+        answer: 'Bias is mean minus target: $-1-(2)=-3$.'
+      - id: 20
+        type: freeform
+        prompt: At parameter 2, an estimator has mean -1 and variance 2. Give its mean squared error.
+        answerLines: 5
+        answer: Its bias is $-3$, so MSE is $2+(-3)^2=11$.
+      - id: 21
+        type: freeform
+        prompt: An estimator has mean 4 when the parameter is 3. Give its bias.
+        answerLines: 5
+        answer: 'Bias is mean minus target: $4-(3)=1$.'
+      - id: 22
+        type: freeform
+        prompt: At parameter 3, an estimator has mean 4 and variance 1. Give its mean squared error.
+        answerLines: 5
+        answer: Its bias is $1$, so MSE is $1+(1)^2=2$.
+      - id: 23
+        type: freeform
+        prompt: An unbiased estimator has variance 6; a second has bias −1 and variance 3. Which has smaller MSE, and why?
+        answerLines: 5
+        answer: Their MSEs are 6 and 4. The second has smaller MSE because its variance reduction exceeds its squared bias.
+      - id: 24
+        type: freeform
+        prompt: Prove the bias–variance decomposition for estimator MSE.
+        answerLines: 5
+        answer: Write $\hat\Theta-\theta=(\hat\Theta-E\hat\Theta)+(E\hat\Theta-\theta)$. After squaring, the cross term has expectation zero. The remaining terms are variance and squared bias.
+  - title: Consistency and the denominator in sample variance
+    questions:
+      - id: 25
+        type: freeform
+        prompt: For observations $(1,3,5)$, give the unbiased sample variance.
+        answerLines: 5
+        answer: The sample mean is $3$ and squared-deviation total is $8$. Dividing by $n-1=2$ gives $4$.
+      - id: 26
+        type: freeform
+        prompt: For the same observations $(1,3,5)$, give the divisor-$n$ variance.
+        answerLines: 5
+        answer: The squared-deviation total is $8$. Dividing by $n=3$ gives $8/3$.
+      - id: 27
+        type: freeform
+        prompt: For observations $(0,2,4,6)$, give the unbiased sample variance.
+        answerLines: 5
+        answer: The sample mean is $3$ and squared-deviation total is $20$. Dividing by $n-1=3$ gives $20/3$.
+      - id: 28
+        type: freeform
+        prompt: For the same observations $(0,2,4,6)$, give the divisor-$n$ variance.
+        answerLines: 5
+        answer: The squared-deviation total is $20$. Dividing by $n=4$ gives $5$.
+      - id: 29
+        type: freeform
+        prompt: For observations $(2,2,5)$, give the unbiased sample variance.
+        answerLines: 5
+        answer: The sample mean is $3$ and squared-deviation total is $6$. Dividing by $n-1=2$ gives $3$.
+      - id: 30
+        type: freeform
+        prompt: For the same observations $(2,2,5)$, give the divisor-$n$ variance.
+        answerLines: 5
+        answer: The squared-deviation total is $6$. Dividing by $n=3$ gives $2$.
+      - id: 31
+        type: freeform
+        prompt: For observations $(1,1,3,3)$, give the unbiased sample variance.
+        answerLines: 5
+        answer: The sample mean is $2$ and squared-deviation total is $4$. Dividing by $n-1=3$ gives $4/3$.
+      - id: 32
+        type: freeform
+        prompt: For the same observations $(1,1,3,3)$, give the divisor-$n$ variance.
+        answerLines: 5
+        answer: The squared-deviation total is $4$. Dividing by $n=4$ gives $1$.
+      - id: 33
+        type: freeform
+        prompt: For observations $(2,4,6,8,10)$, give the unbiased sample variance.
+        answerLines: 5
+        answer: The sample mean is $6$ and squared-deviation total is $40$. Dividing by $n-1=4$ gives $10$.
+      - id: 34
+        type: freeform
+        prompt: For the same observations $(2,4,6,8,10)$, give the divisor-$n$ variance.
+        answerLines: 5
+        answer: The squared-deviation total is $40$. Dividing by $n=5$ gives $8$.
+      - id: 35
+        type: freeform
+        prompt: Give an unbiased mean estimator that need not become more accurate when the available sample size grows.
+        answerLines: 5
+        answer: Use only the first observation X₁. Its expectation equals the population mean, but its variance remains the population variance.
+      - id: 36
+        type: freeform
+        prompt: Why does MSE tending to zero imply consistency?
+        answerLines: 5
+        answer: "Apply Markov to squared error: $P(|\\hat\\Theta_n-\\theta|\\ge\\varepsilon)\\le\\operatorname{MSE}(\\hat\\Theta_n)/\\varepsilon^2\\to0$ for every fixed positive $\\varepsilon$."
+  - title: Likelihood keeps the data fixed
+    questions:
+      - id: 37
+        type: freeform
+        prompt: An ordered Bernoulli sequence of length 3 has 2 successes. Evaluate its likelihood at $p=1/4$.
+        answerLines: 5
+        answer: The independent product is $(1/4)^{2}(1-1/4)^{1}$. This exact value is the likelihood of the ordered observation.
+      - id: 38
+        type: freeform
+        prompt: For a success count 2 from 3 trials, what parameter-independent factor multiplies the corresponding ordered-sequence likelihood?
+        answerLines: 5
+        answer: There are $\binom{3}{2}$ compatible ordered sequences, so the factor is $\binom{3}{2}$.
+      - id: 39
+        type: freeform
+        prompt: An ordered Bernoulli sequence of length 4 has 1 successes. Evaluate its likelihood at $p=1/2$.
+        answerLines: 5
+        answer: The independent product is $(1/2)^{1}(1-1/2)^{3}$. This exact value is the likelihood of the ordered observation.
+      - id: 40
+        type: freeform
+        prompt: For a success count 1 from 4 trials, what parameter-independent factor multiplies the corresponding ordered-sequence likelihood?
+        answerLines: 5
+        answer: There are $\binom{4}{1}$ compatible ordered sequences, so the factor is $\binom{4}{1}$.
+      - id: 41
+        type: freeform
+        prompt: An ordered Bernoulli sequence of length 5 has 3 successes. Evaluate its likelihood at $p=1/3$.
+        answerLines: 5
+        answer: The independent product is $(1/3)^{3}(1-1/3)^{2}$. This exact value is the likelihood of the ordered observation.
+      - id: 42
+        type: freeform
+        prompt: For a success count 3 from 5 trials, what parameter-independent factor multiplies the corresponding ordered-sequence likelihood?
+        answerLines: 5
+        answer: There are $\binom{5}{3}$ compatible ordered sequences, so the factor is $\binom{5}{3}$.
+      - id: 43
+        type: freeform
+        prompt: An ordered Bernoulli sequence of length 4 has 0 successes. Evaluate its likelihood at $p=1/5$.
+        answerLines: 5
+        answer: The independent product is $(1/5)^{0}(1-1/5)^{4}$. This exact value is the likelihood of the ordered observation.
+      - id: 44
+        type: freeform
+        prompt: For a success count 0 from 4 trials, what parameter-independent factor multiplies the corresponding ordered-sequence likelihood?
+        answerLines: 5
+        answer: There are $\binom{4}{0}$ compatible ordered sequences, so the factor is $\binom{4}{0}$.
+      - id: 45
+        type: freeform
+        prompt: An ordered Bernoulli sequence of length 4 has 4 successes. Evaluate its likelihood at $p=3/4$.
+        answerLines: 5
+        answer: The independent product is $(3/4)^{4}(1-3/4)^{0}$. This exact value is the likelihood of the ordered observation.
+      - id: 46
+        type: freeform
+        prompt: For a success count 4 from 4 trials, what parameter-independent factor multiplies the corresponding ordered-sequence likelihood?
+        answerLines: 5
+        answer: There are $\binom{4}{4}$ compatible ordered sequences, so the factor is $\binom{4}{4}$.
+      - id: 47
+        type: freeform
+        prompt: Why can a binomial coefficient be omitted when maximizing a binomial likelihood over p?
+        answerLines: 5
+        answer: It is positive and independent of p, so multiplication by it preserves which permitted p maximizes the likelihood.
+      - id: 48
+        type: freeform
+        prompt: Why is a continuous likelihood value of 2 not automatically invalid?
+        answerLines: 5
+        answer: A likelihood can be a density evaluated at the observed data. Density height is not a probability and may exceed one.
+  - title: Log-likelihood and elementary maximization
+    questions:
+      - id: 49
+        type: freeform
+        prompt: For 2 successes in 5 iid Bernoulli trials with $p\in[0,1]$, give the MLE of $p$.
+        answerLines: 5
+        answer: 'The MLE is the observed proportion, including endpoint cases: $2/5=2/5$.'
+      - id: 50
+        type: freeform
+        prompt: 5 independent exponential waiting times have positive sum 10. Give the MLE of the rate.
+        answerLines: 5
+        answer: "Solve $n/\\lambda-T=0$: $\\hat\\lambda=5/10=1/2$."
+      - id: 51
+        type: freeform
+        prompt: For 7 successes in 10 iid Bernoulli trials with $p\in[0,1]$, give the MLE of $p$.
+        answerLines: 5
+        answer: 'The MLE is the observed proportion, including endpoint cases: $7/10=7/10$.'
+      - id: 52
+        type: freeform
+        prompt: 10 independent exponential waiting times have positive sum 25. Give the MLE of the rate.
+        answerLines: 5
+        answer: "Solve $n/\\lambda-T=0$: $\\hat\\lambda=10/25=2/5$."
+      - id: 53
+        type: freeform
+        prompt: For 0 successes in 6 iid Bernoulli trials with $p\in[0,1]$, give the MLE of $p$.
+        answerLines: 5
+        answer: 'The MLE is the observed proportion, including endpoint cases: $0/6=0$.'
+      - id: 54
+        type: freeform
+        prompt: 6 independent exponential waiting times have positive sum 12. Give the MLE of the rate.
+        answerLines: 5
+        answer: "Solve $n/\\lambda-T=0$: $\\hat\\lambda=6/12=1/2$."
+      - id: 55
+        type: freeform
+        prompt: For 8 successes in 8 iid Bernoulli trials with $p\in[0,1]$, give the MLE of $p$.
+        answerLines: 5
+        answer: 'The MLE is the observed proportion, including endpoint cases: $8/8=1$.'
+      - id: 56
+        type: freeform
+        prompt: 8 independent exponential waiting times have positive sum 20. Give the MLE of the rate.
+        answerLines: 5
+        answer: "Solve $n/\\lambda-T=0$: $\\hat\\lambda=8/20=2/5$."
+      - id: 57
+        type: freeform
+        prompt: For 3 successes in 12 iid Bernoulli trials with $p\in[0,1]$, give the MLE of $p$.
+        answerLines: 5
+        answer: 'The MLE is the observed proportion, including endpoint cases: $3/12=1/4$.'
+      - id: 58
+        type: freeform
+        prompt: 12 independent exponential waiting times have positive sum 30. Give the MLE of the rate.
+        answerLines: 5
+        answer: "Solve $n/\\lambda-T=0$: $\\hat\\lambda=12/30=2/5$."
+      - id: 59
+        type: freeform
+        prompt: Differentiate the Bernoulli log-likelihood 3 ln(p)+2 ln(1−p) for 0<p<1.
+        answerLines: 5
+        answer: The derivative is $3/p-2/(1-p)$. The minus sign comes from differentiating $1-p$.
+      - id: 60
+        type: freeform
+        prompt: Explain why identical observations cause a problem for normal maximum-likelihood variance estimation when variance must be positive.
+        answerLines: 5
+        answer: The fitted mean can equal every observation, making the squared-error term zero. The likelihood then grows without bound as positive variance approaches zero; the excluded endpoint cannot be returned as a positive MLE.

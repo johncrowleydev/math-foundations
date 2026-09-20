@@ -1000,3 +1000,464 @@ calculus-gradient-descent:
     answer: 1
     explanation: Stationarity gives no movement, but the point can be a saddle or another nonminimum.
     teachingHash: a05559cc709505d566a544345f400a480db62f63b34204c37d4f3a1e5ba389a5
+probability-statistics-probability-models-events:
+  - id: quick-1
+    after: Specify the experiment before calculating
+    prompt: The ordered coin outcomes $HH,HT,TH,TT$ are equally likely, and only the number of heads is recorded. Which count is most likely?
+    options:
+      - $0$
+      - $1$
+      - All three counts are equally likely.
+    answer: 1
+    explanation: The four equally likely ordered outcomes merge into counts with weights $1/4,1/2,1/4$.
+    teachingHash: a71d571f9f154f08bf6ff88b8332cc46c9ad45a1406e01bb4ab499c53f64cedc
+  - id: quick-2
+    after: Complements, overlap, and bounds
+    prompt: If $P(A)=0.6$ and $P(B)=0.7$, which proposed overlap is impossible?
+    options:
+      - $0.2$
+      - $0.3$
+      - $0.6$
+    answer: 0
+    explanation: The overlap must lie between $0.3$ and $0.6$.
+    teachingHash: d1d6706ad1271c3f7706d5a16e7f197f3e7995be0fb62b6c2090bcc5454cc509
+probability-statistics-counting-finite-probability:
+  - id: quick-1
+    after: Ordered selections and factorials
+    prompt: Which count describes choosing a chair and a secretary from six people, with different people in the roles?
+    options:
+      - $6^2$
+      - $6\cdot5$
+      - $\binom62$
+    answer: 1
+    explanation: The roles are distinct and the second person must differ from the first.
+    teachingHash: 1a1a863401890bc982301f9804f5826e4c1de55080973a2dce87737bed7ab27d
+  - id: quick-2
+    after: Use compatible numerator and denominator counts
+    prompt: Two tokens are drawn without replacement from three marked and five unmarked tokens. Which expression gives exactly one marked token?
+    options:
+      - $\binom31\binom51/\binom82$
+      - $3\cdot5/(8\cdot7)$
+      - $\binom32/\binom82$
+    answer: 0
+    explanation: Select one token from each category and divide by all unordered pairs.
+    teachingHash: 9b7b0666f3dabf825dd8b63a11ea3d210aa2f043fe781978bd4d6d7c8bf6e7f3
+probability-statistics-conditional-probability-independence:
+  - id: quick-1
+    after: Conditioning changes the reference population
+    prompt: There are $100$ records, $25$ tagged $B$, and $15$ tagged both $A$ and $B$. What is $P(A\mid B)$?
+    options:
+      - $15/100$
+      - $15/25$
+      - $25/100$
+    answer: 1
+    explanation: Conditioning on $B$ restricts the denominator to the $25$ records carrying that tag.
+    teachingHash: 31dd41e2260493d16bdb10a928a22fdf62396d8b7a7994b0d6764396aa67d760
+  - id: quick-2
+    after: Independence is a testable factorization
+    prompt: Two disjoint events each have positive probability. Which statement holds?
+    options:
+      - They are independent because they cannot overlap.
+      - They are dependent because one rules out the other.
+      - Their intersection equals the product of their probabilities.
+    answer: 1
+    explanation: Disjointness makes the joint probability zero, while the marginal product is positive.
+    teachingHash: 494b8be6ce4cf7159b7e2533e9c60fac8c954c3fa7e783487ed2ef243dcf2159
+probability-statistics-total-probability-bayes:
+  - id: quick-1
+    after: Total probability is a weighted average
+    prompt: A large group has weight $0.9$ and event rate $0.1$; a small group has weight $0.1$ and rate $0.9$. What is the overall rate?
+    options:
+      - $0.5$
+      - $0.18$
+      - $1$
+    answer: 1
+    explanation: Both group contributions equal $0.09$, giving total probability $0.18$.
+    teachingHash: a9b818a9cd00b50e5e60106288bf9a618b5cb4dd9ea5729c054c868e4c180615
+  - id: quick-2
+    after: Base rates and screening tables
+    prompt: A flag catches $95\%$ of defective items. Which additional information is needed to find the defect probability among flagged items?
+    options:
+      - Only the number of items inspected.
+      - The defect base rate and false-positive rate.
+      - No additional information; the answer is $95\%$.
+    answer: 1
+    explanation: The posterior compares target and nontarget contributions to all flags.
+    teachingHash: cb33b769dc2da24a9f1db0d7684676833e87738fcf6b33214539f98a273b99ab
+probability-statistics-discrete-random-variables:
+  - id: quick-1
+    after: Construct and check a probability mass function
+    prompt: A variable has positive masses only at $0,2,5$. What is $P(X=3)$?
+    options:
+      - $0$
+      - The average of the masses at $2$ and $5$.
+      - It cannot be determined without interpolation.
+    answer: 0
+    explanation: A PMF assigns zero probability to values outside its support.
+    teachingHash: 82ae1d6e93517d2034a998fa68f12ce6cb87914fad904020b1277d8542810513
+  - id: quick-2
+    after: Intervals, tails, and endpoint discipline
+    prompt: For an integer-valued variable, which expression gives $P(X\geq4)$?
+    options:
+      - $1-F_X(4)$
+      - $1-F_X(3)$
+      - $F_X(4)-F_X(3)$
+    answer: 1
+    explanation: The complement of at least four is at most three for integer values.
+    teachingHash: f8075be5e7419517f06f8074355852f9c21fb068cd4222203c81ef4a589c47da
+probability-statistics-expectation-variance:
+  - id: quick-1
+    after: Expectation is a probability-weighted mean
+    prompt: A fair die has mean $3.5$. What does this mean?
+    options:
+      - The next roll will be $3.5$.
+      - It is the probability-weighted average of the face values.
+      - Exactly half the rolls must be below $3.5$ in every finite run.
+    answer: 1
+    explanation: An expectation summarizes a distribution and need not be a possible single observation.
+    teachingHash: 175009536ebed812fed24d052028477f1ecf35e6135f8608391ba1185353dd30
+  - id: quick-2
+    after: Variance and standard deviation measure spread
+    prompt: A variable has mean $2$ and second moment $9$. What is its variance?
+    options:
+      - $7$
+      - $5$
+      - $\sqrt5$
+    answer: 1
+    explanation: Variance subtracts the square of the mean from the second moment.
+    teachingHash: fae25ba38391b4dc3ebc82b2ab6ed099a67b62a1cd2f55dab46ab474d0586a11
+probability-statistics-bernoulli-binomial-geometric:
+  - id: quick-1
+    after: Binomial counts combine fixed independent trials
+    prompt: Which experiment directly has a binomial success count?
+    options:
+      - Ten independent attempts, each with success probability $0.4$.
+      - Attempts continue until the first success.
+      - Ten draws without replacement from a small mixed bag.
+    answer: 0
+    explanation: A binomial count requires a fixed trial number, common success probability, and independence.
+    teachingHash: f3e0f905f2764f77b6f071cb958759b17332321c9d0839f14b457222f9c2a9cc
+  - id: quick-2
+    after: Geometric waiting time counts through first success
+    prompt: If $T$ counts trials through first success, what does $T>4$ mean?
+    options:
+      - The fourth trial succeeds.
+      - The first four trials all fail.
+      - There are exactly four failures before success.
+    answer: 1
+    explanation: A waiting time beyond four means no success has yet appeared in those four trials.
+    teachingHash: bb97f22a53502ed26d84ac4413d5f0104fd795d8c475c543818b2fea7f3f0e73
+probability-statistics-hypergeometric-poisson:
+  - id: quick-1
+    after: Hypergeometric counts sample without replacement
+    prompt: A population has eight marked and two unmarked objects. A sample of four is drawn without replacement. Which count is impossible?
+    options:
+      - One marked object.
+      - Two marked objects.
+      - Four marked objects.
+    answer: 0
+    explanation: At most two sample members can be unmarked, so at least two must be marked.
+    teachingHash: afb122068684d94c8505ab0a135aecf88aaf9f71fed2ff2395b5266678e5af9d
+  - id: quick-2
+    after: Poisson counts have an interval-specific mean
+    prompt: A Poisson count has mean $1.5$. Which statement is correct?
+    options:
+      - Its outcomes can be fractional.
+      - Its variance is $1.5$.
+      - Its maximum possible outcome is two.
+    answer: 1
+    explanation: The Poisson parameter is both its mean and its variance, while its outcomes remain nonnegative integers.
+    teachingHash: 33dce458a2aa26ded07c95564ec85c905208851df4b521a8a8bf3dcfc637d4b8
+probability-statistics-continuous-random-variables:
+  - id: quick-1
+    after: Probability is area, not height
+    prompt: Which quantity must equal one for a density?
+    options:
+      - Its largest height
+      - Its integral over the whole real line
+      - Its value at the mean
+    answer: 1
+    explanation: A density is normalized by total area.
+    teachingHash: 557977cad77a4722fe850359815f44326daa1c82b82fab1a8b8eb614b8d078b2
+  - id: quick-2
+    after: Exponential waiting times and their limitations
+    prompt: An exponential wait has already lasted five minutes. What does memorylessness describe?
+    options:
+      - The total elapsed time resets to zero.
+      - The distribution of the additional wait matches the original waiting-time distribution.
+      - The event must happen during the next five minutes.
+    answer: 1
+    explanation: Memorylessness is a statement about conditional distributions of the remaining wait.
+    teachingHash: 28f0f915cdc9f8b49f7a47e7c4106258a400f78b2dc6cb8057c814a1e9c3abb5
+probability-statistics-normal-distributions-transformations:
+  - id: quick-1
+    after: Use the normal CDF without confusing tails
+    prompt: For standard normal $Z$, what is $P(Z>1.2)$?
+    options:
+      - $\Phi(1.2)$
+      - $1-\Phi(1.2)$
+      - $2\Phi(1.2)-1$
+    answer: 1
+    explanation: The CDF gives the area to the left, so a right tail uses its complement.
+    teachingHash: 4b0dfa45a280798a4462942109bedaf5ffe192543b9c62f91098d8339737667f
+  - id: quick-2
+    after: Account for branches and point masses
+    prompt: If $U$ is uniform on $(-1,1)$ and $Y=\max(0,U)$, what happens at zero?
+    options:
+      - The transformed density has height one there, so the point probability is one.
+      - The transformed distribution has a point mass of one half.
+      - The probability is zero because the input is continuous.
+    answer: 1
+    explanation: The transformation collapses the entire nonpositive half of the input interval to zero.
+    teachingHash: 5ae203f75ee8bce141edb5f4c7dc859e6f2418e7232b78da73262f4c61411b69
+probability-statistics-joint-conditional-distributions:
+  - id: quick-1
+    after: Condition a table and test independence
+    prompt: How do you obtain $P(Y=y\mid X=x)$ from a joint table with rows indexed by $X$?
+    options:
+      - Divide the selected cell by its row total.
+      - Divide the selected cell by its column total.
+      - Use the selected cell without normalization.
+    answer: 0
+    explanation: The conditioning event determines the denominator.
+    teachingHash: bd45ee6006c809c5da9c213e320f91daea0469a0bd4516119fad839f00803a3a
+  - id: quick-2
+    after: Check the whole joint model
+    prompt: Why are coordinates under uniform density on $0<x<y<1$ dependent?
+    options:
+      - The density is greater than one.
+      - The support restricts one coordinate according to the other.
+      - All continuous variables are dependent.
+    answer: 1
+    explanation: The triangular support rules out combinations that independent marginals would allow.
+    teachingHash: a045f9bca75b6c32c56de359bbf70ded5f24a76d68e9d9c3c47d2d5048f2dfbf
+probability-statistics-covariance-correlation-random-vectors:
+  - id: quick-1
+    after: Variance of a combination includes cross terms
+    prompt: For dependent variables, which extra quantity is generally needed to compute $\operatorname{Var}(X+Y)$ from their variances?
+    options:
+      - Their covariance.
+      - The sum of their means.
+      - Their largest possible values.
+    answer: 0
+    explanation: Expanding the squared centered sum produces a covariance cross term.
+    teachingHash: 2278ddebd6971e2cb3ca693453fae254d5a87ac6756d6d251a068a5d69f5cc5d
+  - id: quick-2
+    after: Covariance geometry, validity, and redundant features
+    prompt: What does a zero eigenvalue of a covariance matrix imply?
+    options:
+      - Some nonzero linear combination has zero variance.
+      - Every component is independent.
+      - The matrix has negative probability entries.
+    answer: 0
+    explanation: A zero eigenvector direction has zero quadratic-form variance.
+    teachingHash: 6b7510921dbf3254bbbe59cf16878e7a53f6a81c2898efafa1bf0621ae7c350d
+probability-statistics-conditional-expectation:
+  - id: quick-1
+    after: Average conditional means to recover the overall mean
+    prompt: Group means are known, but groups have different probabilities. How is the overall mean obtained?
+    options:
+      - Take the arithmetic mean of the group means.
+      - Weight each group mean by that group's probability.
+      - Select the mean of the largest group.
+    answer: 1
+    explanation: Total expectation averages within groups and then across their actual probabilities.
+    teachingHash: 7a87fe3c7dcb9e49f9f48a23f2072a4c3cfe82ed4ddecbe4deaa6cae9a585646
+  - id: quick-2
+    after: Use conditioning to analyze random workloads
+    prompt: What is missing if total variance is computed using only the average conditional variance?
+    options:
+      - Variation among conditional means.
+      - The square of the overall mean in every case.
+      - Nothing; the conditional variances always average to the total variance.
+    answer: 0
+    explanation: Total variance has within-condition and between-conditional-mean terms.
+    teachingHash: f240f648e8a9ec32db64b6a0601070caf45f5fc2ab3bacafed6cb05adcf7495f
+probability-statistics-data-samples-study-design:
+  - id: quick-1
+    after: Summarize location without hiding the data
+    prompt: Two groups have different sizes. Which calculation gives the mean across all individual observations?
+    options:
+      - The simple average of the two group means.
+      - The group-size-weighted average of the group means.
+      - The larger of the two group means.
+    answer: 1
+    explanation: Each observation receives equal weight by weighting each group mean by its sample size.
+    teachingHash: 5a70a6db8e6803a3feaa847c10650ca93d056528ab0ba6375f64f2ccecc74828
+  - id: quick-2
+    after: Separate random error, systematic bias, and causal evidence
+    prompt: Which statement correctly separates random sampling from random assignment?
+    options:
+      - Sampling selects units; assignment allocates treatments.
+      - They are two names for the same procedure.
+      - Assignment guarantees population representativeness.
+    answer: 0
+    explanation: Selection and treatment allocation answer different design questions.
+    teachingHash: c1051d26ba865cc9b0f29522166aa7001493a1d847ded70358cb403c4cab208a
+probability-statistics-laws-large-numbers-central-limit-theorem:
+  - id: quick-1
+    after: The law of large numbers concerns concentration
+    prompt: What does the weak law say about $\bar X_n$ under its iid integrability assumptions?
+    options:
+      - Every new observation makes the realized average closer to the mean.
+      - For every fixed positive tolerance, the chance of exceeding that error tends to zero.
+      - The individual observations become normally distributed.
+    answer: 1
+    explanation: The weak law is convergence in probability of the average.
+    teachingHash: 66a3b3b66dfa47fa7750b442b486fb67ad81d503d290fa8edf10398fd4efaec5
+  - id: quick-2
+    after: Check dependence, precision, and the limits of asymptotics
+    prompt: Which distinction between the weak law and CLT is correct?
+    options:
+      - The weak law concerns concentration; the CLT concerns the limiting shape after standardization.
+      - Both say that individual observations become normal.
+      - The CLT guarantees an accurate approximation once exactly thirty observations are collected.
+    answer: 0
+    explanation: The results describe different scales of the same averaging process under their respective assumptions.
+    teachingHash: 22d79ae5253cbef402335c5d72db6bcf2289d9768ce2d4bf0dc629cbbdde3191
+probability-statistics-concentration-monte-carlo:
+  - id: quick-1
+    after: A mean can bound a nonnegative tail
+    prompt: Which hypothesis is essential for applying Markov directly to X?
+    options:
+      - X is nonnegative
+      - X is normally distributed
+      - X has mean zero
+    answer: 0
+    explanation: The bound uses the pointwise comparison with a nonnegative tail indicator.
+    teachingHash: 3d480182f21071c859d003d7010818506b95d0955ed7f6a3e7f67d08f942dcd9
+  - id: quick-2
+    after: Guarantees for averages and sample sizes
+    prompt: Halving the allowed error tolerance changes the Chebyshev sample-size bound by what factor?
+    options:
+      - '2'
+      - '4'
+      - 1/2
+    answer: 1
+    explanation: The bound is proportional to the reciprocal of squared tolerance.
+    teachingHash: 3900e3db31fadfcd6e208e080a81a4d2d5f43502b991a96b8a91deb112d97cfb
+probability-statistics-estimation-likelihood:
+  - id: quick-1
+    after: Bias and mean squared error
+    prompt: An estimator is unbiased. What is guaranteed?
+    options:
+      - Its observed value always equals the parameter
+      - Its repeated-sampling mean equals the parameter
+      - Its variance is zero
+    answer: 1
+    explanation: Unbiasedness is a statement about an expectation under the model.
+    teachingHash: f32aea4ac9c3bb6a0e914e49becc42703d51827de954ceb8abdc163bef783213
+  - id: quick-2
+    after: Likelihood keeps the data fixed
+    prompt: When viewing likelihood as a function, what is held fixed?
+    options:
+      - The observed data
+      - The parameter being estimated
+      - The posterior probability
+    answer: 0
+    explanation: Likelihood compares parameter values for the same observation.
+    teachingHash: d8950dbf29f0528a2418b93d92637179b1389d870bd4352f0aa691c9c1a5a008
+probability-statistics-confidence-intervals:
+  - id: quick-1
+    after: Coverage belongs to a procedure
+    prompt: What does a 95% confidence level describe?
+    options:
+      - The procedure’s repeated-sampling coverage
+      - The fraction of observations in this mean interval
+      - A posterior probability for this fixed interval
+    answer: 0
+    explanation: Confidence belongs to the interval-generating procedure under its sampling assumptions.
+    teachingHash: 36d35fd074143fbf3f52c4cb64b208558fed04d5ab565a58977558ef72538ace
+  - id: quick-2
+    after: Estimating spread leads to Student t
+    prompt: For an iid normal sample with unknown population standard deviation, which reference is used for a mean interval?
+    options:
+      - Student t with n−1 degrees of freedom
+      - Standard normal with n degrees of freedom
+      - Uniform on the observed range
+    answer: 0
+    explanation: Estimating the standard deviation changes the standardized mean’s distribution.
+    teachingHash: ad7b32ec32e439fb4f12cdcf20e8d76245326aacc9419aaee9ca8f9a4be8cdea
+probability-statistics-hypothesis-testing:
+  - id: quick-1
+    after: Tail probabilities under the null model
+    prompt: A p-value of 0.02 means which statement?
+    options:
+      - The null has probability 0.02
+      - Under the null, the chosen extreme-statistic event has probability 0.02
+      - The effect is practically large
+    answer: 1
+    explanation: The p-value refers to the statistic’s tail event under the null reference.
+    teachingHash: bead1f237bb9e27bfd358af5f72fb24b79343522ec5ae0b6c76a4459c8f18c64
+  - id: quick-2
+    after: A proportion test uses the null standard error
+    prompt: Which probability goes inside the null standard error for a one-sample proportion z test?
+    options:
+      - The null value p₀
+      - The observed p-hat
+      - The significance level α
+    answer: 0
+    explanation: The test reference is calculated under the null model.
+    teachingHash: 8579339f1c6f2ac2124667bce1ee16ad59dc6bcf93b1d557c84317ac87c7858a
+probability-statistics-bayesian-estimation:
+  - id: quick-1
+    after: Model uncertainty about a parameter
+    prompt: What must be combined with the likelihood to form a posterior?
+    options:
+      - A prior, followed by normalization
+      - Only the maximum likelihood estimate
+      - The significance level
+    answer: 0
+    explanation: Bayes updating multiplies likelihood and prior, then normalizes.
+    teachingHash: 4eabb065d8866def1cf867ba82c392ba99f04ef4c631953680fca07435147dab
+  - id: quick-2
+    after: Predict future observations by averaging over uncertainty
+    prompt: Given uncertain p, two future Bernoulli trials are independent conditional on p. Must they be independent after averaging over p?
+    options:
+      - Yes
+      - No
+    answer: 1
+    explanation: Shared parameter uncertainty can induce marginal predictive dependence.
+    teachingHash: b941b03f34fa4c08d3dc28a7951f9b175bc06136031e4bc9a4a0647f909057b4
+probability-statistics-regression-interpretation:
+  - id: quick-1
+    after: Why Gaussian likelihood gives least squares
+    prompt: For independent Gaussian errors of a fixed common variance, maximizing coefficient likelihood is equivalent to which operation?
+    options:
+      - Minimizing the sum of squared residuals
+      - Minimizing the sum of signed residuals
+      - Maximizing the error variance
+    answer: 0
+    explanation: The coefficient-dependent log-likelihood term is negative SSE divided by a fixed positive number.
+    teachingHash: 1189c13b1bd24d67d3db48e05f9f056546200cd99c7c51349d223c4864b0a738
+  - id: quick-2
+    after: Predicting a mean and predicting one new observation
+    prompt: At the same predictor and confidence level, which interval includes uncertainty from a new individual error?
+    options:
+      - The mean-response confidence interval only
+      - The new-response prediction interval
+      - Neither interval
+    answer: 1
+    explanation: The new-response variance includes the additional error variance.
+    teachingHash: 13736075529abb62918aeda1923df723bdeca8e7e434df0f87b8c4f29fc1947e
+probability-statistics-resampling-model-assessment:
+  - id: quick-1
+    after: Bootstrap uncertainty versus more simulation
+    prompt: Keeping the original data fixed while increasing the number of bootstrap replicates primarily does what?
+    options:
+      - Adds independent population observations
+      - Reduces simulation noise in describing the bootstrap distribution
+      - Eliminates selection bias
+    answer: 1
+    explanation: More replicates approximate the same conditional distribution more precisely.
+    teachingHash: 811f3efcb9e8e712875cea44e7076471e655f0180c9cda5bb1af804254219331
+  - id: quick-2
+    after: Reading a confusion matrix
+    prompt: Which denominator belongs in precision?
+    options:
+      - The number of actual positives
+      - The number of predicted positives
+      - The total number of observations
+    answer: 1
+    explanation: Precision asks what fraction of positive predictions are correct.
+    teachingHash: 029f32fb0f6e8943d3e3968bfe77f033f04813a53eca303b52d0fa7737a0701f

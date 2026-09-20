@@ -1,0 +1,79 @@
+# Joint and Conditional Distributions
+
+A joint distribution records how quantities vary together. We move from finite probability tables to double integrals, then use marginalization, conditioning, and independence to read and construct complete models.
+
+## A joint table retains how variables occur together
+
+Two measurements on the same outcome need a joint model. Knowing how often a request is slow and how often it fails does not reveal how often it is both slow and failed. A **joint PMF** records $p_{X,Y}(x,y)=P(X=x,Y=y)$; the comma means both events occur. Every cell is nonnegative and the total over all cells is one.
+
+As an original example, use rows $X=0,1$ and columns $Y=0,1,2$ with joint PMF $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. The probability of $X=1$ and $Y\ge1$ is $1/10+3/10=2/5$. The event $X+Y=2$ selects cells $(0,2)$ and $(1,1)$, giving $1/5$. Translate the event into cells before adding; a rectangular region is only one possible event shape.
+
+A **marginal distribution** ignores one coordinate by summing over it: $p_X(x)=\sum_y p_{X,Y}(x,y)$ and $p_Y(y)=\sum_x p_{X,Y}(x,y)$. Here the row sums are $(2/5,3/5)$ and the column sums are $(3/10,3/10,2/5)$. These sums are the probability version of eliminating a coordinate, not selecting its zero value.
+
+The joint distribution determines the marginals, but the marginals generally do not determine the joint distribution. Two fair binary variables could always agree, always disagree, or be independent, while each remains marginally Bernoulli with parameter one half. The coupling between coordinates is extra information. In particular, the number of rows and columns alone does not justify equal cell probabilities.
+
+Expectations of functions of the pair can be computed directly: $E[g(X,Y)]=\sum_x\sum_y g(x,y)p_{X,Y}(x,y)$ when the expectation exists. For an event indicator, this weighted sum reduces to adding exactly the cells in that event.
+
+Related definitions: [Joint PMF](ref:probability-statistics-joint-pmf); [Marginal distribution](ref:probability-statistics-marginal-distribution).
+
+## Condition a table and test independence
+
+Conditioning narrows the population of possible outcomes and renormalizes the retained probabilities. For a discrete value with $p_X(x)>0$, $p_{Y\mid X}(y\mid x)=p_{X,Y}(x,y)/p_X(x)$. In a row-indexed table, divide each entry of the retained row by that row's sum. The resulting conditional PMF sums to one. Conditioning on a value with zero marginal probability is not defined by this ratio.
+
+Using the six-cell table from the preceding section, the row for $X=1$ totals $3/5$. The conditional probabilities of $Y=0,1,2$ are consequently $(1/3,1/6,1/2)$. The distribution differs from the marginal $(3/10,3/10,2/5)$, so knowing $X=1$ changes the probability model for $Y$.
+
+Independence requires $p_{X,Y}(x,y)=p_X(x)p_Y(y)$ for every pair. One failed equality proves dependence; one successful equality does not generally prove independence. In the example, $p(1,2)=3/10$ differs from $(3/5)(2/5)=6/25$. Zero cells matter too: if both marginals are positive at a pair, independence would assign that pair positive probability.
+
+You can also build a joint model from a marginal and conditional PMFs using $p_{X,Y}(x,y)=p_X(x)p_{Y\mid X}(y\mid x)$. Suppose a load indicator is one with probability $1/4$, and the conditional failure probabilities are $1/10$ at low load and $1/2$ at high load. The joint high-load/failure probability is $(1/4)(1/2)=1/8$. The overall failure probability combines both paths: $(3/4)(1/10)+(1/4)(1/2)=1/5$.
+
+This construction formalizes different operating regimes without assuming independence. It also separates the probability of a regime from the behavior within it. Reversing the conditioning requires dividing the joint probability by the new conditioning marginal; one cannot simply reverse the vertical bar.
+
+In the load example, the probability of high load given failure is $(1/8)/(1/5)=5/8$. This exceeds the prior high-load probability $1/4$, because failures are more common under high load. The conditional failure rate $1/2$ and the posterior high-load probability $5/8$ answer different questions even though they refer to the same joint cell.
+
+Related definitions: [Conditional PMF](ref:probability-statistics-conditional-pmf).
+
+## A joint density assigns probability to regions
+
+For a jointly continuous pair, probability is a double integral: $P((X,Y)\in A)=\iint_A f_{X,Y}(x,y)\,dx\,dy$. The joint density is nonnegative and integrates to one over the plane. Its units are reciprocal units of both coordinates. Small rectangular probabilities are approximately density times the two side lengths, when the density varies little across the rectangle.
+
+Reuse the region-integration skills from calculus. If $f(x,y)=4xy$ on the unit square and zero elsewhere, normalization is $\int_0^1\int_0^1 4xy\,dy\,dx=1$. The lower-left half-by-half square has probability $(1/2)^4=1/16$. A request involving $X+Y<1$ is triangular, not rectangular: integrate $x$ from zero to one and $y$ from zero to $1-x$. The result is $\int_0^1 2x(1-x)^2\,dx=1/6$.
+
+Marginalization integrates out the unwanted coordinate. In the square example, $f_X(x)=\int_0^14xy\,dy=2x$ on $(0,1)$, and similarly $f_Y(y)=2y$. This step is not the same as evaluating the joint density on an axis; $f(x,0)=0$ tells us nothing about the entire vertical slice's area.
+
+Joint expectations use the same region and weighting: $E[g(X,Y)]=\iint g(x,y)f_{X,Y}(x,y)\,dx\,dy$ when integrable. In the square model, $E[XY]=\int_0^1\int_0^1 4x^2y^2\,dy\,dx=4/9$. This is a weighted integral over outcomes, not the value of the density at the two separate means.
+
+Support geometry can determine the bounds. Consider the uniform density $2$ on the triangle $0<x<y<1$, zero elsewhere. For fixed $x$, $y$ ranges from $x$ to one, yielding $f_X(x)=2(1-x)$. For fixed $y$, $x$ ranges from zero to $y$, yielding $f_Y(y)=2y$. The variables have different marginals despite the constant joint density. The triangular constraint makes larger values of $Y$ more compatible with larger values of $X$.
+
+Write the density as zero outside its support, draw the region, and intersect the event with that support before integrating. Reversing integration order changes the bounds, not the probability. A correct final number should lie in $[0,1]$, but that check alone cannot validate incorrect bounds.
+
+Related definitions: [Joint density](ref:probability-statistics-joint-density).
+
+## Condition continuous variables using densities
+
+Observing one continuous coordinate changes the distribution of the other. At a value with $f_X(x)>0$, define $f_{Y\mid X}(y\mid x)=f_{X,Y}(x,y)/f_X(x)$. The denominator is a marginal **density**, not $P(X=x)$, which is zero in this model. At zero marginal density this ratio is unavailable; its value there is not determined by this formula.
+
+The ratio can be understood by conditioning on a thin vertical strip around $x$. The strip's total probability is approximately $f_X(x)\Delta x$. Its intersection with a small interval near $y$ has probability approximately $f_{X,Y}(x,y)\Delta x\Delta y$. Divide, cancel $\Delta x$, and then interpret the coefficient of $\Delta y$ as a conditional density. This limiting explanation connects continuous conditioning with the ordinary positive-probability event rule.
+
+For density $2$ on $0<x<y<1$, the marginal is $f_X(x)=2(1-x)$. Therefore $Y\mid X=x$ is uniform on $(x,1)$, with density $1/(1-x)$ there. At $x=1/4$, the conditional chance that $Y>1/2$ is the retained length $1/2$ divided by the total length $3/4$, giving $2/3$. In the other direction, $X\mid Y=y$ is uniform on $(0,y)$ with density $1/y$. These are different conditional distributions.
+
+A conditional density must integrate to one over its conditional support. The support is as important as the algebraic expression: $1/(1-x)$ integrated over $(0,1)$ is generally not one, while over $(x,1)$ it is. Keeping the conditioning value fixed clarifies which symbol is the integration variable.
+
+Conditioning on an interval of values still uses an ordinary ratio of event probabilities. For example, $P(Y>1/2\mid X<1/4)$ requires integrating over a two-dimensional region before dividing by $P(X<1/4)$. It is generally not the same as substituting $x=1/4$ into a conditional density, because it averages over many possible values of $X$.
+
+Related definitions: [Conditional density](ref:probability-statistics-conditional-density).
+
+## Check the whole joint model
+
+For jointly continuous variables, independence means that the joint density factors into the two marginal densities almost everywhere: $f_{X,Y}(x,y)=f_X(x)f_Y(y)$. Here “almost everywhere” allows differences on sets of area zero, which do not change probabilities. For the piecewise smooth examples in this subject, check the formula throughout each region where probability is accumulated, including the support restrictions.
+
+The density $4xy$ on the unit square factors as $(2x)(2y)$ with both marginal factors supported on $(0,1)$, so the coordinates are independent. By contrast, constant density $2$ on $0<x<y<1$ does not describe independent coordinates. The formula looks separable, but the triangular support is not. A pair with $x>y$ is impossible even though both marginal densities are positive at many such coordinates.
+
+A joint CDF unifies discrete and continuous descriptions: $F(x,y)=P(X\le x,Y\le y)$. It accumulates over a lower-left region. For density $4xy$ on the unit square, $F(x,y)=x^2y^2$ within the square, with appropriate zero or marginal extensions outside. Where smoothness permits, differentiating once in each coordinate recovers the joint density.
+
+Outside the square, the same CDF must respect the support. For example, $F(2,y)=y^2$ when $0<y<1$, since the condition $X\le2$ includes all possible $X$. If either threshold is negative, the joint CDF is zero. Extending the interior formula $x^2y^2$ to all real pairs would violate these probability constraints.
+
+Rectangle probabilities require two-dimensional inclusion–exclusion. For $a<b$ and $c<d$, $P(a<X\le b,c<Y\le d)=F(b,d)-F(a,d)-F(b,c)+F(a,c)$. The last term restores the lower-left overlap that was subtracted twice. Independence would simplify the answer into a product, but the four-CDF formula does not require independence.
+
+Finally, continuous marginals do not guarantee a two-dimensional density. If $X$ is uniform on $(0,1)$ and $Y=X$, both marginals have densities, yet the entire joint probability sits on a diagonal line of area zero. An ordinary joint density cannot assign probability one to that line. Joint modeling requires attention to how variables are related, not merely a label attached to each marginal.
+
+Related definitions: [Joint CDF](ref:probability-statistics-joint-cdf).

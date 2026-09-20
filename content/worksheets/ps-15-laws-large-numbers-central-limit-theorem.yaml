@@ -1,0 +1,262 @@
+title: Laws of Large Numbers and the Central Limit Theorem
+sections:
+  - title: A statistic has a sampling distribution
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Iid observations have mean seven and variance nine. Find $E[\bar X_{25}]$.
+        answerLines: 5
+        answer: The mean of the sample mean remains $\mu=7$.
+      - id: 2
+        type: freeform
+        prompt: Iid observations have variance nine. Find $\operatorname{Var}(\bar X_{25})$.
+        answerLines: 5
+        answer: $9/25$.
+      - id: 3
+        type: freeform
+        prompt: Iid observations have standard deviation twelve. Find the standard error for a mean of thirty-six observations.
+        answerLines: 5
+        answer: $12/\sqrt{36}=2$.
+      - id: 4
+        type: freeform
+        prompt: Two independent fair Bernoulli observations are averaged. Find the probability that their mean is $1/2$.
+        answerLines: 5
+        answer: The outcomes $(0,1)$ and $(1,0)$ each have probability $1/4$, totaling $1/2$.
+      - id: 5
+        type: freeform
+        prompt: Two independent fair Bernoulli observations are averaged. Find the variance of their mean.
+        answerLines: 5
+        answer: Each has variance $1/4$, so the mean has variance $(1/4)/2=1/8$.
+      - id: 6
+        type: freeform
+        prompt: Four iid observations each have mean three and variance two. Give the mean and variance of their sum.
+        answerLines: 5
+        answer: The sum has mean twelve and variance eight, giving $(12,8)$.
+      - id: 7
+        type: freeform
+        prompt: A simulation generates one thousand samples, each containing sixteen observations. What is $n$ in the standard-error formula for each sample mean?
+        answerLines: 5
+        answer: $n=16$; the number of replicate samples is a separate simulation setting.
+      - id: 8
+        type: freeform
+        prompt: "True or false: calculating $\\operatorname{Var}(\\bar X_n)=\\sigma^2/n$ requires a normal population."
+        answerLines: 5
+        answer: False. Iid observations with finite variance suffice for this exact moment identity.
+      - id: 9
+        type: freeform
+        prompt: Explain how observations can be identically distributed without being independent.
+        answerLines: 5
+        answer: Set every observation equal to the same random variable. Each then has the same marginal distribution, but observing one determines all the others.
+      - id: 10
+        type: freeform
+        prompt: Derive the variance of an iid sample mean with finite variance.
+        answerLines: 5
+        answer: The independent sum has variance $n\sigma^2$. Scaling by $1/n$ multiplies variance by $1/n^2$, yielding $\sigma^2/n$.
+  - title: The law of large numbers concerns concentration
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Iid observations have variance four. Use the squared-error bound to bound $P(|\bar X_{400}-\mu|\ge1/2)$. Give the resulting upper bound.
+        answerLines: 5
+        answer: $4/[400(1/2)^2]=1/25$.
+      - id: 12
+        type: freeform
+        prompt: Iid observations have variance nine. Give the Chebyshev upper bound for $P(|\bar X_{100}-\mu|\ge1)$.
+        answerLines: 5
+        answer: $9/(100\cdot1^2)=9/100$.
+      - id: 13
+        type: freeform
+        prompt: Iid observations have variance one. What smallest integer $n$ makes the bound for error at least $1/10$ at most $1/20$?
+        answerLines: 5
+        answer: Require $1/[n(1/10)^2]\le1/20$, so $n\ge2000$. The smallest is $2000$.
+      - id: 14
+        type: freeform
+        prompt: Iid observations have variance two. What upper bound results for error at least $1/2$ in a mean of one hundred observations?
+        answerLines: 5
+        answer: $2/[100(1/2)^2]=2/25$.
+      - id: 15
+        type: freeform
+        prompt: A Chebyshev calculation returns $5/2$ as an upper bound on an event probability. What bound results after also using the probability axiom?
+        answerLines: 5
+        answer: Take the smaller bound, $\min(1,5/2)=1$.
+      - id: 16
+        type: freeform
+        prompt: For iid Bernoulli trials with $p=1/4$, what constant does the observed proportion approach in probability?
+        answerLines: 5
+        answer: The expectation of each indicator is $p=1/4$.
+      - id: 17
+        type: freeform
+        prompt: 'True or false: the law of large numbers says each successive realized sample mean is closer to the population mean.'
+        answerLines: 5
+        answer: False. It is a probabilistic asymptotic statement; individual sequences can fluctuate.
+      - id: 18
+        type: freeform
+        prompt: After ten failures in iid Bernoulli trials with success probability $1/5$, what is the next trial's success probability?
+        answerLines: 5
+        answer: Independence keeps the probability at $1/5$.
+      - id: 19
+        type: freeform
+        prompt: Explain why the weak law does not prove that a biased measuring instrument becomes accurate when used many times.
+        answerLines: 5
+        answer: Its average can converge to the expectation of its biased readings. That expectation may differ from the intended physical target.
+      - id: 20
+        type: freeform
+        prompt: Prove the finite-variance weak law using the inequality between squared error and a deviation-event indicator.
+        answerLines: 5
+        answer: Since $(\bar X_n-\mu)^2\ge\varepsilon^2 1_{\{|\bar X_n-\mu|\ge\varepsilon\}}$, expectation gives the probability bound $\sigma^2/(n\varepsilon^2)$. For fixed positive $\varepsilon$, that bound tends to zero.
+  - title: The central limit theorem describes standardized fluctuations
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Iid observations have mean ten and standard deviation four. For $n=64$ and observed mean eleven, find the standardized mean score.
+        answerLines: 5
+        answer: The standard error is $4/8=1/2$, so $(11-10)/(1/2)=2$.
+      - id: 22
+        type: freeform
+        prompt: Iid observations have mean two and variance three. Give the approximate normal mean and variance of their sum for $n=100$.
+        answerLines: 5
+        answer: The sum has mean $200$ and variance $300$, so the parameter pair is $(200,300)$.
+      - id: 23
+        type: freeform
+        prompt: Iid observations have mean two and variance three. Give the approximate normal mean and variance of their average for $n=100$.
+        answerLines: 5
+        answer: The mean is two and variance $3/100$, giving $(2,3/100)$.
+      - id: 24
+        type: freeform
+        prompt: Under the iid finite-positive-variance CLT, what is the limiting variance of the standardized variable $Z_n$?
+        answerLines: 5
+        answer: It is $1$; indeed the standardization gives variance one for every $n$.
+      - id: 25
+        type: freeform
+        prompt: For iid $N(5,16)$ observations, give the exact distribution parameters of their mean at $n=4$.
+        answerLines: 5
+        answer: The mean is exactly $N(5,4)$, so the pair is $(5,4)$.
+      - id: 26
+        type: freeform
+        prompt: 'True or false: the iid CLT requires the original observations to have a continuous density.'
+        answerLines: 5
+        answer: False. Discrete observations such as Bernoulli variables can satisfy its assumptions.
+      - id: 27
+        type: freeform
+        prompt: "True or false: the usual iid CLT standardization $(\\bar X_n-\\mu)/(\\sigma/\\sqrt n)$ applies when the observation variance is infinite."
+        answerLines: 5
+        answer: False. This theorem requires finite positive variance, and its standardization would not be defined as stated.
+      - id: 28
+        type: freeform
+        prompt: For iid observations of variance nine, what is the variance of $\sqrt n(\bar X_n-\mu)$?
+        answerLines: 5
+        answer: $n(9/n)=9$.
+      - id: 29
+        type: freeform
+        prompt: Explain why the weak law and CLT do not contradict each other.
+        answerLines: 5
+        answer: The weak law describes shrinking errors on the original scale. The CLT divides by their shrinking standard deviation to describe a nondegenerate limiting shape.
+      - id: 30
+        type: freeform
+        prompt: Explain why a discrete standardized sum can converge in distribution to a continuous normal variable.
+        answerLines: 5
+        answer: Convergence in distribution concerns convergence of CDF values. It does not require the approximating variables to have densities or exactly match the limiting support at any finite sample size.
+  - title: Approximate probabilities for means, sums, and proportions
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Iid observations have mean four and standard deviation two. For $n=100$, approximate $P(\bar X>4.4)$ using $\Phi(2)=0.9772$. Give four decimal places.
+        answerLines: 5
+        answer: The standard error is $0.2$, so the score is two and the probability is $1-0.9772=0.0228$.
+      - id: 32
+        type: freeform
+        prompt: Iid observations have mean four and standard deviation two. For $n=100$, approximate $P(3.8<\bar X<4.2)$ using $\Phi(1)=0.8413$. Give four decimal places.
+        answerLines: 5
+        answer: The standardized interval is $(-1,1)$, giving $2(0.8413)-1=0.6826$.
+      - id: 33
+        type: freeform
+        prompt: Iid observations have mean three and standard deviation four. For $n=64$, approximate the chance their sum exceeds $256$ using $\Phi(2)=0.9772$. Give four decimal places.
+        answerLines: 5
+        answer: The sum has mean $192$ and standard deviation $32$, so its score is two. The probability is $0.0228$.
+      - id: 34
+        type: freeform
+        prompt: For $K\sim\operatorname{Binomial}(100,1/2)$, find its standard deviation.
+        answerLines: 5
+        answer: $\sqrt{100(1/2)(1/2)}=5$.
+      - id: 35
+        type: freeform
+        prompt: For $K\sim\operatorname{Binomial}(100,1/2)$, find the continuity-corrected standardized upper threshold for $K\le55$.
+        answerLines: 5
+        answer: $(55.5-50)/5=11/10$.
+      - id: 36
+        type: freeform
+        prompt: For $K\sim\operatorname{Binomial}(100,1/2)$, approximate $P(K\le55)$ with continuity correction using $\Phi(1.1)=0.8643$. Give four decimal places.
+        answerLines: 5
+        answer: The corrected score is $1.1$, so the approximation is $0.8643$.
+      - id: 37
+        type: freeform
+        prompt: For $K\sim\operatorname{Binomial}(100,1/2)$, approximate $P(K\ge56)$ with continuity correction using $\Phi(1.1)=0.8643$. Give four decimal places.
+        answerLines: 5
+        answer: 'Use lower boundary $55.5$, score $1.1$, and the upper tail: $1-0.8643=0.1357$.'
+      - id: 38
+        type: freeform
+        prompt: For one hundred iid Bernoulli trials with $p=1/2$, find the standard error of the observed proportion.
+        answerLines: 5
+        answer: $\sqrt{p(1-p)/n}=\sqrt{1/400}=1/20$.
+      - id: 39
+        type: freeform
+        prompt: For binomial parameters $n=100,p=1/1000$, give expected success and failure counts.
+        answerLines: 5
+        answer: They are $np=1/10$ and $n(1-p)=999/10$, giving $(1/10,999/10)$.
+      - id: 40
+        type: freeform
+        prompt: Explain why a normal approximation can be poor for $\operatorname{Binomial}(100,1/1000)$ despite sample size one hundred.
+        answerLines: 5
+        answer: Expected successes are only $0.1$, and the distribution puts most probability at zero. Its strong asymmetry and discreteness are poorly represented by a symmetric normal curve.
+  - title: Check dependence, precision, and the limits of asymptotics
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Under iid sampling, by what factor must sample size grow to halve the standard error?
+        answerLines: 5
+        answer: Standard error scales as $1/\sqrt n$, so sample size must grow by factor $4$.
+      - id: 42
+        type: freeform
+        prompt: A mean based on twenty-five iid observations has standard error two. Find the standard error at one hundred observations from the same population.
+        answerLines: 5
+        answer: Sample size quadruples, so the standard error halves to $1$.
+      - id: 43
+        type: freeform
+        prompt: What iid sample size gives standard error at most one half if population standard deviation is five? Give the smallest integer.
+        answerLines: 5
+        answer: $5/\sqrt n\le1/2$ requires $n\ge100$, so $100$.
+      - id: 44
+        type: freeform
+        prompt: Let $X_i=B+\varepsilon_i$, with independent components, $\operatorname{Var}(B)=4$, and iid error variance nine. Find $\operatorname{Var}(\bar X_9)$.
+        answerLines: 5
+        answer: $4+9/9=5$.
+      - id: 45
+        type: freeform
+        prompt: Let $X_i=B+\varepsilon_i$, with common variance $\operatorname{Var}(B)=4$ and iid individual errors of variance nine, independent of $B$. Find the limit of the sample-mean variance as $n$ grows.
+        answerLines: 5
+        answer: $4+9/n\to4$.
+      - id: 46
+        type: freeform
+        prompt: Ten observations have variance two each and covariance $1/2$ for each distinct pair. Find their mean's variance.
+        answerLines: 5
+        answer: $2/10+9(1/2)/10=1/5+9/20=13/20$.
+      - id: 47
+        type: freeform
+        prompt: All one hundred observations equal the same variable with variance seven. Find the variance of their mean.
+        answerLines: 5
+        answer: The mean equals that same variable, so its variance is $7$.
+      - id: 48
+        type: freeform
+        prompt: 'True or false: finite mean but infinite variance can permit the iid weak law while violating the finite-variance CLT assumptions taught here.'
+        answerLines: 5
+        answer: True. The iid weak law needs integrability, whereas this CLT additionally requires finite positive variance.
+      - id: 49
+        type: freeform
+        prompt: Explain why collecting more repeated readings cannot remove a common random calibration error in the model $X_i=B+\varepsilon_i$.
+        answerLines: 5
+        answer: The average still contains $B$ with coefficient one. Only the average of independent errors contracts; the variance of the shared component remains.
+      - id: 50
+        type: freeform
+        prompt: A report calls a normal approximation exact solely because the sample is large. Correct the claim.
+        answerLines: 5
+        answer: Large sample size can improve an approximation under suitable assumptions, but the CLT is a limiting statement. Finite-sample error and model assumptions remain; exact normality requires a separate result such as independent normal observations.

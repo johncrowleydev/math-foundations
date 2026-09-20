@@ -433,7 +433,7 @@ sections[4].questions.push(
     exact(2),
   ),
   q(
-    r`The same group losses are $1$ and $5$, but their target probabilities change to $1/4$ and $3/4$. Compute the new expected loss.`,
+    r`Group losses are $1$ and $5$, with respective target probabilities $1/4$ and $3/4$. Compute expected loss.`,
     r`The new risk is $1/4+15/4=4$. The model's group losses need not change for overall risk to change.`,
     exact(4),
   ),

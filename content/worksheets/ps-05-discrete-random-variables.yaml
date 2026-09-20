@@ -1,0 +1,262 @@
+title: Discrete Random Variables
+sections:
+  - title: A random variable records a numerical feature
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Let $X$ count failures in four reports. Find $X(FPPF)$.
+        answerLines: 5
+        answer: There are two failures, so $X(FPPF)=2$.
+      - id: 2
+        type: freeform
+        prompt: How many values can the failure count in five reports take?
+        answerLines: 5
+        answer: The values are $0,1,2,3,4,5$, so there are $6$.
+      - id: 3
+        type: freeform
+        prompt: Three independent fair coins define $X=$ number of heads. Find $P(X=1)$.
+        answerLines: 5
+        answer: Three ordered outcomes have one head among eight equally likely outcomes, so the probability is $3/8$.
+      - id: 4
+        type: freeform
+        prompt: Three independent fair coins define $X=$ number of heads. Find $P(X=3)$.
+        answerLines: 5
+        answer: Only $HHH$ qualifies, so the probability is $1/8$.
+      - id: 5
+        type: freeform
+        prompt: Three independent fair coins define $X=$ number of heads. Find $P(X\geq2)$.
+        answerLines: 5
+        answer: Three outcomes have two heads and one has three, giving $4/8=1/2$.
+      - id: 6
+        type: freeform
+        prompt: 'True or false: a variable taking values $0,0.5,1.5$ is discrete.'
+        answerLines: 5
+        answer: True. Its value set is finite; integer spacing is not required.
+      - id: 7
+        type: freeform
+        prompt: 'True or false: a discrete variable must have finitely many possible values.'
+        answerLines: 5
+        answer: False. Countably infinite value sets are also discrete.
+      - id: 8
+        type: freeform
+        prompt: A fair die defines $X=$ face and $Y=7-X$. Find $P(Y=2)$.
+        answerLines: 5
+        answer: The event $Y=2$ is $X=5$, so its probability is $1/6$.
+      - id: 9
+        type: freeform
+        prompt: Explain how $X=$ first fair die face and $Y=7-X$ can have the same distribution without being the same function.
+        answerLines: 5
+        answer: Each takes each value from one through six with probability $1/6$. But for an outcome with $X=1$, $Y=6$, so they differ on that outcome.
+      - id: 10
+        type: freeform
+        prompt: Write the underlying event $\{X=2\}$ when $X$ counts heads in three coins.
+        answerLines: 5
+        answer: It is $\{HHT,HTH,THH\}$, the outcomes assigned numerical value two by the count function.
+  - title: Construct and check a probability mass function
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Masses on $0,1,2$ are $1/5,1/2,c$. Find $c$.
+        answerLines: 5
+        answer: Normalization gives $c=1-1/5-1/2=3/10$.
+      - id: 12
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2$ are $1/5,1/2,3/10$. Find $P(X>0)$.
+        answerLines: 5
+        answer: The complement of zero has probability $1-1/5=4/5$.
+      - id: 13
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2$ are $1/5,1/2,3/10$. Find $P(X=1/2)$.
+        answerLines: 5
+        answer: The value $1/2$ is outside the support, so its mass is $0$.
+      - id: 14
+        type: freeform
+        prompt: A PMF is $p(k)=ck$ for $k=1,2,3$. Find $c$.
+        answerLines: 5
+        answer: The sum condition is $6c=1$, so $c=1/6$.
+      - id: 15
+        type: freeform
+        prompt: The PMF of $X$ is $p(k)=k/6$ for $k=1,2,3$. Find $P(X\geq2)$.
+        answerLines: 5
+        answer: Add the masses $2/6+3/6=5/6$.
+      - id: 16
+        type: freeform
+        prompt: 'True or false: masses $0.7,0.4,-0.1$ define a valid PMF.'
+        answerLines: 5
+        answer: False. The negative mass violates nonnegativity even though the total is one.
+      - id: 17
+        type: freeform
+        prompt: On positive integers let $p(k)=2/3^k$. Find $P(X=2)$.
+        answerLines: 5
+        answer: Substitution gives $2/3^2=2/9$.
+      - id: 18
+        type: freeform
+        prompt: The PMF on positive integers is $p_X(k)=2/3^k$. Find $P(X\leq2)$.
+        answerLines: 5
+        answer: 'Add the first two masses: $2/3+2/9=8/9$.'
+      - id: 19
+        type: freeform
+        prompt: The PMF on positive integers is $p_X(k)=2/3^k$. Find $P(X>2)$.
+        answerLines: 5
+        answer: The omitted tail is $1-8/9=1/9$.
+      - id: 20
+        type: freeform
+        prompt: Explain why a uniform distribution on all positive integers cannot assign one common singleton mass.
+        answerLines: 5
+        answer: If the common mass is positive, the infinite sum diverges; if it is zero, the sum is zero. Neither case gives total probability one.
+  - title: Accumulate mass into a CDF
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Masses at $0,2,5$ are $0.2,0.5,0.3$. Find $F_X(1)$.
+        answerLines: 5
+        answer: Only the mass at zero lies below one, so $F_X(1)=0.2=1/5$.
+      - id: 22
+        type: freeform
+        prompt: Masses of $X$ at $0,2,5$ are $0.2,0.5,0.3$. Find $F_X(2)$.
+        answerLines: 5
+        answer: 'Include masses at zero and two: $0.2+0.5=0.7=7/10$.'
+      - id: 23
+        type: freeform
+        prompt: Masses of $X$ at $0,2,5$ are $0.2,0.5,0.3$. Find $F_X(4.9)$.
+        answerLines: 5
+        answer: The threshold remains below five, so the CDF is still $7/10$.
+      - id: 24
+        type: freeform
+        prompt: Masses of $X$ at $0,2,5$ are $0.2,0.5,0.3$. Find $F_X(5)$.
+        answerLines: 5
+        answer: All support values are included, giving $1$.
+      - id: 25
+        type: freeform
+        prompt: Masses of $X$ at $0,2,5$ are $0.2,0.5,0.3$. Find the CDF jump at $2$.
+        answerLines: 5
+        answer: 'Subtract the lower level from the upper: $0.7-0.2=0.5=1/2$.'
+      - id: 26
+        type: freeform
+        prompt: A CDF has left limit $0.35$ and value $0.6$ at $x=3$. Find $P(X=3)$.
+        answerLines: 5
+        answer: The jump is $0.6-0.35=0.25=1/4$.
+      - id: 27
+        type: freeform
+        prompt: A CDF equals $0$ below $1$, $0.4$ from $1$ through values below $4$, and $1$ from $4$ onward. Find $P(X=4)$.
+        answerLines: 5
+        answer: The jump at four is $1-0.4=0.6=3/5$.
+      - id: 28
+        type: freeform
+        prompt: 'True or false: a CDF can decrease between two thresholds.'
+        answerLines: 5
+        answer: False. Increasing the threshold includes all previously counted outcomes and perhaps more, so probability cannot decrease.
+      - id: 29
+        type: freeform
+        prompt: Explain why a CDF is defined at thresholds not in the support.
+        answerLines: 5
+        answer: The event $\{X\leq t\}$ is meaningful for every real threshold. Between support points it contains the same support values and hence has the same probability.
+      - id: 30
+        type: freeform
+        prompt: Construct the full CDF for masses $1/3,2/3$ at $-2,3$.
+        answerLines: 5
+        answer: The CDF is $0$ for $t<-2$, $1/3$ for $-2\leq t<3$, and $1$ for $t\geq3$. Each jump includes the mass at its threshold.
+  - title: Intervals, tails, and endpoint discipline
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Masses at $0,1,2,3$ are $1/8,3/8,1/4,1/4$. Find $P(1<X\leq3)$.
+        answerLines: 5
+        answer: 'Add the masses at two and three: $1/4+1/4=1/2$.'
+      - id: 32
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2,3$ are $1/8,3/8,1/4,1/4$. Find $P(1\leq X\leq3)$.
+        answerLines: 5
+        answer: 'Include one as well: $3/8+1/4+1/4=7/8$.'
+      - id: 33
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2,3$ are $1/8,3/8,1/4,1/4$. Find $P(X>2)$.
+        answerLines: 5
+        answer: Only value three qualifies, so the probability is $1/4$.
+      - id: 34
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2,3$ are $1/8,3/8,1/4,1/4$. Find $P(X\geq2)$.
+        answerLines: 5
+        answer: Values two and three give total $1/2$.
+      - id: 35
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2,3$ are $1/8,3/8,1/4,1/4$. Find $P(X=1\mid X>0)$.
+        answerLines: 5
+        answer: The retained total is $7/8$, giving $(3/8)/(7/8)=3/7$.
+      - id: 36
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2,3$ are $1/8,3/8,1/4,1/4$. Find $P(X\geq2\mid X>0)$.
+        answerLines: 5
+        answer: The qualifying weight is $1/2$ out of $7/8$, giving $4/7$.
+      - id: 37
+        type: freeform
+        prompt: An integer-valued $X$ has $F_X(4)=0.7$. Find $P(X\geq5)$.
+        answerLines: 5
+        answer: This is the complement of $X\leq4$, giving $0.3=3/10$.
+      - id: 38
+        type: freeform
+        prompt: A CDF has $F_X(2)=0.4$ and $F_X(6)=0.85$. Find $P(2<X\leq6)$.
+        answerLines: 5
+        answer: 'Subtract cumulative probabilities: $0.85-0.4=0.45=9/20$.'
+      - id: 39
+        type: freeform
+        prompt: "True or false: $1-F_X(2)$ always equals $P(X\\geq2)$."
+        answerLines: 5
+        answer: False. It equals $P(X>2)$. The inclusive tail also contains the mass at two.
+      - id: 40
+        type: freeform
+        prompt: Derive $P(X<t)=F_X(t)-p_X(t)$ for a discrete variable.
+        answerLines: 5
+        answer: The event $X\leq t$ is the disjoint union of $X<t$ and $X=t$. Subtracting the latter probability gives the identity.
+  - title: Transform values and combine their masses
+    questions:
+      - id: 41
+        type: freeform
+        prompt: $X$ has masses $1/4,1/2,1/4$ at $-1,0,1$. For $Y=X^2$, find $P(Y=1)$.
+        answerLines: 5
+        answer: Both $-1$ and one map to one, giving $1/4+1/4=1/2$.
+      - id: 42
+        type: freeform
+        prompt: $X$ has masses $1/4,1/2,1/4$ at $-1,0,1$, and $Y=X^2$. Find $P(Y=0)$.
+        answerLines: 5
+        answer: Only $X=0$ maps to zero, so the probability is $1/2$.
+      - id: 43
+        type: freeform
+        prompt: $X$ is uniform on $\{-2,-1,1,2\}$. Find $P(|X|=2)$.
+        answerLines: 5
+        answer: Two of four values have magnitude two, so the probability is $1/2$.
+      - id: 44
+        type: freeform
+        prompt: $X$ is uniform on $\{-2,-1,1,2\}$. How many support values does $X^2$ have?
+        answerLines: 5
+        answer: The squared values are one and four, so the support has $2$ values.
+      - id: 45
+        type: freeform
+        prompt: $X$ has masses $0.2,0.3,0.5$ at $0,1,2$. For $Y=3X+1$, find $P(Y=4)$.
+        answerLines: 5
+        answer: The equation $3X+1=4$ gives $X=1$, with probability $0.3=3/10$.
+      - id: 46
+        type: freeform
+        prompt: $X$ has masses $0.2,0.3,0.5$ at $0,1,2$. Let $Y=2-X$. Find $P(Y\leq1)$.
+        answerLines: 5
+        answer: The inequality becomes $X\geq1$, whose probability is $0.3+0.5=4/5$.
+      - id: 47
+        type: freeform
+        prompt: $X$ has masses $0.2,0.3,0.5$ at $0,1,2$. Let $I$ indicate $X>0$. Give $(P(I=0),P(I=1))$.
+        answerLines: 5
+        answer: The zero event has mass $0.2$, and the positive event has mass $0.8$, so the pair is $(1/5,4/5)$.
+      - id: 48
+        type: freeform
+        prompt: For any $X$, define $Y=7$. Find $P(Y=7)$.
+        answerLines: 5
+        answer: Every outcome maps to seven, so the probability is $1$.
+      - id: 49
+        type: freeform
+        prompt: Explain why $P(X^2=4)$ need not equal $P(X=2)^2$.
+        answerLines: 5
+        answer: The event $X^2=4$ is the disjoint union of $X=2$ and $X=-2$. Its probability is the sum of those masses; squaring a probability describes neither event.
+      - id: 50
+        type: freeform
+        prompt: Prove that the transformed PMF remains normalized.
+        answerLines: 5
+        answer: The preimage sets for distinct transformed values are disjoint and together include every original support value. Summing their masses therefore reproduces the original total one.

@@ -2218,5 +2218,444 @@
       "option-2": "Correct. A zero gradient makes the ordinary update displacement zero, whatever the objective value.",
       "option-3": "Stationarity concerns derivatives. Adding a constant changes the loss value without changing its gradient."
     }
+  },
+  {
+    "lesson": "probability-statistics-probability-models-events",
+    "id": 10001,
+    "sourceHash": "ae32f470e35d5edd8c24a71379607520ebdb295f86aa2e9e7553404f23a4f295",
+    "responses": {
+      "option-1": "Zero heads corresponds only to $TT$, so its probability is $1/4$.",
+      "option-2": "One head corresponds to $HT$ or $TH$, so its probability is $1/2$.",
+      "option-3": "The count $1$ has two underlying outcomes; each other count has only one."
+    }
+  },
+  {
+    "lesson": "probability-statistics-probability-models-events",
+    "id": 10002,
+    "sourceHash": "b6f0c7dc1a8d19ee3417084c415885350073b4bbd7f1a890d4e03ac608741fda",
+    "responses": {
+      "option-1": "An overlap of $0.2$ would give a union of $1.1$, violating normalization.",
+      "option-2": "An overlap of $0.3$ gives a union of exactly one and is feasible.",
+      "option-3": "An overlap of $0.6$ is feasible when $A$ is contained in $B$."
+    }
+  },
+  {
+    "lesson": "probability-statistics-counting-finite-probability",
+    "id": 10001,
+    "sourceHash": "12738580da1d7eaefb4652815b55f71842a6929ffb63452d5b4248f158921f2d",
+    "responses": {
+      "option-1": "The count $6^2$ includes six assignments in which one person holds both roles.",
+      "option-2": "Six chair choices each leave five secretary choices, producing $30$ assignments.",
+      "option-3": "A committee count merges the two role assignments for each pair of people."
+    }
+  },
+  {
+    "lesson": "probability-statistics-counting-finite-probability",
+    "id": 10002,
+    "sourceHash": "494562025a990d0e65d2e7d860fb1bc2da2097fd578990766390605e6c2315e5",
+    "responses": {
+      "option-1": "The numerator counts each mixed pair once, giving $15$ of $28$ equally likely pairs.",
+      "option-2": "This ordered expression includes marked-then-unmarked but misses unmarked-then-marked.",
+      "option-3": "Selecting two of the three marked tokens describes two marked tokens, not exactly one."
+    }
+  },
+  {
+    "lesson": "probability-statistics-conditional-probability-independence",
+    "id": 10001,
+    "sourceHash": "880dc64c401862b0c4361d850a41a58a19350ef64f2ec888a7a17857f4c716fe",
+    "responses": {
+      "option-1": "This is the joint probability $P(A\\cap B)$ over the full collection.",
+      "option-2": "Fifteen of the twenty-five retained records carry $A$, giving conditional probability $3/5$.",
+      "option-3": "This is the probability of the conditioning event itself, not the fraction of its records also in $A$."
+    }
+  },
+  {
+    "lesson": "probability-statistics-conditional-probability-independence",
+    "id": 10002,
+    "sourceHash": "94d563e788a047a624f93774e6fda32c455907d05041748a4650bc7beff2b873",
+    "responses": {
+      "option-1": "No overlap means observing one excludes the other; it does not preserve the other's probability.",
+      "option-2": "Given one event, the other has conditional probability zero instead of its positive marginal probability.",
+      "option-3": "The left side is zero and the product is strictly positive, so the equality fails."
+    }
+  },
+  {
+    "lesson": "probability-statistics-total-probability-bayes",
+    "id": 10001,
+    "sourceHash": "7b650f527bdb9dd0e93429d5bfe0a5b6c52929569b59a1d4104fd3fc8a8fcdf1",
+    "responses": {
+      "option-1": "This averages the two rates equally and ignores the unequal group weights.",
+      "option-2": "The weighted sum is $0.9(0.1)+0.1(0.9)=0.18$.",
+      "option-3": "Adding the two conditional rates does not form an overall probability; each must be weighted by its group's share."
+    }
+  },
+  {
+    "lesson": "probability-statistics-total-probability-bayes",
+    "id": 10002,
+    "sourceHash": "4a7b767dede997d096b16965cebcd4d1d36a37364860f557420202e15e963f21",
+    "responses": {
+      "option-1": "A sample size alone does not specify how many flags arise from defective and nondefective items.",
+      "option-2": "These rates determine the two joint contributions that must be normalized.",
+      "option-3": "The $95\\%$ conditions on defective items; the question conditions on flagged items, reversing the denominator."
+    }
+  },
+  {
+    "lesson": "probability-statistics-discrete-random-variables",
+    "id": 10001,
+    "sourceHash": "f1e9c35ff12bc1fb1244a477ba241babfb89d18e85aa5747cc61d47b1ed54b94",
+    "responses": {
+      "option-1": "There is no probability mass at three, so the event has probability zero.",
+      "option-2": "Interpolating PMF heights would invent probability at a value the variable cannot take.",
+      "option-3": "The stated support already answers the question; no interpolation is involved."
+    }
+  },
+  {
+    "lesson": "probability-statistics-discrete-random-variables",
+    "id": 10002,
+    "sourceHash": "291054bdebff992450d815d987adaa1a8fcb4508fde3a6beba2e5cb35aee4201",
+    "responses": {
+      "option-1": "This excludes the mass at four and gives $P(X>4)$.",
+      "option-2": "Subtracting the probability of values at most three retains every integer value from four upward.",
+      "option-3": "This difference gives only the mass at four, not the whole upper tail."
+    }
+  },
+  {
+    "lesson": "probability-statistics-expectation-variance",
+    "id": 10001,
+    "sourceHash": "cdac26e6dd0195ae9412991efcf64d32520a89c80274ec23ed8bb354b120ce2b",
+    "responses": {
+      "option-1": "No die face equals $3.5$; the mean is not a predicted literal outcome.",
+      "option-2": "Adding the six face values weighted by $1/6$ gives $3.5$.",
+      "option-3": "Finite observed proportions can fluctuate even though the model assigns equal probability to the lower and upper halves."
+    }
+  },
+  {
+    "lesson": "probability-statistics-expectation-variance",
+    "id": 10002,
+    "sourceHash": "5916107b412dc8658fcb9427fb6d04dbfeb902285c7734a458fb389d1a664602",
+    "responses": {
+      "option-1": "Subtracting the mean itself gives $9-2$, but the formula requires subtracting $2^2$.",
+      "option-2": "The calculation is $9-2^2=5$.",
+      "option-3": "The square root of five is the standard deviation, while the question asks for variance."
+    }
+  },
+  {
+    "lesson": "probability-statistics-bernoulli-binomial-geometric",
+    "id": 10001,
+    "sourceHash": "5490ab9fabf2c7e2373c1f11a88a0e681eb58623f606ed97e7d7c0e6e6d5f5a0",
+    "responses": {
+      "option-1": "All required assumptions are supplied, giving $\\operatorname{Binomial}(10,0.4)$.",
+      "option-2": "The trial count is random; trials until first success use a geometric model under constant-rate independence.",
+      "option-3": "Removing objects changes later category probabilities, violating the independent common-rate trial model."
+    }
+  },
+  {
+    "lesson": "probability-statistics-bernoulli-binomial-geometric",
+    "id": 10002,
+    "sourceHash": "40bf24411b704b3e189272b1c73fa7d45b488e347f7399e4f31839c9ebc82ea0",
+    "responses": {
+      "option-1": "A first success on trial four would mean $T=4$, outside the strict tail.",
+      "option-2": "Four initial failures are exactly the condition that first success occurs after trial four.",
+      "option-3": "Exactly four failures also requires success on trial five, which is the narrower event $T=5$."
+    }
+  },
+  {
+    "lesson": "probability-statistics-hypergeometric-poisson",
+    "id": 10001,
+    "sourceHash": "711e6f81ebe06e646ca0a57129918a1673713331f096449b239e1b722d908912",
+    "responses": {
+      "option-1": "One marked would require three unmarked objects, but only two exist.",
+      "option-2": "Two marked and the two available unmarked objects form a feasible sample.",
+      "option-3": "Four marked objects can be chosen from the eight available marked objects."
+    }
+  },
+  {
+    "lesson": "probability-statistics-hypergeometric-poisson",
+    "id": 10002,
+    "sourceHash": "5f7ac3e4b38b5244db47e94dcc4ea4471745cbc6004baaa670fd2d51fd55321d",
+    "responses": {
+      "option-1": "A fractional mean does not change the integer-valued support.",
+      "option-2": "The model identity gives variance equal to the parameter, $1.5$.",
+      "option-3": "A positive-parameter Poisson distribution has positive mass at every nonnegative integer, including values above two."
+    }
+  },
+  {
+    "lesson": "probability-statistics-continuous-random-variables",
+    "id": 10001,
+    "sourceHash": "2c2e7cb309c354b2f491eb3898785cf6fc9fdcb7f0acc27259b08749fd24d33a",
+    "responses": {
+      "option-1": "The maximum height depends on scale and may be greater or less than one.",
+      "option-2": "Correct. The entire outcome range has probability one, represented by this integral.",
+      "option-3": "The value at the mean is a density height, not total probability."
+    }
+  },
+  {
+    "lesson": "probability-statistics-continuous-random-variables",
+    "id": 10002,
+    "sourceHash": "dd3c8b4f66545c7dcfa38e4bead191a803fb50faf96170f9b0adc0c98c328035",
+    "responses": {
+      "option-1": "Elapsed time remains five minutes; the property concerns future waiting, not recorded time.",
+      "option-2": "Correct. Conditioning on no event yet leaves the same distribution for the additional waiting time.",
+      "option-3": "The exponential tail remains positive beyond every finite additional duration; there is no deadline."
+    }
+  },
+  {
+    "lesson": "probability-statistics-normal-distributions-transformations",
+    "id": 10001,
+    "sourceHash": "5e8cecefe24185134f489530709a4762ad5775c642de53f997680f2532a6cee1",
+    "responses": {
+      "option-1": "This is the probability below the threshold, which exceeds one half.",
+      "option-2": "Correct. Subtracting the left-tail area from one leaves the right-tail area.",
+      "option-3": "This is the central area between $-1.2$ and $1.2$, not one right tail."
+    }
+  },
+  {
+    "lesson": "probability-statistics-normal-distributions-transformations",
+    "id": 10002,
+    "sourceHash": "33d544df0bc5097b59b8515cfff19acc2bad6d0a01989bc9bef6f71b71a46d71",
+    "responses": {
+      "option-1": "A density height is not a point probability; here the mass is determined by the interval that is collapsed.",
+      "option-2": "Correct. The event $Y=0$ is $Ule0$, which has probability one half.",
+      "option-3": "Continuity of the input does not prevent a transformation from creating atoms."
+    }
+  },
+  {
+    "lesson": "probability-statistics-joint-conditional-distributions",
+    "id": 10001,
+    "sourceHash": "405582972a66545ac0ee35f0ed1e24a2814ece0a4c25c572d9f9a294a3d27a81",
+    "responses": {
+      "option-1": "Correct. The row total is $P(X=x)$, provided it is positive.",
+      "option-2": "This reverses the conditioning and instead gives $P(X=xmid Y=y)$.",
+      "option-3": "The cell is a joint probability; a conditional PMF must sum to one over the retained row."
+    }
+  },
+  {
+    "lesson": "probability-statistics-joint-conditional-distributions",
+    "id": 10002,
+    "sourceHash": "51c530c72627db17d4acd4cfaac135305b5d1090af3d26270badfd9a4c90e56e",
+    "responses": {
+      "option-1": "Joint density height can exceed one; only its integrated probability is bounded by one.",
+      "option-2": "Correct. Knowing one coordinate changes the possible interval for the other.",
+      "option-3": "Independent continuous variables exist, for example independent uniform coordinates on a square."
+    }
+  },
+  {
+    "lesson": "probability-statistics-covariance-correlation-random-vectors",
+    "id": 10001,
+    "sourceHash": "f5c4b370d659f93f092085e7d7ee1d93fd65fb9229525a902b9093cd89d40f7c",
+    "responses": {
+      "option-1": "Correct. The formula adds twice the covariance to the two variances.",
+      "option-2": "Means determine the center of the sum, but do not specify centered co-variation.",
+      "option-3": "Upper bounds alone do not determine the expected cross product."
+    }
+  },
+  {
+    "lesson": "probability-statistics-covariance-correlation-random-vectors",
+    "id": 10002,
+    "sourceHash": "5d78ff583d03a78d2b7ddec9721cea5422798ab374d351e785f609c8b7567134",
+    "responses": {
+      "option-1": "Correct. The projection in that direction is constant with probability one.",
+      "option-2": "Zero projected variance describes affine dependence or a constant direction, not independence.",
+      "option-3": "Covariance entries are not probabilities, and a zero eigenvalue does not mean any are negative."
+    }
+  },
+  {
+    "lesson": "probability-statistics-conditional-expectation",
+    "id": 10001,
+    "sourceHash": "fd174ca54d88c917d5bb49c42c9982ce50d51e6d927decbdcbcc266693eb91e8",
+    "responses": {
+      "option-1": "Equal weighting would describe a different experiment that selects groups equally often.",
+      "option-2": "Correct. Each group's contribution is its mean multiplied by its probability.",
+      "option-3": "The largest group influences the result most, but other positive-probability groups still contribute."
+    }
+  },
+  {
+    "lesson": "probability-statistics-conditional-expectation",
+    "id": 10002,
+    "sourceHash": "393cf50aa37b2700b9ac70674708f3ae27e08323f274b684d83e1f9612572788",
+    "responses": {
+      "option-1": "Correct. The missing term is the variance of the conditional expectation.",
+      "option-2": "The missing quantity depends on how conditional means vary; it is not simply the square of one overall mean.",
+      "option-3": "Equality occurs only when the conditional mean is constant with probability one, so it is not automatic."
+    }
+  },
+  {
+    "lesson": "probability-statistics-data-samples-study-design",
+    "id": 10001,
+    "sourceHash": "b01fc65a7103651f8960f9b67b716504da5ae3893d51f48fa8058d12411d5e5b",
+    "responses": {
+      "option-1": "This gives equal influence to each group rather than each observation and is generally wrong when group sizes differ.",
+      "option-2": "Correct. Multiply each mean by its group size, add the totals, and divide by the combined size.",
+      "option-3": "The maximum discards the other group's observations and does not calculate an overall average."
+    }
+  },
+  {
+    "lesson": "probability-statistics-data-samples-study-design",
+    "id": 10002,
+    "sourceHash": "cbe3d3fa06faede3873a10b01f5b97a62a55433c9f458d967fce3b0dc30dfa01",
+    "responses": {
+      "option-1": "Correct. Sampling addresses who is observed, while assignment addresses which treatment each observed unit receives.",
+      "option-2": "The procedures act at different stages and can occur separately in a study.",
+      "option-3": "Assignment does not change a sample's coverage or selection mechanism, so it cannot guarantee representativeness."
+    }
+  },
+  {
+    "lesson": "probability-statistics-laws-large-numbers-central-limit-theorem",
+    "id": 10001,
+    "sourceHash": "1ffc5d310dffdc804a1a69a972e37326e9f08b27f89d3c011d06137633782b74",
+    "responses": {
+      "option-1": "Realized averages can move away from the mean at some steps; monotonic improvement is not guaranteed.",
+      "option-2": "Correct. The law controls probabilities of fixed-sized deviations as sample size grows.",
+      "option-3": "The law concerns an average and does not change the distribution of individual observations."
+    }
+  },
+  {
+    "lesson": "probability-statistics-laws-large-numbers-central-limit-theorem",
+    "id": 10002,
+    "sourceHash": "5b2e88b7724b6b771ba77e7306b8076a00d6db7608c900fdf516a99ec9af61ab",
+    "responses": {
+      "option-1": "Correct. An unscaled average concentrates while its rescaled fluctuations can approach a normal distribution.",
+      "option-2": "Neither theorem changes the underlying distribution of an individual observation.",
+      "option-3": "No universal sample-size cutoff is supplied by the theorem; shape and tail behavior affect accuracy."
+    }
+  },
+  {
+    "lesson": "probability-statistics-concentration-monte-carlo",
+    "id": 10001,
+    "sourceHash": "f915afaa1cc6896b57ef32c0dc927f0c65707a2d203e1aed5e2f600db68890f1",
+    "responses": {
+      "option-1": "Correct. Nonnegativity ensures outcomes below the threshold cannot subtract from the mean.",
+      "option-2": "Normality is unnecessary and normal variables can take negative values.",
+      "option-3": "A mean of zero does not rule out a positive tail for a signed variable."
+    }
+  },
+  {
+    "lesson": "probability-statistics-concentration-monte-carlo",
+    "id": 10002,
+    "sourceHash": "16586173cf0ff7010ffb9bae11ca09fcd33c3bf175f83c0611fbae611f5bd48f",
+    "responses": {
+      "option-1": "A factor of two would apply to halving the allowed failure probability.",
+      "option-2": "Correct. Squaring half the tolerance gives one quarter in the denominator.",
+      "option-3": "A smaller error tolerance requires more observations under this bound."
+    }
+  },
+  {
+    "lesson": "probability-statistics-estimation-likelihood",
+    "id": 10001,
+    "sourceHash": "aa76ebf220d40f958f27f661d1f79cd87e486f1667d7973a527d74e827452ed5",
+    "responses": {
+      "option-1": "A particular sample can produce a nonzero error even with an unbiased rule.",
+      "option-2": "Correct. Bias is the estimator expectation minus the parameter.",
+      "option-3": "Zero bias does not eliminate variation from sample to sample."
+    }
+  },
+  {
+    "lesson": "probability-statistics-estimation-likelihood",
+    "id": 10002,
+    "sourceHash": "0a319846fc0a9734bb032c7e07ce98285cae70e5c5ea670cd68cd9dff23e1834",
+    "responses": {
+      "option-1": "Correct. The observed data stay fixed while the candidate parameter varies.",
+      "option-2": "The parameter is the argument being varied during likelihood maximization.",
+      "option-3": "A posterior is a different object requiring a prior and normalization."
+    }
+  },
+  {
+    "lesson": "probability-statistics-confidence-intervals",
+    "id": 10001,
+    "sourceHash": "a24fe2085ed3bd15e3c570ea94fd1a20f09170dc139ac0ff4eca910c3e05dfc2",
+    "responses": {
+      "option-1": "Correct. It describes how often the random interval contains the fixed parameter under repetition.",
+      "option-2": "A mean interval concerns the population mean, not the spread of individual observations.",
+      "option-3": "Posterior probability requires a Bayesian model; it is not the frequentist confidence interpretation."
+    }
+  },
+  {
+    "lesson": "probability-statistics-confidence-intervals",
+    "id": 10002,
+    "sourceHash": "ba834698d581d3e240af87673d1bf44d5c452ba6a40c3d9afca951d24eedcacf",
+    "responses": {
+      "option-1": "Correct. The random estimated denominator leads to Student t with n−1 degrees of freedom.",
+      "option-2": "The standard normal distribution has no degrees-of-freedom parameter and treats the standard deviation as known.",
+      "option-3": "A uniform reference does not describe the standardized sample mean under normal sampling."
+    }
+  },
+  {
+    "lesson": "probability-statistics-hypothesis-testing",
+    "id": 10001,
+    "sourceHash": "ac8107abb307423b9c8a7f216f3fc3889c3795be54fa1cd1b148632df060ee63",
+    "responses": {
+      "option-1": "A posterior probability of a hypothesis needs a prior and a different calculation.",
+      "option-2": "Correct. The alternative and statistic define extremeness before the tail probability is calculated.",
+      "option-3": "Practical size depends on the effect, units, and context, not just the p-value."
+    }
+  },
+  {
+    "lesson": "probability-statistics-hypothesis-testing",
+    "id": 10002,
+    "sourceHash": "7cdffcf7c71b6ad745a9d0d26c0fb1e14ba4e953ecc656f173b07f22f6f28056",
+    "responses": {
+      "option-1": "Correct. Use p₀(1−p₀)/n for the null variance.",
+      "option-2": "The observed proportion supplies the numerator and the plug-in interval standard error, not this null reference.",
+      "option-3": "Significance controls the rejection threshold; it is not the Bernoulli success parameter."
+    }
+  },
+  {
+    "lesson": "probability-statistics-bayesian-estimation",
+    "id": 10001,
+    "sourceHash": "6ba0d711b715d4e66ea2751c3064145d201907519bf7a3ad9e9f5aeb2d4bcf6e",
+    "responses": {
+      "option-1": "Correct. Both information sources enter the conditional parameter distribution.",
+      "option-2": "An MLE is a point summary and does not supply a prior distribution.",
+      "option-3": "A significance level belongs to a testing decision rule, not posterior normalization."
+    }
+  },
+  {
+    "lesson": "probability-statistics-bayesian-estimation",
+    "id": 10002,
+    "sourceHash": "529f44d6f44065ec9d24ae572c735c88844aef80471f88a17f8bbe7996fc3d43",
+    "responses": {
+      "option-1": "Conditional independence does not in general survive averaging over a common random parameter.",
+      "option-2": "Correct. The two-success probability uses E[p²], which need not equal E[p]²."
+    }
+  },
+  {
+    "lesson": "probability-statistics-regression-interpretation",
+    "id": 10001,
+    "sourceHash": "5421820cdf4a5a8332272e874ac5e5cbf53b62339d26150028c46f7e777d80e6",
+    "responses": {
+      "option-1": "Correct: decreasing SSE increases log-likelihood.",
+      "option-2": "Signed residuals can cancel; their sum is not the Gaussian loss.",
+      "option-3": "The question fixes the variance, and the normalizing term also matters when variance varies."
+    }
+  },
+  {
+    "lesson": "probability-statistics-regression-interpretation",
+    "id": 10002,
+    "sourceHash": "68a3f14dd83cae4f9938faf806dc528f41de39971258f8c975d265885af7cce0",
+    "responses": {
+      "option-1": "The mean interval concerns the population average, not an individual error.",
+      "option-2": "Correct: a prediction interval adds individual-response variation.",
+      "option-3": "The prediction interval explicitly includes new observation noise."
+    }
+  },
+  {
+    "lesson": "probability-statistics-resampling-model-assessment",
+    "id": 10001,
+    "sourceHash": "f984114f9c682bf5f122b4a47b7acc6fdd991e8d0e65293cbae5e0a3a4494a88",
+    "responses": {
+      "option-1": "The original sample size is unchanged.",
+      "option-2": "Correct: simulation precision improves while the underlying empirical distribution stays fixed.",
+      "option-3": "The same empirical data cannot repair omitted or systematically selected population cases."
+    }
+  },
+  {
+    "lesson": "probability-statistics-resampling-model-assessment",
+    "id": 10002,
+    "sourceHash": "aa7cfa38da9aa26776bb7a67d04bcbd97681e1ebe543d95656aa007460020605",
+    "responses": {
+      "option-1": "Actual positives form the denominator for recall.",
+      "option-2": "Correct: precision is TP divided by TP+FP.",
+      "option-3": "The total number of observations is used for accuracy."
+    }
   }
 ]

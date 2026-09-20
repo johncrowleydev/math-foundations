@@ -1,0 +1,262 @@
+title: Conditional Probability and Independence
+sections:
+  - title: Conditioning changes the reference population
+    questions:
+      - id: 1
+        type: freeform
+        prompt: If $P(A\cap B)=0.18$ and $P(B)=0.3$, find $P(A\mid B)$.
+        answerLines: 5
+        answer: 'Divide the overlap by the conditioning probability: $0.18/0.3=3/5$.'
+      - id: 2
+        type: freeform
+        prompt: A fair die is known to be at least $4$. Find the probability its face is even.
+        answerLines: 5
+        answer: The retained faces are $4,5,6$, of which two are even, so the probability is $2/3$.
+      - id: 3
+        type: freeform
+        prompt: A fair die is known to be even. Find the probability its face is at least $4$.
+        answerLines: 5
+        answer: The retained faces are $2,4,6$ and two qualify, giving $2/3$.
+      - id: 4
+        type: freeform
+        prompt: Among $50$ equally weighted records, $20$ have tag $B$ and $8$ have both tags. Find $P(A\mid B)$.
+        answerLines: 5
+        answer: The conditioned reference group contains $20$ records, so the answer is $8/20=2/5$.
+      - id: 5
+        type: freeform
+        prompt: Among fifty equally weighted records, twenty have tag $B$ and eight have both $A,B$. Find $P(A\cap B)$.
+        answerLines: 5
+        answer: 'The joint event uses all $50$ records as reference: $8/50=4/25$.'
+      - id: 6
+        type: freeform
+        prompt: Outcomes $a,b,c$ have probabilities $1/2,1/3,1/6$. Given $\{b,c\}$, find the probability of $b$.
+        answerLines: 5
+        answer: The retained weight is $1/2$, so the conditional probability is $(1/3)/(1/2)=2/3$.
+      - id: 7
+        type: freeform
+        prompt: If $P(A\mid B)=0.72$, find $P(A^c\mid B)$, assuming $P(B)>0$.
+        answerLines: 5
+        answer: 'Within the conditioned model, complements sum to one: $1-0.72=0.28=7/25$.'
+      - id: 8
+        type: freeform
+        prompt: For $P(B)>0$, evaluate $P(B\mid B)$.
+        answerLines: 5
+        answer: The ratio is $P(B)/P(B)=1$.
+      - id: 9
+        type: freeform
+        prompt: Explain why $P(A\mid B)$ is not assigned zero by the elementary definition when $P(B)=0$.
+        answerLines: 5
+        answer: The defining ratio has denominator zero. It therefore supplies no value; a zero probability would be an additional assertion unsupported by this definition.
+      - id: 10
+        type: freeform
+        prompt: 'True or false: conditioning makes all retained outcomes equally likely.'
+        answerLines: 5
+        answer: False. It divides all retained weights by the same positive number, preserving their relative ratios rather than equalizing them.
+  - title: Read tables and multiply along a history
+    questions:
+      - id: 11
+        type: freeform
+        prompt: A table has both $9$, only $A$ $21$, only $B$ $6$, neither $14$. Find $P(A\mid B)$.
+        answerLines: 5
+        answer: The $B$ total is $9+6=15$, so $P(A\mid B)=9/15=3/5$.
+      - id: 12
+        type: freeform
+        prompt: A table has both $A,B$ nine, only $A$ twenty-one, only $B$ six, and neither fourteen. Find $P(B\mid A)$.
+        answerLines: 5
+        answer: The $A$ total is $9+21=30$, so the ratio is $9/30=3/10$.
+      - id: 13
+        type: freeform
+        prompt: If $P(A)=0.4$ and $P(B\mid A)=0.7$, find the joint probability.
+        answerLines: 5
+        answer: 'Multiply along the conditional history: $0.4(0.7)=0.28=7/25$.'
+      - id: 14
+        type: freeform
+        prompt: If $P(A)=1/2$, $P(B\mid A)=2/3$, and $P(C\mid A\cap B)=3/4$, find $P(A\cap B\cap C)$.
+        answerLines: 5
+        answer: The chain rule gives $(1/2)(2/3)(3/4)=1/4$.
+      - id: 15
+        type: freeform
+        prompt: A bag has five red and three blue tokens. Draw two uniformly without replacement. Find the probability of two red.
+        answerLines: 5
+        answer: The conditional factors are $5/8$ and $4/7$, so the probability is $5/14$.
+      - id: 16
+        type: freeform
+        prompt: A bag contains five red and three blue tokens. Draw two uniformly without replacement. Find the probability of red then blue.
+        answerLines: 5
+        answer: The first probability is $5/8$, then three blue tokens remain among seven. The product is $(5/8)(3/7)=15/56$.
+      - id: 17
+        type: freeform
+        prompt: A bag contains five red and three blue tokens. Draw two uniformly without replacement. Find the probability of exactly one red in two draws.
+        answerLines: 5
+        answer: The red-blue and blue-red paths each have probability $15/56$, so their disjoint sum is $15/28$.
+      - id: 18
+        type: freeform
+        prompt: A reachable tree node has two outgoing branches, one of conditional probability $0.35$. Find the other probability.
+        answerLines: 5
+        answer: The two exhaustive disjoint branch probabilities must sum to one, so the other is $0.65=13/20$.
+      - id: 19
+        type: freeform
+        prompt: Explain why reversing $P(A\mid B)$ generally changes the answer.
+        answerLines: 5
+        answer: Both ratios use $P(A\cap B)$, but one divides by $P(B)$ and the other by $P(A)$. Different reference probabilities generally produce different results.
+      - id: 20
+        type: freeform
+        prompt: 'True or false: the chain rule requires all events in the history to be independent.'
+        answerLines: 5
+        answer: False. Conditional factors explicitly account for dependence. Independence is needed only to replace them by marginal probabilities.
+  - title: Independence is a testable factorization
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Independent events have probabilities $2/5$ and $3/4$. Find their intersection probability.
+        answerLines: 5
+        answer: Independence gives $(2/5)(3/4)=3/10$.
+      - id: 22
+        type: freeform
+        prompt: Independent events have probabilities $2/5$ and $3/4$. Find the probability neither occurs.
+        answerLines: 5
+        answer: Their complements are independent, so the probability is $(3/5)(1/4)=3/20$.
+      - id: 23
+        type: freeform
+        prompt: Independent events have probabilities $2/5$ and $3/4$. Find the probability at least one occurs.
+        answerLines: 5
+        answer: 'Subtract neither from one: $1-3/20=17/20$.'
+      - id: 24
+        type: freeform
+        prompt: If $P(A)=0.3$, $P(B)=0.6$, and $P(A\cap B)=0.18$, are the events independent?
+        answerLines: 5
+        answer: Yes. Their product is $0.3(0.6)=0.18$, exactly the supplied intersection.
+      - id: 25
+        type: freeform
+        prompt: If $P(A)=0.3$, $P(B)=0.6$, and $P(A\cap B)=0.12$, are the events independent?
+        answerLines: 5
+        answer: No. The product $0.18$ differs from the actual overlap $0.12$.
+      - id: 26
+        type: freeform
+        prompt: Independent events satisfy $P(A)=0.4$ and $P(B)=0.7$. Find $P(A\mid B)$.
+        answerLines: 5
+        answer: Since $B$ has positive probability and independence holds, $P(A\mid B)=P(A)=2/5$.
+      - id: 27
+        type: freeform
+        prompt: 'True or false: the empty event is independent of every event.'
+        answerLines: 5
+        answer: True. Both $P(\varnothing\cap A)$ and $P(\varnothing)P(A)$ equal zero.
+      - id: 28
+        type: freeform
+        prompt: A uniform choice from $1$ through $6$ defines $A=$ even and $B=$ at most $3$. Are these events independent?
+        answerLines: 5
+        answer: No. Each marginal is $1/2$, but their intersection contains only $2$, giving $1/6\ne1/4$.
+      - id: 29
+        type: freeform
+        prompt: Prove that positive-probability disjoint events cannot be independent.
+        answerLines: 5
+        answer: Disjointness gives intersection probability zero, whereas their marginal product is strictly positive. Thus the defining independence equality fails.
+      - id: 30
+        type: freeform
+        prompt: Prove that if $A$ and $B$ are independent, then $A$ and $B^c$ are independent.
+        answerLines: 5
+        answer: "Subtract the overlap: $P(A\\cap B^c)=P(A)-P(A\\cap B)=P(A)-P(A)P(B)=P(A)P(B^c)$."
+  - title: Repeated trials and mutual independence
+    questions:
+      - id: 31
+        type: freeform
+        prompt: Three mutually independent events each have probability $1/2$. Find the probability all occur.
+        answerLines: 5
+        answer: 'Multiply all three marginals: $(1/2)^3=1/8$.'
+      - id: 32
+        type: freeform
+        prompt: Four independent attempts each succeed with probability $1/3$. Find the probability none succeeds.
+        answerLines: 5
+        answer: All four fail with probability $(2/3)^4=16/81$.
+      - id: 33
+        type: freeform
+        prompt: Four independent attempts each succeed with probability $1/3$. Find the probability at least one succeeds.
+        answerLines: 5
+        answer: The complement calculation gives $1-16/81=65/81$.
+      - id: 34
+        type: freeform
+        prompt: Three independent attempts succeed with probabilities $1/2,2/3,3/4$. Find the probability all succeed.
+        answerLines: 5
+        answer: The product is $(1/2)(2/3)(3/4)=1/4$.
+      - id: 35
+        type: freeform
+        prompt: Three independent attempts succeed with probabilities $1/2,2/3,3/4$. Find the probability all fail.
+        answerLines: 5
+        answer: 'Multiply the complement probabilities: $(1/2)(1/3)(1/4)=1/24$.'
+      - id: 36
+        type: freeform
+        prompt: Independent fair bits define $A=$ first is $1$, $B=$ second is $1$, $C=$ bits agree. Find $P(A\cap B\cap C)$.
+        answerLines: 5
+        answer: Only $11$ satisfies all three events, so the probability is $1/4$.
+      - id: 37
+        type: freeform
+        prompt: Independent fair bits define $A=$ first is $1$, $B=$ second is $1$, and $C=$ the bits agree. Find $P(A)P(B)P(C)$.
+        answerLines: 5
+        answer: Each marginal equals $1/2$, so the product is $1/8$.
+      - id: 38
+        type: freeform
+        prompt: 'True or false: independent trials must have equal success probabilities.'
+        answerLines: 5
+        answer: False. Independence concerns joint factorization; the marginal probabilities may differ.
+      - id: 39
+        type: freeform
+        prompt: Explain why pairwise independence does not authorize a three-factor product.
+        answerLines: 5
+        answer: Pairwise conditions constrain only intersections of two events. Mutual independence also requires the triple intersection equation, which can fail in the fair-bit agreement example.
+      - id: 40
+        type: freeform
+        prompt: An independent sequence has success probability $3/5$ on every attempt. Find the probability of failure, failure, success in that order.
+        answerLines: 5
+        answer: The specified pattern has probability $(2/5)^2(3/5)=12/125$.
+  - title: Conditioning, selection, and causal restraint
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Two independent fair coins are known to contain at least one head. Find the probability of two heads.
+        answerLines: 5
+        answer: The retained outcomes are $HH,HT,TH$, so the probability is $1/3$.
+      - id: 42
+        type: freeform
+        prompt: Two independent fair coins are known to have heads on the first coin. Find the probability of two heads.
+        answerLines: 5
+        answer: The retained outcomes are $HH,HT$, so the probability is $1/2$.
+      - id: 43
+        type: freeform
+        prompt: Given at least one head in two independent fair coins, find the probability the first coin is heads.
+        answerLines: 5
+        answer: Among $HH,HT,TH$, the first two have first-coin heads, giving $2/3$.
+      - id: 44
+        type: freeform
+        prompt: Given at least one head in two independent fair coins, are the two head events independent?
+        answerLines: 5
+        answer: No. Their conditional marginal product is $4/9$, but their conditional joint probability is $1/3$.
+      - id: 45
+        type: freeform
+        prompt: If $P(A\mid C)=0.4$, $P(B\mid C)=0.5$, and the events are conditionally independent given $C$, find $P(A\cap B\mid C)$.
+        answerLines: 5
+        answer: Conditional factorization gives $0.4(0.5)=0.2=1/5$.
+      - id: 46
+        type: freeform
+        prompt: $P(C)=0.3$, $P(A\mid C)=0.4$, and $P(B\mid C)=0.5$; $A,B$ are conditionally independent given $C$. Find $P(A\cap B\cap C)$.
+        answerLines: 5
+        answer: 'Multiply by the conditioning weight: $(1/5)(3/10)=3/50$.'
+      - id: 47
+        type: freeform
+        prompt: A conditional table within $C$ has both $0.12$, only $A$ $0.18$, only $B$ $0.28$, and neither $0.42$. Are $A,B$ independent given $C$?
+        answerLines: 5
+        answer: The conditional marginals are $0.30$ and $0.40$, whose product is $0.12$, matching the joint entry. Yes.
+      - id: 48
+        type: freeform
+        prompt: "True or false: $P(A\\mid B)>P(A)$ alone proves that causing $B$ would increase the chance of $A$."
+        answerLines: 5
+        answer: False. The comparison is an observational conditional association. It supplies no intervention model or exclusion of alternative explanations.
+      - id: 49
+        type: freeform
+        prompt: Explain why “a randomly selected record has tag $B$” and “a record is chosen uniformly from those with tag $B$” lead to the same conditional distribution when the original records were uniform.
+        answerLines: 5
+        answer: Conditioning a uniform distribution on membership in $B$ gives equal weight to each retained record, normalized by their count. That matches uniform sampling directly from the retained set.
+      - id: 50
+        type: freeform
+        prompt: Construct two different information events about two independent fair coins that both guarantee a head but give different probabilities of two heads.
+        answerLines: 5
+        answer: Conditioning on first-coin heads gives $1/2$. Conditioning on at least one head gives $1/3$. The first retains two ordered outcomes; the second retains three.

@@ -1,0 +1,262 @@
+title: Joint and Conditional Distributions
+sections:
+  - title: A joint table retains how variables occur together
+    questions:
+      - id: 1
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $P(X=0)$.
+        answerLines: 5
+        answer: 'Add the first row: $(1+2+1)/10=2/5$.'
+      - id: 2
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $P(Y=2)$.
+        answerLines: 5
+        answer: 'Add the last column: $(1+3)/10=2/5$.'
+      - id: 3
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $P(X=1,Y\ge1)$.
+        answerLines: 5
+        answer: The selected cells total $1/10+3/10=2/5$.
+      - id: 4
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $P(X+Y=1)$.
+        answerLines: 5
+        answer: Cells $(0,1)$ and $(1,0)$ contribute $2/10+2/10=2/5$.
+      - id: 5
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $P(X=Y)$.
+        answerLines: 5
+        answer: Cells $(0,0)$ and $(1,1)$ contribute $1/10+1/10=1/5$.
+      - id: 6
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Give the marginal probabilities for $Y=0,1,2$ in that order.
+        answerLines: 5
+        answer: The column sums are $(3/10,3/10,2/5)$.
+      - id: 7
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $E[Y]$.
+        answerLines: 5
+        answer: $0(3/10)+1(3/10)+2(2/5)=11/10$.
+      - id: 8
+        type: freeform
+        prompt: Fair binary variables always agree. Fill the joint table with rows $X=0,1$ and columns $Y=0,1$.
+        answerLines: 5
+        answer: The only possible pairs are $(0,0)$ and $(1,1)$, each with probability $1/2$. The table is $\begin{pmatrix}1/2&0\\0&1/2\end{pmatrix}$.
+      - id: 9
+        type: freeform
+        prompt: Construct two different joint PMFs having fair binary marginals.
+        answerLines: 5
+        answer: The diagonal table $\begin{pmatrix}1/2&0\\0&1/2\end{pmatrix}$ and the independent table $\begin{pmatrix}1/4&1/4\\1/4&1/4\end{pmatrix}$ have the same row and column sums but different dependence.
+      - id: 10
+        type: freeform
+        prompt: Explain why summing a row yields a marginal probability.
+        answerLines: 5
+        answer: The cells in a row are disjoint cases for the other variable, and their union is the event specifying that row's value of $X$. Additivity therefore gives $P(X=x)$.
+  - title: Condition a table and test independence
+    questions:
+      - id: 11
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $P(Y=2\mid X=1)$.
+        answerLines: 5
+        answer: Divide $3/10$ by $6/10$ to obtain $1/2$.
+      - id: 12
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Find $P(X=1\mid Y=2)$.
+        answerLines: 5
+        answer: Divide $3/10$ by $4/10$ to obtain $3/4$.
+      - id: 13
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Give the conditional PMF of $Y=0,1,2$ given $X=0$.
+        answerLines: 5
+        answer: Divide the first row by $4/10$ to get $(1/4,1/2,1/4)$.
+      - id: 14
+        type: freeform
+        prompt: The joint PMF has rows $X=0,1$ and columns $Y=0,1,2$, with entries $\begin{pmatrix}1/10&2/10&1/10\\2/10&1/10&3/10\end{pmatrix}$. Are $X$ and $Y$ independent? Answer true or false.
+        answerLines: 5
+        answer: False. $P(Y=2\mid X=1)=1/2$ differs from $P(Y=2)=2/5$.
+      - id: 15
+        type: freeform
+        prompt: Independent bits have $P(X=1)=1/3$ and $P(Y=1)=1/4$. Fill their joint table with rows and columns ordered $0,1$.
+        answerLines: 5
+        answer: Multiply marginal probabilities to get $\begin{pmatrix}1/2&1/6\\1/4&1/12\end{pmatrix}$.
+      - id: 16
+        type: freeform
+        prompt: A high-load regime has probability $1/4$. Failure probabilities given low and high load are $1/10$ and $1/2$. Find overall failure probability.
+        answerLines: 5
+        answer: $(3/4)(1/10)+(1/4)(1/2)=3/40+5/40=1/5$.
+      - id: 17
+        type: freeform
+        prompt: In that two-regime model, high load has probability $1/4$, and failure probabilities are $1/10$ at low load and $1/2$ at high load. Find the probability of high load given failure.
+        answerLines: 5
+        answer: The joint high-load/failure probability is $1/8$, and overall failure probability is $1/5$. Their ratio is $5/8$.
+      - id: 18
+        type: freeform
+        prompt: If independent variables satisfy $P(X=0)=2/5$ and $P(Y=0)=1/3$, find $P(X=0,Y=0)$.
+        answerLines: 5
+        answer: Independence gives $(2/5)(1/3)=2/15$.
+      - id: 19
+        type: freeform
+        prompt: Explain why dividing an entire joint table by one row sum does not produce the conditional PMF given that row.
+        answerLines: 5
+        answer: Conditioning first discards outcomes outside the row. Dividing all cells retains forbidden outcomes and generally produces total mass greater than one.
+      - id: 20
+        type: freeform
+        prompt: If $P(X=0)>0$, $P(Y=0)>0$, and $P(X=0,Y=0)=0$, prove the variables are dependent.
+        answerLines: 5
+        answer: Independence would require $P(X=0,Y=0)=P(X=0)P(Y=0)>0$, contradicting the zero joint probability.
+  - title: A joint density assigns probability to regions
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find $c$ so that $f(x,y)=c$ on $0<x<2,0<y<3$, zero elsewhere, is a joint density.
+        answerLines: 5
+        answer: The rectangle has area six, so $6c=1$ and $c=1/6$.
+      - id: 22
+        type: freeform
+        prompt: For density $4xy$ on the unit square, find $P(X<1/2,Y<1/2)$.
+        answerLines: 5
+        answer: $\int_0^{1/2}\int_0^{1/2}4xy\,dy\,dx=1/16$.
+      - id: 23
+        type: freeform
+        prompt: For density $4xy$ on the unit square, give $f_X(x)$ for $0<x<1$.
+        answerLines: 5
+        answer: Integrating out $y$ gives $f_X(x)=\int_0^14xy\,dy=2x$.
+      - id: 24
+        type: freeform
+        prompt: For density $4xy$ on the unit square, find $P(X+Y<1)$.
+        answerLines: 5
+        answer: $\int_0^1\int_0^{1-x}4xy\,dy\,dx=\int_0^12x(1-x)^2\,dx=1/6$.
+      - id: 25
+        type: freeform
+        prompt: Normalize constant density $c$ on $0<x<y<1$.
+        answerLines: 5
+        answer: The triangle has area $1/2$, so $c=2$.
+      - id: 26
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, give $f_X(x)$ on $0<x<1$.
+        answerLines: 5
+        answer: $\int_x^12\,dy=2(1-x)$.
+      - id: 27
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, give $f_Y(y)$ on $0<y<1$.
+        answerLines: 5
+        answer: $\int_0^y2\,dx=2y$.
+      - id: 28
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, find $P(Y<1/2)$.
+        answerLines: 5
+        answer: "Integrate the marginal: $\\int_0^{1/2}2y\\,dy=1/4$."
+      - id: 29
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, find $P(X>1/2)$.
+        answerLines: 5
+        answer: $\int_{1/2}^12(1-x)\,dx=1/4$.
+      - id: 30
+        type: freeform
+        prompt: Explain why integrating the density $2$ over the whole unit square is wrong for the model supported on $0<x<y<1$.
+        answerLines: 5
+        answer: The density is zero outside the triangle. Integrating the nonzero formula across the square includes impossible pairs and gives mass two instead of one.
+  - title: Condition continuous variables using densities
+    questions:
+      - id: 31
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, give $f_{Y\mid X}(y\mid x)$ on $x<y<1$, for fixed $0<x<1$.
+        answerLines: 5
+        answer: Divide by $f_X(x)=2(1-x)$ to get $1/(1-x)$.
+      - id: 32
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, give $f_{X\mid Y}(x\mid y)$ on $0<x<y$, for fixed $0<y<1$.
+        answerLines: 5
+        answer: Divide by $f_Y(y)=2y$ to get $1/y$.
+      - id: 33
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, find $P(Y>1/2\mid X=1/4)$.
+        answerLines: 5
+        answer: The conditional distribution is uniform on $(1/4,1)$, giving $(1/2)/(3/4)=2/3$.
+      - id: 34
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, find $P(X<1/4\mid Y=1/2)$.
+        answerLines: 5
+        answer: The conditional distribution is uniform on $(0,1/2)$, giving $(1/4)/(1/2)=1/2$.
+      - id: 35
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, find $P(Y<X\mid X=1/3)$.
+        answerLines: 5
+        answer: The conditional support is $1/3<Y<1$, so $Y<X$ is impossible and its probability is zero.
+      - id: 36
+        type: freeform
+        prompt: For density $x+y$ on the unit square, give $f_X(x)$ on $0<x<1$.
+        answerLines: 5
+        answer: $\int_0^1(x+y)\,dy=x+1/2$.
+      - id: 37
+        type: freeform
+        prompt: For density $x+y$ on the unit square, give $f_{Y\mid X}(y\mid x)$ for $0<x,y<1$.
+        answerLines: 5
+        answer: 'Normalize the slice: $(x+y)/(x+1/2)$.'
+      - id: 38
+        type: freeform
+        prompt: For density $x+y$ on the unit square, find $P(Y<1/2\mid X=1/2)$.
+        answerLines: 5
+        answer: At $x=1/2$ the conditional density is $1/2+y$. Its integral from zero to $1/2$ is $1/4+1/8=3/8$.
+      - id: 39
+        type: freeform
+        prompt: Explain why $P(Y>1/2\mid X=1/4)$ is not computed by dividing by $P(X=1/4)$ for a jointly continuous pair.
+        answerLines: 5
+        answer: The denominator would be zero. A conditional density is defined using the joint-to-marginal density ratio, motivated by shrinking positive-probability strips.
+      - id: 40
+        type: freeform
+        prompt: For density $2$ on $0<x<y<1$, find $P(Y>1/2\mid X<1/4)$.
+        answerLines: 5
+        answer: The numerator is the rectangle integral $2(1/4)(1/2)=1/4$. The denominator is $\int_0^{1/4}2(1-x)\,dx=7/16$. The ratio is $4/7$.
+  - title: Check the whole joint model
+    questions:
+      - id: 41
+        type: freeform
+        prompt: 'True or false: density $4xy$ on the unit square, zero elsewhere, gives independent coordinates.'
+        answerLines: 5
+        answer: True. It is the product of the marginal densities $2x$ and $2y$, each on $(0,1)$.
+      - id: 42
+        type: freeform
+        prompt: 'True or false: density $2$ on $0<x<y<1$, zero elsewhere, gives independent coordinates.'
+        answerLines: 5
+        answer: False. The triangular support excludes pairs with $x>y$ where both marginals are positive.
+      - id: 43
+        type: freeform
+        prompt: For density $4xy$ on the unit square, give the joint CDF inside the square.
+        answerLines: 5
+        answer: $\int_0^x\int_0^y4uv\,dv\,du=x^2y^2$.
+      - id: 44
+        type: freeform
+        prompt: For joint CDF $F(x,y)=x^2y^3$ on the unit square, give the joint density in its interior.
+        answerLines: 5
+        answer: The mixed derivative is $\partial^2F/(\partial x\partial y)=6xy^2$.
+      - id: 45
+        type: freeform
+        prompt: Suppose $F(b,d)=4/5,F(a,d)=1/5,F(b,c)=3/10,F(a,c)=1/10$, with $a<b,c<d$. Find the probability of $(a,b]\times(c,d]$.
+        answerLines: 5
+        answer: Inclusion–exclusion gives $4/5-1/5-3/10+1/10=2/5$.
+      - id: 46
+        type: freeform
+        prompt: For independent uniform $(0,1)$ variables, find $P(X<1/3,Y>1/2)$.
+        answerLines: 5
+        answer: 'Multiply the event probabilities: $(1/3)(1/2)=1/6$.'
+      - id: 47
+        type: freeform
+        prompt: For independent uniform $(0,1)$ variables, find $P(X+Y<1)$.
+        answerLines: 5
+        answer: The region is a triangle of area $1/2$ under density one, so the probability is $1/2$.
+      - id: 48
+        type: freeform
+        prompt: 'True or false: continuous marginal distributions ensure a joint density exists.'
+        answerLines: 5
+        answer: False. For $Y=X$ with continuous $X$, joint probability is concentrated on a line.
+      - id: 49
+        type: freeform
+        prompt: Explain why a factorized algebraic density formula is insufficient to establish independence unless support is also checked.
+        answerLines: 5
+        answer: The full density includes its zero region. A nonrectangular support can couple the variables even when the positive formula has separate factors. Independence requires factorization of the entire distribution.
+      - id: 50
+        type: freeform
+        prompt: Derive the four-term rectangle formula using event subtraction.
+        answerLines: 5
+        answer: Begin with the lower-left region ending at $(b,d)$. Subtract portions ending at $(a,d)$ and $(b,c)$. Their overlap ending at $(a,c)$ was removed twice, so add it once. This leaves exactly $(a,b]\times(c,d]$.

@@ -1,0 +1,262 @@
+title: Expectation and Variance
+sections:
+  - title: Expectation is a probability-weighted mean
+    questions:
+      - id: 1
+        type: freeform
+        prompt: $X$ has values $0,1,2$ with probabilities $1/4,1/2,1/4$. Find $E[X]$.
+        answerLines: 5
+        answer: The weighted sum is $0+1/2+2/4=1$.
+      - id: 2
+        type: freeform
+        prompt: $X$ has values $-2,1,4$ with probabilities $1/2,1/4,1/4$. Find its mean.
+        answerLines: 5
+        answer: The mean is $-2(1/2)+1(1/4)+4(1/4)=1/4$.
+      - id: 3
+        type: freeform
+        prompt: A fair eight-sided die is numbered $1$ through $8$. Find its mean.
+        answerLines: 5
+        answer: Its equally weighted values sum to $36$, so the mean is $36/8=9/2$.
+      - id: 4
+        type: freeform
+        prompt: A payout is $12$ with probability $1/6$ and zero otherwise. Find expected gross payout.
+        answerLines: 5
+        answer: The weighted payout is $12(1/6)=2$.
+      - id: 5
+        type: freeform
+        prompt: A payout is twelve with probability $1/6$ and zero otherwise. An entry fee of three is charged. Find expected net payoff.
+        answerLines: 5
+        answer: 'Subtract the fixed fee from expected gross payout: $2-3=-1$.'
+      - id: 6
+        type: freeform
+        prompt: A variable is constantly $7$. Find its expectation.
+        answerLines: 5
+        answer: Its sole value has probability one, so $E[X]=7$.
+      - id: 7
+        type: freeform
+        prompt: 'True or false: the expected value must be in the support.'
+        answerLines: 5
+        answer: False. A fair binary variable has mean $1/2$ but support $\{0,1\}$.
+      - id: 8
+        type: freeform
+        prompt: A nonnegative variable has mass $1/[k(k+1)]$ at $k=1,2,\ldots$. Show its expectation is infinite.
+        answerLines: 5
+        answer: The expectation sum is $\sum_{k\geq1}k/[k(k+1)]=\sum_{k\geq1}1/(k+1)$, a divergent harmonic tail. The PMF normalizes by telescoping, but the mean is infinite.
+      - id: 9
+        type: freeform
+        prompt: $X$ takes $0$ or $5$ and has mean $2$. Find $P(X=5)$.
+        answerLines: 5
+        answer: Writing that probability as $p$ gives $5p=2$, hence $p=2/5$.
+      - id: 10
+        type: freeform
+        prompt: Explain why a mean of $0.9$ replacement parts per job is compatible with integer-valued usage.
+        answerLines: 5
+        answer: The expectation averages across possible jobs with probability weights. Individual jobs use integer quantities, while their weighted average may be fractional.
+  - title: Transformations, linearity, and indicators
+    questions:
+      - id: 11
+        type: freeform
+        prompt: If $E[X]=4$, find $E[3X-2]$.
+        answerLines: 5
+        answer: Linearity gives $3(4)-2=10$.
+      - id: 12
+        type: freeform
+        prompt: If $E[X]=2$ and $E[Y]=-1$, find $E[2X+3Y+5]$.
+        answerLines: 5
+        answer: The expectation is $2(2)+3(-1)+5=6$.
+      - id: 13
+        type: freeform
+        prompt: $X$ is equally likely to be $-3$ or $3$. Find $E[X^2]$.
+        answerLines: 5
+        answer: Both squared values equal nine, so $E[X^2]=9$.
+      - id: 14
+        type: freeform
+        prompt: $X$ is equally likely to be $-3$ or $3$. Find $(E[X])^2$.
+        answerLines: 5
+        answer: Symmetry gives mean zero, so its square is $0$.
+      - id: 15
+        type: freeform
+        prompt: An event has probability $0.35$. Find the mean of its indicator.
+        answerLines: 5
+        answer: 'The indicator mean equals the event probability: $7/20$.'
+      - id: 16
+        type: freeform
+        prompt: Five events each have probability $0.2$. Find the expected number that occur, without assuming independence.
+        answerLines: 5
+        answer: Write the count as five indicators. Their expected sum is $5(0.2)=1$.
+      - id: 17
+        type: freeform
+        prompt: Select two people uniformly from eight, of whom three are designated. Find the expected number of designated people selected.
+        answerLines: 5
+        answer: Each designated person is selected with probability $2/8$, so the expected count is $3(2/8)=3/4$.
+      - id: 18
+        type: freeform
+        prompt: $X$ has values $0,1,3$ with probabilities $1/2,1/4,1/4$. Find $E[(X-1)^2]$.
+        answerLines: 5
+        answer: The transformed values are one, zero, and four, so the weighted mean is $1/2+0+4/4=3/2$.
+      - id: 19
+        type: freeform
+        prompt: Prove $E[I_A]=P(A)$ from the expectation definition.
+        answerLines: 5
+        answer: The two contributions are $1\cdot P(A)+0\cdot P(A^c)=P(A)$.
+      - id: 20
+        type: freeform
+        prompt: "True or false: dependence can make $E[X+Y]\\ne E[X]+E[Y]$ for finite-support variables."
+        answerLines: 5
+        answer: False. Linearity holds without independence when the expectations are finite.
+  - title: Variance and standard deviation measure spread
+    questions:
+      - id: 21
+        type: freeform
+        prompt: $X$ is equally likely to be $0$ or $4$. Find its variance.
+        answerLines: 5
+        answer: Its mean is two and each squared deviation is four, giving variance $4$.
+      - id: 22
+        type: freeform
+        prompt: $X$ is equally likely to be $0$ or $4$. Find its standard deviation.
+        answerLines: 5
+        answer: The nonnegative square root of variance four is $2$.
+      - id: 23
+        type: freeform
+        prompt: If $E[X]=3$ and $E[X^2]=13$, find the variance.
+        answerLines: 5
+        answer: 'Subtract the squared mean: $13-9=4$.'
+      - id: 24
+        type: freeform
+        prompt: If $E[X]=2$ and $\operatorname{Var}(X)=5$, find $E[X^2]$.
+        answerLines: 5
+        answer: 'Rearrange the moment identity: $E[X^2]=5+2^2=9$.'
+      - id: 25
+        type: freeform
+        prompt: Masses at $0,1,2$ are $1/4,1/2,1/4$. Find the variance.
+        answerLines: 5
+        answer: The mean is one and second moment is $1/2+4/4=3/2$. Thus variance is $3/2-1=1/2$.
+      - id: 26
+        type: freeform
+        prompt: Masses of $X$ at $0,1,2$ are $1/4,1/2,1/4$. Find the standard deviation exactly.
+        answerLines: 5
+        answer: The standard deviation is $\sqrt{1/2}=\sqrt2/2$.
+      - id: 27
+        type: freeform
+        prompt: A variable equals $-5$ with probability one. Find its variance.
+        answerLines: 5
+        answer: It always equals its mean, so every squared deviation is zero and the variance is $0$.
+      - id: 28
+        type: freeform
+        prompt: 'True or false: mean $4$ and second moment $10$ are possible for a real finite-variance variable.'
+        answerLines: 5
+        answer: False. They would give variance $10-16=-6$, contradicting nonnegativity.
+      - id: 29
+        type: freeform
+        prompt: Derive the second-moment formula for variance.
+        answerLines: 5
+        answer: "Expand and average: $E[(X-\\mu)^2]=E[X^2]-2\\mu E[X]+\\mu^2=E[X^2]-\\mu^2$, using $E[X]=\\mu$."
+      - id: 30
+        type: freeform
+        prompt: Explain why $E[X-E[X]]=0$ cannot serve as a useful measure of spread.
+        answerLines: 5
+        answer: Positive and negative deviations cancel for every integrable variable, so the expression cannot distinguish a constant from a widely dispersed distribution.
+  - title: Scaling, sums, and the role of dependence
+    questions:
+      - id: 31
+        type: freeform
+        prompt: If $\operatorname{Var}(X)=3$, find $\operatorname{Var}(2X+7)$.
+        answerLines: 5
+        answer: The squared scale gives $2^2(3)=12$; the shift has no effect.
+      - id: 32
+        type: freeform
+        prompt: If $\operatorname{Var}(X)=5$, find $\operatorname{Var}(-3X)$.
+        answerLines: 5
+        answer: Squaring the scale gives $9(5)=45$.
+      - id: 33
+        type: freeform
+        prompt: If $\operatorname{SD}(X)=4$, find $\operatorname{SD}(-2X+1)$.
+        answerLines: 5
+        answer: Standard deviation scales by the absolute factor, giving $2(4)=8$.
+      - id: 34
+        type: freeform
+        prompt: Independent $X,Y$ have variances $2,7$. Find $\operatorname{Var}(X+Y)$.
+        answerLines: 5
+        answer: Independent variances add, giving $2+7=9$.
+      - id: 35
+        type: freeform
+        prompt: Independent $X,Y$ have variances $2,7$. Find $\operatorname{Var}(2X-Y)$.
+        answerLines: 5
+        answer: 'Scale before adding: $4(2)+1(7)=15$.'
+      - id: 36
+        type: freeform
+        prompt: Four independent observations each have variance $8$. Find the variance of their average.
+        answerLines: 5
+        answer: The sum has variance $32$; dividing by four scales variance by $1/16$, yielding $2$.
+      - id: 37
+        type: freeform
+        prompt: If $Y=X$ and $\operatorname{Var}(X)=6$, find $\operatorname{Var}(X+Y)$.
+        answerLines: 5
+        answer: The sum is $2X$, so its variance is $4(6)=24$.
+      - id: 38
+        type: freeform
+        prompt: If $Y=-X$, find $\operatorname{Var}(X+Y)$.
+        answerLines: 5
+        answer: The sum is identically zero, hence has variance $0$.
+      - id: 39
+        type: freeform
+        prompt: Prove variance is unchanged by adding a constant.
+        answerLines: 5
+        answer: Since $E[X+b]=E[X]+b$, the centered difference is $(X+b)-(E[X]+b)=X-E[X]$. Its expected square is unchanged.
+      - id: 40
+        type: freeform
+        prompt: 'True or false: independence is required to add means, just as it is a sufficient condition to add variances.'
+        answerLines: 5
+        answer: False. Finite expectations add regardless of dependence. Independent variables have additive variances, but this is a different property.
+  - title: Use moments without losing the full model
+    questions:
+      - id: 41
+        type: freeform
+        prompt: $X$ has masses $1/8,3/4,1/8$ at $-2,0,2$. Find its mean.
+        answerLines: 5
+        answer: 'The negative and positive contributions cancel: $-2/8+2/8=0$.'
+      - id: 42
+        type: freeform
+        prompt: $X$ has masses $1/8,3/4,1/8$ at $-2,0,2$. Find its second moment.
+        answerLines: 5
+        answer: The nonzero squared contributions total $4/8+4/8=1$.
+      - id: 43
+        type: freeform
+        prompt: $X$ has masses $1/8,3/4,1/8$ at $-2,0,2$. Find its variance.
+        answerLines: 5
+        answer: The mean is zero, so variance equals the second moment, $1$.
+      - id: 44
+        type: freeform
+        prompt: $X$ has masses $1/8,3/4,1/8$ at $-2,0,2$. Find $P(|X|\geq2)$.
+        answerLines: 5
+        answer: Both extreme values qualify, giving $1/8+1/8=1/4$.
+      - id: 45
+        type: freeform
+        prompt: A cost is zero with probability $3/4$ and $8$ otherwise. Find its mean.
+        answerLines: 5
+        answer: The weighted cost is $8(1/4)=2$.
+      - id: 46
+        type: freeform
+        prompt: A cost is zero with probability $3/4$ and eight otherwise. Find its variance.
+        answerLines: 5
+        answer: Its second moment is $64/4=16$ and squared mean is four, giving variance $12$.
+      - id: 47
+        type: freeform
+        prompt: $X$ has values $0,2,5$ with masses $1/2,1/4,1/4$. Find $E[X\mid X>0]$ by renormalizing.
+        answerLines: 5
+        answer: Conditional masses at two and five are each $1/2$, so the conditional mean is $2/2+5/2=7/2$.
+      - id: 48
+        type: freeform
+        prompt: 'True or false: two distributions with the same mean and variance must assign the same mass to zero.'
+        answerLines: 5
+        answer: False. Equal masses at minus one and one have zero mass at zero; masses $1/8,3/4,1/8$ at minus two, zero, two have mass $3/4$ there. Both have mean zero and variance one.
+      - id: 49
+        type: freeform
+        prompt: Prove that a finite-support variable bounded between $a$ and $b$ has mean between $a$ and $b$.
+        answerLines: 5
+        answer: Multiply $a\leq x\leq b$ by each nonnegative mass and sum. Since masses total one, the resulting bounds are $a\leq E[X]\leq b$.
+      - id: 50
+        type: freeform
+        prompt: Explain why a minimum-expected-cost objective need not minimize the probability of a very large cost.
+        answerLines: 5
+        answer: The mean combines all magnitudes with their probabilities. Different distributions can share a mean while assigning different probabilities to large costs, so the tail objective requires separate information.

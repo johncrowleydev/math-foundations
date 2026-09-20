@@ -1,0 +1,262 @@
+title: Data, Samples, and Study Design
+sections:
+  - title: Define the population, observation, and question
+    questions:
+      - id: 1
+        type: freeform
+        prompt: The mean duration of every request in the target day's population is a parameter or a statistic? Enter one word.
+        answerLines: 5
+        answer: Parameter. It summarizes the entire defined population.
+      - id: 2
+        type: freeform
+        prompt: The mean duration of fifty sampled requests is a parameter or a statistic? Enter one word.
+        answerLines: 5
+        answer: Statistic. It is calculated from the observed sample.
+      - id: 3
+        type: freeform
+        prompt: A dataset codes operating-system families as $1,2,3$. Is this variable categorical or quantitative? Enter one word.
+        answerLines: 5
+        answer: Categorical. The numbers label categories and do not represent measured magnitudes.
+      - id: 4
+        type: freeform
+        prompt: Is the number of retries before completion discrete or continuous? Enter one word.
+        answerLines: 5
+        answer: Discrete. It takes nonnegative integer count values.
+      - id: 5
+        type: freeform
+        prompt: A sample of forty requests contains six failures. Find the sample failure proportion.
+        answerLines: 5
+        answer: $6/40=3/20$.
+      - id: 6
+        type: freeform
+        prompt: Twenty devices each contribute ten readings. How many distinct devices were observed?
+        answerLines: 5
+        answer: There are $20$ devices, even though there are two hundred readings.
+      - id: 7
+        type: freeform
+        prompt: A sample contains binary observations $1,0,1,1,0$. Find their mean.
+        answerLines: 5
+        answer: There are three ones among five observations, so the mean is $3/5$.
+      - id: 8
+        type: freeform
+        prompt: 'True or false: describing all recorded observations necessarily justifies a claim about future observations.'
+        answerLines: 5
+        answer: False. Generalization requires assumptions about how the target population or process relates to the observed data.
+      - id: 9
+        type: freeform
+        prompt: Define a population and observational unit for a study of daily battery life across a model of laptop.
+        answerLines: 5
+        answer: For example, the population could be all devices of that model used during a specified month under stated conditions, and the unit could be a device-day. Repeated days from the same device should be identified because they may be dependent.
+      - id: 10
+        type: freeform
+        prompt: Explain why a sample can be representative of one population and unsuitable for another.
+        answerLines: 5
+        answer: Representation is relative to the target. A random sample of one day's requests can describe that day, while a changed workload or software version makes extrapolation to another period questionable.
+  - title: Summarize location without hiding the data
+    questions:
+      - id: 11
+        type: freeform
+        prompt: Find the mean of $1,2,2,3,12$.
+        answerLines: 5
+        answer: The sum is twenty and there are five values, so the mean is $4$.
+      - id: 12
+        type: freeform
+        prompt: Find the median of $12,2,1,3,2$.
+        answerLines: 5
+        answer: Sort to $1,2,2,3,12$; the middle value is $2$.
+      - id: 13
+        type: freeform
+        prompt: Find the mode of $1,2,2,3,12$.
+        answerLines: 5
+        answer: Two occurs twice, more often than any other value, so the mode is $2$.
+      - id: 14
+        type: freeform
+        prompt: Find the median of $1,4,7,10$, using the average of the two middle values.
+        answerLines: 5
+        answer: $(4+7)/2=11/2$.
+      - id: 15
+        type: freeform
+        prompt: Values zero, one, and two have frequencies two, three, and five. Find the sample mean.
+        answerLines: 5
+        answer: 'The weighted sum is $0(2)+1(3)+2(5)=13$, divided by ten observations: $13/10$.'
+      - id: 16
+        type: freeform
+        prompt: Ten observations have mean four; thirty have mean eight. Find the combined mean.
+        answerLines: 5
+        answer: $(10\cdot4+30\cdot8)/40=7$.
+      - id: 17
+        type: freeform
+        prompt: A sample of five values has mean six. Four values are $2,4,7,8$. Find the fifth.
+        answerLines: 5
+        answer: The total must be thirty. The four known values sum to twenty-one, so the fifth is $9$.
+      - id: 18
+        type: freeform
+        prompt: A single observation in a sample of ten increases by twenty. By how much does the mean increase?
+        answerLines: 5
+        answer: The sum rises by twenty and sample size stays ten, so the mean rises by $2$.
+      - id: 19
+        type: freeform
+        prompt: Explain why a histogram with broad intervals does not usually determine the exact mean.
+        answerLines: 5
+        answer: It gives counts within intervals but not the precise observations. Different arrangements within the same bins can have different sums and means.
+      - id: 20
+        type: freeform
+        prompt: Two datasets have the same mean. Explain why this does not show their distributions are similar.
+        answerLines: 5
+        answer: A mean is one summary. For example, $0,0,10,10$ and $5,5,5,5$ both average five, but their spreads and observed values differ greatly.
+  - title: Describe spread and distinguish empirical from model variation
+    questions:
+      - id: 21
+        type: freeform
+        prompt: Find the range of $2,4,4,9$.
+        answerLines: 5
+        answer: $9-2=7$.
+      - id: 22
+        type: freeform
+        prompt: For data $1,2,3$, find the sample variance with denominator $n-1$.
+        answerLines: 5
+        answer: The mean is two and squared deviations sum to two; $s^2=2/2=1$.
+      - id: 23
+        type: freeform
+        prompt: For data $1,2,3$, find the variance of the empirical distribution assigning probability $1/3$ to each observation.
+        answerLines: 5
+        answer: Divide the squared-deviation sum two by three, giving $2/3$.
+      - id: 24
+        type: freeform
+        prompt: Find the sample variance of $2,4,6$ using denominator $n-1$.
+        answerLines: 5
+        answer: The mean is four and squared deviations sum to eight; $s^2=8/2=4$.
+      - id: 25
+        type: freeform
+        prompt: Find the sample standard deviation of $2,4,6$ using denominator $n-1$ for variance.
+        answerLines: 5
+        answer: The sample variance is four, so standard deviation is $2$.
+      - id: 26
+        type: freeform
+        prompt: For $n=5$, the sum of squared deviations from the sample mean is twenty. Find $s^2$.
+        answerLines: 5
+        answer: $20/(5-1)=5$.
+      - id: 27
+        type: freeform
+        prompt: Every observation is increased by ten. The original sample variance is seven. Find the new sample variance.
+        answerLines: 5
+        answer: Translation does not change centered deviations, so the variance remains $7$.
+      - id: 28
+        type: freeform
+        prompt: Every observation is multiplied by $-3$. The original sample standard deviation is two. Find the new standard deviation.
+        answerLines: 5
+        answer: $|-3|\cdot2=6$.
+      - id: 29
+        type: freeform
+        prompt: Explain why the usual sample variance with denominator $n-1$ is undefined for one observation.
+        answerLines: 5
+        answer: The denominator is zero and one observed value supplies no within-sample variation around an independently estimated center. This is different from declaring the unknown population variance to be zero.
+      - id: 30
+        type: freeform
+        prompt: Show that deviations from a sample mean sum to zero.
+        answerLines: 5
+        answer: $\sum_i(x_i-\bar x)=\sum_i x_i-n\bar x=n\bar x-n\bar x=0$.
+  - title: Connect the sampling design to the target population
+    questions:
+      - id: 31
+        type: freeform
+        prompt: A simple random sample without replacement selects twenty of one hundred units. Find each unit's inclusion probability.
+        answerLines: 5
+        answer: By symmetry each unit has probability $20/100=1/5$ of inclusion.
+      - id: 32
+        type: freeform
+        prompt: 'Randomly sample users separately from each subscription tier. Name the design: stratified, cluster, or convenience.'
+        answerLines: 5
+        answer: Stratified. Random sampling is carried out within each predefined tier.
+      - id: 33
+        type: freeform
+        prompt: 'Randomly choose four offices and survey every employee in those offices. Name the design: stratified, cluster, or convenience.'
+        answerLines: 5
+        answer: Cluster. Offices are selected as groups and their members are observed.
+      - id: 34
+        type: freeform
+        prompt: After choosing a random start, inspect every fiftieth record. Name the design.
+        answerLines: 5
+        answer: Systematic. The selection follows a fixed interval after a random start.
+      - id: 35
+        type: freeform
+        prompt: Survey the first thirty people who enter a nearby shop, without random selection. Name the design.
+        answerLines: 5
+        answer: Convenience. Units are chosen for ease of access.
+      - id: 36
+        type: freeform
+        prompt: Population weights are $4/5,1/5$ and group means are two and five. Find the population-weighted mean.
+        answerLines: 5
+        answer: $(4/5)(2)+(1/5)(5)=13/5$.
+      - id: 37
+        type: freeform
+        prompt: A population has groups of sizes six hundred and four hundred. Allocate a proportional stratified sample of fifty. Give the two group sample sizes in order.
+        answerLines: 5
+        answer: $50(600/1000)=30$ and $50(400/1000)=20$, giving $(30,20)$.
+      - id: 38
+        type: freeform
+        prompt: 'True or false: simple random sampling without replacement makes all sampled values independent.'
+        answerLines: 5
+        answer: False. Sampling without replacement couples selections; independent-sampling formulas may require an approximation when the sampling fraction is small.
+      - id: 39
+        type: freeform
+        prompt: Explain a risk of selecting every seventh record from data arranged in a repeating seven-record cycle.
+        answerLines: 5
+        answer: The interval can repeatedly select the same position within each cycle, excluding other positions and distorting the sample relative to the whole population.
+      - id: 40
+        type: freeform
+        prompt: A randomly sampled customer list excludes customers who left last month. Explain the implication for estimating satisfaction among all customers from last month.
+        answerLines: 5
+        answer: The frame misses former customers, whose satisfaction may differ. Random selection among remaining customers does not repair that coverage gap.
+  - title: Separate random error, systematic bias, and causal evidence
+    questions:
+      - id: 41
+        type: freeform
+        prompt: Researchers record which interface users voluntarily choose and their completion times. Is this observational or experimental? Enter one word.
+        answerLines: 5
+        answer: Observational. The researchers do not assign the interface treatment.
+      - id: 42
+        type: freeform
+        prompt: Researchers randomly assign interface versions and record completion times. Is this observational or experimental? Enter one word.
+        answerLines: 5
+        answer: Experimental. The treatment is assigned by the researchers using randomization.
+      - id: 43
+        type: freeform
+        prompt: 'True or false: random assignment guarantees exactly equal average experience in the two treatment groups.'
+        answerLines: 5
+        answer: False. Chance imbalance remains possible; randomization balances pretreatment factors in distribution.
+      - id: 44
+        type: freeform
+        prompt: 'True or false: enlarging a voluntary-response sample necessarily removes selection bias.'
+        answerLines: 5
+        answer: False. More responses can retain the same systematic relationship between participation and opinion.
+      - id: 45
+        type: freeform
+        prompt: Of one hundred attempted observations, twenty are missing. What fraction is missing?
+        answerLines: 5
+        answer: $20/100=1/5$.
+      - id: 46
+        type: freeform
+        prompt: A survey receives sixty responses from two hundred invitations. Find the response rate.
+        answerLines: 5
+        answer: $60/200=3/10$.
+      - id: 47
+        type: freeform
+        prompt: In an experiment, all forty participants try both interfaces. How many participant-level pairs are available?
+        answerLines: 5
+        answer: Each participant contributes one pair, so there are $40$ pairs.
+      - id: 48
+        type: freeform
+        prompt: Explain why the average of recorded request durations can underestimate average duration of all attempts when only the longest attempts fail to record.
+        answerLines: 5
+        answer: The recording mechanism selectively removes large durations. The observed mean then summarizes a systematically faster subset; it does not include the missing long values.
+      - id: 49
+        type: freeform
+        prompt: An observational comparison finds experienced users choose version A and complete tasks faster. Give a confounding explanation.
+        answerLines: 5
+        answer: Experience can affect both version choice and completion time. The observed association can therefore arise without version A causing the speed difference.
+      - id: 50
+        type: freeform
+        prompt: Design a basic interface comparison that separates random assignment from population sampling.
+        answerLines: 5
+        answer: Define the target users and sample them by an appropriate method, then randomly assign sampled users to versions. Use consistent measurement and a prespecified outcome. State that assignment supports the treatment comparison and sampling supports generalization; each has a separate role.

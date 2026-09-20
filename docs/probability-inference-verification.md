@@ -14,8 +14,8 @@ to the integrating author, who applied them in the root worktree.
    otherwise correct.
 2. In lesson 18, the margin for endpoints 0.2 and 0.8 was initially sent to the
    exact grader as `0.30000000000000004`. This would reject the correct answer
-   0.3 despite accepting the generated fixture. The root correction now uses a
-   clean decimal value. Independently submitting both `0.3` and `3/10` yields
+   0.3 despite accepting the generated fixture. The root correction now uses the
+   exact endpoint difference divided by two. Independently submitting both `0.3` and `3/10` yields
    correct. A scan of all remaining exact targets in lessons 16–20 found no other
    long-decimal floating-point artifacts; the exact mathematical comparisons
    described below also found no others.

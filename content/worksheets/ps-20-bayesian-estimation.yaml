@@ -1,0 +1,302 @@
+title: Bayesian Estimation and Prediction
+sections:
+  - title: Model uncertainty about a parameter
+    questions:
+      - id: 1
+        type: freeform
+        prompt: Two parameter values have prior weights 1:1 and likelihood values in ratio 1:3. Give the posterior probability of the first value.
+        answerLines: 5
+        answer: 'Multiply prior and likelihood weights, then normalize: $1/(1+3)=1/4$.'
+      - id: 2
+        type: freeform
+        prompt: For prior weights 1:1 and likelihood ratio 1:3, give the posterior probability of the second value.
+        answerLines: 5
+        answer: Its normalized weight is $3/4=3/4$.
+      - id: 3
+        type: freeform
+        prompt: Two parameter values have prior weights 1:3 and likelihood values in ratio 2:1. Give the posterior probability of the first value.
+        answerLines: 5
+        answer: 'Multiply prior and likelihood weights, then normalize: $2/(2+3)=2/5$.'
+      - id: 4
+        type: freeform
+        prompt: For prior weights 1:3 and likelihood ratio 2:1, give the posterior probability of the second value.
+        answerLines: 5
+        answer: Its normalized weight is $3/5=3/5$.
+      - id: 5
+        type: freeform
+        prompt: Two parameter values have prior weights 2:1 and likelihood values in ratio 1:4. Give the posterior probability of the first value.
+        answerLines: 5
+        answer: 'Multiply prior and likelihood weights, then normalize: $2/(2+4)=1/3$.'
+      - id: 6
+        type: freeform
+        prompt: For prior weights 2:1 and likelihood ratio 1:4, give the posterior probability of the second value.
+        answerLines: 5
+        answer: Its normalized weight is $4/6=2/3$.
+      - id: 7
+        type: freeform
+        prompt: Two parameter values have prior weights 3:2 and likelihood values in ratio 2:3. Give the posterior probability of the first value.
+        answerLines: 5
+        answer: 'Multiply prior and likelihood weights, then normalize: $6/(6+6)=1/2$.'
+      - id: 8
+        type: freeform
+        prompt: For prior weights 3:2 and likelihood ratio 2:3, give the posterior probability of the second value.
+        answerLines: 5
+        answer: Its normalized weight is $6/12=1/2$.
+      - id: 9
+        type: freeform
+        prompt: Two parameter values have prior weights 2:5 and likelihood values in ratio 3:1. Give the posterior probability of the first value.
+        answerLines: 5
+        answer: 'Multiply prior and likelihood weights, then normalize: $6/(6+5)=6/11$.'
+      - id: 10
+        type: freeform
+        prompt: For prior weights 2:5 and likelihood ratio 3:1, give the posterior probability of the second value.
+        answerLines: 5
+        answer: Its normalized weight is $5/11=5/11$.
+      - id: 11
+        type: freeform
+        prompt: Explain why the posterior denominator is needed after multiplying likelihood and prior.
+        answerLines: 5
+        answer: The product gives unnormalized weights or density. Dividing by its sum or integral makes total posterior probability one.
+      - id: 12
+        type: freeform
+        prompt: Can a likelihood alone determine a Bayesian posterior without a prior model?
+        answerLines: 5
+        answer: No. The posterior combines both objects and normalization.
+  - title: Beta distributions on a probability parameter
+    questions:
+      - id: 13
+        type: freeform
+        prompt: Give the mean of a Beta(1,1) prior.
+        answerLines: 5
+        answer: The mean is $a/(a+b)=1/2=1/2$.
+      - id: 14
+        type: freeform
+        prompt: Give the variance of a Beta(1,1) prior.
+        answerLines: 5
+        answer: The variance is $ab/[(a+b)^2(a+b+1)]=1/12=1/12$.
+      - id: 15
+        type: freeform
+        prompt: Give the mean of a Beta(2,2) prior.
+        answerLines: 5
+        answer: The mean is $a/(a+b)=2/4=1/2$.
+      - id: 16
+        type: freeform
+        prompt: Give the variance of a Beta(2,2) prior.
+        answerLines: 5
+        answer: The variance is $ab/[(a+b)^2(a+b+1)]=4/80=1/20$.
+      - id: 17
+        type: freeform
+        prompt: Give the mean of a Beta(2,3) prior.
+        answerLines: 5
+        answer: The mean is $a/(a+b)=2/5=2/5$.
+      - id: 18
+        type: freeform
+        prompt: Give the variance of a Beta(2,3) prior.
+        answerLines: 5
+        answer: The variance is $ab/[(a+b)^2(a+b+1)]=6/150=1/25$.
+      - id: 19
+        type: freeform
+        prompt: Give the mean of a Beta(3,2) prior.
+        answerLines: 5
+        answer: The mean is $a/(a+b)=3/5=3/5$.
+      - id: 20
+        type: freeform
+        prompt: Give the variance of a Beta(3,2) prior.
+        answerLines: 5
+        answer: The variance is $ab/[(a+b)^2(a+b+1)]=6/150=1/25$.
+      - id: 21
+        type: freeform
+        prompt: Give the mean of a Beta(4,6) prior.
+        answerLines: 5
+        answer: The mean is $a/(a+b)=4/10=2/5$.
+      - id: 22
+        type: freeform
+        prompt: Give the variance of a Beta(4,6) prior.
+        answerLines: 5
+        answer: The variance is $ab/[(a+b)^2(a+b+1)]=24/1100=6/275$.
+      - id: 23
+        type: freeform
+        prompt: Find the normalizing coefficient c in the density c p(1−p) on (0,1).
+        answerLines: 5
+        answer: $\int_0^1p(1-p)\,dp=1/6$, so $c=6$.
+      - id: 24
+        type: freeform
+        prompt: Explain how Beta(2,2) and Beta(20,20) can have the same mean but different information content.
+        answerLines: 5
+        answer: Both means equal one half. The larger total shape makes the second prior more concentrated, giving smaller variance.
+  - title: Binomial data update both shape parameters
+    questions:
+      - id: 25
+        type: freeform
+        prompt: A Beta(2,3) prior observes 3 successes in 4 conditionally independent Bernoulli trials. Give the ordered posterior shape pair.
+        answerLines: 5
+        answer: 'Add successes and failures: $(a+s,b+n-s)=(5,4)$.'
+      - id: 26
+        type: freeform
+        prompt: Under Beta(2,3) prior and 3 successes in 4 trials, give the posterior mean.
+        answerLines: 5
+        answer: The posterior is Beta(5,4), with mean $5/9=5/9$.
+      - id: 27
+        type: freeform
+        prompt: A Beta(1,1) prior observes 0 successes in 5 conditionally independent Bernoulli trials. Give the ordered posterior shape pair.
+        answerLines: 5
+        answer: 'Add successes and failures: $(a+s,b+n-s)=(1,6)$.'
+      - id: 28
+        type: freeform
+        prompt: Under Beta(1,1) prior and 0 successes in 5 trials, give the posterior mean.
+        answerLines: 5
+        answer: The posterior is Beta(1,6), with mean $1/7=1/7$.
+      - id: 29
+        type: freeform
+        prompt: A Beta(1,1) prior observes 5 successes in 5 conditionally independent Bernoulli trials. Give the ordered posterior shape pair.
+        answerLines: 5
+        answer: 'Add successes and failures: $(a+s,b+n-s)=(6,1)$.'
+      - id: 30
+        type: freeform
+        prompt: Under Beta(1,1) prior and 5 successes in 5 trials, give the posterior mean.
+        answerLines: 5
+        answer: The posterior is Beta(6,1), with mean $6/7=6/7$.
+      - id: 31
+        type: freeform
+        prompt: A Beta(4,2) prior observes 2 successes in 6 conditionally independent Bernoulli trials. Give the ordered posterior shape pair.
+        answerLines: 5
+        answer: 'Add successes and failures: $(a+s,b+n-s)=(6,6)$.'
+      - id: 32
+        type: freeform
+        prompt: Under Beta(4,2) prior and 2 successes in 6 trials, give the posterior mean.
+        answerLines: 5
+        answer: The posterior is Beta(6,6), with mean $6/12=1/2$.
+      - id: 33
+        type: freeform
+        prompt: A Beta(3,5) prior observes 4 successes in 10 conditionally independent Bernoulli trials. Give the ordered posterior shape pair.
+        answerLines: 5
+        answer: 'Add successes and failures: $(a+s,b+n-s)=(7,11)$.'
+      - id: 34
+        type: freeform
+        prompt: Under Beta(3,5) prior and 4 successes in 10 trials, give the posterior mean.
+        answerLines: 5
+        answer: The posterior is Beta(7,11), with mean $7/18=7/18$.
+      - id: 35
+        type: freeform
+        prompt: Starting from Beta(2,2), first observe 3 successes and 1 failure, then 2 successes and 4 failures. Give the posterior shape pair.
+        answerLines: 5
+        answer: There are 5 successes and 5 failures in total, so the posterior shapes are $(7,7)$.
+      - id: 36
+        type: freeform
+        prompt: Why does splitting the same conditionally independent data into batches not change a beta-binomial posterior?
+        answerLines: 5
+        answer: Likelihood factors multiply in either grouping, and the final shapes add the same total success and failure counts.
+  - title: Predict future observations by averaging over uncertainty
+    questions:
+      - id: 37
+        type: freeform
+        prompt: Given posterior Beta(2,2), give the predictive probability of the next Bernoulli success.
+        answerLines: 5
+        answer: 'Average $p$ over the posterior: $2/4=1/2$.'
+      - id: 38
+        type: freeform
+        prompt: Given posterior Beta(2,2), give the predictive probability that both of the next two conditionally independent Bernoulli trials succeed.
+        answerLines: 5
+        answer: Use $E[p^2\mid D]=A(A+1)/[(A+B)(A+B+1)]=3/10$.
+      - id: 39
+        type: freeform
+        prompt: Given posterior Beta(3,1), give the predictive probability of the next Bernoulli success.
+        answerLines: 5
+        answer: 'Average $p$ over the posterior: $3/4=3/4$.'
+      - id: 40
+        type: freeform
+        prompt: Given posterior Beta(3,1), give the predictive probability that both of the next two conditionally independent Bernoulli trials succeed.
+        answerLines: 5
+        answer: Use $E[p^2\mid D]=A(A+1)/[(A+B)(A+B+1)]=3/5$.
+      - id: 41
+        type: freeform
+        prompt: Given posterior Beta(4,3), give the predictive probability of the next Bernoulli success.
+        answerLines: 5
+        answer: 'Average $p$ over the posterior: $4/7=4/7$.'
+      - id: 42
+        type: freeform
+        prompt: Given posterior Beta(4,3), give the predictive probability that both of the next two conditionally independent Bernoulli trials succeed.
+        answerLines: 5
+        answer: Use $E[p^2\mid D]=A(A+1)/[(A+B)(A+B+1)]=5/14$.
+      - id: 43
+        type: freeform
+        prompt: Given posterior Beta(1,5), give the predictive probability of the next Bernoulli success.
+        answerLines: 5
+        answer: 'Average $p$ over the posterior: $1/6=1/6$.'
+      - id: 44
+        type: freeform
+        prompt: Given posterior Beta(1,5), give the predictive probability that both of the next two conditionally independent Bernoulli trials succeed.
+        answerLines: 5
+        answer: Use $E[p^2\mid D]=A(A+1)/[(A+B)(A+B+1)]=1/21$.
+      - id: 45
+        type: freeform
+        prompt: Given posterior Beta(5,5), give the predictive probability of the next Bernoulli success.
+        answerLines: 5
+        answer: 'Average $p$ over the posterior: $5/10=1/2$.'
+      - id: 46
+        type: freeform
+        prompt: Given posterior Beta(5,5), give the predictive probability that both of the next two conditionally independent Bernoulli trials succeed.
+        answerLines: 5
+        answer: Use $E[p^2\mid D]=A(A+1)/[(A+B)(A+B+1)]=3/11$.
+      - id: 47
+        type: freeform
+        prompt: For posterior Beta(3,2), give the probability of exactly one success in the next two trials.
+        answerLines: 5
+        answer: There are two orders. The probability is $2AB/[(A+B)(A+B+1)]=12/30=2/5$.
+      - id: 48
+        type: freeform
+        prompt: Explain why multiplying two one-step predictive success probabilities can be wrong.
+        answerLines: 5
+        answer: The future trials share uncertainty in the same parameter. They are independent conditional on that parameter, but generally dependent after averaging it out.
+  - title: Credible intervals and sensitivity to assumptions
+    questions:
+      - id: 49
+        type: freeform
+        prompt: The posterior density is $2p$ on $(0,1)$. Give its probability for the interval $[0,1/2]$.
+        answerLines: 5
+        answer: The CDF is $p^2$, so the interval probability is $(1/2)^2-(0)^2$.
+      - id: 50
+        type: freeform
+        prompt: For posterior density $2p$ on $(0,1)$, zero elsewhere, give the posterior probability above 1/2.
+        answerLines: 5
+        answer: The probability is $1-F(1/2)=1-(1/2)^2$.
+      - id: 51
+        type: freeform
+        prompt: The posterior density is $2p$ on $(0,1)$. Give its probability for the interval $[1/2,1]$.
+        answerLines: 5
+        answer: The CDF is $p^2$, so the interval probability is $(1)^2-(1/2)^2$.
+      - id: 52
+        type: freeform
+        prompt: For posterior density $2p$ on $(0,1)$, zero elsewhere, give the posterior probability above 1.
+        answerLines: 5
+        answer: The probability is $1-F(1)=1-(1)^2$.
+      - id: 53
+        type: freeform
+        prompt: The posterior density is $2p$ on $(0,1)$. Give its probability for the interval $[1/4,3/4]$.
+        answerLines: 5
+        answer: The CDF is $p^2$, so the interval probability is $(3/4)^2-(1/4)^2$.
+      - id: 54
+        type: freeform
+        prompt: For posterior density $2p$ on $(0,1)$, zero elsewhere, give the posterior probability above 3/4.
+        answerLines: 5
+        answer: The probability is $1-F(3/4)=1-(3/4)^2$.
+      - id: 55
+        type: freeform
+        prompt: The posterior density is $2p$ on $(0,1)$. Give its probability for the interval $[1/3,2/3]$.
+        answerLines: 5
+        answer: The CDF is $p^2$, so the interval probability is $(2/3)^2-(1/3)^2$.
+      - id: 56
+        type: freeform
+        prompt: For posterior density $2p$ on $(0,1)$, zero elsewhere, give the posterior probability above 2/3.
+        answerLines: 5
+        answer: The probability is $1-F(2/3)=1-(2/3)^2$.
+      - id: 57
+        type: freeform
+        prompt: For posterior Beta(2,1), give an equal-tailed 80% credible interval as an ordered exact pair.
+        answerLines: 5
+        answer: Use CDF values 0.1 and 0.9. The endpoints are $(\sqrt{1/10},\sqrt{9/10})$.
+      - id: 58
+        type: freeform
+        prompt: Explain why a Bayesian credible interval and a frequentist confidence interval can have different interpretations even if their endpoints coincide.
+        answerLines: 5
+        answer: Credibility conditions on observed data and assigns posterior probability to the parameter. Confidence describes repeated-sampling coverage of a procedure for a fixed parameter.

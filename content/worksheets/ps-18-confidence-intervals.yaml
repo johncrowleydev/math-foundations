@@ -1,0 +1,312 @@
+title: Confidence Intervals
+sections:
+  - title: Coverage belongs to a procedure
+    questions:
+      - id: 1
+        type: freeform
+        prompt: A symmetric confidence interval has endpoints 2 and 6. Give its center.
+        answerLines: 5
+        answer: 'Average the endpoints: $(2+6)/2=4$.'
+      - id: 2
+        type: freeform
+        prompt: For endpoints 2 and 6, give the margin of error.
+        answerLines: 5
+        answer: 'The margin is half the width: $(6-2)/2=2$.'
+      - id: 3
+        type: freeform
+        prompt: A symmetric confidence interval has endpoints 10 and 14. Give its center.
+        answerLines: 5
+        answer: 'Average the endpoints: $(10+14)/2=12$.'
+      - id: 4
+        type: freeform
+        prompt: For endpoints 10 and 14, give the margin of error.
+        answerLines: 5
+        answer: 'The margin is half the width: $(14-10)/2=2$.'
+      - id: 5
+        type: freeform
+        prompt: A symmetric confidence interval has endpoints -3 and 5. Give its center.
+        answerLines: 5
+        answer: 'Average the endpoints: $(-3+5)/2=1$.'
+      - id: 6
+        type: freeform
+        prompt: For endpoints -3 and 5, give the margin of error.
+        answerLines: 5
+        answer: 'The margin is half the width: $(5--3)/2=4$.'
+      - id: 7
+        type: freeform
+        prompt: A symmetric confidence interval has endpoints 0.2 and 0.8. Give its center.
+        answerLines: 5
+        answer: 'Average the endpoints: $(0.2+0.8)/2=0.5$.'
+      - id: 8
+        type: freeform
+        prompt: For endpoints 0.2 and 0.8, give the margin of error.
+        answerLines: 5
+        answer: 'The margin is half the width: $(0.8-0.2)/2=0.3$.'
+      - id: 9
+        type: freeform
+        prompt: A symmetric confidence interval has endpoints 17 and 23. Give its center.
+        answerLines: 5
+        answer: 'Average the endpoints: $(17+23)/2=20$.'
+      - id: 10
+        type: freeform
+        prompt: For endpoints 17 and 23, give the margin of error.
+        answerLines: 5
+        answer: 'The margin is half the width: $(23-17)/2=3$.'
+      - id: 11
+        type: freeform
+        prompt: In 200 repeated simulated samples, 188 intervals contain the known target. Give the observed coverage fraction.
+        answerLines: 5
+        answer: $188/200=0.94$.
+      - id: 12
+        type: freeform
+        prompt: Explain why a 95% mean confidence interval need not contain 95% of individual observations.
+        answerLines: 5
+        answer: The interval estimates a population mean; individual observations vary according to the population spread, which is different from the uncertainty of the estimated mean.
+  - title: A mean interval with known population spread
+    questions:
+      - id: 13
+        type: freeform
+        prompt: An iid normal sample has mean 12, known population standard deviation 5, and size 25. Using supplied central-interval critical value 1.96, give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: The standard error is $5/\sqrt{25}=1$ and margin $1.96\cdot1=1.96$. The endpoints are $10.0400$ and $13.9600$.
+      - id: 14
+        type: freeform
+        prompt: For known population standard deviation 5 and independent sample size 25, give the standard error of the sample mean.
+        answerLines: 5
+        answer: $\sigma/\sqrt n=5/\sqrt{25}=1$.
+      - id: 15
+        type: freeform
+        prompt: An iid normal sample has mean 30, known population standard deviation 8, and size 64. Using supplied central-interval critical value 1.645, give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: The standard error is $8/\sqrt{64}=1$ and margin $1.645\cdot1=1.645$. The endpoints are $28.3550$ and $31.6450$.
+      - id: 16
+        type: freeform
+        prompt: For known population standard deviation 8 and independent sample size 64, give the standard error of the sample mean.
+        answerLines: 5
+        answer: $\sigma/\sqrt n=8/\sqrt{64}=1$.
+      - id: 17
+        type: freeform
+        prompt: An iid normal sample has mean 5, known population standard deviation 3, and size 36. Using supplied central-interval critical value 1.96, give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: The standard error is $3/\sqrt{36}=0.5$ and margin $1.96\cdot0.5=0.98$. The endpoints are $4.0200$ and $5.9800$.
+      - id: 18
+        type: freeform
+        prompt: For known population standard deviation 3 and independent sample size 36, give the standard error of the sample mean.
+        answerLines: 5
+        answer: $\sigma/\sqrt n=3/\sqrt{36}=0.5$.
+      - id: 19
+        type: freeform
+        prompt: An iid normal sample has mean -2, known population standard deviation 4, and size 16. Using supplied central-interval critical value 2.576, give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: The standard error is $4/\sqrt{16}=1$ and margin $2.576\cdot1=2.576$. The endpoints are $-4.5760$ and $0.5760$.
+      - id: 20
+        type: freeform
+        prompt: For known population standard deviation 4 and independent sample size 16, give the standard error of the sample mean.
+        answerLines: 5
+        answer: $\sigma/\sqrt n=4/\sqrt{16}=1$.
+      - id: 21
+        type: freeform
+        prompt: An iid normal sample has mean 100, known population standard deviation 12, and size 144. Using supplied central-interval critical value 1.96, give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: The standard error is $12/\sqrt{144}=1$ and margin $1.96\cdot1=1.96$. The endpoints are $98.0400$ and $101.9600$.
+      - id: 22
+        type: freeform
+        prompt: For known population standard deviation 12 and independent sample size 144, give the standard error of the sample mean.
+        answerLines: 5
+        answer: $\sigma/\sqrt n=12/\sqrt{144}=1$.
+      - id: 23
+        type: freeform
+        prompt: A central confidence level is 0.90. Give the lower-tail probability used to find its positive normal critical value.
+        answerLines: 5
+        answer: Each tail has probability 0.05, so the positive quantile has lower-tail probability $0.95$.
+      - id: 24
+        type: freeform
+        prompt: Why does a known-standard-deviation interval use σ/√n rather than σ?
+        answerLines: 5
+        answer: The interval concerns uncertainty in the sample average. Independent averaging divides variance by n, so its standard deviation is σ/√n.
+  - title: Estimating spread leads to Student t
+    questions:
+      - id: 25
+        type: freeform
+        prompt: An iid normal sample has mean 20, sample standard deviation 3, and size 9. Use supplied 95% t critical value 2.306 to give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: Use $S/\sqrt n=1$, so the margin is $2.306$. The endpoints are $17.6940$ and $22.3060$.
+      - id: 26
+        type: freeform
+        prompt: What degrees of freedom apply to the one-sample t interval for 9 independent normal observations?
+        answerLines: 5
+        answer: The degrees of freedom are $n-1=8$.
+      - id: 27
+        type: freeform
+        prompt: An iid normal sample has mean 8, sample standard deviation 4, and size 16. Use supplied 95% t critical value 2.131 to give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: Use $S/\sqrt n=1$, so the margin is $2.131$. The endpoints are $5.8690$ and $10.1310$.
+      - id: 28
+        type: freeform
+        prompt: What degrees of freedom apply to the one-sample t interval for 16 independent normal observations?
+        answerLines: 5
+        answer: The degrees of freedom are $n-1=15$.
+      - id: 29
+        type: freeform
+        prompt: An iid normal sample has mean 10, sample standard deviation 5, and size 25. Use supplied 95% t critical value 2.064 to give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: Use $S/\sqrt n=1$, so the margin is $2.064$. The endpoints are $7.9360$ and $12.0640$.
+      - id: 30
+        type: freeform
+        prompt: What degrees of freedom apply to the one-sample t interval for 25 independent normal observations?
+        answerLines: 5
+        answer: The degrees of freedom are $n-1=24$.
+      - id: 31
+        type: freeform
+        prompt: An iid normal sample has mean 0, sample standard deviation 6, and size 36. Use supplied 95% t critical value 2.03 to give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: Use $S/\sqrt n=1$, so the margin is $2.03$. The endpoints are $-2.0300$ and $2.0300$.
+      - id: 32
+        type: freeform
+        prompt: What degrees of freedom apply to the one-sample t interval for 36 independent normal observations?
+        answerLines: 5
+        answer: The degrees of freedom are $n-1=35$.
+      - id: 33
+        type: freeform
+        prompt: An iid normal sample has mean 50, sample standard deviation 7, and size 49. Use supplied 95% t critical value 2.011 to give both mean-confidence endpoints to four decimal places.
+        answerLines: 5
+        answer: Use $S/\sqrt n=1$, so the margin is $2.011$. The endpoints are $47.9890$ and $52.0110$.
+      - id: 34
+        type: freeform
+        prompt: What degrees of freedom apply to the one-sample t interval for 49 independent normal observations?
+        answerLines: 5
+        answer: The degrees of freedom are $n-1=48$.
+      - id: 35
+        type: freeform
+        prompt: Explain why replacing the unknown population standard deviation with S changes the reference distribution under normal sampling.
+        answerLines: 5
+        answer: The denominator becomes random. Accounting for its variability yields the Student t distribution with n−1 degrees of freedom.
+      - id: 36
+        type: freeform
+        prompt: Does choosing Student t repair a sample of dependent duplicate observations?
+        answerLines: 5
+        answer: No. The usual t derivation still needs independent observations.
+  - title: Proportion intervals and boundary limitations
+    questions:
+      - id: 37
+        type: freeform
+        prompt: In 400 iid Bernoulli trials, 100 successes occur. Use the Wald approximation and supplied 95% critical value 1.96. Give both interval endpoints as probability decimals to four places.
+        answerLines: 5
+        answer: $\hat p=0.25$, with estimated standard error $\sqrt{0.25(1-0.25)/400}$. The approximate interval is $[0.2076,0.2924]$. Both success and failure counts meet the stated screen.
+      - id: 38
+        type: freeform
+        prompt: 100 of 400 trials succeed. Give the observed failure proportion as an exact value.
+        answerLines: 5
+        answer: There are $300$ failures, so the proportion is $300/400=3/4$.
+      - id: 39
+        type: freeform
+        prompt: In 200 iid Bernoulli trials, 80 successes occur. Use the Wald approximation and supplied 95% critical value 1.96. Give both interval endpoints as probability decimals to four places.
+        answerLines: 5
+        answer: $\hat p=0.4$, with estimated standard error $\sqrt{0.4(1-0.4)/200}$. The approximate interval is $[0.3321,0.4679]$. Both success and failure counts meet the stated screen.
+      - id: 40
+        type: freeform
+        prompt: 80 of 200 trials succeed. Give the observed failure proportion as an exact value.
+        answerLines: 5
+        answer: There are $120$ failures, so the proportion is $120/200=3/5$.
+      - id: 41
+        type: freeform
+        prompt: In 300 iid Bernoulli trials, 150 successes occur. Use the Wald approximation and supplied 95% critical value 1.96. Give both interval endpoints as probability decimals to four places.
+        answerLines: 5
+        answer: $\hat p=0.5$, with estimated standard error $\sqrt{0.5(1-0.5)/300}$. The approximate interval is $[0.4434,0.5566]$. Both success and failure counts meet the stated screen.
+      - id: 42
+        type: freeform
+        prompt: 150 of 300 trials succeed. Give the observed failure proportion as an exact value.
+        answerLines: 5
+        answer: There are $150$ failures, so the proportion is $150/300=1/2$.
+      - id: 43
+        type: freeform
+        prompt: In 400 iid Bernoulli trials, 60 successes occur. Use the Wald approximation and supplied 95% critical value 1.96. Give both interval endpoints as probability decimals to four places.
+        answerLines: 5
+        answer: $\hat p=0.15$, with estimated standard error $\sqrt{0.15(1-0.15)/400}$. The approximate interval is $[0.1150,0.1850]$. Both success and failure counts meet the stated screen.
+      - id: 44
+        type: freeform
+        prompt: 60 of 400 trials succeed. Give the observed failure proportion as an exact value.
+        answerLines: 5
+        answer: There are $340$ failures, so the proportion is $340/400=17/20$.
+      - id: 45
+        type: freeform
+        prompt: In 400 iid Bernoulli trials, 180 successes occur. Use the Wald approximation and supplied 95% critical value 1.96. Give both interval endpoints as probability decimals to four places.
+        answerLines: 5
+        answer: $\hat p=0.45$, with estimated standard error $\sqrt{0.45(1-0.45)/400}$. The approximate interval is $[0.4012,0.4988]$. Both success and failure counts meet the stated screen.
+      - id: 46
+        type: freeform
+        prompt: 180 of 400 trials succeed. Give the observed failure proportion as an exact value.
+        answerLines: 5
+        answer: There are $220$ failures, so the proportion is $220/400=11/20$.
+      - id: 47
+        type: freeform
+        prompt: Explain why the Wald interval [0,0] after zero successes is not evidence that the true probability must be zero.
+        answerLines: 5
+        answer: The plug-in variance degenerates at the boundary. A positive success probability can still produce zero successes in a finite sample; the approximation is inappropriate.
+      - id: 48
+        type: freeform
+        prompt: Does clipping an invalid Wald endpoint to zero establish nominal coverage?
+        answerLines: 5
+        answer: No. Clipping changes the endpoints without establishing the repeated-sampling coverage of the resulting procedure.
+  - title: Planning precision and checking conclusions
+    questions:
+      - id: 49
+        type: freeform
+        prompt: Plan an iid known-standard-deviation mean interval with $\sigma=4$, supplied $z=1.96$, and margin at most 1. Give the smallest integer n satisfying the planning formula.
+        answerLines: 5
+        answer: $n\ge(1.96\cdot4/1)^2=61.465600$. Rounding upward gives $n=62$.
+      - id: 50
+        type: freeform
+        prompt: A design uses supplied critical value 1.96 and aims to estimate a proportion within 0.1, with no preliminary proportion. Give the integer sample size from the conservative normal planning formula.
+        answerLines: 5
+        answer: "Use variance bound $1/4$: $n\\ge1.96^2/[4(0.1)^2]$. Round upward to $97$."
+      - id: 51
+        type: freeform
+        prompt: Plan an iid known-standard-deviation mean interval with $\sigma=5$, supplied $z=1.96$, and margin at most 2. Give the smallest integer n satisfying the planning formula.
+        answerLines: 5
+        answer: $n\ge(1.96\cdot5/2)^2=24.010000$. Rounding upward gives $n=25$.
+      - id: 52
+        type: freeform
+        prompt: A design uses supplied critical value 1.96 and aims to estimate a proportion within 0.2, with no preliminary proportion. Give the integer sample size from the conservative normal planning formula.
+        answerLines: 5
+        answer: "Use variance bound $1/4$: $n\\ge1.96^2/[4(0.2)^2]$. Round upward to $25$."
+      - id: 53
+        type: freeform
+        prompt: Plan an iid known-standard-deviation mean interval with $\sigma=3$, supplied $z=1.645$, and margin at most 0.5. Give the smallest integer n satisfying the planning formula.
+        answerLines: 5
+        answer: $n\ge(1.645\cdot3/0.5)^2=97.416900$. Rounding upward gives $n=98$.
+      - id: 54
+        type: freeform
+        prompt: A design uses supplied critical value 1.645 and aims to estimate a proportion within 0.05, with no preliminary proportion. Give the integer sample size from the conservative normal planning formula.
+        answerLines: 5
+        answer: "Use variance bound $1/4$: $n\\ge1.645^2/[4(0.05)^2]$. Round upward to $271$."
+      - id: 55
+        type: freeform
+        prompt: Plan an iid known-standard-deviation mean interval with $\sigma=10$, supplied $z=2.576$, and margin at most 1. Give the smallest integer n satisfying the planning formula.
+        answerLines: 5
+        answer: $n\ge(2.576\cdot10/1)^2=663.577600$. Rounding upward gives $n=664$.
+      - id: 56
+        type: freeform
+        prompt: A design uses supplied critical value 2.576 and aims to estimate a proportion within 0.1, with no preliminary proportion. Give the integer sample size from the conservative normal planning formula.
+        answerLines: 5
+        answer: "Use variance bound $1/4$: $n\\ge2.576^2/[4(0.1)^2]$. Round upward to $166$."
+      - id: 57
+        type: freeform
+        prompt: Plan an iid known-standard-deviation mean interval with $\sigma=2$, supplied $z=1.96$, and margin at most 0.25. Give the smallest integer n satisfying the planning formula.
+        answerLines: 5
+        answer: $n\ge(1.96\cdot2/0.25)^2=245.862400$. Rounding upward gives $n=246$.
+      - id: 58
+        type: freeform
+        prompt: A design uses supplied critical value 1.96 and aims to estimate a proportion within 0.025, with no preliminary proportion. Give the integer sample size from the conservative normal planning formula.
+        answerLines: 5
+        answer: "Use variance bound $1/4$: $n\\ge1.96^2/[4(0.025)^2]$. Round upward to $1537$."
+      - id: 59
+        type: freeform
+        prompt: Why must a required sample size be rounded upward rather than to the nearest integer?
+        answerLines: 5
+        answer: Rounding downward can violate the requested margin inequality. The next integer at or above the real-valued bound preserves it.
+      - id: 60
+        type: freeform
+        prompt: Describe two sources of uncertainty not corrected merely by increasing an independent-sampling formula’s n.
+        answerLines: 5
+        answer: A systematic measurement bias and omission of a population subgroup can persist. The formula quantifies sampling variation under its assumptions, not those errors.

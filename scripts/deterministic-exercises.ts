@@ -74,6 +74,7 @@ for (const file of [
   'content/deterministic-linear.json',
   'content/deterministic-algorithms.json',
   'content/deterministic-calculus.json',
+  'content/deterministic-probability-statistics.json',
 ])
   deterministicExercises.push(
     ...JSON.parse(await readFile(file, 'utf8')).map(validateDeterministicEntry),

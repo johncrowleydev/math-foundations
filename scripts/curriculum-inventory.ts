@@ -164,9 +164,13 @@ const counts = {
   formulas: teaching.formulas.length,
   concepts: concepts.length,
 };
-const historical = units.filter((u) => !u.lesson.startsWith('calculus-'));
+const historical = units.filter(
+  (u) => !u.lesson.startsWith('calculus-') && !u.lesson.startsWith('probability-statistics-'),
+);
 if (
-  notebook.lessons.filter((l: any) => l.subject !== 'Calculus').length !== 29 ||
+  notebook.lessons.filter((l: any) =>
+    ['Discrete mathematics', 'Linear algebra'].includes(l.subject),
+  ).length !== 29 ||
   historical.filter((u) => u.source.startsWith('question:')).length !== 2010 ||
   historical.filter((u) => u.source.startsWith('quick:')).length !== 54
 )

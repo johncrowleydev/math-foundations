@@ -1,0 +1,65 @@
+# Confidence Intervals
+
+An estimate becomes more useful when we describe its uncertainty. We derive introductory confidence intervals from sampling distributions, keep their assumptions visible, and distinguish repeated-sampling coverage from claims about individual observations or posterior probabilities.
+
+## Coverage belongs to a procedure
+
+A point estimate gives one location, but does not express how much it could vary under repeated sampling. A **confidence interval** is a pair of data-dependent endpoints produced by a procedure. A procedure with confidence level $1-\alpha$ covers the fixed population parameter in a proportion $1-\alpha$ of repeated samples under its assumptions, exactly or approximately as the method specifies.
+
+Before observing data, both endpoints are random. After observing data, the calculated interval is fixed: it either contains the fixed parameter or it does not. A frequentist 95% confidence statement describes the reliability of the construction, not a posterior probability of 0.95 assigned to the parameter lying in this particular interval. Nor does it say that 95% of individual observations lie inside the interval. Estimating a population mean is different from describing the spread of individual observations.
+
+Imagine a known population mean of 10 in a verification exercise. The intervals $[9,11]$, $[10.5,12]$, $[8,10]$, and $[9.5,10.5]$ cover it three times out of four. That observed coverage is $3/4$. It does not disprove a nominal 95% procedure from only four repetitions: the observed fraction itself varies. A large simulation can investigate coverage, but only under the distribution and sampling mechanism used in that simulation.
+
+An interval is informative only together with its target, units, confidence level, and construction. For a symmetric interval $[\hat\theta-m,\hat\theta+m]$, $m$ is the margin of error and the width is $2m$. A narrow interval can still be misleading if the data are biased or the assumptions fail.
+
+Related definitions: [Confidence coverage](ref:probability-statistics-confidence-coverage).
+
+![Coverage compares intervals with one fixed target](figure:probability-statistics-figure-18)
+
+## A mean interval with known population spread
+
+Assume independent observations from a normal population with mean $\mu$ and known standard deviation $\sigma$. Then $(\bar X-\mu)/(\sigma/\sqrt n)$ is standard normal. Let $z_{1-\alpha/2}$ be its lower-tail quantile: $P(Z\le z_{1-\alpha/2})=1-\alpha/2$. The central probability statement can be rearranged to give $\bar X\pm z_{1-\alpha/2}\sigma/\sqrt n$.
+
+The denominator is the standard error of the mean, not the spread of an individual observation. With $n=25$, known $\sigma=5$, observed mean 12, and supplied 95% critical value 1.96, the standard error is 1. The interval is $12\pm1.96=[10.04,13.96]$. These numbers concern the population mean in the same measurement units as the data.
+
+For a nonnormal population, a sufficiently accurate CLT approximation can motivate the same form for a large independent sample. It is then an approximate interval, not an exact normal-theory result. A fixed sample-size rule cannot guarantee accuracy for every skewed or heavy-tailed distribution. Sampling without replacement from a small finite population can also require a finite-population adjustment; the simple formula here assumes independence or a negligible sampling fraction.
+
+Use supplied quantiles with their stated tail convention. A 95% central interval leaves 0.025 in each tail, so its lower-tail quantile is 0.975. Some tables label the corresponding upper-tail probability instead. Reading the wrong convention can change the interval substantially. Keep extra digits during intermediate arithmetic and round endpoints only at the requested precision.
+
+Related definitions: [Margin of error](ref:probability-statistics-margin-error).
+
+## Estimating spread leads to Student t
+
+Usually the population standard deviation is unknown. Replace it by the sample standard deviation $S$, calculated with divisor $n-1$ inside the sample variance. For iid normal observations, $T=(\bar X-\mu)/(S/\sqrt n)$ has a **Student t distribution** with $n-1$ degrees of freedom. The randomness in the estimated denominator explains why the reference distribution changes.
+
+A two-sided mean interval is $\bar X\pm t_{1-\alpha/2,n-1}S/\sqrt n$. The second subscript names the degrees of freedom. Student t has heavier tails than the standard normal; for a fixed confidence level its positive critical value is larger at small degrees of freedom and approaches the normal value as degrees of freedom grow. Use supplied table values rather than trying to express the quantile through elementary algebra.
+
+For $n=9$, observed mean 20, sample standard deviation 3, and supplied 95% critical value $t_{0.975,8}=2.306$, the standard error is 1 and the interval is $[17.694,22.306]$. The result uses the stated rounded critical value; comparing independently computed endpoints should allow the announced numerical precision.
+
+The exact t statement assumes a normal population and independent observations. For nonnormal populations it is often used approximately when the average and estimated spread behave well, but severe skewness, outliers, heavy tails, or dependence need attention. Choosing t instead of z does not repair those problems. With one observation, the usual sample variance and degrees of freedom are unavailable. Increasing sample size does not turn a convenience sample into a random sample.
+
+Related definitions: [Student t mean interval](ref:probability-statistics-student-t-interval).
+
+## Proportion intervals and boundary limitations
+
+For iid Bernoulli trials, $\hat p$ estimates the success probability and has variance $p(1-p)/n$. The elementary **Wald interval** replaces the unknown parameter in this standard error: $\hat p\pm z_{1-\alpha/2}\sqrt{\hat p(1-\hat p)/n}$. This is a large-sample approximation. In this lesson, use it only when the sample contains at least ten successes and ten failures, alongside the stated independent sampling model. Those counts are a practical screening condition, not a proof of exact coverage.
+
+Suppose 100 of 400 independent sampled items have a feature. Then $\hat p=1/4$ and the estimated standard error is $\sqrt{(1/4)(3/4)/400}=\sqrt3/80$. With supplied critical value 1.96, the approximate 95% interval is $[0.2076,0.2924]$ to four decimal places. In percentage units those endpoints are approximately 20.76% and 29.24%; do not mix probability decimals with percentages in the same calculation.
+
+Near zero or one, the Wald method can behave badly. If no successes occur, its plug-in standard error is zero and the formula collapses to $[0,0]$, even though the true success probability need not be zero. An interval extending outside $[0,1]$ is another warning. Simply clipping it to the parameter range does not restore the advertised coverage. Other interval methods are available, but require their own derivation and are outside the computational tasks here.
+
+Observation independence matters as much as the success count. Many repeated records from the same person do not automatically provide the same information as that many independent people. State both the population being estimated and the sampling unit before interpreting a proportion interval.
+
+Related definitions: [Wald proportion interval](ref:probability-statistics-wald-proportion).
+
+## Planning precision and checking conclusions
+
+A desired margin of error can guide sample-size planning. For a known population standard deviation and supplied normal critical value $z$, require $z\sigma/\sqrt n\le m$. Solving gives $n\ge(z\sigma/m)^2$, rounded upward to an integer. For $\sigma=4$, $z=1.96$, and desired margin 1, the bound is 61.4656, so at least 62 independent observations are required by this calculation.
+
+For a proportion, the largest possible Bernoulli variance is $1/4$. A conservative normal-approximation planning formula is $n\ge z^2/(4m^2)$ when no preliminary proportion is available. “Conservative” refers to the variance choice within this planning formula; it is not an exact finite-sample coverage guarantee. The Chebyshev planning calculation from the preceding lesson answers that stronger distribution-free question under its own assumptions.
+
+Increasing confidence widens an interval for fixed observed center, spread, and sample size. Increasing sample size narrows its standard-error factor, other quantities held fixed. Quadrupling sample size halves that factor. Across real samples, the observed mean and sample standard deviation can change, so these controlled comparisons are not promises about two independently collected intervals.
+
+A final interpretation should name the population parameter, interval endpoints, units, confidence level, and relevant conditions. Do not infer causation from a narrow interval, confuse absence of a parameter value with proof of a mechanism, or claim that sampling uncertainty accounts for every source of error. Measurement bias, missing groups, and a changing population may dominate the reported margin.
+
+Related definitions: [Precision planning](ref:probability-statistics-precision-planning).

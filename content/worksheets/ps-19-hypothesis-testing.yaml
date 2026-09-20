@@ -1,0 +1,307 @@
+title: Hypothesis Testing
+sections:
+  - title: State a claim about the population before examining evidence
+    questions:
+      - id: 1
+        type: freeform
+        prompt: The population mean exceeds 10 is the research claim. Give the comparison symbol in the alternative hypothesis.
+        answerLines: 5
+        answer: The alternative concerns the population mean and uses the symbol >.
+      - id: 2
+        type: freeform
+        prompt: The population mean is below 10 is the research claim. Give the comparison symbol in the alternative hypothesis.
+        answerLines: 5
+        answer: The alternative concerns the population mean and uses the symbol <.
+      - id: 3
+        type: freeform
+        prompt: The population mean differs from 10 is the research claim. Give the comparison symbol in the alternative hypothesis.
+        answerLines: 5
+        answer: The alternative concerns the population mean and uses the symbol ≠.
+      - id: 4
+        type: freeform
+        prompt: The population mean is greater than 10 is the research claim. Give the comparison symbol in the alternative hypothesis.
+        answerLines: 5
+        answer: The alternative concerns the population mean and uses the symbol >.
+      - id: 5
+        type: freeform
+        prompt: The population mean is less than 10 is the research claim. Give the comparison symbol in the alternative hypothesis.
+        answerLines: 5
+        answer: The alternative concerns the population mean and uses the symbol <.
+      - id: 6
+        type: freeform
+        prompt: Should an alternative hypothesis ordinarily be chosen after seeing which direction the sample mean moved?
+        answerLines: 5
+        answer: No. That data-dependent choice changes the rejection procedure and can invalidate its announced error control.
+      - id: 7
+        type: freeform
+        prompt: Does failure to reject a null hypothesis prove it true?
+        answerLines: 5
+        answer: No. It can reflect insufficient information or low power against the relevant departure.
+      - id: 8
+        type: freeform
+        prompt: A sample mean is already 12. Should the null hypothesis be “the observed sample mean equals 10”? Explain.
+        answerLines: 5
+        answer: No. The observed statistic is known. A test should address an unknown population parameter, such as the population mean.
+      - id: 9
+        type: freeform
+        prompt: State null and alternative hypotheses for a two-sided question about whether a population proportion equals 0.4.
+        answerLines: 5
+        answer: $H_0:p=0.4$ and $H_1:p\ne0.4$.
+      - id: 10
+        type: freeform
+        prompt: Explain why a model assumption violation can produce an unusual test statistic even if the null mean is correct.
+        answerLines: 5
+        answer: The reference distribution may fail when dependence, spread, or shape differs from the assumed model, so the calculated tail need not have its claimed interpretation.
+  - title: Tail probabilities under the null model
+    questions:
+      - id: 11
+        type: freeform
+        prompt: The observed normal statistic is 1, and the supplied value is $\Phi(1)=0.84134$. Give its upper-sided p-value to five decimal places.
+        answerLines: 5
+        answer: 'Subtract the lower tail from one: $1-0.84134=0.15866$.'
+      - id: 12
+        type: freeform
+        prompt: For normal statistic 1 and supplied $\Phi(1)=0.84134$, give the two-sided p-value to five decimal places.
+        answerLines: 5
+        answer: Normal symmetry gives $2(1-0.84134)=0.31732$.
+      - id: 13
+        type: freeform
+        prompt: The observed normal statistic is 1.5, and the supplied value is $\Phi(1.5)=0.93319$. Give its upper-sided p-value to five decimal places.
+        answerLines: 5
+        answer: 'Subtract the lower tail from one: $1-0.93319=0.06681$.'
+      - id: 14
+        type: freeform
+        prompt: For normal statistic 1.5 and supplied $\Phi(1.5)=0.93319$, give the two-sided p-value to five decimal places.
+        answerLines: 5
+        answer: Normal symmetry gives $2(1-0.93319)=0.13362$.
+      - id: 15
+        type: freeform
+        prompt: The observed normal statistic is 2, and the supplied value is $\Phi(2)=0.97725$. Give its upper-sided p-value to five decimal places.
+        answerLines: 5
+        answer: 'Subtract the lower tail from one: $1-0.97725=0.02275$.'
+      - id: 16
+        type: freeform
+        prompt: For normal statistic 2 and supplied $\Phi(2)=0.97725$, give the two-sided p-value to five decimal places.
+        answerLines: 5
+        answer: Normal symmetry gives $2(1-0.97725)=0.04550$.
+      - id: 17
+        type: freeform
+        prompt: The observed normal statistic is 2.5, and the supplied value is $\Phi(2.5)=0.99379$. Give its upper-sided p-value to five decimal places.
+        answerLines: 5
+        answer: 'Subtract the lower tail from one: $1-0.99379=0.00621$.'
+      - id: 18
+        type: freeform
+        prompt: For normal statistic 2.5 and supplied $\Phi(2.5)=0.99379$, give the two-sided p-value to five decimal places.
+        answerLines: 5
+        answer: Normal symmetry gives $2(1-0.99379)=0.01242$.
+      - id: 19
+        type: freeform
+        prompt: The observed normal statistic is 3, and the supplied value is $\Phi(3)=0.99865$. Give its upper-sided p-value to five decimal places.
+        answerLines: 5
+        answer: 'Subtract the lower tail from one: $1-0.99865=0.00135$.'
+      - id: 20
+        type: freeform
+        prompt: For normal statistic 3 and supplied $\Phi(3)=0.99865$, give the two-sided p-value to five decimal places.
+        answerLines: 5
+        answer: Normal symmetry gives $2(1-0.99865)=0.00270$.
+      - id: 21
+        type: freeform
+        prompt: A p-value is 0.03. Under the rule p≤α, reject at α=0.05?
+        answerLines: 5
+        answer: Yes. The observed p-value is below the preselected threshold.
+      - id: 22
+        type: freeform
+        prompt: A p-value is 0.05. Under the stated rule p≤α, reject at α=0.05?
+        answerLines: 5
+        answer: Yes. Equality is included in the stated rejection rule.
+      - id: 23
+        type: freeform
+        prompt: Explain why a p-value is not P(H₀ is true given the data).
+        answerLines: 5
+        answer: The p-value conditions on a null model and measures possible data-statistic extremeness. A posterior reverses that conditioning and requires a prior model.
+  - title: Tests for a single population mean
+    questions:
+      - id: 24
+        type: freeform
+        prompt: For an iid normal sample with mean 12, null mean 10, known $\sigma=5$, and $n=25$, give the z statistic.
+        answerLines: 5
+        answer: "Standardize the difference: $(12-10)/(5/\\sqrt{25})=2$."
+      - id: 25
+        type: freeform
+        prompt: If the value 5 were the sample standard deviation instead, with normal iid data and the same mean 12, null 10, and size 25, give the t statistic.
+        answerLines: 5
+        answer: The numerical statistic remains $2$, but its reference is Student t with $24$ degrees of freedom.
+      - id: 26
+        type: freeform
+        prompt: For an iid normal sample with mean 18, null mean 20, known $\sigma=4$, and $n=16$, give the z statistic.
+        answerLines: 5
+        answer: "Standardize the difference: $(18-20)/(4/\\sqrt{16})=-2$."
+      - id: 27
+        type: freeform
+        prompt: If the value 4 were the sample standard deviation instead, with normal iid data and the same mean 18, null 20, and size 16, give the t statistic.
+        answerLines: 5
+        answer: The numerical statistic remains $-2$, but its reference is Student t with $15$ degrees of freedom.
+      - id: 28
+        type: freeform
+        prompt: For an iid normal sample with mean 5, null mean 4, known $\sigma=3$, and $n=36$, give the z statistic.
+        answerLines: 5
+        answer: "Standardize the difference: $(5-4)/(3/\\sqrt{36})=2$."
+      - id: 29
+        type: freeform
+        prompt: If the value 3 were the sample standard deviation instead, with normal iid data and the same mean 5, null 4, and size 36, give the t statistic.
+        answerLines: 5
+        answer: The numerical statistic remains $2$, but its reference is Student t with $35$ degrees of freedom.
+      - id: 30
+        type: freeform
+        prompt: For an iid normal sample with mean 1, null mean 2, known $\sigma=2$, and $n=16$, give the z statistic.
+        answerLines: 5
+        answer: "Standardize the difference: $(1-2)/(2/\\sqrt{16})=-2$."
+      - id: 31
+        type: freeform
+        prompt: If the value 2 were the sample standard deviation instead, with normal iid data and the same mean 1, null 2, and size 16, give the t statistic.
+        answerLines: 5
+        answer: The numerical statistic remains $-2$, but its reference is Student t with $15$ degrees of freedom.
+      - id: 32
+        type: freeform
+        prompt: For an iid normal sample with mean 20, null mean 20, known $\sigma=6$, and $n=36$, give the z statistic.
+        answerLines: 5
+        answer: "Standardize the difference: $(20-20)/(6/\\sqrt{36})=0$."
+      - id: 33
+        type: freeform
+        prompt: If the value 6 were the sample standard deviation instead, with normal iid data and the same mean 20, null 20, and size 36, give the t statistic.
+        answerLines: 5
+        answer: The numerical statistic remains $0$, but its reference is Student t with $35$ degrees of freedom.
+      - id: 34
+        type: freeform
+        prompt: A matching two-sided 95% mean confidence interval is [8,12]. Does its corresponding level-0.05 test reject μ=10?
+        answerLines: 5
+        answer: No. The null value lies inside the matching interval.
+      - id: 35
+        type: freeform
+        prompt: A matching two-sided 95% interval is [8,12]. Does the corresponding test reject μ=15?
+        answerLines: 5
+        answer: Yes. The null value is outside the matching interval.
+  - title: A proportion test uses the null standard error
+    questions:
+      - id: 36
+        type: freeform
+        prompt: There are 40 successes in 100 iid Bernoulli trials. For null $p_0=1/2$, give the normal-approximation test statistic.
+        answerLines: 5
+        answer: The null standard error is 0.05. Thus $(40/100-0.5)/0.05=-2$.
+      - id: 37
+        type: freeform
+        prompt: For 40 successes in 100 trials, give the observed difference from null probability 1/2 in percentage points.
+        answerLines: 5
+        answer: The difference is $100(40/100-0.5)=-10$ percentage points.
+      - id: 38
+        type: freeform
+        prompt: There are 50 successes in 100 iid Bernoulli trials. For null $p_0=1/2$, give the normal-approximation test statistic.
+        answerLines: 5
+        answer: The null standard error is 0.05. Thus $(50/100-0.5)/0.05=0$.
+      - id: 39
+        type: freeform
+        prompt: For 50 successes in 100 trials, give the observed difference from null probability 1/2 in percentage points.
+        answerLines: 5
+        answer: The difference is $100(50/100-0.5)=0$ percentage points.
+      - id: 40
+        type: freeform
+        prompt: There are 55 successes in 100 iid Bernoulli trials. For null $p_0=1/2$, give the normal-approximation test statistic.
+        answerLines: 5
+        answer: The null standard error is 0.05. Thus $(55/100-0.5)/0.05=1$.
+      - id: 41
+        type: freeform
+        prompt: For 55 successes in 100 trials, give the observed difference from null probability 1/2 in percentage points.
+        answerLines: 5
+        answer: The difference is $100(55/100-0.5)=5$ percentage points.
+      - id: 42
+        type: freeform
+        prompt: There are 60 successes in 100 iid Bernoulli trials. For null $p_0=1/2$, give the normal-approximation test statistic.
+        answerLines: 5
+        answer: The null standard error is 0.05. Thus $(60/100-0.5)/0.05=2$.
+      - id: 43
+        type: freeform
+        prompt: For 60 successes in 100 trials, give the observed difference from null probability 1/2 in percentage points.
+        answerLines: 5
+        answer: The difference is $100(60/100-0.5)=10$ percentage points.
+      - id: 44
+        type: freeform
+        prompt: There are 70 successes in 100 iid Bernoulli trials. For null $p_0=1/2$, give the normal-approximation test statistic.
+        answerLines: 5
+        answer: The null standard error is 0.05. Thus $(70/100-0.5)/0.05=4$.
+      - id: 45
+        type: freeform
+        prompt: For 70 successes in 100 trials, give the observed difference from null probability 1/2 in percentage points.
+        answerLines: 5
+        answer: The difference is $100(70/100-0.5)=20$ percentage points.
+      - id: 46
+        type: freeform
+        prompt: An exact upper-tail binomial test reports tail probability 0.012. At α=0.01, should the null be rejected under p≤α?
+        answerLines: 5
+        answer: No. The p-value exceeds 0.01.
+      - id: 47
+        type: freeform
+        prompt: Why does the proportion z test use p₀ rather than p-hat in its standard error?
+        answerLines: 5
+        answer: Its reference variability is computed under the null hypothesis. The plug-in confidence interval estimates variability using the observed proportion instead.
+  - title: Errors, power, and practical meaning
+    questions:
+      - id: 48
+        type: freeform
+        prompt: A test has power 0.8 at a specified alternative. Give its Type II error probability there.
+        answerLines: 5
+        answer: 'Failing to reject is the complementary decision: $1-0.8=0.20$.'
+      - id: 49
+        type: freeform
+        prompt: To bound the chance of any false rejection by 0.05 across 5 valid tests using the union bound, what per-test significance level suffices?
+        answerLines: 5
+        answer: Use $\alpha/m=0.05/5=0.01$. Independence is not required for the union bound.
+      - id: 50
+        type: freeform
+        prompt: A test has power 0.9 at a specified alternative. Give its Type II error probability there.
+        answerLines: 5
+        answer: 'Failing to reject is the complementary decision: $1-0.9=0.10$.'
+      - id: 51
+        type: freeform
+        prompt: To bound the chance of any false rejection by 0.05 across 10 valid tests using the union bound, what per-test significance level suffices?
+        answerLines: 5
+        answer: Use $\alpha/m=0.05/10=0.005$. Independence is not required for the union bound.
+      - id: 52
+        type: freeform
+        prompt: A test has power 0.6 at a specified alternative. Give its Type II error probability there.
+        answerLines: 5
+        answer: 'Failing to reject is the complementary decision: $1-0.6=0.40$.'
+      - id: 53
+        type: freeform
+        prompt: To bound the chance of any false rejection by 0.04 across 4 valid tests using the union bound, what per-test significance level suffices?
+        answerLines: 5
+        answer: Use $\alpha/m=0.04/4=0.01$. Independence is not required for the union bound.
+      - id: 54
+        type: freeform
+        prompt: A test has power 0.95 at a specified alternative. Give its Type II error probability there.
+        answerLines: 5
+        answer: 'Failing to reject is the complementary decision: $1-0.95=0.05$.'
+      - id: 55
+        type: freeform
+        prompt: To bound the chance of any false rejection by 0.1 across 20 valid tests using the union bound, what per-test significance level suffices?
+        answerLines: 5
+        answer: Use $\alpha/m=0.1/20=0.005$. Independence is not required for the union bound.
+      - id: 56
+        type: freeform
+        prompt: A test has power 0.7 at a specified alternative. Give its Type II error probability there.
+        answerLines: 5
+        answer: 'Failing to reject is the complementary decision: $1-0.7=0.30$.'
+      - id: 57
+        type: freeform
+        prompt: To bound the chance of any false rejection by 0.08 across 8 valid tests using the union bound, what per-test significance level suffices?
+        answerLines: 5
+        answer: Use $\alpha/m=0.08/8=0.01$. Independence is not required for the union bound.
+      - id: 58
+        type: freeform
+        prompt: Explain how a very small effect can be statistically significant.
+        answerLines: 5
+        answer: A sufficiently precise estimate can make a small departure large relative to its standard error. Practical importance depends on the effect and context, not just the standardized evidence.
+      - id: 59
+        type: freeform
+        prompt: A test rejects a true null. Name the error type.
+        answerLines: 5
+        answer: Type I error.

@@ -42,7 +42,7 @@ Target: begin the first CU Boulder MS-CS algorithms pathway course around the st
 
 Algebra, functions, exponents, logarithms, inequalities, and summation notation should be refreshed as needed throughout rather than treated as a separate major phase.
 
-The calculus subject now includes single-variable foundations, integration and series, followed by multivariable calculus. Its completeness takes precedence over the original four-week estimate; the later dates are flexible.
+Calculus includes single-variable foundations, integration and series, followed by multivariable calculus. Probability and statistics then develops foundations, inference, and the modeling bridge. Completeness takes precedence over the original time estimates; later dates are flexible.
 
 ## 1. Discrete Mathematics and Proofs
 
@@ -135,25 +135,26 @@ Compute and interpret derivatives and integrals, justify convergence and approxi
 
 ## 4. Probability and Statistics
 
+The final subject develops probability foundations, statistical inference, and a bridge to machine-learning modeling. It assumes discrete mathematics, linear algebra, and calculus, with local refreshers. Its reading-only 00 Introduction is followed by 22 instructional lessons; pacing follows working fluency rather than a fixed week count.
+
 ### Topics
 
-- Sample spaces and events
-- Probability rules
-- Conditional probability
-- Independence
-- Bayes' theorem
-- Random variables
-- Expectation
-- Variance and standard deviation
-- Covariance and correlation
-- Bernoulli and binomial distributions
-- Normal distribution
-- Sampling
-- Basic statistical inference
+- Probability models, events, counting, conditioning, independence, and Bayes' theorem
+- Discrete random variables, expectation, variance, and standard count/waiting-time models
+- Continuous variables, normal distributions, transformations, and joint/conditional laws
+- Covariance, correlation, random vectors, and conditional expectation
+- Data summaries, empirical distributions, sampling, bias, confounding, and randomization
+- Laws of large numbers, the central limit theorem, concentration, and Monte Carlo estimation
+- Point estimation, likelihood, confidence intervals, and hypothesis testing
+- Bayesian updating, beta models, posterior prediction, and credible intervals
+- Regression, coefficient uncertainty, prediction intervals, and causal limitations
+- Bootstrap uncertainty, held-out assessment, overfitting, leakage, and predictive metrics
+
+Broader two-sample procedures, ANOVA, extensive categorical testing, stochastic processes, measure-theoretic probability, advanced asymptotics, MCMC, and full machine-learning algorithms remain outside this sequence.
 
 ### Goal
 
-Build enough probability fluency to support algorithms and later machine-learning material.
+Build and interrogate probability models, calculate and interpret uncertainty, explain inference assumptions, and connect statistical reasoning to algorithms and model assessment. Practice and dedicated review combine exact and rounded numerical answers with open explanations and modeling judgments. Roughly 70% deterministic grading remains an authoring preference, without a percentage gate.
 
 ## Study Approach
 
