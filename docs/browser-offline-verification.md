@@ -39,11 +39,11 @@ Additional existing browser checks passed:
 | `web/tests/structuredAnswer.browser.mjs` | Structured controls and browser persistence under unavailable upload service.                                                                                                                |
 | `check-review-library-ui.mjs`            | Published catalog/filter/target grouping, authored and generated previews, historical exercise namespaces, lesson navigation and mobile layout; previews do not create learner observations. |
 
-Go provider-trap and frozen-definition/restore tests run in the full server suite. Existing unit tests additionally cover historical exercise-key mappings, changed assessment fingerprints, earlier draft preservation, immutable imported grades, and restore ordering. No new browser test was added solely for a passing scenario; the new torture test centers on the reproduced persistence failures.
+Go provider-trap and frozen-definition/restore tests run in the full server suite. The sync-envelope regressions explicitly retain `not_graded` responses and historical open attempts with empty grade histories. Existing unit tests additionally cover historical exercise-key mappings, changed assessment fingerprints, earlier draft preservation, immutable imported grades, and restore ordering. No new browser test was added solely for a passing scenario; the new torture test centers on the reproduced persistence failures.
 
 ## Validation
 
-On the offline-hardening branch: `npm test` (835 passing), `npm run typecheck`, `npm run web:build`, `npm run web:test` (81 passing), `npm run format:check`, `go test -count=1 ./...`, and `go test -race -count=1 ./...` passed. The server suite includes deterministic shared fixtures, provider traps and frozen Review restore. Browser commands above use the existing installed Playwright/Chrome runtime, selected through `PLAYWRIGHT_MODULE`/`CHROME_BIN`.
+On the offline-hardening branch: `npm test` (835 passing), `npm run typecheck`, `npm run web:build`, `npm run web:test` (82 passing), `npm run format:check`, `go test -count=1 ./...`, and `go test -race -count=1 ./...` passed. The server suite includes deterministic shared fixtures, provider traps and frozen Review restore. Browser commands above use the existing installed Playwright/Chrome runtime, selected through `PLAYWRIGHT_MODULE`/`CHROME_BIN`.
 
 The production build retains the pre-existing large-chunk advisory. No scheduler interval, evidence-depth rule, or curriculum coverage target changed in this branch.
 

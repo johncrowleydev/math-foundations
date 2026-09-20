@@ -69,7 +69,7 @@ test('acknowledgements preserve supported pending and transcribed media lifecycl
     verdict: undefined,
     grades: [],
   };
-  for (const status of ['pending', 'grading', 'cancelled', 'error']) {
+  for (const status of ['pending', 'grading', 'not_graded', 'cancelled', 'error']) {
     const saved = { ...original, status };
     assert.deepEqual(acknowledgedAttempt(saved, original), saved);
   }
@@ -83,6 +83,8 @@ test('acknowledgements preserve supported pending and transcribed media lifecycl
     grades: submitted.grades,
   };
   assert.deepEqual(acknowledgedAttempt(transcribed, original), transcribed);
+  const historical = { ...original, status: 'graded', verdict: 'correct', grades: [] };
+  assert.deepEqual(acknowledgedAttempt(historical, original), historical);
 });
 
 test('malformed downloaded attempts cannot erase pending answers or advance the cursor', async () => {
@@ -116,4 +118,30 @@ test('malformed downloaded attempts cannot erase pending answers or advance the 
     assert.deepEqual(await get('attempts', submitted.id), submitted);
     assert.equal((await all('outbox')).length, 0);
   }
+});
+
+test('download preserves not-graded feedback and historical open grades without inventing history', async () => {
+  await clearLocalWork();
+  const base = { ...submitted, mode: 'type', response: undefined, text: 'Original proof.' };
+  const historical = { ...base, id: 'historical-proof', grades: [] };
+  const unreadable = {
+    ...base,
+    id: 'unreadable-proof',
+    status: 'not_graded',
+    verdict: '',
+    grades: [{ at: 1100, verdict: 'not_graded', feedback: 'Unable to resolve the response.' }],
+  };
+  const records = [historical, unreadable].map((payload, i) => ({
+    key: 'attempt/' + payload.id,
+    payload,
+    revision: i + 1,
+    id: 'saved-' + payload.id,
+    device: 'server',
+    updated: 1100,
+    versions: [],
+    conflicts: [],
+  }));
+  await integrate(records, 2);
+  assert.deepEqual(await get('attempts', historical.id), historical);
+  assert.deepEqual(await get('attempts', unreadable.id), unreadable);
 });

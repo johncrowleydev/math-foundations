@@ -19,9 +19,16 @@ export function validServerAttempt(value: unknown): value is Attempt {
     typeof a.text === 'string' &&
     typeof a.revealed === 'boolean' &&
     ['type', 'write', 'photo', 'choice', 'structured'].includes(a.mode || '') &&
-    ['queued', 'pending', 'grading', 'graded', 'rechecking', 'cancelled', 'error'].includes(
-      a.status || '',
-    ) &&
+    [
+      'queued',
+      'pending',
+      'grading',
+      'graded',
+      'not_graded',
+      'rechecking',
+      'cancelled',
+      'error',
+    ].includes(a.status || '') &&
     Array.isArray(a.images) &&
     a.images.every((image) => typeof image === 'string') &&
     Array.isArray(a.grades) &&

@@ -162,7 +162,9 @@ export function acknowledgedAttempt(value: unknown, submitted: Attempt): Attempt
     a.text !== submitted.text ||
     a.revealed !== submitted.revealed ||
     a.status === 'queued' ||
-    (a.status === 'graded' && (!a.grades.length || a.verdict !== a.grades.at(-1)?.verdict)) ||
+    (a.status === 'graded' &&
+      ((!a.grades.length && deterministicAttempt(submitted)) ||
+        (a.grades.length > 0 && a.verdict !== a.grades.at(-1)?.verdict))) ||
     (a.mode === 'choice' && a.choiceId !== submitted.choiceId) ||
     (a.mode === 'structured' &&
       (Object.keys(a.response!).length !== Object.keys(submitted.response || {}).length ||
