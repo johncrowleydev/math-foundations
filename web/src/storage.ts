@@ -4,6 +4,7 @@ import { validReviewContext, validReviewSession } from './reviewValidation';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
 import { validResponse, validPresentation } from './structuredAnswer';
+import { validateImportedGrades } from './importGrading';
 import type { EvidenceCatalog } from './evidenceTypes';
 import {
   validAttemptEffort,
@@ -402,6 +403,26 @@ export async function importData(file: Blob, name: string) {
       return [key, v];
     });
   }
+  const restoreOperations = parsed.outbox
+    .map(([, value]) => value)
+    .filter((value) => value.kind === 'review-import');
+  validateImportedGrades(
+    [
+      ...parsed.attempts.map(([, value]) => value),
+      ...parsed.records
+        .filter(([key]) => key.startsWith('attempt/'))
+        .map(([, value]) => value.payload),
+      ...parsed.outbox
+        .filter(([, value]) => value.kind === 'attempt')
+        .map(([, value]) => value.data),
+      ...restoreOperations.flatMap((value) => value.data.attempts),
+    ] as Attempt[],
+    [
+      ...(await all<RecordData>('records')),
+      ...parsed.records.map(([, value]) => value),
+      ...restoreOperations.flatMap((value) => value.data.records),
+    ],
+  );
   if (!Array.isArray(data.media)) throw Error('Missing media list.');
   const media: [string, Blob][] = [];
   for (const row of data.media) {
@@ -441,12 +462,11 @@ export async function importData(file: Blob, name: string) {
     for (const [key, value] of parsed[store]) {
       const old = await tx.objectStore(store).get(key);
       if (old === undefined) {
-        // Revisions are local to a server database. A restored review snapshot
+        // Revisions are local to a server database. A restored server snapshot
         // must not outrank a new server's authoritative replay merely because
         // its old revision was larger. The original remains in the archive.
         const restored =
-          store === 'records' &&
-          (key.startsWith('review-') || (key.startsWith('attempt/') && value.payload.review))
+          store === 'records' && (key.startsWith('review-') || key.startsWith('attempt/'))
             ? { ...value, revision: 0 }
             : value;
         await tx.objectStore(store).put(restored, key);
