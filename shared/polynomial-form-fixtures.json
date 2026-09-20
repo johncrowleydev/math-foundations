@@ -1,0 +1,711 @@
+[
+  {
+    "name": "expanded-square",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x+1)^2",
+            "variables": ["x"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+2*x+1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "expanded-reordered",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x+1)^2",
+            "variables": ["x"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1+2*x+x*x"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "expanded-original-power",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x+1)^2",
+            "variables": ["x"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x+1)^2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "expanded-unmultiplied-sums",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x+1)^2",
+            "variables": ["x"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x+1)*(x+1)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "expanded-partial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x+1)^2",
+            "variables": ["x"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x*(x+2)+1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "expanded-scalar-fraction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x+1)^2/2",
+            "variables": ["x"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2/2+x+1/2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "expanded-wrong-coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(x+1)^2",
+            "variables": ["x"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2+x+1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "expanded-two-variable",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(a+b)^4",
+            "variables": ["a", "b"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "a^4+4*a^3*b+6*a^2*b^2+4*a*b^3+b^4"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "expanded-binomial-leftover",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "(a+b)^4",
+            "variables": ["a", "b"],
+            "form": "expanded"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(a+b)^4"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "factored-square",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^2-4*x+4",
+            "variables": ["x"],
+            "form": "factored",
+            "factorDegree": 1
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x-2)^2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "factored-scaled-factors",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^2-4*x+4",
+            "variables": ["x"],
+            "form": "factored",
+            "factorDegree": 1
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(2*x-4)*(x/2-1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "factored-original-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^2-4*x+4",
+            "variables": ["x"],
+            "form": "factored",
+            "factorDegree": 1
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2-4*x+4"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "factored-scalar-gaming-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^2-4*x+4",
+            "variables": ["x"],
+            "form": "factored",
+            "factorDegree": 1
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "1*(x^2-4*x+4)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "factored-additive-partial-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^2-4*x+4",
+            "variables": ["x"],
+            "form": "factored",
+            "factorDegree": 1
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x*(x-4)+4"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "factored-incorrect-root",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^2-4*x+4",
+            "variables": ["x"],
+            "form": "factored",
+            "factorDegree": 1
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x+2)^2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "factored-unbounded-original-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^2-4*x+4",
+            "variables": ["x"],
+            "form": "factored"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "x^2-4*x+4"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "factored-quadratic-factors",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^4+3*x^2+2",
+            "variables": ["x"],
+            "form": "factored"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x^2+1)*(x^2+2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "factored-degree-restriction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "x^4+3*x^2+2",
+            "variables": ["x"],
+            "form": "factored",
+            "factorDegree": 1
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(x^2+1)*(x^2+2)"
+    },
+    "verdict": "incorrect"
+  }
+]

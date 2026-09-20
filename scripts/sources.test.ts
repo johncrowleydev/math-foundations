@@ -1,3 +1,4 @@
+import { exerciseKey } from '../web/src/exerciseIdentity.js';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -29,7 +30,7 @@ test('every lesson, section, exercise, reference, figure, and TeX construction h
     for (const section of lesson.sections)
       assert.ok(result.targets[`${lesson.slug}/${section.id}`]?.length);
     for (const question of lesson.questions)
-      assert.ok(result.targets[`exercise:${lesson.slug}-${question.id}`]?.length);
+      assert.ok(result.targets[`exercise:${exerciseKey(lesson, question.id)}`]?.length);
   }
   for (const r of teaching.references) assert.ok(result.targets[`reference:${r.id}`]?.length);
   for (const f of teaching.figures) assert.ok(result.targets[`figure:${f.id}`]?.length);

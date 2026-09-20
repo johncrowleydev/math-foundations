@@ -1,6 +1,9 @@
+import { validateExerciseKeys } from './exerciseIdentity';
 import type { ReviewContext } from './reviewTypes';
 import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from './evidenceTypes';
 import type { SourceCatalog } from './Sources';
+import type { Assessment, StructuredResponse } from '../../shared/assessment';
+export type { Assessment, StructuredResponse } from '../../shared/assessment';
 export type Block = { id: string; kind: string; markdown?: string; figure?: string };
 export type Question = {
   id: number;
@@ -12,6 +15,7 @@ export type Question = {
   section: string;
   table?: { columns: string[]; rows: number };
   choice?: ChoiceAssessment;
+  assessment?: Assessment;
   quickSource?: string;
 };
 export type ChoiceAssessment = {
@@ -39,6 +43,7 @@ export type Lesson = {
   subject?: string;
   number?: number;
   slug: string;
+  exerciseNamespace?: string;
   title: string;
   eyebrow: string;
   introBlocks: Block[];
@@ -167,6 +172,8 @@ export type Attempt = Effort & {
   contentVersion: string;
   mode: string;
   choiceId?: string;
+  response?: StructuredResponse;
+  presentation?: { question: Question; assessment?: Assessment };
   text: string;
   images: string[];
   photos?: { hash: string; rotation: number }[];
@@ -185,6 +192,15 @@ export type Stroke = {
 export type Photo = { hash: string; rotation: number };
 export type Draft = Effort & {
   choiceId?: string;
+  response?: StructuredResponse;
+  assessmentFingerprint?: string;
+  assessmentQuestion?: Question;
+  earlierWork?: {
+    fingerprint: string;
+    question?: Question;
+    response: StructuredResponse;
+    updated: number;
+  }[];
   text: string;
   mode: 'type' | 'pen' | 'photo';
   strokes: Stroke[];
@@ -220,6 +236,7 @@ export async function loadCurriculum(): Promise<Curriculum> {
       return r.json();
     }),
   );
+  validateExerciseKeys(n.lessons);
   return {
     sources,
     evidence,

@@ -175,7 +175,9 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
           <Exercise
             key={item.id}
             q={item.question}
-            lesson={item.lesson}
+            lesson={
+              data.lessons.find((lesson) => lesson.slug === item.lesson) || { slug: item.lesson }
+            }
             data={data}
             instance={item}
           />

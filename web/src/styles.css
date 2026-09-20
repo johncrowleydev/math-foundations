@@ -16,6 +16,35 @@
 * {
   box-sizing: border-box;
 }
+.grading-toasts {
+  position: fixed;
+  top: max(20px, env(safe-area-inset-top));
+  right: 20px;
+  width: min(420px, calc(100vw - 40px));
+  z-index: 100;
+}
+.grading-toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 20px #253a4326;
+  font-size: 0.85rem;
+}
+.grading-toast span {
+  flex: 1;
+}
+.grading-toast.incorrect {
+  color: #b34e4e;
+  background: #fff8f8;
+  border-color: #b34e4e40;
+}
+.grading-toast.incorrect .icon-button {
+  color: inherit;
+}
 body {
   margin: 0;
 }
@@ -2031,4 +2060,223 @@ button.danger:hover:not(:disabled) {
   .library-generated-preview {
     padding: 10px;
   }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.structured-answer {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  margin: 12px 0;
+}
+.assessment-field,
+.answer-grid-wrap {
+  min-width: 0;
+}
+.assessment-field > label,
+.assessment-field > .rich {
+  display: block;
+  margin-bottom: 6px;
+}
+.assessment-field > input {
+  width: min(100%, 32rem);
+  min-height: 44px;
+}
+.assessment-field .rich > :first-child,
+.assessment-selection .rich > :first-child,
+.answer-grid .rich > :first-child {
+  margin-top: 0;
+}
+.assessment-field .rich > :last-child,
+.assessment-selection .rich > :last-child,
+.answer-grid .rich > :last-child {
+  margin-bottom: 0;
+}
+.assessment-selection {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.assessment-selection legend {
+  margin-bottom: 8px;
+}
+.answer-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.answer-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 7px 12px;
+  border: 1px solid #cbd3dc;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  color: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.answer-option:has(input:checked) {
+  border-color: #315fa0;
+  background: #edf3fb;
+}
+.answer-option input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+.answer-grid-scroll {
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid #d8dfe7;
+  border-radius: 7px;
+}
+.answer-grid {
+  width: max-content;
+  min-width: min(100%, 20rem);
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.answer-grid caption {
+  padding: 10px;
+  text-align: left;
+}
+.answer-grid td,
+.answer-grid th {
+  padding: 5px;
+  text-align: center;
+  min-width: 54px;
+}
+.answer-grid th {
+  background: #f5f7fa;
+}
+.answer-grid th[scope='row'] {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  padding-left: 10px;
+}
+.answer-grid .given-cell {
+  background: #f5f7fa;
+  color: #4d5967;
+}
+.answer-grid .sticky-given {
+  position: sticky;
+  z-index: 1;
+  width: 54px;
+  min-width: 54px;
+  max-width: 54px;
+  background: #f5f7fa;
+}
+.answer-grid input {
+  min-width: 64px;
+  width: 7rem;
+  min-height: 44px;
+  text-align: center;
+}
+.boolean-cell {
+  min-width: 44px;
+  min-height: 44px;
+  font-weight: 600;
+}
+.boolean-cell.answered {
+  color: #234b7c;
+  background: #edf3fb;
+  border-color: #8ba8cd;
+}
+.boolean-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.blank-value {
+  color: #7f8995;
+}
+.interval-input {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  width: min(100%, 32rem);
+}
+.interval-input input {
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+}
+.interval-input .boolean-cell {
+  flex-shrink: 0;
+}
+.scratchwork,
+.earlier-work,
+.submitted-question {
+  margin: 12px 0;
+}
+.scratchwork > summary,
+.earlier-work > summary,
+.submitted-question > summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 0;
+}
+.readonly-answer .answer-grid td {
+  padding: 9px 12px;
+}
+.answer-value,
+.answer-selection {
+  padding-left: 10px;
+  border-left: 2px solid #d8dfe7;
+}
+
+/* Short deterministic answers use the existing editor without prose-sized panels. */
+.tex-editor.compact .editor-columns {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+.tex-editor.compact .editor-input {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: start;
+  gap: 6px;
+}
+.tex-editor.compact .editor-box {
+  padding: 7px 10px;
+}
+.tex-editor.compact .editor-box:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.tex-editor.compact .cm-editor {
+  min-height: 28px;
+}
+.tex-editor.compact .cm-content {
+  min-height: 28px;
+  padding: 1px 0;
+}
+.tex-editor.compact .compact-syntax {
+  min-width: 44px;
+  min-height: 44px;
+}
+.tex-editor.compact .preview {
+  grid-row: auto;
+  min-height: 0;
+}
+.tex-editor.compact .preview .rich > :last-child {
+  margin-bottom: 0;
 }

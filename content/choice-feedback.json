@@ -803,7 +803,7 @@
     }
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 72,
     "sourceHash": "da0dfd11d61b0b8b8731aef3ebace4e0a9dcd94c256440776c5bc7a017f5deda",
     "responses": {
@@ -813,7 +813,7 @@
     }
   },
   {
-    "lesson": "linear-algebra-bases",
+    "lesson": "linear-algebra-rank-inverses",
     "id": 73,
     "sourceHash": "7a05e67ed6706c7b3371fdf3e0d6e76533bc3864b46d0457997d94e65b046785",
     "responses": {
@@ -849,7 +849,7 @@
     }
   },
   {
-    "lesson": "linear-algebra-projections",
+    "lesson": "linear-algebra-least-squares",
     "id": 70,
     "sourceHash": "018a5aa764301436bb3d01cd152f1a9d011414dca4b2e6cdb51889c616dde271",
     "responses": {
@@ -1742,6 +1742,46 @@
     "responses": {
       "option-1": "Not satisfying the condition of a guarantee is different from satisfying a guarantee of failure. Check what the premise actually says about someone who does not study.",
       "option-2": "The conditional promises a pass when studying occurs; it makes no promise about what happens without studying. A person who did not study but still passed makes both premises true and the conclusion false. This is denying the antecedent: removing a sufficient condition does not rule out the result."
+    }
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 74,
+    "sourceHash": "5e7f59b0f3e76ee859467071683341c542582dd5652c4956c2fed9b0f00ba80b",
+    "responses": {
+      "option-1": "Yes. Each coefficient follows its basis vector, so swapping the basis order swaps the coordinate positions.",
+      "option-2": "This keeps the coefficient positions unchanged even though the basis vectors have exchanged places. Reconstruct the vector in each ordered basis.",
+      "option-3": "Changing the basis order does not negate the coefficients. Track which coefficient multiplies p and which multiplies q."
+    }
+  },
+  {
+    "lesson": "linear-algebra-bases",
+    "id": 75,
+    "sourceHash": "c169ab236aca4064d7735fc76b4f719905de2c4532c903d45a225c09bff1b2bc",
+    "responses": {
+      "option-1": "Yes. Two independent basis coefficients describe every vector on this plane.",
+      "option-2": "Three is the dimension of the ambient space. The plane itself needs only two basis coefficients.",
+      "option-3": "Count basis vectors, not defining equations. This one equation leaves two independent coordinates."
+    }
+  },
+  {
+    "lesson": "linear-algebra-projections",
+    "id": 71,
+    "sourceHash": "bbb63c74c76c6ed7be67e2740d763f58e0228ce8d16a9d4df4f4a95d651dd838",
+    "responses": {
+      "option-1": "Yes. The first multiplication extracts two coefficients; Q reconstructs their three-component output in its column space.",
+      "option-2": "That describes Q transpose b. The final multiplication by Q rebuilds the output vector.",
+      "option-3": "The projection equals b only if b already lies in the column space. Two columns need not span the three-component space."
+    }
+  },
+  {
+    "lesson": "linear-algebra-least-squares",
+    "id": 72,
+    "sourceHash": "3eeb8e766e0a97dbe18cc5ef73579b69db5aa6c680b7725b54d919794818f603",
+    "responses": {
+      "option-1": "Yes. The closest output is unique, but only the sum of these two coefficients affects it.",
+      "option-2": "Identical columns allow a nonzero change (h,-h) in the coefficients without changing the fitted output.",
+      "option-3": "The normal equations remain consistent. Dependence gives multiple coefficient solutions, rather than no solution."
     }
   }
 ]

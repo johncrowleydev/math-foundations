@@ -79,6 +79,18 @@
       "edition": "E53, Commentarii academiae scientiarum Petropolitanae 8, pp. 128–140; published 1741. Euler Archive, University of the Pacific",
       "url": "https://scholarlycommons.pacific.edu/euler-works/53/"
     },
+    "strang-ila": {
+      "title": "Introduction to Linear Algebra",
+      "author": "Gilbert Strang",
+      "edition": "Fifth edition; author-hosted MIT excerpt, §3.5",
+      "url": "https://math.mit.edu/~gs/linearalgebra/ila5/linearalgebra5_3-5.pdf"
+    },
+    "fnc": {
+      "title": "Fundamentals of Numerical Computation",
+      "author": "Tobin A. Driscoll and Richard J. Braun",
+      "edition": "Online v1.0 edition, copyright 2020",
+      "url": "https://fncbook.github.io/v1.0/"
+    },
     "lean-tpil": {
       "title": "Theorem Proving in Lean 4",
       "author": "Jeremy Avigad, Leonardo de Moura, Soonho Kong, Sebastian Ullrich",
@@ -459,7 +471,7 @@
       "locator": "§2.5",
       "supports": "Independence and dependence criteria.",
       "url": "https://textbooks.math.gatech.edu/ila/linear-independence.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-subspaces": {
       "source": "ila",
@@ -470,24 +482,24 @@
     },
     "i-basis": {
       "source": "ila",
-      "locator": "§2.7",
-      "supports": "Bases, dimension, and the row space.",
+      "locator": "§§2.7.1–2.7.3: basis and dimension definitions; column-space and null-space bases; Basis Theorem and proof",
+      "supports": "Bases and dimension; extracting or extending a basis; selecting original pivot columns and homogeneous solution vectors. The equal-size basis theorem is stated; the lesson supplies its own exchange argument.",
       "url": "https://textbooks.math.gatech.edu/ila/dimension.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-coordinates": {
       "source": "ila",
       "locator": "§2.8",
       "supports": "Unique coordinates relative to a basis.",
       "url": "https://textbooks.math.gatech.edu/ila/bases-as-coord-systems.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-rank": {
       "source": "ila",
       "locator": "§2.9",
       "supports": "Rank, nullity, and the rank theorem.",
       "url": "https://textbooks.math.gatech.edu/ila/rank-thm.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-systems": {
       "source": "ila",
@@ -501,7 +513,7 @@
       "locator": "§1.2",
       "supports": "Row operations, pivots, and echelon forms.",
       "url": "https://textbooks.math.gatech.edu/ila/row-reduction.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-parameters": {
       "source": "ila",
@@ -529,7 +541,7 @@
       "locator": "§3.5",
       "supports": "Inverse matrices and invertibility tests.",
       "url": "https://textbooks.math.gatech.edu/ila/matrix-inverses.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-eigen": {
       "source": "ila",
@@ -561,24 +573,24 @@
     },
     "i-projection": {
       "source": "ila",
-      "locator": "§6.3",
+      "locator": "§§6.3.1–6.3.2: Orthogonal decomposition; Closest vector and distance; line-projection recipe and proof; projection properties",
       "supports": "Orthogonal projections and closest vectors.",
       "url": "https://textbooks.math.gatech.edu/ila/projections.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-orthonormal": {
       "source": "ila",
-      "locator": "§6.4",
-      "supports": "Orthonormal bases, Gram–Schmidt, and QR.",
+      "locator": "§§6.4.1–6.4.2: orthogonal independence, Projection Formula, normalization, and Gram–Schmidt theorem/proof including zero remainders",
+      "supports": "Orthogonal and orthonormal bases, projection sums, and Gram–Schmidt with span preservation and redundant-vector removal. The source orthogonalizes before normalizing; the lesson normalizes each retained direction.",
       "url": "https://textbooks.math.gatech.edu/ila/orthogonal-sets.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "i-least": {
       "source": "ila",
-      "locator": "§6.5",
-      "supports": "Normal equations, residuals, and least-squares fitting.",
+      "locator": "§§6.5.1–6.5.2: normal-equation theorem, uniqueness criteria, and Best-fit line",
+      "supports": "Normal equations, orthogonal residuals, unique fitted outputs, rank-dependent parameter uniqueness, and least-squares fitting of vertical discrepancies. The source orders slope before intercept; the lesson orders intercept before slope and defines residual as observations minus fitted output.",
       "url": "https://textbooks.math.gatech.edu/ila/least-squares.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "ml-intro": {
       "source": "mml",
@@ -603,10 +615,10 @@
     },
     "ml-models": {
       "source": "mml",
-      "locator": "§8.1",
+      "locator": "§8.1, printed pp. 251–258 (PDF pp. 257–264), especially §8.1.4: fitting training observations versus predicting unseen data",
       "supports": "Models, data, and the limits of mathematical interpretation.",
       "url": "https://mml-book.github.io/book/mml-book.pdf#page=257",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "d-intro": {
       "source": "levin",
@@ -627,7 +639,7 @@
       "locator": "§2.2, Trees (including rooted trees)",
       "supports": "Rooted trees and spanning-tree structure.",
       "url": "https://discrete.openmathbooks.org/dmoi4/sec_trees.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-19"
     },
     "alg-search": {
       "source": "algorithms",
@@ -648,7 +660,7 @@
       "locator": "Supported Functions (grouped command reference)",
       "supports": "Math commands, grouping, scripts, spacing, and matrix/aligned/cases environments. Foundations supports a curated subset; editor controls are app-specific.",
       "url": "https://katex.org/docs/supported.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-19"
     },
     "tex-delimiters": {
       "source": "katex",
@@ -722,10 +734,10 @@
     },
     "numerical-ls": {
       "source": "lapack",
-      "locator": "Linear Least Squares (LLS) Problems",
+      "locator": "Linear Least Squares (LLS) Problems: xGELS paragraph, rank-deficient driver paragraph, and Table 2.3",
       "supports": "QR/SVD methods, full-rank and rank-deficient least-squares problems.",
       "url": "https://www.netlib.org/lapack/lug/node27.html",
-      "checked": "2026-09-15"
+      "checked": "2026-09-16"
     },
     "alg-asymptotic": {
       "source": "algorithms",
@@ -734,12 +746,54 @@
       "url": "https://courses.csail.mit.edu/6.006/fall11/rec/rec01.pdf",
       "checked": "2026-09-15"
     },
+    "i-determinant-area": {
+      "source": "ila",
+      "locator": "§4.3.2: Determinants and volumes theorem, transpose observation, Area example, and Signed volumes remark",
+      "supports": "Absolute determinant as parallelogram area and determinant sign as orientation in the plane. The source first uses rows, then explicitly extends the volume statement to columns; the lesson uses columns.",
+      "url": "https://textbooks.math.gatech.edu/ila/determinants-volumes.html",
+      "checked": "2026-09-16"
+    },
+    "i-existence-uniqueness": {
+      "source": "ila",
+      "locator": "§§3.2.1–3.2.3: one-to-one and onto matrix-transformation theorems; square-matrix comparison",
+      "supports": "Independent columns give at most one input per output; full row rank reaches every output. These are separate conditions for rectangular matrices and coincide for square matrices.",
+      "url": "https://textbooks.math.gatech.edu/ila/one-to-one-onto.html",
+      "checked": "2026-09-16"
+    },
+    "strang-row-space": {
+      "source": "strang-ila",
+      "locator": "§3.5, printed pp. 182, 184–185 (PDF pp. 2, 4–5): nonzero echelon rows; The Four Subspaces for A, items 1–2",
+      "supports": "Nonzero echelon rows form a row-space basis; reversible row operations preserve row span; row rank and column rank equal the pivot count. Row reduction need not preserve the column space.",
+      "url": "https://math.mit.edu/~gs/linearalgebra/ila5/linearalgebra5_3-5.pdf#page=2",
+      "checked": "2026-09-16"
+    },
+    "numerical-solve": {
+      "source": "lapack",
+      "locator": "Linear Equations: simple-driver description and paragraph immediately before Table 2.2",
+      "supports": "Linear-system drivers factor the coefficient matrix and solve without explicitly forming its inverse; explicit inversion is generally unnecessary for solving systems.",
+      "url": "https://www.netlib.org/lapack/lug/node26.html",
+      "checked": "2026-09-16"
+    },
+    "lapack-qr": {
+      "source": "lapack",
+      "locator": "QR Factorization: reduced factorization A=Q1 R and full-column-rank least-squares application",
+      "supports": "Orthonormal columns and upper-triangular reconstruction coefficients in reduced QR, matrix dimensions, and triangular least-squares solving. The lesson names the rectangular factor Q; this source names it Q1. LAPACK implementation is not claimed to use classroom Gram–Schmidt.",
+      "url": "https://www.netlib.org/lapack/lug/node40.html",
+      "checked": "2026-09-16"
+    },
+    "fnc-normal-stability": {
+      "source": "fnc",
+      "locator": "The normal equations — Conditioning and stability, equations (65)–(66)",
+      "supports": "Sensitivity of least-squares coefficients to perturbations and possible numerical instability from forming normal equations: in the 2-norm, the condition number of A transpose A squares that of A.",
+      "url": "https://fncbook.github.io/v1.0/leastsq/normaleqns.html#conditioning-and-stability",
+      "checked": "2026-09-16"
+    },
     "review-witness": {
       "source": "lean-tpil",
       "locator": "Quantifiers and Equality, The Existential Quantifier",
       "url": "https://leanprover.github.io/theorem_proving_in_lean4/Quantifiers-and-Equality/#the-existential-quantifier",
       "supports": "A witness is a domain value satisfying an existential condition. Supports original definition recall prompts and generated integer examples, not copied source exercises. Integer examples independently checked by substitution.",
-      "checked": "2026-09-18"
+      "checked": "2026-09-19"
     },
     "review-logic-statements": {
       "source": "levin",
@@ -774,14 +828,14 @@
       "locator": "§§2.5–2.6, pp. 48–52",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=60",
       "supports": "Complete truth tables, independent truth assignments, equivalence by matching all rows, contraposition, De Morgan's laws, and implication rewrites. Original compound formulas and counterassignments were independently checked over every truth assignment.",
-      "checked": "2026-09-18"
+      "checked": "2026-09-19"
     },
     "review-logic-negation": {
       "source": "proof",
       "locator": "§2.10, pp. 59–62, especially Example 2.12 and equation (2.10)",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=71",
       "supports": "Negation of implication as a true antecedent with a false consequent; De Morgan transformations; strict versus non-strict inequality negation. Original boundary examples were independently checked below, at, and above each boundary.",
-      "checked": "2026-09-18"
+      "checked": "2026-09-19"
     },
     "review-logic-classification": {
       "source": "lerma-discrete",
@@ -830,7 +884,7 @@
       "locator": "§§3.6.3–3.6.6, printed pp. 65–68 (PDF pp. 73–76)",
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=73",
       "supports": "Domains, mixed-quantifier order, dependent versus fixed witnesses, validity and countermodels. Supports original interpretations and constructions; examples independently checked.",
-      "checked": "2026-09-18"
+      "checked": "2026-09-19"
     },
     "review-variable-scope": {
       "source": "logic-and-proof",
@@ -873,6 +927,20 @@
       "url": "https://leanprover-community.github.io/logic_and_proof/natural_deduction_for_first_order_logic.html#the-universal-quantifier",
       "supports": "Universal conjunction and existential disjunction distribution. The original separate-witness countermodel was exhaustively checked over its two-element domain.",
       "checked": "2026-09-18"
+    },
+    "mml-transpose": {
+      "source": "mml",
+      "locator": "§2.2.2, Definition 2.4 (Transpose), printed p. 25 / PDF p. 31",
+      "url": "https://mml-book.github.io/book/mml-book.pdf#page=31",
+      "supports": "Transpose shape and the row/column exchange defining each transposed entry; original numerical examples are independently calculated.",
+      "checked": "2026-09-19"
+    },
+    "m-recursive-data": {
+      "source": "mcs",
+      "locator": "§7.1, Recursive Definitions and Structural Induction (printed pp.217–220)",
+      "supports": "Base objects, recursive constructors, nested pairs, and additive occurrence counts.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=225",
+      "checked": "2026-09-19"
     }
   },
   "lessons": {
@@ -888,7 +956,7 @@
       "practice": {}
     },
     "propositional-logic": {
-      "reviewedContentHash": "8e16c7b38c011bf6b02f5eaebef746228494e4c7713d95a55821dc77abf9b102",
+      "reviewedContentHash": "2171e4ae989b82b9406fa0e6623d68dfe200a2d7b8cfbc123841692b78bef18e",
       "intro": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"],
       "sections": {
         "propositions": ["m-propositions"],
@@ -1000,7 +1068,7 @@
       }
     },
     "predicates-and-quantifiers": {
-      "reviewedContentHash": "06c588812938aaa0fafb2f48ed953eb402c37d0305a45a8d7df2d5b218765553",
+      "reviewedContentHash": "4f29e6c832377a49315de0a68cab839b6cd51206a8740db9fd0ea3cd4f24861c",
       "intro": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"],
       "sections": {
         "domains-come-first": ["m-quantifiers"],
@@ -1098,7 +1166,7 @@
       }
     },
     "sets-and-set-operations": {
-      "reviewedContentHash": "7f7a114f571719f4b1d6f4158dbc225d5aaad5d99f3bc95c9df60fedee99044c",
+      "reviewedContentHash": "708f8b45f6c6d3c4984fce8763a19f9e42db6e6b3d7d3e73182e559a76d8a744",
       "intro": ["p-sets", "p-setproof", "m-pie", "m-classes"],
       "sections": {
         "elements-descriptions-and-equality": ["p-sets"],
@@ -1137,7 +1205,7 @@
       }
     },
     "relations": {
-      "reviewedContentHash": "70a698b0ac884a903303624774d2068f191afb385ae42617cb2cf904a6a473ce",
+      "reviewedContentHash": "b353bafc7eda58efb9d54f9cd541e092ee91ddf15e134446389dab149280ff12",
       "intro": ["p-relations", "m-orders", "m-composition"],
       "sections": {
         "relations-as-sets-of-ordered-pairs": ["m-relations", "m-digraph"],
@@ -1173,7 +1241,7 @@
       }
     },
     "functions": {
-      "reviewedContentHash": "ccedd06944444e63a9d3e891b2960e1bbaa326a1ad42ed0c5db50c50960625c7",
+      "reviewedContentHash": "a49563f13fb7af46e454c382ff91e9c41777650e95a29d6a07aec5f47fc17845",
       "intro": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"],
       "sections": {
         "what-a-function-specifies": ["p-functions", "m-functions"],
@@ -1247,7 +1315,7 @@
       }
     },
     "sequences-and-summations": {
-      "reviewedContentHash": "e6202c44da7d9cf4450bf80832099e62d8e63ca3c5634d772d847f52404fa0c5",
+      "reviewedContentHash": "f9d49284e039f7ff909de03033886ecd601ffc54bf536acfe616acc548c346a1",
       "intro": ["m-sequences", "d-sequences", "m-sums", "m-products"],
       "sections": {
         "a-sequence-is-an-indexed-function": ["m-sequences"],
@@ -1297,7 +1365,7 @@
       }
     },
     "direct-proof": {
-      "reviewedContentHash": "f5aa7044c03ad4bbe73f8816b29499ca2516ba7c4ab149542f967d0b7aa99785",
+      "reviewedContentHash": "175187bbeba3714a2a8896804d93626625acd4dcbaf8b99234e3ec302478aefa",
       "intro": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
       "sections": {
         "read-the-claim-before-choosing-a-method": ["p-direct"],
@@ -1352,7 +1420,7 @@
       }
     },
     "proof-by-contrapositive": {
-      "reviewedContentHash": "10a838ec030b8c083fa2d710b1e431e73ce259d2f5dca56a51807269bfaa8cae",
+      "reviewedContentHash": "cdb64c38e629769c6db73743813b96d715313e61bcb5d64494e4ea395e8d1dcd",
       "intro": ["p-contra", "p-quantifiers", "m-modular", "p-functions", "p-setproof"],
       "sections": {
         "the-equivalence-that-makes-the-method-work": ["p-contra"],
@@ -1429,7 +1497,7 @@
       }
     },
     "proof-by-contradiction": {
-      "reviewedContentHash": "fa87e6b783f20f00d3a55758eb93266b8e863598d7328cc577baafc60a6511b3",
+      "reviewedContentHash": "9a82c515fbe313a6084f8483a186ca0da313a614179f7a7d6ece317e13a9cf82",
       "intro": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"],
       "sections": {
         "the-logical-structure": ["p-contradiction"],
@@ -1482,7 +1550,7 @@
       }
     },
     "mathematical-induction": {
-      "reviewedContentHash": "18840d312f46e71caa09ea15326668727fa7b546d7d9b4819afdd726332b834e",
+      "reviewedContentHash": "2d1ff60f185284a7852c88aee484d4a53a0a0d8dfb87ae39ee75bc5008065d38",
       "intro": ["m-induction", "m-invariant", "m-sums"],
       "sections": {
         "the-induction-principle": ["m-induction"],
@@ -1517,7 +1585,7 @@
       }
     },
     "strong-induction": {
-      "reviewedContentHash": "f98ee5b5a2b65be84b247b2f546ad1cd9ef61055ae4a6c6c8460bde441e3c943",
+      "reviewedContentHash": "f430cd8d8def49574215917f724750ec51ae7a36a74c1b72312a9cb36ed88862",
       "intro": ["m-strong", "m-wop", "m-invariant"],
       "sections": {
         "the-strong-induction-principle": ["m-strong"],
@@ -1544,14 +1612,20 @@
         "Prime factors and representations": ["m-strong", "m-wop", "m-invariant"],
         "Recurrences with multiple dependencies": ["m-strong", "m-wop", "m-invariant"],
         "Recursive algorithms: termination and correctness": ["m-strong", "m-invariant"],
-        "Recursive constructions and exact counts": ["m-strong", "m-wop", "m-invariant"],
+        "Recursive constructions and exact counts": [
+          "m-strong",
+          "m-wop",
+          "m-invariant",
+          "m-recursive-data",
+          "d-trees"
+        ],
         "Recursive termination and correctness": ["m-strong", "m-wop", "m-invariant"],
         "The strong induction principle": ["m-strong"],
         "Well-ordering and a smallest counterexample": ["m-wop", "m-strong"]
       }
     },
     "combinatorics": {
-      "reviewedContentHash": "4100c11d39e21896166ebbeba9642c15f39b22e9045aded1fa80f950cf26ff44",
+      "reviewedContentHash": "41ead8193ca2a0b43c9e7951ebb09313cabb18435124f9bf66defec56e861738",
       "intro": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"],
       "sections": {
         "the-sum-and-product-principles": ["m-counting"],
@@ -1602,7 +1676,7 @@
       }
     },
     "recurrence-relations": {
-      "reviewedContentHash": "4e51fc065dd36c059db6dc88a0b9162b3287b822e5abd04bbf73bcdd8ec8709b",
+      "reviewedContentHash": "9ecaac86eaa63ab15753371029f37f58fd67cf207311d9d21fe9274727783e07",
       "intro": ["m-recursive", "m-linear-rec", "m-divide-rec"],
       "sections": {
         "a-recurrence-needs-a-domain-and-initial-conditions": ["m-recursive"],
@@ -1644,7 +1718,7 @@
       }
     },
     "graph-theory": {
-      "reviewedContentHash": "e08f2d3eac9ee208ab94767fdb8f54bcf111201c1f71db58e2045eb32b4e0f7b",
+      "reviewedContentHash": "903a4c141a0e2ca838efe19c4b36a6950f149746507a88635f0b23816ef80feb",
       "intro": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"],
       "sections": {
         "vertices-edges-and-conventions": ["m-graph", "m-digraph"],
@@ -1709,7 +1783,7 @@
       }
     },
     "asymptotic-growth": {
-      "reviewedContentHash": "5639af84264179a0103d66d763fdf41a0e2313c0387bc6e22300243880b1cd1e",
+      "reviewedContentHash": "028975f1ae65314a2063af5c29bdd64567851ed881e47938f6fcd6a125501c53",
       "intro": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"],
       "sections": {
         "state-the-function-and-the-model": ["alg-cost"],
@@ -1793,7 +1867,7 @@
       "practice": {}
     },
     "linear-algebra-vectors": {
-      "reviewedContentHash": "0d45cda29c7bfaa7941fa08d4138a26985147256010a3a175ad2c3650909056c",
+      "reviewedContentHash": "74518c582727cfe8ae413c0d8018d7b01b0395b6589fcc03c48983b2a261dff7",
       "intro": ["i-vectors", "i-span", "ml-affine", "ml-models"],
       "sections": {
         "coordinates-and-vectors": ["i-vectors"],
@@ -1809,7 +1883,7 @@
       }
     },
     "linear-algebra-dot-products": {
-      "reviewedContentHash": "7671888926146ffd61f92e0324eccba2740e9e4326bb10a53c647a1109dddff3",
+      "reviewedContentHash": "504a47e06d13b2e1d92f815f674409c136f85def73d5d20bb3b58829eb289944",
       "intro": ["i-dot", "ml-models"],
       "sections": {
         "a-scalar-from-two-vectors": ["i-dot"],
@@ -1825,10 +1899,10 @@
       }
     },
     "linear-algebra-matrices": {
-      "reviewedContentHash": "7931c44f18ec59806a21aeb46217b9340c848b7476a9d601bd867946f0c2886a",
+      "reviewedContentHash": "c10a83da5944b3f3e81cd8a61e7f07d6d3c2143808e196c6519a04c7e70f725b",
       "intro": ["i-multiply", "i-matrixeq"],
       "sections": {
-        "shape-entries-and-transpose": ["i-multiply"],
+        "shape-entries-and-transpose": ["i-multiply", "mml-transpose"],
         "a-matrix-acting-on-a-vector": ["i-matrixeq"],
         "composition-determines-the-product": ["i-multiply"],
         "checking-a-matrix-calculation": ["i-multiply"]
@@ -1837,11 +1911,11 @@
         "A matrix acting on a vector": ["i-matrixeq"],
         "Checking a matrix calculation": ["i-multiply"],
         "Composition determines the product": ["i-multiply"],
-        "Shape, entries, and transpose": ["i-multiply"]
+        "Shape, entries, and transpose": ["i-multiply", "mml-transpose"]
       }
     },
     "linear-algebra-systems": {
-      "reviewedContentHash": "2d1c1d64ac314b0e40d2b6c1ee46802ded128dd2f3e915e2fb5ea5e137d7ff7d",
+      "reviewedContentHash": "4fbf7502e0576adcd792037ed0c5f69ef1c9e822b4b939a90d63e5a55b441785",
       "intro": ["i-systems", "i-reduction", "i-parameters", "i-solutions"],
       "sections": {
         "constraints-and-augmented-matrices": ["i-systems"],
@@ -1857,7 +1931,7 @@
       }
     },
     "linear-algebra-span": {
-      "reviewedContentHash": "3d7e09c82794b6a56c33bd18949d6e3a90f2b4470328a0cd50ef9881fd961e20",
+      "reviewedContentHash": "f5b0b749061666c578a674368c4038b49e85fe4068885d3e50769c57d8777dd3",
       "intro": ["i-span", "i-independent", "i-subspaces", "i-basis", "i-reduction"],
       "sections": {
         "span-is-everything-you-can-build": ["i-span"],
@@ -1873,23 +1947,59 @@
       }
     },
     "linear-algebra-bases": {
-      "reviewedContentHash": "03d65d7dd5ae825c4d6a9a28559a8c3a587f15fb20222d7b5f8ade405e9d19b6",
-      "intro": ["i-basis", "i-coordinates", "i-rank", "i-inverse", "i-reduction", "numerical-ls"],
+      "reviewedContentHash": "4db3c210638cbdc6df1ff4b24338f04d6f2081d7385827b86bcd18801d6fb364",
+      "intro": ["i-basis", "i-coordinates"],
       "sections": {
-        "a-basis-gives-unique-coordinates": ["i-basis", "i-coordinates"],
-        "rank-and-nullity": ["i-rank"],
-        "invertible-matrices": ["i-inverse"],
-        "solving-without-unnecessary-inverses": ["i-inverse", "i-reduction", "numerical-ls"]
+        "a-basis-gives-unique-coordinates": ["i-basis", "i-coordinates", "i-independent"],
+        "extracting-a-basis-rather-than-guessing-one": [
+          "i-basis",
+          "i-independent",
+          "i-coordinates"
+        ],
+        "dimension-and-the-ambient-space": ["i-basis", "i-independent"]
       },
       "practice": {
-        "A basis gives unique coordinates": ["i-basis", "i-coordinates"],
-        "Invertible matrices": ["i-inverse"],
-        "Rank and nullity": ["i-rank"],
-        "Solving without unnecessary inverses": ["i-inverse", "i-reduction", "numerical-ls"]
+        "A basis gives unique coordinates": ["i-basis", "i-coordinates", "i-independent"],
+        "Extracting a basis rather than guessing one": [
+          "i-basis",
+          "i-independent",
+          "i-coordinates"
+        ],
+        "Dimension and the ambient space": ["i-basis", "i-independent"]
+      }
+    },
+    "linear-algebra-rank-inverses": {
+      "reviewedContentHash": "ebf0c81798e7fcfbd9e41e8a2bb4494db73902f3d938b97a02f7fbb08eb78564",
+      "intro": ["i-basis", "i-rank", "i-inverse", "i-existence-uniqueness", "i-determinant-area"],
+      "sections": {
+        "rank-and-nullity": ["i-rank", "i-basis", "i-reduction", "strang-row-space"],
+        "finding-both-spaces-in-one-reduction": [
+          "i-basis",
+          "i-rank",
+          "i-reduction",
+          "strang-row-space"
+        ],
+        "what-a-determinant-measures-in-the-plane": ["i-inverse", "i-determinant-area"],
+        "invertible-matrices": ["i-inverse", "i-rank"],
+        "solving-without-unnecessary-inverses": ["i-inverse", "i-reduction", "numerical-solve"],
+        "existence-and-uniqueness": ["i-existence-uniqueness", "i-rank", "i-inverse"]
+      },
+      "practice": {
+        "Rank and nullity": ["i-rank", "i-basis", "i-reduction", "strang-row-space"],
+        "Finding both spaces in one reduction": [
+          "i-basis",
+          "i-rank",
+          "i-reduction",
+          "strang-row-space"
+        ],
+        "What a determinant measures in the plane": ["i-inverse", "i-determinant-area"],
+        "Invertible matrices": ["i-inverse", "i-rank"],
+        "Solving without unnecessary inverses": ["i-inverse", "i-reduction", "numerical-solve"],
+        "Existence and uniqueness": ["i-existence-uniqueness", "i-rank", "i-inverse"]
       }
     },
     "linear-algebra-transformations": {
-      "reviewedContentHash": "8c6e6692681ff7dbb41a2a3ec33d85b5c73987c8d6b773275538f4f089002587",
+      "reviewedContentHash": "f4305b8b056ffb4158b4f5cf5b6227217a2fdf6558dcac32823661b811eda263",
       "intro": ["i-transform", "ml-affine", "i-subspaces", "i-coordinates"],
       "sections": {
         "what-linearity-requires": ["i-transform"],
@@ -1905,23 +2015,51 @@
       }
     },
     "linear-algebra-projections": {
-      "reviewedContentHash": "f43dc8c83b717f932b50fe878cc7db2aaa1554167743ac686817e2631858171b",
-      "intro": ["i-projection", "i-orthonormal", "i-least", "numerical-ls", "ml-models"],
+      "reviewedContentHash": "7245d51a40e9bc8182fe623abe81a814ccd13b17295a11f312ff89a9084f405f",
+      "intro": ["i-projection", "i-orthonormal"],
       "sections": {
         "projecting-onto-a-line": ["i-projection"],
-        "orthonormal-directions": ["i-orthonormal"],
-        "least-squares-and-the-normal-equations": ["i-least", "numerical-ls"],
+        "why-perpendicular-means-closest": ["i-projection"],
+        "orthonormal-directions": ["i-orthonormal", "i-projection"],
+        "carrying-out-gram-schmidt": ["i-orthonormal"],
+        "qr-as-a-record-of-the-construction": ["i-orthonormal", "lapack-qr"]
+      },
+      "practice": {
+        "Projecting onto a line": ["i-projection"],
+        "Why perpendicular means closest": ["i-projection"],
+        "Orthonormal directions": ["i-orthonormal", "i-projection"],
+        "Carrying out Gram–Schmidt": ["i-orthonormal"],
+        "QR as a record of the construction": ["i-orthonormal", "lapack-qr"]
+      }
+    },
+    "linear-algebra-least-squares": {
+      "reviewedContentHash": "de15dc6d8c224ad5a5e12abb28fea65ee0dbdc66537eea842acf37e93951d654",
+      "intro": ["i-least", "ml-models"],
+      "sections": {
+        "least-squares-and-the-normal-equations": ["i-least", "i-projection"],
+        "fitting-a-constant": ["i-least"],
+        "fitting-a-line-rather-than-a-constant": ["i-least"],
+        "a-fit-can-be-unique-even-when-its-parameters-are-not": [
+          "i-least",
+          "numerical-ls",
+          "fnc-normal-stability"
+        ],
         "what-a-best-fit-does-and-does-not-say": ["i-least", "ml-models"]
       },
       "practice": {
-        "Least squares and the normal equations": ["i-least", "numerical-ls"],
-        "Orthonormal directions": ["i-orthonormal"],
-        "Projecting onto a line": ["i-projection"],
+        "Least squares and the normal equations": ["i-least", "i-projection"],
+        "Fitting a constant": ["i-least"],
+        "Fitting a line rather than a constant": ["i-least"],
+        "A fit can be unique even when its parameters are not": [
+          "i-least",
+          "numerical-ls",
+          "fnc-normal-stability"
+        ],
         "What a best fit does and does not say": ["i-least", "ml-models"]
       }
     },
     "linear-algebra-eigenvalues": {
-      "reviewedContentHash": "a4d057d84588794a13cc7f016073dee3d40d1aa75cafb4224a840ae4173dbeb7",
+      "reviewedContentHash": "df6c59c0fd02449aab1723a7a939062fab5f75c1f3a1afeab2d2f60a7134ae9b",
       "intro": ["i-eigen", "i-characteristic", "i-diagonal", "ml-models"],
       "sections": {
         "directions-that-are-only-scaled": ["i-eigen"],
@@ -1937,7 +2075,7 @@
       }
     },
     "linear-algebra-svd": {
-      "reviewedContentHash": "ebee2d497f56ca3f04c2a3918142914dbba9e9d67329a192878325615f3d4bdb",
+      "reviewedContentHash": "dcaf3fb8213bcc91de2e6ac3ea90602fe7dc0599d9390282c0af9000cec38daa",
       "intro": ["ml-svd", "numerical-rank", "svd-approx", "ml-models"],
       "sections": {
         "perpendicular-directions-and-scale-factors": ["ml-svd"],
@@ -1954,7 +2092,7 @@
     }
   },
   "syntax": {
-    "reviewedContentHash": "f0230f4804d98a53639639567cbb68219659bb7ff73be31ad83d800041da3da1",
+    "reviewedContentHash": "ed9f5443fa41f891ad2c6c9fe28276d270afdb6f1c97c3e184c5582496d7d604",
     "entries": {
       "tex-command-neg": ["tex-supported"],
       "tex-command-land": ["tex-supported"],
@@ -2083,7 +2221,7 @@
       "sources": ["review-witness"]
     },
     "witness-definition-variants": {
-      "reviewedContentHash": "dc1698821dec6a807ca8c724ac1d8e33ddc317a753d1803cf12f52af1613b71b",
+      "reviewedContentHash": "0a6c7ecf20f01bb7040d267a749a6b08c59057f10dc534a942b61d30d838d37d",
       "sources": ["review-witness"]
     },
     "integer-witness-selection": {
@@ -2215,15 +2353,15 @@
       "sources": ["review-logic-models", "m-equivalence", "m-sat"]
     },
     "implication-negation-production-review": {
-      "reviewedContentHash": "79d15d8e420fbeff5e7cc61e4a66d18acfd0f16ac68d4c522cd35368ad7b78e8",
+      "reviewedContentHash": "df6d62e4064428796ac8983f4f3a9d7293633a5352ec4476e74e7fb359eb9bf1",
       "sources": ["review-logic-negation", "review-logic-equivalence"]
     },
     "de-morgan-production-review": {
-      "reviewedContentHash": "403a9ab10d0fda57966a1243051811d619ddf0faac48842152aa594aecc6f8b1",
+      "reviewedContentHash": "2c58ac48f6a20b0387c83ce017c36eccb153a8c36d031611834bd11f41040814",
       "sources": ["review-logic-equivalence"]
     },
     "counterassignment-construction-review": {
-      "reviewedContentHash": "889596bcfb661096457b12c0c3cd9f381c7bf331d991d15283c8072d067f00e7",
+      "reviewedContentHash": "e12d63c175cd837a097cc0e7db6179e1a3072d9dd6652f87de67791d299e3645",
       "sources": [
         "review-logic-arguments",
         "review-logic-counterassignments",
@@ -2347,23 +2485,23 @@
       "sources": ["review-quantifier-distribution"]
     },
     "existential-witness-construction-variants": {
-      "reviewedContentHash": "504e2dc486d05e13d8a0933c13dd9dd69b987ed88c77452839a99d29fdf5a423",
+      "reviewedContentHash": "0a58ffda5d73b6da4e0d28161591f41675d7a3c3689a42ff0c2b83624ceb5a51",
       "sources": ["review-witness", "review-quantifier-meaning"]
     },
     "dependent-witness-construction-variants": {
-      "reviewedContentHash": "3c59f3264f996d294c4567c1bba74598549cd1361acc826dd0666d4d4165a806",
+      "reviewedContentHash": "6168034663c3cd2f022d9ed1bad3294b6375ec3d421a74c73cdcf9164e180465",
       "sources": ["review-domain-order", "review-witness"]
     },
     "quantifier-negation-production-variants": {
-      "reviewedContentHash": "ff8ca05ade6682e956931bb66a5350778dfdfa706afbcf5f4d71ab5343d215c3",
+      "reviewedContentHash": "775df59a13b825a7cbf71280f45e668988442a214404df2868582027134a8cdd",
       "sources": ["review-quantifier-negation"]
     },
     "quantified-counterexample-construction-variants": {
-      "reviewedContentHash": "993ef79b9e54a78b5caafadb9b26a1177fc412dd4eec9813b4bdea6ce2d3fe25",
+      "reviewedContentHash": "f8af75d4e2b282296650404960855598b41cc4b3590b1da3f444f2b566295d4b",
       "sources": ["review-quantifier-counterexamples"]
     },
     "quantifier-order-countermodel-variants": {
-      "reviewedContentHash": "a02932681b66f3acef63c5782be57b8635149c0366b41accd6217a144775fdd9",
+      "reviewedContentHash": "7efa3e35d3d728c6e95996ba5a8be946c697a8d192b7af6090d4711e025aaa50",
       "sources": ["review-domain-order"]
     }
   }

@@ -1,3 +1,4 @@
+import { exerciseKey } from './exerciseIdentity';
 import type { Curriculum, Lesson, Question } from './types';
 
 // Prefer an explicit exercise/teaching placement; practice-only exercises use
@@ -8,7 +9,7 @@ export function lessonReview(data: Curriculum, lesson: Lesson, question: Questio
     lesson.sections.find((s) => s.title === question.section);
   if (section) return { slug: lesson.slug, section: section.id, title: section.title };
   const primary =
-    data.evidence.exercises[lesson.slug + '-' + question.id]?.concepts
+    data.evidence.exercises[exerciseKey(lesson, question.id)]?.concepts
       .filter((c) => c.role === 'primary')
       .map((c) => c.concept) || [];
   const anchors = data.evidence.teaching.filter((t) => primary.includes(t.concept));
@@ -20,5 +21,5 @@ export function lessonReview(data: Curriculum, lesson: Lesson, question: Questio
     );
     if (target && section) return { slug: target.slug, section: section.id, title: section.title };
   }
-  throw new Error('Missing exercise teaching link: ' + lesson.slug + '-' + question.id);
+  throw new Error('Missing exercise teaching link: ' + exerciseKey(lesson, question.id));
 }

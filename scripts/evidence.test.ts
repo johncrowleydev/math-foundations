@@ -1,3 +1,4 @@
+import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
 import test from 'node:test';
 import { execFileSync } from 'node:child_process';
 test('analysis ZIP v2 preserves synthetic structured evidence and excludes authentication', () => {
@@ -16,14 +17,21 @@ const c: EvidenceCatalog = JSON.parse(
 );
 const keys = new Set(Object.keys(c.exercises));
 const notebook = JSON.parse(await readFile('output/content/notebook.json', 'utf8')) as {
-  lessons: { slug: string; questions: { id: number; choice?: unknown }[] }[];
+  lessons: {
+    slug: string;
+    exerciseNamespace?: string;
+    questions: { id: number; choice?: unknown }[];
+  }[];
 };
 const published = new Set(
-  notebook.lessons.flatMap((l) => l.questions.map((q) => l.slug + '-' + q.id)),
+  notebook.lessons.flatMap((l) => l.questions.map((q) => exerciseKey(l, q.id))),
 );
 test('every exercise in every published lesson has authored evidence and valid references', () => {
-  assert.equal(notebook.lessons.filter((l) => l.questions.length).length, 25);
-  assert.equal(keys.size, 2060);
+  assert.equal(
+    keys.size,
+    notebook.lessons.reduce((n, l) => n + l.questions.length, 0),
+  );
+  validateExerciseKeys(notebook.lessons);
   assert.deepEqual(keys, published);
   validateEvidence(c, published);
   assert.ok(c.exercises['propositional-logic-152'].skills.some((s) => s.skill === 'prove'));
@@ -103,9 +111,9 @@ test('task mappings distinguish recognition, construction, proof, and cross-doma
   assert.ok(c.exercises['linear-algebra-matrices-31'].representations.includes('matrix'));
   for (const l of notebook.lessons.filter((l) => l.slug !== 'propositional-logic'))
     for (const q of l.questions.filter((q) => q.choice)) {
-      assert.ok(skill(`${l.slug}-${q.id}`, 'recognize'));
-      assert.ok(!skill(`${l.slug}-${q.id}`, 'prove'));
-      assert.ok(!skill(`${l.slug}-${q.id}`, 'justify'));
+      assert.ok(skill(exerciseKey(l, q.id), 'recognize'));
+      assert.ok(!skill(exerciseKey(l, q.id), 'prove'));
+      assert.ok(!skill(exerciseKey(l, q.id), 'justify'));
     }
 });
 

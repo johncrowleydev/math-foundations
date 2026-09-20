@@ -12,6 +12,7 @@ import {
   recoverEffortRejections,
 } from './storage';
 import type { Attempt, RecordData } from './types';
+import { deterministicAttempt } from './structuredAnswer';
 export let syncStatus = 'Not connected';
 export let initialSyncComplete = false;
 
@@ -97,6 +98,8 @@ export async function cancelGrading(a: Attempt) {
   await put('attempts', a.id, saved);
 }
 export async function recheck(a: Attempt, reason: string) {
+  if (deterministicAttempt(a))
+    throw Error('This answer is checked automatically. Try another answer instead.');
   if (a.verdict && !reason.trim()) throw Error('Explain what should be reconsidered.');
   const id = crypto.randomUUID();
   await put('outbox', id, { id, kind: 'recheck', attempt: a.id, data: { id, reason } });
@@ -122,6 +125,28 @@ async function upload(h: string) {
   await apiRequest('/media/' + h, 'PUT', blob);
 }
 type Operation = { id: string; kind: string; attempt?: string; data: Record<string, unknown> };
+export function attemptSubmission(a: Attempt) {
+  const {
+    status,
+    verdict,
+    error,
+    grades,
+    transcription,
+    recheckReason,
+    analytics,
+    activeJob,
+    presentation,
+    ...submission
+  } = a;
+  if (a.mode === 'structured') {
+    submission.text = '';
+    submission.images = [];
+    delete submission.photos;
+    delete submission.ink;
+    delete submission.choiceId;
+  }
+  return submission;
+}
 export async function sync() {
   if (busy || !authSession()) return;
   busy = true;
@@ -151,27 +176,21 @@ export async function sync() {
       try {
         if (op.kind === 'attempt') {
           const a = op.data as unknown as Attempt;
-          for (const h of [...a.images, ...(a.photos || []).map((p) => p.hash)]) await upload(h);
-          const {
-            status,
-            verdict,
-            error,
-            grades,
-            transcription,
-            recheckReason,
-            analytics,
-            activeJob,
-            ...submission
-          } = a;
+          const submission = attemptSubmission(a);
+          for (const h of [...submission.images, ...(submission.photos || []).map((p) => p.hash)])
+            await upload(h);
           const saved = await (await apiRequest('/attempts', 'POST', submission)).json();
           await put('attempts', a.id, saved);
         } else if (op.kind === 'review-import') {
           for (const a of op.data.attempts as Attempt[])
             for (const h of [...a.images, ...(a.photos || []).map((p) => p.hash)]) await upload(h);
           await apiRequest('/review/import', 'POST', op.data);
-        } else if (op.kind === 'recheck')
+        } else if (op.kind === 'recheck') {
+          const a = await get<Attempt>('attempts', op.attempt!);
+          if (a && deterministicAttempt(a))
+            throw new HttpError(400, 'Automatic answers cannot request a model recheck.');
           await apiRequest('/attempts/' + op.attempt + '/recheck', 'POST', op.data);
-        else await apiRequest('/mutations', 'POST', op.data);
+        } else await apiRequest('/mutations', 'POST', op.data);
         await remove('outbox', op.id);
       } catch (e) {
         if (op.kind === 'review-import') {

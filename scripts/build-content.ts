@@ -1,3 +1,4 @@
+import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
 import { mathOccurrences, validateFormulaContexts, type FormulaSource } from './formula-context.js';
 import { loadTeaching, teachingBlocks, linkTeachingTerms } from './teaching.js';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
@@ -8,6 +9,7 @@ import { adaptNotebookQuestion, validateNotebookAdaptations } from './notebook-e
 import { adaptInlineQuestion, validateInlinePrerequisites } from './inline-prerequisites.js';
 import { quickChecks, validateQuickChecks } from './quick-checks.js';
 import { promoteChoices } from './choice-exercises.js';
+import { promoteDeterministic } from './deterministic-exercises.js';
 import { loadEvidence } from './evidence.js';
 import { snapshot } from '../web/src/evidenceTypes.js';
 import { loadSources } from './sources.js';
@@ -47,6 +49,7 @@ const lessons = content.lessons.map((lesson) => {
   );
   return {
     slug: lesson.slug,
+    ...(lesson.exerciseNamespace ? { exerciseNamespace: lesson.exerciseNamespace } : {}),
     subject: lesson.subject,
     number:
       lesson.number ?? content.lessons.filter((l) => l.subject === lesson.subject).indexOf(lesson),
@@ -155,7 +158,8 @@ if (missingFormulaContexts.length)
 await mkdir('output', { recursive: true });
 await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory, null, 2) + '\n');
 const dir = 'output/content';
-const publishedLessons = promoteChoices(lessons);
+const publishedLessons = promoteDeterministic(promoteChoices(lessons));
+validateExerciseKeys(publishedLessons);
 const evidence = await loadEvidence(publishedLessons);
 const reviewTemplates = await loadReviewTemplates(
   evidence,
@@ -194,11 +198,12 @@ const gradingExercises = Object.fromEntries(
       const referenced = JSON.stringify({ q, blocks });
       const referenceIds = new Set([...referenced.matchAll(/ref:([a-z0-9-]+)/g)].map((m) => m[1]));
       return [
-        `${lesson.slug}-${q.id}`,
+        exerciseKey(lesson, q.id),
         {
           lesson: lesson.title,
-          analytics: snapshot(evidence, `${lesson.slug}-${q.id}`),
+          analytics: snapshot(evidence, exerciseKey(lesson, q.id)),
           choice: q.choice,
+          assessment: q.assessment,
           question: {
             instructions: q.instructions,
             prompt: q.prompt,

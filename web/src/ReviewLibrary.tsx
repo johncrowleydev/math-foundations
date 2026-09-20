@@ -12,6 +12,7 @@ import {
 import type { ReviewCatalog, ReviewCatalogItem, ReviewCatalogPreview } from './reviewTypes';
 import { routeHash } from './routing';
 import type { Curriculum, Question } from './types';
+import { StructuredAnswer } from './StructuredAnswer';
 
 const provenanceName = (value: string) =>
   value === 'lesson-exercise' ? 'Lesson exercise' : 'Review template';
@@ -461,7 +462,13 @@ export function CatalogQuestion({ question: q }: { question: Question }) {
           {q.math && <Rich text={'$$' + q.math + '$$'} />}
         </div>
       )}
-      {q.table && (
+      {q.assessment && (
+        <div>
+          <h4>Answer inputs</h4>
+          <StructuredAnswer assessment={q.assessment} preview />
+        </div>
+      )}
+      {q.table && !q.assessment && (
         <div className="library-question-table">
           <table>
             <caption>Response table · {q.table.rows} rows</caption>

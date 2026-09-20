@@ -1,0 +1,1155 @@
+[
+  {
+    "name": "set-identity-demorgan",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["A", "B"],
+            "expected": "(A|B)'"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "A' & B'"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-identity-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["A", "B"],
+            "expected": "(A|B)'"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\overline{A}\\cap\\overline{B}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-identity-wrong",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["A", "B"],
+            "expected": "(A|B)'"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "A'|B'"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-identity-difference",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["A", "B"],
+            "expected": "(A|B)'"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(A' - B)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-identity-unknown",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["A", "B"],
+            "expected": "(A|B)'"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "C"
+    },
+    "error": true
+  },
+  {
+    "name": "set-form-preserved",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["A", "B"],
+            "expected": "A&B",
+            "operations": ["union", "complement"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(A'|B')'"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-form-untransformed",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-expression",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["A", "B"],
+            "expected": "A&B",
+            "operations": ["union", "complement"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "A&B"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-model-basic",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "A*B",
+                "right": "B*A",
+                "op": "!="
+              },
+              {
+                "left": "A",
+                "op": "nonempty"
+              },
+              {
+                "left": "B",
+                "op": "nonempty"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{1}",
+      "b": "{2}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-model-alternate",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "A*B",
+                "right": "B*A",
+                "op": "!="
+              },
+              {
+                "left": "A",
+                "op": "nonempty"
+              },
+              {
+                "left": "B",
+                "op": "nonempty"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{1,2}",
+      "b": "{3,4}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "set-model-equal",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "A*B",
+                "right": "B*A",
+                "op": "!="
+              },
+              {
+                "left": "A",
+                "op": "nonempty"
+              },
+              {
+                "left": "B",
+                "op": "nonempty"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{1}",
+      "b": "{1}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-model-empty",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "A*B",
+                "right": "B*A",
+                "op": "!="
+              },
+              {
+                "left": "A",
+                "op": "nonempty"
+              },
+              {
+                "left": "B",
+                "op": "nonempty"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{}",
+      "b": "{1}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "set-model-malformed",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "A*B",
+                "right": "B*A",
+                "op": "!="
+              },
+              {
+                "left": "A",
+                "op": "nonempty"
+              },
+              {
+                "left": "B",
+                "op": "nonempty"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{1",
+      "b": "{2}"
+    },
+    "error": true
+  },
+  {
+    "name": "same-size-proper-subset-impossible",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "A",
+                "right": "B",
+                "op": "same-size"
+              },
+              {
+                "left": "A",
+                "right": "B",
+                "op": "!="
+              },
+              {
+                "left": "A",
+                "right": "B",
+                "op": "subset"
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{1}",
+      "b": "{1,2}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "powerset-counterexample",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "P(A|B)",
+                "right": "P(A)|P(B)",
+                "op": "!="
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{1}",
+      "b": "{2}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "powerset-no-counterexample",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "a",
+          "label": "a",
+          "kind": "math"
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set-model",
+          "fields": ["a", "b"],
+          "params": {
+            "variables": {
+              "A": "a",
+              "B": "b"
+            },
+            "conditions": [
+              {
+                "left": "P(A|B)",
+                "right": "P(A)|P(B)",
+                "op": "!="
+              }
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "a": "{}",
+      "b": "{2}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "nested-pair",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "nested-object",
+          "fields": ["answer"],
+          "params": {
+            "atoms": ["a", "b"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(a,a)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "nested-nested",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "nested-object",
+          "fields": ["answer"],
+          "params": {
+            "atoms": ["a", "b"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "((a,b),b)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "nested-no-repeat",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "nested-object",
+          "fields": ["answer"],
+          "params": {
+            "atoms": ["a", "b"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(a,b)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "nested-singleton",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "nested-object",
+          "fields": ["answer"],
+          "params": {
+            "atoms": ["a", "b"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "a"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "nested-not-binary",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "nested-object",
+          "fields": ["answer"],
+          "params": {
+            "atoms": ["a", "b"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(a,b,a)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "nested-unknown",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "nested-object",
+          "fields": ["answer"],
+          "params": {
+            "atoms": ["a", "b"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(a,c)"
+    },
+    "error": true
+  },
+  {
+    "name": "boolean-property-atom",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "boolean-property",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["p", "q"],
+            "property": "contingent"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "p"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "boolean-property-xor",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "boolean-property",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["p", "q"],
+            "property": "contingent"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(p|q)&!(p&q)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "boolean-property-always",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "boolean-property",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["p", "q"],
+            "property": "contingent"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "p|!p"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "boolean-property-never",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "boolean-property",
+          "fields": ["answer"],
+          "params": {
+            "variables": ["p", "q"],
+            "property": "contingent"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "p&!p"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "tex-wrapped-set",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Meet all requested conditions",
+          "validator": "set",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["1", "2"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "$\\{1,2\\}$"
+    },
+    "verdict": "correct"
+  }
+]

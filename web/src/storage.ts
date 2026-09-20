@@ -1,7 +1,10 @@
+import { exerciseKey, exerciseNamespace, type ExerciseIdentity } from './exerciseIdentity';
 import { openDB } from 'idb';
 import { validReviewContext, validReviewSession } from './reviewValidation';
 import { useSyncExternalStore } from 'react';
 import type { Attempt, Draft, RecordData } from './types';
+import { validResponse, validPresentation } from './structuredAnswer';
+import { validateImportedGrades } from './importGrading';
 import type { EvidenceCatalog } from './evidenceTypes';
 import {
   validAttemptEffort,
@@ -178,6 +181,7 @@ export async function integrate(records: RecordData[], cursor: number) {
         if (
           !newer &&
           draft &&
+          !draft.assessmentFingerprint &&
           draft.editing === false &&
           !draft.recovery &&
           (draft.strokes.length || draft.photos.length)
@@ -281,8 +285,18 @@ export async function importData(file: Blob, name: string) {
     finite(v.submitted) &&
     typeof v.text === 'string' &&
     (v.transcription === undefined || typeof v.transcription === 'string') &&
-    ['type', 'write', 'photo', 'choice'].includes(v.mode) &&
+    ['type', 'write', 'photo', 'choice', 'structured'].includes(v.mode) &&
     (v.mode !== 'choice' || (typeof v.choiceId === 'string' && v.choiceId.length > 0)) &&
+    (v.mode !== 'structured' ||
+      (validResponse(v.response) &&
+        v.text === '' &&
+        Array.isArray(v.images) &&
+        v.images.length === 0 &&
+        v.photos === undefined &&
+        v.ink === undefined &&
+        v.choiceId === undefined)) &&
+    (v.response === undefined || validResponse(v.response)) &&
+    validPresentation(v.presentation) &&
     Array.isArray(v.images) &&
     v.images.every(hashKey) &&
     Array.isArray(v.grades) &&
@@ -314,6 +328,20 @@ export async function importData(file: Blob, name: string) {
           ['type', 'pen', 'photo'].includes(v.mode) &&
           finite(v.updated) &&
           typeof v.revealed === 'boolean' &&
+          (v.response === undefined || validResponse(v.response)) &&
+          (v.assessmentFingerprint === undefined || typeof v.assessmentFingerprint === 'string') &&
+          (v.assessmentQuestion === undefined ||
+            validPresentation({ question: v.assessmentQuestion })) &&
+          (v.earlierWork === undefined ||
+            (Array.isArray(v.earlierWork) &&
+              v.earlierWork.every(
+                (work: unknown) =>
+                  object(work) &&
+                  typeof work.fingerprint === 'string' &&
+                  finite(work.updated) &&
+                  validResponse(work.response) &&
+                  (work.question === undefined || validPresentation({ question: work.question })),
+              ))) &&
           photos(v.photos) &&
           Array.isArray(v.strokes) &&
           v.strokes.every(
@@ -339,6 +367,8 @@ export async function importData(file: Blob, name: string) {
         )
       )
         throw Error('Invalid record.');
+      if (store === 'records' && key.startsWith('attempt/') && !attempt(v.payload))
+        throw Error('Invalid saved attempt.');
       if (
         store === 'records' &&
         key === 'review-cache/active' &&
@@ -373,6 +403,26 @@ export async function importData(file: Blob, name: string) {
       return [key, v];
     });
   }
+  const restoreOperations = parsed.outbox
+    .map(([, value]) => value)
+    .filter((value) => value.kind === 'review-import');
+  validateImportedGrades(
+    [
+      ...parsed.attempts.map(([, value]) => value),
+      ...parsed.records
+        .filter(([key]) => key.startsWith('attempt/'))
+        .map(([, value]) => value.payload),
+      ...parsed.outbox
+        .filter(([, value]) => value.kind === 'attempt')
+        .map(([, value]) => value.data),
+      ...restoreOperations.flatMap((value) => value.data.attempts),
+    ] as Attempt[],
+    [
+      ...(await all<RecordData>('records')),
+      ...parsed.records.map(([, value]) => value),
+      ...restoreOperations.flatMap((value) => value.data.records),
+    ],
+  );
   if (!Array.isArray(data.media)) throw Error('Missing media list.');
   const media: [string, Blob][] = [];
   for (const row of data.media) {
@@ -405,25 +455,30 @@ export async function importData(file: Blob, name: string) {
   const id = await hash(file);
   let conflicts = 0,
     imported = 0;
+  const importedDrafts: string[] = [];
+  const importedMedia: string[] = [];
   const tx = d.transaction([...names, 'media', 'imports'], 'readwrite');
   for (const store of names)
     for (const [key, value] of parsed[store]) {
       const old = await tx.objectStore(store).get(key);
       if (old === undefined) {
-        // Revisions are local to a server database. A restored review snapshot
+        // Revisions are local to a server database. A restored server snapshot
         // must not outrank a new server's authoritative replay merely because
         // its old revision was larger. The original remains in the archive.
         const restored =
-          store === 'records' &&
-          (key.startsWith('review-') || (key.startsWith('attempt/') && value.payload.review))
+          store === 'records' && (key.startsWith('review-') || key.startsWith('attempt/'))
             ? { ...value, revision: 0 }
             : value;
         await tx.objectStore(store).put(restored, key);
+        if (store === 'drafts') importedDrafts.push(key);
         imported++;
       } else if (JSON.stringify(old) !== JSON.stringify(value)) conflicts++;
     }
   for (const [key, blob] of media)
-    if (!(await tx.objectStore('media').get(key))) await tx.objectStore('media').put(blob, key);
+    if (!(await tx.objectStore('media').get(key))) {
+      await tx.objectStore('media').put(blob, key);
+      importedMedia.push(key);
+    }
   // Restore server-issued instances before pending attempts are uploaded. State
   // snapshots are never submitted as client mutations: Go replays the evidence.
   const reviewRecords = parsed.records
@@ -453,19 +508,23 @@ export async function importData(file: Blob, name: string) {
     .objectStore('imports')
     .put({ name, at: Date.now(), conflicts, blob: file } satisfies ImportArchive, id);
   await tx.done;
+  for (const key of importedDrafts) changed('draft:' + key);
+  for (const key of importedMedia) changed('media:' + key);
   changed();
   return { imported, conflicts };
 }
 
-export async function lessonProgress(slug: string, ids: (number | string)[]) {
+export async function lessonProgress(lesson: ExerciseIdentity, ids: (number | string)[]) {
   const d = await db;
   const tx = d.transaction(['attempts', 'drafts', 'records']);
   const [attempts, drafts, saved] = await Promise.all([
     tx.objectStore('attempts').getAll() as Promise<Attempt[]>,
-    Promise.all(ids.map((id) => tx.objectStore('drafts').get(slug + '-' + id))) as Promise<
+    Promise.all(ids.map((id) => tx.objectStore('drafts').get(exerciseKey(lesson, id)))) as Promise<
       (Draft | undefined)[]
     >,
-    tx.objectStore('records').get('practice/position:' + slug) as Promise<RecordData | undefined>,
+    tx.objectStore('records').get('practice/position:' + lesson.slug) as Promise<
+      RecordData | undefined
+    >,
   ]);
   await tx.done;
   return { attempts, drafts, saved };
@@ -486,4 +545,14 @@ export async function attemptsMatch(manifest: { key: string; revision: number }[
   );
   await tx.done;
   return checks.every(Boolean);
+}
+
+// Local reading bookmarks predate split lessons; keep their stored owner intact.
+export async function readingBookmark(lesson: ExerciseIdentity) {
+  const own = await get<{ anchor: string }>('settings', 'bookmark:' + lesson.slug);
+  if (own) return { slug: lesson.slug, anchor: own.anchor };
+  const namespace = exerciseNamespace(lesson);
+  if (namespace === lesson.slug) return undefined;
+  const legacy = await get<{ anchor: string }>('settings', 'bookmark:' + namespace);
+  return legacy ? { slug: namespace, anchor: legacy.anchor } : undefined;
 }

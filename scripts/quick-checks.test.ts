@@ -5,7 +5,7 @@ import { quickChecks, validateQuickChecks } from './quick-checks.js';
 const { lessons } = await loadContent();
 test('all quick checks have valid math, unique choices, and current preceding teaching', () => {
   validateQuickChecks(lessons);
-  assert.equal(Object.values(quickChecks).flat().length, 50);
+  assert.equal(Object.values(quickChecks).flat().length, 54);
 });
 test('moving a quick check or changing its teaching requires another prerequisite audit', () => {
   const changed = structuredClone(quickChecks);

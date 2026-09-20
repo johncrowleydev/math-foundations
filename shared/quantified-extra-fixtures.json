@@ -1,0 +1,581 @@
+[
+  {
+    "name": "negations-on-atoms-implication",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D (P(x)->not Q(x))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "negations-on-atoms-equivalent-disjunction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D (not P(x) or not Q(x))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "negations-on-compound-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D not (P(x) and Q(x))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "negations-on-quantifier-rejected",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "not exists x in D (P(x) and Q(x))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "negations-on-atoms-wrong-sign",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall x in D (P(x)->not Q(x))",
+            "domains": ["D"],
+            "predicates": {
+              "P": 1,
+              "Q": 1
+            },
+            "form": "negations-on-atoms"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall x in D (P(x)->Q(x))"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "arithmetic-leading-parentheses",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*k^2>=(k+1)^2",
+            "domains": ["Z"],
+            "predicates": {},
+            "freeVariables": ["k"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(k+1)^2<=2*k^2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "arithmetic-leading-parentheses-wrong-direction",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*k^2>=(k+1)^2",
+            "domains": ["Z"],
+            "predicates": {},
+            "freeVariables": ["k"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(k+1)^2>=2*k^2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "arithmetic-leading-parentheses-logical-group",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "2*k^2>=(k+1)^2",
+            "domains": ["Z"],
+            "predicates": {},
+            "freeVariables": ["k"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "((k+1)^2<=2*k^2)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-exponential-hypothesis-alpha",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists t in Z (4^k-1=3*t)",
+            "domains": ["Z"],
+            "predicates": {},
+            "freeVariables": ["k"],
+            "integerVariables": ["k"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exists m in Z (3*m+1=4^k)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-exponential-hypothesis-power",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists t in Z (4^k-1=3*t)",
+            "domains": ["Z"],
+            "predicates": {},
+            "freeVariables": ["k"],
+            "integerVariables": ["k"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exists m in Z (3*m+1=2^(2*k))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-exponential-hypothesis-wrong-offset",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists t in Z (4^k-1=3*t)",
+            "domains": ["Z"],
+            "predicates": {},
+            "freeVariables": ["k"],
+            "integerVariables": ["k"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "exists m in Z (3*m=4^k)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "integer-exponential-bound-alpha",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall n in Z (4^n>0)",
+            "domains": ["Z"],
+            "predicates": {},
+            "integerVariables": ["n"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall m in Z (2^(2*m)>0)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-exponential-poles-preserved",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "4^k/ (k-1)=3",
+            "domains": ["Z"],
+            "predicates": {},
+            "freeVariables": ["k"],
+            "integerVariables": ["k"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(4^k*(k+1))/(k*k-1)=3"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "integer-exponential-not-all-values-integer",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "forall t in Z ((1/2)^t<2)",
+            "domains": ["Z"],
+            "predicates": {},
+            "integerVariables": ["t"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "forall t in Z ((1/2)^t<=1)"
+    },
+    "verdict": "incorrect"
+  }
+]

@@ -1,3 +1,5 @@
+import type { Assessment } from '../shared/assessment.js';
+import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
 import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import YAML from 'yaml';
@@ -60,13 +62,24 @@ export function authoredSkills(rows: (string | { skill: string; role: string })[
     typeof row === 'string' ? { skill: row, role: 'primary' as const } : row,
   ) as ExerciseEvidence['skills'];
 }
-export async function loadEvidence(
-  lessons: {
-    slug: string;
-    sections: { title: string }[];
-    questions: { id: number; math?: string; choice?: unknown }[];
-  }[],
-): Promise<EvidenceCatalog> {
+type EvidenceLesson = {
+  slug: string;
+  exerciseNamespace?: string;
+  sections: { title: string }[];
+  questions: { id: number; math?: string; choice?: unknown; assessment?: Assessment }[];
+};
+type AuthoredEvidence = Omit<EvidenceCatalog, 'exercises' | 'version'> & {
+  exercises: {
+    lesson: string;
+    id: number;
+    primary: string[];
+    supporting?: string[];
+    skills: (string | { skill: string; role: string })[];
+    representations: string[];
+    attributes?: ExerciseEvidence['attributes'];
+  }[];
+};
+export async function loadEvidence(lessons: EvidenceLesson[]): Promise<EvidenceCatalog> {
   const authored = YAML.parse(await readFile('content/learning-evidence.yaml', 'utf8'));
   // Each lesson authors its own rows; the shared catalogs remain subject-neutral.
   for (const file of (await readdir('content/evidence'))
@@ -75,28 +88,47 @@ export async function loadEvidence(
     const part = YAML.parse(await readFile('content/evidence/' + file, 'utf8'));
     for (const field of ['concepts', 'teaching', 'exercises']) authored[field].push(...part[field]);
   }
+  return publishEvidence(authored, lessons);
+}
+
+export function publishEvidence(
+  authored: AuthoredEvidence,
+  lessons: EvidenceLesson[],
+): EvidenceCatalog {
+  const keys = validateExerciseKeys(lessons);
   const exercises: Record<string, ExerciseEvidence> = {};
   for (const row of authored.exercises) {
-    const key = row.lesson + '-' + row.id;
+    const lesson = lessons.find((l) => l.slug === row.lesson);
+    const q = lesson?.questions.find((q) => q.id === row.id);
+    if (!lesson || !q) throw Error(`Unknown authored exercise ${row.lesson}-${row.id}`);
+    const key = exerciseKey(lesson, row.id);
     if (exercises[key]) throw Error('Duplicate evidence ' + key);
     exercises[key] = {
-      concepts: row.primary
-        .map((concept: string) => ({ concept, role: 'primary' }))
-        .concat((row.supporting || []).map((concept: string) => ({ concept, role: 'supporting' }))),
+      concepts: [
+        ...row.primary.map((concept) => ({ concept, role: 'primary' as const })),
+        ...(row.supporting || []).map((concept) => ({ concept, role: 'supporting' as const })),
+      ],
       skills: authoredSkills(row.skills),
       representations: row.representations,
-      attributes: row.attributes || {},
+      attributes: { ...row.attributes },
     };
-    const q = lessons.find((l) => l.slug === row.lesson)?.questions.find((q) => q.id === row.id);
     // Count only explicit logical operators in the displayed expression, not prose or the answer.
-    exercises[key].attributes!.responseFormat = q?.choice ? 'choice' : 'open';
+    exercises[key].attributes!.responseFormat = q?.choice
+      ? 'choice'
+      : q?.assessment
+        ? 'structured'
+        : 'open';
+    if (q.assessment) {
+      exercises[key].attributes!.evidenceLevel = q.assessment.evidence.level;
+      exercises[key].attributes!.interactionCost = q.assessment.evidence.interactionCost;
+    }
     if (row.lesson === 'propositional-logic' && q?.math)
       exercises[key].attributes!.operatorCount = (
         q.math.match(/\\(?:neg|land|lor|to|leftrightarrow)\b/g) || []
       ).length;
   }
   const c = { ...authored, exercises, version: '' } as EvidenceCatalog;
-  validateEvidence(c, new Set(lessons.flatMap((l) => l.questions.map((q) => l.slug + '-' + q.id))));
+  validateEvidence(c, keys);
   for (const t of c.teaching)
     if (!lessons.find((l) => l.slug === t.lesson)?.sections.some((s) => s.title === t.section))
       throw Error('Missing exposure teaching section ' + t.section);

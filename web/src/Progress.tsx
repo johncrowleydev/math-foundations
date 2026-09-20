@@ -1,3 +1,4 @@
+import { exerciseKey } from './exerciseIdentity';
 import { useEffect, useState } from 'react';
 import { all, useRevision } from './storage';
 import type { Attempt, Curriculum } from './types';
@@ -12,6 +13,7 @@ import {
 import { exposures } from './exposure';
 import type { Exposure } from './evidenceTypes';
 import { Rich } from './Rich';
+import { SubmittedStructuredAnswer } from './StructuredAnswer';
 export function Progress({
   data,
   slug,
@@ -55,7 +57,7 @@ export function Progress({
   const keys = new Set(
     data.lessons
       .filter((l) => !scope || l.slug === scope)
-      .flatMap((l) => l.questions.map((q) => l.slug + '-' + q.id)),
+      .flatMap((l) => l.questions.map((q) => exerciseKey(l, q.id))),
   );
   const as = attempts.filter((a) => keys.has(a.exercise)),
     coverage = evidenceCoverage(as),
@@ -85,7 +87,7 @@ export function Progress({
       : 'No first-attempt evidence';
   const label = (key: string) => {
     for (const l of data.lessons) {
-      const q = l.questions.find((q) => l.slug + '-' + q.id === key);
+      const q = l.questions.find((q) => exerciseKey(l, q.id) === key);
       if (q) return `${l.title} · Exercise ${q.displayNumber}`;
     }
     return key;
@@ -103,7 +105,11 @@ export function Progress({
             ? 'Metadata backfilled from current authored catalog; original grade unchanged.'
             : 'Metadata captured at submission.'}
       </p>
-      <Rich text={a.transcription || a.text || '(Image response; open exercise to inspect)'} />
+      {a.mode === 'structured' ? (
+        <SubmittedStructuredAnswer attempt={a} />
+      ) : (
+        <Rich text={a.transcription || a.text || '(Image response; open exercise to inspect)'} />
+      )}
       <p>
         Task attributes:{' '}
         {Object.entries(metadata(a, data.evidence)?.attributes || {})
@@ -286,7 +292,7 @@ export function Progress({
             .map((l) => {
               const p = exerciseProgress(
                 as,
-                l.questions.map((q) => l.slug + '-' + q.id),
+                l.questions.map((q) => exerciseKey(l, q.id)),
               );
               return (
                 <button

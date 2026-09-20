@@ -1,0 +1,676 @@
+[
+  {
+    "name": "bounded-list-alternate",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 8,
+            "sum": 37,
+            "min": 0,
+            "max": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "5,5,5,5,5,5,5,2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "bounded-list-other",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 8,
+            "sum": 37,
+            "min": 0,
+            "max": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "5,5,5,5,5,5,4,3"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "bounded-list-wrong-sum",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 8,
+            "sum": 37,
+            "min": 0,
+            "max": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "5,5,5,5,5,5,5,1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "bounded-list-exceeds-max",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 8,
+            "sum": 37,
+            "min": 0,
+            "max": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "6,5,5,5,5,5,5,1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "bounded-list-noninteger",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 8,
+            "sum": 37,
+            "min": 0,
+            "max": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "4.5,5,5,5,5,5,5,2.5"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "bounded-list-missing",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 8,
+            "sum": 37,
+            "min": 0,
+            "max": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "5,5,,5,5,5,5,2"
+    },
+    "error": true
+  },
+  {
+    "name": "distinct-negative-residues",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 5,
+            "distinctResiduesMod": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-5,-4,-3,-2,-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "distinct-scaled-residues",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 5,
+            "distinctResiduesMod": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "0,6,12,18,24"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "duplicate-negative-residue",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "integer-list",
+          "fields": ["answer"],
+          "params": {
+            "length": 5,
+            "distinctResiduesMod": 5
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "-1,4,0,1,2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "pascal-sum",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "binom(6,2)+binom(6,3)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "pascal-commuted-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\binom{6}{3}+\\binom{6}{2}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "pascal-parentheses",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(binom(6,2)+(binom(6,3)))"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "pascal-wrong-structural-form",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "35"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "pascal-original-binomial",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "binom(7,3)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "pascal-wrong-terms",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "binom(6,4)+binom(6,3)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "pascal-canceling-noise",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "binom(6,2)+binom(6,3)+2-2"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "pascal-incomplete",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "binomial-sum",
+          "fields": ["answer"],
+          "params": {
+            "terms": [
+              [6, 2],
+              [6, 3]
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "binom(6,2)+"
+    },
+    "error": true
+  }
+]

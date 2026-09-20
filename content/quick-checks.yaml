@@ -403,25 +403,26 @@ linear-algebra-span:
     explanation: Containing zero is part of the subspace definition. A proper subspace need not contain the standard basis vectors.
     teachingHash: be8ab5fb3b5cc686f0ae73e39f2e4bd29ccaae63b7608d715fa8f004d21f4f24
 linear-algebra-bases:
-  - id: quick-1
-    after: Rank and nullity
-    prompt: Rank plus nullity equals which size of a matrix?
+  - id: quick-3
+    after: A basis gives unique coordinates
+    prompt: A vector has coordinates (2,-3) in the ordered basis (p,q). What are its coordinates in the ordered basis (q,p)?
     options:
-      - The number of columns
-      - The number of rows
-      - The number of entries
+      - (-3,2)
+      - (2,-3)
+      - (-2,3)
     answer: 0
-    explanation: The input variables, one per column, split into pivot variables and free variables.
-    teachingHash: 969f137db722d54e685b88826c5e533adaa469f62d9f3daf3e2afb8cfd48f47c
-  - id: quick-2
-    after: Invertible matrices
-    prompt: Taking the reciprocal of every entry gives a matrix inverse.
+    explanation: The vector is two p minus three q. Reordering the basis puts the coefficient of q first and the coefficient of p second; the vector itself has not changed.
+    teachingHash: c3d2e88b3ae9139d4770eea2f9ea837e38c80ec5cc447022b2c5495b4183d272
+  - id: quick-4
+    after: Dimension and the ambient space
+    prompt: The vectors (1,0,1) and (0,1,1) form a basis of the plane z=x+y. What is this plane's dimension?
     options:
-      - 'True'
-      - 'False'
-    answer: 1
-    explanation: An inverse is defined by matrix multiplication producing identity. Entrywise reciprocals do not generally do this.
-    teachingHash: 07a777894f42f32c1eebb06bc8a270da430e6e4483d55bea645851d3266bec14
+      - Two, because the basis has two vectors
+      - Three, because each vector has three components
+      - One, because the plane has one defining equation
+    answer: 0
+    explanation: Dimension counts basis vectors. Three components describe the ambient space, while two independent coefficients describe a vector on this plane. The number of displayed equations is not the definition of dimension.
+    teachingHash: cda69df6bd3aa1911e9ce8d1df3b6b7fd120d0be3bbb580760468792137c095d
 linear-algebra-transformations:
   - id: quick-1
     after: What linearity requires
@@ -443,24 +444,24 @@ linear-algebra-transformations:
     teachingHash: 6c7c1b73eb1560ce28eda3359654c211cfce6a52b3b556ff4955068a350b1aca
 linear-algebra-projections:
   - id: quick-1
-    after: Projecting onto a line
+    after: Why perpendicular means closest
     prompt: The residual of an orthogonal projection is perpendicular to the permitted line.
     options:
       - 'True'
       - 'False'
     answer: 0
     explanation: This orthogonality is what makes the projected point the closest one, by the Pythagorean theorem.
-    teachingHash: 326c709ab5431155318aca25e382ed818db9e52bcea5ac72bfc55981b3a1d6a5
-  - id: quick-2
-    after: Least squares and the normal equations
-    prompt: In 'normal equations,' normal refers to what?
+    teachingHash: 7ca23909b6d8b591458042a3855d475b7830240d4aea9995c4cf3444c5fd25c5
+  - id: quick-3
+    after: Orthonormal directions
+    prompt: Q has three rows and two orthonormal columns. For a three-component target b, what does Q times Q transpose times b give?
     options:
-      - Perpendicularity
-      - A probability distribution
-      - An exactly solvable original system
+      - The three-component projection of b onto Q's column space
+      - The two-component coefficient vector
+      - Always the original vector b
     answer: 0
-    explanation: The residual must be perpendicular to every column of the model matrix.
-    teachingHash: 0e8cfc91e167b0aad240695572abc257b45f59005dc8f2ffb9dddec3b8eb4bbe
+    explanation: Q transpose b gives two coefficients; multiplying by Q rebuilds the three-component projection. It equals b only when b lies in the column space.
+    teachingHash: 44eeff7c4ad858e52dd26742721dd90685fe2c573f5e234c10b0ebc6c69a7cf0
 linear-algebra-eigenvalues:
   - id: quick-1
     after: Directions that are only scaled
@@ -501,3 +502,44 @@ linear-algebra-svd:
     answer: 1
     explanation: Rank counts positive singular values, one for each independent output direction.
     teachingHash: 570b008fe28d422bbc96063ba5b37af9bd350658316d8f97f3ba63dc99b539b7
+linear-algebra-rank-inverses:
+  - id: quick-1
+    after: Rank and nullity
+    prompt: Rank plus nullity equals which size of a matrix?
+    options:
+      - The number of columns
+      - The number of rows
+      - The number of entries
+    answer: 0
+    explanation: The input variables, one per column, split into pivot variables and free variables.
+    teachingHash: ec7f2511cfc349356b74eab83464af3646cad273e085379d42aae443874b4c10
+  - id: quick-2
+    after: Invertible matrices
+    prompt: Taking the reciprocal of every entry gives a matrix inverse.
+    options:
+      - 'True'
+      - 'False'
+    answer: 1
+    explanation: An inverse is defined by matrix multiplication producing identity. Entrywise reciprocals do not generally do this.
+    teachingHash: b9dd40903d8b558805ea5ed60aae4c634fb21be01d7bd994df4b8fa907b90ddc
+linear-algebra-least-squares:
+  - id: quick-4
+    after: A fit can be unique even when its parameters are not
+    prompt: A has two identical nonzero columns. Which statement about its least-squares fit is correct?
+    options:
+      - The fitted output is unique, but its coefficient vector is not
+      - Both the fitted output and coefficient vector must be unique
+      - The normal equations have no solution
+    answer: 0
+    explanation: Projection gives one closest output. Transferring any amount from one coefficient to the other leaves that output unchanged because the columns are identical.
+    teachingHash: e05a31d65e60fea58d911dc364fdf528030e26c8ca0ceaa7dc320edcaaa2fe21
+  - id: quick-2
+    after: Least squares and the normal equations
+    prompt: In 'normal equations,' normal refers to what?
+    options:
+      - Perpendicularity
+      - A probability distribution
+      - An exactly solvable original system
+    answer: 0
+    explanation: The residual must be perpendicular to every column of the model matrix.
+    teachingHash: 11278e7af201e85923dac7edfc1897f75c14197105b7e790972f060597b8dc48

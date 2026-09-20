@@ -1,0 +1,402 @@
+[
+  {
+    "name": "fibonacci-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)+F(n-2)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F(n-2)+F(n-1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "recurrence-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)+F(n-2)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F_{n-1}+F_{n-2}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "recurrence-expanded-index",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)+F(n-2)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F(n-(1+1))+F(n-1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "recurrence-polynomial-coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n*F(n-1)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(n+1)*F(n-1)-F(n-1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "recurrence-wrong-lag",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)+F(n-2)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F(n-1)+F(n-3)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "recurrence-current-index",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)+F(n-2)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F(n)+F(n-1)"
+    },
+    "error": true
+  },
+  {
+    "name": "recurrence-outside-lag",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F(n-9)"
+    },
+    "error": true
+  },
+  {
+    "name": "recurrence-cancelled-index-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F((n*n-n)/n)"
+    },
+    "error": true
+  },
+  {
+    "name": "recurrence-retains-denominator-pole",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "1",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "F(n-1)/F(n-1)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "recurrence-no-internal-symbols",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "recurrence",
+          "fields": ["answer"],
+          "params": {
+            "expected": "F(n-1)",
+            "sequence": "F",
+            "variable": "n",
+            "maxLag": 8
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "recurrenceLag1"
+    },
+    "error": true
+  }
+]

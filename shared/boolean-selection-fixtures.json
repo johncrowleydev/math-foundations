@@ -1,0 +1,690 @@
+[
+  {
+    "name": "boolean-selection-forward-pair",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": ["r01"]
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "boolean-selection-reverse-pair-with-loops",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": ["r10", "r00", "r11"]
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "boolean-selection-symmetric-wrong",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": ["r01", "r10"]
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "boolean-selection-empty-is-complete",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": []
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "boolean-selection-missing-is-incomplete",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {},
+    "error": true
+  },
+  {
+    "name": "boolean-selection-null-is-incomplete",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": null
+    },
+    "error": true
+  },
+  {
+    "name": "boolean-selection-unknown-option",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": ["missing"]
+    },
+    "error": true
+  },
+  {
+    "name": "boolean-selection-duplicate-option",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": ["r01", "r01"]
+    },
+    "error": true
+  },
+  {
+    "name": "boolean-selection-text-is-not-selection",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "(r01 & !r10) | (r10 & !r01)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": "r01"
+    },
+    "error": true
+  },
+  {
+    "name": "boolean-selection-empty-valid-when-condition-allows",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "pairs",
+          "kind": "multiselect",
+          "label": "Pairs in the relation",
+          "options": [
+            {
+              "id": "r00",
+              "label": "(0,0)"
+            },
+            {
+              "id": "r01",
+              "label": "(0,1)"
+            },
+            {
+              "id": "r10",
+              "label": "(1,0)"
+            },
+            {
+              "id": "r11",
+              "label": "(1,1)"
+            }
+          ],
+          "emptyLabel": "None"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "relation",
+          "description": "Construct the requested relation",
+          "validator": "boolean-model",
+          "fields": ["pairs"],
+          "params": {
+            "selectionField": "pairs",
+            "variables": {
+              "r00": "r00",
+              "r01": "r01",
+              "r10": "r10",
+              "r11": "r11"
+            },
+            "conditions": [
+              {
+                "formula": "!(r00|r01|r10|r11)",
+                "value": true
+              }
+            ],
+            "checks": {}
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the relation."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["tap"]
+      }
+    },
+    "response": {
+      "pairs": []
+    },
+    "verdict": "correct"
+  }
+]

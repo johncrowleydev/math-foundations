@@ -1,0 +1,1022 @@
+[
+  {
+    "name": "composition-basic",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "f^-1 o g^-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "composition-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "f^{-1}\\circ g^{-1}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "composition-cancel",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "f^-1 o f o f^-1 o g^-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "composition-wrong-order",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "g^-1 o f^-1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "composition-tautology",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(g o f)^-1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "composition-wronginverse",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "f o g^-1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "composition-unknown",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "h^-1 o g^-1"
+    },
+    "error": true
+  },
+  {
+    "name": "composition-regroup",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "composition",
+          "fields": ["answer"],
+          "params": {
+            "expected": "f^-1 o g^-1",
+            "functions": {
+              "f": ["A", "B"],
+              "g": ["B", "C"]
+            },
+            "form": "individual-inverses"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "(f^-1) o (g^-1)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{5k:k in Z}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\{5k:k\\in\\mathbb Z\\}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-2",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{n in Z:5|n}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-3",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{n in Z:exists k in Z,n=5k}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-4",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{n in Z:10|2*n}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-5",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "5Z"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-6",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{-5*k:k in Z}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-5-7",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{5*k+1:k in Z}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "integer-class-5-8",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{5*k:k in N}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "integer-class-5-9",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "5",
+            "residue": "0"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{n in Z:10|n}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "integer-class-4-0",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{4*k+2:k in Z}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-4-1",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{4*k-2:k in Z}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-4-2",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{n in Z:4|(n-2)}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-4-3",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{n in Z:exists t in Z,4*t+2=n}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-4-4",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "4Z+2"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "integer-class-4-5",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{4*k:k in Z}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "integer-class-4-6",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{2*k:k in Z}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "integer-class-4-7",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "label": "Answer",
+          "kind": "math"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Construct the requested answer",
+          "validator": "integer-class",
+          "fields": ["answer"],
+          "params": {
+            "modulus": "4",
+            "residue": "2"
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the construction."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "{n\\in\\mathbb Z:n\\equiv2\\pmod{4}}"
+    },
+    "verdict": "correct"
+  }
+]
