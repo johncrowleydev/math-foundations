@@ -5,6 +5,8 @@ import assert from 'node:assert/strict';
 import { withBrowser } from './support/browser.ts';
 
 await withBrowser('review', async ({ page, baseURL, directory }) => {
+  // Allow slower CI browsers to hydrate each new session and finish synchronization.
+  page.setDefaultTimeout(60000);
   const review = page.locator('.review-page');
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));

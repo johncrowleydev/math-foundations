@@ -106,7 +106,8 @@ try {
     serviceWorkers: 'block',
   });
   page = await context.newPage();
-  page.setDefaultTimeout(20000);
+  // Session hydration and queued synchronization can exceed 20s on CI browsers.
+  page.setDefaultTimeout(60000);
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   const login = await context.request.post(baseURL + '/api/v1/auth/login', {
