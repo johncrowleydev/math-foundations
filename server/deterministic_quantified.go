@@ -104,13 +104,17 @@ func (p *quantifiedParser) unary() (*quantifiedNode, error) {
 		if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(v) {
 			return nil, errors.New("Name the quantified variable")
 		}
-		if !p.take("in") {
+		var domain string
+		if p.take("in") {
+			domain = p.peek()
+			p.at++
+			if !contains(p.domains, domain) {
+				return nil, errors.New("Use a stated variable domain")
+			}
+		} else if len(p.domains) == 1 {
+			domain = p.domains[0]
+		} else {
 			return nil, errors.New("Include each quantified variable domain")
-		}
-		domain := p.peek()
-		p.at++
-		if !contains(p.domains, domain) {
-			return nil, errors.New("Use a stated variable domain")
 		}
 		if enum(p.peek(), ".", ":", ",") {
 			p.at++

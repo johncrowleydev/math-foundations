@@ -152,9 +152,11 @@ export function parseQuantified(
       const variable = tokens[at++];
       if (!/^[a-zA-Z][a-zA-Z0-9_]*$/.test(variable || ''))
         throw new InputError('Name the quantified variable.');
-      if (!take('in'))
-        throw new InputError('Include the variable domain, for example “forall n in Z”.');
-      const domain = tokens[at++];
+      let domain: string;
+      if (take('in')) domain = tokens[at++];
+      // Ordinary notation omits the domain when the exercise supplies just one.
+      else if (domains.length === 1) domain = domains[0];
+      else throw new InputError('Include the variable domain, for example “forall n in Z”.');
       if (!domains.includes(domain))
         throw new InputError('Use a stated domain: ' + domains.join(', ') + '.');
       if (tokens[at] === '.' || tokens[at] === ':' || tokens[at] === ',') at++;
