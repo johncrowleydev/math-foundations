@@ -152,13 +152,30 @@ export function parseQuantified(
       const variable = tokens[at++];
       if (!/^[a-zA-Z][a-zA-Z0-9_]*$/.test(variable || ''))
         throw new InputError('Name the quantified variable.');
-      if (!take('in'))
-        throw new InputError('Include the variable domain, for example “forall n in Z”.');
-      const domain = tokens[at++];
-      if (!domains.includes(domain))
-        throw new InputError('Use a stated domain: ' + domains.join(', ') + '.');
+      let domain: string;
+      if (take('in')) domain = tokens[at++];
+      // Ordinary notation omits the domain when the exercise supplies just one.
+      else if (domains.length === 1) domain = domains[0];
+      else throw new InputError('Include the variable domain, for example “forall n in Z”.');
+      let restriction: string | undefined;
+      if (!domains.includes(domain)) {
+        if (domains.length !== 1 || !options.sets?.includes(domain) || predicates[domain] !== 1)
+          throw new InputError('Use a stated domain: ' + domains.join(', ') + '.');
+        restriction = domain;
+        domain = domains[0];
+      }
       if (tokens[at] === '.' || tokens[at] === ':' || tokens[at] === ',') at++;
-      n = { kind: 'quantifier', quantifier, variable, domain, body: iff() };
+      let body = iff();
+      if (restriction) {
+        const member: QNode = { kind: 'predicate', name: restriction, args: [variable] };
+        // Restrict the witness for exists; for forall, only members must satisfy the body.
+        // Write the latter as not-member OR body so implicit guards preserve NNF checks.
+        body =
+          quantifier === 'forall'
+            ? { kind: 'or', left: { kind: 'not', body: member }, right: body }
+            : { kind: 'and', left: member, right: body };
+      }
+      n = { kind: 'quantifier', quantifier, variable, domain, body };
     } else if (take('!')) n = { kind: 'not', body: unary() };
     else if (tokens[at] === '(' && !arithmeticGroup() && take('(')) {
       n = iff();

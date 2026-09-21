@@ -1,8 +1,8 @@
 # Deterministic grading coverage
 
-Validated against published grading catalog `76b89a658f46fa636b486f2fd7f71eb6c7d2a5c767018c855ce29fa991d7770a`.
+Validated against published grading catalog `e4529bd8732264b9f18e209839ca54a119bd709c6bc1876ea37853d98ea3be55`.
 
-2,064 lesson exercises: **1,389 new structured assessments**, **183 existing choices**, and **492 open responses**. The deterministic total is **1,572** (76.2%).
+2,064 lesson exercises: **1,389 new structured assessments**, **184 multiple-choice assessments**, and **491 open responses**. The deterministic total is **1,573** (76.2%).
 
 173 dedicated Review definitions from 69 templates: **22 conversions**, **147 existing choices**, and **4 open responses**. The deterministic total is **169**. The three seeded generator declarations are included once each; duplicated representative questions and lesson-derived Review mappings are not counted again.
 
@@ -10,45 +10,45 @@ The combined [machine-readable ledger](deterministic-coverage.json) preserves ev
 
 ## Lesson counts
 
-| Lesson                                      | New structured | Existing choices | Open | Total |
-| ------------------------------------------- | -------------: | ---------------: | ---: | ----: |
-| Propositional Logic                         |             91 |               45 |   19 |   155 |
-| Predicates and Quantifiers                  |             83 |               33 |    6 |   122 |
-| Sets and Set Operations                     |             54 |                9 |   19 |    82 |
-| Relations                                   |             54 |               13 |   15 |    82 |
-| Functions                                   |             55 |               12 |   15 |    82 |
-| Sequences and Summations                    |             68 |                3 |   11 |    82 |
-| Direct Proof                                |             25 |                4 |   53 |    82 |
-| Proof by Contrapositive                     |             33 |                6 |   43 |    82 |
-| Proof by Contradiction                      |             32 |                2 |   48 |    82 |
-| Mathematical Induction                      |             24 |                4 |   54 |    82 |
-| Strong Induction                            |             36 |                3 |   43 |    82 |
-| Combinatorics                               |             72 |                3 |    7 |    82 |
-| Recurrence Relations                        |             63 |                2 |   17 |    82 |
-| Graph Theory                                |             57 |               13 |   12 |    82 |
-| Asymptotic Growth and Algorithmic Reasoning |             51 |                4 |   27 |    82 |
-| Vectors and Linear Combinations             |             64 |                2 |   10 |    76 |
-| Dot Products, Length, and Angle             |             70 |                2 |    4 |    76 |
-| Matrices and Matrix Multiplication          |             65 |                2 |    3 |    70 |
-| Systems of Linear Equations                 |             49 |                2 |   19 |    70 |
-| Span and Linear Independence                |             43 |                2 |   29 |    74 |
-| Bases, Coordinates, and Dimension           |             11 |                2 |    7 |    20 |
-| Rank, Nullity, Determinants, and Inverses   |             48 |                2 |    5 |    55 |
-| Linear Transformations                      |             54 |                3 |   13 |    70 |
-| Orthogonality and Projections               |             33 |                2 |    1 |    36 |
-| Least Squares and Model Fitting             |             27 |                2 |    7 |    36 |
-| Eigenvalues and Eigenvectors                |             57 |                3 |    4 |    64 |
-| Singular Value Decomposition                |             70 |                3 |    1 |    74 |
+| Lesson                                      | New structured | Choices | Open | Total |
+| ------------------------------------------- | -------------: | ------: | ---: | ----: |
+| Propositional Logic                         |             91 |      46 |   18 |   155 |
+| Predicates and Quantifiers                  |             83 |      33 |    6 |   122 |
+| Sets and Set Operations                     |             54 |       9 |   19 |    82 |
+| Relations                                   |             54 |      13 |   15 |    82 |
+| Functions                                   |             55 |      12 |   15 |    82 |
+| Sequences and Summations                    |             68 |       3 |   11 |    82 |
+| Direct Proof                                |             25 |       4 |   53 |    82 |
+| Proof by Contrapositive                     |             33 |       6 |   43 |    82 |
+| Proof by Contradiction                      |             32 |       2 |   48 |    82 |
+| Mathematical Induction                      |             24 |       4 |   54 |    82 |
+| Strong Induction                            |             36 |       3 |   43 |    82 |
+| Combinatorics                               |             72 |       3 |    7 |    82 |
+| Recurrence Relations                        |             63 |       2 |   17 |    82 |
+| Graph Theory                                |             57 |      13 |   12 |    82 |
+| Asymptotic Growth and Algorithmic Reasoning |             51 |       4 |   27 |    82 |
+| Vectors and Linear Combinations             |             64 |       2 |   10 |    76 |
+| Dot Products, Length, and Angle             |             70 |       2 |    4 |    76 |
+| Matrices and Matrix Multiplication          |             65 |       2 |    3 |    70 |
+| Systems of Linear Equations                 |             49 |       2 |   19 |    70 |
+| Span and Linear Independence                |             43 |       2 |   29 |    74 |
+| Bases, Coordinates, and Dimension           |             11 |       2 |    7 |    20 |
+| Rank, Nullity, Determinants, and Inverses   |             48 |       2 |    5 |    55 |
+| Linear Transformations                      |             54 |       3 |   13 |    70 |
+| Orthogonality and Projections               |             33 |       2 |    1 |    36 |
+| Least Squares and Model Fitting             |             27 |       2 |    7 |    36 |
+| Eigenvalues and Eigenvectors                |             57 |       3 |    4 |    64 |
+| Singular Value Decomposition                |             70 |       3 |    1 |    74 |
 
 ## Historical feasibility categories
 
-| Original category     | Implemented structured | Existing choice | Retained open |
-| --------------------- | ---------------------: | --------------: | ------------: |
-| choice-conversion     |                    458 |               0 |             0 |
-| existing-choice       |                      0 |             183 |             0 |
-| structured-conversion |                    903 |               0 |            48 |
-| mixed                 |                     22 |               0 |            65 |
-| open                  |                      6 |               0 |           379 |
+| Original category     | Implemented structured | Choice | Retained open |
+| --------------------- | ---------------------: | -----: | ------------: |
+| choice-conversion     |                    458 |      0 |             0 |
+| existing-choice       |                      0 |    183 |             0 |
+| structured-conversion |                    903 |      0 |            48 |
+| mixed                 |                     22 |      1 |            64 |
+| open                  |                      6 |      0 |           379 |
 
 The new structured assessments include 995 production tasks and 394 recognition tasks. “Structured” covers ordinary typed answers, compact grids and concise choices. The old choice-conversion category does not mean that every item became multiple choice.
 
@@ -89,7 +89,6 @@ The complete key list and individual reasons follow. Original prompts and formul
 | `propositional-logic-52`  | Requires producing the equivalence-law rewrite sequence for the displayed formula. A final formula alone omits the named laws and intermediate work; a mandatory formula stepper is outside the approved UI scope.                                    |
 | `propositional-logic-53`  | Requires producing the equivalence-law rewrite sequence for the displayed formula. A final formula alone omits the named laws and intermediate work; a mandatory formula stepper is outside the approved UI scope.                                    |
 | `propositional-logic-54`  | Requires producing the equivalence-law rewrite sequence for the displayed formula. A final formula alone omits the named laws and intermediate work; a mandatory formula stepper is outside the approved UI scope.                                    |
-| `propositional-logic-55`  | Requires producing the equivalence-law rewrite sequence for the displayed formula. A final formula alone omits the named laws and intermediate work; a mandatory formula stepper is outside the approved UI scope.                                    |
 | `propositional-logic-108` | The prompt specifically requires showing the key rewrite or equivalence-law argument. Equivalent final formulas alone do not establish that requested work.                                                                                           |
 | `propositional-logic-109` | The prompt specifically requires showing the key rewrite or equivalence-law argument. Equivalent final formulas alone do not establish that requested work.                                                                                           |
 | `propositional-logic-110` | The prompt specifically requires showing the key rewrite or equivalence-law argument. Equivalent final formulas alone do not establish that requested work.                                                                                           |

@@ -66,7 +66,12 @@ const array = (x: unknown): unknown[] =>
 const strlist = (x: unknown): string[] => (strings(x) ? x : bad('Invalid assessment parameters.'));
 const normalize = (s: string, caseSensitive = false) => {
   s = s.trim().replace(/\s+/g, ' ');
-  return caseSensitive ? s : s.toLowerCase();
+  if (caseSensitive) return s;
+  s = s.toLowerCase();
+  // Accept the operation's verb in term recall, including frozen review tasks.
+  if (s === 'intersect') return 'intersection';
+  if (s === 'intersect.') return 'intersection.';
+  return s;
 };
 const exacts = (values: string[]) => values.map(parseExact);
 const equalSet = (a: string[], b: string[]) =>

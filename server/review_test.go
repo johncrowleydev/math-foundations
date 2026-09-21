@@ -21,7 +21,7 @@ func reviewFixture(t *testing.T) *Grading {
 		return raw
 	}
 	template := func(id, concept, skill, level, cost string) ReviewTemplate {
-		return ReviewTemplate{ReviewTarget: ReviewTarget{Concept: concept, Skill: skill}, ID: id, Family: "fixed", Lesson: "lesson", EvidenceLevel: level, InteractionCost: cost, InputCapabilities: []string{"tap"}, Analytics: meta(concept, skill), Question: map[string]any{"id": 1, "section": "review", "instructions": "Choose", "answer": "Yes", "choice": map[string]any{"correctOption": "yes", "options": []map[string]string{{"id": "yes", "text": "Yes", "feedback": "Correct"}, {"id": "no", "text": "No", "feedback": "Try again"}}}}}
+		return ReviewTemplate{ReviewTarget: ReviewTarget{Concept: concept, Skill: skill}, ID: id, Family: "fixed", Lesson: "lesson", EvidenceLevel: level, InteractionCost: cost, InputCapabilities: []string{"tap"}, Analytics: meta(concept, skill), Question: map[string]any{"id": 1, "section": "review", "instructions": "Choose", "prompt": id, "answer": "Yes", "choice": map[string]any{"correctOption": "yes", "options": []map[string]string{{"id": "yes", "text": "Yes", "feedback": "Correct"}, {"id": "no", "text": "No", "feedback": "Try again"}}}}}
 	}
 	quick := template("quick", "logic", "recognize", "recognition", "low")
 	deep := template("deep", "logic", "prove", "reasoning", "high")

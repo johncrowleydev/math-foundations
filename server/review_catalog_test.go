@@ -103,3 +103,36 @@ func TestPublishedReviewCatalogPlanningAndDeterministicGrading(t *testing.T) {
 		t.Fatalf("deterministic review queued provider work: %d %v", jobs, err)
 	}
 }
+
+func TestPublishedDoubleNegationReviewUsesRecognitionChoices(t *testing.T) {
+	raw, err := os.ReadFile("../output/grading-catalog.json")
+	if os.IsNotExist(err) {
+		t.Skip("run npm run content to test the published catalog")
+	}
+	if err != nil {
+		t.Fatal(err)
+	}
+	g := reviewFixture(t)
+	if err = json.Unmarshal(raw, &g.catalog); err != nil {
+		t.Fatal(err)
+	}
+	found := false
+	for _, item := range g.reviewCatalog().Items {
+		if item.OriginalExercise != "propositional-logic-55" {
+			continue
+		}
+		found = true
+		if item.Skill != "recognize" || item.EvidenceLevel != "recognition" {
+			t.Fatalf("selecting double negation must not certify written justification: %+v", item)
+		}
+		if len(item.InputCapabilities) != 1 || item.InputCapabilities[0] != "tap" || item.Question["choice"] == nil {
+			t.Fatalf("double negation must offer selectable answers: %+v", item)
+		}
+		if item.SourceTarget != "exercise:propositional-logic-55" {
+			t.Fatalf("double negation lost its stable exercise identity: %+v", item)
+		}
+	}
+	if !found {
+		t.Fatal("published double negation exercise missing from review catalog")
+	}
+}

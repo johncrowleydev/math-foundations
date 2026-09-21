@@ -23,9 +23,9 @@ test('every audited lesson and dedicated Review definition has a validated publi
     lessons: {
       total: 2064,
       structured: 1389,
-      choice: 183,
-      open: 492,
-      converted: 1389,
+      choice: 184,
+      open: 491,
+      converted: 1390,
       alreadyDeterministic: 183,
     },
     dedicatedReview: {
