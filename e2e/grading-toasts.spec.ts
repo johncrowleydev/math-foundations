@@ -1,4 +1,6 @@
-async (page) => {
+import { withBrowser } from './support/browser.ts';
+
+await withBrowser('grading-toasts', async ({ page, baseURL, directory }) => {
   // Synthetic local data only; no request reaches an account or grading service.
   await page.route('**/api/**', (route) =>
     route.fulfill({
@@ -12,12 +14,12 @@ async (page) => {
     }),
   );
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('http://127.0.0.1:5175/#/practice/propositional-logic/19');
+  await page.goto(baseURL + '/#/practice/propositional-logic/19');
   await page.locator('.practice-heading').waitFor();
-  const save = async (id, status, exercise = 19) => {
+  const save = async (id: string, status: 'grading' | 'graded', exercise = 19) => {
     await page.evaluate(
       async ({ id, status, exercise }) => {
-        const { put } = await import('/src/storage.ts');
+        const { put } = await import(String('/src/storage.ts'));
         await put('attempts', id, {
           id,
           exercise: 'propositional-logic-' + exercise,
@@ -46,14 +48,14 @@ async (page) => {
   await save('foreground', 'grading');
   await save('foreground', 'graded');
   await silent();
-  await page.screenshot({ path: '/tmp/grading-foreground.png' });
+  await page.screenshot({ path: directory + '/grading-foreground.png' });
   await save('background', 'grading');
   await page.getByRole('button', { name: 'Next →', exact: true }).click();
   await save('background', 'graded');
   await page.locator('.grading-toast').waitFor();
   if (!(await page.locator('.grading-toast').innerText()).includes('Grading complete — Correct'))
     throw Error('Missing result');
-  await page.screenshot({ path: '/tmp/grading-background-desktop.png' });
+  await page.screenshot({ path: directory + '/grading-background-desktop.png' });
   await page.getByRole('button', { name: 'Dismiss grading notification' }).click();
   await save('background', 'graded');
   await silent();
@@ -67,14 +69,14 @@ async (page) => {
   await page.getByRole('button', { name: 'Next →', exact: true }).click();
   await save('phone', 'graded');
   await page.locator('.grading-toast').waitFor();
-  await page.screenshot({ path: '/tmp/grading-background-mobile.png' });
+  await page.screenshot({ path: directory + '/grading-background-mobile.png' });
   if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth))
     throw Error('Mobile overflow');
   await page.locator('.grading-toast').waitFor({ state: 'detached', timeout: 10000 });
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
   const inline = page.locator('[data-exercise-key]').first();
   await inline.scrollIntoViewIfNeeded();
-  const inlineId = Number((await inline.getAttribute('data-exercise-key')).split('-').at(-1));
+  const inlineId = Number((await inline.getAttribute('data-exercise-key'))!.split('-').at(-1));
   await save('inline-visible', 'grading', inlineId);
   await save('inline-visible', 'graded', inlineId);
   await silent();
@@ -85,4 +87,4 @@ async (page) => {
   console.log(
     'PASS: foreground, background, duplicate sync, return before completion, dismissal, expiry, desktop, mobile, visible and offscreen inline exercises',
   );
-};
+});

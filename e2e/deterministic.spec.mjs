@@ -1,5 +1,5 @@
 // Real compiled curriculum + Go API, isolated temporary learner database.
-// Run after npm run web:build: node scripts/check-deterministic-ui.mjs
+// Run after npm run web:build: npx tsx e2e/deterministic.spec.mjs
 // Override PLAYWRIGHT_MODULE / CHROME_BIN for your local browser runtime.
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
@@ -13,9 +13,9 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
-const screenshots = join(root, 'docs/screenshots/deterministic');
-const calculusScreenshots = join(root, 'docs/screenshots/calculus');
-const probabilityScreenshots = join(root, 'docs/screenshots/probability-statistics');
+const screenshots = join(root, 'output/e2e/deterministic');
+const calculusScreenshots = join(root, 'output/e2e/calculus');
+const probabilityScreenshots = join(root, 'output/e2e/probability-statistics');
 const temporary = await mkdtemp(join(tmpdir(), 'foundations-deterministic-ui-'));
 const children = [];
 let browser;
@@ -100,7 +100,7 @@ try {
   );
   await ready(baseURL, web);
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome',
+    executablePath: process.env.CHROME_BIN,
     headless: true,
   });
   const context = await browser.newContext({
@@ -795,9 +795,9 @@ try {
     for (const context of browser.contexts())
       for (const page of context.pages())
         await page
-          .screenshot({ path: join(root, 'output/deterministic-ui-failure.png') })
+          .screenshot({ path: join(root, 'output/e2e/deterministic-ui-failure.png') })
           .catch(() => {});
-  console.error('Failure screenshot: output/deterministic-ui-failure.png');
+  console.error('Failure screenshot: output/e2e/deterministic-ui-failure.png');
   throw error;
 } finally {
   await browser?.close();

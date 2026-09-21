@@ -9,9 +9,9 @@ import { once } from 'node:events';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = fileURLToPath(new URL('../../', import.meta.url));
+const root = fileURLToPath(new URL('../', import.meta.url));
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const screenshotDirectory = join(root, 'output/draft-hydration-ui');
+const screenshotDirectory = join(root, 'output/e2e/draft-hydration-ui');
 const notebook = JSON.parse(await readFile(join(root, 'web/public/notebook.json'), 'utf8'));
 const listener = createServer();
 listener.listen(0, '127.0.0.1');
@@ -40,7 +40,7 @@ try {
   }
   await mkdir(screenshotDirectory, { recursive: true });
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome',
+    executablePath: process.env.CHROME_BIN,
     headless: true,
     args: ['--no-sandbox'],
   });

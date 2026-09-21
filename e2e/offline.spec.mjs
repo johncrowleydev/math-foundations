@@ -1,5 +1,5 @@
 // Production PWA + real Go API, with failure injection against an isolated notebook.
-// Run after npm run web:build: node scripts/check-offline-hardening.mjs
+// Run after npm run web:build: npx tsx e2e/offline.spec.mjs
 // Override PLAYWRIGHT_MODULE / CHROME_BIN for your local browser runtime.
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
-const screenshots = join(root, 'output/offline-hardening');
+const screenshots = join(root, 'output/e2e/offline-hardening');
 const temporary = await mkdtemp(join(tmpdir(), 'foundations-offline-hardening-'));
 const children = [];
 let browser;
@@ -36,7 +36,7 @@ async function unusedPort() {
 }
 
 function start(command, args, options) {
-  const child = spawn(command, args, { stdio: 'ignore', ...options });
+  const child = spawn(command, args, { stdio: ['ignore', 'ignore', 'inherit'], ...options });
   children.push(child);
   return child;
 }
@@ -95,7 +95,7 @@ try {
   );
   await ready(baseURL, web);
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome',
+    executablePath: process.env.CHROME_BIN,
     headless: true,
   });
   const context = await browser.newContext({
@@ -365,8 +365,10 @@ try {
   // Upgrade only the isolated server catalog, removing the issued dedicated
   // definitions. The cached client must continue to use its issued snapshot.
   const upgraded = JSON.parse(await readFile(apiEnv.FOUNDATIONS_CATALOG, 'utf8'));
-  upgraded.version = 'offline-audit-next-content-version';
+  // Catalog archives require SHA-256-shaped version identifiers.
+  upgraded.version = randomBytes(32).toString('hex');
   upgraded.reviewTemplates = [];
+  upgraded.reviewVariants = {};
   const catalogPath = join(temporary, 'next-catalog.json');
   await writeFile(catalogPath, JSON.stringify(upgraded));
   const stopped = once(api, 'exit');

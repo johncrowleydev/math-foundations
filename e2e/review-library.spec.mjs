@@ -1,5 +1,5 @@
 // Real compiled curriculum + Go API, isolated temporary learner database.
-// Run after npm run web:build: node scripts/check-review-library-ui.mjs
+// Run after npm run web:build: npx tsx e2e/review-library.spec.mjs
 // Override PLAYWRIGHT_MODULE / CHROME_BIN for your local browser runtime.
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
-const screenshots = join(root, 'docs/screenshots/review-library');
+const screenshots = join(root, 'output/e2e/review-library');
 const temporary = await mkdtemp(join(tmpdir(), 'foundations-review-library-'));
 const children = [];
 let browser;
@@ -95,7 +95,7 @@ try {
   );
   await ready(baseURL, web);
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome',
+    executablePath: process.env.CHROME_BIN,
     headless: true,
   });
   const context = await browser.newContext({
@@ -378,8 +378,8 @@ try {
 
   // Audit every dedicated template through the effective Library, not just its source file.
   const authoredSource = JSON.parse(await readFile(join(root, 'content/review-templates.json')));
-  const contentScreenshots = join(root, 'docs/screenshots/review-content');
-  const auditDirectory = join(root, 'output/review-audit-after');
+  const contentScreenshots = join(root, 'output/e2e/review-content');
+  const auditDirectory = join(root, 'output/e2e/review-audit-after');
   await mkdir(contentScreenshots, { recursive: true });
   await mkdir(auditDirectory, { recursive: true });
   await writeFile(join(auditDirectory, 'catalog.json'), JSON.stringify(catalog, null, 2));
@@ -518,7 +518,7 @@ try {
   await clear();
 
   // A moved lesson keeps historical exercise keys, but filters and navigation use its current slug.
-  const curriculumScreenshots = join(root, 'docs/screenshots/review-coverage');
+  const curriculumScreenshots = join(root, 'output/e2e/review-coverage');
   await mkdir(curriculumScreenshots, { recursive: true });
   for (const lesson of ['linear-algebra-rank-inverses', 'linear-algebra-least-squares']) {
     await page.goto(baseURL + '/#/review-library/' + lesson);

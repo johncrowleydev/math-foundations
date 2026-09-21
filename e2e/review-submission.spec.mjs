@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
-const screenshots = join(root, 'output/review-submission-ui');
+const screenshots = join(root, 'output/e2e/review-submission-ui');
 const temporary = await mkdtemp(join(tmpdir(), 'foundations-review-submission-'));
 const children = [];
 let browser;
@@ -98,7 +98,7 @@ try {
   );
   await ready(baseURL, web);
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome',
+    executablePath: process.env.CHROME_BIN,
     headless: true,
   });
   const context = await browser.newContext({

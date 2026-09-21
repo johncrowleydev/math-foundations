@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = fileURLToPath(new URL('../', import.meta.url));
 const temporary = await mkdtemp(join(tmpdir(), 'foundations-stale-submission-'));
-const screenshots = join(root, 'docs/screenshots/stale-catalog-retry');
+const screenshots = join(root, 'output/e2e/stale-catalog-retry');
 const children = [];
 let browser;
 let provider;
@@ -153,7 +153,7 @@ try {
   );
   await ready(baseURL, web);
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN || '/usr/bin/google-chrome',
+    executablePath: process.env.CHROME_BIN,
     headless: true,
   });
   for (const [name, width, height] of [
