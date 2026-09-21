@@ -30,10 +30,10 @@ Read the explanation and worked example before the practice.
 This illustrates syntax, not a new lesson or source-supported mathematical claim.
 Use the actual figure ID, local numeric worksheet ID, and quick-check ID from the
 lesson's data. Vite compiles each canonical document with `@mdx-js/rollup` into a
-React component. `web/src/lessonModules.ts` loads one compiled lesson module on
+React component using the [standard MDX integration](https://mdxjs.com/docs/getting-started/#vite). `web/src/lessonModules.ts` loads one compiled lesson module on
 demand; the PWA precaches all lesson chunks for offline navigation.
-`web/src/LessonDocument.tsx` passes its `lessonComponents` map through MDX's standard
-`components` prop and supplies lesson context. No MDX provider package is required.
+`web/src/LessonDocument.tsx` exports the `lessonComponents` map and supplies lesson
+context. `App` passes the map through MDX's standard `components` prop. No MDX provider package is required.
 The reading view renders that compiled document directly.
 
 `Figure` resolves its ID in `content/figures.json` and renders the real React

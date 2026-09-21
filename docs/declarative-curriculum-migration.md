@@ -303,3 +303,27 @@ repeatable synthetic browser check record the interface. The optional SymPy
 verification limitation above is the only known failing extra check; it was
 reproduced on the unchanged baseline. No deployment, merge, or code-review request
 was performed.
+
+### Final MDX/React validation
+
+The rendering correction was validated on September 21, 2026:
+
+| Check                             | Result                                                                                                                                                                                                                                                                                   |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Clean dependency installation     | `npm ci` and `npm ci --prefix web` passed.                                                                                                                                                                                                                                               |
+| Root tests and content validation | `npm test`: 2,068 passed, including source/prerequisite audits, declarative architecture guards, deterministic fixtures, review/catalog compatibility, and native MDX metadata parity.                                                                                                   |
+| Typechecking                      | Root `npm run typecheck` and web `tsc -b` passed.                                                                                                                                                                                                                                        |
+| Web tests                         | 174 passed, including 80 MDX tests/subtests: a newly registered React component with hooks, scalar props and nested Markdown; the actual Exercise/Figure registry; display math; all 75 lesson documents compiled with the same options as Vite; and no canonical source writes.         |
+| Production build                  | `npm run web:build` passed. Vite compiles each lesson module directly; the PWA precaches all lesson chunks. The existing large-chunk advisory remains.                                                                                                                                   |
+| Go tests                          | `go test -race ./...` passed in 157 seconds, including deterministic fixtures, frozen review/restore behavior, catalog compatibility and the 747 original review-generator cases.                                                                                                        |
+| Browser behavior                  | `scripts/check-mdx-ui.mjs` passed against the final production preview after removing legacy prose/figure blocks from notebook JSON. It verifies actual figures and exercises, draft/choice restoration, formula/reference popovers, interactive frames, deep links and saved bookmarks. |
+| Source immutability               | No tracked changes or new files under `content/` after the complete build/test workflow.                                                                                                                                                                                                 |
+| Formatting                        | `npm run format:check` and `git diff --check` passed.                                                                                                                                                                                                                                    |
+
+The original captured notebook and grading catalog were also independently read
+again to verify the committed semantic hashes and exact grading-contract hash for
+all 4,426 published exercises. The existing grading version is retained exactly.
+[Six inspected desktop/phone screenshots](screenshots/react-mdx/README.md) record
+the genuine MDX/React reader. The browser-only lesson types no longer expose the
+legacy prose block arrays. No curriculum prose, exercise data, review identities,
+or canonical MDX documents changed in this rendering correction.
