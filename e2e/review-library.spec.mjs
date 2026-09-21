@@ -95,7 +95,7 @@ try {
   );
   await ready(baseURL, web);
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN,
+    executablePath: process.env.CHROME_BIN || chromium.executablePath(),
     headless: true,
   });
   const context = await browser.newContext({

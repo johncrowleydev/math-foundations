@@ -40,7 +40,7 @@ try {
   }
   await mkdir(screenshotDirectory, { recursive: true });
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN,
+    executablePath: process.env.CHROME_BIN || chromium.executablePath(),
     headless: true,
     args: ['--no-sandbox'],
   });

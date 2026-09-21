@@ -73,7 +73,11 @@ export async function withBrowser(
     const { chromium }: typeof import('playwright') = await import(
       process.env.PLAYWRIGHT_MODULE || 'playwright'
     );
-    browser = await chromium.launch({ executablePath: process.env.CHROME_BIN, headless: true });
+    // Run bundled full Chromium headlessly, matching the original Chrome checks.
+    browser = await chromium.launch({
+      executablePath: process.env.CHROME_BIN || chromium.executablePath(),
+      headless: true,
+    });
     const context = await browser.newContext({
       viewport: { width: 1440, height: 1000 },
       serviceWorkers: 'block',

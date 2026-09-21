@@ -153,7 +153,7 @@ try {
   );
   await ready(baseURL, web);
   browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN,
+    executablePath: process.env.CHROME_BIN || chromium.executablePath(),
     headless: true,
   });
   for (const [name, width, height] of [
