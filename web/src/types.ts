@@ -4,7 +4,6 @@ import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from '.
 import type { SourceCatalog } from './Sources';
 import type { Assessment, StructuredResponse } from '../../shared/assessment';
 export type { Assessment, StructuredResponse } from '../../shared/assessment';
-export type Block = { id: string; kind: string; markdown?: string; figure?: string };
 export type Question = {
   id: number;
   displayNumber?: number;
@@ -32,10 +31,10 @@ export type Quick = {
   explanation: string;
   exerciseId?: number;
 };
+// Client indexes and assessment data only. Lesson prose renders from compiled MDX.
 export type Section = {
   id: string;
   title: string;
-  blocks: Block[];
   questionIds: number[];
   quickChecks: Quick[];
 };
@@ -46,7 +45,6 @@ export type Lesson = {
   exerciseNamespace?: string;
   title: string;
   eyebrow: string;
-  introBlocks: Block[];
   sections: Section[];
   questions: Question[];
   practiceIds: number[];

@@ -107,7 +107,7 @@ export const remarkLessonReferences: Plugin<[], Root> = () => (tree, file) => {
           ([, path]) => basename(path) === basename(node.url),
         )?.[0];
         if (slug) node.url = '#/learn/' + slug;
-      } else if (node.url.includes('worksheets/')) node.url = '#/learn/' + lesson + '/practice';
+      } else if (node.url.includes('worksheets/')) node.url = '#/practice/' + lesson;
       return;
     }
     if (!('children' in node) || node.type.startsWith('mdx')) return;
