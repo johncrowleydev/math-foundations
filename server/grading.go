@@ -12,6 +12,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -89,11 +90,12 @@ type ChoiceAssessment struct {
 	CorrectOption string         `json:"correctOption"`
 }
 type Grading struct {
-	active        sync.Map // job ID -> context.CancelFunc
-	server        *Server
-	catalog       Catalog
-	key, endpoint string
-	client        *http.Client
+	active         sync.Map // job ID -> context.CancelFunc
+	server         *Server
+	catalog        Catalog
+	catalogArchive string
+	key, endpoint  string
+	client         *http.Client
 }
 
 func gradingSchema(db *sql.DB) error {
@@ -221,8 +223,18 @@ func (g *Grading) submit(a Submission) (Attempt, int, error) {
 		}
 		teaching = instance.Teaching
 		ok = true
+	} else if a.ContentVersion != g.catalog.Version {
+		var err error
+		teaching, ok, err = g.archivedExercise(a.ContentVersion, a.Exercise)
+		if err != nil {
+			log.Printf("Cannot read archived grading catalog: %v", err)
+			return Attempt{}, 503, errors.New("The server could not load this answer's original lesson version. Your saved answer is retained; retry grading later.")
+		}
+		if !ok {
+			return Attempt{}, 409, errors.New("The original lesson version for this answer is unavailable. Your answer is still saved on this device; retry when that version is restored.")
+		}
 	}
-	if !ok || (a.Review == nil && a.ContentVersion != g.catalog.Version) {
+	if !ok {
 		return Attempt{}, 409, errors.New("Update the app before submitting this exercise")
 	}
 	var item struct {
@@ -751,6 +763,6 @@ func configureGrading(s *Server) (*Grading, error) {
 	if endpoint == "" {
 		endpoint = "https://openrouter.ai/api/v1/chat/completions"
 	}
-	return &Grading{server: s, catalog: c, key: key, endpoint: endpoint, client: &http.Client{Timeout: 120 * time.Second}}, nil
+	return &Grading{server: s, catalog: c, catalogArchive: os.Getenv("FOUNDATIONS_CATALOG_ARCHIVE"), key: key, endpoint: endpoint, client: &http.Client{Timeout: 120 * time.Second}}, nil
 }
 func contentHash(b []byte) string { h := sha256.Sum256(b); return hex.EncodeToString(h[:]) }
