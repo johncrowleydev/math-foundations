@@ -37,6 +37,45 @@ func TestReviewDuplicatesThreeTargets(t *testing.T) {
 	}
 }
 
+func TestReviewDuplicatesCompareSelectedDeclarativeVariants(t *testing.T) {
+	for _, sameQuestion := range []bool{true, false} {
+		name := "distinct selected questions"
+		if sameQuestion {
+			name = "identical selected questions"
+		}
+		t.Run(name, func(t *testing.T) {
+			g := reviewFixture(t)
+			a := duplicateReviewTemplate(t, g, "first", "a", "First template summary.")
+			b := duplicateReviewTemplate(t, g, "second", "b", "Second template summary.")
+			first := duplicateReviewTemplate(t, g, "selected-a", "a", "Evaluate exclusive OR.")
+			second := duplicateReviewTemplate(t, g, "selected-b", "b", "Evaluate exclusive OR.")
+			want := 1
+			if !sameQuestion {
+				b.Question["prompt"] = a.Question["prompt"]
+				second.Question["prompt"] = "Evaluate conjunction."
+				want = 2
+			}
+			bank := func(question map[string]any) ReviewVariantBank {
+				return ReviewVariantBank{
+					Selection: ReviewVariantSelection{HashBytes: []int{0}, Moduli: []int{1}},
+					Variants:  []ReviewVariant{{ID: "0", Parameters: map[string]int{"value": 1}, Question: question}},
+				}
+			}
+			g.catalog.ReviewTemplates = []ReviewTemplate{a, b}
+			g.catalog.ReviewVariants = map[string]ReviewVariantBank{a.ID: bank(first.Question), b.ID: bank(second.Question)}
+			session, err := g.planReview(ReviewSessionRequest{Kind: "focused-practice", Mode: "quick"}, reviewDay)
+			if err != nil || len(session.Instances) != want {
+				t.Fatalf("selected declarative questions produced %d instances; want %d, error %v", len(session.Instances), want, err)
+			}
+			for _, instance := range session.Instances {
+				if instance.Context.Parameters["value"] != 1 {
+					t.Fatal("selected declarative parameters were not preserved")
+				}
+			}
+		})
+	}
+}
+
 func TestReviewDuplicatesStructuredInputs(t *testing.T) {
 	for _, variation := range []string{"hidden IDs and option order", "input label", "grid columns", "grid given value"} {
 		t.Run(variation, func(t *testing.T) {
