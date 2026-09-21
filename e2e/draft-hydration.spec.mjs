@@ -205,6 +205,8 @@ try {
   await page.reload();
   await exercise().locator('.structured-answer').waitFor();
   await page.evaluate(() => window.releaseDraftHydration());
+  // Releasing the read gate does not await React's restored draft render.
+  await exercise().locator('.unsure-option input:checked').waitFor();
   assert.equal(await exercise().getByLabel('Unsure', { exact: true }).isChecked(), true);
   for (const input of question.assessment.inputs) {
     assert.equal(
