@@ -65,7 +65,7 @@ The final effective-catalog comparison checks every one of the 4,705 pre-existin
 
 All additions have inspected pinpoint source assignments and reviewed hashes in `content/sources.json`. Fifty-three new citation records support the Discrete/Linear additions; the five newer-subject families reuse inspected existing passages. Only new or deliberately corrected template metadata hashes were recorded. Existing lesson, syntax and review hashes were not refreshed to bypass validation. The newer-subject additions were made in their existing authoring modules and regenerated through the normal tooling.
 
-The build still publishes 75 lessons, 4,284 questions and 2,527 inline placements. The deterministic disposition report was regenerated through `scripts/deterministic-coverage.ts --write`; only its published catalog version changed. It is a historical conversion ledger, not a new all-curriculum coverage score.
+The build still publishes 75 lessons, 4,284 questions and 2,527 inline placements. The deterministic disposition report was regenerated through `tools/audit/deterministic-coverage.ts --write`; only its published catalog version changed. It is a historical conversion ledger, not a new all-curriculum coverage score.
 
 Validation passed: `npm test` (835 tests, including content/source, deterministic fixtures and generator properties), `npm run typecheck`, `npm run web:build`, `npm run web:test` (77 tests), `npm run format:check`, `go test -count=1 ./...`, and `go test -race -count=1 ./...`. The Go runs include deterministic provider traps, frozen-definition/restore tests, and the new location/prerequisite regressions. The effective-catalog preservation report also passes.
 
@@ -73,7 +73,10 @@ The real Library browser check passed against all 4,827 effective templates: it 
 
 One supplemental browser script has a pre-existing unreliable assumption: `check-review-submission-ui.mjs` unconditionally expects an open editor for two filters that already mix structured and open responses on baseline `38c6b3d`. Its unmodified run passed the choice/retry/recovery checks, then stopped at that editor expectation. A temporary copy uses the existing exclusively open `quantifier-order × counterexample` and `uniqueness × prove` targets for the same typed-submission and blur/reload paths and passed every submission check. This leaves the unrelated script unchanged.
 
-To reproduce the authoring inventory, capture the baseline Library response at the baseline commit and keep it as `output/review-audit-before/catalog.json`; build the final branch and run:
+The before/after report and CSV above record the completed rollout. Its one-off
+comparison writer was removed during the [tooling cleanup](tooling-inventory.md);
+ongoing coverage comes from the effective-catalog, identity, activation, and browser
+tests. To run the current checks:
 
 ```sh
 npm test
@@ -82,10 +85,14 @@ npm run web:build
 npm run web:test
 npm run format:check
 (cd server && go test -count=1 ./... && go test -race -count=1 ./...)
-node scripts/check-review-library-ui.mjs
-npx tsx scripts/report-review-coverage.mjs
+npm run test:e2e -- review-library review
 ```
 
-Set `PLAYWRIGHT_MODULE` and `CHROME_BIN` to installed local runtimes as needed. The Library script starts its own temporary API/database, expands every dedicated template and every authored variant, samples seeded generators, checks every lesson’s target grouping, tests restored lesson navigation and phone overflow, and confirms that previews create no learner records. The captured catalog, browser coverage rows and expanded machine audit stay generated under ignored `output/review-audit-after/`.
+Install Chromium with `npx playwright install chromium`; `CHROME_BIN` can select
+an existing browser. The Library check starts its own temporary API/database,
+expands every dedicated template and every authored variant, samples seeded
+generators, checks lesson target grouping, tests navigation and phone overflow,
+and confirms that previews create no learner records. Current captures and
+reports stay under ignored `output/e2e/`.
 
 Screenshots of the corrected lesson filters and original-exercise links: [Rank/Inverses desktop](screenshots/review-coverage/linear-algebra-rank-inverses-desktop.png), [phone](screenshots/review-coverage/linear-algebra-rank-inverses-phone.png), [Least Squares desktop](screenshots/review-coverage/linear-algebra-least-squares-desktop.png), [phone](screenshots/review-coverage/linear-algebra-least-squares-phone.png).

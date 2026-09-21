@@ -5,9 +5,9 @@ These screenshots use the compiled curriculum, the production PWA, and an isolat
 Run after `npm run web:build`:
 
 ```sh
-PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/check-deterministic-ui.mjs
-PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node web/tests/structuredAnswer.browser.mjs
-PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node web/tests/draftHydration.browser.mjs
+PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs npm run test:e2e -- deterministic
+PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs npm run test:e2e -- structured-answer
+PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs npm run test:e2e -- draft-hydration
 ```
 
 The script creates and removes its temporary server database. `CHROME_BIN` can select an existing Chrome installation. Browser checks run at 320px and 390px phone widths and 1440px desktop width.

@@ -8,7 +8,7 @@ The canonical sources are directly authored `content/lessons/calc-*.mdx` and
 `content/references/calculus.json`, and the shared review, figure, quick-check,
 feedback, formula, typing, and source files under `content/`. MDX places explicit
 `Figure`, `Exercise`, and `QuickCheck` components after their teaching. Edit these
-documents and data directly, then run the normal `npm run content` build. The
+documents and data directly, then run the normal `npm run content:build` build. The
 former `scripts/authoring/calculus.mjs` writer and all its lesson/helper/feedback/
 figure modules are removed; see [the migration report](declarative-curriculum-migration.md).
 The lesson files compile directly to React through Vite's standard MDX plugin.

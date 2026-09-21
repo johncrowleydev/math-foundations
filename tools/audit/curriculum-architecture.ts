@@ -5,7 +5,7 @@ import YAML from 'yaml';
 
 const executable = /\.(?:[cm]?[jt]sx?|py|go|sh|bash|rb|pl|lua|rs|c|cpp|java|cs)$/i;
 const ignoredDirectories = new Set(['.git', 'node_modules', 'output', 'dist', '__pycache__']);
-const testFile = /(?:\.(?:test|spec)\.[^.]+|_test\.(?:go|py)|\/check-[^/]+-ui\.[cm]?js)$/;
+const testFile = /(?:\.(?:test|spec)\.[^.]+|_test\.(?:go|py))$/;
 
 /**
  * These checks enforce source locations and catch recognizable authoring patterns.
@@ -16,7 +16,7 @@ const testFile = /(?:\.(?:test|spec)\.[^.]+|_test\.(?:go|py)|\/check-[^/]+-ui\.[
 export function inspectCurriculumFile(path: string, source: string): string[] {
   const errors: string[] = [];
   const report = (message: string) => errors.push(`${path}: ${message}`);
-  if (path === 'scripts/lesson-mdx.ts') {
+  if (path === 'scripts/lesson-mdx.ts' || path === 'tools/content/lesson-mdx.ts') {
     report('the MDX-to-legacy rendering adapter is retired; compile lessons with standard MDX.');
     return errors;
   }
@@ -36,7 +36,7 @@ export function inspectCurriculumFile(path: string, source: string): string[] {
 
   if (
     path.startsWith('web/src/') &&
-    /(?:\bfrom\s*|\b(?:import|require)\s*\(\s*)['"][^'"\n]*\bscripts\//.test(source)
+    /(?:\bfrom\s*|\b(?:import|require)\s*\(\s*)['"][^'"\n]*\b(?:scripts|tools)\//.test(source)
   ) {
     report(
       'browser components must render compiled MDX; content build processors stay build-only.',

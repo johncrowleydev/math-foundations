@@ -22,5 +22,5 @@ with historical-catalog lookup enabled. Both resulting interfaces were visually
 checked. The fixture's “correct” verdict tests delivery and display, not the
 mathematical quality of a real learner's answer.
 
-Run `scripts/check-stale-submission-ui.mjs` after the production web build, as
+Run `e2e/stale-submission.spec.mjs` after the production web build, as
 documented in [the recovery report](../../stale-submission-recovery.md).

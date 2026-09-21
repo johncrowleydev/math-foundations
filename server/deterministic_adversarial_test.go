@@ -7,9 +7,9 @@ import (
 )
 
 // Identical materialized cases and independent expected outcomes run in the
-// browser checker (scripts/deterministic-adversarial.test.ts) and this server.
+// browser checker (tests/grading/deterministic-adversarial.test.ts) and this server.
 func TestAdversarialConformance(t *testing.T) {
-	data, err := os.ReadFile("../shared/deterministic-adversarial-corpus.json")
+	data, err := os.ReadFile("../tests/grading/fixtures/deterministic-adversarial-corpus.json")
 	if err != nil {
 		t.Fatal(err)
 	}

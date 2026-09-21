@@ -1,9 +1,9 @@
-import type { Assessment } from '../shared/assessment.js';
-import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
+import type { Assessment } from '../../shared/assessment.js';
+import { exerciseKey, validateExerciseKeys } from '../../web/src/exerciseIdentity.js';
 import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import YAML from 'yaml';
-import type { EvidenceCatalog, ExerciseEvidence } from '../web/src/evidenceTypes.js';
+import type { EvidenceCatalog, ExerciseEvidence } from '../../web/src/evidenceTypes.js';
 export function validateEvidence(c: EvidenceCatalog, keys: Set<string>) {
   const ids = (rows: { id: string }[], label: string) => {
     const s = new Set(rows.map((x) => x.id));

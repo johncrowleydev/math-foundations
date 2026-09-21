@@ -1,6 +1,6 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { inlineAudit } from './inline-prerequisites.js';
+import { inlineAudit } from '../content/inline-prerequisites.js';
 
 // This inventory records authored dependencies and reading units. It does not infer
 // that a keyword match is an adequate introduction or assign manual audit approval.

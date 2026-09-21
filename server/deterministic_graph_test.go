@@ -7,7 +7,7 @@ import (
 )
 
 func TestGraphConformance(t *testing.T) {
-	data, e := os.ReadFile("../shared/graph-fixtures.json")
+	data, e := os.ReadFile("../tests/grading/fixtures/graph-fixtures.json")
 	if e != nil {
 		t.Fatal(e)
 	}

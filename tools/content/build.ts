@@ -1,14 +1,15 @@
-import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
+import { exerciseKey, validateExerciseKeys } from '../../web/src/exerciseIdentity.js';
 import { mathOccurrences, validateFormulaContexts } from './formula-context.js';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { promoteChoices } from './choice-exercises.js';
 import { promoteDeterministic } from './deterministic-exercises.js';
 import { loadEvidence } from './evidence.js';
-import { snapshot } from '../web/src/evidenceTypes.js';
+import { snapshot } from '../../web/src/evidenceTypes.js';
 import { loadSources } from './sources.js';
 import { loadReviewTemplates } from './review-templates.js';
 import { loadReviewVariants } from './review-variants.js';
+import { gradingVersionFor } from './grading-version.js';
 
 import { prepareNotebook } from './notebook.js';
 const { content, teaching, lessons, formulaSources } = await prepareNotebook();
@@ -37,9 +38,6 @@ if (missingFormulaContexts.length)
     'Missing contextual formula explanations: ' +
       JSON.stringify(missingFormulaContexts.slice(0, 10)),
   );
-await mkdir('output', { recursive: true });
-await writeFile('output/formula-inventory.json', JSON.stringify(formulaInventory, null, 2) + '\n');
-const dir = 'output/content';
 const publishedLessons = promoteDeterministic(promoteChoices(lessons));
 validateExerciseKeys(publishedLessons);
 const evidence = await loadEvidence(publishedLessons);
@@ -49,39 +47,15 @@ const reviewTemplates = await loadReviewTemplates(
 );
 const reviewVariants = await loadReviewVariants(reviewTemplates);
 const sources = await loadSources(publishedLessons, teaching, reviewTemplates, reviewVariants);
-await mkdir(dir, { recursive: true });
-await writeFile(`${dir}/sources.json`, JSON.stringify(sources));
-await writeFile(`${dir}/review-templates.json`, JSON.stringify(reviewTemplates));
-await writeFile(`${dir}/learning-evidence.json`, JSON.stringify(evidence));
-await writeFile(
-  `${dir}/notebook.json`,
-  JSON.stringify({ currentLesson: content.currentLesson, lessons: publishedLessons }),
-);
-await writeFile(`${dir}/teaching.json`, JSON.stringify(teaching));
-await writeFile(`${dir}/reading-order-v7.json`, await readFile('content/reading-order-v7.json'));
 console.log(
   `Curriculum: ${lessons.length} lessons, ${lessons.reduce((n, l) => n + l.questions.length, 0)} questions, ${lessons.reduce((n, l) => n + l.sections.reduce((s, c) => s + c.questionIds.length, 0), 0)} inline placements.`,
 );
-
-await writeFile(`${dir}/tex-syntax.json`, await readFile('content/tex-syntax.json'));
-
-await writeFile(`${dir}/tex-teaching.json`, await readFile('content/tex-teaching.json'));
 
 // The grader sees precisely the adapted questions shipped in the app, not worksheet originals.
 const representationHash = createHash('sha256')
   .update(JSON.stringify({ publishedLessons, evidence, reviewTemplates }))
   .digest('hex');
-// Native MDX figure references change serialization but not any grading contract.
-// Preserve this one proven catalog version so saved offline submissions remain valid.
-// Any subsequent content change produces its own ordinary hash. This fixture holds
-// only hashes; it is not a curriculum source or a general version alias mechanism.
-const mdxMigration = JSON.parse(
-  await readFile('scripts/fixtures/mdx-migration-version.json', 'utf8'),
-);
-const gradingVersion =
-  representationHash === mdxMigration.representationHash
-    ? mdxMigration.gradingVersion
-    : representationHash;
+const gradingVersion = gradingVersionFor(representationHash);
 const gradingExercises = Object.fromEntries(
   publishedLessons.flatMap((lesson) =>
     lesson.questions.map((q) => {
@@ -119,13 +93,36 @@ const gradingExercises = Object.fromEntries(
     }),
   ),
 );
-await writeFile(
-  'output/grading-catalog.json',
-  JSON.stringify({
-    version: gradingVersion,
-    exercises: gradingExercises,
-    reviewTemplates,
-    reviewVariants,
-  }),
-);
-await writeFile(`${dir}/grading-version.json`, JSON.stringify({ version: gradingVersion }));
+const copiedAssets = {
+  'reading-order-v7.json': await readFile('content/reading-order-v7.json'),
+  'tex-syntax.json': await readFile('content/tex-syntax.json'),
+  'tex-teaching.json': await readFile('content/tex-teaching.json'),
+};
+if (process.argv.includes('--validate-only')) {
+  console.log('Content validation passed; no artifacts written.');
+} else {
+  const dir = 'output/content';
+  await mkdir(dir, { recursive: true });
+  const artifacts = {
+    'output/formula-inventory.json': JSON.stringify(formulaInventory, null, 2) + '\n',
+    [`${dir}/sources.json`]: JSON.stringify(sources),
+    [`${dir}/review-templates.json`]: JSON.stringify(reviewTemplates),
+    [`${dir}/learning-evidence.json`]: JSON.stringify(evidence),
+    [`${dir}/notebook.json`]: JSON.stringify({
+      currentLesson: content.currentLesson,
+      lessons: publishedLessons,
+    }),
+    [`${dir}/teaching.json`]: JSON.stringify(teaching),
+    ...Object.fromEntries(
+      Object.entries(copiedAssets).map(([name, bytes]) => [`${dir}/${name}`, bytes]),
+    ),
+    'output/grading-catalog.json': JSON.stringify({
+      version: gradingVersion,
+      exercises: gradingExercises,
+      reviewTemplates,
+      reviewVariants,
+    }),
+    [`${dir}/grading-version.json`]: JSON.stringify({ version: gradingVersion }),
+  };
+  for (const [path, bytes] of Object.entries(artifacts)) await writeFile(path, bytes);
+}

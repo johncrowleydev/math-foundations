@@ -13,16 +13,16 @@ Run the following in the implementation worktree before preparing a release:
 ```sh
 npm ci --ignore-scripts
 npm ci --ignore-scripts --no-install-links --prefix web
-npm run content
+npm run content:build
 npm run typecheck
 npm test
 npm run web:build
 npm run web:test
-node --import tsx scripts/check-tex-release.ts
-node --import tsx scripts/deterministic-coverage.ts
+node --import tsx tools/audit/check-tex-release.ts
+node --import tsx tools/audit/deterministic-coverage.ts
 ```
 
-Run `go test ./...` and build the server from `server/`. Build the PWA before running its unit tests: the tests inspect its bundled curriculum. Run `scripts/check-deterministic-ui.mjs`, `web/tests/structuredAnswer.browser.mjs`, and `web/tests/draftHydration.browser.mjs` with an available Playwright module as described in the [screenshot record](screenshots/deterministic/README.md). The web install flag installs the existing local root-package dependency without its package-link lifecycle issue; it changes no project dependency. Content generation validates source coverage, source pins, mutually exclusive grading methods, metadata, and every authored accepted/rejected fixture. TS and Go run the same language-neutral conformance cases.
+Run `go test ./...` and build the server from `server/`. Build the PWA before running its unit tests: the tests inspect its bundled curriculum. Run `e2e/deterministic.spec.mjs`, `e2e/structured-answer.spec.mjs`, and `e2e/draft-hydration.spec.mjs` with an available Playwright module as described in the [screenshot record](screenshots/deterministic/README.md). The web install flag installs the existing local root-package dependency without its package-link lifecycle issue; it changes no project dependency. Content generation validates source coverage, source pins, mutually exclusive grading methods, metadata, and every authored accepted/rejected fixture. TS and Go run the same language-neutral conformance cases.
 
 ## Coordinated activation
 

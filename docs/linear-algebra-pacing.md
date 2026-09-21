@@ -31,8 +31,8 @@ The revision retains the original 20 quick checks and adds four, for **24 quick 
 A read-only count of the pre-split worksheets verified **697 original worksheet questions**. The authoring plans preserve that inventory: the 71 bases questions partition into 18 and 53; the 68 projection questions partition into 34 and 34. The other 558 questions remain in their existing lessons. Every original worksheet ID in each split occurs exactly once in its plan; every inline ID belongs to its local group; section titles match the Markdown H2s in order.
 
 The canonical grouping is in `content/worksheets/la-*.yaml`, and inline placement
-is explicit in `content/lessons/la-*.mdx`. The [bases fixture](../scripts/fixtures/linear-algebra-bases-pacing.json)
-and [projections fixture](../scripts/fixtures/linear-algebra-projections-pacing.json)
+is explicit in `content/lessons/la-*.mdx`. The [bases fixture](../tests/curriculum/fixtures/linear-algebra-bases-pacing.json)
+and [projections fixture](../tests/curriculum/fixtures/linear-algebra-projections-pacing.json)
 retain historical split expectations solely for compatibility tests. The former
 practice/advanced generators are removed. Edit the documents and data directly;
 see [the current authoring workflow](content-authoring.md).

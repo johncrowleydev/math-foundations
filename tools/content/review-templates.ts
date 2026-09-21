@@ -1,10 +1,10 @@
-import { validateAssessment, gradeAssessment, InputError } from '../shared/deterministic.js';
-import type { AnswerFixture } from '../shared/assessment.js';
-import type { Assessment } from '../shared/assessment.js';
+import { validateAssessment, gradeAssessment, InputError } from '../../shared/deterministic.js';
+import type { AnswerFixture } from '../../shared/assessment.js';
+import type { Assessment } from '../../shared/assessment.js';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import { validateMath } from './content.js';
-import type { EvidenceCatalog } from '../web/src/evidenceTypes.js';
+import type { EvidenceCatalog } from '../../web/src/evidenceTypes.js';
 
 const generatorSlots = {
   'integer-witness-sum': ['a', 'sum', 'witness', 'witnessPlusOne', 'witnessMinusOne'],

@@ -24,7 +24,7 @@ type deterministicHTTPFixture struct {
 // family supplies its own complete mathematical answer from the shared corpus;
 // invalid notation and wrong answers must remain on the same local-only path.
 func TestEveryDeterministicValidatorAvoidsProviderAndJobs(t *testing.T) {
-	paths, e := filepath.Glob("../shared/*fixtures.json")
+	paths, e := filepath.Glob("../tests/grading/fixtures/*fixtures.json")
 	if e != nil {
 		t.Fatal(e)
 	}
@@ -191,7 +191,7 @@ func TestEveryDeterministicValidatorAvoidsProviderAndJobs(t *testing.T) {
 }
 
 func TestInvalidDeterministicDefinitions(t *testing.T) {
-	raw, e := os.ReadFile("../shared/deterministic-definition-cases.json")
+	raw, e := os.ReadFile("../tests/grading/fixtures/deterministic-definition-cases.json")
 	if e != nil {
 		t.Fatal(e)
 	}

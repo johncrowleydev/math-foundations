@@ -2,9 +2,9 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import { validateMath } from './content.js';
-import { validateAssessment, gradeAssessment, InputError } from '../shared/deterministic.js';
-import type { Assessment, AnswerFixture } from '../shared/assessment.js';
-import { exerciseKey } from '../web/src/exerciseIdentity.js';
+import { validateAssessment, gradeAssessment, InputError } from '../../shared/deterministic.js';
+import type { Assessment, AnswerFixture } from '../../shared/assessment.js';
+import { exerciseKey } from '../../web/src/exerciseIdentity.js';
 
 const entrySchema = z
   .object({

@@ -70,11 +70,11 @@ The browser check expands every dedicated template and all of its variants, veri
 - [Lesson 1 implication coverage](screenshots/review-content/propositional-logic-coverage.png)
 - [Lesson 2 quantifier-order coverage](screenshots/review-content/predicates-and-quantifiers-coverage.png)
 
-Run `node scripts/check-review-library-ui.mjs` after `npm run web:build` to repeat the final audit. It also writes the observed effective catalog and rendered coverage rows into ignored `output/review-audit-after/`. Set `PLAYWRIGHT_MODULE` and `CHROME_BIN` to the installed local browser runtime when needed. The baseline inventory is a snapshot of the merged catalog, not a new runtime content source.
+Run `npm run test:e2e -- review-library` after `npm run web:build` to repeat the final audit. It also writes the observed effective catalog and rendered coverage rows into ignored `output/review-audit-after/`. Set `PLAYWRIGHT_MODULE` and `CHROME_BIN` to the installed local browser runtime when needed. The baseline inventory is a snapshot of the merged catalog, not a new runtime content source.
 
 ## Validation
 
-The complete checks are `npm test` (including content validation and curriculum audit), `npm run typecheck`, `npm run web:build`, `npm run web:test`, `npm run format:check`, and, from `server`, `go test -count=1 ./...` and `go test -race -count=1 ./...`. The count flag avoids cached Go results when the compiled content outside the Go module changes. Browser checks are `scripts/check-review-library-ui.mjs` and the existing `scripts/check-review-ui.mjs` against a local Vite development server, as required by its source-module imports. Both use isolated/synthetic learner state.
+The complete checks are `npm test` (including content validation and curriculum audit), `npm run typecheck`, `npm run web:build`, `npm run web:test`, `npm run format:check`, and, from `server`, `go test -count=1 ./...` and `go test -race -count=1 ./...`. The count flag avoids cached Go results when the compiled content outside the Go module changes. Browser checks are `e2e/review-library.spec.mjs` and the existing `e2e/review.spec.mjs` through `npm run test:e2e -- review-library review`; local services are started automatically. Both use isolated/synthetic learner state.
 
 The new generators are checked across 6,144 seeds: all 16 connective/assignment cases and all 105 threshold/gap cases appear. Tests independently verify answers, distinct options, varying answer positions, no unresolved placeholders, reproducibility, preview/session agreement, and unchanged legacy witness output. Authored symbolic and boundary examples also received independent truth-table and finite-model checks during source inspection.
 

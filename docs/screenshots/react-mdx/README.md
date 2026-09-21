@@ -3,7 +3,7 @@
 Captured from the production build on September 21, 2026, at desktop (1440 × 1000)
 and phone (390 × 844) viewport sizes. All six captures were visually inspected.
 
-The repeatable `scripts/check-mdx-ui.mjs` test removes every legacy lesson prose
+The repeatable `e2e/mdx.spec.ts` test removes every legacy lesson prose
 and figure block from the fetched notebook metadata before the client receives it.
 The visible lessons therefore require the compiled MDX/React rendering path. All
 API traffic is intercepted; the entered answer and saved choices are synthetic

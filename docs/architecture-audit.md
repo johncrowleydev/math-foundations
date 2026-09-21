@@ -6,7 +6,7 @@
 > source records are directly authored YAML/JSON under `content/`. The entire
 > `scripts/authoring/` tree and its aggregate writers are removed after inventory
 > and parity checks. Independent mathematical verification tools remain under
-> `scripts/verification/`. References below to old authoring paths, invocation order,
+> `tools/verification/`. References below to old authoring paths, invocation order,
 > and isolated generation describe the audited historical commit, not the current
 > authoring workflow. They are retained as evidence of the original regression.
 > The subsequent PR #15 rendering correction removes the custom MDX-to-legacy
@@ -163,7 +163,7 @@ decomposition (A04).
 - **Files/evidence:** `shared/deterministic.ts` (`validateAssessment`,
   `gradeAssessment`), `server/deterministic.go` (`validateAssessment`,
   `validateResponse`), `web/src/structuredAnswer.ts:8–25`,
-  `shared/deterministic-definition-cases.json`, and the shared fixture consumers.
+  `tests/grading/fixtures/deterministic-definition-cases.json`, and the shared fixture consumers.
   The Go response validator limits strings to 4,096 **UTF-8 bytes**. The shared
   TypeScript term grader lacks that limit; the browser's archival shape check
   allows 20,000 JavaScript string units. Requirement `evidenceLevel: ''` is
@@ -318,12 +318,12 @@ decomposition (A04).
 ### A08 — MEDIUM VALUE: important architecture checks remain outside CI
 
 - **Files/evidence:** `.github/workflows/ci.yml`, `package.json`,
-  `web/package.json`, `scripts/check-*-ui.mjs`,
-  `scripts/check-offline-hardening.mjs`, `web/tests/*.browser.mjs`,
-  `scripts/export_learning_test.py`. CI runs root TypeScript tests, typecheck,
+  `web/package.json`, `e2e/*.spec.{ts,mjs}`,
+  `e2e/offline.spec.mjs`, the relocated browser checks under `e2e/`,
+  `tests/utilities/export_learning_test.py`. CI runs root TypeScript tests, typecheck,
   build, web Node tests, format checks, and Go race tests. It does not invoke the
   browser scripts. The Python export test **is** invoked indirectly by
-  `scripts/evidence.test.ts`, so it is already covered by `npm test`.
+  the explicit `test:utilities` command, which is included in `npm test`.
   Browser checks depend on an externally
   installed Playwright module/Chrome and several overwrite tracked screenshot
   paths. Independent source generators are likewise not an ordinary build step.
@@ -438,7 +438,7 @@ threshold is preserved. Historical database-only backups are not repaired.
   running the script successfully changes the fixture count **698 → 22**,
   dropping 676 unrelated template/variant cases.
 - **Why it matters:** the retained authoring source is unsafe to rerun against
-  the current aggregate. `scripts/review-templates.ts:149–153` detects the missing
+  the current aggregate. `tools/content/review-templates.ts:149–153` detects the missing
   fixtures during normal publication, so this is a broken authoring workflow,
   not evidence of silent deficient publication. No package or CI command invokes
   the script, but it still encodes live historical identities.
@@ -550,7 +550,7 @@ incomplete legacy transcription history cannot authorize deleting local media.
 
 ### N04 — NO CHANGE RECOMMENDED: build, content version, and error distinctions
 
-**Files/evidence:** `scripts/build-content.ts:40–70`, `sources.ts`,
+**Files/evidence:** `tools/content/build.ts:40–70`, `sources.ts`,
 `web/src/structuredAnswer.ts`, `sync.ts`, `server/grading.go`, `auth.go`.
 The normal build validates authored content, compiles adapted questions, and hashes
 published lessons/evidence/templates. Source bibliographic metadata is separate.
@@ -725,7 +725,7 @@ and materialized fixtures are not treated as software-design failures.
 
 Do not change scheduler keys, globally sort existing arrays, regenerate evidence
 or inspection hashes to make checks pass, or recalculate historical attempts from
-the new current catalog. The normal `npm run content` already provides a useful
+the new current catalog. The normal `npm run content:build` already provides a useful
 single compilation boundary; the problem is the authoring writers upstream.
 
 ## Implementation and validation
@@ -746,24 +746,24 @@ mathematical behavior, scheduler behavior, or UI structure changed. The larger
 pipeline's existing invocation-order dependence is preserved and documented,
 not mistakenly presented as solved.
 
-| Check                                       | Result                                                                                                                                                                       |
-| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm test`                                  | Passed: 2,016 tests, including two new writer tests, shared fixtures, all 1,166 adversarial cases, content/source validation, and the indirectly invoked Python export test. |
-| `npm run typecheck`                         | Passed.                                                                                                                                                                      |
-| `npm run web:build`                         | Passed, including web TypeScript compilation and PWA precache. Existing large-chunk advisory remains.                                                                        |
-| `npm run web:test`                          | Passed: 94 tests, including sync acknowledgement/preservation, import, Review persistence, and transcription.                                                                |
-| `npm run format:check`                      | Passed, including the final report.                                                                                                                                          |
-| `cd server && go test -count=1 ./...`       | Passed; shared fixtures, provider traps, frozen Review/restore and lifecycle tests included.                                                                                 |
-| `cd server && go test -race -count=1 ./...` | Passed. Live external-provider tests deliberately remain opt-in; `FOUNDATIONS_LIVE_TEST_KEY` was unset.                                                                      |
-| `python3 scripts/export_learning_test.py`   | Passed separately as well: one test.                                                                                                                                         |
-| `scripts/check-review-ui.mjs`               | Passed after correcting the local Vite launch command; Regular/Quick, focused filters, deferred deep work and offline queue.                                                 |
-| `scripts/check-review-submission-ui.mjs`    | Passed on unchanged rerun; see initial reload observation below.                                                                                                             |
-| `scripts/check-review-library-ui.mjs`       | Passed against all 4,827 effective templates, all 555 dedicated templates/770 variants, target grouping, previews, navigation and phone layout.                              |
-| `scripts/check-offline-hardening.mjs`       | Passed against production PWA/service worker and isolated real Go API: malformed/dropped/delayed acknowledgements, retries, export/restore and frozen catalog upgrade.       |
-| `scripts/check-deterministic-ui.mjs`        | Passed: 25 server-verified attempts, frozen Review, offline retry and export/import.                                                                                         |
-| `web/tests/draftHydration.browser.mjs`      | Passed: delayed hydration, rapid edits, reload and keyboard entry.                                                                                                           |
-| `web/tests/structuredAnswer.browser.mjs`    | Passed: structured controls and persistence with unavailable upload service.                                                                                                 |
-| Isolated audit probes                       | Reproduced A01 null export/import, A02 boundary drift, A03 generation order, A13 backup/media lifetime and A14 fixture overwrite; these are findings, not fixes.             |
+| Check                                             | Result                                                                                                                                                                       |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm test`                                        | Passed: 2,016 tests, including two new writer tests, shared fixtures, all 1,166 adversarial cases, content/source validation, and the indirectly invoked Python export test. |
+| `npm run typecheck`                               | Passed.                                                                                                                                                                      |
+| `npm run web:build`                               | Passed, including web TypeScript compilation and PWA precache. Existing large-chunk advisory remains.                                                                        |
+| `npm run web:test`                                | Passed: 94 tests, including sync acknowledgement/preservation, import, Review persistence, and transcription.                                                                |
+| `npm run format:check`                            | Passed, including the final report.                                                                                                                                          |
+| `cd server && go test -count=1 ./...`             | Passed; shared fixtures, provider traps, frozen Review/restore and lifecycle tests included.                                                                                 |
+| `cd server && go test -race -count=1 ./...`       | Passed. Live external-provider tests deliberately remain opt-in; `FOUNDATIONS_LIVE_TEST_KEY` was unset.                                                                      |
+| `python3 tests/utilities/export_learning_test.py` | Passed separately as well: one test.                                                                                                                                         |
+| `e2e/review.spec.mjs`                             | Passed after correcting the local Vite launch command; Regular/Quick, focused filters, deferred deep work and offline queue.                                                 |
+| `e2e/review-submission.spec.mjs`                  | Passed on unchanged rerun; see initial reload observation below.                                                                                                             |
+| `e2e/review-library.spec.mjs`                     | Passed against all 4,827 effective templates, all 555 dedicated templates/770 variants, target grouping, previews, navigation and phone layout.                              |
+| `e2e/offline.spec.mjs`                            | Passed against production PWA/service worker and isolated real Go API: malformed/dropped/delayed acknowledgements, retries, export/restore and frozen catalog upgrade.       |
+| `e2e/deterministic.spec.mjs`                      | Passed: 25 server-verified attempts, frozen Review, offline retry and export/import.                                                                                         |
+| `e2e/draft-hydration.spec.mjs`                    | Passed: delayed hydration, rapid edits, reload and keyboard entry.                                                                                                           |
+| `e2e/structured-answer.spec.mjs`                  | Passed: structured controls and persistence with unavailable upload service.                                                                                                 |
+| Isolated audit probes                             | Reproduced A01 null export/import, A02 boundary drift, A03 generation order, A13 backup/media lifetime and A14 fixture overwrite; these are findings, not fixes.             |
 
 The first Review submission browser run observed a blank editor at its immediate
 post-reload text assertion (`check-review-submission-ui.mjs:327`). The unchanged

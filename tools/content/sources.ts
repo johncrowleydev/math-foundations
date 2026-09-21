@@ -1,4 +1,4 @@
-import { exerciseKey, validateExerciseKeys } from '../web/src/exerciseIdentity.js';
+import { exerciseKey, validateExerciseKeys } from '../../web/src/exerciseIdentity.js';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';

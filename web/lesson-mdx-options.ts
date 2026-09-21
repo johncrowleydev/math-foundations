@@ -2,7 +2,7 @@ import remarkMath from 'remark-math';
 import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
 import type { Options } from '@mdx-js/rollup';
-import { remarkDocumentRules } from '../scripts/lesson-mdx-policy.ts';
+import { remarkDocumentRules } from '../tools/content/lesson-mdx-policy.ts';
 import {
   remarkLessonLayout,
   remarkLessonReferences,

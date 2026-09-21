@@ -7,7 +7,7 @@ import (
 )
 
 func TestFiniteRelationConformance(t *testing.T) {
-	data, e := os.ReadFile("../shared/finite-relation-fixtures.json")
+	data, e := os.ReadFile("../tests/grading/fixtures/finite-relation-fixtures.json")
 	if e != nil {
 		t.Fatal(e)
 	}

@@ -33,7 +33,7 @@ validation and retention, and continued rejection of unknown versions. These run
 in the ordinary Go CI suite.
 
 The earlier browser test used the current catalog and mocked a successful upload.
-`scripts/check-stale-submission-ui.mjs` closes that gap with the real Go server,
+`e2e/stale-submission.spec.mjs` closes that gap with the real Go server,
 real authentication, real submission and grading-job routes, an isolated temporary
 database, and a loopback-only synthetic provider. It first reproduces a rejected
 older version, then retains the original catalog and clicks **Retry grading**.
@@ -46,7 +46,7 @@ provider is used.
 After building the web client, run:
 
 ```sh
-PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/check-stale-submission-ui.mjs
+PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs npm run test:e2e -- stale-submission
 ```
 
 Desktop and phone captures are saved under
