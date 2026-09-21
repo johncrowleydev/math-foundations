@@ -68,6 +68,8 @@ reports failures. Checks launch loopback Vite/Go services, use synthetic data or
 mocked API responses, and clean up their processes. Screenshots and captured
 reports go under ignored `output/e2e/`. `CHROME_BIN` optionally selects an existing
 browser; `PLAYWRIGHT_MODULE` optionally selects another Playwright installation.
+The default is Playwright's full Chromium executable running headless, preserving
+the browser mode used by the original Chrome checks.
 Larger existing MJS checks remain JavaScript; the small checks and runner use TS.
 
 ## Independent verification and fixtures
