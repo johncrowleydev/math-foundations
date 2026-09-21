@@ -80,6 +80,14 @@ assert.deepEqual(
 assert.ok((await page.locator('.reading-column:visible .katex').count()) > 0);
 await page.locator('.reading-column:visible .term').first().click();
 await page.getByRole('button', { name: 'Close reference', exact: true }).click();
+for (const section of ['from-samples-to-riemann-sums', 'the-integral-as-a-limit']) {
+  await page
+    .locator('#section-' + section + ' .teaching .katex')
+    .first()
+    .click();
+  await page.getByRole('heading', { name: 'Reading this expression', exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Close', exact: true }).last().click();
+}
 const figure = page.locator('figure').filter({ hasText: 'Accumulation as signed area' });
 assert.equal(await figure.locator('svg').count(), 1);
 await figure.scrollIntoViewIfNeeded();
