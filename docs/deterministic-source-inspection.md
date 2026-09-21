@@ -83,3 +83,7 @@ The rewritten prompts add seven previously taught syntax requirements to three e
 The TeX inspection fingerprints for all 1,389 source-pinned structured definitions now include their effective published question and assessment. These records rely on the documented source inspections and independently checked examples; regenerating a hash alone is not treated as inspection.
 
 The existing KaTeX source was rechecked on September 19 at [Supported Functions](https://katex.org/docs/supported.html): Delimiters (escaped braces), Binary Operators (intersection and composition), Relations (not equal), Logic and Set Theory (empty set), and Layout/spacing (thin space). Existing explanations and examples are unchanged; the syntax source fingerprint now records the inspected exercise-inventory update.
+
+## Double-negation recognition follow-up (September 21, 2026)
+
+At the user's request, `propositional-logic-55` now reuses exercise 95's complete expression/law choices. MIT _Mathematics for Computer Science_, §3.4.2, p. 59 ([equations 3.7 and 3.12](https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=67)), was reinspected for commutativity and double negation. For both truth values of p, negating twice returns p; commutativity exchanges operands and does not remove negations. These facts support the correct pair and both distractor explanations. The task now records recognition rather than transformation or written justification. Its exercise ID and prompt remain unchanged; previously issued review instances and submitted work retain their original snapshots.

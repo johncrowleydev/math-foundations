@@ -458,7 +458,7 @@ export function coverageReport(c: Coverage): string {
     '',
     `Validated against published grading catalog \`${c.publishedCatalogVersion}\`.`,
     '',
-    `${l.total.toLocaleString('en-US')} lesson exercises: **${l.structured.toLocaleString('en-US')} new structured assessments**, **${l.choice} existing choices**, and **${l.open} open responses**. The deterministic total is **${(l.structured + l.choice).toLocaleString('en-US')}** (${(((l.structured + l.choice) / l.total) * 100).toFixed(1)}%).`,
+    `${l.total.toLocaleString('en-US')} lesson exercises: **${l.structured.toLocaleString('en-US')} new structured assessments**, **${l.choice} multiple-choice assessments**, and **${l.open} open responses**. The deterministic total is **${(l.structured + l.choice).toLocaleString('en-US')}** (${(((l.structured + l.choice) / l.total) * 100).toFixed(1)}%).`,
     '',
     `${r.total} dedicated Review definitions from 69 templates: **${r.structured} conversions**, **${r.choice} existing choices**, and **${r.open} open responses**. The deterministic total is **${r.structured + r.choice}**. The three seeded generator declarations are included once each; duplicated representative questions and lesson-derived Review mappings are not counted again.`,
     '',
@@ -466,7 +466,7 @@ export function coverageReport(c: Coverage): string {
     '',
     '## Lesson counts',
     '',
-    '| Lesson | New structured | Existing choices | Open | Total |',
+    '| Lesson | New structured | Choices | Open | Total |',
     '| --- | ---: | ---: | ---: | ---: |',
     ...c.perLesson.map(
       (p) => `| ${markdown(p.title)} | ${p.structured} | ${p.choice} | ${p.open} | ${p.total} |`,
@@ -474,7 +474,7 @@ export function coverageReport(c: Coverage): string {
     '',
     '## Historical feasibility categories',
     '',
-    '| Original category | Implemented structured | Existing choice | Retained open |',
+    '| Original category | Implemented structured | Choice | Retained open |',
     '| --- | ---: | ---: | ---: |',
     ...[...new Set(c.lessons.map((x) => x.originalCategory))].map((category) => {
       const rows = c.lessons.filter((x) => x.originalCategory === category);

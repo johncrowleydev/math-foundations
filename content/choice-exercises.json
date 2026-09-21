@@ -2979,5 +2979,29 @@
       }
     ],
     "correctOption": "option-2"
+  },
+  {
+    "lesson": "propositional-logic",
+    "id": 55,
+    "sourceHash": "2e9e2d7ae93c4add2c3efce16ec5da3fb83964d161ff4d2f7507d4b69a253f0f",
+    "rationale": "Recognize both the simplified expression and its double-negation justification; options distinguish a wrong rule from a wrong expression.",
+    "options": [
+      {
+        "id": "option-1",
+        "text": "$p$; commutativity.",
+        "feedback": "The expression is right, but commutativity only exchanges the order of two inputs. It does not remove a repeated input, constant, negation, or nested expression."
+      },
+      {
+        "id": "option-2",
+        "text": "$p$; double negation.",
+        "feedback": "Negating a truth value twice returns the original truth value. This is the double negation law, so the named rule and the simplified expression both match."
+      },
+      {
+        "id": "option-3",
+        "text": "$\\neg p$; double negation.",
+        "feedback": "The rule name alone is not enough: the resulting expression must agree for both possible values of p. Test true and false separately."
+      }
+    ],
+    "correctOption": "option-2"
   }
 ]

@@ -13,6 +13,19 @@ const authoredChoices = JSON.parse(
 const authoredChecks = JSON.parse(
   fs.readFileSync(new URL('../../content/knowledge-check-exercises.json', import.meta.url), 'utf8'),
 );
+test('double negation retains exercise 55 and offers the expression and law as choices', () => {
+  const lesson = notebook.lessons.find((l) => l.slug === 'propositional-logic')!;
+  const question = lesson.questions.find((q) => q.id === 55)!;
+  assert.equal(exerciseKey(lesson, question.id), 'propositional-logic-55');
+  assert.ok(question.choice, 'double negation should not require a written answer');
+  assert.equal(
+    question.choice.options.find((o) => o.id === question.choice!.correctOption)?.text,
+    '$p$; double negation.',
+  );
+  assert.ok(question.choice.options.some((o) => o.text === '$p$; commutativity.'));
+  assert.ok(question.choice.options.some((o) => o.text === '$\\neg p$; double negation.'));
+});
+
 test('every authored choice option produces its deterministic verdict and feedback', () => {
   let count = 0;
   for (const l of notebook.lessons)
