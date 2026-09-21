@@ -96,6 +96,13 @@ func (g *Grading) removeRetiredMedia() {
 	if !ok {
 		return
 	}
+	// Backups freeze the DB before copying its media. Defer physical retirement
+	// until they finish; retaining the transcription and normal grading continue.
+	lock, err := lockDirectory(disk.Root, ".retirement.lock", true)
+	if err != nil {
+		return // Another collector/backup (or an I/O error): safely retry next pass.
+	}
+	defer lock.Close()
 	rows, err := g.server.db.Query("SELECT hash FROM retired_attempt_media")
 	if err != nil {
 		return

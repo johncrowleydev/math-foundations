@@ -426,6 +426,12 @@ func main() {
 	if root == "" {
 		root = "/var/lib/math-foundations"
 	}
+	if len(os.Args) > 1 {
+		if e := backupCommand(root, os.Args[1:]); e != nil {
+			log.Fatal(e)
+		}
+		return
+	}
 	if e := os.MkdirAll(filepath.Join(root, "media"), 0700); e != nil {
 		log.Fatal(e)
 	}
@@ -434,14 +440,6 @@ func main() {
 		log.Fatal(e)
 	}
 	defer db.Close()
-	if len(os.Args) > 2 && os.Args[1] == "backup" {
-		_, e = db.Exec("VACUUM INTO ?", os.Args[2])
-		if e != nil {
-			log.Fatal(e)
-		}
-		return
-	}
-
 	addr := os.Getenv("FOUNDATIONS_ADDR")
 	if addr == "" {
 		addr = "127.0.0.1:18084"
