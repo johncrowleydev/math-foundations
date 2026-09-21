@@ -22,6 +22,12 @@ jobs:
           go-version-file: server/go.mod
           cache-dependency-path: server/go.sum
       - run: npm ci && npm ci --prefix web
+      - name: Enforce declarative curriculum sources
+        run: npx tsx scripts/curriculum-architecture.ts
       - run: npm test && npm run typecheck && npm run web:build && npm run web:test && npm run format:check
       - run: go test -race ./...
         working-directory: server
+      - name: Verify builds leave canonical curriculum unchanged
+        run: |
+          git diff --exit-code -- content
+          test -z "$(git ls-files --others --exclude-standard -- content)"
