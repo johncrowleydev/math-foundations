@@ -396,6 +396,9 @@ func (g *Grading) recheck(id, requestID, reason string) error {
 		return errors.New("Request ID reused")
 	}
 	a, e := loadAttempt(tx, id)
+	if errors.Is(e, sql.ErrNoRows) {
+		return errors.New("This attempt has not reached the server. Retry submitting the saved answer.")
+	}
 	if e != nil {
 		return e
 	}

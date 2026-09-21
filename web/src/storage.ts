@@ -120,13 +120,15 @@ export async function recoverEffortRejections() {
   const tx = (await db).transaction(['attempts', 'outbox', 'records', 'settings'], 'readwrite');
   let recovered = 0;
   for (const a of (await tx.objectStore('attempts').getAll()) as Attempt[]) {
-    if (a.status !== 'error' || a.error?.trim() !== 'Invalid effort metadata') continue;
+    // An older client's failed recheck may have replaced the original error.
+    if (!['error', 'rechecking'].includes(a.status)) continue;
     const rejected = await tx.objectStore('settings').get('rejected:' + a.id);
     if (
       rejected?.kind !== 'attempt' ||
       rejected.id !== a.id ||
       rejected.data?.id !== a.id ||
       rejected.error?.trim() !== 'Invalid effort metadata' ||
+      !preservesAttempt(a, rejected.data) ||
       (await tx.objectStore('records').get('attempt/' + a.id)) ||
       (await tx.objectStore('outbox').get(a.id))
     )
@@ -144,6 +146,9 @@ export async function recoverEffortRejections() {
       repaired.activeDurationMs = repaired.submitted - repaired.startedAt!;
     else continue;
     if (!validAttemptEffort(repaired)) continue;
+    for (const op of await tx.objectStore('outbox').getAll())
+      if (op.kind === 'recheck' && op.attempt === a.id)
+        await tx.objectStore('outbox').delete(op.id);
     await tx.objectStore('attempts').put(repaired, a.id);
     await tx.objectStore('outbox').put({ id: a.id, kind: 'attempt', data: repaired }, a.id);
     recovered++;
@@ -151,6 +156,38 @@ export async function recoverEffortRejections() {
   await tx.done;
   if (recovered) changed();
   return recovered;
+}
+// A rejected upload has no server attempt to recheck. Retry its saved submission
+// with the same identity and context, retaining the rejection for recovery.
+export async function retryUnsubmittedAttempt(id: string) {
+  const tx = (await db).transaction(['attempts', 'outbox', 'records', 'settings'], 'readwrite');
+  const a = (await tx.objectStore('attempts').get(id)) as Attempt | undefined;
+  if (
+    !a ||
+    a.verdict ||
+    a.grades.length ||
+    a.transcription ||
+    (await tx.objectStore('records').get('attempt/' + id))
+  )
+    return false;
+  const queued = await tx.objectStore('outbox').get(id);
+  if (queued?.kind === 'attempt' && queued.data?.id === id) return true;
+  const rejected = await tx.objectStore('settings').get('rejected:' + id);
+  if (
+    rejected?.kind !== 'attempt' ||
+    rejected.id !== id ||
+    rejected.data?.id !== id ||
+    !preservesAttempt(a, rejected.data)
+  )
+    return false;
+  const retry: Attempt = { ...rejected.data, status: 'queued', error: '' };
+  for (const op of await tx.objectStore('outbox').getAll())
+    if (op.kind === 'recheck' && op.attempt === id) await tx.objectStore('outbox').delete(op.id);
+  await tx.objectStore('attempts').put(retry, id);
+  await tx.objectStore('outbox').put({ id, kind: 'attempt', data: retry }, id);
+  await tx.done;
+  changed();
+  return true;
 }
 export async function integrate(records: RecordData[], cursor: number) {
   // Validate the whole incoming attempt batch before opening a write transaction:
