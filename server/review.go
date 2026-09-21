@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"sort"
 	"strings"
@@ -39,8 +38,23 @@ type ReviewContext struct {
 	Seed             string         `json:"seed,omitempty"`
 	Parameters       map[string]int `json:"parameters,omitempty"`
 }
+type ReviewVariantSelection struct {
+	HashBytes          []int `json:"hashBytes"`
+	Moduli             []int `json:"moduli"`
+	ChoiceRotationByte *int  `json:"choiceRotationByte,omitempty"`
+}
+type ReviewVariant struct {
+	ID         string         `json:"id"`
+	Parameters map[string]int `json:"parameters"`
+	Question   map[string]any `json:"question"`
+}
+type ReviewVariantBank struct {
+	Selection ReviewVariantSelection `json:"selection"`
+	Variants  []ReviewVariant        `json:"variants"`
+}
 type ReviewTemplate struct {
-	SourceTarget string `json:"sourceTarget,omitempty"`
+	ParameterVariants *ReviewVariantBank `json:"-"`
+	SourceTarget      string             `json:"sourceTarget,omitempty"`
 	ReviewTarget
 	ID                 string           `json:"id"`
 	Family             string           `json:"family"`
@@ -178,6 +192,9 @@ func (t ReviewTemplate) sourceTarget() string {
 func (g *Grading) reviewTemplates() []ReviewTemplate {
 	result := append([]ReviewTemplate{}, g.catalog.ReviewTemplates...)
 	for i, t := range result {
+		if bank, ok := g.catalog.ReviewVariants[t.ID]; ok {
+			result[i].ParameterVariants = &bank
+		}
 		questions := t.Variants
 		if len(questions) == 0 {
 			questions = []map[string]any{t.Question}
@@ -626,7 +643,7 @@ func contains(values []string, v string) bool {
 }
 
 // instantiateReviewQuestion is shared by issued learner instances and read-only
-// authoring previews. Neither selection nor generation needs learner state.
+// catalog previews. Selection of complete authored variants needs no learner state.
 func instantiateReviewQuestion(t ReviewTemplate, seed string) (map[string]any, map[string]int) {
 	hash := sha256.Sum256([]byte(seed))
 	q := t.Question
@@ -634,52 +651,28 @@ func instantiateReviewQuestion(t ReviewTemplate, seed string) (map[string]any, m
 	if len(t.Variants) > 0 {
 		q = t.Variants[int(hash[0])%len(t.Variants)]
 	}
+	if t.ParameterVariants != nil {
+		bank := t.ParameterVariants
+		index := 0
+		for i, modulus := range bank.Selection.Moduli {
+			index = index*modulus + int(hash[bank.Selection.HashBytes[i]])%modulus
+		}
+		variant := bank.Variants[index]
+		q = variant.Question
+		params = make(map[string]int, len(variant.Parameters))
+		for key, value := range variant.Parameters {
+			params[key] = value
+		}
+	}
+	// Clone the complete authored question before rotating display positions;
+	// frozen instances never share mutable maps with the canonical catalog.
 	raw, _ := json.Marshal(q)
-	replacements := map[string]string{}
-	switch t.Generator {
-	case "integer-witness-sum":
-		a, total := int(hash[0])%20+1, int(hash[1])%20+1
-		w := total - a
-		params = map[string]int{"a": a, "sum": total, "witness": w, "witnessPlusOne": w + 1, "witnessMinusOne": w - 1}
-	case "propositional-truth-values":
-		p, q, operation := int(hash[0])%2, int(hash[1])%2, int(hash[2])%4
-		formulas := []string{`p\land q`, `p\lor q`, `p\to q`, `p\leftrightarrow q`}
-		explanations := []string{
-			"Conjunction requires both components to be true.",
-			"Inclusive disjunction is true when at least one component is true.",
-			"An implication is false exactly when its antecedent is true and its consequent is false.",
-			"A biconditional is true exactly when its two sides have the same truth value.",
-		}
-		values := []bool{p == 1 && q == 1, p == 1 || q == 1, p == 0 || q == 1, p == q}
-		result := 0
-		if values[operation] {
-			result = 1
-		}
-		params = map[string]int{"p": p, "q": q, "operation": operation, "result": result}
-		truth, words := []string{"F", "T"}, []string{"False", "True"}
-		replacements = map[string]string{"pTruth": truth[p], "qTruth": truth[q], "formula": formulas[operation], "resultText": words[result], "oppositeText": words[1-result], "explanation": explanations[operation]}
-	case "integer-conditional-counterexample":
-		b, gap := int(hash[0])%21-10, int(hash[1])%5+1
-		a := b + gap
-		params = map[string]int{"a": a, "b": b, "gap": gap, "below": b - 1, "above": a + 1}
-	}
-	for k, v := range params {
-		replacements[k] = fmt.Sprint(v)
-	}
-	for k, v := range replacements {
-		// Replacements are JSON string contents: formula backslashes must survive
-		// decoding, and quotes or newlines must not corrupt the question object.
-		escaped, _ := json.Marshal(v)
-		raw = []byte(strings.ReplaceAll(string(raw), "{{"+k+"}}", string(escaped[1:len(escaped)-1])))
-	}
 	var question map[string]any
 	json.Unmarshal(raw, &question)
-	if enum(t.Generator, "propositional-truth-values", "integer-conditional-counterexample") {
+	if t.ParameterVariants != nil && t.ParameterVariants.Selection.ChoiceRotationByte != nil {
 		if choice, ok := question["choice"].(map[string]any); ok {
 			if options, ok := choice["options"].([]any); ok && len(options) > 1 {
-				// Keep IDs stable for grading while varying the correct answer's
-				// position. Existing generators retain their historical ordering.
-				offset := int(hash[3]) % len(options)
+				offset := int(hash[*t.ParameterVariants.Selection.ChoiceRotationByte]) % len(options)
 				choice["options"] = append(append([]any{}, options[offset:]...), options[:offset]...)
 			}
 		}

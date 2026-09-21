@@ -74,9 +74,10 @@ type Attempt struct {
 	Grades        []Grade `json:"grades"`
 }
 type Catalog struct {
-	ReviewTemplates []ReviewTemplate           `json:"reviewTemplates,omitempty"`
-	Version         string                     `json:"version"`
-	Exercises       map[string]json.RawMessage `json:"exercises"`
+	ReviewVariants  map[string]ReviewVariantBank `json:"reviewVariants,omitempty"`
+	ReviewTemplates []ReviewTemplate             `json:"reviewTemplates,omitempty"`
+	Version         string                       `json:"version"`
+	Exercises       map[string]json.RawMessage   `json:"exercises"`
 }
 type ChoiceOption struct {
 	ID       string `json:"id"`
@@ -735,6 +736,9 @@ func configureGrading(s *Server) (*Grading, error) {
 	}
 	if len(c.Exercises) == 0 || c.Version == "" {
 		return nil, errors.New("Empty grading catalog")
+	}
+	if err := validateReviewVariantBanks(c); err != nil {
+		return nil, err
 	}
 	if err := validateCatalogAssessments(c); err != nil {
 		return nil, err

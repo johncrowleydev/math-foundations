@@ -19,7 +19,7 @@ const generatorSlots = {
   'integer-conditional-counterexample': ['a', 'b', 'below', 'above'],
 } as const;
 const text = z.string().trim().min(1);
-const question = z
+export const reviewQuestion = z
   .object({
     id: z.number().int().positive(),
     section: text,
@@ -63,8 +63,8 @@ const schema = z.array(
       cognitiveLevel: text,
       activationConcepts: z.array(text).min(1),
       sourceIds: z.array(text).min(1),
-      question,
-      variants: z.array(question).min(2).optional(),
+      question: reviewQuestion,
+      variants: z.array(reviewQuestion).min(2).optional(),
       generator: z
         .enum(
           Object.keys(generatorSlots) as [

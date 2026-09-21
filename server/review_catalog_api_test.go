@@ -48,6 +48,7 @@ func catalogAPIFixture(t *testing.T) *Grading {
 			}},
 		},
 	}
+	generated.ParameterVariants = canonicalReviewTemplate(t, "integer-witness-selection").ParameterVariants
 	shallow := definition
 	shallow.ID, shallow.EvidenceLevel = "shallow-definition", "recognition"
 	g.catalog.ReviewTemplates = []ReviewTemplate{definition, variants, generated, shallow}

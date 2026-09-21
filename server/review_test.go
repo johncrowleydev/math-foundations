@@ -234,7 +234,7 @@ func TestReviewInterleavingAndFilters(t *testing.T) {
 	}
 }
 func TestReviewGenerationReproducibilityAndAnswers(t *testing.T) {
-	template := ReviewTemplate{ID: "witness", Generator: "integer-witness-sum", Question: map[string]any{"prompt": "x + {{a}} = {{sum}}", "answer": "{{witness}}", "wrong": "{{witnessPlusOne}} or {{witnessMinusOne}}"}}
+	template := canonicalReviewTemplate(t, "integer-witness-selection")
 	for n := 0; n < 100; n++ {
 		seed := fmt.Sprint(n)
 		a := instantiateReview(template, ReviewState{}, "scheduled-review", "id", seed, "v", 1)

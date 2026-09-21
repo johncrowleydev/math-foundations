@@ -36,6 +36,9 @@ const schema = z
     reviewTemplates: z
       .record(text, z.object({ reviewedContentHash: text, sources: ids }).strict())
       .default({}),
+    reviewVariants: z
+      .record(text, z.object({ reviewedContentHash: text, sources: ids }).strict())
+      .default({}),
     syntax: z.object({ reviewedContentHash: text, entries: z.record(text, ids) }).strict(),
   })
   .strict();
@@ -155,15 +158,39 @@ export function validateSources(
     targets,
   };
 }
+export function validateReviewVariantSources(
+  raw: unknown,
+  reviewVariants: Record<string, unknown>,
+  reviewTemplates: { id: string; sourceIds: string[] }[],
+) {
+  const catalog = schema.parse(raw);
+  const ids = Object.keys(reviewVariants);
+  if (Object.keys(catalog.reviewVariants).length !== ids.length)
+    throw Error('Source coverage mismatch: review variants');
+  for (const id of ids) {
+    const authored = catalog.reviewVariants[id];
+    const template = reviewTemplates.find((t) => t.id === id);
+    if (!authored || !template) throw Error('Missing review variant sources: ' + id);
+    if (authored.reviewedContentHash !== sourceHash(reviewVariants[id]))
+      throw Error('Review variant sources need reinspection: ' + id);
+    if (JSON.stringify(authored.sources) !== JSON.stringify(template.sourceIds))
+      throw Error('Review variant source assignment mismatch: ' + id);
+    if (authored.sources.some((source) => !catalog.citations[source]))
+      throw Error('Unknown review variant citation: ' + id);
+  }
+}
+
 export async function loadSources(
   lessons: Lesson[],
   teaching: Teaching,
   reviewTemplates: { id: string; sourceIds: string[] }[] = [],
+  reviewVariants: Record<string, unknown> = {},
 ) {
   const [raw, syntax, typing] = await Promise.all(
     ['content/sources.json', 'content/tex-syntax.json', 'content/tex-teaching.json'].map(
       async (file) => JSON.parse(await readFile(file, 'utf8')),
     ),
   );
+  validateReviewVariantSources(raw, reviewVariants, reviewTemplates);
   return validateSources(raw, lessons, teaching, syntax, typing, reviewTemplates);
 }

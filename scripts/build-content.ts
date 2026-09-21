@@ -8,6 +8,7 @@ import { loadEvidence } from './evidence.js';
 import { snapshot } from '../web/src/evidenceTypes.js';
 import { loadSources } from './sources.js';
 import { loadReviewTemplates } from './review-templates.js';
+import { loadReviewVariants } from './review-variants.js';
 
 import { prepareNotebook } from './notebook.js';
 const { content, teaching, lessons, formulaSources } = await prepareNotebook();
@@ -46,7 +47,8 @@ const reviewTemplates = await loadReviewTemplates(
   evidence,
   publishedLessons.map((l) => l.slug),
 );
-const sources = await loadSources(publishedLessons, teaching, reviewTemplates);
+const reviewVariants = await loadReviewVariants(reviewTemplates);
+const sources = await loadSources(publishedLessons, teaching, reviewTemplates, reviewVariants);
 await mkdir(dir, { recursive: true });
 await writeFile(`${dir}/sources.json`, JSON.stringify(sources));
 await writeFile(`${dir}/review-templates.json`, JSON.stringify(reviewTemplates));
@@ -108,6 +110,11 @@ const gradingExercises = Object.fromEntries(
 );
 await writeFile(
   'output/grading-catalog.json',
-  JSON.stringify({ version: gradingVersion, exercises: gradingExercises, reviewTemplates }),
+  JSON.stringify({
+    version: gradingVersion,
+    exercises: gradingExercises,
+    reviewTemplates,
+    reviewVariants,
+  }),
 );
 await writeFile(`${dir}/grading-version.json`, JSON.stringify({ version: gradingVersion }));

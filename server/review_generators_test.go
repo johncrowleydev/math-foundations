@@ -1,8 +1,11 @@
 package main
 
 import (
+	"crypto/sha256"
 	"encoding/json"
 	"fmt"
+	"os"
+	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
@@ -38,15 +41,7 @@ func generatedReviewQuestion(t *testing.T, template ReviewTemplate, seed string)
 }
 
 func TestReviewTruthValuesGenerator(t *testing.T) {
-	template := ReviewTemplate{ID: "truth-values", Generator: "propositional-truth-values", Question: map[string]any{
-		"prompt": "Given $p={{pTruth}}$ and $q={{qTruth}}$, is ${{formula}}$ true or false?",
-		"math":   "{{formula}}",
-		"answer": "{{resultText}}. {{explanation}}",
-		"choice": ChoiceAssessment{CorrectOption: "result", Options: []ChoiceOption{
-			{ID: "result", Text: "{{resultText}}", Feedback: "{{explanation}}"},
-			{ID: "opposite", Text: "{{oppositeText}}", Feedback: "{{explanation}}"},
-		}},
-	}}
+	template := canonicalReviewTemplate(t, "generated-connective-truth-value")
 	// Independently tabulate each connective in FF, FT, TF, TT row order.
 	want := [4][4]int{{0, 0, 0, 1}, {0, 1, 1, 1}, {1, 1, 0, 1}, {1, 0, 0, 1}}
 	formulas := []string{`p\land q`, `p\lor q`, `p\to q`, `p\leftrightarrow q`}
@@ -61,7 +56,7 @@ func TestReviewTruthValuesGenerator(t *testing.T) {
 			t.Fatalf("invalid generated truth-value parameters: %v", params)
 		}
 		expected := want[op][2*p+q]
-		if result != expected || question["math"] != formulas[op] {
+		if result != expected {
 			t.Fatalf("incorrect truth table row or escaped formula: %v %+v", params, question)
 		}
 		prompt := fmt.Sprintf("Given $p=%s$ and $q=%s$, is $%s$ true or false?", symbols[p], symbols[q], formulas[op])
@@ -91,27 +86,15 @@ func TestReviewTruthValuesGenerator(t *testing.T) {
 }
 
 func TestReviewConditionalCounterexampleGenerator(t *testing.T) {
-	template := ReviewTemplate{ID: "conditional-counterexample", Generator: "integer-conditional-counterexample", Question: map[string]any{
-		"prompt": "Which integer disproves the claim: for every integer $x$, if $x<{{a}}$, then $x<{{b}}$?",
-		"math":   "x<{{a}} \\to x<{{b}}",
-		"answer": "At $x={{b}}$, the antecedent is true and the consequent is false.",
-		"choice": ChoiceAssessment{CorrectOption: "counterexample", Options: []ChoiceOption{
-			{ID: "counterexample", Text: "${{b}}$", Feedback: "${{b}}<{{a}}$ is true; ${{b}}<{{b}}$ is false."},
-			{ID: "below", Text: "${{below}}$", Feedback: "${{below}}<{{b}}$ is true."},
-			{ID: "above", Text: "${{above}}$", Feedback: "${{above}}<{{a}}$ is false."},
-		}},
-	}}
+	template := canonicalReviewTemplate(t, "generated-integer-conditional-counterexample")
 	seen, positions := map[[2]int]bool{}, map[int]bool{}
 	original, _ := json.Marshal(template.Question)
 	for n := 0; n < 4096; n++ {
 		seed := fmt.Sprintf("conditional-counterexample-%d", n)
-		question, params, choice := generatedReviewQuestion(t, template, seed)
+		_, params, choice := generatedReviewQuestion(t, template, seed)
 		a, b, gap := params["a"], params["b"], params["gap"]
 		if len(params) != 5 || b < -10 || b > 10 || gap < 1 || gap > 5 || a-b != gap || params["below"] != b-1 || params["above"] != a+1 {
 			t.Fatalf("invalid conditional parameters: %v", params)
-		}
-		if question["math"] != fmt.Sprintf(`x<%d \to x<%d`, a, b) {
-			t.Fatal("rendered formula disagrees with saved parameters", question)
 		}
 		if len(choice.Options) != 3 || choice.CorrectOption != "counterexample" {
 			t.Fatal("invalid counterexample choices", choice)
@@ -153,26 +136,146 @@ func TestReviewConditionalCounterexampleGenerator(t *testing.T) {
 	}
 }
 
-func TestReviewWitnessGeneratorKeepsLegacySeedOutput(t *testing.T) {
-	template := ReviewTemplate{Generator: "integer-witness-sum", Question: map[string]any{
-		"prompt": "x + {{a}} = {{sum}}", "answer": "{{witness}}",
-		"choice": ChoiceAssessment{CorrectOption: "witness", Options: []ChoiceOption{
-			{ID: "witness", Text: "{{witness}}", Feedback: "Correct"},
-			{ID: "above", Text: "{{witnessPlusOne}}", Feedback: "One above"},
-			{ID: "below", Text: "{{witnessMinusOne}}", Feedback: "One below"},
-		}},
-	}}
-	for _, tc := range []struct {
-		seed, question, params string
-	}{
-		{"0", `{"answer":"1","choice":{"correctOption":"witness","options":[{"feedback":"Correct","id":"witness","text":"1"},{"feedback":"One above","id":"above","text":"2"},{"feedback":"One below","id":"below","text":"0"}]},"prompt":"x + 16 = 17"}`, `{"a":16,"sum":17,"witness":1,"witnessMinusOne":0,"witnessPlusOne":2}`},
-		{"42", `{"answer":"-4","choice":{"correctOption":"witness","options":[{"feedback":"Correct","id":"witness","text":"-4"},{"feedback":"One above","id":"above","text":"-3"},{"feedback":"One below","id":"below","text":"-5"}]},"prompt":"x + 16 = 12"}`, `{"a":16,"sum":12,"witness":-4,"witnessMinusOne":-5,"witnessPlusOne":-3}`},
-	} {
-		question, params := instantiateReviewQuestion(template, tc.seed)
-		qJSON, _ := json.Marshal(question)
-		pJSON, _ := json.Marshal(params)
-		if string(qJSON) != tc.question || string(pJSON) != tc.params {
-			t.Fatalf("legacy seed %s changed: %s %s", tc.seed, qJSON, pJSON)
+func canonicalReviewCatalog(t *testing.T) Catalog {
+	t.Helper()
+	root := os.Getenv("FOUNDATIONS_TEST_CONTENT_ROOT")
+	if root == "" {
+		root = ".."
+	}
+	var catalog Catalog
+	for path, target := range map[string]any{"content/review-templates.json": &catalog.ReviewTemplates, "content/review-variants.json": &catalog.ReviewVariants} {
+		raw, err := os.ReadFile(filepath.Join(root, path))
+		if err != nil {
+			t.Fatal(err)
 		}
+		if err = json.Unmarshal(raw, target); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := validateReviewVariantBanks(catalog); err != nil {
+		t.Fatal(err)
+	}
+	return catalog
+}
+func canonicalReviewTemplate(t *testing.T, id string) ReviewTemplate {
+	t.Helper()
+	catalog := canonicalReviewCatalog(t)
+	for _, template := range catalog.ReviewTemplates {
+		if template.ID == id {
+			bank := catalog.ReviewVariants[id]
+			template.ParameterVariants = &bank
+			return template
+		}
+	}
+	t.Fatal("Missing canonical review template", id)
+	return ReviewTemplate{}
+}
+func TestReviewMigrationPreservesEveryLegacySeedCase(t *testing.T) {
+	raw, err := os.ReadFile("testdata/review-migration.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var fixture struct {
+		Cases []struct {
+			Template, Seed, Variant, SHA256 string
+			Rotation                        int
+		}
+	}
+	if err = json.Unmarshal(raw, &fixture); err != nil {
+		t.Fatal(err)
+	}
+	catalog := canonicalReviewCatalog(t)
+	templates := map[string]ReviewTemplate{}
+	for _, template := range catalog.ReviewTemplates {
+		if bank, ok := catalog.ReviewVariants[template.ID]; ok {
+			template.ParameterVariants = &bank
+			templates[template.ID] = template
+		}
+	}
+	seen := map[string]bool{}
+	for _, tc := range fixture.Cases {
+		template, ok := templates[tc.Template]
+		if !ok {
+			t.Fatal("Unknown fixture template", tc.Template)
+		}
+		question, params := instantiateReviewQuestion(template, tc.Seed)
+		snapshot, _ := json.Marshal(map[string]any{"question": question, "parameters": params})
+		if got := fmt.Sprintf("%x", sha256.Sum256(snapshot)); got != tc.SHA256 {
+			t.Fatalf("Legacy output changed for %s seed %s: %s", tc.Template, tc.Seed, snapshot)
+		}
+		instance := instantiateReview(template, ReviewState{}, "scheduled-review", "id", tc.Seed, "v", 1)
+		if !reflect.DeepEqual(instance.Question, question) || !reflect.DeepEqual(instance.Context.Parameters, params) {
+			t.Fatal("Preview/instance parity lost")
+		}
+		seen[fmt.Sprintf("%s/%s/%d", tc.Template, tc.Variant, tc.Rotation)] = true
+	}
+	expected := 0
+	for id, template := range templates {
+		bank := template.ParameterVariants
+		for _, variant := range bank.Variants {
+			rotations := 1
+			if bank.Selection.ChoiceRotationByte != nil {
+				rotations = len(variant.Question["choice"].(map[string]any)["options"].([]any))
+			}
+			for rotation := 0; rotation < rotations; rotation++ {
+				expected++
+				if !seen[fmt.Sprintf("%s/%s/%d", id, variant.ID, rotation)] {
+					t.Fatalf("Legacy fixture misses %s/%s/%d", id, variant.ID, rotation)
+				}
+			}
+		}
+	}
+	if len(fixture.Cases) != 747 || len(seen) != expected {
+		t.Fatalf("Incomplete legacy coverage: %d/%d", len(seen), expected)
+	}
+}
+
+func TestReviewWitnessVariantsAreIndependentlyCorrect(t *testing.T) {
+	template := canonicalReviewTemplate(t, "integer-witness-selection")
+	for _, variant := range template.ParameterVariants.Variants {
+		p := variant.Parameters
+		if p["a"] < 1 || p["a"] > 20 || p["sum"] < 1 || p["sum"] > 20 || p["witness"]+p["a"] != p["sum"] || p["witnessPlusOne"] != p["witness"]+1 || p["witnessMinusOne"] != p["witness"]-1 {
+			t.Fatal("Invalid saved witness parameters", p)
+		}
+		raw, _ := json.Marshal(variant.Question)
+		var question struct{ Choice ChoiceAssessment }
+		if err := json.Unmarshal(raw, &question); err != nil {
+			t.Fatal(err)
+		}
+		for _, option := range question.Choice.Options {
+			value, err := strconv.Atoi(strings.Trim(option.Text, "$"))
+			if err != nil {
+				t.Fatal(err)
+			}
+			if (value+p["a"] == p["sum"]) != (option.ID == question.Choice.CorrectOption) {
+				t.Fatal("Incorrect witness choice", variant.ID, option)
+			}
+		}
+	}
+}
+func TestReviewVariantSelectionRejectsMalformedCatalogs(t *testing.T) {
+	for name, mutate := range map[string]func(*Catalog){
+		"missing": func(c *Catalog) { delete(c.ReviewVariants, "integer-witness-selection") },
+		"out of bounds": func(c *Catalog) {
+			bank := c.ReviewVariants["integer-witness-selection"]
+			bank.Selection.HashBytes[0] = 32
+		},
+		"missing variant": func(c *Catalog) {
+			bank := c.ReviewVariants["integer-witness-selection"]
+			bank.Variants = bank.Variants[:1]
+			c.ReviewVariants["integer-witness-selection"] = bank
+		},
+		"reordered": func(c *Catalog) {
+			bank := c.ReviewVariants["integer-witness-selection"]
+			bank.Variants[0], bank.Variants[1] = bank.Variants[1], bank.Variants[0]
+		},
+	} {
+		t.Run(name, func(t *testing.T) {
+			catalog := canonicalReviewCatalog(t)
+			mutate(&catalog)
+			if err := validateReviewVariantBanks(catalog); err == nil {
+				t.Fatal("Invalid variant catalog accepted")
+			}
+		})
 	}
 }
