@@ -1,3 +1,5 @@
+import { parseLessonMdx } from './lesson-metadata.js';
+import { literalProps } from './lesson-mdx-policy.js';
 import { readdir, readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import { validateMath } from './content.js';
@@ -473,27 +475,28 @@ export async function loadTeaching() {
   return { references, figures, formulas };
 }
 export type TeachingData = Awaited<ReturnType<typeof loadTeaching>>;
-export function teachingBlocks(markdown: string, teaching: TeachingData) {
-  const pattern = /^!\[([^\]]*)\]\(figure:([a-z0-9-]+)\)\s*$/gm;
+/** Static grading/formula metadata. Client lesson rendering does not consume these blocks. */
+export function teachingBlocks(mdx: string, teaching: TeachingData) {
+  const tree = parseLessonMdx(mdx);
   const blocks: { id: string; kind: string; markdown?: string; figureId?: string }[] = [];
   let start = 0;
-  for (const match of markdown.matchAll(pattern)) {
-    const before = markdown.slice(start, match.index).trim();
-    if (before) blocks.push({ id: 'text-before-' + match[2], kind: 'markdown', markdown: before });
-    if (!teaching.figures.some((f) => f.id === match[2]))
-      throw Error('Unknown figure placement: ' + match[2]);
-    blocks.push({ id: match[2], kind: 'figure', figureId: match[2] });
-    start = match.index! + match[0].length;
+  for (const node of tree.children) {
+    if (node.type !== 'mdxJsxFlowElement' || node.name !== 'Figure') continue;
+    const props = literalProps(node);
+    if (typeof props.id !== 'string' || !teaching.figures.some((f) => f.id === props.id))
+      throw Error('Unknown figure placement: ' + props.id);
+    const before = mdx.slice(start, node.position!.start.offset!).trim();
+    if (before) blocks.push({ id: 'text-before-' + props.id, kind: 'markdown', markdown: before });
+    blocks.push({ id: props.id, kind: 'figure', figureId: props.id });
+    start = node.position!.end.offset!;
   }
-  const after = markdown.slice(start).trim();
+  const after = mdx.slice(start).trim();
   if (after) blocks.push({ id: 'text-end', kind: 'markdown', markdown: after });
-  if (blocks.some((b) => b.markdown && /!\[[^\]]*\]\(figure:/.test(b.markdown)))
-    throw Error('A figure declaration must occupy its own line');
   return blocks;
 }
 
 // Match only aliases authored for this lesson. Cross-lesson links are explicit in the source.
-// Do not touch TeX, code, existing links, or figure declarations.
+// Do not touch TeX, code, existing links, or MDX component declarations.
 export function linkTeachingTerms(markdown: string, lesson: string, teaching: TeachingData) {
   if (/ref:[^)]*\[/.test(markdown)) throw Error('Malformed nested reference target');
   const seen = new Set<string>();
@@ -509,7 +512,7 @@ export function linkTeachingTerms(markdown: string, lesson: string, teaching: Te
       )
     : null;
   const protectedParts =
-    /(^#{1,6} .*$|\$\$[\s\S]*?\$\$|\$[^$\n]+\$|```[\s\S]*?```|`[^`]*`|!?\[[^\]]*\]\([^)]*\))/gm;
+    /(<[A-Z][A-Za-z0-9]*\b[^>]*>|^#{1,6} .*$|\$\$[\s\S]*?\$\$|\$[^$\n]+\$|```[\s\S]*?```|`[^`]*`|!?\[[^\]]*\]\([^)]*\))/gm;
   return markdown
     .split(protectedParts)
     .map((part, index) =>

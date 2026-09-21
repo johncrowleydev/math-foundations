@@ -68,9 +68,20 @@ await writeFile(`${dir}/tex-syntax.json`, await readFile('content/tex-syntax.jso
 await writeFile(`${dir}/tex-teaching.json`, await readFile('content/tex-teaching.json'));
 
 // The grader sees precisely the adapted questions shipped in the app, not worksheet originals.
-const gradingVersion = createHash('sha256')
+const representationHash = createHash('sha256')
   .update(JSON.stringify({ publishedLessons, evidence, reviewTemplates }))
   .digest('hex');
+// Native MDX figure references change serialization but not any grading contract.
+// Preserve this one proven catalog version so saved offline submissions remain valid.
+// Any subsequent content change produces its own ordinary hash. This fixture holds
+// only hashes; it is not a curriculum source or a general version alias mechanism.
+const mdxMigration = JSON.parse(
+  await readFile('scripts/fixtures/mdx-migration-version.json', 'utf8'),
+);
+const gradingVersion =
+  representationHash === mdxMigration.representationHash
+    ? mdxMigration.gradingVersion
+    : representationHash;
 const gradingExercises = Object.fromEntries(
   publishedLessons.flatMap((lesson) =>
     lesson.questions.map((q) => {

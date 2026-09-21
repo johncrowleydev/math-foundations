@@ -21,11 +21,13 @@ test('explicit references still receive first-occurrence styling without automat
 test('a figure declaration cannot silently become a broken ordinary image', () => {
   assert.throws(
     () => teachingBlocks('![ellipse](figure:la-svd-ellipse) Text on the same line.', teaching),
-    /own line/,
+    /explicit <Figure/,
   );
   assert.equal(
-    teachingBlocks('![ellipse](figure:la-svd-ellipse)\n\nFollowing explanation.', teaching)[0]
-      .figureId,
+    teachingBlocks(
+      '<Figure id="la-svd-ellipse" alt="ellipse" />\n\nFollowing explanation.',
+      teaching,
+    )[0].figureId,
     'la-svd-ellipse',
   );
 });
@@ -94,14 +96,20 @@ test('Hamiltonian example does not meet Euler parity criterion', () => {
   assert.equal(g.edges.length, 6);
 });
 test('figures remain at their exact authored location', () => {
-  const blocks = teachingBlocks('Before.\n\n![Graph](figure:graph-first)\n\nAfter.', teaching);
+  const blocks = teachingBlocks(
+    'Before.\n\n<Figure id="graph-first" alt="Graph" />\n\nAfter.',
+    teaching,
+  );
   assert.deepEqual(
     blocks.map((b) => b.kind),
     ['markdown', 'figure', 'markdown'],
   );
   assert.equal(blocks[0].markdown, 'Before.');
   assert.equal(blocks[2].markdown, 'After.');
-  assert.throws(() => teachingBlocks('![Missing](figure:unknown)', teaching), /Unknown figure/);
+  assert.throws(
+    () => teachingBlocks('<Figure id="unknown" alt="Missing" />', teaching),
+    /Unknown figure/,
+  );
 });
 test('term linking preserves TeX and external links and only marks first use', () => {
   const text = linkTeachingTerms(

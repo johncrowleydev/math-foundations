@@ -27,7 +27,8 @@ function literalValue(attribute: MdxJsxAttribute): LiteralProp {
     const expression = statement.expression;
     if (
       expression.type === 'Literal' &&
-      (expression.value === null || ['string', 'boolean', 'number'].includes(typeof expression.value))
+      (expression.value === null ||
+        ['string', 'boolean', 'number'].includes(typeof expression.value))
     ) {
       if (typeof expression.value !== 'number' || Number.isFinite(expression.value))
         return expression.value as LiteralProp;

@@ -1,7 +1,7 @@
 // Inline placement is authored explicitly in lesson MDX. No executable placement bank.
 import { readFileSync } from 'node:fs';
 import { parse } from 'yaml';
-import { compileLessonMdx } from './lesson-mdx.js';
+import { extractLessonMetadata } from './lesson-metadata.js';
 
 const manifest = parse(readFileSync('content/curriculum.yaml', 'utf8')) as {
   lessons: { slug: string; lesson: string; worksheet?: string }[];
@@ -11,8 +11,8 @@ export const inlinePlacements: Record<string, Record<string, number[]>> = Object
     .filter((lesson) => lesson.worksheet)
     .map((lesson) => [
       lesson.slug,
-      compileLessonMdx(readFileSync('content/' + lesson.lesson, 'utf8'), lesson.lesson).components
-        .exercises,
+      extractLessonMetadata(readFileSync('content/' + lesson.lesson, 'utf8'), lesson.lesson)
+        .components.exercises,
     ]),
 );
 

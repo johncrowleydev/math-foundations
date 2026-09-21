@@ -7,7 +7,7 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkMath from 'remark-math';
 import { visit } from 'unist-util-visit';
-import { compileLessonMdx } from './lesson-mdx.js';
+import { extractLessonMetadata } from './lesson-metadata.js';
 
 const text = z
   .string()
@@ -154,14 +154,14 @@ export async function loadContent() {
   const lessons = await Promise.all(
     curriculum.lessons.map(async (lesson) => {
       let markdown = await readFile(path.join(contentRoot, lesson.lesson), 'utf8');
-      const document = compileLessonMdx(markdown, lesson.lesson);
+      const document = extractLessonMetadata(markdown, lesson.lesson);
       if (
         !lesson.worksheet &&
         (Object.keys(document.components.exercises).length ||
           Object.keys(document.components.quickChecks).length)
       )
         throw new Error('Reading-only lessons cannot contain assessments: ' + lesson.slug);
-      markdown = document.markdown;
+      markdown = document.mdx;
       validateMath(markdown);
       // The manifest owns the page title. Markdown retains its H1 for repository readers.
       markdown = markdown.replace(/^# .+\r?\n/, '').trim();

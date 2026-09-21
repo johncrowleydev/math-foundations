@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { compileLessonMdx } from './lesson-mdx.js';
+import { extractLessonMetadata } from './lesson-metadata.js';
 
 test('document MDX preserves mathematics and explicit React component placements', () => {
-  const compiled = compileLessonMdx(`# Example
+  const compiled = extractLessonMetadata(`# Example
 
 Read $\\{x:x<2\\}$ first.
 
@@ -18,8 +18,8 @@ Use $x^2$.
 <QuickCheck id="quick-2" />
 `);
   assert.equal(
-    compiled.markdown,
-    '# Example\n\nRead $\\{x:x<2\\}$ first.\n\n## An example\n\nUse $x^2$.\n\n![A & B](figure:sample)\n\n',
+    compiled.mdx,
+    '# Example\n\nRead $\\{x:x<2\\}$ first.\n\n## An example\n\nUse $x^2$.\n\n<Figure id="sample" alt="A &amp; B" />\n\n',
   );
   assert.deepEqual(compiled.components, {
     exercises: { 'An example': [14] },
@@ -29,8 +29,8 @@ Use $x^2$.
 
 test('plain reading-only lessons need no components and retain Markdown source', () => {
   const source = '# Introduction\n\nRead a paragraph.\n\n## Study\n\nTake your time.\n';
-  assert.deepEqual(compileLessonMdx(source), {
-    markdown: source,
+  assert.deepEqual(extractLessonMetadata(source), {
+    mdx: source,
     components: { exercises: {}, quickChecks: {} },
   });
 });
@@ -40,10 +40,8 @@ for (const [name, source] of Object.entries({
   export: 'export const content = "text";\n',
   loop: '{Array.from({length: 2}, (_, i) => <Exercise id={i} />)}',
   expression: 'The result is {1 + 2}.',
-  expressionProperty: '<Exercise id={14} />',
   spread: '<Exercise {...props} />',
   eventHandler: '<Exercise id="14" onClick="run()" />',
-  unknownComponent: '<MakeLesson />',
   rawHtml: '<script>alert(1)</script>',
   nestedContent: '<Exercise id="14">Some text</Exercise>',
   inlineComponent: 'Read <Exercise id="14" /> now.',
@@ -59,22 +57,50 @@ for (const [name, source] of Object.entries({
   duplicateHeading: '## Example\n\nMore teaching.',
 })) {
   test('document MDX rejects ' + name, () => {
-    assert.throws(() => compileLessonMdx('## Example\n\n' + source, 'invalid.mdx'));
+    assert.throws(() => extractLessonMetadata('## Example\n\n' + source, 'invalid.mdx'));
   });
 }
 
 test('reading introductions and practice headings cannot hide inline assessments', () => {
   assert.throws(
-    () => compileLessonMdx('# Introduction\n\n<Exercise id="1" />'),
+    () => extractLessonMetadata('# Introduction\n\n<Exercise id="1" />'),
     /named teaching section/,
   );
   assert.throws(
-    () => compileLessonMdx('## Practice\n\n<Exercise id="1" />'),
+    () => extractLessonMetadata('## Practice\n\n<Exercise id="1" />'),
     /named teaching section/,
   );
 });
 
 test('component-looking examples inside code are inert documentation', () => {
   const source = '# Example\n\n```mdx\n<Exercise id={dynamic} />\n```\n';
-  assert.equal(compileLessonMdx(source).markdown, source);
+  assert.equal(extractLessonMetadata(source).mdx, source);
 });
+
+test('metadata accepts a new React component and literal props without parser registration', () => {
+  const source =
+    '# Example\n\n<TruthTableBuilder rows={4} from={-2} compact={false} label="Truth table" optional={null} />\n';
+  assert.equal(extractLessonMetadata(source).mdx, source);
+  assert.deepEqual(
+    extractLessonMetadata('## Example\n\n<Exercise id={14} />').components.exercises,
+    { Example: [14] },
+  );
+});
+
+test('generic React components may wrap readable document children or appear inline', () => {
+  const source =
+    '# Example\n\n<Callout>\n\nRead this **carefully**.\n\n</Callout>\n\nHere is an <InlineBadge label="example" />.\n';
+  assert.equal(extractLessonMetadata(source).mdx, source);
+});
+
+for (const expression of [
+  'makeLesson()',
+  'items.map(x => x)',
+  '[1, 2]',
+  '{content: "prose"}',
+  'Infinity',
+]) {
+  test('component props reject executable or constructed content: ' + expression, () => {
+    assert.throws(() => extractLessonMetadata('<TruthTableBuilder value={' + expression + '} />'));
+  });
+}
