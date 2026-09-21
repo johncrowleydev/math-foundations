@@ -118,3 +118,20 @@ never used as lessons or issued exercises. Neither tool authors curriculum, and
 neither is a required curriculum-generation step. Existing parser, validation,
 grading, rendering, catalog/index compilation, and synthetic-test code likewise
 remain executable.
+
+### Removal/tooling checks
+
+After removing the old authoring tree, `npm run content` passed, as did all 1,172
+linear-algebra pacing and adversarial conformance tests selected for this change.
+The relocated adversarial oracle builder reproduced its formatted corpus exactly:
+107 definitions and 1,166 cases covering 36 validators. Changed supported files
+passed Prettier, and `git diff --check` passed.
+
+The optional independent SymPy verifier exposed an existing stale comparison:
+`linear-algebra-vectors/23` has a published prompt different from its historical
+numerical fixture. The original `41f51ba` verifier fails at the same comparison
+against the unchanged baseline output; relocation did not introduce it. The
+script remains strict, and this migration does not rewrite content or fixtures to
+silence that failure. SymPy was installed only in an ignored local verification
+environment. This limitation is separate from the passing shared deterministic
+fixtures and runtime byte-parity checks.
