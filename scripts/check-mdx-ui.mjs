@@ -36,7 +36,7 @@ await page.route('**/notebook.json', async (route) => {
   }
   await route.fulfill({ response, json: stripped });
 });
-await page.route('**/api/**', async (route) => {
+const syntheticApi = async (route) => {
   const path = new URL(route.request().url()).pathname;
   const body = path.endsWith('/auth/session')
     ? { email: 'mdx-migration@example.test', expires: Date.now() + 86400000 }
@@ -50,7 +50,8 @@ await page.route('**/api/**', async (route) => {
         }
       : { records: [], cursor: 0, more: false, attempts: [] };
   await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(body) });
-});
+};
+await page.route('**/api/**', syntheticApi);
 await page.goto(baseURL + '/#/learn/calculus-definite-integrals');
 await page.locator('.lesson-intro h1').waitFor();
 assert.equal(
@@ -79,10 +80,11 @@ assert.deepEqual(
 );
 assert.ok((await page.locator('.reading-column:visible .katex').count()) > 0);
 await page.locator('.reading-column:visible .term').first().click();
+await page.getByRole('button', { name: 'Full explanation →', exact: true }).click();
 await page.getByRole('button', { name: 'Close reference', exact: true }).click();
 for (const section of ['from-samples-to-riemann-sums', 'the-integral-as-a-limit']) {
   await page
-    .locator('#section-' + section + ' .teaching .katex')
+    .locator('#section-' + section + ' .teaching .katex-html .mord.mathnormal:not(.mtight)')
     .first()
     .click();
   await page.getByRole('heading', { name: 'Reading this expression', exact: true }).waitFor();
@@ -127,6 +129,51 @@ const interactive = page
 await interactive.scrollIntoViewIfNeeded();
 await interactive.getByRole('button', { name: 'Next', exact: true }).click();
 await interactive.screenshot({ path: directory + '/graph-interaction-desktop.png' });
+const deepSection = 'signed-area-and-total-area';
+await page.goto(baseURL + '/#/learn/calculus-definite-integrals/' + deepSection);
+const sectionAtTop = (id) => {
+  const section = document.getElementById('section-' + id);
+  const reader = document.querySelector('.reader');
+  return (
+    section &&
+    reader &&
+    reader.scrollTop > 0 &&
+    Math.abs(section.getBoundingClientRect().top - reader.getBoundingClientRect().top - 12) < 4
+  );
+};
+await page.waitForFunction(sectionAtTop, deepSection);
+await page.reload();
+await page.waitForFunction(sectionAtTop, deepSection);
+// Resume a persisted bookmark from a fresh client, independently of the mutable
+// scroll positions produced by the exercise interaction checks above.
+const bookmarkContext = await browser.newContext({ serviceWorkers: 'block' });
+const bookmarkPage = await bookmarkContext.newPage();
+bookmarkPage.on('pageerror', (error) => errors.push(error.message));
+await bookmarkPage.route('**/api/**', syntheticApi);
+await bookmarkPage.goto(baseURL + '/#/learn/calculus-definite-integrals');
+await bookmarkPage.locator('.lesson-intro h1').waitFor();
+await bookmarkPage.evaluate(async (id) => {
+  const db = await new Promise((resolve, reject) => {
+    const open = indexedDB.open('foundations-web', 2);
+    open.onsuccess = () => resolve(open.result);
+    open.onerror = () => reject(open.error);
+  });
+  await new Promise((resolve, reject) => {
+    const transaction = db.transaction('settings', 'readwrite');
+    transaction
+      .objectStore('settings')
+      .put({ anchor: 'section-' + id }, 'bookmark:calculus-definite-integrals');
+    transaction.oncomplete = resolve;
+    transaction.onerror = () => reject(transaction.error);
+  });
+  db.close();
+  localStorage.setItem('lesson', 'calculus-definite-integrals');
+}, deepSection);
+await bookmarkPage.goto('about:blank');
+await bookmarkPage.goto(baseURL + '/');
+await bookmarkPage.waitForURL('**/#/learn/calculus-definite-integrals/' + deepSection);
+await bookmarkPage.waitForFunction(sectionAtTop, deepSection);
+await bookmarkContext.close();
 await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(baseURL + '/#/learn/calculus-definite-integrals');
 await figure.scrollIntoViewIfNeeded();
