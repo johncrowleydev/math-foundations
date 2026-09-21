@@ -33,6 +33,16 @@ information has a declarative destination.
 | `aggregate-writer.mjs`                                                                                                         | Order preservation and citation-date merge policy for repeated generation                                                                                          | No content to move: direct editing retains the existing array/object order and inspected facts; obsolete merge machinery and its two writer-only tests are removed |
 | `verify-linear-algebra.py`, `deterministic-adversarial.py`                                                                     | Independent arithmetic verification and grader test-oracle construction                                                                                            | Retained as test tools under `scripts/verification/`; neither owns published curriculum                                                                            |
 
+Additional executable ownership outside that directory was removed as well:
+
+- The discrete-mathematics section/ID map in `scripts/notebook-placements.ts`, and
+  the three subject placement JSON files, are replaced by explicit MDX tags.
+- The three review generators in `server/review.go` now use 521 complete questions
+  and saved parameter maps in `content/review-variants.json`. Declarative seed
+  lookup preserves all 747 parameter/answer-position cases captured from the old
+  implementation. See [the detailed review migration](review-declarative-migration.md).
+- The unused `scripts/formula-reading.ts` prose-generation helper is removed.
+
 ## Preservation boundaries
 
 All finite family parameters already appear in expanded prompts, deterministic
@@ -62,9 +72,9 @@ source for rebuilding lessons.
 
 ## Verification record
 
-The final implementation records old/new runtime comparison, architecture guards,
-content validation, root/web/type checks, production build, deterministic fixtures,
-and Go review/history tests here or in the PR validation record. Migration hashes
+Final validation on September 21, 2026 used the integrated MDX and review-bank
+pipeline. The results below include the existing deterministic fixtures and
+review/catalog/history compatibility suites. Migration hashes
 establish preservation; they do not establish mathematical correctness or replace
 source passage inspection. No source-inspection date or digest is refreshed just
 to pass validation.
@@ -101,8 +111,8 @@ second way to author curriculum.
 
 The migration first compiled a representative calculus lesson, then all 75 lesson
 documents. The baseline's 4,284 worksheet questions and 2,527 inline placements
-were preserved (promoted quick checks add published exercise entries). All ten
-compiled content assets and the entire grading catalog were byte-identical to the
+were preserved (promoted quick checks add published exercise entries). All nine
+compiled client content assets and the entire grading catalog were byte-identical to the
 `41f51ba` baseline after the MDX/placement migration. Explicit `Figure`, `Exercise`,
 and `QuickCheck` tags compile through the existing rendering contracts. Source
 inspection hashes, source dates, lesson slugs, question IDs, exercise namespaces,
@@ -135,3 +145,51 @@ script remains strict, and this migration does not rewrite content or fixtures t
 silence that failure. SymPy was installed only in an ignored local verification
 environment. This limitation is separate from the passing shared deterministic
 fixtures and runtime byte-parity checks.
+
+### Runtime artifacts and remaining executable content
+
+No generated lesson, worksheet, or runtime catalog is checked in. Existing YAML/JSON
+materializations are now directly edited source files; normal builds only validate
+and compile them into ignored `output/` and `web/public/`. Historical inspection,
+assessment, copy-adaptation and test fixtures remain for their documented
+compatibility/verification purposes. The three legacy slot-bearing review template
+summaries remain as API/hash compatibility metadata; they are never interpolated.
+There is no remaining canonical curriculum in executable source files.
+
+The only intentional published-output addition is `grading-catalog.reviewVariants`.
+Removing that new field reproduces the old grading catalog bytes exactly, including
+the grading version. All nine client artifacts still match the captured baseline.
+The new source-inspection entries cover only the newly materialized review banks;
+existing inspection hashes and dates remain unchanged.
+
+Architecture checks run before each normal content build and in CI. They reject
+reintroduced authoring directories, executable curriculum under `content/`, legacy
+Markdown lessons, obvious relocated lesson DSLs, and direct canonical-source writes.
+The MDX parser rejects executable constructs and unknown components. CI also checks
+that the complete build/test workflow leaves canonical content unchanged. Static
+pattern checks are practical safeguards, not a proof about arbitrary program behavior.
+
+Local setup found that npm 9's default handling of the existing `file:..` web
+dependency disagreed with its linked lockfile. `web/.npmrc` explicitly preserves
+link installation, and the lockfiles include the MDX parser dependency and missing
+optional YAML peer. The ordinary clean-install commands now succeed.
+
+### Final integrated validation
+
+| Check                                                                    | Result                                                                                                                                                                                  |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm ci` and `npm ci --prefix web`                                       | Passed with project-local dependencies and explicit linked web dependency configuration.                                                                                                |
+| `npm test`                                                               | 2,058 passed, including content/source validation, deterministic fixtures, architecture guards, MDX rejection tests, review-bank schema tests and 10 captured runtime hash comparisons. |
+| `npm run typecheck`                                                      | Passed.                                                                                                                                                                                 |
+| `npm run web:test`                                                       | 94 passed.                                                                                                                                                                              |
+| `npm run web:build`                                                      | Passed, including TypeScript, Vite and PWA precache. Existing large-chunk advisory remains.                                                                                             |
+| `npm run format:check`                                                   | Passed.                                                                                                                                                                                 |
+| `cd server && go test -race -count=1 ./...`                              | Passed (167 seconds), including frozen review/restore, provider traps, catalog compatibility, shared deterministic fixtures and all 747 captured review cases.                          |
+| `scripts/check-mdx-ui.mjs`                                               | Passed on the production preview: explicit figures, frame navigation, exercise draft restoration and quick-check selection, with all four subjects and desktop/phone captures.          |
+| `git diff --exit-code -- content` after the complete build/test workflow | Passed; no canonical source changed during compilation/validation.                                                                                                                      |
+
+The [six inspected screenshots](screenshots/declarative-curriculum/README.md) and
+repeatable synthetic browser check record the interface. The optional SymPy
+verification limitation above is the only known failing extra check; it was
+reproduced on the unchanged baseline. No deployment, merge, or code-review request
+was performed.

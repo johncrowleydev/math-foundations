@@ -29,7 +29,8 @@ Read the explanation and worked example before the practice.
 
 This illustrates syntax, not a new lesson or source-supported mathematical claim.
 Use the actual figure ID, local numeric worksheet ID, and quick-check ID from the
-lesson's data. The components are implemented in React/TypeScript. The compiler
+lesson's data. `Figure` renders through `web/src/Figure.tsx`; `Exercise` and promoted
+`QuickCheck` records use `web/src/Exercise.tsx`. The compiler
 accepts this explicit document structure, validates references and placement, and
 builds the existing client section/figure/exercise objects without evaluating
 lesson JavaScript. Unsupported tags, imports, exports, arbitrary expressions,
@@ -39,8 +40,19 @@ remain math, not JavaScript.
 An `Exercise` tag places an existing worksheet question after its teaching.
 Questions without an inline placement remain in additional practice. Do not
 invent a new exercise ID merely because a question moves between lessons. Figure
-and quick-check references must agree with their lesson/section records. No
+and quick-check references must agree with their lesson/section records. Put
+assessment tags at the end of the complete H2 teaching section, after any H3
+subsections and figures. The reader retains the historical worksheet order within
+each section; tag order preserves the placement arrays used by grading hashes. No
 separate placement JSON or code-authored heading map controls the lesson order.
+Component properties are explicit strings; adding another interactive component
+requires a deliberate parser/renderer extension, not per-lesson code.
+
+The build uses the standard `remark-mdx` parser with `remark-math` and validates
+a document-only subset. It emits data for the existing reader rather than
+evaluating lesson JavaScript. Prettier uses its Markdown formatter for these
+documents to preserve ordinary mathematical prose; the stricter MDX parser still
+validates every build.
 
 ## Where to edit
 
@@ -52,7 +64,7 @@ separate placement JSON or code-authored heading map controls the lesson order.
 | Self-contained notebook wording and prerequisite inspection                        | `content/exercise-copy.yaml`, `content/inline-prerequisites.yaml`                                                                                |
 | Quick-check options/explanations and stable promoted exercise IDs                  | `content/quick-checks.yaml`, `content/knowledge-check-exercises.json`                                                                            |
 | Choice conversion/feedback and structured deterministic schemas/fixtures           | `content/choice-exercises.json`, `content/choice-feedback.json`, `content/deterministic-*.json`                                                  |
-| Dedicated review templates, ordered variants, assessments and fixtures             | `content/review-templates.json`, `content/deterministic-review-fixtures.json`                                                                    |
+| Dedicated review templates, ordered variants, assessments and fixtures             | `content/review-templates.json`, `content/review-variants.json`, `content/deterministic-review-fixtures.json`                                    |
 | Concept/skill/evidence relationships                                               | `content/evidence/*.yaml`, `content/concept-introductions.json`                                                                                  |
 | Figures, references, formula context and optional typing help                      | `content/figures.json`, `content/references/*.json`, `content/formula-explanations.json`, `content/tex-syntax.json`, `content/tex-teaching.json` |
 | Pinpoint source support and inspected versions                                     | `content/sources.json`, `content/curriculum-audit.json`                                                                                          |
@@ -123,6 +135,11 @@ and statistics each have an introduction and 22 instructional lessons; see their
 5. For user-visible changes, inspect desktop/phone behavior and capture screenshots.
    For grading or identity changes, run shared deterministic fixtures and review/
    restore compatibility tests. Preserve frozen review instances and saved work.
+
+The three legacy finite review banks have explicit seed-selection data and complete
+questions. See [their migration and compatibility record](review-declarative-migration.md).
+Do not change frozen seed contracts or refresh the migration hashes without an
+explicitly inspected content/history migration.
 
 A passing build or unchanged hash establishes neither educational completeness nor
 mathematical correctness. Report the actual inspection/calculation performed.
