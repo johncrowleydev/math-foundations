@@ -1,6 +1,6 @@
 # Probability foundations: source and mathematical inspection
 
-Checked 2026-09-20. This record covers original lessons 01–08 in `scripts/authoring/probability-statistics/`. It records passage inspection and mathematical verification, not code review or a claim that a validator establishes mathematical completeness.
+Checked 2026-09-20. This record covers original lessons 01–08 now in `content/lessons/ps-*.mdx` and the corresponding canonical YAML/JSON records (originally inspected in the retired authoring modules). It records passage inspection and mathematical verification, not code review or a claim that a validator establishes mathematical completeness.
 
 The modules contain 40 teaching sections, 400 practice tasks, 120 dedicated review variants, 16 quick checks with distinct explanations for every option, and 60 reference terms. Connected introductions and reading total roughly 1,400–1,520 words per lesson. Counts describe this authored material; they are not percentage gates or acceptance machinery. Official checked solutions contain their final answer explicitly alongside the reasoning.
 

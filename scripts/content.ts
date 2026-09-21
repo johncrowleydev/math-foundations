@@ -7,6 +7,7 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkMath from 'remark-math';
 import { visit } from 'unist-util-visit';
+import { extractLessonMetadata } from './lesson-metadata.js';
 
 const text = z
   .string()
@@ -42,7 +43,7 @@ export const curriculumSchema = z
             eyebrow: text.optional(),
             subject: text.default('Discrete mathematics'),
             number: z.number().int().nonnegative().optional(),
-            lesson: sourcePath('lessons', '.md'),
+            lesson: sourcePath('lessons', '.mdx'),
             worksheet: sourcePath('worksheets', '.yaml').optional(),
           })
           .strict(),
@@ -153,6 +154,14 @@ export async function loadContent() {
   const lessons = await Promise.all(
     curriculum.lessons.map(async (lesson) => {
       let markdown = await readFile(path.join(contentRoot, lesson.lesson), 'utf8');
+      const document = extractLessonMetadata(markdown, lesson.lesson);
+      if (
+        !lesson.worksheet &&
+        (Object.keys(document.components.exercises).length ||
+          Object.keys(document.components.quickChecks).length)
+      )
+        throw new Error('Reading-only lessons cannot contain assessments: ' + lesson.slug);
+      markdown = document.mdx;
       validateMath(markdown);
       // The manifest owns the page title. Markdown retains its H1 for repository readers.
       markdown = markdown.replace(/^# .+\r?\n/, '').trim();
@@ -170,7 +179,7 @@ export async function loadContent() {
           }
         }
       }
-      return { ...lesson, markdown, worksheetData: worksheet };
+      return { ...lesson, markdown, worksheetData: worksheet, components: document.components };
     }),
   );
   return { ...curriculum, lessons };

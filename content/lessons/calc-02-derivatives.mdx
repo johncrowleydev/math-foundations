@@ -1,0 +1,175 @@
+# Derivatives
+
+A difference measures change; a rate compares that change with the input interval over which it occurs. The derivative asks whether those average rates settle to a finite value as the interval shrinks. This lesson develops that definition before introducing shortcuts. You will calculate slopes directly, use them to describe motion and tangent lines, and identify places where a derivative does not exist. Keep the limit lesson's distinction between a formula at a point and its nearby behavior in view: a derivative depends on both. The derivative is a new function whose outputs are rates, so it also has its own domain and units.
+
+## Average rates and secant lines
+
+For two distinct inputs $a$ and $b$, the average rate of change of $f$ is $(f(b)-f(a))/(b-a)$. The numerator is an output change and the denominator is the corresponding input change. On the graph, this quotient is the slope of the secant line through $(a,f(a))$ and $(b,f(b))$. The word secant identifies a line determined by two points; it does not mean an approximation is already being made. This average slope is exact for the stated interval.
+
+Suppose a cart's position is $s(t)=t^2+2t$ meters, with time measured in seconds. Between $t=1$ and $t=3$, it moves from $3$ meters to $15$ meters. The average velocity is $(15-3)/(3-1)=6$ meters per second. Dividing the final position by the final time would answer a different question. Average velocity can be negative when final position is smaller than initial position; it is not the same as total distance traveled divided by elapsed time.
+
+To investigate one input $a$, write the second input as $a+h$, where $h\ne0$ is an increment. The rate becomes $[f(a+h)-f(a)]/h$. A negative increment is valid: both the input change and the corresponding output difference must keep the same orientation. Reversing both differences leaves the quotient unchanged; reversing only one changes its sign incorrectly.
+
+For $f(x)=x^2$ and $a=2$, expanding before dividing gives $[(2+h)^2-4]/h=(4h+h^2)/h=4+h$. Positive increments $0.1$ and $0.01$ produce slopes $4.1$ and $4.01$; negative increments $-0.1$ and $-0.01$ produce $3.9$ and $3.99$. These exact secant slopes suggest a limiting slope of $4$. We have not substituted $h=0$ into the original quotient, where division is undefined. We simplified for nonzero increments and will take a limit of those valid values.
+
+Related definitions: [Average rate of change](ref:calculus-average-rate); [Secant line](ref:calculus-secant-line).
+
+<Figure id="calculus-figure-2" alt="Secant and tangent to a parabola" />
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+<QuickCheck id="quick-1" />
+
+## The derivative at a point
+
+The derivative at $a$, written $f'(a)$, is the finite limit $\lim_{h\to0}[f(a+h)-f(a)]/h$, when that limit exists. It describes the instantaneous rate of change and the slope of the tangent at that input. “Instantaneous” does not mean dividing zero change by zero time. It means the average-rate quotients approach a definite value as nonzero intervals shrink. Both signs of $h$ must agree for an ordinary derivative at an interior point.
+
+For $f(x)=2x^2-x$, evaluate at $a=1$. We have $f(1)=1$ and $f(1+h)=1+3h+2h^2$. Therefore the quotient is $3+2h$ for $h\ne0$, and its limit is $3$. The subtraction of $f(1)$ matters: omitting it would leave an unrelated expression with a nonvanishing numerator at zero.
+
+Roots need a different algebraic move. For $f(x)=\sqrt{x}$ at $a=4$, multiply $[\sqrt{4+h}-2]/h$ by its conjugate factor to obtain $1/(\sqrt{4+h}+2)$. This tends to $1/4$. At inputs sufficiently close to $4$, the root is defined and the new denominator is nonzero. Such conditions are part of a valid calculation, not optional comments after an answer.
+
+An equivalent definition is $f'(a)=\lim_{x\to a}[f(x)-f(a)]/(x-a)$. The substitution $h=x-a$ connects the two forms. In either form, first evaluate the fixed value correctly, then simplify the numerator, cancel or rationalize only where allowed, and finally take the limit. Retaining parentheses around the subtracted expression helps prevent sign errors.
+
+The derivative may be positive, negative, or zero. A zero derivative says the instantaneous first-order rate vanishes; it does not say the function is constant on a neighborhood. For $x^2$ at zero, the quotient equals $h$ and the derivative is zero, although every nonzero nearby input has a positive output. A nonzero finite interval and a limiting rate answer different questions.
+
+Related definitions: [Derivative at a point](ref:calculus-derivative-at-point).
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+## Derivative functions and successive rates
+
+Instead of fixing one numerical input, we can carry out the limiting calculation at a variable input $x$. The result is a derivative function $f'$ whose value at each permitted input is the slope there. For $f(x)=x^3$, expansion gives $[(x+h)^3-x^3]/h=3x^2+3xh+h^2$. Taking the limit with $x$ fixed yields $f'(x)=3x^2$. Substituting a number into this new function produces a derivative at a point.
+
+Keep the original function and the derivative function distinct. At $x=2$, the height of the cubic is $f(2)=8$, while its slope is $f'(2)=12$. They generally have different units, and knowing a slope alone does not determine a height. The functions $x^2$ and $x^2+7$ have identical derivative functions because subtracting the two nearby heights cancels any constant vertical shift.
+
+Other common notations are $y'$ and $dy/dx$ when $y=f(x)$, and $d f/dx$ or $(d/dx)f(x)$ when emphasizing the differentiation operation. At this stage, $dy/dx$ names a derivative; it is not obtained by selecting two arbitrary infinitesimal real numbers and dividing them. Later the chain rule will explain why the notation fits composition so well. If the independent variable is time, use $ds/dt$ instead of silently differentiating with respect to a different variable.
+
+The derivative has a domain of its own. For $f(x)=1/x$, direct algebra gives $f'(x)=-1/x^2$ for $x\ne0$. Neither formula applies at zero. For $\sqrt{x}$ the original domain includes zero, but the ordinary derivative formula $1/(2\sqrt{x})$ applies only for $x>0$.
+
+We may differentiate a derivative when it is differentiable. The second derivative is $f''=(f')'$, also written $d^2f/dx^2$. For a position function, the first derivative is velocity and the second is acceleration. If $s(t)=t^3$, then $s'(t)=3t^2$ and $s''(t)=6t$. Successive differentiation describes successive rates of change; it does not square the first derivative.
+
+Related definitions: [Derivative function](ref:calculus-derivative-function); [Second derivative](ref:calculus-second-derivative).
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+## Tangent lines, velocity, and sensitivity
+
+A finite derivative provides the slope needed for a tangent line. The line through $(a,f(a))$ with slope $f'(a)$ is $y=f(a)+f'(a)(x-a)$. This form keeps the point and slope visible. Compute both before simplifying; a correct derivative with the wrong point still gives the wrong line. A tangent is defined by local slope agreement, not by a rule that it can meet the graph only once. The tangent to $x^3$ at zero is $y=0$, which crosses the graph there.
+
+For $f(x)=x^2-2x$ at $a=3$, we have $f(3)=3$ and $f'(3)=4$. The tangent is $y=3+4(x-3)=4x-9$. Substitution of $x=3$ checks the point, and its coefficient of $x$ checks the slope. If a normal line is requested, it is the perpendicular line through the same point. For a nonzero tangent slope $m$, the normal slope is $-1/m$. A horizontal tangent instead has a vertical normal, which cannot be written as $y=mx+b$.
+
+In motion, position $s(t)$ is measured relative to an origin and orientation. Velocity $v=s'$ is signed; speed is $|v|$. Acceleration $a=v'$ is also signed. An object speeds up when nonzero velocity and acceleration have the same sign, and slows down when their signs differ. Positive acceleration alone does not imply increasing speed: a left-moving object with negative velocity and positive acceleration moves toward zero velocity.
+
+A derivative can also measure sensitivity to an input other than time. If cost $C(q)$ is in dollars and production $q$ in units, $C'(q)$ is dollars per unit. Its use as an estimate of the cost of one extra unit assumes the local linear approximation is accurate over that increment. The continuous model itself may only approximate a discrete production process. State what the derivative actually measures before rounding, extrapolating, or interpreting it as a physical quantity.
+
+Related definitions: [Tangent line](ref:calculus-tangent-line); [Velocity and speed](ref:calculus-velocity-speed).
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+## Where differentiability fails
+
+A function is differentiable at an interior point when its two-sided difference quotient has a finite limit there. Several failures are worth separating. A jump or misplaced point prevents continuity and therefore prevents differentiability. A corner can be continuous while producing different finite one-sided slopes. A vertical tangent or cusp can produce unbounded slopes, so no finite ordinary derivative exists. A picture can suggest which failure occurs, but the difference quotient gives the decisive test.
+
+For $f(x)=|x|$ at zero, the quotient is $|h|/h$. It equals $-1$ for negative $h$ and $1$ for positive $h$. Hence the graph is continuous but not differentiable there. The corner is not repaired by averaging the slopes into zero. For $f(x)=x^{1/3}$, the quotient at zero is $h^{-2/3}$, which tends to $+\infty$ from both sides. This gives a vertical tangent rather than a finite derivative. The distinction matters whenever a theorem requires differentiability.
+
+Why does differentiability force continuity? For nonzero $h$, rewrite the function change as $f(a+h)-f(a)=h\,[f(a+h)-f(a)]/h$. If the quotient tends to the finite number $f'(a)$, the product tends to $0\cdot f'(a)=0$. Thus nearby outputs approach $f(a)$. The finiteness of the derivative is essential to this product-law argument. Continuity alone says changes vanish, but says nothing about how they compare with the shrinking input interval.
+
+For piecewise functions, test value matching first, then slope matching. Suppose $f(x)=x^2$ for $x\le1$ and $f(x)=mx+b$ for $x>1$. Continuity requires $m+b=1$, while matching the left slope $2$ requires $m=2$. Together they give $m=2,b=-1$. Checking only slopes would miss a possible vertical jump; checking only values would miss a corner. Later differentiation rules will speed up the branch calculations, but they will not remove the need to inspect the join itself.
+
+When a derivative is estimated from measured data, exact differentiability of the underlying function and reliability of the numerical estimate are separate issues. Shrinking a difference interval reduces the mathematical secant-to-tangent discrepancy for a differentiable function, but subtracting noisy nearby measurements can make the estimated rate unstable. For example, a fixed measurement error divided by a smaller time interval can grow in magnitude. The exercises here use exact functions or explicitly stated rates so that this measurement issue does not obscure the definition. In a real experiment, keep the sampling interval and measurement precision alongside a derivative estimate rather than interpreting every visible fluctuation as a property of the underlying motion.
+
+Related definitions: [Differentiability](ref:calculus-differentiability); [Corner](ref:calculus-corner).
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<Exercise id="49" />
+
+<Exercise id="50" />
+
+<QuickCheck id="quick-2" />

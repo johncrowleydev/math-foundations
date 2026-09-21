@@ -2,7 +2,7 @@ import { exerciseKey } from './exerciseIdentity';
 import { Review } from './Review';
 import { ReviewLibrary } from './ReviewLibrary';
 import { authSession, signOut } from './auth';
-import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useMemo, Suspense } from 'react';
 import {
   BookOpen,
   Menu,
@@ -17,10 +17,11 @@ import {
 } from 'lucide-react';
 import { readRoute, routeHash, resolveReadingSection, type AppRoute } from './routing';
 import { registerSW } from 'virtual:pwa-register';
-import type { Curriculum, Block, Lesson, RecordData, Formula, Attempt, Draft } from './types';
+import type { Curriculum, Lesson, RecordData, Formula, Attempt, Draft } from './types';
 import { questionLabel } from './types';
 import { ContentContext, Rich, MathText, Modal, Copy } from './Rich';
-import { Figure } from './Figure';
+import { LessonRuntime, LessonReady, lessonComponents } from './LessonDocument';
+import { lessonDocument } from './lessonModules';
 import { Exercise } from './Exercise';
 import { GradingToasts } from './GradingToasts';
 import { lessonReview } from './lessonReview';
@@ -64,6 +65,7 @@ export function App({ data }: { data: Curriculum }) {
     [update, setUpdate] = useState<(() => Promise<void>) | null>(null);
   const reader = useRef<HTMLElement>(null);
   const lesson = data.lessons.find((l) => l.slug === slug) || data.lessons[0];
+  const [loadedLesson, setLoadedLesson] = useState('');
   const revision = useRevision();
   const [exerciseNav, setExerciseNav] = useState(false);
   const [progress, setProgress] = useState<{ status: string; at: number }[]>([]);
@@ -113,6 +115,7 @@ export function App({ data }: { data: Curriculum }) {
   const positionKey = lesson.slug + ':' + tab;
   const positions = useRef<Record<string, number>>({});
   useLayoutEffect(() => {
+    if (tab === 'read' && loadedLesson !== lesson.slug) return;
     reader.current!.scrollTop =
       positions.current[positionKey] ??
       (Number(localStorage.getItem('scroll:' + positionKey)) || 0);
@@ -124,7 +127,7 @@ export function App({ data }: { data: Curriculum }) {
         setActive('section-' + route.section);
       }
     }
-  }, [positionKey, route.section]);
+  }, [positionKey, route.section, loadedLesson]);
   useEffect(() => {
     if (tab !== 'practice') return;
     const selected = document.querySelector<HTMLElement>(
@@ -214,7 +217,7 @@ export function App({ data }: { data: Curriculum }) {
     );
   }, [lesson.slug]);
   useEffect(() => {
-    if (tab !== 'read') return;
+    if (tab !== 'read' || loadedLesson !== lesson.slug) return;
     const el = reader.current!;
     let timer: ReturnType<typeof setTimeout>;
     const observer = new IntersectionObserver(
@@ -250,7 +253,7 @@ export function App({ data }: { data: Curriculum }) {
       clearTimeout(timer);
       observer.disconnect();
     };
-  }, [lesson.slug, tab]);
+  }, [lesson.slug, tab, loadedLesson]);
   useEffect(() => {
     const el = reader.current!;
     if (!two || tab !== 'read') return;
@@ -299,18 +302,7 @@ export function App({ data }: { data: Curriculum }) {
     setActive(id);
     setOutline(false);
   };
-  const blocks = (bs: Block[], prefix: string) =>
-    bs.map((b) =>
-      b.kind === 'figure' ? (
-        <Figure
-          key={b.id}
-          sources={data.sources}
-          figure={data.figures.find((f) => f.id === (b as Block & { figureId: string }).figureId)!}
-        />
-      ) : (
-        <Rich key={b.id} text={b.markdown} source={prefix + ':' + b.id} />
-      ),
-    );
+  const Document = lessonDocument(lesson.slug);
   const nav = (
     <>
       <div className="brand">
@@ -464,6 +456,7 @@ export function App({ data }: { data: Curriculum }) {
               className="reader"
               id="reader"
               onScroll={() => {
+                if (tab === 'read' && loadedLesson !== lesson.slug) return;
                 const top = reader.current!.scrollTop;
                 positions.current[positionKey] = top;
                 localStorage.setItem('scroll:' + positionKey, String(top));
@@ -473,42 +466,12 @@ export function App({ data }: { data: Curriculum }) {
                 className="reading-column"
                 style={{ display: tab === 'read' ? undefined : 'none' }}
               >
-                <div className="lesson-intro" id="lesson-start">
-                  <span className="eyebrow">{lesson.eyebrow}</span>
-                  <h1>{lesson.title}</h1>
-                  {blocks(lesson.introBlocks, 'intro')}
-                  <Sources catalog={data.sources} target={`${lesson.slug}/intro`} />
-                </div>
-                {lesson.sections.map((s, i) => (
-                  <section key={s.id} id={'section-' + s.id} data-section data-title={s.title}>
-                    <div className="teaching">
-                      <h2>{s.title}</h2>
-                      {blocks(s.blocks, 'section:' + s.id)}
-                      <Sources catalog={data.sources} target={`${lesson.slug}/${s.id}`} />
-                    </div>
-                    <Typing
-                      data={data}
-                      lesson={lesson.slug}
-                      section={s.id}
-                      show={tutorials}
-                      first={i === 0}
-                    />
-                    {lesson.questions
-                      .filter(
-                        (q) =>
-                          s.questionIds.includes(q.id) ||
-                          s.quickChecks.some((c) => c.exerciseId === q.id),
-                      )
-                      .map((q) => (
-                        <Exercise
-                          key={exerciseKey(lesson, q.id)}
-                          q={q}
-                          lesson={lesson}
-                          data={data}
-                        />
-                      ))}
-                  </section>
-                ))}
+                <Suspense fallback={<p role="status">Loading lesson…</p>}>
+                  <LessonRuntime data={data} lesson={lesson} tutorials={tutorials}>
+                    <Document components={lessonComponents} />
+                    <LessonReady slug={lesson.slug} onReady={setLoadedLesson} />
+                  </LessonRuntime>
+                </Suspense>
                 <footer>
                   <button
                     disabled={data.lessons.indexOf(lesson) >= data.lessons.length - 1}
@@ -744,40 +707,6 @@ export function App({ data }: { data: Curriculum }) {
     </ContentContext.Provider>
   );
 }
-function Typing({
-  data,
-  lesson,
-  section,
-  show,
-  first,
-}: {
-  data: Curriculum;
-  lesson: string;
-  section: string;
-  show: boolean;
-  first: boolean;
-}) {
-  const p = data.placements.find((p) => p.lesson === lesson && p.section === section);
-  const ids = [...new Set([...(first ? data.basics.map((b) => b.id) : []), ...(p?.entries || [])])];
-  const entries = ids
-    .map((id) => [...data.basics, ...data.syntax].find((e) => e.id === id))
-    .filter((x) => !!x);
-  return entries.length ? (
-    <details className="typing" open={show}>
-      <summary>Typing this math</summary>
-      {entries.map((e) => (
-        <article key={e.id}>
-          <strong>{e.title || (e.command && '\\' + e.command)}</strong>
-          <Rich text={e.text || e.explanation} />
-          <pre>{e.source || e.example}</pre>
-          <Rich text={e.source || (e.example ? '$' + e.example + '$' : '')} />
-          <Copy text={e.source || e.example || ''} />
-        </article>
-      ))}
-      <Sources catalog={data.sources} targets={ids.map((id) => `syntax:${id}`)} />
-    </details>
-  ) : null;
-}
 function Library({ data, onOpen }: { data: Curriculum; onOpen: (id: string) => void }) {
   const [query, setQuery] = useState(''),
     [kind, setKind] = useState('term'),
@@ -900,6 +829,7 @@ function Settings({
   tutorials: boolean;
   setTutorials: (v: boolean) => void;
 }) {
+  const [loadedLesson, setLoadedLesson] = useState('');
   const revision = useRevision();
   const [bookmarks, setBookmarks] = useState<RecordData[]>([]);
   useEffect(() => {

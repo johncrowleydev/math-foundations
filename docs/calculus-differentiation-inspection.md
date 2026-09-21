@@ -1,6 +1,6 @@
 # Calculus 01–08 authorship inspection
 
-Inspected 2026-09-19. The explanations, examples, practice, review variants, glossary entries, and feedback in `scripts/authoring/calculus/01-*.mjs` through `08-*.mjs` are original teaching material. Citations identify mathematical background that was read and checked; they do not claim that OpenStax contains the particular authored wording, examples, or exercises.
+Inspected 2026-09-19. The explanations, examples, practice, review variants, glossary entries, and feedback now in `content/lessons/calc-01-*.mdx` through `calc-08-*.mdx` and the corresponding canonical YAML/JSON records (originally inspected in the retired authoring modules) are original teaching material. Citations identify mathematical background that was read and checked; they do not claim that OpenStax contains the particular authored wording, examples, or exercises.
 
 Each lesson contains five teaching sections, fifty practice questions, fifteen separately authored review questions, and two quick checks. The introductions plus connected teaching prose are approximately 1,500–1,600 whitespace-delimited words per lesson. The eight modules provide seventy-five glossary entries. Question counts are descriptive, not validation thresholds; no percentage gate or percentage-reporting mechanism was added.
 

@@ -42,7 +42,7 @@ The [full curriculum study plan](docs/study-plan.md), preserved from the origina
 
 Linear algebra retains 92 reference entries and seven coordinate figures. The historical [correction and inspection record](docs/linear-algebra-audit.md) describes the earlier coverage and fixes. The study plan retains its original timeline and references to the earlier worksheet/PDF workflow; the current PWA uses inline and focused practice.
 
-Follow [subject authoring guidance](docs/content-authoring.md), including the required reading-only introduction for every future subject. Author lessons and references under `content/`. `scripts/build-content.ts` generates shared assets under `output/content` and the server catalog at `output/grading-catalog.json`. Exercise identities and catalog hashes remain compatible with existing notebook data. Formula inventory: `npx tsx scripts/build-content.ts --inventory-only`.
+Follow [subject authoring guidance](docs/content-authoring.md), including the required reading-only introduction for every future subject. Author lesson documents directly in `content/lessons/*.mdx`, and exercises, reviews, sources, figures, and grading metadata in YAML/JSON under `content/`. Explicit MDX component tags connect lessons to the React controls; imports and JavaScript expressions are rejected. There is no curriculum-generation step. `scripts/build-content.ts` validates and compiles these canonical sources into runtime assets under `output/content` and the server catalog at `output/grading-catalog.json`. Exercise identities and catalog hashes remain compatible with existing notebook data. Formula inventory: `npx tsx scripts/build-content.ts --inventory-only`.
 
 ```sh
 npm test

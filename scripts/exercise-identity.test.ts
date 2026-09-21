@@ -38,12 +38,12 @@ test('curriculum accepts an optional stable namespace without injecting it into 
     course: 'Course',
     currentLesson: 'original',
     lessons: [
-      { slug: 'original', title: 'First', lesson: 'lessons/first.md' },
+      { slug: 'original', title: 'First', lesson: 'lessons/first.mdx' },
       {
         slug: 'successor',
         exerciseNamespace: 'original',
         title: 'Second',
-        lesson: 'lessons/second.md',
+        lesson: 'lessons/second.mdx',
       },
     ],
   });

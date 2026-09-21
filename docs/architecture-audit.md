@@ -1,5 +1,20 @@
 # Architecture audit
 
+> Follow-up: the [declarative curriculum migration](declarative-curriculum-migration.md)
+> supersedes this audit's A03/A09 authoring recommendations. Canonical lessons are
+> now MDX; curriculum metadata, exercises, reviews, grading contracts, figures and
+> source records are directly authored YAML/JSON under `content/`. The entire
+> `scripts/authoring/` tree and its aggregate writers are removed after inventory
+> and parity checks. Independent mathematical verification tools remain under
+> `scripts/verification/`. References below to old authoring paths, invocation order,
+> and isolated generation describe the audited historical commit, not the current
+> authoring workflow. They are retained as evidence of the original regression.
+> The subsequent PR #15 rendering correction removes the custom MDX-to-legacy
+> adapter as well: Vite now uses `@mdx-js/rollup` to render canonical lesson MDX as
+> React documents. React lesson components are registered in `LessonDocument.tsx`;
+> static server/grading metadata extraction is a separate build path. The diagram
+> below remains a map of the historical audited commit, not the current renderer.
+
 Audited September 20, 2026, from `main` at `eacb485` after pulling with
 `--ff-only`. This is an architecture audit with two bounded refactors, not a
 curriculum revision or a scheduler redesign. No merge or deployment is authorized.

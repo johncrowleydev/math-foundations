@@ -8,12 +8,22 @@ regression and model assessment. The subject includes **1,157 practice problems*
 references**, and **13 original figures**. Deeper practice tasks also enter the
 existing review system. Pacing remains flexible in [the study plan](study-plan.md).
 
-Teaching, worked examples, solutions, practice, review variants, and pinpoint
-citations live together in `scripts/authoring/probability-statistics/`. Run
-`npx tsx scripts/authoring/probability-statistics.mjs` to generate the existing
-content formats. The stable identities use `probability-statistics-`; historical
-lessons, exercises, reviews, and inspection records are retained. Edit the
-modules rather than generated lessons, worksheets, assessments, and references.
+The canonical sources are directly authored `content/lessons/ps-*.mdx` and
+`content/worksheets/ps-*.yaml`, with structured records in
+`content/deterministic-probability-statistics.json`,
+`content/evidence/probability-statistics.yaml`,
+`content/references/probability-statistics.json`, and the shared review, figure,
+quick-check, feedback, formula, typing, and source files under `content/`. MDX
+places explicit `Figure`, `Exercise`, and `QuickCheck` components after teaching.
+Edit these documents and data directly, then run `npm run content`. Stable
+`probability-statistics-` identities and historical inspection records remain.
+The former `scripts/authoring/probability-statistics.mjs` writer and all its
+lesson/helper/assessment/source/figure modules are removed; see
+[the migration report](declarative-curriculum-migration.md).
+The lesson files compile directly to React through Vite's standard MDX plugin.
+`Figure`, `Exercise`, and `QuickCheck` are registered React components; metadata
+extraction for catalogs and grading is separate from rendering. See the
+[component registration workflow](content-authoring.md#lesson-documents-and-interactive-components).
 
 The source records cover [foundations](probability-foundations-inspection.md),
 [distributions and sampling](probability-distributions-inspection.md),
@@ -27,12 +37,12 @@ An Introduction to Statistical Learning and Penn State's regression course.
 The sources support original explanations and calculations, not copied textbook
 exercises. Parameter conventions, assumptions, and approximation limits are explicit.
 
-After inspecting a changed mathematical version and its source assignments,
-record the inspected digests with
-`npx tsx scripts/authoring/probability-statistics-inspection.mjs`. After a successful
-inventory build and visual checks, its `--curriculum` option records only the
-new subject's inventory entries while retaining historical entries. Ordinary
-builds validate these records and never approve them automatically.
+After inspecting changed mathematics and supporting passages, update only the
+records actually inspected, following [the source policy](content-sources.md) and
+[authoring workflow](content-authoring.md). Normal builds validate these facts;
+they never approve them. The former subject-wide inspection script is removed,
+and inspection dates remain unchanged. Representation-only digest changes are
+verified against the previously inspected content, as recorded in the migration report.
 
 The shared TypeScript/Go `approximate-number` validator compares exact arithmetic
 against an authored value, positive absolute tolerance, and optional inclusive

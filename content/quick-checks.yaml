@@ -28,7 +28,7 @@ predicates-and-quantifiers:
       - Exactly two
     answer: 0
     explanation: 'One allowed integer is enough: 11 belongs to the domain and is greater than 10. Such an example is a witness.'
-    teachingHash: fb186307d1248f97c738a0f37f361a23071d8abe28d4c44c453f3d83d6ed62a3
+    teachingHash: d6079469168e084ba3455ac26bb43d8508ffecca741ae1f4ad214d2b23e74188
   - id: quick-2
     after: Several variables and quantifier order
     prompt: In $\forall x\in\mathbb Z\exists y\in\mathbb Z\,(y>x)$, may the chosen $y$ depend on $x$?
@@ -37,7 +37,7 @@ predicates-and-quantifiers:
       - No
     answer: 0
     explanation: Yes. We receive $x$ before choosing $y$, so $y=x+1$ works. Reversing the quantifiers would require one integer larger than every integer.
-    teachingHash: 0edefe1e102e07a322121b876181d92c420a62e9c6567f13885646e8b02b4855
+    teachingHash: e9396a6c2e734cf409b0a82ac11c27e1270dd623d6a5118fdcb5df516379c6a2
 sets-and-set-operations:
   - id: quick-1
     after: Membership and subsets are different
@@ -48,7 +48,7 @@ sets-and-set-operations:
       - $3\in A$
     answer: 1
     explanation: The only element of $\{1\}$ is in $A$, so it is a subset. The elements of $A$ are the numbers 1 and 2, not the set $\{1\}$.
-    teachingHash: afb554ebea35e92e548d003c90fe97c63c9b9d9eb388cd11ab4c839d0b56a798
+    teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
   - id: quick-2
     after: Power sets
     prompt: How many subsets does $\{a,b\}$ have?
@@ -58,7 +58,7 @@ sets-and-set-operations:
       - '4'
     answer: 2
     explanation: "There are four: $\\varnothing$, $\\{a\\}$, $\\{b\\}$, and $\\{a,b\\}$. Each element can independently be included or omitted."
-    teachingHash: f9f8de6a3c4b4feeaa0cc456c54d4fa000400e4ae643300eea4b8465e9222a21
+    teachingHash: 89a4301ad510e779679f6e7fc19ad4bf7a9c19e09adb5e3c68a7d646fdd21670
 relations:
   - id: quick-1
     after: Four fundamental properties
@@ -88,7 +88,7 @@ functions:
       - Both injective and surjective
     answer: 0
     explanation: Different inputs remain distinguishable, so the function is injective. The missed target prevents surjectivity.
-    teachingHash: 34605129db1b1a287ca3063984f1337476a629f6b085fcd09c3348eebf1855e2
+    teachingHash: f8e52d77f516ae880fec8139fd41e923708456d6fea6bf2b5407ae3eea5f108b
   - id: quick-2
     after: Floor and ceiling functions
     prompt: What is $\lfloor-1.2\rfloor$?
@@ -242,7 +242,7 @@ combinatorics:
       - Exactly two people share one month
     answer: 1
     explanation: If every month had at most one person, there could be at most twelve people. Some month therefore has at least two; it may have more.
-    teachingHash: f9b690c096fc61ff842ecca0f1abfdd7ff1c4a0af10cafdbc98e8d6eefa80998
+    teachingHash: 9c2f917471a6677794aba6a70c0da51648814447122f0eba8e2a755edf6ec692
 recurrence-relations:
   - id: quick-1
     after: A recurrence needs a domain and initial conditions
@@ -272,7 +272,7 @@ graph-theory:
       - Each vertex twice
     answer: 1
     explanation: Each edge has two distinct endpoints and contributes one to the degree at each endpoint. The degree sum is twice the edge count.
-    teachingHash: 6703fd956b326c40fe018aa35e787ffcf909e51e191e072121bde8eb25f42348
+    teachingHash: a57afba0ab81f91cb9a109341327eb2e9c2aa7b26fc798f793bf7e3fc6d2bf6f
   - id: quick-2
     after: Euler trails and Hamiltonian cycles
     prompt: Which route is required to use every edge exactly once?
@@ -282,7 +282,7 @@ graph-theory:
       - Every path
     answer: 0
     explanation: An Euler trail is about covering edges. A Hamiltonian cycle visits every vertex exactly once before returning to its start.
-    teachingHash: 7504100a9246dfce93a2756f3e48090143237536d5bea3c95458494cbc0e12e9
+    teachingHash: 9c8dba481b31e70b2c481cfdae1f70240cd71870ba75a7cc0db7a5e21c49b4ac
 asymptotic-growth:
   - id: quick-1
     after: 'Big O: an eventual upper bound'
@@ -292,7 +292,7 @@ asymptotic-growth:
       - No
     answer: 1
     explanation: No. One fixed positive c must work for every input beyond one fixed threshold. Choosing c separately for each n changes the quantifier order.
-    teachingHash: 39b0cc4c8fac50414d98780c05b74d21747201605ff354e018293c7336751637
+    teachingHash: 03fda101bbb19a4f2d60357a0ae210a45be9e03a5f5d965ba34e78e958ab92db
   - id: quick-2
     after: Big Omega and Big Theta
     prompt: What does $f(n)=\Theta(g(n))$ assert?
@@ -313,7 +313,7 @@ linear-algebra-vectors:
       - It cannot result from scalar multiplication.
     answer: 0
     explanation: All components are zero. Multiplying any vector by zero produces it, but there is no nonzero displacement to specify a direction.
-    teachingHash: 288db7cf36e7897a71445f43bb5b02397329a12865d3df1415e7469c0490b665
+    teachingHash: 5d9a0fbc3c7e0d574cb0a4602c51309754c544bb87468a7ac1cce61c0adf0330
   - id: quick-2
     after: Building linear combinations
     prompt: Two listed vectors must always provide two different directions.
@@ -342,7 +342,7 @@ linear-algebra-dot-products:
       - Their combined length
     answer: 1
     explanation: Orthogonality is defined by a zero dot product; neither vector needs to have unit length.
-    teachingHash: 6181d6cc607089704664270e95632ebd2c9c931bc7ecb4dfe691f5d7b32a44ca
+    teachingHash: aab557ab0f26b15b43dd297c2294e1f81546f30033cc1e24c862e0dc73c4a418
 linear-algebra-matrices:
   - id: quick-1
     after: A matrix acting on a vector
@@ -391,7 +391,7 @@ linear-algebra-span:
       - 'False'
     answer: 1
     explanation: Coefficient one on the zero vector and zero on the others gives a nontrivial zero combination.
-    teachingHash: 9b3f3b304938fda5f88ec0a3f22546e4e16338f7858c778c4a17ad815166a185
+    teachingHash: e941e25c8c1ed74a6a8317ee83f7c5b634b778d2436f95715b9e34dc5115287e
   - id: quick-2
     after: Subspaces and the origin
     prompt: Which must belong to every subspace?
@@ -472,7 +472,7 @@ linear-algebra-eigenvalues:
       - The vector becomes zero
     answer: 0
     explanation: The negative sign reverses direction, while the magnitude two is the length factor.
-    teachingHash: f421f35209c07aeed14acd9845f68d30f03fc6693329d84fefb5c1b03b800933
+    teachingHash: 6e00be35da29a775ec338f748505ee28473d51408a57d40d4b622cb3b96c83d1
   - id: quick-2
     after: Limits and interpretation
     prompt: Every real square matrix has a basis of real eigenvectors.
@@ -491,7 +491,7 @@ linear-algebra-svd:
       - 'False'
     answer: 1
     explanation: By the SVD convention they are nonnegative length scale factors. Direction changes are represented by the orthogonal factors.
-    teachingHash: 897259a6af50b0a75eaf5d2d419afa4a32254f57752800e6b351fca18fa2adde
+    teachingHash: 0104fd9e1f57dba8661b703e340665d601d64ab4aa6b6e024b1e878f2f300525
   - id: quick-2
     after: Connection to rank and eigenvalues
     prompt: A matrix has three positive singular values. What is its rank?
@@ -553,7 +553,7 @@ calculus-limits-continuity:
       - Replacing both nearby branches by different constants
     answer: 0
     explanation: The limit ignores the isolated input itself. Changing a whole nearby branch can change or destroy the limit.
-    teachingHash: d9a1326b9c52d31510a76a4b27cb11a2501469baaa6bceb4aaa178dad109ce5e
+    teachingHash: 22f72328288e70501133fecefe866d69f0df7dfe8779c124336815d7c940e157
   - id: quick-2
     after: Continuity and the intermediate value theorem
     prompt: A continuous function has $f(0)=-2$ and $f(3)=4$. What does the IVT guarantee?
@@ -574,7 +574,7 @@ calculus-derivatives:
       - A nearby input $2.1$ and slope $4.1$
     answer: 1
     explanation: A negative increment approaches from the left; consistent numerator and denominator signs still give a valid slope.
-    teachingHash: b0798fd447d47f249c921625c889cc4d76aa8244232d8d1ba83146a73e471df0
+    teachingHash: 8e88a5e0ef6e83cf6b59f238afc6092950893083927f8da07f8e6eb39edb77a2
   - id: quick-2
     after: Where differentiability fails
     prompt: Which statement is always valid at an interior point?
@@ -855,7 +855,7 @@ calculus-power-series-taylor:
       - The number of decimal places in the approximation
     answer: 1
     explanation: A uniform bound controls the unknown intermediate derivative value.
-    teachingHash: 39de6aff4d33687947e09b0dafa895c32f158096e91ee6bb5ed93488aa51498d
+    teachingHash: 945cb66aaba551747c5d076c5c9c1fac50b5f684afc5fb1e15f049666fccbfb3
 calculus-multivariable-functions:
   - id: quick-1
     after: Several inputs, one output
@@ -1020,7 +1020,7 @@ probability-statistics-probability-models-events:
       - $0.6$
     answer: 0
     explanation: The overlap must lie between $0.3$ and $0.6$.
-    teachingHash: d1d6706ad1271c3f7706d5a16e7f197f3e7995be0fb62b6c2090bcc5454cc509
+    teachingHash: 8fa7661ff6e7f39bc63eeae549453fbdd302807c233dbdf1e4c5fe470b3a2e29
 probability-statistics-counting-finite-probability:
   - id: quick-1
     after: Ordered selections and factorials
@@ -1052,7 +1052,7 @@ probability-statistics-conditional-probability-independence:
       - $25/100$
     answer: 1
     explanation: Conditioning on $B$ restricts the denominator to the $25$ records carrying that tag.
-    teachingHash: 31dd41e2260493d16bdb10a928a22fdf62396d8b7a7994b0d6764396aa67d760
+    teachingHash: 91fb4824a2e88124c6c45cda79faf4b6d57dd8e6cfa648d18684c5d22497a50a
   - id: quick-2
     after: Independence is a testable factorization
     prompt: Two disjoint events each have positive probability. Which statement holds?
@@ -1094,7 +1094,7 @@ probability-statistics-discrete-random-variables:
       - It cannot be determined without interpolation.
     answer: 0
     explanation: A PMF assigns zero probability to values outside its support.
-    teachingHash: 82ae1d6e93517d2034a998fa68f12ce6cb87914fad904020b1277d8542810513
+    teachingHash: 1910e7e873e9032e35cac8e87a9869b60f040b073c2bc9a398ed6ec8ad0fe20b
   - id: quick-2
     after: Intervals, tails, and endpoint discipline
     prompt: For an integer-valued variable, which expression gives $P(X\geq4)$?
@@ -1199,7 +1199,7 @@ probability-statistics-normal-distributions-transformations:
       - $2\Phi(1.2)-1$
     answer: 1
     explanation: The CDF gives the area to the left, so a right tail uses its complement.
-    teachingHash: 4b0dfa45a280798a4462942109bedaf5ffe192543b9c62f91098d8339737667f
+    teachingHash: 39f2c78c8d03ecbd007ad8298cf3453bfa3bef6dc715d586ac9b251d480637a8
   - id: quick-2
     after: Account for branches and point masses
     prompt: If $U$ is uniform on $(-1,1)$ and $Y=\max(0,U)$, what happens at zero?
@@ -1367,7 +1367,7 @@ probability-statistics-confidence-intervals:
       - A posterior probability for this fixed interval
     answer: 0
     explanation: Confidence belongs to the interval-generating procedure under its sampling assumptions.
-    teachingHash: 36d35fd074143fbf3f52c4cb64b208558fed04d5ab565a58977558ef72538ace
+    teachingHash: 757a23b078435c1aa1d0d79419d6889bf5285e66c00132b476a643beb53ac0b4
   - id: quick-2
     after: Estimating spread leads to Student t
     prompt: For an iid normal sample with unknown population standard deviation, which reference is used for a mean interval?
@@ -1429,7 +1429,7 @@ probability-statistics-regression-interpretation:
       - Maximizing the error variance
     answer: 0
     explanation: The coefficient-dependent log-likelihood term is negative SSE divided by a fixed positive number.
-    teachingHash: 1189c13b1bd24d67d3db48e05f9f056546200cd99c7c51349d223c4864b0a738
+    teachingHash: 6a5fdca1b697f9f64eeb65104344ae817d268ea3755a69f571380b758b834c25
   - id: quick-2
     after: Predicting a mean and predicting one new observation
     prompt: At the same predictor and confidence level, which interval includes uncertainty from a new individual error?

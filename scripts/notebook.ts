@@ -13,6 +13,18 @@ export async function prepareNotebook() {
   validateNotebookAdaptations(content.lessons);
   validateInlinePrerequisites(content.lessons);
   validateQuickChecks(content.lessons);
+  for (const lesson of content.lessons) {
+    const expectedChecks = lesson.components.quickChecks;
+    const checks: Record<string, string[]> = {};
+    for (const check of quickChecks[lesson.slug] || []) (checks[check.after] ??= []).push(check.id);
+    if (
+      Object.keys(expectedChecks).length !== Object.keys(checks).length ||
+      Object.entries(checks).some(
+        ([section, ids]) => JSON.stringify(expectedChecks[section]) !== JSON.stringify(ids),
+      )
+    )
+      throw new Error('MDX QuickCheck references differ from declared checks: ' + lesson.slug);
+  }
   function forNotebook(markdown: string) {
     return markdown
       .replace(/\[([^\]]+)\]\(\.\.\/lessons\/[^)]+\)/g, '$1')

@@ -8,6 +8,7 @@ import { loadEvidence } from './evidence.js';
 import { snapshot } from '../web/src/evidenceTypes.js';
 import { loadSources } from './sources.js';
 import { loadReviewTemplates } from './review-templates.js';
+import { loadReviewVariants } from './review-variants.js';
 
 import { prepareNotebook } from './notebook.js';
 const { content, teaching, lessons, formulaSources } = await prepareNotebook();
@@ -46,7 +47,8 @@ const reviewTemplates = await loadReviewTemplates(
   evidence,
   publishedLessons.map((l) => l.slug),
 );
-const sources = await loadSources(publishedLessons, teaching, reviewTemplates);
+const reviewVariants = await loadReviewVariants(reviewTemplates);
+const sources = await loadSources(publishedLessons, teaching, reviewTemplates, reviewVariants);
 await mkdir(dir, { recursive: true });
 await writeFile(`${dir}/sources.json`, JSON.stringify(sources));
 await writeFile(`${dir}/review-templates.json`, JSON.stringify(reviewTemplates));
@@ -66,9 +68,20 @@ await writeFile(`${dir}/tex-syntax.json`, await readFile('content/tex-syntax.jso
 await writeFile(`${dir}/tex-teaching.json`, await readFile('content/tex-teaching.json'));
 
 // The grader sees precisely the adapted questions shipped in the app, not worksheet originals.
-const gradingVersion = createHash('sha256')
+const representationHash = createHash('sha256')
   .update(JSON.stringify({ publishedLessons, evidence, reviewTemplates }))
   .digest('hex');
+// Native MDX figure references change serialization but not any grading contract.
+// Preserve this one proven catalog version so saved offline submissions remain valid.
+// Any subsequent content change produces its own ordinary hash. This fixture holds
+// only hashes; it is not a curriculum source or a general version alias mechanism.
+const mdxMigration = JSON.parse(
+  await readFile('scripts/fixtures/mdx-migration-version.json', 'utf8'),
+);
+const gradingVersion =
+  representationHash === mdxMigration.representationHash
+    ? mdxMigration.gradingVersion
+    : representationHash;
 const gradingExercises = Object.fromEntries(
   publishedLessons.flatMap((lesson) =>
     lesson.questions.map((q) => {
@@ -108,6 +121,11 @@ const gradingExercises = Object.fromEntries(
 );
 await writeFile(
   'output/grading-catalog.json',
-  JSON.stringify({ version: gradingVersion, exercises: gradingExercises, reviewTemplates }),
+  JSON.stringify({
+    version: gradingVersion,
+    exercises: gradingExercises,
+    reviewTemplates,
+    reviewVariants,
+  }),
 );
 await writeFile(`${dir}/grading-version.json`, JSON.stringify({ version: gradingVersion }));

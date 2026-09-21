@@ -1,0 +1,185 @@
+# Bayesian Estimation and Prediction
+
+Bayes’ theorem can update uncertainty about a model parameter as well as uncertainty about an event. We develop finite posterior calculations, a tractable probability-parameter family, and predictions that retain uncertainty rather than replacing it immediately with one fitted number.
+
+## Model uncertainty about a parameter
+
+Bayesian estimation represents uncertainty about an unknown parameter using a probability distribution. The **prior** describes that uncertainty before the current data are incorporated. The **likelihood** describes the data model given a parameter value. The **posterior** is the parameter distribution after conditioning on the observed data. This is Bayes' theorem applied to an inferential problem, not a new rule for multiplying probabilities.
+
+For a finite parameter space, $P(\Theta=\theta_j\mid D)=L(\theta_j)\pi_j/\sum_kL(\theta_k)\pi_k$, where $\pi_j$ is the prior mass. The denominator is the model's marginal probability of the observed data and must be positive. For a continuous parameter, multiply likelihood by prior density and normalize with an integral. The posterior is a density; its height at one parameter value is not a point probability.
+
+Suppose a device has success probability either $1/4$ or $3/4$, initially with equal prior masses. After one observed success, the unnormalized posterior weights are $1/8$ and $3/8$. Their sum is $1/2$, so the posterior masses are $1/4$ and $3/4$. The data favor the higher-success model, but the calculation has not made it certain.
+
+A prior is a modeling choice that should be stated and examined. It may summarize previous information, a physical mechanism, or deliberately broad uncertainty. A likelihood also contains assumptions, including independence and measurement behavior. Multiplying the same evidence into both a data-informed prior and the likelihood without accounting for that reuse double-counts information. Different legitimate starting assumptions can produce different posterior answers.
+
+Related definitions: [Prior and posterior](ref:probability-statistics-bayesian-posterior).
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<QuickCheck id="quick-1" />
+
+## Beta distributions on a probability parameter
+
+A Bernoulli probability belongs to $[0,1]$. A convenient continuous prior family is the **beta distribution**, whose density for $0<p<1$ is $f(p)=p^{a-1}(1-p)^{b-1}/B(a,b)$ with $a,b>0$. The normalizing constant $B(a,b)=\int_0^1p^{a-1}(1-p)^{b-1}\,dp$ makes the total probability one. The density is zero outside the parameter interval. Individual endpoints have probability zero in these continuous models.
+
+For positive integer parameters, integration by parts yields $B(a,b)=(a-1)!(b-1)!/(a+b-1)!$. Thus Beta(2,2) has density $6p(1-p)$. Integrating gives one: $6[p^2/2-p^3/3]_0^1=1$. Beta(1,1) is uniform, with density one. A beta density need not be flat or symmetric; parameters less than one can produce integrable endpoint singularities.
+
+Its mean is $a/(a+b)$ and its variance is $ab/[(a+b)^2(a+b+1)]$. The moment formulas follow by inserting one or two extra powers of $p$ into the normalizing integral and taking beta-function ratios. For Beta(2,2), the mean is $1/2$, the second moment is $3/10$, and the variance is $1/20$.
+
+For a fixed ratio $a:b$, increasing both parameters concentrates the prior more strongly around the same mean. Beta(2,2) and Beta(20,20) both have mean $1/2$, but different variances. Saying “the prior mean is one half” therefore does not fully specify prior information. State both shape parameters, and do not mistake their values for actual newly observed trials.
+
+Related definitions: [Beta distribution](ref:probability-statistics-beta-prior).
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+## Binomial data update both shape parameters
+
+Suppose observations are conditionally independent Bernoulli trials given a common probability $p$. For $s$ successes and $n-s$ failures, the likelihood is proportional to $p^s(1-p)^{n-s}$. Multiplying by a Beta($a,b$) prior gives $p^{a+s-1}(1-p)^{b+n-s-1}$. Recognizing the same density family gives posterior Beta($a+s,b+n-s$). A family preserved by updating in this way is called **conjugate** for this likelihood.
+
+With prior Beta(2,3) and three successes in four trials, the posterior is Beta(5,4). Its mean is $5/9$ and variance is $20/(81\cdot10)=2/81$. The sample proportion is $3/4$, so the posterior mean differs from the maximum likelihood estimate. It combines the specified prior with the observed information.
+
+For $n>0$, the posterior mean can be written $[(a+b)/(a+b+n)]\,[a/(a+b)]+[n/(a+b+n)]\,(s/n)$. It is a weighted average of the prior mean and sample proportion. The sum $a+b$ controls the prior's weight in this particular mean formula. It is an effective prior weight, not a claim that exactly that many physical observations occurred. With a fixed prior, the data weight tends to one as $n$ grows.
+
+Sequential updating gives the same result as combining batches when they share the same parameter and are conditionally independent given it. Add successes to the first shape and failures to the second at each step. If the mechanism changes between batches, blindly pooling them may be inappropriate. Conjugacy simplifies arithmetic; it does not verify the data model.
+
+Related definitions: [Beta-binomial update](ref:probability-statistics-beta-binomial-update).
+
+<Figure id="probability-statistics-figure-20" alt="Updating a beta prior with observed trials" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+## Predict future observations by averaging over uncertainty
+
+A **posterior predictive probability** averages an observation probability over the posterior parameter distribution. For one future Bernoulli trial, $P(X_{\rm new}=1\mid D)=E[p\mid D]$. Under posterior Beta($A,B$), this is $A/(A+B)$. The future failure probability is $B/(A+B)$; these sum to one.
+
+Multiple future observations require care. Conditional on $p$, future Bernoulli trials are independent, but after averaging over uncertain $p$ they generally are not independent. The probability of two future successes is $E[p^2\mid D]=A(A+1)/[(A+B)(A+B+1)]$. For posterior Beta(2,2), this is $3/10$, whereas multiplying two one-step predictive probabilities gives $1/4$. Shared parameter uncertainty explains the difference.
+
+Similarly, the chance of one success followed by one failure is $E[p(1-p)\mid D]=AB/[(A+B)(A+B+1)]$. If order is not recorded, either order contributes, so exactly one success in two trials has twice this probability. This connects predictive updating with earlier lessons on conditional independence and counting.
+
+An estimate used for a decision depends on the loss. The posterior mean minimizes posterior expected squared error: expand $E[(p-c)^2\mid D]$ around $E[p\mid D]$. The posterior mode is a different summary. When $A,B>1$, the beta mode is $(A-1)/(A+B-2)$, obtained by differentiating the log density. Do not apply that interior formula to boundary or uniform cases without checking them. A useful report distinguishes a point estimate, a predictive probability, and remaining parameter uncertainty.
+
+Related definitions: [Posterior predictive probability](ref:probability-statistics-posterior-predictive).
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<QuickCheck id="quick-2" />
+
+## Credible intervals and sensitivity to assumptions
+
+A **credible interval** contains a stated amount of posterior probability. Once a prior, likelihood, and observed dataset are specified, an interval $[l,u]$ with $P(l\le p\le u\mid D)=0.95$ is a 95% posterior credible interval. This statement conditions on the data and treats the parameter as uncertain in the model. It differs from a confidence procedure's repeated-sampling coverage for a fixed parameter.
+
+For posterior Beta(2,1), the density is $2p$ and its CDF on $[0,1]$ is $F(p)=p^2$. The interval $[\sqrt{0.1},\sqrt{0.9}]$ has posterior probability $0.9-0.1=0.8$ and leaves 0.1 in each tail. The interval $[\sqrt{0.2},1]$ also has posterior probability 0.8 but is not equal-tailed. A credibility level alone does not uniquely specify an interval; describe the convention used.
+
+Sensitivity checks compare conclusions under reasonable prior or model choices. With two successes in two trials, a Beta(1,1) prior gives posterior mean $3/4$, while Beta(10,10) gives $12/22=6/11$. The same observed data support different summaries because the prior information differs. This is a reason to report assumptions, not to hide them or automatically prefer one numerical answer.
+
+No prior can recover probability for an event assigned zero prior mass merely by multiplying by a finite likelihood. If every possible parameter gives zero probability to the observation, the marginal likelihood is zero and the update is undefined: reconsider the model or data. Bayesian calculations quantify uncertainty within a model. They do not, by themselves, establish that the sampling mechanism is correct, observations are independent, or a predictive relationship is causal.
+
+Related definitions: [Credible interval](ref:probability-statistics-credible-interval).
+
+<Exercise id="49" />
+
+<Exercise id="50" />
+
+<Exercise id="51" />
+
+<Exercise id="52" />
+
+<Exercise id="53" />
+
+<Exercise id="54" />
+
+<Exercise id="55" />
+
+<Exercise id="56" />
+
+<Exercise id="57" />
+
+<Exercise id="58" />
