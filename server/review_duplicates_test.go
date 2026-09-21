@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/sha256"
 	"encoding/json"
+	"os"
 	"reflect"
 	"testing"
 )
@@ -22,6 +23,96 @@ func duplicateReviewTemplate(t *testing.T, g *Grading, id, concept, prompt strin
 	json.Unmarshal(raw, &base.Question)
 	base.Question["prompt"] = prompt
 	return base
+}
+
+func TestReviewDuplicatesThreeTargets(t *testing.T) {
+	g := reviewFixture(t)
+	a := duplicateReviewTemplate(t, g, "first", "a", "Evaluate exclusive OR.")
+	b := duplicateReviewTemplate(t, g, "second", "b", "Evaluate exclusive OR.")
+	c := duplicateReviewTemplate(t, g, "third", "c", "Evaluate exclusive OR.")
+	g.catalog.ReviewTemplates = []ReviewTemplate{a, b, c}
+	session, err := g.planReview(ReviewSessionRequest{Kind: "focused-practice", Mode: "quick"}, reviewDay)
+	if err != nil || len(session.Instances) != 1 {
+		t.Fatalf("three equivalent targets should present one question; got %d, %v", len(session.Instances), err)
+	}
+}
+
+func TestReviewDuplicatesStructuredInputs(t *testing.T) {
+	for _, variation := range []string{"hidden IDs and option order", "input label", "grid columns", "grid given value"} {
+		t.Run(variation, func(t *testing.T) {
+			g := reviewFixture(t)
+			a := duplicateReviewTemplate(t, g, "first", "a", "Choose the relationship and assignment.")
+			b := duplicateReviewTemplate(t, g, "second", "b", "Choose the relationship and assignment.")
+			assessment := func() *Assessment {
+				v := deterministicFixture(t)
+				v.Inputs = []AssessmentInput{
+					{ID: "relationship", Kind: "select", Label: "Relationship", Options: []AssessmentOption{{ID: "xor", Label: "Exactly one is true"}, {ID: "both", Label: "Both are true"}}},
+					{ID: "assignment", Kind: "grid", Label: "Assignment", Columns: []string{"p", "q"}, Rows: []AssessmentRow{{Cells: []AssessmentCell{{ID: "p", Kind: "boolean"}, {ID: "q", Kind: "boolean"}}}}},
+				}
+				return v
+			}
+			aa, ab := assessment(), assessment()
+			ab.Inputs[0].ID = "renamed-relationship"
+			ab.Inputs[0].Options = []AssessmentOption{{ID: "renamed-both", Label: "Both are true"}, {ID: "renamed-xor", Label: "Exactly one is true"}}
+			ab.Inputs[1].ID = "renamed-assignment"
+			ab.Inputs[1].Rows[0].Cells[0].ID = "renamed-p"
+			ab.Inputs[1].Rows[0].Cells[1].ID = "renamed-q"
+			ab.Feedback.Correct = "Different hidden feedback"
+			want := 2
+			switch variation {
+			case "hidden IDs and option order":
+				want = 1
+			case "input label":
+				ab.Inputs[0].Label = "Different relationship"
+			case "grid columns":
+				ab.Inputs[1].Columns = []string{"r", "s"}
+			case "grid given value":
+				ab.Inputs[1].Rows[0].Cells[0].Given = json.RawMessage(`true`)
+			}
+			delete(a.Question, "choice")
+			delete(b.Question, "choice")
+			a.Question["assessment"], b.Question["assessment"] = aa, ab
+			g.catalog.ReviewTemplates = []ReviewTemplate{a, b}
+			session, err := g.planReview(ReviewSessionRequest{Kind: "focused-practice", Mode: "quick"}, reviewDay)
+			if err != nil || len(session.Instances) != want {
+				t.Fatalf("structured variation %s produced %d questions; want %d, error %v", variation, len(session.Instances), want, err)
+			}
+		})
+	}
+}
+
+func TestReviewDuplicatesPublishedExclusiveOR(t *testing.T) {
+	raw, err := os.ReadFile("../output/grading-catalog.json")
+	if os.IsNotExist(err) {
+		t.Skip("run npm run content to test the published catalog")
+	}
+	if err != nil {
+		t.Fatal(err)
+	}
+	g := reviewFixture(t)
+	if err := json.Unmarshal(raw, &g.catalog); err != nil {
+		t.Fatal(err)
+	}
+	const exercise = "propositional-logic-146"
+	original, ok := g.catalog.Exercises[exercise]
+	if !ok {
+		t.Fatal("published exclusive OR exercise missing")
+	}
+	g.catalog.Exercises = map[string]json.RawMessage{exercise: original}
+	g.catalog.ReviewTemplates = nil
+	templates := g.reviewTemplates()
+	if len(templates) != 4 {
+		t.Fatalf("expected XOR's two concepts by two skills, got %d target mappings", len(templates))
+	}
+	session, err := g.planReview(ReviewSessionRequest{Kind: "focused-practice", Mode: "quick", Lesson: "propositional-logic"}, reviewDay)
+	if err != nil || len(session.Instances) != 1 {
+		t.Fatalf("published XOR repeated across target mappings: got %d questions, %v", len(session.Instances), err)
+	}
+	instance := session.Instances[0]
+	assessment := assessmentFromQuestion(instance.Question)
+	if instance.SourceTarget != "exercise:"+exercise || assessment == nil || len(assessment.Inputs) != 2 || assessment.Inputs[0].Kind != "select" || assessment.Inputs[1].Kind != "grid" || len(assessment.Inputs[0].Options) != 4 || !reflect.DeepEqual(assessment.Inputs[1].Columns, []string{"p", "q"}) {
+		t.Fatal("deduplicating published XOR lost its source, relationship choices, or assignment grid")
+	}
 }
 
 func TestReviewDuplicatesSameSourceAcrossTargets(t *testing.T) {
