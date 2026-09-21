@@ -80,3 +80,12 @@ no source assignments or unrelated lesson review digests were refreshed.
 Validation: `npm run audit:tex`, `npm run content:build`,
 `npm run content:validate`, the TeX teaching tests, and formatting checks pass.
 The generated notebook and grading catalog are unchanged by this metadata repair.
+
+The published compatibility fixture retains every original deployment hash. Its
+single explicit inspected update pins the repaired `content/tex-teaching.json`
+artifact to commit `0c684d08d78f37a69b0af77990c0bc5fbe9fd600` and this report.
+The normalized artifact changed only through the 23 quick-check fingerprints and
+dated inspection notes; the existing normalization already omits placement
+hashes. The test still compares the complete normalized artifact against an exact
+SHA-256, with no additional fields excluded, and names the applicable provenance
+for each artifact. All ten published compatibility checks pass after rebuilding.
