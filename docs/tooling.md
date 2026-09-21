@@ -51,8 +51,47 @@ learning material stays declarative under `content/`; builds never author it.
 | `npm run test:e2e`                            | All browser checks against isolated local services; requires the production build.                                         |
 | `(cd server && go test -race -count=1 ./...)` | Go tests, including the shared grading fixtures and published catalog.                                                     |
 
-Tests and builds never mutate canonical `content/`. CI checks this after the
-complete workflow. There are no hidden root `pretest`/`precontent` hooks.
+Tests and builds never mutate canonical `content/`. Each CI job checks tracked
+changes and untracked files under `content/`, including after a failed command.
+There are no hidden root `pretest`/`precontent` hooks.
+
+## CI layout
+
+The workflow has seven plainly named jobs:
+
+- **quality** starts immediately: formatting, root typecheck, architecture/content
+  validation without writes.
+- **content** starts immediately and compiles the curriculum once. Its immutable
+  `curriculum` artifact contains runtime content, grading catalog and formula
+  inventory from this exact workflow run.
+- **unit**, **web**, **verification**, and **go** run concurrently after content.
+  They respectively run curriculum/TeX audits and root tests, the production PWA build
+  and web tests, both independent Python oracles, and `go test -race ./...`.
+- **e2e** downloads the same curriculum and the web job's production assets. It
+  runs all browser specs with two isolated workers; it never rebuilds content or
+  the production PWA. Go race tests do not wait for browser tests.
+
+CI calls the existing build/test primitives explicitly: `content:build` once,
+`audit:curriculum`, `test:unit`, `test:utilities`, and `npm run build --prefix web`.
+The convenient local `npm test` and `npm run web:build` commands still prepare
+all their prerequisites. Read-only `content:validate` remains a separate check;
+it validates source data again but does not compile a second set of artifacts.
+Artifacts are mandatory, scoped to the current run, and retained for seven days.
+
+Standard `setup-node` npm download caches use the root lockfile, or both lockfiles
+for web/E2E jobs. `setup-go` retains module/build caching keyed by Go version and
+`server/go.sum`. Python's pip cache uses the pinned verification requirements.
+Each job installs only the dependencies it needs; no `node_modules` is transferred.
+Playwright's browser and system-dependency installation took only 22 seconds in
+the measured baseline. Keep the lockfile-compatible Chromium installation rather
+than caching large browser archives, following
+[Playwright's CI guidance](https://playwright.dev/docs/ci#caching-browsers).
+
+All checks run on every PR and main push. No path gating is introduced: curriculum,
+grading and browser contracts cross directory boundaries, so conservative full
+coverage remains easy to understand. Superseded runs of the same PR are cancelled.
+Each major check has its own timed Actions step; E2E writes per-spec timings and
+Go's JSON test events are retained as artifacts for future investigations.
 
 ## Browser checks
 
@@ -63,9 +102,15 @@ npm run test:e2e
 npm run test:e2e -- mdx sources offline
 ```
 
-The runner discovers `e2e/*.spec.ts` and `*.spec.mjs`, runs them serially, and
-reports failures. Checks launch loopback Vite/Go services, use synthetic data or
-mocked API responses, and clean up their processes. Screenshots and captured
+The runner discovers `e2e/*.spec.ts` and `*.spec.mjs` and runs two specs at a
+time, starting the longest measured suites first. Set `E2E_WORKERS=1` for serial
+troubleshooting; only integer limits from 1 to 4 are accepted. Every selected spec
+runs even if another fails. `output/e2e/timings.json` records per-spec outcomes and
+elapsed times as well as overall wall time.
+
+Checks use separate ephemeral loopback ports, browser contexts, temporary Go
+databases, screenshot directories and Vite dependency caches. They clean up their
+processes and use synthetic data or mocked API responses. Screenshots and captured
 reports go under ignored `output/e2e/`. `CHROME_BIN` optionally selects an existing
 browser; `PLAYWRIGHT_MODULE` optionally selects another Playwright installation.
 The default is Playwright's full Chromium executable running headless, preserving
@@ -91,10 +136,9 @@ npm run verify:linear-algebra
 
 `uv venv output/verification-venv` and `uv pip install --python
 output/verification-venv/bin/python -r tools/verification/requirements.txt` are
-equivalent when the system Python lacks `venv` support. This supplemental verifier
-currently stops at the pre-existing `linear-algebra-vectors/23` prompt/fixture
-divergence. The strict TeX release gate also reports 24 pre-existing stale audit
-records. Neither is repaired by refreshing source data during structural cleanup.
+equivalent when the system Python lacks `venv` support. Both this exact SymPy
+verifier and the strict TeX inspection audit run in CI; neither regenerates
+expected data or inspection records.
 
 The published compatibility fixture contains independently captured deployed
 hashes; never regenerate it simply to pass a test. Pacing fixtures preserve
