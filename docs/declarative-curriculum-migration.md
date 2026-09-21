@@ -83,15 +83,20 @@ The follow-up removes that module and its rendering role.
 The browser now imports canonical lesson modules through
 `web/src/lessonModules.ts`. Vite's `@mdx-js/rollup` integration compiles them with
 the standard MDX compiler. `web/src/LessonDocument.tsx` renders the resulting React
-document with lesson context and the `lessonComponents` registry. The registry's
+document with lesson context and the `lessonComponents` registry supplied through
+the standard `components` prop. Each lesson loads on demand as a separate module,
+and the PWA precaches all lesson chunks for offline navigation. The registry's
 `Figure`, `Exercise`, and `QuickCheck` entries are actual React components which
 resolve declarative data and delegate to the established figure and exercise UI.
 A new React teaching component needs a component implementation and registry entry,
 not an MDX-parser extension. Literal scalar props are supported.
 
-The normal remark/rehype pipeline handles Markdown, math, term links, and generic
+The shared compiler configuration in `web/lesson-mdx-options.ts` supplies the
+normal remark/rehype pipeline for Markdown, math, term links, and generic
 heading-based layout. The layout transform preserves component nodes instead of
-translating each recognized tag into a different content representation. MDX
+translating each recognized tag into a different content representation. React
+layout wrappers group the compiled children for teaching cards and preserve
+formula-popover source identities; they do not parse or regenerate lesson prose. MDX
 validation in `scripts/lesson-mdx-policy.ts` rejects content-generating JavaScript,
 arbitrary imports, spreads, event-handler props, and other disallowed executable
 constructs independently of rendering.
@@ -100,8 +105,8 @@ constructs independently of rendering.
 order, teaching context, figure references, inline assessment membership, and
 validation. Assessment tags are omitted from grading-context prose; figure
 references remain native MDX and are inspected as component nodes. The existing
-content build joins those facts with YAML/JSON to
-produce server/grading/index assets. The browser does not import the inspector
+content build joins those facts with YAML/JSON to produce server/grading/index
+assets. The browser does not import the inspector
 or use its metadata as an alternative prose renderer. Neither path writes
 canonical curriculum. The architecture check rejects the retired adapter's return
 and direct browser imports of build processors; render tests exercise compiled
@@ -114,11 +119,68 @@ new approval of unchanged mathematics. Historical validation below describes the
 initial authoring removal; it must not be read as a claim that the old adapter was
 standard MDX rendering.
 
+### Representation migration and saved-work compatibility
+
+Before removing the adapter, all 75 lesson outputs were compared with the native
+MDX metadata. The comparison maps an old Markdown figure marker and a native
+`Figure` node to the same `{ figureId, alt }` record. All text between those nodes
+must match, and exercise/quick-check placement maps must match exactly. It never
+converts native MDX back into legacy Markdown.
+
+The published notebook and grading catalog are checked against captured semantic
+hashes in `scripts/fixtures/mdx-metadata-baseline.json`. The notebook comparison
+normalizes figure spelling and excludes dependent quick-check teaching digests;
+it preserves exact question content, lesson and section order, block identities,
+and assessment placement. The catalog comparison normalizes the same figure
+references and excludes the catalog version and previously added declarative
+review-bank field. A separate exact hash checks all exercise grading contracts,
+question data and analytics. The existing exhaustive Go fixtures cover the
+materialized review banks and frozen review behavior.
+
+Native figure syntax changes the bytes inspected by editorial records even though
+it changes no mathematical claim. The migration explicitly carries forward the
+previously inspected version after checking the semantic comparison:
+
+| Record                                                      | Representation-only changes |
+| ----------------------------------------------------------- | --------------------------: |
+| Teaching sections whose serialized figure references change |                          65 |
+| Prerequisite teaching-hash occurrences                      |                         975 |
+| Quick-check teaching hashes                                 |                          23 |
+| TeX placement hashes                                        |                          29 |
+| Lesson source-inspection hashes                             |                          37 |
+| TeX source-inspection hash                                  |                           1 |
+| Curriculum-unit inspection hashes                           |                          65 |
+| Concept quote offsets                                       |                          61 |
+
+Of the 61 concept quote records, 37 also change the spelling of an embedded figure
+reference. Figure IDs, alternative text, and surrounding teaching text remain
+identical. No lesson prose, worksheet question, answer, source assignment, or
+inspection date is rewritten by this representation migration.
+
+The metadata serialization has a new SHA-256, but the grading version remains
+unchanged so saved offline submissions still match the catalog. The two-hash
+fixture `scripts/fixtures/mdx-migration-version.json` maps only this exact proven
+representation hash to the previous grading version. Every future content change
+uses its ordinary new hash. It is a one-time compatibility record, not a general
+version override, authoring source, or digest-approval command. Tests independently
+assert that the current representation matches that fixture and that all grading
+contracts remain exact. Stored attempts and frozen reviews keep their saved
+question/context data.
+
+The render suite separately compiles every canonical lesson through standard MDX,
+checks a new registered React component with literal props and nested content,
+and exercises the actual figure and assessment components. It also renders lesson
+prose with the legacy block arrays removed, proving those arrays are not the
+browser's lesson source. Build immutability remains enforced by CI's final tracked
+and untracked `content/` checks. Integrated validation results for this follow-up
+are recorded separately from the initial authoring-removal results below.
+
 ## Verification record
 
 Initial authoring-removal validation on September 21, 2026 used the first
-metadata adapter and declarative review-bank pipeline. The results below include the existing deterministic fixtures and
-review/catalog/history compatibility suites. Migration hashes
+metadata adapter and declarative review-bank pipeline. The results below include
+the existing deterministic fixtures and review/catalog/history compatibility
+suites. Migration hashes
 establish preservation; they do not establish mathematical correctness or replace
 source passage inspection. No source-inspection date or digest is refreshed just
 to pass validation.
