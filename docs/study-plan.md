@@ -8,23 +8,23 @@ The goal is not to recreate an entire undergraduate math curriculum before start
 
 ### Discrete mathematics and proofs
 
-| Lesson                                                                                        | Worksheet source                                                 |
-| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| 01. [Propositional Logic](../content/lessons/01-propositional-logic.md)                       | [YAML](../content/worksheets/01-propositional-logic.yaml)        |
-| 02. [Predicates and Quantifiers](../content/lessons/02-predicates-and-quantifiers.md)         | [YAML](../content/worksheets/02-predicates-and-quantifiers.yaml) |
-| 03. [Sets and Set Operations](../content/lessons/03-sets-and-set-operations.md)               | [YAML](../content/worksheets/03-sets-and-set-operations.yaml)    |
-| 04. [Relations](../content/lessons/04-relations.md)                                           | [YAML](../content/worksheets/04-relations.yaml)                  |
-| 05. [Functions](../content/lessons/05-functions.md)                                           | [YAML](../content/worksheets/05-functions.yaml)                  |
-| 06. [Sequences and Summations](../content/lessons/06-sequences-and-summations.md)             | [YAML](../content/worksheets/06-sequences-and-summations.yaml)   |
-| 07. [Direct Proof](../content/lessons/07-direct-proof.md)                                     | [YAML](../content/worksheets/07-direct-proof.yaml)               |
-| 08. [Proof by Contrapositive](../content/lessons/08-proof-by-contrapositive.md)               | [YAML](../content/worksheets/08-proof-by-contrapositive.yaml)    |
-| 09. [Proof by Contradiction](../content/lessons/09-proof-by-contradiction.md)                 | [YAML](../content/worksheets/09-proof-by-contradiction.yaml)     |
-| 10. [Mathematical Induction](../content/lessons/10-mathematical-induction.md)                 | [YAML](../content/worksheets/10-mathematical-induction.yaml)     |
-| 11. [Strong Induction](../content/lessons/11-strong-induction.md)                             | [YAML](../content/worksheets/11-strong-induction.yaml)           |
-| 12. [Combinatorics](../content/lessons/12-combinatorics.md)                                   | [YAML](../content/worksheets/12-combinatorics.yaml)              |
-| 13. [Recurrence Relations](../content/lessons/13-recurrence-relations.md)                     | [YAML](../content/worksheets/13-recurrence-relations.yaml)       |
-| 14. [Graph Theory](../content/lessons/14-graph-theory.md)                                     | [YAML](../content/worksheets/14-graph-theory.yaml)               |
-| 15. [Asymptotic Growth and Algorithmic Reasoning](../content/lessons/15-asymptotic-growth.md) | [YAML](../content/worksheets/15-asymptotic-growth.yaml)          |
+| Lesson                                                                                         | Worksheet source                                                 |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| 01. [Propositional Logic](../content/lessons/01-propositional-logic.mdx)                       | [YAML](../content/worksheets/01-propositional-logic.yaml)        |
+| 02. [Predicates and Quantifiers](../content/lessons/02-predicates-and-quantifiers.mdx)         | [YAML](../content/worksheets/02-predicates-and-quantifiers.yaml) |
+| 03. [Sets and Set Operations](../content/lessons/03-sets-and-set-operations.mdx)               | [YAML](../content/worksheets/03-sets-and-set-operations.yaml)    |
+| 04. [Relations](../content/lessons/04-relations.mdx)                                           | [YAML](../content/worksheets/04-relations.yaml)                  |
+| 05. [Functions](../content/lessons/05-functions.mdx)                                           | [YAML](../content/worksheets/05-functions.yaml)                  |
+| 06. [Sequences and Summations](../content/lessons/06-sequences-and-summations.mdx)             | [YAML](../content/worksheets/06-sequences-and-summations.yaml)   |
+| 07. [Direct Proof](../content/lessons/07-direct-proof.mdx)                                     | [YAML](../content/worksheets/07-direct-proof.yaml)               |
+| 08. [Proof by Contrapositive](../content/lessons/08-proof-by-contrapositive.mdx)               | [YAML](../content/worksheets/08-proof-by-contrapositive.yaml)    |
+| 09. [Proof by Contradiction](../content/lessons/09-proof-by-contradiction.mdx)                 | [YAML](../content/worksheets/09-proof-by-contradiction.yaml)     |
+| 10. [Mathematical Induction](../content/lessons/10-mathematical-induction.mdx)                 | [YAML](../content/worksheets/10-mathematical-induction.yaml)     |
+| 11. [Strong Induction](../content/lessons/11-strong-induction.mdx)                             | [YAML](../content/worksheets/11-strong-induction.yaml)           |
+| 12. [Combinatorics](../content/lessons/12-combinatorics.mdx)                                   | [YAML](../content/worksheets/12-combinatorics.yaml)              |
+| 13. [Recurrence Relations](../content/lessons/13-recurrence-relations.mdx)                     | [YAML](../content/worksheets/13-recurrence-relations.yaml)       |
+| 14. [Graph Theory](../content/lessons/14-graph-theory.mdx)                                     | [YAML](../content/worksheets/14-graph-theory.yaml)               |
+| 15. [Asymptotic Growth and Algorithmic Reasoning](../content/lessons/15-asymptotic-growth.mdx) | [YAML](../content/worksheets/15-asymptotic-growth.yaml)          |
 
 Download generated PDFs with answer keys from each lesson in the study app.
 

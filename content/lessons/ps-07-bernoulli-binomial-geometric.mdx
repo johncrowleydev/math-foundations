@@ -1,0 +1,173 @@
+# Bernoulli, Binomial, and Geometric Models
+
+Named distributions package recurring experiments, not just formulas. A Bernoulli variable records one binary event; a binomial variable counts successes in a fixed number of independent equal-rate trials; a geometric variable counts trials until the first success. We will derive their probabilities and moments from the tools already developed, check their assumptions, and use their supports to interpret exact counts and tails correctly.
+
+## Bernoulli variables model one binary event
+
+A Bernoulli variable records whether one event occurs. Write $X\sim\operatorname{Bernoulli}(p)$ when $P(X=1)=p$ and $P(X=0)=1-p$. The symbol $\sim$ means “has the distribution,” not approximate equality. We allow $0\leq p\leq1$, including the constant endpoint cases. For $0<p<1$ the support is $\{0,1\}$; at an endpoint only one value has positive mass.
+
+“Success” is simply the event coded as one. It can mean a defect, a timeout, or a desired result. Choosing that label does not make it favorable. If a timeout occurs with probability $0.03$, its indicator is Bernoulli with parameter $0.03$. Coding successful delivery instead gives parameter $0.97$. Complementing the variable changes $X$ to $1-X$ and switches the parameter.
+
+Because $X$ takes only zero and one, $X^2=X$. Therefore $E[X]=p$ and $\operatorname{Var}(X)=p-p^2=p(1-p)$. The variance is largest at $p=1/2$ and zero at the endpoints. A rare indicator is usually zero, so its variance can be small even though a value one may represent a consequential event. The numerical coding and the real-world cost are separate quantities.
+
+For a payoff $Y=a+bX$, the mean is $a+bp$ and the variance is $b^2p(1-p)$. Thus a binary event can produce nonbinary numerical values after a transformation, while its probability structure still comes from one Bernoulli indicator. This representation will let us derive larger count models rather than treating their moment formulas as unrelated facts.
+
+Related definitions: [Bernoulli distribution](ref:probability-statistics-bernoulli-distribution).
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+## Binomial counts combine fixed independent trials
+
+A binomial experiment has a fixed number $n$ of trials, each with two coded outcomes, a common success probability $p$, and mutual independence. The count of successes is $X\sim\operatorname{Binomial}(n,p)$. For $0<p<1$, its support is $0,1,\ldots,n$. At $p=0$ or $p=1$, the count is constant zero or $n$.
+
+A particular ordered pattern with $k$ successes and $n-k$ failures has probability $p^k(1-p)^{n-k}$. There are $\binom nk$ ways to choose the success positions. Those patterns are disjoint, so $P(X=k)=\binom nkp^k(1-p)^{n-k}$. The combination coefficient counts different positions; the powers supply the probability of each pattern. Omitting either part answers a different question.
+
+For five independent attempts with success probability $1/3$, exactly two successes have probability $\binom52(1/3)^2(2/3)^3=80/243$. A specified pattern such as success, failure, success, failure, failure has only probability $8/243$. Ten patterns contribute to the count event. Their probabilities are equal because all trials share the same success rate.
+
+Write $X=I_1+\cdots+I_n$ using the trial indicators. Linearity gives $E[X]=np$. Independence and the Bernoulli variance give $\operatorname{Var}(X)=np(1-p)$. Normalization follows from the binomial theorem: summing the PMF yields $(p+(1-p))^n=1$. These derivations expose the assumptions. Unequal success rates preserve an indicator-sum description but generally lose the binomial PMF; dependent trials need still more information about joint behavior.
+
+The endpoint models can be checked without manipulating $0^0$. If $p=0$, every trial fails and the only possible count is zero. If $p=1$, every trial succeeds and the count is $n$. If $n=0$, the empty collection contains zero successes regardless of $p$. State these cases directly; the familiar PMF expression is most convenient for $0<p<1$. Their means and variances still agree with $np$ and $np(1-p)$, so the moment formulas provide a continuous connection to the boundary cases.
+
+Related definitions: [Binomial distribution](ref:probability-statistics-binomial-distribution).
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+<QuickCheck id="quick-1" />
+
+## Binomial tails and model checks
+
+A count event often contains several possible values. Compute $P(X\leq k)$ by summing masses from zero through $k$. For an upper tail, use a complement when it shortens the sum: $P(X\geq k)=1-P(X\leq k-1)$. Integer endpoints matter exactly as they did for general discrete CDFs. “More than two” starts at three; “at least two” includes two.
+
+For four independent attempts with success probability $1/4$, no success has probability $(3/4)^4=81/256$. At least one success therefore has probability $175/256$. At least two successes subtracts both zero and one: $1-[81/256+4(1/4)(3/4)^3]=1-189/256=67/256$. The complement uses all excluded counts, not just the nearest endpoint.
+
+A proportion $\widehat p=X/n$ for positive $n$ has mean $p$ and variance $p(1-p)/n$, by scaling the binomial moments. Its support consists of multiples of $1/n$, so it remains discrete. This introduces a quantity used later in estimation; at present $p$ is a supplied model parameter, not a value inferred from data. An observed fraction need not equal the common success probability.
+
+Before applying the binomial formula, inspect how the data are generated. A fixed set of trials does not imply independence. A shared environment can link outcomes; sampling a substantial fraction of a finite population without replacement creates dependence; a learning process can change the success probability. A binomial approximation may still be useful in a suitable setting, but state it as an approximation and explain which assumption is being simplified. The formula cannot validate its own modeling assumptions.
+
+When success probabilities differ, a short example reveals what changes. For independent trials with rates $1/4$ and $3/4$, exactly one success has probability $(1/4)(1/4)+(3/4)(3/4)=5/8$. Replacing both rates by their average $1/2$ would give $1/2$, not $5/8$. Both models have expected count one, but they do not have the same distribution. Matching the mean is therefore not sufficient to justify a binomial replacement. The conditional or direct pattern method remains available for the actual unequal-rate experiment.
+
+Related definitions: [Binomial sample proportion](ref:probability-statistics-binomial-proportion).
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+## Geometric waiting time counts through first success
+
+A geometric experiment repeats mutually independent Bernoulli trials with the same success probability until the first success. In this subject, $T\sim\operatorname{Geometric}(p)$ counts all trials including the successful one. Its support is $1,2,3,\ldots$ for $0<p<1$. We also allow $p=1$, giving $T=1$ with certainty. With $p=0$, a first success never occurs, so there is no finite-valued waiting time of this form.
+
+The event $T=k$ means exactly $k-1$ initial failures followed by a success. It is one specified pattern, so $P(T=k)=(1-p)^{k-1}p$. There is no binomial coefficient because the success must be last and no earlier success is permitted. The tail $P(T>m)=(1-p)^m$ for integer $m\geq0$ says the first $m$ trials all fail. Consequently $P(T\leq m)=1-(1-p)^m$ for positive integer $m$.
+
+With success probability $1/4$, first success on trial three has probability $(3/4)^2(1/4)=9/64$. Success by trial three has probability $1-(3/4)^3=37/64$. These are different events: “on” specifies the stopping position, while “by” allows any earlier success. A waiting-time mean can be noninteger because it averages over many possible stopping positions.
+
+Another common convention counts failures before success: $F=T-1$, supported on zero and the positive integers. Its PMF is $P(F=j)=(1-p)^jp$. The distributions are shifts of one another, so their means differ by one and their variances are identical. Always state which quantity is counted before entering parameters or interpreting a reported value. A formula without its support and counting convention is incomplete.
+
+Related definitions: [Geometric distribution](ref:probability-statistics-geometric-distribution).
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+<QuickCheck id="quick-2" />
+
+## Geometric moments and memorylessness
+
+For the trials-through-success convention, the mean is $E[T]=1/p$ and the variance is $(1-p)/p^2$. One derivation uses the geometric series and its derivatives from calculus. Writing $q=1-p$, $\sum_{k\geq1}kq^{k-1}=1/(1-q)^2$, so multiplying by $p$ gives the mean. A second differentiation yields $E[T(T-1)]=2q/p^2$. Adding $E[T]$ gives the second moment, and subtracting $1/p^2$ leaves variance $q/p^2$.
+
+For $p=1/4$, the mean is four trials and the variance is twelve. For failures before success, $F=T-1$ has mean three and the same variance twelve. The shift changes the origin of the count but not its spread. Standard deviation is $\sqrt{1-p}/p$ for both conventions. These formulas rely on a constant success probability throughout the process.
+
+The geometric distribution is memoryless: for nonnegative integers $m,n$ and $0<p<1$, $P(T>m+n\mid T>m)=(1-p)^{m+n}/(1-p)^m=(1-p)^n$. After observing $m$ failures, the remaining waiting-time distribution is the same as at the start. This does not mean the past did not happen; it means the model gives future trials the same independent success chances. The next trial is not “due” to succeed because of past failures.
+
+Memorylessness can fail when repeated attempts improve skill, exhaust a finite pool, or reveal information about an unknown success rate. Even if attempts are independent conditional on a hidden rate, a long run of failures can change beliefs about that rate. Use the geometric model when its constant-rate independent mechanism is appropriate, and distinguish this model-based statement from an unsupported claim about every real waiting process.
+
+A planning threshold can be obtained from the tail instead of the mean. With success probability $1/2$, requiring success by trial $m$ with probability at least $0.9$ means $1-2^{-m}\geq0.9$, or $2^{-m}\leq0.1$. Trial three gives success probability $7/8$, too small; trial four gives $15/16$, meeting the requirement. The mean waiting time is only two trials, showing why an expected waiting time is not the same as a high-probability completion guarantee. The desired criterion determines whether to use a moment or a tail probability.
+
+Related definitions: [Geometric memorylessness](ref:probability-statistics-memorylessness).
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<Exercise id="49" />
+
+<Exercise id="50" />

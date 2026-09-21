@@ -1,0 +1,179 @@
+# Differentiation Rules and Trigonometric Functions
+
+The definition tells us what a derivative means, but expanding a new difference quotient for every calculation would hide the structure of complicated functions. Differentiation rules package valid limit arguments into reusable steps. We first exploit linearity and powers, then learn why products and quotients need extra terms. Trigonometric derivatives add periodic motion to the functions we can analyze. Keep algebra, domain restrictions, and angle units visible: a memorized rule is only useful when applied to the function actually given. This lesson treats sums, products, quotients, and elementary functions; the next lesson handles a function nested inside another function.
+
+## Linearity and the power rule
+
+For a constant $c$, $(d/dx)c=0$. For a positive integer $n$, the power rule says $(d/dx)x^n=nx^{n-1}$. The coefficient $n$ comes from the first-order term in $(x+h)^n-x^n$; terms containing higher powers of $h$ disappear after division by $h$ and passage to the limit. Thus the rule expresses the same limiting rate already computed for squares and cubes.
+
+Differentiation is linear: $(af+bg)'=af'+bg'$ for constants $a,b$. To see the sum part, split the numerator $f(x+h)+g(x+h)-f(x)-g(x)$ into the two function increments. Dividing by $h$ and taking limits produces $f'+g'$. Constant factors similarly pass through the quotient and its limit. These arguments require the component derivatives to exist at the input under consideration.
+
+As a worked example, let $p(x)=4x^5-3x^2+7x-8$. Applying the rules term by term gives $p'(x)=20x^4-6x+7$. The derivative of the constant is zero, while the derivative of $7x$ is $7$, not zero. At $x=1$ the rate is $21$. A second derivative is another application of the rules: $p''(x)=80x^3-6$. It describes the change in slope rather than repeating the original polynomial's values.
+
+Choose a useful algebraic form before differentiating. For $f(x)=x(x+2)$, expanding gives $x^2+2x$ and hence derivative $2x+2$. This does not justify multiplying derivatives; it uses equality of the original expressions. The next section will supply the genuine product rule. Similarly, a symbol that is constant with respect to one variable may not be constant with respect to another. In $f(x)=ax^2$ with fixed parameter $a$, the derivative is $2ax$. If $a$ itself depends on $x$, this calculation no longer applies unchanged. Naming the independent variable keeps these assumptions clear.
+
+Related definitions: [Power rule](ref:calculus-power-rule); [Linearity of differentiation](ref:calculus-linearity-differentiation).
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+## Negative and fractional powers
+
+The same power-rule formula extends beyond positive integers, but its domain matters. Write $1/x^m=x^{-m}$ for $x\ne0$. Then $(x^{-m})'=-mx^{-m-1}$. For example, $(4/x^3)'=(4x^{-3})'=-12x^{-4}=-12/x^4$. The negative exponent is part of the exponent multiplied into the coefficient, so it changes the derivative's sign.
+
+Roots can also be written as powers. On $x>0$, $(\sqrt{x})'=(x^{1/2})'=(1/2)x^{-1/2}=1/(2\sqrt{x})$. More generally, for a rational exponent $r$, $(x^r)'=rx^{r-1}$ wherever the corresponding real function is differentiable. Restricting to $x>0$ gives one common domain on which all the rational powers used here are unambiguous. Odd roots can sometimes be extended to negative inputs, but that requires using the real-root interpretation consistently rather than a calculator's complex-power convention.
+
+Consider $f(x)=3\sqrt{x}+2/x$ on $x>0$. Rewrite it as $3x^{1/2}+2x^{-1}$, then differentiate to get $f'(x)=3/(2\sqrt{x})-2/x^2$. At $x=4$, this gives $3/4-1/8=5/8$. Keeping exact fractions makes the combination transparent and avoids rounding errors in a quantity that may later be used as an answer itself.
+
+A formula with a vanishing denominator at a boundary does not automatically settle differentiability at that boundary. Return to the definition. For $f(x)=x^{2/3}$ on the real line, the derivative formula is $(2/3)x^{-1/3}$ away from zero; the difference quotient at zero is $h^{-1/3}$, unbounded with opposite signs. For $x^{4/3}$, the quotient at zero is $h^{1/3}\to0$, so a derivative does exist there despite the fractional exponent. The exponent and domain together determine the behavior. Do not treat every root as having the same singularity as a square root.
+
+Related definitions: [Fractional-power derivative](ref:calculus-fractional-power-derivative).
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+## Products have two contributions
+
+If $f$ and $g$ are differentiable, their product satisfies $(fg)'=f'g+fg'$. Each term captures one factor's first-order change while retaining the other factor's value. This is why the derivative of a product is generally not the product of derivatives. Even the simple product $x\cdot x=x^2$ exposes that mistake: multiplying the two derivatives would give $1$, while the actual derivative is $2x$.
+
+To see the source of the two terms, insert and subtract $f(x+h)g(x)$ in the product increment. After grouping and dividing by $h$, the quotient becomes
+
+$f(x+h)\dfrac{g(x+h)-g(x)}{h}+g(x)\dfrac{f(x+h)-f(x)}{h}$.
+
+Because differentiability implies continuity, $f(x+h)\to f(x)$. Taking limits gives $fg'+gf'$, the same product rule with its terms written in reverse order. The proof uses values as well as rates, so both pieces of data matter in a table-based problem.
+
+For $p(x)=(x^2+1)(x^3-2)$, differentiate the two factors separately: $p'(x)=2x(x^3-2)+(x^2+1)3x^2$. This factored expression is already a complete derivative. Expanding it gives $5x^4+3x^2-4x$, which can serve as an independent algebraic check by first expanding $p=x^5+x^3-2x^2-2$. A shorter answer is not inherently more correct than a factored one.
+
+The rule extends to three factors by treating two of them as a single function and applying the rule twice: $(fgh)'=f'gh+fg'h+fgh'$. Every term differentiates exactly one factor. In applications a quantity such as revenue $p(q)q$ contains both a changing price and changing quantity. Its derivative is $p'(q)q+p(q)$, not merely the current price. The extra term records the effect of the price change on all units in the continuous model.
+
+There is also a geometric way to remember the product rule. Let the sides of a rectangle be $f(x)$ and $g(x)$ at the input of interest. A small input increment changes both sides. The area change splits into a strip along one side, a strip along the other, and a small corner. The strips contribute approximately $g(x)f'(x)h$ and $f(x)g'(x)h$. The corner involves the product of two small side changes, so after dividing by $h$ it vanishes in the differentiable limit. This picture explains the two terms and why there is no surviving $f'g'$ term in the first derivative. The algebraic proof is still needed for functions whose values are negative, since signed function values are not literal side lengths.
+
+Related definitions: [Product rule](ref:calculus-product-rule).
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+<QuickCheck id="quick-1" />
+
+## Quotients and algebraic checks
+
+For differentiable $f,g$ with $g(x)\ne0$, the quotient rule is $(f/g)'=(f'g-fg')/g^2$. Its order matters: derivative of the numerator times denominator, minus numerator times derivative of denominator. Reversing the subtraction reverses the answer. The denominator is squared, but squaring does not remove the original restriction that $g$ be nonzero.
+
+One way to derive the rule is to write $q=f/g$, so $f=qg$ on the domain under consideration. The product rule gives $f'=q'g+qg'$. Solving for $q'$ gives $q'=f'/g-fg'/g^2=(f'g-fg')/g^2$. The division used here explains the nonzero-denominator condition rather than treating it as a separate memorization item.
+
+For $q(x)=(x^2+1)/(x-2)$, the numerator of its derivative is $2x(x-2)-(x^2+1)=x^2-4x-1$. Thus $q'(x)=(x^2-4x-1)/(x-2)^2$ for $x\ne2$. At zero this gives $-1/4$. Parentheses around the full subtracted product are essential: the minus sign affects both terms of $x^2+1$.
+
+Sometimes division before differentiation produces a simpler calculation. Since $(x^2+1)/x=x+1/x$ for $x\ne0$, its derivative is $1-1/x^2$. The quotient rule yields $(2x\cdot x-(x^2+1))/x^2$, which simplifies to the same expression. Comparing these independent forms can catch a sign or missing-factor error.
+
+Domain restrictions survive cancellation. The original function $(x^2-1)/(x-1)$ is undefined at $1$, even though it agrees with $x+1$ elsewhere. Its derivative is $1$ on the original domain, but that derivative statement does not define an original function value or derivative at the missing point. If we explicitly extend the function continuously, we obtain a different domain and can then differentiate the extension. In a solution, separate simplifying the formula from extending the function.
+
+A ratio can change even when both its numerator and denominator are increasing. Suppose at an input $a$ we know $f(a)=6$, $f'(a)=1$, $g(a)=3$, and $g'(a)=2$. Then the quotient derivative is $(1\cdot3-6\cdot2)/3^2=-1$. The denominator grows quickly enough relative to its current size to make the ratio decrease. This example also shows why table-based quotient problems need the two values as well as the two derivatives. The separate facts that both rates are positive do not determine the sign of their quotient's rate.
+
+Related definitions: [Quotient rule](ref:calculus-quotient-rule).
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+## Trigonometric derivatives and radians
+
+When angles are measured in radians, $(\sin x)'=\cos x$ and $(\cos x)'=-\sin x$. Radians are essential because the underlying small-angle limit is $\lim_{h\to0}\sin h/h=1$ in radian measure. A degree-valued input changes the scale of the derivative; the unmodified formulas do not apply to it. This is a unit issue, not a calculator preference.
+
+For sine, the addition formula rewrites the difference quotient as $\sin x(\cos h-1)/h+\cos x\sin h/h$. The first small-angle limit is zero and the second is one, giving $\cos x$. The cosine addition formula similarly supplies the negative sine derivative. The sign agrees with the graph: cosine decreases just to the right of zero, where sine is positive.
+
+The other four formulas follow from reciprocals and quotients: $(\tan x)'=\sec^2x$, $(\cot x)'=-\csc^2x$, $(\sec x)'=\sec x\tan x$, and $(\csc x)'=-\csc x\cot x$. For example, differentiating $\sin x/\cos x$ gives $(\cos^2x+\sin^2x)/\cos^2x=1/\cos^2x$. The identity $\sin^2x+\cos^2x=1$ simplifies the result. Tangent and secant require $\cos x\ne0$; cotangent and cosecant require $\sin x\ne0$.
+
+Combine these formulas with the earlier rules. For $f(x)=x\sin x$, the derivative is $\sin x+x\cos x$. At zero it equals zero. For $g(x)=\sin x/x$, the derivative is $(x\cos x-\sin x)/x^2$ on $x\ne0$. That formula does not settle a derivative of an extension at zero; an additional limit calculation would be needed.
+
+Successive sine derivatives cycle through $\cos x,-\sin x,-\cos x,\sin x$. Thus if a displacement is $s(t)=3\cos t$ with its argument in radians, acceleration is $s''(t)=-3\cos t=-s(t)$. This expresses a specific mathematical oscillation model, not a claim that every periodic motion obeys the same law.
+
+Related definitions: [Radian trigonometric derivatives](ref:calculus-radian-derivatives); [Reciprocal trigonometric functions](ref:calculus-reciprocal-trigonometric-functions).
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<Exercise id="49" />
+
+<Exercise id="50" />
+
+<QuickCheck id="quick-2" />

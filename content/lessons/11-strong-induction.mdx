@@ -1,0 +1,249 @@
+# Strong Induction
+
+Ordinary induction proves the next case using the immediately preceding case. Some problems naturally refer to several earlier cases, or to smaller inputs whose sizes are not known in advance. Strong induction makes all established smaller cases available in the inductive step.
+
+This lesson builds on [Mathematical Induction](../lessons/10-mathematical-induction.mdx), [Sequences and Summations](../lessons/06-sequences-and-summations.mdx), and [Proof by Contradiction](../lessons/09-proof-by-contradiction.mdx). Indices and sizes are integers, and we state their starting values explicitly.
+
+The word _strong_ describes the form of the hypothesis. The method proves no more integer-indexed statements than ordinary induction; it often expresses the useful information more directly.
+
+## The strong induction principle
+
+Suppose solving a problem of size $n$ breaks it into two smaller problems, but their sizes depend on the input. The immediately preceding case may tell us nothing about either piece. Strong induction lets the proof reach back to any earlier allowed size. The price is careful bookkeeping: every size we use must really be smaller and must lie in the range already covered.
+
+Fix an integer starting index $n_0$, and let $P(n)$ be a statement for integers $n\geq n_0$. A familiar strong induction format is:
+
+1. Establish the required initial cases.
+2. Choose an arbitrary next index $n$ beyond those cases.
+3. Assume $P(j)$ for **every** integer $j$ with $n_0\leq j<n$.
+4. Use those assumptions to prove $P(n)$.
+
+The collection of earlier statements is the **strong induction hypothesis**. Every use of it must meet the range conditions: the chosen index must be in the theorem's domain and strictly less than $n$.
+
+An equivalent formulation proves, for each $n\geq n_0$, that if all earlier cases hold, then $P(n)$ holds. At $n=n_0$ there are no earlier cases, so that conditional requires proving $P(n_0)$ without any earlier hypothesis. The base has not disappeared; it is included in the first step.
+
+For readable proofs, separate the bases from the general argument, especially when several initial values are necessary.
+
+<QuickCheck id="quick-1" />
+
+## Why it is equivalent to ordinary induction
+
+We can package “all cases so far are true” as one larger statement. Ordinary induction on that statement automatically carries the whole history forward. This packaging explains how strong induction can offer more assumptions at a step without being a logically stronger principle.
+
+Suppose strong induction would prove a family $P(n)$ for $n\geq n_0$. The colon in the next display introduces a definition, read “Q of n means.” Define a new statement
+
+$$
+Q(n):\quad P(j)\text{ holds for every integer }j\text{ with }n_0\leq j\leq n.
+$$
+
+The base $Q(n_0)$ is just $P(n_0)$. Assuming $Q(k)$ makes every earlier case from $n_0$ through $k$ available. The proposed strong step then proves $P(k+1)$, which, together with $Q(k)$, establishes $Q(k+1)$.
+
+Ordinary induction proves every $Q(n)$, and hence every $P(n)$. Conversely, a strong induction hypothesis includes the immediately previous case, so any ordinary induction step can use it and ignore the extra information.
+
+Strong induction is therefore an organized way to prove an accumulating conjunction. Choosing between the two methods is a matter of clarity and the dependencies in the problem.
+
+## Well-ordering and a smallest counterexample
+
+If a statement about nonnegative integers fails anywhere, there must be a first place it fails. Before that point, all the earlier cases are available. A valid strong inductive step would then repair the supposed first failure, giving a contradiction. This perspective is often easier to visualize than an indefinitely advancing chain of implications.
+
+The **well-ordering principle** says that every nonempty set of nonnegative integers has a least element. The same holds for integers bounded below by any fixed integer, by shifting the domain.
+
+This explains induction through a smallest-counterexample argument. Suppose a theorem with a valid base and strong inductive step were false. The set of failing indices would have a least member $m$. Every allowed index smaller than $m$ would satisfy the theorem. The strong step would then establish the theorem at $m$, contradicting its failure.
+
+The least counterexample cannot be one of the verified bases. That is why the argument reaches the range where the general step is valid.
+
+Conversely, induction can establish well-ordering for subsets of $\mathbb{N}_0$: if a nonempty subset had no least member, 0 could not belong to it; if none of $0,\ldots,k$ belonged, then $k+1$ could not belong either, because it would be least. Induction would make the subset empty, a contradiction.
+
+These principles describe the same discrete order structure. They do not extend unchanged to arbitrary sets of real numbers: the positive real numbers have no least element.
+
+<Exercise id="1" />
+
+## Prime factorization: existence
+
+To factor a composite number, we break it into smaller factors and continue with each factor. Their sizes are not fixed in advance, which is exactly the situation strong induction handles well. The prime case supplies a stopping point: there is nothing further to split. Watch how the proof checks both factors against the hypothesis's range before using it.
+
+Recall that a prime is a positive integer greater than 1 with no positive divisors other than 1 and itself.
+
+**Claim.** Every integer $n\geq2$ can be expressed as a product of one or more primes.
+
+**Proof by strong induction.** The base $n=2$ holds because 2 itself is prime.
+
+Let $n\geq3$, and assume that every integer $j$ with $2\leq j<n$ is a product of primes. If $n$ is prime, it is already a product consisting of one prime.
+
+If $n$ is composite, write $n=ab$ with integers $a,b$ satisfying
+
+$$
+2\leq a<n,\qquad 2\leq b<n.
+$$
+
+Such factors exist by compositeness: a divisor $a$ with $1<a<n$ (smaller than the number and greater than 1) has quotient $b=n/a$ strictly between 1 and $n$. By the induction hypothesis, both $a$ and $b$ are products of primes. Multiplying their prime products expresses $n$ as a product of primes.
+
+Both cases establish $P(n)$, so strong induction proves the claim for every $n\geq2$.
+
+Why is ordinary induction less natural here? Knowing only that $n-1$ factors gives no immediate information about the factors $a,b$ of $n$. Their sizes are smaller, but neither need equal $n-1$.
+
+This proof establishes **existence**, not **uniqueness**. It does not prove that two prime products representing the same integer have the same factors. That requires an additional argument, commonly using a lemma about a prime dividing a product. Do not claim more than the induction established.
+
+<Exercise id="11" />
+
+## Postage with several base cases
+
+The natural way to make a larger amount from a smaller one is to add one available stamp. If we always add a 4-unit stamp, we advance in steps of four and need starting points that cover all four possible positions in that pattern. This explains the block of consecutive base cases below; it is dictated by the construction rather than chosen by a rule of thumb.
+
+A **denomination** is the value printed on one stamp. Suppose only stamps of values 4 and 7 units are available, with an unlimited supply of each. Values add normally; using zero stamps of one denomination is allowed.
+
+**Claim.** Every integer amount $n\geq18$ can be made.
+
+**Base cases.** Four consecutive amounts can be made:
+
+$$
+\begin{aligned}
+18&=4+7+7,\\
+19&=4+4+4+7,\\
+20&=4+4+4+4+4,\\
+21&=7+7+7.
+\end{aligned}
+$$
+
+**Inductive step.** Let $n\geq22$ and assume every integer amount from 18 through $n-1$ can be made. Since
+
+$$
+18\leq n-4<n,
+$$
+
+the hypothesis supplies stamps totaling $n-4$. Add one 4-unit stamp to obtain $n$. Strong induction proves the claim.
+
+Four consecutive bases matter because the step reduces the target by 4. A proof starting with 18 alone would reach only $18,22,26,\ldots$ by that construction. More generally, determine the base coverage from the step's actual dependencies, rather than guessing that one base always suffices.
+
+The theorem does not assert that 18 is the first representable amount. It asserts that there are no gaps from 18 onward. Several smaller amounts, such as 4 and 7, are representable too.
+
+<Exercise id="21" />
+
+<QuickCheck id="quick-2" />
+
+## A recursive sequence bound
+
+The recurrence tells us that the next value depends on two earlier ones. To bound it, we substitute bounds for both, then compare their sum with the target bound. The domain of the proposed inequality must cover each substituted index, which is why the bases and the start of the general step deserve separate attention.
+
+Define the Fibonacci sequence by
+
+$$
+F_0=0,\qquad F_1=1,\qquad F_n=F_{n-1}+F_{n-2}\quad(n\geq2).
+$$
+
+**Claim.** For every integer $n\geq1$, $F_n\leq2^{n-1}$.
+
+**Base cases.** We have $F_1=1=2^0$ and $F_2=1\leq2^1$.
+
+**Inductive step.** Let $n\geq3$ and assume the claimed bounds for all indices from 1 through $n-1$. Both $n-1$ and $n-2$ lie in that range. Therefore
+
+$$
+\begin{aligned}
+F_n&=F_{n-1}+F_{n-2}\\
+&\leq2^{n-2}+2^{n-3}\\
+&=3\cdot2^{n-3}\\
+&\leq4\cdot2^{n-3}=2^{n-1}.
+\end{aligned}
+$$
+
+This proves the next bound, and hence all of them by strong induction.
+
+Two bases ensure the recurrence can use two earlier covered indices. The separate value $F_0$ defines the sequence, but the claimed bound begins at 1. Do not substitute $n=0$ into a statement whose proof and stated range begin elsewhere.
+
+We did not need every earlier value in this step, only the last two. Strong induction makes both available without introducing an additional paired statement, though ordinary induction on such a pair would also work.
+
+<Exercise id="31" />
+
+## Recursive algorithms: termination and correctness
+
+A **recursive algorithm** is a procedure that calls itself on other inputs. A **call** runs the procedure for one input, and to **return** is to finish that call and supply its result. An algebraically plausible recursive rule can still run forever. We therefore ask two questions: do smaller calls eventually return, and if they return the promised answers, does this call combine them correctly? Strong induction can answer both, but they remain distinct parts of the explanation.
+
+A recursive algorithm needs two different guarantees: its calls eventually stop, and its returned value satisfies the specification. A **measure** assigns a size to each call. A decreasing relation is **well-founded** if it permits no infinite chain of strict decreases. A nonnegative integer measure that strictly decreases at each call has this property. Strong induction fits both guarantees when every recursive call has a strictly smaller nonnegative integer measure.
+
+In this pseudocode, `==` tests equality, `=` assigns a value, `*` multiplies, and `floor` rounds down to the greatest integer no larger than its input. An `if` chooses a branch; `else` covers the other case. Consider this function on nonnegative integers:
+
+```text
+power_of_two(n):
+    if n == 0:
+        return 1
+    q = floor(n / 2)
+    t = power_of_two(q)
+    if n is even:
+        return t * t
+    else:
+        return 2 * t * t
+```
+
+The notation $\lfloor x\rfloor$ means the greatest integer at most $x$. For every integer $n\geq1$, $q=\lfloor n/2\rfloor$ satisfies $0\leq q<n$.
+
+**Termination.** At input 0 the function returns immediately. At an input $n\geq1$, the only recursive call has smaller nonnegative input $q$. By strong induction on the input, that call terminates, after which the remaining operations are finite. Thus every allowed call terminates.
+
+**Correctness.** At input 0 the result is $1=2^0$. Assume every smaller allowed call returns the correct power. Then the recursive result is $t=2^q$. If $n=2q$ is even, the function returns $t^2=2^{2q}=2^n$. If $n=2q+1$ is odd, it returns $2t^2=2^{2q+1}=2^n$. These cases cover all nonnegative integers, establishing correctness.
+
+This reasoning assumes exact integer arithmetic. The algorithm's value may exceed the range of a fixed-width machine integer, so an implementation must use a suitable representation or restrict its input.
+
+“The input gets smaller” is not always enough for termination. The measure must decrease in a well-founded domain, one without an infinite chain of strict decreases: repeatedly halving a positive real number never reaches zero. Here the decreasing **integer** input is the crucial fact.
+
+<Exercise id="41" />
+
+## A finite construction by splitting
+
+Different ways of splitting a board may look as though they ought to require different amounts of work. The first split separates the problem into two smaller boards, and the induction hypothesis supplies the count for each regardless of its later splitting pattern. Adding the first split then reveals a total that depends only on the original length.
+
+Imagine a straight board consisting of $n\geq1$ unit cells. A construction may either stop with a single cell or split a longer board between cells into two nonempty smaller boards, then recursively split each piece.
+
+**Claim.** Any such complete splitting into unit cells uses exactly $n-1$ splits.
+
+**Proof.** For $n=1$, no split is needed, and $n-1=0$. For $n\geq2$, suppose the claim is true for every smaller positive length. The first split produces lengths $a,b\geq1$ with $a+b=n$ and both less than $n$. The two recursive constructions use $a-1$ and $b-1$ splits by the hypothesis. Including the first split, the total is
+
+$$
+1+(a-1)+(b-1)=a+b-1=n-1.
+$$
+
+Thus the count is independent of where the splits occur. The argument covers every permitted recursive construction, because $a,b$ were the arbitrary lengths created by its first split.
+
+This is a small example of reasoning about recursively built objects. A **constructor** is a rule for making a larger object from smaller ones. More general **structural induction** follows the constructors of an object, such as a finite expression: prove a property for the simplest objects, then show each construction rule preserves it. For this course, induction on an explicit integer size is enough for our examples.
+
+To discuss these structures, draw a **rooted tree** with one dot for the whole object, called the **root**, and dots below it for its immediate parts, called its **children**. Each non-root dot has exactly one parent above it; following children never returns to an earlier dot. A dot with no children is a **leaf**, and a dot with children is an **internal node**. In a **full binary tree**, every internal node has exactly two children. The part consisting of a node and everything below it is its **subtree**. A binary expression uses an operation with two inputs at each internal node and an input value at each leaf. An **atom** is a basic object that is not split further; an occurrence counts each appearance even when labels repeat.
+
+Another construction is a **tiling**: covering a region with pieces without gaps or overlaps. A domino here is a rectangle covering two adjacent unit squares, and it may be rotated. A tiling of a $2$-by-$n$ rectangle can start with a vertical domino or two horizontal dominoes; these leave smaller rectangles of widths $n-1$ and $n-2$. The zero-width rectangle has one empty tiling, the construction that places no pieces.
+
+A **binary representation** writes a nonnegative integer as a sum of distinct powers of 2, with the empty sum representing zero. For example, $5=2^2+2^0$. Repeated division by 2 gives an integer quotient $q$ and remainder $r$ with $n=2q+r$ and $r$ either 0 or 1. Reconstructing the number doubles the quotient's powers and adds 1 when the remainder is 1. This supplies smaller inputs for a strong-induction proof. When a recurrence uses $\max\{a_1,\ldots,a_{n-1}\}$, “max” means the greatest value in that finite nonempty collection.
+
+The same piece-count argument works for a rectangular grid of unit squares. A legal break splits one existing rectangle along a grid line into two smaller rectangles; pieces cannot be stacked to break several at once. If the rectangle contains $N$ unit squares and the first break leaves $a$ and $b$ squares, then $a+b=N$ and both are smaller than $N$. The induction count is $1+(a-1)+(b-1)=N-1$. Each break increases the number of pieces by exactly one, explaining why the shape and choice of first break do not change the final count.
+
+<Figure id="strong-board-splitting" alt="Different first cuts, the same total" />
+
+<Figure id="strong-construction-tree" alt="A construction has parts and subparts" />
+
+<Exercise id="51" />
+
+## Common mistakes
+
+For every appeal to the induction hypothesis, write the index being used and check its bounds. This small habit catches both attempts to use the current case and attempts to reach below the first proved case. Also check the strength of the conclusion: finding one construction is different from proving a claim about every possible construction.
+
+**Using a case outside the range.** In the postage proof, invoking $P(n-4)$ at $n=19$ would require $P(15)$, which the theorem never promised. State the lower bound for the general step and verify the earlier targets separately.
+
+**Using the current case.** In factorization, writing $n=1\cdot n$ does not help: the factor $n$ is not smaller, and the factor 1 is outside the claim's domain. Strong induction does not permit assuming the very case being proved.
+
+**One successful decomposition proves every decomposition.** For the board claim, a proof analyzing only equal halves would not cover uneven splits. Its universal claim requires handling arbitrary legal $a,b$.
+
+**Proving only correctness conditional on termination.** A recursive definition that calls itself on the same input may satisfy a plausible algebraic equation but never return. Analyze the decreasing measure as well as the returned value.
+
+**Claiming uniqueness after an existence proof.** Building a prime factorization or a stamp representation does not show it is the only representation. The theorem and conclusion should match the work actually done.
+
+<Exercise id="61" />
+
+## Readiness checklist
+
+You should now be able to:
+
+- State a strong induction hypothesis with exact lower and upper index bounds.
+- Determine the necessary bases from a step's dependency pattern.
+- Explain the equivalence of ordinary and strong induction through an accumulating statement.
+- Use a smallest counterexample and identify where well-ordering applies.
+- Prove prime-factorization existence without silently asserting uniqueness.
+- Prove a recurrence bound using two earlier cases.
+- Establish recursive termination and correctness with a decreasing integer measure.
+- Distinguish an arbitrary recursive decomposition from a specially chosen example.
+
+Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.

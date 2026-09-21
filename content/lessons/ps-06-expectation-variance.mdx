@@ -1,0 +1,173 @@
+# Expectation and Variance
+
+A full probability distribution contains more information than a single summary, but well-chosen summaries are powerful. Expectation gives a weighted center; variance and standard deviation describe spread around it. We will derive their main identities, use indicators to average counts without unnecessary enumeration, and distinguish properties that require independence from those that do not. Examples involving costs and conditional populations keep the meaning of each quantity visible alongside its algebra.
+
+## Expectation is a probability-weighted mean
+
+For a discrete variable, the expectation is $E[X]=\sum_x xp_X(x)$. Multiply each value by its probability and add. This is a weighted center of the distribution, expressed in the same units as the variable. It need not be a possible outcome or the most probable outcome. A fair die has mean $3.5$, even though no face equals $3.5$.
+
+Suppose a job needs zero, one, or three replacement parts with probabilities $0.5,0.3,0.2$. Its expected count is $0(0.5)+1(0.3)+3(0.2)=0.9$. This does not predict that an individual job will use a fractional part. It describes the model's average requirement, useful for planning across many jobs. Actual sample averages fluctuate; precise convergence statements arrive later with the law of large numbers.
+
+In a finite distribution the weighted sum always exists. For a countably infinite support, a finite expectation is guaranteed when $\sum_x|x|p_X(x)<\infty$. This absolute-integrability condition prevents an answer from depending on an arbitrary rearrangement of positive and negative terms. For a nonnegative variable, the expectation can legitimately be infinite. A normalized PMF alone does not ensure a finite mean.
+
+Expectation also represents an expected payoff or cost, but the quantity must be defined correctly. If a game pays $8$ units with probability $1/4$ and zero otherwise, its expected gross payout is two units. Charging a fixed entry fee of three units changes expected net payoff to minus one unit. Gross payout, net payoff, and chance of winning are different summaries. State the variable and units before doing the weighted sum so that the final interpretation matches the question.
+
+A weighted-average check is available before computing: if all possible costs lie between two and nine units, a valid expected cost must lie within that interval. A mean outside it indicates a missing probability weight, a normalization failure, or a different quantity than the one defined. Negative values do not invalidate expectation when they represent signed gains or losses; they must simply retain their signs in the weighted sum. By contrast, a negative probability invalidates the model. Keep the numerical values and their probability weights conceptually separate.
+
+Related definitions: [Expectation](ref:probability-statistics-expectation); [Integrable random variable](ref:probability-statistics-integrable-variable).
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+<QuickCheck id="quick-1" />
+
+## Transformations, linearity, and indicators
+
+To average a transformed value, use $E[g(X)]=\sum_xg(x)p_X(x)$ whenever the expectation is defined. The formula evaluates the transformation at each original value and retains its probability. We do not need to construct the transformed PMF first, although doing so can verify the result. For nonlinear $g$, this is generally different from $g(E[X])$.
+
+If $X$ is equally likely to be minus two or two, its mean is zero but $E[X^2]=4$. Squaring the mean instead gives zero. Linearity applies to affine transformations: $E[aX+b]=aE[X]+b$. It also gives $E[X+Y]=E[X]+E[Y]$ for integrable variables, with no independence requirement. Dependence changes joint behavior, but addition of expected values remains valid.
+
+Indicators make counts easy to average. For event $A$, define $I_A$ to be one when $A$ occurs and zero otherwise. Then $E[I_A]=P(A)$. If $N$ counts how many of $m$ events occur, $N=\sum_iI_{A_i}$ and $E[N]=\sum_iP(A_i)$. The events can overlap or be dependent. This technique often avoids deriving an entire count distribution.
+
+For example, choose three people uniformly from ten. Let $N$ count how many of four designated people are selected. Each designated person is selected with probability $3/10$, so $E[N]=4(3/10)=6/5$. The selection indicators are dependent because the sample size is fixed, yet linearity still applies. The distinction will matter for variance: adding variances requires extra information, whereas adding means does not. Use the simplest valid property for the requested summary instead of building an unnecessary full distribution.
+
+Related definitions: [Linearity of expectation](ref:probability-statistics-linearity-expectation); [Indicator variable](ref:probability-statistics-indicator-variable).
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+## Variance and standard deviation measure spread
+
+A mean does not describe how tightly values cluster. Variance measures squared distance from the mean: $\operatorname{Var}(X)=E[(X-\mu)^2]$, where $\mu=E[X]$. We assume a finite second moment when using a finite variance. Squaring prevents positive and negative deviations from canceling. Indeed, the expected unsquared deviation is always zero for an integrable variable.
+
+Let $X$ be equally likely to take $1$ or $5$. Its mean is three, and both squared deviations are four, so its variance is four. A constant variable $Y=3$ has the same mean but variance zero. These distributions answer different questions about reliability despite sharing a center. Variance is nonnegative; a negative result signals an arithmetic error or an invalid model.
+
+Expanding the square gives a convenient identity: $\operatorname{Var}(X)=E[X^2]-(E[X])^2$. To derive it, write $E[X^2-2\mu X+\mu^2]$ and use linearity; since $E[X]=\mu$, the last two terms combine to minus $\mu^2$. The identity is exact, but subtracting two nearly equal rounded quantities can lose accuracy. Keep fractions or sufficient digits during intermediate work.
+
+Variance has squared units. If $X$ is measured in minutes, its variance is measured in square minutes. The standard deviation $\sigma_X=\sqrt{\operatorname{Var}(X)}$ returns to minutes and is often easier to interpret. It is a distributional spread measure, not the average absolute deviation and not an automatic interval containing a fixed percentage of observations. Later probability bounds will state what can be concluded from it with appropriate conditions.
+
+Related definitions: [Variance](ref:probability-statistics-variance); [Standard deviation](ref:probability-statistics-standard-deviation).
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+<QuickCheck id="quick-2" />
+
+## Scaling, sums, and the role of dependence
+
+For $Y=aX+b$, expectation becomes $aE[X]+b$, while variance becomes $a^2\operatorname{Var}(X)$. Translation moves every value and the mean together, leaving deviations unchanged. Scaling multiplies each deviation by $a$, so squared deviations gain a factor $a^2$. Standard deviation therefore scales by $|a|$, including when $a$ is negative.
+
+If a measurement has mean ten and variance four, changing units by $Y=3X+2$ gives mean $32$ and variance $36$. The standard deviation changes from two to six. The offset two affects the mean but contributes nothing to the spread. These checks help detect the common mistake of applying the mean transformation rule to variance.
+
+For independent variables with finite variances, variances add: $\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)$. Independence of discrete variables means their value events factor: $P(X=x,Y=y)=P(X=x)P(Y=y)$ for every pair of support values. This makes the expected product of centered deviations zero when the variance expansion is taken. The later joint-distribution lessons will describe covariance when that cross term does not vanish.
+
+Dependence can change the answer dramatically. If $Y=X$, then $X+Y=2X$ has variance $4\operatorname{Var}(X)$, not twice the variance. If $Y=-X$, their sum is constant zero. For independent observations each of variance $\sigma^2$, the sum of $n$ observations has variance $n\sigma^2$, and their average has variance $\sigma^2/n$. This is an algebraic consequence of independence and scaling, not a promise that every individual average lies near the mean.
+
+For the average $\overline X=(X_1+\cdots+X_n)/n$, the independent equal-variance formula also gives standard deviation $\sigma/\sqrt n$. Quadrupling the number of independent observations halves this spread. The square-root change is slower than dividing by the sample size itself, because the sum introduces more random variation before division. If all observations are exact copies of one random variable, their average equals that variable and no variance reduction occurs. This extreme dependent case shows why independence or another justified dependence calculation matters.
+
+Related definitions: [Variance scaling](ref:probability-statistics-variance-scaling).
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+## Use moments without losing the full model
+
+The first two moments describe center and spread, but do not uniquely determine a distribution. A variable equally likely to be minus one or one has mean zero and variance one. Another variable with masses $1/8,3/4,1/8$ at $-2,0,2$ also has mean zero and second moment one. Their probabilities of zero and their extreme-value behavior differ. Matching moments is therefore a useful summary check, not proof that two probability models are equivalent.
+
+Expected cost can guide a decision only when it matches the stated objective. Suppose action $A$ costs four units with certainty, while action $B$ costs zero with probability $0.8$ and twenty with probability $0.2$. Both have expected cost four. Yet action $B$ has variance $64$ and a chance of a much larger cost. If the question asks only for minimum expected cost, the actions tie; if constraints concern maximum cost or a tail probability, additional calculations are required. Do not silently replace those objectives by the mean.
+
+We can also compute a mean inside a positive-probability event by first forming the conditional distribution. If $X$ has values $0,1,3$ with masses $1/2,1/4,1/4$, then given $X>0$ the remaining values one and three each have conditional probability $1/2$. The conditional mean is two, whereas the unconditional mean is one. This is ordinary expectation applied to a renormalized PMF, and will later become conditional expectation as a random variable.
+
+An effective final check uses units, support, and inequalities. A finite-support mean lies between the smallest and largest values. Variance is nonnegative and unchanged by translation. The second moment is at least the squared mean. These facts can reject impossible calculations without recovering every detail of the PMF. They complement, rather than replace, direct verification from the stated probabilities.
+
+The phrase “almost surely constant” allows exceptional outcomes of probability zero. In a discrete positive-mass support, variance zero forces every support value to equal the mean: each term $(x-\mu)^2p_X(x)$ is nonnegative, and a positive term would make the sum positive. Thus zero variance is stronger than small variance. It identifies a distribution concentrated at one value, although the underlying sample space may still contain many detailed outcomes all mapped to that same value.
+
+Related definitions: [Second moment](ref:probability-statistics-second-moment).
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<Exercise id="49" />
+
+<Exercise id="50" />

@@ -1,0 +1,211 @@
+# Sequences and Infinite Series
+
+An infinite process needs a limit before it can be assigned a final value. A sequence asks whether individual terms approach a number; a series asks whether their running totals do. Those are different questions. This lesson builds a small collection of convergence arguments and explains when each applies. Identifying the right hypotheses matters more than memorizing a list of test names, and deciding convergence usually does not require finding the exact sum.
+
+## Sequences and limits
+
+A sequence is a function whose input is an integer index: $a_1,a_2,a_3,\ldots$. Its terms may repeat, and their order matters. We write $a_n\to L$ if every sufficiently late term lies as close to $L$ as desired. Formally, for every $\varepsilon>0$, there is an integer $N$ such that $n\ge N$ implies $|a_n-L|<\varepsilon$. A finite number of early terms cannot alter that limit.
+
+For $a_n=(3n+2)/(n+1)$, divide numerator and denominator by $n$ to obtain $(3+2/n)/(1+1/n)\to3$. The same limit laws used for real-variable functions apply to sequences when their component limits exist and a quotient's limiting denominator is nonzero. A real-variable limit can establish a sequence limit by restriction to integer inputs, but the reverse is not automatic between those inputs.
+
+Oscillation needs care. The sequence $(-1)^n$ is bounded but does not converge: even-indexed terms equal $1$ and odd-indexed terms equal $-1$. In contrast, $(-1)^n/n\to0$ because its absolute value is $1/n\to0$. This is a squeeze argument: a shrinking envelope forces the oscillations to shrink as well.
+
+Monotonicity supplies another route. Every increasing sequence bounded above converges, and every decreasing sequence bounded below converges. Both ingredients are needed. The increasing sequence $n$ is unbounded and diverges; the bounded alternating sequence just discussed is not monotone and diverges. For a recursively defined sequence, proving these properties can justify a limit before solving the equation it must satisfy.
+
+For example, starting with $a_1=1$ and $a_{n+1}=(a_n+2)/2$ keeps every term below $2$ and increases the terms because $a_{n+1}-a_n=(2-a_n)/2>0$. It therefore converges. Passing to the limit in the recurrence gives $L=(L+2)/2$, hence $L=2$. Solving that fixed-point equation without first justifying convergence would only identify a candidate, not prove the sequence reaches it.
+
+Related definitions: [Limit of a sequence](ref:calculus-sequence-limit); [Monotone convergence for sequences](ref:calculus-monotone-convergence).
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+## Partial sums, geometric series, and telescoping
+
+The expression $\sum_{n=1}^{\infty}a_n$ means a limit of finite running totals, not an instruction to finish infinitely many additions. Define $S_N=a_1+\cdots+a_N$. If $S_N$ approaches a finite $S$, the series converges and its sum is $S$; otherwise it diverges. The sequence of terms and the sequence of partial sums must be kept separate.
+
+For a geometric series starting at index zero, $S_N=a+ar+\cdots+ar^N$. Multiplying by $r$ and subtracting cancels the interior terms: $(1-r)S_N=a(1-r^{N+1})$. When $r\ne1$, $S_N=a(1-r^{N+1})/(1-r)$. If $|r|<1$, the remaining power tends to zero and the infinite sum is $a/(1-r)$. For nonzero $a$ and $|r|\ge1$, the terms fail to approach zero or grow, so the series diverges.
+
+Starting indices matter. The series $\sum_{n=1}^{\infty}(1/2)^n$ begins at $1/2$, so its sum is $(1/2)/(1-1/2)=1$. Starting at zero adds the missing first term $1$ and makes the sum $2$. Negative ratios are allowed: $\sum_{n=0}^{\infty}(-1/3)^n=1/(1+1/3)=3/4$.
+
+Telescoping uses a different cancellation. Partial fractions give $1/[n(n+1)]=1/n-1/(n+1)$. Adding only through $N$ yields $S_N=1-1/(N+1)$ because the interior reciprocals cancel. Its limit is $1$. Writing the finite boundary terms before taking a limit prevents losing an uncancelled first or last term.
+
+A finite initial change affects the sum but not convergence. Adding, removing, or modifying finitely many terms changes every sufficiently late partial sum by one fixed number. That shift cannot turn a convergent sequence of partial sums into a divergent one. This fact lets later tests focus on eventual behavior, while still requiring careful indices when an exact sum is requested.
+
+Related definitions: [Partial sum](ref:calculus-partial-sum); [Geometric series](ref:calculus-geometric-series); [Telescoping series](ref:calculus-telescoping-series).
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+<QuickCheck id="quick-1" />
+
+## The term test and integral test
+
+A convergent series must have $a_n\to0$. If its partial sums satisfy $S_n\to S$, then $a_n=S_n-S_{n-1}\to S-S=0$. The contrapositive is the term test: if terms approach a nonzero value or have no limit, the series diverges. This is an efficient first check, but it never proves convergence. The harmonic series $\sum1/n$ has vanishing terms and still diverges.
+
+For positive decreasing terms, rectangles connect sums with integrals. Suppose $a_n=f(n)$ where $f$ is continuous, positive, and decreasing on a tail. The rectangles of height $f(n)$ lie on opposite sides of the neighboring areas, so the series converges exactly when the corresponding improper integral does. Eventual hypotheses suffice because finitely many initial terms do not affect convergence.
+
+Applying the test to $f(x)=x^{-p}$ yields the $p$-series rule: $\sum_{n=1}^{\infty}1/n^p$ converges for $p>1$ and diverges for $p\le1$. For $p\le0$ the term test already proves divergence; for positive $p$ the integral test supplies the threshold. The series and integral share behavior, not exact value. In particular, $\int_1^\infty x^{-2}dx=1$ does not imply $\sum1/n^2=1$.
+
+The same rectangle comparison bounds a positive remainder. If $R_N=\sum_{n=N+1}^{\infty}f(n)$, then $\int_{N+1}^{\infty}f(x)dx\le R_N\le\int_N^{\infty}f(x)dx$. For $f(x)=x^{-2}$, this gives $1/(N+1)\le R_N\le1/N$. The upper bound certifies an approximation error without requiring the exact series sum.
+
+Logarithms often suggest the integral test. For $n\ge2$, $f(x)=1/[x(\ln x)^2]$ is positive and decreasing. Substitution $u=\ln x$ converts its tail integral into $\int u^{-2}du$, which converges. In contrast, $1/[x\ln x]$ produces $\ln\ln x$ and diverges. Slowly changing logarithmic factors can therefore decide convergence at the harmonic boundary.
+
+Related definitions: [Term test for divergence](ref:calculus-series-term-test); [Integral test](ref:calculus-integral-test).
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+## Direct and limit comparison
+
+Known series can serve as benchmarks. If $0\le a_n\le b_n$ eventually and $\sum b_n$ converges, the partial sums of $a_n$ increase within a finite bound, so they converge. If the smaller series diverges, the larger one also diverges. These conclusions are directional: being below a divergent benchmark or above a convergent one is inconclusive.
+
+For example, $0<1/(n^2+1)<1/n^2$, so $\sum1/(n^2+1)$ converges. In the opposite direction, $1/(n-1/2)>1/n$ for $n\ge1$, so its series diverges with the harmonic benchmark. Write the inequality explicitly. Replacing a denominator by a larger one makes a positive fraction smaller, a common source of reversed arguments.
+
+Limit comparison handles similar leading behavior when an exact inequality is inconvenient. If positive terms satisfy $a_n/b_n\to L$ with $0<L<\infty$, then eventually the ratio lies, for example, between $L/2$ and $3L/2$. Thus constant multiples of $b_n$ bound $a_n$ above and below, forcing the same convergence behavior.
+
+For $a_n=(3n+1)/(n^3+2)$, compare with $b_n=1/n^2$. The ratio is $(3n^3+n^2)/(n^3+2)\to3$. Since $\sum b_n$ converges, so does $\sum a_n$. For $a_n=1/\sqrt{n^2+1}$, comparison with $1/n$ gives ratio $n/\sqrt{n^2+1}\to1$, so that series diverges. A square root changes degree estimates and should be simplified carefully.
+
+Sometimes the ratio tends to zero or infinity. The positive finite theorem then does not apply as stated; return to a suitable one-sided comparison or choose a better benchmark. In particular, a zero limit can prove convergence when the denominator benchmark converges, because the smaller terms are eventually bounded above by it. But zero relative to a divergent benchmark gives no universal conclusion. The aim is a justified relation between tails, not merely computing a limit and assigning a memorized label.
+
+Related definitions: [Direct comparison test](ref:calculus-series-comparison); [Limit comparison test](ref:calculus-limit-comparison).
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+## Alternating, absolute, and conditional convergence
+
+Alternating signs can create convergence even when the positive magnitudes have a divergent sum. Suppose $b_n\ge0$ decreases to zero. Then $\sum_{n=1}^{\infty}(-1)^{n+1}b_n$ converges. The even partial sums rise and the odd partial sums fall, trapping the sum between them. Their separation is one shrinking term, which forces both limits to agree.
+
+The same picture gives an error bound. After $N$ terms, the remainder has magnitude at most $b_{N+1}$ and has the sign of the first omitted term. For $1-1/2+1/3-1/4+\cdots$, the fourth partial sum is $7/12$ and the next term is positive $1/5$. The true sum lies between $7/12$ and $7/12+1/5$. The bound is not an equality: later cancellations generally make the actual error smaller.
+
+A series converges **absolutely** if $\sum|a_n|$ converges. Absolute convergence guarantees ordinary convergence. Thus $\sum(-1)^n/n^2$ converges absolutely because the corresponding $p$-series has exponent $2$. A series is **conditionally convergent** if it converges but its absolute series diverges. The alternating harmonic series is the standard example: alternation yields convergence, while the harmonic magnitudes diverge.
+
+Check every hypothesis. The alternating sequence of terms $(-1)^n$ does not tend to zero and its series diverges. Even vanishing alternating terms require a monotonicity argument or another test; isolated decreases are not enough. Eventual monotonicity suffices, because an initial finite segment does not affect convergence or the later remainder reasoning.
+
+Use an alternating remainder bound only after establishing decreasing magnitudes on the tail being estimated. To guarantee an error at most $1/100$ for the alternating harmonic series, it suffices that $1/(N+1)\le1/100$, so $N\ge99$. For an alternating $1/n^2$ series, the bound improves to $1/(N+1)^2$. The convergence classification and a numerical error guarantee answer related but distinct questions.
+
+Related definitions: [Alternating-series test](ref:calculus-alternating-series-test); [Absolute convergence](ref:calculus-absolute-convergence).
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<Exercise id="49" />
+
+<Exercise id="50" />
+
+<QuickCheck id="quick-2" />
+
+## Ratio and root tests, with method selection
+
+Factorials and exponentials often simplify when successive terms are divided. The ratio test uses $L=\lim_{n\to\infty}|a_{n+1}/a_n|$, assuming the ratios are defined eventually. If $L<1$, the series converges absolutely; if $L>1$, including an infinite limit, it diverges. At $L=1$ the test is inconclusive. Both the harmonic series and the convergent $1/n^2$ series have ratio limit one.
+
+For $a_n=2^n/n!$, the ratio is $[2^{n+1}/(n+1)!]/[2^n/n!]=2/(n+1)\to0$. Thus the series converges absolutely. For $a_n=n!/3^n$, the ratio is $(n+1)/3\to\infty$, proving divergence. Write the factorial cancellation explicitly: $(n+1)!=(n+1)n!$.
+
+The root test is useful when the entire term is raised to the index. If $L=\lim\sqrt[n]{|a_n|}$, the same three outcomes apply. For $a_n=((2n+1)/(3n+1))^n$, the root is $(2n+1)/(3n+1)\to2/3$, giving convergence. Both tests work by comparison with geometric behavior: an eventual ratio or root below one bounds the tail by a decaying geometric series.
+
+A practical sequence is to check whether the terms vanish, then look for a geometric or telescoping form. Positive rational or power-like terms often fit comparison; logarithmic boundary cases often fit the integral test. Alternating terms invite absolute-convergence analysis first, then the alternating test if needed. Factorials favor the ratio test, while index powers favor the root test. These are useful tendencies, not exclusive rules.
+
+When a test is inconclusive, change the argument rather than reinterpret its conclusion. For $a_n=1/n^2$, ratio and root limits equal one, but the $p$-series theorem settles convergence immediately. Record both the test's hypotheses and what it actually establishes. A convergence proof does not automatically evaluate the sum or bound the remainder; those require the additional tools appropriate to the series.
+
+Related definitions: [Ratio test](ref:calculus-ratio-test); [Root test](ref:calculus-root-test).
+
+<Exercise id="51" />
+
+<Exercise id="52" />
+
+<Exercise id="53" />
+
+<Exercise id="54" />
+
+<Exercise id="55" />
+
+<Exercise id="56" />
+
+<Exercise id="57" />
+
+<Exercise id="58" />
+
+<Exercise id="59" />
+
+<Exercise id="60" />

@@ -1,0 +1,179 @@
+# Definite Integrals and Accumulation
+
+A derivative starts with a changing quantity and asks for its local rate. An integral starts with local contributions and combines them over an interval. A stream of measurements, a velocity graph, and a density profile all lead to the same construction: multiply a local rate or density by a small interval, then add. This lesson builds that construction before introducing shortcuts for evaluation. Keep track of units and signs; they determine what the accumulated answer means.
+
+## From samples to Riemann sums
+
+Suppose a pump's flow rate is measured in liters per minute. If the rate were constant at $q$ for $\Delta t$ minutes, it would deliver $q\Delta t$ liters. When the rate varies, that product becomes an approximation over a short interval. Splitting the entire time span into short intervals creates an approximation whose individual pieces retain a physical meaning.
+
+A **partition** divides $[a,b]$ into subintervals. Write the endpoints as $a=x_0<x_1<\cdots<x_n=b$ and the widths as $\Delta x_i=x_i-x_{i-1}$. A sample point $x_i^*$ belongs to the $i$th interval. The corresponding Riemann sum is $\sum_{i=1}^n f(x_i^*)\Delta x_i$. The star labels a chosen sample; it does not mean multiplication or differentiation. Equal widths simplify this to $\Delta x=(b-a)/n$.
+
+For $f(x)=x^2$ on $[0,2]$ with two intervals, the width is $1$. Left samples $0,1$ give $0^2+1^2=1$; right samples $1,2$ give $1^2+2^2=5$; midpoint samples $1/2,3/2$ give $1/4+9/4=5/2$. All three use the same function and partition. They differ because a nonconstant function has no single height that describes a whole interval exactly.
+
+If $f$ increases, each left rectangle lies below the graph and each right rectangle lies above it. Thus the corresponding sums bracket the signed integral. This remains an order statement when the function is negative: “larger” means further right on the number line, not a larger absolute value. Midpoints often improve accuracy, but monotonicity alone does not determine which side their error lies on.
+
+Unequal intervals are equally valid. With widths $1,2$ and sampled rates $3,5$, the accumulated approximation is $3(1)+5(2)=13$, not $(3+5)(3)/2$. A simple average of rates silently assumes equal time weights. Before computing, write one representative term with its units. That small step catches missing widths and inappropriate averaging.
+
+Related definitions: [Riemann sum](ref:calculus-riemann-sum).
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+<QuickCheck id="quick-1" />
+
+## The integral as a limit
+
+Refining a partition makes the constant-height approximation local. The definite integral $\int_a^b f(x)\,dx$ is the common limit of its Riemann sums as the largest width tends to zero, provided this limit exists independently of the sample choices. For equal subdivisions, letting $n\to\infty$ makes every width tend to zero. For unequal subdivisions, merely adding intervals is insufficient if one wide interval never shrinks.
+
+The function $f$ is the **integrand**. The numbers $a,b$ are the lower and upper bounds. The notation $dx$ identifies the integration variable and recalls the small widths; in the definition those widths really appear as $\Delta x_i$. Renaming the dummy variable changes nothing: $\int_0^1 x^2\,dx=\int_0^1 t^2\,dt$. Changing the function or the bounds would change the problem.
+
+Here is a complete sum calculation for $f(x)=x$ on $[0,3]$. With $n$ right rectangles, $\Delta x=3/n$ and $x_i=3i/n$. Hence $R_n=(9/n^2)\sum_{i=1}^n i$. The finite identity $\sum_{i=1}^n i=n(n+1)/2$ gives $R_n=9/2+9/(2n)$. The error term tends to zero, so the integral is $9/2$. The triangle under the line independently gives base times height divided by two, also $9/2$. A curved example uses the identity $\sum_{i=1}^n i^2=n(n+1)(2n+1)/6$. For $x^2$ on $[0,1]$, the right sum is $n^{-3}\sum i^2=(n+1)(2n+1)/(6n^2)$. Expanding the numerator gives $1/3+1/(2n)+1/(6n^2)$, whose limit is $1/3$. This supplies an exact curved-region area directly from the definition, without yet using antiderivatives.
+
+Every continuous function on a closed, bounded interval is integrable. Continuity is sufficient, not necessary: a bounded function with finitely many jump discontinuities also has a Riemann integral. Altering a bounded integrable function at finitely many points does not change its integral. A finite collection of points has no width, and the intervals surrounding those points can have arbitrarily small total width.
+
+Do not generalize this to arbitrary discontinuities or unbounded functions. The function that equals $1$ at rational inputs and $0$ at irrational inputs has sums equal to either total interval length or zero, depending on samples, so there is no common Riemann limit. Unbounded functions near an endpoint require the separate limiting construction of improper integration later.
+
+Related definitions: [Definite integral](ref:calculus-definite-integral).
+
+<Figure id="calculus-figure-9" alt="Accumulation as signed area" />
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+## Signed area and total area
+
+A rectangle with negative height contributes a negative product to a Riemann sum. Taking a limit preserves that sign, so the integral measures signed area. Regions above the horizontal axis contribute positively and regions below it contribute negatively. Geometric area itself is nonnegative; the adjective “signed” tells us that the integral contains additional information.
+
+Consider $f(x)=x-1$ from $0$ to $3$. On $[0,1]$ the graph makes a triangle below the axis with area $1/2$. On $[1,3]$ it makes a triangle above the axis with area $2$. Thus $\int_0^3(x-1)\,dx=2-1/2=3/2$. The total region area is instead $2+1/2=5/2$. Drawing the zero first organizes both computations.
+
+The absolute value function turns every negative height positive. Therefore total area is $\int_a^b|f(x)|\,dx$. It is generally different from $|\int_a^b f(x)\,dx|$, which permits cancellation before taking an absolute value. If positive and negative contributions each have area $100$, these expressions give $200$ and $0$, respectively. Parentheses and the position of the absolute-value bars carry mathematical meaning.
+
+Symmetry can save work. If $f(-x)=-f(x)$, the function is odd and its integral over $[-a,a]$ is zero, assuming integrability. Each contribution at $x$ cancels the contribution at $-x$. If $f(-x)=f(x)$, the function is even and the integral equals $2\int_0^a f(x)\,dx$. An even function need not be positive; evenness concerns matching heights, not their sign.
+
+The cancellation argument requires a symmetric interval. The integral of the odd function $x$ on $[0,2]$ is positive, not zero. It also requires an existing integral: singularities cannot be erased by visual symmetry. Later we will see why $1/x$ across zero is a dangerous example. For now, work with bounded integrable graphs and explicitly identify each sign change before interpreting a result as total area.
+
+Related definitions: [Signed area](ref:calculus-signed-area).
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+<QuickCheck id="quick-2" />
+
+## Algebra and bounds for integrals
+
+The integral inherits algebra from finite sums. For constants $\alpha,\beta$, linearity gives $\int_a^b(\alpha f+\beta g)=\alpha\int_a^b f+\beta\int_a^b g$. A constant multiplier can leave the sum because it multiplies every term; a variable-dependent factor cannot. There is no corresponding rule that the integral of a product equals the product of the integrals.
+
+Adjacent intervals combine: $\int_a^c f=\int_a^b f+\int_b^c f$. Reversing bounds changes the sign, $\int_b^a f=-\int_a^b f$, and equal bounds give zero. These conventions preserve the additive rule even when the middle point is outside the interval. Read an integral with reversed bounds as an oriented accumulation, not as a region with a negative physical width.
+
+Suppose $\int_0^2 f=5$ and $\int_0^5 f=1$. Subtracting the first contribution gives $\int_2^5 f=1-5=-4$. Reversing direction then gives $\int_5^2 f=4$. We have determined both without knowing any formula for $f$. The negative middle contribution also tells us that a continuous $f$ must take a negative value somewhere in that middle interval.
+
+Order provides useful checks. If $m\le f(x)\le M$ on $[a,b]$ with $a<b$, then $m(b-a)\le\int_a^b f\le M(b-a)$. Each rectangle height lies between the two constants, so each product and then its limit does too. More generally, $f\le g$ implies $\int f\le\int g$ over the same forward interval. Reversing the bounds reverses the inequality.
+
+For $1\le f\le4$ on $[2,5]$, the integral must lie between $3$ and $12$. An answer of $15$ is impossible even if a long symbolic calculation produced it. Equality at the lower bound is especially restrictive for a continuous function: if it rises above $1$ at one point, continuity supplies a positive-width neighborhood with extra area. Such qualitative reasoning is a useful companion to calculation.
+
+Related definitions: [Integral additivity](ref:calculus-integral-additivity).
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+## Accumulating rates with units
+
+Integration is useful whenever a local contribution adds to a whole. A velocity measured in meters per second times a time width in seconds gives meters. A linear density measured in grams per centimeter times a length width in centimeters gives grams. The graph need not describe literal geometric area; its axis units determine the accumulated quantity.
+
+For a rate $Q'(t)$, the net change is $Q(b)-Q(a)=\int_a^b Q'(t)\,dt$. The next lesson establishes the theorem connecting this formula with differentiation. Here, piecewise-constant rates make it transparent. If a tank starts with $20$ liters, gains $3$ liters per minute for $4$ minutes, and loses $2$ liters per minute for $5$ minutes, its change is $12-10=2$ liters and its final amount is $22$ liters. The total amount passing in or out is $12+10=22$ liters; that is a different question despite the coincidental number.
+
+For motion on a line, velocity carries direction. Displacement is $\int v(t)\,dt$, whereas distance is $\int|v(t)|\,dt$. Suppose velocity is $2$ meters per second for $3$ seconds and then $-1$ for $4$ seconds. The object ends $2$ meters in the positive direction from its starting point, after traveling $10$ meters. Adding its initial position determines its final coordinate.
+
+A rate graph does not reveal an initial quantity. Two tanks whose volumes differ by $100$ liters can have exactly the same net flow graph. This missing constant is not a defect of integration; differentiation discarded the original level. Rate information can also fail to describe a physical system after a boundary event: a predicted negative volume signals that the assumed flow model cannot continue unchanged once the tank empties.
+
+For measured data, retain the distinction between an approximation and an exact model. Piecewise-constant interpolation treats each rate as constant throughout its interval; a rectangle sum is exact for that interpolant but approximate for the unknown real rate. State which claim you are making. As you move into antiderivative formulas, keep this modeling interpretation beside the symbolic notation.
+
+Related definitions: [Net change](ref:calculus-net-change).
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<Exercise id="49" />
+
+<Exercise id="50" />

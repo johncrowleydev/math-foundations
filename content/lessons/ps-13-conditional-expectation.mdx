@@ -1,0 +1,185 @@
+# Conditional Expectation
+
+A conditional distribution can be summarized by a mean and a variance, each depending on available information. We use these summaries to analyze mixtures, predict responses under squared error, and separate sources of workload uncertainty. Expectations require integrability; variance and MSE identities here assume finite second moments.
+
+## A conditional mean is a function of the information
+
+Conditioning gives a new probability distribution, so it also gives a new mean. For discrete variables, $E[Y\mid X=x]=\sum_y y\,p_{Y\mid X}(y\mid x)$. For a conditional density, the sum becomes $\int y f_{Y\mid X}(y\mid x)\,dy$. Hold the observed value $x$ fixed while averaging over the still-unknown $Y$. The answer has the units of $Y$.
+
+Suppose a regime indicator $X$ takes values zero and one. In regime zero, $Y$ is zero or two with equal conditional probabilities; in regime one, $Y$ is two or six with equal conditional probabilities. The conditional means are $m(0)=1$ and $m(1)=4$. The function $m(x)=E[Y\mid X=x]$ maps observed information to a number. Before $X$ is observed, $m(X)=E[Y\mid X]$ is itself a random variable: it takes one or four according to the regime.
+
+This distinction resolves a common notation problem. $E[Y\mid X=x]$ is a number for a specified $x$, whereas $E[Y\mid X]$ can vary from outcome to outcome. A conditional mean need not be a possible realized value of $Y$. Averaging zero and two produces one even though the conditional distribution gives no mass to one.
+
+For the continuous joint density $2$ on $0<x<y<1$, the conditional distribution $Y\mid X=x$ is uniform on $(x,1)$. Its mean is $m(x)=(x+1)/2$. Therefore $E[Y\mid X]=(X+1)/2$. In the reverse direction, $X\mid Y=y$ is uniform on $(0,y)$, with mean $y/2$.
+
+Linearity still holds conditionally. Quantities determined by the observed variable can be taken outside: $E[X Y\mid X]=X E[Y\mid X]$, with appropriate integrability. They are not globally constant; they are fixed within each conditional calculation. Independence, when available, gives $E[Y\mid X]=E[Y]$.
+
+The converse is false. Suppose one regime makes $Y$ equally likely to be $-1$ or $1$, while another makes it equally likely to be $-2$ or $2$. Both conditional means are zero, but the conditional distributions differ. A constant conditional mean describes one unchanged summary, not independence of the whole distribution.
+
+Related definitions: [Conditional expectation](ref:probability-statistics-conditional-mean).
+
+<Exercise id="1" />
+
+<Exercise id="2" />
+
+<Exercise id="3" />
+
+<Exercise id="4" />
+
+<Exercise id="5" />
+
+<Exercise id="6" />
+
+<Exercise id="7" />
+
+<Exercise id="8" />
+
+<Exercise id="9" />
+
+<Exercise id="10" />
+
+## Average conditional means to recover the overall mean
+
+The **law of total expectation** states $E[Y]=E[E[Y\mid X]]$ when $Y$ is integrable. First average within each condition, then average those conditional means according to the distribution of the conditioning variable. This is also called iterated expectation or the tower property. The outer expectation is essential: the inner conditional mean may still be random.
+
+For a discrete partition into regimes, $E[Y]=\sum_x E[Y\mid X=x]P(X=x)$. If the conditional means are one and four and the regime probabilities are $3/4$ and $1/4$, the overall mean is $(3/4)(1)+(1/4)(4)=7/4$. An unweighted average of the two means would be $5/2$, incorrectly treating the rare and common regimes as equally prevalent.
+
+For continuous $X$, use its density as the outer weight: $E[Y]=\int E[Y\mid X=x]f_X(x)\,dx$. In the triangular model $f_{X,Y}=2$ on $0<x<y<1$, the conditional mean is $(x+1)/2$ and the marginal density of $X$ is $2(1-x)$. Thus $E[Y]=\int_0^1(x+1)(1-x)\,dx=2/3$, agreeing with integration against the marginal density $2y$.
+
+An indicator response provides total probability as a special case. If $Y=1_A$, then $E[Y\mid X]=P(A\mid X)$, and averaging gives $P(A)=E[P(A\mid X)]$. A conditional failure-rate model can therefore be averaged over operating conditions without enumerating every joint outcome.
+
+For a random number of Bernoulli trials, suppose $K\mid N=n$ is binomial with parameters $n,p$, where $p$ is fixed and $E[N]<\infty$. Then $E[K\mid N]=Np$, so $E[K]=pE[N]$. The result is obtained by conditioning, not by pretending that a random count equals its mean in every realization. Nonlinear quantities cannot generally be handled by such a replacement.
+
+The order of the two averages is worth stating aloud: average responses conditional on the regime, then average the resulting function over regimes. Reversing the roles of response and condition produces a different function and generally a different intermediate calculation, even though both are built from the same joint distribution.
+
+Related definitions: [Law of total expectation](ref:probability-statistics-total-expectation).
+
+<Exercise id="11" />
+
+<Exercise id="12" />
+
+<Exercise id="13" />
+
+<Exercise id="14" />
+
+<Exercise id="15" />
+
+<Exercise id="16" />
+
+<Exercise id="17" />
+
+<Exercise id="18" />
+
+<Exercise id="19" />
+
+<Exercise id="20" />
+
+<QuickCheck id="quick-1" />
+
+## Split variation within and between conditions
+
+Conditional variance measures the remaining variation inside a condition: $\operatorname{Var}(Y\mid X=x)=E[Y^2\mid X=x]-E[Y\mid X=x]^2$. It is a function of $x$, and $\operatorname{Var}(Y\mid X)$ is that function evaluated at the random input. Do not confuse it with $\operatorname{Var}(E[Y\mid X])$, which measures how the conditional means differ across conditions.
+
+When $E[Y^2]<\infty$, the **law of total variance** is $\operatorname{Var}(Y)=E[\operatorname{Var}(Y\mid X)]+\operatorname{Var}(E[Y\mid X])$. The first term is average variation within conditions; the second is variation between their means. Both terms are nonnegative, and both are needed unless one vanishes.
+
+For regimes of probabilities $3/4,1/4$, suppose conditional means are $2,8$ and conditional variances are $1,9$. The overall mean is $7/2$. Average within-regime variance is $(3/4)(1)+(1/4)(9)=3$. Between-regime variance is $(3/4)(2-7/2)^2+(1/4)(8-7/2)^2=27/4$. Total variance is consequently $3+27/4=39/4$. Simply averaging the conditional variances would miss most of the variation.
+
+The identity follows algebraically. Set $M=E[Y\mid X]$. Then $E[\operatorname{Var}(Y\mid X)]=E[Y^2]-E[M^2]$, using total expectation on $Y^2$. Also $\operatorname{Var}(M)=E[M^2]-E[Y]^2$. Adding cancels $E[M^2]$ and yields the ordinary variance of $Y$.
+
+Conditioning reduces variance **on average**, since $E[\operatorname{Var}(Y\mid X)]\le\operatorname{Var}(Y)$. It need not reduce variance for every particular observed value. Discovering that a system is in a rare volatile regime can increase the conditional variance. The inequality compares an average across all regimes to the original variance; it is not a pointwise guarantee for each regime.
+
+Related definitions: [Law of total variance](ref:probability-statistics-total-variance).
+
+<Exercise id="21" />
+
+<Exercise id="22" />
+
+<Exercise id="23" />
+
+<Exercise id="24" />
+
+<Exercise id="25" />
+
+<Exercise id="26" />
+
+<Exercise id="27" />
+
+<Exercise id="28" />
+
+<Exercise id="29" />
+
+<Exercise id="30" />
+
+## Conditional means give optimal squared-error predictions
+
+Suppose we observe $X$ and predict an unobserved response $Y$ using a function $h(X)$. A loss function specifies what prediction errors cost. For squared-error loss, the expected loss is $E[(Y-h(X))^2]$, called mean squared error, or MSE. Assume finite second moments so these comparisons are meaningful. This is prediction of a random outcome from information, not yet estimation of an unknown fixed model parameter.
+
+For a fixed condition $X=x$, write $m(x)=E[Y\mid X=x]$. Expanding around that mean gives $E[(Y-a)^2\mid X=x]=\operatorname{Var}(Y\mid X=x)+(m(x)-a)^2$. The cross term vanishes because $E[Y-m(x)\mid X=x]=0$. The conditional variance does not depend on the chosen prediction $a$; the remaining square is minimized at $a=m(x)$.
+
+Thus the best squared-error predictor using $X$ is $m(X)=E[Y\mid X]$. Its MSE is $E[\operatorname{Var}(Y\mid X)]$. More generally, $E[(Y-h(X))^2]=E[\operatorname{Var}(Y\mid X)]+E[(m(X)-h(X))^2]$. The second term measures the extra error from choosing the wrong prediction function. This identity explains why the conditional mean is optimal without assuming it is linear or normal.
+
+For a binary response with conditional success probability $p(x)$, the optimal real-valued squared-error prediction is $p(x)$, even though the observed response is zero or one. Predicting a hard class label is a different decision problem. For a numeric response with conditional mean four and conditional variance nine, predicting four gives conditional MSE nine, while predicting six gives $9+(4-6)^2=13$.
+
+The residual $R=Y-m(X)$ has conditional mean zero. Consequently $E[R h(X)]=0$ for square-integrable functions $h(X)$: condition on $X$, take out the known factor, and average again. This is a probabilistic counterpart of orthogonal residuals in least squares. It does not generally imply residual independence; the residual spread can still depend on $X$.
+
+Without observing $X$, the best constant predictor is $E[Y]$, with MSE $\operatorname{Var}(Y)$. Observing $X$ reduces the optimal MSE by $\operatorname{Var}(E[Y\mid X])$, according to total variance. Information that changes only conditional spread but not the conditional mean does not improve the best squared-error point prediction, even though it remains useful for describing uncertainty.
+
+Related definitions: [Conditional mean prediction](ref:probability-statistics-conditional-mean-prediction).
+
+<Exercise id="31" />
+
+<Exercise id="32" />
+
+<Exercise id="33" />
+
+<Exercise id="34" />
+
+<Exercise id="35" />
+
+<Exercise id="36" />
+
+<Exercise id="37" />
+
+<Exercise id="38" />
+
+<Exercise id="39" />
+
+<Exercise id="40" />
+
+## Use conditioning to analyze random workloads
+
+A random sum is a useful setting where conditioning removes a moving boundary. Let $N$ be a nonnegative integer-valued count, and let $W_1,W_2,\ldots$ be independent identically distributed contributions, independent of $N$. Assume finite second moments for $N$ and the contributions. Define $S=\sum_{i=1}^N W_i$, with an empty sum equal to zero. Write $E[W_i]=\mu$ and $\operatorname{Var}(W_i)=v$.
+
+Given $N=n$, the sum has a fixed number of independent terms, so $E[S\mid N=n]=n\mu$ and $\operatorname{Var}(S\mid N=n)=nv$. Total expectation and variance now give $E[S]=\mu E[N]$ and $\operatorname{Var}(S)=vE[N]+\mu^2\operatorname{Var}(N)$. The two contributions describe variability within a fixed count and variability of the count itself.
+
+Suppose a batch has mean request count five and count variance two. Independent processing contributions, also independent of the count, have mean three and variance four. The total workload has mean fifteen and variance $4(5)+3^2(2)=38$. Replacing the count by its mean would retain only the within-count contribution twenty, discarding the extra eighteen.
+
+The assumptions matter. If large batches systematically contain larger requests, the contribution distribution depends on $N$; then $E[S\mid N=n]$ need not be $n\mu$. The general conditioning identities remain true, but the simplified random-sum formulas must be replaced by the correct conditional moments. Similarly, a stopping rule based on observed contributions is not automatically covered by independence from $N$.
+
+Conditioning also clarifies how information can reveal volatility. Suppose a rare regime has probability $1/10$; in that regime a response is $-10$ or $10$ equally likely, while outside it the response is zero. All conditional means are zero. The unconditional variance is ten, but in the rare regime it is one hundred. The average conditional variance is still ten. This concrete case separates the valid average reduction statement from the false claim that every observation must reduce uncertainty.
+
+These formulas describe an assumed joint model. In real prediction work its conditional means and variances usually must be learned from data, adding estimation error to the ideal calculations. Keeping that distinction clear prevents confusing an optimal predictor under a known model with a fitted predictor whose model may be inaccurate.
+
+Related definitions: [Random sum moments](ref:probability-statistics-random-sum-variance).
+
+<Exercise id="41" />
+
+<Exercise id="42" />
+
+<Exercise id="43" />
+
+<Exercise id="44" />
+
+<Exercise id="45" />
+
+<Exercise id="46" />
+
+<Exercise id="47" />
+
+<Exercise id="48" />
+
+<Exercise id="49" />
+
+<Exercise id="50" />
+
+<QuickCheck id="quick-2" />
