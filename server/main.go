@@ -418,6 +418,12 @@ func (s *Server) handler() http.Handler {
 	return s.authHandler(mux)
 }
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "archive-catalog" {
+		if err := archiveCatalogCommand(os.Args[1:]); err != nil {
+			log.Fatal(err)
+		}
+		return
+	}
 	if len(os.Args) > 1 && os.Args[1] == "hash-password" {
 		hashPasswordCommand()
 		return

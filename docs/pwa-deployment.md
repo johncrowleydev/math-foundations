@@ -13,3 +13,32 @@ Moving from localhost to production changes browser storage origin. The loopback
 Weekly backups remain scheduled by `foundations-backup.timer`. Each completed recovery point contains a consistent SQLite snapshot and its required hash-verified media copies. Live media may be retired after retained transcription without invalidating those recovery points. The [backup procedure](backup-media-integrity.md) defines retention, verification, restoration and the limitations of older database-only backups. Existing Android source and releases remain historical only; no further APK updates are published.
 
 Deploy web and backend together, verify sign-in and authenticated status, old-key rejection, downloaded assets, service-worker update behavior, and weekly backup scheduling. A rollback must not silently re-enable the retired bearer authentication: prefer the last session-auth-compatible release, or keep the API in maintenance while repairing the first migration.
+
+Saved offline submissions retain their original content version. The server uses
+`FOUNDATIONS_CATALOG_ARCHIVE=/opt/math-foundations/catalogs` to resolve earlier
+lesson versions from trusted, immutable runtime catalogs. These are deployed
+artifacts, not authored curriculum or learner records. Keep this directory when
+pruning application releases and copy it with the application artifacts during
+host recovery; the database/media recovery point does not contain it. Accepted
+attempts already retain their full grading context in the database and do not
+need the catalog archive for rechecks.
+
+Before switching releases, `server/deploy/install.sh` retains both the active
+catalog and its replacement using the uploaded server binary:
+
+```sh
+foundations-server archive-catalog grading-catalog.json /opt/math-foundations/catalogs
+```
+
+The command validates the exercise definitions and retains the first catalog for
+each version without overwriting it. Archive files are root-owned public
+curriculum artifacts, readable by the server. The new installer also explicitly
+sets public web directories/files to modes 755/644 so private upload staging
+cannot make the site unreadable to nginx.
+
+For the initial rollout, retain the distinct catalogs from existing releases
+with the same command, starting with the earliest artifact for each version.
+Do this before retrying historical submissions. Unknown versions remain rejected;
+never change a saved submission's version or substitute the current question to
+get past that rejection. Frozen Review submissions continue using their original
+server-issued instances.

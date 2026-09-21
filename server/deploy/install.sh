@@ -7,10 +7,20 @@ cd "$(dirname "$0")"
 id foundations >/dev/null 2>&1 || useradd --system --home /var/lib/math-foundations --shell /usr/sbin/nologin foundations
 install -d -o foundations -g foundations -m 700 /var/lib/math-foundations
 install -d -m 700 /etc/math-foundations
+# Retain trusted runtime catalogs before switching releases. Offline submissions
+# keep their original version and must use that version's grading context.
+install -d -m 755 /opt/math-foundations/catalogs
+if [[ -f /opt/math-foundations/current/grading-catalog.json ]]; then
+    ./foundations-server archive-catalog /opt/math-foundations/current/grading-catalog.json /opt/math-foundations/catalogs
+fi
+./foundations-server archive-catalog grading-catalog.json /opt/math-foundations/catalogs
 install -d -m 755 "/opt/math-foundations/releases/$release" /var/www/foundations
 install -m 755 foundations-server backup.sh "/opt/math-foundations/releases/$release/"
 install -m 644 grading-catalog.json "/opt/math-foundations/releases/$release/"
 cp -a web "/opt/math-foundations/releases/$release/"
+# Private upload staging must not leave the public web assets unreadable to nginx.
+find "/opt/math-foundations/releases/$release/web" -type d -exec chmod 755 {} +
+find "/opt/math-foundations/releases/$release/web" -type f -exec chmod 644 {} +
 ln -sfn "/opt/math-foundations/releases/$release" /opt/math-foundations/current.next
 mv -Tf /opt/math-foundations/current.next /opt/math-foundations/current
 if [[ ! -f /etc/math-foundations/server.env ]]; then install -m 600 server.env /etc/math-foundations/server.env; fi
