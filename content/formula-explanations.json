@@ -50307,21 +50307,51 @@
     "bindings": []
   },
   {
-    "id": "formula-d61e90167a0a998683d3",
+    "id": "sets-proof-formula-9723e0fd959e0f90e6e1",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 0,
-    "latex": "A\\cap B\\subseteq A",
-    "reading": "A intersection B is a subset of A.",
+    "latex": "A",
+    "reading": "The set of neighbors.",
     "bindings": [
       {
         "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of neighbors in this example.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-84e85bb0bd8647f3a3f8",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 1,
+    "latex": "B",
+    "reading": "The set of colleagues.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set of colleagues in this example.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-d61e90167a0a998683d3",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 2,
+    "latex": "A\\cap B\\subseteq A.",
+    "reading": "The intersection of A and B is a subset of A: everyone who is both a neighbor and a colleague is a neighbor.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set of neighbors in this example.",
         "reference": "set"
       },
       {
         "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of colleagues in this example.",
         "reference": "set"
       },
       {
@@ -50340,114 +50370,74 @@
     "id": "formula-f49d50915eaebd4633ec",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 1,
-    "latex": "x",
-    "reading": "x.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      }
-    ]
-  },
-  {
-    "id": "formula-041fbaa97e77f199a854",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 2,
-    "latex": "A\\cap B",
-    "reading": "A intersection B.",
-    "bindings": [
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\cap",
-        "meaning": "Intersection: membership in both sets.",
-        "reference": "symbol-intersection"
-      }
-    ]
-  },
-  {
-    "id": "formula-3de0d547f9a1cbcc9bd9",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 3,
-    "latex": "x\\in A",
-    "reading": "x is an element of A.",
+    "latex": "x",
+    "reading": "An arbitrary member of the starting set.",
     "bindings": [
       {
         "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "meaning": "An arbitrary member of the starting set; no special properties are assumed.",
         "reference": "element"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
       }
     ]
   },
   {
-    "id": "formula-ce37c39cecebcabc211f",
+    "id": "sets-proof-formula-9dd56d81214401f18fdd",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 4,
-    "latex": "x\\in B",
-    "reading": "x is an element of B.",
+    "latex": "A",
+    "reading": "The set of neighbors.",
     "bindings": [
       {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "symbol": "A",
+        "meaning": "The set of neighbors in this example.",
         "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
       }
     ]
   },
   {
-    "id": "formula-4b983f0684ef79280fdc",
+    "id": "sets-proof-formula-8b5197bbe5123ee0ff1b",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 5,
-    "latex": "x\\in A",
-    "reading": "x is an element of A.",
+    "latex": "x",
+    "reading": "An arbitrary member of the starting set.",
     "bindings": [
       {
         "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "meaning": "An arbitrary member of the starting set; no special properties are assumed.",
         "reference": "element"
-      },
+      }
+    ]
+  },
+  {
+    "id": "sets-proof-formula-d4aec4f393513bf01a2c",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 6,
+    "latex": "U",
+    "reading": "The universe: everyone under discussion.",
+    "bindings": [
       {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "symbol": "U",
+        "meaning": "The fixed universe containing everyone under discussion.",
+        "reference": "set-universe"
+      }
+    ]
+  },
+  {
+    "id": "sets-proof-formula-dd52810dc3c173638b55",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 7,
+    "latex": "B^c",
+    "reading": "The complement of B: people in the universe who are not colleagues.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set of colleagues in this example.",
         "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
       }
     ]
   },
@@ -50455,18 +50445,18 @@
     "id": "formula-f9fcaa2ddc8179c55a1f",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 6,
-    "latex": "A\\setminus B=A\\cap B^c,",
-    "reading": "A set difference B equals A intersection B complement,.",
+    "ordinal": 8,
+    "latex": "A\\setminus B=A\\cap B^c.",
+    "reading": "A with B removed equals the intersection of A and the complement of B: both sides contain the neighbors who are not colleagues.",
     "bindings": [
       {
         "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of neighbors in this example.",
         "reference": "set"
       },
       {
         "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of colleagues in this example.",
         "reference": "set"
       },
       {
@@ -50478,446 +50468,56 @@
         "symbol": "\\setminus",
         "meaning": "Set difference: keep members of the first set that do not belong to the second.",
         "reference": "symbol-set-difference"
-      },
-      {
-        "symbol": "A^c",
-        "meaning": "The complement of the set: all members of the fixed universe that do not belong to that set. The superscript c is not a variable or an exponent.",
-        "reference": "symbol-complement"
       }
     ]
   },
   {
-    "id": "formula-d5c7d400d2f93c67e765",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 7,
-    "latex": "A,B\\subseteq U",
-    "reading": "A, B is a subset of U.",
-    "bindings": [
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "U",
-        "meaning": "The surrounding universe, containing every element of the sets being discussed. All complements in the statement use this same universe.",
-        "reference": "set-universe"
-      },
-      {
-        "symbol": "\\subseteq",
-        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
-        "reference": "symbol-subset"
-      }
-    ]
-  },
-  {
-    "id": "formula-4330f55a23bc21469f3c",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 8,
-    "latex": "x\\in A\\setminus B",
-    "reading": "x is an element of A set difference B.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      },
-      {
-        "symbol": "\\setminus",
-        "meaning": "Set difference: keep members of the first set that do not belong to the second.",
-        "reference": "symbol-set-difference"
-      }
-    ]
-  },
-  {
-    "id": "formula-bf49da4bc7c97b506371",
+    "id": "sets-proof-formula-9c3ba62c5b3a80c8da3c",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 9,
-    "latex": "x\\in A",
-    "reading": "x is an element of A.",
+    "latex": "A",
+    "reading": "The set of neighbors.",
     "bindings": [
       {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
         "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of neighbors in this example.",
         "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
       }
     ]
   },
   {
-    "id": "formula-73eab2c2780034a4f268",
+    "id": "sets-proof-formula-16b00e1385b59c6c6f93",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 10,
-    "latex": "x\\notin B",
-    "reading": "x ∉ B.",
+    "latex": "B^c",
+    "reading": "The complement of B: people in the universe who are not colleagues.",
     "bindings": [
       {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
         "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of colleagues in this example.",
         "reference": "set"
-      },
-      {
-        "symbol": "\\notin",
-        "meaning": "Is not an element of the set on the right.",
-        "reference": "element"
       }
     ]
   },
   {
-    "id": "formula-230fc20e2531762e17d5",
+    "id": "sets-proof-formula-a8914bd7ea95cd250cc9",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 11,
-    "latex": "x\\in U",
-    "reading": "x is an element of U.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "U",
-        "meaning": "The surrounding universe, containing every element of the sets being discussed. All complements in the statement use this same universe.",
-        "reference": "set-universe"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      }
-    ]
-  },
-  {
-    "id": "formula-2af60e2dd6095471890c",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 12,
-    "latex": "x\\in B^c",
-    "reading": "x is an element of B complement.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      },
-      {
-        "symbol": "A^c",
-        "meaning": "The complement of the set: all members of the fixed universe that do not belong to that set. The superscript c is not a variable or an exponent.",
-        "reference": "symbol-complement"
-      }
-    ]
-  },
-  {
-    "id": "formula-192eb44ed60d54456af5",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 13,
-    "latex": "x\\in A\\cap B^c",
-    "reading": "x is an element of A intersection B complement.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      },
-      {
-        "symbol": "\\cap",
-        "meaning": "Intersection: membership in both sets.",
-        "reference": "symbol-intersection"
-      },
-      {
-        "symbol": "A^c",
-        "meaning": "The complement of the set: all members of the fixed universe that do not belong to that set. The superscript c is not a variable or an exponent.",
-        "reference": "symbol-complement"
-      }
-    ]
-  },
-  {
-    "id": "formula-8f4b19f4a2a9d3031f94",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 14,
-    "latex": "x\\in A\\cap B^c",
-    "reading": "x is an element of A intersection B complement.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      },
-      {
-        "symbol": "\\cap",
-        "meaning": "Intersection: membership in both sets.",
-        "reference": "symbol-intersection"
-      },
-      {
-        "symbol": "A^c",
-        "meaning": "The complement of the set: all members of the fixed universe that do not belong to that set. The superscript c is not a variable or an exponent.",
-        "reference": "symbol-complement"
-      }
-    ]
-  },
-  {
-    "id": "formula-490194c6d88f31f8c957",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 15,
-    "latex": "x\\in A",
-    "reading": "x is an element of A.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      }
-    ]
-  },
-  {
-    "id": "formula-6fa838ab9c4492a2f4bd",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 16,
-    "latex": "x\\notin B",
-    "reading": "x ∉ B.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\notin",
-        "meaning": "Is not an element of the set on the right.",
-        "reference": "element"
-      }
-    ]
-  },
-  {
-    "id": "formula-f11c0f655752dc3de9d9",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 17,
-    "latex": "x\\in A\\setminus B",
-    "reading": "x is an element of A set difference B.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      },
-      {
-        "symbol": "\\setminus",
-        "meaning": "Set difference: keep members of the first set that do not belong to the second.",
-        "reference": "symbol-set-difference"
-      }
-    ]
-  },
-  {
-    "id": "formula-404ef13e333e3f0cbfd6",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 18,
-    "latex": "A\\subseteq B",
-    "reading": "A is a subset of B.",
+    "latex": "(A\\cup B)^c=A^c\\cap B^c.",
+    "reading": "The complement of the union equals the intersection of the complements: people outside the combined list are both non-neighbors and non-colleagues.",
     "bindings": [
       {
         "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of neighbors in this example.",
         "reference": "set"
       },
       {
         "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "meaning": "The set of colleagues in this example.",
         "reference": "set"
-      },
-      {
-        "symbol": "\\subseteq",
-        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
-        "reference": "symbol-subset"
-      }
-    ]
-  },
-  {
-    "id": "formula-84e85bb0bd8647f3a3f8",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 19,
-    "latex": "B",
-    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
-    "bindings": [
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      }
-    ]
-  },
-  {
-    "id": "formula-770689012432ed158854",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 20,
-    "latex": "x\\in U",
-    "reading": "x is an element of U.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "U",
-        "meaning": "The surrounding universe, containing every element of the sets being discussed. All complements in the statement use this same universe.",
-        "reference": "set-universe"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      }
-    ]
-  },
-  {
-    "id": "formula-2e3c9e013f2799a0e336",
-    "lesson": "sets-and-set-operations",
-    "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 21,
-    "latex": "\\begin{aligned}\nx\\in(A\\cup B)^c\n&\\Longleftrightarrow\\neg(x\\in A\\lor x\\in B)\\\\\n&\\Longleftrightarrow(x\\notin A\\land x\\notin B)\\\\\n&\\Longleftrightarrow x\\in A^c\\cap B^c.\n\\end{aligned}",
-    "reading": "x is an element of open parenthesis A union B close parenthesis complement if and only if not open parenthesis x is an element of A or x is an element of B close parenthesis; next line: if and only if open parenthesis x ∉ A and x ∉ B close parenthesis; next line: if and only if x is an element of A complement intersection B complement.",
-    "bindings": [
-      {
-        "symbol": "x",
-        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
-        "reference": "element"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
-      },
-      {
-        "symbol": "\\notin",
-        "meaning": "Is not an element of the set on the right.",
-        "reference": "element"
       },
       {
         "symbol": "\\cup",
@@ -50928,33 +50528,71 @@
         "symbol": "\\cap",
         "meaning": "Intersection: membership in both sets.",
         "reference": "symbol-intersection"
-      },
-      {
-        "symbol": "\\Longleftrightarrow",
-        "meaning": "If and only if: both directions hold.",
-        "reference": "symbol-biconditional"
-      },
-      {
-        "symbol": "\\land",
-        "meaning": "AND: both membership conditions must hold.",
-        "reference": "symbol-conjunction"
-      },
-      {
-        "symbol": "\\lor",
-        "meaning": "Inclusive OR: at least one membership condition holds.",
-        "reference": "symbol-disjunction"
-      },
-      {
-        "symbol": "\\neg",
-        "meaning": "NOT: the following condition does not hold.",
-        "reference": "symbol-negation"
-      },
-      {
-        "symbol": "A^c",
-        "meaning": "The complement of the set: all members of the fixed universe that do not belong to that set. The superscript c is not a variable or an exponent.",
-        "reference": "symbol-complement"
       }
     ]
+  },
+  {
+    "id": "sets-proof-formula-b2c79cb3e439702f43c7",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 12,
+    "latex": "\\cup",
+    "reading": "Union: combine the lists, including anyone in either list.",
+    "bindings": [
+      {
+        "symbol": "\\cup",
+        "meaning": "Union: membership in at least one of the sets.",
+        "reference": "symbol-union"
+      }
+    ]
+  },
+  {
+    "id": "sets-proof-formula-a8a0ed40edb07c3db02c",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 13,
+    "latex": "c",
+    "reading": "The superscript c denotes complement relative to the fixed universe.",
+    "bindings": []
+  },
+  {
+    "id": "sets-proof-formula-0cc895bd8897ba7b5f6b",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 14,
+    "latex": "\\cap",
+    "reading": "Intersection: keep only members belonging to both sets.",
+    "bindings": [
+      {
+        "symbol": "\\cap",
+        "meaning": "Intersection: membership in both sets.",
+        "reference": "symbol-intersection"
+      }
+    ]
+  },
+  {
+    "id": "sets-proof-formula-430b17433601872cfd22",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 15,
+    "latex": "U",
+    "reading": "The universe: everyone under discussion.",
+    "bindings": [
+      {
+        "symbol": "U",
+        "meaning": "The fixed universe containing everyone under discussion.",
+        "reference": "set-universe"
+      }
+    ]
+  },
+  {
+    "id": "sets-proof-formula-5c17758587da85d75068",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 16,
+    "latex": "\\Longleftrightarrow",
+    "reading": "If and only if: the membership descriptions imply each other.",
+    "bindings": []
   },
   {
     "id": "formula-1ddcbd2edac5c53bca43",

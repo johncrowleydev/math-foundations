@@ -1,7 +1,7 @@
 {
   "version": 1,
   "auditDate": "2026-09-19",
-  "publishedCatalogVersion": "76b89a658f46fa636b486f2fd7f71eb6c7d2a5c767018c855ce29fa991d7770a",
+  "publishedCatalogVersion": "7070c181471cc6ae5914ac2a9da00a448b776bcc85d25ce5575d76066b2ff872",
   "historicalAuditMetadata": {
     "date": "2026-09-19",
     "scope": "Authored deterministic-grading feasibility audit; no learning content or application behavior changed.",
@@ -48,9 +48,9 @@
     "lessons": {
       "total": 2064,
       "structured": 1389,
-      "choice": 183,
-      "open": 492,
-      "converted": 1389,
+      "choice": 184,
+      "open": 491,
+      "converted": 1390,
       "alreadyDeterministic": 183
     },
     "dedicatedReview": {
@@ -68,9 +68,9 @@
       "title": "Propositional Logic",
       "total": 155,
       "structured": 91,
-      "choice": 45,
-      "open": 19,
-      "converted": 91,
+      "choice": 46,
+      "open": 18,
+      "converted": 92,
       "alreadyDeterministic": 45
     },
     {
@@ -2664,22 +2664,29 @@
         "math": "\\neg\\neg p",
         "officialAnswer": "$p$."
       },
-      "finalMethod": "open",
-      "deterministic": false,
-      "conversion": "retained-open",
+      "finalMethod": "choice",
+      "deterministic": true,
+      "conversion": "converted",
       "minimalOutputs": [
         {
-          "id": "answer",
-          "label": "Complete original free response",
-          "kind": "open",
-          "fields": ["answer"]
+          "id": "selectedOptionId",
+          "label": "Select one authored answer",
+          "kind": "choice",
+          "fields": ["selectedOptionId"]
         }
       ],
-      "input": ["open"],
-      "validators": [],
-      "evidenceLevel": "original-open-contract",
-      "reason": "Requires producing the equivalence-law rewrite sequence for the displayed formula. A final formula alone omits the named laws and intermediate work; a mandatory formula stepper is outside the approved UI scope.",
-      "evidenceChange": "Original reasoning/production contract retained wholly open.",
+      "input": ["choice"],
+      "validators": [
+        {
+          "id": "choice",
+          "name": "selected-option",
+          "fields": ["selectedOptionId"],
+          "description": "The selected option matches the authored correct-option key."
+        }
+      ],
+      "evidenceLevel": "recognition",
+      "reason": "User-requested recognition task: a single double-negation rewrite is completely represented by the expression and named law in each option.",
+      "evidenceChange": "Recognition only; selecting a complete expression/law pair does not certify production or written justification.",
       "promptChange": false,
       "sourceInspection": "docs/deterministic-source-inspection.md",
       "dispositionSource": "docs/deterministic-discrete-dispositions.json"

@@ -324,6 +324,13 @@ func normalizedTerm(s string, sensitive bool) string {
 	s = strings.Join(strings.Fields(s), " ")
 	if !sensitive {
 		s = strings.ToLower(s)
+		// Accept the operation's verb in term recall, including frozen review tasks.
+		switch s {
+		case "intersect":
+			return "intersection"
+		case "intersect.":
+			return "intersection."
+		}
 	}
 	return s
 }

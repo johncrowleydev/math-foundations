@@ -104,18 +104,39 @@ func (p *quantifiedParser) unary() (*quantifiedNode, error) {
 		if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(v) {
 			return nil, errors.New("Name the quantified variable")
 		}
-		if !p.take("in") {
+		var domain, restrictedSet string
+		if p.take("in") {
+			domain = p.peek()
+			p.at++
+			if !contains(p.domains, domain) {
+				if len(p.domains) != 1 || !contains(p.sets, domain) || p.predicates[domain] != 1 {
+					return nil, errors.New("Use a stated variable domain")
+				}
+				restrictedSet, domain = domain, p.domains[0]
+			}
+		} else if len(p.domains) == 1 {
+			domain = p.domains[0]
+		} else {
 			return nil, errors.New("Include each quantified variable domain")
-		}
-		domain := p.peek()
-		p.at++
-		if !contains(p.domains, domain) {
-			return nil, errors.New("Use a stated variable domain")
 		}
 		if enum(p.peek(), ".", ":", ",") {
 			p.at++
 		}
 		body, e := p.binary(1)
+		if e != nil {
+			return nil, e
+		}
+		if restrictedSet != "" {
+			guard := &quantifiedNode{kind: "predicate", name: restrictedSet, args: []string{v}}
+			kind := "and"
+			if q == "forall" {
+				// Encode the implicit implication in NNF so form checks inspect
+				// the learner's syntax rather than rejecting the generated guard.
+				kind = "or"
+				guard = &quantifiedNode{kind: "not", body: guard}
+			}
+			body = &quantifiedNode{kind: kind, left: guard, right: body}
+		}
 		return &quantifiedNode{kind: "quantifier", quantifier: q, variable: v, domain: domain, body: body}, e
 	}
 	if p.take("!") {

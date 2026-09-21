@@ -912,18 +912,18 @@
     "concept": "element-proof",
     "lesson": "sets-and-set-operations",
     "section": "Proving inclusions and identities",
-    "start": 0,
-    "end": 610,
-    "quote": "A drawing can make a set identity feel convincing, but it may hide assumptions about how the sets overlap. An element proof avoids that problem by following one arbitrary object through the definitions. The object is not a special example: every step must work for anyone admitted by the starting condition.\n\nAn element proof turns a set statement into logic. To prove $A\\cap B\\subseteq A$, let $x$ be an arbitrary element of $A\\cap B$. By the definition of intersection, $x\\in A$ and $x\\in B$. In particular $x\\in A$. Because this reasoning applies to every element of the intersection, the inclusion follows.",
+    "start": 361,
+    "end": 1611,
+    "quote": "**First: show that one set fits inside another.**\n\nThink of $A$ as the set of your neighbors and $B$ as the set of your colleagues. Their intersection contains the people who are both. Everyone in that intersection must therefore be a neighbor. Written in symbols, the claim is\n\n$$\nA\\cap B\\subseteq A.\n$$\n\nRead this as “the intersection of A and B is a subset of A.” Here is the proof, one step at a time:\n\n1. **Start with someone in the intersection.** Call this person $x$. We do not choose a particular neighbor or assume anything about them beyond membership in the intersection.\n2. **Unpack what intersection means.** This person belongs to both lists: they are a neighbor and a colleague.\n3. **Check the destination.** They are a neighbor, so they belong to $A$. That is all we needed to show.\n\nThis is an **element proof**: follow one member from the starting set to the destination set. Mathematicians say “let $x$ be an arbitrary element” to mean that the reasoning must work for any member, without relying on special features of a chosen example. The same argument works whether the sets contain people, numbers, or other objects. If the starting set is empty, there is no member that could violate the inclusion, so the claim still holds.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
     "concept": "set-de-morgan",
     "lesson": "sets-and-set-operations",
     "section": "Proving inclusions and identities",
-    "start": 1071,
-    "end": 1484,
-    "quote": "Sometimes a chain of equivalences proves both directions at once. For any $x\\in U$,\n\n$$\n\\begin{aligned}\nx\\in(A\\cup B)^c\n&\\Longleftrightarrow\\neg(x\\in A\\lor x\\in B)\\\\\n&\\Longleftrightarrow(x\\notin A\\land x\\notin B)\\\\\n&\\Longleftrightarrow x\\in A^c\\cap B^c.\n\\end{aligned}\n$$\n\nThis proves one of **De Morgan's laws**. Notice that the middle step is the logical law already studied; the other steps use set definitions.",
+    "start": 2976,
+    "end": 3870,
+    "quote": "Consider the people who are on neither list. There are two ways to describe them:\n\n- Combine the neighbor and colleague lists, then take everyone in the universe who is outside that combined list.\n- Take the non-neighbors and the non-colleagues, then keep only people who are in both of those groups.\n\nWhy do these descriptions agree? Being outside the combined list means being on neither original list. That means being a non-neighbor **and** a non-colleague. The reasoning also works backwards: someone who is in neither group cannot appear when the two lists are combined.\n\nIn symbols, this proves one of **De Morgan's laws**:\n\n$$\n(A\\cup B)^c=A^c\\cap B^c.\n$$\n\nOn the left, $\\cup$ combines the lists and the superscript $c$ takes the complement of the whole result. On the right, each list is complemented separately and $\\cap$ keeps their overlap. All complements use the same universe $U$.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
@@ -949,8 +949,8 @@
     "lesson": "sets-and-set-operations",
     "section": "Power sets",
     "start": 1116,
-    "end": 1466,
-    "quote": "A **bit** is a digit that is either 0 or 1. A **bit mask** uses one bit per feature, with 1 meaning included and 0 meaning excluded, to represent a subset of the features. For features a and b in that order, 00 selects neither, 10 selects only a, 01 selects only b, and 11 selects both. It represents membership, not an ordering of selected features.",
+    "end": 2482,
+    "quote": "**A computing application: recording which elements you chose.** The include-or-exclude decisions above can also be stored as zeros and ones. A **bit** is one digit, either 0 or 1. Use 1 for “include this element” and 0 for “leave it out.” A **bit mask** is a row of these digits, with one fixed position for each element of the original set.\n\nFor the same two elements a and b shown in the figure, let the first position stand for a and the second for b:\n\n| Bit mask | Include a? | Include b? | Subset selected |\n| -------- | ---------- | ---------- | --------------- |\n| `00`     | No         | No         | Empty set       |\n| `10`     | Yes        | No         | Only a          |\n| `01`     | No         | Yes        | Only b          |\n| `11`     | Yes        | Yes        | Both a and b    |\n\nThese four rows describe exactly the four subsets inside the power-set box. Each subset has one mask, and each mask selects one subset. This is why bit masks appear here: they give a computer a compact way to record a choice of subset, such as which optional features are enabled. They also express the same counting argument as above: each extra element adds another independent yes-or-no choice, doubling the number of possible subsets. The positions must stay fixed so we know which element each digit refers to; they do not put the selected elements in an order.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
@@ -958,8 +958,8 @@
     "lesson": "sets-and-set-operations",
     "section": "Power sets",
     "start": 1116,
-    "end": 1466,
-    "quote": "A **bit** is a digit that is either 0 or 1. A **bit mask** uses one bit per feature, with 1 meaning included and 0 meaning excluded, to represent a subset of the features. For features a and b in that order, 00 selects neither, 10 selects only a, 01 selects only b, and 11 selects both. It represents membership, not an ordering of selected features.",
+    "end": 2482,
+    "quote": "**A computing application: recording which elements you chose.** The include-or-exclude decisions above can also be stored as zeros and ones. A **bit** is one digit, either 0 or 1. Use 1 for “include this element” and 0 for “leave it out.” A **bit mask** is a row of these digits, with one fixed position for each element of the original set.\n\nFor the same two elements a and b shown in the figure, let the first position stand for a and the second for b:\n\n| Bit mask | Include a? | Include b? | Subset selected |\n| -------- | ---------- | ---------- | --------------- |\n| `00`     | No         | No         | Empty set       |\n| `10`     | Yes        | No         | Only a          |\n| `01`     | No         | Yes        | Only b          |\n| `11`     | Yes        | Yes        | Both a and b    |\n\nThese four rows describe exactly the four subsets inside the power-set box. Each subset has one mask, and each mask selects one subset. This is why bit masks appear here: they give a computer a compact way to record a choice of subset, such as which optional features are enabled. They also express the same counting argument as above: each extra element adds another independent yes-or-no choice, doubling the number of possible subsets. The positions must stay fixed so we know which element each digit refers to; they do not put the selected elements in an order.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {

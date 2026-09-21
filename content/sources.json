@@ -215,10 +215,10 @@
     },
     "m-equivalence": {
       "source": "mcs",
-      "locator": "§§3.3–3.4",
+      "locator": "§§3.3–3.4; §3.4.2, p. 59, equations (3.7) and (3.12) for commutativity and double negation",
       "supports": "Validity, equivalent formulas, Boolean laws, and justified rewrites.",
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=62",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "m-sat": {
       "source": "mcs",
@@ -402,12 +402,19 @@
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=1017",
       "checked": "2026-09-15"
     },
+    "m-subset-bits": {
+      "source": "mcs",
+      "locator": "§4.5.1, Theorem 4.5.5, pp. 117–118",
+      "supports": "Representing subsets by fixed-position bit sequences, with 1 for membership and 0 for exclusion, and counting the subsets of a finite set. The bit-mask table is an original example of this correspondence.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=125",
+      "checked": "2026-09-21"
+    },
     "p-sets": {
       "source": "proof",
       "locator": "§§1.1–1.9",
       "supports": "Set definitions, power sets, Cartesian products, indexed families, and Venn reasoning.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=15",
-      "checked": "2026-09-20"
+      "checked": "2026-09-21"
     },
     "p-logic": {
       "source": "proof",
@@ -454,9 +461,9 @@
     "p-setproof": {
       "source": "proof",
       "locator": "§§8.1–8.3",
-      "supports": "Element proofs of membership, inclusion, and equality.",
+      "supports": "Element proofs of membership and inclusion, equality by both inclusions, and De Morgan identities. Hammack uses an overbar for complement where this notebook uses a superscript c.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=169",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-disproof": {
       "source": "proof",
@@ -2306,7 +2313,7 @@
       "practice": {}
     },
     "propositional-logic": {
-      "reviewedContentHash": "2171e4ae989b82b9406fa0e6623d68dfe200a2d7b8cfbc123841692b78bef18e",
+      "reviewedContentHash": "593ec099d46582d7dcfe706051fdad9d15b9b2a99e79789bd974378aa356f812",
       "intro": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"],
       "sections": {
         "propositions": ["m-propositions"],
@@ -2516,15 +2523,15 @@
       }
     },
     "sets-and-set-operations": {
-      "reviewedContentHash": "8427c01116a42c71f92f2c11f67e3e5a4c8bdd9deac83b0eadf356d5c8ce788f",
+      "reviewedContentHash": "d49308173d0e62290ed98614582fc6fcbef0072da7d7d4a6323b2edc01b7a4ae",
       "intro": ["p-sets", "p-setproof", "m-pie", "m-classes"],
       "sections": {
         "elements-descriptions-and-equality": ["p-sets"],
         "membership-and-subsets-are-different": ["p-sets"],
         "union-intersection-difference-and-complement": ["p-sets"],
-        "proving-inclusions-and-identities": ["p-setproof"],
+        "proving-inclusions-and-identities": ["p-setproof", "p-sets"],
         "laws-of-set-operations": ["p-setproof", "p-sets"],
-        "power-sets": ["p-sets"],
+        "power-sets": ["p-sets", "m-subset-bits"],
         "ordered-pairs-and-cartesian-products": ["p-sets"],
         "counting-unions-without-double-counting": ["m-pie"],
         "partitions-and-indexed-families": ["p-sets", "m-classes"],

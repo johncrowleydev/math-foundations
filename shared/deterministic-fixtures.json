@@ -1036,6 +1036,449 @@
     "verdict": "correct"
   },
   {
+    "name": "term-intersection-noun",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "intersection"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "term-intersection-verb",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "intersect"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "term-intersection-verb-normalization",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "  INTERSECT.  "
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "term-intersection-reject-union",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "union"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "term-intersection-reject-disjoint",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "disjoint"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "term-intersection-reject-participle",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "intersecting"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "term-intersection-reject-negation",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "not intersection"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "term-intersection-case-sensitive-noun",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ],
+            "caseSensitive": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "intersection"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "term-intersection-case-sensitive-verb",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ],
+            "caseSensitive": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "intersect"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "term-intersection-case-sensitive-case",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Supply the requested result",
+          "validator": "term",
+          "fields": ["answer"],
+          "params": {
+            "accepted": [
+              "intersection",
+              "intersection.",
+              "the intersection",
+              "the intersection.",
+              "an intersection",
+              "an intersection."
+            ],
+            "caseSensitive": true
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check your answer."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "Intersection"
+    },
+    "verdict": "incorrect"
+  },
+  {
     "name": "term-full-match",
     "assessment": {
       "version": 1,
