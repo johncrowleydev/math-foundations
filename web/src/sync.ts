@@ -10,6 +10,7 @@ import {
   hash,
   attemptsMatch,
   recoverEffortRejections,
+  retryUnsubmittedAttempt,
 } from './storage';
 import type { Attempt, RecordData } from './types';
 import { deterministicAttempt } from './structuredAnswer';
@@ -116,9 +117,15 @@ export async function cancelGrading(a: Attempt) {
   await put('attempts', a.id, saved);
 }
 export async function recheck(a: Attempt, reason: string) {
+  await recoverEffortRejections();
+  a = (await get<Attempt>('attempts', a.id)) || a;
   if (deterministicAttempt(a))
     throw Error('This answer is checked automatically. Try another answer instead.');
   if (a.verdict && !reason.trim()) throw Error('Explain what should be reconsidered.');
+  if (await retryUnsubmittedAttempt(a.id)) {
+    void sync();
+    return;
+  }
   const id = crypto.randomUUID();
   await put('outbox', id, { id, kind: 'recheck', attempt: a.id, data: { id, reason } });
   await put('attempts', a.id, {

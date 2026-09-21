@@ -77,6 +77,18 @@ func TestGradingRestartRecoveryAndBackup(t *testing.T) {
 func submission() Submission {
 	return Submission{ID: newID(), Exercise: "logic-1", Submitted: time.Now().UnixMilli(), ContentVersion: "test-v1", Mode: "type", Text: "Yes. It is a declarative statement with a definite truth value, true.", Images: []string{}}
 }
+func TestRecheckOfMissingSubmissionExplainsRecovery(t *testing.T) {
+	reply := `{}`
+	g := graderFixture(t, &reply)
+	err := g.recheck(newID(), newID(), "")
+	if err == nil || err.Error() != "This attempt has not reached the server. Retry submitting the saved answer." {
+		t.Fatalf("unexpected missing-attempt error: %v", err)
+	}
+	var jobs int
+	if err := g.server.db.QueryRow("SELECT COUNT(*) FROM grading_jobs").Scan(&jobs); err != nil || jobs != 0 {
+		t.Fatalf("missing attempt created a grading job: %d, %v", jobs, err)
+	}
+}
 func TestGradingImmutableAttemptsRechecksAndLock(t *testing.T) {
 	reply := `{"verdict":"incorrect","feedback":"Explain why it has a truth value.","issue":"Missing justification","improvement":"","transcription":""}`
 	g := graderFixture(t, &reply)
