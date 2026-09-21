@@ -141,7 +141,9 @@ verifier and the strict TeX inspection audit run in CI; neither regenerates
 expected data or inspection records.
 
 The published compatibility fixture contains independently captured deployed
-hashes; never regenerate it simply to pass a test. Pacing fixtures preserve
+hashes; never regenerate it simply to pass a test. An inspected artifact update
+records its exact new hash, repair commit and inspection report separately, leaving
+the original captured hashes intact. Pacing fixtures preserve
 historical exercise owners/namespaces. The live grading-version mapping belongs
 with its build consumer and has exact-match and changed-content tests.
 See the [complete cleanup inventory](tooling-inventory.md) for deletion evidence
