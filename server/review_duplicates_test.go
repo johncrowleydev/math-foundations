@@ -47,6 +47,7 @@ func TestReviewDuplicatesCompareSelectedDeclarativeVariants(t *testing.T) {
 			g := reviewFixture(t)
 			a := duplicateReviewTemplate(t, g, "first", "a", "First template summary.")
 			b := duplicateReviewTemplate(t, g, "second", "b", "Second template summary.")
+			a.Generator, b.Generator = "fixture-bank", "fixture-bank"
 			first := duplicateReviewTemplate(t, g, "selected-a", "a", "Evaluate exclusive OR.")
 			second := duplicateReviewTemplate(t, g, "selected-b", "b", "Evaluate exclusive OR.")
 			want := 1
@@ -63,6 +64,9 @@ func TestReviewDuplicatesCompareSelectedDeclarativeVariants(t *testing.T) {
 			}
 			g.catalog.ReviewTemplates = []ReviewTemplate{a, b}
 			g.catalog.ReviewVariants = map[string]ReviewVariantBank{a.ID: bank(first.Question), b.ID: bank(second.Question)}
+			if err := validateReviewVariantBanks(g.catalog); err != nil {
+				t.Fatal(err)
+			}
 			session, err := g.planReview(ReviewSessionRequest{Kind: "focused-practice", Mode: "quick"}, reviewDay)
 			if err != nil || len(session.Instances) != want {
 				t.Fatalf("selected declarative questions produced %d instances; want %d, error %v", len(session.Instances), want, err)
