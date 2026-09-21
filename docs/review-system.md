@@ -58,6 +58,8 @@ Existing exercise templates supply additional concepts and skills without changi
 
 The server groups compatible templates by target, orders eligible targets by due time, and interleaves concepts when an alternative exists. Sessions contain at most 30 targets, with one instance per selected target. Template/variant selection and generation are deterministic for the persisted seed. Long-term interval rules are separate from this within-session ordering.
 
+Each session uses a source exercise or dedicated template at most once. It also excludes identical visible tasks from different sources, comparing the prompt, instructions, formula, table, and response controls without internal IDs, grading metadata, glossary link destinations, or option ordering. When the preferred candidate repeats a selected task, the planner tries other eligible candidates for that target. If none is distinct, the target is skipped without changing its due state or activating it through focused practice. Previously issued sessions and saved answers remain unchanged.
+
 Quick mode filters eligibility only. It does not change deferred targets or their due dates. The summary counts targets rather than variants or exercises. Deeper due work remains available through Regular mode.
 
 ## Attempt context and grading

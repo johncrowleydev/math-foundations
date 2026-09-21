@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -712,6 +713,58 @@ func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version 
 	teachingRaw, _ := json.Marshal(teaching)
 	return ReviewInstance{EvidenceLevel: t.EvidenceLevel, CognitiveLevel: t.CognitiveLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities, SourceTarget: t.sourceTarget(), ID: id, Exercise: "review-" + id, Lesson: t.Lesson, Question: question, Context: context, Analytics: t.Analytics, ContentVersion: version, Teaching: teachingRaw}
 }
+
+var reviewReferenceLink = regexp.MustCompile(`\[([^\]]+)\]\(ref:[^)]+\)`)
+
+// Compare the task a learner sees, independently of its curriculum tags and
+// grading metadata. Option order and internal field IDs do not make a new task.
+func reviewQuestionFingerprint(question map[string]any) string {
+	var visible func(any) any
+	visible = func(value any) any {
+		switch v := value.(type) {
+		case string:
+			return strings.Join(strings.Fields(reviewReferenceLink.ReplaceAllString(v, "$1")), " ")
+		case []any:
+			result := make([]any, len(v))
+			for i, item := range v {
+				result[i] = visible(item)
+			}
+			return result
+		case map[string]any:
+			result := map[string]any{}
+			for key, item := range v {
+				if key == "id" || key == "feedback" || key == "correctOption" {
+					continue
+				}
+				result[key] = visible(item)
+				if key == "options" {
+					if options, ok := result[key].([]any); ok {
+						sort.Slice(options, func(i, j int) bool {
+							a, _ := json.Marshal(options[i])
+							b, _ := json.Marshal(options[j])
+							return string(a) < string(b)
+						})
+					}
+				}
+			}
+			return result
+		default:
+			return value
+		}
+	}
+	task := map[string]any{}
+	for _, key := range []string{"prompt", "instructions", "math", "table", "choice"} {
+		if value, ok := question[key]; ok && value != nil && value != "" {
+			task[key] = visible(value)
+		}
+	}
+	if assessment, ok := question["assessment"].(map[string]any); ok {
+		task["inputs"] = visible(assessment["inputs"])
+	}
+	data, _ := json.Marshal(task)
+	return string(data)
+}
+
 func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession, error) {
 	session := ReviewSession{ID: newID(), Kind: req.Kind, Mode: req.Mode, Instances: []ReviewInstance{}}
 	if !enum(req.Kind, "scheduled-review", "focused-practice") || !enum(req.Mode, "regular", "quick") {
@@ -760,6 +813,8 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		return keys[i] < keys[j]
 	})
 	previous := ""
+	usedSources := map[string]bool{}
+	usedQuestions := map[string]bool{}
 	for len(keys) > 0 && len(session.Instances) < 30 {
 		pick := 0
 		for i, k := range keys {
@@ -773,7 +828,27 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		candidates := grouped[key]
 		seed := session.ID + ":" + key
 		hash := sha256.Sum256([]byte(seed))
-		t := candidates[int(hash[0])%len(candidates)]
+		var t ReviewTemplate
+		fingerprint := ""
+		for offset := range candidates {
+			candidate := candidates[(int(hash[0])+offset)%len(candidates)]
+			if usedSources[candidate.sourceTarget()] {
+				continue
+			}
+			question, _ := instantiateReviewQuestion(candidate, seed)
+			candidateFingerprint := reviewQuestionFingerprint(question)
+			if usedQuestions[candidateFingerprint] {
+				continue
+			}
+			t, fingerprint = candidate, candidateFingerprint
+			break
+		}
+		// A skipped target remains due; selecting a duplicate is not evidence.
+		if fingerprint == "" {
+			continue
+		}
+		usedSources[t.sourceTarget()] = true
+		usedQuestions[fingerprint] = true
 		s, active := states[key]
 		if !active {
 			s = ReviewState{ReviewTarget: t.ReviewTarget, ID: key, ActivatedAt: now, DueAt: now, Reason: "Active practice requested", Quick: t.quick(), EvidenceLevel: t.EvidenceLevel}
