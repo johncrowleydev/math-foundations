@@ -431,39 +431,47 @@ export function Figure({ figure: f, sources }: { figure: Definition; sources?: S
   } else if (f.kind === 'collections') {
     drawing = (
       <>
-        {f.collections!.map((c, i) => (
-          <g key={c.label}>
-            <rect
-              x={35 + i * 195}
-              y="65"
-              width="170"
-              height="210"
-              fill="none"
-              stroke={accent}
-              strokeWidth={frame.highlight.includes(c.label) ? 3 : 1}
-            />
-            {label(c.label, 120 + i * 195, 35)}
-            {c.elements.map((v, j) => (
-              <g key={j}>
-                {Array.isArray(v) && (
-                  <rect
-                    x={60 + i * 195}
-                    y={95 + j * 70}
-                    width="110"
-                    height="45"
-                    fill={light}
-                    stroke={accent}
-                  />
-                )}
-                {label(
-                  Array.isArray(v) ? '\\{' + v.join(',') + '\\}' : v,
-                  120 + i * 195,
-                  115 + j * 70,
-                )}
-              </g>
-            ))}
-          </g>
-        ))}
+        {f.collections!.map((c, i) => {
+          // Fit every member inside the collection, leaving 15px of vertical padding.
+          const rowHeight = Math.min(70, 180 / Math.max(1, c.elements.length));
+          const memberHeight = Math.min(45, rowHeight - 8);
+          return (
+            <g key={c.label}>
+              <rect
+                x={35 + i * 195}
+                y="65"
+                width="170"
+                height="210"
+                fill="none"
+                stroke={accent}
+                strokeWidth={frame.highlight.includes(c.label) ? 3 : 1}
+              />
+              {label(c.label, 120 + i * 195, 35)}
+              {c.elements.map((v, j) => {
+                const centerY = 80 + (j + 0.5) * rowHeight;
+                return (
+                  <g key={j}>
+                    {Array.isArray(v) && (
+                      <rect
+                        x={60 + i * 195}
+                        y={centerY - memberHeight / 2}
+                        width="110"
+                        height={memberHeight}
+                        fill={light}
+                        stroke={accent}
+                      />
+                    )}
+                    {label(
+                      Array.isArray(v) ? '\\{' + v.join(',') + '\\}' : v,
+                      120 + i * 195,
+                      centerY - 3,
+                    )}
+                  </g>
+                );
+              })}
+            </g>
+          );
+        })}
       </>
     );
   } else if (f.kind === 'plot') {

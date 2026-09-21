@@ -106,32 +106,57 @@ In the example it is $\{1,3\}$. This operation models which permissions changed 
 
 ## Proving inclusions and identities
 
-A drawing can make a set identity feel convincing, but it may hide assumptions about how the sets overlap. An element proof avoids that problem by following one arbitrary object through the definitions. The object is not a special example: every step must work for anyone admitted by the starting condition.
+A proof about sets answers a question about their members. To prove an **inclusion**, we must show that everything in one set also belongs to another. To prove a **set identity**, we must show that two descriptions always give exactly the same members. A picture can suggest why a claim is true; a proof explains why it works for every allowed choice of sets.
 
-An element proof turns a set statement into logic. To prove $A\cap B\subseteq A$, let $x$ be an arbitrary element of $A\cap B$. By the definition of intersection, $x\in A$ and $x\in B$. In particular $x\in A$. Because this reasoning applies to every element of the intersection, the inclusion follows.
+**First: show that one set fits inside another.**
 
-To prove equality, it is often convenient to prove **both inclusions**. Consider
-
-$$
-A\setminus B=A\cap B^c,
-$$
-
-with $A,B\subseteq U$. If $x\in A\setminus B$, then $x\in A$ and $x\notin B$. Since $x\in U$, it follows that $x\in B^c$, so $x\in A\cap B^c$. Conversely, if $x\in A\cap B^c$, then $x\in A$ and $x\notin B$, so $x\in A\setminus B$.
-
-Neither direction alone establishes equality. $A\subseteq B$ can be true while $B$ contains additional elements.
-
-Sometimes a chain of equivalences proves both directions at once. For any $x\in U$,
+Think of $A$ as the set of your neighbors and $B$ as the set of your colleagues. Their intersection contains the people who are both. Everyone in that intersection must therefore be a neighbor. Written in symbols, the claim is
 
 $$
-\begin{aligned}
-x\in(A\cup B)^c
-&\Longleftrightarrow\neg(x\in A\lor x\in B)\\
-&\Longleftrightarrow(x\notin A\land x\notin B)\\
-&\Longleftrightarrow x\in A^c\cap B^c.
-\end{aligned}
+A\cap B\subseteq A.
 $$
 
-This proves one of **De Morgan's laws**. Notice that the middle step is the logical law already studied; the other steps use set definitions.
+Read this as “the intersection of A and B is a subset of A.” Here is the proof, one step at a time:
+
+1. **Start with someone in the intersection.** Call this person $x$. We do not choose a particular neighbor or assume anything about them beyond membership in the intersection.
+2. **Unpack what intersection means.** This person belongs to both lists: they are a neighbor and a colleague.
+3. **Check the destination.** They are a neighbor, so they belong to $A$. That is all we needed to show.
+
+This is an **element proof**: follow one member from the starting set to the destination set. Mathematicians say “let $x$ be an arbitrary element” to mean that the reasoning must work for any member, without relying on special features of a chosen example. The same argument works whether the sets contain people, numbers, or other objects. If the starting set is empty, there is no member that could violate the inclusion, so the claim still holds.
+
+**Next: show that two descriptions give the same set.**
+
+Keep the two lists, and fix a universe $U$ containing everyone under discussion. The complement $B^c$ means the people in this universe who are **not** colleagues. We want to prove
+
+$$
+A\setminus B=A\cap B^c.
+$$
+
+Read the left side as “neighbors with colleagues removed.” Read the right side as “people who are both neighbors and non-colleagues.” Both descriptions should select exactly the same people. To establish that, check **both inclusions**:
+
+1. **From left to right.** Start with anyone left on the neighbor list after colleagues have been removed. This person is a neighbor and is not a colleague. They therefore belong to both $A$ and $B^c$, which puts them in the intersection on the right.
+2. **From right to left.** Start with anyone in that intersection. This person is a neighbor and is not a colleague. Removing colleagues from the neighbor list would keep them, so they belong to the difference on the left.
+
+The first direction shows that the right side misses nobody from the left. The second shows that the right side adds nobody extra. Together they establish equality. One direction alone would allow extra members: everyone on a two-person guest list might also be on a ten-person list, but the lists are not equal.
+
+**Finally: recognize when each step works in both directions.**
+
+Consider the people who are on neither list. There are two ways to describe them:
+
+- Combine the neighbor and colleague lists, then take everyone in the universe who is outside that combined list.
+- Take the non-neighbors and the non-colleagues, then keep only people who are in both of those groups.
+
+Why do these descriptions agree? Being outside the combined list means being on neither original list. That means being a non-neighbor **and** a non-colleague. The reasoning also works backwards: someone who is in neither group cannot appear when the two lists are combined.
+
+In symbols, this proves one of **De Morgan's laws**:
+
+$$
+(A\cup B)^c=A^c\cap B^c.
+$$
+
+On the left, $\cup$ combines the lists and the superscript $c$ takes the complement of the whole result. On the right, each list is complemented separately and $\cap$ keeps their overlap. All complements use the same universe $U$.
+
+A compact proof may join the membership descriptions with $\Longleftrightarrow$, read “if and only if.” Each arrow says the step works in both directions. Here the descriptions are “outside the combined list,” “on neither list,” and “in both complements.” Translating them into words gives the reason for the identity; the notation records that reasoning concisely.
 
 ## Laws of set operations
 
@@ -196,7 +221,18 @@ $$
 
 If a finite set $A$ has $n$ elements, then $\mathcal P(A)$ has $2^n$ elements. A subset makes one independent include-or-exclude choice for each element. These $n$ binary (two-option) choices give $2\cdot2\cdots2=2^n$ possibilities. For $n=0$, there is one possible collection of choices: choosing nothing, which produces the empty subset.
 
-A **bit** is a digit that is either 0 or 1. A **bit mask** uses one bit per feature, with 1 meaning included and 0 meaning excluded, to represent a subset of the features. For features a and b in that order, 00 selects neither, 10 selects only a, 01 selects only b, and 11 selects both. It represents membership, not an ordering of selected features.
+**A computing application: recording which elements you chose.** The include-or-exclude decisions above can also be stored as zeros and ones. A **bit** is one digit, either 0 or 1. Use 1 for “include this element” and 0 for “leave it out.” A **bit mask** is a row of these digits, with one fixed position for each element of the original set.
+
+For the same two elements a and b shown in the figure, let the first position stand for a and the second for b:
+
+| Bit mask | Include a? | Include b? | Subset selected |
+| -------- | ---------- | ---------- | --------------- |
+| `00`     | No         | No         | Empty set       |
+| `10`     | Yes        | No         | Only a          |
+| `01`     | No         | Yes        | Only b          |
+| `11`     | Yes        | Yes        | Both a and b    |
+
+These four rows describe exactly the four subsets inside the power-set box. Each subset has one mask, and each mask selects one subset. This is why bit masks appear here: they give a computer a compact way to record a choice of subset, such as which optional features are enabled. They also express the same counting argument as above: each extra element adds another independent yes-or-no choice, doubling the number of possible subsets. The positions must stay fixed so we know which element each digit refers to; they do not put the selected elements in an order.
 
 <QuickCheck id="quick-2" />
 
