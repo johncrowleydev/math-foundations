@@ -13,37 +13,37 @@ import (
 )
 
 func TestBooleanSelectionConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/boolean-selection-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/boolean-selection-fixtures.json")
 }
 func TestDeterministicConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/deterministic-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/deterministic-fixtures.json")
 }
 func TestExponentialConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/exponential-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/exponential-fixtures.json")
 }
 func TestAsymptoticConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/asymptotic-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/asymptotic-fixtures.json")
 }
 func TestRecurrenceConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/recurrence-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/recurrence-fixtures.json")
 }
 func TestDiscreteConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/discrete-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/discrete-fixtures.json")
 }
 func TestPolynomialFormConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/polynomial-form-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/polynomial-form-fixtures.json")
 }
 func TestFiniteMapConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/finite-map-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/finite-map-fixtures.json")
 }
 func TestQuantifiedExtraConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/quantified-extra-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/quantified-extra-fixtures.json")
 }
 func TestSymbolicFormConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/symbolic-form-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/symbolic-form-fixtures.json")
 }
 func TestMathInputConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/math-input-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/math-input-fixtures.json")
 }
 func testDeterministicCorpus(t *testing.T, path string) {
 	b, e := os.ReadFile(path)
@@ -312,7 +312,7 @@ func TestPublishedDeterministicFixtures(t *testing.T) {
 	}
 	raw, e := os.ReadFile(filepath.Join(root, "output/grading-catalog.json"))
 	if os.IsNotExist(e) {
-		t.Skip("run npm run content first")
+		t.Skip("run npm run content:build first")
 	}
 	if e != nil {
 		t.Fatal(e)
@@ -571,7 +571,7 @@ func TestQuantifiedTotalFunctions(t *testing.T) {
 	}
 }
 
-func TestSetConformance(t *testing.T) { testDeterministicCorpus(t, "../shared/set-fixtures.json") }
+func TestSetConformance(t *testing.T) { testDeterministicCorpus(t, "../tests/grading/fixtures/set-fixtures.json") }
 
 func TestQuantifiedMembershipNotation(t *testing.T) {
 	a := deterministicFixture(t)
@@ -592,5 +592,5 @@ func TestElementaryRejectsInternalRootSymbol(t *testing.T) {
 }
 
 func TestConstructionConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/construction-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/construction-fixtures.json")
 }

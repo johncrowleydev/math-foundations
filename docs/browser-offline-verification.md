@@ -29,7 +29,7 @@ The production-PWA test intercepts a Review POST without forwarding it, returnin
 
 ## Scenarios and evidence
 
-`scripts/check-offline-hardening.mjs` runs the production build with an active service worker and the real Go API. It checks:
+`e2e/offline.spec.mjs` runs the production build with an active service worker and the real Go API. It checks:
 
 - Malformed acknowledgement, reload before synchronization, retained outbox ID, and eventual single server acceptance.
 - Well-shaped but truncated Review acknowledgement; preserved immutable context and queue across reload before the server receives the answer.
@@ -45,14 +45,14 @@ The production-PWA test intercepts a Review POST without forwarding it, returnin
 
 Additional existing browser checks passed:
 
-| Check                                    | Coverage                                                                                                                                                                                     |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `check-review-submission-ui.mjs`         | Real API choice grading, retry, effort timing, rejected-effort recovery, typed Regular response, blur/reload draft restoration; open grading is cancelled locally.                           |
-| `check-review-ui.mjs`                    | Regular/Quick switching, deferred deep evidence, focused filters, API outage, cached Review session and queued sync. This script blocks service workers and uses synthetic API responses.    |
-| `check-deterministic-ui.mjs`             | 25 real server-verified attempts, calculus/statistics forms, offline retry and sync, frozen presentations, scratchwork text/pen/photo, and export/import to a new browser context.           |
-| `web/tests/draftHydration.browser.mjs`   | Delayed local draft hydration, rapid field edits, reload and keyboard input.                                                                                                                 |
-| `web/tests/structuredAnswer.browser.mjs` | Structured controls and browser persistence under unavailable upload service.                                                                                                                |
-| `check-review-library-ui.mjs`            | Published catalog/filter/target grouping, authored and generated previews, historical exercise namespaces, lesson navigation and mobile layout; previews do not create learner observations. |
+| Check                            | Coverage                                                                                                                                                                                     |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `check-review-submission-ui.mjs` | Real API choice grading, retry, effort timing, rejected-effort recovery, typed Regular response, blur/reload draft restoration; open grading is cancelled locally.                           |
+| `check-review-ui.mjs`            | Regular/Quick switching, deferred deep evidence, focused filters, API outage, cached Review session and queued sync. This script blocks service workers and uses synthetic API responses.    |
+| `check-deterministic-ui.mjs`     | 25 real server-verified attempts, calculus/statistics forms, offline retry and sync, frozen presentations, scratchwork text/pen/photo, and export/import to a new browser context.           |
+| `e2e/draft-hydration.spec.mjs`   | Delayed local draft hydration, rapid field edits, reload and keyboard input.                                                                                                                 |
+| `e2e/structured-answer.spec.mjs` | Structured controls and browser persistence under unavailable upload service.                                                                                                                |
+| `check-review-library-ui.mjs`    | Published catalog/filter/target grouping, authored and generated previews, historical exercise namespaces, lesson navigation and mobile layout; previews do not create learner observations. |
 
 Go provider-trap and frozen-definition/restore tests run in the full server suite. The sync-envelope regressions explicitly retain `not_graded` responses and historical open attempts with empty grade histories. Existing unit tests additionally cover historical exercise-key mappings, changed assessment fingerprints, earlier draft preservation, immutable imported grades, and restore ordering. No new browser test was added solely for a passing scenario; the new torture test centers on the reproduced persistence failures.
 

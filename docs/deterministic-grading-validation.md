@@ -32,8 +32,8 @@ npm run typecheck
 npm test
 npm run web:build
 npm run web:test
-node --import tsx scripts/check-tex-release.ts
-node --import tsx scripts/deterministic-coverage.ts
+node --import tsx tools/audit/check-tex-release.ts
+node --import tsx tools/audit/deterministic-coverage.ts
 ```
 
 From `server/`, run `go test ./... -count=1`. Run the three browser scripts using `PLAYWRIGHT_MODULE` as documented in the [screenshot record](screenshots/deterministic/README.md). Formatting checks cover changed files; all changed Go files pass `gofmt`, and all seven changed Python authoring scripts parse successfully.

@@ -11,10 +11,10 @@ import (
 )
 
 func TestApproximateConformance(t *testing.T) {
-	testDeterministicCorpus(t, "../shared/approximate-fixtures.json")
+	testDeterministicCorpus(t, "../tests/grading/fixtures/approximate-fixtures.json")
 }
 func TestApproximateDefinitions(t *testing.T) {
-	raw, e := os.ReadFile("../shared/approximate-definition-cases.json")
+	raw, e := os.ReadFile("../tests/grading/fixtures/approximate-definition-cases.json")
 	if e != nil {
 		t.Fatal(e)
 	}
@@ -36,7 +36,7 @@ func TestApproximateDefinitions(t *testing.T) {
 }
 
 func TestApproximateMalformedInputAvoidsAttemptsAndProvider(t *testing.T) {
-	raw, e := os.ReadFile("../shared/approximate-fixtures.json")
+	raw, e := os.ReadFile("../tests/grading/fixtures/approximate-fixtures.json")
 	if e != nil {
 		t.Fatal(e)
 	}

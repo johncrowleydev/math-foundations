@@ -6,7 +6,7 @@ or production API is used. The migration preserves the existing React interface.
 
 Run `npm run web:build`, start the preview on loopback port 4196 with
 `FOUNDATIONS_API_TARGET=http://127.0.0.1:18996 npm run preview --prefix web -- --port 4196`,
-then run `node scripts/check-mdx-ui.mjs`. Set `PLAYWRIGHT_MODULE` and `CHROME_BIN`
+then run `npm run test:e2e -- mdx`. Set `PLAYWRIGHT_MODULE` and `CHROME_BIN`
 to an installed local Playwright module and Chromium executable when necessary.
 The API target is intentionally an unused loopback endpoint; the test intercepts
 every API request.

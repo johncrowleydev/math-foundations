@@ -18,7 +18,7 @@ appears on the saved attempt. Desktop and phone captures were visually inspected
 After building, run a local production preview on port 4196, then execute:
 
 ```sh
-PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node web/tests/retryGrading.browser.mjs
+PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs npm run test:e2e -- retry-grading
 ```
 
 The unit tests separately cover effort-clock recovery after an old recheck hid the

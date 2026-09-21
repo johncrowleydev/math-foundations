@@ -54,7 +54,7 @@ The new structured assessments include 995 production tasks and 394 recognition 
 
 ## Validation
 
-Run `npm run content` followed by `npx tsx scripts/deterministic-coverage.ts`. To refresh the generated ledger and this report after an inspected authoring change, run `npx tsx scripts/deterministic-coverage.ts --write`.
+Run `npm run content:build` followed by `npx tsx tools/audit/deterministic-coverage.ts`. To refresh the generated ledger and this report after an inspected authoring change, run `npx tsx tools/audit/deterministic-coverage.ts --write`.
 
 The check rejects missing or duplicate identities, mismatched historical hashes, missing open-item reasons, disagreement between dispositions and published grading methods, untracked structured definitions, changed source pins, mismatched published assessments, and missing or changed dedicated Review definitions. It also checks that the committed ledger and report equal the generated result.
 

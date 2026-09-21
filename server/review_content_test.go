@@ -17,7 +17,7 @@ func TestLessonReviewContentPreservesExistingEffectiveTemplates(t *testing.T) {
 	}
 	raw, err := os.ReadFile(filepath.Join(root, "output/grading-catalog.json"))
 	if os.IsNotExist(err) {
-		t.Skip("run npm run content to test the published catalog")
+		t.Skip("run npm run content:build to test the published catalog")
 	}
 	if err != nil {
 		t.Fatal(err)

@@ -73,7 +73,7 @@ The final combined browser sweep passed:
 - `check-review-submission-ui.mjs`: actual API grading, retry, timing, rejected-attempt recovery, explicitly open Regular responses and reloaded drafts.
 - `check-review-ui.mjs`: Regular/Quick switching, deferred deep work, focused filters, cached API-offline session, acknowledged queued upload and phone layout.
 - `check-deterministic-ui.mjs`: 25 real server-verified attempts, supported structured families, scratchwork and frozen presentations.
-- `draftHydration.browser.mjs` and `structuredAnswer.browser.mjs`: delayed restoration, rapid edits, keyboard input, structured controls, persistence and narrow viewports.
+- `e2e/draft-hydration.spec.mjs` and `e2e/structured-answer.spec.mjs`: delayed restoration, rapid edits, keyboard input, structured controls, persistence and narrow viewports.
 - `check-review-library-ui.mjs`: the 4,827-template effective catalog, all 555 dedicated template families and their inspectable authored variants, source placement, generated previews, target grouping, historical namespace links and phone layout. Browsing and previews create no attempts or scheduling observations.
 
 The initial integration failures were the six omitted Discrete inspection records/two TeX requirements and the fixed 300-ms browser assertion; the final runs pass with these repaired. CI status is available on each linked PR. No PR was merged, no code review was triggered, and nothing was deployed.

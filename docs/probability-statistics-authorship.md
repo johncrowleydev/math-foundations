@@ -15,7 +15,7 @@ The canonical sources are directly authored `content/lessons/ps-*.mdx` and
 `content/references/probability-statistics.json`, and the shared review, figure,
 quick-check, feedback, formula, typing, and source files under `content/`. MDX
 places explicit `Figure`, `Exercise`, and `QuickCheck` components after teaching.
-Edit these documents and data directly, then run `npm run content`. Stable
+Edit these documents and data directly, then run `npm run content:build`. Stable
 `probability-statistics-` identities and historical inspection records remain.
 The former `scripts/authoring/probability-statistics.mjs` writer and all its
 lesson/helper/assessment/source/figure modules are removed; see

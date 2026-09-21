@@ -2,7 +2,7 @@
 
 Author curriculum directly in `content/`. Lesson prose and structure belong in
 `content/lessons/*.mdx`; structured records belong in YAML or JSON. These files
-are the source consumed by `npm run content`. There is no preliminary generation
+are the source consumed by `npm run content:build`. There is no preliminary generation
 command and no executable curriculum source under `scripts/authoring/`.
 
 JavaScript, TypeScript, JSX, TSX, MJS, Python, Go, and other executable files may
@@ -56,7 +56,7 @@ Component names and props are part of the React component's interface. String,
 number, boolean, and null literals are allowed as props. MDX validation rejects
 imports, exports, arbitrary JavaScript expressions, loops, spreads, event-handler
 props, and code that constructs lesson content. The standard remark plugin in
-`scripts/lesson-mdx-policy.ts` checks document policy separately from MDX
+`tools/content/lesson-mdx-policy.ts` checks document policy separately from MDX
 compilation; it does not replace compilation with a custom tag interpreter. Math
 expressions remain math, not JavaScript. Missing component registrations fail when
 the compiled document renders and are covered by the lesson rendering tests.
@@ -90,11 +90,11 @@ content/lessons/*.mdx ───────────> standard MDX compilatio
           └─ + YAML/JSON ──────> static metadata extraction ──> catalogs/indexes
 ```
 
-`scripts/lesson-metadata.ts` statically inspects document headings, prose and
+`tools/content/lesson-metadata.ts` statically inspects document headings, prose and
 references for validation, grading context, section indexes, and exercise
 placement. Assessment tags are excluded from grading-context prose; figure
 references stay MDX component nodes rather than becoming Markdown image markers.
-`npm run content` joins that metadata with the declarative worksheet, review and
+`npm run content:build` joins that metadata with the declarative worksheet, review and
 grading records and writes runtime assets under `output/`. Browser
 components do not import this build processor or render its legacy block arrays
 as the lesson document. Metadata extraction never generates canonical lessons or
@@ -157,8 +157,9 @@ The linear algebra sequence has 12 instructional lessons and its own unassessed
 introduction. The [pacing record](linear-algebra-pacing.md) preserves 697 worksheet
 questions and 24 quick checks. `linear-algebra-rank-inverses` retains namespace
 `linear-algebra-bases`; `linear-algebra-least-squares` retains namespace
-`linear-algebra-projections`. Historical split/seed JSON under `scripts/fixtures/`
-is a compatibility test input, not an authoring source. Calculus and probability
+`linear-algebra-projections`. Historical split JSON under `tests/curriculum/fixtures/`
+protects exercise ownership and namespaces; the redundant original seed snapshot was removed.
+These fixtures are compatibility test inputs, not authoring sources. Calculus and probability
 and statistics each have an introduction and 22 instructional lessons; see their
 [calculus](calculus-authorship.md) and
 [probability/statistics](probability-statistics-authorship.md) records.
@@ -175,7 +176,7 @@ and statistics each have an introduction and 22 instructional lessons; see their
    Curriculum inspection snapshots come from the inspected inventory. Never
    refresh a digest or date merely to silence validation. The former subject-wide
    inspection scripts, with hardcoded historical approval claims, are removed.
-4. Run `npm run content`, `npm test`, `npm run typecheck`, `npm run web:test`,
+4. Run `npm run content:build`, `npm test`, `npm run typecheck`, `npm run web:test`,
    `npm run web:build`, and `cd server && go test ./...`. The content build validates
    schemas, references, sources, prerequisites, grading contracts and identities.
    Check formatting with `npm run format:check`.

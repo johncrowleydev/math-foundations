@@ -12,7 +12,7 @@ import (
 func TestPublishedCurriculumReviewPrerequisiteActivation(t *testing.T) {
 	raw, err := os.ReadFile("../output/grading-catalog.json")
 	if os.IsNotExist(err) {
-		t.Skip("run npm run content first")
+		t.Skip("run npm run content:build first")
 	}
 	if err != nil {
 		t.Fatal(err)

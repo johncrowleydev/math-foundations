@@ -2,6 +2,7 @@
 
 - Never request, trigger, or rerun code review unless explicitly requested in the current user request.
 - Use semantic branch prefixes; never agent/ or codex/ unless explicitly requested.
+- Put reusable tooling under the appropriate tools/ area, automated tests under tests/ (or beside the application code they test), browser/E2E checks under e2e/, and fixtures beside their consuming tests. Reserve scripts/ for intentionally user-invoked standalone utilities; do not add arbitrary tooling, tests, fixtures, or migration helpers there. Keep build compatibility data with its build consumer, never in test fixtures.
 - The React/TypeScript PWA is the primary client. Preserve the compact responsive UI, URL routing, offline work, and existing handwriting compatibility. Android is retired.
 - Inline exercises must follow required teaching concepts. Preserve lesson slugs, exercise IDs, grading history, and saved work.
 - Every subject begins with a reading-only lesson numbered 00 and titled Introduction. Explain the subject, applications, prerequisites, learning journey, and how to study it. Introductions have no exercises or quick checks; numbering restarts within each subject without changing existing lesson slugs or exercise IDs.

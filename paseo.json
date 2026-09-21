@@ -3,7 +3,7 @@
     "setup": [
       "npm ci",
       "npm ci --prefix web --no-install-links",
-      "npm run content",
+      "npm run content:build",
       "cd server && go mod download"
     ]
   },
@@ -16,7 +16,9 @@
       "type": "service",
       "command": "npm run web:build && npm run preview --prefix web -- --port \"$PASEO_PORT\""
     },
-    "content": { "command": "npm run content" },
+    "content": {
+      "command": "npm run content:build"
+    },
     "check": {
       "command": "npm run typecheck && npm test && npm run web:build && npm run web:test && (cd server && go test ./...)"
     }

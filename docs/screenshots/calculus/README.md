@@ -7,7 +7,7 @@ Captured against the production build with an isolated local Go API and temporar
 Reproduce after `npm run web:build`:
 
 ```sh
-PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROME_BIN=/usr/bin/google-chrome node scripts/check-deterministic-ui.mjs
+PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROME_BIN=/usr/bin/google-chrome npm run test:e2e -- deterministic
 ```
 
 The browser script verifies server verdicts, retries, saved answers after reload, offline grading, review previews, and absence of model requests or media uploads. It also retains the existing structured-answer, handwriting, export/import, and history checks. Manual image inspection checks figure geometry, labels, mathematical rendering, compact answer controls, and phone layout.

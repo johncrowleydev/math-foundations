@@ -13,7 +13,7 @@ script also retains the existing handwriting, history, and export/import checks.
 Reproduce after `npm run web:build`:
 
 ```sh
-PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROME_BIN=/usr/bin/google-chrome node scripts/check-deterministic-ui.mjs
+PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROME_BIN=/usr/bin/google-chrome npm run test:e2e -- deterministic
 ```
 
 The script verifies local and server verdict agreement, an incorrect interval

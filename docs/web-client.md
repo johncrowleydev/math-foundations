@@ -17,7 +17,7 @@ FOUNDATIONS_API_TARGET=http://127.0.0.1:18084 npm run web:preview
 
 Open **http://localhost:4173**. This is the production-style build, with installation and offline caching enabled. Authenticated use requires the backend described below. Keep the terminal running for online API requests. After a successful online login and the app's assets have been cached, the app can reopen offline while the remembered session remains valid.
 
-For development with hot reload, run `npm run content`, then `FOUNDATIONS_API_TARGET=http://127.0.0.1:18084 npm run web` and open **http://localhost:5173**. Service-worker caching is intentionally limited to the production-style preview. The two ports are separate browser origins with separate local drafts and settings.
+For development with hot reload, run `npm run content:build`, then `FOUNDATIONS_API_TARGET=http://127.0.0.1:18084 npm run web` and open **http://localhost:5173**. Service-worker caching is intentionally limited to the production-style preview. The two ports are separate browser origins with separate local drafts and settings.
 
 The client uses email/password login and a Secure, HttpOnly session cookie. Legacy notebook API keys are no longer accepted, and there is no API-key setup in Settings. Provider keys remain server-only. Sessions last 30 days; reconnect validates the session before syncing. See [PWA deployment and authentication](pwa-deployment.md) for session and sign-out behavior.
 

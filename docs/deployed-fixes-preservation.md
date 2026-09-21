@@ -28,7 +28,7 @@ tests for duplicate questions across banks and equivalence to lesson items.
 
 The compatibility reference was captured from the existing deployed artifacts
 before changing production, rather than regenerated from the candidate branch.
-`scripts/fixtures/declarative-runtime-baseline.json` records their SHA-256
+`tests/content/fixtures/published-compatibility.json` records their SHA-256
 digests and release provenance. The unchanged reading-order reference retains
 its original migration digest.
 
@@ -40,7 +40,7 @@ answer contract, analytics mapping, ordering, placement, quick check, and all
 bank is covered separately by exhaustive server fixtures.
 
 After establishing that parity, the existing exact representation-to-version
-mapping in `scripts/fixtures/mdx-migration-version.json` was aligned to the
+mapping in `tools/content/compatibility/grading-version.json` was aligned to the
 actual deployed catalog version:
 `7070c181471cc6ae5914ac2a9da00a448b776bcc85d25ce5575d76066b2ff872`.
 This preserves queued submissions from production. Only this one proven

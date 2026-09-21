@@ -8,7 +8,7 @@ The published notebook contains **2,064 distinct questions** in these subjects: 
 
 All published prompts and official answers were read, independently calculated or reasoned through, and compared, including optional Practice questions. All 27 lesson explanations and substantive proofs were read in sequence. Repeated numerical families were checked using their common derivation and each instance's actual values; checking one representative was not treated as checking the family. Domains, quantifier order, theorem hypotheses, endpoints, dimensions, alternative constructions and the distinction between a proof and a numerical example were explicit checks. Published concept/skill assignments were inspected by groups of identical metadata, alongside the actual prompts and evidence levels.
 
-This is an agent's mathematical review, **not a machine-checked proof of every answer**. The extraction scripts only exposed the compiled material and grouped metadata; they were not independent mathematical oracles. The independent executable part added here is deliberately smaller: **648 finite cases** in `scripts/curriculum-counterexamples.test.ts`, using elementary Boolean conditions, finite images and composition computed without the grading implementation. These cover all 16 predicate interpretations for each of three repaired quantified items (48), all 72 maps for the repaired composition item, all 512 map/subset combinations for the repaired image item, and all 16 one-user access policies. Existing authoring fixtures run during generation, but were not used as the justification for mathematical correctness.
+This is an agent's mathematical review, **not a machine-checked proof of every answer**. The extraction scripts only exposed the compiled material and grouped metadata; they were not independent mathematical oracles. The independent executable part added here is deliberately smaller: **648 finite cases** in `tests/curriculum/curriculum-counterexamples.test.ts`, using elementary Boolean conditions, finite images and composition computed without the grading implementation. These cover all 16 predicate interpretations for each of three repaired quantified items (48), all 72 maps for the repaired composition item, all 512 map/subset combinations for the repaired image item, and all 16 one-user access policies. Existing authoring fixtures run during generation, but were not used as the justification for mathematical correctness.
 
 ## Findings and repairs
 
@@ -112,9 +112,9 @@ The manual audit does not claim exhaustive hostile-string testing, TypeScript/Go
 
 Passed on this scoped branch:
 
-- `npm run content`: normal source/math/fixture validation and regeneration; 75 lessons, 4,284 questions, 2,527 inline placements across the complete curriculum.
-- `npx tsx scripts/deterministic-coverage.ts --write`: historical disposition preservation and normal ledger regeneration.
-- `npx tsx --test scripts/curriculum-counterexamples.test.ts scripts/deterministic-coverage.test.ts`: 10 tests passed, including the 648 independently derived finite cases and six answer-publication regressions.
+- `npm run content:build`: normal source/math/fixture validation and regeneration; 75 lessons, 4,284 questions, 2,527 inline placements across the complete curriculum.
+- `npx tsx tools/audit/deterministic-coverage.ts --write`: historical disposition preservation and normal ledger regeneration.
+- `npx tsx --test tests/curriculum/curriculum-counterexamples.test.ts tests/curriculum/deterministic-coverage.test.ts`: 10 tests passed, including the 648 independently derived finite cases and six answer-publication regressions.
 - `npm run typecheck`.
 - Prettier checking of all changed files.
 

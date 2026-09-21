@@ -12,11 +12,11 @@ Assignments are explicit for each lesson introduction, each stable teaching sect
 
 ## Validation and updates
 
-`scripts/sources.ts` runs in every content build, including CI. Missing/dangling assignments, unknown sources, duplicate citations, non-HTTPS links, and unused citations fail the build. Review digests cover the full published lesson, exercises (including feedback), references, formula contexts, figures, and typing placements. A separate digest covers all TeX content. A content edit therefore requires source reinspection even when its section ID remains unchanged.
+`tools/content/sources.ts` runs in every content build, including CI. Missing/dangling assignments, unknown sources, duplicate citations, non-HTTPS links, and unused citations fail the build. Review digests cover the full published lesson, exercises (including feedback), references, formula contexts, figures, and typing placements. A separate digest covers all TeX content. A content edit therefore requires source reinspection even when its section ID remains unchanged.
 
-After checking changed claims against the cited passages, update only the corresponding digest using the exported `lessonSourceHash(lesson, teaching, typing)` or `sourceHash({ syntax, typing })` functions. Use the candidate published content objects from `scripts/build-content.ts`; do not hash stale output from before an edit. The builder deliberately has no auto-approve or skip-validation flag. A digest documents the inspected content version; it cannot prove that a citation supports a claim. Human/editorial source inspection remains necessary.
+After checking changed claims against the cited passages, update only the corresponding digest using the exported `lessonSourceHash(lesson, teaching, typing)` or `sourceHash({ syntax, typing })` functions. Use the candidate published content objects from `tools/content/build.ts`; do not hash stale output from before an edit. The builder deliberately has no auto-approve or skip-validation flag. A digest documents the inspected content version; it cannot prove that a citation supports a claim. Human/editorial source inspection remains necessary.
 
-Run `npm run content`, `npm test`, and `npm run web:build`. Citation metadata is a separate bundled `sources.json`; it does not change exercise IDs, submitted context, grades, or grading content versions. Offline readers can open bibliographic details. Opening the external text requires connectivity.
+Run `npm run content:build`, `npm test`, and `npm run web:build`. Citation metadata is a separate bundled `sources.json`; it does not change exercise IDs, submitted context, grades, or grading content versions. Offline readers can open bibliographic details. Opening the external text requires connectivity.
 
 ## UI
 
