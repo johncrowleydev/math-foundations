@@ -1,8 +1,8 @@
 import { defineConfig, type ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 import mdx from '@mdx-js/rollup';
-import { lessonMdxOptions } from './lesson-mdx-options';
-import { lessonFiles } from './lesson-mdx-plugins';
+import { lessonMdxOptions } from './lesson-mdx-options.ts';
+import { lessonFiles } from './lesson-mdx-plugins.ts';
 import { VitePWA } from 'vite-plugin-pwa';
 const apiTarget = process.env.FOUNDATIONS_API_TARGET || 'https://foundations.johncrowley.dev';
 const proxy: Record<string, ProxyOptions> = {

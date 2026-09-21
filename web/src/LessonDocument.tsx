@@ -40,9 +40,9 @@ function useLesson() {
   if (!runtime) throw new Error('Lesson components require LessonRuntime');
   return runtime;
 }
-function Exercise({ id }: { id: string }) {
+function Exercise({ id }: { id: string | number }) {
   const { data, lesson } = useLesson();
-  const question = lesson.questions.find((q) => String(q.id) === id);
+  const question = lesson.questions.find((q) => String(q.id) === String(id));
   if (!question) throw new Error(`Unknown exercise ${lesson.slug}/${id}`);
   return <ExerciseView key={id} q={question} lesson={lesson} data={data} />;
 }
