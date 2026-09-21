@@ -6,7 +6,8 @@ import tempfile
 import unittest
 import zipfile
 
-spec = importlib.util.spec_from_file_location('exporter', pathlib.Path(__file__).with_name('export-learning-data.py'))
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+spec = importlib.util.spec_from_file_location('exporter', ROOT / 'scripts/export-learning-data.py')
 exporter = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(exporter)
 
