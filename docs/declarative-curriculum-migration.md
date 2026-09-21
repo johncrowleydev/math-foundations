@@ -133,8 +133,8 @@ normalizes figure spelling and excludes dependent quick-check teaching digests;
 it preserves exact question content, lesson and section order, block identities,
 and assessment placement. The catalog comparison normalizes the same figure
 references and excludes the catalog version and previously added declarative
-review-bank field. A separate exact hash checks all exercise grading contracts,
-question data and analytics. The existing exhaustive Go fixtures cover the
+review-bank field. That catalog comparison preserves all exercise grading contracts,
+question data and analytics exactly. The existing exhaustive Go fixtures cover the
 materialized review banks and frozen review behavior.
 
 Native figure syntax changes the bytes inspected by editorial records even though
