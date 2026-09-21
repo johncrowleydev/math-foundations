@@ -8,12 +8,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
 import type { MDXComponents } from 'mdx/types';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import rehypeKatex from 'rehype-katex';
 import { parse } from 'yaml';
-import { remarkDocumentRules } from '../../scripts/lesson-mdx-policy';
-import { remarkLessonLayout, remarkLessonReferences } from '../lesson-mdx-plugins';
+import { lessonMdxOptions } from '../lesson-mdx-options';
 import type { Curriculum, Lesson } from '../src/types';
 
 // Exercise imports the browser storage/auth modules. Effects are not run by SSR;
@@ -69,14 +65,7 @@ async function document(source: string, path = 'registry-probe.mdx') {
       { value: source, path },
       {
         ...runtime,
-        remarkPlugins: [
-          remarkMath,
-          remarkGfm,
-          remarkDocumentRules,
-          remarkLessonReferences,
-          remarkLessonLayout,
-        ],
-        rehypePlugins: [[rehypeKatex, { throwOnError: false, trust: false, strict: 'ignore' }]],
+        ...lessonMdxOptions,
       },
     )
   ).default;
@@ -154,6 +143,15 @@ test('Figure is a real React figure with the existing SVG and controls', async (
   assert.ok(html.includes(figure.title));
   assert.match(html, />Expand<\/button>/);
   assert.doesNotMatch(html, /src="figure:/);
+});
+
+test('standard MDX math preserves single-dollar inline and double-dollar display expressions', async () => {
+  const Document = await document('An inline $x$ and display $$x^2$$ expression.');
+  const html = render(createElement(Document, { components: lessonComponents }));
+  assert.equal((html.match(/class="katex"/g) || []).length, 2);
+  assert.equal((html.match(/class="katex-display"/g) || []).length, 1);
+  assert.match(html, /<annotation encoding="application\/x-tex">x<\/annotation>/);
+  assert.match(html, /<annotation encoding="application\/x-tex">x\^2<\/annotation>/);
 });
 
 test('all canonical lessons compile to React without legacy blocks or canonical source writes', async (t) => {
