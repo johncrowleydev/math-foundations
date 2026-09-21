@@ -6,7 +6,7 @@ This document describes a future coordinated release. The implementation branch 
 
 Ship the Go server, the PWA build, and `output/grading-catalog.json` from the same commit. Build content before either application artifact. The catalog includes all deterministic definitions; the PWA includes the same definitions and validator code for offline grading. No grading service, scripting runtime, computer-algebra dependency, attempt table, or data-directory migration was added.
 
-The source-pinned conversion catalogs are `content/deterministic-exercises.json`, `content/deterministic-linear.json`, and `content/deterministic-algorithms.json`. Dedicated Review assessments live on their actual questions/variants in `content/review-templates.json`. Generate these through their authoring scripts; never patch `output/content` or the grading catalog by hand.
+The source-pinned conversion catalogs are `content/deterministic-exercises.json`, `content/deterministic-linear.json`, and `content/deterministic-algorithms.json`. Dedicated Review assessments live on their actual questions/variants in `content/review-templates.json`. Edit these canonical JSON records directly, following [the declarative authoring workflow](content-authoring.md). The old Python authoring writers are removed. Never patch `output/content` or the grading catalog by hand.
 
 Run the following in the implementation worktree before preparing a release:
 

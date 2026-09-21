@@ -23,7 +23,7 @@ const json = async <T>(file: string): Promise<T> => JSON.parse(await readFile(fi
 const content = await loadContent();
 const algebra = content.lessons.filter((l) => l.subject === 'Linear algebra');
 const core = await json<(Worksheet & { slug: string })[]>(
-  'scripts/authoring/linear-algebra-core.json',
+  'scripts/fixtures/linear-algebra-core.json',
 );
 const plans = await Promise.all(
   // These are pre-split generated worksheet sizes, not the eight-question seed sizes.
@@ -33,7 +33,7 @@ const plans = await Promise.all(
   ].map(async (baseline) => ({
     ...baseline,
     ...(await json<{ lessons: PlanLesson[] }>(
-      `scripts/authoring/linear-algebra-${baseline.name}-pacing.json`,
+      `scripts/fixtures/linear-algebra-${baseline.name}-pacing.json`,
     )),
   })),
 );
@@ -121,9 +121,8 @@ test('697 worksheet questions remain separate from 24 correctly placed quick che
   }
 });
 
-test('split plans partition the original generated IDs and match usable generator inputs', () => {
-  // The generator indexes its ten original families; inserting successor lessons in core
-  // would shift those family indices even though the manifest correctly has twelve lessons.
+test('historical split fixtures preserve original questions and saved exercise identities', () => {
+  // The fixture records the ten historical families before the two lesson splits.
   const successors = new Set(plans.map((plan) => plan.lessons[1].slug));
   assert.deepEqual(
     core.map((l) => l.slug),
@@ -131,7 +130,7 @@ test('split plans partition the original generated IDs and match usable generato
   );
   for (const original of core) {
     assert.ok(lesson(original.slug).worksheet);
-    assert.equal(original.sections.length, 4, 'Original family section indices remain usable');
+    assert.equal(original.sections.length, 4, 'The historical seed records four original sections');
     assert.deepEqual(
       sorted(original.sections.flatMap((s) => s.questions.map((q) => q.id))),
       range(8),
@@ -145,7 +144,7 @@ test('split plans partition the original generated IDs and match usable generato
     for (const target of plan.lessons) {
       const l = lesson(target.slug);
       assert.equal(l.title, target.title);
-      assert.equal(l.lesson, target.lesson);
+      assert.equal(l.lesson.replace(/\.mdx$/, '.md'), target.lesson);
       assert.equal(l.worksheet, target.worksheet);
       assert.equal(l.worksheetData!.title, target.title);
       assert.deepEqual(
@@ -177,7 +176,7 @@ test('split plans partition the original generated IDs and match usable generato
     const seed = core.find((l) => l.slug === plan.namespace)!;
     const splitQuestions = plan.lessons.flatMap((l) => questions(l.slug));
     for (const question of seed.sections.flatMap((s) => s.questions)) {
-      // Seed IDs are renumbered by generation, so compare the actual authored payload.
+      // The historical seed had different IDs; preserve its authored payload after the split.
       const { id: _id, ...payload } = question;
       const match = splitQuestions.find((q) => q.prompt === question.prompt);
       assert.ok(match, `${plan.namespace}: missing original core question ${question.id}`);

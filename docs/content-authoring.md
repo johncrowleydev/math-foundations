@@ -1,27 +1,130 @@
 # Subject authoring
 
-Every subject begins with **00 Introduction**, a reading-only page titled **Introduction** within its subject group. It explains the subject's central questions, applications, prerequisites, learning journey, and how to study the material. It contains no exercises, quick checks, submissions, or mandatory assessment. Introduce unfamiliar vocabulary used in the overview, and defer technical details explicitly rather than presenting unexplained notation.
+Author curriculum directly in `content/`. Lesson prose and structure belong in
+`content/lessons/*.mdx`; structured records belong in YAML or JSON. These files
+are the source consumed by `npm run content`. There is no preliminary generation
+command and no executable curriculum source under `scripts/authoring/`.
 
-Number working lessons from 01 within each subject. Subject metadata and displayed numbers do not change canonical lesson slugs, exercise IDs, stored answers, attempts, or bookmarks. New subjects use their own stable slugs. A subject introduction must be usable without an exercise collection, including when reached by a direct URL.
+JavaScript, TypeScript, JSX, TSX, MJS, Python, Go, and other executable files may
+parse, validate, render, grade, and compile curriculum. They must not contain the
+canonical lesson prose, exercise/review banks, or curriculum structure, or provide
+an authoring DSL that generates those records.
 
-Working lessons should develop connected explanations, concrete examples, and reasons for procedures before asking for practice. Assume precalculus, define new specialized vocabulary and notation before required use, and make every exercise self-contained. Include complete worked answers, meaningful quick checks, contextual references, optional TeX teaching, and prerequisite records. A reference link supplements teaching; it does not replace it.
+## Lesson documents and interactive components
 
-Use figures where spatial structure or a representation change helps understanding. Supply explicit mathematical data, labels, a caption, construction notes, limitations, and prerequisites. Do not add step controls merely to split a paragraph into slides. Check the mathematics independently of the drawing implementation.
+Write ordinary Markdown headings, paragraphs, lists, links, and math in MDX.
+Use the registered components explicitly where learners should encounter them:
 
-The linear algebra sequence follows `study-plan.md` with 12 instructional lessons: vectors; dot products; matrices; systems; span and independence; bases, coordinates, and dimension; rank, nullity, determinants, and inverses; transformations; orthogonality and projections; least squares and model fitting; eigenvalues; conceptual SVD. Its reading-only **00 Introduction** remains separate and unassessed, as does the discrete-mathematics introduction. The [pacing audit](linear-algebra-pacing.md) records the preserved 697 worksheet questions and the expansion from 20 to 24 quick checks, two per instructional lesson.
+```mdx
+## Accumulation
 
-For the split lessons, `scripts/authoring/linear-algebra-bases-pacing.json` and `linear-algebra-projections-pacing.json` define section grouping and inline placement using existing worksheet question IDs. Section titles must match lesson H2 headings. Generate worksheets through `linear-algebra-practice.mjs` and `linear-algebra-advanced.mjs`; do not hand-edit the generated worksheets. Keep original question and answer meaning, and place each question exactly once after the concepts it requires. A new lesson route does not create a new identity for moved work: `linear-algebra-rank-inverses` retains exercise namespace `linear-algebra-bases`, and `linear-algebra-least-squares` retains `linear-algebra-projections`. Existing numeric IDs, including promoted quick checks, remain stable; only the four new quick checks need new noncolliding promoted IDs.
+Read the explanation and worked example before the practice.
 
-Build practice from the subject's learning objectives and the depth of the established curriculum. A fixed allocation such as eight questions per chapter is not a substitute for that work. Include fluency, interpretation, proof, counterexample, and application tasks where appropriate; vary genuine mathematical cases rather than padding the count with cosmetic changes. Develop the teaching and worked examples needed for that practice at the same time.
+<Figure id="calculus-figure-9" alt="An accumulation diagram" />
 
-A passing build, valid notation, an unchanged hash, or a target exercise count cannot establish that content is complete or correct. Describe what was actually inspected and calculated, correct overbroad completion claims, and distinguish an independent mathematical calculation from checking that a generator reproduced its own output. The [linear-algebra correction record](linear-algebra-audit.md) documents this distinction with concrete examples.
+<Exercise id="1" />
 
-Calculus uses `scripts/authoring/calculus/` and the generator `npx tsx scripts/authoring/calculus.mjs`. Its 00 Introduction and 22 working lessons are described in [the calculus authorship record](calculus-authorship.md), including source-inspection records and the explicit inspection-digest workflow. Keep generated worksheets, references, review variants, assessments, and source assignments synchronized through that generator. The approximate deterministic-grading goal guides exercise design; it is not a publication threshold.
+<QuickCheck id="quick-1" />
+```
 
-## Probability and statistics authorship
+This illustrates syntax, not a new lesson or source-supported mathematical claim.
+Use the actual figure ID, local numeric worksheet ID, and quick-check ID from the
+lesson's data. The components are implemented in React/TypeScript. The compiler
+accepts this explicit document structure, validates references and placement, and
+builds the existing client section/figure/exercise objects without evaluating
+lesson JavaScript. Unsupported tags, imports, exports, arbitrary expressions,
+loops, spreads, and content-construction calls fail validation. Math expressions
+remain math, not JavaScript.
 
-The final subject is authored in `scripts/authoring/probability-statistics/`, keeping teaching, solutions, practice, review variants, and pinpoint source assignments together. Run `npx tsx scripts/authoring/probability-statistics.mjs` to regenerate its records through the existing pipeline. The generator appends the `probability-statistics-` identities and preserves prior subjects. Edit the modules rather than the generated lesson, worksheet, reference, and grading files.
+An `Exercise` tag places an existing worksheet question after its teaching.
+Questions without an inline placement remain in additional practice. Do not
+invent a new exercise ID merely because a question moves between lessons. Figure
+and quick-check references must agree with their lesson/section records. No
+separate placement JSON or code-authored heading map controls the lesson order.
 
-After inspecting the supporting passages and independently verifying changed mathematics, record the inspected version with `npx tsx scripts/authoring/probability-statistics-inspection.mjs`. Its `--curriculum` option records the new inventory only after a successful inventory build and visual checks. Normal builds never approve inspection digests. The source and calculation records are linked from [Probability and Statistics authorship](probability-statistics-authorship.md).
+## Where to edit
 
-Fixed numerical approximation exercises use the bounded `approximate-number` contract, supply needed CDF/critical values, and state precision and units. Exact arithmetic, structured fields, probability-table grids, matrices, and symbolic calculus reuse existing controls and validators. Confidence endpoints are checked separately. Explanations and modeling decisions stay open-ended when reasoning is the assessed objective; the rough deterministic preference introduces no percentage gate.
+| Information                                                                        | Canonical files                                                                                                                                  |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Subject order, lesson slug/title/number, worksheet path, legacy exercise namespace | `content/curriculum.yaml`                                                                                                                        |
+| Teaching and explicit interactive placement                                        | `content/lessons/*.mdx`                                                                                                                          |
+| Worksheet sections, question IDs, prompts, answers, table data                     | `content/worksheets/*.yaml`                                                                                                                      |
+| Self-contained notebook wording and prerequisite inspection                        | `content/exercise-copy.yaml`, `content/inline-prerequisites.yaml`                                                                                |
+| Quick-check options/explanations and stable promoted exercise IDs                  | `content/quick-checks.yaml`, `content/knowledge-check-exercises.json`                                                                            |
+| Choice conversion/feedback and structured deterministic schemas/fixtures           | `content/choice-exercises.json`, `content/choice-feedback.json`, `content/deterministic-*.json`                                                  |
+| Dedicated review templates, ordered variants, assessments and fixtures             | `content/review-templates.json`, `content/deterministic-review-fixtures.json`                                                                    |
+| Concept/skill/evidence relationships                                               | `content/evidence/*.yaml`, `content/concept-introductions.json`                                                                                  |
+| Figures, references, formula context and optional typing help                      | `content/figures.json`, `content/references/*.json`, `content/formula-explanations.json`, `content/tex-syntax.json`, `content/tex-teaching.json` |
+| Pinpoint source support and inspected versions                                     | `content/sources.json`, `content/curriculum-audit.json`                                                                                          |
+
+The copy/prerequisite, deterministic fixture, and inspection records sometimes
+repeat authored information deliberately: they record a separately checked
+adaptation or snapshot and reject stale edits. They are not outputs to recreate
+from an executable question bank. Change each affected canonical record directly
+and inspect what the learner will receive. Build artifacts under `output/` and
+`web/public/` are ignored and regenerated by the normal build.
+
+## Teaching and identity requirements
+
+Every subject begins with **00 Introduction**, a reading-only page titled
+**Introduction**. Explain its central questions, applications, prerequisites,
+learning journey, and how to study it. It contains no exercises, quick checks,
+submissions, or mandatory assessment. Define unfamiliar vocabulary and defer
+technical details explicitly. An introduction must work at its direct URL without
+an exercise collection.
+
+Number working lessons from 01 within each subject. Subject metadata and displayed
+numbers do not change canonical lesson slugs, exercise IDs, stored answers,
+attempts, or bookmarks. Working lessons develop explanations, concrete examples,
+and reasons for procedures before practice. Assume precalculus, define new
+specialized vocabulary and notation before required use, and make exercises
+self-contained. Include worked answers, meaningful quick checks, references,
+optional TeX teaching, and prerequisite records. A reference supplements teaching.
+
+Use figures when spatial structure or a representation change helps. Supply
+explicit mathematical data, labels, caption, construction notes, limitations, and
+prerequisites. Check the mathematics independently of the drawing implementation.
+
+Build practice from objectives and the depth of the established curriculum.
+Include fluency, interpretation, proof, counterexample, and application tasks as
+appropriate. Vary mathematical cases; do not pad counts with cosmetic variations.
+A fixed question quota is not a completeness criterion. The approximate preference
+for deterministic grading is not a percentage gate. Reasoning/modeling tasks stay
+open when those are the objectives. Fixed approximation questions state precision
+and units and supply required CDF/critical values; use the bounded
+`approximate-number` contract and separate fields for confidence endpoints.
+
+The linear algebra sequence has 12 instructional lessons and its own unassessed
+introduction. The [pacing record](linear-algebra-pacing.md) preserves 697 worksheet
+questions and 24 quick checks. `linear-algebra-rank-inverses` retains namespace
+`linear-algebra-bases`; `linear-algebra-least-squares` retains namespace
+`linear-algebra-projections`. Historical split/seed JSON under `scripts/fixtures/`
+is a compatibility test input, not an authoring source. Calculus and probability
+and statistics each have an introduction and 22 instructional lessons; see their
+[calculus](calculus-authorship.md) and
+[probability/statistics](probability-statistics-authorship.md) records.
+
+## Editing, inspection, and validation
+
+1. Edit the relevant MDX/YAML/JSON records directly, preserving existing ordering
+   where it affects IDs, variant selection, grading hashes, or saved history.
+2. Inspect the supporting passages and independently check the changed
+   mathematics. Follow [the source policy](content-sources.md); cite pinpoint
+   support for all changed prose, prompts, answers, feedback, figures, and syntax.
+3. Record only the versions actually inspected. Use `lessonSourceHash` and
+   `sourceHash` on candidate published objects as documented in the source policy.
+   Curriculum inspection snapshots come from the inspected inventory. Never
+   refresh a digest or date merely to silence validation. The former subject-wide
+   inspection scripts, with hardcoded historical approval claims, are removed.
+4. Run `npm run content`, `npm test`, `npm run typecheck`, `npm run web:test`,
+   `npm run web:build`, and `cd server && go test ./...`. The content build validates
+   schemas, references, sources, prerequisites, grading contracts and identities.
+   Check formatting with `npm run format:check`.
+5. For user-visible changes, inspect desktop/phone behavior and capture screenshots.
+   For grading or identity changes, run shared deterministic fixtures and review/
+   restore compatibility tests. Preserve frozen review instances and saved work.
+
+A passing build or unchanged hash establishes neither educational completeness nor
+mathematical correctness. Report the actual inspection/calculation performed.
+The [migration report](declarative-curriculum-migration.md) records the removed
+systems, destinations, and compatibility evidence.

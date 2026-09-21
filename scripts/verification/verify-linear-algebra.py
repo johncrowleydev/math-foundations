@@ -1,8 +1,9 @@
 """Independent exact checks of the authored numerical practice data.
 
 Requires SymPy. Does not call a grading service or modify personal answers.
-The authoring source uses elementary JS arithmetic; this checker uses rational
-matrices, ranks, null spaces, eigenvalues, and normal equations independently.
+The canonical inputs are declarative fixtures and published questions. This checker
+uses rational matrices, ranks, null spaces, eigenvalues, and normal equations
+independently of the TypeScript and Go grading implementations.
 """
 import json
 import re

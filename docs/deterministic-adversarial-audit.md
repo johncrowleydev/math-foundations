@@ -6,7 +6,7 @@ Audited 2026-09-20 from `main` at `3719ac2`. This pass adds a new independently 
 
 The new [shared corpus](../shared/deterministic-adversarial-corpus.json) contains **1,166 cases across all 36 registered validator families**, using 107 compactly referenced assessment definitions. Every family has correct, incorrect, and input-error cases. TypeScript and Go consume the identical response and expected outcome; passing both suites establishes verdict/input-error parity on this corpus, not a proof of equivalence for every possible input.
 
-The [generator](../scripts/authoring/deterministic-adversarial.py) imports no checker and never uses an authored answer as an oracle. Two concrete prompt-compliance regressions copy their actual assessment schemas from the authoring definitions; their expected outcomes follow independently from the stated recurrences. Its oracles use direct integer arithmetic, Python sets, pair composition, and permutation enumeration. In particular:
+The [generator](../scripts/verification/deterministic-adversarial.py) imports no checker and never uses an authored answer as an oracle. Two concrete prompt-compliance regressions copy their actual assessment schemas from the authoring definitions; their expected outcomes follow independently from the stated recurrences. Its oracles use direct integer arithmetic, Python sets, pair composition, and permutation enumeration. In particular:
 
 - all 256 pairs of relations on a two-element carrier, independently composing ordered pairs;
 - 216 candidate transitivity witnesses for every reflexive symmetric relation on three elements;
@@ -95,7 +95,7 @@ Counts refer only to the new corpus. `Input error` includes at least one unreque
 The TypeScript test asserts family coverage and all three outcome classes; Go runs the same materialized corpus and rejects unexpected error/verdict behavior. Existing server submission/provider traps cover all 36 active families, retries, rechecks, frozen Review and restored definitions without provider jobs. No review request, PR, push or merge was made by this audit worktree.
 
 ```sh
-python3 scripts/authoring/deterministic-adversarial.py
+python3 scripts/verification/deterministic-adversarial.py
 npx prettier --write shared/deterministic-adversarial-corpus.json
 npx tsx --test scripts/deterministic-adversarial.test.ts
 (cd server && go test -run TestAdversarialConformance -count=1)

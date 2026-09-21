@@ -6,7 +6,14 @@ The first release was too small to support the stated learning goals. Eight exer
 
 The introduction and all ten lesson sources; the original 80 prompts and answers; the original 20 quick checks; reference definitions, examples, confusions and links; every linear-algebra formula context and TeX entry; the coordinate-figure data and renderer; subject numbering, exercise placement, intro routing, content generation, grading catalog generation, and the tests and documentation introduced with the subject. The source changes in commit `95393d0` and the introduction-navigation correction in `8b939f0` were inspected, not just the rendered first chapter.
 
-The revised practice is authored in `scripts/authoring/linear-algebra-practice.mjs` and `linear-algebra-advanced.mjs`, with explicit finite input cases. These are original questions, not copied external exercises. They produce the checked-in lesson exercise sources. The families include ordinary drill deliberately varied across signs, zeros, dimensions, ranks, degeneracies, and exceptional cases, alongside distinct proofs, counterexamples, interpretations, and model critiques. The count is a description of the result, not an educational acceptance criterion.
+The revised practice is now directly authored in `content/worksheets/la-*.yaml`,
+with self-contained notebook wording in `content/exercise-copy.yaml`. Its former
+`linear-algebra-practice.mjs` and `linear-algebra-advanced.mjs` generators were
+removed in the [declarative migration](declarative-curriculum-migration.md).
+These are original questions, not copied external exercises. The finite cases
+cover signs, zeros, dimensions, ranks, degeneracies, and exceptional cases,
+alongside proofs, counterexamples, interpretations, and model critiques. The count
+describes the result; it is not an educational acceptance criterion.
 
 ## Teaching and practice coverage
 
@@ -40,7 +47,7 @@ Each exercise has an entry in `content/linear-algebra-objectives.json`. Inline q
 
 ## Evidence and its meaning
 
-`scripts/authoring/verify-linear-algebra.py` independently recalculates 357 numerical exercises using SymPy rational matrices. It checks the displayed prompt/answer against the exact data as well as products, solution-set consistency and completeness, space dimensions, inverses, projection residuals, normal equations, eigenvectors, SVD factors, and errors. This is separate arithmetic from the JavaScript authoring calculations. The other questions were inspected as arguments and interpretations in the authored source, including their explicit parameter cases; they are not assigned a fictitious numerical correctness score.
+`scripts/verification/verify-linear-algebra.py` independently recalculates 357 numerical exercises using SymPy rational matrices. It checks the displayed prompt/answer against the exact data as well as products, solution-set consistency and completeness, space dimensions, inverses, projection residuals, normal equations, eigenvectors, SVD factors, and errors. This is separate arithmetic from the JavaScript authoring calculations. The other questions were inspected as arguments and interpretations in the authored source, including their explicit parameter cases; they are not assigned a fictitious numerical correctness score.
 
 The content tests additionally cover the original worked calculations and all seven figures' mathematical data. Source hashes in the curriculum inventory detect later changes to inspected material. **A matching hash or a passing rendering test does not prove a mathematical statement or establish pedagogical adequacy.** The previous inventory wording overstated that distinction and has been corrected.
 

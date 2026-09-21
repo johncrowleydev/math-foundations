@@ -1,5 +1,15 @@
 # Architecture audit
 
+> Follow-up: the [declarative curriculum migration](declarative-curriculum-migration.md)
+> supersedes this audit's A03/A09 authoring recommendations. Canonical lessons are
+> now MDX; curriculum metadata, exercises, reviews, grading contracts, figures and
+> source records are directly authored YAML/JSON under `content/`. The entire
+> `scripts/authoring/` tree and its aggregate writers are removed after inventory
+> and parity checks. Independent mathematical verification tools remain under
+> `scripts/verification/`. References below to old authoring paths, invocation order,
+> and isolated generation describe the audited historical commit, not the current
+> authoring workflow. They are retained as evidence of the original regression.
+
 Audited September 20, 2026, from `main` at `eacb485` after pulling with
 `--ff-only`. This is an architecture audit with two bounded refactors, not a
 curriculum revision or a scheduler redesign. No merge or deployment is authorized.
