@@ -112,11 +112,12 @@ test('Exercise and QuickCheck resolve to the existing React Exercise with unchan
   const check = lesson.sections.flatMap((section) => section.quickChecks)[0];
   for (const [name, id, expected] of [
     ['Exercise', String(question.id), question],
+    ['Exercise', question.id, question],
     ['QuickCheck', check.id, lesson.questions.find((item) => item.id === check.exerciseId)!],
   ] as const) {
     let element: ReactElement<{ q: typeof question; lesson: Lesson; data: Curriculum }> | undefined;
     function InspectResolvedComponent() {
-      const Component = lessonComponents[name] as (props: { id: string }) => ReactElement;
+      const Component = lessonComponents[name] as (props: { id: string | number }) => ReactElement;
       let resolved = Component({ id });
       // QuickCheck intentionally delegates through the same registered Exercise.
       if (resolved.type === lessonComponents.Exercise)
