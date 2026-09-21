@@ -29,30 +29,69 @@ Read the explanation and worked example before the practice.
 
 This illustrates syntax, not a new lesson or source-supported mathematical claim.
 Use the actual figure ID, local numeric worksheet ID, and quick-check ID from the
-lesson's data. `Figure` renders through `web/src/Figure.tsx`; `Exercise` and promoted
-`QuickCheck` records use `web/src/Exercise.tsx`. The compiler
-accepts this explicit document structure, validates references and placement, and
-builds the existing client section/figure/exercise objects without evaluating
-lesson JavaScript. Unsupported tags, imports, exports, arbitrary expressions,
-loops, spreads, and content-construction calls fail validation. Math expressions
-remain math, not JavaScript.
+lesson's data. Vite compiles each canonical document with `@mdx-js/rollup` into a
+React component. `web/src/lessonModules.ts` imports the compiled lesson modules;
+`web/src/LessonDocument.tsx` supplies their React component map and lesson context.
+The reading view renders that compiled document directly.
+
+`Figure` resolves its ID in `content/figures.json` and renders the real React
+figure implementation. `Exercise` resolves a worksheet question from the current
+lesson's validated runtime data. `QuickCheck` resolves its declarative quick-check
+record and stable promoted exercise. Both assessment components use the existing
+React exercise implementation, including grading, saved work, and feedback. Figure
+tags are never rewritten into Markdown image links for the reader.
+
+To add an interactive lesson element, implement a React component and register it
+in the `lessonComponents` map in `web/src/LessonDocument.tsx`. Then use its explicit
+tag in the lesson. No MDX parser case, Markdown marker, or placement-data renderer
+is needed. For example, a registered component may receive literal props:
+
+```mdx
+<TruthTableBuilder variables={2} showHints={true} />
+```
+
+Component names and props are part of the React component's interface. String,
+number, boolean, and null literals are allowed as props. MDX validation rejects
+imports, exports, arbitrary JavaScript expressions, loops, spreads, event-handler
+props, and code that constructs lesson content. The standard remark plugin in
+`scripts/lesson-mdx-policy.ts` checks document policy separately from MDX compilation; it does not replace compilation with a custom tag interpreter. Math
+expressions remain math, not JavaScript. Missing component registrations fail when
+the compiled document renders and are covered by the lesson rendering tests.
 
 An `Exercise` tag places an existing worksheet question after its teaching.
 Questions without an inline placement remain in additional practice. Do not
 invent a new exercise ID merely because a question moves between lessons. Figure
 and quick-check references must agree with their lesson/section records. Put
 assessment tags at the end of the complete H2 teaching section, after any H3
-subsections and figures. The reader retains the historical worksheet order within
-each section; tag order preserves the placement arrays used by grading hashes. No
-separate placement JSON or code-authored heading map controls the lesson order.
-Component properties are explicit strings; adding another interactive component
-requires a deliberate parser/renderer extension, not per-lesson code.
+subsections and figures. Preserve established exercise ordering and the placement
+arrays used by grading contracts. No separate placement JSON or code-authored
+heading map controls the lesson order.
 
-The build uses the standard `remark-mdx` parser with `remark-math` and validates
-a document-only subset. It emits data for the existing reader rather than
-evaluating lesson JavaScript. Prettier uses its Markdown formatter for these
-documents to preserve ordinary mathematical prose; the stricter MDX parser still
-validates every build.
+`web/lesson-mdx-plugins.ts` supplies normal Markdown/MDX transforms for the existing
+lesson layout, term links, and math presentation. Layout groups headings and their
+following content without interpreting the meaning of each teaching component.
+Prettier uses its Markdown formatter for lesson documents to preserve ordinary
+mathematical prose; MDX validation and the standard compiler still check them.
+
+## Rendering and metadata are separate
+
+The same canonical files feed two normal build paths:
+
+```text
+content/lessons/*.mdx ───────────> standard MDX compilation ──> React lesson
+          │
+          └─ + YAML/JSON ──────> static metadata extraction ──> catalogs/indexes
+```
+
+`scripts/lesson-metadata.ts` statically inspects document headings, prose and
+references for validation, grading context, section indexes, and exercise
+placement. Assessment tags are excluded from grading-context prose; figure
+references stay MDX component nodes rather than becoming Markdown image markers. `npm run content` joins that metadata with the declarative worksheet,
+review and grading records and writes runtime assets under `output/`. Browser
+components do not import this build processor or render its legacy block arrays
+as the lesson document. Metadata extraction never generates canonical lessons or
+worksheet files, and registering a new React teaching component does not require
+adding a rendering case to it.
 
 ## Where to edit
 

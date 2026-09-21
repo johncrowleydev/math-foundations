@@ -16,6 +16,10 @@ const testFile = /(?:\.(?:test|spec)\.[^.]+|_test\.(?:go|py)|\/check-[^/]+-ui\.[
 export function inspectCurriculumFile(path: string, source: string): string[] {
   const errors: string[] = [];
   const report = (message: string) => errors.push(`${path}: ${message}`);
+  if (path === 'scripts/lesson-mdx.ts') {
+    report('the MDX-to-legacy rendering adapter is retired; compile lessons with standard MDX.');
+    return errors;
+  }
   if (path.startsWith('scripts/authoring/')) {
     report('scripts/authoring is retired; move declarative curriculum into content/.');
     return errors;
@@ -29,6 +33,15 @@ export function inspectCurriculumFile(path: string, source: string): string[] {
     return errors;
   }
   if (!executable.test(path) || testFile.test(path)) return errors;
+
+  if (
+    path.startsWith('web/src/') &&
+    /(?:\bfrom\s*|\b(?:import|require)\s*\(\s*)['"][^'"\n]*\bscripts\//.test(source)
+  ) {
+    report(
+      'browser components must render compiled MDX; content build processors stay build-only.',
+    );
+  }
 
   const authoringPatterns = [
     /export\s+default\s+(?:lesson|makeLesson)\s*\(/,

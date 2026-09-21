@@ -20,6 +20,10 @@ Edit these documents and data directly, then run `npm run content`. Stable
 The former `scripts/authoring/probability-statistics.mjs` writer and all its
 lesson/helper/assessment/source/figure modules are removed; see
 [the migration report](declarative-curriculum-migration.md).
+The lesson files compile directly to React through Vite's standard MDX plugin.
+`Figure`, `Exercise`, and `QuickCheck` are registered React components; metadata
+extraction for catalogs and grading is separate from rendering. See the
+[component registration workflow](content-authoring.md#lesson-documents-and-interactive-components).
 
 The source records cover [foundations](probability-foundations-inspection.md),
 [distributions and sampling](probability-distributions-inspection.md),
@@ -37,7 +41,8 @@ After inspecting changed mathematics and supporting passages, update only the
 records actually inspected, following [the source policy](content-sources.md) and
 [authoring workflow](content-authoring.md). Normal builds validate these facts;
 they never approve them. The former subject-wide inspection script is removed,
-and this migration preserves existing inspection dates and hashes.
+and inspection dates remain unchanged. Representation-only digest changes are
+verified against the previously inspected content, as recorded in the migration report.
 
 The shared TypeScript/Go `approximate-number` validator compares exact arithmetic
 against an authored value, positive absolute tolerance, and optional inclusive

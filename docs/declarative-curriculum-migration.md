@@ -61,7 +61,9 @@ writer's result.
 The new normal build compiles canonical sources into ignored `output/` and web
 runtime assets. It never writes lesson, worksheet, or review source files. Stable
 lesson slugs, exercise namespaces/IDs, review IDs/variant order, grading schemas,
-source records and historical inspection hashes are compatibility boundaries.
+source references and inspected content are compatibility boundaries. Representation-only
+changes to metadata hashes require an explicit comparison with the previously
+inspected representation; they are not new mathematical or source approvals.
 
 The migration retains explicit assessment/source-inspection and mathematical
 verification records even when they repeat content: these are independently
@@ -70,10 +72,52 @@ outputs. Historical linear algebra seed/pacing fixtures likewise establish saved
 identity and original-question compatibility. They are test inputs, not an active
 source for rebuilding lessons.
 
+## Real MDX rendering
+
+The first version of PR #15 removed executable authoring but still interpreted
+MDX through `scripts/lesson-mdx.ts`: it recognized three component names, changed
+figure tags back to Markdown image markers, and emitted the old reader's block
+and placement structures. That was a metadata adapter, not MDX React rendering.
+The follow-up removes that module and its rendering role.
+
+The browser now imports canonical lesson modules through
+`web/src/lessonModules.ts`. Vite's `@mdx-js/rollup` integration compiles them with
+the standard MDX compiler. `web/src/LessonDocument.tsx` renders the resulting React
+document with lesson context and the `lessonComponents` registry. The registry's
+`Figure`, `Exercise`, and `QuickCheck` entries are actual React components which
+resolve declarative data and delegate to the established figure and exercise UI.
+A new React teaching component needs a component implementation and registry entry,
+not an MDX-parser extension. Literal scalar props are supported.
+
+The normal remark/rehype pipeline handles Markdown, math, term links, and generic
+heading-based layout. The layout transform preserves component nodes instead of
+translating each recognized tag into a different content representation. MDX
+validation in `scripts/lesson-mdx-policy.ts` rejects content-generating JavaScript,
+arbitrary imports, spreads, event-handler props, and other disallowed executable
+constructs independently of rendering.
+
+`scripts/lesson-metadata.ts` is a separate static inspection path for section
+order, teaching context, figure references, inline assessment membership, and
+validation. Assessment tags are omitted from grading-context prose; figure
+references remain native MDX and are inspected as component nodes. The existing
+content build joins those facts with YAML/JSON to
+produce server/grading/index assets. The browser does not import the inspector
+or use its metadata as an alternative prose renderer. Neither path writes
+canonical curriculum. The architecture check rejects the retired adapter's return
+and direct browser imports of build processors; render tests exercise compiled
+MDX with registered React components.
+
+The new paths preserve the canonical exercise/review data, namespaces, saved-work
+keys and deterministic contracts. Inspection digest changes required by the new
+metadata representation are checked as a migration, rather than presented as a
+new approval of unchanged mathematics. Historical validation below describes the
+initial authoring removal; it must not be read as a claim that the old adapter was
+standard MDX rendering.
+
 ## Verification record
 
-Final validation on September 21, 2026 used the integrated MDX and review-bank
-pipeline. The results below include the existing deterministic fixtures and
+Initial authoring-removal validation on September 21, 2026 used the first
+metadata adapter and declarative review-bank pipeline. The results below include the existing deterministic fixtures and
 review/catalog/history compatibility suites. Migration hashes
 establish preservation; they do not establish mathematical correctness or replace
 source passage inspection. No source-inspection date or digest is refreshed just
@@ -107,14 +151,15 @@ were its own declarations; canonical readings already reside in
 `content/formula-explanations.json`. It is removed rather than retained as a
 second way to author curriculum.
 
-### MDX compilation parity
+### Initial source-conversion parity
 
-The migration first compiled a representative calculus lesson, then all 75 lesson
-documents. The baseline's 4,284 worksheet questions and 2,527 inline placements
+Before replacing the rendering adapter, the migration first converted a
+representative calculus lesson, then all 75 lesson documents. The baseline's 4,284 worksheet questions and 2,527 inline placements
 were preserved (promoted quick checks add published exercise entries). All nine
 compiled client content assets and the entire grading catalog were byte-identical to the
-`41f51ba` baseline after the MDX/placement migration. Explicit `Figure`, `Exercise`,
-and `QuickCheck` tags compile through the existing rendering contracts. Source
+`41f51ba` baseline after the MDX/placement migration. At that stage, `Figure`, `Exercise`,
+and `QuickCheck` tags were translated back into existing rendering contracts;
+that implementation is superseded by the real MDX path described above. Source
 inspection hashes, source dates, lesson slugs, question IDs, exercise namespaces,
 and grading content versions were not refreshed for this conversion.
 
@@ -156,17 +201,20 @@ compatibility/verification purposes. The three legacy slot-bearing review templa
 summaries remain as API/hash compatibility metadata; they are never interpolated.
 There is no remaining canonical curriculum in executable source files.
 
-The only intentional published-output addition is `grading-catalog.reviewVariants`.
-Removing that new field reproduces the old grading catalog bytes exactly, including
-the grading version. All nine client artifacts still match the captured baseline.
-The new source-inspection entries cover only the newly materialized review banks;
-existing inspection hashes and dates remain unchanged.
+At the initial authoring-removal stage, the only intentional published-output
+addition was `grading-catalog.reviewVariants`. Removing that field reproduced the
+old grading catalog bytes exactly, including the grading version, and all nine
+client artifacts matched the captured baseline. The source-inspection additions
+then covered only the newly materialized review banks. The later MDX rendering
+correction has a separate representation-migration boundary described above.
 
 Architecture checks run before each normal content build and in CI. They reject
 reintroduced authoring directories, executable curriculum under `content/`, legacy
 Markdown lessons, obvious relocated lesson DSLs, and direct canonical-source writes.
-The MDX parser rejects executable constructs and unknown components. CI also checks
-that the complete build/test workflow leaves canonical content unchanged. Static
+Document-policy validation rejects executable constructs without maintaining a
+closed list of React teaching components. Standard MDX rendering resolves component
+names through the registry. CI also checks that the complete build/test workflow
+leaves canonical content unchanged. Static
 pattern checks are practical safeguards, not a proof about arbitrary program behavior.
 
 Local setup found that npm 9's default handling of the existing `file:..` web
@@ -174,7 +222,7 @@ dependency disagreed with its linked lockfile. `web/.npmrc` explicitly preserves
 link installation, and the lockfiles include the MDX parser dependency and missing
 optional YAML peer. The ordinary clean-install commands now succeed.
 
-### Final integrated validation
+### Initial authoring-removal validation
 
 | Check                                                                    | Result                                                                                                                                                                                  |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

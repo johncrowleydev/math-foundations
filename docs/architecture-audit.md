@@ -9,6 +9,11 @@
 > `scripts/verification/`. References below to old authoring paths, invocation order,
 > and isolated generation describe the audited historical commit, not the current
 > authoring workflow. They are retained as evidence of the original regression.
+> The subsequent PR #15 rendering correction removes the custom MDX-to-legacy
+> adapter as well: Vite now uses `@mdx-js/rollup` to render canonical lesson MDX as
+> React documents. React lesson components are registered in `LessonDocument.tsx`;
+> static server/grading metadata extraction is a separate build path. The diagram
+> below remains a map of the historical audited commit, not the current renderer.
 
 Audited September 20, 2026, from `main` at `eacb485` after pulling with
 `--ff-only`. This is an architecture audit with two bounded refactors, not a

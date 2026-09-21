@@ -41,6 +41,34 @@ test('moving obvious lesson DSLs and banks elsewhere does not evade the boundary
   }
 });
 
+test('the retired MDX adapter cannot return as a lesson rendering path', () => {
+  assert.match(
+    inspectCurriculumFile('scripts/lesson-mdx.ts', 'export function compileLessonMdx() {}').join(),
+    /MDX-to-legacy rendering adapter is retired/,
+  );
+});
+
+test('static curriculum processors cannot become browser rendering dependencies', () => {
+  for (const source of [
+    'import { extractLessonMetadata } from "../../scripts/lesson-metadata";',
+    'export { loadContent } from "../../scripts/content";',
+    'const adapter = await import("../../scripts/lesson-metadata");',
+    'const adapter = require("../../scripts/lesson-metadata");',
+  ]) {
+    assert.match(
+      inspectCurriculumFile('web/src/Lesson.tsx', source).join(),
+      /content build processors stay build-only/,
+    );
+  }
+  for (const [path, source] of [
+    ['web/src/Lesson.tsx', 'import Lesson from "../../content/lessons/example.mdx";'],
+    ['web/src/Lesson.tsx', 'import { MDXProvider } from "@mdx-js/react";'],
+    ['web/vite.config.ts', 'import { validateLessonMdx } from "../scripts/mdx-policy";'],
+  ]) {
+    assert.deepEqual(inspectCurriculumFile(path, source), [], path);
+  }
+});
+
 test('tooling cannot generate canonical source files', () => {
   for (const source of [
     'await writeFile("content/lessons/example.mdx", lesson);',
