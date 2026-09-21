@@ -74,3 +74,80 @@ test('an implicit integer domain retains integer comparison semantics', () => {
   validateAssessment(assessment);
   assert.equal(gradeAssessment(assessment, { answer: 'forall n (n >= 1)' }).verdict, 'correct');
 });
+
+const subsetNegation = fixtures.find(
+  (f) => f.name === 'subset-negation-restricted-exists',
+)!.assessment;
+for (const [name, expected, answer, verdict] of [
+  [
+    'plain existential',
+    'exists x in U (A(x) and not B(x))',
+    'exists x in A (x notin B)',
+    'correct',
+  ],
+  ['renamed Unicode', 'exists x in U (A(x) and not B(x))', '∃z ∈ A (z ∉ B)', 'correct'],
+  ['universal guard', 'forall x in U (A(x) -> B(x))', 'forall x in A (x in B)', 'correct'],
+  [
+    'universal is not conjunction',
+    'forall x in U (A(x) and B(x))',
+    'forall x in A (x in B)',
+    'incorrect',
+  ],
+  [
+    'existential is not implication',
+    'exists x in U (A(x) -> B(x))',
+    'exists x in A (x in B)',
+    'incorrect',
+  ],
+  [
+    'nested sets',
+    'forall x in U (A(x) -> exists y in U (B(y) and x=y))',
+    'forall x in A exists y in B (x=y)',
+    'correct',
+  ],
+  ['restricted uniqueness', 'exists! x in U (A(x) and B(x))', 'exists! x in A B(x)', 'correct'],
+  [
+    'uniqueness stays restricted',
+    'exists x in U (A(x) and B(x) and forall y in U (B(y) -> y=x))',
+    'exists! x in A B(x)',
+    'incorrect',
+  ],
+  ['negated restriction', 'exists x in U (A(x) and not B(x))', 'not forall x in A B(x)', 'correct'],
+])
+  test('named-set quantifiers: ' + name, () => {
+    const assessment = structuredClone(subsetNegation);
+    assessment.requirements[0].params.expected = expected;
+    validateAssessment(assessment);
+    assert.equal(gradeAssessment(assessment, { answer }).verdict, verdict);
+  });
+
+test('named-set restrictions require a declared unary set and an unambiguous universe', () => {
+  for (const params of [{ domains: ['U', 'V'] }, { sets: ['B'] }, { predicates: { A: 2, B: 1 } }]) {
+    const assessment = structuredClone(subsetNegation);
+    Object.assign(assessment.requirements[0].params, params);
+    assert.throws(() => gradeAssessment(assessment, { answer: 'exists x in A B(x)' }), InputError);
+  }
+  for (const answer of ['exists x in C B(x)', 'exists x in A B(y)', 'exists x in R B(x)'])
+    assert.throws(() => gradeAssessment(subsetNegation, { answer }), InputError);
+});
+
+test('an explicitly configured domain takes precedence over a named set', () => {
+  const parsed = parseQuantified('forall x in A B(x)', ['A'], { A: 1, B: 1 }, { sets: ['A'] });
+  assert.ok(parsed.kind === 'quantifier');
+  assert.equal(parsed.domain, 'A');
+  assert.equal(parsed.body.kind, 'predicate');
+});
+
+test('implicit universal guards preserve NNF without excusing implications in the body', () => {
+  const assessment = structuredClone(subsetNegation);
+  Object.assign(assessment.requirements[0].params, {
+    expected: 'forall x in U (not A(x) or B(x))',
+    form: 'nnf',
+  });
+  validateAssessment(assessment);
+  assert.equal(gradeAssessment(assessment, { answer: 'forall x in A B(x)' }).verdict, 'correct');
+  assert.equal(
+    gradeAssessment(assessment, { answer: 'forall x in A (A(x) -> B(x))' }).verdict,
+    'incorrect',
+  );
+});
