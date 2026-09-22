@@ -118,9 +118,13 @@ try {
   const review = page.locator('.review-page');
   async function focused(mode, lesson, concept, skill) {
     const overview = review.getByRole('button', { name: 'Back to overview', exact: true });
-    if (await overview.isVisible()) await overview.click();
     const end = review.getByRole('button', { name: 'End session', exact: true });
-    if (await end.isVisible()) await end.click();
+    if (await overview.isVisible()) {
+      await overview.click();
+      // Pause persists the session before rendering this action. An immediate
+      // visibility check can miss it and leave new planning disabled.
+      await end.click();
+    } else if (await end.isVisible()) await end.click();
     await review.getByLabel(/^Lesson/).selectOption(lesson);
     await review.getByLabel(/^Concept/).selectOption(concept);
     await review.getByLabel(/^Skill/).selectOption(skill);
