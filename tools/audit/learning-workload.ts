@@ -29,14 +29,15 @@ const snapshot: {
       }
     : await read(input);
 function workload(lesson: Lesson, questions: Question[]) {
-  const costs = questions.map((question) =>
-    classifyReviewCost(
+  const costs = questions.map((question) => {
+    const mapping = snapshot.evidence.exercises[exerciseKey(lesson, question.id)];
+    const evidenceLevel = mapping?.attributes?.evidenceLevel;
+    return classifyReviewCost(
       question,
-      snapshot.evidence.exercises[exerciseKey(lesson, question.id)]?.skills
-        .filter((skill) => skill.role === 'primary')
-        .map((skill) => skill.skill),
-    ),
-  );
+      mapping?.skills.filter((skill) => skill.role === 'primary').map((skill) => skill.skill),
+      typeof evidenceLevel === 'string' ? evidenceLevel : undefined,
+    );
+  });
   return {
     exercises: costs.length,
     proofs: costs.filter((cost) => cost.category === 'proof').length,

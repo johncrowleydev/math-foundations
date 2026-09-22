@@ -66,6 +66,7 @@ const gradingExercises = Object.fromEntries(
       const figureIds = new Set(blocks.filter((b) => b.kind === 'figure').map((b) => b.figureId));
       const referenced = JSON.stringify({ q, blocks });
       const referenceIds = new Set([...referenced.matchAll(/ref:([a-z0-9-]+)/g)].map((m) => m[1]));
+      const evidenceLevel = evidence.exercises[exerciseKey(lesson, q.id)].attributes?.evidenceLevel;
       return [
         exerciseKey(lesson, q.id),
         {
@@ -74,6 +75,7 @@ const gradingExercises = Object.fromEntries(
             evidence.exercises[exerciseKey(lesson, q.id)].skills
               .filter((s) => s.role === 'primary')
               .map((s) => s.skill),
+            typeof evidenceLevel === 'string' ? evidenceLevel : undefined,
           ),
           lesson: lesson.title,
           lessonSlug: lesson.slug,

@@ -129,6 +129,39 @@ await withBrowser('learning-efficiency', async ({ page, baseURL, directory }) =>
     await visible.locator('.exercise').count(),
     'Skipping one question does not hide the next question',
   );
+  // Frozen reasoning evidence must not unlock routine skips, even if today's
+  // questions have cheap response controls and no proof/deep skill labels.
+  await page.evaluate(async () => {
+    const storage = await import(String('/src/storage.ts'));
+    const { snapshot } = await import(String('/src/evidenceTypes.ts'));
+    const evidence = await fetch('/learning-evidence.json').then((response) => response.json());
+    for (const id of [11, 12]) {
+      const saved = await storage.get('attempts', 'efficient-' + id);
+      const analytics = snapshot(evidence, 'sets-and-set-operations-' + id);
+      await storage.put('attempts', 'efficient-' + id, {
+        ...saved,
+        analytics: {
+          ...analytics,
+          attributes: { ...analytics?.attributes, evidenceLevel: 'reasoning' },
+        },
+      });
+    }
+  });
+  await visible
+    .getByRole('button', { name: 'Skip similar practice', exact: true })
+    .waitFor({ state: 'detached' });
+  assert.ok(await visible.locator('.exercise').count(), 'Reasoning work keeps practice available');
+  for (const [name, width, height] of [
+    ['desktop', 1440, 1000],
+    ['mobile', 390, 844],
+  ] as const) {
+    await page.setViewportSize({ width, height });
+    await page.screenshot({ path: directory + '/reasoning-practice-' + name + '.png' });
+    assert.equal(
+      await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+      false,
+    );
+  }
   await page.goto(baseURL + '/#/learn/sets-and-set-operations/power-sets');
   const proofHeading = page.getByRole('heading', {
     name: 'Worked proof: a larger set allows every old selection',

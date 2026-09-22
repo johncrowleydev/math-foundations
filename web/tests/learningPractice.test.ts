@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { practiceGuidance, recommendedPractice } from '../src/learningPractice';
-import type { Attempt, Curriculum, Lesson } from '../src/types';
+import { practiceGuidance, practiceMinutes, recommendedPractice } from '../src/learningPractice';
+import type { Assessment, Attempt, Curriculum, Lesson } from '../src/types';
 const questions = [1, 2, 3, 4].map((id) => ({
   id,
   instructions: 'Identify an example.',
@@ -123,6 +123,84 @@ test('fast proofs or deep reasoning never count as routine retrieval evidence', 
     assert.equal(
       practiceGuidance(data, lesson, questions[2], [
         attempt(1, 1, { presentation: { question: { ...questions[0], category } } }),
+        attempt(2, 2),
+      ]),
+      undefined,
+    );
+  }
+});
+
+test('reasoning-only evidence cannot supply fluent responses or make a reasoning target skippable', () => {
+  for (const ids of [[1, 2], [3]]) {
+    const reasoning = structuredClone(data);
+    for (const id of ids)
+      reasoning.evidence.exercises['sample-' + id].attributes = { evidenceLevel: 'reasoning' };
+    // Same ordinary identify skill and prompt as the positive routine test;
+    // no proof wording or explicit deep category supplies this exclusion.
+    assert.equal(
+      practiceGuidance(reasoning, lesson, questions[2], [attempt(1, 1), attempt(2, 2)]),
+      undefined,
+    );
+    const cheap = {
+      ...lesson,
+      questions: questions.map((question) => ({ ...question, category: 'definition' as const })),
+    };
+    assert.equal(
+      practiceGuidance(reasoning, cheap, cheap.questions[2], [attempt(1, 1), attempt(2, 2)]),
+      undefined,
+      'An authored cheap cost cannot lower the evidence required for practice',
+    );
+  }
+});
+
+test('frozen reasoning evidence cannot become routine after the current metadata changes', () => {
+  const history = [1, 2].map((id) =>
+    attempt(id, id, {
+      analytics: {
+        ...data.evidence.exercises['sample-' + id],
+        attributes: { evidenceLevel: 'reasoning' },
+      } as Attempt['analytics'],
+    }),
+  );
+  assert.equal(practiceGuidance(data, lesson, questions[2], history), undefined);
+});
+
+test('practice estimates forward required evidence depth without overriding authored costs', () => {
+  const reasoning = structuredClone(data);
+  reasoning.evidence.exercises['sample-1'].attributes = { evidenceLevel: 'reasoning' };
+  assert.equal(practiceMinutes(reasoning, lesson, [questions[0]]), 5);
+  assert.equal(practiceMinutes(data, lesson, [questions[0]]), 1);
+  assert.equal(
+    practiceMinutes(reasoning, lesson, [{ ...questions[0], category: 'definition' }]),
+    1,
+  );
+});
+
+test('reasoning assessments remain deep in current and both frozen presentation forms', () => {
+  const assessment: Assessment = {
+    version: 1,
+    inputs: [{ id: 'answer', kind: 'text', label: 'Synthetic response' }],
+    requirements: [],
+    feedback: { correct: 'Synthetic', incorrect: 'Synthetic' },
+    evidence: { level: 'reasoning', interactionCost: 'low', inputCapabilities: ['short-text'] },
+  };
+  const withReasoning = {
+    ...lesson,
+    questions: questions.map((question) =>
+      question.id < 3 ? { ...question, assessment } : question,
+    ),
+  };
+  assert.equal(
+    practiceGuidance(data, withReasoning, questions[2], [attempt(1, 1), attempt(2, 2)]),
+    undefined,
+  );
+  for (const presentation of [
+    { question: { ...questions[0], assessment } },
+    { question: questions[0], assessment },
+  ]) {
+    assert.equal(
+      practiceGuidance(data, lesson, questions[2], [
+        attempt(1, 1, { presentation }),
         attempt(2, 2),
       ]),
       undefined,

@@ -18,6 +18,14 @@ practice image also shows this suggestion. Desktop practice starts at a quick
 check in the recommended sequence; phone practice uses an existing optional
 exercise URL to check that historical links remain usable.
 
+The [desktop](reasoning-practice-desktop.png) and
+[phone](reasoning-practice-mobile.png) regression screenshots show practice
+remaining available without the skip suggestion after the same two synthetic
+attempts receive frozen reasoning-level evidence. Their skills and questions stay
+unchanged. This checks that a cheap current question cannot turn historical deep
+work into routine fluency evidence; the earlier adaptive screenshots cover the
+ordinary routine case.
+
 The lesson and practice content comes from the actual authored curriculum.
 Review summaries, authentication, and attempts are synthetic fixtures; these
 screenshots contain no learner data. The mobile review image uses a saved

@@ -27,7 +27,13 @@ type CostQuestion = {
   choice?: { options: { text: string }[] };
   assessment?: Assessment;
 };
-export function classifyReviewCost(question: CostQuestion, primarySkills: string[] = []) {
+// Keep precedence parallel with ReviewTemplate.questionCost in server/review_budget.go.
+// A cost override estimates effort; it does not lower required evidence depth.
+export function classifyReviewCost(
+  question: CostQuestion,
+  primarySkills: string[] = [],
+  requiredEvidenceLevel: string | undefined = question.assessment?.evidence.level,
+) {
   let category = question.category;
   if (
     !category &&
@@ -60,7 +66,8 @@ export function classifyReviewCost(question: CostQuestion, primarySkills: string
     category = 'proof';
   if (
     !category &&
-    primarySkills.some((s) => ['justify', 'explain', 'reason', 'evaluate'].includes(s))
+    (primarySkills.some((s) => ['justify', 'explain', 'reason', 'evaluate'].includes(s)) ||
+      requiredEvidenceLevel === 'reasoning')
   )
     category = 'deep-reasoning';
   if (!category && /\b(state|name|identify|define)\b/i.test(text)) category = 'short-answer';

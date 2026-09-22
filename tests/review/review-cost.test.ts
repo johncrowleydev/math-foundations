@@ -101,3 +101,26 @@ test('worksheet authors can override a cost heuristic using the bounded vocabula
   worksheet.sections[0].questions[0].category = 'arbitrary';
   assert.throws(() => worksheetSchema.parse(worksheet));
 });
+
+test('required reasoning depth supplies the same fallback and precedence as Go review costs', () => {
+  const question = { prompt: 'Compute the result.' };
+  assert.deepEqual(classifyReviewCost(question, ['construct'], 'reasoning'), {
+    category: 'deep-reasoning',
+    estimatedSeconds: 300,
+  });
+  assert.equal(
+    classifyReviewCost(question, ['construct'], 'production').category,
+    'short-application',
+  );
+  assert.equal(classifyReviewCost(question, ['prove'], 'reasoning').category, 'proof');
+  // Planning cost overrides and response controls do not lower required evidence.
+  assert.equal(
+    classifyReviewCost({ ...question, category: 'definition' }, ['construct'], 'reasoning')
+      .category,
+    'definition',
+  );
+  assert.equal(
+    classifyReviewCost({ assessment: assessment('math') }, ['construct'], 'reasoning').category,
+    'short-answer',
+  );
+});

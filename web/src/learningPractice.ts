@@ -62,11 +62,28 @@ export function practiceGuidance(
   const first = new Map<string, Attempt>();
   for (const attempt of history)
     if (!first.has(attempt.exercise)) first.set(attempt.exercise, attempt);
-  const primarySkills = data.evidence.exercises[exerciseKey(lesson, question.id)].skills
-    .filter((link) => link.role === 'primary')
-    .map((link) => link.skill);
-  const routine = (candidate: Question, skills = primarySkills) => {
-    const { category } = classifyReviewCost(candidate, skills);
+  const routine = (
+    candidate: Question,
+    mapping = data.evidence.exercises[exerciseKey(lesson, candidate.id)],
+    assessment = candidate.assessment,
+  ) => {
+    const evidenceLevel = mapping.attributes?.evidenceLevel;
+    // Cheap authored costs or response controls cannot make reasoning evidence
+    // routine. Check both current metadata and the frozen attempt's requirements.
+    if (
+      evidenceLevel === 'reasoning' ||
+      candidate.assessment?.evidence.level === 'reasoning' ||
+      assessment?.evidence.level === 'reasoning'
+    )
+      return false;
+    const skills = mapping.skills
+      .filter((link) => link.role === 'primary')
+      .map((link) => link.skill);
+    const { category } = classifyReviewCost(
+      candidate,
+      skills,
+      typeof evidenceLevel === 'string' ? evidenceLevel : undefined,
+    );
     return !skills.includes('prove') && category !== 'proof' && category !== 'deep-reasoning';
   };
   const independent = [...first.values()].filter(
@@ -74,9 +91,8 @@ export function practiceGuidance(
       routine(relatedQuestions.get(attempt.exercise)!) &&
       routine(
         attempt.presentation?.question || relatedQuestions.get(attempt.exercise)!,
-        attempt.analytics?.skills
-          .filter((link) => link.role === 'primary')
-          .map((link) => link.skill) || primarySkills,
+        attempt.analytics || data.evidence.exercises[attempt.exercise],
+        attempt.presentation?.assessment,
       ) &&
       attempt.verdict === 'correct' &&
       !assisted(attempt) &&
@@ -95,16 +111,17 @@ export function practiceGuidance(
 
 export function practiceMinutes(data: Curriculum, lesson: Lesson, questions: Question[]) {
   return Math.ceil(
-    questions.reduce(
-      (seconds, question) =>
+    questions.reduce((seconds, question) => {
+      const mapping = data.evidence.exercises[exerciseKey(lesson, question.id)];
+      const evidenceLevel = mapping?.attributes?.evidenceLevel;
+      return (
         seconds +
         classifyReviewCost(
           question,
-          data.evidence.exercises[exerciseKey(lesson, question.id)]?.skills
-            .filter((link) => link.role === 'primary')
-            .map((link) => link.skill),
-        ).estimatedSeconds,
-      0,
-    ) / 60,
+          mapping?.skills.filter((link) => link.role === 'primary').map((link) => link.skill),
+          typeof evidenceLevel === 'string' ? evidenceLevel : undefined,
+        ).estimatedSeconds
+      );
+    }, 0) / 60,
   );
 }
