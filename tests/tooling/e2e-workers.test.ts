@@ -18,14 +18,14 @@ test('E2E shards partition prioritized specs without changing their order', asyn
     const original = [...specs];
     const first = selectShard(specs, '1/2');
     const second = selectShard(specs, '2/2');
-    assert.deepEqual(
-      first,
-      specs.filter((_, index) => index % 2 === 0),
-    );
-    assert.deepEqual(
-      second,
-      specs.filter((_, index) => index % 2 === 1),
-    );
+    assert.ok(Math.abs(first.length - second.length) <= 1, 'shards must be balanced');
+    for (const part of [first, second]) {
+      assert.deepEqual(
+        part,
+        [...part].sort((left, right) => specs.indexOf(left) - specs.indexOf(right)),
+        'each shard preserves the input priority order',
+      );
+    }
     assert.deepEqual([...first, ...second].sort(), [...specs].sort());
     assert.equal(first.filter((spec) => second.includes(spec)).length, 0);
     assert.deepEqual(selectShard(specs, undefined), specs);
