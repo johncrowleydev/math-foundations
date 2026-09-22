@@ -862,8 +862,14 @@ function AttemptPanel({
             {feedback ? 'Hide feedback' : 'Show feedback'}
           </button>
         )}
-        {(a.status !== 'error' || deterministic) && canRetry && onRetry && (
-          <button onClick={onRetry}>{resumeDraft ? 'Continue draft' : 'Try again'}</button>
+        {canRetry && onRetry && (
+          <button onClick={onRetry}>
+            {resumeDraft
+              ? 'Continue draft'
+              : a.status === 'error' && !deterministic
+                ? 'Edit answer'
+                : 'Try again'}
+          </button>
         )}
         <div className="menu-anchor">
           <button aria-expanded={more} onClick={() => setMore(!more)}>
