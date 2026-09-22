@@ -106,7 +106,11 @@ await withBrowser(
         });
       });
       await page.goto(base + '/#/practice/sets-and-set-operations/' + question.id);
-      await page.locator('.exercise').waitFor();
+      // Learn remains mounted but hidden beside Practice; target the saved answer's card.
+      const exerciseCard = page.locator(
+        `article.exercise[data-exercise-key="${submitted.exercise}"]:visible`,
+      );
+      await exerciseCard.waitFor();
       await page.evaluate(async (a) => {
         const db = await new Promise((resolve, reject) => {
           const request = indexedDB.open('foundations-web', 2);
@@ -134,10 +138,10 @@ await withBrowser(
         db.close();
       }, submitted);
       await page.reload();
-      await page.getByRole('button', { name: 'Retry grading', exact: true }).waitFor();
+      await exerciseCard.getByRole('button', { name: 'Retry grading', exact: true }).waitFor();
       await page.screenshot({ path: `${directory}/${name}-before.png`, fullPage: true });
-      await page.getByRole('button', { name: 'Retry grading', exact: true }).click();
-      await page.getByText('Synthetic grading completed.', { exact: true }).waitFor();
+      await exerciseCard.getByRole('button', { name: 'Retry grading', exact: true }).click();
+      await exerciseCard.getByText('Synthetic grading completed.', { exact: true }).waitFor();
       assert.equal(uploads, 1, 'exactly one original submission is uploaded');
       assert.equal(rechecks, 0, 'an unsubmitted answer must not request a recheck');
       assert.deepEqual(errors, []);
