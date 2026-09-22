@@ -62,6 +62,12 @@ targets. Resume saved work to finish it. Changing the target changes the total
 allowance, not the amount already reserved. Focused practice remains available
 for deliberately chosen extra work.
 
+Returning to the overview pauses the current plan. Resume restores the same
+question and saved draft, including after an offline reload. While a plan is
+paused, starting another plan is disabled; End session explicitly closes the
+active pointer without deleting drafts or attempts. Closing a scheduled session
+does not release its rolling time reservation.
+
 Seven categories normalize planning cost across the catalog:
 
 | Category                 | Estimate per question |

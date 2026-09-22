@@ -129,6 +129,28 @@ await withBrowser('learning-efficiency', async ({ page, baseURL, directory }) =>
     await visible.locator('.exercise').count(),
     'Skipping one question does not hide the next question',
   );
+  await page.goto(baseURL + '/#/learn/sets-and-set-operations/power-sets');
+  const proofHeading = page.getByRole('heading', {
+    name: 'Worked proof: a larger set allows every old selection',
+  });
+  await proofHeading.waitFor();
+  for (const [name, width, height] of [
+    ['desktop', 1440, 1000],
+    ['mobile', 390, 844],
+  ] as const) {
+    await page.setViewportSize({ width, height });
+    await page
+      .getByRole('heading', { name: 'Power sets', exact: true })
+      .evaluate((node) => node.scrollIntoView({ block: 'start' }));
+    await page.screenshot({ path: directory + '/sets-power-set-' + name + '.png' });
+    await proofHeading.evaluate((node) => node.scrollIntoView({ block: 'start' }));
+    await page.screenshot({ path: directory + '/sets-proof-' + name + '.png' });
+    assert.equal(
+      await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+      false,
+    );
+  }
+  assert.equal(await page.locator('.katex-error').count(), 0);
   assert.deepEqual(errors, []);
   console.log(
     'Learning efficiency: budget persistence, bounded review summary, recommended/optional routing, adaptive skip/restore and desktop/mobile screenshots passed.',
