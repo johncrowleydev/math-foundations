@@ -298,7 +298,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     await review.getByRole('button', { name: 'Next →', exact: true }).click();
     await page
       .getByText(
-        'You can end the session or revisit its questions. Your drafts and answers are saved.',
+        'Your session is still open. Revisit its questions, or end the session to return to the overview. Your drafts and answers stay saved.',
         {
           exact: true,
         },

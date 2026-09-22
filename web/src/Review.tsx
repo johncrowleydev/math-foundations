@@ -146,9 +146,24 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
     if (!session) return;
     setError('');
     try {
-      await retainReviewSession(session, { paused: false, index });
+      const next = nextReviewTaskIndex(session, index, attempts, summary, fetchedAt, {
+        resume: true,
+      });
+      await retainReviewSession(session, { paused: false, index: next });
+      setIndex(next);
       setPaused(false);
       setNotice('');
+    } catch (e) {
+      setError(String(e));
+    }
+  }
+  async function goTo(next: number) {
+    if (!session) return;
+    try {
+      await retainReviewSession(session, { paused: false, index: next });
+      setIndex(next);
+      setExerciseNav(false);
+      if (next === session.instances.length) void refresh();
     } catch (e) {
       setError(String(e));
     }
@@ -200,10 +215,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
           selected={index === position}
           attempts={attempts.filter((attempt) => attempt.exercise === instance.exercise)}
           covered={reviewTargetCovered(session, instance, attempts, summary, fetchedAt)}
-          onSelect={() => {
-            setIndex(position);
-            setExerciseNav(false);
-          }}
+          onSelect={() => void goTo(position)}
         />
       ))}
     </nav>
@@ -316,7 +328,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
               instance={item}
             />
             <nav className="practice-nav" aria-label="Review navigation">
-              <button disabled={index === 0} onClick={() => setIndex(index - 1)}>
+              <button disabled={index === 0} onClick={() => void goTo(index - 1)}>
                 ← Previous
               </button>
               <button
@@ -328,8 +340,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
                     summary,
                     fetchedAt,
                   );
-                  setIndex(next);
-                  if (next === session.instances.length) void refresh();
+                  void goTo(next);
                 }}
               >
                 {answered || covered
@@ -345,9 +356,10 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
           </>
         ) : session && !paused && session.instances.length > 0 ? (
           <div className="review-panel">
-            <h2>You’ve reached the end of this session</h2>
+            <h2>End of the question list</h2>
             <p>
-              You can end the session or revisit its questions. Your drafts and answers are saved.
+              Your session is still open. Revisit its questions, or end the session to return to the
+              overview. Your drafts and answers stay saved.
             </p>
             <p className="muted">
               Visiting or skipping questions doesn’t mark them as learned. Queued or grading answers
@@ -357,7 +369,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
               <button className="primary" onClick={() => void finish()}>
                 End session
               </button>
-              <button onClick={() => setIndex(0)}>Revisit questions</button>
+              <button onClick={() => void goTo(0)}>Revisit questions</button>
             </div>
           </div>
         ) : (
