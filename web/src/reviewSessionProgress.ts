@@ -39,16 +39,27 @@ export function nextReviewTaskIndex(
   fetchedAt: number | undefined,
   { resume = false } = {},
 ): number {
-  for (let index = start; index < session.instances.length; index++) {
-    const instance = session.instances[index];
+  const needsWork = (instance: ReviewInstance) => {
     if (
       resume &&
       attempts.some(
         (attempt) => attempt.exercise === instance.exercise && attempt.verdict === 'correct',
       )
     )
-      continue;
-    if (!reviewTargetCovered(session, instance, attempts, summary, fetchedAt)) return index;
+      return false;
+    return !reviewTargetCovered(session, instance, attempts, summary, fetchedAt);
+  };
+  for (let index = start; index < session.instances.length; index++) {
+    if (needsWork(session.instances[index])) return index;
+  }
+  if (resume) {
+    // A saved position may be past earlier skipped or unfinished questions.
+    // Reopening a session must not turn that position into a completion screen.
+    for (let index = 0; index < Math.min(start, session.instances.length); index++) {
+      if (needsWork(session.instances[index])) return index;
+    }
+    // Fully answered/covered sessions remain available for inspecting answers.
+    return Math.max(0, Math.min(start, session.instances.length - 1));
   }
   return session.instances.length;
 }

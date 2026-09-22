@@ -2328,8 +2328,7 @@ button.danger:hover:not(:disabled) {
 .review-layout {
   display: flex;
   align-items: flex-start;
-  max-width: 1130px;
-  margin: 0 auto;
+  width: 100%;
 }
 .review-layout > .review-page {
   flex: 1;
@@ -2341,6 +2340,8 @@ button.danger:hover:not(:disabled) {
   max-height: calc(100dvh - 140px);
 }
 .review-exercise-label {
+  min-width: 0;
+  white-space: normal;
   text-align: left;
   overflow-wrap: anywhere;
 }

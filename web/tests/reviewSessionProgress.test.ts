@@ -165,3 +165,55 @@ test('resume skips completed and newly covered targets while preserving pending 
   assert.equal(nextReviewTaskIndex(saved, 3, attempts, summary, fetchedAt), 3);
   assert.equal(nextReviewTaskIndex(saved, 4, attempts, summary, fetchedAt), 4);
 });
+
+test('reopening from the end finds unfinished questions earlier in the session', () => {
+  const saved = {
+    ...session,
+    instances: ['skipped', 'answered', 'covered'].map((id) => ({
+      ...instance,
+      id,
+      exercise: 'review-' + id,
+      context: { ...instance.context, ...(id === 'skipped' ? { objective: 'expand' } : {}) },
+    })),
+  };
+  const attempts = [attempt('review-answered', 'graded', 'correct')];
+  for (const position of [2, 3]) {
+    assert.equal(
+      nextReviewTaskIndex(saved, position, attempts, summary, fetchedAt, { resume: true }),
+      0,
+      'Saved positions at or near the end cannot hide an earlier skipped question',
+    );
+  }
+  assert.equal(
+    nextReviewTaskIndex(saved, 3, attempts, summary, fetchedAt),
+    3,
+    'Deliberately moving past the last question still reaches the question-list end',
+  );
+});
+
+test('reopening fully answered or covered sessions opens a question, not a completion screen', () => {
+  assert.equal(nextReviewTaskIndex(session, 0, [], summary, fetchedAt, { resume: true }), 0);
+  assert.equal(nextReviewTaskIndex(session, 1, [], summary, fetchedAt, { resume: true }), 0);
+  assert.equal(
+    nextReviewTaskIndex(
+      session,
+      1,
+      [attempt(instance.exercise, 'graded', 'correct')],
+      undefined,
+      undefined,
+      { resume: true },
+    ),
+    0,
+    'Answered work stays accessible offline',
+  );
+});
+
+test('reopening preserves the saved unfinished position and wraps focused practice too', () => {
+  const saved = {
+    ...session,
+    kind: 'focused-practice' as const,
+    instances: ['earlier', 'current', 'last'].map((id) => ({ ...instance, id, exercise: id })),
+  };
+  assert.equal(nextReviewTaskIndex(saved, 1, [], summary, fetchedAt, { resume: true }), 1);
+  assert.equal(nextReviewTaskIndex(saved, 3, [], summary, fetchedAt, { resume: true }), 0);
+});
