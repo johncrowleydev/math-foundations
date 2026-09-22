@@ -27,10 +27,10 @@ const longest = [
   'deterministic',
   'offline',
   'review-submission',
-  'sources',
+  'mdx',
   'revise-failed-grading',
+  'stale-submission',
   'grading-toasts',
-  'review',
 ];
 const priority = (file: string) => {
   const index = longest.indexOf(file.replace(/\.spec\.(ts|mjs)$/, ''));
