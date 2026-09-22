@@ -28,6 +28,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [summaryError, setSummaryError] = useState('');
   const [notice, setNotice] = useState('');
   const [lesson, setLesson] = useState('');
   const [concept, setConcept] = useState('');
@@ -48,10 +49,13 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       setSummary(result.summary);
       setCached(result.cached);
       setFetchedAt(result.fetchedAt);
-      setError('');
+      setSummaryError('');
       return result;
     } catch (e) {
-      if (request === summaryRequest.current) setError(String(e));
+      if (request === summaryRequest.current) {
+        setSummaryError(String(e));
+        setCached(true);
+      }
     } finally {
       if (request === summaryRequest.current) setChecking(false);
     }
@@ -128,6 +132,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   }
   async function pause() {
     if (!session) return;
+    setError('');
     try {
       await retainReviewSession(session, { paused: true, index });
       setPaused(true);
@@ -139,6 +144,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   }
   async function resume() {
     if (!session) return;
+    setError('');
     try {
       await retainReviewSession(session, { paused: false, index });
       setPaused(false);
@@ -148,6 +154,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
     }
   }
   async function finish() {
+    setError('');
     try {
       await retainReviewSession(null);
       setNotice('Session ended. Your drafts and attempts are saved.');
@@ -201,6 +208,9 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       ))}
     </nav>
   );
+  // A usable summary has its own stale-status message. Session-action errors
+  // remain visible even when the scheduler status is cached.
+  const visibleError = error || (!summary ? summaryError : '');
   const unfinished = session && paused;
   const reviewAvailable = summary && summary.due > 0 && summary.estimatedMinutes !== 0;
   return (
@@ -223,12 +233,12 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
             {session && !paused && <button onClick={() => void pause()}>Back to overview</button>}
           </div>
         </div>
-        {error && (
+        {visibleError && (
           <p className="error" role="alert">
-            {error}
+            {visibleError}
           </p>
         )}
-        {cached && (
+        {cached && summary && (
           <aside className="review-notice" aria-label="Review status updates">
             <p>
               {checking ? 'Checking for review updates…' : 'Couldn’t check for review updates.'}{' '}
@@ -243,7 +253,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
             {!checking && <button onClick={() => void refresh()}>Try again</button>}
           </aside>
         )}
-        {!summary && error && !checking && (
+        {!summary && visibleError && !checking && (
           <button onClick={() => void refresh()}>Try again</button>
         )}
         {notice && (
@@ -360,9 +370,9 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
                     : 'Continue your review'}
                 </h2>
                 <p>
-                  You have an unfinished {session.instances.length}-question{' '}
-                  {session.kind === 'focused-practice' ? 'focused practice' : 'review'} session.
-                  Your drafts and answers are saved.
+                  Your {session.kind === 'focused-practice' ? 'focused practice' : 'review'} session
+                  contains {session.instances.length} questions and is unfinished. Your drafts and
+                  answers are saved.
                 </p>
                 <div className="toolbar">
                   <button className="primary" onClick={() => void resume()}>
@@ -573,7 +583,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
                 </details>
               </>
             ) : (
-              !error && <p role="status">Loading review schedule…</p>
+              !visibleError && <p role="status">Loading review schedule…</p>
             )}
           </>
         )}

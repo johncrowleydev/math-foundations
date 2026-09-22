@@ -6,6 +6,8 @@ await withBrowser('review-overview', async ({ page, baseURL, directory }) => {
   page.on('pageerror', (error) => errors.push(error.message));
   let offline = false;
   let empty = false;
+  let summaryUnavailable = false;
+  let sessionUnavailable = false;
   let issued = 0;
   const budgets: string[] = [];
   const summary = {
@@ -28,9 +30,13 @@ await withBrowser('review-overview', async ({ page, baseURL, directory }) => {
     if (url.pathname.endsWith('/auth/session'))
       body = { email: 'overview@example.test', expires: Date.now() + 86400000 };
     else if (url.pathname.endsWith('/review')) {
+      if (summaryUnavailable)
+        return route.fulfill({ status: 503, body: 'Review status temporarily unavailable' });
       budgets.push(url.searchParams.get('budgetMinutes') || '');
       body = empty ? { ...summary, due: 0, quick: 0, estimatedMinutes: 0 } : summary;
     } else if (url.pathname.endsWith('/review/sessions')) {
+      if (sessionUnavailable)
+        return route.fulfill({ status: 503, body: 'Could not start review. Try again.' });
       issued++;
       // The server may have no work left by the time a preview is started.
       empty = true;
@@ -90,8 +96,36 @@ await withBrowser('review-overview', async ({ page, baseURL, directory }) => {
     .getByText('Starting a review or focused practice session needs a connection.', { exact: true })
     .waitFor();
   assert.equal(await review.getByText('saved session', { exact: false }).count(), 0);
+  assert.equal(await review.getByRole('alert').count(), 0);
   await page.screenshot({ path: directory + '/cached-without-session-desktop.png' });
+  // The mounted page still has usable status if the persisted fallback is
+  // removed. Force refresh to throw and retain the friendly cached banner.
+  await page.evaluate(async () => {
+    const { remove } = await import(String('/src/storage.ts'));
+    await remove('records', 'review-cache/summary');
+  });
+  await review.getByRole('button', { name: 'Try again', exact: true }).click();
+  await review.getByText('Couldn’t check for review updates.', { exact: false }).waitFor();
+  assert.equal(await review.getByRole('alert').count(), 0);
+
+  // A cached summary must not hide errors from an explicit learner action,
+  // even when the learner subsequently retries a failed status refresh.
   offline = false;
+  sessionUnavailable = true;
+  summaryUnavailable = true;
+  await review.getByRole('button', { name: 'Start review', exact: true }).click();
+  await review
+    .getByRole('alert')
+    .getByText('Error: Could not start review. Try again.', { exact: true })
+    .waitFor();
+  await review.getByRole('button', { name: 'Try again', exact: true }).click();
+  await review.getByText('Couldn’t check for review updates.', { exact: false }).waitFor();
+  assert.equal(
+    await review.getByRole('alert').innerText(),
+    'Error: Could not start review. Try again.',
+  );
+  sessionUnavailable = false;
+  summaryUnavailable = false;
   empty = true;
   await review.getByRole('button', { name: 'Try again', exact: true }).click();
   await review.getByRole('heading', { name: 'You’re caught up for now', exact: true }).waitFor();
@@ -124,5 +158,21 @@ await withBrowser('review-overview', async ({ page, baseURL, directory }) => {
     await review.getByRole('button', { name: 'Continue review', exact: true }).count(),
     0,
   );
+  // With no usable cache, retain the raw refresh error and offer a retry.
+  await page.evaluate(async () => {
+    const { remove } = await import(String('/src/storage.ts'));
+    await remove('records', 'review-cache/summary');
+  });
+  summaryUnavailable = true;
+  await page.reload();
+  await review
+    .getByRole('alert')
+    .getByText('Error: Review status temporarily unavailable')
+    .waitFor();
+  assert.equal(await review.getByLabel('Review status updates').count(), 0);
+  summaryUnavailable = false;
+  await review.getByRole('button', { name: 'Try again', exact: true }).click();
+  await review.getByRole('heading', { name: 'You’re caught up for now', exact: true }).waitFor();
+  assert.equal(await review.getByRole('alert').count(), 0);
   assert.deepEqual(errors, []);
 });

@@ -88,7 +88,7 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   await review.getByRole('button', { name: 'Continue review', exact: true }).waitFor();
   assert.equal(await review.getByRole('button', { name: 'Start review', exact: true }).count(), 0);
   await review
-    .getByText('You have an unfinished 2-question review session.', { exact: false })
+    .getByText('Your review session contains 2 questions and is unfinished.', { exact: false })
     .waitFor();
   assert.equal(await review.getByRole('button', { name: 'Quick review', exact: true }).count(), 0);
   assert.equal(
