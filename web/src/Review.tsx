@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum } from './types';
 import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
 import { all, useRevision } from './storage';
-import { Modal } from './Rich';
+import { ExerciseSidebar } from './ExerciseSidebar';
 import { ReviewExerciseLink } from './ReviewExerciseLink';
 import { Exercise } from './Exercise';
 import { routeHash } from './routing';
@@ -15,7 +15,15 @@ import {
   startReviewSession,
 } from './reviewApi';
 
-export function Review({ data, lesson: currentLesson }: { data: Curriculum; lesson: string }) {
+export function Review({
+  data,
+  lesson: currentLesson,
+  sidebarHost,
+}: {
+  data: Curriculum;
+  lesson: string;
+  sidebarHost: HTMLElement | null;
+}) {
   const [summary, setSummary] = useState<ReviewSummary>();
   const [cached, setCached] = useState(false);
   const [checking, setChecking] = useState(true);
@@ -23,7 +31,6 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   const [session, setSession] = useState<ReviewSession>();
   const [index, setIndex] = useState(0);
   const [exerciseNav, setExerciseNav] = useState(false);
-  const queueRef = useRef<HTMLElement>(null);
   const [paused, setPaused] = useState(false);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [busy, setBusy] = useState(false);
@@ -180,10 +187,6 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       setError(String(e));
     }
   }
-  useEffect(() => {
-    const selected = queueRef.current?.querySelector<HTMLElement>('[aria-current="step"]');
-    selected?.scrollIntoView({ block: 'nearest' });
-  }, [index, exerciseNav, paused, session?.id]);
   const item = session?.instances[index];
   const names = (id: string, options: { id: string; name: string }[] | undefined) =>
     options?.find((x) => x.id === id)?.name || id;
@@ -205,7 +208,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   );
   const showQueue = !!(session && !paused && session.instances.length);
   const exerciseList = session && (
-    <nav aria-label="Review exercises" ref={queueRef}>
+    <nav aria-label="Review exercises">
       {session.instances.map((instance, position) => (
         <ReviewExerciseLink
           key={instance.id}
@@ -226,7 +229,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   const unfinished = session && paused;
   const reviewAvailable = summary && summary.due > 0 && summary.estimatedMinutes !== 0;
   return (
-    <div className="review-layout">
+    <>
       <div className="reading-column review-page">
         <div className="review-heading">
           <div>
@@ -601,19 +604,21 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
         )}
       </div>
       {showQueue && (
-        <aside className="practice-sidebar review-sidebar">
+        <ExerciseSidebar
+          host={sidebarHost}
+          selected={index}
+          mobileOpen={exerciseNav}
+          onClose={() => setExerciseNav(false)}
+          title="Review exercises"
+          className="review-sidebar"
+        >
           <span className="eyebrow">Session exercises</span>
           <p className="practice-summary">
             {session!.instances.length} tasks · Select to view work or feedback
           </p>
-          {!exerciseNav && exerciseList}
-        </aside>
-      )}
-      {showQueue && exerciseNav && (
-        <Modal title="Review exercises" onClose={() => setExerciseNav(false)}>
           {exerciseList}
-        </Modal>
+        </ExerciseSidebar>
       )}
-    </div>
+    </>
   );
 }

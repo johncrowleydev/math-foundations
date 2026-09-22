@@ -1132,6 +1132,9 @@ hr {
   padding: 7px 10px;
   line-height: 1.35;
 }
+.exercise-sidebar-slot {
+  display: contents;
+}
 .practice-sidebar {
   width: 230px;
   flex-shrink: 0;
@@ -2325,20 +2328,6 @@ button.danger:hover:not(:disabled) {
   margin-top: 0;
 }
 
-.review-layout {
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-}
-.review-layout > .review-page {
-  flex: 1;
-  min-width: 0;
-}
-.review-sidebar {
-  position: sticky;
-  top: 0;
-  max-height: calc(100dvh - 140px);
-}
 .review-exercise-label {
   min-width: 0;
   white-space: normal;
