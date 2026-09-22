@@ -16,6 +16,7 @@ import {
 export function Review({ data, lesson: currentLesson }: { data: Curriculum; lesson: string }) {
   const [summary, setSummary] = useState<ReviewSummary>();
   const [cached, setCached] = useState(false);
+  const [checking, setChecking] = useState(true);
   const [fetchedAt, setFetchedAt] = useState<number>();
   const [session, setSession] = useState<ReviewSession>();
   const [index, setIndex] = useState(0);
@@ -36,6 +37,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   const summaryRequest = useRef(0);
   async function refresh() {
     const request = ++summaryRequest.current;
+    setChecking(true);
     try {
       const result = await loadReviewSummary(budgetMinutes);
       if (request !== summaryRequest.current) return;
@@ -45,7 +47,9 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       setError('');
       return result;
     } catch (e) {
-      setError(String(e));
+      if (request === summaryRequest.current) setError(String(e));
+    } finally {
+      if (request === summaryRequest.current) setChecking(false);
     }
   }
   useEffect(() => {
@@ -101,14 +105,14 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
     setNotice('');
     try {
       const next = await startReviewSession({ ...request, budgetMinutes });
-      await retainReviewSession(next);
-      setSession(next);
+      await retainReviewSession(next.instances.length ? next : null);
+      setSession(next.instances.length ? next : undefined);
       setPaused(false);
       setIndex(0);
       if (!next.instances.length)
         setNotice(
           request.kind === 'scheduled-review'
-            ? 'Your review plan is complete for now. More work will become available on a later day.'
+            ? 'No scheduled review is currently available. More review will become due later.'
             : 'No compatible tasks in this selection. Try another scope or study mode.',
         );
       await refresh();
@@ -123,7 +127,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
     try {
       await retainReviewSession(session, { paused: true, index });
       setPaused(true);
-      setNotice('Your session is saved. Resume whenever you are ready.');
+      setNotice('');
       await refresh();
     } catch (e) {
       setError(String(e));
@@ -142,7 +146,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   async function finish() {
     try {
       await retainReviewSession(null);
-      setNotice('Session closed. Your drafts and attempts are saved.');
+      setNotice('Session ended. Your drafts and attempts are saved.');
       setPaused(false);
       setSession(undefined);
       await refresh();
@@ -169,6 +173,8 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       t.skill === item?.context.skill &&
       t.objective === item?.context.objective,
   );
+  const unfinished = session && paused;
+  const reviewAvailable = summary && summary.due > 0 && summary.estimatedMinutes !== 0;
   return (
     <div className="reading-column review-page">
       <div className="review-heading">
@@ -187,11 +193,20 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
         </p>
       )}
       {cached && (
-        <p className="review-notice">
-          Saved review plan{fetchedAt ? ' · ' + new Date(fetchedAt).toLocaleString() : ''}. Connect
-          to refresh the queue. Saved tasks can be answered offline.
-        </p>
+        <aside className="review-notice" aria-label="Review status updates">
+          <p>
+            {checking ? 'Checking for review updates…' : 'Couldn’t check for review updates.'}{' '}
+            Showing review status{fetchedAt ? ' from ' + new Date(fetchedAt).toLocaleString() : ''}.
+          </p>
+          <p>
+            {session?.instances.length
+              ? 'Your saved session can still be continued offline. New sessions need a connection.'
+              : 'Starting a review or focused practice session needs a connection.'}
+          </p>
+          {!checking && <button onClick={() => void refresh()}>Try again</button>}
+        </aside>
       )}
+      {!summary && error && !checking && <button onClick={() => void refresh()}>Try again</button>}
       {notice && (
         <p className="review-notice" role="status">
           {notice}
@@ -275,176 +290,219 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
         </>
       ) : session && !paused && session.instances.length > 0 ? (
         <div className="review-panel">
-          <h2>Session summary</h2>
+          <h2>You’ve reached the end of this session</h2>
           <p>
-            {session.mode === 'quick' ? 'Quick tasks visited.' : 'All tasks visited.'} Submitted
-            answers remain available in this session.
+            You can end the session or revisit its questions. Your drafts and answers are saved.
           </p>
-          <p>You can stop here for today. Other work can wait for a later session.</p>
           <p className="muted">
-            Queued or grading answers update your schedule after server processing.
+            Visiting or skipping questions doesn’t mark them as learned. Queued or grading answers
+            update your review schedule after server processing.
           </p>
           <div className="toolbar">
-            <button onClick={() => setIndex(0)}>Revisit tasks</button>
-            <button className="primary" onClick={() => void pause()}>
-              Return to overview
+            <button className="primary" onClick={() => void finish()}>
+              End session
             </button>
+            <button onClick={() => setIndex(0)}>Revisit questions</button>
           </div>
         </div>
       ) : (
         <>
-          <p>
-            Keep what you have learned with a manageable daily session. Most reviews are quick
-            retrieval, with occasional deeper work.
-          </p>
-          {session && paused && (
-            <section className="review-panel" aria-label="Saved review session">
-              <h2>Your saved session</h2>
+          {unfinished && (
+            <section className="review-panel review-primary" aria-labelledby="unfinished-review">
+              <h2 id="unfinished-review">
+                {session.kind === 'focused-practice'
+                  ? 'Continue your focused practice'
+                  : 'Continue your review'}
+              </h2>
               <p>
-                {session.instances.length} planned tasks are still available, along with your drafts
-                and answers. Resuming uses the same plan.
+                You have an unfinished {session.instances.length}-question{' '}
+                {session.kind === 'focused-practice' ? 'focused practice' : 'review'} session. Your
+                drafts and answers are saved.
               </p>
               <div className="toolbar">
                 <button className="primary" onClick={() => void resume()}>
-                  Resume planned session
+                  {session.kind === 'focused-practice' ? 'Continue practice' : 'Continue review'}
                 </button>
                 <button onClick={() => void finish()}>End session</button>
               </div>
               <p className="muted">
-                End this session when you want to choose a new one.
-                {session.kind === 'scheduled-review' &&
-                  " Its estimated time still counts toward today's review target."}
+                Finish or end this session before starting another scheduled review or focused
+                practice.
               </p>
+              {session.kind === 'scheduled-review' && (
+                <p className="muted">
+                  Ending a session keeps your drafts and answers. Its estimated time still counts
+                  toward your daily allowance for 24 hours after it started.
+                </p>
+              )}
             </section>
           )}
           {summary ? (
             <>
-              <label className="review-budget">
-                Daily review target
-                <select
-                  value={budgetMinutes}
-                  onChange={(event) => setBudgetMinutes(Number(event.target.value))}
-                >
-                  {Array.from({ length: 12 }, (_, index) => (index + 1) * 5).map((minutes) => (
-                    <option key={minutes} value={minutes}>
-                      {minutes} minutes
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <div className="review-plan-heading">
-                <strong>
-                  {summary.estimatedMinutes === undefined
-                    ? 'Your next session'
-                    : `~${Math.ceil(summary.estimatedMinutes)} minutes`}
-                </strong>
-                <span>{paused ? 'Additional review' : 'Planned review'}</span>
-              </div>
-              <div className="review-counts" aria-label="Planned review summary">
-                <div>
-                  <strong>{summary.plannedQuick ?? '—'}</strong>
-                  <span>Quick recall</span>
-                </div>
-                <div>
-                  <strong>{summary.plannedApplication ?? '—'}</strong>
-                  <span>Short application</span>
-                </div>
-                <div>
-                  <strong>{summary.plannedDeep ?? '—'}</strong>
-                  <span>Deep problem</span>
-                </div>
-              </div>
-              <div className="toolbar">
-                <button
-                  className="primary"
-                  disabled={busy || paused || !summary.due || summary.estimatedMinutes === 0}
-                  onClick={() => void start({ kind: 'scheduled-review', mode: 'regular' })}
-                >
-                  Start Regular review
-                </button>
-                <button
-                  disabled={busy || paused || !summary.quick || summary.estimatedMinutes === 0}
-                  onClick={() => void start({ kind: 'scheduled-review', mode: 'quick' })}
-                >
-                  Start Quick review
-                </button>
-                <button disabled={busy} onClick={() => void refresh()}>
-                  Refresh
-                </button>
-              </div>
-              <p className="muted">
-                Your target covers scheduled sessions planned in the last 24 hours. Extra work waits
-                for a later day; there is no backlog to clear. Quick mode keeps input simple.
-                {!!summary.reservedMinutes &&
-                  ` About ${Math.ceil(summary.reservedMinutes)} minutes already planned today.`}
-              </p>
-              {!paused && (!summary.due || summary.estimatedMinutes === 0) && (
-                <p>
-                  Your plan is complete for now. You can stop here or choose focused practice below.
-                </p>
+              {!unfinished && (
+                <section className="review-panel review-primary" aria-labelledby="today-review">
+                  <h2 id="today-review">
+                    {reviewAvailable ? 'Today’s review' : 'You’re caught up for now'}
+                  </h2>
+                  {reviewAvailable ? (
+                    <>
+                      {summary.estimatedMinutes !== undefined && (
+                        <p className="review-estimate">
+                          About {Math.ceil(summary.estimatedMinutes)} minutes
+                        </p>
+                      )}
+                      <div className="review-counts" aria-label="Next session breakdown">
+                        <div>
+                          <strong>{summary.plannedQuick ?? '—'}</strong>
+                          <span>Quick recall</span>
+                        </div>
+                        <div>
+                          <strong>{summary.plannedApplication ?? '—'}</strong>
+                          <span>Short application</span>
+                        </div>
+                        <div>
+                          <strong>{summary.plannedDeep ?? '—'}</strong>
+                          <span>Deep problem</span>
+                        </div>
+                      </div>
+                      <div className="toolbar">
+                        <button
+                          className="primary"
+                          disabled={busy}
+                          onClick={() => void start({ kind: 'scheduled-review', mode: 'regular' })}
+                        >
+                          {busy ? 'Starting…' : 'Start review'}
+                        </button>
+                        {summary.quick > 0 && (
+                          <button
+                            disabled={busy}
+                            aria-describedby="quick-review-help"
+                            onClick={() => void start({ kind: 'scheduled-review', mode: 'quick' })}
+                          >
+                            Quick review
+                          </button>
+                        )}
+                      </div>
+                      {summary.quick > 0 && (
+                        <p className="muted" id="quick-review-help">
+                          Quick review uses only tap or short-text questions. Deeper due work stays
+                          scheduled for later.
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <p>
+                      No scheduled review is currently available. More review will become due later.
+                    </p>
+                  )}
+                </section>
               )}
+              <div className="review-allowance">
+                <label className="review-budget">
+                  Daily review target
+                  <select
+                    value={budgetMinutes}
+                    aria-describedby="review-budget-help"
+                    onChange={(event) => setBudgetMinutes(Number(event.target.value))}
+                  >
+                    {Array.from({ length: 12 }, (_, index) => (index + 1) * 5).map((minutes) => (
+                      <option key={minutes} value={minutes}>
+                        {minutes} minutes
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <p className="muted" id="review-budget-help">
+                  This is a daily planning allowance, not a requirement. If less review is due, your
+                  session may be shorter.
+                </p>
+                <details>
+                  <summary>How the daily allowance works</summary>
+                  <p className="muted">
+                    Scheduled sessions count toward this allowance for 24 hours after they start,
+                    including unfinished or ended sessions. Changing your target doesn’t reset that
+                    time.
+                    {!!summary.reservedMinutes &&
+                      ` About ${Math.ceil(summary.reservedMinutes)} minutes already count toward your allowance.`}
+                  </p>
+                </details>
+              </div>
               <section className="review-panel">
-                <h2>Focused Practice</h2>
-                <p>Choose optional extra work, including proofs, outside your daily review plan.</p>
-                <div className="review-filters">
-                  <label>
-                    Lesson
-                    <select value={lesson} onChange={(e) => setLesson(e.target.value)}>
-                      <option value="">All lessons</option>
-                      {summary.lessons.map((l) => (
-                        <option key={l.slug} value={l.slug}>
-                          {l.title}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    Concept
-                    <select value={concept} onChange={(e) => setConcept(e.target.value)}>
-                      <option value="">All concepts</option>
-                      {summary.concepts.map((c) => (
-                        <option key={c.id} value={c.id}>
-                          {c.name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    Skill
-                    <select value={skill} onChange={(e) => setSkill(e.target.value)}>
-                      <option value="">All skills</option>
-                      {summary.skills.map((s) => (
-                        <option key={s.id} value={s.id}>
-                          {s.name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    Study mode
-                    <select value={mode} onChange={(e) => setMode(e.target.value as ReviewMode)}>
-                      <option value="regular">Regular</option>
-                      <option value="quick">Quick</option>
-                    </select>
-                  </label>
-                </div>
-                <button
-                  disabled={busy || paused}
-                  onClick={() =>
-                    void start({
-                      kind: 'focused-practice',
-                      mode,
-                      ...(lesson ? { lesson } : {}),
-                      ...(concept ? { concept } : {}),
-                      ...(skill ? { skill } : {}),
-                    })
-                  }
-                >
-                  {busy ? 'Planning…' : 'Start focused practice'}
-                </button>
+                <h2>Focused practice</h2>
+                <p>Practice a specific lesson, concept, or skill outside your scheduled review.</p>
+                {unfinished ? (
+                  <p className="muted">
+                    End your current session to choose optional extra practice.
+                  </p>
+                ) : (
+                  <>
+                    <div className="review-filters">
+                      <label>
+                        Lesson
+                        <select value={lesson} onChange={(e) => setLesson(e.target.value)}>
+                          <option value="">All lessons</option>
+                          {summary.lessons.map((l) => (
+                            <option key={l.slug} value={l.slug}>
+                              {l.title}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <label>
+                        Concept
+                        <select value={concept} onChange={(e) => setConcept(e.target.value)}>
+                          <option value="">All concepts</option>
+                          {summary.concepts.map((c) => (
+                            <option key={c.id} value={c.id}>
+                              {c.name}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <label>
+                        Skill
+                        <select value={skill} onChange={(e) => setSkill(e.target.value)}>
+                          <option value="">All skills</option>
+                          {summary.skills.map((s) => (
+                            <option key={s.id} value={s.id}>
+                              {s.name}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <label>
+                        Study mode
+                        <select
+                          value={mode}
+                          onChange={(e) => setMode(e.target.value as ReviewMode)}
+                        >
+                          <option value="regular">Regular</option>
+                          <option value="quick">Quick</option>
+                        </select>
+                      </label>
+                    </div>
+                    <button
+                      disabled={busy || paused}
+                      onClick={() =>
+                        void start({
+                          kind: 'focused-practice',
+                          mode,
+                          ...(lesson ? { lesson } : {}),
+                          ...(concept ? { concept } : {}),
+                          ...(skill ? { skill } : {}),
+                        })
+                      }
+                    >
+                      {busy ? 'Starting…' : 'Start focused practice'}
+                    </button>
+                  </>
+                )}
               </section>
               <details className="review-targets">
-                <summary>Review schedule · {summary.targets.length} active targets</summary>
+                <summary>Review schedule</summary>
+                <p className="muted">
+                  {summary.targets.length} knowledge targets in your schedule.
+                </p>
                 {summary.targets.map((t) => (
                   <article key={t.id}>
                     <strong>

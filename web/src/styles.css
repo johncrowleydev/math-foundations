@@ -2288,18 +2288,22 @@ button.danger:hover:not(:disabled) {
   gap: 10px;
   font-size: 0.9rem;
 }
-.review-plan-heading {
-  display: grid;
-  gap: 2px;
-  margin-top: 22px;
+.review-primary {
+  border-left: 3px solid var(--accent);
 }
-.review-plan-heading strong {
+.review-estimate {
   color: var(--accent);
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  margin: 0;
 }
-.review-plan-heading span {
-  color: var(--muted);
-  font-size: 0.85rem;
+.review-allowance {
+  font-size: 0.9rem;
+}
+.review-notice p:first-child {
+  margin-top: 0;
+}
+.review-notice p:last-child {
+  margin-bottom: 0;
 }
 .extra-practice {
   margin-top: 22px;
