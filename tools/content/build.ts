@@ -1,3 +1,4 @@
+import { classifyReviewCost } from '../../shared/reviewCost.js';
 import { exerciseKey, validateExerciseKeys } from '../../web/src/exerciseIdentity.js';
 import { mathOccurrences, validateFormulaContexts } from './formula-context.js';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
@@ -68,6 +69,12 @@ const gradingExercises = Object.fromEntries(
       return [
         exerciseKey(lesson, q.id),
         {
+          ...classifyReviewCost(
+            q,
+            evidence.exercises[exerciseKey(lesson, q.id)].skills
+              .filter((s) => s.role === 'primary')
+              .map((s) => s.skill),
+          ),
           lesson: lesson.title,
           lessonSlug: lesson.slug,
           analytics: snapshot(evidence, exerciseKey(lesson, q.id)),

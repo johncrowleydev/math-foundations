@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -54,6 +55,7 @@ type ReviewVariantBank struct {
 	Variants  []ReviewVariant        `json:"variants"`
 }
 type ReviewTemplate struct {
+	Category          string             `json:"category,omitempty"`
 	ParameterVariants *ReviewVariantBank `json:"-"`
 	SourceTarget      string             `json:"sourceTarget,omitempty"`
 	ReviewTarget
@@ -85,6 +87,8 @@ type ReviewState struct {
 	Quick                       bool    `json:"quick"`
 }
 type ReviewInstance struct {
+	Category          string          `json:"category,omitempty"`
+	EstimatedSeconds  int             `json:"estimatedSeconds,omitempty"`
 	EvidenceLevel     string          `json:"evidenceLevel"`
 	CognitiveLevel    string          `json:"cognitiveLevel"`
 	InteractionCost   string          `json:"interactionCost"`
@@ -100,13 +104,15 @@ type ReviewInstance struct {
 	Teaching          json.RawMessage `json:"teaching"`
 }
 type ReviewSessionRequest struct {
-	Kind    string `json:"kind"`
-	Mode    string `json:"mode"`
-	Lesson  string `json:"lesson,omitempty"`
-	Concept string `json:"concept,omitempty"`
-	Skill   string `json:"skill,omitempty"`
+	BudgetMinutes int    `json:"budgetMinutes,omitempty"`
+	Kind          string `json:"kind"`
+	Mode          string `json:"mode"`
+	Lesson        string `json:"lesson,omitempty"`
+	Concept       string `json:"concept,omitempty"`
+	Skill         string `json:"skill,omitempty"`
 }
 type ReviewSession struct {
+	ReviewPlanEstimate
 	ID        string           `json:"id"`
 	Kind      string           `json:"kind"`
 	Mode      string           `json:"mode"`
@@ -264,6 +270,7 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 	for _, key := range keys {
 		raw := g.catalog.Exercises[key]
 		var item struct {
+			Category   string
 			Lesson     string
 			LessonSlug string
 			Question   map[string]any
@@ -326,7 +333,7 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 						lesson = key[:i]
 					}
 				}
-				result = append(result, ReviewTemplate{ReviewTarget: ReviewTarget{Concept: c.Concept, Skill: s.Skill}, ID: "exercise-" + key + "-" + c.Concept + "-" + s.Skill, Family: "fixed", SourceTarget: "exercise:" + key, Lesson: lesson, EvidenceLevel: level, CognitiveLevel: s.Skill, InteractionCost: cost, InputCapabilities: caps, Question: q, Analytics: item.Analytics, Teaching: raw})
+				result = append(result, ReviewTemplate{Category: item.Category, ReviewTarget: ReviewTarget{Concept: c.Concept, Skill: s.Skill}, ID: "exercise-" + key + "-" + c.Concept + "-" + s.Skill, Family: "fixed", SourceTarget: "exercise:" + key, Lesson: lesson, EvidenceLevel: level, CognitiveLevel: s.Skill, InteractionCost: cost, InputCapabilities: caps, Question: q, Analytics: item.Analytics, Teaching: raw})
 			}
 		}
 	}
@@ -735,7 +742,8 @@ func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version 
 	t.InputCapabilities = evidence.InputCapabilities
 	teaching["analytics"] = t.Analytics
 	teachingRaw, _ := json.Marshal(teaching)
-	return ReviewInstance{EvidenceLevel: t.EvidenceLevel, CognitiveLevel: t.CognitiveLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities, SourceTarget: t.sourceTarget(), ID: id, Exercise: "review-" + id, Lesson: t.Lesson, Question: question, Context: context, Analytics: t.Analytics, ContentVersion: version, Teaching: teachingRaw}
+	category, seconds := t.questionCost(question)
+	return ReviewInstance{Category: category, EstimatedSeconds: seconds, EvidenceLevel: t.EvidenceLevel, CognitiveLevel: t.CognitiveLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities, SourceTarget: t.sourceTarget(), ID: id, Exercise: "review-" + id, Lesson: t.Lesson, Question: question, Context: context, Analytics: t.Analytics, ContentVersion: version, Teaching: teachingRaw}
 }
 
 var reviewReferenceLink = regexp.MustCompile(`\[([^\]]+)\]\(ref:[^)]+\)`)
@@ -794,6 +802,11 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 	if !enum(req.Kind, "scheduled-review", "focused-practice") || !enum(req.Mode, "regular", "quick") {
 		return session, errors.New("Invalid review mode")
 	}
+	minutes, e := reviewBudget(req.BudgetMinutes)
+	if e != nil {
+		return session, e
+	}
+	req.BudgetMinutes = minutes
 	templates := g.reviewTemplates()
 	tx, e := g.server.db.Begin()
 	if e != nil {
@@ -804,13 +817,38 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 	if e != nil {
 		return session, e
 	}
+	usage, e := reviewIssuedAllowance(tx, templates, now)
+	if e != nil {
+		return session, e
+	}
+	session, activations := g.selectReview(req, now, templates, states, usage, session)
+	for _, instance := range session.Instances {
+		key := instance.Context.key()
+		if state, activate := activations[key]; activate {
+			if e = reviewPut(tx, "review-activation/"+key, map[string]any{"target": instance.Context.ReviewTarget, "at": now}); e != nil {
+				return session, e
+			}
+			if e = reviewPut(tx, "review-state/"+key, state); e != nil {
+				return session, e
+			}
+		}
+		if e = reviewPut(tx, "review-instance/"+instance.ID, instance); e != nil {
+			return session, e
+		}
+	}
+	if e = reviewPut(tx, "review-session/"+session.ID, session); e != nil {
+		return session, e
+	}
+	return session, tx.Commit()
+}
+func (g *Grading) selectReview(req ReviewSessionRequest, now int64, templates []ReviewTemplate, states map[string]ReviewState, usage reviewAllowance, session ReviewSession) (ReviewSession, map[string]ReviewState) {
 	grouped := map[string][]ReviewTemplate{}
 	for _, t := range templates {
 		if req.Lesson != "" && t.Lesson != req.Lesson || req.Concept != "" && t.Concept != req.Concept || req.Skill != "" && t.Skill != req.Skill || req.Mode == "quick" && !t.quick() {
 			continue
 		}
 		s, active := states[t.key()]
-		if req.Kind == "scheduled-review" && (!active || s.DueAt > now) {
+		if req.Kind == "scheduled-review" && (!active || s.DueAt > now || usage.Targets[t.key()]) {
 			continue
 		}
 		seed := session.ID + ":" + t.key()
@@ -825,11 +863,30 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		}
 		grouped[t.key()] = append(grouped[t.key()], t)
 	}
+	priority := map[string]int{}
+	for key, candidates := range grouped {
+		priority[key] = 2
+		for _, candidate := range candidates {
+			question, _ := instantiateReviewQuestion(candidate, session.ID+":"+key)
+			category, _ := candidate.questionCost(question)
+			tier := 0
+			if category == "short-application" {
+				tier = 1
+			}
+			if deepReviewCategory(category) {
+				tier = 2
+			}
+			priority[key] = min(priority[key], tier)
+		}
+	}
 	keys := []string{}
 	for k := range grouped {
 		keys = append(keys, k)
 	}
 	sort.Slice(keys, func(i, j int) bool {
+		if req.Kind == "scheduled-review" && priority[keys[i]] != priority[keys[j]] {
+			return priority[keys[i]] < priority[keys[j]]
+		}
 		a, b := states[keys[i]].DueAt, states[keys[j]].DueAt
 		if a != b {
 			return a < b
@@ -842,9 +899,16 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 	coverage := map[string]map[string]bool{}
 	covered := map[string]int{}
 	activations := map[string]ReviewState{}
-	for len(keys) > 0 && len(session.Instances) < 30 {
+	maxInstances := 30
+	if req.Kind == "scheduled-review" {
+		maxInstances = 120
+	}
+	for len(keys) > 0 && len(session.Instances) < maxInstances {
 		pick := 0
 		for i, k := range keys {
+			if req.Kind == "scheduled-review" && priority[k] != priority[keys[0]] {
+				break
+			}
 			if grouped[k][0].Concept != previous {
 				pick = i
 				break
@@ -860,25 +924,36 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		hash := sha256.Sum256([]byte(seed))
 		var t ReviewTemplate
 		fingerprint := ""
+		bestSeconds := 0
 		for offset := range candidates {
 			candidate := candidates[(int(hash[0])+offset)%len(candidates)]
-			if usedSources[candidate.sourceTarget()] {
+			if usedSources[candidate.sourceTarget()] || req.Kind == "scheduled-review" && usage.Sources[candidate.sourceTarget()] {
 				continue
 			}
 			question, _ := instantiateReviewQuestion(candidate, seed)
 			candidateFingerprint := reviewQuestionFingerprint(question)
-			if usedQuestions[candidateFingerprint] {
+			if usedQuestions[candidateFingerprint] || req.Kind == "scheduled-review" && usage.Questions[candidateFingerprint] {
 				continue
 			}
-			t, fingerprint = candidate, candidateFingerprint
-			break
+			category, seconds := candidate.questionCost(question)
+			if req.Kind == "scheduled-review" {
+				_, plannedDeep := reviewPlanSeconds(session.Instances)
+				if deepReviewCategory(category) && (usage.DeepRecent || plannedDeep > 0) {
+					continue
+				}
+				if bestSeconds > 0 && seconds >= bestSeconds {
+					continue
+				}
+			}
+			t, fingerprint, bestSeconds = candidate, candidateFingerprint, seconds
+			if req.Kind != "scheduled-review" {
+				break
+			}
 		}
 		// A skipped target remains due; selecting a duplicate is not evidence.
 		if fingerprint == "" {
 			continue
 		}
-		usedSources[t.sourceTarget()] = true
-		usedQuestions[fingerprint] = true
 		s, active := states[key]
 		if !active {
 			s = ReviewState{ReviewTarget: t.ReviewTarget, ID: key, ActivatedAt: now, DueAt: now, Reason: "Active practice requested", Quick: t.quick(), EvidenceLevel: t.EvidenceLevel}
@@ -887,6 +962,16 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		instance := instantiateReview(t, s, req.Kind, newID(), seed, g.catalog.Version, now)
 		var meta reviewAnalytics
 		json.Unmarshal(instance.Analytics, &meta)
+		previousInstances := append([]ReviewInstance{}, session.Instances...)
+		previousCoverage, previousCovered := coverage, covered
+		coverage = make(map[string]map[string]bool, len(previousCoverage)+1)
+		for id, targets := range previousCoverage {
+			coverage[id] = targets
+		}
+		covered = make(map[string]int, len(previousCovered))
+		for target, count := range previousCovered {
+			covered[target] = count
+		}
 		coverage[instance.ID] = map[string]bool{}
 		for target, candidates := range grouped {
 			for _, candidate := range candidates {
@@ -920,28 +1005,32 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 				i++
 			}
 		}
+		if req.Kind == "scheduled-review" {
+			total, deep := reviewPlanSeconds(session.Instances)
+			// Deep work must fit both the remaining allowance and a minority of the
+			// actual plan after redundant questions have been removed.
+			if total > max(0, req.BudgetMinutes*60-usage.Seconds) || deep*5 > total*2 {
+				session.Instances, coverage, covered = previousInstances, previousCoverage, previousCovered
+				continue
+			}
+		}
+		usedSources[t.sourceTarget()] = true
+		usedQuestions[fingerprint] = true
 		previous = t.Concept
 	}
-	for _, instance := range session.Instances {
-		key := instance.Context.key()
-		if state, activate := activations[key]; activate {
-			if e = reviewPut(tx, "review-activation/"+key, map[string]any{"target": instance.Context.ReviewTarget, "at": now}); e != nil {
-				return session, e
-			}
-			if e = reviewPut(tx, "review-state/"+key, state); e != nil {
-				return session, e
-			}
-		}
-		if e = reviewPut(tx, "review-instance/"+instance.ID, instance); e != nil {
-			return session, e
-		}
-	}
-	if e = reviewPut(tx, "review-session/"+session.ID, session); e != nil {
-		return session, e
-	}
-	return session, tx.Commit()
+	session.ReviewPlanEstimate = estimateReviewPlan(session.Instances, req.BudgetMinutes, usage)
+	return session, activations
 }
-func (g *Grading) reviewSummary(now int64) (map[string]any, error) {
+
+func (g *Grading) reviewSummary(now int64, requestedBudget ...int) (map[string]any, error) {
+	budget := 0
+	if len(requestedBudget) > 0 {
+		budget = requestedBudget[0]
+	}
+	minutes, err := reviewBudget(budget)
+	if err != nil {
+		return nil, err
+	}
 	templates := g.reviewTemplates()
 	tx, e := g.server.db.Begin()
 	if e != nil {
@@ -1007,7 +1096,19 @@ func (g *Grading) reviewSummary(now int64) (map[string]any, error) {
 		}
 		return out
 	}
+	usage, e := reviewIssuedAllowance(tx, templates, now)
+	if e != nil {
+		return nil, e
+	}
+	preview, _ := g.selectReview(ReviewSessionRequest{Kind: "scheduled-review", Mode: "regular", BudgetMinutes: minutes}, now, templates, states, usage, ReviewSession{ID: "preview", Instances: []ReviewInstance{}})
 	result := map[string]any{"due": due, "quick": quick, "deeper": due - quick, "targets": targets, "concepts": options(concepts, "id", "name"), "skills": options(skills, "id", "name"), "lessons": options(lessons, "slug", "title")}
+	result["budgetMinutes"] = preview.BudgetMinutes
+	result["estimatedMinutes"] = preview.EstimatedMinutes
+	result["reservedMinutes"] = preview.ReservedMinutes
+	result["remainingMinutes"] = preview.RemainingMinutes
+	result["plannedQuick"] = preview.PlannedQuick
+	result["plannedApplication"] = preview.PlannedApplication
+	result["plannedDeep"] = preview.PlannedDeep
 	return result, tx.Commit()
 }
 func (s *Server) reviewRoutes(mux *http.ServeMux) {
@@ -1035,7 +1136,16 @@ func (s *Server) reviewRoutes(mux *http.ServeMux) {
 			http.Error(w, "Review unavailable", 503)
 			return
 		}
-		result, e := s.grading.reviewSummary(time.Now().UnixMilli())
+		budget := 0
+		if value := r.URL.Query().Get("budgetMinutes"); value != "" {
+			var err error
+			budget, err = strconv.Atoi(value)
+			if err != nil || budget < 5 || budget > 60 {
+				http.Error(w, errReviewBudget.Error(), 400)
+				return
+			}
+		}
+		result, e := s.grading.reviewSummary(time.Now().UnixMilli(), budget)
 		if e != nil {
 			http.Error(w, "Review unavailable", 503)
 			return

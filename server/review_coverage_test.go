@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"reflect"
 	"testing"
@@ -30,6 +31,19 @@ func TestReviewCoveragePublishedFactoring(t *testing.T) {
 					exercises[id] = g.catalog.Exercises[id]
 				}
 				g.catalog.Exercises, g.catalog.ReviewTemplates = exercises, nil
+				// Scheduled deep work now requires a balanced time plan. Add
+				// unrelated short applications, retaining the original coverage
+				// assertion that factoring itself is asked exactly once.
+				applicationCount := 0
+				if kind == "scheduled-review" {
+					applicationCount = 4
+					for i := 0; i < applicationCount; i++ {
+						id := fmt.Sprintf("application-%d", i)
+						meta := json.RawMessage(fmt.Sprintf(`{"concepts":[{"concept":%q,"role":"primary"}],"skills":[{"skill":"construct","role":"primary"}]}`, id))
+						g.catalog.ReviewTemplates = append(g.catalog.ReviewTemplates, ReviewTemplate{ID: id, Category: "short-application", ReviewTarget: ReviewTarget{Concept: id, Skill: "construct"}, EvidenceLevel: "production", Analytics: meta, Question: map[string]any{"prompt": id, "answer": "Synthetic"}})
+						storeReviewAttempt(t, g, id, reviewDay, "correct", meta, nil)
+					}
+				}
 				for _, skill := range []string{"transform", "justify"} {
 					at := 2 * reviewDay
 					if skill == first {
@@ -43,10 +57,10 @@ func TestReviewCoveragePublishedFactoring(t *testing.T) {
 				}
 				_, before := summaryStates(t, g, 10*reviewDay)
 				session, err := g.planReview(ReviewSessionRequest{Kind: kind, Mode: "regular"}, 10*reviewDay)
-				if err != nil || len(session.Instances) != 1 {
+				if err != nil || len(session.Instances) != 1+applicationCount {
 					t.Fatalf("factoring repeated for overlapping skills: got %d tasks, error %v", len(session.Instances), err)
 				}
-				instance := session.Instances[0]
+				instance := session.Instances[len(session.Instances)-1]
 				if instance.Context.Skill != first || instance.EvidenceLevel != "reasoning" {
 					t.Fatalf("lost due order or the task's actual evidence depth: %s, %s", instance.Context.Skill, instance.EvidenceLevel)
 				}
@@ -54,7 +68,9 @@ func TestReviewCoveragePublishedFactoring(t *testing.T) {
 				if !reflect.DeepEqual(before, planned) {
 					t.Fatal("planning alone changed scheduling evidence")
 				}
-				storeReviewAttempt(t, g, instance.Exercise, 10*reviewDay, "correct", instance.Analytics, &instance.Context)
+				for _, answered := range session.Instances {
+					storeReviewAttempt(t, g, answered.Exercise, 10*reviewDay, "correct", answered.Analytics, &answered.Context)
+				}
 				summary, after := summaryStates(t, g, 10*reviewDay)
 				if summary["due"] != 0 {
 					t.Fatal("one factoring answer did not satisfy both authored skills")
