@@ -1,12 +1,16 @@
-// CI uses two runners. Alternating the already prioritized specs keeps discovery
+// CI uses multiple runners. Distributing the already prioritized specs keeps discovery
 // automatic and each expensive check in exactly one shard.
 export function selectShard<T>(items: readonly T[], shard: string | undefined): T[] {
   if (shard === undefined) return [...items];
-  if (shard !== '1/2' && shard !== '2/2') {
-    throw Error('E2E_SHARD must be 1/2 or 2/2. Leave it unset to run all specs.');
+  const match = /^([1-9]\d*)\/([1-9]\d*)$/.exec(shard);
+  const index = Number(match?.[1]);
+  const count = Number(match?.[2]);
+  if (!Number.isSafeInteger(index) || !Number.isSafeInteger(count) || index > count) {
+    throw Error(
+      'E2E_SHARD must be an index/count pair (1 <= index <= count). Leave it unset to run all specs.',
+    );
   }
-  const index = shard === '1/2' ? 0 : 1;
-  return items.filter((_, itemIndex) => itemIndex % 2 === index);
+  return items.filter((_, itemIndex) => itemIndex % count === index - 1);
 }
 
 // Each worker takes one spec at a time. Results retain input order, and a failed

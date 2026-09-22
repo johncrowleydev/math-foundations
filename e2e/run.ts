@@ -20,13 +20,25 @@ const available = (await readdir(join(root, 'e2e')))
 const candidates = available.filter(
   (file) => names.length === 0 || names.includes(file.replace(/\.spec\.(ts|mjs)$/, '')),
 );
-// Start the longest checks first, based on CI timings, to avoid a long tail.
+// Start the longest checks first, based on the 2026-09-22 main CI timings,
+// including the newer Review regressions, to avoid a long tail on each shard.
 const longest = [
   'review-submission',
   'review-library',
   'review',
   'deterministic',
+  'review-completion',
+  'learning-efficiency',
+  'revise-failed-grading',
+  'review-session-progress',
   'grading-toasts',
+  'power-set-review',
+  'review-overview',
+  'offline',
+  'evidence',
+  'review-restoration',
+  'review-navigation',
+  'review-layout',
 ];
 const priority = (file: string) => {
   const index = longest.indexOf(file.replace(/\.spec\.(ts|mjs)$/, ''));

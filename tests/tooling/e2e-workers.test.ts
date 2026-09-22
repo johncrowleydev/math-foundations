@@ -16,25 +16,44 @@ test('E2E shards partition prioritized specs without changing their order', asyn
     [...discovered, 'newly-added.spec.ts'],
   ]) {
     const original = [...specs];
-    const first = selectShard(specs, '1/2');
-    const second = selectShard(specs, '2/2');
-    assert.ok(Math.abs(first.length - second.length) <= 1, 'shards must be balanced');
-    for (const part of [first, second]) {
-      assert.deepEqual(
-        part,
-        [...part].sort((left, right) => specs.indexOf(left) - specs.indexOf(right)),
-        'each shard preserves the input priority order',
+    for (const count of [1, 2, 3, 4]) {
+      const parts = Array.from({ length: count }, (_, index) =>
+        selectShard(specs, `${index + 1}/${count}`),
       );
+      const sizes = parts.map((part) => part.length);
+      assert.ok(Math.max(...sizes) - Math.min(...sizes) <= 1, 'shards must be balanced');
+      for (const part of parts) {
+        assert.deepEqual(
+          part,
+          [...part].sort((left, right) => specs.indexOf(left) - specs.indexOf(right)),
+          'each shard preserves the input priority order',
+        );
+      }
+      assert.deepEqual(parts.flat().sort(), [...specs].sort(), 'every spec runs exactly once');
     }
-    assert.deepEqual([...first, ...second].sort(), [...specs].sort());
-    assert.equal(first.filter((spec) => second.includes(spec)).length, 0);
     assert.deepEqual(selectShard(specs, undefined), specs);
     assert.deepEqual(specs, original, 'sharding must not mutate the priority order');
   }
 });
 
 test('invalid E2E shards fail instead of silently dropping checks', () => {
-  for (const shard of ['', '0/2', '3/2', '1/1', '1/3', '01/2', '1/02', ' 1/2', '1/2 ', '1']) {
+  for (const shard of [
+    '',
+    '0/2',
+    '3/2',
+    '1/0',
+    '-1/2',
+    '1.5/2',
+    '1/2.5',
+    '01/2',
+    '1/02',
+    ' 1/2',
+    '1/2 ',
+    '1',
+    '1/2/3',
+    '1/9007199254740992',
+    '9007199254740992/9007199254740992',
+  ]) {
     assert.throws(() => selectShard(['unused'], shard), /E2E_SHARD/);
   }
 });
