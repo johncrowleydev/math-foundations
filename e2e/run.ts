@@ -22,11 +22,11 @@ const selected = available.filter(
 );
 // Start the longest checks first, based on CI timings, to avoid a long tail.
 const longest = [
-  'review-library',
   'review-submission',
-  'deterministic',
+  'review-library',
   'review',
-  'structured-answer',
+  'deterministic',
+  'grading-toasts',
 ];
 const priority = (file: string) => {
   const index = longest.indexOf(file.replace(/\.spec\.(ts|mjs)$/, ''));
