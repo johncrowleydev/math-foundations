@@ -1,0 +1,129 @@
+name: Deploy Foundations
+run-name: Deploy main (${{ github.sha }})
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: foundations-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production
+      url: https://foundations.johncrowley.dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Require successful checks for this main commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?branch=main&event=push&head_sha=$GITHUB_SHA&per_page=1" \
+            --jq '.workflow_runs[0].conclusion' | grep -Fx success
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            web/package-lock.json
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: server/go.mod
+          cache-dependency-path: server/go.sum
+      - name: Build matching web, backend, and catalog
+        run: |
+          npm ci
+          npm ci --prefix web --no-install-links
+          npm run web:build
+          mkdir -p output/deploy
+          (cd server && CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ../output/deploy/foundations-server .)
+          cp server/deploy/* output/deploy/
+          cp tools/deploy/activate.sh output/deploy/
+          cp output/grading-catalog.json output/deploy/
+          cp -a web/dist output/deploy/web
+          jq -n --arg commit "$GITHUB_SHA" --arg run "$GITHUB_RUN_ID" \
+            '{commit: $commit, run: $run}' > output/deploy/web/deployment.json
+          tar -C output/deploy -czf output/deploy.tar.gz .
+      - name: Configure deployment SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          test -s ~/.ssh/deploy_key
+          test -s ~/.ssh/known_hosts
+      - name: Allow runner SSH ingress
+        id: ssh_ingress
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.JC_DEV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.JC_DEV_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_PAGER: ''
+          SECURITY_GROUP_ID: sg-0a25b825526a4d0f0
+        run: |
+          runner_ip="$(curl --fail --silent --show-error --retry 5 https://checkip.amazonaws.com)"
+          runner_ip="${runner_ip//[[:space:]]/}"
+          python3 - "$runner_ip" <<'PYTHON'
+          import ipaddress
+          import sys
+
+          if ipaddress.ip_address(sys.argv[1]).version != 4:
+              raise SystemExit("GitHub runner did not report an IPv4 address")
+          PYTHON
+          runner_cidr="${runner_ip}/32"
+          aws ec2 authorize-security-group-ingress \
+            --group-id "$SECURITY_GROUP_ID" \
+            --protocol tcp --port 22 --cidr "$runner_cidr"
+          echo "cidr=$runner_cidr" >> "$GITHUB_OUTPUT"
+          echo "opened=true" >> "$GITHUB_OUTPUT"
+      - name: Back up and activate release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+        run: |
+          test "$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)" = "$GITHUB_SHA"
+          release="release-${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          target="${DEPLOY_USER}@${DEPLOY_HOST}"
+          ssh_options=(-i ~/.ssh/deploy_key -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15)
+          ssh "${ssh_options[@]}" "$target" "umask 077; mkdir /tmp/foundations-$release"
+          trap 'ssh "${ssh_options[@]}" "$target" "rm -rf /tmp/foundations-$release"; rm -f ~/.ssh/deploy_key' EXIT
+          scp "${ssh_options[@]}" output/deploy.tar.gz "$target:/tmp/foundations-$release/bundle.tar.gz"
+          ssh "${ssh_options[@]}" "$target" \
+            "cd /tmp/foundations-$release && tar -xzf bundle.tar.gz && sudo -n bash activate.sh $release"
+          echo "Deployed commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo "Release: $release" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify public release and API authentication boundary
+        run: |
+          curl --fail --silent --show-error --retry 5 --retry-all-errors \
+            https://foundations.johncrowley.dev/deployment.json | jq -e --arg sha "$GITHUB_SHA" '.commit == $sha'
+          curl --fail --silent --show-error https://foundations.johncrowley.dev/ -o /dev/null
+          test "$(curl --silent --show-error -o /dev/null -w '%{http_code}' https://foundations.johncrowley.dev/api/v1/status)" = 401
+          test "$(curl --silent --show-error -H 'Authorization: Bearer invalid' -o /dev/null -w '%{http_code}' https://foundations.johncrowley.dev/api/v1/status)" = 401
+      - name: Remove runner SSH ingress
+        if: ${{ always() && steps.ssh_ingress.outputs.opened == 'true' }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.JC_DEV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.JC_DEV_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_PAGER: ''
+          SECURITY_GROUP_ID: sg-0a25b825526a4d0f0
+          RUNNER_CIDR: ${{ steps.ssh_ingress.outputs.cidr }}
+        run: |
+          aws ec2 revoke-security-group-ingress \
+            --group-id "$SECURITY_GROUP_ID" \
+            --protocol tcp --port 22 --cidr "$RUNNER_CIDR"
+      - name: Remove deployment key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

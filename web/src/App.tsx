@@ -1,20 +1,10 @@
+import { ExerciseStatus } from './ExerciseStatus';
 import { exerciseKey } from './exerciseIdentity';
 import { Review } from './Review';
 import { ReviewLibrary } from './ReviewLibrary';
 import { authSession, signOut } from './auth';
 import { useEffect, useLayoutEffect, useRef, useState, useMemo, Suspense } from 'react';
-import {
-  BookOpen,
-  Menu,
-  Settings as SettingsIcon,
-  WifiOff,
-  Check,
-  X,
-  Circle,
-  Clock3,
-  Pencil,
-  CircleAlert,
-} from 'lucide-react';
+import { BookOpen, Menu, Settings as SettingsIcon, WifiOff } from 'lucide-react';
 import { readRoute, routeHash, resolveReadingSection, type AppRoute } from './routing';
 import { registerSW } from 'virtual:pwa-register';
 import type { Curriculum, Lesson, RecordData, Formula, Attempt, Draft } from './types';
@@ -366,7 +356,7 @@ export function App({ data }: { data: Curriculum }) {
             onClick={() => selectExercise(index)}
           >
             <span>{questionLabel(question)}</span>
-            <PracticeStatus status={progress[index]?.status || 'Not attempted'} />
+            <ExerciseStatus status={progress[index]?.status || 'Not attempted'} />
           </button>
         </div>
       );
@@ -1014,27 +1004,6 @@ function Settings({
         </button>
       </details>
     </Modal>
-  );
-}
-
-function PracticeStatus({ status }: { status: string }) {
-  const Icon =
-    status === 'Correct'
-      ? Check
-      : status === 'Try again'
-        ? X
-        : status === 'Grading' || status === 'Syncing'
-          ? Clock3
-          : status === 'Draft'
-            ? Pencil
-            : status === 'Needs attention'
-              ? CircleAlert
-              : Circle;
-  const tone = status === 'Correct' ? 'complete' : status === 'Try again' ? 'incorrect' : '';
-  return (
-    <span className={'progress-state ' + tone} role="img" aria-label={status} title={status}>
-      <Icon size={14} strokeWidth={status === 'Not attempted' ? 1.5 : 2} aria-hidden="true" />
-    </span>
   );
 }
 
