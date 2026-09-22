@@ -20,6 +20,7 @@ Object.defineProperty(globalThis, 'window', { configurable: true, value: new Eve
 Object.defineProperty(globalThis, 'BroadcastChannel', { configurable: true, value: undefined });
 const { LessonRuntime, lessonComponents } = await import('../src/LessonDocument');
 const { Exercise } = await import('../src/Exercise');
+const { PracticeSupport } = await import('../src/PracticeSupport');
 if (savedWindow) Object.defineProperty(globalThis, 'window', savedWindow);
 else Reflect.deleteProperty(globalThis, 'window');
 if (savedChannel) Object.defineProperty(globalThis, 'BroadcastChannel', savedChannel);
@@ -124,6 +125,8 @@ test('Exercise and QuickCheck resolve to the existing React Exercise with unchan
         resolved = (resolved.type as (props: { id: string }) => ReactElement)(
           resolved.props as { id: string },
         );
+      if (resolved.type === PracticeSupport)
+        resolved = (resolved.props as { children: ReactElement }).children;
       element = resolved as typeof element;
       return null;
     }

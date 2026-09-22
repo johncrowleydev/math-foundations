@@ -49,10 +49,11 @@ export async function cachedReviewSummary() {
   };
 }
 
-export async function loadReviewSummary() {
+export async function loadReviewSummary(budgetMinutes?: number) {
   const key = 'review-cache/summary';
   try {
-    const summary = (await (await apiRequest('/review')).json()) as ReviewSummary;
+    const query = budgetMinutes === undefined ? '' : '?budgetMinutes=' + budgetMinutes;
+    const summary = (await (await apiRequest('/review' + query)).json()) as ReviewSummary;
     const fetchedAt = Date.now();
     await cache(key, { summary, fetchedAt });
     return { summary, cached: false, fetchedAt };

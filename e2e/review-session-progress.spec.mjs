@@ -139,7 +139,7 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
   });
   await page.reload();
   await atTask(2);
-  await review.getByText('Saved due summary', { exact: false }).waitFor();
+  await review.getByText('Saved review plan', { exact: false }).waitFor();
   assert.ok(heldReview, 'Saved work renders while the online summary request is still pending');
   heldReview = undefined;
   releaseReview();
@@ -195,7 +195,7 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
   offline = true;
   await page.reload();
   await atTask(4);
-  await review.getByText('Saved due summary', { exact: false }).waitFor();
+  await review.getByText('Saved review plan', { exact: false }).waitFor();
   assert.equal(
     (await savedState()).draft.text,
     draft,
