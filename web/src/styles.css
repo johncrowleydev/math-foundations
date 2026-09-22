@@ -2320,3 +2320,28 @@ button.danger:hover:not(:disabled) {
 .practice-guidance p:first-child {
   margin-top: 0;
 }
+
+.review-layout {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1130px;
+  margin: 0 auto;
+}
+.review-layout > .review-page {
+  flex: 1;
+  min-width: 0;
+}
+.review-sidebar {
+  position: sticky;
+  top: 0;
+  max-height: calc(100dvh - 140px);
+}
+.review-exercise-label {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.review-exercise-label small {
+  display: block;
+  color: var(--muted);
+  margin-top: 3px;
+}
