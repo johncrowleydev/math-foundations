@@ -222,10 +222,10 @@ jobs:
       # its upstream CI guidance advises against caching these large binaries.
       - name: Install compatible Chromium and system dependencies
         run: npx playwright install --with-deps chromium
-      - name: E2E suite (two isolated workers)
+      - name: E2E suite (three isolated workers)
         run: npm run test:e2e
         env:
-          E2E_WORKERS: '2'
+          E2E_WORKERS: '3'
       - name: Verify canonical-content immutability
         if: always()
         run: |

@@ -68,7 +68,7 @@ The workflow has seven plainly named jobs:
   They respectively run curriculum/TeX audits and root tests, the production PWA build
   and web tests, both independent Python oracles, and `go test -race ./...`.
 - **e2e** downloads the same curriculum and the web job's production assets. It
-  runs all browser specs with two isolated workers; it never rebuilds content or
+  runs all browser specs with three isolated workers; it never rebuilds content or
   the production PWA. Go race tests do not wait for browser tests.
 
 CI calls the existing build/test primitives explicitly: `content:build` once,
@@ -103,7 +103,8 @@ npm run test:e2e -- mdx sources offline
 ```
 
 The runner discovers `e2e/*.spec.ts` and `*.spec.mjs` and runs two specs at a
-time, starting the longest measured suites first. Set `E2E_WORKERS=1` for serial
+time by default; CI uses three workers on its hosted runner. The longest measured
+suites start first. Set `E2E_WORKERS=1` for serial
 troubleshooting; only integer limits from 1 to 4 are accepted. Every selected spec
 runs even if another fails. `output/e2e/timings.json` records per-spec outcomes and
 elapsed times as well as overall wall time.
