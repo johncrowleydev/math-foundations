@@ -321,6 +321,64 @@ func TestReviewExportImportRoundTripAndNoStateOverwrite(t *testing.T) {
 		t.Fatal("client state overwrote server")
 	}
 }
+func TestReviewImportPreservesLegacyBudgetStatus(t *testing.T) {
+	for _, legacy := range []bool{true, false} {
+		t.Run(fmt.Sprintf("legacy=%t", legacy), func(t *testing.T) {
+			g := reviewFixture(t)
+			storeReviewAttempt(t, g, "lesson", reviewDay, "correct", g.catalog.ReviewTemplates[0].Analytics, nil)
+			now := 20 * reviewDay
+			session, err := g.planReview(ReviewSessionRequest{Kind: "scheduled-review", Mode: "quick", Concept: "logic", BudgetMinutes: 5}, now)
+			if err != nil || len(session.Instances) != 1 {
+				t.Fatalf("create issued task: %+v, %v", session, err)
+			}
+			original := session.Instances[0]
+			if legacy {
+				session.Instances[0].Category, session.Instances[0].EstimatedSeconds = "", 0
+				session.ReviewPlanEstimate = ReviewPlanEstimate{}
+			} else {
+				// Modern imports still reconstruct cost from trusted content.
+				session.Instances[0].Category, session.Instances[0].EstimatedSeconds = "proof", 999999
+			}
+			instanceRaw, _ := json.Marshal(session.Instances[0])
+			sessionRaw, _ := json.Marshal(session)
+			backup := ReviewImport{Records: []Record{
+				{Key: "review-instance/" + original.ID, Version: Version{Payload: instanceRaw}},
+				{Key: "review-session/" + session.ID, Version: Version{Payload: sessionRaw}},
+			}}
+			h := reviewFixture(t)
+			if err := h.importReview(backup); err != nil {
+				t.Fatal(err)
+			}
+			var restored ReviewInstance
+			if err := reviewLoad(h.server.db, "review-instance/"+original.ID, &restored); err != nil {
+				t.Fatal(err)
+			}
+			var restoredSession ReviewSession
+			if err := reviewLoad(h.server.db, "review-session/"+session.ID, &restoredSession); err != nil {
+				t.Fatal(err)
+			}
+			if len(restoredSession.Instances) != 1 || !reflect.DeepEqual(restoredSession.Instances[0], restored) {
+				t.Fatal("session lost canonical restored instance")
+			}
+			if !reflect.DeepEqual(restored.Context, original.Context) || restored.ContentVersion != original.ContentVersion {
+				t.Fatal("restore changed issued task identity")
+			}
+			if legacy {
+				if restored.Category != "" || restored.EstimatedSeconds != 0 {
+					t.Fatal("legacy import acquired a time reservation", restored.Category, restored.EstimatedSeconds)
+				}
+			} else {
+				if restored.Category != original.Category || restored.EstimatedSeconds != original.EstimatedSeconds {
+					t.Fatal("modern import did not reconstruct trusted cost")
+				}
+				summary, err := h.reviewSummary(now)
+				if err != nil || summary["reservedMinutes"] != 1 {
+					t.Fatal("modern import lost allowance reservation", summary, err)
+				}
+			}
+		})
+	}
+}
 func TestReviewRegradeReplayAndClericalRetries(t *testing.T) {
 	for _, class := range []string{"clerical", "prompt-compliance", "conceptual"} {
 		t.Run(class, func(t *testing.T) {
