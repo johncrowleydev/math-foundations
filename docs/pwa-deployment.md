@@ -77,6 +77,15 @@ on `main` before upload.
 The `production` environment uses repository secrets `DEPLOY_SSH_KEY` (a
 dedicated deployment SSH private key) and `DEPLOY_KNOWN_HOSTS` (the verified
 server host key), plus repository variables `DEPLOY_HOST` and `DEPLOY_USER`.
+Repository secrets `JC_DEV_AWS_ACCESS_KEY_ID` and
+`JC_DEV_AWS_SECRET_ACCESS_KEY` provide permission to authorize and revoke
+security-group ingress on `sg-0a25b825526a4d0f0` in `us-east-1`, matching Helix
+Academy's deployment connection to the same host. Immediately before upload,
+the workflow allows TCP port 22 from the runner's validated IPv4 address only
+(`/32`). An always-run cleanup step revokes that rule after success or failure.
+If the runner is forcibly terminated before cleanup, remove the temporary rule
+manually; do not remove the workstation's existing SSH rule.
+
 The SSH account needs noninteractive sudo for the existing installer. Never
 put server account passwords or provider configuration into the workflow.
 
