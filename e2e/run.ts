@@ -73,6 +73,9 @@ const results = await runWithWorkers(selected, workers, async (file) => {
         // already isolated per spec. Vite's writable dependency cache must be too.
         env: {
           ...process.env,
+          // Match the shipped React runtime while retaining Vite source imports
+          // for fixture setup. Development JSX diagnostics dominate these checks.
+          NODE_ENV: 'production',
           FOUNDATIONS_VITE_CACHE_DIR: join(root, 'output/e2e/.vite', file),
         },
       });
