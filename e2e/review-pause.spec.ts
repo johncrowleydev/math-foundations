@@ -76,10 +76,12 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   });
   await page.goto(baseURL + '/#/review/sets-and-set-operations');
   const review = page.locator('.review-page');
+  const editor = review.getByRole('textbox', { name: 'Answer editor', exact: true });
   await review.getByRole('button', { name: 'Start review', exact: true }).click();
   await review.getByRole('button', { name: 'Skip for now →', exact: true }).click();
+  await review.getByText('Synthetic response 1', { exact: true }).waitFor();
   const draft = 'My unfinished second response';
-  await review.getByRole('textbox', { name: 'Answer editor', exact: true }).fill(draft);
+  await editor.fill(draft);
   await page.waitForFunction(async (text) => {
     const storage = await import(String('/src/storage.ts'));
     return (await storage.get('drafts', 'review-paused-1'))?.text === text;
@@ -119,10 +121,11 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   await page.screenshot({ path: directory + '/paused-mobile.png' });
   await review.getByRole('button', { name: 'Continue review', exact: true }).click();
   await review.getByText('Synthetic response 1', { exact: true }).waitFor();
-  assert.equal(
-    await review.getByRole('textbox', { name: 'Answer editor', exact: true }).innerText(),
-    draft,
-  );
+  // The question appears before the saved value finishes rendering in CodeMirror.
+  await editor.scrollIntoViewIfNeeded();
+  await editor.filter({ hasText: draft }).waitFor();
+  assert.equal(await editor.innerText(), draft);
+  await page.screenshot({ path: directory + '/resumed-mobile.png' });
   assert.equal(planned, 1, 'Resume reuses issued instances even when daily budget is reserved');
   await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
   await review.getByRole('button', { name: 'End session', exact: true }).click();
