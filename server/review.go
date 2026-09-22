@@ -1223,6 +1223,10 @@ func (g *Grading) importReview(v ReviewImport) error {
 			if string(original) != string(expected) || string(expectedContext) != string(actualContext) {
 				return errors.New("Imported question differs from its reproducible template")
 			}
+			// Restoring a pre-budget task must not create a new time reservation.
+			if instance.EstimatedSeconds <= 0 {
+				rebuilt.Category, rebuilt.EstimatedSeconds = "", 0
+			}
 			instance = rebuilt
 		} else {
 			// An explicit user backup can carry an archived server-issued task. Keep

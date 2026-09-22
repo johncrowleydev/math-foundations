@@ -153,16 +153,13 @@ open when those are the objectives. Fixed approximation questions state precisio
 and units and supply required CDF/critical values; use the bounded
 `approximate-number` contract and separate fields for confidence endpoints.
 
-The linear algebra sequence has 12 instructional lessons and its own unassessed
-introduction. The [pacing record](linear-algebra-pacing.md) preserves 697 worksheet
-questions and 24 quick checks. `linear-algebra-rank-inverses` retains namespace
+Exercise identity is the original namespace plus numeric ID, independent of the
+lesson presenting it. `linear-algebra-rank-inverses` retains namespace
 `linear-algebra-bases`; `linear-algebra-least-squares` retains namespace
-`linear-algebra-projections`. Historical split JSON under `tests/curriculum/fixtures/`
-protects exercise ownership and namespaces; the redundant original seed snapshot was removed.
-These fixtures are compatibility test inputs, not authoring sources. Calculus and probability
-and statistics each have an introduction and 22 instructional lessons; see their
-[calculus](calculus-authorship.md) and
-[probability/statistics](probability-statistics-authorship.md) records.
+`linear-algebra-projections`. Split fixtures under `tests/curriculum/fixtures/`
+protect these ownership and namespace contracts. Quick-check IDs must also stay
+unique within a shared namespace so legacy save keys continue to resolve.
+These fixtures are compatibility inputs; edit curriculum in `content/`.
 
 ## Teaching for understanding within a time budget
 
@@ -230,8 +227,7 @@ omit (reading, feedback, and individual variation).
 3. Record only the versions actually inspected. Use `lessonSourceHash` and
    `sourceHash` on candidate published objects as documented in the source policy.
    Curriculum inspection snapshots come from the inspected inventory. Never
-   refresh a digest or date merely to silence validation. The former subject-wide
-   inspection scripts, with hardcoded historical approval claims, are removed.
+   refresh a digest or date merely to silence validation.
 4. Run `npm run content:build`, `npm test`, `npm run typecheck`, `npm run web:test`,
    `npm run web:build`, and `cd server && go test ./...`. The content build validates
    schemas, references, sources, prerequisites, grading contracts and identities.
@@ -240,12 +236,12 @@ omit (reading, feedback, and individual variation).
    For grading or identity changes, run shared deterministic fixtures and review/
    restore compatibility tests. Preserve frozen review instances and saved work.
 
-The three legacy finite review banks have explicit seed-selection data and complete
-questions. See [their migration and compatibility record](review-declarative-migration.md).
-Do not change frozen seed contracts or refresh the migration hashes without an
-explicitly inspected content/history migration.
+Finite review banks in `content/review-variants.json` contain complete questions
+and explicit seed-selection data. Preserve variant order, seed contracts, choice
+IDs, and frozen instances. The three legacy slot-bearing template summaries are
+API/hash compatibility metadata; they are never interpolated into questions.
+See [Review authoring](review-system.md) and the
+[deterministic grading contract](deterministic-contract.md) for their current rules.
 
 A passing build or unchanged hash establishes neither educational completeness nor
 mathematical correctness. Report the actual inspection/calculation performed.
-The [migration report](declarative-curriculum-migration.md) records the removed
-systems, destinations, and compatibility evidence.

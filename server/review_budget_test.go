@@ -152,26 +152,86 @@ func TestReviewBudgetSummaryDoesNotIssueOrReserveWork(t *testing.T) {
 	}
 }
 
-func TestReviewBudgetLegacyInstancesUseFrozenQuestion(t *testing.T) {
+func TestReviewBudgetLegacyQueuesDoNotReserveOrBlockNewWork(t *testing.T) {
+	g := budgetFixture(t, 40, 0, 20)
+	now := 20 * reviewDay
+	_, before := summaryStates(t, g, now)
+	tx, err := g.server.db.Begin()
+	if err != nil {
+		t.Fatal(err)
+	}
+	// The old count-based planner could issue hours of work without a budget.
+	// Include both routine and proof tasks and retain their exact identities.
+	legacy := map[string][]byte{}
+	for _, template := range g.catalog.ReviewTemplates {
+		instance := instantiateReview(template, ReviewState{}, "scheduled-review", newID(), "legacy", g.catalog.Version, now)
+		instance.Category, instance.EstimatedSeconds = "", 0
+		key := "review-instance/" + instance.ID
+		if err := reviewPut(tx, key, instance); err != nil {
+			t.Fatal(err)
+		}
+		legacy[key], _ = json.Marshal(instance)
+	}
+	if err := tx.Commit(); err != nil {
+		t.Fatal(err)
+	}
+	tx, err = g.server.db.Begin()
+	if err != nil {
+		t.Fatal(err)
+	}
+	usage, err := reviewIssuedAllowance(tx, g.reviewTemplates(), now)
+	tx.Rollback()
+	if err != nil || usage.Seconds != 0 || usage.DeepRecent || len(usage.Targets) != 0 || len(usage.Sources) != 0 || len(usage.Questions) != 0 {
+		t.Fatalf("legacy queue reserved or blocked new work: %+v, %v", usage, err)
+	}
+	summary, err := g.reviewSummary(now, 25)
+	if err != nil || summary["reservedMinutes"] != 0 || summary["estimatedMinutes"] != 20 || summary["plannedQuick"] != 40 {
+		t.Fatal("legacy queue exhausted the new allowance", summary, err)
+	}
+	session, err := g.planReview(ReviewSessionRequest{Kind: "scheduled-review", Mode: "regular", BudgetMinutes: 5}, now)
+	if err != nil || session.ReservedMinutes != 0 || session.EstimatedMinutes != 5 || len(session.Instances) != 10 {
+		t.Fatalf("fresh budgeted plan unavailable: %+v, %v", session, err)
+	}
+	// Mixed history charges only the new plan and still prevents repeated starts.
+	repeat, err := g.planReview(ReviewSessionRequest{Kind: "scheduled-review", Mode: "regular", BudgetMinutes: 5}, now+1)
+	if err != nil || repeat.ReservedMinutes != 5 || len(repeat.Instances) != 0 {
+		t.Fatalf("new reservations lost among legacy work: %+v, %v", repeat, err)
+	}
+	for key, raw := range legacy {
+		record, err := record(g.server.db, key)
+		if err != nil || string(record.Payload) != string(raw) {
+			t.Fatal("legacy frozen work changed", err)
+		}
+	}
+	_, after := summaryStates(t, g, now+1)
+	if !reflect.DeepEqual(before, after) {
+		t.Fatal("planning changed learning evidence or due states")
+	}
+}
+
+func TestReviewBudgetRepricesBudgetedInstancesFromFrozenQuestion(t *testing.T) {
 	g := budgetFixture(t, 10, 0, 0)
 	now := 20 * reviewDay
 	session, err := g.planReview(ReviewSessionRequest{Kind: "scheduled-review", Mode: "regular", BudgetMinutes: 5}, now)
 	if err != nil {
 		t.Fatal(err)
 	}
-	tx, _ := g.server.db.Begin()
+	tx, err := g.server.db.Begin()
+	if err != nil {
+		t.Fatal(err)
+	}
 	for _, instance := range session.Instances {
-		instance.Category, instance.EstimatedSeconds = "", 0
-		instance.Context.Skill = "prove"
-		instance.Question["prompt"] = "Prove the synthetic statement."
+		instance.EstimatedSeconds = 1
 		if err := reviewPut(tx, "review-instance/"+instance.ID, instance); err != nil {
 			t.Fatal(err)
 		}
 	}
-	tx.Commit()
+	if err := tx.Commit(); err != nil {
+		t.Fatal(err)
+	}
 	summary, err := g.reviewSummary(now)
-	if err != nil || summary["reservedMinutes"] != 100 || summary["estimatedMinutes"] != 0 {
-		t.Fatal("legacy costs lost", summary, err)
+	if err != nil || summary["reservedMinutes"] != 5 || summary["estimatedMinutes"] != 0 {
+		t.Fatal("stored estimate was trusted instead of the frozen task", summary, err)
 	}
 }
 

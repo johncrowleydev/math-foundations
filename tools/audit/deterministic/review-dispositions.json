@@ -1,0 +1,1386 @@
+[
+  {
+    "key": "witness-definition/question",
+    "originalHash": "58af5a280d7ea2e115a0b19260958c25f97b6fbf89b18f85dd0a4f7e160b37a0",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "llm",
+    "reason": "Definition recall explicitly asks for a brief answer from memory. Valid unrestricted definitions may be paraphrased; a supplied phrase bank would duplicate the separate existing recognition items.",
+    "evidenceChange": "Original free production/justification retained."
+  },
+  {
+    "key": "witness-definition-variants/variant-1",
+    "originalHash": "7dddab0928c5c4ca1cb0ac9ba76911c3401feea30e70e662df0a98c60cc60c51",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Term) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "witness-definition-variants/variant-2",
+    "originalHash": "35d3e5ff1d45fab023eb7577bbdfda6f68207cc0cb54f5d42a37b4fdd4c7ea84",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "llm",
+    "reason": "Definition completion asks the learner to produce the missing meaning. Many concise English completions are valid; a choice control would replace that recall objective with recognition.",
+    "evidenceChange": "Original free production/justification retained."
+  },
+  {
+    "key": "integer-witness-selection/question",
+    "originalHash": "cf09b8bc1f986192c7ac3e69ebd1f51a46f7e4c01e179720c94255327b3b778b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing seeded generator checks the selected response to: Which integer is a witness for the statement $\\exists x \\in \\mathbb{Z}\\;(x + {{a}} = {{sum}})$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "proposition-definition-review/variant-1",
+    "originalHash": "1b886db2429232aebcd90871d6188de29532b9990edab0133b455584f8dab8b5",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What makes a sentence a proposition?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "proposition-definition-review/variant-2",
+    "originalHash": "f51eba7867e67cd88316c29a8ff2891888617f7fe9fec59ab00a21b409e78009",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A claim is definitely true or false, but nobody has yet determined which. Which description applies?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "truth-value-definition-review/variant-1",
+    "originalHash": "e66db07c7b8d5516d47ebca43468dd57de3f6273b3bebb5a8bbf295337dffba9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is the truth value of a proposition?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "truth-value-definition-review/variant-2",
+    "originalHash": "f6574cf98bffe4b177b93a2cfd71e158b45a3bd3fcc2d3159822b9fcb5189da6",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What term names the T or F assigned to a proposition?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "truth-assignment-definition-review/variant-1",
+    "originalHash": "a4791aa3acaa99777be024068fe7c644499fb49b7a2bb3220ee027392c9ca818",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a truth assignment for propositional variables $p$, $q$, and $r$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "truth-assignment-definition-review/variant-2",
+    "originalHash": "d6ca23b48e1711e5054ea4e6975048592576e553bb3054a3e9fb5aa2a91c25d2",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: The choices $p=F$, $q=T$, $r=F$ form one _____.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negation-definition-review/variant-1",
+    "originalHash": "4b9747cf24790526664bf72ac6d4e07536ba95417e6f92578656e9b03264da2d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which description defines the negation of a proposition?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negation-definition-review/variant-2",
+    "originalHash": "9a6260e7fbf9589f900b5b76e7a04de853ada6a3f08717f713bad4ce1149dfbd",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is the operation in $\\neg p$, read “not $p$”?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conjunction-definition-review/variant-1",
+    "originalHash": "665fbd6825e1cb4e7861c22eb3339da51284b974ea9c5890bdacd8d6b748cc04",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which truth condition defines a conjunction $p\\land q$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conjunction-definition-review/variant-2",
+    "originalHash": "5cc7353c2e3d29374b1e19f22a44c77d443019a04d7609ee616c8ea2a3d2086c",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is the name of a compound statement formed with AND?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "disjunction-definition-review/variant-1",
+    "originalHash": "1571cd57c3e82dc41e6245e6994e4702f3bf837b62001f3d6e603ef3883e10c3",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which description defines the disjunction $p\\lor q$ used in this curriculum?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "disjunction-definition-review/variant-2",
+    "originalHash": "da0cba6fd0abb2d6621813f27d83f2d2ecd26a6b83912862ea1d5b02eaa7cada",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: An inclusive OR statement is called a _____.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "exclusive-or-definition-review/variant-1",
+    "originalHash": "d98f70a1c9bb30af341089178546c3b5a081b6bfe7fc04f3ad12b7d37a34960a",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: How does exclusive OR differ from inclusive OR?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "exclusive-or-definition-review/variant-2",
+    "originalHash": "3eda62c536b8775948c89efdfc59f71c19f2ce9bcdede83f38f4c9083329ac35",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which operation matches “one of these two conditions holds, but not both”?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "implication-definition-review/variant-1",
+    "originalHash": "bb519132ad958c4685070cecee2ce64e84b9f836fb958161aed7d44230cee146",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does an implication $p\\to q$ assert?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "implication-definition-review/variant-2",
+    "originalHash": "f9858df25113825755013394725f6ca2ba0b10632c2b77fac4f25bb6ddaac565",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: When is an implication false?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "implication-definition-review/variant-3",
+    "originalHash": "c3b210201457418f38f98e0667a62e6fd59a1b8b5f0c40502ecb6fc9a316c33d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A rule says, “If the sensor is triggered, the alarm sounds.” The sensor is not triggered. What does this tell us about the truth of the implication?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "implication-parts-review/variant-1",
+    "originalHash": "46e191ac91f52e5981d0c2bf7af8b58a6ecfc4406d4dedb9a0f0cef2e8915200",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In $p\\to q$, what is $p$ called?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "implication-parts-review/variant-2",
+    "originalHash": "70dc35b3c19f477c2d74b95e59605765d4eaa572a1639c484eb80a26d71746a9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In “If a file is archived, then it is stored,” what is the consequent?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "implication-parts-review/variant-3",
+    "originalHash": "2c12c044f0e0fb1c13947b25fe68a9f57dcd4b7b0c0dbed3be99fa65d25685b7",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which pairing of terms is correct for $A\\to B$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "converse-definition-review/variant-1",
+    "originalHash": "3702e90c45949c2b44aa6d90b413fe13438d052e13668feae944ad6039fcb576",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: How is the converse of an implication formed?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "converse-definition-review/variant-2",
+    "originalHash": "3d5586e384886cb81799c7c75dd630c4723a5babcd090b5ad3b6472804b159ca",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Relative to $p\\to q$, what is the name of $q\\to p$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "inverse-definition-review/variant-1",
+    "originalHash": "ddfb02b023b79828f83f4fa21cb74a73f68cb0162ff347520a2aebd3cd4173e7",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: How is the inverse of an implication formed?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "inverse-definition-review/variant-2",
+    "originalHash": "ce3acb8147b4ce8e828e024d32074458e3fede16b8be85c87175db968edf0f59",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Relative to $p\\to q$, what is the name of $\\neg p\\to\\neg q$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contrapositive-definition-review/variant-1",
+    "originalHash": "9960e30e59c2a6db83900393475cb08f83155a429d9b60d2bab785950c7a9612",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: How is the contrapositive of an implication formed?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contrapositive-definition-review/variant-2",
+    "originalHash": "9de1e9484f09631ff08ec2481a75e66ed9b91579f4bc03fc01dffb260d7d1202",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Relative to $p\\to q$, what is the name of $\\neg q\\to\\neg p$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contrapositive-definition-review/variant-3",
+    "originalHash": "01f894fe43e4a46e5e875a22e4b91200eb446ac8d5c114fe0903a99b48bc9ca4",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which related statement is always logically equivalent to the original implication?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-forms-recognition-review/variant-1",
+    "originalHash": "ed1381901fd63a7b982dbcaba4308d671c3dc60317d0295550663c59154c0338",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which statement is the converse of $A\\to\\neg B$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-forms-recognition-review/variant-2",
+    "originalHash": "be417b44ab9e5bba8b399403e74ee602dfcdcba71b3cecc5583a8a141019d73a",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which statement is the inverse of $\\neg A\\to B$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-forms-recognition-review/variant-3",
+    "originalHash": "5e17a7afb9657a11c6ab8d4f52d7df0cbb858d8e5a582fb53da53a706a3b8bad",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For a fixed integer $n$, let the original be “If $n$ is divisible by 6, then $n$ is even.” Which is its converse?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-forms-recognition-review/variant-4",
+    "originalHash": "97ae1fed45c93a08b8961f1eb2b7a5f4913362bb1a8a5ae60ef5fb0cf3953569",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which pair is always logically equivalent?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contrapositive-recognition-review/variant-1",
+    "originalHash": "127445bfee0ccb1a98ff3c4bd12dbf659f7691fe392beb90191137fe6e62b1e3",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Choose the contrapositive of $(p\\lor q)\\to r$.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contrapositive-recognition-review/variant-2",
+    "originalHash": "f1908be10eacc9b47db606889af7aa912fc881a12fdb80aa3b35ee380868597b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Choose the contrapositive of $p\\to\\neg q$.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contrapositive-recognition-review/variant-3",
+    "originalHash": "2971b016cac3e480d5a9788655577b073d280324a890835ba56fca6939087f03",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For a fixed real number $x$, choose the contrapositive of “If $x>5$, then $x>2$.”",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "necessary-sufficient-definition-review/variant-1",
+    "originalHash": "d3a6dc5bd85a20133508b88c3c3f8fbb7932e179d7a682b216399a25f7da7a9a",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In $p\\to q$, which description is correct?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "necessary-sufficient-definition-review/variant-2",
+    "originalHash": "d5cd2f8ca3266c650d463de60aa1c6bf0660cf33d791af77c7342460e351db36",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does it mean that a condition is necessary for a claim?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "necessary-sufficient-definition-review/variant-3",
+    "originalHash": "efce1275d19186f7d3423d8e07bbe1baf8b7f179f8d5f5379f683b6221b37228",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does it mean that a condition is sufficient for a claim?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-language-review/variant-1",
+    "originalHash": "d0b62de5d734762472b96e223d97ac01f4595f53196a9245c74dd1e45b6b174f",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula translates “$P$ only if $Q$”?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-language-review/variant-2",
+    "originalHash": "f13c083a19e41acfcafd5e0408cc6b16797edc91756247effbf461c8e5aa14bf",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula translates “$P$ if $Q$”?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-language-review/variant-3",
+    "originalHash": "a4d653ee8805c1612a4ee86772266b32c62cdb9cd9f757d9333d2f48e182c794",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Let $S$ mean “the save succeeds” and $W$ mean “the disk is writable.” Translate “The save succeeds only if the disk is writable.”",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "conditional-language-review/variant-4",
+    "originalHash": "de060d807bf56311921d96bdf30f3b988480a537de6fcd58a7b39cac8baa1f7c",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula says “$A$ is necessary for $B$”?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "biconditional-definition-review/variant-1",
+    "originalHash": "6ee651a383245d896124d7f0d8147328baead6d6d3540d85b0a1b90b94411672",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does a biconditional $p\\leftrightarrow q$ assert?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "biconditional-definition-review/variant-2",
+    "originalHash": "e492e4664ae13d5dbd2558b9d4030530e655fef28cdfcdb7dfa85045a7511251",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is the usual abbreviation of “if and only if”?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "biconditional-definition-review/variant-3",
+    "originalHash": "2326e421985c5f1f00c966bd70eddd3188f86e92ccd3549da12fac8150502c45",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which truth condition belongs to a biconditional?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "logical-equivalence-definition-review/variant-1",
+    "originalHash": "b9a5b2c07256a4a9845fabed2aa792f344a65b7b41b43210e049692331dd0e3a",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does it mean for two formulas to be logically equivalent?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "logical-equivalence-definition-review/variant-2",
+    "originalHash": "f3ea01ff63097bdcaa1784fb8f996a7df1de3ae51460514c82952ddef92a4d4f",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Two formulas have identical final columns in a complete truth table. What relationship has been established?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "truth-table-definition-review/variant-1",
+    "originalHash": "15043810637cc094064618e67821966e252ce10a517cbe518e4a96ea692e646c",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does one row of a truth table represent?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "truth-table-definition-review/variant-2",
+    "originalHash": "7978c797fa27b634841f49afd410ced8e2a1be2ff70cacc299547a7ebee28010",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A complete truth table has $n$ independent propositional variables. How many input assignments must it include?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "de-morgan-laws-review/variant-1",
+    "originalHash": "28e3306e46ebe8c0e6a49b50b46e2fa999df4542bce095bae4a13b09452cf8c9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which pair of changes describes De Morgan’s laws?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "de-morgan-laws-review/variant-2",
+    "originalHash": "5144157dbbc2984ff085e34ea3604d89d5742bbe8fe5f14425aa3d96e66ba233",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula is the De Morgan form of $\\neg(p\\lor q)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "de-morgan-laws-review/variant-3",
+    "originalHash": "1f4b0b19e278d92f860e706a773cbfa507e388bcb793297e7488c3b5f5b63d05",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which law justifies $\\neg(p\\land q)\\equiv\\neg p\\lor\\neg q$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-implication-recognition-review/variant-1",
+    "originalHash": "2c9bdb17e1f328a3708cddb6e412ff2a7cc805defaf1e09454a8d2b2b5755e8c",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Choose a formula equivalent to $\\neg(p\\to q)$.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-implication-recognition-review/variant-2",
+    "originalHash": "6d52e65f7d9fd01e1087214441ca50e05900b3a21c42760f6b31d6948ec53d48",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which sentence negates “If the key fits, the lock opens”?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-implication-recognition-review/variant-3",
+    "originalHash": "d80504cba83d62b67d977d4799e9a8f918efadfd2bed3dcfa166fde6fec17c03",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Choose a formula equivalent to $\\neg(p\\to\\neg q)$.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "equivalent-implication-forms-review/variant-1",
+    "originalHash": "38d639229e20b5c9a37c919a9312d2da1050b4bd6ad3a2bf33a2897e9bdb902d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula expresses $p\\to q$ using only NOT and OR?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "equivalent-implication-forms-review/variant-2",
+    "originalHash": "68451d025582312fa89e73e22d407fd40d370b0901c3ea6054ad83131e3f1594",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which implication is equivalent to $\\neg A\\lor B$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "equivalent-implication-forms-review/variant-3",
+    "originalHash": "ab4e0bb4cd71ddfb1f5fbadce7b31acf432abf51e15033f7e63258fe87ec6788",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which expression is equivalent to $(p\\land q)\\to r$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "tautology-definition-review/variant-1",
+    "originalHash": "93bd580e944fdfd65df66da531277aa031c153613b2f8e101d1deef2aee1ee03",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a tautology?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "tautology-definition-review/variant-2",
+    "originalHash": "3616c97201466e3f6747d399ad6d8c1109d9ff18bb61e8d1e9a6c66d0b90beb3",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Every row of a formula’s complete truth table ends in T. Which term applies?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contradiction-definition-review/variant-1",
+    "originalHash": "727e05ec41ebf93d4e591ea75762dfff8b1d4851d15b2b3d1c1478308cb5f558",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a contradiction in propositional logic?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contradiction-definition-review/variant-2",
+    "originalHash": "68ba5f406b00a0c1ca0f035482d9a878ac0a8d954e0787271fc4464737e6af6d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: No row of a complete truth table makes the formula true. Which term applies?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contingency-definition-review/variant-1",
+    "originalHash": "2beab313e5e4358b7ec0e5d78a573c3cef623bdf085310a03e9c381112df5f0e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What makes a formula contingent?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "contingency-definition-review/variant-2",
+    "originalHash": "c19f6aae0794aa5443a26c5414618a7da5fa19da8a339e291760271778fabc08",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which term describes a formula that is neither a tautology nor a contradiction?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "logical-equivalence-checks-review/variant-1",
+    "originalHash": "3c2bdae4c3e33e73e24a24effeaf606624d00413b413ff71f3e1a22d6814a3ec",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Two formulas agree on three of the four assignments to $p,q$, but disagree on the fourth. Are they logically equivalent?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "logical-equivalence-checks-review/variant-2",
+    "originalHash": "6337c1c21a3a728b95c018dd30d5f97d852c584e52376ed85482e9e740d1fc6e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: On the same four rows, formula $A$ has values T,F,T,F and formula $B$ has T,T,F,F. What follows?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "logical-equivalence-checks-review/variant-3",
+    "originalHash": "3c4ffd48ea37be16b5680dfd6f78ca4eb8211b0eb7fe1015da0eaa6bcb636b1e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which assignment shows that $p\\lor q$ is not equivalent to $p\\land q$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "logical-equivalence-checks-review/variant-4",
+    "originalHash": "d5ddaf4bdc498fba6f27b1368834683220d05eec441b87229b3d45fe2887e6f2",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Two formulas both evaluate to F at $p=F$, $q=F$. Does that single row establish logical equivalence?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "counterexample-definition-review/variant-1",
+    "originalHash": "2dedaf221112acc1ee60c5f6ec57eadb8e4c10d5f410013ade6a83f49cd5f54b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a counterexample to a universal claim?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "counterexample-definition-review/variant-2",
+    "originalHash": "58880c592a976a2d9ca7944effdb52e676505fb282a286e3ddb1c6e8c790b7ed",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: An assignment makes every premise true and an argument’s conclusion false. What is it called?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "argument-parts-definition-review/variant-1",
+    "originalHash": "ecd5521745ee300356075f3a166af539877c005ace17cc72e350a1313289b6d6",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In an argument, what are the premises?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "argument-parts-definition-review/variant-2",
+    "originalHash": "8c07011eaabf21267617098e213ff854daa40eae0c117ff7e2c1d0ccc18a2305",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is the conclusion of an argument?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "argument-parts-definition-review/variant-3",
+    "originalHash": "00d37beff0dda7be98c19702e8f40fcee90c0ca617c408c19945ffc78254baee",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Premises together with a conclusion claimed to follow from them form a _____.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "validity-definition-review/variant-1",
+    "originalHash": "7a5f9c904ba788d70757b93bd94bd0ca41d0f1504dc582a7928c9d96ecd9bb5b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What makes an argument valid?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "validity-definition-review/variant-2",
+    "originalHash": "9733929494a5fd6ea36eb571bb3ed18edb22adbd96ae2dd8c2ff21bd32bd4bf1",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: To refute an argument’s validity, which kind of assignment must you find?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "satisfiability-model-vocabulary-review/variant-1",
+    "originalHash": "aff550afe42d84fa8474f45eb83e27c05cd0fdfb12d04c0dfbf9bbf71ce5f441",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does it mean for a propositional formula to be satisfiable?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "satisfiability-model-vocabulary-review/variant-2",
+    "originalHash": "5734fa093c053304ad8cf83d998846572357f470fb67f30fe1c4966729e5bd24",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In propositional logic, what is a model of a formula?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "satisfiability-model-vocabulary-review/variant-3",
+    "originalHash": "a4cae69888c91c0c5b0a74eb89800cb87bdde8b8d5b2ed53f543404435fca6db",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A formula is unsatisfiable. What does that tell you?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "implication-negation-production-review/variant-1",
+    "originalHash": "8d705fb3d608a6a581a45271bba2c9c360ae228ba9f16fdf3b36ef8af0e0e696",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated formula) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "implication-negation-production-review/variant-2",
+    "originalHash": "09453050695bace8bc2778933fe8b6c70d2766e28d0a9a4ad9bda682fb90b7cb",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated formula) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "implication-negation-production-review/variant-3",
+    "originalHash": "c3a6ff00296f6a901ed1e9b84ae2b82b90a23ef250272856444abf5ce2485788",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated condition) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "de-morgan-production-review/variant-1",
+    "originalHash": "0acdb941ca56e40c24893fe2d4b76205f9cb33d35cc786cc5ec2dc6883a876c9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated formula) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "de-morgan-production-review/variant-2",
+    "originalHash": "840ef722eebaa40b320f37da9968b9017c412e9a575d65ba3c793ed12ac22f70",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated formula) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "de-morgan-production-review/variant-3",
+    "originalHash": "d95c4f089cc8e2f0ec4a3a47b58a5e18952cd7b648e4cd8dbc7f9baada14957b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated formula) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "counterassignment-construction-review/variant-1",
+    "originalHash": "ac281de4d305f8dcc48ec037deaf132292c9d0259d5fe2b8de0263dfc829cf6a",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Counterassignment) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "counterassignment-construction-review/variant-2",
+    "originalHash": "d7f07d4918d46d2344dc46f18a115234b10aee8030c1362c8d6aef0e166bb8d0",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Counterassignment) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "counterassignment-construction-review/variant-3",
+    "originalHash": "22ec361e0375f55bfa072f1e05b4a9956a4970b7368b674a1171dffe529e9068",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Counterassignment) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "inequality-negation-review/variant-1",
+    "originalHash": "7118d8005fd39eba1b3f1f446efedf845c22554043efe794cf6c319f735d1051",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For a real number $x$, negate $x>7$.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "inequality-negation-review/variant-2",
+    "originalHash": "b8c2664c193f5f911bdba734a84ca8763c6ae4a550f02aee03483ad0efe8a95f",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For a real number $x$, negate $x\\geq-2$.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "inequality-negation-review/variant-3",
+    "originalHash": "5018169183fc578022d4a7f08c2e1ca31deb2c7f1661bf2c5c14f27abe5b7653",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For a real number $x$, negate $x<4$.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "inequality-negation-review/variant-4",
+    "originalHash": "5c5708d5c264353499a64e5ee7b40851913fc88aafb2e0465479d7b98f194108",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A real-valued reading $t$ is “at most 10.” Which condition is its negation?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "proposition-recognition-review/variant-1",
+    "originalHash": "d73b19ca6f970f554c254b1dc2ef5d10a2bd571ec8ade0dd59b6bcc5173d1cfa",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which sentence is a proposition?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "proposition-recognition-review/variant-2",
+    "originalHash": "5dac0966605f22ecb41145f755a48e7c75e3af76bd75c87ed67de4efba267e6e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: The real variable $x$ has not been assigned a value or quantified. How should “$x<3$” be classified?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "proposition-recognition-review/variant-3",
+    "originalHash": "dba00041ab6912d45d488ddbcd72238e84b3b50dfbbf1302ceb721e732aac0f9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which sentence makes a definite claim even if you have not checked its calculation?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "generated-connective-truth-value/question",
+    "originalHash": "e711ce46b92d097542da3e321ddf6713dbae7a806275c9aa0d2dedb59d9046c0",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing seeded generator checks the selected response to: Given $p={{pTruth}}$ and $q={{qTruth}}$, is ${{formula}}$ true or false?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "generated-integer-conditional-counterexample/question",
+    "originalHash": "d3d3e84738f89f4a2500928ae4f9af1b709ebd223dacf038e37fe8c43a6ac91c",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing seeded generator checks the selected response to: Which integer is a counterexample to this claim: for every integer $x$, if $x<{{a}}$, then $x<{{b}}$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "predicate-definition-review/variant-1",
+    "originalHash": "7e11fa9f29811cb2479e87c9b23bb1213956b383db5859e03f75a936ea99f835",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a predicate?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "predicate-definition-review/variant-2",
+    "originalHash": "40480fe6962f91442dec09cc06832f1f2077758a6b2a09abdc2f4ce89ffdb360",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Over the integers, $B(n)$ means \"$n<8$.\" What is $B$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "domain-definition-review/variant-1",
+    "originalHash": "5339267df681ba7f01d78167c0aa94f43b98a40da6675aa004be33550eeb213b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is the domain, or universe of discourse, of a variable?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "domain-definition-review/variant-2",
+    "originalHash": "5c23a9466523012246bc3ba90fb95805053eb734b1fa72f1896ab614dd793207",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A variable may represent only the integers 2, 4, and 6. What has been specified?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-definition-review/variant-1",
+    "originalHash": "34890a8ee98661c5730203fa5532e0264b2857695cb7a979acf73fa7e75e36b1",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What kind of logical symbol are $\\forall$ and $\\exists$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-definition-review/variant-2",
+    "originalHash": "88385b75d663956455935550ced7d74eb3299bb4a939e31b409a5cb11a10b8a9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does a quantifier tell us about a condition?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "universal-quantifier-definition-review/variant-1",
+    "originalHash": "9bb0930b2f0dac3c34d2eea355682356be2da55bea93cd71e42d7491bd8707b4",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does $\\forall x\\in D\\,P(x)$ assert?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "universal-quantifier-definition-review/variant-2",
+    "originalHash": "a64063745b7dece202b6c9c4afc51cf28914f98db3a7765ea474ae92a2e555e1",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which term names the quantifier read \"for each\" or \"for every\"?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "existential-quantifier-definition-review/variant-1",
+    "originalHash": "c30c7aaf70f672063c678e37a80d3d5d6254ff5b68dab8f725382264e05ddb5d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does $\\exists x\\in D\\,P(x)$ promise?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "existential-quantifier-definition-review/variant-2",
+    "originalHash": "b2ba0649069751d8b77ba1ba91f8330c226ffe42e55369d840a650b4ea62789e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which quantifier expresses \"there is at least one\"?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-scope-definition-review/variant-1",
+    "originalHash": "19ec2cabfdf639330c865e8783f923c71da521f3b1dd5daf1e9e23677514d6d5",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is the scope of a quantifier?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-scope-definition-review/variant-2",
+    "originalHash": "d6cd938feae17cc7fab4b9898b90c864b14e48889e17926668dd1217f9d38c38",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In $(\\exists t\\,A(t))\\lor B(t)$, what ends the scope of $\\exists t$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "free-variable-definition-review/question",
+    "originalHash": "b23205574248768becaa3dbee37357058e57acc34847915b75d015d4a93a0d90",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: An occurrence of a variable is free when it is…",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "bound-variable-definition-review/question",
+    "originalHash": "3b7b770bd30a92030c98041ae726b6315acc1c76ad6aca5ca441efa2f342a2c3",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: An occurrence of a variable is bound when…",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "open-closed-formula-review/variant-1",
+    "originalHash": "703e244f47d640ffb6d9c01bc91e1212b5c643d465289dcea1b67e19e033f3c9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What makes a formula closed?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "open-closed-formula-review/variant-2",
+    "originalHash": "36d0a372bcedd766676481c818e6a266bb7227f3a72108fe67f363d39bdc46af",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A formula still has a free variable occurrence. Which term describes it?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "witness-definition-recognition-review/variant-1",
+    "originalHash": "793328eaf05cc5c8ef30458363db90b0969f5cc6d026a002cf092238fbdea966",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a witness for an existential statement?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "witness-definition-recognition-review/variant-2",
+    "originalHash": "1fd813bbb0e5891883c752afe45c739358291f181c1a1e21cb393087d6053834",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: An allowed value has been shown to satisfy an existential condition. What is that value called?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "witness-definition-recognition-review/variant-3",
+    "originalHash": "7a84359117e06a14977340fd059587d257e42c4b12631b791d606c0b6b2e29cc",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For $\\exists n\\in\\mathbb Z\\,(n^2=16)$, both $4$ and $-4$ satisfy the condition. Which statement is correct?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "universal-counterexample-definition-review/variant-1",
+    "originalHash": "4a8b054236a586cf4dfb0e4cbd72cbb9cc31bd584a2a693e2ac0cb77b2ecd8ac",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a counterexample to $\\forall x\\in D\\,P(x)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "universal-counterexample-definition-review/variant-2",
+    "originalHash": "728e3c2014db59280f4e2172115609a4ff9d02f1300f815f9f48cee79f30e7e0",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: One allowed object violates a condition claimed for every object. What role does it play?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "countermodel-definition-review/variant-1",
+    "originalHash": "6d3e04459eb2fe90baeae66075c6dfe2d223046f4c7b665136f8062970b1da1e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What is a countermodel to a proposed quantified inference?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "countermodel-definition-review/variant-2",
+    "originalHash": "e6c02dd9bcf36de24c5f4811b39ca8f176d8607ac598c8f9bf3bb37ad85d7ca4",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: You define a two-object domain and a relation, then check that an argument's premises hold but its conclusion fails. What have you constructed?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "existence-uniqueness-definition-review/variant-1",
+    "originalHash": "dbfe4d6700130abc784c03a37c70c0c8a051128ebefd25626181a5992d6f97c6",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In an existence-and-uniqueness proof, what does the uniqueness part establish?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "existence-uniqueness-definition-review/variant-2",
+    "originalHash": "f2bd97138bb8caa40c5f70bd49f27b4db427bd488975dac007dae770ad76f04b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does $\\exists!x\\,P(x)$ mean?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "existence-uniqueness-definition-review/variant-3",
+    "originalHash": "ec39d5923e9c17ea0f22779838f71905c21568f451943d1b57c68eefe9b6f216",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A condition has no solutions. Which statement about its solutions is true?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "vacuous-truth-definition-review/variant-1",
+    "originalHash": "3f9c1498ace789f59acb8fd45923251a5c06cca8949f19c3cb73ab68c3d1039d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A universal implication is true because no domain element satisfies its antecedent. What is this called?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "vacuous-truth-definition-review/variant-2",
+    "originalHash": "7000183e6b9fa69879f0e227438e2e0b3bd1b86f8f9ef6b10203cf1a21d2f0d2",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: If no object satisfies $A$, why is $\\forall x\\,(A(x)\\to B(x))$ vacuously true?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "free-bound-occurrence-variants/variant-1",
+    "originalHash": "198363ebd11b143fa91aa5e287e46af707be28c4398300baf04a2149d5d4812d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In $\\forall u\\,(A(u)\\lor B(v))$, which variable has a free occurrence?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "free-bound-occurrence-variants/variant-2",
+    "originalHash": "9b99958887fa92b905c28ea7adcc83bec8ae08856c494b9f4a06583ad2790176",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In $(\\exists v\\,R(u,v))\\land S(v)$, which occurrence of $v$ is free?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "free-bound-occurrence-variants/variant-3",
+    "originalHash": "b6b4034f5137c5d0cc6f58b22eb29cf83469c6e4d4662129830ada36e1cff228",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula is closed? Let $A$ and $R$ be predicates on a fixed domain.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "free-bound-occurrence-variants/variant-4",
+    "originalHash": "babfa0b980441af01aa376b6980240986cc9256b7770d390d7a3d3366f67778b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which replacement safely renames the bound variable in $\\exists u\\,R(u,v)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-order-dependence-variants/variant-1",
+    "originalHash": "f570af3138ecec26215143556d3c0228831623e8ed43778a61f555a3b039a82b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: In $\\forall x\\in D\\,\\exists y\\in E\\,R(x,y)$, may the choice of $y$ depend on the given $x$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-order-dependence-variants/variant-2",
+    "originalHash": "fc1214acd6e87be070d5265da21a2bdefb982f1dd0e93cd07cce33ade4849af3",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A proposed proof of $\\exists y\\in\\mathbb Z\\,\\forall x\\in\\mathbb Z\\,(x+y=8)$ says \"choose $y=8-x$.\" What is wrong?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-order-dependence-variants/variant-3",
+    "originalHash": "e73d93ff1b59127862159ae905469a0613caf6fd54c835ca3fa5f3ead33d064e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For $\\forall x\\in\\mathbb Z\\,\\exists y\\in\\mathbb Z\\,(x+y=x)$, is choosing the constant $y=0$ permitted?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-order-dependence-variants/variant-4",
+    "originalHash": "6aed8ec86f1ce6642bd8e92855a8b47853f6268516f5d4490fa1b2fffc9b6ca2",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Read $\\forall x\\in D\\,\\exists y\\in E\\,\\forall z\\in F\\,S(x,y,z)$ from left to right. Which dependence is permitted?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-order-interpretation-variants/variant-1",
+    "originalHash": "844f65b4eec4c06397132392d6dff8a4298af5409caef66f6cb45b3e65e1c9c1",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Let $r$ range over runners and $c$ over coaches. $T(c,r)$ means \"$c$ trains $r$.\" What does $\\exists c\\forall r\\,T(c,r)$ say?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-order-interpretation-variants/variant-2",
+    "originalHash": "597b87777512d35c38eeee8a51c53a1af55817ffe01efdcb046100ddffd98624",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Let $R(x,y)$ mean \"person $x$ recommends person $y$.\" Which sentence matches $\\forall y\\exists x\\,R(x,y)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-order-interpretation-variants/variant-3",
+    "originalHash": "a9d5eb7243217243da255eecc745c07edf69b51a910bd209ab016547b2e0e401",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Let $A(t,s)$ mean \"tool $t$ turns screw $s$.\" Tools and screws have nonempty domains. Which formula requires one tool to turn every screw?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-universal-form-review/variant-1",
+    "originalHash": "0549f03c79448760af3f12dfdef7cda3f56fe51d84e682c3ca5d4216949cc72b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula is equivalent to $\\neg\\forall x\\in D\\,P(x)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-universal-form-review/variant-2",
+    "originalHash": "61b38f851fc828f393b384a438a14195bce2287b9a36aff46f1199cec60a156a",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does \"Not every sensor is active\" mean?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-universal-form-review/variant-3",
+    "originalHash": "1ac4d09f3cb4a4c09231cae1d769c8abd8875b14a7c24e7491a5d355daacc7f5",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Let $D$ be a specified domain of integers. Negate $\\forall n\\in D\\,(n<6)$, keeping $D$ unchanged.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-existential-form-review/variant-1",
+    "originalHash": "ea756332e9c598dfb10aef333592932610f8eaf18dcfe001549a71764c0228a0",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which formula is equivalent to $\\neg\\exists x\\in D\\,P(x)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-existential-form-review/variant-2",
+    "originalHash": "9cfd9bf1787e145b35eb3e7f15ce4587af3fe878395a1004482e5c2ad2329387",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: What does \"There is no locked door\" assert about the domain of doors?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "negated-existential-form-review/variant-3",
+    "originalHash": "ea036fe54def8cbe2419ad690805602ff84bf6d5cba0aab3f76c7e89f6d33a6b",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Let $D$ be a specified domain of real numbers. Negate $\\exists t\\in D\\,(t\\leq-2)$, keeping $D$ unchanged.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "nested-quantifier-negation-recognition/variant-1",
+    "originalHash": "54b41431d92a62263f47f66ce3a496ba8bbf694bb34c529b9c8e386d977178b2",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For predicates on nonempty domains, which is equivalent to $\\neg\\forall u\\exists v\\,R(u,v)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "nested-quantifier-negation-recognition/variant-2",
+    "originalHash": "7278b74aec1dd3eb2ba075cd96ff0ba71764671bb27eef3ce187305092a81963",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Negate \"Some reader has read every chapter.\" The domains are readers and chapters.",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "nested-quantifier-negation-recognition/variant-3",
+    "originalHash": "08b0a5be5091c591b8888f5d30ec8f325015799e8734372a9beddf5dd01f6ce5",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Over a fixed domain, which is equivalent to $\\neg\\forall x\\,(A(x)\\to\\exists y\\,B(x,y))$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantified-proof-obligations-review/variant-1",
+    "originalHash": "2c3f5f087e1caf541fdcfa6e851f775d8931f79824ad2f91b83184e399ef2fd9",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A learner checks $P(n)$ for the integers $1,2,\\ldots,100$. What does that establish about $\\forall n\\in\\mathbb Z\\,P(n)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantified-proof-obligations-review/variant-2",
+    "originalHash": "bb32884bfc91e31f90e4558d5a025c8db6749a498da9162f19ffc28b472f78db",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: To refute $\\exists n\\in\\mathbb Z\\,P(n)$, what must a valid argument show?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantified-proof-obligations-review/variant-3",
+    "originalHash": "30c82b66c4cc4d929fca7c189f20c4906f081145f06fa3147f1c5b91bf2b1db1",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: The entire domain is $D=\\{2,5,9\\}$. A check shows $P(2),P(5),P(9)$ are all true. What follows?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "vacuous-quantification-variants/variant-1",
+    "originalHash": "688b6464c9d676f220270402ee39ab5f114641257828063e3d8e4bdf668838fa",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Explicitly let $D=\\varnothing$. What are the truth values of $\\forall x\\in D\\,P(x)$ and $\\exists x\\in D\\,P(x)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "vacuous-quantification-variants/variant-2",
+    "originalHash": "0d0271debacd292ce8b086e46831796e730da4a643d72561653629e54081a69e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: A folder contains files, but none is a video. Which statement is guaranteed true?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "vacuous-quantification-variants/variant-3",
+    "originalHash": "4fef93da8a2867b3f6457d05d457962e0461962614ce874e49829b0ff3792e3e",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which assumption allows $\\forall x\\in D\\,P(x)$ to imply $\\exists x\\in D\\,P(x)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "domain-sensitive-witness-variants/variant-1",
+    "originalHash": "00ad7f7f65812b8855209f4dd5aa81cd906164770170899f8081b58685745c03",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For $\\exists n\\in\\mathbb Z\\,(2n=7)$, is $n=7/2$ a witness?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "domain-sensitive-witness-variants/variant-2",
+    "originalHash": "23be7495fe9b7aaf51fc7b44cfee3deab308d9630a127757ac954c4df7cf6648",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Which domain makes $\\exists x\\,(x^2=5)$ true?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "domain-sensitive-witness-variants/variant-3",
+    "originalHash": "bc8fb933b6e836714e943812f5ed49ae6b419121c51f8fdb2e91edebabb78e6a",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Over $D=\\{1,2,3\\}$, does $x=0$ refute $\\forall x\\in D\\,(x>0)$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-distribution-recognition/variant-1",
+    "originalHash": "ef2acea589700418cfa0e0ef1fa66cb97aaf6c3d7ba5329e0f9530478c5c5df2",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For predicates on the same domain, which is equivalent to $\\forall x\\,(A(x)\\land B(x))$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-distribution-recognition/variant-2",
+    "originalHash": "b48ff311b2f43444c1f7c616a61fa5feca800ebf1d1c6fac6ff3359d0de3cad6",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: For predicates on the same domain, which is equivalent to $\\exists x\\,(A(x)\\lor B(x))$?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "quantifier-distribution-recognition/variant-3",
+    "originalHash": "259908dca0928be646955de41f80ebc682cc38fc48b659bc31a904d33b160b04",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "The existing authored option key checks the selected response to: Over $D=\\{a,b\\}$, $A$ holds only at $a$ and $B$ only at $b$. Which statement is false?",
+    "evidenceChange": "Existing recognition objective unchanged."
+  },
+  {
+    "key": "existential-witness-construction-variants/variant-1",
+    "originalHash": "d9c8c7eb8b7249b750c187db35b3777ab5635059ffdded590849ce86cce22f64",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Integer witness $n$; $n^2$; The chosen value is negative) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "existential-witness-construction-variants/variant-2",
+    "originalHash": "faa3f60ab93e3271e8d777e744ae52bbd0b60d955c65ca26f5f7ebaa00a13bbf",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Integer witness $n$; The chosen value is strictly between the stated bounds) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "existential-witness-construction-variants/variant-3",
+    "originalHash": "9b8e69c2ebfbb7b461227e1a8a7523c8f51009dbe19645098cab2cdd5dd0d40c",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Real witness $x$; $x^2$; The chosen value is strictly between the stated bounds; Its square is less than the chosen value) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "dependent-witness-construction-variants/variant-1",
+    "originalHash": "18fe28e94931b16b2b5087f2f0c26cc0041f931857ab8de39dda0cfcc244bb9c",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Integer choice $m$, in terms of $n$; Substitute your choice into $n+m$ and simplify) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "dependent-witness-construction-variants/variant-2",
+    "originalHash": "257e724953cd3d2b466f992225a82beaa016deb156431d279a9066b3af44ee3d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "llm",
+    "reason": "Requires any integer-valued rule m(n)>n² and an explanation that it works for every integer n. The rule is unrestricted; checking only n²+1 or a fixed formula family would narrow it and omit the universal argument.",
+    "evidenceChange": "Original free production/justification retained."
+  },
+  {
+    "key": "dependent-witness-construction-variants/variant-3",
+    "originalHash": "c216fe57fef857e5f564a478b87cd6abe309c1867939d4b737ee23f3bdfe9a57",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Fixed integer $c$; Substitute your choice into $n+c$) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "quantifier-negation-production-variants/variant-1",
+    "originalHash": "fe686914dc7fd9f73ba41e3dbb47e9ba88a073441965ed093736cb2065709697",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated quantified statement) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "quantifier-negation-production-variants/variant-2",
+    "originalHash": "438189241758abc2ea080644db1b305360cebe9c9a054acfb0841f14f0a438e1",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Negated quantified statement) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "quantifier-negation-production-variants/variant-3",
+    "originalHash": "7cebd5dd4fbb163211775e3fc29681d2c8e1f56184dc94f1dbe4b35a40ddbab1",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "llm",
+    "reason": "Explicitly requires one English sentence negating the device/test claim without merely saying not. Free wording is part of the task; a symbolic input or sentence builder would change that English production requirement.",
+    "evidenceChange": "Original free production/justification retained."
+  },
+  {
+    "key": "quantified-counterexample-construction-variants/variant-1",
+    "originalHash": "819ba90ff816745599d9ed51f7f047f56b1504f3975940da2b70c675cc2c7688",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Integer counterexample $n$; Antecedent; Consequent) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "quantified-counterexample-construction-variants/variant-2",
+    "originalHash": "af449454725b02ed0885ef28c2c2056b7365805fa33538ff78a7fb1255b49c4d",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Integer counterexample $n$; $n^2$; Antecedent; Consequent) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "quantified-counterexample-construction-variants/variant-3",
+    "originalHash": "a43375bc3a44d2ffce08d250476992af3cf658e8f58322400f1c4197f1d77f37",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-source-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Real counterexample $x$; $x^2$; Antecedent; Consequent) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Typed answer creation or finite witness construction preserved; reason selections record recognition."
+  },
+  {
+    "key": "quantifier-order-countermodel-variants/variant-1",
+    "originalHash": "57c83793d6abbf08609bf7cf4312dfa72f1510fae3d9342d7fd73c29665fd656",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-relation-selection-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Pairs in the relation; Why does this separate the quantifier orders?) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Finite countermodel construction and interpretation replace an unrestricted justification target; historical reasoning records are preserved."
+  },
+  {
+    "key": "quantifier-order-countermodel-variants/variant-2",
+    "originalHash": "53b3c6b372a0e373c423a2d5238b5eb8e278433d22339683f18173d20c055ef8",
+    "sourceInspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/deterministic-relation-selection-inspection.md",
+    "finalMethod": "deterministic",
+    "reason": "Requested components (Visitor → guide; Why does this separate the quantifier orders?) are checked together by the authored exact requirement predicates; no LLM fallback is needed.",
+    "evidenceChange": "Finite countermodel construction and interpretation replace an unrestricted justification target; historical reasoning records are preserved."
+  }
+]
