@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
   assembleCoverage,
+  coverageDigest,
   loadCoverageInput,
   type CoverageInput,
 } from '../../tools/audit/deterministic-coverage.js';
@@ -37,9 +38,9 @@ test('every audited lesson and dedicated Review definition has a validated publi
       alreadyDeterministic: 147,
     },
   });
-  assert.deepEqual(
-    coverage,
-    JSON.parse(await readFile('docs/deterministic-coverage.json', 'utf8')),
+  assert.equal(
+    coverageDigest(coverage),
+    JSON.parse(await readFile('tools/audit/deterministic/coverage-baseline.json', 'utf8')).sha256,
   );
 });
 
@@ -55,6 +56,18 @@ test('existing deterministic aliases resolve to their real published response co
   const choice = coverage.lessons.find((r) => r.key === 'propositional-logic-9')!;
   assert.equal(choice.finalMethod, 'choice');
   assert.equal(choice.validators[0].name, 'selected-option');
+});
+
+test('the coverage baseline ignores object key order but detects changed contract details', () => {
+  const coverage = assembleCoverage(input);
+  const changed = structuredClone(coverage);
+  const row = changed.lessons.find((r) => r.finalMethod === 'structured')!;
+  row.validators[0] = Object.fromEntries(
+    Object.entries(row.validators[0]).reverse(),
+  ) as (typeof row.validators)[number];
+  assert.equal(coverageDigest(changed), coverageDigest(coverage));
+  row.validators[0].description += ' Changed requirement.';
+  assert.notEqual(coverageDigest(changed), coverageDigest(coverage));
 });
 
 test('missing, duplicate, and changed historical lesson rows fail coverage', () => {
