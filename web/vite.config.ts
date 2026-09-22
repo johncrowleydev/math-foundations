@@ -30,7 +30,12 @@ export default defineConfig({
   define: { __LESSON_FILES__: JSON.stringify(lessonFiles) },
   resolve: { dedupe: ['react', 'react-dom'] },
   plugins: [
-    mdx(lessonMdxOptions),
+    mdx({
+      ...lessonMdxOptions,
+      // Source-backed browser checks use production React while retaining Vite's
+      // module server. MDX otherwise selects jsxDEV in Vite's development mode.
+      ...(process.env.NODE_ENV === 'production' ? { development: false } : {}),
+    }),
     react(),
     VitePWA({
       registerType: 'prompt',
