@@ -145,7 +145,11 @@ await withBrowser('review-overview', async ({ page, baseURL, directory }) => {
   empty = false;
   await page.evaluate(() => window.dispatchEvent(new Event('online')));
   await review.getByRole('button', { name: 'Start review', exact: true }).click();
-  await review.getByRole('heading', { name: 'You’re caught up for now', exact: true }).waitFor();
+  // Issuance persists session metadata and refreshes the summary before this
+  // transition settles. Match the main Review suite's allowance on busy CI workers.
+  await review
+    .getByRole('heading', { name: 'You’re caught up for now', exact: true })
+    .waitFor({ timeout: 60_000 });
   assert.equal(issued, 1);
   const saved = await page.evaluate(async () => {
     const { cachedReviewSession } = await import(String('/src/reviewApi.ts'));

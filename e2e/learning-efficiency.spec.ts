@@ -46,7 +46,7 @@ await withBrowser('learning-efficiency', async ({ page, baseURL, directory }) =>
   });
   await page.goto(baseURL + '/#/review/sets-and-set-operations');
   const review = page.locator('.review-page');
-  await review.getByText('~24 minutes', { exact: true }).waitFor();
+  await review.getByText('About 24 minutes', { exact: true }).waitFor();
   assert.equal(await review.getByLabel('Daily review target').inputValue(), '25');
   assert.equal(
     await review.getByText('90', { exact: true }).count(),
@@ -55,9 +55,9 @@ await withBrowser('learning-efficiency', async ({ page, baseURL, directory }) =>
   );
   await page.screenshot({ path: directory + '/review-desktop.png' });
   await review.getByLabel('Daily review target').selectOption('15');
-  await review.getByText('~15 minutes', { exact: true }).waitFor();
+  await review.getByText('About 15 minutes', { exact: true }).waitFor();
   await page.reload();
-  await review.getByText('~15 minutes', { exact: true }).waitFor();
+  await review.getByText('About 15 minutes', { exact: true }).waitFor();
   assert.equal(await review.getByLabel('Daily review target').inputValue(), '15');
   assert.ok(budgets.includes(15), 'Preview requests carry the persisted target');
   await page.setViewportSize({ width: 390, height: 844 });
