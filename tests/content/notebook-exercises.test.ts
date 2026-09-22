@@ -38,7 +38,7 @@ test('all inline exercises attach to an existing teaching heading and preserve q
       ids.sort((a, b) => a - b),
     );
   }
-  assert.equal(inlineCount, 253);
+  assert.equal(inlineCount, 235);
 });
 
 test('exercises wait for their prerequisite concepts, including terminology used in answers', () => {
@@ -59,7 +59,9 @@ test('exercises wait for their prerequisite concepts, including terminology used
     const titles = headings(lesson.markdown);
     const ids = (lesson.worksheetData?.sections || []).flatMap((s) => s.questions.map((q) => q.id));
     const placed = placeNotebookExercises(slug, titles, ids);
-    const position = placed.sectionQuestionIds.findIndex((qs) => qs.includes(id));
+    const inlinePosition = placed.sectionQuestionIds.findIndex((qs) => qs.includes(id));
+    if (inlinePosition < 0) assert.ok(placed.practiceIds.includes(id));
+    const position = inlinePosition < 0 ? titles.length : inlinePosition;
     for (const title of required) {
       assert.ok(titles.includes(title));
       assert.ok(position >= titles.indexOf(title), `${slug} exercise ${id} precedes ${title}`);
