@@ -57,7 +57,7 @@ There are no hidden root `pretest`/`precontent` hooks.
 
 ## CI layout
 
-The workflow has seven plainly named jobs:
+The workflow has seven plainly named job definitions (E2E uses two runners):
 
 - **quality** starts immediately: formatting, root typecheck, architecture/content
   validation without writes.
@@ -68,8 +68,10 @@ The workflow has seven plainly named jobs:
   They respectively run curriculum/TeX audits and root tests, the production PWA build
   and web tests, both independent Python oracles, and `go test -race ./...`.
 - **e2e** downloads the same curriculum and the web job's production assets. It
-  runs all browser specs with three isolated workers; it never rebuilds content or
-  the production PWA. Go race tests do not wait for browser tests.
+  partitions all discovered specs across two runners, each with two isolated
+  workers. It never rebuilds content or the production PWA. Go race tests do not
+  wait for browser tests. The two-entry matrix has `fail-fast: false`, so both
+  halves finish even when one reports a failure.
 
 CI calls the existing build/test primitives explicitly: `content:build` once,
 `audit:curriculum`, `test:unit`, `test:utilities`, and `npm run build --prefix web`.
@@ -103,11 +105,16 @@ npm run test:e2e -- mdx sources offline
 ```
 
 The runner discovers `e2e/*.spec.ts` and `*.spec.mjs` and runs two specs at a
-time by default; CI uses three workers on its hosted runner. The longest measured
-suites start first. Set `E2E_WORKERS=1` for serial
+time. The longest measured suites start first. CI sets `E2E_SHARD=1/2` and `2/2`
+on separate runners: alternating entries of that same ordered discovery list
+form complete, disjoint halves, including newly added specs. Unset `E2E_SHARD`
+runs everything locally. Three workers on one hosted runner inflated individual
+spec durations with little throughput benefit, so CI keeps two per runner.
+Set `E2E_WORKERS=1` for serial
 troubleshooting; only integer limits from 1 to 4 are accepted. Every selected spec
 runs even if another fails. `output/e2e/timings.json` records per-spec outcomes and
-elapsed times as well as overall wall time.
+elapsed times as well as overall wall time and the optional shard. CI retains
+separate `e2e-results-1` and `e2e-results-2` artifacts.
 
 Checks use separate ephemeral loopback ports, browser contexts, temporary Go
 databases, screenshot directories and Vite dependency caches. They clean up their

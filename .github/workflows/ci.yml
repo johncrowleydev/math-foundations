@@ -191,10 +191,14 @@ jobs:
           retention-days: 7
 
   e2e:
-    name: Browser and offline regressions
+    name: Browser and offline regressions (${{ matrix.shard }}/2)
     needs: [content, web]
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -222,10 +226,11 @@ jobs:
       # its upstream CI guidance advises against caching these large binaries.
       - name: Install compatible Chromium and system dependencies
         run: npx playwright install --with-deps chromium
-      - name: E2E suite (three isolated workers)
+      - name: E2E shard (two isolated workers)
         run: npm run test:e2e
         env:
-          E2E_WORKERS: '3'
+          E2E_WORKERS: '2'
+          E2E_SHARD: ${{ matrix.shard }}/2
       - name: Verify canonical-content immutability
         if: always()
         run: |
@@ -234,7 +239,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: e2e-results
+          name: e2e-results-${{ matrix.shard }}
           path: output/e2e/
           if-no-files-found: error
           retention-days: 7
