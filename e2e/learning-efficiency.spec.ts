@@ -119,6 +119,16 @@ await withBrowser('learning-efficiency', async ({ page, baseURL, directory }) =>
   await page.setViewportSize({ width: 390, height: 844 });
   await page.screenshot({ path: directory + '/practice-mobile.png' });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  await visible.getByRole('button', { name: 'Skip similar practice', exact: true }).click();
+  await page
+    .getByRole('navigation', { name: 'Exercise navigation' })
+    .getByRole('button', { name: 'Next →', exact: true })
+    .click();
+  await visible.getByRole('button', { name: 'Skip similar practice', exact: true }).waitFor();
+  assert.ok(
+    await visible.locator('.exercise').count(),
+    'Skipping one question does not hide the next question',
+  );
   assert.deepEqual(errors, []);
   console.log(
     'Learning efficiency: budget persistence, bounded review summary, recommended/optional routing, adaptive skip/restore and desktop/mobile screenshots passed.',

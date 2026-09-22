@@ -12,6 +12,7 @@ import { Exercise as ExerciseView } from './Exercise';
 import { Figure as FigureView } from './Figure';
 import { ContentContext, Copy, Rich } from './Rich';
 import { Sources } from './Sources';
+import { exerciseKey } from './exerciseIdentity';
 import { PracticeSupport } from './PracticeSupport';
 
 const Runtime = createContext<{ data: Curriculum; lesson: Lesson; tutorials: boolean } | null>(
@@ -46,7 +47,12 @@ function Exercise({ id }: { id: string | number }) {
   const question = lesson.questions.find((q) => String(q.id) === String(id));
   if (!question) throw new Error(`Unknown exercise ${lesson.slug}/${id}`);
   return (
-    <PracticeSupport data={data} lesson={lesson} question={question}>
+    <PracticeSupport
+      key={exerciseKey(lesson, question.id)}
+      data={data}
+      lesson={lesson}
+      question={question}
+    >
       <ExerciseView key={id} q={question} lesson={lesson} data={data} />
     </PracticeSupport>
   );

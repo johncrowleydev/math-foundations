@@ -13,7 +13,7 @@ export function recommendedPractice(lesson: Lesson): Question[] {
       ),
     ]),
   );
-  return lesson.questions.filter((question) => ids.has(question.id));
+  return ids.size ? lesson.questions.filter((question) => ids.has(question.id)) : lesson.questions;
 }
 
 function skillKey(data: Curriculum, lesson: Lesson, question: Question) {
@@ -39,9 +39,11 @@ export function practiceGuidance(
   const key = skillKey(data, lesson, question);
   if (!key) return undefined;
   const related = lesson.questions.filter((candidate) => skillKey(data, lesson, candidate) === key);
-  const relatedKeys = new Set(related.map((candidate) => exerciseKey(lesson, candidate.id)));
+  const relatedQuestions = new Map(
+    related.map((candidate) => [exerciseKey(lesson, candidate.id), candidate]),
+  );
   const history = attempts
-    .filter((attempt) => !attempt.review && relatedKeys.has(attempt.exercise))
+    .filter((attempt) => !attempt.review && relatedQuestions.has(attempt.exercise))
     .sort((a, b) => a.submitted - b.submitted);
   const assisted = (attempt: Attempt) =>
     attempt.revealed || attempt.unsure || Object.values(attempt.assistance || {}).some(Boolean);
@@ -60,8 +62,22 @@ export function practiceGuidance(
   const first = new Map<string, Attempt>();
   for (const attempt of history)
     if (!first.has(attempt.exercise)) first.set(attempt.exercise, attempt);
+  const primarySkills = data.evidence.exercises[exerciseKey(lesson, question.id)].skills
+    .filter((link) => link.role === 'primary')
+    .map((link) => link.skill);
+  const routine = (candidate: Question, skills = primarySkills) => {
+    const { category } = classifyReviewCost(candidate, skills);
+    return !skills.includes('prove') && category !== 'proof' && category !== 'deep-reasoning';
+  };
   const independent = [...first.values()].filter(
     (attempt) =>
+      routine(relatedQuestions.get(attempt.exercise)!) &&
+      routine(
+        attempt.presentation?.question || relatedQuestions.get(attempt.exercise)!,
+        attempt.analytics?.skills
+          .filter((link) => link.role === 'primary')
+          .map((link) => link.skill) || primarySkills,
+      ) &&
       attempt.verdict === 'correct' &&
       !assisted(attempt) &&
       attempt.assistance !== undefined &&
@@ -69,16 +85,10 @@ export function practiceGuidance(
       attempt.activeDurationMs > 0 &&
       attempt.activeDurationMs <= 120_000,
   );
-  const primarySkills = data.evidence.exercises[exerciseKey(lesson, question.id)].skills
-    .filter((link) => link.role === 'primary')
-    .map((link) => link.skill);
-  const { category } = classifyReviewCost(question, primarySkills);
-  const deep =
-    primarySkills.includes('prove') || category === 'proof' || category === 'deep-reasoning';
   const alreadyAttempted = history.some(
     (attempt) => attempt.exercise === exerciseKey(lesson, question.id),
   );
-  return !deep && !alreadyAttempted && independent.length >= 2
+  return routine(question) && !alreadyAttempted && independent.length >= 2
     ? { kind: 'fluent' as const }
     : undefined;
 }

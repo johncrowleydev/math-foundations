@@ -102,3 +102,30 @@ test('proofs remain deliberate practice and recent difficulty surfaces support',
   assert.equal(support?.kind, 'support');
   if (support?.kind === 'support') assert.equal(support.nearby?.id, 4);
 });
+
+test('lessons without inline placements retain their complete practice route', () => {
+  assert.deepEqual(recommendedPractice({ ...lesson, sections: [] }), questions);
+  assert.deepEqual(recommendedPractice({ ...lesson, sections: [], questions: [] }), []);
+});
+
+test('fast proofs or deep reasoning never count as routine retrieval evidence', () => {
+  for (const category of ['proof', 'deep-reasoning'] as const) {
+    const withDeepQuestion = {
+      ...lesson,
+      questions: questions.map((question) =>
+        question.id === 1 ? { ...question, category } : question,
+      ),
+    };
+    assert.equal(
+      practiceGuidance(data, withDeepQuestion, questions[2], [attempt(1, 1), attempt(2, 2)]),
+      undefined,
+    );
+    assert.equal(
+      practiceGuidance(data, lesson, questions[2], [
+        attempt(1, 1, { presentation: { question: { ...questions[0], category } } }),
+        attempt(2, 2),
+      ]),
+      undefined,
+    );
+  }
+});
