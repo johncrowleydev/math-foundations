@@ -1,7 +1,18 @@
+import type { ReviewCategory } from '../../shared/reviewCost';
 import type { EvidenceSnapshot } from './evidenceTypes';
 import type { Question } from './types';
 
 // Wire models only: activation, due state and planning belong to the Go server.
+export type ExerciseCategory = ReviewCategory;
+export type ReviewPlan = {
+  budgetMinutes?: number;
+  estimatedMinutes?: number;
+  remainingMinutes?: number;
+  reservedMinutes?: number;
+  plannedQuick?: number;
+  plannedApplication?: number;
+  plannedDeep?: number;
+};
 export type ReviewMode = 'regular' | 'quick';
 export type ReviewKind = 'scheduled-review' | 'focused-practice';
 export type ReviewContext = {
@@ -33,7 +44,7 @@ export type ReviewState = {
   evidenceLevel: string;
   quick: boolean;
 };
-export type ReviewSummary = {
+export type ReviewSummary = ReviewPlan & {
   due: number;
   quick: number;
   deeper: number;
@@ -43,6 +54,8 @@ export type ReviewSummary = {
   lessons: { slug: string; title: string }[];
 };
 export type ReviewInstance = {
+  category?: ExerciseCategory;
+  estimatedSeconds?: number;
   evidenceLevel?: string;
   cognitiveLevel?: string;
   interactionCost?: string;
@@ -57,13 +70,14 @@ export type ReviewInstance = {
   contentVersion: string;
 };
 export type ReviewSessionRequest = {
+  budgetMinutes?: number;
   kind: ReviewKind;
   mode: ReviewMode;
   lesson?: string;
   concept?: string;
   skill?: string;
 };
-export type ReviewSession = {
+export type ReviewSession = ReviewPlan & {
   id: string;
   kind: ReviewKind;
   mode: ReviewMode;
@@ -72,6 +86,8 @@ export type ReviewSession = {
 
 // Effective, source-controlled templates supplied by the same Go catalog as the scheduler.
 export type ReviewCatalogItem = {
+  category?: ExerciseCategory;
+  estimatedSeconds?: number;
   id: string;
   concept: string;
   skill: string;

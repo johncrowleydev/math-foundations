@@ -25,6 +25,8 @@ import { lessonDocument } from './lessonModules';
 import { Exercise } from './Exercise';
 import { GradingToasts } from './GradingToasts';
 import { lessonReview } from './lessonReview';
+import { recommendedPractice, practiceMinutes } from './learningPractice';
+import { PracticeSupport } from './PracticeSupport';
 import { Progress } from './Progress';
 import { expose } from './exposure';
 import {
@@ -66,6 +68,9 @@ export function App({ data }: { data: Curriculum }) {
   const reader = useRef<HTMLElement>(null);
   const lesson = data.lessons.find((l) => l.slug === slug) || data.lessons[0];
   const [loadedLesson, setLoadedLesson] = useState('');
+  const recommended = recommendedPractice(lesson);
+  const recommendedIds = new Set(recommended.map((question) => question.id));
+  const extra = lesson.questions.filter((question) => !recommendedIds.has(question.id));
   const revision = useRevision();
   const [exerciseNav, setExerciseNav] = useState(false);
   const [progress, setProgress] = useState<{ status: string; at: number }[]>([]);
@@ -188,7 +193,10 @@ export function App({ data }: { data: Curriculum }) {
         if (!newest)
           index = Math.max(
             0,
-            states.findIndex((s) => s.status !== 'Correct'),
+            lesson.questions.findIndex(
+              (question, index) =>
+                recommendedIds.has(question.id) && states[index]?.status !== 'Correct',
+            ),
           );
         navigate(
           { slug: lesson.slug, tab: 'practice', exercise: String(lesson.questions[index].id) },
@@ -338,34 +346,56 @@ export function App({ data }: { data: Curriculum }) {
     reader.current!.scrollTop = 0;
     void mutation('practice/position:' + lesson.slug, { value: index });
   };
+  const q = lesson.questions[Math.min(practice, lesson.questions.length - 1)];
+  const extraSelected = !!q && !recommendedIds.has(q.id);
+  const sequence = extraSelected ? extra : recommended;
+  const sequenceIndex = sequence.findIndex((question) => question.id === q?.id);
+  const selectQuestion = (id: number) =>
+    selectExercise(lesson.questions.findIndex((question) => question.id === id));
+  const practiceButtons = (questions: typeof lesson.questions) =>
+    questions.map((question, position) => {
+      const index = lesson.questions.findIndex((candidate) => candidate.id === question.id);
+      return (
+        <div key={question.id}>
+          {(position === 0 || question.section !== questions[position - 1].section) && (
+            <h3 className="exercise-group">{question.section}</h3>
+          )}
+          <button
+            className={'exercise-link ' + (practice === index ? 'selected' : '')}
+            aria-current={practice === index ? 'step' : undefined}
+            onClick={() => selectExercise(index)}
+          >
+            <span>{questionLabel(question)}</span>
+            <PracticeStatus status={progress[index]?.status || 'Not attempted'} />
+          </button>
+        </div>
+      );
+    });
   const practiceList = (
     <>
-      <span className="eyebrow">Exercises</span>
+      <span className="eyebrow">Recommended practice</span>
       <p className="practice-summary">
-        {progress.filter((s) => s.status === 'Correct').length} / {lesson.questions.length} correct
+        {
+          recommended.filter(
+            (question) => progress[lesson.questions.indexOf(question)]?.status === 'Correct',
+          ).length
+        }{' '}
+        / {recommended.length} correct · ~{practiceMinutes(data, lesson, recommended)} min
       </p>
       <nav aria-label="Practice exercises">
-        {lesson.questions.map((q, i) => (
-          <div key={q.id}>
-            {(i === 0 || q.section !== lesson.questions[i - 1].section) && (
-              <h3 className="exercise-group">{q.section}</h3>
-            )}
-            <button
-              className={'exercise-link ' + (practice === i ? 'selected' : '')}
-              aria-current={practice === i ? 'step' : undefined}
-              onClick={() => selectExercise(i)}
-            >
-              <span>{questionLabel(q)}</span>
-              <PracticeStatus status={progress[i]?.status || 'Not attempted'} />
-            </button>
-          </div>
-        ))}
+        {practiceButtons(recommended)}
+        {!!extra.length && (
+          <details className="extra-practice" open={extraSelected || undefined}>
+            <summary>Extra practice · {extra.length} optional</summary>
+            <p className="muted">
+              Choose more practice where it helps. Your previous work stays here.
+            </p>
+            {practiceButtons(extra)}
+          </details>
+        )}
       </nav>
     </>
   );
-  const q = data.lessons.find((l) => l.slug === lesson.slug)!.questions[
-    Math.min(practice, lesson.questions.length - 1)
-  ];
   return (
     <ContentContext.Provider
       value={useMemo(
@@ -488,30 +518,48 @@ export function App({ data }: { data: Curriculum }) {
                 <div className="reading-column">
                   <div className="practice-heading">
                     <span className="muted">
-                      {questionLabel(q)} · {practice + 1} of {lesson.questions.length}
+                      {extraSelected ? 'Extra practice' : 'Recommended'} · {sequenceIndex + 1} of{' '}
+                      {sequence.length}
                     </span>
                     <button className="exercise-nav-toggle" onClick={() => setExerciseNav(true)}>
                       Exercises
                     </button>
                   </div>
-                  <Exercise
+                  <PracticeSupport
                     key={exerciseKey(lesson, q.id)}
-                    q={q}
-                    lesson={lesson}
                     data={data}
-                    review={lessonReview(data, lesson, q)}
-                  />
+                    lesson={lesson}
+                    question={q}
+                  >
+                    <Exercise
+                      key={exerciseKey(lesson, q.id)}
+                      q={q}
+                      lesson={lesson}
+                      data={data}
+                      review={lessonReview(data, lesson, q)}
+                    />
+                  </PracticeSupport>
                   <nav className="practice-nav" aria-label="Exercise navigation">
-                    <button disabled={practice === 0} onClick={() => selectExercise(practice - 1)}>
+                    <button
+                      disabled={sequenceIndex <= 0}
+                      onClick={() => selectQuestion(sequence[sequenceIndex - 1].id)}
+                    >
                       ← Previous
                     </button>
                     <button
-                      disabled={practice >= lesson.questions.length - 1}
-                      onClick={() => selectExercise(practice + 1)}
+                      disabled={sequenceIndex >= sequence.length - 1}
+                      onClick={() => selectQuestion(sequence[sequenceIndex + 1].id)}
                     >
                       Next →
                     </button>
                   </nav>
+                  {sequenceIndex === sequence.length - 1 && (
+                    <p className="review-notice">
+                      {extraSelected
+                        ? 'End of this optional practice bank.'
+                        : 'That is the recommended practice. You can move on; extra questions are available if you need them.'}
+                    </p>
+                  )}
                 </div>
               ) : tab === 'review' ? (
                 <Review data={data} lesson={lesson.slug} />

@@ -49,10 +49,11 @@ export async function cachedReviewSummary() {
   };
 }
 
-export async function loadReviewSummary() {
+export async function loadReviewSummary(budgetMinutes?: number) {
   const key = 'review-cache/summary';
   try {
-    const summary = (await (await apiRequest('/review')).json()) as ReviewSummary;
+    const query = budgetMinutes === undefined ? '' : '?budgetMinutes=' + budgetMinutes;
+    const summary = (await (await apiRequest('/review' + query)).json()) as ReviewSummary;
     const fetchedAt = Date.now();
     await cache(key, { summary, fetchedAt });
     return { summary, cached: false, fetchedAt };
@@ -76,13 +77,27 @@ export async function startReviewSession(request: ReviewSessionRequest): Promise
   return session;
 }
 
-export async function retainReviewSession(session: ReviewSession | null): Promise<void> {
+export async function retainReviewSession(
+  session: ReviewSession | null,
+  view: { paused?: boolean; index?: number } = {},
+): Promise<void> {
   // Keeping this pointer in records makes an unfinished offline session part of
   // the existing browser export, without exporting credentials or all settings.
-  await cache('review-cache/active', { session });
+  await cache('review-cache/active', { session, ...view });
 }
 
 export async function cachedReviewSession(): Promise<ReviewSession | undefined> {
+  return (await cachedReviewSessionState())?.session;
+}
+
+export async function cachedReviewSessionState() {
   const saved = await get<RecordData>('records', 'review-cache/active');
-  return (saved?.payload.session as ReviewSession | null | undefined) || undefined;
+  const session = saved?.payload.session as ReviewSession | null | undefined;
+  if (!session) return undefined;
+  const index = Number(saved?.payload.index);
+  return {
+    session,
+    paused: saved?.payload.paused === true,
+    index: Number.isInteger(index) && index >= 0 && index <= session.instances.length ? index : 0,
+  };
 }

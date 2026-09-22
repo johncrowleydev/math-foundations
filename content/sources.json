@@ -433,35 +433,35 @@
     "p-direct": {
       "source": "proof",
       "locator": "§§4.1–4.5",
-      "supports": "Definitions, parity, divisibility, direct proof, and cases.",
+      "supports": "Definitions, parity, divisibility, direct proof, and cases; §4.3, pp. 118–120 explains the assumption-to-goal proof outline. Lesson explanations and arithmetic examples are original applications of these methods.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=125",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-contra": {
       "source": "proof",
       "locator": "§§5.1–5.3",
-      "supports": "Contraposition, congruence examples, and mathematical writing.",
+      "supports": "Contraposition, congruence examples, and mathematical writing; §5.1, pp. 128–130 explains the proof outline and when the negated conclusion is easier to use.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=140",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-contradiction": {
       "source": "proof",
       "locator": "§§6.1–6.4",
-      "supports": "Contradiction proofs, irrationality, and combining proof techniques.",
+      "supports": "Contradiction proofs, irrationality, and combining proof techniques; §§6.1–6.2, pp. 138–141 distinguishes negating a whole claim from negating only an implication's conclusion.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=150",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-existence": {
       "source": "proof",
       "locator": "§§7.1–7.4",
-      "supports": "Biconditionals, constructive existence, and uniqueness.",
+      "supports": "Biconditionals, constructive existence, and uniqueness; §7.3, pp. 151–153 separates exhibiting and checking a witness from proving it is unique. Lesson equations and worked explanations are original examples.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=159",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-setproof": {
       "source": "proof",
       "locator": "§§8.1–8.3",
-      "supports": "Element proofs of membership and inclusion, equality by both inclusions, and De Morgan identities. Hammack uses an overbar for complement where this notebook uses a superscript c.",
+      "supports": "Element proofs of membership and inclusion, equality by both inclusions, and De Morgan identities; §§8.2–8.3, pp. 159–163 explains arbitrary-element proof outlines, including set-valued members of power sets. The lesson's power-set monotonicity and intersection-equality arguments are original applications of the definitions and proof methods. Hammack uses an overbar for complement where this notebook uses a superscript c.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=169",
       "checked": "2026-09-21"
     },
@@ -470,7 +470,7 @@
       "locator": "§§9.1–9.3",
       "supports": "Genuine counterexamples and refuting existential assertions.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=186",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-relations": {
       "source": "proof",
@@ -946,7 +946,7 @@
       "locator": "§§7.2–7.3, syntax notes and free/bound variables",
       "url": "https://leanprover-community.github.io/logic_and_proof/first_order_logic.html#the-universal-quantifier",
       "supports": "Scope, free and bound occurrences, formulas with no free variables, and safe renaming without capture. The curriculum uses explicit parentheses rather than relying on scope conventions; it calls formulas with no free variables closed.",
-      "checked": "2026-09-18"
+      "checked": "2026-09-21"
     },
     "review-quantifier-negation": {
       "source": "proof",
@@ -2305,6 +2305,69 @@
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=638",
       "supports": "Polynomial, logarithmic and exponential growth hierarchy, especially each fixed polynomial power being little-o of an exponential with fixed base greater than one. Original recognition variants retain the curriculum’s positive-integer input convention.",
       "checked": "2026-09-20"
+    },
+    "review-efficiency-set-notation": {
+      "source": "proof",
+      "locator": "§1.1 pp. 3–6; §1.2 p. 8; §1.7 p. 22",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=15",
+      "supports": "Set-builder notation, cardinality including a singleton containing the empty set, coordinatewise ordered-pair equality, and Venn membership regions. Original retrieval examples; diagram area is not used to encode size.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-set-operations": {
+      "source": "proof",
+      "locator": "§1.5, Definition 1.5 and Example 1.8(5), p. 18",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=30",
+      "supports": "Union, intersection, and difference support the original symmetric-difference definition as the union of the two one-sided differences.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-indexed": {
+      "source": "proof",
+      "locator": "§1.8, Definitions 1.7–1.8, pp. 25–26",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=37",
+      "supports": "Indexed families, index sets and labels; indexed union means at least one and intersection means every indexed set. These probes explicitly use a nonempty index set.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-counting": {
+      "source": "proof",
+      "locator": "§3.7, Fact 3.6 and equation (3.5), pp. 93–94",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=105",
+      "supports": "Inclusion-exclusion removes duplicate counts; pairwise intersections include the triple intersection. Supports original retrieval wording.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-set-proofs": {
+      "source": "proof",
+      "locator": "§8.2 pp. 159–160; §8.3 p. 162",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=171",
+      "supports": "An arbitrary member and definitions establish subset inclusion; equality uses both inclusions. Supports original recall of the strategy, not production evidence of writing a proof.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-proof-definitions": {
+      "source": "proof",
+      "locator": "§1.1 p. 6; §1.9 p. 30; §§4.1–4.2 pp. 114–116",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=126",
+      "supports": "Rational representation, closure under arithmetic, supporting lemmas, parity, divisibility, primality and greatest common divisor. The gcd domain excludes the both-zero case. Original prompts and contrasting cases were independently checked. Includes the theorem and hypothesis/conclusion terminology in §4.1.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-proof-methods": {
+      "source": "proof",
+      "locator": "§4.3 pp. 118–123; §4.4 p. 124; §7.1 p. 147; §7.3 pp. 150–153",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=130",
+      "supports": "Direct proof derives the target from independent assumptions; backward exploration must be justified in the forward proof. Exhaustive cases, both directions for biconditionals, verified existence witnesses, and uniqueness. Original strategy recognition is distinct from proof construction. The integer linear combinations in §7.3 use integer coefficients.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-number-proof": {
+      "source": "proof",
+      "locator": "§1.9 p. 30; §4.2 p. 116; §6.1 pp. 139–140",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=151",
+      "supports": "The well-ordering property for positive integers, gcd and reduced fractions in irrationality proofs. Original lowest-terms and well-ordering distinctions.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-set-laws": {
+      "source": "lerma-discrete",
+      "locator": "§2.1.5, Properties of Sets, pp. 24–25",
+      "url": "https://mlerma54.github.io/courses/cs310/notes/dm-all.pdf#page=24",
+      "supports": "Named associative, commutative, distributive, identity, idempotent, absorption and De Morgan laws. Original recall prompts and misconception feedback; the curriculum uses superscript c rather than an overbar for complement.",
+      "checked": "2026-09-21"
     }
   },
   "lessons": {
@@ -2320,7 +2383,7 @@
       "practice": {}
     },
     "propositional-logic": {
-      "reviewedContentHash": "593ec099d46582d7dcfe706051fdad9d15b9b2a99e79789bd974378aa356f812",
+      "reviewedContentHash": "7f07c98c4dec775653cb4800caf1c480af26021fdc833867d958a451f9bf1a33",
       "intro": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"],
       "sections": {
         "propositions": ["m-propositions"],
@@ -2340,11 +2403,10 @@
         "common-rules-of-inference": ["p-quantifiers", "history-logic"],
         "two-common-invalid-argument-forms": ["p-quantifiers"],
         "satisfiability": ["m-sat"],
-        "a-first-proof-by-contrapositive": ["p-contra"],
+        "a-first-proof-by-contrapositive": ["p-contra", "p-direct"],
         "what-to-be-able-to-do-before-moving-on": ["p-logic", "m-equivalence"]
       },
       "practice": {
-        "A first proof by contrapositive": ["p-contra"],
         "Arguments, validity, and rules of inference": [
           "p-logic",
           "m-equivalence",
@@ -2361,7 +2423,6 @@
           "p-quantifiers",
           "p-contra"
         ],
-        "Conjunction: AND": ["m-connectives"],
         "Converse, inverse, and contrapositive": ["p-logic"],
         "De Morgan's laws": ["m-equivalence"],
         "Disjunction: OR": ["m-connectives"],
@@ -2432,13 +2493,13 @@
       }
     },
     "predicates-and-quantifiers": {
-      "reviewedContentHash": "5a4dedf4ac477e684441a478aee5ed51d6ceaf0aae388bb49285274278080841",
+      "reviewedContentHash": "a99b9dc582c6420959a957a9aef232114e90b29613fb11319cbbd922c126afa3",
       "intro": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"],
       "sections": {
         "domains-come-first": ["m-quantifiers"],
         "predicates-and-substitution": ["m-propositions", "m-quantifiers"],
         "universal-quantification-for-every": ["m-quantifiers"],
-        "existential-quantification-there-exists": ["m-quantifiers"],
+        "existential-quantification-there-exists": ["m-quantifiers", "p-existence"],
         "scope-free-variables-and-bound-variables": ["m-quantifiers", "p-quantifiers"],
         "translating-all-some-none-and-only": ["p-quantifiers"],
         "negating-quantified-statements": ["p-quantifiers"],
@@ -2502,7 +2563,6 @@
           "p-existence",
           "p-disproof"
         ],
-        "Relationships in ordinary language": ["p-quantifiers"],
         "Several variables and quantifier order": ["m-quantifiers"],
         "Translate English into logic": [
           "m-quantifiers",
@@ -2517,7 +2577,6 @@
           "p-existence",
           "p-disproof"
         ],
-        "Universal quantification: for every": ["m-quantifiers"],
         "Valid and invalid quantified arguments": [
           "m-quantifiers",
           "p-quantifiers",
@@ -2525,12 +2584,11 @@
           "p-disproof"
         ],
         "Valid reasoning with quantifiers": ["p-quantifiers"],
-        "Which distributions are valid?": ["p-quantifiers", "m-equivalence"],
         "Writing a quantified proof": ["p-direct", "p-existence"]
       }
     },
     "sets-and-set-operations": {
-      "reviewedContentHash": "d61c7e22f5f2347e5bec1630e09f3f5e55afa3e1f654aca04f1d7bdc5a9ac2e3",
+      "reviewedContentHash": "95785e2f1bdc8f607cf0665d0534367bf2415621b8db5a4d8b0a7765cd4e4df7",
       "intro": ["p-sets", "p-setproof", "m-pie", "m-classes"],
       "sections": {
         "elements-descriptions-and-equality": ["p-sets"],
@@ -2538,7 +2596,7 @@
         "union-intersection-difference-and-complement": ["p-sets"],
         "proving-inclusions-and-identities": ["p-setproof", "p-sets"],
         "laws-of-set-operations": ["p-setproof", "p-sets"],
-        "power-sets": ["p-sets", "m-subset-bits"],
+        "power-sets": ["p-sets", "m-subset-bits", "p-setproof"],
         "ordered-pairs-and-cartesian-products": ["p-sets"],
         "counting-unions-without-double-counting": ["m-pie"],
         "partitions-and-indexed-families": ["p-sets", "m-classes"],
@@ -2729,7 +2787,7 @@
       }
     },
     "direct-proof": {
-      "reviewedContentHash": "175187bbeba3714a2a8896804d93626625acd4dcbaf8b99234e3ec302478aefa",
+      "reviewedContentHash": "5f1dbeb3d32739f1c939d99a51fec7b2cd7e1f47f3aae0fdaf94158e968fdc00",
       "intro": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
       "sections": {
         "read-the-claim-before-choosing-a-method": ["p-direct"],
@@ -2746,9 +2804,7 @@
         "readiness-checklist": ["p-direct"]
       },
       "practice": {
-        "Biconditionals need both directions": ["p-existence"],
         "Cases, sets, and biconditionals": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
-        "Closure claims": ["p-direct"],
         "Constructing witnesses and uniqueness": [
           "p-direct",
           "p-existence",
@@ -2779,12 +2835,11 @@
         "Mixed proof practice": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
         "Parity and explicit witnesses": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
         "Unpack definitions": ["p-direct"],
-        "When the claim is false": ["p-disproof"],
         "Worked proof: the sum of two odd integers": ["p-direct"]
       }
     },
     "proof-by-contrapositive": {
-      "reviewedContentHash": "8d88b48a626de0d8b8530baa59e2522a04a76bc0255379cdda7d1e6505544dcb",
+      "reviewedContentHash": "fa756c1278a419f1b63a5f966a10818e7b5e5fb1519680d821a7a9d3f228bc23",
       "intro": ["p-contra", "p-quantifiers", "m-modular", "p-functions", "p-setproof"],
       "sections": {
         "the-equivalence-that-makes-the-method-work": ["p-contra"],
@@ -2808,7 +2863,6 @@
           "p-functions",
           "p-setproof"
         ],
-        "Contraposition in set and function arguments": ["p-setproof", "p-functions", "p-contra"],
         "Diagnose flawed contrapositive proofs": ["p-contra"],
         "Diagnosing incorrect indirect arguments": [
           "p-contra",
@@ -2824,8 +2878,6 @@
           "p-functions",
           "p-setproof"
         ],
-        "Divisibility by 3 and remainders": ["m-modular", "p-contra"],
-        "Irrationality through a rational contrapositive": ["p-contra", "p-direct"],
         "Negate compound conditions carefully": ["p-quantifiers"],
         "Negating compound conclusions": [
           "p-contra",
@@ -2861,7 +2913,7 @@
       }
     },
     "proof-by-contradiction": {
-      "reviewedContentHash": "9a82c515fbe313a6084f8483a186ca0da313a614179f7a7d6ece317e13a9cf82",
+      "reviewedContentHash": "27178dc057a0339ab833f2448811de21ecd4438b4bf433d57a4ac87212848ad7",
       "intro": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"],
       "sections": {
         "the-logical-structure": ["p-contradiction"],
@@ -2903,7 +2955,6 @@
         ],
         "The irrationality of the square root of 2": ["p-contradiction"],
         "The logical structure": ["p-contradiction"],
-        "There are infinitely many primes": ["m-divisibility"],
         "Uniqueness and incompatible properties": [
           "p-contradiction",
           "p-existence",
@@ -4425,7 +4476,7 @@
     }
   },
   "syntax": {
-    "reviewedContentHash": "a1b865c80404cf8237e36de3f5206ad9323e046525cb55ada48490276825421f",
+    "reviewedContentHash": "64bbd4b92ab19a93584de2e3348e70a028e8f8d9a60f16e7e7197b26bb3b3a87",
     "entries": {
       "tex-command-neg": ["tex-supported"],
       "tex-command-land": ["tex-supported"],
@@ -6822,6 +6873,166 @@
     "topological-order-production-review": {
       "reviewedContentHash": "abe14964a3bb94764e3587d8e63e8e32b236610513438dea6d929772cbc80ed6",
       "sources": ["review-dm-dag"]
+    },
+    "sets-bit-mask-retrieval": {
+      "reviewedContentHash": "fbabc3a6832ef7a5e0dc73e4ec19e7b1478367c9c35b30badb1f360994927a0b",
+      "sources": ["m-subset-bits"]
+    },
+    "sets-overlap-terminology-retrieval": {
+      "reviewedContentHash": "24b991662c2b2076c020380fdcdb9255b3cfc24ddd87417a8d470504509d6c58",
+      "sources": ["review-efficiency-counting"]
+    },
+    "quantifier-variable-capture-retrieval": {
+      "reviewedContentHash": "06d2aa9f45cabd4db409b74fb7a6efc1add5ee659fb6e589cb5650b01e5d7b42",
+      "sources": ["review-variable-scope"]
+    },
+    "proof-closure-retrieval": {
+      "reviewedContentHash": "2587efefe1f6b3bc99c5599c0a78b5920436262cdd810330b8c76c29268e58bc",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-gcd-retrieval": {
+      "reviewedContentHash": "ff6d3abe2efb8b02d19d0aa685fa1bf42adb8ae56aaf769e143adddd006c9197",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-well-ordering-retrieval": {
+      "reviewedContentHash": "39c1e909966e0642b6d9d53ddc1fe1c8f0c44a0563a2f4f3e2cbacf296417532",
+      "sources": ["review-efficiency-number-proof"]
+    },
+    "sets-singleton-recognition": {
+      "reviewedContentHash": "fc29f6d8a784975847f63b50c91bb1b953631933e0b4184b60b963f442d8f0ed",
+      "sources": ["review-efficiency-set-notation"]
+    },
+    "sets-builder-notation-recognition": {
+      "reviewedContentHash": "112d7a862abb565a0c9ec4189698781ff600c1c1b0f408609c0145f688ad8bb0",
+      "sources": ["review-efficiency-set-notation"]
+    },
+    "sets-symmetric-difference-recognition": {
+      "reviewedContentHash": "8a41ba3cbdd661f1a22ee33fc2de0342e6064208d93e630e4148f1fe491d7bb5",
+      "sources": ["review-efficiency-set-operations"]
+    },
+    "sets-power-membership-translation": {
+      "reviewedContentHash": "84991d4e0d31716bb55739f1913ef9d79e1119ce2190553ff57713b8ee965385",
+      "sources": ["review-df-power-set"]
+    },
+    "sets-subset-proper-distinction": {
+      "reviewedContentHash": "c36589e499d50ad30d9883d64dac9677d15246cd872edeae4e30a109b4a91548",
+      "sources": ["review-df-set-basics", "review-df-proper-subset"]
+    },
+    "sets-ordered-pair-recognition": {
+      "reviewedContentHash": "1b751ecb80fcd471ee7c0bb56069a35d24e73c37d95fa3cf3bc302dddfc72def",
+      "sources": ["review-efficiency-set-notation"]
+    },
+    "sets-index-family-recognition": {
+      "reviewedContentHash": "640ac46cb37507e45c2387ca027c4343863647b1721c2920fd84825d4d76d9d1",
+      "sources": ["review-efficiency-indexed"]
+    },
+    "sets-indexed-operations-recognition": {
+      "reviewedContentHash": "657b64cad549457363eeb4de0d893738792c12bfcd7e1f80f39f7769800c90ba",
+      "sources": ["review-efficiency-indexed"]
+    },
+    "sets-inclusion-exclusion-recognition": {
+      "reviewedContentHash": "34ff00e2f94f90b131016be0d0ffdeea7df6864da37b802b9a6ad7add32e025d",
+      "sources": ["review-efficiency-counting"]
+    },
+    "sets-subset-proof-retrieval": {
+      "reviewedContentHash": "d05c3d4bff189d60d32fa88d41d12c420c61fb91b20c09493fbb5be0b4da83e9",
+      "sources": ["review-efficiency-set-proofs"]
+    },
+    "sets-double-inclusion-retrieval": {
+      "reviewedContentHash": "696b6debcb6ee99dbe8983682103bc527f19e69057eafbe6d37b6423d10d2337",
+      "sources": ["review-efficiency-set-proofs"]
+    },
+    "sets-venn-meaning-retrieval": {
+      "reviewedContentHash": "d273e2a969622807440485ed0a4876d3c3cb1796989ed680e523a934a1e35a2e",
+      "sources": ["review-efficiency-set-notation"]
+    },
+    "proof-arbitrary-object-retrieval": {
+      "reviewedContentHash": "290ac08abc11ed7768ef5fc19556424cfe916d55ee46c71c11247fe3c4e23cf8",
+      "sources": ["review-efficiency-set-proofs"]
+    },
+    "proof-parity-definition-retrieval": {
+      "reviewedContentHash": "e365f83ae4917ea483036fdd14a9aa572e59ef9ffcf54f4a50a2cd374016eef3",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-divisibility-notation-retrieval": {
+      "reviewedContentHash": "3125b4d75ddf0377d3be9c5510e7bd67d8e20f9bb917f7164cf497b760db4851",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-rational-definition-retrieval": {
+      "reviewedContentHash": "b85e52245b823364593ff75156aa8f4b1aa3613da71e74d47cc383beea976e32",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-cases-definition-retrieval": {
+      "reviewedContentHash": "056bbf78270a7729cf176f65d952fe769844f6214bb76cc8ce768c520c468f2c",
+      "sources": ["review-efficiency-proof-methods"]
+    },
+    "proof-biconditional-skeleton-retrieval": {
+      "reviewedContentHash": "2026777ad87104911a6fec5d29505752808f29be104d73887dd0b02e1311b0a2",
+      "sources": ["review-efficiency-proof-methods"]
+    },
+    "proof-constructive-existence-retrieval": {
+      "reviewedContentHash": "03882944ce84e46bf3d58f414c30644f0d1ae924e881b1ed8701ec7123f27dd9",
+      "sources": ["review-efficiency-proof-methods"]
+    },
+    "proof-circular-reasoning-retrieval": {
+      "reviewedContentHash": "d96bb44a981acfcc172144b257f9689511b2d8e9dbb93fde7a0e4f612f5a4859",
+      "sources": ["review-efficiency-proof-methods"]
+    },
+    "proof-lowest-terms-retrieval": {
+      "reviewedContentHash": "0778ac19044ce7f0cb5d3f3f7093d23e54be76851974a730b71194e6ecc73f44",
+      "sources": ["review-efficiency-number-proof"]
+    },
+    "proof-prime-composite-retrieval": {
+      "reviewedContentHash": "94c5cca1a668d2c0316ee393871b9dcc17af0527a8f4f59ec03de58490d6bda6",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-lemma-retrieval": {
+      "reviewedContentHash": "57206297e3fd8b9ead59c89e82fcfcdfe1c937a699452db705907e80c9c64df5",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-uniqueness-skeleton-retrieval": {
+      "reviewedContentHash": "d015e489e38f7c285cfaab6b51a562bf5348afd3738223b8fec9840f9a59cfc1",
+      "sources": ["review-efficiency-proof-methods"]
+    },
+    "sets-commutative-law-retrieval": {
+      "reviewedContentHash": "1f3a2fe484de16564419808ffc820f2e5ed674b1e2d75a21ac63bd9c1671518f",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-associative-law-retrieval": {
+      "reviewedContentHash": "7c005e9b0aa2e2b45167f64cc0287c2e10fbdf9c3e0014cc11f4b75e61399fc4",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-idempotent-law-retrieval": {
+      "reviewedContentHash": "3857677bbb1c6fab48c47c96c7824e8adbdb649022ba8153d11a4b76f2257f33",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-identity-law-retrieval": {
+      "reviewedContentHash": "a384ab426f504086d981137a20c2811c4a0cee62cceb7942e685374d87f48d52",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-absorption-law-retrieval": {
+      "reviewedContentHash": "de624991ca385e069871bfe769d8cc5d27bba28a0c01ca5d01ff07346fefac3c",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-distributive-law-retrieval": {
+      "reviewedContentHash": "aaff1d1003d6e13eae5d25da50790d1edb8daf5a39577c08695b4fd4d00cabe2",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-de-morgan-retrieval": {
+      "reviewedContentHash": "40d5cc8db50ca228a81b588700df6d3c35c4bce6257918c80de7edde1a604225",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "proof-hypotheses-retrieval": {
+      "reviewedContentHash": "6c61a42c1e23df61049065a76acfe7ac906081826f6909be669d4ad6784cfaf2",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-linear-combination-retrieval": {
+      "reviewedContentHash": "4bf31508861fbda85ba26ea44669ef3759aa5ec02c20920fe8d642b982723743",
+      "sources": ["review-efficiency-proof-methods"]
+    },
+    "proof-theorem-retrieval": {
+      "reviewedContentHash": "79a7f17bbdb0888a5b973477c23f59764b9fbeeb4b96593326ed85c387774b80",
+      "sources": ["review-efficiency-proof-definitions"]
     }
   },
   "reviewVariants": {

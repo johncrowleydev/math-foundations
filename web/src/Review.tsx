@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum } from './types';
 import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
 import { all, useRevision } from './storage';
@@ -6,7 +6,7 @@ import { Exercise } from './Exercise';
 import { routeHash } from './routing';
 import { nextReviewTaskIndex, reviewTargetCovered } from './reviewSessionProgress';
 import {
-  cachedReviewSession,
+  cachedReviewSessionState,
   cachedReviewSummary,
   loadReviewSummary,
   retainReviewSession,
@@ -19,6 +19,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   const [fetchedAt, setFetchedAt] = useState<number>();
   const [session, setSession] = useState<ReviewSession>();
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -27,10 +28,17 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   const [concept, setConcept] = useState('');
   const [skill, setSkill] = useState('');
   const [mode, setMode] = useState<ReviewMode>('regular');
+  const [budgetMinutes, setBudgetMinutes] = useState(() => {
+    const saved = Number(localStorage.getItem('review-budget-minutes'));
+    return Number.isInteger(saved) && saved >= 5 && saved <= 60 ? saved : 25;
+  });
   const revision = useRevision();
+  const summaryRequest = useRef(0);
   async function refresh() {
+    const request = ++summaryRequest.current;
     try {
-      const result = await loadReviewSummary();
+      const result = await loadReviewSummary(budgetMinutes);
+      if (request !== summaryRequest.current) return;
       setSummary(result.summary);
       setCached(result.cached);
       setFetchedAt(result.fetchedAt);
@@ -43,7 +51,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   useEffect(() => {
     // Restore local work before starting a possibly slow network refresh. A
     // fresh summary may mark the visible card covered without replacing it.
-    void Promise.all([cachedReviewSession(), all<Attempt>('attempts'), cachedReviewSummary()])
+    void Promise.all([cachedReviewSessionState(), all<Attempt>('attempts'), cachedReviewSummary()])
       .then(([saved, existing, result]) => {
         if (result) {
           setSummary(result.summary);
@@ -51,18 +59,30 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
           setFetchedAt(result.fetchedAt);
         }
         if (!saved) return;
-        setSession(saved);
+        setSession(saved.session);
+        setPaused(saved.paused);
         setIndex(
-          nextReviewTaskIndex(saved, 0, existing, result?.summary, result?.fetchedAt, {
-            resume: true,
-          }),
+          saved.paused
+            ? saved.index
+            : nextReviewTaskIndex(
+                saved.session,
+                saved.index,
+                existing,
+                result?.summary,
+                result?.fetchedAt,
+                { resume: true },
+              ),
         );
       })
       .catch((e) => setError(String(e)))
       .finally(() => void refresh());
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('review-budget-minutes', String(budgetMinutes));
+    void refresh();
     window.addEventListener('online', refresh);
     return () => window.removeEventListener('online', refresh);
-  }, []);
+  }, [budgetMinutes]);
   useEffect(() => {
     void all<Attempt>('attempts').then(setAttempts);
   }, [revision]);
@@ -80,12 +100,17 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
     setError('');
     setNotice('');
     try {
-      const next = await startReviewSession(request);
+      const next = await startReviewSession({ ...request, budgetMinutes });
       await retainReviewSession(next);
       setSession(next);
+      setPaused(false);
       setIndex(0);
       if (!next.instances.length)
-        setNotice('No compatible tasks in this selection. Try another scope or study mode.');
+        setNotice(
+          request.kind === 'scheduled-review'
+            ? 'Your review plan is complete for now. More work will become available on a later day.'
+            : 'No compatible tasks in this selection. Try another scope or study mode.',
+        );
       await refresh();
     } catch (e) {
       setError(String(e));
@@ -93,14 +118,32 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       setBusy(false);
     }
   }
+  async function pause() {
+    if (!session) return;
+    try {
+      await retainReviewSession(session, { paused: true, index });
+      setPaused(true);
+      setNotice('Your session is saved. Resume whenever you are ready.');
+      await refresh();
+    } catch (e) {
+      setError(String(e));
+    }
+  }
+  async function resume() {
+    if (!session) return;
+    try {
+      await retainReviewSession(session, { paused: false, index });
+      setPaused(false);
+      setNotice('');
+    } catch (e) {
+      setError(String(e));
+    }
+  }
   async function finish() {
     try {
       await retainReviewSession(null);
-      setNotice(
-        session?.mode === 'quick'
-          ? 'Quick session finished. Deeper reviews remain available in Regular mode.'
-          : 'Session finished. Your attempts are saved.',
-      );
+      setNotice('Session closed. Your drafts and attempts are saved.');
+      setPaused(false);
       setSession(undefined);
       await refresh();
     } catch (e) {
@@ -131,11 +174,11 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       <div className="review-heading">
         <div>
           <div className="eyebrow">Spaced retrieval</div>
-          <h1>{session?.kind === 'focused-practice' ? 'Focused Practice' : 'Review'}</h1>
+          <h1>{!paused && session?.kind === 'focused-practice' ? 'Focused Practice' : 'Review'}</h1>
         </div>
         <div className="toolbar">
           <a href={routeHash({ slug: currentLesson, tab: 'review-library' })}>Review Library</a>
-          {session && <button onClick={() => void finish()}>Back to overview</button>}
+          {session && !paused && <button onClick={() => void pause()}>Back to overview</button>}
         </div>
       </div>
       {error && (
@@ -145,7 +188,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       )}
       {cached && (
         <p className="review-notice">
-          Saved due summary{fetchedAt ? ' · ' + new Date(fetchedAt).toLocaleString() : ''}. Connect
+          Saved review plan{fetchedAt ? ' · ' + new Date(fetchedAt).toLocaleString() : ''}. Connect
           to refresh the queue. Saved tasks can be answered offline.
         </p>
       )}
@@ -154,16 +197,20 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
           {notice}
         </p>
       )}
-      {session && item ? (
+      {session && !paused && item ? (
         <>
           <div className="practice-heading">
             <strong>
               {session.mode === 'quick' ? 'Quick' : 'Regular'} · {index + 1} of{' '}
               {session.instances.length}
+              {session.estimatedMinutes !== undefined &&
+                ` · ~${Math.ceil(session.estimatedMinutes)} min`}
             </strong>
             <span className="muted">
               {names(item.context.concept, summary?.concepts)} ·{' '}
               {names(item.context.skill, summary?.skills)}
+              {item.estimatedSeconds !== undefined &&
+                ` · ~${item.estimatedSeconds < 60 ? item.estimatedSeconds + ' sec' : Math.ceil(item.estimatedSeconds / 60) + ' min'}`}
             </span>
           </div>
           <details className="review-why">
@@ -223,28 +270,23 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
             </button>
           </nav>
           {!answered && !pending && !covered && (
-            <p className="muted">Skipping does not complete this target.</p>
+            <p className="muted">You can leave this for another day. Your draft is saved.</p>
           )}
         </>
-      ) : session && session.instances.length > 0 ? (
+      ) : session && !paused && session.instances.length > 0 ? (
         <div className="review-panel">
-          <h2>Session finished</h2>
+          <h2>Session summary</h2>
           <p>
             {session.mode === 'quick' ? 'Quick tasks visited.' : 'All tasks visited.'} Submitted
             answers remain available in this session.
           </p>
-          {summary && (
-            <p>
-              {summary.due} due · {summary.quick} Quick-compatible · {summary.deeper} deeper reviews
-              remain.
-            </p>
-          )}
+          <p>You can stop here for today. Other work can wait for a later session.</p>
           <p className="muted">
-            Queued or grading answers update the due summary after server processing.
+            Queued or grading answers update your schedule after server processing.
           </p>
           <div className="toolbar">
             <button onClick={() => setIndex(0)}>Revisit tasks</button>
-            <button className="primary" onClick={() => void finish()}>
+            <button className="primary" onClick={() => void pause()}>
               Return to overview
             </button>
           </div>
@@ -252,35 +294,76 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       ) : (
         <>
           <p>
-            Retrieve what you have learned. Your schedule starts with active work, and adapts to the
-            evidence in your answers.
+            Keep what you have learned with a manageable daily session. Most reviews are quick
+            retrieval, with occasional deeper work.
           </p>
+          {session && paused && (
+            <section className="review-panel" aria-label="Saved review session">
+              <h2>Your saved session</h2>
+              <p>
+                {session.instances.length} planned tasks are still available, along with your drafts
+                and answers. Resuming uses the same plan.
+              </p>
+              <div className="toolbar">
+                <button className="primary" onClick={() => void resume()}>
+                  Resume planned session
+                </button>
+                <button onClick={() => void finish()}>End session</button>
+              </div>
+              <p className="muted">
+                End this session when you want to choose a new one.
+                {session.kind === 'scheduled-review' &&
+                  " Its estimated time still counts toward today's review target."}
+              </p>
+            </section>
+          )}
           {summary ? (
             <>
-              <div className="review-counts" aria-label="Review due summary">
+              <label className="review-budget">
+                Daily review target
+                <select
+                  value={budgetMinutes}
+                  onChange={(event) => setBudgetMinutes(Number(event.target.value))}
+                >
+                  {Array.from({ length: 12 }, (_, index) => (index + 1) * 5).map((minutes) => (
+                    <option key={minutes} value={minutes}>
+                      {minutes} minutes
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div className="review-plan-heading">
+                <strong>
+                  {summary.estimatedMinutes === undefined
+                    ? 'Your next session'
+                    : `~${Math.ceil(summary.estimatedMinutes)} minutes`}
+                </strong>
+                <span>{paused ? 'Additional review' : 'Planned review'}</span>
+              </div>
+              <div className="review-counts" aria-label="Planned review summary">
                 <div>
-                  <strong>{summary.due}</strong>
-                  <span>Due</span>
+                  <strong>{summary.plannedQuick ?? '—'}</strong>
+                  <span>Quick recall</span>
                 </div>
                 <div>
-                  <strong>{summary.quick}</strong>
-                  <span>Quick-compatible</span>
+                  <strong>{summary.plannedApplication ?? '—'}</strong>
+                  <span>Short application</span>
                 </div>
                 <div>
-                  <strong>{summary.deeper}</strong>
-                  <span>Deeper</span>
+                  <strong>{summary.plannedDeep ?? '—'}</strong>
+                  <span>Deep problem</span>
                 </div>
               </div>
               <div className="toolbar">
                 <button
                   className="primary"
-                  disabled={busy || !summary.due}
+                  disabled={busy || paused || !summary.due || summary.estimatedMinutes === 0}
                   onClick={() => void start({ kind: 'scheduled-review', mode: 'regular' })}
                 >
                   Start Regular review
                 </button>
                 <button
-                  disabled={busy || !summary.quick}
+                  disabled={busy || paused || !summary.quick || summary.estimatedMinutes === 0}
                   onClick={() => void start({ kind: 'scheduled-review', mode: 'quick' })}
                 >
                   Start Quick review
@@ -290,13 +373,19 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
                 </button>
               </div>
               <p className="muted">
-                Quick filters for low-friction input. Deeper work keeps its due date until you
-                demonstrate it.
+                Your target covers scheduled sessions planned in the last 24 hours. Extra work waits
+                for a later day; there is no backlog to clear. Quick mode keeps input simple.
+                {!!summary.reservedMinutes &&
+                  ` About ${Math.ceil(summary.reservedMinutes)} minutes already planned today.`}
               </p>
-              {!summary.due && <p>No reviews due. You can choose focused practice below.</p>}
+              {!paused && (!summary.due || summary.estimatedMinutes === 0) && (
+                <p>
+                  Your plan is complete for now. You can stop here or choose focused practice below.
+                </p>
+              )}
               <section className="review-panel">
                 <h2>Focused Practice</h2>
-                <p>Choose what to work on, whether or not it is due.</p>
+                <p>Choose optional extra work, including proofs, outside your daily review plan.</p>
                 <div className="review-filters">
                   <label>
                     Lesson
@@ -340,7 +429,7 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
                   </label>
                 </div>
                 <button
-                  disabled={busy}
+                  disabled={busy || paused}
                   onClick={() =>
                     void start({
                       kind: 'focused-practice',

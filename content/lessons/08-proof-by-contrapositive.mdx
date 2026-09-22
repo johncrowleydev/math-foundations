@@ -57,6 +57,8 @@ The universal quantifier stays universal. We are replacing each implication with
 
 Writing the contrapositive explicitly before doing algebra helps prevent a proof of the wrong statement. It also reveals whether the new hypothesis is easier to use.
 
+A useful question is, “Does the negated conclusion give me a concrete representation?” For integer parity, “not even” gives the formula for an odd integer; for a real number, “not irrational” gives a rational fraction. That is often more usable than trying to recover an input from information about its square. Once you have written the new assumption and goal, the remaining work is an ordinary direct proof. If the new assumption is no easier to use, another method may be simpler.
+
 <Exercise id="1" />
 
 <QuickCheck id="quick-1" />
@@ -167,8 +169,6 @@ Why does a remainder of 1 rule out divisibility? A number with remainder 1 has t
 
 This proof illustrates cases inside a contrapositive proof. Methods can be combined: contraposition chooses the logical direction, while cases organize the allowed inputs.
 
-<Exercise id="31" />
-
 ## Irrationality through a rational contrapositive
 
 A real number is **irrational** if it is not rational, meaning it has no representation as an integer numerator over a nonzero integer denominator. Some properties describe the absence of a representation. “Irrational” tells us that no suitable fraction exists, which gives us little to substitute into an expression. Its negation, rationality, supplies exactly such a fraction. This contrast often makes the contrapositive easier to calculate with than the original statement.
@@ -188,8 +188,6 @@ Both numerator and denominator are integers, and $b^2\ne0$, so $x^2$ is rational
 The converse is false. The irrational number $\sqrt2$ has rational square 2; the next lesson proves its irrationality. Being irrational does not mean that every expression involving the number is irrational.
 
 The strategy here was to replace a negative property, “not rational,” with its positive definition. A representation such as $a/b$ is usually easier to calculate with than the absence of every such representation.
-
-<Exercise id="51" />
 
 ## Contraposition in set and function arguments
 
@@ -218,8 +216,6 @@ $$
 $$
 
 For $f:\mathbb{Z}\to\mathbb{Z}$ defined by $f(n)=3n+1$, distinct $x,y$ give $f(x)-f(y)=3(x-y)\ne0$. Thus distinct inputs have distinct outputs, proving injectivity. Alternatively, starting with equal outputs and cancelling gives a direct proof. Choose the form that makes the specific function easiest to analyze.
-
-<Exercise id="41" />
 
 ## Supporting a biconditional
 
@@ -280,4 +276,4 @@ You should now be able to:
 - Recognize equivalent elementwise formulations of inclusion and injectivity.
 - Explain why the method does not change the theorem's domain or outer universal quantifier.
 
-Open Practice for more problems, with space to develop each answer. Reveal the solution when you are ready to compare your reasoning.
+The recommended practice checks the transformation, a compound negation, one complete parity proof, and a mistaken argument. Use additional practice for a specific weak point, such as remainder cases or rationality, rather than repeating every complete proof. When checking a solution, compare its starting assumption and final obligation with yours before comparing the algebra.

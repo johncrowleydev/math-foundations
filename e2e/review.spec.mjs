@@ -75,6 +75,13 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
   const deepDueDates = targets.filter((t) => !t.quick).map((t) => t.dueAt);
   function summary() {
     return {
+      budgetMinutes: 25,
+      estimatedMinutes: quickCompleted ? 0 : 11,
+      remainingMinutes: quickCompleted ? 0 : 25,
+      reservedMinutes: quickCompleted ? 25 : 0,
+      plannedQuick: quickCompleted ? 0 : 1,
+      plannedApplication: 0,
+      plannedDeep: quickCompleted ? 0 : 1,
       due: quickCompleted ? 2 : 3,
       quick: quickCompleted ? 0 : 1,
       deeper: 2,
@@ -229,6 +236,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
   }
   async function overview() {
     await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
+    await review.getByRole('button', { name: 'End session', exact: true }).click();
     await review.getByRole('button', { name: 'Start Regular review', exact: true }).waitFor();
   }
   async function waitForAttemptUpload(id) {
@@ -289,7 +297,9 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     );
     await review.getByRole('button', { name: 'Next →', exact: true }).click();
     await page
-      .getByText('2 due · 0 Quick-compatible · 2 deeper reviews remain.', { exact: true })
+      .getByText('You can stop here for today. Other work can wait for a later session.', {
+        exact: true,
+      })
       .waitFor();
     assert.deepEqual(
       targets.filter((t) => !t.quick).map((t) => t.dueAt),
@@ -297,6 +307,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     );
     await screenshot('deferred');
     await review.getByRole('button', { name: 'Return to overview', exact: true }).click();
+    await review.getByRole('button', { name: 'End session', exact: true }).click();
     await review.getByLabel('Lesson', { exact: false }).selectOption('propositional-logic');
     await review.getByLabel('Concept', { exact: false }).selectOption('existential-quantification');
     await review.getByLabel('Skill', { exact: false }).selectOption('recall');
@@ -307,6 +318,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     assert.deepEqual(plans.at(-1), {
       kind: 'focused-practice',
       mode: 'quick',
+      budgetMinutes: 25,
       lesson: 'propositional-logic',
       concept: 'existential-quantification',
       skill: 'recall',
@@ -315,7 +327,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     // Assets remain online: this does not claim to test production service-worker caching.
     apiOffline = true;
     await page.reload();
-    await review.getByText('Saved due summary', { exact: false }).waitFor();
+    await review.getByText('Saved review plan', { exact: false }).waitFor();
     await review.getByRole('radio', { name: 'A witness', exact: true }).check();
     await review.getByRole('button', { name: 'Submit', exact: true }).click();
     const queued = await page.waitForFunction(async () => {

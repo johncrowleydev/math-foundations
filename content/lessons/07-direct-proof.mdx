@@ -6,6 +6,8 @@ This lesson builds on [Predicates and Quantifiers](../lessons/02-predicates-and-
 
 We use $\mathbb{Z}$ for the integers, $\mathbb{N}_0$ for the nonnegative integers, and $\mathbb{Q}$ for the rational numbers. A rational number is a real number expressible as $a/b$ for integers $a,b$ with $b\ne0$.
 
+Write a few complete proofs carefully instead of treating the full practice collection as a quota. The recommended questions include identifying a proof's obligations, proving a parity claim, constructing a witness, and repairing an invalid argument. The worked examples develop the other patterns; extra practice is available when one of those patterns needs more attention.
+
 ## Read the claim before choosing a method
 
 Before asking “what algebra should I do?”, ask what would count as finishing the proof. A statement about every integer, a statement asserting an example exists, and a statement asserting two descriptions are equivalent create different obligations. Reading those obligations correctly often determines the shape of the proof before any calculation begins.
@@ -35,6 +37,8 @@ A useful planning table is:
 | $\exists x\in D,\ P(x)$ | Produce or otherwise justify a witness    |
 
 This is a description of the work owed by a proof, not a guarantee that the statement is true. Try examples before committing to a proof strategy: a counterexample may settle the question.
+
+For a direct implication, a useful draft has four lines: **assume the hypothesis; unpack its definitions; connect those facts to the definition of the goal; conclude the claim.** Leave the middle unfinished at first if necessary. For “an even integer has an even square,” the first line supplies $n=2k$ for an integer $k$, and the goal asks for $n^2=2m$ with $m$ an integer. Substitution gives $n^2=4k^2=2(2k^2)$, so the missing witness is $m=2k^2$. We discovered it by comparing what we had with what the goal required. The result holds because that witness is an integer, not merely because a 2 appears in the expression.
 
 ## Unpack definitions
 
@@ -122,8 +126,6 @@ Notice the role of the denominator check. “It is a fraction” is insufficient
 
 Similar reasoning shows closure under subtraction and multiplication. Division needs a restriction: the divisor must be nonzero. A true theorem states that restriction rather than hoping the reader supplies it.
 
-<Exercise id="21" />
-
 ## Proof by cases
 
 Sometimes the right first step is to organize the inputs, rather than force one formula to handle all of them at once. With consecutive integers, exactly one is even. The **parity** of an integer is whether it is even or odd. Splitting according to the parity of the first tells us which factor supplies a two. Each case is short because the split exposes the information the calculation needs.
@@ -177,8 +179,6 @@ so $n$ is odd.
 
 Proving one direction does not automatically prove the other. Some calculations are reversible, but a string of unexplained equalities or arrows can conceal an irreversible step such as squaring, division by zero, or dropping a condition. Separate directions make the obligations visible.
 
-<Exercise id="31" />
-
 ## Constructive existence
 
 An existence proof can sometimes give a recipe for the object it promises. To find a number between two real numbers, the midpoint is a natural candidate. The proof then checks the recipe, rather than relying on a drawing in which the point merely appears to be between the endpoints.
@@ -214,8 +214,6 @@ Consider “for all integers $a,b$, if $a\mid b$ then $b\mid a$.” Choose $a=2,
 Choosing $a=2,b=3$ would not work: the hypothesis is already false. A false-hypothesis instance does not contradict an implication.
 
 Similarly, to refute a proposed set identity, supply particular sets and an element that belongs to one side but not the other. A counterexample is a short proof of falsity, not a weaker substitute for a proof.
-
-<Exercise id="51" />
 
 ## Diagnose and revise a proof
 

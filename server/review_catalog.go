@@ -9,6 +9,8 @@ import (
 // template. Keep it explicit so learner context and grading internals cannot
 // accidentally become part of the authoring API.
 type ReviewCatalogItem struct {
+	Category         string `json:"category"`
+	EstimatedSeconds int    `json:"estimatedSeconds"`
 	ReviewTarget
 	ID                 string           `json:"id"`
 	Family             string           `json:"family"`
@@ -56,6 +58,7 @@ func (g *Grading) reviewCatalog() ReviewCatalog {
 			Question: template.Question, Variants: template.Variants,
 			ActivationConcepts: template.ActivationConcepts,
 		}
+		item.Category, item.EstimatedSeconds = template.questionCost(template.Question)
 		if strings.HasPrefix(template.SourceTarget, "exercise:") {
 			item.Provenance = "lesson-exercise"
 			// The compiled exercise catalog retains its lesson slug and stable

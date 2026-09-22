@@ -1,3 +1,4 @@
+import { reviewCategories } from '../../shared/reviewCost.js';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parse } from 'yaml';
@@ -101,6 +102,7 @@ export const worksheetSchema = z
                         'argument',
                       ])
                       .default('freeform'),
+                    category: z.enum(reviewCategories).optional(),
                     prompt: text,
                     math: text.optional(),
                     answerLines: z.number().int().min(1).max(12),

@@ -1,18 +1,4 @@
 propositional-logic:
-  '1':
-    after: Propositions
-    instructions: ''
-    concepts:
-      - Proposition
-      - definite truth value
-      - equality
-    requires:
-      - lesson: propositional-logic
-        section: Propositions
-        teachingHash: c3be5b53a28faf92b0f3c3fbe91c763e9cb57fad3b69661d35a962b7c4f3dd1d
-    exerciseHash: f3e1b10cee391e36eb73aff7127acc2559a16d2522f496af4882d1ff1c2c4dcb
-    prompt: Is the statement below a proposition? If so, give its truth value when possible. Explain your answer.
-    answer: Proposition; true.
   '4':
     after: Propositions
     instructions: ''
@@ -42,38 +28,6 @@ propositional-logic:
     exerciseHash: 037260c73958e5c862d974cf0946ab93a66a4782c3f1cb25683e52d3a03785b9
     prompt: Translate the formula into ordinary English.
     answer: The server is not online.
-  '10':
-    after: 'Conjunction: AND'
-    instructions: Let $p$ mean “The server is online” and $q$ mean “The database is reachable.”
-    concepts:
-      - Named propositions
-      - conjunction
-    requires:
-      - lesson: propositional-logic
-        section: Propositions
-        teachingHash: c3be5b53a28faf92b0f3c3fbe91c763e9cb57fad3b69661d35a962b7c4f3dd1d
-      - lesson: propositional-logic
-        section: 'Conjunction: AND'
-        teachingHash: afcdceb37a2c817464b8a816ae7bf7ad0d4ef10d45bd099f3807b7c2606f6b91
-    exerciseHash: 73e024646b452e48c7072822d51b4db1f0cd1281ac65de232a48862858a65f5f
-    prompt: Translate the formula into ordinary English.
-    answer: The server is online and the database is reachable.
-  '11':
-    after: 'Disjunction: OR'
-    instructions: Let $p$ mean “The server is online” and $q$ mean “The database is reachable.”
-    concepts:
-      - Named propositions
-      - inclusive disjunction
-    requires:
-      - lesson: propositional-logic
-        section: Propositions
-        teachingHash: c3be5b53a28faf92b0f3c3fbe91c763e9cb57fad3b69661d35a962b7c4f3dd1d
-      - lesson: propositional-logic
-        section: 'Disjunction: OR'
-        teachingHash: 6d167ec03c8e5e0c7e0459ebeb548f4cb08bcbe952feadcbc24c9eeca591b572
-    exerciseHash: 27a0bc22cfd1029b1ca3d4ae452a5945b15a4e565fa652cf20f8c31a7fe72f7e
-    prompt: Translate the formula into ordinary English.
-    answer: The server is online or the database is reachable, or both.
   '31':
     after: Converse, inverse, and contrapositive
     instructions: ''
@@ -95,27 +49,6 @@ propositional-logic:
 
       If an integer is divisible by 10, then it is even.
     answer: 'Original true. Converse: if even, then divisible by 10; false (6). Contrapositive: if not even, then not divisible by 10; true.'
-  '35':
-    after: Converse, inverse, and contrapositive
-    instructions: ''
-    concepts:
-      - Implication
-      - converse
-      - contrapositive
-      - counterexample
-    requires:
-      - lesson: propositional-logic
-        section: 'Implication: IF ... THEN'
-        teachingHash: f9686cdb1ea5a1825e8763e6fe94ae4de98a6128207eadc036bc643052f613ba
-      - lesson: propositional-logic
-        section: Converse, inverse, and contrapositive
-        teachingHash: d8cefa0379713b42a9c9231b3d1eb4bd3456a9cb3710dc48f130bb3bb76748b7
-    exerciseHash: d8e5a0262161e49a484db06dc06be4b58d4fbb419bb4e64d9da4d8702acfbed4
-    prompt: |-
-      Write the converse and contrapositive of this statement. Decide whether the original and each rewritten statement are true, giving a counterexample for each false claim.
-
-      If a number is greater than 100, then it is positive.
-    answer: 'Original true. Converse: if positive, then greater than 100; false (1). Contrapositive: if not positive, then not greater than 100; true.'
   '46':
     after: De Morgan's laws
     instructions: ''
@@ -142,32 +75,6 @@ propositional-logic:
     exerciseHash: dd0847916ee00c352bf2763a734d759a9679dcbdc21bbb42d1b33f828991c722
     prompt: Apply De Morgan's law.
     answer: $\neg p\lor\neg q$.
-  '47':
-    after: De Morgan's laws
-    instructions: ''
-    concepts:
-      - Negation of disjunction
-      - equivalence
-      - De Morgan law
-    requires:
-      - lesson: propositional-logic
-        section: 'Negation: NOT'
-        teachingHash: 9e98407a844bac4e2f1a2e7120eb5c47e2cec012e9a742467f0b724fabfbcf50
-      - lesson: propositional-logic
-        section: 'Conjunction: AND'
-        teachingHash: afcdceb37a2c817464b8a816ae7bf7ad0d4ef10d45bd099f3807b7c2606f6b91
-      - lesson: propositional-logic
-        section: 'Disjunction: OR'
-        teachingHash: 6d167ec03c8e5e0c7e0459ebeb548f4cb08bcbe952feadcbc24c9eeca591b572
-      - lesson: propositional-logic
-        section: Logical equivalence
-        teachingHash: 3fa4c4536000931bb51afb8f5451b42d246bed2ed8255ff17ef35f75375e7545
-      - lesson: propositional-logic
-        section: De Morgan's laws
-        teachingHash: f89d4bb1f1221e37ba88a877433a3d93ae7aeb4c1176facf3368aa4014cbd1ed
-    exerciseHash: 1947d10b9487fcb6ff426cc5ef0feb5a9b928d43c5cf0e4ae74758f9242b4a22
-    prompt: Apply De Morgan's law.
-    answer: $\neg p\land\neg q$.
   '60':
     after: Tautologies, contradictions, and contingent statements
     instructions: ''
@@ -279,23 +186,6 @@ propositional-logic:
     exerciseHash: 5d58fabbee547bcdc4e49f2fc89a4cd9d2244f294fd602f0f4ae93d2ba7cf334
     prompt: Satisfiable or unsatisfiable? Explain.
     answer: "Unsatisfiable: $p$ and $\\neg p$ cannot both be true."
-  '152':
-    after: A first proof by contrapositive
-    instructions: ''
-    concepts:
-      - Contrapositive proof
-      - odd integer representation
-      - square algebra
-    requires:
-      - lesson: propositional-logic
-        section: Converse, inverse, and contrapositive
-        teachingHash: d8cefa0379713b42a9c9231b3d1eb4bd3456a9cb3710dc48f130bb3bb76748b7
-      - lesson: propositional-logic
-        section: A first proof by contrapositive
-        teachingHash: e16f46c5f3c3dcca83fb8a622530231da7711c14fe20676c73882de61d1c002e
-    exerciseHash: 3a41fd74781c32b78ee9fa37adf767248da5e13432fccdeed48b7acc945258aa
-    prompt: 'For an integer $n$, prove by contrapositive: if $n^2$ is even, then $n$ is even.'
-    answer: If $n$ is odd, write $n=2k+1$. Then $n^2=2(2k^2+2k)+1$ is odd. This proves the contrapositive and hence the original.
 predicates-and-quantifiers:
   '1':
     after: Predicates and substitution
@@ -318,29 +208,6 @@ predicates-and-quantifiers:
     exerciseHash: 9cd90ff89d36762b95cb4b2891d926221da8e0a367881ba8a34b3377d995d962
     prompt: Is this proposition true or false? Explain by substituting the input.
     answer: True, since $5>3$.
-  '11':
-    after: 'Universal quantification: for every'
-    instructions: Let $D=\{-2,-1,0,1,2\}$.
-    concepts:
-      - Finite domain
-      - universal quantifier
-      - exhaustive truth check
-    requires:
-      - lesson: propositional-logic
-        section: Propositions
-        teachingHash: c3be5b53a28faf92b0f3c3fbe91c763e9cb57fad3b69661d35a962b7c4f3dd1d
-      - lesson: predicates-and-quantifiers
-        section: Domains come first
-        teachingHash: 7b74d3794de545271f8bc4f509e3c9092fc4aad4a20c6bcc9cab237e16748f24
-      - lesson: predicates-and-quantifiers
-        section: Predicates and substitution
-        teachingHash: 89ffb7baaf932c0c06053d495d4c5a0b29c74fd26c9d288e70f4d90d12ac813a
-      - lesson: predicates-and-quantifiers
-        section: 'Universal quantification: for every'
-        teachingHash: c13963e3e462f8684893d5e0971fa139c65151aa5772372e22cd702981f04bad
-    exerciseHash: ebe30464628aadd92f0c206cd0d192bd04b5672007f2e9987577b39569c6e2bc
-    prompt: Is the statement true or false on $D$? Explain your answer.
-    answer: True. Every element has square 0, 1, or 4.
   '21':
     after: Translating all, some, none, and only
     instructions: The domain is all people. Let $S(x)$ mean “$x$ is a student” and $C(x)$ mean “$x$ owns a computer.”
@@ -396,7 +263,7 @@ predicates-and-quantifiers:
         teachingHash: c13963e3e462f8684893d5e0971fa139c65151aa5772372e22cd702981f04bad
       - lesson: predicates-and-quantifiers
         section: 'Existential quantification: there exists'
-        teachingHash: d6079469168e084ba3455ac26bb43d8508ffecca741ae1f4ad214d2b23e74188
+        teachingHash: fe2c37797fcdf1f6b44b9baa7d11c92e35a0b0a0edb8c394a4d7af1ee556ba42
       - lesson: predicates-and-quantifiers
         section: Negating quantified statements
         teachingHash: 403338adfb454c848c946a3eb95f793547ea84bbfb4f2eb0784687b8470df7de
@@ -422,7 +289,7 @@ predicates-and-quantifiers:
         teachingHash: c13963e3e462f8684893d5e0971fa139c65151aa5772372e22cd702981f04bad
       - lesson: predicates-and-quantifiers
         section: 'Existential quantification: there exists'
-        teachingHash: d6079469168e084ba3455ac26bb43d8508ffecca741ae1f4ad214d2b23e74188
+        teachingHash: fe2c37797fcdf1f6b44b9baa7d11c92e35a0b0a0edb8c394a4d7af1ee556ba42
       - lesson: predicates-and-quantifiers
         section: Several variables and quantifier order
         teachingHash: e9396a6c2e734cf409b0a82ac11c27e1270dd623d6a5118fdcb5df516379c6a2
@@ -440,33 +307,10 @@ predicates-and-quantifiers:
         teachingHash: 7b74d3794de545271f8bc4f509e3c9092fc4aad4a20c6bcc9cab237e16748f24
       - lesson: predicates-and-quantifiers
         section: Existence, uniqueness, and exactly one
-        teachingHash: 476b6188fbf09d8bbda4ea6ef0a651cafb692f26591faa3f71a026f1dd9749b2
+        teachingHash: a97e786994fc88e8feaff3f08d756126ce6bdc2de18029be40fa62eae1ed5722
     exerciseHash: b434454862d7ee660ccaa7516b93b52e16cc42f204303d8cf8c790413488b551
     prompt: Does $n+3=5$ have exactly one integer solution?
     answer: Yes. $n=2$ is a solution, and rearranging forces every solution to equal 2.
-  '81':
-    after: Which distributions are valid?
-    instructions: The predicates have arbitrary meanings on a nonempty domain.
-    concepts:
-      - Quantified equivalence
-      - conjunction
-      - distribution of universal quantification
-    requires:
-      - lesson: propositional-logic
-        section: 'Conjunction: AND'
-        teachingHash: afcdceb37a2c817464b8a816ae7bf7ad0d4ef10d45bd099f3807b7c2606f6b91
-      - lesson: propositional-logic
-        section: Logical equivalence
-        teachingHash: 3fa4c4536000931bb51afb8f5451b42d246bed2ed8255ff17ef35f75375e7545
-      - lesson: predicates-and-quantifiers
-        section: 'Universal quantification: for every'
-        teachingHash: c13963e3e462f8684893d5e0971fa139c65151aa5772372e22cd702981f04bad
-      - lesson: predicates-and-quantifiers
-        section: Which distributions are valid?
-        teachingHash: b4093684e4bb38c5dcf5967584b66aefff70e9ecf296f110c160dcf5594ce220
-    exerciseHash: 2b5cc367a86f9e0613d9640b27016cfa1db8d9741486a6c056fe34177bbf8a21
-    prompt: Is the equivalence valid? Explain why it holds, or give a domain and predicate meanings that make it fail.
-    answer: Yes. Both require every element to satisfy both predicates.
   '91':
     after: Valid reasoning with quantifiers
     instructions: Use a nonempty domain; the named object $a$, when present, belongs to it.
@@ -488,26 +332,6 @@ predicates-and-quantifiers:
     exerciseHash: c6c706781c599d8911cccf1cdf36c5987cff4d225582bfb0050ed6b67d050389
     prompt: Does the conclusion follow from the premises? Explain, giving a counterexample interpretation if it does not.
     answer: 'Valid: universal instantiation at the domain element $a$.'
-  '101':
-    after: Relationships in ordinary language
-    instructions: Let $D=\{a,b,c\}$, with three distinct objects. The true cases are exactly $R(a,a)$, $R(a,b)$, $R(b,c)$, and $R(c,b)$; all other choices of inputs make $R$ false.
-    answer: 'True: $R(a,b)$ is one of the stated true cases.'
-    concepts:
-      - Finite domain
-      - two-input predicate
-      - truth of named cases
-    requires:
-      - lesson: predicates-and-quantifiers
-        section: Domains come first
-        teachingHash: 7b74d3794de545271f8bc4f509e3c9092fc4aad4a20c6bcc9cab237e16748f24
-      - lesson: predicates-and-quantifiers
-        section: Predicates and substitution
-        teachingHash: 89ffb7baaf932c0c06053d495d4c5a0b29c74fd26c9d288e70f4d90d12ac813a
-      - lesson: predicates-and-quantifiers
-        section: Relationships in ordinary language
-        teachingHash: f7269d2553acc8dc5425e757427a2bad5d73bd2eddc57e30d45401515e2b4e3b
-    exerciseHash: f17807c626dd268e2ca9ce4c256ee2ccebea1f8468261895fddc5b586037dcbb
-    prompt: Is this statement true or false? Explain your answer.
   '111':
     after: Writing a quantified proof
     instructions: ''
@@ -521,13 +345,13 @@ predicates-and-quantifiers:
         teachingHash: 7b74d3794de545271f8bc4f509e3c9092fc4aad4a20c6bcc9cab237e16748f24
       - lesson: predicates-and-quantifiers
         section: 'Existential quantification: there exists'
-        teachingHash: d6079469168e084ba3455ac26bb43d8508ffecca741ae1f4ad214d2b23e74188
+        teachingHash: fe2c37797fcdf1f6b44b9baa7d11c92e35a0b0a0edb8c394a4d7af1ee556ba42
       - lesson: predicates-and-quantifiers
         section: Valid reasoning with quantifiers
         teachingHash: 140538290fa67f400ca9be21398b953cf025a8beb5e65e8b437edc6f5c15d652
       - lesson: predicates-and-quantifiers
         section: Writing a quantified proof
-        teachingHash: 5674541ce7383afcbd3d7c91df2c36a0e2b3b781cbb7755da4b32b772a807a6f
+        teachingHash: f9b15b4ddd49c8f48e42c7de8fbea9d22400641d7e53d7990437663316963ce9
     exerciseHash: 3bb3d8d0408e569e156285fe33f8f287107c953eff1e3211947726a9246b4905
     prompt: Prove that every integer has a larger integer.
     answer: Let $n$ be an arbitrary integer and choose $m=n+1$. Then $m$ is an integer and $m>n$, proving $\forall n\in\mathbb{Z}\exists m\in\mathbb{Z}(m>n)$.
@@ -577,13 +401,13 @@ sets-and-set-operations:
     requires:
       - lesson: sets-and-set-operations
         section: Membership and subsets are different
-        teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
+        teachingHash: 3160b6af7713518d458ab50b099ddf19580720314ee4ea72496d1513698a7fd4
       - lesson: sets-and-set-operations
         section: Union, intersection, difference, and complement
         teachingHash: 557fc28425f656d6bc0c193c8b4939b6c0271deaccb2cd0a3e63ea24cc5eff4d
       - lesson: sets-and-set-operations
         section: Proving inclusions and identities
-        teachingHash: bf2a084805c429ef7ddcb403b775e62832a2fb6394c394dc72c2638c11731be0
+        teachingHash: 8cfc8cfbeb9e51c7f64bd50d59a29a527161981f661396242e25b46e07bdc98a
     exerciseHash: 241d9c4813f04e79f859dce9a0d5606f918f11499f2d6b024d027c4719b950b2
     prompt: Prove $A\cap B\subseteq A$ by choosing an arbitrary element.
     answer: If $x\in A\cap B$, the definition of intersection gives $x\in A$ and $x\in B$. In particular $x\in A$, proving the inclusion for every such element.
@@ -601,10 +425,10 @@ sets-and-set-operations:
         teachingHash: fae8d6d3417d9933f350349dc5b1aab2224ae88cc44b889343e1311d451299f7
       - lesson: sets-and-set-operations
         section: Membership and subsets are different
-        teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
+        teachingHash: 3160b6af7713518d458ab50b099ddf19580720314ee4ea72496d1513698a7fd4
       - lesson: sets-and-set-operations
         section: Power sets
-        teachingHash: 4b137d7dc96bdc5cda2e4fcab0a2777d878771f407b8376ea583443ef5faae60
+        teachingHash: da8cab98ea285689be462c326c57c7cd10a419cd10d8b55e84c4a52e4c062290
     exerciseHash: fccd91ed764702822573c131bc8db7e3b2e812882fcef39bccc749aa4d9957c0
     prompt: List $\mathcal P(\{a,b\})$.
     answer: $\{\varnothing,\{a\},\{b\},\{a,b\}\}$. These are the four possible subsets.
@@ -662,7 +486,7 @@ sets-and-set-operations:
     requires:
       - lesson: sets-and-set-operations
         section: Membership and subsets are different
-        teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
+        teachingHash: 3160b6af7713518d458ab50b099ddf19580720314ee4ea72496d1513698a7fd4
       - lesson: sets-and-set-operations
         section: Union, intersection, difference, and complement
         teachingHash: 557fc28425f656d6bc0c193c8b4939b6c0271deaccb2cd0a3e63ea24cc5eff4d
@@ -770,10 +594,10 @@ relations:
     requires:
       - lesson: sets-and-set-operations
         section: Membership and subsets are different
-        teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
+        teachingHash: 3160b6af7713518d458ab50b099ddf19580720314ee4ea72496d1513698a7fd4
       - lesson: sets-and-set-operations
         section: Power sets
-        teachingHash: 4b137d7dc96bdc5cda2e4fcab0a2777d878771f407b8376ea583443ef5faae60
+        teachingHash: da8cab98ea285689be462c326c57c7cd10a419cd10d8b55e84c4a52e4c062290
       - lesson: relations
         section: Four fundamental properties
         teachingHash: 2658ae4755bfd5de090d66e8145af5915a5faef785d476ffcc3ed1bfab724321
@@ -1127,10 +951,10 @@ direct-proof:
         teachingHash: f9686cdb1ea5a1825e8763e6fe94ae4de98a6128207eadc036bc643052f613ba
       - lesson: predicates-and-quantifiers
         section: Writing a quantified proof
-        teachingHash: 5674541ce7383afcbd3d7c91df2c36a0e2b3b781cbb7755da4b32b772a807a6f
+        teachingHash: f9b15b4ddd49c8f48e42c7de8fbea9d22400641d7e53d7990437663316963ce9
       - lesson: direct-proof
         section: Read the claim before choosing a method
-        teachingHash: 1860715b4daabde8e242bae8b8066aa68672535923e78c650384dbe3465b2a13
+        teachingHash: f71557f9f3b26a18f734fa5adac4d871a374e5c15aea380b6976f791f3da7e8d
       - lesson: direct-proof
         section: Unpack definitions
         teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
@@ -1147,7 +971,7 @@ direct-proof:
     requires:
       - lesson: direct-proof
         section: Read the claim before choosing a method
-        teachingHash: 1860715b4daabde8e242bae8b8066aa68672535923e78c650384dbe3465b2a13
+        teachingHash: f71557f9f3b26a18f734fa5adac4d871a374e5c15aea380b6976f791f3da7e8d
       - lesson: direct-proof
         section: Unpack definitions
         teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
@@ -1157,50 +981,6 @@ direct-proof:
     exerciseHash: b042cc80afb879d09711ab451c4925649bdc33ff2a6707113c64c2d753192b30
     prompt: Prove that the sum of two even integers is even.
     answer: Let $a=2r,b=2s$ for integers $r,s$. Then $a+b=2(r+s)$. Since $r+s$ is integral, the sum is even.
-  '21':
-    after: Closure claims
-    instructions: Let $a,b,c$ be integers.
-    concepts:
-      - Divisibility
-      - integer witnesses
-      - multiplication
-      - transitivity
-    requires:
-      - lesson: relations
-        section: Equivalence relations
-        teachingHash: f5596c3a324accfbcc12bb78464d6b6e0572b4a2597776f7f599682cb635764a
-      - lesson: direct-proof
-        section: Read the claim before choosing a method
-        teachingHash: 1860715b4daabde8e242bae8b8066aa68672535923e78c650384dbe3465b2a13
-      - lesson: direct-proof
-        section: Unpack definitions
-        teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
-      - lesson: direct-proof
-        section: Divisibility and linear combinations
-        teachingHash: f6b1fb9c4de2e077b577c1507eb7633c98c856ad2c435fbfa928ba61a0d9c432
-    exerciseHash: cdc8e61a19759c8245d33cf569ea28d8dafbf7162d015ae2245b9cff1d9cf84d
-    prompt: "Prove transitivity of divisibility: $a\\mid b$ and $b\\mid c$ imply $a\\mid c$."
-    answer: For arbitrary integers satisfying the hypotheses, write $b=ar$ and $c=bs$ with integers $r,s$. Then $c=a(rs)$, giving the required integer witness.
-  '31':
-    after: Biconditionals need both directions
-    instructions: ''
-    concepts:
-      - Set inclusion
-      - intersection and union
-      - arbitrary-element proof
-    requires:
-      - lesson: sets-and-set-operations
-        section: Membership and subsets are different
-        teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
-      - lesson: sets-and-set-operations
-        section: Union, intersection, difference, and complement
-        teachingHash: 557fc28425f656d6bc0c193c8b4939b6c0271deaccb2cd0a3e63ea24cc5eff4d
-      - lesson: direct-proof
-        section: Set inclusion and equality
-        teachingHash: d201f6d928a0bdd9b3e3fff63015f06fbca7ea53ef6d4a36a2e7bf423aa97bb8
-    exerciseHash: de529ab117e9470d7f74de9ce929d731e80eddcc939d0b90c3c5351586365b1c
-    prompt: Prove $A\cap B\subseteq A\cup B$ by an element argument.
-    answer: Choose arbitrary $x\in A\cap B$. Then $x\in A$ and $x\in B$; in particular it belongs to at least one, so $x\in A\cup B$.
   '41':
     after: Constructive existence
     instructions: ''
@@ -1221,30 +1001,6 @@ direct-proof:
         teachingHash: b334ba133538d57ee9991e3e58079459a011765fd7715e7a46c8e081b7587149
     exerciseHash: 2c6e2757f9b2229b7c77db1ece51d0fec99d793ad124e0eec0c482f4d195bccb
     prompt: Prove that every integer has a larger even integer.
-  '51':
-    after: When the claim is false
-    instructions: ''
-    concepts:
-      - Refutation
-      - counterexample
-      - evenness
-      - sums of even integers
-    requires:
-      - lesson: propositional-logic
-        section: Counterexamples
-        teachingHash: aebc083a8ed8e96b6efeedbd43a34a7b1781fe0863023e5faf81edb7662bac32
-      - lesson: direct-proof
-        section: Unpack definitions
-        teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
-      - lesson: direct-proof
-        section: 'Worked proof: the sum of two odd integers'
-        teachingHash: 545c2eab05960c47871eb829354ae92fa6f3bbe6dd1bc07b058af3f02c4a6c6d
-      - lesson: direct-proof
-        section: When the claim is false
-        teachingHash: 375cd75c7d7ca2b28bd64a7847fe1afb3635c5d1c637891ba72fd9b48760711e
-    exerciseHash: c48b9d7bfeceb524df2970006959fb387c950f53fd282b58c92d917c1e73cfac
-    prompt: 'Refute: every integer is the sum of two even integers.'
-    answer: The integer 1 is a counterexample. Any sum $2r+2s=2(r+s)$ is even, while 1 is odd, so no such representation exists.
   '61':
     after: Diagnose and revise a proof
     instructions: ''
@@ -1255,7 +1011,7 @@ direct-proof:
     requires:
       - lesson: direct-proof
         section: Read the claim before choosing a method
-        teachingHash: 1860715b4daabde8e242bae8b8066aa68672535923e78c650384dbe3465b2a13
+        teachingHash: f71557f9f3b26a18f734fa5adac4d871a374e5c15aea380b6976f791f3da7e8d
       - lesson: direct-proof
         section: Unpack definitions
         teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
@@ -1322,80 +1078,13 @@ proof-by-contrapositive:
         teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
       - lesson: proof-by-contrapositive
         section: The proof template
-        teachingHash: 05e48aeddcd892b0c41ad86e82b51d6e49df88dd6f77007c068d500e8c555c77
+        teachingHash: 12abf77fe42aca0d4d1b93b936b051f77d7a624a36b56923a8ee2bc2f1e9f6d7
       - lesson: proof-by-contrapositive
         section: 'Worked proof: an even square has an even root'
         teachingHash: fa85c4b0385510e423609753572cd76442e8f6617a560d3b2fff193f129e6634
     exerciseHash: dea5efd360b76b96ae9bf87a01f5dd68e13ca308426d652f02ae8877ae510b5c
     prompt: 'Prove by contrapositive: if $n^2$ is even, then $n$ is even.'
     answer: 'Contrapositive: odd $n$ has odd square. Write $n=2k+1$ for integer $k$. Then $n^2=2(2k^2+2k)+1$, which is odd with an integer witness. Contraposition gives the claim.'
-  '31':
-    after: Divisibility by 3 and remainders
-    instructions: All variables are integers.
-    concepts:
-      - Divisibility notation
-      - remainder
-      - proof by cases inside contraposition
-    requires:
-      - lesson: direct-proof
-        section: Unpack definitions
-        teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
-      - lesson: direct-proof
-        section: Proof by cases
-        teachingHash: d75509436af051478f2dcf4846a106a29701f28836c9fd41dfa49a41f1e53501
-      - lesson: proof-by-contrapositive
-        section: The proof template
-        teachingHash: 05e48aeddcd892b0c41ad86e82b51d6e49df88dd6f77007c068d500e8c555c77
-      - lesson: proof-by-contrapositive
-        section: Divisibility by 3 and remainders
-        teachingHash: 0bfe54f463fee2b9ae142f3eeb4af89ba4681fe050b9417dd4c0eca499f4499f
-    exerciseHash: 52fc1aba2bc845677aac19a4e29ddc81f83b5d1f719af1cdae2dbadbff64820b
-    prompt: Prove by contrapositive that $3\mid n^2$ implies $3\mid n$.
-    answer: If $3\nmid n$, write $n=3k+1$ or $3k+2$. The squares are respectively $3(3k^2+2k)+1$ and $3(3k^2+4k+1)+1$. Both have remainder 1, so neither is divisible by 3.
-  '41':
-    after: Contraposition in set and function arguments
-    instructions: Let $A,B\subseteq U$ and take complements relative to $U$.
-    concepts:
-      - Subset
-      - complement universe
-      - membership
-      - elementwise contraposition
-    requires:
-      - lesson: sets-and-set-operations
-        section: Membership and subsets are different
-        teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
-      - lesson: sets-and-set-operations
-        section: Union, intersection, difference, and complement
-        teachingHash: 557fc28425f656d6bc0c193c8b4939b6c0271deaccb2cd0a3e63ea24cc5eff4d
-      - lesson: proof-by-contrapositive
-        section: The proof template
-        teachingHash: 05e48aeddcd892b0c41ad86e82b51d6e49df88dd6f77007c068d500e8c555c77
-      - lesson: proof-by-contrapositive
-        section: Contraposition in set and function arguments
-        teachingHash: 78b28c1f5597c8bc7136728341e5e034eff755cd0b6ce69afcbe5348855874df
-    exerciseHash: 69e7d9b546919d43f269e481d2b58882f27f9899d3a596be2f0fdbbbb73849d4
-    prompt: Prove $A\subseteq B\to B^c\subseteq A^c$ by elementwise contraposition.
-    answer: Assume $A\subseteq B$ and choose arbitrary $x\in B^c$. Thus $x\notin B$. The contrapositive of $x\in A\to x\in B$ gives $x\notin A$. Since $x$ is in the universe, $x\in A^c$.
-  '51':
-    after: Irrationality through a rational contrapositive
-    instructions: ''
-    concepts:
-      - Rational and irrational real numbers
-      - fractional representation
-      - contraposition
-    requires:
-      - lesson: direct-proof
-        section: Closure claims
-        teachingHash: 43954f328f9a76d7516b4106b98a2066793be0f368c7580f3eabaa52a8e40f63
-      - lesson: proof-by-contrapositive
-        section: The proof template
-        teachingHash: 05e48aeddcd892b0c41ad86e82b51d6e49df88dd6f77007c068d500e8c555c77
-      - lesson: proof-by-contrapositive
-        section: Irrationality through a rational contrapositive
-        teachingHash: 3f2a38ba988a1fceb51992f88286e85f37ae78ddec007d194159c9f11e6b74d8
-    exerciseHash: 0b9dfd4300be78aefe192de3edf8bf49ce4f107a466fcdccd94af843be8629d8
-    prompt: 'Prove: if $x^2$ is irrational, then real $x$ is irrational.'
-    answer: "Contrapositive: if $x=a/b$ with integers $a,b$ and $b\\ne0$, then $x^2=a^2/b^2$ is rational because its denominator is nonzero. Thus the original follows."
   '61':
     after: Diagnose flawed contrapositive proofs
     instructions: The root is an integer.
@@ -1436,7 +1125,7 @@ proof-by-contradiction:
         teachingHash: 7b662238f8f80e31750eedf13a3d83c358fba92ba395911e14f4254ca3217aba
       - lesson: proof-by-contradiction
         section: The logical structure
-        teachingHash: ade1eeb7304a7aea1a8d0cca7d217ccc1f3998efda511b86069461961ccbecbf
+        teachingHash: 2873ec45388c8044a10e075d26eb1319db36b5a08b74b0f0a9ca56fc12f0b874
     exerciseHash: 7d294ff79e3fe55144e655fed6fe6f912c6d11616650ce397849bc2972d215bf
     prompt: 'Negate: every integer has a larger integer.'
     answer: There exists an integer $n$ such that every integer $m$ satisfies $m\leq n$. This asserts a greatest integer, not merely two equal integers.
@@ -1450,74 +1139,13 @@ proof-by-contradiction:
     requires:
       - lesson: proof-by-contradiction
         section: The logical structure
-        teachingHash: ade1eeb7304a7aea1a8d0cca7d217ccc1f3998efda511b86069461961ccbecbf
+        teachingHash: 2873ec45388c8044a10e075d26eb1319db36b5a08b74b0f0a9ca56fc12f0b874
       - lesson: proof-by-contradiction
         section: 'A first example: there is no greatest integer'
         teachingHash: 5dc3715d50b379ef56f4bea78d99ab11536563a0a21ced42701915784bb0f4ba
     exerciseHash: f6d8e69aa1d5b88fa3522ce44a6206d23d0b785a348f14c100ccd8d222285efa
     prompt: Prove by contradiction there is no greatest integer.
     answer: Suppose integer $M$ is greatest. The integer $M+1$ is then at most $M$, but arithmetic gives $M+1>M$. This contradiction rules out a greatest integer.
-  '21':
-    after: The irrationality of the square root of 2
-    instructions: ''
-    concepts:
-      - Rational representation
-      - lowest terms
-      - common divisor
-      - denominator sign
-    requires:
-      - lesson: direct-proof
-        section: Closure claims
-        teachingHash: 43954f328f9a76d7516b4106b98a2066793be0f368c7580f3eabaa52a8e40f63
-      - lesson: proof-by-contradiction
-        section: Fractions in lowest terms
-        teachingHash: f0ce0286811e09a9ec718646936b1b8d21109575c714b7adf20de534f2df4979
-    exerciseHash: 3217769bccfb3dadf3733145b12b833fc9c2a05106ff48f10b4acb2469b8dc00
-    prompt: What does choosing a rational representation in lowest terms mean, and why can the denominator be positive?
-    answer: Choose integers $a,b$ with $b>0$, $x=a/b$, and no common positive divisor greater than 1. If a denominator is negative, negating both entries preserves the value and makes it positive.
-  '31':
-    after: Rational and irrational combinations
-    instructions: ''
-    concepts:
-      - Irrationality
-      - rational closure under subtraction
-      - contradiction
-    requires:
-      - lesson: direct-proof
-        section: Closure claims
-        teachingHash: 43954f328f9a76d7516b4106b98a2066793be0f368c7580f3eabaa52a8e40f63
-      - lesson: proof-by-contrapositive
-        section: Irrationality through a rational contrapositive
-        teachingHash: 3f2a38ba988a1fceb51992f88286e85f37ae78ddec007d194159c9f11e6b74d8
-      - lesson: proof-by-contradiction
-        section: The logical structure
-        teachingHash: ade1eeb7304a7aea1a8d0cca7d217ccc1f3998efda511b86069461961ccbecbf
-      - lesson: proof-by-contradiction
-        section: Rational and irrational combinations
-        teachingHash: 7424c5b083e8c6d5d026df13e307859ab03bf7f1c2936aab652d2dc633f9245a
-    exerciseHash: b0b3795609949ef40894ff369316fcdde417c5ddce6f900a68fbdcdc7a0dbb28
-    prompt: Prove that irrational $x$ plus rational $r$ is irrational.
-    answer: Suppose $x+r$ is rational. Subtracting rational $r$ makes $x=(x+r)-r$ rational, contradicting the hypothesis. Thus the sum is irrational.
-  '41':
-    after: There are infinitely many primes
-    instructions: ''
-    concepts:
-      - Divisor
-      - finite nonempty set
-      - least element
-    requires:
-      - lesson: direct-proof
-        section: Unpack definitions
-        teachingHash: 66c3ba6c14e14efd4fd623e1d08a70c716d5d8013e8a1693c939c17ea7c77ea1
-      - lesson: proof-by-contradiction
-        section: Fractions in lowest terms
-        teachingHash: f0ce0286811e09a9ec718646936b1b8d21109575c714b7adf20de534f2df4979
-      - lesson: proof-by-contradiction
-        section: A prime-divisor lemma
-        teachingHash: e526948ac925fe85b458a0f1f1bad6217a5e68802e480cb4692f6ddcf5a4bb21
-    exerciseHash: 937e0fd9e902f62e9e033f477902ae4fb95cfd2f4070704df66942aa1d28a3c9
-    prompt: Explain why an integer $N>1$ has a smallest positive divisor greater than 1.
-    answer: The candidate set contains $N$ and lies within the finite set $\{2,\ldots,N\}$. Therefore it is nonempty and finite, so it has a least member.
   '51':
     after: Uniqueness proofs
     instructions: ''
@@ -1528,10 +1156,10 @@ proof-by-contradiction:
     requires:
       - lesson: predicates-and-quantifiers
         section: Existence, uniqueness, and exactly one
-        teachingHash: 476b6188fbf09d8bbda4ea6ef0a651cafb692f26591faa3f71a026f1dd9749b2
+        teachingHash: a97e786994fc88e8feaff3f08d756126ce6bdc2de18029be40fa62eae1ed5722
       - lesson: proof-by-contradiction
         section: The logical structure
-        teachingHash: ade1eeb7304a7aea1a8d0cca7d217ccc1f3998efda511b86069461961ccbecbf
+        teachingHash: 2873ec45388c8044a10e075d26eb1319db36b5a08b74b0f0a9ca56fc12f0b874
       - lesson: proof-by-contradiction
         section: Uniqueness proofs
         teachingHash: c2c2f4c1dd85881ea25c56ceb5223973b7a08e2642516fc8ff830398391e0a68

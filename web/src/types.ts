@@ -1,10 +1,12 @@
 import { validateExerciseKeys } from './exerciseIdentity';
-import type { ReviewContext } from './reviewTypes';
+import type { ExerciseCategory, ReviewContext } from './reviewTypes';
 import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from './evidenceTypes';
 import type { SourceCatalog } from './Sources';
 import type { Assessment, StructuredResponse } from '../../shared/assessment';
 export type { Assessment, StructuredResponse } from '../../shared/assessment';
 export type Question = {
+  category?: ExerciseCategory;
+  estimatedSeconds?: number;
   id: number;
   displayNumber?: number;
   instructions: string;

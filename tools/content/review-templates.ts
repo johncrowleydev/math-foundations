@@ -1,3 +1,4 @@
+import { reviewCategories } from '../../shared/reviewCost.js';
 import { validateAssessment, gradeAssessment, InputError } from '../../shared/deterministic.js';
 import type { AnswerFixture } from '../../shared/assessment.js';
 import type { Assessment } from '../../shared/assessment.js';
@@ -61,6 +62,7 @@ const schema = z.array(
         .array(z.enum(['tap', 'short-text', 'math-text', 'handwriting', 'photo']))
         .min(1),
       cognitiveLevel: text,
+      category: z.enum(reviewCategories).optional(),
       activationConcepts: z.array(text).min(1),
       sourceIds: z.array(text).min(1),
       question: reviewQuestion,
