@@ -231,11 +231,16 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
     await review.getByRole('button', { name: 'Start Regular review', exact: true }).waitFor();
   }
-  async function waitForAttemptUpload() {
-    await page.waitForFunction(async () => {
+  async function waitForAttemptUpload(id) {
+    await page.waitForFunction(async (id) => {
       const storage = await import('/src/storage.ts');
-      return !(await storage.all('outbox')).some((operation) => operation.kind === 'attempt');
-    });
+      const confirmed = await storage.get('records', 'attempt/' + id);
+      return (
+        confirmed?.revision > 0 &&
+        confirmed.payload.id === id &&
+        !(await storage.all('outbox')).some((operation) => operation.kind === 'attempt')
+      );
+    }, id);
   }
   try {
     await page.goto(baseURL + '/#/review/propositional-logic');
@@ -269,8 +274,8 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     );
     // A local Correct verdict precedes synchronization; wait for its acknowledgement
     // and durable queue removal instead of assuming the network finishes in 300ms.
-    await uploaded;
-    await waitForAttemptUpload();
+    const acknowledged = await uploaded;
+    await waitForAttemptUpload(acknowledged.request().postDataJSON().id);
     assert.equal(submissions.length, 1);
     assert.equal(submissions[0].review.kind, 'scheduled-review');
     assert.equal(submissions[0].review.templateId, 'witness-definition-variants');
@@ -313,20 +318,32 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     await review.getByText('Saved due summary', { exact: false }).waitFor();
     await review.getByRole('radio', { name: 'A witness', exact: true }).check();
     await review.getByRole('button', { name: 'Submit', exact: true }).click();
-    await page.waitForFunction(async () => {
+    const queued = await page.waitForFunction(async () => {
       const storage = await import('/src/storage.ts');
-      return (await storage.all('outbox')).some(
+      return (await storage.all('outbox')).find(
         (op) => op.kind === 'attempt' && op.data.review?.kind === 'focused-practice',
       );
     });
+    const { id: queuedID } = await queued.jsonValue();
     assert.equal(submissions.length, 1, 'Offline response was retained locally');
+    // sync() can return while a background sync is already busy. Observe this
+    // exact request's acknowledgment and confirmed record, not just queue size.
+    const reconnected = page.waitForResponse(
+      (response) =>
+        new URL(response.url()).pathname.endsWith('/attempts') &&
+        response.request().method() === 'POST' &&
+        response.request().postDataJSON().id === queuedID &&
+        response.ok(),
+    );
     apiOffline = false;
     await page.evaluate(async () => {
       const sync = await import('/src/sync.ts');
       await sync.sync();
     });
-    await waitForAttemptUpload();
+    await reconnected;
+    await waitForAttemptUpload(queuedID);
     assert.equal(submissions.length, 2);
+    assert.equal(submissions[1].id, queuedID, 'Reconnect uploads the retained attempt');
     assert.equal(submissions[1].review.kind, 'focused-practice');
     await overview();
     await page.setViewportSize({ width: 390, height: 844 });

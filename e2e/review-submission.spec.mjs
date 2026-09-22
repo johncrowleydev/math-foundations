@@ -319,16 +319,31 @@ try {
     draftSession.instances.every((i) => !i.question.assessment && !i.question.choice),
     'The draft-restoration family remains free response',
   );
-  await editor.fill('There exists an x for which P(x) is false.');
-  // A real blur pauses and saves the draft before navigating away.
+  const draftText = 'There exists an x for which P(x) is false.';
+  await editor.fill(draftText);
+  // Blur queues a save; a fixed delay does not establish that the IndexedDB
+  // write committed when another browser is consuming the runner's CPU.
   await page.evaluate(() => window.dispatchEvent(new Event('blur')));
-  await page.waitForTimeout(100);
+  await page.waitForFunction(
+    async ({ exercise, text }) => {
+      const { get } = await import('/src/storage.ts');
+      return (await get('drafts', exercise))?.text === text;
+    },
+    { exercise: draftSession.instances[0].exercise, text: draftText },
+  );
   await page.reload();
   await editor.waitFor();
-  assert.equal(await editor.innerText(), 'There exists an x for which P(x) is false.');
+  // CodeMirror can be visible before its controlled-value effect restores the
+  // hydrated draft. Wait for the observable value, then assert it exactly.
+  await page.waitForFunction(
+    (text) =>
+      document.querySelector('.review-page [aria-label="Answer editor"]')?.textContent === text,
+    draftText,
+  );
+  assert.equal(await editor.innerText(), draftText);
   await millisecondBoundary();
   const restored = await submit('Reloaded Regular draft', undefined);
-  assert.equal(restored.text, 'There exists an x for which P(x) is false.');
+  assert.equal(restored.text, draftText);
   assert.equal(errors.length, 0, errors.join('\n'));
   console.log(
     'Review submission UI passed: actual API grading, next-item timing, retry, rejected-attempt recovery, typed response, and restored draft.',

@@ -217,7 +217,9 @@ try {
     const error = await rejection.text();
     const saved = { ...submission, status: 'queued', grades: [], presentation: { question } };
     await page.goto(baseURL + '/#/practice/sets-and-set-operations/' + question.id);
-    await page.locator('.exercise').waitFor();
+    // Learn remains mounted but hidden beside Practice; target the saved answer's card.
+    const exerciseCard = page.locator(`article.exercise[data-exercise-key="${exercise}"]:visible`);
+    await exerciseCard.waitFor();
     await page.evaluate(
       async ({ saved, error }) => {
         const db = await new Promise((resolve, reject) => {
@@ -240,14 +242,14 @@ try {
       { saved, error },
     );
     await page.reload();
-    await page.getByRole('button', { name: 'Retry grading', exact: true }).waitFor();
+    await exerciseCard.getByRole('button', { name: 'Retry grading', exact: true }).waitFor();
     await page.screenshot({ path: join(screenshots, name + '-before.png'), fullPage: true });
     await writeFile(join(archive, originalVersion + '.json'), await readFile(historical));
     const acknowledgement = page.waitForResponse(
       (response) =>
         response.url().endsWith('/api/v1/attempts') && response.request().method() === 'POST',
     );
-    await page.getByRole('button', { name: 'Retry grading', exact: true }).click();
+    await exerciseCard.getByRole('button', { name: 'Retry grading', exact: true }).click();
     const accepted = await acknowledgement;
     assert.equal(
       accepted.status(),
@@ -255,7 +257,7 @@ try {
       'The real API accepts the original catalog after retention',
     );
     assert.deepEqual(accepted.request().postDataJSON(), submission, 'Original upload is unchanged');
-    await page
+    await exerciseCard
       .getByText('Synthetic grading completed against the original catalog.', { exact: true })
       .waitFor();
     const result = await (

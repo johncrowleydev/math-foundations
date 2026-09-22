@@ -6,10 +6,17 @@ import { comparableCatalog, comparableNotebook } from './compatibility.js';
 
 const baseline = JSON.parse(
   await readFile(new URL('./fixtures/published-compatibility.json', import.meta.url), 'utf8'),
-) as { commit: string; artifacts: Record<string, string> };
+) as {
+  commit: string;
+  artifacts: Record<string, string>;
+  inspectedUpdates?: Record<string, { sha256: string; commit: string; inspection: string }>;
+};
 
-for (const [artifact, expected] of Object.entries(baseline.artifacts)) {
-  test(`published compatibility preserves ${artifact} from ${baseline.commit}`, async () => {
+for (const [artifact, historical] of Object.entries(baseline.artifacts)) {
+  const update = baseline.inspectedUpdates?.[artifact];
+  const expected = update?.sha256 ?? historical;
+  const provenance = update ? `${update.commit} (${update.inspection})` : baseline.commit;
+  test(`published compatibility preserves ${artifact} from ${provenance}`, async () => {
     let bytes = await readFile('output/' + artifact);
     if (artifact === 'grading-catalog.json') {
       bytes = Buffer.from(JSON.stringify(comparableCatalog(JSON.parse(bytes.toString('utf8')))));

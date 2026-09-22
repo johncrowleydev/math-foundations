@@ -83,6 +83,7 @@ try {
     process.execPath,
     [
       join(root, 'web/node_modules/vite/bin/vite.js'),
+      'preview',
       '--host',
       '127.0.0.1',
       '--port',
@@ -405,10 +406,13 @@ try {
     'universal-quantification',
     'predicate-evaluation',
   ]);
+  // Clear-filter behavior is covered above. Replacing the search retains the
+  // same per-template checks without rendering all catalog results between them.
+  await clear();
+  const templateAuditStarted = performance.now();
   for (const source of authoredSource) {
     const item = catalog.items.find((item) => item.id === source.id);
     assert.ok(item, `${source.id} remains eligible in the effective catalog`);
-    await clear();
     await library.getByLabel('Search catalog', { exact: true }).fill(item.id);
     const rendered = library.locator(`[data-template-id="${item.id}"]`);
     await rendered.locator('summary').click();
@@ -457,13 +461,19 @@ try {
       await contentScreenshot(example, rendered);
     }
   }
+  console.log(
+    `Inspected ${authoredSource.length} authored templates in ${((performance.now() - templateAuditStarted) / 1000).toFixed(1)}s`,
+  );
   const coverageAudit = {};
+  await clear();
+  await filtersOpen();
+  await library.getByRole('button', { name: 'Coverage', exact: true }).click();
+  const coverageAuditStarted = performance.now();
   for (const lesson of [...new Set(catalog.items.map((item) => item.lesson))].sort()) {
-    await clear();
     await filtersOpen();
     await library.getByLabel(/^Lesson/).selectOption(lesson);
+    await library.getByLabel(/^Concept/).selectOption('');
     await expectCount(catalog.items.filter((item) => item.lesson === lesson).length);
-    await library.getByRole('button', { name: 'Coverage', exact: true }).click();
     const rows = library.locator('.library-coverage-table tbody tr');
     coverageAudit[lesson] = {
       count: await count.innerText(),
@@ -487,6 +497,9 @@ try {
       await contentScreenshot(lesson + '-coverage', library.locator('.library-coverage'));
     }
   }
+  console.log(
+    `Inspected ${Object.keys(coverageAudit).length} lesson coverage tables in ${((performance.now() - coverageAuditStarted) / 1000).toFixed(1)}s`,
+  );
   await writeFile(join(auditDirectory, 'coverage.json'), JSON.stringify(coverageAudit, null, 2));
   await clear();
   await library.getByRole('button', { name: 'Templates', exact: true }).click();

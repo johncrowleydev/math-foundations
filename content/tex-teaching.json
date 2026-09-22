@@ -403,7 +403,7 @@
       "section": "power-sets",
       "entries": ["tex-command-cdot", "tex-command-cdots", "tex-command-mathcal"],
       "status": "verified",
-      "hash": "b18e6b91656e9932fd2368c7dd4945fd251dc04dd00bb3888c801be25f471b71"
+      "hash": "85f998763123b105b1e7e26be78e5866760aec4653c3f05b59913a20daf0d9ec"
     },
     {
       "id": "typing-sets-and-set-operations-ordered-pairs-and-cartesian-products",
@@ -3422,8 +3422,9 @@
         "tex-formatting-11"
       ],
       "status": "verified",
-      "hash": "daad87c8152def7737c78f9581833ce1c8e823d4bea34b257ee4143c17172a2f",
-      "inspection": "Manually inspected prompt, all options and explanation. Quantifiers, membership, mathbb single-letter arguments and spacing are taught before these checks."
+      "hash": "8007a98257826b2a438a9a0f7b3745077c7d7c5711421a267360fcb0c5499835",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Existential witness 11 satisfies the domain and inequality; exists, in, mathbb and thin-space commands are already taught. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "predicates-and-quantifiers",
@@ -3437,8 +3438,9 @@
         "tex-formatting-11"
       ],
       "status": "verified",
-      "hash": "82b0e1dab09501fa4d3535f173390538e9656269e3e3f6a3da8e3cbc987ed65a",
-      "inspection": "Manually inspected prompt, all options and explanation. Quantifiers, membership, mathbb single-letter arguments and spacing are taught before these checks."
+      "hash": "e2f9f7078fda336085bde8ba302c058c92c8ec2bf01500e889c9cd2090773d47",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. The response y=x+1 may depend on x; forall/exists order, membership and spacing are already taught. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "predicates-and-quantifiers",
@@ -5065,8 +5067,9 @@
         "tex-groups"
       ],
       "status": "verified",
-      "hash": "aa36519c08e033931b3bde4d2a3940a33f2af7ed1ebc9a0e8f268529961a480a",
-      "inspection": "Read prompt, all choices and explanation. Escaped nested braces, membership/subset commands and empty-set notation are introduced before use."
+      "hash": "a3c5fae5fbf4e011bba677757e4484a342b06eda577207fa1485c2f089e04a89",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. The singleton is a subset, not an element, of the two-number set; escaped braces, membership and subseteq are already taught. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "sets-and-set-operations",
@@ -5079,8 +5082,9 @@
         "tex-groups"
       ],
       "status": "verified",
-      "hash": "6b5455b31047f855f878977e31db9fc1877945e63b0a448159b5fd1cc04f351a",
-      "inspection": "Read prompt, all choices and explanation. Escaped nested braces, membership/subset commands and empty-set notation are introduced before use."
+      "hash": "287119e34a97432e8e319a1e89a62a7dd86eb9b878423aa145ddb692633134c2",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. All four subsets are listed once; escaped braces and varnothing are already taught. Also inspected the restored bit-mask table: 00, 10, 01, 11 encode precisely these four subsets. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "sets-and-set-operations",
@@ -7082,8 +7086,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "46e0a1e17bd5b520a8bb18430535eb0d253fbec7b4ba00dafdc39828acb05a16",
-      "inspection": "Manually read prompt, choices and explanation; floor delimiters and negative numbers have prior syntax teaching, while property classification remains a selection."
+      "hash": "8f7d316ed4c4d7b1388be5bf94f0d1a17a434237d5e0c2ca7961b2b36962c899",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Distinct outputs give injectivity while a missed codomain element rules out surjectivity; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "functions",
@@ -16894,8 +16899,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "8b57a58036a651ce452550aad91baf26c8af65fe53526b23f6411e659584a9c5",
-      "inspection": "Read every choice, instruction and revealed explanation. Existing syntax teaching covers all displayed notation; selection does not require a typed answer."
+      "hash": "b6fc014216d5d935daae3b0161df782b19736ee6b11d7d7b797f42eb9ae71790",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Thirteen people in twelve months guarantee at least two in a month, not exactly two; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "combinatorics",
@@ -19069,8 +19075,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "1272ef946ec514be9e9992f2287562b8f6e74d9f18c9625a4ffca9370b2e2032",
-      "inspection": "Read all choices and revealed explanations. Degree and route terminology and asymptotic symbols have prior teaching; multiple-choice taps remain selections."
+      "hash": "4ba4561f5760576e135d496150cb9236dbedb2b5af312b439938faaad784383f",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Each undirected edge contributes at both endpoints; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "graph-theory",
@@ -19078,8 +19085,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "42a54e6add9f41a5bdcac28b8d7704f8d561e9dbe3adf0ddec63e6dd4daf1a38",
-      "inspection": "Read all choices and revealed explanations. Degree and route terminology and asymptotic symbols have prior teaching; multiple-choice taps remain selections."
+      "hash": "b62051e16d2f7521d3398a5a99e000596fd943cc6a4a681d6fd581da964f2090",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. An Euler trail covers edges once; the Hamiltonian alternative concerns vertices; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "graph-theory",
@@ -20008,8 +20016,9 @@
       "kind": "quick",
       "requires": ["tex-big-o"],
       "status": "verified",
-      "hash": "0748987a5fe502887df24254410b2a0290538fd35ac2bd85f3ab04eaa29f73d7",
-      "inspection": "Read all choices and revealed explanations. Degree and route terminology and asymptotic symbols have prior teaching; multiple-choice taps remain selections."
+      "hash": "731d896f3c2ebf045c754ed501f0b5211749215e8b631b3751592157b8230ebb",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. One fixed positive constant must work beyond a fixed threshold; the existing big-O requirement covers the displayed notation. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "asymptotic-growth",
@@ -22864,8 +22873,9 @@
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "0bab918183159c04f4d01977946c9d91bb1d878ee56cfac9eb6a79ebcbadd361",
-      "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "b4e7d873f37fc7bb833708f6908a24f43f9c8c38345fcd12f8aac82d1a993a27",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. The zero vector has zero length and no direction and results from scaling by zero; the selection needs no typed TeX. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "linear-algebra-vectors",
@@ -24567,8 +24577,9 @@
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "1dc23c80d72931ed38307ca0ca7fb65f442bd295fc85c7e66955f64f13e66236",
-      "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 3; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "9b3218d1925ac9b326f9c0879f4799ea3e6580d30da1f0d254b3e722f0b082df",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Orthogonal nonzero vectors have zero dot product without requiring unit length; the selection needs no typed TeX. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "linear-algebra-matrices",
@@ -29209,8 +29220,9 @@
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "6e1765e3675220dde77ff21f584c6328c684d3f60d68b0ded6a5bf6988e36109",
-      "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "d6239cb0a354fecfa1478d8f2f9b737fa0e1abadecbfbcf530f5536ecc0bbf46",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Coefficient one on the zero vector supplies a nontrivial zero combination; the selection needs no typed TeX. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "linear-algebra-span",
@@ -35720,8 +35732,9 @@
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "fc71ede396a59bea5b98800800fcc3f843eb5b21084e8fa10d7943b85edb9081",
-      "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 1; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "01ca8a324fc0265173b89c6a28a76b754d400107c21aaac4061c416374a464f9",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Scaling an eigenvector by -2 reverses direction and doubles length; the selection needs no typed TeX. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "linear-algebra-eigenvalues",
@@ -37680,8 +37693,9 @@
       "kind": "quick",
       "requires": ["tex-groups"],
       "status": "verified",
-      "hash": "88f37827ead2d7b8e8a53359971555a24c04742cc956e9bab87cb0b49bfecee7",
-      "inspection": "2026-09-13 author reinspection: original question and worked explanation. Section 2; column/row layouts and aligned arithmetic remain valid response alternatives. Specialized norm, determinant, eigenvalue and SVD syntax is required only after its mathematical introduction. See docs/linear-algebra-audit.md for evidence and scope."
+      "hash": "c23ab59a94f0b715f1e9d437a97345352ff1738838fd08e9f2905b7fe1eb77df",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Singular values are nonnegative; orthogonal factors encode direction changes; the selection needs no typed TeX. See docs/audits/tex-baseline-2026-09-21.md.",
+      "inspectedAt": "2026-09-21"
     },
     {
       "lesson": "linear-algebra-svd",
@@ -37832,7 +37846,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "4e01e4d40bf5626ce1d1110adc85b22c09ef784c72f2d7fd9d677de37b32b205"
+      "hash": "d94d60d056d6c4a9f33978e19bba3d59451e181fd28f363d89195179c959c2cd",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Changing only the value at the approached input leaves the limit unchanged; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "calculus-limits-continuity",
@@ -38369,7 +38385,9 @@
       "kind": "quick",
       "requires": ["tex-superscripts"],
       "status": "verified",
-      "hash": "7e5e983dedf8d0e8df5155f1d02ce99885fb2e8080fae0371386f14d5005cd72"
+      "hash": "f00f262889e17ade8fd8a6bfec170374df715481f63d3ee65283065ba7f9d926",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. At a=2 and h=-0.1, the nearby input is 1.9 and the secant slope 4+h is 3.9; superscript syntax is already taught. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "calculus-derivatives",
@@ -45877,7 +45895,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "b8e75410e608b78a5fd70199064d8597d1b6341ddaf97c6991b8507e9773ce0c"
+      "hash": "e12df9b3c07fd5bc8d20d23250686bcbdb4ff9a7c35dcc97ce9e64fbef8226db",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. A bound throughout the interval controls the unknown intermediate derivative; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "calculus-power-series-taylor",
@@ -49765,7 +49785,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "f0c244d487d4b94aa63289631cda0d434a2d5bf126e323c3ffdba68202d9e3a7"
+      "hash": "b1c4d6b08b2751edcec7a43cc995981086faf2783d8d77df5e1b26999ea4ee4d",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. The intersection bounds are 0.3 and 0.6, so 0.2 is impossible; decimal inline math introduces no command. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "probability-statistics-probability-models-events",
@@ -50349,7 +50371,9 @@
       "kind": "quick",
       "requires": ["tex-command-mid"],
       "status": "verified",
-      "hash": "b7d8acc873ffb58aaaac7b8a6d64293eccdeb3471fe4ef40222509dea068f1d5"
+      "hash": "376bc3288f31dfac71ab1b278618c060e38aff898af60a754ee46a45c598ec4a",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. The conditioning event supplies denominator 25, giving 15/25; mid is already taught. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "probability-statistics-conditional-probability-independence",
@@ -51261,7 +51285,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "1c3ce7eba39a22ebb6ac4f0ac9c860bd5470807a9deb428672f4e3a6f9b6bfc5"
+      "hash": "711d450ff81a4ac1b3acb3cd92fdc487bb9d1eda36973a69adcd687d8da9428a",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. A value outside the stated support has zero probability; integer inline math introduces no command. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "probability-statistics-discrete-random-variables",
@@ -53557,7 +53583,9 @@
       "kind": "quick",
       "requires": ["tex-probability-statistics-capital-phi"],
       "status": "verified",
-      "hash": "59179ece463426e898cc44cc6f1b5edce7d8ce11aefdb3e53efcb7a6d5408a62"
+      "hash": "6a736a5701586fbe3ffd5226746349432cd4af944475063408f0c87911f89761",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. The right tail is one minus the normal CDF; capital Phi is already taught. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "probability-statistics-normal-distributions-transformations",
@@ -57409,7 +57437,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "d0b6c981e96fed63aaac8f3dc0e71d85ab3db33bb901b8f692b596109760acaa"
+      "hash": "647efa8cf9ec6b38f6ead6eedf01c4dadd76bafe57af90f7878f798e28e0927c",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Confidence describes repeated-sampling coverage of the procedure, not a posterior probability; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "probability-statistics-confidence-intervals",
@@ -58979,7 +59009,9 @@
       "kind": "quick",
       "requires": [],
       "status": "verified",
-      "hash": "7cf9ab0a80758d24a1b205f9dac4b51425b7bb3aa9e273f75df681613820cd2b"
+      "hash": "d8f9922b7f86a90f97f1a9b834eac7a33bd6d75fcb359d1870930818c5093289",
+      "inspectedAt": "2026-09-21",
+      "inspection": "Read prompt, all options and explanation after native MDX teaching metadata changed; only teachingHash differs from the previous inspected question. Fixed common Gaussian error variance makes coefficient likelihood maximization equivalent to minimizing SSE; this check contains no TeX commands. See docs/audits/tex-baseline-2026-09-21.md."
     },
     {
       "lesson": "probability-statistics-regression-interpretation",

@@ -185,7 +185,14 @@ const port = listener.address().port;
 await new Promise((resolve) => listener.close(resolve));
 const vite = spawn(
   process.execPath,
-  [join(root, 'web/node_modules/vite/bin/vite.js'), '--host', '127.0.0.1', '--port', String(port)],
+  [
+    join(root, 'web/node_modules/vite/bin/vite.js'),
+    'preview',
+    '--host',
+    '127.0.0.1',
+    '--port',
+    String(port),
+  ],
   {
     cwd: join(root, 'web'),
     stdio: 'ignore',
@@ -209,7 +216,12 @@ try {
     headless: true,
     args: ['--no-sandbox'],
   });
-  const context = await browser.newContext({ viewport: { width: 1280, height: 960 } });
+  const context = await browser.newContext({
+    viewport: { width: 1280, height: 960 },
+    // This synthetic notebook is intercepted below; PWA caching is covered by
+    // the real-content deterministic and offline suites.
+    serviceWorkers: 'block',
+  });
   const page = await context.newPage();
   const errors = [];
   const submitted = [];

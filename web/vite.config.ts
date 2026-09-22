@@ -26,6 +26,7 @@ const proxy: Record<string, ProxyOptions> = {
   },
 };
 export default defineConfig({
+  cacheDir: process.env.FOUNDATIONS_VITE_CACHE_DIR,
   define: { __LESSON_FILES__: JSON.stringify(lessonFiles) },
   resolve: { dedupe: ['react', 'react-dom'] },
   plugins: [
