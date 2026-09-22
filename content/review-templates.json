@@ -45932,13 +45932,13 @@
     "inputCapabilities": ["short-text"],
     "cognitiveLevel": "recall",
     "activationConcepts": ["power-set"],
-    "sourceIds": ["review-df-set-basics"],
+    "sourceIds": ["review-df-power-set"],
     "question": {
       "id": 1,
       "section": "Review",
-      "instructions": "Enter the mathematical term.",
+      "instructions": "Enter the mathematical term or notation.",
       "prompt": "What is the set of all subsets of $A$ called?",
-      "answer": "Power set.",
+      "answer": "Power set, denoted $\\mathcal{P}(A)$.",
       "assessment": {
         "version": 1,
         "inputs": [
@@ -45970,7 +45970,19 @@
                 "an power set of A",
                 "an power set of A.",
                 "the power set of A",
-                "the power set of A."
+                "the power set of A.",
+                "P(A)",
+                "$P(A)$",
+                "$$P(A)$$",
+                "\\mathcal{P}(A)",
+                "$\\mathcal{P}(A)$",
+                "$$\\mathcal{P}(A)$$",
+                "\\mathcal P(A)",
+                "$\\mathcal P(A)$",
+                "$$\\mathcal P(A)$$",
+                "𝒫(A)",
+                "$𝒫(A)$",
+                "$$𝒫(A)$$"
               ]
             },
             "description": "Name the mathematical term described in the prompt.",
@@ -45978,7 +45990,7 @@
           }
         ],
         "feedback": {
-          "correct": "Power set.",
+          "correct": "Power set, denoted $\\mathcal{P}(A)$.",
           "incorrect": "Recall the precise term for the stated definition."
         },
         "evidence": {

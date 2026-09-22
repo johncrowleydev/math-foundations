@@ -7,7 +7,11 @@ import { gradingVersionFor } from '../../tools/content/grading-version.js';
 const readJson = async (path: string) => JSON.parse(await readFile(path, 'utf8'));
 const compatibility = await readJson('tools/content/compatibility/grading-version.json');
 
-test('the proven MDX representation preserves the version of saved offline submissions', async () => {
+test('the historical MDX representation preserves the version of saved offline submissions', () => {
+  assert.equal(gradingVersionFor(compatibility.representationHash), compatibility.gradingVersion);
+});
+
+test('the current curriculum publishes its own grading version after the answer correction', async () => {
   const notebook = await readJson('output/content/notebook.json');
   const evidence = await readJson('output/content/learning-evidence.json');
   const reviewTemplates = await readJson('output/content/review-templates.json');
@@ -16,9 +20,9 @@ test('the proven MDX representation preserves the version of saved offline submi
     .update(JSON.stringify({ publishedLessons: notebook.lessons, evidence, reviewTemplates }))
     .digest('hex');
 
-  assert.equal(representationHash, compatibility.representationHash);
-  assert.equal(gradingVersionFor(representationHash), compatibility.gradingVersion);
-  assert.equal(version.version, compatibility.gradingVersion);
+  assert.notEqual(representationHash, compatibility.representationHash);
+  assert.equal(gradingVersionFor(representationHash), representationHash);
+  assert.equal(version.version, representationHash);
 });
 
 test('changed curriculum receives its own version instead of the compatibility alias', () => {
