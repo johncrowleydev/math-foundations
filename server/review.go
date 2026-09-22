@@ -157,7 +157,43 @@ func (t ReviewTemplate) questionEvidence(q map[string]any) AssessmentEvidence {
 	if q["choice"] != nil {
 		return AssessmentEvidence{Level: "recognition", InteractionCost: "low", InputCapabilities: []string{"tap"}}
 	}
-	return AssessmentEvidence{Level: t.EvidenceLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities}
+	level := t.EvidenceLevel
+	if strings.HasPrefix(t.SourceTarget, "exercise:") {
+		// A lesson question asks for the same work regardless of which target
+		// selected it. Keep its actual depth separate from that target's required
+		// depth, so selecting "transform" does not discard authored justification.
+		var meta reviewAnalytics
+		json.Unmarshal(t.Analytics, &meta)
+		for _, skill := range meta.Skills {
+			if skill.Role == "primary" && depth(skillDepth(skill.Skill)) > depth(level) {
+				level = skillDepth(skill.Skill)
+			}
+		}
+	}
+	return AssessmentEvidence{Level: level, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities}
+}
+
+func (t ReviewTemplate) matchesConcept(meta reviewAnalytics) bool {
+	for _, c := range meta.Concepts {
+		if c.Role == "primary" && (c.Concept == t.Concept || contains(t.ActivationConcepts, c.Concept)) {
+			return true
+		}
+	}
+	return false
+}
+
+// This is shared by evidence replay and planning. Related concepts, supporting
+// tags and independently authored objectives are not interchangeable evidence.
+func (t ReviewTemplate) matchesEvidence(meta reviewAnalytics) bool {
+	if t.Objective != "" || !t.matchesConcept(meta) {
+		return false
+	}
+	for _, sk := range meta.Skills {
+		if sk.Role == "primary" && sk.Skill == t.Skill {
+			return true
+		}
+	}
+	return false
 }
 func quickEvidence(e AssessmentEvidence) bool {
 	if e.InteractionCost != "low" || len(e.InputCapabilities) == 0 {
@@ -527,7 +563,12 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 			observedDepth = 0
 			var instance ReviewInstance
 			if reviewLoad(tx, "review-instance/"+a.Review.InstanceID, &instance) == nil && instance.EvidenceLevel != "" {
-				observedDepth = depth(instance.EvidenceLevel)
+				// Older lesson-backed instances stored the selected target's depth.
+				// Use their frozen question and primary skills to recover the work
+				// actually requested, without rewriting history or consulting today's
+				// question. Choice/structured evidence still takes precedence.
+				issued := ReviewTemplate{SourceTarget: instance.SourceTarget, EvidenceLevel: instance.EvidenceLevel, Analytics: instance.Analytics}
+				observedDepth = depth(issued.questionEvidence(instance.Question).Level)
 			}
 			for _, t := range byTarget[a.Review.key()] {
 				if required(t) <= observedDepth {
@@ -536,26 +577,17 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 			}
 		}
 		for _, t := range templates {
-			matched := false
-			for _, c := range meta.Concepts {
-				if c.Role == "primary" && (c.Concept == t.Concept || contains(t.ActivationConcepts, c.Concept)) {
-					matched = true
-				}
-			}
-			if !matched {
+			if !t.matchesConcept(meta) {
 				continue
 			}
 			if t.Objective != "" {
 				activate(t, a.Submitted)
 				continue
 			}
-			for _, sk := range meta.Skills {
-				if sk.Role == "primary" && sk.Skill == t.Skill {
-					activate(t, a.Submitted)
-					if required(t) <= observedDepth {
-						observed = append(observed, t)
-					}
-					break
+			if t.matchesEvidence(meta) {
+				activate(t, a.Submitted)
+				if required(t) <= observedDepth {
+					observed = append(observed, t)
 				}
 			}
 		}
@@ -697,11 +729,10 @@ func instantiateReview(t ReviewTemplate, s ReviewState, kind, id, seed, version 
 	} else {
 		delete(teaching, "assessment")
 	}
-	if assessment := assessmentFromQuestion(question); assessment != nil {
-		t.EvidenceLevel = assessment.Evidence.Level
-		t.InteractionCost = assessment.Evidence.InteractionCost
-		t.InputCapabilities = assessment.Evidence.InputCapabilities
-	}
+	evidence := t.questionEvidence(question)
+	t.EvidenceLevel = evidence.Level
+	t.InteractionCost = evidence.InteractionCost
+	t.InputCapabilities = evidence.InputCapabilities
 	teaching["analytics"] = t.Analytics
 	teachingRaw, _ := json.Marshal(teaching)
 	return ReviewInstance{EvidenceLevel: t.EvidenceLevel, CognitiveLevel: t.CognitiveLevel, InteractionCost: t.InteractionCost, InputCapabilities: t.InputCapabilities, SourceTarget: t.sourceTarget(), ID: id, Exercise: "review-" + id, Lesson: t.Lesson, Question: question, Context: context, Analytics: t.Analytics, ContentVersion: version, Teaching: teachingRaw}
@@ -808,6 +839,9 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 	previous := ""
 	usedSources := map[string]bool{}
 	usedQuestions := map[string]bool{}
+	coverage := map[string]map[string]bool{}
+	covered := map[string]int{}
+	activations := map[string]ReviewState{}
 	for len(keys) > 0 && len(session.Instances) < 30 {
 		pick := 0
 		for i, k := range keys {
@@ -818,6 +852,9 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		}
 		key := keys[pick]
 		keys = append(keys[:pick], keys[pick+1:]...)
+		if covered[key] > 0 {
+			continue
+		}
 		candidates := grouped[key]
 		seed := session.ID + ":" + key
 		hash := sha256.Sum256([]byte(seed))
@@ -845,16 +882,56 @@ func (g *Grading) planReview(req ReviewSessionRequest, now int64) (ReviewSession
 		s, active := states[key]
 		if !active {
 			s = ReviewState{ReviewTarget: t.ReviewTarget, ID: key, ActivatedAt: now, DueAt: now, Reason: "Active practice requested", Quick: t.quick(), EvidenceLevel: t.EvidenceLevel}
-			if e = reviewPut(tx, "review-activation/"+key, map[string]any{"target": t.ReviewTarget, "at": now}); e != nil {
+			activations[key] = s
+		}
+		instance := instantiateReview(t, s, req.Kind, newID(), seed, g.catalog.Version, now)
+		var meta reviewAnalytics
+		json.Unmarshal(instance.Analytics, &meta)
+		coverage[instance.ID] = map[string]bool{}
+		for target, candidates := range grouped {
+			for _, candidate := range candidates {
+				if depth(instance.EvidenceLevel) >= max(depth(candidate.EvidenceLevel), depth(states[target].EvidenceLevel)) && (target == key || candidate.matchesEvidence(meta)) {
+					coverage[instance.ID][target] = true
+					covered[target]++
+					break
+				}
+			}
+		}
+		session.Instances = append(session.Instances, instance)
+		// A later reasoning task can subsume an earlier production task. Remove
+		// it only when every target it would assess still has planned coverage.
+		// Planning is not evidence: persist only the final retained assignments.
+		for i := 0; i < len(session.Instances); {
+			planned := session.Instances[i]
+			redundant := len(coverage[planned.ID]) > 0
+			for target := range coverage[planned.ID] {
+				if covered[target] < 2 {
+					redundant = false
+					break
+				}
+			}
+			if redundant {
+				for target := range coverage[planned.ID] {
+					covered[target]--
+				}
+				delete(coverage, planned.ID)
+				session.Instances = append(session.Instances[:i], session.Instances[i+1:]...)
+			} else {
+				i++
+			}
+		}
+		previous = t.Concept
+	}
+	for _, instance := range session.Instances {
+		key := instance.Context.key()
+		if state, activate := activations[key]; activate {
+			if e = reviewPut(tx, "review-activation/"+key, map[string]any{"target": instance.Context.ReviewTarget, "at": now}); e != nil {
 				return session, e
 			}
-			if e = reviewPut(tx, "review-state/"+key, s); e != nil {
+			if e = reviewPut(tx, "review-state/"+key, state); e != nil {
 				return session, e
 			}
 		}
-		instance := instantiateReview(t, s, req.Kind, newID(), seed, g.catalog.Version, now)
-		session.Instances = append(session.Instances, instance)
-		previous = t.Concept
 		if e = reviewPut(tx, "review-instance/"+instance.ID, instance); e != nil {
 			return session, e
 		}
