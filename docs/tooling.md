@@ -56,7 +56,7 @@ The runner discovers `e2e/*.spec.ts` and `*.spec.mjs` and runs two specs concurr
 Pass spec names without extensions to select checks. `E2E_WORKERS` accepts integers
 from 1 to 4; use 1 for serial troubleshooting. `E2E_SHARD=1/2` or `2/2` selects a
 disjoint half of the same ordered discovery list. Specs are ordered using measured
-CI durations so each shard starts its longest checks first. Every selected spec
+durations so each shard starts its longest checks first. Every selected spec
 runs even if another fails.
 
 The runner uses the production React runtime while retaining Vite source modules
