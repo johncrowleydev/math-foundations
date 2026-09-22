@@ -8,6 +8,9 @@ import (
 )
 
 func validPayload(m Mutation) bool {
+	if m.IfAbsent && m.Key != "preference/review-budget-minutes" {
+		return false
+	}
 	var p map[string]json.RawMessage
 	if json.Unmarshal(m.Payload, &p) != nil || p == nil {
 		return false
@@ -73,6 +76,10 @@ func validPayload(m Mutation) bool {
 		var revealed bool
 		return p["choice"] != nil && p["revealed"] != nil && json.Unmarshal(p["choice"], &choice) == nil && choice >= -1 && json.Unmarshal(p["revealed"], &revealed) == nil
 	case "preference":
+		if m.Key == "preference/review-budget-minutes" {
+			var minutes int
+			return p["value"] != nil && json.Unmarshal(p["value"], &minutes) == nil && minutes >= 5 && minutes <= 60
+		}
 		var b bool
 		return strings.HasPrefix(m.Key, "preference/tex:visible:v2:") && p["value"] != nil && json.Unmarshal(p["value"], &b) == nil
 	case "practice":
