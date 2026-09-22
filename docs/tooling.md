@@ -55,8 +55,13 @@ npm run test:e2e -- mdx sources offline
 The runner discovers `e2e/*.spec.ts` and `*.spec.mjs` and runs two specs concurrently.
 Pass spec names without extensions to select checks. `E2E_WORKERS` accepts integers
 from 1 to 4; use 1 for serial troubleshooting. `E2E_SHARD=1/2` or `2/2` selects a
-disjoint half of the same ordered discovery list. Every selected spec runs even
-if another fails.
+disjoint half of the same ordered discovery list. Specs are ordered using measured
+durations so each shard starts its longest checks first. Every selected spec
+runs even if another fails.
+
+The runner uses the production React runtime while retaining Vite source modules
+for fixture setup. Direct spec invocations use the default development runtime
+unless `NODE_ENV=production` is set.
 
 Checks use separate loopback ports, browser contexts, temporary Go databases,
 screenshot directories and Vite caches, then clean up their processes. They use
@@ -130,7 +135,8 @@ pull request and main push:
   grading catalog and formula inventory.
 - **unit**, **web**, **verification**, and **go** consume that build concurrently:
   root tests/curriculum/TeX audits, production PWA/client tests, independent Python
-  verification, and Go race tests.
+  verification, and Go race tests. A shared published-catalog fixture decodes the
+  large artifact once and makes isolated copies for Go race tests.
 - **e2e** consumes both curriculum and production web artifacts across two shards,
   with two isolated workers each. Both shards finish even if one fails.
 

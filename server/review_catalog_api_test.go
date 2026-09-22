@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
-	"os"
 	"reflect"
 	"strings"
 	"testing"
@@ -249,17 +248,8 @@ func TestReviewCatalogHTTPErrorsAndEmptyCatalog(t *testing.T) {
 }
 
 func TestPublishedReviewCatalogHTTP(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build to test the published catalog")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
 	g := reviewFixture(t)
-	if err = json.Unmarshal(raw, &g.catalog); err != nil {
-		t.Fatal(err)
-	}
+	g.catalog = publishedCatalog(t)
 	w := call(g.server, "GET", "/api/v1/review/catalog", nil, true)
 	var catalog ReviewCatalog
 	if w.Code != http.StatusOK || json.Unmarshal(w.Body.Bytes(), &catalog) != nil {
