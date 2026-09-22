@@ -69,10 +69,10 @@ verified by SHA-256. Grading and Review use their dedicated server routes.
 ## GitHub Actions deployment
 
 Run **Deploy Foundations** from the Actions tab on `main`, or use
-`gh workflow run deploy.yml --ref main`. First wait for **Foundations checks**
-to pass for the latest `main` commit. Deployments are manual, serialized, and
-refuse branch builds, commits without successful CI, and commits superseded
-on `main` before upload.
+`gh workflow run deploy.yml --ref main`. Deployment starts immediately without
+waiting for **Foundations checks**. CI runs independently. Deployments are manual,
+serialized, and refuse branch builds and commits superseded on `main` before
+upload.
 
 The `production` environment uses repository secrets `DEPLOY_SSH_KEY` (a
 dedicated deployment SSH private key) and `DEPLOY_KNOWN_HOSTS` (the verified
