@@ -54736,6 +54736,418 @@
     ]
   },
   {
+    "id": "sets-commutative-law-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-identities",
+    "skill": "recall",
+    "objective": "commutative-law-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-identities"],
+    "sourceIds": ["review-efficiency-set-laws"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the law.",
+      "prompt": "$A\\cup B=B\\cup A$ expresses which law?",
+      "answer": "Commutativity: swapping the two sets leaves the result unchanged.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "Commutative law.",
+            "feedback": "It exchanges the order of the operands."
+          },
+          {
+            "id": "b",
+            "text": "Associative law.",
+            "feedback": "Associativity changes grouping, not order."
+          },
+          {
+            "id": "c",
+            "text": "Idempotent law.",
+            "feedback": "Idempotence concerns repeating the same set."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-associative-law-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-identities",
+    "skill": "recall",
+    "objective": "associative-law-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-identities"],
+    "sourceIds": ["review-efficiency-set-laws"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the meaning.",
+      "prompt": "The associative law for intersection says that:",
+      "answer": "Regrouping repeated intersections leaves the resulting set unchanged.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "Every union can be replaced by an intersection.",
+            "feedback": "Those operations have different membership conditions."
+          },
+          {
+            "id": "b",
+            "text": "$(A\\cap B)\\cap C=A\\cap(B\\cap C)$.",
+            "feedback": "The order stays the same while the parentheses move."
+          },
+          {
+            "id": "c",
+            "text": "$A\\cap B=B\\cap A$.",
+            "feedback": "This is the commutative law, which swaps operands."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-idempotent-law-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-identities",
+    "skill": "recall",
+    "objective": "idempotent-law-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-identities"],
+    "sourceIds": ["review-efficiency-set-laws"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the example.",
+      "prompt": "Which equality is an idempotent law?",
+      "answer": "$A\\cup A=A$: repeating the same set does not add new members.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "$A\\cup\\varnothing=A$.",
+            "feedback": "This is an identity law: union with the empty set changes nothing."
+          },
+          { "id": "b", "text": "$A\\cup B=B\\cup A$.", "feedback": "This is commutativity." },
+          {
+            "id": "c",
+            "text": "$A\\cup A=A$.",
+            "feedback": "Idempotence concerns using the same set twice."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-identity-law-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-identities",
+    "skill": "recall",
+    "objective": "identity-law-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-identities"],
+    "sourceIds": ["review-efficiency-set-laws"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Complete the identity law.",
+      "prompt": "For every $A\\subseteq U$, intersection with which set leaves $A$ unchanged?",
+      "answer": "The universe U: every element of A already belongs to U, so A intersect U equals A.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "$U$.",
+            "feedback": "The universe is the identity for intersection among its subsets."
+          },
+          {
+            "id": "b",
+            "text": "$\\varnothing$.",
+            "feedback": "Intersecting with the empty set gives the empty set."
+          },
+          { "id": "c", "text": "$A^c$.", "feedback": "A and its complement are disjoint." }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-absorption-law-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-identities",
+    "skill": "recall",
+    "objective": "absorption-law-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-identities"],
+    "sourceIds": ["review-efficiency-set-laws"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the missing set.",
+      "prompt": "The absorption law simplifies $A\\cup(A\\cap B)$ to:",
+      "answer": "A: every member of the intersection was already in A.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "$B$.",
+            "feedback": "The expression includes all of A, including members outside B."
+          },
+          {
+            "id": "b",
+            "text": "$A$.",
+            "feedback": "Union with a subset of A adds no new members."
+          },
+          {
+            "id": "c",
+            "text": "$A\\cap B$.",
+            "feedback": "This would lose members of A outside B."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-distributive-law-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-identities",
+    "skill": "recall",
+    "objective": "distributive-law-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-identities"],
+    "sourceIds": ["review-efficiency-set-laws"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Complete the distributive law.",
+      "prompt": "$A\\cap(B\\cup C)$ equals:",
+      "answer": "$(A\\cap B)\\cup(A\\cap C)$: membership in A is required in either branch.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "$(A\\cap B)\\cap C$.",
+            "feedback": "This requires all three memberships instead of either B or C."
+          },
+          {
+            "id": "b",
+            "text": "$(A\\cap B)\\cup C$.",
+            "feedback": "This wrongly admits members of C outside A."
+          },
+          {
+            "id": "c",
+            "text": "$(A\\cap B)\\cup(A\\cap C)$.",
+            "feedback": "Distribute the requirement to belong to A across both alternatives."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-de-morgan-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-identities",
+    "skill": "recall",
+    "objective": "set-de-morgan-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-identities"],
+    "sourceIds": ["review-efficiency-set-laws"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the equivalent description; all complements use the same universe.",
+      "prompt": "De Morgan's law rewrites $(A\\cup B)^c$ as:",
+      "answer": "$A^c\\cap B^c$: outside the union means outside both sets.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "$A^c\\cap B^c$.",
+            "feedback": "Negating either-set membership requires both exclusions."
+          },
+          {
+            "id": "b",
+            "text": "$A^c\\cup B^c$.",
+            "feedback": "This is the complement of the intersection."
+          },
+          {
+            "id": "c",
+            "text": "$A\\cap B$.",
+            "feedback": "These elements are inside both sets, not outside their union."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-hypotheses-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "proof-obligations",
+    "skill": "recall",
+    "objective": "hypothesis-conclusion-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["proof-obligations"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Distinguish the roles.",
+      "prompt": "In a direct proof of $P\\to Q$, which is the hypothesis and which is the conclusion?",
+      "answer": "P is assumed as the hypothesis; Q is the conclusion to establish.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "Assume $Q$ and establish $P$.",
+            "feedback": "That attempts the converse."
+          },
+          {
+            "id": "b",
+            "text": "Assume $P$ and establish $Q$.",
+            "feedback": "The starting condition and the target play different roles."
+          },
+          {
+            "id": "c",
+            "text": "Assume both $P$ and $Q$.",
+            "feedback": "Assuming the conclusion leaves the required implication unproved."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-linear-combination-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "divisibility",
+    "skill": "recall",
+    "objective": "integer-linear-combination-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["divisibility"],
+    "sourceIds": ["review-efficiency-proof-methods"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Complete the definition.",
+      "prompt": "An integer linear combination of integers $a,b$ has form $ra+sb$, where:",
+      "answer": "r and s are integers, including negative values and zero.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "$r,s$ must be positive integers.",
+            "feedback": "Negative and zero coefficients are also permitted."
+          },
+          {
+            "id": "b",
+            "text": "$r,s$ may be arbitrary real numbers.",
+            "feedback": "The word integer restricts the coefficients."
+          },
+          {
+            "id": "c",
+            "text": "$r,s$ are integers.",
+            "feedback": "This keeps integer multiples and their sum in the integers."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-theorem-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "proof-obligations",
+    "skill": "recall",
+    "objective": "theorem-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["proof-obligations"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the meaning.",
+      "prompt": "A theorem is:",
+      "answer": "A mathematical statement established by proof.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "A statement established by proof.",
+            "feedback": "Its conclusion follows from its stated assumptions."
+          },
+          {
+            "id": "b",
+            "text": "A statement supported only by many examples.",
+            "feedback": "Examples can suggest a claim without establishing it in general."
+          },
+          {
+            "id": "c",
+            "text": "A definition introducing the meaning of a word.",
+            "feedback": "A definition fixes meaning; a theorem establishes a claim."
+          }
+        ]
+      }
+    }
+  },
+  {
     "id": "sets-bit-mask-retrieval",
     "family": "fixed",
     "lesson": "sets-and-set-operations",

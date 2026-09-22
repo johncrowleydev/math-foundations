@@ -2345,14 +2345,14 @@
       "source": "proof",
       "locator": "§1.1 p. 6; §1.9 p. 30; §§4.1–4.2 pp. 114–116",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=126",
-      "supports": "Rational representation, closure under arithmetic, supporting lemmas, parity, divisibility, primality and greatest common divisor. The gcd domain excludes the both-zero case. Original prompts and contrasting cases were independently checked.",
+      "supports": "Rational representation, closure under arithmetic, supporting lemmas, parity, divisibility, primality and greatest common divisor. The gcd domain excludes the both-zero case. Original prompts and contrasting cases were independently checked. Includes the theorem and hypothesis/conclusion terminology in §4.1.",
       "checked": "2026-09-21"
     },
     "review-efficiency-proof-methods": {
       "source": "proof",
       "locator": "§4.3 pp. 118–123; §4.4 p. 124; §7.1 p. 147; §7.3 pp. 150–153",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=130",
-      "supports": "Direct proof derives the target from independent assumptions; backward exploration must be justified in the forward proof. Exhaustive cases, both directions for biconditionals, verified existence witnesses, and uniqueness. Original strategy recognition is distinct from proof construction.",
+      "supports": "Direct proof derives the target from independent assumptions; backward exploration must be justified in the forward proof. Exhaustive cases, both directions for biconditionals, verified existence witnesses, and uniqueness. Original strategy recognition is distinct from proof construction. The integer linear combinations in §7.3 use integer coefficients.",
       "checked": "2026-09-21"
     },
     "review-efficiency-number-proof": {
@@ -2360,6 +2360,13 @@
       "locator": "§1.9 p. 30; §4.2 p. 116; §6.1 pp. 139–140",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=151",
       "supports": "The well-ordering property for positive integers, gcd and reduced fractions in irrationality proofs. Original lowest-terms and well-ordering distinctions.",
+      "checked": "2026-09-21"
+    },
+    "review-efficiency-set-laws": {
+      "source": "lerma-discrete",
+      "locator": "§2.1.5, Properties of Sets, pp. 24–25",
+      "url": "https://mlerma54.github.io/courses/cs310/notes/dm-all.pdf#page=24",
+      "supports": "Named associative, commutative, distributive, identity, idempotent, absorption and De Morgan laws. Original recall prompts and misconception feedback; the curriculum uses superscript c rather than an overbar for complement.",
       "checked": "2026-09-21"
     }
   },
@@ -6998,6 +7005,46 @@
     "proof-uniqueness-skeleton-retrieval": {
       "reviewedContentHash": "d015e489e38f7c285cfaab6b51a562bf5348afd3738223b8fec9840f9a59cfc1",
       "sources": ["review-efficiency-proof-methods"]
+    },
+    "sets-commutative-law-retrieval": {
+      "reviewedContentHash": "1f3a2fe484de16564419808ffc820f2e5ed674b1e2d75a21ac63bd9c1671518f",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-associative-law-retrieval": {
+      "reviewedContentHash": "7c005e9b0aa2e2b45167f64cc0287c2e10fbdf9c3e0014cc11f4b75e61399fc4",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-idempotent-law-retrieval": {
+      "reviewedContentHash": "3857677bbb1c6fab48c47c96c7824e8adbdb649022ba8153d11a4b76f2257f33",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-identity-law-retrieval": {
+      "reviewedContentHash": "a384ab426f504086d981137a20c2811c4a0cee62cceb7942e685374d87f48d52",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-absorption-law-retrieval": {
+      "reviewedContentHash": "de624991ca385e069871bfe769d8cc5d27bba28a0c01ca5d01ff07346fefac3c",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-distributive-law-retrieval": {
+      "reviewedContentHash": "aaff1d1003d6e13eae5d25da50790d1edb8daf5a39577c08695b4fd4d00cabe2",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "sets-de-morgan-retrieval": {
+      "reviewedContentHash": "40d5cc8db50ca228a81b588700df6d3c35c4bce6257918c80de7edde1a604225",
+      "sources": ["review-efficiency-set-laws"]
+    },
+    "proof-hypotheses-retrieval": {
+      "reviewedContentHash": "6c61a42c1e23df61049065a76acfe7ac906081826f6909be669d4ad6784cfaf2",
+      "sources": ["review-efficiency-proof-definitions"]
+    },
+    "proof-linear-combination-retrieval": {
+      "reviewedContentHash": "4bf31508861fbda85ba26ea44669ef3759aa5ec02c20920fe8d642b982723743",
+      "sources": ["review-efficiency-proof-methods"]
+    },
+    "proof-theorem-retrieval": {
+      "reviewedContentHash": "79a7f17bbdb0888a5b973477c23f59764b9fbeeb4b96593326ed85c387774b80",
+      "sources": ["review-efficiency-proof-definitions"]
     }
   },
   "reviewVariants": {

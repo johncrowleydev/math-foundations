@@ -4,7 +4,13 @@ This document describes the implementation of [the spaced repetition design](spa
 
 ## Using Review
 
-The top-level **Review** destination shows due, Quick-compatible, and deeper target counts. **Regular** selects from all compatible due tasks. **Quick** selects tasks with low interaction cost and tap or short-text input. Cognitive level is separate metadata: Quick does not mean easy.
+The top-level **Review** destination shows the estimated time and quick/application/deep
+mix for a manageable plan. The daily target defaults to 25 minutes and can be changed
+from 5 to 60 minutes; the preference is saved locally. **Regular** considers all
+compatible due tasks within the allowance. **Quick** also requires low interaction
+cost and tap or short-text input. Cognitive level is separate metadata: Quick does
+not mean easy. The optional schedule retains individual due dates without making
+the raw backlog the daily completion goal.
 
 The same screen offers **Focused Practice** filters for lesson, concept, skill, and study mode. Filters combine; a combination with no compatible tasks shows an empty session. Focused Practice may select knowledge that is not due and deliberately activates the selected targets. Existing lesson exercises and the original Practice flow remain available.
 
@@ -14,7 +20,7 @@ A collapsed schedule shows each active target's due date and reason. Each issued
 
 `server/review.go` owns activation, scheduling, due counts, template/variant selection and session ordering. The API exposes:
 
-- `GET /api/v1/review`: current summary, active targets, and available filter options;
+- `GET /api/v1/review?budgetMinutes=25`: current plan estimate, active targets, and available filter options;
 - `POST /api/v1/review/sessions`: plan Regular/Quick scheduled review or focused practice;
 - `POST /api/v1/review/import`: restore issued instances and observations, then replay scheduling.
 
@@ -46,6 +52,49 @@ A success qualifies for interval expansion only when the target is due and at le
 
 Focused practice can satisfy a matching due target. Its context remains distinct from scheduled retrieval, and its smaller expansion factor acknowledges that intentionally selected practice may be primed.
 
+## Time allowance and expensive work
+
+Scheduled sessions reserve their estimated work for 24 elapsed hours from issue,
+including skipped, unfinished, and offline questions. This is a rolling daily
+allowance, not a midnight reset and not measured time spent. Starting another
+session does not create another allowance or repeat already issued compatible
+targets. Resume saved work to finish it. Changing the target changes the total
+allowance, not the amount already reserved. Focused practice remains available
+for deliberately chosen extra work.
+
+Seven categories normalize planning cost across the catalog:
+
+| Category                 | Estimate per question |
+| ------------------------ | --------------------- |
+| Definition / terminology | 20 seconds            |
+| True / false             | 20 seconds            |
+| Multiple choice          | 30 seconds            |
+| Short answer             | 1 minute              |
+| Short application        | 2 minutes             |
+| Deep reasoning           | 5 minutes             |
+| Proof                    | 10 minutes            |
+
+These are heuristic midpoints, not deadlines. Authored `category` overrides are
+optional; otherwise existing recall skills, response controls, proof requirements,
+and evidence metadata classify the task. Cost does not change correctness or
+evidence requirements. Existing question payloads and saved instances remain valid.
+
+The planner first considers fast retrieval, then small applications, then expensive
+work, using due time within each tier and interleaving concepts. It chooses a cheap
+compatible representation and retains the existing target/source/visible-task
+deduplication. Excess work stays eligible for a later plan; deferral neither records
+failure nor rewrites due dates. The daily target is a ceiling, so a plan may be
+shorter when fewer distinct compatible questions fit.
+
+A scheduled plan contains at most one deep reasoning/proof question, only when no
+deep task has been issued in the preceding seven elapsed days, and only when it
+uses at most 40% of the selected plan's estimated time. This deliberately leaves a
+lone due proof for focused practice instead of making it an entire routine session.
+Focused deep work also starts the seven-day spacing window. The evidence replay
+intervals above are unchanged; this is a selection policy, not a migration of past
+observations. These defaults are product pacing choices, not a claim of a fitted
+memory model.
+
 ## Templates, evidence depth, and planning
 
 `content/review-templates.json` contains dedicated fixed, authored, and generated review families. Lessons 1–2 combine deterministic terminology and interpretation probes with short constructive variants. Existing lesson exercises continue to supply longer reasoning and proof tasks. The original witness-definition production cards and integer-witness-selection generator retain their identities and evidence requirements.
@@ -56,7 +105,9 @@ Two further finite variant banks support Lesson 1. Their historical generator la
 
 Existing exercise templates supply additional concepts and skills without changing the curriculum. Choice tasks provide recognition evidence. Production and reasoning targets retain their deeper requirement; repeated recognition cannot erase construction or proof work. Deeper tasks may provide multiple compatible observations when their authored primary concept/skill mappings actually cover those components. There is no blanket rule that any proof certifies every weaker skill.
 
-The server groups compatible templates by target, orders eligible targets by due time, and interleaves concepts when an alternative exists. Sessions contain at most 30 questions. A question can cover multiple eligible targets using the same primary concept/skill mappings and evidence-depth requirements as scheduling replay. Once a target has planned coverage, it does not receive another assignment. If a later, deeper question covers all the targets of an earlier question, the earlier assignment is removed before any instances or activations are saved. Template/variant selection is deterministic for the persisted seed; every selected question and parameter map already exists in canonical JSON. Long-term interval rules are separate from this within-session ordering.
+The server groups compatible templates by target and interleaves concepts when an
+alternative exists. Time limits govern scheduled sessions, with a protective cap
+of 120 questions; deliberate focused sessions retain the 30-question cap. A question can cover multiple eligible targets using the same primary concept/skill mappings and evidence-depth requirements as scheduling replay. Once a target has planned coverage, it does not receive another assignment. If a later, deeper question covers all the targets of an earlier question, the earlier assignment is removed before any instances or activations are saved. Template/variant selection is deterministic for the persisted seed; every selected question and parameter map already exists in canonical JSON. Long-term interval rules are separate from this within-session ordering.
 
 An unstructured lesson exercise keeps the actual evidence depth of its authored primary skills regardless of which target selected it. For example, a factoring question asking for the key rewrite covers both transformation and justification even when selected for transformation. This does not raise the transformation target's required depth or discard production-only alternatives. Choice and structured response evidence remain authoritative; supporting tags and separate objectives do not provide interchangeable coverage. Planned coverage never changes due dates or records success: only an actual graded response supplies evidence.
 
@@ -64,7 +115,10 @@ Replay applies the same rule to older lesson-backed review instances using their
 
 Each session uses a source exercise or dedicated template at most once. It also excludes identical visible tasks from different sources, comparing the prompt, instructions, formula, table, and response controls without internal IDs, grading metadata, glossary link destinations, or option ordering. When the preferred candidate repeats a selected task, the planner tries other eligible candidates for that target. If none is distinct, the target is skipped without changing its due state or activating it through focused practice. Previously issued sessions and saved answers remain unchanged.
 
-Quick mode filters eligibility only. It does not change deferred targets or their due dates. The summary counts targets rather than variants or exercises. Deeper due work remains available through Regular mode.
+Quick mode filters eligibility only. It does not change deferred targets or their
+due dates. Legacy summary counts still describe targets; the displayed planned
+mix describes distinct questions. Deeper due work remains available in a balanced
+Regular plan or through deliberate focused practice.
 
 ## Attempt context and grading
 
