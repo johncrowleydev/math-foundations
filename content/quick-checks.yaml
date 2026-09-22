@@ -28,7 +28,7 @@ predicates-and-quantifiers:
       - Exactly two
     answer: 0
     explanation: 'One allowed integer is enough: 11 belongs to the domain and is greater than 10. Such an example is a witness.'
-    teachingHash: d6079469168e084ba3455ac26bb43d8508ffecca741ae1f4ad214d2b23e74188
+    teachingHash: fe2c37797fcdf1f6b44b9baa7d11c92e35a0b0a0edb8c394a4d7af1ee556ba42
   - id: quick-2
     after: Several variables and quantifier order
     prompt: In $\forall x\in\mathbb Z\exists y\in\mathbb Z\,(y>x)$, may the chosen $y$ depend on $x$?
@@ -48,7 +48,7 @@ sets-and-set-operations:
       - $3\in A$
     answer: 1
     explanation: The only element of $\{1\}$ is in $A$, so it is a subset. The elements of $A$ are the numbers 1 and 2, not the set $\{1\}$.
-    teachingHash: a542f99960bbdc313fcc1c4a5a7233a5132a1bd3e12a9e1804398b93540d35c8
+    teachingHash: 3160b6af7713518d458ab50b099ddf19580720314ee4ea72496d1513698a7fd4
   - id: quick-2
     after: Power sets
     prompt: How many subsets does $\{a,b\}$ have?
@@ -58,7 +58,7 @@ sets-and-set-operations:
       - '4'
     answer: 2
     explanation: "There are four: $\\varnothing$, $\\{a\\}$, $\\{b\\}$, and $\\{a,b\\}$. Each element can independently be included or omitted."
-    teachingHash: 4b137d7dc96bdc5cda2e4fcab0a2777d878771f407b8376ea583443ef5faae60
+    teachingHash: da8cab98ea285689be462c326c57c7cd10a419cd10d8b55e84c4a52e4c062290
 relations:
   - id: quick-1
     after: Four fundamental properties
@@ -150,7 +150,7 @@ proof-by-contrapositive:
       - Assume $\neg Q$
     answer: 2
     explanation: Start with $\neg Q$ and establish $\neg P$. This proves the equivalent implication $\neg Q\to\neg P$.
-    teachingHash: 05e48aeddcd892b0c41ad86e82b51d6e49df88dd6f77007c068d500e8c555c77
+    teachingHash: 12abf77fe42aca0d4d1b93b936b051f77d7a624a36b56923a8ee2bc2f1e9f6d7
   - id: quick-2
     after: 'Worked proof: an even square has an even root'
     prompt: For integer $n$, which assumption starts a contrapositive proof of “if $n^2$ is even, then $n$ is even”?
@@ -170,7 +170,7 @@ proof-by-contradiction:
       - No
     answer: 1
     explanation: No. The result must conflict with a stated assumption, definition, or established fact. A negative number, for example, is not inherently impossible.
-    teachingHash: ade1eeb7304a7aea1a8d0cca7d217ccc1f3998efda511b86069461961ccbecbf
+    teachingHash: 2873ec45388c8044a10e075d26eb1319db36b5a08b74b0f0a9ca56fc12f0b874
   - id: quick-2
     after: The irrationality of the square root of 2
     prompt: Why choose $\sqrt2=a/b$ in lowest terms before proving both $a$ and $b$ even?

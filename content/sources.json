@@ -433,35 +433,35 @@
     "p-direct": {
       "source": "proof",
       "locator": "§§4.1–4.5",
-      "supports": "Definitions, parity, divisibility, direct proof, and cases.",
+      "supports": "Definitions, parity, divisibility, direct proof, and cases; §4.3, pp. 118–120 explains the assumption-to-goal proof outline. Lesson explanations and arithmetic examples are original applications of these methods.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=125",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-contra": {
       "source": "proof",
       "locator": "§§5.1–5.3",
-      "supports": "Contraposition, congruence examples, and mathematical writing.",
+      "supports": "Contraposition, congruence examples, and mathematical writing; §5.1, pp. 128–130 explains the proof outline and when the negated conclusion is easier to use.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=140",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-contradiction": {
       "source": "proof",
       "locator": "§§6.1–6.4",
-      "supports": "Contradiction proofs, irrationality, and combining proof techniques.",
+      "supports": "Contradiction proofs, irrationality, and combining proof techniques; §§6.1–6.2, pp. 138–141 distinguishes negating a whole claim from negating only an implication's conclusion.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=150",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-existence": {
       "source": "proof",
       "locator": "§§7.1–7.4",
-      "supports": "Biconditionals, constructive existence, and uniqueness.",
+      "supports": "Biconditionals, constructive existence, and uniqueness; §7.3, pp. 151–153 separates exhibiting and checking a witness from proving it is unique. Lesson equations and worked explanations are original examples.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=159",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-setproof": {
       "source": "proof",
       "locator": "§§8.1–8.3",
-      "supports": "Element proofs of membership and inclusion, equality by both inclusions, and De Morgan identities. Hammack uses an overbar for complement where this notebook uses a superscript c.",
+      "supports": "Element proofs of membership and inclusion, equality by both inclusions, and De Morgan identities; §§8.2–8.3, pp. 159–163 explains arbitrary-element proof outlines, including set-valued members of power sets. The lesson's power-set monotonicity and intersection-equality arguments are original applications of the definitions and proof methods. Hammack uses an overbar for complement where this notebook uses a superscript c.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=169",
       "checked": "2026-09-21"
     },
@@ -470,7 +470,7 @@
       "locator": "§§9.1–9.3",
       "supports": "Genuine counterexamples and refuting existential assertions.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=186",
-      "checked": "2026-09-15"
+      "checked": "2026-09-21"
     },
     "p-relations": {
       "source": "proof",
@@ -2383,7 +2383,7 @@
       "practice": {}
     },
     "propositional-logic": {
-      "reviewedContentHash": "593ec099d46582d7dcfe706051fdad9d15b9b2a99e79789bd974378aa356f812",
+      "reviewedContentHash": "7f07c98c4dec775653cb4800caf1c480af26021fdc833867d958a451f9bf1a33",
       "intro": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"],
       "sections": {
         "propositions": ["m-propositions"],
@@ -2403,11 +2403,10 @@
         "common-rules-of-inference": ["p-quantifiers", "history-logic"],
         "two-common-invalid-argument-forms": ["p-quantifiers"],
         "satisfiability": ["m-sat"],
-        "a-first-proof-by-contrapositive": ["p-contra"],
+        "a-first-proof-by-contrapositive": ["p-contra", "p-direct"],
         "what-to-be-able-to-do-before-moving-on": ["p-logic", "m-equivalence"]
       },
       "practice": {
-        "A first proof by contrapositive": ["p-contra"],
         "Arguments, validity, and rules of inference": [
           "p-logic",
           "m-equivalence",
@@ -2424,7 +2423,6 @@
           "p-quantifiers",
           "p-contra"
         ],
-        "Conjunction: AND": ["m-connectives"],
         "Converse, inverse, and contrapositive": ["p-logic"],
         "De Morgan's laws": ["m-equivalence"],
         "Disjunction: OR": ["m-connectives"],
@@ -2495,13 +2493,13 @@
       }
     },
     "predicates-and-quantifiers": {
-      "reviewedContentHash": "5a4dedf4ac477e684441a478aee5ed51d6ceaf0aae388bb49285274278080841",
+      "reviewedContentHash": "789e2d7a1de1ea79a59c3af5b75f52bc47b19c281f2f1f6d61effcb75cf01abc",
       "intro": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"],
       "sections": {
         "domains-come-first": ["m-quantifiers"],
         "predicates-and-substitution": ["m-propositions", "m-quantifiers"],
         "universal-quantification-for-every": ["m-quantifiers"],
-        "existential-quantification-there-exists": ["m-quantifiers"],
+        "existential-quantification-there-exists": ["m-quantifiers", "p-existence"],
         "scope-free-variables-and-bound-variables": ["m-quantifiers", "p-quantifiers"],
         "translating-all-some-none-and-only": ["p-quantifiers"],
         "negating-quantified-statements": ["p-quantifiers"],
@@ -2565,7 +2563,6 @@
           "p-existence",
           "p-disproof"
         ],
-        "Relationships in ordinary language": ["p-quantifiers"],
         "Several variables and quantifier order": ["m-quantifiers"],
         "Translate English into logic": [
           "m-quantifiers",
@@ -2580,7 +2577,6 @@
           "p-existence",
           "p-disproof"
         ],
-        "Universal quantification: for every": ["m-quantifiers"],
         "Valid and invalid quantified arguments": [
           "m-quantifiers",
           "p-quantifiers",
@@ -2588,12 +2584,11 @@
           "p-disproof"
         ],
         "Valid reasoning with quantifiers": ["p-quantifiers"],
-        "Which distributions are valid?": ["p-quantifiers", "m-equivalence"],
         "Writing a quantified proof": ["p-direct", "p-existence"]
       }
     },
     "sets-and-set-operations": {
-      "reviewedContentHash": "d61c7e22f5f2347e5bec1630e09f3f5e55afa3e1f654aca04f1d7bdc5a9ac2e3",
+      "reviewedContentHash": "e60e6b6e0dcffc71f3f68035f21a37f9cfe4d4693525b894e06ed9e7fd047de1",
       "intro": ["p-sets", "p-setproof", "m-pie", "m-classes"],
       "sections": {
         "elements-descriptions-and-equality": ["p-sets"],
@@ -2601,7 +2596,7 @@
         "union-intersection-difference-and-complement": ["p-sets"],
         "proving-inclusions-and-identities": ["p-setproof", "p-sets"],
         "laws-of-set-operations": ["p-setproof", "p-sets"],
-        "power-sets": ["p-sets", "m-subset-bits"],
+        "power-sets": ["p-sets", "m-subset-bits", "p-setproof"],
         "ordered-pairs-and-cartesian-products": ["p-sets"],
         "counting-unions-without-double-counting": ["m-pie"],
         "partitions-and-indexed-families": ["p-sets", "m-classes"],
@@ -2792,7 +2787,7 @@
       }
     },
     "direct-proof": {
-      "reviewedContentHash": "175187bbeba3714a2a8896804d93626625acd4dcbaf8b99234e3ec302478aefa",
+      "reviewedContentHash": "5f1dbeb3d32739f1c939d99a51fec7b2cd7e1f47f3aae0fdaf94158e968fdc00",
       "intro": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
       "sections": {
         "read-the-claim-before-choosing-a-method": ["p-direct"],
@@ -2809,9 +2804,7 @@
         "readiness-checklist": ["p-direct"]
       },
       "practice": {
-        "Biconditionals need both directions": ["p-existence"],
         "Cases, sets, and biconditionals": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
-        "Closure claims": ["p-direct"],
         "Constructing witnesses and uniqueness": [
           "p-direct",
           "p-existence",
@@ -2842,12 +2835,11 @@
         "Mixed proof practice": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
         "Parity and explicit witnesses": ["p-direct", "p-existence", "p-setproof", "p-disproof"],
         "Unpack definitions": ["p-direct"],
-        "When the claim is false": ["p-disproof"],
         "Worked proof: the sum of two odd integers": ["p-direct"]
       }
     },
     "proof-by-contrapositive": {
-      "reviewedContentHash": "8d88b48a626de0d8b8530baa59e2522a04a76bc0255379cdda7d1e6505544dcb",
+      "reviewedContentHash": "fa756c1278a419f1b63a5f966a10818e7b5e5fb1519680d821a7a9d3f228bc23",
       "intro": ["p-contra", "p-quantifiers", "m-modular", "p-functions", "p-setproof"],
       "sections": {
         "the-equivalence-that-makes-the-method-work": ["p-contra"],
@@ -2871,7 +2863,6 @@
           "p-functions",
           "p-setproof"
         ],
-        "Contraposition in set and function arguments": ["p-setproof", "p-functions", "p-contra"],
         "Diagnose flawed contrapositive proofs": ["p-contra"],
         "Diagnosing incorrect indirect arguments": [
           "p-contra",
@@ -2887,8 +2878,6 @@
           "p-functions",
           "p-setproof"
         ],
-        "Divisibility by 3 and remainders": ["m-modular", "p-contra"],
-        "Irrationality through a rational contrapositive": ["p-contra", "p-direct"],
         "Negate compound conditions carefully": ["p-quantifiers"],
         "Negating compound conclusions": [
           "p-contra",
@@ -2924,7 +2913,7 @@
       }
     },
     "proof-by-contradiction": {
-      "reviewedContentHash": "9a82c515fbe313a6084f8483a186ca0da313a614179f7a7d6ece317e13a9cf82",
+      "reviewedContentHash": "27178dc057a0339ab833f2448811de21ecd4438b4bf433d57a4ac87212848ad7",
       "intro": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"],
       "sections": {
         "the-logical-structure": ["p-contradiction"],
@@ -2966,7 +2955,6 @@
         ],
         "The irrationality of the square root of 2": ["p-contradiction"],
         "The logical structure": ["p-contradiction"],
-        "There are infinitely many primes": ["m-divisibility"],
         "Uniqueness and incompatible properties": [
           "p-contradiction",
           "p-existence",

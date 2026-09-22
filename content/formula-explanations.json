@@ -5392,10 +5392,55 @@
     ]
   },
   {
-    "id": "formula-935bf5b19ebe34225578",
+    "id": "formula-teaching-implication-plan",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
     "ordinal": 0,
+    "latex": "P\\to Q",
+    "reading": "If proposition P holds, proposition Q must hold. P is the assumption of a direct proof and Q its goal.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-assumed-p",
+    "lesson": "propositional-logic",
+    "source": "section:a-first-proof-by-contrapositive:text-end",
+    "ordinal": 1,
+    "latex": "P",
+    "reading": "The proposition assumed as the hypothesis of the direct implication proof.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-target-q",
+    "lesson": "propositional-logic",
+    "source": "section:a-first-proof-by-contrapositive:text-end",
+    "ordinal": 2,
+    "latex": "Q",
+    "reading": "The proposition required as the conclusion of the original implication.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-c0142bd8ce8c662242d1",
+    "lesson": "propositional-logic",
+    "source": "section:a-first-proof-by-contrapositive:text-end",
+    "ordinal": 3,
+    "latex": "Q",
+    "reading": "The proposition required as the conclusion of the original implication.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-contrapositive-plan",
+    "lesson": "propositional-logic",
+    "source": "section:a-first-proof-by-contrapositive:text-end",
+    "ordinal": 4,
+    "latex": "\\neg Q\\to\\neg P",
+    "reading": "If Q is false, P is false. This is the contrapositive: assume the original conclusion fails and show the original hypothesis fails.",
+    "bindings": []
+  },
+  {
+    "id": "formula-935bf5b19ebe34225578",
+    "lesson": "propositional-logic",
+    "source": "section:a-first-proof-by-contrapositive:text-end",
+    "ordinal": 5,
     "latex": "n",
     "reading": "The integer considered in this parity claim.",
     "bindings": [
@@ -5410,7 +5455,7 @@
     "id": "formula-0adb10bb3b8d9c35de7d",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 1,
+    "ordinal": 6,
     "latex": "n^2",
     "reading": "n squared.",
     "bindings": [
@@ -5425,7 +5470,7 @@
     "id": "formula-a4ed1b1d7d57fb4f23f5",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 2,
+    "ordinal": 7,
     "latex": "n",
     "reading": "The integer considered in this parity claim.",
     "bindings": [
@@ -5440,7 +5485,7 @@
     "id": "formula-c1d83fb63099c683b6af",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 3,
+    "ordinal": 8,
     "latex": "n^2\\text{ even}\\to n\\text{ even}.",
     "reading": "If n squared is even, then n is even.",
     "bindings": [
@@ -5460,7 +5505,7 @@
     "id": "formula-aa6dd1352b6f848fc791",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 4,
+    "ordinal": 9,
     "latex": "n^2",
     "reading": "n squared.",
     "bindings": [
@@ -5475,7 +5520,7 @@
     "id": "formula-d1c3445e32a2eee3c03a",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 5,
+    "ordinal": 10,
     "latex": "n",
     "reading": "The integer considered in this parity claim.",
     "bindings": [
@@ -5490,7 +5535,7 @@
     "id": "formula-520b75d1db574e8d1874",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 6,
+    "ordinal": 11,
     "latex": "n^2",
     "reading": "n squared.",
     "bindings": [
@@ -5505,7 +5550,7 @@
     "id": "formula-7ab421ab26079041d8ef",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 7,
+    "ordinal": 12,
     "latex": "n",
     "reading": "The integer considered in this parity claim.",
     "bindings": [
@@ -5520,7 +5565,7 @@
     "id": "formula-61406e2487a8bd252009",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 8,
+    "ordinal": 13,
     "latex": "k",
     "reading": "An integer such that n = 2k + 1; it represents the odd integer n algebraically.",
     "bindings": [
@@ -5535,7 +5580,7 @@
     "id": "formula-2f7730dd6dee6fc782fa",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 9,
+    "ordinal": 14,
     "latex": "n=2k+1.",
     "reading": "n equals 2 k plus 1.",
     "bindings": [
@@ -5555,7 +5600,7 @@
     "id": "formula-405aeece96ac65c54fc8",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 10,
+    "ordinal": 15,
     "latex": "n^2=(2k+1)^2=4k^2+4k+1.",
     "reading": "n squared equals open parenthesis 2 k plus 1 close parenthesis squared equals 4 k squared plus 4 k plus 1.",
     "bindings": [
@@ -5575,7 +5620,7 @@
     "id": "formula-7441c91569f379bc1d1a",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 11,
+    "ordinal": 16,
     "latex": "n^2=2(2k^2+2k)+1.",
     "reading": "n squared equals 2 open parenthesis 2 k squared plus 2 k close parenthesis plus 1.",
     "bindings": [
@@ -5595,7 +5640,7 @@
     "id": "formula-56bad9515e5decb11589",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 12,
+    "ordinal": 17,
     "latex": "2m+1",
     "reading": "2 m plus 1.",
     "bindings": [
@@ -5610,7 +5655,7 @@
     "id": "formula-a398f4c97797f991035d",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 13,
+    "ordinal": 18,
     "latex": "m",
     "reading": "The integer 2k squared + 2k, showing that n squared has the odd form 2m + 1.",
     "bindings": [
@@ -5625,7 +5670,7 @@
     "id": "formula-99c2fedcf7cdefb1fee3",
     "lesson": "propositional-logic",
     "source": "section:a-first-proof-by-contrapositive:text-end",
-    "ordinal": 14,
+    "ordinal": 19,
     "latex": "n^2",
     "reading": "n squared.",
     "bindings": [
@@ -32155,10 +32200,34 @@
     ]
   },
   {
-    "id": "formula-608470ed04a9b5e3c447",
+    "id": "formula-teaching-integer-witness-check",
     "lesson": "predicates-and-quantifiers",
     "source": "section:existential-quantification-there-exists:text-before-quantifier-witness",
     "ordinal": 6,
+    "latex": "6<7<8",
+    "reading": "Six is less than seven, and seven is less than eight; seven satisfies both strict inequalities.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-bc3dfa0859f8d6649053",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existential-quantification-there-exists:text-before-quantifier-witness",
+    "ordinal": 7,
+    "latex": "n",
+    "reading": "An integer in the displayed numerical example.",
+    "bindings": [
+      {
+        "symbol": "n",
+        "meaning": "An integer in the displayed numerical example.",
+        "reference": "predicate-argument"
+      }
+    ]
+  },
+  {
+    "id": "formula-608470ed04a9b5e3c447",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existential-quantification-there-exists:text-before-quantifier-witness",
+    "ordinal": 8,
     "latex": "\\exists n\\in\\mathbb{Z},\\ n^2=-1",
     "reading": "there exists n is an element of the integers, n squared equals minus 1.",
     "bindings": [
@@ -32188,7 +32257,7 @@
     "id": "formula-68fc7eadf5e896b19251",
     "lesson": "predicates-and-quantifiers",
     "source": "section:existential-quantification-there-exists:text-before-quantifier-witness",
-    "ordinal": 7,
+    "ordinal": 9,
     "latex": "D=\\{a,b,c\\}",
     "reading": "D equals the set containing a, b, c end set.",
     "bindings": [
@@ -32218,8 +32287,8 @@
     "id": "formula-d374cd7484b7f2de412a",
     "lesson": "predicates-and-quantifiers",
     "source": "section:existential-quantification-there-exists:text-before-quantifier-witness",
-    "ordinal": 8,
-    "latex": "\\exists x\\in D,\\ P(x)\r\n\\quad\\equiv\\quad\r\nP(a)\\lor P(b)\\lor P(c).",
+    "ordinal": 10,
+    "latex": "\\exists x\\in D,\\ P(x)\n\\quad\\equiv\\quad\nP(a)\\lor P(b)\\lor P(c).",
     "reading": "there exists x is an element of D, P open parenthesis x close parenthesis is logically equivalent to P open parenthesis a close parenthesis or P open parenthesis b close parenthesis or P open parenthesis c close parenthesis.",
     "bindings": [
       {
@@ -34885,6 +34954,102 @@
     ]
   },
   {
+    "id": "formula-teaching-564c3d7b085216cf34d3",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 10,
+    "latex": "n",
+    "reading": "An integer in the displayed numerical example.",
+    "bindings": [
+      {
+        "symbol": "n",
+        "meaning": "An integer in the displayed numerical example.",
+        "reference": "predicate-argument"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-unique-equation",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 11,
+    "latex": "n+4=10",
+    "reading": "The unknown integer n plus four equals ten. We must show that a solution exists and that two different solutions are impossible.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-unique-candidate",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 12,
+    "latex": "n=6",
+    "reading": "Choose the integer six as the proposed witness n.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-unique-check",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 13,
+    "latex": "6+4=10",
+    "reading": "Six plus four equals ten, verifying that the chosen integer satisfies the equation.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-unique-a",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 14,
+    "latex": "a",
+    "reading": "An arbitrary integer candidate satisfying the equation in the uniqueness argument.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-unique-b",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 15,
+    "latex": "b",
+    "reading": "A second arbitrary integer candidate satisfying the same equation; equality with a has not yet been established.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-first-solution",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 16,
+    "latex": "a+4=10",
+    "reading": "The first candidate a satisfies the required equation: a plus four equals ten.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-second-solution",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 17,
+    "latex": "b+4=10",
+    "reading": "The second candidate b also satisfies the equation: b plus four equals ten.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-compare-solutions",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 18,
+    "latex": "a+4=b+4",
+    "reading": "Both sides equal ten, so a plus four equals b plus four. Subtracting the same number from each side preserves equality.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-solutions-equal",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:existence-uniqueness-and-exactly-one:text-end",
+    "ordinal": 19,
+    "latex": "a=b",
+    "reading": "The arbitrary solution candidates a and b are equal. This establishes at most one solution.",
+    "bindings": []
+  },
+  {
     "id": "formula-662a4a56df67e564b346",
     "lesson": "predicates-and-quantifiers",
     "source": "section:vacuous-truth-and-empty-cases:text-end",
@@ -35875,10 +36040,28 @@
     ]
   },
   {
-    "id": "formula-ab37996857edc08cfdf9",
+    "id": "formula-teaching-universal-start",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
     "ordinal": 0,
+    "latex": "\\forall x\\in D",
+    "reading": "For every x in domain D. Begin the proof with an arbitrary allowed object x.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-arbitrary-input",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 1,
+    "latex": "x",
+    "reading": "An arbitrary object in the stated domain D, with no extra unstated restrictions.",
+    "bindings": []
+  },
+  {
+    "id": "formula-ab37996857edc08cfdf9",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 2,
     "latex": "\\forall n\\in\\mathbb{Z},\\ \\exists m\\in\\mathbb{Z},\\ m>n.",
     "reading": "for every n is an element of the integers, there exists m is an element of the integers, m is greater than n.",
     "bindings": [
@@ -35918,7 +36101,7 @@
     "id": "formula-0beeae0c0aea607f2c97",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 1,
+    "ordinal": 3,
     "latex": "n",
     "reading": "An integer in the displayed numerical example.",
     "bindings": [
@@ -35933,7 +36116,7 @@
     "id": "formula-3f12f737d3f8a3952353",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 2,
+    "ordinal": 4,
     "latex": "m=n+1",
     "reading": "m equals n plus 1.",
     "bindings": [
@@ -35953,7 +36136,7 @@
     "id": "formula-2d2299ff32c36b5a2c7e",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 3,
+    "ordinal": 5,
     "latex": "m",
     "reading": "An input ranging over the integers. The formula specifies whether its condition must hold for every allowed input or at least one.",
     "bindings": [
@@ -35968,7 +36151,7 @@
     "id": "formula-a2c431cdae2db525e62f",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 4,
+    "ordinal": 6,
     "latex": "m>n",
     "reading": "m is greater than n.",
     "bindings": [
@@ -35985,10 +36168,46 @@
     ]
   },
   {
+    "id": "formula-teaching-larger-integer",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 7,
+    "latex": "n+1",
+    "reading": "The supplied integer n plus one: an integer strictly larger than n.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-fixed-witness",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 8,
+    "latex": "m=100",
+    "reading": "A proposed fixed witness m equal to one hundred; this cannot exceed every possible input integer.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-fixed-witness-failure",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 9,
+    "latex": "n=100",
+    "reading": "The allowed input n equals one hundred. The proposed witness one hundred is not strictly larger than this input.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-wrong-domain",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 10,
+    "latex": "n+1/2",
+    "reading": "The input integer n plus one half. It is larger than n but is not an integer, so it fails the witness's domain requirement.",
+    "bindings": []
+  },
+  {
     "id": "formula-bfb47fb43ed59e152fe4",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 5,
+    "ordinal": 11,
     "latex": "\\forall n\\in\\mathbb{Z},\\ (n\\text{ odd}\\to n^2\\text{ odd}).",
     "reading": "for every n is an element of the integers, open parenthesis n odd implies n squared odd close parenthesis.",
     "bindings": [
@@ -36023,7 +36242,7 @@
     "id": "formula-88f55a190fe4e7b9c941",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 6,
+    "ordinal": 12,
     "latex": "n",
     "reading": "An integer in the displayed numerical example.",
     "bindings": [
@@ -36038,7 +36257,7 @@
     "id": "formula-a333153cadd9e1e4932a",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 7,
+    "ordinal": 13,
     "latex": "n=2k+1",
     "reading": "n equals 2 k plus 1.",
     "bindings": [
@@ -36058,7 +36277,7 @@
     "id": "formula-ae2a5dc79d40e11a2012",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 8,
+    "ordinal": 14,
     "latex": "k",
     "reading": "An integer with n = 2k + 1, representing the assumed odd integer.",
     "bindings": [
@@ -36073,7 +36292,7 @@
     "id": "formula-3c3a1280c7b8cd8fed92",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 9,
+    "ordinal": 15,
     "latex": "n^2=(2k+1)^2=2(2k^2+2k)+1.",
     "reading": "n squared equals open parenthesis 2 k plus 1 close parenthesis squared equals 2 open parenthesis 2 k squared plus 2 k close parenthesis plus 1.",
     "bindings": [
@@ -36093,7 +36312,7 @@
     "id": "formula-a4691f21dd4af479e8b3",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 10,
+    "ordinal": 16,
     "latex": "2k^2+2k",
     "reading": "2 k squared plus 2 k.",
     "bindings": [
@@ -36108,7 +36327,7 @@
     "id": "formula-a4ffd2a701f4fa493177",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 11,
+    "ordinal": 17,
     "latex": "n^2",
     "reading": "n squared.",
     "bindings": [
@@ -36123,9 +36342,66 @@
     "id": "formula-93ca7c43a102b7dd7604",
     "lesson": "predicates-and-quantifiers",
     "source": "section:writing-a-quantified-proof:text-end",
-    "ordinal": 12,
+    "ordinal": 18,
     "latex": "n",
     "reading": "An integer in the displayed numerical example.",
+    "bindings": [
+      {
+        "symbol": "n",
+        "meaning": "An integer in the displayed numerical example.",
+        "reference": "predicate-argument"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-c6bfcec5d46e654ebfe5",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 19,
+    "latex": "n^2",
+    "reading": "n squared.",
+    "bindings": [
+      {
+        "symbol": "n",
+        "meaning": "An integer in the displayed numerical example.",
+        "reference": "predicate-argument"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-odd-target",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 20,
+    "latex": "2m+1",
+    "reading": "Twice an integer m, plus one: the form that certifies an integer is odd.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-odd-witness",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 21,
+    "latex": "m",
+    "reading": "The integer witness in the target odd-number representation, here twice k squared plus twice k.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-odd-remainder",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 22,
+    "latex": "+1",
+    "reading": "The final plus one left after factoring out twice an integer, showing that the result is odd.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-99535d6cb033683e4e62",
+    "lesson": "predicates-and-quantifiers",
+    "source": "section:writing-a-quantified-proof:text-end",
+    "ordinal": 23,
+    "latex": "n^2",
+    "reading": "n squared.",
     "bindings": [
       {
         "symbol": "n",
@@ -49157,10 +49433,115 @@
     ]
   },
   {
-    "id": "formula-93b00b73eb5819b1844a",
+    "id": "formula-teaching-50b9712ab19eaddc84a1",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
     "ordinal": 6,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-fa5326ce52cf5f8e25c8",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 7,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-7058eeb826e859dc6e40",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 8,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-28e07791e52036d4b4e0",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 9,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-0d9dd121ceae79f5537d",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 10,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-eeded2d52c54c7143420",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 11,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-c02c04d135238b710628",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 12,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-93b00b73eb5819b1844a",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 13,
     "latex": "A\\subsetneq B",
     "reading": "A is a proper subset of B.",
     "bindings": [
@@ -49182,10 +49563,35 @@
     ]
   },
   {
+    "id": "formula-teaching-7257821b807217baff7c",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 14,
+    "latex": "A\\subseteq B",
+    "reading": "A is a subset of B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      }
+    ]
+  },
+  {
     "id": "formula-9a97fb8a879bf31b4244",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 7,
+    "ordinal": 15,
     "latex": "A\\ne B",
     "reading": "A is not equal to B.",
     "bindings": [
@@ -49202,10 +49608,67 @@
     ]
   },
   {
+    "id": "formula-teaching-38121201fa2bc5794365",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 16,
+    "latex": "\\{1,2\\}",
+    "reading": "the set containing 1, 2 end set.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-aa70585f752c1a8e79d9",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 17,
+    "latex": "\\{1,2,3\\}",
+    "reading": "the set containing 1, 2, 3 end set.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-f7902bd910d5c9c051c7",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 18,
+    "latex": "\\{1,2,3\\}",
+    "reading": "the set containing 1, 2, 3 end set.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-24dc1966e3a6c88cabee",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 19,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-babeea9597518e18d955",
+    "lesson": "sets-and-set-operations",
+    "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
+    "ordinal": 20,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
     "id": "formula-cf76493e9fce3c7f4545",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 8,
+    "ordinal": 21,
     "latex": "\\subset",
     "reading": "A subset symbol whose convention varies by author. This lesson avoids it and uses subset-or-equal or proper-subset symbols explicitly.",
     "bindings": []
@@ -49214,7 +49677,7 @@
     "id": "formula-b858ed0a349932d8f916",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 9,
+    "ordinal": 22,
     "latex": "B=\\{1,2\\}",
     "reading": "B equals the set containing 1, 2 end set.",
     "bindings": [
@@ -49229,7 +49692,7 @@
     "id": "formula-f7423bc0c0fd41c29d3d",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 10,
+    "ordinal": 23,
     "latex": "1\\in B",
     "reading": "1 is an element of B.",
     "bindings": [
@@ -49249,7 +49712,7 @@
     "id": "formula-0cf0a1e74f134a523603",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 11,
+    "ordinal": 24,
     "latex": "\\{1\\}\\subseteq B",
     "reading": "the set containing 1 end set is a subset of B.",
     "bindings": [
@@ -49269,7 +49732,7 @@
     "id": "formula-9b85792c380efe837781",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 12,
+    "ordinal": 25,
     "latex": "\\{1\\}\\notin B",
     "reading": "the set containing 1 end set ∉ B.",
     "bindings": [
@@ -49289,7 +49752,7 @@
     "id": "formula-1aea3e540faa1f68fa37",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 13,
+    "ordinal": 26,
     "latex": "B",
     "reading": "The set named B in this statement; in a general identity it is arbitrary.",
     "bindings": [
@@ -49304,7 +49767,7 @@
     "id": "formula-a6a535da4b8c03675394",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 14,
+    "ordinal": 27,
     "latex": "C=\\{\\{1\\},2\\}",
     "reading": "C equals the set containing the set containing 1 end set, 2 end set.",
     "bindings": [
@@ -49319,7 +49782,7 @@
     "id": "formula-c4212ad70cc2ff82bcd0",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 15,
+    "ordinal": 28,
     "latex": "\\{1\\}\\in C",
     "reading": "the set containing 1 end set is an element of C.",
     "bindings": [
@@ -49339,7 +49802,7 @@
     "id": "formula-645ac591801636b9b4a5",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 16,
+    "ordinal": 29,
     "latex": "1\\notin C",
     "reading": "1 ∉ C.",
     "bindings": [
@@ -49359,7 +49822,7 @@
     "id": "formula-8a8cb22c67bbc52c0fa6",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 17,
+    "ordinal": 30,
     "latex": "x\\in\\varnothing",
     "reading": "x is an element of the empty set.",
     "bindings": [
@@ -49384,7 +49847,7 @@
     "id": "formula-ecb44e89e0a259bb101b",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 18,
+    "ordinal": 31,
     "latex": "x\\in B",
     "reading": "x is an element of B.",
     "bindings": [
@@ -49409,7 +49872,7 @@
     "id": "formula-d13c3238dcb786495df6",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 19,
+    "ordinal": 32,
     "latex": "x",
     "reading": "x.",
     "bindings": [
@@ -49424,7 +49887,7 @@
     "id": "formula-bd7dfa1557eaad518130",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 20,
+    "ordinal": 33,
     "latex": "\\varnothing\\in B",
     "reading": "the empty set is an element of B.",
     "bindings": [
@@ -49449,7 +49912,7 @@
     "id": "formula-2dcdbdec08ff1a085c64",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 21,
+    "ordinal": 34,
     "latex": "B",
     "reading": "The set named B in this statement; in a general identity it is arbitrary.",
     "bindings": [
@@ -49464,7 +49927,7 @@
     "id": "formula-5e8610c5c8f7b48ef086",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 22,
+    "ordinal": 35,
     "latex": "A\\subseteq B",
     "reading": "A is a subset of B.",
     "bindings": [
@@ -49489,7 +49952,7 @@
     "id": "formula-287000798a38748733b5",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 23,
+    "ordinal": 36,
     "latex": "A",
     "reading": "The set named A in this statement; in a general identity it is arbitrary.",
     "bindings": [
@@ -49504,7 +49967,7 @@
     "id": "formula-331e70666134fc1f5be8",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 24,
+    "ordinal": 37,
     "latex": "B",
     "reading": "The set named B in this statement; in a general identity it is arbitrary.",
     "bindings": [
@@ -49519,7 +49982,7 @@
     "id": "formula-3b3b075702470f1dfffa",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 25,
+    "ordinal": 38,
     "latex": "\\{2,4\\}\\nsubseteq\\{1,2,3\\}",
     "reading": "the set containing 2, 4 end set is not a subset of the set containing 1, 2, 3 end set.",
     "bindings": [
@@ -49534,7 +49997,7 @@
     "id": "formula-d4807cc0a2e3254d7d81",
     "lesson": "sets-and-set-operations",
     "source": "section:membership-and-subsets-are-different:text-before-sets-membership",
-    "ordinal": 26,
+    "ordinal": 39,
     "latex": "4",
     "reading": "4.",
     "bindings": []
@@ -50412,10 +50875,278 @@
     ]
   },
   {
-    "id": "sets-proof-formula-d4aec4f393513bf01a2c",
+    "id": "formula-teaching-52cc55bec0c635399645",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
     "ordinal": 6,
+    "latex": "A\\subseteq B",
+    "reading": "A is a subset of B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-2648614bac52cb418a00",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 7,
+    "latex": "x\\in A",
+    "reading": "x is an element of A.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-0c0d587431a3b6ea587e",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 8,
+    "latex": "B",
+    "reading": "The destination set B in the subset proof: the goal is to establish membership in this set.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The destination set in the general inclusion being proved.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-7792623b3ade7baa291a",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 9,
+    "latex": "x\\in B",
+    "reading": "x is an element of B.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-31e5f5d659820061ea1a",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 10,
+    "latex": "x",
+    "reading": "An arbitrary member of the starting set A. The argument used no special property beyond the stated assumptions.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-04733ec79c5edfd32b67",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 11,
+    "latex": "A\\subseteq B",
+    "reading": "A is a subset of B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-4ccccc86e3dc20f44ecd",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 12,
+    "latex": "x\\in A\\cap B",
+    "reading": "x is an element of A intersection B.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      },
+      {
+        "symbol": "\\cap",
+        "meaning": "Intersection: membership in both sets.",
+        "reference": "symbol-intersection"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-7b5f7b0de0d47e36b9a5",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 13,
+    "latex": "x\\in A",
+    "reading": "x is an element of A.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-9c7e4b0ffd9def842c44",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 14,
+    "latex": "x\\in B",
+    "reading": "x is an element of B.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-fb5817e5e5fced54b16d",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 15,
+    "latex": "x\\in A",
+    "reading": "x is an element of A.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-ad61c53c994ed42645d4",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 16,
+    "latex": "A\\cap B",
+    "reading": "A intersection B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\cap",
+        "meaning": "Intersection: membership in both sets.",
+        "reference": "symbol-intersection"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-special-element",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 17,
+    "latex": "x=2",
+    "reading": "Choosing the particular number two for x checks a special case, not every possible member of the starting set.",
+    "bindings": []
+  },
+  {
+    "id": "sets-proof-formula-d4aec4f393513bf01a2c",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 18,
     "latex": "U",
     "reading": "The universe: everyone under discussion.",
     "bindings": [
@@ -50430,7 +51161,7 @@
     "id": "sets-proof-formula-dd52810dc3c173638b55",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 7,
+    "ordinal": 19,
     "latex": "B^c",
     "reading": "The complement of B: people in the universe who are not colleagues.",
     "bindings": [
@@ -50445,7 +51176,7 @@
     "id": "formula-f9fcaa2ddc8179c55a1f",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 8,
+    "ordinal": 20,
     "latex": "A\\setminus B=A\\cap B^c.",
     "reading": "A with B removed equals the intersection of A and the complement of B: both sides contain the neighbors who are not colleagues.",
     "bindings": [
@@ -50475,7 +51206,7 @@
     "id": "sets-proof-formula-9c3ba62c5b3a80c8da3c",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 9,
+    "ordinal": 21,
     "latex": "A",
     "reading": "The set of neighbors.",
     "bindings": [
@@ -50490,7 +51221,7 @@
     "id": "sets-proof-formula-16b00e1385b59c6c6f93",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 10,
+    "ordinal": 22,
     "latex": "B^c",
     "reading": "The complement of B: people in the universe who are not colleagues.",
     "bindings": [
@@ -50502,10 +51233,28 @@
     ]
   },
   {
+    "id": "formula-teaching-difference-start",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 23,
+    "latex": "x\\in A\\setminus B",
+    "reading": "The arbitrary element x belongs to A but does not belong to B. This starts the left-to-right inclusion.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-intersection-start",
+    "lesson": "sets-and-set-operations",
+    "source": "section:proving-inclusions-and-identities:text-end",
+    "ordinal": 24,
+    "latex": "x\\in A\\cap B^c",
+    "reading": "The arbitrary element x belongs to A and to the complement of B in the fixed universe. This starts the reverse inclusion.",
+    "bindings": []
+  },
+  {
     "id": "sets-proof-formula-a8914bd7ea95cd250cc9",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 11,
+    "ordinal": 25,
     "latex": "(A\\cup B)^c=A^c\\cap B^c.",
     "reading": "The complement of the union equals the intersection of the complements: people outside the combined list are both non-neighbors and non-colleagues.",
     "bindings": [
@@ -50535,7 +51284,7 @@
     "id": "sets-proof-formula-b2c79cb3e439702f43c7",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 12,
+    "ordinal": 26,
     "latex": "\\cup",
     "reading": "Union: combine the lists, including anyone in either list.",
     "bindings": [
@@ -50550,7 +51299,7 @@
     "id": "sets-proof-formula-a8a0ed40edb07c3db02c",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 13,
+    "ordinal": 27,
     "latex": "c",
     "reading": "The superscript c denotes complement relative to the fixed universe.",
     "bindings": []
@@ -50559,7 +51308,7 @@
     "id": "sets-proof-formula-0cc895bd8897ba7b5f6b",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 14,
+    "ordinal": 28,
     "latex": "\\cap",
     "reading": "Intersection: keep only members belonging to both sets.",
     "bindings": [
@@ -50574,7 +51323,7 @@
     "id": "sets-proof-formula-430b17433601872cfd22",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 15,
+    "ordinal": 29,
     "latex": "U",
     "reading": "The universe: everyone under discussion.",
     "bindings": [
@@ -50589,7 +51338,7 @@
     "id": "sets-proof-formula-5c17758587da85d75068",
     "lesson": "sets-and-set-operations",
     "source": "section:proving-inclusions-and-identities:text-end",
-    "ordinal": 16,
+    "ordinal": 30,
     "latex": "\\Longleftrightarrow",
     "reading": "If and only if: the membership descriptions imply each other.",
     "bindings": []
@@ -51110,65 +51859,195 @@
     ]
   },
   {
-    "id": "formula-09577e7c3ea364528e18",
+    "id": "formula-teaching-694b028a3259565899cc",
     "lesson": "sets-and-set-operations",
     "source": "section:power-sets:text-before-sets-power",
     "ordinal": 3,
-    "latex": "B\\in\\mathcal P(A)",
-    "reading": "B is an element of the power set of open parenthesis A close parenthesis.",
+    "latex": "\\{a\\}",
+    "reading": "the set containing a end set.",
     "bindings": [
       {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "symbol": "a",
+        "meaning": "The object labeled a; in a listed set the label names an element.",
+        "reference": "element"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-e03e4896dafde86dfb43",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 4,
+    "latex": "a",
+    "reading": "a.",
+    "bindings": [
+      {
+        "symbol": "a",
+        "meaning": "The object labeled a; in a listed set the label names an element.",
+        "reference": "element"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-9923f7a27eb2991fa4c6",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 5,
+    "latex": "\\{a\\}",
+    "reading": "the set containing a end set.",
+    "bindings": [
+      {
+        "symbol": "a",
+        "meaning": "The object labeled a; in a listed set the label names an element.",
+        "reference": "element"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-selected-set",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 6,
+    "latex": "X",
+    "reading": "A set of selected objects. X is a whole member of a power set; an element inside X is a different level of membership.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "A set being tested as a possible subset of A or B.",
         "reference": "set"
-      },
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-0aa58457ebb0f6efb280",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 7,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
       {
         "symbol": "A",
         "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
         "reference": "set"
-      },
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-86408b29d3cd41b93eae",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 8,
+    "latex": "X",
+    "reading": "A set of selected objects. X is a whole member of a power set; an element inside X is a different level of membership.",
+    "bindings": [
       {
-        "symbol": "\\in",
-        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
-        "reference": "symbol-member"
+        "symbol": "X",
+        "meaning": "A set being tested as a possible subset of A or B.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-9fefe99e109736dbd832",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 9,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-power-membership",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 10,
+    "latex": "X\\in\\mathcal P(A)",
+    "reading": "X is a member of the power set of A: every element of the set X belongs to A.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "The selected set, itself an object in the power set.",
+        "reference": "set"
       },
       {
         "symbol": "\\mathcal P",
-        "meaning": "Power set: the set of all subsets of the input set.",
+        "meaning": "The collection of all subsets of its input set.",
         "reference": "symbol-power-set"
       }
     ]
   },
   {
-    "id": "formula-1dfc45b66c2bb1fa9c19",
+    "id": "formula-teaching-selected-subset",
     "lesson": "sets-and-set-operations",
     "source": "section:power-sets:text-before-sets-power",
-    "ordinal": 4,
-    "latex": "B\\subseteq A",
-    "reading": "B is a subset of A.",
+    "ordinal": 11,
+    "latex": "X\\subseteq A",
+    "reading": "Every element of the selected set X belongs to A. This is precisely the condition for X to belong to the power set of A.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-b758ccf78e5928124ff4",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 12,
+    "latex": "X",
+    "reading": "A set of selected objects. X is a whole member of a power set; an element inside X is a different level of membership.",
     "bindings": [
       {
-        "symbol": "B",
-        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "symbol": "X",
+        "meaning": "A set being tested as a possible subset of A or B.",
         "reference": "set"
-      },
-      {
-        "symbol": "A",
-        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
-        "reference": "set"
-      },
-      {
-        "symbol": "\\subseteq",
-        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
-        "reference": "symbol-subset"
       }
     ]
+  },
+  {
+    "id": "formula-teaching-two-options",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 13,
+    "latex": "A=\\{a,b\\}",
+    "reading": "A contains the two distinct labeled objects a and b, from which subsets may be selected.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-valid-selection",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 14,
+    "latex": "X=\\{a\\}",
+    "reading": "X is the singleton set containing a. Its only member belongs to A, so X is a subset of A.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-invalid-selection",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 15,
+    "latex": "X=\\{a,c\\}",
+    "reading": "X contains a and a further object c absent from A. That missing member prevents X from being a subset of A.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-missing-member",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-before-sets-power",
+    "ordinal": 16,
+    "latex": "c\\notin A",
+    "reading": "The object c does not belong to A. It witnesses the failure of the proposed subset inclusion.",
+    "bindings": []
   },
   {
     "id": "formula-753fc6f440875d1f837b",
     "lesson": "sets-and-set-operations",
     "source": "section:power-sets:text-before-sets-power",
-    "ordinal": 5,
+    "ordinal": 17,
     "latex": "A=\\varnothing",
     "reading": "A equals the empty set.",
     "bindings": [
@@ -51188,7 +52067,7 @@
     "id": "formula-028b0dbb71bdbf7b357c",
     "lesson": "sets-and-set-operations",
     "source": "section:power-sets:text-before-sets-power",
-    "ordinal": 6,
+    "ordinal": 18,
     "latex": "\\mathcal P(\\varnothing)=\\{\\varnothing\\}.",
     "reading": "the power set of open parenthesis the empty set close parenthesis equals the set containing the empty set end set.",
     "bindings": [
@@ -51313,6 +52192,823 @@
         "reference": "local-variable"
       }
     ]
+  },
+  {
+    "id": "formula-teaching-0c1d4e9b1fef7716e680",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 7,
+    "latex": "A\\subseteq B",
+    "reading": "A is a subset of B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-4c0b1516585377b966fc",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 8,
+    "latex": "\\mathcal P(A)\\subseteq\\mathcal P(B)",
+    "reading": "the power set of open parenthesis A close parenthesis is a subset of the power set of open parenthesis B close parenthesis.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      },
+      {
+        "symbol": "\\mathcal P",
+        "meaning": "Power set: the set of all subsets of the input set.",
+        "reference": "symbol-power-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-85d7018dd631b1048fe2",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 9,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-68f96847ee59b946a387",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 10,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-9a0154248149aa97beb3",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 11,
+    "latex": "X",
+    "reading": "A set of selected objects. X is a whole member of a power set; an element inside X is a different level of membership.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "A set being tested as a possible subset of A or B.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-45a8717eaafcc815eddb",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 12,
+    "latex": "A\\subseteq B",
+    "reading": "A is a subset of B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-3ed285ab928f59133d7f",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 13,
+    "latex": "X\\in\\mathcal P(A)",
+    "reading": "X is a member of the power set of A: every element of the set X belongs to A.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "The selected set, itself an object in the power set.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\mathcal P",
+        "meaning": "The collection of all subsets of its input set.",
+        "reference": "symbol-power-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-8491dd7752af237db99d",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 14,
+    "latex": "X\\subseteq A",
+    "reading": "Every element of the selected set X belongs to A. This is precisely the condition for X to belong to the power set of A.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-selected-subset-b",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 15,
+    "latex": "X\\subseteq B",
+    "reading": "Every element of the arbitrary selection X belongs to B. This certifies that X belongs to the power set of B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-member-of-selection",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 16,
+    "latex": "x\\in X",
+    "reading": "Choose an arbitrary element x inside the selected set X. This inner element argument proves a claim about the whole selection X.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An arbitrary element of the selected set X.",
+        "reference": "element"
+      },
+      {
+        "symbol": "X",
+        "meaning": "A set that is itself an arbitrary member of the relevant power set.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-cf4a1adcec622af75870",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 17,
+    "latex": "X\\subseteq A",
+    "reading": "Every element of the selected set X belongs to A. This is precisely the condition for X to belong to the power set of A.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-2e4ec1c4f8991822f500",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 18,
+    "latex": "x\\in A",
+    "reading": "x is an element of A.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-f28cb4d842160f398dc1",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 19,
+    "latex": "A\\subseteq B",
+    "reading": "A is a subset of B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-8985a9dc1af07a1e5925",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 20,
+    "latex": "x\\in B",
+    "reading": "x is an element of B.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-dcb68b8ab2d3285735c8",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 21,
+    "latex": "X\\subseteq B",
+    "reading": "Every element of the arbitrary selection X belongs to B. This certifies that X belongs to the power set of B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-power-membership-b",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 22,
+    "latex": "X\\in\\mathcal P(B)",
+    "reading": "The set X belongs to the collection of all subsets of B, because every element of X lies in B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-080e73a9138c2cc1c3fe",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 23,
+    "latex": "X\\in\\mathcal P(A)",
+    "reading": "X is a member of the power set of A: every element of the set X belongs to A.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "The selected set, itself an object in the power set.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\mathcal P",
+        "meaning": "The collection of all subsets of its input set.",
+        "reference": "symbol-power-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-9d265724a173b88893a9",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 24,
+    "latex": "\\mathcal P(A)\\subseteq\\mathcal P(B)",
+    "reading": "the power set of open parenthesis A close parenthesis is a subset of the power set of open parenthesis B close parenthesis.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\subseteq",
+        "meaning": "Is a subset of: every member on the left belongs on the right, with equality allowed.",
+        "reference": "symbol-subset"
+      },
+      {
+        "symbol": "\\mathcal P",
+        "meaning": "Power set: the set of all subsets of the input set.",
+        "reference": "symbol-power-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-c110391d1c712fc5282f",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 25,
+    "latex": "X",
+    "reading": "A set of selected objects. X is a whole member of a power set; an element inside X is a different level of membership.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "A set being tested as a possible subset of A or B.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-inner-element",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 26,
+    "latex": "x",
+    "reading": "An arbitrary individual element of X, distinct from the whole set X being considered as a power-set member.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-e57d20ed88a259bfe11d",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 27,
+    "latex": "X",
+    "reading": "A set of selected objects. X is a whole member of a power set; an element inside X is a different level of membership.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "A set being tested as a possible subset of A or B.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-f739dd314436f5fd7946",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 28,
+    "latex": "x\\in A",
+    "reading": "x is an element of A.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An object whose membership is being tested. For a numerical set-builder expression it ranges over the domain explicitly shown; for a set proof it is an arbitrary object in the surrounding universe.",
+        "reference": "element"
+      },
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\in",
+        "meaning": "Is an element of: the object on the left belongs to the set on the right.",
+        "reference": "symbol-member"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-874f8583b05ca6de1aa7",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 29,
+    "latex": "\\mathcal P(A\\cap B)=\\mathcal P(A)\\cap\\mathcal P(B)",
+    "reading": "the power set of open parenthesis A intersection B close parenthesis equals the power set of open parenthesis A close parenthesis intersection the power set of open parenthesis B close parenthesis.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\cap",
+        "meaning": "Intersection: membership in both sets.",
+        "reference": "symbol-intersection"
+      },
+      {
+        "symbol": "\\mathcal P",
+        "meaning": "Power set: the set of all subsets of the input set.",
+        "reference": "symbol-power-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-common-selection-member",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 30,
+    "latex": "X\\in\\mathcal P(A\\cap B)",
+    "reading": "X is a member of the power set of the intersection: every member of X lies in both A and B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-common-selection-subset",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 31,
+    "latex": "X\\subseteq A\\cap B",
+    "reading": "The set X is contained in the intersection of A and B. Each of its elements satisfies both membership conditions.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-d9ee6911790ac184cbe3",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 32,
+    "latex": "x\\in X",
+    "reading": "Choose an arbitrary element x inside the selected set X. This inner element argument proves a claim about the whole selection X.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An arbitrary element of the selected set X.",
+        "reference": "element"
+      },
+      {
+        "symbol": "X",
+        "meaning": "A set that is itself an arbitrary member of the relevant power set.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-62d1e527e09dcac86aae",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 33,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-deab28101bc4d0c20f79",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 34,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-15ce3f88f62f3e0c79da",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 35,
+    "latex": "X\\subseteq A",
+    "reading": "Every element of the selected set X belongs to A. This is precisely the condition for X to belong to the power set of A.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-5bffcb1a719cb5d02d86",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 36,
+    "latex": "X\\subseteq B",
+    "reading": "Every element of the arbitrary selection X belongs to B. This certifies that X belongs to the power set of B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-a549696fa8376b35518b",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 37,
+    "latex": "X\\in\\mathcal P(A)",
+    "reading": "X is a member of the power set of A: every element of the set X belongs to A.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "The selected set, itself an object in the power set.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\mathcal P",
+        "meaning": "The collection of all subsets of its input set.",
+        "reference": "symbol-power-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-0a0da3fa1708887ea133",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 38,
+    "latex": "X\\in\\mathcal P(B)",
+    "reading": "The set X belongs to the collection of all subsets of B, because every element of X lies in B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-two-power-sets",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 39,
+    "latex": "X\\in\\mathcal P(A)\\cap\\mathcal P(B)",
+    "reading": "The same selected set X belongs to both power sets: it is a subset of A and a subset of B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-fb77c4e9447ac46cbb65",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 40,
+    "latex": "X\\in\\mathcal P(A)\\cap\\mathcal P(B)",
+    "reading": "The same selected set X belongs to both power sets: it is a subset of A and a subset of B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-e98ac2d092279daaac61",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 41,
+    "latex": "X\\in\\mathcal P(A)",
+    "reading": "X is a member of the power set of A: every element of the set X belongs to A.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "The selected set, itself an object in the power set.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\mathcal P",
+        "meaning": "The collection of all subsets of its input set.",
+        "reference": "symbol-power-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-019d87190350e9ca8b76",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 42,
+    "latex": "X\\in\\mathcal P(B)",
+    "reading": "The set X belongs to the collection of all subsets of B, because every element of X lies in B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-f72fb3876672c09a105d",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 43,
+    "latex": "X\\subseteq A",
+    "reading": "Every element of the selected set X belongs to A. This is precisely the condition for X to belong to the power set of A.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-7c7899fdb9c486714bee",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 44,
+    "latex": "X\\subseteq B",
+    "reading": "Every element of the arbitrary selection X belongs to B. This certifies that X belongs to the power set of B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-c91c2995d33e6cd88a5d",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 45,
+    "latex": "x\\in X",
+    "reading": "Choose an arbitrary element x inside the selected set X. This inner element argument proves a claim about the whole selection X.",
+    "bindings": [
+      {
+        "symbol": "x",
+        "meaning": "An arbitrary element of the selected set X.",
+        "reference": "element"
+      },
+      {
+        "symbol": "X",
+        "meaning": "A set that is itself an arbitrary member of the relevant power set.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-29297a5a5f441c2dcd3e",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 46,
+    "latex": "A\\cap B",
+    "reading": "A intersection B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\cap",
+        "meaning": "Intersection: membership in both sets.",
+        "reference": "symbol-intersection"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-2cb44ba9ab74bdfb5bf5",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 47,
+    "latex": "X\\subseteq A\\cap B",
+    "reading": "The set X is contained in the intersection of A and B. Each of its elements satisfies both membership conditions.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-8073323e74e7dd9de98b",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 48,
+    "latex": "X\\in\\mathcal P(A\\cap B)",
+    "reading": "X is a member of the power set of the intersection: every member of X lies in both A and B.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-d42b804a7c4eec1661a5",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 49,
+    "latex": "A=\\{a,b\\}",
+    "reading": "A contains the two distinct labeled objects a and b, from which subsets may be selected.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-second-options",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 50,
+    "latex": "B=\\{b,c\\}",
+    "reading": "B contains the labeled objects b and c. Its common member with A is b.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-377cda360dd55b920cf5",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 51,
+    "latex": "\\varnothing",
+    "reading": "the empty set.",
+    "bindings": [
+      {
+        "symbol": "\\varnothing",
+        "meaning": "The empty set, containing no objects.",
+        "reference": "symbol-empty-set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-08532033812acf93e317",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 52,
+    "latex": "\\{b\\}",
+    "reading": "the set containing b end set.",
+    "bindings": [
+      {
+        "symbol": "b",
+        "meaning": "The object labeled b; in a listed set the label names an element.",
+        "reference": "element"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-070c8b6d913d38a2b2f3",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 53,
+    "latex": "X",
+    "reading": "A set of selected objects. X is a whole member of a power set; an element inside X is a different level of membership.",
+    "bindings": [
+      {
+        "symbol": "X",
+        "meaning": "A set being tested as a possible subset of A or B.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-mixed-selection",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 54,
+    "latex": "\\{a,c\\}",
+    "reading": "The selection containing a from A and c from B. This set lies in the combined source but in neither source alone.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-f5611337dbb563cdcddd",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 55,
+    "latex": "A\\cup B",
+    "reading": "A union B.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      },
+      {
+        "symbol": "\\cup",
+        "meaning": "Union: membership in at least one of the sets.",
+        "reference": "symbol-union"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-e790bf9304e3d23b2d7a",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 56,
+    "latex": "A",
+    "reading": "The set named A in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "A",
+        "meaning": "The set named A in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-c5493330226ca5f1dcb4",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 57,
+    "latex": "B",
+    "reading": "The set named B in this statement; in a general identity it is arbitrary.",
+    "bindings": [
+      {
+        "symbol": "B",
+        "meaning": "The set named B in this statement; in a general identity it is arbitrary.",
+        "reference": "set"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-power-of-union",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 58,
+    "latex": "\\mathcal P(A\\cup B)",
+    "reading": "The collection of all subsets of the union of A and B. A selection may mix elements from the two sources.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-union-of-powers",
+    "lesson": "sets-and-set-operations",
+    "source": "section:power-sets:text-end",
+    "ordinal": 59,
+    "latex": "\\mathcal P(A)\\cup\\mathcal P(B)",
+    "reading": "The collection of selections that are wholly subsets of A or wholly subsets of B. It can omit selections that mix the two sources.",
+    "bindings": []
   },
   {
     "id": "formula-c63cf98bea79afea63b3",
@@ -98508,6 +100204,83 @@
         "reference": "symbol-exists"
       }
     ]
+  },
+  {
+    "id": "formula-teaching-a5c409df6c1e31ebbe4a",
+    "lesson": "direct-proof",
+    "source": "section:read-the-claim-before-choosing-a-method:text-end",
+    "ordinal": 21,
+    "latex": "n=2k",
+    "reading": "n equals 2 k.",
+    "bindings": [
+      {
+        "symbol": "n",
+        "meaning": "The integer n used in this proof. Integer witnesses certify the divisibility or parity equations in which they occur.",
+        "reference": "local-variable"
+      },
+      {
+        "symbol": "k",
+        "meaning": "The integer k used in this proof. Integer witnesses certify the divisibility or parity equations in which they occur.",
+        "reference": "local-variable"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-bb74e166d409b40cbf06",
+    "lesson": "direct-proof",
+    "source": "section:read-the-claim-before-choosing-a-method:text-end",
+    "ordinal": 22,
+    "latex": "k",
+    "reading": "The integer k used in this proof. Integer witnesses certify the divisibility or parity equations in which they occur.",
+    "bindings": [
+      {
+        "symbol": "k",
+        "meaning": "The integer k used in this proof. Integer witnesses certify the divisibility or parity equations in which they occur.",
+        "reference": "local-variable"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-even-square-target",
+    "lesson": "direct-proof",
+    "source": "section:read-the-claim-before-choosing-a-method:text-end",
+    "ordinal": 23,
+    "latex": "n^2=2m",
+    "reading": "The square of the given even integer n must equal twice an integer m. Finding that integer witness will prove evenness.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-38ea300870dc58c9b830",
+    "lesson": "direct-proof",
+    "source": "section:read-the-claim-before-choosing-a-method:text-end",
+    "ordinal": 24,
+    "latex": "m",
+    "reading": "The integer m used in this proof. Integer witnesses certify the divisibility or parity equations in which they occur.",
+    "bindings": [
+      {
+        "symbol": "m",
+        "meaning": "The integer m used in this proof. Integer witnesses certify the divisibility or parity equations in which they occur.",
+        "reference": "local-variable"
+      }
+    ]
+  },
+  {
+    "id": "formula-teaching-even-square-chain",
+    "lesson": "direct-proof",
+    "source": "section:read-the-claim-before-choosing-a-method:text-end",
+    "ordinal": 25,
+    "latex": "n^2=4k^2=2(2k^2)",
+    "reading": "Substituting n equals twice k gives a square of four k squared, which is twice the integer two k squared.",
+    "bindings": []
+  },
+  {
+    "id": "formula-teaching-even-square-witness",
+    "lesson": "direct-proof",
+    "source": "section:read-the-claim-before-choosing-a-method:text-end",
+    "ordinal": 26,
+    "latex": "m=2k^2",
+    "reading": "Choose twice k squared as the integer witness m showing the square is even. Since k is an integer, so is m.",
+    "bindings": []
   },
   {
     "id": "formula-73d6b8767358b19a5877",

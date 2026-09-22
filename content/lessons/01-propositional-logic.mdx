@@ -6,6 +6,8 @@ Imagine being given a rule and trying to decide what it actually guarantees. “
 
 The symbols in this lesson are a compact way of recording reasoning that we will also describe in words. Read each formula as a sentence before trying to manipulate it. The aim is to recognize what follows from a set of assumptions and explain why, with the notation helping you keep your place.
 
+Use the recommended questions to check the main distinctions. You do not need to complete the entire practice collection before moving on. If a question exposes a confusion, return to the matching example and try a nearby question; repeating every variation is unnecessary when you can already explain the reasoning.
+
 ## Propositions
 
 A **proposition** is a statement with a definite truth value: it is either true or false.
@@ -37,8 +39,6 @@ q = \text{"I have an umbrella"}
 $$
 
 Naming the statements lets us focus on their relationship without repeatedly writing the whole sentences. A **logical operator** is a way to form a new statement from existing ones. We will begin with “not,” then add “and,” “or,” and “if … then.”
-
-<Exercise id="1" />
 
 <Exercise id="4" />
 
@@ -88,8 +88,6 @@ Suppose admission requires a ticket and identification. Bringing a ticket alone 
 
 For Boolean-valued inputs in programming, this is the same truth operation written `p && q`, where `&&` means AND. Some programming languages also convert other values, such as numbers or text, into true or false before using this operation. Those conversion rules are called **truthiness** rules; here our inputs are already true or false.
 
-<Exercise id="10" />
-
 ## Disjunction: OR
 
 The **disjunction** of $p$ and $q$ is
@@ -112,8 +110,6 @@ An advertisement saying “applicants with teaching or research experience are w
 | F   | F   | F         |
 
 This differs from **exclusive OR**, often abbreviated XOR, which is true only when exactly one input is true. A menu offering “soup or salad, but not both” makes that extra restriction explicit. When translating an ordinary sentence, decide whether that restriction is really intended; the bare symbol $\lor$ does not include it.
-
-<Exercise id="11" />
 
 <QuickCheck id="quick-1" />
 
@@ -241,8 +237,6 @@ That is true.
 Why does the contrapositive preserve the claim? The original rules out a number that is divisible by four but not even. The contrapositive rules out exactly the same situation, approached from the other end. Reversing the sentence without negating it would rule out a different situation, which is why the converse need not work.
 
 <Exercise id="31" />
-
-<Exercise id="35" />
 
 ## Necessary and sufficient conditions
 
@@ -414,8 +408,6 @@ is equivalent to
 ```
 
 <Exercise id="46" />
-
-<Exercise id="47" />
 
 ## Common equivalence laws
 
@@ -667,6 +659,8 @@ $$
 
 Therefore they are not logically equivalent.
 
+**What should you try first?** To refute an implication, deliberately look for a true antecedent and false consequent. To refute an equivalence, look for a case where one side is true and the other false. Those are different targets. For example, making both sides false defeats neither an equivalence nor an argument for equivalence. If your search finds no counterexample, that is a reason to investigate further, not yet a proof: use a complete truth table or a chain of established equivalences to finish.
+
 ## Arguments, premises, and conclusions
 
 An **argument** starts from one or more statements offered as assumptions, called **premises**. It then claims that another statement, its **conclusion**, follows from those premises. We assess the connection between the starting assumptions and the claimed result.
@@ -805,6 +799,8 @@ These ideas matter directly in computer science. The Boolean satisfiability prob
 
 ## A first proof by contrapositive
 
+This example previews proof construction. Read it for the method; the dedicated proof lessons later provide the practice. For a direct proof of $P\to Q$, assume $P$, unpack what $Q$ requires, and build justified steps from the assumption to that target. When the negation of $Q$ gives an easier starting point, prove the equivalent implication $\neg Q\to\neg P$ instead. The statement chooses the starting assumption and finishing obligation; we cannot simply assume whichever fact would make the calculation easiest.
+
 Let $n$ be an integer. Consider the statement:
 
 > If $n^2$ is even, then $n$ is even.
@@ -840,8 +836,6 @@ $$
 This has the form $2m+1$ for an integer $m$, so $n^2$ is odd. Therefore the contrapositive is true, and because an implication is logically equivalent to its contrapositive, the original statement is true.
 
 This small proof illustrates several ideas at once: translating definitions into algebra, choosing a logically equivalent statement that is easier to prove, and writing a chain of reasoning that establishes the claim for every applicable integer rather than checking examples one by one.
-
-<Exercise id="152" />
 
 ## What to be able to do before moving on
 

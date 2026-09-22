@@ -31,7 +31,7 @@ test('every inline exercise has a current audit with preceding teaching evidence
         ([slug]) => !slug.startsWith('calculus-') && !slug.startsWith('probability-statistics-'),
       )
       .reduce((n, [, entries]) => n + Object.keys(entries).length, 0),
-    253,
+    235,
   );
 });
 test('inline instructions cannot inherit witness, complements, empty products, or graph concepts early', () => {
@@ -93,7 +93,7 @@ test('moving a problem or its prerequisite into the wrong order is rejected', ()
   const plans = structuredClone(inlinePlacements);
   const audit = structuredClone(inlineAudit);
   const slug = 'propositional-logic';
-  plans[slug]['Converse, inverse, and contrapositive'] = [35];
+  plans[slug]['Converse, inverse, and contrapositive'] = [];
   plans[slug]['Implication: IF ... THEN'] = [31];
   audit[slug][31].after = 'Implication: IF ... THEN';
   assert.throws(

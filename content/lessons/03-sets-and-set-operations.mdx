@@ -4,6 +4,8 @@ A set is a collection in which membership is precise: an object either belongs o
 
 This lesson uses [Predicates and Quantifiers](../lessons/02-predicates-and-quantifiers.mdx). In particular, remember that a universal claim needs reasoning about an arbitrary allowed object, whereas one counterexample disproves it.
 
+Work through the examples before attempting the short recommended practice. The larger practice collection is available when a particular idea needs another attempt; it is not a checklist to finish. For your first set proof, aim to explain where the arbitrary object starts, what each definition tells you, and why it reaches the required destination.
+
 ## Elements, descriptions, and equality
 
 Imagine describing the guests invited to dinner. You might list their names, or say “everyone who lives in this apartment.” Those descriptions look different, but they describe the same set if they select exactly the same people. Sets let us separate the collection itself from the particular words or order used to describe it.
@@ -46,7 +48,9 @@ A\subseteq B\quad\Longleftrightarrow\quad
 \forall x,\ (x\in A\to x\in B).
 $$
 
-$A$ is then a **subset** of $B$. Equality is allowed. A **proper subset**, written $A\subsetneq B$, additionally requires $A\ne B$. We avoid $\subset$ because authors disagree about whether it permits equality.
+$A$ is then a **subset** of $B$. This condition checks whether anything in $A$ is missing from $B$; it does not require $B$ to have anything extra. That is why a set is a subset of itself.
+
+Sometimes we need the stronger claim that $A$ fits inside $B$ and leaves something out. Then $A$ is a **proper subset** of $B$, written $A\subsetneq B$: both $A\subseteq B$ and $A\ne B$ must hold. For example, $\{1,2\}$ is a proper subset of $\{1,2,3\}$, because 3 is left out. The set $\{1,2,3\}$ is a subset of itself but not a proper subset of itself. To check proper inclusion, first check that no member escapes, then find a member of $B$ missing from $A$. We avoid $\subset$ because authors disagree about whether it permits equality.
 
 For $B=\{1,2\}$, we have $1\in B$ and $\{1\}\subseteq B$. But $\{1\}\notin B$: the elements listed in $B$ are numbers, not sets. In contrast, if $C=\{\{1\},2\}$, then $\{1\}\in C$ but $1\notin C$.
 
@@ -124,6 +128,15 @@ Read this as “the intersection of A and B is a subset of A.” Here is the pro
 
 This is an **element proof**: follow one member from the starting set to the destination set. Mathematicians say “let $x$ be an arbitrary element” to mean that the reasoning must work for any member, without relying on special features of a chosen example. The same argument works whether the sets contain people, numbers, or other objects. If the starting set is empty, there is no member that could violate the inclusion, so the claim still holds.
 
+Here is the reusable skeleton for proving $A\subseteq B$:
+
+1. Begin, “Let $x\in A$ be arbitrary.” This supplies your starting assumption.
+2. Write down what membership in $B$ requires. This is your goal, not another assumption.
+3. Unpack the membership conditions and use the stated hypotheses to reach that goal.
+4. Close, “Thus $x\in B$. Since $x$ was arbitrary, $A\subseteq B$.”
+
+For the example, the finished proof is: let $x\in A\cap B$. By the definition of intersection, $x\in A$ and $x\in B$, so in particular $x\in A$. Since this works for every member of $A\cap B$, the inclusion follows. The definition supplies the crucial step; no clever algebra is needed. Choosing a particular value such as $x=2$ would check only that value and would not prove the inclusion.
+
 **Next: show that two descriptions give the same set.**
 
 Keep the two lists, and fix a universe $U$ containing everyone under discussion. The complement $B^c$ means the people in this universe who are **not** colleagues. We want to prove
@@ -138,6 +151,8 @@ Read the left side as “neighbors with colleagues removed.” Read the right si
 2. **From right to left.** Start with anyone in that intersection. This person is a neighbor and is not a colleague. Removing colleagues from the neighbor list would keep them, so they belong to the difference on the left.
 
 The first direction shows that the right side misses nobody from the left. The second shows that the right side adds nobody extra. Together they establish equality. One direction alone would allow extra members: everyone on a two-person guest list might also be on a ten-person list, but the lists are not equal.
+
+In a written proof, separate the two starts: first “Let $x\in A\setminus B$,” and then “Let $x\in A\cap B^c$.” Each starts a fresh argument. This method is called **double inclusion**. We do not assume that the two sets are equal while proving they are equal; we establish each direction using only its own starting membership.
 
 **Finally: recognize when each step works in both directions.**
 
@@ -211,7 +226,11 @@ $$
 \mathcal P(\{a,b\})=\{\varnothing,\{a\},\{b\},\{a,b\}\}.
 $$
 
-Thus $B\in\mathcal P(A)$ means exactly $B\subseteq A$. Every power set contains the empty set and the original set, although these coincide when $A=\varnothing$. In particular,
+The outer braces collect the four possible selections. Inside them, $\{a\}$ is one whole selection, not an instruction to remove a layer of braces. In particular, $a$ is an element of the original set, while $\{a\}$ is an element of its power set.
+
+The most useful reading rule is: **“$X$ belongs to the power set of $A$” means “every element of $X$ belongs to $A$.”** In symbols, $X\in\mathcal P(A)$ means exactly $X\subseteq A$. The letter $X$ names a set here. For $A=\{a,b\}$, the choice $X=\{a\}$ passes the test; $X=\{a,c\}$ fails because $c\notin A$. You can make this check without listing the entire power set.
+
+Every power set contains the empty set and the original set, although these coincide when $A=\varnothing$. In particular,
 
 $$
 \mathcal P(\varnothing)=\{\varnothing\}.
@@ -233,6 +252,26 @@ For the same two elements a and b shown in the figure, let the first position st
 | `11`     | Yes        | Yes        | Both a and b    |
 
 These four rows describe exactly the four subsets inside the power-set box. Each subset has one mask, and each mask selects one subset. This is why bit masks appear here: they give a computer a compact way to record a choice of subset, such as which optional features are enabled. They also express the same counting argument as above: each extra element adds another independent yes-or-no choice, doubling the number of possible subsets. The positions must stay fixed so we know which element each digit refers to; they do not put the selected elements in an order.
+
+### Worked proof: a larger set allows every old selection
+
+Suppose $A\subseteq B$. We want to prove $\mathcal P(A)\subseteq\mathcal P(B)$. In English, every selection made entirely from $A$ is also a selection made entirely from $B$. The conclusion is an inclusion, so use the subset skeleton. This time an arbitrary member of the starting collection is itself a **set**: call it $X$.
+
+**Proof.** Assume $A\subseteq B$ and let $X\in\mathcal P(A)$ be arbitrary. By the definition of power set, $X\subseteq A$. To show $X\subseteq B$, let $x\in X$ be arbitrary. Since $X\subseteq A$, we have $x\in A$; since $A\subseteq B$, we then have $x\in B$. Thus $X\subseteq B$, which means $X\in\mathcal P(B)$. This holds for every $X\in\mathcal P(A)$, so $\mathcal P(A)\subseteq\mathcal P(B)$.
+
+There are two levels of reasoning: $X$ is a member of a power set, and $x$ is a member of $X$. Starting with $x\in A$ alone would address the original sets, not all their possible selections. The proof works for empty selections too: no member can violate the required inclusion.
+
+### Worked proof: selections shared by two sets
+
+Consider $\mathcal P(A\cap B)=\mathcal P(A)\cap\mathcal P(B)$. The left side collects selections made from the common elements. The right side collects selections that qualify for **both** power sets. Equality calls for double inclusion.
+
+**Left to right.** Let $X\in\mathcal P(A\cap B)$. The power-set definition gives $X\subseteq A\cap B$. Each $x\in X$ therefore belongs to both $A$ and $B$. So $X\subseteq A$ and $X\subseteq B$. Translating back, $X\in\mathcal P(A)$ and $X\in\mathcal P(B)$, hence $X\in\mathcal P(A)\cap\mathcal P(B)$.
+
+**Right to left.** Let $X\in\mathcal P(A)\cap\mathcal P(B)$. Membership in the intersection gives $X\in\mathcal P(A)$ and $X\in\mathcal P(B)$, so $X\subseteq A$ and $X\subseteq B$. Every $x\in X$ belongs to both sets and therefore to $A\cap B$. Thus $X\subseteq A\cap B$, which gives $X\in\mathcal P(A\cap B)$.
+
+The two inclusions establish equality. Each move either opens a definition or repackages a condition into one. For a concrete check, take $A=\{a,b\}$ and $B=\{b,c\}$: both sides contain exactly $\varnothing$ and $\{b\}$. That example checks our interpretation; the arbitrary-$X$ argument proves the identity for all sets.
+
+Do not infer a matching union identity by changing the symbols. With those same sets, $\{a,c\}$ is a subset of $A\cup B$, but is a subset of neither $A$ nor $B$. It belongs to $\mathcal P(A\cup B)$ and not to $\mathcal P(A)\cup\mathcal P(B)$. A selection may mix the two sources. This one selection is a counterexample to the proposed equality.
 
 <QuickCheck id="quick-2" />
 

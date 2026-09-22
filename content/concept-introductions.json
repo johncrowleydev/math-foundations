@@ -832,17 +832,17 @@
     "lesson": "sets-and-set-operations",
     "section": "Membership and subsets are different",
     "start": 360,
-    "end": 718,
-    "quote": "We write $A\\subseteq B$ when every element of $A$ belongs to $B$:\n\n$$\nA\\subseteq B\\quad\\Longleftrightarrow\\quad\n\\forall x,\\ (x\\in A\\to x\\in B).\n$$\n\n$A$ is then a **subset** of $B$. Equality is allowed. A **proper subset**, written $A\\subsetneq B$, additionally requires $A\\ne B$. We avoid $\\subset$ because authors disagree about whether it permits equality.",
+    "end": 696,
+    "quote": "We write $A\\subseteq B$ when every element of $A$ belongs to $B$:\n\n$$\nA\\subseteq B\\quad\\Longleftrightarrow\\quad\n\\forall x,\\ (x\\in A\\to x\\in B).\n$$\n\n$A$ is then a **subset** of $B$. This condition checks whether anything in $A$ is missing from $B$; it does not require $B$ to have anything extra. That is why a set is a subset of itself.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
     "concept": "proper-subset",
     "lesson": "sets-and-set-operations",
     "section": "Membership and subsets are different",
-    "start": 508,
-    "end": 718,
-    "quote": "$A$ is then a **subset** of $B$. Equality is allowed. A **proper subset**, written $A\\subsetneq B$, additionally requires $A\\ne B$. We avoid $\\subset$ because authors disagree about whether it permits equality.",
+    "start": 698,
+    "end": 1238,
+    "quote": "Sometimes we need the stronger claim that $A$ fits inside $B$ and leaves something out. Then $A$ is a **proper subset** of $B$, written $A\\subsetneq B$: both $A\\subseteq B$ and $A\\ne B$ must hold. For example, $\\{1,2\\}$ is a proper subset of $\\{1,2,3\\}$, because 3 is left out. The set $\\{1,2,3\\}$ is a subset of itself but not a proper subset of itself. To check proper inclusion, first check that no member escapes, then find a member of $B$ missing from $A$. We avoid $\\subset$ because authors disagree about whether it permits equality.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
@@ -921,8 +921,8 @@
     "concept": "set-de-morgan",
     "lesson": "sets-and-set-operations",
     "section": "Proving inclusions and identities",
-    "start": 2976,
-    "end": 3870,
+    "start": 4081,
+    "end": 4975,
     "quote": "Consider the people who are on neither list. There are two ways to describe them:\n\n- Combine the neighbor and colleague lists, then take everyone in the universe who is outside that combined list.\n- Take the non-neighbors and the non-colleagues, then keep only people who are in both of those groups.\n\nWhy do these descriptions agree? Being outside the combined list means being on neither original list. That means being a non-neighbor **and** a non-colleague. The reasoning also works backwards: someone who is in neither group cannot appear when the two lists are combined.\n\nIn symbols, this proves one of **De Morgan's laws**:\n\n$$\n(A\\cup B)^c=A^c\\cap B^c.\n$$\n\nOn the left, $\\cup$ combines the lists and the superscript $c$ takes the complement of the whole result. On the right, each list is complemented separately and $\\cap$ keeps their overlap. All complements use the same universe $U$.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
@@ -940,16 +940,16 @@
     "lesson": "sets-and-set-operations",
     "section": "Power sets",
     "start": 0,
-    "end": 667,
-    "quote": "So far, the elements of our examples have mostly been numbers or people. Now the elements will themselves be choices of subsets. If a meal offers two optional extras, a choice might include neither extra, one of them, or both. The power set collects all those possible choices; it is a set of sets, which is why the nested braces below are doing real work.\n\nThe **power set** $\\mathcal P(A)$ is the set of all subsets of $A$:\n\n$$\n\\mathcal P(\\{a,b\\})=\\{\\varnothing,\\{a\\},\\{b\\},\\{a,b\\}\\}.\n$$\n\nThus $B\\in\\mathcal P(A)$ means exactly $B\\subseteq A$. Every power set contains the empty set and the original set, although these coincide when $A=\\varnothing$. In particular,",
+    "end": 1110,
+    "quote": "So far, the elements of our examples have mostly been numbers or people. Now the elements will themselves be choices of subsets. If a meal offers two optional extras, a choice might include neither extra, one of them, or both. The power set collects all those possible choices; it is a set of sets, which is why the nested braces below are doing real work.\n\nThe **power set** $\\mathcal P(A)$ is the set of all subsets of $A$:\n\n$$\n\\mathcal P(\\{a,b\\})=\\{\\varnothing,\\{a\\},\\{b\\},\\{a,b\\}\\}.\n$$\n\nThe outer braces collect the four possible selections. Inside them, $\\{a\\}$ is one whole selection, not an instruction to remove a layer of braces. In particular, $a$ is an element of the original set, while $\\{a\\}$ is an element of its power set.\n\nThe most useful reading rule is: **“$X$ belongs to the power set of $A$” means “every element of $X$ belongs to $A$.”** In symbols, $X\\in\\mathcal P(A)$ means exactly $X\\subseteq A$. The letter $X$ names a set here. For $A=\\{a,b\\}$, the choice $X=\\{a\\}$ passes the test; $X=\\{a,c\\}$ fails because $c\\notin A$. You can make this check without listing the entire power set.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
     "concept": "bit",
     "lesson": "sets-and-set-operations",
     "section": "Power sets",
-    "start": 1116,
-    "end": 2482,
+    "start": 1682,
+    "end": 3048,
     "quote": "**A computing application: recording which elements you chose.** The include-or-exclude decisions above can also be stored as zeros and ones. A **bit** is one digit, either 0 or 1. Use 1 for “include this element” and 0 for “leave it out.” A **bit mask** is a row of these digits, with one fixed position for each element of the original set.\n\nFor the same two elements a and b shown in the figure, let the first position stand for a and the second for b:\n\n| Bit mask | Include a? | Include b? | Subset selected |\n| -------- | ---------- | ---------- | --------------- |\n| `00`     | No         | No         | Empty set       |\n| `10`     | Yes        | No         | Only a          |\n| `01`     | No         | Yes        | Only b          |\n| `11`     | Yes        | Yes        | Both a and b    |\n\nThese four rows describe exactly the four subsets inside the power-set box. Each subset has one mask, and each mask selects one subset. This is why bit masks appear here: they give a computer a compact way to record a choice of subset, such as which optional features are enabled. They also express the same counting argument as above: each extra element adds another independent yes-or-no choice, doubling the number of possible subsets. The positions must stay fixed so we know which element each digit refers to; they do not put the selected elements in an order.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
@@ -957,8 +957,8 @@
     "concept": "bit-mask",
     "lesson": "sets-and-set-operations",
     "section": "Power sets",
-    "start": 1116,
-    "end": 2482,
+    "start": 1682,
+    "end": 3048,
     "quote": "**A computing application: recording which elements you chose.** The include-or-exclude decisions above can also be stored as zeros and ones. A **bit** is one digit, either 0 or 1. Use 1 for “include this element” and 0 for “leave it out.” A **bit mask** is a row of these digits, with one fixed position for each element of the original set.\n\nFor the same two elements a and b shown in the figure, let the first position stand for a and the second for b:\n\n| Bit mask | Include a? | Include b? | Subset selected |\n| -------- | ---------- | ---------- | --------------- |\n| `00`     | No         | No         | Empty set       |\n| `10`     | Yes        | No         | Only a          |\n| `01`     | No         | Yes        | Only b          |\n| `11`     | Yes        | Yes        | Both a and b    |\n\nThese four rows describe exactly the four subsets inside the power-set box. Each subset has one mask, and each mask selects one subset. This is why bit masks appear here: they give a computer a compact way to record a choice of subset, such as which optional features are enabled. They also express the same counting argument as above: each extra element adds another independent yes-or-no choice, doubling the number of possible subsets. The positions must stay fixed so we know which element each digit refers to; they do not put the selected elements in an order.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
@@ -1030,17 +1030,17 @@
     "lesson": "sets-and-set-operations",
     "section": "Membership and subsets are different",
     "start": 360,
-    "end": 718,
-    "quote": "We write $A\\subseteq B$ when every element of $A$ belongs to $B$:\n\n$$\nA\\subseteq B\\quad\\Longleftrightarrow\\quad\n\\forall x,\\ (x\\in A\\to x\\in B).\n$$\n\n$A$ is then a **subset** of $B$. Equality is allowed. A **proper subset**, written $A\\subsetneq B$, additionally requires $A\\ne B$. We avoid $\\subset$ because authors disagree about whether it permits equality.",
+    "end": 696,
+    "quote": "We write $A\\subseteq B$ when every element of $A$ belongs to $B$:\n\n$$\nA\\subseteq B\\quad\\Longleftrightarrow\\quad\n\\forall x,\\ (x\\in A\\to x\\in B).\n$$\n\n$A$ is then a **subset** of $B$. This condition checks whether anything in $A$ is missing from $B$; it does not require $B$ to have anything extra. That is why a set is a subset of itself.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
     "concept": "symbol-proper-subset",
     "lesson": "sets-and-set-operations",
     "section": "Membership and subsets are different",
-    "start": 508,
-    "end": 718,
-    "quote": "$A$ is then a **subset** of $B$. Equality is allowed. A **proper subset**, written $A\\subsetneq B$, additionally requires $A\\ne B$. We avoid $\\subset$ because authors disagree about whether it permits equality.",
+    "start": 698,
+    "end": 1238,
+    "quote": "Sometimes we need the stronger claim that $A$ fits inside $B$ and leaves something out. Then $A$ is a **proper subset** of $B$, written $A\\subsetneq B$: both $A\\subseteq B$ and $A\\ne B$ must hold. For example, $\\{1,2\\}$ is a proper subset of $\\{1,2,3\\}$, because 3 is left out. The set $\\{1,2,3\\}$ is a subset of itself but not a proper subset of itself. To check proper inclusion, first check that no member escapes, then find a member of $B$ missing from $A$. We avoid $\\subset$ because authors disagree about whether it permits equality.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {
@@ -1093,8 +1093,8 @@
     "lesson": "sets-and-set-operations",
     "section": "Power sets",
     "start": 0,
-    "end": 667,
-    "quote": "So far, the elements of our examples have mostly been numbers or people. Now the elements will themselves be choices of subsets. If a meal offers two optional extras, a choice might include neither extra, one of them, or both. The power set collects all those possible choices; it is a set of sets, which is why the nested braces below are doing real work.\n\nThe **power set** $\\mathcal P(A)$ is the set of all subsets of $A$:\n\n$$\n\\mathcal P(\\{a,b\\})=\\{\\varnothing,\\{a\\},\\{b\\},\\{a,b\\}\\}.\n$$\n\nThus $B\\in\\mathcal P(A)$ means exactly $B\\subseteq A$. Every power set contains the empty set and the original set, although these coincide when $A=\\varnothing$. In particular,",
+    "end": 1110,
+    "quote": "So far, the elements of our examples have mostly been numbers or people. Now the elements will themselves be choices of subsets. If a meal offers two optional extras, a choice might include neither extra, one of them, or both. The power set collects all those possible choices; it is a set of sets, which is why the nested braces below are doing real work.\n\nThe **power set** $\\mathcal P(A)$ is the set of all subsets of $A$:\n\n$$\n\\mathcal P(\\{a,b\\})=\\{\\varnothing,\\{a\\},\\{b\\},\\{a,b\\}\\}.\n$$\n\nThe outer braces collect the four possible selections. Inside them, $\\{a\\}$ is one whole selection, not an instruction to remove a layer of braces. In particular, $a$ is an element of the original set, while $\\{a\\}$ is an element of its power set.\n\nThe most useful reading rule is: **“$X$ belongs to the power set of $A$” means “every element of $X$ belongs to $A$.”** In symbols, $X\\in\\mathcal P(A)$ means exactly $X\\subseteq A$. The letter $X$ names a set here. For $A=\\{a,b\\}$, the choice $X=\\{a\\}$ passes the test; $X=\\{a,c\\}$ fails because $c\\notin A$. You can make this check without listing the entire power set.",
     "scope": "Introduction evidence and full reference checked; exhaustive required-use comparison remains separate."
   },
   {

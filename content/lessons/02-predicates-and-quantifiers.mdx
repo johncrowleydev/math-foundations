@@ -12,6 +12,8 @@ To express these precisely, we need **predicates**, which describe properties or
 
 The goal is to read a quantified statement, explain exactly what it promises, and know what would prove or disprove it. Quantifier order is particularly important: a choice that can vary for each input is very different from one fixed choice that must work for every input.
 
+The recommended practice samples translation, negation, witness choices, and one short proof. Treat the remaining collection as extra practice for the particular idea you need, rather than a requirement to answer every similar question.
+
 ## Domains come first
 
 “There is a solution” sounds complete until someone asks what counts as an allowed answer. If we are assigning whole seats on a bus, half a seat will not do; if we are measuring a length, fractions may be perfectly appropriate. Specifying the **domain**, the collection of allowed objects, gives a mathematical statement this missing context. It is part of the claim, not a technical detail to add afterward.
@@ -113,8 +115,6 @@ $$
 
 An exhaustive check is therefore a proof when the domain is finite and every element really has been checked.
 
-<Exercise id="11" />
-
 ## Existential quantification: there exists
 
 The symbol $\exists$ means **there exists at least one**. The statement
@@ -134,6 +134,8 @@ $$
 $$
 
 is true. Either $n=3$ or $n=-3$ is a witness. An existential statement allows more than one witness; it promises at least one, not exactly one.
+
+For a constructive existence proof, use this short skeleton: **name a candidate, check its domain, then verify the property.** For instance, to prove that an integer lies strictly between 6 and 8, choose 7. It is an integer, and $6<7<8$. The sentence “let $n$ be arbitrary” would be the wrong start here: you are allowed to choose a helpful witness, and the claim does not promise that every integer works.
 
 To disprove an existential claim, showing that one candidate fails is not enough. You must show that every candidate fails. For example,
 
@@ -341,8 +343,6 @@ This gives a useful way to check your reading of a nested formula.
 
 For instance, three true entries scattered across three different rows can satisfy “everyone likes someone” without producing any entirely true row. Drawing a small table separates the two questions visually. It also makes clear why exchanging the two argument positions changes who is doing the liking, even when the quantifiers themselves stay in the same order.
 
-<Exercise id="101" />
-
 ## Negating nested quantifiers
 
 Ask what a failure of the whole promise would look like before moving any symbols. If every request should have some worker, a failure is one request left without any worker. That gives us both pieces of the negation: an existential choice of the failed request, followed by a universal statement that each worker fails to serve it. The formal rule below records this reasoning.
@@ -425,6 +425,16 @@ For example, over $\mathbb{Z}$:
 
 To refute an exactly-one claim, either show that no witness exists or give two distinct witnesses.
 
+### Worked example: prove both jobs separately
+
+Prove that there is exactly one integer $n$ satisfying $n+4=10$.
+
+**Existence:** choose $n=6$. It is an integer, and substituting gives $6+4=10$. We have now shown that at least one solution exists.
+
+**Uniqueness:** let $a$ and $b$ be any integers satisfying the equation. Then $a+4=10$ and $b+4=10$, so $a+4=b+4$. Subtracting 4 from both sides gives $a=b$. Any two solutions must therefore be the same integer.
+
+This gives a reusable uniqueness skeleton: **assume two candidates satisfy the property, use that property, and show the candidates are equal.** Do not assume they are equal at the beginning; equality is the goal. Checking that 6 works is enough for existence, but the comparison argument explains why a second solution cannot exist. The same pattern will later prove uniqueness when there is no simple equation to solve.
+
 <Exercise id="71" />
 
 ## Vacuous truth and empty cases
@@ -485,8 +495,6 @@ There is also an odd element and an even element, so $(\exists xP(x))\land(\exis
 
 When comparing quantified formulas, ask whether one expression requires the **same object** to satisfy several conditions while the other permits different objects.
 
-<Exercise id="81" />
-
 ## Valid reasoning with quantifiers
 
 Several basic reasoning steps will appear repeatedly in proofs.
@@ -525,6 +533,8 @@ To refute a proposed quantified inference, give a **countermodel**: a domain and
 
 ## Writing a quantified proof
 
+The first words of the claim tell you the first move. For $\forall x\in D$, begin with an arbitrary allowed $x$; for an implication, assume its antecedent; for an existential goal, construct and check a witness. A statement can require these moves in sequence. Draft the opening and the required final sentence before filling in the middle.
+
 Consider:
 
 $$
@@ -536,6 +546,8 @@ A short complete proof is:
 > Let $n$ be an arbitrary integer. Choose $m=n+1$. Then $m$ is an integer and $m>n$. Therefore every integer has a larger integer.
 
 Notice the structure: introduce the arbitrary input, choose a witness, verify that it belongs to the required domain, and verify the required property.
+
+Why choose $n+1$? The goal says the output must be larger than the supplied input, so adding a positive integer meets both the size requirement and the integer-domain requirement. Choosing $m=100$ would work for some inputs and fail for $n=100$. Choosing $n+1/2$ would always be larger but would fail the required domain. Checking both conditions explains the construction instead of leaving it as a guess.
 
 Now consider:
 
@@ -550,6 +562,8 @@ n^2=(2k+1)^2=2(2k^2+2k)+1.
 $$
 
 Since $2k^2+2k$ is an integer, $n^2$ is odd. This proves the implication for an arbitrary integer $n$. It does not assert that every integer is odd.
+
+The target “$n^2$ is odd” tells us to seek the form $2m+1$ with $m$ an integer. That is why the calculation factors out 2 and retains a final $+1$. We are using the definition twice: first to turn the hypothesis into something usable, then to recognize when the conclusion has been reached. Starting from “$n^2$ is odd” would assume the very fact still owed.
 
 The words "arbitrary," "assume," and "choose" mark different logical roles. Keeping those roles distinct prevents many proof errors.
 
