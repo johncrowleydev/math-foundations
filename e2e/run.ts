@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import { access, mkdir, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { root } from './support/browser.ts';
-import { runWithWorkers } from './support/workers.ts';
+import { runWithWorkers, selectShard } from './support/workers.ts';
 
 for (const file of [
   'web/dist/index.html',
@@ -17,7 +17,7 @@ const names = process.argv.slice(2);
 const available = (await readdir(join(root, 'e2e')))
   .filter((file) => /\.spec\.(ts|mjs)$/.test(file))
   .sort();
-const selected = available.filter(
+const candidates = available.filter(
   (file) => names.length === 0 || names.includes(file.replace(/\.spec\.(ts|mjs)$/, '')),
 );
 // Start the longest checks first, based on CI timings, to avoid a long tail.
@@ -32,7 +32,7 @@ const priority = (file: string) => {
   const index = longest.indexOf(file.replace(/\.spec\.(ts|mjs)$/, ''));
   return index === -1 ? longest.length : index;
 };
-selected.sort((left, right) => priority(left) - priority(right) || left.localeCompare(right));
+candidates.sort((left, right) => priority(left) - priority(right) || left.localeCompare(right));
 for (const name of names) {
   if (!available.some((file) => file.replace(/\.spec\.(ts|mjs)$/, '') === name)) {
     throw Error(
@@ -40,11 +40,15 @@ for (const name of names) {
     );
   }
 }
+const shard = process.env.E2E_SHARD;
+const selected = selectShard(candidates, shard);
 const failures: string[] = [];
 const timings = new Map<string, number>();
 const workers = Number(process.env.E2E_WORKERS || 2);
 const started = performance.now();
-console.log(`E2E: running ${selected.length} specs with ${workers} workers`);
+console.log(
+  `E2E: running ${selected.length} specs with ${workers} workers${shard ? ` (shard ${shard})` : ''}`,
+);
 const results = await runWithWorkers(selected, workers, async (file) => {
   const specStarted = performance.now();
   console.log(`\nRunning ${file}`);
@@ -83,6 +87,7 @@ await writeFile(
   JSON.stringify(
     {
       workers,
+      ...(shard ? { shard } : {}),
       durationSeconds,
       specs: results.map((result, index) => ({
         spec: selected[index],
