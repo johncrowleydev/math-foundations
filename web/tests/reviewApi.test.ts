@@ -9,8 +9,13 @@ test('server plans sessions; offline reload uses cached responses without changi
     value: { addEventListener() {} },
   });
   const { verifySession } = await import('../src/auth');
-  const { cachedReviewSession, loadReviewSummary, retainReviewSession, startReviewSession } =
-    await import('../src/reviewApi');
+  const {
+    cachedReviewSession,
+    cachedReviewSessionState,
+    loadReviewSummary,
+    retainReviewSession,
+    startReviewSession,
+  } = await import('../src/reviewApi');
   const savedFetch = globalThis.fetch;
   const savedStorage = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
   const values = new Map<string, string>();
@@ -63,6 +68,7 @@ test('server plans sessions; offline reload uses cached responses without changi
       await startReviewSession({ kind: 'scheduled-review', mode: 'quick' }),
       session,
     );
+    await retainReviewSession(session, { paused: true, index: 0 });
     const backup = await exportData();
     await clearLocalWork();
     await importData(backup, 'offline-session.json');
@@ -74,6 +80,7 @@ test('server plans sessions; offline reload uses cached responses without changi
     assert.deepEqual(offline.summary, summary);
     assert.equal(offline.fetchedAt, live.fetchedAt);
     assert.deepEqual(await cachedReviewSession(), session);
+    assert.deepEqual(await cachedReviewSessionState(), { session, paused: true, index: 0 });
     await assert.rejects(
       startReviewSession({ kind: 'scheduled-review', mode: 'quick' }),
       /Offline/,

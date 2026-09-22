@@ -236,6 +236,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
   }
   async function overview() {
     await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
+    await review.getByRole('button', { name: 'End session', exact: true }).click();
     await review.getByRole('button', { name: 'Start Regular review', exact: true }).waitFor();
   }
   async function waitForAttemptUpload(id) {
@@ -306,6 +307,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     );
     await screenshot('deferred');
     await review.getByRole('button', { name: 'Return to overview', exact: true }).click();
+    await review.getByRole('button', { name: 'End session', exact: true }).click();
     await review.getByLabel('Lesson', { exact: false }).selectOption('propositional-logic');
     await review.getByLabel('Concept', { exact: false }).selectOption('existential-quantification');
     await review.getByLabel('Skill', { exact: false }).selectOption('recall');
