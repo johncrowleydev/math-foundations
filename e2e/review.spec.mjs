@@ -236,7 +236,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
   }
   async function overview() {
     await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
-    await review.getByRole('button', { name: 'End session', exact: true }).click();
+    await review.getByRole('button', { name: /^(End|Close) session$/ }).click();
     await review.getByRole('heading', { name: 'Focused practice', exact: true }).waitFor();
   }
   async function waitForAttemptUpload(id) {
@@ -309,7 +309,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
       deepDueDates,
     );
     await screenshot('deferred');
-    await review.getByRole('button', { name: 'End session', exact: true }).click();
+    await review.getByRole('button', { name: /^(End|Close) session$/ }).click();
     await review.getByRole('heading', { name: 'You’re caught up for now' }).waitFor();
     assert.equal(
       await review.getByRole('button', { name: 'Start review', exact: true }).count(),

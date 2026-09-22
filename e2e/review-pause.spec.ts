@@ -87,9 +87,7 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
   await review.getByRole('button', { name: 'Continue review', exact: true }).waitFor();
   assert.equal(await review.getByRole('button', { name: 'Start review', exact: true }).count(), 0);
-  await review
-    .getByText('Your review session contains 2 questions and is unfinished.', { exact: false })
-    .waitFor();
+  await review.getByText('0 of 2 complete · 2 to do', { exact: true }).waitFor();
   assert.equal(await review.getByRole('button', { name: 'Quick review', exact: true }).count(), 0);
   assert.equal(
     await review.getByRole('button', { name: 'Start focused practice', exact: true }).count(),
@@ -129,7 +127,7 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
   await review.getByRole('button', { name: 'End session', exact: true }).click();
   await review
-    .getByText('Session ended. Your drafts and attempts are saved.', { exact: true })
+    .getByText('Session closed. Your drafts and attempts are saved.', { exact: true })
     .waitFor();
   assert.equal(
     await review.getByRole('button', { name: 'Continue review', exact: true }).count(),

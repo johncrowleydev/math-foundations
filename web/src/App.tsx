@@ -1,4 +1,5 @@
 import { ExerciseStatus } from './ExerciseStatus';
+import { ExerciseSidebar } from './ExerciseSidebar';
 import { exerciseKey } from './exerciseIdentity';
 import { Review } from './Review';
 import { ReviewLibrary } from './ReviewLibrary';
@@ -56,6 +57,7 @@ export function App({ data }: { data: Curriculum }) {
     [tutorials, setTutorials] = useState(false),
     [update, setUpdate] = useState<(() => Promise<void>) | null>(null);
   const reader = useRef<HTMLElement>(null);
+  const [exerciseSidebarHost, setExerciseSidebarHost] = useState<HTMLDivElement | null>(null);
   const lesson = data.lessons.find((l) => l.slug === slug) || data.lessons[0];
   const [loadedLesson, setLoadedLesson] = useState('');
   const recommended = recommendedPractice(lesson);
@@ -123,19 +125,6 @@ export function App({ data }: { data: Curriculum }) {
       }
     }
   }, [positionKey, route.section, loadedLesson]);
-  useEffect(() => {
-    if (tab !== 'practice') return;
-    const selected = document.querySelector<HTMLElement>(
-      exerciseNav ? '.practice-sheet .selected' : '.practice-sidebar .selected',
-    );
-    const container = selected?.closest<HTMLElement>(exerciseNav ? '.modal' : '.practice-sidebar');
-    if (selected && container) {
-      const item = selected.getBoundingClientRect(),
-        bounds = container.getBoundingClientRect();
-      if (item.top < bounds.top || item.bottom > bounds.bottom)
-        container.scrollTop += item.top - bounds.top - 80;
-    }
-  }, [practice, tab, exerciseNav]);
   useEffect(() => {
     let live = true;
     void (async () => {
@@ -552,7 +541,7 @@ export function App({ data }: { data: Curriculum }) {
                   )}
                 </div>
               ) : tab === 'review' ? (
-                <Review data={data} lesson={lesson.slug} />
+                <Review data={data} lesson={lesson.slug} sidebarHost={exerciseSidebarHost} />
               ) : tab === 'review-library' ? (
                 <ReviewLibrary data={data} lesson={lesson.slug} />
               ) : tab === 'progress' ? (
@@ -573,7 +562,17 @@ export function App({ data }: { data: Curriculum }) {
                 <Library data={data} onOpen={(id) => setReference([id])} />
               ) : null}
             </main>
-            {tab === 'practice' && <aside className="practice-sidebar">{practiceList}</aside>}
+            <div className="exercise-sidebar-slot" ref={setExerciseSidebarHost} />
+            {tab === 'practice' && (
+              <ExerciseSidebar
+                host={exerciseSidebarHost}
+                selected={practice}
+                mobileOpen={exerciseNav}
+                onClose={() => setExerciseNav(false)}
+              >
+                {practiceList}
+              </ExerciseSidebar>
+            )}
             {tab === 'read' && (
               <aside className="page-outline">
                 <span className="eyebrow">On this page</span>
@@ -648,11 +647,6 @@ export function App({ data }: { data: Curriculum }) {
           </div>
         </div>
       </div>
-      {exerciseNav && (
-        <Modal title="Exercises" onClose={() => setExerciseNav(false)}>
-          <div className="practice-sheet">{practiceList}</div>
-        </Modal>
-      )}
       {drawer && (
         <Modal title="Chapters" onClose={() => setDrawer(false)}>
           {nav}

@@ -21,7 +21,10 @@ await withBrowser('review-layout', async ({ page, baseURL, directory }) => {
       question: {
         id: 930000 + index,
         instructions: 'Synthetic layout task ' + (index + 1) + '.',
-        prompt: 'Explain your response.',
+        prompt: Array.from(
+          { length: 24 },
+          (_, line) => `Synthetic long task line ${line + 1}. Explain your response.`,
+        ).join('\n\n'),
         section: 'review',
       },
       context: {
@@ -93,8 +96,18 @@ await withBrowser('review-layout', async ({ page, baseURL, directory }) => {
       return {
         panelRight: rect.right,
         readerRight: reader.right,
+        viewportRight: innerWidth,
+        nestedInReader: !!element.closest('#reader'),
+        readerScrollable:
+          document.getElementById('reader')!.scrollHeight >
+          document.getElementById('reader')!.clientHeight,
+        panelScrollable: element.scrollHeight > element.clientHeight,
+        panelTop: rect.top,
+        readerTop: reader.top,
+        panelBottom: rect.bottom,
+        readerBottom: reader.bottom,
         reviewWidth: review.width,
-        centered: Math.abs(review.left - reader.left - (rect.left - review.right)) < 2,
+        centered: Math.abs(review.left - reader.left - (reader.right - review.right)) < 2,
         noOverflow: element.scrollWidth <= element.clientWidth,
         rows: Array.from(element.querySelectorAll('.exercise-link')).map((button) => {
           const row = button.getBoundingClientRect();
@@ -114,9 +127,14 @@ await withBrowser('review-layout', async ({ page, baseURL, directory }) => {
     );
     if (!compact) {
       assert.ok(
-        Math.abs(geometry.panelRight - geometry.readerRight) < 2,
+        Math.abs(geometry.panelRight - geometry.viewportRight) < 2,
         'Sidebar reaches right edge',
       );
+      assert.equal(geometry.nestedInReader, false, 'Sidebar is outside the scrolling reader');
+      assert.equal(geometry.readerScrollable, true, 'Long exercise scrolls in reader');
+      assert.equal(geometry.panelScrollable, true, 'Long exercise list scrolls independently');
+      assert.ok(Math.abs(geometry.panelTop - geometry.readerTop) < 2);
+      assert.ok(Math.abs(geometry.panelBottom - geometry.readerBottom) < 2);
       assert.ok(geometry.reviewWidth <= 980, 'Exercise column remains readable');
       assert.equal(geometry.centered, true, 'Exercise column is centered beside the sidebar');
     }
@@ -126,14 +144,37 @@ await withBrowser('review-layout', async ({ page, baseURL, directory }) => {
     );
     await page.mouse.move(0, 0);
     await page.screenshot({ path: `${directory}/review-layout-${width}.png`, fullPage: true });
+    const readerTopBefore = await page.locator('#reader').evaluate((element) => element.scrollTop);
     await navigation.getByRole('button').last().click();
     if (compact) await panel.waitFor({ state: 'hidden' });
     await page.getByText('Regular · 32 of 32', { exact: true }).waitFor();
+    assert.equal(
+      await page.locator('#reader').evaluate((element) => element.scrollTop),
+      readerTopBefore,
+      'Revealing selected sidebar item does not scroll its reader ancestor',
+    );
     if (compact) await review.getByRole('button', { name: 'Exercises', exact: true }).click();
     await navigation.getByRole('button').first().click();
     if (compact) await panel.waitFor({ state: 'hidden' });
     await page.getByText('Regular · 1 of 32', { exact: true }).waitFor();
   }
+  await page.setViewportSize({ width: 1920, height: 1000 });
+  await page.goto(baseURL + '/#/practice/propositional-logic');
+  const practiceSidebar = page.locator('.practice-sidebar');
+  await practiceSidebar.waitFor();
+  assert.equal(await practiceSidebar.evaluate((element) => !!element.closest('#reader')), false);
+  assert.equal(await page.locator('.exercise-sidebar-slot > .practice-sidebar').count(), 1);
+  await page.screenshot({
+    path: `${directory}/practice-shared-sidebar-desktop.png`,
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Exercises', exact: true }).click();
+  await page.getByRole('dialog', { name: 'Exercises', exact: true }).waitFor();
+  await page.screenshot({
+    path: `${directory}/practice-shared-sidebar-mobile.png`,
+    fullPage: true,
+  });
   assert.deepEqual(errors, []);
   console.log(
     'Review layout passed: aligned desktop sidebar, wrapping labels and visible statuses, compact navigation, and four viewport screenshots.',
