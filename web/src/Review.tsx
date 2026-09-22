@@ -4,8 +4,10 @@ import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } f
 import { all, useRevision } from './storage';
 import { Exercise } from './Exercise';
 import { routeHash } from './routing';
+import { nextReviewTaskIndex, reviewTargetCovered } from './reviewSessionProgress';
 import {
   cachedReviewSession,
+  cachedReviewSummary,
   loadReviewSummary,
   retainReviewSession,
   startReviewSession,
@@ -33,23 +35,31 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
       setCached(result.cached);
       setFetchedAt(result.fetchedAt);
       setError('');
+      return result;
     } catch (e) {
       setError(String(e));
     }
   }
   useEffect(() => {
-    void refresh();
-    void cachedReviewSession()
-      .then(async (saved) => {
+    // Restore local work before starting a possibly slow network refresh. A
+    // fresh summary may mark the visible card covered without replacing it.
+    void Promise.all([cachedReviewSession(), all<Attempt>('attempts'), cachedReviewSummary()])
+      .then(([saved, existing, result]) => {
+        if (result) {
+          setSummary(result.summary);
+          setCached(true);
+          setFetchedAt(result.fetchedAt);
+        }
         if (!saved) return;
-        const existing = await all<Attempt>('attempts');
-        const next = saved.instances.findIndex(
-          (item) => !existing.some((a) => a.exercise === item.exercise && a.verdict === 'correct'),
-        );
         setSession(saved);
-        setIndex(next < 0 ? saved.instances.length : next);
+        setIndex(
+          nextReviewTaskIndex(saved, 0, existing, result?.summary, result?.fetchedAt, {
+            resume: true,
+          }),
+        );
       })
-      .catch((e) => setError(String(e)));
+      .catch((e) => setError(String(e)))
+      .finally(() => void refresh());
     window.addEventListener('online', refresh);
     return () => window.removeEventListener('online', refresh);
   }, []);
@@ -58,7 +68,9 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   }, [revision]);
   const reviewStatus = attempts
     .filter((a) => a.review)
-    .map((a) => a.id + ':' + a.status + ':' + a.verdict)
+    // Deterministic answers are already Correct locally. Their server-stamped
+    // grade must also refresh coverage when acknowledgement keeps that verdict.
+    .map((a) => [a.id, a.status, a.verdict, ...a.grades.map((grade) => grade.at)].join(':'))
     .join(',');
   useEffect(() => {
     if (session) void refresh();
@@ -102,6 +114,11 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
   const answered = itemAttempts.some((a) => a.verdict === 'correct');
   const pending = itemAttempts.some((a) =>
     ['queued', 'pending', 'grading', 'rechecking'].includes(a.status),
+  );
+  const covered = !!(
+    session &&
+    item &&
+    reviewTargetCovered(session, item, attempts, summary, fetchedAt)
   );
   const target = summary?.targets.find(
     (t) =>
@@ -172,6 +189,12 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
               </p>
             )}
           </details>
+          {covered && (
+            <p className="review-notice" role="status">
+              This review target is already covered by recent work. You can continue without
+              answering again. Any draft is saved.
+            </p>
+          )}
           <Exercise
             key={item.id}
             q={item.question}
@@ -187,14 +210,19 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
             </button>
             <button
               onClick={() => {
-                setIndex(index + 1);
-                if (index + 1 === session.instances.length) void refresh();
+                const next = nextReviewTaskIndex(session, index + 1, attempts, summary, fetchedAt);
+                setIndex(next);
+                if (next === session.instances.length) void refresh();
               }}
             >
-              {answered ? 'Next →' : pending ? 'Continue while grading →' : 'Skip for now →'}
+              {answered || covered
+                ? 'Next →'
+                : pending
+                  ? 'Continue while grading →'
+                  : 'Skip for now →'}
             </button>
           </nav>
-          {!answered && !pending && (
+          {!answered && !pending && !covered && (
             <p className="muted">Skipping does not complete this target.</p>
           )}
         </>

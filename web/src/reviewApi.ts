@@ -39,6 +39,16 @@ async function cache(key: string, payload: Record<string, unknown>) {
   } satisfies RecordData);
 }
 
+export async function cachedReviewSummary() {
+  const saved = await get<RecordData>('records', 'review-cache/summary');
+  if (!saved) return undefined;
+  return {
+    summary: saved.payload.summary as ReviewSummary,
+    cached: true,
+    fetchedAt: saved.payload.fetchedAt as number,
+  };
+}
+
 export async function loadReviewSummary() {
   const key = 'review-cache/summary';
   try {
@@ -47,13 +57,9 @@ export async function loadReviewSummary() {
     await cache(key, { summary, fetchedAt });
     return { summary, cached: false, fetchedAt };
   } catch (error) {
-    const saved = await get<RecordData>('records', key);
+    const saved = await cachedReviewSummary();
     if (!connected() || !saved) throw error;
-    return {
-      summary: saved.payload.summary as ReviewSummary,
-      cached: true,
-      fetchedAt: saved.payload.fetchedAt as number,
-    };
+    return saved;
   }
 }
 
