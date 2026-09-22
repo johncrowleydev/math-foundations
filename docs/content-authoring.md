@@ -164,6 +164,62 @@ and statistics each have an introduction and 22 instructional lessons; see their
 [calculus](calculus-authorship.md) and
 [probability/statistics](probability-statistics-authorship.md) records.
 
+## Teaching for understanding within a time budget
+
+Lessons are teaching documents. Start important ideas in ordinary English, explain
+the problem they solve, and connect them to something already taught. Then give
+the precise definition and explain how to read the notation. A definition followed
+by a list of facts rarely supplies enough help to use the idea.
+
+Before assessment, work through a representative problem. Explain why you chose
+the first step, what the target requires, and why each move is allowed. Include
+contrasting examples when a distinction matters (membership versus inclusion,
+existence versus uniqueness). Name the likely misconception and show how to
+detect it. Use connected prose; these are teaching goals, not mandatory headings
+to repeat in every section.
+
+Teach problem-solving and proof construction cumulatively. Never require a proof
+pattern before introducing its skeleton and working a complete example. An
+implication begins with its hypothesis and a precise target; a universal proof
+uses an arbitrary allowed object; a subset proof follows an arbitrary member;
+set equality needs both inclusions. Existence needs a verified witness, uniqueness
+also rules out a second solution, and disproof needs a counterexample that meets
+the hypotheses. Explain the changed assumptions for contraposition and
+contradiction. Return to these patterns in later problems rather than assuming
+learners will infer them from grading feedback.
+
+Choose a small recommended path through the worksheet using explicit MDX exercise
+placements. Preserve representative interpretation, application, counterexample,
+and proof work where each is an objective. Keep near-equivalent long problems in
+optional extra practice, with their original IDs and saved work. Do not imply that
+finishing the entire bank is necessary to complete a lesson. A learner who struggles
+should revisit the relevant worked example and try a nearby problem; a learner
+who has demonstrated the same routine skill need not repeat it indefinitely.
+
+Audit important terms and notation against dedicated review objectives. Include
+term-to-meaning, meaning-to-term, notation-to-English, nearby distinctions, cloze,
+and example/non-example checks. Keep constructive and proof evidence separate:
+recognizing a proof's next step does not demonstrate the ability to write a proof.
+Use deterministic responses for fast terminology checks. Retain existing review
+identities when supplementing coverage.
+
+Estimate time before choosing exercise volume. The normalized planning categories
+are definition/terminology (10–30 seconds), true/false (10–30 seconds), multiple
+choice (15–45 seconds), short answer (30 seconds–2 minutes), short application
+(1–3 minutes), deep reasoning (3–8 minutes), and proof (5–15+ minutes). These are
+heuristics, not response deadlines or observed learner performance. Interaction
+effort and evidence depth remain separate from these costs: a typed term can be
+cheap production evidence, while a short-looking proof can require substantial
+thinking.
+
+Initial practice can contain deeper work. Routine retention should predominantly
+retrieve definitions, notation, distinctions, and small applications. Schedule
+proof and deep review sparingly and deliberately; a due concept is not a reason
+to repeat every long exercise that mentions it. Report before/after recommended
+counts, depth, approximate minutes, and important-term coverage when revising a
+lesson. State separately how much optional practice remains and what the estimates
+omit (reading, feedback, and individual variation).
+
 ## Editing, inspection, and validation
 
 1. Edit the relevant MDX/YAML/JSON records directly, preserving existing ordering

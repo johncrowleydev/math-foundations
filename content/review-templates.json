@@ -54734,5 +54734,1256 @@
         }
       }
     ]
+  },
+  {
+    "id": "sets-bit-mask-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "power-set",
+    "skill": "recall",
+    "objective": "bit-mask-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["power-set"],
+    "sourceIds": ["m-subset-bits"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose one answer.",
+      "prompt": "In the lesson's bit mask for a subset, what does a 1 in an element's fixed position mean?",
+      "answer": "Include that element in the subset; 0 means exclude it.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "The element occurs exactly once in the original set.",
+            "feedback": "Sets do not track repetitions. The bit records a selection."
+          },
+          {
+            "id": "b",
+            "text": "Include that element in the chosen subset.",
+            "feedback": "One position per element records its include-or-exclude decision."
+          },
+          {
+            "id": "c",
+            "text": "The element is the number 1.",
+            "feedback": "The bit is an indicator; the selected element can be any object."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-overlap-terminology-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "inclusion-exclusion",
+    "skill": "recall",
+    "objective": "pairwise-triple-intersection-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["inclusion-exclusion"],
+    "sourceIds": ["review-efficiency-counting"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Distinguish the two descriptions.",
+      "prompt": "With sets $A,B,C$, does the pairwise intersection $A\\cap B$ include elements in the triple intersection?",
+      "answer": "Yes. Membership in C does not remove an element from A intersect B.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes: belonging to all three still means belonging to both $A$ and $B$.",
+            "feedback": "Pairwise intersection is not the same as membership in exactly two sets."
+          },
+          {
+            "id": "b",
+            "text": "No: pairwise means belonging to exactly two sets.",
+            "feedback": "Exactly A and B would be $(A\\cap B)\\setminus C$."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "quantifier-variable-capture-retrieval",
+    "family": "fixed",
+    "lesson": "predicates-and-quantifiers",
+    "concept": "variable-scope",
+    "skill": "recall",
+    "objective": "variable-capture-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["variable-scope"],
+    "sourceIds": ["review-variable-scope"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the error.",
+      "prompt": "Renaming a bound variable accidentally makes a previously free occurrence bound. This is called:",
+      "answer": "Variable capture. Choose a fresh variable name and preserve which quantifier binds each occurrence.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "Vacuous truth.",
+            "feedback": "Vacuous truth concerns an unfulfilled condition or empty quantified range, not renaming."
+          },
+          {
+            "id": "b",
+            "text": "Uniqueness.",
+            "feedback": "Uniqueness concerns exactly one object satisfying a property."
+          },
+          {
+            "id": "c",
+            "text": "Variable capture.",
+            "feedback": "Safe renaming keeps free occurrences free and preserves binding."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-closure-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "rationality",
+    "skill": "recall",
+    "objective": "closure-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["rationality"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the meaning.",
+      "prompt": "A set of numbers is closed under addition when:",
+      "answer": "The sum of any two members is again a member of the set.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "Adding any two members always gives a member.",
+            "feedback": "The operation keeps you inside the set for every allowed pair."
+          },
+          {
+            "id": "b",
+            "text": "At least one pair has a sum in the set.",
+            "feedback": "Closure is a universal guarantee, not one successful example."
+          },
+          {
+            "id": "c",
+            "text": "The set contains only finitely many numbers.",
+            "feedback": "Closure concerns an operation, not the size of the set."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-gcd-retrieval",
+    "family": "fixed",
+    "lesson": "proof-by-contradiction",
+    "concept": "lowest-terms",
+    "skill": "recall",
+    "objective": "gcd-definition",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["lowest-terms"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Translate the notation.",
+      "prompt": "For integers $a,b$ not both zero, $\\gcd(a,b)$ is:",
+      "answer": "Their greatest common divisor: the largest positive integer dividing both.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "The smallest positive integer dividing either one.",
+            "feedback": "The condition concerns both integers and the greatest such divisor."
+          },
+          {
+            "id": "b",
+            "text": "The largest positive integer dividing both.",
+            "feedback": "Coprime integers have greatest common divisor 1."
+          },
+          {
+            "id": "c",
+            "text": "The larger of $a$ and $b$.",
+            "feedback": "The larger input need not divide the smaller one."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-well-ordering-retrieval",
+    "family": "fixed",
+    "lesson": "proof-by-contradiction",
+    "concept": "prime-factorization",
+    "skill": "recall",
+    "objective": "well-ordering-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["prime-factorization"],
+    "sourceIds": ["review-efficiency-number-proof"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the statement.",
+      "prompt": "The well-ordering property of the positive integers says:",
+      "answer": "Every nonempty set of positive integers has a least element.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "Every set of positive integers has a greatest element.",
+            "feedback": "The positive integers themselves have no greatest element."
+          },
+          {
+            "id": "b",
+            "text": "Every nonempty set of positive real numbers has a least element.",
+            "feedback": "The property does not extend to all positive real sets; for example, the positive reals have no least member."
+          },
+          {
+            "id": "c",
+            "text": "Every nonempty set of positive integers has a least element.",
+            "feedback": "Nonemptiness and the integer domain are essential."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-singleton-recognition",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-description",
+    "skill": "recall",
+    "objective": "singleton-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-description"],
+    "sourceIds": ["review-efficiency-set-notation"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose one answer.",
+      "prompt": "Which set is a singleton, meaning a set with exactly one element?",
+      "answer": "$\\{\\varnothing\\}$ has one element: the empty set.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          { "id": "a", "text": "$\\varnothing$", "feedback": "The empty set has no elements." },
+          {
+            "id": "b",
+            "text": "$\\{\\varnothing\\}$",
+            "feedback": "The outer braces contain one object, the empty set."
+          },
+          {
+            "id": "c",
+            "text": "$\\{0,1\\}$",
+            "feedback": "This set contains two distinct numbers."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-builder-notation-recognition",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-description",
+    "skill": "recall",
+    "objective": "set-builder-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-description"],
+    "sourceIds": ["review-efficiency-set-notation"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Read the notation in English.",
+      "prompt": "What does $\\{n\\in\\mathbb Z:n>4\\}$ describe?",
+      "answer": "The set of integers greater than 4; the colon means such that.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "Every real number greater than 4.",
+            "feedback": "The domain is integers, not all real numbers."
+          },
+          {
+            "id": "b",
+            "text": "One unspecified integer greater than 4.",
+            "feedback": "Set-builder notation describes the whole collection satisfying the condition."
+          },
+          {
+            "id": "c",
+            "text": "The set of integers greater than 4.",
+            "feedback": "Read the colon as such that and keep the stated domain."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-symmetric-difference-recognition",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "symmetric-difference-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-efficiency-set-operations"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the correct definition.",
+      "prompt": "An object belongs to $A\\mathbin{\\triangle}B$ precisely when it belongs to:",
+      "answer": "Exactly one of A and B. Symmetric difference excludes their overlap.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "Exactly one of $A$ and $B$.",
+            "feedback": "It is in one set and outside the other."
+          },
+          {
+            "id": "b",
+            "text": "At least one of $A$ and $B$.",
+            "feedback": "That is union, which also includes the overlap."
+          },
+          {
+            "id": "c",
+            "text": "Both $A$ and $B$.",
+            "feedback": "That is intersection; symmetric difference removes those elements."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-power-membership-translation",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "power-set",
+    "skill": "recall",
+    "objective": "power-membership-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["power-set"],
+    "sourceIds": ["review-df-power-set"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Translate the notation.",
+      "prompt": "If $X\\in\\mathcal P(A)$, what do you know about $X$?",
+      "answer": "$X\\subseteq A$: every element of X belongs to A.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "$X\\in A$.",
+            "feedback": "An element of the power set is a subset of A, not necessarily an element of A."
+          },
+          {
+            "id": "b",
+            "text": "$X\\subseteq A$.",
+            "feedback": "The power set collects all subsets of A, including the empty set and A itself."
+          },
+          {
+            "id": "c",
+            "text": "$A\\subsetneq X$.",
+            "feedback": "The containment goes the other way, and equality is permitted."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-subset-proper-distinction",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "membership-subset",
+    "skill": "recall",
+    "objective": "subset-proper-distinction",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["membership-subset"],
+    "sourceIds": ["review-df-set-basics", "review-df-proper-subset"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose one answer.",
+      "prompt": "For any set $A$, which claim always holds?",
+      "answer": "$A\\subseteq A$ holds; $A\\subsetneq A$ does not because proper inclusion requires unequal sets.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "$A\\subsetneq A$ only.",
+            "feedback": "A set cannot be a proper subset of itself."
+          },
+          {
+            "id": "b",
+            "text": "Both $A\\subseteq A$ and $A\\subsetneq A$.",
+            "feedback": "Equality is allowed for subset, but excluded for proper subset."
+          },
+          {
+            "id": "c",
+            "text": "$A\\subseteq A$ only.",
+            "feedback": "Every element of A belongs to A; the extra inequality condition fails."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-ordered-pair-recognition",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "cartesian-product",
+    "skill": "recall",
+    "objective": "ordered-pair-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["cartesian-product"],
+    "sourceIds": ["review-efficiency-set-notation"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Complete the definition.",
+      "prompt": "Two ordered pairs $(a,b)$ and $(c,d)$ are equal exactly when:",
+      "answer": "$a=c$ and $b=d$: corresponding positions agree.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "$a=c$ and $b=d$.",
+            "feedback": "Each coordinate must match the same position."
+          },
+          {
+            "id": "b",
+            "text": "$a=d$ and $b=c$.",
+            "feedback": "This reverses the positions; pairs generally change when reversed."
+          },
+          {
+            "id": "c",
+            "text": "$\\{a,b\\}=\\{c,d\\}$.",
+            "feedback": "Sets forget order, so this condition is too weak for ordered pairs."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-index-family-recognition",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "indexed-sets",
+    "skill": "recall",
+    "objective": "indexed-family-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["indexed-sets"],
+    "sourceIds": ["review-efficiency-indexed"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the meaning of the notation.",
+      "prompt": "In the indexed family $(A_i)_{i\\in I}$, what is $I$?",
+      "answer": "The index set: its elements label the sets in the family.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "The intersection of every set in the family.",
+            "feedback": "I supplies labels; it does not describe common elements."
+          },
+          {
+            "id": "b",
+            "text": "The set of labels used to select the sets $A_i$.",
+            "feedback": "An index chooses a member of the family. Labels need not be numbers."
+          },
+          {
+            "id": "c",
+            "text": "The number of elements in each $A_i$.",
+            "feedback": "A subscript labels a set; it does not specify its size."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-indexed-operations-recognition",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "indexed-sets",
+    "skill": "recall",
+    "objective": "indexed-operations-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["indexed-sets"],
+    "sourceIds": ["review-efficiency-indexed"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose one answer.",
+      "prompt": "For a nonempty index set $I$, which translates $x\\in\\bigcap_{i\\in I}A_i$?",
+      "answer": "x belongs to every indexed set. Indexed union would require at least one.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "$x$ belongs to at least one $A_i$.",
+            "feedback": "That translates indexed union, not intersection."
+          },
+          {
+            "id": "b",
+            "text": "$x$ is a label in $I$.",
+            "feedback": "The labels index sets; x is being tested for membership in those sets."
+          },
+          {
+            "id": "c",
+            "text": "$x$ belongs to $A_i$ for every $i\\in I$.",
+            "feedback": "Intersection requires all the membership conditions to hold."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-inclusion-exclusion-recognition",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "inclusion-exclusion",
+    "skill": "recall",
+    "objective": "inclusion-exclusion-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["inclusion-exclusion"],
+    "sourceIds": ["review-efficiency-counting"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the explanation.",
+      "prompt": "Why does inclusion-exclusion subtract $|A\\cap B|$ from $|A|+|B|$ for finite sets?",
+      "answer": "The sum counted each shared element twice, so one copy must be removed.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "To remove the extra count of each shared element.",
+            "feedback": "Shared elements still belong to the union; only their duplicate count is removed."
+          },
+          {
+            "id": "b",
+            "text": "To exclude shared elements from the union.",
+            "feedback": "Union includes the shared elements once."
+          },
+          {
+            "id": "c",
+            "text": "Because the sets must have different sizes.",
+            "feedback": "The formula applies whether the sizes agree or differ."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-subset-proof-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-proofs",
+    "skill": "recall",
+    "objective": "element-proof-skeleton",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-proofs"],
+    "sourceIds": ["review-efficiency-set-proofs"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Recall the proof skeleton.",
+      "prompt": "To prove $A\\subseteq B$ by an element argument, what should the proof do?",
+      "answer": "Take an arbitrary x in A and show x is in B using definitions and assumptions.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "Find one element shared by $A$ and $B$.",
+            "feedback": "One shared element does not account for every element of A."
+          },
+          {
+            "id": "b",
+            "text": "Take arbitrary $x\\in A$ and establish $x\\in B$.",
+            "feedback": "No special property of the chosen element is assumed, so the argument covers all of A."
+          },
+          {
+            "id": "c",
+            "text": "Take arbitrary $x\\in B$ and establish $x\\in A$.",
+            "feedback": "That proves the reverse inclusion."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-double-inclusion-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-proofs",
+    "skill": "recall",
+    "objective": "double-inclusion-skeleton",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-proofs"],
+    "sourceIds": ["review-efficiency-set-proofs"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Complete the proof plan.",
+      "prompt": "To prove $A=B$ by double inclusion, show:",
+      "answer": "$A\\subseteq B$ and $B\\subseteq A$.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only $A\\subseteq B$.",
+            "feedback": "B might still have extra elements."
+          },
+          {
+            "id": "b",
+            "text": "Only $|A|=|B|$.",
+            "feedback": "Equal size does not mean equal elements."
+          },
+          {
+            "id": "c",
+            "text": "$A\\subseteq B$ and $B\\subseteq A$.",
+            "feedback": "Neither set can then contain an element missing from the other."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets-venn-meaning-retrieval",
+    "family": "fixed",
+    "lesson": "sets-and-set-operations",
+    "concept": "set-operations",
+    "skill": "recall",
+    "objective": "venn-diagram-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["set-operations"],
+    "sourceIds": ["review-efficiency-set-notation"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose one answer.",
+      "prompt": "In the lesson's Venn diagrams, what does a point inside both set regions represent?",
+      "answer": "An element in their intersection. Region area does not encode cardinality.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "An element belonging to both sets.",
+            "feedback": "Overlap represents intersection."
+          },
+          {
+            "id": "b",
+            "text": "A proof that the two sets have equal size.",
+            "feedback": "Membership regions alone do not measure cardinality."
+          },
+          {
+            "id": "c",
+            "text": "An element belonging to neither set.",
+            "feedback": "That would be outside both regions, within the universe."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-arbitrary-object-retrieval",
+    "family": "fixed",
+    "lesson": "predicates-and-quantifiers",
+    "concept": "universal-quantification",
+    "skill": "recall",
+    "objective": "arbitrary-object-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["universal-quantification"],
+    "sourceIds": ["review-efficiency-set-proofs"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the intended meaning.",
+      "prompt": "A universal proof begins, “Let $x$ be an arbitrary allowed object.” What may the argument assume?",
+      "answer": "Only the stated domain restrictions and hypotheses, so the reasoning works for every allowed choice.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "That $x$ is a convenient example already checked.",
+            "feedback": "A special checked example cannot represent every case."
+          },
+          {
+            "id": "b",
+            "text": "Only the stated restrictions and hypotheses about $x$.",
+            "feedback": "Arbitrary means the proof does not depend on extra features of a particular object."
+          },
+          {
+            "id": "c",
+            "text": "That $x$ already has the property being proved.",
+            "feedback": "That would assume the conclusion."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-parity-definition-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "parity",
+    "skill": "recall",
+    "objective": "parity-definition",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["parity"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the correct definition.",
+      "prompt": "The parity of an integer tells us:",
+      "answer": "Whether it is even or odd: it has form 2k or 2k+1 for an integer k.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "Whether it is positive or negative.",
+            "feedback": "Sign and parity are different: negative integers can be even or odd."
+          },
+          {
+            "id": "b",
+            "text": "Whether it is prime or composite.",
+            "feedback": "Primality concerns divisors, not parity."
+          },
+          {
+            "id": "c",
+            "text": "Whether it is even or odd.",
+            "feedback": "Even means 2k; odd means 2k+1, with an integer k."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-divisibility-notation-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "divisibility",
+    "skill": "recall",
+    "objective": "divisibility-definition",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["divisibility"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Translate the notation.",
+      "prompt": "For integers $a,b$, the statement $a\\mid b$ means:",
+      "answer": "There is an integer k such that b=ak.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "$b=ak$ for some integer $k$.",
+            "feedback": "b is an integer multiple of a; this is a statement, not a fraction."
+          },
+          {
+            "id": "b",
+            "text": "$a=bk$ for some integer $k$.",
+            "feedback": "That reverses which integer divides the other."
+          },
+          {
+            "id": "c",
+            "text": "$b=ak$ for some real number $k$.",
+            "feedback": "The integer condition on k is essential to divisibility."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-rational-definition-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "rationality",
+    "skill": "recall",
+    "objective": "rational-definition",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["rationality"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the definition.",
+      "prompt": "A real number is rational precisely when it can be written as:",
+      "answer": "a/b for integers a,b with b nonzero; irrational real numbers have no such representation.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "$a/b$ with any real $a,b$ and $b\\ne0$.",
+            "feedback": "Every real number is itself divided by 1; integer numerator and denominator are required."
+          },
+          {
+            "id": "b",
+            "text": "$a/b$ with integers $a,b$ and $b\\ne0$.",
+            "feedback": "This is the definition of a rational number."
+          },
+          {
+            "id": "c",
+            "text": "$a/b$ with integers $a,b$, allowing $b=0$.",
+            "feedback": "Division by zero is not defined."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-cases-definition-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "proof-cases",
+    "skill": "recall",
+    "objective": "proof-cases-definition",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["proof-cases"],
+    "sourceIds": ["review-efficiency-proof-methods"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Recall the requirement.",
+      "prompt": "In a proof by cases, an exhaustive collection of cases:",
+      "answer": "Covers every allowed possibility. The conclusion must be established in every case.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "Contains several convincing examples.",
+            "feedback": "Examples may miss other allowed inputs."
+          },
+          {
+            "id": "b",
+            "text": "Covers only cases where the result is easy.",
+            "feedback": "Difficult allowed cases cannot be omitted."
+          },
+          {
+            "id": "c",
+            "text": "Covers every allowed possibility.",
+            "feedback": "Prove the target in each case so no possible input is left out."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-biconditional-skeleton-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "biconditional-proof",
+    "skill": "recall",
+    "objective": "biconditional-proof-skeleton",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["biconditional-proof"],
+    "sourceIds": ["review-efficiency-proof-methods"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the proof obligations.",
+      "prompt": "A proof of $P\\leftrightarrow Q$ must establish:",
+      "answer": "Both P implies Q and Q implies P.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "$P\\to Q$ and $Q\\to P$.",
+            "feedback": "If and only if requires both directions."
+          },
+          {
+            "id": "b",
+            "text": "$P\\to Q$ alone.",
+            "feedback": "This leaves the reverse direction unproved."
+          },
+          {
+            "id": "c",
+            "text": "$P\\lor Q$.",
+            "feedback": "A disjunction does not establish either implication."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-constructive-existence-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "constructive-existence",
+    "skill": "recall",
+    "objective": "constructive-existence-definition",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["constructive-existence"],
+    "sourceIds": ["review-efficiency-proof-methods"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose one answer.",
+      "prompt": "What makes an existence proof constructive?",
+      "answer": "It provides a witness and verifies that the witness satisfies the domain and required properties.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "It checks many unsuccessful candidates.",
+            "feedback": "Failed candidates do not prove existence."
+          },
+          {
+            "id": "b",
+            "text": "It supplies and verifies a witness.",
+            "feedback": "Naming an object is followed by checking that it actually meets the conditions."
+          },
+          {
+            "id": "c",
+            "text": "It assumes that a suitable object exists.",
+            "feedback": "That assumes the claim rather than proving it."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-circular-reasoning-retrieval",
+    "family": "fixed",
+    "lesson": "direct-proof",
+    "concept": "proof-diagnosis",
+    "skill": "recall",
+    "objective": "circular-reasoning-definition",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["proof-diagnosis"],
+    "sourceIds": ["review-efficiency-proof-methods"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Name the error.",
+      "prompt": "A purported proof uses its own unproved conclusion as a premise. This is:",
+      "answer": "Circular reasoning: the target is assumed instead of established from available facts.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "Proof by cases.",
+            "feedback": "Cases organize allowed inputs; they do not assume the conclusion."
+          },
+          {
+            "id": "b",
+            "text": "A counterexample.",
+            "feedback": "A counterexample refutes a claim by satisfying its hypotheses and failing its conclusion."
+          },
+          {
+            "id": "c",
+            "text": "Circular reasoning.",
+            "feedback": "Working backward may help exploration, but the finished proof must justify the target from independent assumptions."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-lowest-terms-retrieval",
+    "family": "fixed",
+    "lesson": "proof-by-contradiction",
+    "concept": "lowest-terms",
+    "skill": "recall",
+    "objective": "lowest-terms-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["lowest-terms"],
+    "sourceIds": ["review-efficiency-number-proof"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Complete the definition.",
+      "prompt": "An integer fraction $a/b$ with $b\\ne0$ is in lowest terms when $a$ and $b$:",
+      "answer": "Have no common positive divisor greater than 1; they are coprime and their gcd is 1.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "Have no common positive divisor greater than 1.",
+            "feedback": "This is coprimality, equivalently greatest common divisor 1."
+          },
+          {
+            "id": "b",
+            "text": "Are both prime.",
+            "feedback": "Coprimality does not require either integer to be prime."
+          },
+          {
+            "id": "c",
+            "text": "Are both odd.",
+            "feedback": "Odd integers can share a divisor, such as 3."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-prime-composite-retrieval",
+    "family": "fixed",
+    "lesson": "proof-by-contradiction",
+    "concept": "prime-factorization",
+    "skill": "recall",
+    "objective": "prime-composite-definitions",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["prime-factorization"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the correct definition.",
+      "prompt": "A positive integer is prime if:",
+      "answer": "It is greater than 1 and its only positive divisors are 1 and itself. A nonprime integer greater than 1 is composite.",
+      "choice": {
+        "correctOption": "b",
+        "options": [
+          {
+            "id": "a",
+            "text": "It is odd.",
+            "feedback": "Some odd numbers are composite; 2 is prime and even."
+          },
+          {
+            "id": "b",
+            "text": "It is greater than 1 with exactly two positive divisors, 1 and itself.",
+            "feedback": "The greater-than-one condition excludes 1, which is neither prime nor composite."
+          },
+          {
+            "id": "c",
+            "text": "It has 1 as a divisor.",
+            "feedback": "Every positive integer has 1 as a divisor."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-lemma-retrieval",
+    "family": "fixed",
+    "lesson": "proof-by-contradiction",
+    "concept": "prime-factorization",
+    "skill": "recall",
+    "objective": "lemma-meaning",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["prime-factorization"],
+    "sourceIds": ["review-efficiency-proof-definitions"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose the meaning.",
+      "prompt": "What is a lemma?",
+      "answer": "A proved supporting result used to establish another result.",
+      "choice": {
+        "correctOption": "c",
+        "options": [
+          {
+            "id": "a",
+            "text": "An assumption accepted without justification because the proof needs it.",
+            "feedback": "A lemma needs a proof or an already established justification."
+          },
+          {
+            "id": "b",
+            "text": "An example that disproves a universal claim.",
+            "feedback": "That is a counterexample."
+          },
+          {
+            "id": "c",
+            "text": "A proved result used to support another proof.",
+            "feedback": "Naming a supporting argument makes the proof's dependencies explicit."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "proof-uniqueness-skeleton-retrieval",
+    "family": "fixed",
+    "lesson": "predicates-and-quantifiers",
+    "concept": "uniqueness",
+    "skill": "recall",
+    "objective": "uniqueness-proof-skeleton",
+    "category": "definition",
+    "evidenceLevel": "recognition",
+    "interactionCost": "low",
+    "inputCapabilities": ["tap"],
+    "cognitiveLevel": "recall",
+    "activationConcepts": ["uniqueness"],
+    "sourceIds": ["review-efficiency-proof-methods"],
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Choose what remains to be shown.",
+      "prompt": "You have found one object satisfying a condition. To prove there is exactly one, what is still needed?",
+      "answer": "Show any two objects satisfying the condition are equal, or show any such object equals the verified witness.",
+      "choice": {
+        "correctOption": "a",
+        "options": [
+          {
+            "id": "a",
+            "text": "Show that any other object satisfying the condition must equal the witness.",
+            "feedback": "Existence gives at least one; this establishes at most one."
+          },
+          {
+            "id": "b",
+            "text": "Check that one more attempted candidate fails.",
+            "feedback": "Another unchecked candidate might still work."
+          },
+          {
+            "id": "c",
+            "text": "Nothing: finding a witness already proves uniqueness.",
+            "feedback": "An existential claim allows multiple witnesses."
+          }
+        ]
+      }
+    }
   }
 ]
