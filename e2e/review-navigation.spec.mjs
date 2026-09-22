@@ -92,7 +92,7 @@ await withBrowser('review-navigation', async ({ page, baseURL, directory }) => {
   const task = (number) => review.getByText('Regular · ' + number + ' of 8', { exact: true });
   const draft = 'Keep this synthetic draft when I jump back to grading feedback.';
   await page.goto(baseURL + '/#/review/propositional-logic');
-  await review.getByRole('button', { name: 'Start Regular review', exact: true }).waitFor();
+  await review.getByRole('button', { name: 'Start review', exact: true }).waitFor();
   await page.evaluate(
     async ({ session, now }) => {
       const { retainReviewSession } = await import('/src/reviewApi.ts');
@@ -203,7 +203,7 @@ await withBrowser('review-navigation', async ({ page, baseURL, directory }) => {
   await mobileNav.getByRole('button').last().click();
   await task(8).waitFor();
   await review.getByRole('button', { name: 'Next →', exact: true }).click();
-  await review.getByRole('button', { name: 'Revisit tasks', exact: true }).waitFor();
+  await review.getByRole('button', { name: 'Revisit questions', exact: true }).waitFor();
   await review.getByRole('button', { name: 'Exercises', exact: true }).click();
   await mobileNav.getByRole('button').first().click();
   await task(1).waitFor();

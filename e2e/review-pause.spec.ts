@@ -4,6 +4,7 @@ import { withBrowser } from './support/browser.ts';
 await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   let planned = 0;
   let offline = false;
+  let additional = false;
   const now = Date.now();
   const session = {
     id: 'paused-plan',
@@ -48,10 +49,10 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
         due: 2,
         quick: 0,
         deeper: 2,
-        estimatedMinutes: planned ? 0 : 25,
-        reservedMinutes: planned ? 25 : 0,
+        estimatedMinutes: planned ? (additional ? 2 : 0) : 25,
+        reservedMinutes: planned ? (additional ? 23 : 25) : 0,
         remainingMinutes: planned ? 0 : 25,
-        plannedQuick: 0,
+        plannedQuick: additional ? 2 : 0,
         plannedApplication: 0,
         plannedDeep: planned ? 0 : 1,
         targets: [],
@@ -75,7 +76,7 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   });
   await page.goto(baseURL + '/#/review/sets-and-set-operations');
   const review = page.locator('.review-page');
-  await review.getByRole('button', { name: 'Start Regular review', exact: true }).click();
+  await review.getByRole('button', { name: 'Start review', exact: true }).click();
   await review.getByRole('button', { name: 'Skip for now →', exact: true }).click();
   const draft = 'My unfinished second response';
   await review.getByRole('textbox', { name: 'Answer editor', exact: true }).fill(draft);
@@ -84,19 +85,41 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
     return (await storage.get('drafts', 'review-paused-1'))?.text === text;
   }, draft);
   await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
-  await review.getByRole('button', { name: 'Resume planned session', exact: true }).waitFor();
+  await review.getByRole('button', { name: 'Continue review', exact: true }).waitFor();
+  assert.equal(await review.getByRole('button', { name: 'Start review', exact: true }).count(), 0);
+  await review
+    .getByText('Your review session contains 2 questions and is unfinished.', { exact: false })
+    .waitFor();
+  assert.equal(await review.getByRole('button', { name: 'Quick review', exact: true }).count(), 0);
   assert.equal(
-    await review.getByRole('button', { name: 'Start Regular review', exact: true }).isDisabled(),
-    true,
+    await review.getByRole('button', { name: 'Start focused practice', exact: true }).count(),
+    0,
   );
+  // A fresh preview may contain more work, but the unfinished session stays primary.
+  additional = true;
+  await Promise.all([
+    page.waitForResponse((response) => new URL(response.url()).pathname.endsWith('/review')),
+    page.evaluate(() => window.dispatchEvent(new Event('online'))),
+  ]);
+  await page.waitForFunction(async () => {
+    const { cachedReviewSummary } = await import(String('/src/reviewApi.ts'));
+    return (await cachedReviewSummary())?.summary.estimatedMinutes === 2;
+  });
+  assert.equal(await review.getByRole('heading', { name: 'Today’s review' }).count(), 0);
+  assert.equal(await review.getByRole('button', { name: 'Start review', exact: true }).count(), 0);
+  assert.equal(await review.getByLabel('Next session breakdown').count(), 0);
   await page.screenshot({ path: directory + '/paused-desktop.png' });
   offline = true;
   await page.reload();
-  await review.getByRole('button', { name: 'Resume planned session', exact: true }).waitFor();
-  await review.getByText('Saved review plan', { exact: false }).waitFor();
+  await review.getByRole('button', { name: 'Continue review', exact: true }).waitFor();
+  await review.getByText('Couldn’t check for review updates.', { exact: false }).waitFor();
+  await review
+    .getByText('Your saved session can still be continued offline.', { exact: false })
+    .waitFor();
+  await page.screenshot({ path: directory + '/cached-desktop.png' });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.screenshot({ path: directory + '/paused-mobile.png' });
-  await review.getByRole('button', { name: 'Resume planned session', exact: true }).click();
+  await review.getByRole('button', { name: 'Continue review', exact: true }).click();
   await review.getByText('Synthetic response 1', { exact: true }).waitFor();
   assert.equal(
     await review.getByRole('textbox', { name: 'Answer editor', exact: true }).innerText(),
@@ -106,10 +129,10 @@ await withBrowser('review-pause', async ({ page, baseURL, directory }) => {
   await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
   await review.getByRole('button', { name: 'End session', exact: true }).click();
   await review
-    .getByText('Session closed. Your drafts and attempts are saved.', { exact: true })
+    .getByText('Session ended. Your drafts and attempts are saved.', { exact: true })
     .waitFor();
   assert.equal(
-    await review.getByRole('button', { name: 'Resume planned session', exact: true }).count(),
+    await review.getByRole('button', { name: 'Continue review', exact: true }).count(),
     0,
   );
   assert.equal(
