@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { nextReviewTaskIndex, reviewTargetCovered } from '../src/reviewSessionProgress';
+import {
+  nextReviewTaskIndex,
+  reviewTargetCovered,
+  reviewSessionProgress,
+} from '../src/reviewSessionProgress';
 import type { Attempt } from '../src/types';
 import type { ReviewInstance, ReviewSession, ReviewState, ReviewSummary } from '../src/reviewTypes';
 
@@ -216,4 +220,71 @@ test('reopening preserves the saved unfinished position and wraps focused practi
   };
   assert.equal(nextReviewTaskIndex(saved, 1, [], summary, fetchedAt, { resume: true }), 1);
   assert.equal(nextReviewTaskIndex(saved, 3, [], summary, fetchedAt, { resume: true }), 0);
+});
+
+test('session progress counts successful and covered work, never visits or drafts', () => {
+  const saved = {
+    ...session,
+    instances: ['correct', 'covered', 'queued', 'incorrect', 'skipped', 'failed'].map((id) => ({
+      ...instance,
+      id,
+      exercise: id,
+      context: { ...instance.context, ...(id === 'skipped' ? { objective: 'other' } : {}) },
+    })),
+  };
+  const history = [
+    attempt('correct', 'graded', 'correct'),
+    attempt('queued', 'queued'),
+    attempt('incorrect', 'graded', 'incorrect'),
+    attempt('failed', 'error'),
+  ];
+  assert.deepEqual(reviewSessionProgress(saved, history, summary, fetchedAt), {
+    total: 6,
+    completed: 2,
+    awaitingGrading: 1,
+    remaining: 3,
+    processing: 1,
+    complete: false,
+  });
+  assert.equal(
+    reviewSessionProgress({ ...saved, kind: 'focused-practice' }, history, summary, fetchedAt)
+      .completed,
+    1,
+  );
+});
+
+test('completed sessions remain complete offline and while deterministic successes sync', () => {
+  assert.deepEqual(
+    reviewSessionProgress(
+      session,
+      [attempt(instance.exercise, 'queued', 'correct')],
+      undefined,
+      undefined,
+    ),
+    {
+      total: 1,
+      completed: 1,
+      awaitingGrading: 0,
+      remaining: 0,
+      processing: 1,
+      complete: true,
+    },
+  );
+  assert.equal(reviewSessionProgress(session, [], summary, fetchedAt).complete, true);
+  assert.equal(reviewSessionProgress(session, [], undefined, undefined).complete, false);
+  assert.equal(
+    reviewSessionProgress({ ...session, instances: [] }, [], summary, fetchedAt).complete,
+    false,
+  );
+  for (const status of ['queued', 'pending', 'grading', 'rechecking']) {
+    const progress = reviewSessionProgress(
+      session,
+      [attempt(instance.exercise, status)],
+      summary,
+      fetchedAt,
+    );
+    assert.equal(progress.complete, false);
+    assert.equal(progress.awaitingGrading, 1);
+    assert.equal(progress.remaining, 0);
+  }
 });

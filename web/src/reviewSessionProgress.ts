@@ -63,3 +63,39 @@ export function nextReviewTaskIndex(
   }
   return session.instances.length;
 }
+
+// Session progress describes issued work, not mastery or the server's next plan.
+// Keep queued deterministic successes complete locally; their schedule updates
+// can still be waiting for synchronization.
+export function reviewSessionProgress(
+  session: ReviewSession,
+  attempts: Attempt[],
+  summary: ReviewSummary | undefined,
+  fetchedAt: number | undefined,
+) {
+  let completed = 0;
+  let awaitingGrading = 0;
+  let processing = 0;
+  for (const instance of session.instances) {
+    const history = attempts.filter((attempt) => attempt.exercise === instance.exercise);
+    const pending = history.some((attempt) =>
+      ['queued', 'pending', 'grading', 'rechecking'].includes(attempt.status),
+    );
+    if (pending) processing++;
+    if (
+      history.some((attempt) => attempt.verdict === 'correct') ||
+      reviewTargetCovered(session, instance, attempts, summary, fetchedAt)
+    )
+      completed++;
+    else if (pending) awaitingGrading++;
+  }
+  const total = session.instances.length;
+  return {
+    total,
+    completed,
+    awaitingGrading,
+    remaining: total - completed - awaitingGrading,
+    processing,
+    complete: total > 0 && completed === total,
+  };
+}

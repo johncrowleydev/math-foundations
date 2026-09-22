@@ -6,7 +6,11 @@ import { ExerciseSidebar } from './ExerciseSidebar';
 import { ReviewExerciseLink } from './ReviewExerciseLink';
 import { Exercise } from './Exercise';
 import { routeHash } from './routing';
-import { nextReviewTaskIndex, reviewTargetCovered } from './reviewSessionProgress';
+import {
+  nextReviewTaskIndex,
+  reviewTargetCovered,
+  reviewSessionProgress,
+} from './reviewSessionProgress';
 import {
   cachedReviewSessionState,
   cachedReviewSummary,
@@ -77,6 +81,7 @@ export function Review({
           setCached(true);
           setFetchedAt(result.fetchedAt);
         }
+        setAttempts(existing);
         if (!saved) return;
         setSession(saved.session);
         setPaused(saved.paused);
@@ -179,7 +184,7 @@ export function Review({
     setError('');
     try {
       await retainReviewSession(null);
-      setNotice('Session ended. Your drafts and attempts are saved.');
+      setNotice('Session closed. Your drafts and attempts are saved.');
       setPaused(false);
       setSession(undefined);
       await refresh();
@@ -226,7 +231,21 @@ export function Review({
   // A usable summary has its own stale-status message. Session-action errors
   // remain visible even when the scheduler status is cached.
   const visibleError = error || (!summary ? summaryError : '');
-  const unfinished = session && paused;
+  const overviewSession = session && paused;
+  const progress = session && reviewSessionProgress(session, attempts, summary, fetchedAt);
+  const awaitingGrading = progress && progress.awaitingGrading > 0 && progress.remaining === 0;
+  const completedTitle =
+    session?.kind === 'focused-practice' ? 'Practice complete' : 'Review complete';
+  const progressText = progress
+    ? `${progress.completed} of ${progress.total} complete` +
+      (progress.awaitingGrading ? ` · ${progress.awaitingGrading} awaiting grading` : '') +
+      (progress.remaining ? ` · ${progress.remaining} to do` : '')
+    : '';
+  const processingNote = progress && progress.processing > 0 && (
+    <p className="muted">
+      Queued or grading answers will update your review schedule after server processing.
+    </p>
+  );
   const reviewAvailable = summary && summary.due > 0 && summary.estimatedMinutes !== 0;
   return (
     <>
@@ -278,6 +297,20 @@ export function Review({
         )}
         {session && !paused && item ? (
           <>
+            {progress?.complete && (
+              <section className="review-panel" aria-label="Session completion">
+                <h2>{completedTitle}</h2>
+                <p>{progressText}</p>
+                <p>
+                  Every question has a correct answer or is covered by recent work. Your answers are
+                  saved.
+                </p>
+                {processingNote}
+                <button className="primary" onClick={() => void finish()}>
+                  Close session
+                </button>
+              </section>
+            )}
             <div className="practice-heading">
               <strong>
                 {session.mode === 'quick' ? 'Quick' : 'Regular'} · {index + 1} of{' '}
@@ -359,7 +392,14 @@ export function Review({
           </>
         ) : session && !paused && session.instances.length > 0 ? (
           <div className="review-panel">
-            <h2>End of the question list</h2>
+            <h2>
+              {progress?.complete
+                ? completedTitle
+                : awaitingGrading
+                  ? 'Answers awaiting grading'
+                  : 'End of the question list'}
+            </h2>
+            <p>{progressText}</p>
             <p>
               Your session is still open. Revisit its questions, or end the session to return to the
               overview. Your drafts and answers stay saved.
@@ -370,34 +410,58 @@ export function Review({
             </p>
             <div className="toolbar">
               <button className="primary" onClick={() => void finish()}>
-                End session
+                {progress?.complete ? 'Close session' : 'End session'}
               </button>
               <button onClick={() => void goTo(0)}>Revisit questions</button>
             </div>
           </div>
         ) : (
           <>
-            {unfinished && (
-              <section className="review-panel review-primary" aria-labelledby="unfinished-review">
-                <h2 id="unfinished-review">
-                  {session.kind === 'focused-practice'
-                    ? 'Continue your focused practice'
-                    : 'Continue your review'}
+            {overviewSession && (
+              <section className="review-panel review-primary" aria-labelledby="saved-review">
+                <h2 id="saved-review">
+                  {progress?.complete
+                    ? completedTitle
+                    : awaitingGrading
+                      ? 'Answers awaiting grading'
+                      : session.kind === 'focused-practice'
+                        ? 'Continue your focused practice'
+                        : 'Continue your review'}
                 </h2>
+                <p>{progressText}</p>
                 <p>
-                  Your {session.kind === 'focused-practice' ? 'focused practice' : 'review'} session
-                  contains {session.instances.length} questions and is unfinished. Your drafts and
-                  answers are saved.
+                  {progress?.complete
+                    ? 'Every question has a correct answer or is covered by recent work. Your drafts and answers are saved.'
+                    : awaitingGrading
+                      ? 'Your answers are saved. You can view them while grading finishes or close this session.'
+                      : 'Continue with the questions still to do. Your drafts and answers are saved.'}
                 </p>
+                {processingNote}
                 <div className="toolbar">
-                  <button className="primary" onClick={() => void resume()}>
-                    {session.kind === 'focused-practice' ? 'Continue practice' : 'Continue review'}
-                  </button>
-                  <button onClick={() => void finish()}>End session</button>
+                  {progress?.complete ? (
+                    <>
+                      <button className="primary" onClick={() => void finish()}>
+                        Close session
+                      </button>
+                      <button onClick={() => void resume()}>Review answers</button>
+                    </>
+                  ) : (
+                    <>
+                      <button className="primary" onClick={() => void resume()}>
+                        {awaitingGrading
+                          ? 'View answers'
+                          : session.kind === 'focused-practice'
+                            ? 'Continue practice'
+                            : 'Continue review'}
+                      </button>
+                      <button onClick={() => void finish()}>End session</button>
+                    </>
+                  )}
                 </div>
                 <p className="muted">
-                  Finish or end this session before starting another scheduled review or focused
-                  practice.
+                  {progress?.complete || awaitingGrading
+                    ? 'Close this session before starting another review or focused practice.'
+                    : 'Finish or end this session before starting another scheduled review or focused practice.'}
                 </p>
                 {session.kind === 'scheduled-review' && (
                   <p className="muted">
@@ -409,7 +473,7 @@ export function Review({
             )}
             {summary ? (
               <>
-                {!unfinished && (
+                {!overviewSession && (
                   <section className="review-panel review-primary" aria-labelledby="today-review">
                     <h2 id="today-review">
                       {reviewAvailable ? 'Today’s review' : 'You’re caught up for now'}
@@ -495,8 +559,8 @@ export function Review({
                     <summary>How the daily allowance works</summary>
                     <p className="muted">
                       Scheduled sessions count toward this allowance for 24 hours after they start,
-                      including unfinished or ended sessions. Changing your target doesn’t reset
-                      that time.
+                      including paused or closed sessions. Changing your target doesn’t reset that
+                      time.
                       {!!summary.reservedMinutes &&
                         ` About ${Math.ceil(summary.reservedMinutes)} minutes already count toward your allowance.`}
                     </p>
@@ -507,7 +571,7 @@ export function Review({
                   <p>
                     Practice a specific lesson, concept, or skill outside your scheduled review.
                   </p>
-                  {unfinished ? (
+                  {overviewSession ? (
                     <p className="muted">
                       End your current session to choose optional extra practice.
                     </p>
@@ -613,9 +677,7 @@ export function Review({
           className="review-sidebar"
         >
           <span className="eyebrow">Session exercises</span>
-          <p className="practice-summary">
-            {session!.instances.length} tasks · Select to view work or feedback
-          </p>
+          <p className="practice-summary">{progressText} · Select to view work or feedback</p>
           {exerciseList}
         </ExerciseSidebar>
       )}
