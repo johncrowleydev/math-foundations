@@ -20,25 +20,17 @@ const available = (await readdir(join(root, 'e2e')))
 const candidates = available.filter(
   (file) => names.length === 0 || names.includes(file.replace(/\.spec\.(ts|mjs)$/, '')),
 );
-// Start the longest checks first, based on the 2026-09-22 main CI timings,
-// including the newer Review regressions, to avoid a long tail on each shard.
+// Start the longest checks first. With production React the catalog-wide checks
+// dominate, so put them on opposite shards before the shorter Review checks.
 const longest = [
-  'review-submission',
   'review-library',
-  'review',
   'deterministic',
-  'review-completion',
-  'learning-efficiency',
-  'revise-failed-grading',
-  'review-session-progress',
-  'grading-toasts',
-  'power-set-review',
-  'review-overview',
   'offline',
-  'evidence',
-  'review-restoration',
-  'review-navigation',
-  'review-layout',
+  'review-submission',
+  'sources',
+  'revise-failed-grading',
+  'grading-toasts',
+  'review',
 ];
 const priority = (file: string) => {
   const index = longest.indexOf(file.replace(/\.spec\.(ts|mjs)$/, ''));
