@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum } from './types';
 import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
 import { all, useRevision } from './storage';
+import { localReviewBudget, savedReviewBudget, saveReviewBudget } from './reviewBudget';
+import { sync } from './sync';
 import { ExerciseSidebar } from './ExerciseSidebar';
 import { ReviewExerciseLink } from './ReviewExerciseLink';
 import { Exercise } from './Exercise';
@@ -45,17 +47,29 @@ export function Review({
   const [concept, setConcept] = useState('');
   const [skill, setSkill] = useState('');
   const [mode, setMode] = useState<ReviewMode>('regular');
-  const [budgetMinutes, setBudgetMinutes] = useState(() => {
-    const saved = Number(localStorage.getItem('review-budget-minutes'));
-    return Number.isInteger(saved) && saved >= 5 && saved <= 60 ? saved : 25;
-  });
+  const [budgetMinutes, setBudgetMinutes] = useState(localReviewBudget);
+  const budgetMinutesRef = useRef(budgetMinutes);
+  budgetMinutesRef.current = budgetMinutes;
   const revision = useRevision();
+  useEffect(() => {
+    let live = true;
+    void savedReviewBudget()
+      .then((minutes) => {
+        if (live) setBudgetMinutes(minutes);
+      })
+      .catch((e) => {
+        if (live) setError(String(e));
+      });
+    return () => {
+      live = false;
+    };
+  }, [revision]);
   const summaryRequest = useRef(0);
   async function refresh() {
     const request = ++summaryRequest.current;
     setChecking(true);
     try {
-      const result = await loadReviewSummary(budgetMinutes);
+      const result = await loadReviewSummary(budgetMinutesRef.current);
       if (request !== summaryRequest.current) return;
       setSummary(result.summary);
       setCached(result.cached);
@@ -542,7 +556,11 @@ export function Review({
                     <select
                       value={budgetMinutes}
                       aria-describedby="review-budget-help"
-                      onChange={(event) => setBudgetMinutes(Number(event.target.value))}
+                      onChange={(event) => {
+                        void saveReviewBudget(Number(event.target.value))
+                          .then(() => sync())
+                          .catch((e) => setError(String(e)));
+                      }}
                     >
                       {Array.from({ length: 12 }, (_, index) => (index + 1) * 5).map((minutes) => (
                         <option key={minutes} value={minutes}>
