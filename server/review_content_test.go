@@ -2,8 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"os"
-	"path/filepath"
 	"reflect"
 	"testing"
 )
@@ -11,21 +9,7 @@ import (
 // Exercise the compiled authoring/scheduling boundary: new recognition cards
 // must neither disappear from the effective pool nor hide older, deeper work.
 func TestLessonReviewContentPreservesExistingEffectiveTemplates(t *testing.T) {
-	root := os.Getenv("FOUNDATIONS_TEST_CONTENT_ROOT")
-	if root == "" {
-		root = ".."
-	}
-	raw, err := os.ReadFile(filepath.Join(root, "output/grading-catalog.json"))
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build to test the published catalog")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
-	g := &Grading{}
-	if err := json.Unmarshal(raw, &g.catalog); err != nil {
-		t.Fatal(err)
-	}
+	g := &Grading{catalog: publishedCatalog(t)}
 	lessons := map[string]bool{}
 	for _, exercise := range g.catalog.Exercises {
 		var location struct{ LessonSlug string }

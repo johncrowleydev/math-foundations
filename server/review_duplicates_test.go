@@ -3,7 +3,6 @@ package main
 import (
 	"crypto/sha256"
 	"encoding/json"
-	"os"
 	"reflect"
 	"testing"
 )
@@ -125,17 +124,8 @@ func TestReviewDuplicatesStructuredInputs(t *testing.T) {
 }
 
 func TestReviewDuplicatesPublishedExclusiveOR(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build to test the published catalog")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
 	g := reviewFixture(t)
-	if err := json.Unmarshal(raw, &g.catalog); err != nil {
-		t.Fatal(err)
-	}
+	g.catalog = publishedCatalog(t)
 	const exercise = "propositional-logic-146"
 	original, ok := g.catalog.Exercises[exercise]
 	if !ok {
