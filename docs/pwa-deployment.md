@@ -14,6 +14,14 @@ Weekly backups remain scheduled by `foundations-backup.timer`. Each completed re
 
 Deploy web and backend together, verify sign-in and authenticated status, old-key rejection, downloaded assets, service-worker update behavior, and weekly backup scheduling. A rollback must not silently re-enable the retired bearer authentication: prefer the last session-auth-compatible release, or keep the API in maintenance while repairing the first migration.
 
+For review changes, check the authenticated production review summary against the
+existing learner history before and after deployment. Exercise the configured
+time target and another target, repeat the preview, and check planned counts,
+reserved time, and availability. Health responses and static asset hashes alone
+do not verify the learning flow. Include pre-budget queues in migration tests;
+an old unbounded queue must not consume the new daily allowance. Do not submit
+synthetic answers into the production learner history.
+
 Saved offline submissions retain their original content version. The server uses
 `FOUNDATIONS_CATALOG_ARCHIVE=/opt/math-foundations/catalogs` to resolve earlier
 lesson versions from trusted, immutable runtime catalogs. These are deployed

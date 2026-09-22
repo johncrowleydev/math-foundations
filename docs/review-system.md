@@ -62,6 +62,12 @@ targets. Resume saved work to finish it. Changing the target changes the total
 allowance, not the amount already reserved. Focused practice remains available
 for deliberately chosen extra work.
 
+This allowance applies only to work issued by the time-budgeted planner. Older
+count-based queues have no stored time estimate and do not consume the new
+allowance or block new plans. Their frozen questions, saved work, and attempt
+evidence remain intact, including after backup import. They are not retroactively
+converted into hours of reserved review.
+
 Returning to the overview pauses the current plan. Resume restores the same
 question and saved draft, including after an offline reload. While a plan is
 paused, starting another plan is disabled; End session explicitly closes the

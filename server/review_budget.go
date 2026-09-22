@@ -116,8 +116,9 @@ type reviewAllowance struct {
 	Questions  map[string]bool
 }
 
-// Reserve issued scheduled work for 24 elapsed hours, whether answered, skipped,
-// offline, or abandoned. Clicking Start again cannot issue the same day's work.
+// Reserve budgeted scheduled work for 24 elapsed hours, whether answered, skipped,
+// offline, or abandoned. Pre-budget queues never reserved a time allowance.
+// Clicking Start again cannot issue the same day's budgeted work.
 // Focused practice remains deliberate extra work, but still delays another deep task.
 func reviewIssuedAllowance(tx *sql.Tx, templates []ReviewTemplate, now int64) (reviewAllowance, error) {
 	usage := reviewAllowance{Targets: map[string]bool{}, Sources: map[string]bool{}, Questions: map[string]bool{}}
@@ -135,12 +136,18 @@ func reviewIssuedAllowance(tx *sql.Tx, templates []ReviewTemplate, now int64) (r
 		if err := json.Unmarshal([]byte(raw), &instance); err != nil {
 			return usage, err
 		}
+		// The old count-based planner issued potentially hours of work at once.
+		// Do not retroactively charge it or let its unvisited tasks block a new
+		// plan. Attempts still supply their normal scheduling evidence.
+		if instance.EstimatedSeconds <= 0 {
+			continue
+		}
 		at := instance.Context.PresentedAt
 		if at > now || at <= now-7*reviewDay {
 			continue
 		}
-		// Legacy records have no cost fields. Derive from the frozen task rather than
-		// today's potentially different curriculum. Stored estimates are not trusted.
+		// The positive estimate identifies budgeted issuance; derive the amount
+		// from the frozen task, not today's curriculum or the stored estimate.
 		template := ReviewTemplate{ReviewTarget: instance.Context.ReviewTarget, Category: instance.Category, EvidenceLevel: instance.EvidenceLevel, Analytics: instance.Analytics}
 		category, seconds := template.questionCost(instance.Question)
 		if deepReviewCategory(category) {
