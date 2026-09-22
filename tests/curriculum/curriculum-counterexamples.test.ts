@@ -23,7 +23,9 @@ const fixed = [
 ] as const;
 
 test('converted counterexamples publish explanations for their actual domains and retain historical pins', async () => {
-  const historical = JSON.parse(await readFile('docs/deterministic-grading-audit.json', 'utf8'));
+  const historical = JSON.parse(
+    await readFile('tools/audit/deterministic/original-audit.json', 'utf8'),
+  );
   const { lessons } = await prepareNotebook();
   const published = promoteDeterministic(promoteChoices(lessons));
   for (const [slug, id, domainFragment] of fixed) {

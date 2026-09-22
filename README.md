@@ -1,6 +1,12 @@
 # Foundations
 
-Foundations is a responsive, installable React/TypeScript mathematics notebook at https://foundations.johncrowley.dev. The Go/SQLite backend provides private email/password sessions, synchronization, and AI grading. Android is retired; its source remains in Git history and historical APK releases are unchanged.
+Foundations is a responsive, installable mathematics notebook at https://foundations.johncrowley.dev. The React/TypeScript PWA supports offline reading, practice, handwriting, review, and learning progress. The Go/SQLite backend provides private email/password sessions, synchronization, deterministic and AI grading, and review scheduling.
+
+The curriculum covers discrete mathematics and proofs, linear algebra, calculus,
+and probability and statistics. Each subject starts with a reading-only
+**00 Introduction**, followed by lessons with inline exercises and optional
+additional practice. The subject introductions describe prerequisites and how to
+study; `content/curriculum.yaml` defines the current sequence. Android is retired.
 
 ## Development
 
@@ -38,15 +44,12 @@ for service URLs and lifecycle details.
 
 ## Content and checks
 
-See [tooling and test layout](docs/tooling.md) for directory ownership, validation,
-browser checks, and independent verification. The [cleanup inventory](docs/tooling-inventory.md)
-records the retained invariants and evidence for removing historical scaffolding.
-
-The [full curriculum study plan](docs/study-plan.md), preserved from the original math repository, covers discrete mathematics and proofs, linear algebra, calculus, probability and statistics, and final review. The authored curriculum now includes 15 discrete-mathematics lessons and 12 instructional linear-algebra lessons, plus a reading-only 00 Introduction for each subject. The linear-algebra pacing revision preserves 697 worksheet questions and expands 20 existing quick checks to 24 with four new checks. The bases lesson precedes rank and inverses; orthogonality and projections precedes least squares and model fitting. The [pacing audit](docs/linear-algebra-pacing.md) records the sequence, identity contract, verified authoring checks, and pending integration validation.
-
-Linear algebra retains 92 reference entries and seven coordinate figures. The historical [correction and inspection record](docs/linear-algebra-audit.md) describes the earlier coverage and fixes. The study plan retains its original timeline and references to the earlier worksheet/PDF workflow; the current PWA uses inline and focused practice.
-
-Follow [subject authoring guidance](docs/content-authoring.md), including the required reading-only introduction for every future subject. Author lesson documents directly in `content/lessons/*.mdx`, and exercises, reviews, sources, figures, and grading metadata in YAML/JSON under `content/`. Explicit MDX component tags connect lessons to the React controls; imports and JavaScript expressions are rejected. There is no curriculum-generation step. `tools/content/build.ts` validates and compiles these canonical sources into runtime assets under `output/content` and the server catalog at `output/grading-catalog.json`. Exercise identities and catalog hashes remain compatible with existing notebook data. Formula inventory: `npx tsx tools/content/build.ts --inventory-only`.
+Author lesson documents directly in `content/lessons/*.mdx` and structured
+curriculum in YAML/JSON under `content/`. The normal build validates and compiles
+these sources into ignored runtime assets under `output/`; MDX lessons compile
+directly to React. Follow [content authoring](docs/content-authoring.md) and
+[source requirements](docs/content-sources.md), preserving lesson slugs, exercise
+IDs, grading history, and saved work.
 
 ```sh
 npm test
@@ -59,5 +62,6 @@ go test ./...
 
 Build before running web tests on a fresh checkout: the build copies generated curriculum assets into `web/public`, which the tests read. Go provider tests are opt-in through `FOUNDATIONS_LIVE_TEST_KEY`; leave it unset for ordinary local checks.
 
-See [deployment and authentication](docs/pwa-deployment.md) and [web-client behavior](docs/web-client.md).
-Learning analytics and grading v5 are documented in [Learning evidence](docs/learning-evidence.md).
+See [tooling and tests](docs/tooling.md) for targeted checks, browser testing, and
+independent mathematical verification. The [documentation index](docs/README.md)
+links to architecture, client behavior, grading, review, deployment, and recovery.

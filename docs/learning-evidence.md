@@ -1,38 +1,36 @@
-# Learning evidence and grading v5
+# Learning evidence
 
-This change records evidence, not mastery. It adds no scheduling, scoring model, flashcards, unlocking, adaptive generation, or live AI summaries.
+The Progress views describe observed attempts, corrections, assistance, and concept/skill coverage. They do not assign mastery probabilities or infer understanding from reading. The [Review system](review-system.md) separately derives scheduling state from active evidence; [grading](grading.md) defines assessment policy and history.
 
-## Content and taxonomy
+## Taxonomy and snapshots
 
-`content/learning-evidence.yaml` and the lesson files in `content/evidence/` are the authored sources. See [complete curriculum coverage](curriculum-evidence-coverage.md). It is independent of section structure and uses the existing YAML/build pipeline. The catalog contains 187 concepts, 15 extensible skills and 11 representations. All 2,060 exercises across 25 exercise-bearing lessons, including promoted checks, have explicit ID-based annotations. The taxonomy separates implication semantics, conditional forms, contrapositive, necessary/sufficient conditions, equivalence, distribution, negation, argument validity, inference, counterexamples, and satisfiability without creating a concept for each wording variant. Sections appear only in optional teaching/exposure anchors, not as analytical categories.
+`content/learning-evidence.yaml` and lesson mappings in `content/evidence/` are canonical authored sources. Every published exercise has explicit ID-based annotations grounded in its actual prompt and response format. Concepts and skills have primary/supporting roles; tasks may have several primary relationships without numerical weights. Sections are optional teaching/exposure anchors, not analytical categories.
 
-The annotations were written against the actual adapted questions and answers, including current multiple-choice formats, rather than inferred from section names. For example: canonical 77 compares a contrapositive; 74 constructs one; 152 proves with one. Canonical 110 principally measures equivalence and distribution, with implication as supporting knowledge. Tasks can have multiple primary concepts and skills; there are no numerical weights. Supporting concepts are visible but excluded from primary concept metrics. The lesson overview counts each exercise once regardless of how many concepts it measures.
+`tools/content/evidence.ts` validates IDs, parent links/cycles, roles, duplicate references, representations, attributes, teaching targets, and complete exercise coverage. Skills accept a primary string shorthand or an explicit object such as `{ skill: justify, role: supporting }`; each task requires a primary skill. Response format is derived, and explicit logical operators in displayed math are counted literally rather than treated as a difficulty estimate. Attributes remain scalar metadata.
 
-`tools/content/evidence.ts` validates IDs, parent links/cycles, primary/supporting roles, duplicate references, representations, attributes, teaching targets and complete coverage of every published exercise. It derives response format for every annotation and counts explicit logical operators in the displayed math for logic questions. This is a literal operator count, not a difficulty estimate or full syntax-tree depth. No speculative correlation analysis is implemented. Attributes remain a generic scalar map. All lessons have authored task-level annotations. Missing mappings in any lesson fail the content build.
+The compiled `learning-evidence.json` ships offline and contributes to the grading catalog version. Accepted attempts snapshot concept/skill/representation definitions, roles, attributes, version, and provenance from the trusted server catalog. Per-attempt names remain interpretable if the current taxonomy changes; client-supplied analytical snapshots are not authoritative.
 
-The generated `learning-evidence.json` ships offline. Its content hash is included in the grading catalog version. New contexts snapshot direct concept/skill/representation definitions, roles, attributes, version and provenance; the server supplies this snapshot from its catalog, never trusts a client-supplied analytical snapshot. Names remain interpretable if future catalog entries change.
+## Effort, uncertainty, and assistance
 
-## Attempts, assistance and exposure
+Submissions may carry `startedAt`, `activeDurationMs`, `unsure`, and assistance flags. `web/src/effort.ts` estimates interaction-to-interaction time, counting at most 30 seconds of silence between events and pausing on blur/visibility loss. Only the accumulated duration and first interaction time are stored. Reload retains accumulated time without adding the closed-page interval; retry starts a new interval. This estimate undercounts silent thought and does not establish attention.
 
-No answer or grade is retroactively fabricated. New submissions preserve optional `startedAt`, `activeDurationMs`, `unsure` and assistance flags in the existing immutable submission JSON. `EffortClock` estimates time between answer interactions, counting at most 30 seconds of silence between events and pausing on window blur/visibility loss. Only accumulated duration and first interaction time are retained. No keystrokes, pointer paths beyond existing pen work, or general event stream are collected. The estimate undercounts silent thought and cannot prove attention. Reload retains accumulated time but adds no closed-page interval. Retry starts a new effort interval.
+Submitted effort metadata must use integral timestamps/durations, a positive start no later than submission, and duration no greater than elapsed time with a start present. Legacy attempts without effort remain valid; drafts have separate validation because they lack submission timestamps. A narrow recovery path repairs overflowing effort metadata only on locally saved submissions explicitly rejected for that error and never accepted by the server. It preserves the original rejected payload, response, identity, timestamps, and assistance, then requeues the corrected upload.
 
-Submission uses one timestamp for the final interaction, clock pause, and immutable submission. Earlier clients could read the clock after recording submission time and exceed the server's elapsed-time bound. Sync recovers only local submissions explicitly rejected for this timing error, with no server attempt record: it caps an overflowing duration at elapsed time, or omits an untouched zero duration with no start, and requeues the same response and ID. The original rejected payload remains saved. Accepted history, response content, submission/start times, assistance, and grading rules are unchanged; unrelated failures are not retried by this recovery.
+**Unsure** is optional: unchecked means not reported, not confident. A nullable boolean also preserves explicit false values from compatible clients. It never blocks submission or changes the grade.
 
-The optional **Unsure** toggle has two UI states: marked or not reported. An unchecked toggle must **not** be interpreted as confidence. The nullable boolean representation can also preserve an explicit false from a future client. It never blocks submission or affects grading.
+Assistance records distinguish three facts:
 
-Official-answer visibility is sticky in `assistance.answerPreviouslyRevealed`, even after closing the answer. Existing `revealed` behavior remains intact. Revealed incorrect feedback, including earlier assessments, sets `priorIncorrectFeedbackSeen`. Copying a retry records `copiedFromRetry`; it describes copying, not mathematical assistance by itself. Answer/feedback-seen flags sync as bounded `assistance/<exercise>` records; retained versions are combined with boolean OR so concurrent facts are not discarded. Draft-specific copying stays with the attempt. Legacy data lacking these fields is unknown.
+- `answerPreviouslyRevealed` remains true after the official answer is closed.
+- `priorIncorrectFeedbackSeen` records deliberate reveals, including older assessments.
+- `copiedFromRetry` records copying into this draft; it does not by itself prove mathematical assistance.
 
-Concept exposure reuses the reader's 1.5-second section visibility/bookmark callback, actual exercise interactions, and deliberate incorrect-feedback reveals. It records the first encounter per concept/source/device, rather than every visit. The UI takes the earliest timestamp per concept/source across devices. `sourceId` identifies the section, exercise or attempt. These are operational exposure proxies, not proof that a learner understood the concept. Historical encounters are not reconstructed. Records use the existing offline mutation queue, conflict preservation, auth and export paths.
+Answer/feedback facts sync as bounded `assistance/<exercise>` records and merge with boolean OR inside the server mutation transaction, including concurrent/stale writes and resolutions. Copying stays specific to the draft/attempt. Missing historical fields remain unknown.
 
-## Grading v5
+## Exposure
 
-`foundations-grading-5` retains GLM and current provider routing. It first extracts requirements from the actual instructions/prompt, then determines the verdict, then diagnoses. References, titles and metadata cannot add requirements. JSON includes requirement descriptions/satisfaction, optional broad error classes and domain tags, categorical decision confidence, and structured not-graded reasons. Missing explicitly requested explanation is prompt-compliance/missing-requested-justification, not automatically conceptual failure. Correct answers have no error diagnoses. Diagnostic concept/skill IDs must exist in the supplied snapshot.
+Concept exposure uses the reader's 1.5-second section visibility/bookmark callback, exercise interactions, and deliberate incorrect-feedback reveals. It records the first encounter per concept/source/device, with `sourceId` identifying a section, exercise, or attempt. The UI uses the earliest timestamp per concept/source across devices. A transaction-initialized device ID keeps concurrent tabs consistent.
 
-Guidance explicitly accepts alternative derivations and independently reducing both sides to the same expression. False intermediate work cannot be rescued by a correct final answer when reasoning is requested. Ambiguity is handled as written, with not_graded when material correctness cannot be resolved. Rechecks independently re-evaluate the original response; prior grades are history, not evidence. Clarifications are interpreted but not treated as new work. The entire assessment history remains intact.
-
-New provider responses must contain all schema fields and pass semantic validation. Older stored grades still deserialize with missing fields. Deterministic choices receive an explicit selection requirement and high decision confidence; their wrong selections are **not** automatically labeled conceptual errors. Their diagnosis stays unknown unless authored diagnostics are added later. Infrastructure errors remain retryable, and missing saved images produce a structured missing-image/not_graded result.
-
-Synthetic regression cases cover alternative/two-sided derivations, false intermediate steps, requested versus unrequested explanations, negation boundaries, counterassignments, unreadability, flawed references, recheck reversals and ambiguity. Ordinary tests validate storage, schema, policies, corpus integrity and aggregation; they do **not** prove a model will always follow the prompt. The existing opt-in live harness has eleven targeted v5 cases, disabled unless `FOUNDATIONS_LIVE_TEST_KEY` is explicitly set. No model calls were made for this PR.
+These are exposure proxies, not proof of understanding. Historical encounters are not reconstructed. Records use the ordinary offline mutation queue, conflicts, authentication, and exports. Passive exposure does not activate or schedule Review.
 
 ## Exact analytical definitions
 
@@ -53,43 +51,16 @@ Synthetic regression cases cover alternative/two-sided derivations, false interm
 - **Needs attention:** catalog-order listing of concepts with at least two substantive-error attempts, at least two first-gradable misses within one primary skill, or recorded assisted correct responses on at least two exercises. These are transparent flags, not scores or rankings. No inference that assistance proves misunderstanding.
 - **Error breakdown:** latest diagnoses from effectively incorrect attempts, grouped separately by broad class and tag, deduplicated by attempt within each bucket. Every aggregate can be traced to submissions and all original assessments.
 
-## Historical integrity and deployment behavior
+## Historical evidence
 
-There is no SQL schema migration: optional JSON fields extend the existing storage. On startup the new backend performs an idempotent metadata-only backfill for historical contexts with unchanged task wording and the same response format. Reference-link formatting and whitespace are ignored in that comparison. Original context text, student responses, grades, IDs, timestamps and content versions are preserved. An emitted attempt revision syncs the added labeled snapshot. Rechecks still use the original task and assessment history.
+On startup, `server/evidence_backfill.go` adds missing metadata only to historical contexts whose task wording and response format match, ignoring whitespace and reference-link formatting. It preserves original context text, responses, grades, IDs, timestamps, and content versions, then emits a revision to sync the labeled snapshot. Rechecks continue to use the original task.
 
-Changed tasks or converted response formats are conservatively skipped. Their attempts remain in overview counts and the full history but are excluded from concept metrics until an appropriate historical annotation exists. The UI reports snapshot coverage explicitly; it never projects a changed current task onto historical evidence. This is a deliberate limitation; no automatic historical task rewriting, diagnosis generation, or taxonomy migration framework is introduced. Unknown timing, uncertainty and assistance remain unknown. Existing backups remain weekly.
+Changed tasks and response formats are skipped. Those attempts remain in overall counts and history but are excluded from concept metrics without a compatible historical annotation. The UI reports snapshot coverage; it does not project today's changed task onto old responses or fabricate timing, uncertainty, assistance, or diagnoses.
 
-The web build and backend/catalog are released together because the grading catalog version changes. Startup backfills compatible historical submissions and emits revisions for clients to sync.
+## Export and validation
 
-## Export and verification
+Settings local-work JSON version 2 preserves attempts, drafts, queued operations, exposure/assistance, evidence context, and optional Review state. Version 1 remains accepted. Imports validate additional fields before writing and preserve recoverable conflicts. Exported catalogs supply explanatory context, never executable/authoritative curriculum; per-attempt snapshots take precedence.
 
-Settings export/import now uses browser JSON version 2, preserving attempts, drafts, queued operations, exposure/assistance records and the evidence catalog. It still accepts v1. Imported conflicts remain recoverable rather than overwritten. The exported catalog is explanatory context, never installed as executable/authoritative content. Per-attempt snapshots take precedence. Additional fields are validated and invalid imports are rejected before writes.
+`scripts/export-learning-data.py` creates a separate read-only analysis ZIP from the server database, release, and media. Version 2 includes assessments, original contexts, metadata, CSV tables, transcriptions, remaining media, review records, and a checksum manifest. It omits authentication/session data and credentials and refuses to overwrite an existing archive. This server export is not a browser-import file; use Settings export for device-only work. See [tooling](tooling.md) for invocation.
 
-`scripts/export-learning-data.py` makes a separate read-only, checksum-manifested analysis ZIP v2 from the server DB, release and media paths. It contains all assessments, original context, metadata, CSV tables, transcriptions and remaining media, including new fields. This durable tool replaces the earlier one-off export procedure. It omits authentication/session data and credentials. It refuses to overwrite an existing archive. This ZIP is for external analysis, not the browser JSON importer. Use browser export separately for device-only drafts.
-
-Run root tests/typecheck, web tests/build, formatting, and Go tests. Python export tests run through the explicit `test:utilities` step in the root suite. After building the web app and installing Chromium, `npm run test:e2e -- evidence` starts its own local Vite server. The script intercepts every API request and creates only synthetic local attempts; it checks routing/reload, phone overflow, concept drill-down, optional uncertainty, effort capture, submission metadata and feedback assistance.
-
-After `npm run web:build`, `npm run test:e2e -- review-submission` checks review submissions against a real Go API with temporary synthetic data. It covers the millisecond boundary, next-item and retry clocks, recovery of an actual rejected submission, typed responses, and restored drafts. Free-response jobs are cancelled and the provider URL stays on loopback. Set `PLAYWRIGHT_MODULE` and `CHROME_BIN` when using an external local browser runtime. The [mobile result](screenshots/review-submission/quick-mobile.png) shows a server-accepted deterministic grade.
-
-Screenshots use synthetic examples only:
-
-![Desktop overview](screenshots/learning-evidence/desktop.png)
-![Phone overview](screenshots/learning-evidence/phone.png)
-![Concept drill-down](screenshots/learning-evidence/concept.png)
-![Optional uncertainty](screenshots/learning-evidence/uncertainty.png)
-
-Deferred explicitly: spaced repetition/review scheduling, mastery scoring, forgetting curves, psychometrics, adaptive generation, prerequisites unlocking, automatic stronger-model escalation, LLM progress summaries, inferred historical diagnostics, and attribute correlation modeling.
-
-### Review follow-up
-
-Assistance records merge the two sticky facts with logical OR inside the server mutation transaction, including stale writes and explicit resolutions. Request hashes still describe the original request, so retries stay idempotent. Existing record keys remain compatible; already lost facts cannot be reconstructed from discarded versions.
-
-Exposure keys and sync mutations share an IndexedDB transaction-based device-ID initializer, including concurrent first use across tabs. Legacy exposure records remain readable; new records never use a placeholder device identity.
-
-Imported submitted attempts (including queued submissions) must have integral effort timestamps/durations, a positive start no later than submission, and a duration no greater than elapsed time with a start present. Legacy attempts without effort remain valid. Drafts keep their separate validation because they have no submission timestamp.
-
-Authored exercise `skills` accept both a string shorthand for a primary skill and an explicit `{ skill: justify, role: supporting }` object. The same catalog validation checks both forms, requires a primary skill, and rejects unknown IDs, duplicate skills, and invalid roles.
-
-### Cancelling grading
-
-Pending/running assessments have an operation ID. The signed-in client can cancel that exact operation; stale cancellation cannot affect a later retry. Cancellation is persisted, synced across devices, and aborts the active HTTP request. A result arriving after cancellation is discarded. Cancelled first assessments have no mathematical verdict; cancelled rechecks retain previous assessments. Answers remain available for retry grading or a new submission. Cancellation requires a connection and does not promise a refund for provider work already performed.
+Root content tests validate taxonomy and coverage; web tests validate aggregation, imports, assistance, and effort; Go tests validate evidence schemas, backfill, and persistence. `npm run test:e2e -- evidence review-submission` exercises Progress and submission metadata with synthetic local data after a web build. Python export tests run in `npm run test:utilities`. These checks validate data handling and prompt policies, not guaranteed model compliance on arbitrary responses.

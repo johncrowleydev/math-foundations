@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -38,7 +38,6 @@ type Disposition = {
   retainOpenReason?: string;
   evidenceChange?: string | null;
   sourceInspection?: string;
-  batch?: string;
 };
 type Entry = {
   lesson: string;
@@ -405,21 +404,30 @@ export function assembleCoverage(input: CoverageInput) {
   };
 }
 export type Coverage = ReturnType<typeof assembleCoverage>;
+// Ignore JSON object key order, as the former full-ledger comparison did.
+export function coverageDigest(coverage: Coverage): string {
+  const normalized = JSON.stringify(coverage, (_key, value: unknown) =>
+    value && typeof value === 'object' && !Array.isArray(value)
+      ? Object.fromEntries(Object.entries(value).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)))
+      : value,
+  );
+  return createHash('sha256').update(normalized).digest('hex');
+}
 const json = async <T>(root: string, path: string): Promise<T> =>
   JSON.parse(await readFile(resolve(root, path), 'utf8'));
 export async function loadCoverageInput(root = process.cwd()): Promise<CoverageInput> {
   const lessonPaths = ['discrete', 'linear', 'algorithms'].map(
-    (name) => `docs/deterministic-${name}-dispositions.json`,
+    (name) => `tools/audit/deterministic/${name}-dispositions.json`,
   );
   const catalogPaths = [
     'content/deterministic-exercises.json',
     'content/deterministic-linear.json',
     'content/deterministic-algorithms.json',
   ];
-  const reviewPath = 'docs/deterministic-review-dispositions.json';
+  const reviewPath = 'tools/audit/deterministic/review-dispositions.json';
   const [audit, lessonLedgers, reviewRows, authoredCatalogs, authoredReview, published] =
     await Promise.all([
-      json<CoverageInput['audit']>(root, 'docs/deterministic-grading-audit.json'),
+      json<CoverageInput['audit']>(root, 'tools/audit/deterministic/original-audit.json'),
       Promise.all(
         lessonPaths.map(async (path) => ({ path, rows: await json<Disposition[]>(root, path) })),
       ),
@@ -485,11 +493,9 @@ export function coverageReport(c: Coverage): string {
     '',
     '## Validation',
     '',
-    'Run `npm run content:build` followed by `npx tsx tools/audit/deterministic-coverage.ts`. To refresh the generated ledger and this report after an inspected authoring change, run `npx tsx tools/audit/deterministic-coverage.ts --write`.',
+    'Run `npm run content:build` followed by `npm run audit:deterministic`. The generated ledger and report are written to `output/`. The original conversion inputs and coverage digest live under `tools/audit/deterministic/`. An intentional, inspected contract change requires updating the digest with `npm run audit:deterministic -- --write`.',
     '',
-    'The check rejects missing or duplicate identities, mismatched historical hashes, missing open-item reasons, disagreement between dispositions and published grading methods, untracked structured definitions, changed source pins, mismatched published assessments, and missing or changed dedicated Review definitions. It also checks that the committed ledger and report equal the generated result.',
-    '',
-    'Source inspections: [discrete and Review](deterministic-source-inspection.md), [linear algebra](deterministic-linear-source-inspection.md), [algorithms and combinatorics](deterministic-algorithms-source-inspection.md). The original [feasibility audit](deterministic-grading-audit.json) remains historical; its proposed counts are not treated as implementation totals.',
+    'The check rejects missing or duplicate identities, mismatched historical hashes, missing open-item reasons, disagreement between dispositions and published grading methods, untracked structured definitions, changed source pins, mismatched published assessments, and missing or changed dedicated Review definitions. The committed digest pins the complete generated ledger, independent of formatting or JSON object key order. Inspection references in the ledger use Git commit:path notation.',
     '',
     '## Retained open Review definitions',
     '',
@@ -514,29 +520,30 @@ export function coverageReport(c: Coverage): string {
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   const coverage = assembleCoverage(await loadCoverageInput());
+  const baselinePath = 'tools/audit/deterministic/coverage-baseline.json';
+  const sha256 = coverageDigest(coverage);
   const { format, resolveConfig } = await import('prettier');
-  const options = await resolveConfig('docs/deterministic-coverage.md');
+  const options = await resolveConfig('output/deterministic-coverage.md');
   const report = await format(coverageReport(coverage), {
     ...options,
-    filepath: 'docs/deterministic-coverage.md',
+    filepath: 'output/deterministic-coverage.md',
   });
+  await mkdir('output', { recursive: true });
+  await writeFile(
+    'output/deterministic-coverage.json',
+    await format(JSON.stringify(coverage), {
+      ...options,
+      filepath: 'output/deterministic-coverage.json',
+    }),
+  );
+  await writeFile('output/deterministic-coverage.md', report);
   if (process.argv.includes('--write')) {
-    await writeFile(
-      'docs/deterministic-coverage.json',
-      await format(JSON.stringify(coverage), {
-        ...options,
-        filepath: 'docs/deterministic-coverage.json',
-      }),
-    );
-    await writeFile('docs/deterministic-coverage.md', report);
+    await writeFile(baselinePath, JSON.stringify({ sha256 }, null, 2) + '\n');
   } else {
+    const baseline = await json<{ sha256: string }>(process.cwd(), baselinePath);
     assert(
-      isDeepStrictEqual(coverage, await json(process.cwd(), 'docs/deterministic-coverage.json')),
-      'Committed coverage ledger is stale; inspect changes and regenerate with --write.',
-    );
-    assert(
-      report === (await readFile('docs/deterministic-coverage.md', 'utf8')),
-      'Committed coverage report is stale; regenerate with --write.',
+      sha256 === baseline.sha256,
+      'Coverage differs from the committed baseline; inspect output/deterministic-coverage.json and source changes before updating with --write.',
     );
   }
   console.log(JSON.stringify(coverage.totals));
