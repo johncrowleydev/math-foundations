@@ -96,9 +96,9 @@ try {
         .replace(
           put,
           `
-        if (store === 'drafts' && key === 'linear-algebra-matrices-1')
-          window.draftHydrationWrites.push(value.response);
         await (await db).put(store, value, key);
+        if (store === 'drafts' && key === 'linear-algebra-matrices-1')
+          window.draftHydrationWrites.push(value);
       `,
         ),
     });
@@ -203,27 +203,14 @@ try {
     window.holdDraftChanges = true;
   });
   await exercise().getByLabel('Unsure', { exact: true }).check();
-  await page.waitForFunction(
-    (expected) =>
-      new Promise((resolve) => {
-        const open = indexedDB.open('foundations-web');
-        open.onsuccess = () => {
-          const db = open.result;
-          const get = db
-            .transaction('drafts')
-            .objectStore('drafts')
-            .get('linear-algebra-matrices-1');
-          get.onsuccess = () => {
-            db.close();
-            resolve(
-              get.result?.unsure === true &&
-                JSON.stringify(get.result?.response) === JSON.stringify(expected),
-            );
-          };
-        };
-      }),
-    response,
-  );
+  // Poll a synchronous observation of the committed save. A Promise-returning
+  // predicate is truthy to waitForFunction even when it later resolves false.
+  // Writing the other editor's scratchwork before this commit would let the
+  // earlier queued Unsure save legitimately overwrite the test fixture.
+  await page.waitForFunction((expected) => {
+    const saved = window.draftHydrationWrites.at(-1);
+    return saved?.unsure === true && JSON.stringify(saved.response) === JSON.stringify(expected);
+  }, response);
   await page.waitForFunction(() => window.heldDraftReads >= 2);
   // Simulate another editor saving while this active editor's reads are held.
   // Its blur must preserve these newer fields as well as the answer and Unsure.
