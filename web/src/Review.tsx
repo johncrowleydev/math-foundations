@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum } from './types';
 import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
 import { all, useRevision } from './storage';
@@ -40,6 +40,7 @@ export function Review({
   const [paused, setPaused] = useState(false);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [busy, setBusy] = useState(false);
+  const [restored, setRestored] = useState(false);
   const [error, setError] = useState('');
   const [summaryError, setSummaryError] = useState('');
   const [notice, setNotice] = useState('');
@@ -52,6 +53,7 @@ export function Review({
   budgetMinutesRef.current = budgetMinutes;
   const revision = useRevision();
   useEffect(() => {
+    if (!restored) return;
     let live = true;
     void savedReviewBudget()
       .then((minutes) => {
@@ -63,9 +65,9 @@ export function Review({
     return () => {
       live = false;
     };
-  }, [revision]);
+  }, [revision, restored]);
   const summaryRequest = useRef(0);
-  async function refresh() {
+  const refresh = useCallback(async () => {
     const request = ++summaryRequest.current;
     setChecking(true);
     try {
@@ -84,12 +86,20 @@ export function Review({
     } finally {
       if (request === summaryRequest.current) setChecking(false);
     }
-  }
+  }, []);
   useEffect(() => {
+    let cancelled = false;
     // Restore local work before starting a possibly slow network refresh. A
     // fresh summary may mark the visible card covered without replacing it.
-    void Promise.all([cachedReviewSessionState(), all<Attempt>('attempts'), cachedReviewSummary()])
-      .then(([saved, existing, result]) => {
+    void Promise.all([
+      cachedReviewSessionState(),
+      all<Attempt>('attempts'),
+      cachedReviewSummary(),
+      savedReviewBudget(),
+    ])
+      .then(([saved, existing, result, minutes]) => {
+        if (cancelled) return;
+        setBudgetMinutes(minutes);
         if (result) {
           setSummary(result.summary);
           setCached(true);
@@ -112,34 +122,49 @@ export function Review({
               ),
         );
       })
-      .catch((e) => setError(String(e)))
-      .finally(() => void refresh());
+      .catch((e) => {
+        if (!cancelled) setError(String(e));
+      })
+      .finally(() => {
+        if (!cancelled) setRestored(true);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
   useEffect(() => {
     localStorage.setItem('review-budget-minutes', String(budgetMinutes));
+    if (!restored) return;
     void refresh();
     window.addEventListener('online', refresh);
-    return () => window.removeEventListener('online', refresh);
-  }, [budgetMinutes]);
+    return () => {
+      window.removeEventListener('online', refresh);
+      ++summaryRequest.current;
+    };
+  }, [budgetMinutes, restored, refresh]);
   useEffect(() => {
-    void all<Attempt>('attempts').then(setAttempts);
-  }, [revision]);
+    if (restored) void all<Attempt>('attempts').then(setAttempts);
+  }, [revision, restored]);
   const reviewStatus = attempts
     .filter((a) => a.review)
     // Deterministic answers are already Correct locally. Their server-stamped
     // grade must also refresh coverage when acknowledgement keeps that verdict.
     .map((a) => [a.id, a.status, a.verdict, ...a.grades.map((grade) => grade.at)].join(':'))
     .join(',');
+  const previousReviewStatus = useRef<string>(undefined);
   useEffect(() => {
-    if (session) void refresh();
-  }, [reviewStatus]);
+    if (!restored) return;
+    const previous = previousReviewStatus.current;
+    previousReviewStatus.current = reviewStatus;
+    if (session && previous !== undefined && previous !== reviewStatus) void refresh();
+  }, [reviewStatus, restored, session, refresh]);
   async function start(request: ReviewSessionRequest) {
     setBusy(true);
     setError('');
     setNotice('');
     try {
       const next = await startReviewSession({ ...request, budgetMinutes });
-      await retainReviewSession(next.instances.length ? next : null);
+      if (!next.instances.length) await retainReviewSession(null);
       setSession(next.instances.length ? next : undefined);
       setPaused(false);
       setIndex(0);
@@ -149,7 +174,7 @@ export function Review({
             ? 'No scheduled review is currently available. More review will become due later.'
             : 'No compatible tasks in this selection. Try another scope or study mode.',
         );
-      await refresh();
+      void refresh();
     } catch (e) {
       setError(String(e));
     } finally {
@@ -284,6 +309,16 @@ export function Review({
         {visibleError && (
           <p className="error" role="alert">
             {visibleError}
+          </p>
+        )}
+        {(busy || checking) && (
+          <p className="review-loading" role="status">
+            <span className="spinner" aria-hidden="true" />
+            {busy
+              ? 'Planning your session…'
+              : summary
+                ? 'Refreshing review schedule…'
+                : 'Loading review schedule…'}
           </p>
         )}
         {cached && summary && (
@@ -485,7 +520,7 @@ export function Review({
                 )}
               </section>
             )}
-            {summary ? (
+            {summary && (
               <>
                 {!overviewSession && (
                   <section className="review-panel review-primary" aria-labelledby="today-review">
@@ -679,8 +714,6 @@ export function Review({
                   ))}
                 </details>
               </>
-            ) : (
-              !visibleError && <p role="status">Loading review schedule…</p>
             )}
           </>
         )}
