@@ -273,70 +273,94 @@ func (g *Grading) reviewTemplates() []ReviewTemplate {
 	for _, key := range keys {
 		raw := g.catalog.Exercises[key]
 		var item struct {
-			Category   string
-			Lesson     string
-			LessonSlug string
-			Question   map[string]any
-			Choice     *ChoiceAssessment
-			Assessment *Assessment
-			Analytics  json.RawMessage
+			Category       string
+			Lesson         string
+			LessonSlug     string
+			Question       map[string]any
+			ReviewQuestion map[string]any
+			Choice         *ChoiceAssessment
+			Assessment     *Assessment
+			Analytics      json.RawMessage
 		}
 		if json.Unmarshal(raw, &item) != nil {
 			continue
 		}
-		var a reviewAnalytics
-		json.Unmarshal(item.Analytics, &a)
-		for _, c := range a.Concepts {
-			if c.Role != "primary" {
-				continue
+		// The lesson keeps its adapted response format. A separately compiled
+		// original lets review still ask for the written work its skills require.
+		representations := []bool{false}
+		if len(item.ReviewQuestion) > 0 {
+			representations = append(representations, true)
+		}
+		for _, written := range representations {
+			item := item
+			suffix := ""
+			if written {
+				item.Question = item.ReviewQuestion
+				item.Category, item.Choice, item.Assessment = "", nil, nil
+				suffix = "-written"
+				var analytics map[string]any
+				json.Unmarshal(item.Analytics, &analytics)
+				if attributes, ok := analytics["attributes"].(map[string]any); ok {
+					attributes["responseFormat"] = "open"
+					delete(attributes, "evidenceLevel")
+					delete(attributes, "interactionCost")
+				}
+				item.Analytics, _ = json.Marshal(analytics)
 			}
-			for _, s := range a.Skills {
-				if s.Role != "primary" {
+			var a reviewAnalytics
+			json.Unmarshal(item.Analytics, &a)
+			for _, c := range a.Concepts {
+				if c.Role != "primary" {
 					continue
 				}
-				level := skillDepth(s.Skill)
-				if s.Skill == "recall" && item.Choice == nil {
-					level = "production"
-				}
-				if item.Assessment != nil {
-					if depth(item.Assessment.Evidence.Level) < depth(level) {
+				for _, s := range a.Skills {
+					if s.Role != "primary" {
 						continue
 					}
-					level = item.Assessment.Evidence.Level
-				}
-				// A choice tagged with a constructive skill cannot certify production.
-				if item.Choice != nil && level != "recognition" {
-					continue
-				}
-				q := map[string]any{}
-				for k, v := range item.Question {
-					q[k] = v
-				}
-				q["id"] = 1
-				q["section"] = "review"
-				q["answer"] = q["officialAnswer"]
-				delete(q, "officialAnswer")
-				cost := "high"
-				caps := []string{"math-text", "handwriting", "photo"}
-				if item.Choice != nil {
-					q["choice"] = item.Choice
-					cost = "low"
-					caps = []string{"tap"}
-				}
-				if item.Assessment != nil {
-					q["assessment"] = item.Assessment
-					cost = item.Assessment.Evidence.InteractionCost
-					caps = item.Assessment.Evidence.InputCapabilities
-				}
-				lesson := item.LessonSlug
-				if lesson == "" {
-					// Older catalogs retain only the stable exercise namespace.
-					lesson = key
-					if i := strings.LastIndex(key, "-"); i >= 0 {
-						lesson = key[:i]
+					level := skillDepth(s.Skill)
+					if s.Skill == "recall" && item.Choice == nil {
+						level = "production"
 					}
+					if item.Assessment != nil {
+						if depth(item.Assessment.Evidence.Level) < depth(level) {
+							continue
+						}
+						level = item.Assessment.Evidence.Level
+					}
+					// A choice tagged with a constructive skill cannot certify production.
+					if item.Choice != nil && level != "recognition" {
+						continue
+					}
+					q := map[string]any{}
+					for k, v := range item.Question {
+						q[k] = v
+					}
+					q["id"] = 1
+					q["section"] = "review"
+					q["answer"] = q["officialAnswer"]
+					delete(q, "officialAnswer")
+					cost := "high"
+					caps := []string{"math-text", "handwriting", "photo"}
+					if item.Choice != nil {
+						q["choice"] = item.Choice
+						cost = "low"
+						caps = []string{"tap"}
+					}
+					if item.Assessment != nil {
+						q["assessment"] = item.Assessment
+						cost = item.Assessment.Evidence.InteractionCost
+						caps = item.Assessment.Evidence.InputCapabilities
+					}
+					lesson := item.LessonSlug
+					if lesson == "" {
+						// Older catalogs retain only the stable exercise namespace.
+						lesson = key
+						if i := strings.LastIndex(key, "-"); i >= 0 {
+							lesson = key[:i]
+						}
+					}
+					result = append(result, ReviewTemplate{Category: item.Category, ReviewTarget: ReviewTarget{Concept: c.Concept, Skill: s.Skill}, ID: "exercise-" + key + "-" + c.Concept + "-" + s.Skill + suffix, Family: "fixed", SourceTarget: "exercise:" + key, Lesson: lesson, EvidenceLevel: level, CognitiveLevel: s.Skill, InteractionCost: cost, InputCapabilities: caps, Question: q, Analytics: item.Analytics, Teaching: raw})
 				}
-				result = append(result, ReviewTemplate{Category: item.Category, ReviewTarget: ReviewTarget{Concept: c.Concept, Skill: s.Skill}, ID: "exercise-" + key + "-" + c.Concept + "-" + s.Skill, Family: "fixed", SourceTarget: "exercise:" + key, Lesson: lesson, EvidenceLevel: level, CognitiveLevel: s.Skill, InteractionCost: cost, InputCapabilities: caps, Question: q, Analytics: item.Analytics, Teaching: raw})
 			}
 		}
 	}
