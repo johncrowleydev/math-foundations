@@ -18,7 +18,7 @@ import {
   validGradeEvidence,
   validSnapshot,
 } from './evidenceValidation';
-const db = openDB('foundations-web', 2, {
+export const db = openDB('foundations-web', 2, {
   upgrade(d) {
     for (const s of ['drafts', 'attempts', 'media', 'records', 'outbox', 'settings', 'imports'])
       if (!d.objectStoreNames.contains(s)) d.createObjectStore(s);

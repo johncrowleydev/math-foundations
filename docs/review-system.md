@@ -6,7 +6,11 @@ Go owns activation, scheduling, due counts, template selection, and session plan
 
 The overview puts the next learner action first. With no retained session, **Today’s review** shows the estimated time and quick-recall/application/deep-question mix for the next possible scheduled session. **Start review** considers all compatible due work within the allowance. **Quick review** includes only low-interaction questions with tap or short-text input; cognitive difficulty is separate metadata. Deeper targets retain their due dates when Quick filters them out. If nothing can currently be planned, the overview says **You’re caught up for now** and does not show an unavailable start button. This means no scheduled review is currently available within planning constraints, not that every active target has been learned or is no longer due.
 
-The locally saved **Daily review target** defaults to 25 minutes and accepts 5–60 minutes. It is a daily planning allowance, not a required duration; a session can be shorter when less compatible review is available. Existing scheduled sessions reserve their estimated time for 24 hours, including unfinished or ended sessions.
+The **Daily review target** defaults to 25 minutes and accepts 5–60 minutes. It syncs between devices through the account preference `preference/review-budget-minutes`; an open Review page updates its target and estimate when a changed preference arrives. Offline changes stay queued, with the most recent local choice retained across reloads. Explicit changes use the same last-accepted behavior as other learning preferences.
+
+On upgrade, an existing nondefault browser target initializes the account only if no shared target exists. An old browser's automatically saved 25-minute default never overwrites another device's choice, and a shared preference takes precedence over older local settings.
+
+The target is a daily planning allowance, not a required duration; a session can be shorter when less compatible review is available. Existing scheduled sessions reserve their estimated time for 24 hours, including unfinished or ended sessions.
 
 Returning to the overview pauses the session. Question navigation saves its position locally. **Continue your review** offers **Continue review** and **End session** when questions still need work. Continuing restores an unfinished question and its draft, including offline; if necessary it wraps back to earlier unfinished work.
 
