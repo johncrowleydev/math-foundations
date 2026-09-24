@@ -6741,6 +6741,7 @@
     "lesson": "predicates-and-quantifiers",
     "concept": "quantifier-negation",
     "skill": "interpret",
+    "objective": "nested-negation-recognition",
     "evidenceLevel": "recognition",
     "interactionCost": "low",
     "inputCapabilities": ["tap"],
@@ -56396,6 +56397,46 @@
           }
         ]
       }
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "concept": "quantified-specification",
+    "skill": "interpret",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "interpret",
+    "activationConcepts": ["quantified-specification"],
+    "sourceIds": ["review-written-quantifier-interpretation"],
+    "id": "quantified-specification-interpretation-review",
+    "family": "fixed",
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Write the meaning in ordinary language.",
+      "prompt": "Let $R$ be a set of requests, $W$ a set of workers, and $A(r,w)$ mean that worker $w$ is assigned to request $r$. Interpret $\\exists r\\in R\\forall w\\in W\\,\\neg A(r,w)$ without using quantifier symbols. Be explicit about which requests lack workers.",
+      "answer": "At least one request has no assigned worker. The statement does not say that every request lacks a worker."
+    }
+  },
+  {
+    "lesson": "predicates-and-quantifiers",
+    "concept": "quantifier-negation",
+    "skill": "interpret",
+    "evidenceLevel": "production",
+    "interactionCost": "low",
+    "inputCapabilities": ["short-text"],
+    "cognitiveLevel": "interpret",
+    "activationConcepts": ["quantifier-negation"],
+    "sourceIds": ["review-written-quantifier-interpretation"],
+    "id": "quantifier-negation-interpretation-review",
+    "family": "fixed",
+    "question": {
+      "id": 1,
+      "section": "Review",
+      "instructions": "Write the meaning in ordinary language.",
+      "prompt": "Let $S$ be a set of students, $B$ a set of books, and $F(s,b)$ mean that student $s$ has finished book $b$. Interpret $\\neg(\\forall s\\in S\\exists b\\in B\\,F(s,b))$ without using quantifier symbols. Express the failure directly, without beginning with 'It is not the case'.",
+      "answer": "At least one student has finished none of the books in $B$. This does not assert that all students have finished no books."
     }
   }
 ]

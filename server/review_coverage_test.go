@@ -5,8 +5,76 @@ import (
 	"fmt"
 	"os"
 	"reflect"
+	"strings"
 	"testing"
 )
+
+// Exercise 117 used to activate both interpretation targets at production
+// depth. Its interpretation choice is now supporting evidence, but learners'
+// already-due targets must still have a question that can satisfy that depth.
+func TestPublishedReviewCoveragePreservesHistoricalInterpretation(t *testing.T) {
+	raw, err := os.ReadFile("../output/grading-catalog.json")
+	if os.IsNotExist(err) {
+		t.Skip("run npm run content:build to test the published catalog")
+	}
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, concept := range []string{"quantified-specification", "quantifier-negation"} {
+		t.Run(concept, func(t *testing.T) {
+			g := reviewFixture(t)
+			if err := json.Unmarshal(raw, &g.catalog); err != nil {
+				t.Fatal(err)
+			}
+			meta, _ := json.Marshal(map[string]any{
+				"concepts": []map[string]string{{"concept": concept, "role": "primary"}},
+				"skills":   []map[string]string{{"skill": "interpret", "role": "primary"}},
+			})
+			storeReviewAttempt(t, g, "predicates-and-quantifiers-117", reviewDay, "correct", meta, nil)
+			target := ReviewTarget{Concept: concept, Skill: "interpret"}
+			at := reviewDay
+			previous := ReviewState{ReviewTarget: target, ID: target.key(), ActivatedAt: at, DueAt: 7 * reviewDay, IntervalDays: 6, LastEvidenceAt: &at, EvidenceLevel: "production"}
+			tx, err := g.server.db.Begin()
+			if err != nil {
+				t.Fatal(err)
+			}
+			if err := reviewPut(tx, "review-state/"+target.key(), previous); err != nil {
+				tx.Rollback()
+				t.Fatal(err)
+			}
+			if err := tx.Commit(); err != nil {
+				t.Fatal(err)
+			}
+			_, states := summaryStates(t, g, 10*reviewDay)
+			state, ok := states[target.key()]
+			if !ok || strings.Contains(state.Reason, "no compatible question") || state.DueAt != previous.DueAt || state.EvidenceLevel != previous.EvidenceLevel {
+				t.Fatalf("historical target lost compatible coverage or changed its schedule: %+v", state)
+			}
+			session, err := g.planReview(ReviewSessionRequest{Kind: "scheduled-review", Mode: "regular", Concept: concept, Skill: "interpret"}, 10*reviewDay)
+			if err != nil {
+				t.Fatalf("historical target cannot be reviewed: %d questions, %v", len(session.Instances), err)
+			}
+			var instance *ReviewInstance
+			for i := range session.Instances {
+				if session.Instances[i].Context.key() == target.key() {
+					instance = &session.Instances[i]
+				}
+			}
+			if instance == nil || depth(instance.EvidenceLevel) < depth(previous.EvidenceLevel) {
+				t.Fatal("no issued question can satisfy the historical target")
+			}
+			_, planned := summaryStates(t, g, 10*reviewDay)
+			if !reflect.DeepEqual(states, planned) {
+				t.Fatal("planning changed the saved schedule before an answer")
+			}
+			storeReviewAttempt(t, g, instance.Exercise, 10*reviewDay, "correct", instance.Analytics, &instance.Context)
+			_, after := summaryStates(t, g, 10*reviewDay)
+			if after[target.key()].DueAt <= 10*reviewDay || after[target.key()].LastReviewedAt == nil {
+				t.Fatal("compatible answer failed to satisfy historical due work")
+			}
+		})
+	}
+}
 
 func TestReviewCoveragePublishedFactoring(t *testing.T) {
 	raw, err := os.ReadFile("../output/grading-catalog.json")

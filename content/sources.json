@@ -927,6 +927,13 @@
       "supports": "Predicate inputs and substitution into a truth-valued condition. Supports original definition and distinction prompts, not copied exercises.",
       "checked": "2026-09-18"
     },
+    "review-written-quantifier-interpretation": {
+      "source": "proof",
+      "locator": "§2.10 Negating Statements, printed pp. 60–61 (PDF pp. 72–73), equations (2.8)–(2.9) and Example 2.13",
+      "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=72",
+      "supports": "Universal/existential negation and verbal interpretation of nested quantifiers. The request/worker and student/book examples are original applications, independently checked by negating each quantifier in order; the existential counterexample need not include every member of the outer domain.",
+      "checked": "2026-09-24"
+    },
     "review-quantifier-meaning": {
       "source": "proof",
       "locator": "§2.7 Quantifiers, printed pp. 53–55 (PDF pp. 65–67)",
@@ -4642,6 +4649,14 @@
     }
   },
   "reviewTemplates": {
+    "quantified-specification-interpretation-review": {
+      "reviewedContentHash": "1e918edf03115902e68e177744ad17a763deaa3249f318bdbbcf9d42982e5e05",
+      "sources": ["review-written-quantifier-interpretation"]
+    },
+    "quantifier-negation-interpretation-review": {
+      "reviewedContentHash": "5a16ca9081eb951fb8632bd5127652234086b8619d816f058ac54a47225421c8",
+      "sources": ["review-written-quantifier-interpretation"]
+    },
     "witness-definition": {
       "reviewedContentHash": "5183822365f4626b5a55056eadb9a5396275340ff95f22e5717e9907003de20d",
       "sources": ["review-witness"]
@@ -4887,7 +4902,7 @@
       "sources": ["review-quantifier-negation"]
     },
     "nested-quantifier-negation-recognition": {
-      "reviewedContentHash": "fa733ed7ed8ca8ca4b497427a669446adad45294d1b41affc53ec3c6f8969b20",
+      "reviewedContentHash": "db1cbe440632ddd943c75d23a1c11c8e7c0c265f04704204e0d46d91be30223d",
       "sources": ["review-quantifier-negation"]
     },
     "quantified-proof-obligations-review": {

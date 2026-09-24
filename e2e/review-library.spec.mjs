@@ -223,6 +223,18 @@ try {
   await screenshot('expanded', authored);
 
   await clear();
+  await filtersOpen();
+  await library.getByLabel(/^Concept/).selectOption('quantified-specification');
+  await library.getByLabel(/^Skill/).selectOption('interpret');
+  await expectCount(1);
+  const interpretation = library.locator(
+    '[data-template-id="quantified-specification-interpretation-review"]',
+  );
+  await interpretation.locator('summary').click();
+  await library.locator('.library-filters summary').click();
+  await screenshot('specification-interpretation', interpretation);
+
+  await clear();
   await library.getByLabel('Search catalog', { exact: true }).fill('quantifier order');
   const quantifierItems = catalog.items.filter((item) =>
     [
