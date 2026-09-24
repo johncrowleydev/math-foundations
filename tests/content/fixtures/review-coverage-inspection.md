@@ -16,7 +16,7 @@ available without being credited as written production. Its ID, questions,
 answers, variants, and source assignments are unchanged. Frozen issued questions
 and attempts remain untouched. There is no server scheduling change.
 
-Source inspection used Hammack, *Book of Proof*, §2.10, printed pp. 60–61,
+Source inspection used Hammack, _Book of Proof_, §2.10, printed pp. 60–61,
 equations (2.8)–(2.9) and Example 2.13. The new citation records the original
 examples and inspection date. Existing recognition variants were rechecked
 against the same quantifier-negation rules; only their objective metadata and
