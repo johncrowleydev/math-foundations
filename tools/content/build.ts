@@ -11,6 +11,7 @@ import { loadSources } from './sources.js';
 import { loadReviewTemplates } from './review-templates.js';
 import { loadReviewVariants } from './review-variants.js';
 import { gradingVersionFor } from './grading-version.js';
+import { indexAcceptedAnswers } from '../../shared/acceptedAnswers.js';
 import { compileWrittenReviewQuestions } from './review-coverage.js';
 
 import { prepareNotebook } from './notebook.js';
@@ -48,6 +49,15 @@ const reviewTemplates = await loadReviewTemplates(
   publishedLessons.map((l) => l.slug),
 );
 const reviewVariants = await loadReviewVariants(reviewTemplates);
+const acceptedAnswers = indexAcceptedAnswers([
+  ...publishedLessons.flatMap((lesson) => lesson.questions.map((q) => q.assessment)),
+  ...reviewTemplates.flatMap((template) =>
+    [template.question, ...(template.variants || [])].map((q) => q.assessment),
+  ),
+  ...Object.values(reviewVariants).flatMap((bank) =>
+    bank.variants.map((variant) => variant.question.assessment),
+  ),
+]);
 const reviewQuestions = compileWrittenReviewQuestions(
   lessons,
   publishedLessons,
@@ -136,6 +146,7 @@ if (process.argv.includes('--validate-only')) {
     [`${dir}/notebook.json`]: JSON.stringify({
       currentLesson: content.currentLesson,
       lessons: publishedLessons,
+      acceptedAnswers,
     }),
     [`${dir}/teaching.json`]: JSON.stringify(teaching),
     ...Object.fromEntries(

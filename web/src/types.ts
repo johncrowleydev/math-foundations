@@ -3,6 +3,7 @@ import type { ExerciseCategory, ReviewContext } from './reviewTypes';
 import type { EvidenceCatalog, EvidenceSnapshot, Effort, GradeEvidence } from './evidenceTypes';
 import type { SourceCatalog } from './Sources';
 import type { Assessment, StructuredResponse } from '../../shared/assessment';
+import type { AcceptedAnswers } from '../../shared/acceptedAnswers';
 export type { Assessment, StructuredResponse } from '../../shared/assessment';
 export type Question = {
   category?: ExerciseCategory;
@@ -142,6 +143,7 @@ export type Figure = {
   series?: { label: string; model: string; coefficients?: number[]; base?: number }[];
 };
 export type Curriculum = {
+  acceptedAnswers?: AcceptedAnswers;
   sources?: SourceCatalog;
   evidence: EvidenceCatalog;
   lessons: Lesson[];
@@ -244,6 +246,7 @@ export async function loadCurriculum(): Promise<Curriculum> {
   );
   validateExerciseKeys(n.lessons);
   return {
+    acceptedAnswers: n.acceptedAnswers,
     sources,
     evidence,
     lessons: n.lessons.map((lesson: Lesson) => ({

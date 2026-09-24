@@ -164,7 +164,7 @@ try {
     );
     assert.ok(lesson, 'Published exercise for ' + slug + '/' + id);
     await page.goto(baseURL + `/#/practice/${lesson.slug}/${id}`);
-    await exercise().locator('.structured-answer').waitFor();
+    await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
     return question(lesson.slug, id);
   };
   const noOverflow = async () => {
@@ -346,7 +346,7 @@ try {
       }),
   );
   await page.reload();
-  await exercise().locator('.structured-answer').waitFor();
+  await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   assert.equal(
     await exercise().getByLabel('Unsure', { exact: true }).isChecked(),
     true,
@@ -519,7 +519,7 @@ try {
       await page.setViewportSize({ width: 1440, height: 1000 });
       // Multiple edits in one event loop must not overwrite other fields through stale props.
       await exercise()
-        .locator('.structured-answer')
+        .locator('.structured-answer:not(.readonly-answer)')
         .evaluate((answer) => {
           const setValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
           for (const [i, input] of [...answer.querySelectorAll('.answer-grid input')].entries()) {

@@ -215,7 +215,9 @@ for filename, lesson, number, valid, invalid in [
     authored = json.loads((ROOT / "content" / filename).read_text())
     source = next(a for a in authored if a["lesson"] == lesson and a["id"] == number)
     d = f"{lesson}-{number}"
-    definitions[d] = source["assessment"]
+    # Accepted display answers are not part of the grading schema or this oracle.
+    # Keep responses derived independently below, even when authored solutions change.
+    definitions[d] = {key: value for key, value in source["assessment"].items() if key != "solution"}
     add(d, "stated values without zero power", valid)
     add(d, "explicitly prohibited zero power", invalid, "input-error")
 scalar("zero-power-source", "exact", {"expected":["1"]}, ["2^0", "0!"], ["0^1"], "0^0")

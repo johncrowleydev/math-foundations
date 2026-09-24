@@ -156,6 +156,28 @@ test('changed input definitions preserve earlier answers and all scratchwork wit
   );
 });
 
+test('adding an accepted answer preserves legacy fingerprints and saved draft responses', () => {
+  // This is the serialized fingerprint stored before accepted answers were added.
+  const legacyFingerprint =
+    '{"assessment":{"evidence":{"inputCapabilities":["tap"],"interactionCost":"low","level":"production"},"feedback":{"correct":"Both inputs must be true.","incorrect":"Check when conjunction is true."},"inputs":[{"columns":["$p$","$q$","$p \\\\land q$"],"id":"truth","kind":"grid","label":"Truth table","rows":[{"cells":[{"given":true},{"given":true},{"id":"tt","kind":"boolean"}],"label":"TT"},{"cells":[{"given":true},{"given":false},{"id":"tf","kind":"boolean"}],"label":"TF"}]}],"requirements":[{"description":"Both conjunction values","fields":["tt","tf"],"id":"values","params":{"expected":[true,false]},"validator":"boolean"}],"version":1},"instructions":"Complete the table."}';
+  assert.equal(assessmentFingerprint(question), legacyFingerprint);
+  const withSolution = { ...assessment, solution: { tt: true, tf: false } };
+  const revised = { ...question, assessment: withSolution };
+  assert.equal(assessmentFingerprint(revised), legacyFingerprint);
+  const draft: Draft = {
+    ...emptyDraft(),
+    response: { tt: false, tf: false },
+    text: 'Still working on the first row.',
+    assessmentFingerprint: legacyFingerprint,
+    assessmentQuestion: question,
+  };
+  assert.equal(reconcileResponse(draft, revised), draft);
+  assert.deepEqual(draft.response, { tt: false, tf: false });
+  assert.equal(draft.earlierWork, undefined);
+  assert.equal(draft.assessmentQuestion?.assessment, assessment);
+  assert.equal('solution' in assessment, false);
+});
+
 test('grid paste is atomic, respects givens and preserves blank versus false', () => {
   const input = assessment.inputs[0];
   assert.equal(input.kind, 'grid');
@@ -315,4 +337,35 @@ test('late transcription of an earlier open answer cannot clear converted scratc
   );
   assert.deepEqual((await get<Draft>('drafts', old.exercise))?.photos, current.photos);
   assert.ok(await get('media', hash));
+});
+
+test('accepted response rendering uses TeX for math, preserves literal text, and identifies empty selections', () => {
+  const a: Assessment = {
+    ...assessment,
+    inputs: [
+      { id: 'formula', kind: 'math', label: 'Formula' },
+      { id: 'text', kind: 'text', label: 'Text' },
+      {
+        id: 'selection',
+        kind: 'multiselect',
+        label: 'Selection',
+        options: [{ id: 'a', label: 'A' }],
+      },
+    ],
+  };
+  const html = renderToStaticMarkup(
+    createElement(StructuredAnswer, {
+      assessment: a,
+      response: { formula: String.raw`A\cap B`, text: String.raw`A\_B * C`, selection: [] },
+      acceptedValues: true,
+    }),
+  );
+  assert.ok(html.includes(String.raw`<span class="literal-answer-value">A\_B * C</span>`));
+  assert.ok(
+    html.includes(String.raw`<annotation encoding="application/x-tex">A\cap B</annotation>`),
+  );
+  assert.ok(html.includes('Copy TeX'));
+  assert.ok(!html.includes('katex-error'));
+  assert.ok(html.includes('Empty set'));
+  assert.ok(!html.includes('<input'));
 });

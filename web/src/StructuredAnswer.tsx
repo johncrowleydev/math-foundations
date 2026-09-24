@@ -6,10 +6,12 @@ import type {
   AnswerValue,
   StructuredResponse,
 } from '../../shared/assessment';
+import { formulaValidators } from '../../shared/assessment';
 import type { Attempt, Syntax } from './types';
-import { Rich } from './Rich';
+import { Rich, MathText, Copy } from './Rich';
 import { TexEditor } from './TexEditor';
 import { pasteGrid } from './structuredAnswer';
+import { mathRanges } from './math';
 
 const valueText = (value: AnswerValue | undefined) =>
   value === true
@@ -21,6 +23,35 @@ const valueText = (value: AnswerValue | undefined) =>
         : Array.isArray(value)
           ? value.join(', ') || '∅'
           : value;
+
+function ReadonlyValue({
+  value,
+  acceptedValues,
+  math,
+  copyTex,
+}: {
+  value: AnswerValue | undefined;
+  acceptedValues?: boolean;
+  math?: boolean;
+  copyTex?: boolean;
+}) {
+  if (acceptedValues && typeof value === 'string') {
+    if (math) {
+      const source = value.trim();
+      const [range] = mathRanges(source);
+      const tex =
+        range?.closed && range.from === 0 && range.to === source.length ? range.body : source;
+      return (
+        <div className="accepted-math-value">
+          <MathText tex={tex} />
+          {copyTex && <Copy text={tex} />}
+        </div>
+      );
+    }
+    return <span className="literal-answer-value">{value}</span>;
+  }
+  return <Rich text={valueText(value)} />;
+}
 
 function BooleanCell({
   label,
@@ -62,8 +93,10 @@ function AnswerGrid({
   input,
   response,
   onChange,
+  acceptedValues,
 }: {
   input: Extract<AssessmentInput, { kind: 'grid' }>;
+  acceptedValues?: boolean;
   response: StructuredResponse;
   onChange?: (patch: StructuredResponse) => void;
 }) {
@@ -143,7 +176,7 @@ function AnswerGrid({
                   return (
                     <td key={c} onPaste={(event) => paste(event, r, c)}>
                       {!onChange ? (
-                        <Rich text={valueText(value)} />
+                        <ReadonlyValue value={value} acceptedValues={acceptedValues} />
                       ) : cell.kind === 'boolean' ? (
                         <BooleanCell
                           label={label}
@@ -182,18 +215,34 @@ function Input({
   onChange,
   syntax,
   preview,
+  symbolicFormula,
+  acceptedValues,
 }: {
   input: AssessmentInput;
   response: StructuredResponse;
   onChange?: (patch: StructuredResponse) => void;
   syntax: Syntax[];
   preview?: boolean;
+  symbolicFormula?: boolean;
+  acceptedValues?: boolean;
 }) {
   const uid = useId();
   const value = response[input.id];
   const change = (value: AnswerValue) => onChange?.({ [input.id]: value });
+  const formulaGuidance = symbolicFormula ? (
+    <p id={uid + '-format'} className="muted formula-input-guidance">
+      Enter a formula in TeX. Plain-English sentences cannot be graded in this field.
+    </p>
+  ) : null;
   if (input.kind === 'grid')
-    return <AnswerGrid input={input} response={response} onChange={onChange} />;
+    return (
+      <AnswerGrid
+        input={input}
+        response={response}
+        onChange={onChange}
+        acceptedValues={acceptedValues}
+      />
+    );
   if (input.kind === 'interval') {
     const endpoint = (side: 'lower' | 'upper') => {
       const id = input.id + '.' + side;
@@ -206,7 +255,7 @@ function Input({
           onChange={(event) => onChange({ [id]: event.target.value })}
         />
       ) : (
-        <Rich text={valueText(response[id])} />
+        <ReadonlyValue value={response[id]} acceptedValues={acceptedValues} math />
       );
     };
     const bracket = (side: 'leftClosed' | 'rightClosed') => {
@@ -326,7 +375,12 @@ function Input({
       <div className="assessment-field">
         <Rich text={input.label} />
         <div className="answer-value">
-          <Rich text={valueText(value)} />
+          <ReadonlyValue
+            value={value}
+            acceptedValues={acceptedValues}
+            math={input.kind === 'math'}
+            copyTex
+          />
         </div>
       </div>
     );
@@ -339,8 +393,14 @@ function Input({
     );
   if (input.kind === 'math')
     return (
-      <div className="assessment-field">
+      <div
+        className="assessment-field"
+        role="group"
+        aria-label={input.label}
+        aria-describedby={symbolicFormula ? uid + '-format' : undefined}
+      >
         <Rich text={input.label} />
+        {formulaGuidance}
         {input.hint && <Rich text={input.hint} />}
         <TexEditor
           compact
@@ -357,13 +417,17 @@ function Input({
       <label htmlFor={uid}>
         <Rich text={input.label} />
       </label>
+      {formulaGuidance}
       <input
         id={uid}
         value={typeof value === 'string' ? value : ''}
         onChange={(event) => change(event.target.value)}
         autoComplete="off"
         spellCheck={false}
-        aria-describedby={hint ? uid + '-hint' : undefined}
+        aria-describedby={
+          [symbolicFormula && uid + '-format', hint && uid + '-hint'].filter(Boolean).join(' ') ||
+          undefined
+        }
       />
       {hint && (
         <div id={uid + '-hint'} className="muted">
@@ -380,8 +444,10 @@ export function StructuredAnswer({
   onChange,
   syntax = [],
   preview,
+  acceptedValues,
 }: {
   assessment: Assessment;
+  acceptedValues?: boolean;
   response?: StructuredResponse;
   // Only changed fields are emitted; the owner merges against its latest draft.
   onChange?: (patch: StructuredResponse) => void;
@@ -398,6 +464,12 @@ export function StructuredAnswer({
           onChange={onChange}
           syntax={syntax}
           preview={preview}
+          acceptedValues={acceptedValues}
+          symbolicFormula={assessment.requirements.some(
+            (requirement) =>
+              formulaValidators.some((validator) => validator === requirement.validator) &&
+              requirement.fields.includes(input.id),
+          )}
         />
       ))}
     </div>

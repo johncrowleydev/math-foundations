@@ -1,0 +1,239 @@
+[
+  {
+    "name": "bmatrix row break followed by ordinary space",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Matrix"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "matrix",
+          "validator": "matrix",
+          "fields": ["answer"],
+          "params": {
+            "expected": [
+              ["1/2", "2"],
+              ["3", "4"]
+            ]
+          },
+          "description": "The matrix entries agree."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the entries."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\begin{bmatrix}\\frac{1}{2} & 2 \\\\ 3 & 4\\end{bmatrix}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "pmatrix row break followed by a space and newline",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Matrix"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "matrix",
+          "validator": "matrix",
+          "fields": ["answer"],
+          "params": {
+            "expected": [
+              ["1/2", "2"],
+              ["3", "4"]
+            ]
+          },
+          "description": "The matrix entries agree."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the entries."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\begin{pmatrix}1/2 & 2 \\\\ \n3 & 4\\end{pmatrix}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "spaced matrix with a wrong lower row remains incorrect",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Matrix"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "matrix",
+          "validator": "matrix",
+          "fields": ["answer"],
+          "params": {
+            "expected": [
+              ["1/2", "2"],
+              ["3", "4"]
+            ]
+          },
+          "description": "The matrix entries agree."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the entries."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\begin{bmatrix}\\frac{1}{2} & 2 \\\\ 4 & 3\\end{bmatrix}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "column vector with a spaced row break",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Matrix"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "vector",
+          "validator": "tuple",
+          "fields": ["answer"],
+          "params": {
+            "expected": ["1/2", "2"]
+          },
+          "description": "The vector entries agree."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the entries."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\begin{pmatrix}\\frac{1}{2} \\\\ 2\\end{pmatrix}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "an empty matrix cell remains invalid",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Matrix"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "matrix",
+          "validator": "matrix",
+          "fields": ["answer"],
+          "params": {
+            "expected": [
+              ["1/2", "2"],
+              ["3", "4"]
+            ]
+          },
+          "description": "The matrix entries agree."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the entries."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\begin{bmatrix}\\frac{1}{2} & \\\\ 3 & 4\\end{bmatrix}"
+    },
+    "error": true
+  },
+  {
+    "name": "consecutive TeX row breaks remain invalid",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Matrix"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "matrix",
+          "validator": "matrix",
+          "fields": ["answer"],
+          "params": {
+            "expected": [
+              ["1/2", "2"],
+              ["3", "4"]
+            ]
+          },
+          "description": "The matrix entries agree."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Check the entries."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\begin{bmatrix}\\frac{1}{2} & 2 \\\\ \\\\ 3 & 4\\end{bmatrix}"
+    },
+    "error": true
+  }
+]

@@ -1,6 +1,11 @@
 /** Versioned, data-only contract shared by authored content and the offline client. */
 export type AnswerValue = string | boolean | string[] | null;
 export type StructuredResponse = Record<string, AnswerValue>;
+export const formulaValidators = [
+  'quantified-formula',
+  'boolean-formula',
+  'set-expression',
+] as const;
 export type AnswerOption = { id: string; label: string };
 export type AssessmentInput =
   | { id: string; kind: 'text' | 'math' | 'boolean'; label: string; hint?: string }
@@ -36,6 +41,8 @@ export type Assessment = {
   version: 1;
   inputs: AssessmentInput[];
   requirements: AssessmentRequirement[];
+  // Required for newly published content; optional for archived questions.
+  solution?: StructuredResponse;
   feedback: { correct: string; incorrect: string };
   evidence: {
     level: 'recognition' | 'production' | 'reasoning';

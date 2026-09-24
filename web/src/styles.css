@@ -2247,6 +2247,19 @@ button.danger:hover:not(:disabled) {
 .readonly-answer .answer-grid td {
   padding: 9px 12px;
 }
+.accepted-math-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.accepted-math-value > .math-inline {
+  max-width: 100%;
+}
+.literal-answer-value {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
 .answer-value,
 .answer-selection {
   padding-left: 10px;

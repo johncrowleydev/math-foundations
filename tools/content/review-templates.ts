@@ -2,6 +2,7 @@ import { reviewCategories } from '../../shared/reviewCost.js';
 import { validateAssessment, gradeAssessment, InputError } from '../../shared/deterministic.js';
 import type { AnswerFixture } from '../../shared/assessment.js';
 import type { Assessment } from '../../shared/assessment.js';
+import { validateAcceptedAnswer } from './accepted-answers.js';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import { validateMath } from './content.js';
@@ -112,6 +113,7 @@ export function validateReviewTemplates(
         if (t.evidenceLevel !== 'recognition')
           throw Error('Choices require recognition evidence: ' + t.id);
       }
+      validateAcceptedAnswer(q, `${t.id}/${q.id}`);
       const serialized = JSON.stringify(q);
       const placeholders = [...serialized.matchAll(/\{\{([^}]+)\}\}/g)].map((m) => m[1]);
       const supportedSlots: readonly string[] = t.generator ? generatorSlots[t.generator] : [];

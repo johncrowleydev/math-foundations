@@ -25,6 +25,7 @@ import { EffortClock } from './effort';
 import { expose } from './exposure';
 import { markAssistance, seenAssistance } from './assistance';
 import { StructuredAnswer, SubmittedStructuredAnswer } from './StructuredAnswer';
+import { resolveAcceptedAnswer } from '../../shared/acceptedAnswers';
 import {
   assessmentFingerprint,
   deterministicAttempt,
@@ -48,6 +49,8 @@ export function Exercise({
   const key = instance?.exercise || exerciseKey(lesson, q.id);
   const fingerprint = assessmentFingerprint(q);
   const deterministic = !!(q.choice || q.assessment);
+  const acceptedAnswer = q.assessment && resolveAcceptedAnswer(q.assessment, data.acceptedAnswers);
+  const correctChoice = q.choice?.options.find((option) => option.id === q.choice?.correctOption);
   const evidence = instance?.analytics || snapshot(data.evidence, key);
   const choiceGroup = useId();
   const clock = useRef(new EffortClock());
@@ -708,6 +711,18 @@ export function Exercise({
         }}
       >
         <summary>Reveal answer</summary>
+        {q.assessment && acceptedAnswer && (
+          <div className="revealed-structured-answer">
+            <strong>Accepted answer</strong>
+            <StructuredAnswer assessment={q.assessment} response={acceptedAnswer} acceptedValues />
+          </div>
+        )}
+        {correctChoice && (
+          <div className="revealed-choice-answer">
+            <strong>Correct answer</strong>
+            <Rich text={correctChoice.text} />
+          </div>
+        )}
         <Rich
           text={q.answer}
           source={
