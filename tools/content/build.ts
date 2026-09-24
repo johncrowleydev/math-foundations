@@ -11,6 +11,7 @@ import { loadSources } from './sources.js';
 import { loadReviewTemplates } from './review-templates.js';
 import { loadReviewVariants } from './review-variants.js';
 import { gradingVersionFor } from './grading-version.js';
+import { indexAcceptedAnswers } from '../../shared/acceptedAnswers.js';
 
 import { prepareNotebook } from './notebook.js';
 const { content, teaching, lessons, formulaSources } = await prepareNotebook();
@@ -47,6 +48,15 @@ const reviewTemplates = await loadReviewTemplates(
   publishedLessons.map((l) => l.slug),
 );
 const reviewVariants = await loadReviewVariants(reviewTemplates);
+const acceptedAnswers = indexAcceptedAnswers([
+  ...publishedLessons.flatMap((lesson) => lesson.questions.map((q) => q.assessment)),
+  ...reviewTemplates.flatMap((template) =>
+    [template.question, ...(template.variants || [])].map((q) => q.assessment),
+  ),
+  ...Object.values(reviewVariants).flatMap((bank) =>
+    bank.variants.map((variant) => variant.question.assessment),
+  ),
+]);
 const sources = await loadSources(publishedLessons, teaching, reviewTemplates, reviewVariants);
 console.log(
   `Curriculum: ${lessons.length} lessons, ${lessons.reduce((n, l) => n + l.questions.length, 0)} questions, ${lessons.reduce((n, l) => n + l.sections.reduce((s, c) => s + c.questionIds.length, 0), 0)} inline placements.`,
@@ -120,6 +130,7 @@ if (process.argv.includes('--validate-only')) {
     [`${dir}/notebook.json`]: JSON.stringify({
       currentLesson: content.currentLesson,
       lessons: publishedLessons,
+      acceptedAnswers,
     }),
     [`${dir}/teaching.json`]: JSON.stringify(teaching),
     ...Object.fromEntries(

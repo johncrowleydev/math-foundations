@@ -509,6 +509,16 @@ export function CatalogQuestion({ question: q }: { question: Question }) {
       )}
       <div className="library-answer">
         <h4>Answer</h4>
+        {q.assessment?.solution && (
+          <div className="revealed-structured-answer">
+            <strong>Accepted answer</strong>
+            <StructuredAnswer
+              assessment={q.assessment}
+              response={q.assessment.solution}
+              acceptedValues
+            />
+          </div>
+        )}
         {q.answer ? (
           <Rich text={q.answer} />
         ) : (

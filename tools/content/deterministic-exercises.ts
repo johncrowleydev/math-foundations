@@ -5,6 +5,7 @@ import { validateMath } from './content.js';
 import { validateAssessment, gradeAssessment, InputError } from '../../shared/deterministic.js';
 import type { Assessment, AnswerFixture } from '../../shared/assessment.js';
 import { exerciseKey } from '../../web/src/exerciseIdentity.js';
+import { validateAcceptedAnswer } from './accepted-answers.js';
 
 const entrySchema = z
   .object({
@@ -91,7 +92,7 @@ type Q = {
   prompt?: string;
   math?: string;
   answer?: string;
-  choice?: unknown;
+  choice?: { correctOption: string; options: { id: string; text: string }[] };
   assessment?: Assessment;
 };
 export function promoteDeterministic<
@@ -113,7 +114,10 @@ export function promoteDeterministic<
     questions: l.questions.map((q) => {
       const key = exerciseKey(l, q.id),
         entry = entries.get(key);
-      if (!entry) return q;
+      if (!entry) {
+        validateAcceptedAnswer(q, key);
+        return q;
+      }
       if (q.choice || q.assessment) throw Error('Conflicting grading methods ' + key);
       const sourceHash = createHash('sha256')
         .update(JSON.stringify([q.instructions, q.prompt, q.math, q.answer]))
@@ -121,13 +125,15 @@ export function promoteDeterministic<
       if (sourceHash !== entry.sourceHash)
         throw Error('Reinspect changed deterministic exercise ' + key);
       seen.add(key);
-      return {
+      const published = {
         ...q,
         ...(entry.instructions !== undefined ? { instructions: entry.instructions } : {}),
         ...(entry.prompt !== undefined ? { prompt: entry.prompt } : {}),
         ...(entry.answer !== undefined ? { answer: entry.answer } : {}),
         assessment: entry.assessment,
       };
+      validateAcceptedAnswer(published, key);
+      return published;
     }),
   }));
   if (seen.size !== entries.size)

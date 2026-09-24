@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import { reviewQuestion, type AuthoredReviewTemplate } from './review-templates.js';
 import { validateMath } from './content.js';
+import { validateAcceptedAnswer } from './accepted-answers.js';
 
 const text = z.string().trim().min(1);
 const byte = z.number().int().min(0).max(31);
@@ -56,6 +57,7 @@ export function validateReviewVariants(raw: unknown, templates: AuthoredReviewTe
       if (variant.id !== digits.join(':'))
         throw Error('Review variant identity/order mismatch: ' + template.id);
       const q = variant.question;
+      validateAcceptedAnswer(q, `${template.id}/${variant.id}`);
       if (/\{\{[^}]+\}\}/.test(JSON.stringify(q)))
         throw Error('Review variants must contain complete questions: ' + template.id);
       if (q.choice && q.assessment) throw Error('Conflicting review grading methods');

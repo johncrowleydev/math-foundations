@@ -1,0 +1,1008 @@
+[
+  {
+    "name": "quantified TeX cdot",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation."
+        },
+        {
+          "id": "zero",
+          "kind": "select",
+          "label": "Is d = 0 excluded?",
+          "options": [
+            {
+              "id": "allowed",
+              "label": "No: zero divides exactly zero."
+            },
+            {
+              "id": "excluded",
+              "label": "Yes: divisors must be nonzero."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": ["formula"],
+          "params": {
+            "expected": "exists k in Z (n=d*k)",
+            "domains": ["Z"],
+            "predicates": {},
+            "alternatives": ["exists t in Z (d*t=n)"],
+            "freeVariables": ["d", "n"]
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        },
+        {
+          "id": "zero",
+          "validator": "selection",
+          "fields": ["zero"],
+          "params": {
+            "expected": ["allowed"]
+          },
+          "description": "The interpretation of the formula is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$d\\mid n$ means $\\exists k\\in\\mathbb Z,\\ n=dk$. Zero is allowed: $0\\mid n$ holds exactly when $n=0$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "response": {
+      "formula": "\\exists k\\in\\mathbb{Z}\\,(n=d\\cdot k)",
+      "zero": "allowed"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantified TeX times",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation."
+        },
+        {
+          "id": "zero",
+          "kind": "select",
+          "label": "Is d = 0 excluded?",
+          "options": [
+            {
+              "id": "allowed",
+              "label": "No: zero divides exactly zero."
+            },
+            {
+              "id": "excluded",
+              "label": "Yes: divisors must be nonzero."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": ["formula"],
+          "params": {
+            "expected": "exists k in Z (n=d*k)",
+            "domains": ["Z"],
+            "predicates": {},
+            "alternatives": ["exists t in Z (d*t=n)"],
+            "freeVariables": ["d", "n"]
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        },
+        {
+          "id": "zero",
+          "validator": "selection",
+          "fields": ["zero"],
+          "params": {
+            "expected": ["allowed"]
+          },
+          "description": "The interpretation of the formula is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$d\\mid n$ means $\\exists k\\in\\mathbb Z,\\ n=dk$. Zero is allowed: $0\\mid n$ holds exactly when $n=0$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "response": {
+      "formula": "\\exists k\\in\\mathbb{Z}\\,(n=d\\times k)",
+      "zero": "allowed"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "quantified wrong coefficient",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "formula",
+          "kind": "math",
+          "label": "Formula",
+          "hint": "Use forall / exists with domains Z, or equivalent TeX notation."
+        },
+        {
+          "id": "zero",
+          "kind": "select",
+          "label": "Is d = 0 excluded?",
+          "options": [
+            {
+              "id": "allowed",
+              "label": "No: zero divides exactly zero."
+            },
+            {
+              "id": "excluded",
+              "label": "Yes: divisors must be nonzero."
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "formula",
+          "validator": "quantified-formula",
+          "fields": ["formula"],
+          "params": {
+            "expected": "exists k in Z (n=d*k)",
+            "domains": ["Z"],
+            "predicates": {},
+            "alternatives": ["exists t in Z (d*t=n)"],
+            "freeVariables": ["d", "n"]
+          },
+          "description": "The formula has the requested quantifiers, domain, binding and meaning."
+        },
+        {
+          "id": "zero",
+          "validator": "selection",
+          "fields": ["zero"],
+          "params": {
+            "expected": ["allowed"]
+          },
+          "description": "The interpretation of the formula is correct.",
+          "evidenceLevel": "recognition"
+        }
+      ],
+      "feedback": {
+        "correct": "$d\\mid n$ means $\\exists k\\in\\mathbb Z,\\ n=dk$. Zero is allowed: $0\\mid n$ holds exactly when $n=0$.",
+        "incorrect": "Check the requested values and their labels, then try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "response": {
+      "formula": "\\exists k\\in\\mathbb{Z}\\,(n=k)",
+      "zero": "allowed"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "theta command",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "description": "The requested mathematical answer",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "3*cos(theta)",
+            "variables": ["theta"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Differentiate the substitution: $dx/d\\theta=3\\cos\\theta$. The answer is $3\\cdot \\cos\\left(theta\\right)$.",
+        "incorrect": "Differentiate the substitution: $dx/d\\theta=3\\cos\\theta$. The answer is $3\\cdot \\cos\\left(theta\\right)$."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "3\\cos(\\theta)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "theta unicode",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "description": "The requested mathematical answer",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "3*cos(theta)",
+            "variables": ["theta"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Differentiate the substitution: $dx/d\\theta=3\\cos\\theta$. The answer is $3\\cdot \\cos\\left(theta\\right)$.",
+        "incorrect": "Differentiate the substitution: $dx/d\\theta=3\\cos\\theta$. The answer is $3\\cdot \\cos\\left(theta\\right)$."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "3\\cos(\u03b8)"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "theta wrong function",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "description": "The requested mathematical answer",
+          "validator": "calculus-expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "3*cos(theta)",
+            "variables": ["theta"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Differentiate the substitution: $dx/d\\theta=3\\cos\\theta$. The answer is $3\\cdot \\cos\\left(theta\\right)$.",
+        "incorrect": "Differentiate the substitution: $dx/d\\theta=3\\cos\\theta$. The answer is $3\\cdot \\cos\\left(theta\\right)$."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "3\\sin(\\theta)"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "inconsistent system \\varnothing",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer-1",
+          "kind": "math",
+          "label": "Particular solution, or none if inconsistent"
+        },
+        {
+          "id": "answer-2",
+          "kind": "math",
+          "label": "Homogeneous directions, one per row; {} if none or inconsistent"
+        },
+        {
+          "id": "answer-3",
+          "kind": "math",
+          "label": "Right side after row 2 minus twice row 1"
+        },
+        {
+          "id": "answer-4",
+          "kind": "select",
+          "label": "Classification",
+          "options": [
+            {
+              "id": "option-3",
+              "label": "Exactly one solution"
+            },
+            {
+              "id": "option-1",
+              "label": "No solution"
+            },
+            {
+              "id": "option-2",
+              "label": "Infinitely many solutions"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "family",
+          "description": "The full solution set is correctly identified.",
+          "validator": "linear",
+          "fields": ["answer-1", "answer-2"],
+          "params": {
+            "kind": "affine-family",
+            "a": [
+              ["1", "2"],
+              ["2", "4"]
+            ],
+            "b": ["2", "5"]
+          }
+        },
+        {
+          "id": "answer-3",
+          "description": "Right side after row 2 minus twice row 1 is correct.",
+          "validator": "exact",
+          "fields": ["answer-3"],
+          "params": {
+            "expected": ["1"]
+          }
+        },
+        {
+          "id": "answer-4",
+          "description": "Classification is correct.",
+          "validator": "selection",
+          "fields": ["answer-4"],
+          "params": {
+            "expected": ["option-1"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Subtract twice row one from row two to get 0=1. This is impossible, so there is no solution.",
+        "incorrect": "Check each requested result and the selected reason."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "medium",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "response": {
+      "answer-1": "\\varnothing",
+      "answer-2": "\\varnothing",
+      "answer-3": "1",
+      "answer-4": "option-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inconsistent system \\emptyset",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer-1",
+          "kind": "math",
+          "label": "Particular solution, or none if inconsistent"
+        },
+        {
+          "id": "answer-2",
+          "kind": "math",
+          "label": "Homogeneous directions, one per row; {} if none or inconsistent"
+        },
+        {
+          "id": "answer-3",
+          "kind": "math",
+          "label": "Right side after row 2 minus twice row 1"
+        },
+        {
+          "id": "answer-4",
+          "kind": "select",
+          "label": "Classification",
+          "options": [
+            {
+              "id": "option-3",
+              "label": "Exactly one solution"
+            },
+            {
+              "id": "option-1",
+              "label": "No solution"
+            },
+            {
+              "id": "option-2",
+              "label": "Infinitely many solutions"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "family",
+          "description": "The full solution set is correctly identified.",
+          "validator": "linear",
+          "fields": ["answer-1", "answer-2"],
+          "params": {
+            "kind": "affine-family",
+            "a": [
+              ["1", "2"],
+              ["2", "4"]
+            ],
+            "b": ["2", "5"]
+          }
+        },
+        {
+          "id": "answer-3",
+          "description": "Right side after row 2 minus twice row 1 is correct.",
+          "validator": "exact",
+          "fields": ["answer-3"],
+          "params": {
+            "expected": ["1"]
+          }
+        },
+        {
+          "id": "answer-4",
+          "description": "Classification is correct.",
+          "validator": "selection",
+          "fields": ["answer-4"],
+          "params": {
+            "expected": ["option-1"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Subtract twice row one from row two to get 0=1. This is impossible, so there is no solution.",
+        "incorrect": "Check each requested result and the selected reason."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "medium",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "response": {
+      "answer-1": "\\emptyset",
+      "answer-2": "\\varnothing",
+      "answer-3": "1",
+      "answer-4": "option-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inconsistent system \\text{none}",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer-1",
+          "kind": "math",
+          "label": "Particular solution, or none if inconsistent"
+        },
+        {
+          "id": "answer-2",
+          "kind": "math",
+          "label": "Homogeneous directions, one per row; {} if none or inconsistent"
+        },
+        {
+          "id": "answer-3",
+          "kind": "math",
+          "label": "Right side after row 2 minus twice row 1"
+        },
+        {
+          "id": "answer-4",
+          "kind": "select",
+          "label": "Classification",
+          "options": [
+            {
+              "id": "option-3",
+              "label": "Exactly one solution"
+            },
+            {
+              "id": "option-1",
+              "label": "No solution"
+            },
+            {
+              "id": "option-2",
+              "label": "Infinitely many solutions"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "family",
+          "description": "The full solution set is correctly identified.",
+          "validator": "linear",
+          "fields": ["answer-1", "answer-2"],
+          "params": {
+            "kind": "affine-family",
+            "a": [
+              ["1", "2"],
+              ["2", "4"]
+            ],
+            "b": ["2", "5"]
+          }
+        },
+        {
+          "id": "answer-3",
+          "description": "Right side after row 2 minus twice row 1 is correct.",
+          "validator": "exact",
+          "fields": ["answer-3"],
+          "params": {
+            "expected": ["1"]
+          }
+        },
+        {
+          "id": "answer-4",
+          "description": "Classification is correct.",
+          "validator": "selection",
+          "fields": ["answer-4"],
+          "params": {
+            "expected": ["option-1"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Subtract twice row one from row two to get 0=1. This is impossible, so there is no solution.",
+        "incorrect": "Check each requested result and the selected reason."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "medium",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "response": {
+      "answer-1": "\\text{none}",
+      "answer-2": "\\varnothing",
+      "answer-3": "1",
+      "answer-4": "option-1"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "inconsistent system cannot have zero solution",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer-1",
+          "kind": "math",
+          "label": "Particular solution, or none if inconsistent"
+        },
+        {
+          "id": "answer-2",
+          "kind": "math",
+          "label": "Homogeneous directions, one per row; {} if none or inconsistent"
+        },
+        {
+          "id": "answer-3",
+          "kind": "math",
+          "label": "Right side after row 2 minus twice row 1"
+        },
+        {
+          "id": "answer-4",
+          "kind": "select",
+          "label": "Classification",
+          "options": [
+            {
+              "id": "option-3",
+              "label": "Exactly one solution"
+            },
+            {
+              "id": "option-1",
+              "label": "No solution"
+            },
+            {
+              "id": "option-2",
+              "label": "Infinitely many solutions"
+            }
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "family",
+          "description": "The full solution set is correctly identified.",
+          "validator": "linear",
+          "fields": ["answer-1", "answer-2"],
+          "params": {
+            "kind": "affine-family",
+            "a": [
+              ["1", "2"],
+              ["2", "4"]
+            ],
+            "b": ["2", "5"]
+          }
+        },
+        {
+          "id": "answer-3",
+          "description": "Right side after row 2 minus twice row 1 is correct.",
+          "validator": "exact",
+          "fields": ["answer-3"],
+          "params": {
+            "expected": ["1"]
+          }
+        },
+        {
+          "id": "answer-4",
+          "description": "Classification is correct.",
+          "validator": "selection",
+          "fields": ["answer-4"],
+          "params": {
+            "expected": ["option-1"]
+          }
+        }
+      ],
+      "feedback": {
+        "correct": "Subtract twice row one from row two to get 0=1. This is impossible, so there is no solution.",
+        "incorrect": "Check each requested result and the selected reason."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "medium",
+        "inputCapabilities": ["math-text", "tap"]
+      }
+    },
+    "response": {
+      "answer-1": "0,0",
+      "answer-2": "\\varnothing",
+      "answer-3": "1",
+      "answer-4": "option-1"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "exponential denominator n/2^j correct",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/2^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\frac{n}{2^{j}}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponential denominator n/2^j incorrect",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/2^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n\\cdot 2^{j}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "exponential denominator n/6^j correct",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/6^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\frac{n}{6^{j}}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponential denominator n/6^j incorrect",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/6^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n\\cdot 6^{j}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "exponential denominator n/(1/2)^j correct",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/(1/2)^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n\\cdot 2^{j}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponential denominator n/(1/2)^j incorrect",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/(1/2)^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\frac{n}{2^{j}}"
+    },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "exponential denominator n/(-2)^j correct",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/(-2)^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "\\frac{n}{(-2)^{j}}"
+    },
+    "verdict": "correct"
+  },
+  {
+    "name": "exponential denominator n/(-2)^j incorrect",
+    "assessment": {
+      "version": 1,
+      "inputs": [
+        {
+          "id": "answer",
+          "kind": "math",
+          "label": "Answer"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "answer",
+          "validator": "expression",
+          "fields": ["answer"],
+          "params": {
+            "expected": "n/(-2)^j",
+            "variables": ["n", "j"],
+            "integerVariables": ["j"],
+            "positiveVariables": ["n"]
+          },
+          "description": "Equivalent expression."
+        }
+      ],
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "Try again."
+      },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": {
+      "answer": "n\\cdot (-2)^{j}"
+    },
+    "verdict": "incorrect"
+  }
+]

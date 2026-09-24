@@ -267,7 +267,7 @@ func (t *exponentialTransform) exponential(base, exponent string) (string, error
 			terms = append(terms, t.atom("p", v, 0))
 		}
 	}
-	return strings.Join(terms, "*"), nil
+	return "(" + strings.Join(terms, "*") + ")", nil
 }
 func (t *exponentialTransform) logarithm(source string) (string, error) {
 	if !stringHas(t.options.Functions, "log2") {

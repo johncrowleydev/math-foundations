@@ -162,7 +162,7 @@ class Transform {
         if (power * n) terms.push(this.atom('e', v, prime) + '^(' + power * n + ')');
       if (b.n < 0n && Math.abs(n) % 2) terms.push(this.atom('p', v));
     }
-    return terms.join('*');
+    return '(' + terms.join('*') + ')';
   }
   logarithm(source: string): string {
     if (!this.options.functions?.includes('log2'))

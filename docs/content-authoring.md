@@ -245,3 +245,22 @@ See [Review authoring](review-system.md) and the
 
 A passing build or unchanged hash establishes neither educational completeness nor
 mathematical correctness. Report the actual inspection/calculation performed.
+
+Every revealed answer must contain the actual accepted response, followed by its
+explanation. Each structured assessment must author a complete `solution` response
+object using the same field IDs and values a learner submits. The content build
+grades this exact response against all requirements together, in lessons, review
+templates, and review variants; missing, incomplete, or rejected solutions block
+publication. Passing test fixtures alone do not satisfy this requirement. The UI
+shows this response under **Accepted answer**. Mathematical values must be valid
+standard TeX, rendered like all other mathematics in the app, with their exact
+accepted TeX available to copy. Do not expose grader shorthand such as `exists`,
+`!`, `&`, or `|` as mathematical notation. The reveal identifies the keyed option
+for multiple-choice questions. Open-response questions must include a model answer.
+
+For logical formula inputs, also state the requested symbolic form and define
+named predicates and domains in the question. Explanations may use ordinary
+mathematical prose; the separately displayed solution supplies the exact accepted
+input. Keep solutions in canonical content, not in renderer code. Historical
+snapshots may omit the new field and remain readable; adding a solution alone
+does not change an existing draft's grading fingerprint.
