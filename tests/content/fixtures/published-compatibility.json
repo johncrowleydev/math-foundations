@@ -22,64 +22,88 @@
       "description": "The 3,282 structured exercise inspection fingerprints include verified accepted TeX responses and inspected prompt/hint changes. Each prior fingerprint was checked against the original published question first. Teaching prose, syntax requirements, placements, inspection notes and original deployment hashes are preserved."
     },
     "content/grading-version.json": {
-      "sha256": "bb07146a5b4a933a4d39ddb94464fb3344df9d4de8728fedf884935374451dff",
-      "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
-      "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
-      "description": "Combined version includes PR38 verified accepted answers and PR37 written review questions. All parent question payloads and historical version aliases are preserved; semantic comparison is documented in the integration inspection.",
+      "sha256": "7dbe8f68433580f20c1411611c2a3879d4ad9b23aaac38e7be80ddc640045199",
+      "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
+      "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
+      "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
       "previous": {
-        "sha256": "379bf8d02dc4ecf454620f9a22aa83d5a1e7443c9b80fda28830b3192d6cfaa6",
-        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-        "description": "New content version for explicit verified accepted responses and clarified formula instructions; historical aliases unchanged.",
+        "sha256": "bb07146a5b4a933a4d39ddb94464fb3344df9d4de8728fedf884935374451dff",
+        "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
+        "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
+        "description": "Combined version includes PR38 verified accepted answers and PR37 written review questions. All parent question payloads and historical version aliases are preserved; semantic comparison is documented in the integration inspection.",
         "previous": {
-          "sha256": "0806b096630d53178d93f42e7da1f16c5071f15ee7d09fae26d9430e0bf74201",
-          "commit": "fb34e84",
-          "inspection": "fb34e84:docs/review-coverage-repair.md",
-          "description": "New content version includes 187 source-checked written review questions; existing lesson contracts and historical version alias unchanged.",
+          "sha256": "379bf8d02dc4ecf454620f9a22aa83d5a1e7443c9b80fda28830b3192d6cfaa6",
+          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+          "description": "New content version for explicit verified accepted responses and clarified formula instructions; historical aliases unchanged.",
           "previous": {
-            "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
-            "commit": "f53e7b4",
-            "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
-            "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+            "sha256": "0806b096630d53178d93f42e7da1f16c5071f15ee7d09fae26d9430e0bf74201",
+            "commit": "fb34e84",
+            "inspection": "fb34e84:docs/review-coverage-repair.md",
+            "description": "New content version includes 187 source-checked written review questions; existing lesson contracts and historical version alias unchanged.",
+            "previous": {
+              "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
+              "commit": "f53e7b4",
+              "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+              "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+            }
           }
         }
       }
     },
     "content/review-templates.json": {
-      "sha256": "2f1b6f70a642bfccc589a545150acd985c4092a686037d35622ce96956b6a8f1",
-      "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-      "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-      "description": "All 922 structured review question records include complete accepted responses; formula hints use TeX and quantified-negation instructions explicitly request formulas. Template/variant IDs, expected answers and grading requirements preserved."
-    },
-    "content/sources.json": {
-      "sha256": "ebdf9a50f652102c0f3f6916b5240cd40183e5066bb0abc9f02f57c8fbe8f03c",
-      "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
-      "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
-      "description": "Combines inspected accepted-answer citations with written-review coverage citations. Published bibliography, citation, and group-assignment differences from PR38 exactly match PR37; four written-question lists inherit PR38 group assignments without changing content inspection hashes.",
+      "sha256": "b97745ac7c91fb2874d7bb1a0b7070461051f99f916740efb412d27ffe8d1758",
+      "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
+      "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
+      "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
       "previous": {
-        "sha256": "d321cb672e24bf1c6a3bd7d1bc396f590503ef3e4a42dcf75585c57d96c1bc16",
+        "sha256": "2f1b6f70a642bfccc589a545150acd985c4092a686037d35622ce96956b6a8f1",
         "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
         "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-        "description": "Source coverage rechecked for added accepted responses and clarified instructions. Pinpoint assignments added for affected contradiction and induction groups; 71 lesson and 373 review-template digests updated after inspection.",
+        "description": "All 922 structured review question records include complete accepted responses; formula hints use TeX and quantified-negation instructions explicitly request formulas. Template/variant IDs, expected answers and grading requirements preserved."
+      }
+    },
+    "content/sources.json": {
+      "sha256": "ddcfd7f3be69d371da7c7b67ddfd7d52dac268760d8d088daba9fc37db9209eb",
+      "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
+      "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
+      "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
+      "previous": {
+        "sha256": "ebdf9a50f652102c0f3f6916b5240cd40183e5066bb0abc9f02f57c8fbe8f03c",
+        "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
+        "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
+        "description": "Combines inspected accepted-answer citations with written-review coverage citations. Published bibliography, citation, and group-assignment differences from PR38 exactly match PR37; four written-question lists inherit PR38 group assignments without changing content inspection hashes.",
         "previous": {
-          "sha256": "e14ca5070ccdfba85f577d6069d7d973739a5ebd476f128adf718670334e2af2",
-          "commit": "fb34e84",
-          "inspection": "fb34e84:docs/review-coverage-repair.md",
-          "description": "Inspected citation additions for restored written questions, NIST binary-tree definitions, and updated MDN empty-array support. Original published lesson content unchanged.",
+          "sha256": "d321cb672e24bf1c6a3bd7d1bc396f590503ef3e4a42dcf75585c57d96c1bc16",
+          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+          "description": "Source coverage rechecked for added accepted responses and clarified instructions. Pinpoint assignments added for affected contradiction and induction groups; 71 lesson and 373 review-template digests updated after inspection.",
           "previous": {
-            "sha256": "5c550a3819c4ede91a7a1a8ba158232de0e63fa69c9b2b3166c618ebe5d9a685",
-            "commit": "f53e7b4",
-            "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
-            "description": "Nine pinpoint citations added, seven existing source support/date descriptions updated, and source targets for six revised lessons and forty new reviews inspected."
+            "sha256": "e14ca5070ccdfba85f577d6069d7d973739a5ebd476f128adf718670334e2af2",
+            "commit": "fb34e84",
+            "inspection": "fb34e84:docs/review-coverage-repair.md",
+            "description": "Inspected citation additions for restored written questions, NIST binary-tree definitions, and updated MDN empty-array support. Original published lesson content unchanged.",
+            "previous": {
+              "sha256": "5c550a3819c4ede91a7a1a8ba158232de0e63fa69c9b2b3166c618ebe5d9a685",
+              "commit": "f53e7b4",
+              "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+              "description": "Nine pinpoint citations added, seven existing source support/date descriptions updated, and source targets for six revised lessons and forty new reviews inspected."
+            }
           }
         }
       }
     },
     "grading-catalog.json": {
-      "sha256": "d06682d2fdad61a83e7f2e1899885bc2cd1169b666c12cf39b0fc7e2d4fe8ef5",
-      "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-      "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-      "description": "Verified accepted responses and clarified input instructions included in the published grading catalog; exercise IDs, requirements, expected answers, fixtures and archived version aliases preserved."
+      "sha256": "ba83d9ded3f9ac760e4cb9223f6d1e131979eb063d81723ebbb6537ef79243aa",
+      "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
+      "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
+      "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
+      "previous": {
+        "sha256": "d06682d2fdad61a83e7f2e1899885bc2cd1169b666c12cf39b0fc7e2d4fe8ef5",
+        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+        "description": "Verified accepted responses and clarified input instructions included in the published grading catalog; exercise IDs, requirements, expected answers, fixtures and archived version aliases preserved."
+      }
     },
     "content/notebook.json": {
       "sha256": "a649c86a28f6e8960aa6b61bb6a67ce24918e45a96651475fb1c46ae878db02d",
