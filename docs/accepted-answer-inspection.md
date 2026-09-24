@@ -130,3 +130,27 @@ Adding display-only solutions changed that serialized fixture even though its
 grading contracts and all 1,166 independently derived responses were unchanged.
 The generator now excludes only the authored `solution` field when importing
 those contracts; the oracle fixture and its assertions remain unchanged.
+
+## Integration with written review coverage
+
+The integration of PR #37 (`3348a56`) into PR #38 (`1156bb1`) keeps both the
+accepted-answer index and the written-question compiler in the content build.
+Separate builds of both parents were compared with the combined output:
+
+- Every content artifact other than sources and grading version is byte-identical
+  to PR #38, including the notebook, accepted-answer index, and review templates.
+- All 187 compiled written questions exactly match PR #37. Removing only those
+  additive questions and the version reproduces PR #38's complete grading catalog.
+- Source-bundle differences from PR #38 exactly reproduce PR #37's bibliography,
+  citation, and exercise-group assignment changes. Four written-question citation
+  lists inherit PR #38's expanded group assignments: `proof-by-contradiction-10`
+  and `mathematical-induction-4`, `-9`, and `-10`. Existing citation support and
+  inspected passages are recorded above and in `review-coverage-repair.md`.
+  All lesson, review-template, TeX, and written-question inspection hashes remain
+  unchanged from their respective parents; no learning prose is changed.
+- The deterministic coverage ledger differs from PR #38 only in the combined
+  catalog version. All identities, grading methods, source pins, and counts match.
+
+Only the inspected source-bundle and grading-version artifact pins and the
+deterministic ledger digest need new combined values. Historical deployment hashes
+and both parent inspection records are retained.

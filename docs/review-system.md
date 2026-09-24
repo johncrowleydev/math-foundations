@@ -117,6 +117,24 @@ Combine search and filters to inspect definitions, Quick compatibility, deeper e
 
 Dedicated fixed/authored definitions live in `content/review-templates.json`; finite parameter banks with complete questions live in `content/review-variants.json`. Reused exercises remain in canonical lesson/exercise content and evidence mappings. SQLite stores learner state, not authored review definitions.
 
+Every declared primary concept/skill target must have a compatible question. The
+content build checks coverage after response-format conversions. When converting
+an exercise to recognition removes the last compatible question, the build also
+compiles an original written exercise into the grading catalog's `reviewQuestion`
+field. Written instructions and any review-specific corrections are authored in
+`content/written-review.json`; full compiled questions have separate inspected
+source hashes in `content/sources.json`. No original question is reconstructed
+from multiple-choice answers.
+
+Written representations use the existing exercise citation target and a distinct
+template ID ending in `-written`. They retain the original task and grading
+context, use regular written-response grading, and share source deduplication with
+the adapted exercise. Existing lesson controls, exercise IDs, attempts, and frozen
+review instances remain intact. Replaying history restores compatible overdue
+work without resetting its due date; a subsequent graded answer supplies evidence
+in the usual way. Daily time and deep-question limits still apply to scheduling;
+focused practice can select the written work directly.
+
 Start with effective Library coverage and the lesson's teaching targets. Reuse concepts/skills and add an objective only for a stable, independently useful target. A recall choice supplies recognition evidence; give it a separate objective if its companion target requires production. Keep actual construction and proof requirements rather than lowering evidence depth to increase Quick coverage.
 
 Fixed cards suit exact repetition. Authored variants can change retrieval direction or context, with a representative question equal to one of the variants. Give distractors useful explanations and vary correct-answer positions. Use [deterministic assessments](deterministic-contract.md) when bounded correctness represents the entire requested task; retain free-response grading for reasoning that needs it.

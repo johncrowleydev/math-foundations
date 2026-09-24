@@ -12,6 +12,7 @@ import { loadReviewTemplates } from './review-templates.js';
 import { loadReviewVariants } from './review-variants.js';
 import { gradingVersionFor } from './grading-version.js';
 import { indexAcceptedAnswers } from '../../shared/acceptedAnswers.js';
+import { compileWrittenReviewQuestions } from './review-coverage.js';
 
 import { prepareNotebook } from './notebook.js';
 const { content, teaching, lessons, formulaSources } = await prepareNotebook();
@@ -57,24 +58,38 @@ const acceptedAnswers = indexAcceptedAnswers([
     bank.variants.map((variant) => variant.question.assessment),
   ),
 ]);
-const sources = await loadSources(publishedLessons, teaching, reviewTemplates, reviewVariants);
+const reviewQuestions = compileWrittenReviewQuestions(
+  lessons,
+  publishedLessons,
+  evidence,
+  reviewTemplates,
+);
+const sources = await loadSources(
+  publishedLessons,
+  teaching,
+  reviewTemplates,
+  reviewVariants,
+  reviewQuestions,
+);
 console.log(
   `Curriculum: ${lessons.length} lessons, ${lessons.reduce((n, l) => n + l.questions.length, 0)} questions, ${lessons.reduce((n, l) => n + l.sections.reduce((s, c) => s + c.questionIds.length, 0), 0)} inline placements.`,
 );
 
-// The grader sees precisely the adapted questions shipped in the app, not worksheet originals.
+// Lesson grading retains the adapted questions; issued written reviews freeze
+// their separately compiled original question and answer.
 const representationHash = createHash('sha256')
-  .update(JSON.stringify({ publishedLessons, evidence, reviewTemplates }))
+  .update(JSON.stringify({ publishedLessons, evidence, reviewTemplates, reviewQuestions }))
   .digest('hex');
 const gradingVersion = gradingVersionFor(representationHash);
 const gradingExercises = Object.fromEntries(
   publishedLessons.flatMap((lesson) =>
     lesson.questions.map((q) => {
+      const reviewQuestion = reviewQuestions[exerciseKey(lesson, q.id)];
       const placement = lesson.sections.findIndex((s) => s.questionIds.includes(q.id));
       const preceding = placement < 0 ? lesson.sections : lesson.sections.slice(0, placement + 1);
       const blocks = [...(lesson.introBlocks || []), ...preceding.flatMap((s) => s.blocks)];
       const figureIds = new Set(blocks.filter((b) => b.kind === 'figure').map((b) => b.figureId));
-      const referenced = JSON.stringify({ q, blocks });
+      const referenced = JSON.stringify({ q, blocks, reviewQuestion });
       const referenceIds = new Set([...referenced.matchAll(/ref:([a-z0-9-]+)/g)].map((m) => m[1]));
       const evidenceLevel = evidence.exercises[exerciseKey(lesson, q.id)].attributes?.evidenceLevel;
       return [
@@ -92,6 +107,7 @@ const gradingExercises = Object.fromEntries(
           analytics: snapshot(evidence, exerciseKey(lesson, q.id)),
           choice: q.choice,
           assessment: q.assessment,
+          ...(reviewQuestion ? { reviewQuestion } : {}),
           question: {
             instructions: q.instructions,
             prompt: q.prompt,

@@ -168,6 +168,12 @@
       "author": "Cornell University CS 2110 course staff",
       "edition": "Spring 2026 course notes",
       "url": "https://courses.cis.cornell.edu/courses/cs2110/2026sp/lectures/lec05/"
+    },
+    "nist-dads": {
+      "title": "Dictionary of Algorithms and Data Structures",
+      "author": "Paul E. Black, editor; National Institute of Standards and Technology",
+      "edition": "Online reference; binary tree (2017-12-15), full binary tree (2014-08-27)",
+      "url": "https://xlinux.nist.gov/dads/"
     }
   },
   "citations": {
@@ -726,17 +732,17 @@
     },
     "js-every": {
       "source": "mdn",
-      "locator": "Array.prototype.every(): Description",
-      "supports": "Finite-array predicate checks and empty-array behavior.",
+      "locator": "Array.prototype.every(): Description, empty-array behavior",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every",
-      "checked": "2026-09-15"
+      "supports": "JavaScript every returns true for an empty array; the exercise contrasts finite checks with universal claims over infinite domains.",
+      "checked": "2026-09-23"
     },
     "js-some": {
       "source": "mdn",
-      "locator": "Array.prototype.some(): Description",
-      "supports": "Finite-array predicate checks and empty-array behavior.",
+      "locator": "Array.prototype.some(): Description, empty-array behavior",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
-      "checked": "2026-09-15"
+      "supports": "JavaScript some returns false for an empty array; the exercise contrasts finite checks with universal claims over infinite domains.",
+      "checked": "2026-09-23"
     },
     "js-floor": {
       "source": "mdn",
@@ -2368,6 +2374,20 @@
       "url": "https://mlerma54.github.io/courses/cs310/notes/dm-all.pdf#page=24",
       "supports": "Named associative, commutative, distributive, identity, idempotent, absorption and De Morgan laws. Original recall prompts and misconception feedback; the curriculum uses superscript c rather than an overbar for complement.",
       "checked": "2026-09-21"
+    },
+    "nist-binary-tree": {
+      "source": "nist-dads",
+      "locator": "binary tree: Definition",
+      "url": "https://xlinux.nist.gov/dads/HTML/binarytree.html",
+      "supports": "A binary tree has at most two children per node; this does not require zero or two children.",
+      "checked": "2026-09-23"
+    },
+    "nist-full-binary-tree": {
+      "source": "nist-dads",
+      "locator": "full binary tree: Definition",
+      "url": "https://xlinux.nist.gov/dads/HTML/fullBinaryTree.html",
+      "supports": "A full binary tree has zero or two children at each node, unlike an arbitrary binary tree.",
+      "checked": "2026-09-23"
     }
   },
   "lessons": {
@@ -2543,13 +2563,16 @@
           "m-quantifiers",
           "p-quantifiers",
           "p-existence",
-          "p-disproof"
+          "p-disproof",
+          "review-variable-scope"
         ],
         "Proofs and specifications": [
           "m-quantifiers",
           "p-quantifiers",
           "p-existence",
-          "p-disproof"
+          "p-disproof",
+          "js-every",
+          "js-some"
         ],
         "Quantifier order and witness dependence": [
           "m-quantifiers",
@@ -2575,7 +2598,8 @@
           "m-quantifiers",
           "p-quantifiers",
           "p-existence",
-          "p-disproof"
+          "p-disproof",
+          "review-empty-domain"
         ],
         "Valid and invalid quantified arguments": [
           "m-quantifiers",
@@ -2773,7 +2797,7 @@
           "m-products"
         ],
         "Nested sums and bounds": ["m-sequences", "d-sequences", "m-sums", "m-products"],
-        "Products and factorials": ["m-products"],
+        "Products and factorials": ["m-products", "m-counting", "m-induction"],
         "Recursive definitions and initial conditions": ["m-sequences"],
         "Reindexing and telescoping": ["m-sums"],
         "Summation notation and arithmetic sums": [
@@ -3199,7 +3223,15 @@
           "alg-search"
         ],
         "Representation and traversal": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"],
-        "Rooted trees and DAGs": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"],
+        "Rooted trees and DAGs": [
+          "m-graph",
+          "m-walks",
+          "m-trees",
+          "m-orders",
+          "alg-search",
+          "nist-binary-tree",
+          "nist-full-binary-tree"
+        ],
         "Trees, forests, and spanning trees": [
           "m-graph",
           "m-walks",
@@ -3353,9 +3385,9 @@
         "homogeneous-systems-and-verification": ["i-solutions"]
       },
       "practice": {
-        "Constraints and augmented matrices": ["i-systems"],
+        "Constraints and augmented matrices": ["i-systems", "i-reduction"],
         "Elimination preserves solutions": ["i-reduction"],
-        "Homogeneous systems and verification": ["i-solutions"],
+        "Homogeneous systems and verification": ["i-solutions", "i-reduction"],
         "No solution or a family of solutions": ["i-parameters"]
       }
     },
@@ -3499,7 +3531,7 @@
       "practice": {
         "An eigenbasis simplifies repeated action": ["i-diagonal"],
         "Directions that are only scaled": ["i-eigen"],
-        "Finding eigenvalues in two dimensions": ["i-characteristic"],
+        "Finding eigenvalues in two dimensions": ["i-characteristic", "i-diagonal"],
         "Limits and interpretation": ["i-diagonal", "ml-models"]
       }
     },
@@ -3514,7 +3546,12 @@
       },
       "practice": {
         "A small example you can verify": ["ml-svd"],
-        "Approximation and responsible interpretation": ["svd-approx", "ml-svd", "ml-models"],
+        "Approximation and responsible interpretation": [
+          "svd-approx",
+          "ml-svd",
+          "ml-models",
+          "numerical-rank"
+        ],
         "Connection to rank and eigenvalues": ["ml-svd", "numerical-rank"],
         "Perpendicular directions and scale factors": ["ml-svd"]
       }
@@ -7061,6 +7098,817 @@
     "integer-witness-selection": {
       "reviewedContentHash": "49da1a13db231b4a7d5342f0b632d9756d660273ee77daf50e8914550be4a5ab",
       "sources": ["review-witness", "p-existence"]
+    }
+  },
+  "reviewQuestions": {
+    "propositional-logic-1": {
+      "reviewedContentHash": "23e9d5c1feec25f2f0f21ce53a1af213db29be2a32b3b2f76e497cd6d1416444",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-9": {
+      "reviewedContentHash": "7709d55a491f26e33042e88228a13f42d7334ea4b541f3b29413a1a7f0cf12ed",
+      "sources": ["m-connectives"]
+    },
+    "propositional-logic-10": {
+      "reviewedContentHash": "83abc7dd7544d1298edee87bdd10611bc929c5e222639ed3c210d1f8fca0a988",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-12": {
+      "reviewedContentHash": "e93c24b1dc8666d6af543f3500759f51ade0dfbaa8edaba349504726da875a8c",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-14": {
+      "reviewedContentHash": "4c834083325a77dec7402e5b71eff93df8dd14c49965a400bd143668c8edcbf7",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-15": {
+      "reviewedContentHash": "4c577f8849eb7ec170ec2ebad9fbc08dc263d630d30e4e6012495f7fbc9d5d89",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-19": {
+      "reviewedContentHash": "9356cfea2049b36d46305a74a3b3b9c5528aa4dbd132b78da07e6a15b92d8b5d",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-23": {
+      "reviewedContentHash": "90d4005b78d35f23f598f941fcae3162a3c907669b7ec27ecaf0bae1664097a6",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-38": {
+      "reviewedContentHash": "513144e9c4fa81a3701781ae3f1d103560a542622e37b6ae0d8d102cb90b00b8",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-56": {
+      "reviewedContentHash": "453647c4039a42eaa000ddc1ef5e33b10248fb139174b1a991b62520c61bf04b",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-58": {
+      "reviewedContentHash": "040c92151e75f187e2aee407be0388bba2df422911c1bb6f2f1a592d592e06fb",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-59": {
+      "reviewedContentHash": "5ae579a94a96d2fbdef4ec05741b3593251d23371d07a5bf36d65a8d957e18fe",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-60": {
+      "reviewedContentHash": "ad985643f8f44874f0e4b32588f75fde12096043e41242d9bac07ac12d261b19",
+      "sources": ["m-equivalence", "m-sat"]
+    },
+    "propositional-logic-71": {
+      "reviewedContentHash": "ad578978c53cc5cf015cb15de1a6fe93cf089e0a42a554378bd990c3af0bb7e3",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-79": {
+      "reviewedContentHash": "21d7fb19d8b0a59d8a4593921d32865c93ccfcfcdbbc415ca7b8652a0b2482c7",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-84": {
+      "reviewedContentHash": "787ac8b275127d35355b15b318ecfc164049b4856187451403a2869d414f55d1",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-89": {
+      "reviewedContentHash": "c077fe369377ecd032f09f69cb24326ef3f439bf04f86b552724fb1acb9dbe6b",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-116": {
+      "reviewedContentHash": "a74407dfc516e1364d36540ab65a4f8922719a0ef0bcdf0cdbe5aefafaf893e0",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-119": {
+      "reviewedContentHash": "6aef3aa5709df112eaccc94cdf8a04170a505849e815dfbdf9bf0c088a3dd074",
+      "sources": ["p-logic", "m-equivalence", "m-sat", "p-quantifiers", "p-contra"]
+    },
+    "propositional-logic-127": {
+      "reviewedContentHash": "e7c95fc73b08259db971e988b941aaaccd8789d6fe54ff395b106e8f49a6f8ef",
+      "sources": ["m-sat"]
+    },
+    "propositional-logic-128": {
+      "reviewedContentHash": "f58c912aaaf7b4d3492210c7193464f8ad4a95a17bb33d4833d6cd22a4aa3b5e",
+      "sources": ["m-sat"]
+    },
+    "predicates-and-quantifiers-1": {
+      "reviewedContentHash": "fe256e8556bb4a95f61773150f0e1a7d5a64724b55874b91a1753b9eaf407de8",
+      "sources": ["m-propositions", "m-quantifiers"]
+    },
+    "predicates-and-quantifiers-7": {
+      "reviewedContentHash": "1b127d01b8fe7e9a1f469779d376657232bb12d2d0d445c56a548f373a33b46c",
+      "sources": [
+        "m-quantifiers",
+        "p-quantifiers",
+        "p-existence",
+        "p-disproof",
+        "review-variable-scope"
+      ]
+    },
+    "predicates-and-quantifiers-10": {
+      "reviewedContentHash": "202a735557ea4090f48f139dfd71a6fa9d3f68467542ff2d8ef676dda87deeb1",
+      "sources": [
+        "m-quantifiers",
+        "p-quantifiers",
+        "p-existence",
+        "p-disproof",
+        "review-variable-scope"
+      ]
+    },
+    "predicates-and-quantifiers-11": {
+      "reviewedContentHash": "63cd98686494cd9e7d5d4fb0738bcff6db2165cbdc49f41defbe3f0aba142a4e",
+      "sources": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"]
+    },
+    "predicates-and-quantifiers-12": {
+      "reviewedContentHash": "43888b390f1f4ea18d9eade390922635e862c58fd0e0cd3a998544c46b02b7be",
+      "sources": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"]
+    },
+    "predicates-and-quantifiers-21": {
+      "reviewedContentHash": "61eab259df3fcbb4db995fa7663542d3e06bea419b7405c260d509501ff5fa42",
+      "sources": ["p-quantifiers"]
+    },
+    "predicates-and-quantifiers-51": {
+      "reviewedContentHash": "a0e9a6eb7548145ffc3b41bf3073a02f996c5cb0b8312651b81ee1645488c441",
+      "sources": ["m-quantifiers"]
+    },
+    "predicates-and-quantifiers-59": {
+      "reviewedContentHash": "6f02d807482959d6ca4265cab50089ca41a937cb5543f0a274554f51d1be3033",
+      "sources": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"]
+    },
+    "predicates-and-quantifiers-61": {
+      "reviewedContentHash": "39df95fe1f7d1bcafed493cae9d7b282d6aa958ac7f31e37dd8c6dfee0e85260",
+      "sources": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"]
+    },
+    "predicates-and-quantifiers-73": {
+      "reviewedContentHash": "cf02483be1fb75c717fa7bd80f7f7a20743c70be175600bb9a032663f1678d27",
+      "sources": [
+        "m-quantifiers",
+        "p-quantifiers",
+        "p-existence",
+        "p-disproof",
+        "review-empty-domain"
+      ]
+    },
+    "predicates-and-quantifiers-77": {
+      "reviewedContentHash": "cff3c64d2c668934931af8dfd2d2b18412cb6d1ce96ff8e50bab13590dfb8009",
+      "sources": [
+        "m-quantifiers",
+        "p-quantifiers",
+        "p-existence",
+        "p-disproof",
+        "review-empty-domain"
+      ]
+    },
+    "predicates-and-quantifiers-80": {
+      "reviewedContentHash": "1a3d02559b5e6e6aa3f437ab88059095301b97f401f0b039eb048f5fd6c8a73f",
+      "sources": [
+        "m-quantifiers",
+        "p-quantifiers",
+        "p-existence",
+        "p-disproof",
+        "review-empty-domain"
+      ]
+    },
+    "predicates-and-quantifiers-81": {
+      "reviewedContentHash": "b2cc77b1a62997892af9bc7a03d4017eeeacb21066ec9c52e16119c833f0b184",
+      "sources": ["m-quantifiers", "p-quantifiers", "p-existence", "p-disproof"]
+    },
+    "predicates-and-quantifiers-91": {
+      "reviewedContentHash": "464758491e13f03807c850ce49042440bea643d267d78af024c1bd72cf64b3c1",
+      "sources": ["p-quantifiers"]
+    },
+    "predicates-and-quantifiers-118": {
+      "reviewedContentHash": "b92029974cea75935c7d2c02c3bd1ab217cf9152bbcca3f68c0cd3a606694607",
+      "sources": [
+        "m-quantifiers",
+        "p-quantifiers",
+        "p-existence",
+        "p-disproof",
+        "js-every",
+        "js-some"
+      ]
+    },
+    "sets-and-set-operations-10": {
+      "reviewedContentHash": "1b72a322323d02322842abe1fa751a525dcf3f10aa3072b10a37dd5c8eb9d184",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "sets-and-set-operations-20": {
+      "reviewedContentHash": "5c63fe3548fef8e19b3bc1948ab03f268db8903b418721174185c6c6ac672901",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "sets-and-set-operations-45": {
+      "reviewedContentHash": "3a266d5bb23b42ffa51871ab7c4076c95a3d618fb83e0cf1e99761e89339524e",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "sets-and-set-operations-50": {
+      "reviewedContentHash": "f8ba9caa9eaa56509f3127b72335f2125e729de42e0d3ad7a4386a418ecc9312",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "sets-and-set-operations-51": {
+      "reviewedContentHash": "4ccf7a8d833fa213e780d147f1dab91e81c6ca16912577ea9054edb03725a172",
+      "sources": ["p-sets", "m-classes"]
+    },
+    "sets-and-set-operations-59": {
+      "reviewedContentHash": "4b9e3ed8c8bdd7f761767ba3db4a44e18f37e6e0e8b69e548887b6a59890e013",
+      "sources": ["p-sets", "m-classes"]
+    },
+    "sets-and-set-operations-71": {
+      "reviewedContentHash": "d85f27ac8f784db46b73fa57e9044e808987f82e01852be58104a84e832b39b5",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "sets-and-set-operations-72": {
+      "reviewedContentHash": "df6cdeab8dd851d1892094557ed4d11775c9db170b563feba0512265a69cb011",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "sets-and-set-operations-75": {
+      "reviewedContentHash": "4609927f226104594fe2865fe0e876fddb1e7a7c6b5a6021a7607c861aaede9b",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "sets-and-set-operations-77": {
+      "reviewedContentHash": "042ac663a2daac012d59fd41777b8ff6438d38b6f94cc2a8e47ee9755b5bd0c0",
+      "sources": ["p-sets", "p-setproof", "m-pie", "m-classes"]
+    },
+    "relations-10": {
+      "reviewedContentHash": "b55089b763d43cf818e1797c49717897d13dd153cf9878beb88ccf4479281308",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-32": {
+      "reviewedContentHash": "03f9d8a4c32d953d33f63757b7b15216a7e48e1a744f162a03feefd597f7e23f",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-33": {
+      "reviewedContentHash": "41b68eebf919c131499f96f8adcdb3a0402b26a47382d36143e90403dd7aca28",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-41": {
+      "reviewedContentHash": "138488cc9f47aa95892316c49b47e32d6099bc4e12897de372b2d91035091f74",
+      "sources": ["m-orders"]
+    },
+    "relations-48": {
+      "reviewedContentHash": "34a2314eea2dcc0447f48784ed785b9a212c50b14079e5c49072ca9d20de0403",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-50": {
+      "reviewedContentHash": "be9854e27361c044c7af0eaeff2503a7207e0203754c6a6e74822abda816eba4",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-58": {
+      "reviewedContentHash": "5418d194a4630dbbc1da8c0d5ab66153968e12770c13ad836c40aaeaf05715e6",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-69": {
+      "reviewedContentHash": "b815c3d9d584f52d8648856a8491fbe0ca24e67704364febbff70458e6f06e30",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-71": {
+      "reviewedContentHash": "10abe2b57c6c2e8cf78c933f030cb6f978eab60f848e8d456ac09114abbb1170",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-75": {
+      "reviewedContentHash": "ecab674a06efdc6aa6dea92d7abcdc1966b6ecfc5e13b3d6594b9c1bed182fd8",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "relations-79": {
+      "reviewedContentHash": "bc1e4ea1a6635b3da865e44825641d439a1fa3fd8bbefc414903af6b76a9c1e2",
+      "sources": ["p-relations", "m-orders", "m-composition"]
+    },
+    "functions-1": {
+      "reviewedContentHash": "c86b136245c73c37edd983d87f90e413926d6486198cd3e2a353550eed37b444",
+      "sources": ["p-functions", "m-functions"]
+    },
+    "functions-8": {
+      "reviewedContentHash": "18feb764e204d984379c9745a4d150f7a8272e5f08ef81758788e4fa71781078",
+      "sources": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"]
+    },
+    "functions-10": {
+      "reviewedContentHash": "fe026ca03a4495ef5c2a95a5965fd854e151b812959cfdeea3f6d9d81fee5313",
+      "sources": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"]
+    },
+    "functions-22": {
+      "reviewedContentHash": "03c06c0c399f35ee10498c2dba256eecb90a5163e8338688d524481275ac4220",
+      "sources": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"]
+    },
+    "functions-31": {
+      "reviewedContentHash": "f30bcc2edba895f700ef20a4e9f29bbbde1a522f0a9eac686f340519208e1e4f",
+      "sources": ["p-functions"]
+    },
+    "functions-34": {
+      "reviewedContentHash": "74b9ebc82f6ae9bdfb6942cb691cd475e8468c22bec0696a37c329ed1bed1eb3",
+      "sources": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"]
+    },
+    "functions-37": {
+      "reviewedContentHash": "398abbf4755d5fe0d15a3d6dd486cc74f53c462932aface24e0261b40b1756f2",
+      "sources": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"]
+    },
+    "functions-66": {
+      "reviewedContentHash": "0dcac788c34bcf1712a24a658728d608a641d85ab5cc100f4d0a3d966e8497c0",
+      "sources": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"]
+    },
+    "functions-77": {
+      "reviewedContentHash": "e8f15bc15cb57293377f70e47b437f4649fc90ebd297aaf5d496740d9641fc21",
+      "sources": ["p-functions", "m-functions", "js-floor", "js-ceil", "js-trunc"]
+    },
+    "sequences-and-summations-9": {
+      "reviewedContentHash": "bd0e3ca6ca3980f74d13d8bcc64f188509318e849c25a8c377f1c9d28b9cf30c",
+      "sources": ["m-sequences", "d-sequences", "m-sums", "m-products"]
+    },
+    "sequences-and-summations-29": {
+      "reviewedContentHash": "a0cd79ed4a446feb0a158d0635ec00ecf6f1eb453716be3fcd7d4c22c68a9da2",
+      "sources": ["m-sequences", "d-sequences", "m-sums", "m-products"]
+    },
+    "sequences-and-summations-36": {
+      "reviewedContentHash": "e112e4862090d0dca5afb3c9b20b9ef8c405a07ed8bfb42af8d1a8ca49a99684",
+      "sources": ["m-sequences", "d-sequences", "m-sums", "m-products"]
+    },
+    "sequences-and-summations-48": {
+      "reviewedContentHash": "b3a5577f75f5539e44065b9dd931c8969ec03a7625395e3fe92d7a0145ef9ce9",
+      "sources": ["m-sums"]
+    },
+    "sequences-and-summations-53": {
+      "reviewedContentHash": "55f74bbe22e5e60758c496507f115c36bd23097bece2860fe98a9af4dcd8dd0a",
+      "sources": ["m-products", "m-counting", "m-induction"]
+    },
+    "sequences-and-summations-66": {
+      "reviewedContentHash": "15a154f4cd698a7ae893e5aa723621ce92f5ca2d60e0bc74c02dd97791431aff",
+      "sources": ["m-sequences", "d-sequences", "m-sums", "m-products"]
+    },
+    "proof-by-contradiction-10": {
+      "reviewedContentHash": "b5144ced1ada67e9dedd7975b154b8fd707d41938813137a55f1c4286eb3d5ce",
+      "sources": [
+        "p-contradiction",
+        "p-existence",
+        "m-divisibility",
+        "m-wop",
+        "p-quantifiers",
+        "p-functions",
+        "p-setproof"
+      ]
+    },
+    "proof-by-contradiction-21": {
+      "reviewedContentHash": "031bd72926214d2bff2779dd8efc566673ae1ba0a3f4e688e56b144f0ac49cbf",
+      "sources": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"]
+    },
+    "proof-by-contradiction-29": {
+      "reviewedContentHash": "99b755280c64bd624b8aa228812e7d33ee5db88e0bce31916c87623070e5183d",
+      "sources": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"]
+    },
+    "proof-by-contradiction-30": {
+      "reviewedContentHash": "69f3fd829010ad031b9e4637b3419786bfc93d4370ee6f85984176b7936c424d",
+      "sources": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"]
+    },
+    "proof-by-contradiction-43": {
+      "reviewedContentHash": "8d3f09c44cbc460a31ae81ef667f28238ef4a2d28e844e708b582a84a0eb3ce9",
+      "sources": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"]
+    },
+    "proof-by-contradiction-47": {
+      "reviewedContentHash": "c862d129bb5816702805d8cabe0031e3f3a03f06db6a44e1e8f8f79f149ac5ff",
+      "sources": ["p-contradiction", "p-existence", "m-divisibility", "m-wop"]
+    },
+    "mathematical-induction-4": {
+      "reviewedContentHash": "3308176e0205ad09114de680b487c8f662c77832349de9026a828cb2105ecb63",
+      "sources": ["m-induction", "m-invariant", "m-sums", "m-divisibility"]
+    },
+    "mathematical-induction-9": {
+      "reviewedContentHash": "d7972143d0dca334e4e8f49ea2859d21f881fbbec30bf8f5345dd051385b2168",
+      "sources": ["m-induction", "m-invariant", "m-sums", "m-divisibility"]
+    },
+    "mathematical-induction-10": {
+      "reviewedContentHash": "2bba46b446e7b09c80768e0a288e2edf880f79d272d5f845ad58a5458521836b",
+      "sources": ["m-induction", "m-invariant", "m-sums", "m-divisibility"]
+    },
+    "mathematical-induction-39": {
+      "reviewedContentHash": "dfc046078a2f494e4411bf0c9da9880443241a6e69a212d074caef599db82152",
+      "sources": ["m-induction", "m-invariant", "m-sums"]
+    },
+    "mathematical-induction-50": {
+      "reviewedContentHash": "643b838b1b4b89ce7d9ac2610aa1f7db5a46ed796b765c396c6868c6fa9fffe5",
+      "sources": ["m-induction", "m-invariant", "m-sums"]
+    },
+    "mathematical-induction-57": {
+      "reviewedContentHash": "a6ffebfd99bd13fa4f84c12a5068c514b5780b035090253bef7c55f4de890524",
+      "sources": ["m-induction", "m-invariant", "m-sums"]
+    },
+    "strong-induction-1": {
+      "reviewedContentHash": "622a6b552565d048e327eb34573f10057adcefac19b51d606d4850ac6360b951",
+      "sources": ["m-wop", "m-strong"]
+    },
+    "strong-induction-37": {
+      "reviewedContentHash": "83f34947a96ccd3fcca5d17485b57bd1bb2f6ff3c19f075940f52d989b49207f",
+      "sources": ["m-strong", "m-wop", "m-invariant"]
+    },
+    "strong-induction-44": {
+      "reviewedContentHash": "039bdea2263ab889ea8ee5d1cc30c3ca5fa80738c14567b89485f09f4b745e6a",
+      "sources": ["m-strong", "m-wop", "m-invariant"]
+    },
+    "strong-induction-52": {
+      "reviewedContentHash": "c3dc12bfbc38c73828810782ca47012106c3214578f3e40f4b2247bc50f05488",
+      "sources": ["m-strong", "m-wop", "m-invariant", "m-recursive-data", "d-trees"]
+    },
+    "combinatorics-20": {
+      "reviewedContentHash": "e41fc3944f8263be3a83200a99c289b7e31d1f20498593abaac3361d7ae04f49",
+      "sources": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"]
+    },
+    "combinatorics-25": {
+      "reviewedContentHash": "ad6105fa64343637750857367c712558428f4ad420fc2b8d31817de6de6f95c7",
+      "sources": ["m-counting", "p-multisets"]
+    },
+    "combinatorics-29": {
+      "reviewedContentHash": "f350031cd3b9f1c3b9eb4fd3021a27d079d5ce3bcb535da93dcd1e2e073786f4",
+      "sources": ["m-counting", "p-multisets"]
+    },
+    "combinatorics-51": {
+      "reviewedContentHash": "3fa655b3eb309f4970b64c9232d39813a5a9167352a78850f574f64b6a9fc8cb",
+      "sources": ["m-pigeonhole"]
+    },
+    "combinatorics-55": {
+      "reviewedContentHash": "2d0cc74171ac959794a87c954db16e75948a004694eb717672a90b3182689dbf",
+      "sources": ["m-counting", "m-pie", "m-pigeonhole", "p-multisets"]
+    },
+    "recurrence-relations-20": {
+      "reviewedContentHash": "1fdd29892405c74c1c7bd260d07deb421ee121e724120fe108a237b5e9b6e57a",
+      "sources": ["m-recursive", "m-linear-rec", "m-divide-rec"]
+    },
+    "recurrence-relations-28": {
+      "reviewedContentHash": "6890af546b34fbaa0b87e3df66a5a61c411a9baa8a2e245e97ef71cb9d09e7c6",
+      "sources": ["m-linear-rec"]
+    },
+    "recurrence-relations-30": {
+      "reviewedContentHash": "b03248d00103f1e486f39f1d050356eb7c347f388e42d519f140aa1ad628b802",
+      "sources": ["m-linear-rec"]
+    },
+    "recurrence-relations-57": {
+      "reviewedContentHash": "9a48786d286772135276d52f4ab7d611e9b1f8203fdda62380224fee7f72974a",
+      "sources": ["m-recursive", "m-linear-rec", "m-divide-rec"]
+    },
+    "recurrence-relations-69": {
+      "reviewedContentHash": "25d08062ccc1ab8dc0b8757d3566fccbde58855fc268c564692854e47effb849",
+      "sources": ["m-recursive", "m-linear-rec", "m-divide-rec"]
+    },
+    "recurrence-relations-70": {
+      "reviewedContentHash": "d6e7e889a7010c098f777e6eb1b05e55f99e3816d7859eb3f078d459c39d8ab3",
+      "sources": ["m-recursive", "m-linear-rec", "m-divide-rec"]
+    },
+    "graph-theory-3": {
+      "reviewedContentHash": "ee5af3f5eda079fb9b890bcb1f17f3e27ee11c75903ea0ba259ac49eb2fee405",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-4": {
+      "reviewedContentHash": "77611e888008268423e23f8de8bcb9be335ef6e48d630bebb72d1c699ce7aeeb",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-8": {
+      "reviewedContentHash": "b4a582e0ad000b124a548b1e44bab2c2261e27ce486fc8bef1045a33513dfa5b",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-19": {
+      "reviewedContentHash": "a3420d0de8e3597bbecade6ccc5a70f138e8d6d36de1bee2e69fae7ca90fa751",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-21": {
+      "reviewedContentHash": "42f3311ddc5992150c11258191ea120b368d36dc62306569f3c4faf4ea2b5661",
+      "sources": ["m-walks"]
+    },
+    "graph-theory-32": {
+      "reviewedContentHash": "82a408aa71b3225e6e3c2d9fd9037174c4918e7947f7c574d66117cff82d8e78",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-38": {
+      "reviewedContentHash": "ef68013c4365549faa70c33ef112c07705a2c4665040382ce3954a4722160354",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-49": {
+      "reviewedContentHash": "307ed7ec78cc2a21cb4b3c49c429816e344cd8f1918fe0b5f1d455e0cf888763",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-53": {
+      "reviewedContentHash": "b0f125c2ee693241385fdb5999b97b6177a986d1265dc0a441f0bf5b13bd6ba2",
+      "sources": [
+        "m-graph",
+        "m-walks",
+        "m-trees",
+        "m-orders",
+        "alg-search",
+        "nist-binary-tree",
+        "nist-full-binary-tree"
+      ]
+    },
+    "graph-theory-58": {
+      "reviewedContentHash": "505e4283a22187dc130e10cbfe1758e5debcb5c89ef04bb6380df9d739f18f46",
+      "sources": [
+        "m-graph",
+        "m-walks",
+        "m-trees",
+        "m-orders",
+        "alg-search",
+        "nist-binary-tree",
+        "nist-full-binary-tree"
+      ]
+    },
+    "graph-theory-66": {
+      "reviewedContentHash": "2ace03aa577d141ff9d350631537ddbca7a663564fbc256bcea935e129aff237",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-68": {
+      "reviewedContentHash": "8a996e69165ea011660b087d8961322f1f2d0f18bea450e1b8ec675a27820c05",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-69": {
+      "reviewedContentHash": "181e7d2106c4ca5423109c9eb59ffb132141c425779b54a81633565698dadeed",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "graph-theory-71": {
+      "reviewedContentHash": "79a53f6519468fb551a5923c8966b8005a9c9f86540e282b3790ad0b8110ce5e",
+      "sources": ["m-walks", "history-graph"]
+    },
+    "graph-theory-73": {
+      "reviewedContentHash": "830f4f51bd7e84f2157059fed2d8a63de8761096b6dad0c28b552c4faabd0333",
+      "sources": ["m-graph", "m-walks", "m-trees", "m-orders", "alg-search"]
+    },
+    "asymptotic-growth-1": {
+      "reviewedContentHash": "875b0615ac5f2fa087b5959def14fa3824834956b88501bfbecfcae3aeb941ff",
+      "sources": ["m-asymptotic", "alg-asymptotic"]
+    },
+    "asymptotic-growth-2": {
+      "reviewedContentHash": "7bef0cc7e9461ce5fe7daf0aeb44357a9da16db39fb48dc835c2f782d27da448",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost", "alg-asymptotic"]
+    },
+    "asymptotic-growth-8": {
+      "reviewedContentHash": "7e64a21b7e2237c388538e4971ecb45e2734465935d79abf3252bed51c058ac6",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost", "alg-asymptotic"]
+    },
+    "asymptotic-growth-10": {
+      "reviewedContentHash": "9959a7a480f945b1d445caef7de65bc100360f522cd4c12d90208e20a02cefec",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost", "alg-asymptotic"]
+    },
+    "asymptotic-growth-11": {
+      "reviewedContentHash": "79bff5f1b935ec951e9fc0c885801f4188df00b790c0110c0b7d908ee2e59ba0",
+      "sources": ["m-asymptotic", "p-quantifiers"]
+    },
+    "asymptotic-growth-22": {
+      "reviewedContentHash": "7a78bdd59260b00600af1040f83dba91a4de3d3917f36cd2d2775bd57d345591",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"]
+    },
+    "asymptotic-growth-26": {
+      "reviewedContentHash": "e52d5b91b1fe66cd81d1ebe8062c79fe63c1f0a7a9881d20f8268c9cad648720",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"]
+    },
+    "asymptotic-growth-28": {
+      "reviewedContentHash": "ecfff5d9cf73041f10dc5a25ef639ea6e11fad90eda8bbb4f3b14b6e4c722500",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"]
+    },
+    "asymptotic-growth-31": {
+      "reviewedContentHash": "db8dc39b651ec7873d459d1a676809df8cfc53eb5751db2418c39b9b835bcc17",
+      "sources": ["m-asymptotic"]
+    },
+    "asymptotic-growth-34": {
+      "reviewedContentHash": "f4be12e209c60a1c4e0e6a3ce974a9dc2f6437b66ec9e5b441352381d81348ea",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"]
+    },
+    "asymptotic-growth-50": {
+      "reviewedContentHash": "aec7ae565c64e3d54618d2b36f71edf2ca81a430120e79b98ac20baf43648d47",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"]
+    },
+    "asymptotic-growth-60": {
+      "reviewedContentHash": "16fe076408a1688f0b4f45244765749b45126c9d03fa74bf0d711daa9fe7a5ea",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost", "alg-asymptotic"]
+    },
+    "asymptotic-growth-62": {
+      "reviewedContentHash": "f3526a8761087513edd2aa1ab65b9cb602f5648a80149f83e91e30180ec7fd7c",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"]
+    },
+    "asymptotic-growth-65": {
+      "reviewedContentHash": "3b6c77454479c736390154172152d93e16988003d556045b1be1ec793576ab1b",
+      "sources": ["m-asymptotic", "m-products", "m-divide-rec", "alg-cost"]
+    },
+    "linear-algebra-vectors-1": {
+      "reviewedContentHash": "a60dd7816d076d24bdf8bc1976b866dec611ab08175fae902fcb17b3a586704a",
+      "sources": ["i-vectors"]
+    },
+    "linear-algebra-vectors-15": {
+      "reviewedContentHash": "89251cf0001a50db89ada4e719739e42a4ca5f38d5b905ebc3e56579274112d3",
+      "sources": ["i-vectors"]
+    },
+    "linear-algebra-vectors-38": {
+      "reviewedContentHash": "0c9586a24d1a139467d1856df7a2cb7490b9a9e1c3049ba7e96b4ae7b988a88a",
+      "sources": ["i-vectors"]
+    },
+    "linear-algebra-vectors-40": {
+      "reviewedContentHash": "d495f7239851b6032ef856e062a7200ba54e15981c4c59fbfde2772a6d8cb5d7",
+      "sources": ["i-span"]
+    },
+    "linear-algebra-vectors-57": {
+      "reviewedContentHash": "b250da6a18ed01765195a01aad4c434fb13f6f2dab652a509c130f2c083dc21f",
+      "sources": ["i-vectors", "ml-affine", "ml-models"]
+    },
+    "linear-algebra-vectors-58": {
+      "reviewedContentHash": "e25bfe3db68623af416de13741360e46989b03b62495edff2bbc5f59658003ec",
+      "sources": ["i-vectors", "ml-affine", "ml-models"]
+    },
+    "linear-algebra-dot-products-1": {
+      "reviewedContentHash": "976913828130ab2ee96ad0cf633c7d53ded5b5fecb2a4ca8231bb8acad277a90",
+      "sources": ["i-dot"]
+    },
+    "linear-algebra-dot-products-15": {
+      "reviewedContentHash": "a6b4b1aea2a900aae19e06f5cc01899dca23e130a0e7eec669f9f6cb0e287141",
+      "sources": ["i-dot"]
+    },
+    "linear-algebra-dot-products-16": {
+      "reviewedContentHash": "db5707533aabcf02469a39876083ffbf06f7e4c39fbe2ea4fc10cad2e55d3d6c",
+      "sources": ["i-dot"]
+    },
+    "linear-algebra-dot-products-35": {
+      "reviewedContentHash": "5829fd470106e686dd4ca8151abb591c3756e481621d7404889254493bfac840",
+      "sources": ["i-dot"]
+    },
+    "linear-algebra-dot-products-36": {
+      "reviewedContentHash": "3121109faa830bf0161a7426a0e24ea6ab262b2105ee5db1668c83da37f668a1",
+      "sources": ["i-dot"]
+    },
+    "linear-algebra-dot-products-50": {
+      "reviewedContentHash": "21d464ae5ddc60cb0c9bb9e6890b029126f489e17c5041e9556f1fb44b03a260",
+      "sources": ["i-dot"]
+    },
+    "linear-algebra-dot-products-55": {
+      "reviewedContentHash": "000d9e417ae1032ebc10cb76f7a979bb265a6dbe90c686d823238c8e3f6f5ce1",
+      "sources": ["i-dot", "ml-models"]
+    },
+    "linear-algebra-dot-products-69": {
+      "reviewedContentHash": "9a988bf31636e3af33fd676ed94987ba29b06a5afc0c4f9abc2a76ee2b3e14e7",
+      "sources": ["i-dot", "ml-models"]
+    },
+    "linear-algebra-dot-products-73": {
+      "reviewedContentHash": "9a3f148ac9bc4f735311ec384718c9b63e46a3d300780cbd5f8a793904ae840d",
+      "sources": ["i-dot", "ml-models"]
+    },
+    "linear-algebra-matrices-30": {
+      "reviewedContentHash": "a1633a829f818b23acc191fb7854636c3e312f66dea982f85dfe424754ca0cea",
+      "sources": ["i-multiply"]
+    },
+    "linear-algebra-matrices-49": {
+      "reviewedContentHash": "c18dcc3623361b9dd1bc8d2de80385e82525e7a0e241e285c7d2727db1eb5842",
+      "sources": ["i-multiply"]
+    },
+    "linear-algebra-matrices-59": {
+      "reviewedContentHash": "aba0064384582e80eece424653a81061e0972d023a6ee840f2dc41624d3eaded",
+      "sources": ["i-multiply"]
+    },
+    "linear-algebra-matrices-64": {
+      "reviewedContentHash": "4c2081a33502f0a8d3d4bad56f0e4400b7d2e2f72864c085204650391f2ace7a",
+      "sources": ["i-multiply"]
+    },
+    "linear-algebra-matrices-67": {
+      "reviewedContentHash": "339d53d6c8814969c3a1a0e740ea48c9fb697c48cea6b548cde3cec436976cdd",
+      "sources": ["i-multiply"]
+    },
+    "linear-algebra-systems-1": {
+      "reviewedContentHash": "ea8abca3cf26149df9533d27c94090137c70fdb064b7485709adf779d1f466e4",
+      "sources": ["i-systems", "i-reduction"]
+    },
+    "linear-algebra-systems-3": {
+      "reviewedContentHash": "936a273dac6bcb58ac4c9771e994b1d5b2665c1befe6aa0a4c4ac0de9f80cd6c",
+      "sources": ["i-systems", "i-reduction"]
+    },
+    "linear-algebra-systems-49": {
+      "reviewedContentHash": "47c5e9a86aabbb0a1d50b9be820a1f265e964d3950abb5e07c40a58592a420b1",
+      "sources": ["i-solutions", "i-reduction"]
+    },
+    "linear-algebra-systems-61": {
+      "reviewedContentHash": "8fb8c4a7eb925c731444521e3d4104f98e3e76ee8e4173245e9114c4eee39964",
+      "sources": ["i-solutions", "i-reduction"]
+    },
+    "linear-algebra-systems-63": {
+      "reviewedContentHash": "4227ef3b9ed6ad67c95f0d8dcba015272f0c58816f90de5dbed794c3841aa0bf",
+      "sources": ["i-solutions", "i-reduction"]
+    },
+    "linear-algebra-systems-66": {
+      "reviewedContentHash": "a68cd9fabd77ddf6a5f0337c4ac15883be3ce684bba340fba110e5ddeb10299f",
+      "sources": ["i-solutions", "i-reduction"]
+    },
+    "linear-algebra-systems-67": {
+      "reviewedContentHash": "c53287faa42326103b681e9193abb222f287f6b6fd30fd3a6e5d8117587694d6",
+      "sources": ["i-solutions", "i-reduction"]
+    },
+    "linear-algebra-span-2": {
+      "reviewedContentHash": "f536ab9ebf6a02f74a1527996d68d5d46a778e7a123bffefd1efdff9d737c4b2",
+      "sources": ["i-span"]
+    },
+    "linear-algebra-span-15": {
+      "reviewedContentHash": "253ebf5c3990ac1e94008daed361085730090d46282de3d54980bb31fc003701",
+      "sources": ["i-independent"]
+    },
+    "linear-algebra-bases-36": {
+      "reviewedContentHash": "778dd902b8dc23ddcd712b955fe6dc3fff0c8b5ae082c14d64ff8624425dc061",
+      "sources": ["i-inverse", "i-determinant-area"]
+    },
+    "linear-algebra-bases-65": {
+      "reviewedContentHash": "722cd0120ada4080cb3bc37082dc548051e66515e7a7e88946de5a826a3615f5",
+      "sources": ["i-inverse", "i-rank"]
+    },
+    "linear-algebra-transformations-2": {
+      "reviewedContentHash": "890d5702f60b147325f5d78dff9dd03ff38055caeadb822cf787fb385f0731aa",
+      "sources": ["i-transform"]
+    },
+    "linear-algebra-transformations-29": {
+      "reviewedContentHash": "74673e53ef5397cc9f106f11d66f10d80021c6ca94bf20a5a3aca98e7446c04f",
+      "sources": ["ml-affine", "i-subspaces"]
+    },
+    "linear-algebra-transformations-43": {
+      "reviewedContentHash": "eb36db63c1f60f6fab5c20f1aa4d76cf424db7652b497228b407d274b5fed990",
+      "sources": ["ml-affine", "i-coordinates"]
+    },
+    "linear-algebra-transformations-44": {
+      "reviewedContentHash": "e93932ff9b8b3300b8afac7ae733c0b40f98cdfd8c246f019a1b3b9d043606cd",
+      "sources": ["ml-affine", "i-coordinates"]
+    },
+    "linear-algebra-transformations-60": {
+      "reviewedContentHash": "d7378685d2065fcbc4f69632a5465c3804ab86be299d2080e14caae2ccf64445",
+      "sources": ["ml-affine", "i-coordinates"]
+    },
+    "linear-algebra-projections-1": {
+      "reviewedContentHash": "252ba7a84eae679c1c260b3dd4eca4eb9318d8531fe8374a07ce2a3d4365c025",
+      "sources": ["i-projection"]
+    },
+    "linear-algebra-projections-16": {
+      "reviewedContentHash": "4c6c4a628106b17f751a374e2bbeae02ea3928988b5574b51961c4296b5e562b",
+      "sources": ["i-orthonormal", "i-projection"]
+    },
+    "linear-algebra-projections-58": {
+      "reviewedContentHash": "59ce23c36fc9833b60c2be8de2a00e1ba88c04f321b6aaf28d303c00390eaa77",
+      "sources": ["i-orthonormal"]
+    },
+    "linear-algebra-projections-49": {
+      "reviewedContentHash": "62bf48fecfd751215bad0ba8b8b5e4fcafe7bc88cde3f58b3b148bfa2318fd78",
+      "sources": ["i-least", "i-projection"]
+    },
+    "linear-algebra-projections-51": {
+      "reviewedContentHash": "0cd4abc3cd2f75106efab53757060b0ec51644b7d2dc7c9f8e6eda57433b43cf",
+      "sources": ["i-least", "i-projection"]
+    },
+    "linear-algebra-projections-63": {
+      "reviewedContentHash": "12975c16c11ac028270964b1c0b6e24a1b73fa2df118978801fa9474983840bd",
+      "sources": ["i-least", "i-projection"]
+    },
+    "linear-algebra-eigenvalues-1": {
+      "reviewedContentHash": "d23e0297f25e5c34f3076a085dab927bc580ef0b1abed2aa6aa493a1bde4d821",
+      "sources": ["i-eigen"]
+    },
+    "linear-algebra-eigenvalues-2": {
+      "reviewedContentHash": "a0129ab6989039c522cb1db6617a235eb08d2c67312495a060b1d75c1bdc17b2",
+      "sources": ["i-eigen"]
+    },
+    "linear-algebra-eigenvalues-23": {
+      "reviewedContentHash": "10e8e0a95dbcf3b6291d39b6669a0a8c4b2613ee45975113ddc8e1600726d5b4",
+      "sources": ["i-characteristic", "i-diagonal"]
+    },
+    "linear-algebra-eigenvalues-30": {
+      "reviewedContentHash": "739ae5ba54435693785f9393accd18ac2566510e6e8e586396139f69dc39ad96",
+      "sources": ["i-diagonal"]
+    },
+    "linear-algebra-eigenvalues-60": {
+      "reviewedContentHash": "cc8039af5f724f1a7993d79457449f4e117039f6be52c3cdd554a3e729249460",
+      "sources": ["i-diagonal", "ml-models"]
+    },
+    "linear-algebra-eigenvalues-61": {
+      "reviewedContentHash": "16a81982f35332f42a036b3489d988b47cf62d2727ec0bf87cf78c4a419a7467",
+      "sources": ["i-diagonal", "ml-models"]
+    },
+    "linear-algebra-svd-1": {
+      "reviewedContentHash": "b31c83f8f45187fb3d28d21c3ecf18985e9eb5703fedaeda328210119ffabb3b",
+      "sources": ["ml-svd"]
+    },
+    "linear-algebra-svd-30": {
+      "reviewedContentHash": "4c817796b6928ed7bae7aaacd16fbccc24502136b010856af1cb4448beee248b",
+      "sources": ["ml-svd", "numerical-rank"]
+    },
+    "linear-algebra-svd-44": {
+      "reviewedContentHash": "d5f7bffc425175fb68071fe681ee552aa3fd0e98052eb566206042989a8624d4",
+      "sources": ["svd-approx", "ml-svd", "ml-models", "numerical-rank"]
+    },
+    "linear-algebra-svd-57": {
+      "reviewedContentHash": "661fe2ce99619b57e079bd28c48fee7f3cfc1d845b68153f6c593570bd2bdcef",
+      "sources": ["svd-approx", "ml-svd", "ml-models", "numerical-rank"]
+    },
+    "linear-algebra-svd-60": {
+      "reviewedContentHash": "dcd880a8c98ab7abaff4d6ea9e062f3ec08ab44b780149ac4ae3ee5b3dece4a1",
+      "sources": ["svd-approx", "ml-svd", "ml-models", "numerical-rank"]
+    },
+    "linear-algebra-svd-61": {
+      "reviewedContentHash": "a6649afc0c5ea89cc1a4665ffa2f9199da331fbbb88f5bb36584bcaee53c6356",
+      "sources": ["svd-approx", "ml-svd", "ml-models", "numerical-rank"]
+    },
+    "linear-algebra-svd-69": {
+      "reviewedContentHash": "83bdff41e768052dc75f977ffca54a1aaaa1978bb2c1db388c1a8b5582dfd5b7",
+      "sources": ["svd-approx", "ml-svd", "ml-models", "numerical-rank"]
+    },
+    "linear-algebra-svd-70": {
+      "reviewedContentHash": "bed65f4bd8f054a08c1106567eaa5e2489f52d905e3aea487d1046c14d85b603",
+      "sources": ["svd-approx", "ml-svd", "ml-models", "numerical-rank"]
+    },
+    "calculus-multivariable-extrema-22": {
+      "reviewedContentHash": "c6aafc053d2555865f32646cc005956563c3e3ca0c223ffeb04082dbdaeda613",
+      "sources": ["os3-4-7", "calculus-mml-hessian"]
+    },
+    "calculus-multivariable-extrema-31": {
+      "reviewedContentHash": "760e00f3e43f22d187c9f4ad37634c5e4d52bb154c7667a0fe5c27bd7783dc40",
+      "sources": ["os3-4-7"]
+    },
+    "calculus-gradient-descent-34": {
+      "reviewedContentHash": "d37cb936d3540a04683fdfd4aaf9a27c9a1ade05b0cdb58c998f7f4666118ccc",
+      "sources": ["mml-calculus-gradient-descent", "os3-4-7"]
     }
   }
 }
