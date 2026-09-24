@@ -15,9 +15,22 @@ test('the current curriculum publishes its own grading version after the answer 
   const notebook = await readJson('output/content/notebook.json');
   const evidence = await readJson('output/content/learning-evidence.json');
   const reviewTemplates = await readJson('output/content/review-templates.json');
+  const catalog = await readJson('output/grading-catalog.json');
+  const reviewQuestions = Object.fromEntries(
+    Object.entries(catalog.exercises)
+      .filter(([, e]: [string, any]) => e.reviewQuestion)
+      .map(([id, e]: [string, any]) => [id, e.reviewQuestion]),
+  );
   const version = await readJson('output/content/grading-version.json');
   const representationHash = createHash('sha256')
-    .update(JSON.stringify({ publishedLessons: notebook.lessons, evidence, reviewTemplates }))
+    .update(
+      JSON.stringify({
+        publishedLessons: notebook.lessons,
+        evidence,
+        reviewTemplates,
+        reviewQuestions,
+      }),
+    )
     .digest('hex');
 
   assert.notEqual(representationHash, compatibility.representationHash);
