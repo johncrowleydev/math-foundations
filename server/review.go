@@ -233,6 +233,9 @@ func (t ReviewTemplate) sourceTarget() string {
 	return "review:" + t.ID
 }
 func (g *Grading) reviewTemplates() []ReviewTemplate {
+	if g.reviewData != nil {
+		return g.reviewData.templates
+	}
 	result := append([]ReviewTemplate{}, g.catalog.ReviewTemplates...)
 	for i, t := range result {
 		if bank, ok := g.catalog.ReviewVariants[t.ID]; ok {
@@ -463,6 +466,45 @@ func substantive(a Attempt) bool {
 	return false
 }
 
+// Replay needs frozen evidence, not job status or transcriptions. Fetch it in
+// one ordered query, then close the rows before replay reads review instances.
+func loadReviewAttempts(tx *sql.Tx) ([]Attempt, error) {
+	rows, err := tx.Query("SELECT data,verdict,grades,context FROM attempts ORDER BY submitted,id")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	attempts := []Attempt{}
+	for rows.Next() {
+		var data, grades, context string
+		var a Attempt
+		if err = rows.Scan(&data, &a.Verdict, &grades, &context); err != nil {
+			return nil, err
+		}
+		if err = json.Unmarshal([]byte(data), &a.Submission); err != nil {
+			return nil, err
+		}
+		// Do not retain written work or media while the full history is replayed.
+		a.Text, a.Ink, a.Images, a.Photos, a.Response = "", nil, nil, nil, nil
+		if err = json.Unmarshal([]byte(grades), &a.Grades); err != nil {
+			return nil, err
+		}
+		var frozen struct {
+			Analytics  json.RawMessage
+			Assessment *Assessment
+			Question   map[string]json.RawMessage
+		}
+		if json.Unmarshal([]byte(context), &frozen) == nil {
+			a.Analytics = frozen.Analytics
+			if len(frozen.Question) > 0 {
+				a.Presentation = &AttemptPresentation{Assessment: frozen.Assessment}
+			}
+		}
+		attempts = append(attempts, a)
+	}
+	return attempts, rows.Err()
+}
+
 // Replay only structured active evidence. Passive exposure records are never read.
 func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[string]ReviewState, error) {
 	states := map[string]ReviewState{}
@@ -532,27 +574,25 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 	if e != nil {
 		return nil, e
 	}
-	rows, e = tx.Query("SELECT id FROM attempts ORDER BY submitted,id")
+	attempts, e := loadReviewAttempts(tx)
 	if e != nil {
 		return nil, e
 	}
-	ids := []string{}
-	for rows.Next() {
-		var id string
-		rows.Scan(&id)
-		ids = append(ids, id)
-	}
-	e = rows.Err()
-	rows.Close()
-	if e != nil {
-		return nil, e
+	// Most attempts concern a small part of the curriculum. Match only templates
+	// for their primary concepts instead of scanning the entire catalog each time.
+	byConcept := map[string][]int{}
+	for i, t := range templates {
+		concepts := append([]string{t.Concept}, t.ActivationConcepts...)
+		seen := map[string]bool{}
+		for _, concept := range concepts {
+			if !seen[concept] {
+				byConcept[concept] = append(byConcept[concept], i)
+				seen[concept] = true
+			}
+		}
 	}
 	errorsByExercise := map[string]int{}
-	for _, id := range ids {
-		a, e := loadAttempt(tx, id)
-		if e != nil {
-			return nil, e
-		}
+	for _, a := range attempts {
 		var meta reviewAnalytics
 		json.Unmarshal(a.Analytics, &meta)
 		var observed []ReviewTemplate
@@ -583,18 +623,26 @@ func (g *Grading) reviewStates(tx *sql.Tx, templates []ReviewTemplate) (map[stri
 				}
 			}
 		}
-		for _, t := range templates {
-			if !t.matchesConcept(meta) {
+		matched := map[int]bool{}
+		for _, concept := range meta.Concepts {
+			if concept.Role != "primary" {
 				continue
 			}
-			if t.Objective != "" {
-				activate(t, a.Submitted)
-				continue
-			}
-			if t.matchesEvidence(meta) {
-				activate(t, a.Submitted)
-				if required(t) <= observedDepth {
-					observed = append(observed, t)
+			for _, index := range byConcept[concept.Concept] {
+				if matched[index] {
+					continue
+				}
+				matched[index] = true
+				t := templates[index]
+				if t.Objective != "" {
+					activate(t, a.Submitted)
+					continue
+				}
+				if t.matchesEvidence(meta) {
+					activate(t, a.Submitted)
+					if required(t) <= observedDepth {
+						observed = append(observed, t)
+					}
 				}
 			}
 		}
@@ -1022,42 +1070,14 @@ func (g *Grading) selectReview(req ReviewSessionRequest, now int64, templates []
 	return session, activations
 }
 
-func (g *Grading) reviewSummary(now int64, requestedBudget ...int) (map[string]any, error) {
-	budget := 0
-	if len(requestedBudget) > 0 {
-		budget = requestedBudget[0]
-	}
-	minutes, err := reviewBudget(budget)
-	if err != nil {
-		return nil, err
-	}
-	templates := g.reviewTemplates()
-	tx, e := g.server.db.Begin()
-	if e != nil {
-		return nil, e
-	}
-	defer tx.Rollback()
-	states, e := g.reviewStates(tx, templates)
-	if e != nil {
-		return nil, e
-	}
-	targets := []ReviewState{}
-	due, quick := 0, 0
-	for _, s := range states {
-		targets = append(targets, s)
-		if s.DueAt <= now {
-			due++
-			if s.Quick {
-				quick++
-			}
-		}
-	}
-	sort.Slice(targets, func(i, j int) bool {
-		if targets[i].DueAt != targets[j].DueAt {
-			return targets[i].DueAt < targets[j].DueAt
-		}
-		return targets[i].ID < targets[j].ID
-	})
+// Catalog-derived templates and filter labels are immutable for a running server.
+// Prepare them once at startup rather than decoding lesson bodies per request.
+type reviewCatalogData struct {
+	templates                 []ReviewTemplate
+	concepts, skills, lessons []map[string]string
+}
+
+func buildReviewCatalogData(templates []ReviewTemplate) *reviewCatalogData {
 	concepts, skills, lessons := map[string]string{}, map[string]string{}, map[string]string{}
 	for _, t := range templates {
 		concepts[t.Concept] = t.Concept
@@ -1096,12 +1116,55 @@ func (g *Grading) reviewSummary(now int64, requestedBudget ...int) (map[string]a
 		}
 		return out
 	}
+	return &reviewCatalogData{templates: templates, concepts: options(concepts, "id", "name"), skills: options(skills, "id", "name"), lessons: options(lessons, "slug", "title")}
+}
+
+func (g *Grading) reviewSummary(now int64, requestedBudget ...int) (map[string]any, error) {
+	budget := 0
+	if len(requestedBudget) > 0 {
+		budget = requestedBudget[0]
+	}
+	minutes, err := reviewBudget(budget)
+	if err != nil {
+		return nil, err
+	}
+	templates := g.reviewTemplates()
+	tx, e := g.server.db.Begin()
+	if e != nil {
+		return nil, e
+	}
+	defer tx.Rollback()
+	states, e := g.reviewStates(tx, templates)
+	if e != nil {
+		return nil, e
+	}
+	targets := []ReviewState{}
+	due, quick := 0, 0
+	for _, s := range states {
+		targets = append(targets, s)
+		if s.DueAt <= now {
+			due++
+			if s.Quick {
+				quick++
+			}
+		}
+	}
+	sort.Slice(targets, func(i, j int) bool {
+		if targets[i].DueAt != targets[j].DueAt {
+			return targets[i].DueAt < targets[j].DueAt
+		}
+		return targets[i].ID < targets[j].ID
+	})
+	data := g.reviewData
+	if data == nil {
+		data = buildReviewCatalogData(templates)
+	}
 	usage, e := reviewIssuedAllowance(tx, templates, now)
 	if e != nil {
 		return nil, e
 	}
 	preview, _ := g.selectReview(ReviewSessionRequest{Kind: "scheduled-review", Mode: "regular", BudgetMinutes: minutes}, now, templates, states, usage, ReviewSession{ID: "preview", Instances: []ReviewInstance{}})
-	result := map[string]any{"due": due, "quick": quick, "deeper": due - quick, "targets": targets, "concepts": options(concepts, "id", "name"), "skills": options(skills, "id", "name"), "lessons": options(lessons, "slug", "title")}
+	result := map[string]any{"due": due, "quick": quick, "deeper": due - quick, "targets": targets, "concepts": data.concepts, "skills": data.skills, "lessons": data.lessons}
 	result["budgetMinutes"] = preview.BudgetMinutes
 	result["estimatedMinutes"] = preview.EstimatedMinutes
 	result["reservedMinutes"] = preview.ReservedMinutes

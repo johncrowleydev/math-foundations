@@ -15,6 +15,7 @@ import {
 import type { Attempt, RecordData } from './types';
 import { deterministicAttempt } from './structuredAnswer';
 import { preservesAttempt, preservesConfirmedAttempt, validServerAttempt } from './serverAttempt';
+import { migrateReviewBudget, reviewBudgetKey } from './reviewBudget';
 export let syncStatus = 'Not connected';
 export let initialSyncComplete = false;
 
@@ -208,6 +209,7 @@ export async function sync() {
     }
     let outgoingError = '';
     await recoverEffortRejections();
+    await migrateReviewBudget();
     // Choice retries can be graded offline. Upload earlier attempts before a
     // later correct one locks the exercise on the server (UUID order is random).
     const outgoing = await all<Operation>('outbox');
@@ -239,7 +241,19 @@ export async function sync() {
           if (a && deterministicAttempt(a))
             throw new HttpError(400, 'Automatic answers cannot request a model recheck.');
           await apiRequest('/attempts/' + op.attempt + '/recheck', 'POST', op.data);
-        } else await apiRequest('/mutations', 'POST', op.data);
+        } else {
+          const response = await apiRequest('/mutations', 'POST', op.data);
+          if (op.data.key === reviewBudgetKey) {
+            // A create-only migration may return an existing account preference.
+            // Its revision can precede our cursor, so consume the acknowledgement
+            // directly instead of relying on another change-feed entry.
+            const saved = (await response.json()) as RecordData;
+            await remove('outbox', op.id);
+            await integrate([saved], 0);
+            changed();
+            continue;
+          }
+        }
         await remove('outbox', op.id);
       } catch (e) {
         if (op.kind === 'review-import') {

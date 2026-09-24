@@ -3,7 +3,16 @@ import type { ReviewInstance } from './reviewTypes';
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
-import { all, emptyDraft, get, put, saveAttempt, saveMedia, useRevision } from './storage';
+import {
+  all,
+  emptyDraft,
+  get,
+  put,
+  saveAttempt,
+  saveDraftEffort,
+  saveMedia,
+  useRevision,
+} from './storage';
 import { connected, recheck, sync, cancelGrading } from './sync';
 import { Rich, Modal } from './Rich';
 import { TexEditor } from './TexEditor';
@@ -189,7 +198,20 @@ export function Exercise({
   editingRef.current = editing;
   useEffect(() => {
     const pause = () => {
-      if (latestDraft.current && editingRef.current) update(clock.current.pause());
+      if (!latestDraft.current || !editingRef.current || !clock.current.active) return;
+      const previous = latestDraft.current;
+      const effort = clock.current.pause();
+      latestDraft.current = { ...previous, ...effort };
+      setDraft(latestDraft.current);
+      writes.current = writes.current
+        .then(async () => {
+          await saveDraftEffort(key, previous, effort);
+          saveError.current = '';
+        })
+        .catch((e) => {
+          saveError.current = 'Draft save failed: ' + String(e);
+          setError(saveError.current);
+        });
     };
     const visibility = () => {
       if (document.hidden) pause();

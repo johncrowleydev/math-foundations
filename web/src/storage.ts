@@ -18,7 +18,7 @@ import {
   validGradeEvidence,
   validSnapshot,
 } from './evidenceValidation';
-const db = openDB('foundations-web', 2, {
+export const db = openDB('foundations-web', 2, {
   upgrade(d) {
     for (const s of ['drafts', 'attempts', 'media', 'records', 'outbox', 'settings', 'imports'])
       if (!d.objectStoreNames.contains(s)) d.createObjectStore(s);
@@ -80,6 +80,35 @@ export async function get<T>(store: string, key: string): Promise<T | undefined>
 export async function put(store: string, key: string, value: unknown) {
   await (await db).put(store, value, key);
   storedChange(store, key);
+}
+// A background editor may not have received the latest draft notification yet.
+// Pausing records effort without publishing that editor's older answer snapshot.
+export async function saveDraftEffort(
+  key: string,
+  previous: Draft,
+  effort: { startedAt?: number; activeDurationMs: number },
+) {
+  const tx = (await db).transaction('drafts', 'readwrite');
+  const current: Draft = (await tx.store.get(key)) || previous;
+  // A retry or changed question starts a different draft/effort period. An old
+  // editor must not restore the previous period's time after that reset.
+  if (
+    current.startedAt !== previous.startedAt ||
+    current.assessmentFingerprint !== previous.assessmentFingerprint ||
+    current.recovery !== previous.recovery
+  ) {
+    await tx.done;
+    return;
+  }
+  const startedAt = current.startedAt ?? effort.startedAt;
+  const activeDurationMs = Math.max(current.activeDurationMs || 0, effort.activeDurationMs);
+  if (startedAt === current.startedAt && activeDurationMs === (current.activeDurationMs || 0)) {
+    await tx.done;
+    return;
+  }
+  await tx.store.put({ ...current, startedAt, activeDurationMs }, key);
+  await tx.done;
+  storedChange('drafts', key);
 }
 export async function remove(store: string, key: string) {
   await (await db).delete(store, key);

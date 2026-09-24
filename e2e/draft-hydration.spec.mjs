@@ -54,6 +54,10 @@ try {
     });
     window.draftHydrationStarted = false;
     window.draftHydrationWrites = [];
+    window.draftChangeGate = new Promise(() => {});
+    window.holdDraftChanges = false;
+    window.heldDraftReads = 0;
+    window.draftCommits = 0;
   });
   // Delay the primary legacy-record read, while permitting the concurrent draft reads.
   // This deterministically exposes the old early-empty-draft initialization race.
@@ -69,21 +73,34 @@ try {
         window.draftHydrationStarted = true;
         await window.draftHydrationGate;
       }
+      if (store === 'drafts' && key === 'linear-algebra-matrices-1' && window.holdDraftChanges) {
+        window.heldDraftReads++;
+        await window.draftChangeGate;
+      }
       return (await db).get(store, key);
     `,
     );
     const put = 'await (await db).put(store, value, key);';
     assert.ok(body.includes(put), 'The storage put hook is present');
+    const changed = 'function storedChange(store, key) {';
+    assert.ok(body.includes(changed), 'The committed storage change hook is present');
     await route.fulfill({
       response,
-      body: body.replace(
-        put,
-        `
-        if (store === 'drafts' && key === 'linear-algebra-matrices-1')
-          window.draftHydrationWrites.push(value.response);
-        await (await db).put(store, value, key);
+      body: body
+        .replace(
+          changed,
+          `${changed}
+        if (store === 'drafts' && key === 'linear-algebra-matrices-1') window.draftCommits++;
       `,
-      ),
+        )
+        .replace(
+          put,
+          `
+        await (await db).put(store, value, key);
+        if (store === 'drafts' && key === 'linear-algebra-matrices-1')
+          window.draftHydrationWrites.push(value);
+      `,
+        ),
     });
   });
   page.on('pageerror', (error) => errors.push(error.message));
@@ -180,27 +197,65 @@ try {
     await exercise().getByRole('button', { name: 'Submit', exact: true }).isEnabled(),
     true,
   );
+  // Hold notifications to the hidden Learn copy while Practice saves newer work.
+  // Blurring must flush only effort, never the hidden copy's stale answer/Unsure.
+  await page.evaluate(() => {
+    window.holdDraftChanges = true;
+  });
   await exercise().getByLabel('Unsure', { exact: true }).check();
-  await page.waitForFunction(
-    (expected) =>
-      new Promise((resolve) => {
+  // Poll a synchronous observation of the committed save. A Promise-returning
+  // predicate is truthy to waitForFunction even when it later resolves false.
+  // Writing the other editor's scratchwork before this commit would let the
+  // earlier queued Unsure save legitimately overwrite the test fixture.
+  await page.waitForFunction((expected) => {
+    const saved = window.draftHydrationWrites.at(-1);
+    return saved?.unsure === true && JSON.stringify(saved.response) === JSON.stringify(expected);
+  }, response);
+  await page.waitForFunction(() => window.heldDraftReads >= 2);
+  // Simulate another editor saving while this active editor's reads are held.
+  // Its blur must preserve these newer fields as well as the answer and Unsure.
+  await page.evaluate(
+    () =>
+      new Promise((resolve, reject) => {
         const open = indexedDB.open('foundations-web');
+        open.onerror = () => reject(open.error);
         open.onsuccess = () => {
           const db = open.result;
-          const get = db
-            .transaction('drafts')
-            .objectStore('drafts')
-            .get('linear-algebra-matrices-1');
-          get.onsuccess = () => {
-            db.close();
-            resolve(
-              get.result?.unsure === true &&
-                JSON.stringify(get.result?.response) === JSON.stringify(expected),
+          const tx = db.transaction('drafts', 'readwrite');
+          const key = 'linear-algebra-matrices-1';
+          const get = tx.objectStore('drafts').get(key);
+          get.onsuccess = () =>
+            tx.objectStore('drafts').put(
+              {
+                ...get.result,
+                text: 'Scratchwork from another editor',
+                updated: get.result.updated + 1,
+              },
+              key,
             );
+          tx.oncomplete = () => {
+            db.close();
+            resolve();
+          };
+          tx.onerror = () => {
+            db.close();
+            reject(tx.error);
           };
         };
       }),
-    response,
+  );
+  const beforePause = await page.evaluate(() => window.draftCommits);
+  await page.evaluate(() => window.dispatchEvent(new Event('blur')));
+  await page.waitForFunction((before) => window.draftCommits > before, beforePause);
+  const afterPause = await page.evaluate(() => window.draftCommits);
+  await page.evaluate(async () => {
+    window.dispatchEvent(new Event('blur'));
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
+  assert.equal(
+    await page.evaluate(() => window.draftCommits),
+    afterPause,
+    'Repeated idle pauses must not publish another draft',
   );
   await page.reload();
   await exercise().locator('.structured-answer').waitFor();
@@ -208,6 +263,14 @@ try {
   // Releasing the read gate does not await React's restored draft render.
   await exercise().locator('.unsure-option input:checked').waitFor();
   assert.equal(await exercise().getByLabel('Unsure', { exact: true }).isChecked(), true);
+  assert.equal(
+    await page.evaluate(async () => {
+      const { get } = await import('/src/storage.ts');
+      return (await get('drafts', 'linear-algebra-matrices-1')).text;
+    }),
+    'Scratchwork from another editor',
+    'Pausing an active stale editor preserves newer saved work',
+  );
   for (const input of question.assessment.inputs) {
     assert.equal(
       (

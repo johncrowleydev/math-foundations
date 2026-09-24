@@ -1,20 +1,11 @@
+import { ExerciseStatus } from './ExerciseStatus';
+import { ExerciseSidebar } from './ExerciseSidebar';
 import { exerciseKey } from './exerciseIdentity';
 import { Review } from './Review';
 import { ReviewLibrary } from './ReviewLibrary';
 import { authSession, signOut } from './auth';
 import { useEffect, useLayoutEffect, useRef, useState, useMemo, Suspense } from 'react';
-import {
-  BookOpen,
-  Menu,
-  Settings as SettingsIcon,
-  WifiOff,
-  Check,
-  X,
-  Circle,
-  Clock3,
-  Pencil,
-  CircleAlert,
-} from 'lucide-react';
+import { BookOpen, Menu, Settings as SettingsIcon, WifiOff } from 'lucide-react';
 import { readRoute, routeHash, resolveReadingSection, type AppRoute } from './routing';
 import { registerSW } from 'virtual:pwa-register';
 import type { Curriculum, Lesson, RecordData, Formula, Attempt, Draft } from './types';
@@ -66,6 +57,7 @@ export function App({ data }: { data: Curriculum }) {
     [tutorials, setTutorials] = useState(false),
     [update, setUpdate] = useState<(() => Promise<void>) | null>(null);
   const reader = useRef<HTMLElement>(null);
+  const [exerciseSidebarHost, setExerciseSidebarHost] = useState<HTMLDivElement | null>(null);
   const lesson = data.lessons.find((l) => l.slug === slug) || data.lessons[0];
   const [loadedLesson, setLoadedLesson] = useState('');
   const recommended = recommendedPractice(lesson);
@@ -133,19 +125,6 @@ export function App({ data }: { data: Curriculum }) {
       }
     }
   }, [positionKey, route.section, loadedLesson]);
-  useEffect(() => {
-    if (tab !== 'practice') return;
-    const selected = document.querySelector<HTMLElement>(
-      exerciseNav ? '.practice-sheet .selected' : '.practice-sidebar .selected',
-    );
-    const container = selected?.closest<HTMLElement>(exerciseNav ? '.modal' : '.practice-sidebar');
-    if (selected && container) {
-      const item = selected.getBoundingClientRect(),
-        bounds = container.getBoundingClientRect();
-      if (item.top < bounds.top || item.bottom > bounds.bottom)
-        container.scrollTop += item.top - bounds.top - 80;
-    }
-  }, [practice, tab, exerciseNav]);
   useEffect(() => {
     let live = true;
     void (async () => {
@@ -366,7 +345,7 @@ export function App({ data }: { data: Curriculum }) {
             onClick={() => selectExercise(index)}
           >
             <span>{questionLabel(question)}</span>
-            <PracticeStatus status={progress[index]?.status || 'Not attempted'} />
+            <ExerciseStatus status={progress[index]?.status || 'Not attempted'} />
           </button>
         </div>
       );
@@ -562,7 +541,7 @@ export function App({ data }: { data: Curriculum }) {
                   )}
                 </div>
               ) : tab === 'review' ? (
-                <Review data={data} lesson={lesson.slug} />
+                <Review data={data} lesson={lesson.slug} sidebarHost={exerciseSidebarHost} />
               ) : tab === 'review-library' ? (
                 <ReviewLibrary data={data} lesson={lesson.slug} />
               ) : tab === 'progress' ? (
@@ -583,7 +562,17 @@ export function App({ data }: { data: Curriculum }) {
                 <Library data={data} onOpen={(id) => setReference([id])} />
               ) : null}
             </main>
-            {tab === 'practice' && <aside className="practice-sidebar">{practiceList}</aside>}
+            <div className="exercise-sidebar-slot" ref={setExerciseSidebarHost} />
+            {tab === 'practice' && (
+              <ExerciseSidebar
+                host={exerciseSidebarHost}
+                selected={practice}
+                mobileOpen={exerciseNav}
+                onClose={() => setExerciseNav(false)}
+              >
+                {practiceList}
+              </ExerciseSidebar>
+            )}
             {tab === 'read' && (
               <aside className="page-outline">
                 <span className="eyebrow">On this page</span>
@@ -658,11 +647,6 @@ export function App({ data }: { data: Curriculum }) {
           </div>
         </div>
       </div>
-      {exerciseNav && (
-        <Modal title="Exercises" onClose={() => setExerciseNav(false)}>
-          <div className="practice-sheet">{practiceList}</div>
-        </Modal>
-      )}
       {drawer && (
         <Modal title="Chapters" onClose={() => setDrawer(false)}>
           {nav}
@@ -1014,27 +998,6 @@ function Settings({
         </button>
       </details>
     </Modal>
-  );
-}
-
-function PracticeStatus({ status }: { status: string }) {
-  const Icon =
-    status === 'Correct'
-      ? Check
-      : status === 'Try again'
-        ? X
-        : status === 'Grading' || status === 'Syncing'
-          ? Clock3
-          : status === 'Draft'
-            ? Pencil
-            : status === 'Needs attention'
-              ? CircleAlert
-              : Circle;
-  const tone = status === 'Correct' ? 'complete' : status === 'Try again' ? 'incorrect' : '';
-  return (
-    <span className={'progress-state ' + tone} role="img" aria-label={status} title={status}>
-      <Icon size={14} strokeWidth={status === 'Not attempted' ? 1.5 : 2} aria-hidden="true" />
-    </span>
   );
 }
 

@@ -8,6 +8,9 @@ export class EffortClock {
     this.startedAt = saved.startedAt;
     this.activeDurationMs = saved.activeDurationMs || 0;
   }
+  get active() {
+    return this.last !== undefined;
+  }
   touch(now = Date.now()) {
     this.startedAt ??= now;
     if (this.last !== undefined)

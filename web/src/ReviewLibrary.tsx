@@ -82,7 +82,10 @@ export function ReviewLibrary({ data, lesson }: { data: Curriculum; lesson: stri
           <button onClick={() => setRequest((n) => n + 1)}>Retry catalog</button>
         </div>
       ) : !catalog ? (
-        <p role="status">Loading review catalog…</p>
+        <p className="review-loading" role="status">
+          <span className="spinner" aria-hidden="true" />
+          Loading review catalog…
+        </p>
       ) : (
         <>
           <section className="library-filter-panel" aria-label="Catalog filters">
