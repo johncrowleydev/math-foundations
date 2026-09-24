@@ -112,3 +112,21 @@ incorrect accepted responses; requested formula forms; mixed input types;
 template and concrete variant publication; TypeScript/Go grading; immutable
 attempts; saved draft fingerprints; frozen-review resolution; and desktop/phone
 reveal-and-submit checks using the actual displayed canonical values.
+
+## Release-check follow-up
+
+The separate strict TeX release audit exposed stale exercise inspection hashes.
+For each of the 3,282 changed records, the pre-change published question was
+reconstructed from the original declarative content and matched against its
+existing inspection hash before recording the accepted-answer version. The
+inspected differences are the verified TeX solutions and the prompt/hint changes
+described above. Existing teaching prose, placements, syntax requirements and
+inspection notes remain unchanged. The source catalog's TeX digest includes
+these updated inspection records. The regular unit suite now requires complete
+TeX inspection status and hashes, matching the release check.
+
+The independent adversarial oracle also imported two complete assessment objects.
+Adding display-only solutions changed that serialized fixture even though its
+grading contracts and all 1,166 independently derived responses were unchanged.
+The generator now excludes only the authored `solution` field when importing
+those contracts; the oracle fixture and its assertions remain unchanged.
