@@ -9,12 +9,12 @@ questions, assessments, evidence mappings, or issued review instances.
 The complete written questions were inspected against the citations now assigned
 in `content/sources.json`. All 128 discrete-mathematics and 59 linear-algebra /
 calculus questions were checked, including their original calculations and
-reasoning. Sources inspected include Hammack's *Book of Proof* (sets, logic,
-quantifiers, contradiction, relations and functions); MIT *Mathematics for
-Computer Science* (logic, induction, relations, graphs, sums, counting,
+reasoning. Sources inspected include Hammack's _Book of Proof_ (sets, logic,
+quantifiers, contradiction, relations and functions); MIT _Mathematics for
+Computer Science_ (logic, induction, relations, graphs, sums, counting,
 asymptotics and recurrences); MIT 6.006 notes (search and cost models); Interactive
-Linear Algebra (systems through least squares and diagonalization); *Mathematics
-for Machine Learning* (SVD, Hessians, optimization and regression); OpenStax
+Linear Algebra (systems through least squares and diagonalization); _Mathematics
+for Machine Learning_ (SVD, Hessians, optimization and regression); OpenStax
 Calculus 3 §4.7; Stanford PCA notes; NumPy rank-threshold documentation; Logic and
 Proof's variable-scope discussion; forall x's empty-domain discussion; MDN array
 method descriptions; and NIST's binary-tree definitions. Exact locators remain
