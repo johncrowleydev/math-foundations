@@ -21,8 +21,17 @@ export function validateAcceptedAnswer(
     try {
       if (gradeAssessment(assessment, assessment.solution).verdict !== 'correct')
         throw Error('The solution is not correct.');
-      for (const input of assessment.inputs) {
-        if (input.kind !== 'math') continue;
+      const mathematicalFields = assessment.inputs.flatMap((input) =>
+        input.kind === 'math'
+          ? [input]
+          : input.kind === 'interval'
+            ? ['lower', 'upper'].map((side) => ({
+                id: input.id + '.' + side,
+                label: input.label + ' ' + side + ' endpoint',
+              }))
+            : [],
+      );
+      for (const input of mathematicalFields) {
         const tex = String(assessment.solution[input.id]).replace(/^\$\$?|\$\$?$/g, '');
         katex.renderToString(tex, { throwOnError: true, strict: 'error' });
         const logical = assessment.requirements.some(
@@ -33,7 +42,7 @@ export function validateAcceptedAnswer(
         // Parser convenience syntax is not the app's mathematical notation.
         // These tokens otherwise render as unrelated letters or punctuation.
         if (
-          /(?<!\\)\b(?:forall|exists|notin)\b|->|!=/.test(tex) ||
+          /(?<!\\)\b(?:forall|exists|notin|infinity|infty)\b|->|!=/.test(tex) ||
           /(?<![\\A-Za-z])(?:sqrt|exp|sin|cos|tan|asin|acos|atan|ln|log|binom)\s*\(/.test(tex) ||
           /\^(?:\(|-\d|\d{2,})/.test(tex) ||
           (logical && /(?<!\\)[!|&]/.test(tex.replace(/\\exists\s*!/g, '\\exists')))

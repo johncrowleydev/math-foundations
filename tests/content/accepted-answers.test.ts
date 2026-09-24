@@ -121,6 +121,29 @@ test('the publication rule applies to numeric assessments without any formula va
   assert.throws(() => validateAcceptedAnswer(q, 'number'), /displayed accepted answer must pass/);
 });
 
+test('interval endpoints must also use rendered mathematical TeX', () => {
+  const q = question();
+  q.assessment.inputs = [{ id: 'range', kind: 'interval', label: 'Range' }];
+  q.assessment.requirements = [
+    {
+      id: 'range',
+      validator: 'interval',
+      fields: ['range.lower', 'range.upper', 'range.leftClosed', 'range.rightClosed'],
+      params: { lower: '2', upper: 'infinity', leftClosed: true, rightClosed: false },
+      description: 'The interval is correct.',
+    },
+  ];
+  q.assessment.solution = {
+    'range.lower': '2',
+    'range.upper': 'infinity',
+    'range.leftClosed': true,
+    'range.rightClosed': false,
+  };
+  assert.throws(() => validateAcceptedAnswer(q, 'interval'), /Use TeX notation/);
+  q.assessment.solution['range.upper'] = '\\infty';
+  assert.doesNotThrow(() => validateAcceptedAnswer(q, 'interval'));
+});
+
 test('choice reveals must identify an actual nonempty option; open questions need model answers', () => {
   const q = {
     answer: 'Explanation.',

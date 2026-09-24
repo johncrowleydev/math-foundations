@@ -80,7 +80,8 @@ claims of copied textbook exercises. Pinpoint assignments are in
 Reveals show complete accepted field values, with mathematical fields rendered
 using the app’s TeX renderer and a Copy TeX control containing the exact accepted
 source, followed by the explanation. Publication checks reject unrenderable TeX
-and parser shorthand such as bare `exists`, `!=`, and `sqrt(...)`. Multiple-choice reveals name the actual keyed option. Inline
+and parser shorthand such as bare `exists`, `!=`, and `sqrt(...)`. Interval
+endpoints receive the same TeX checks; infinite endpoints use `\infty`. Multiple-choice reveals name the actual keyed option. Inline
 quick checks use the same exercise renderer. The Review Library shows structured
 solutions as well.
 
