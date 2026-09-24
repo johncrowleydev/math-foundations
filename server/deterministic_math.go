@@ -360,7 +360,7 @@ type mathParser struct {
 
 func normalizeMath(s string) string {
 	s = strings.Trim(strings.TrimSpace(s), "$")
-	return strings.NewReplacer("\\left", "", "\\right", "", "\\dfrac", "\\frac", "\\tfrac", "\\frac", "\\cdot", "*", "\\times", "*", "×", "*", "·", "*", "−", "-", "–", "-", "÷", "/", "√", "sqrt", "\\lambda", "lambda", "λ", "lambda", "\\,", "", "\\!", "", "\\;", "", "\\ ", " ").Replace(s)
+	return strings.NewReplacer("\\left", "", "\\right", "", "\\dfrac", "\\frac", "\\tfrac", "\\frac", "\\cdot", "*", "\\times", "*", "×", "*", "·", "*", "−", "-", "–", "-", "÷", "/", "√", "sqrt", "\\lambda", "lambda", "λ", "lambda", "\\theta", "theta", "θ", "theta", "\\,", "", "\\!", "", "\\;", "", "\\ ", " ").Replace(s)
 }
 func mathTokens(s string) ([]string, error) {
 	s = normalizeMath(s)
@@ -643,6 +643,11 @@ func parseExact(s string) (exactNumber, error) {
 	return p.constant()
 }
 func stripMatrixMarkup(s string) string {
+	// Preserve row boundaries before normalizing TeX spacing: otherwise the
+	// second slash in a row break followed by a space becomes a space command.
+	// Whitespace following a TeX row break belongs to that separator, including
+	// a source newline; it must not introduce another empty row.
+	s = regexp.MustCompile(`\\\\\s*`).ReplaceAllString(s, ";")
 	s = strings.TrimSpace(normalizeMath(s))
 	for _, kind := range []string{"matrix", "pmatrix", "bmatrix", "vmatrix", "Bmatrix", "Vmatrix"} {
 		s = strings.ReplaceAll(s, "\\begin{"+kind+"}", "")

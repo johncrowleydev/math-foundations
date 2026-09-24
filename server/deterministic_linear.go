@@ -395,7 +395,7 @@ func checkLinear(r AssessmentRequirement, response StructuredResponse) (bool, er
 		}
 		return basisValid(a, v, p.Space, p.OriginalColumns)
 	case "affine-family":
-		if strings.EqualFold(strings.TrimSpace(xs[0]), "none") {
+		if enum(strings.ToLower(strings.Trim(strings.TrimSpace(xs[0]), "$")), "none", `\varnothing`, `\emptyset`, `\text{none}`) {
 			directions, e := matrixAnswer(xs[1], true)
 			if e != nil {
 				return false, e

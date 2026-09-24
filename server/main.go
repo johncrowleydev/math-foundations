@@ -36,12 +36,13 @@ type Record struct {
 	Conflicts []string  `json:"conflicts"`
 }
 type Mutation struct {
-	ID      string          `json:"id"`
-	Key     string          `json:"key"`
-	Base    int64           `json:"base"`
-	Payload json.RawMessage `json:"payload"`
-	Device  string          `json:"device"`
-	Resolve bool            `json:"resolve"`
+	ID       string          `json:"id"`
+	Key      string          `json:"key"`
+	Base     int64           `json:"base"`
+	Payload  json.RawMessage `json:"payload"`
+	Device   string          `json:"device"`
+	Resolve  bool            `json:"resolve"`
+	IfAbsent bool            `json:"ifAbsent,omitempty"`
 }
 type MediaStore interface {
 	Open(string) (*os.File, error)
@@ -158,6 +159,14 @@ func (s *Server) mutate(m Mutation) (Record, error) {
 	old, e := record(tx, m.Key)
 	if e != nil && e != sql.ErrNoRows {
 		return Record{}, e
+	}
+	// A legacy browser setting may initialize the shared preference, but must
+	// never replace a setting another device has already synchronized.
+	if m.IfAbsent && old.Revision > 0 {
+		if _, e = tx.Exec("INSERT INTO operations VALUES(?,?,?)", m.ID, string(request), m.Key); e != nil {
+			return Record{}, e
+		}
+		return old, tx.Commit()
 	}
 	// Assistance is monotonic evidence, even when stale devices submit different facts.
 	// Keep the original request hash above for retry/idempotency validation.

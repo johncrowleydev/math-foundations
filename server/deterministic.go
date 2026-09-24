@@ -22,6 +22,7 @@ type Assessment struct {
 		Incorrect string `json:"incorrect"`
 	} `json:"feedback"`
 	Evidence AssessmentEvidence `json:"evidence"`
+	Solution StructuredResponse `json:"solution,omitempty"`
 }
 type AssessmentEvidence struct {
 	Level             string   `json:"level"`

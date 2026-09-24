@@ -19,6 +19,17 @@ test('every former runtime generator has complete authored questions and paramet
   validateReviewVariantSources(sources, banks, templates);
 });
 
+test('concrete generated variants also reject missing accepted answers', () => {
+  const rows = structuredClone(banks);
+  const q = structuredClone(templates.find((t: any) => t.question.assessment).question);
+  delete q.assessment.solution;
+  rows['integer-witness-selection'].variants[0].question = q;
+  assert.throws(
+    () => validateReviewVariants(rows, templates),
+    /authored accepted answer is required/,
+  );
+});
+
 test('review banks reject missing cases, identity reordering, executable fields, placeholders and bad grading keys', () => {
   for (const mutate of [
     (rows: any) => {

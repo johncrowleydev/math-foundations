@@ -310,18 +310,8 @@ func TestPublishedDeterministicFixtures(t *testing.T) {
 	if root == "" {
 		root = ".."
 	}
-	raw, e := os.ReadFile(filepath.Join(root, "output/grading-catalog.json"))
-	if os.IsNotExist(e) {
-		t.Skip("run npm run content:build first")
-	}
-	if e != nil {
-		t.Fatal(e)
-	}
-	var catalog Catalog
-	if e = json.Unmarshal(raw, &catalog); e != nil {
-		t.Fatal(e)
-	}
-	if e = validateCatalogAssessments(catalog); e != nil {
+	catalog := publishedCatalog(t)
+	if e := validateCatalogAssessments(catalog); e != nil {
 		t.Fatal(e)
 	}
 	type answerFixture struct {

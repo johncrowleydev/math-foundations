@@ -10,7 +10,7 @@ import {
   reviewCoverage,
 } from '../src/reviewCatalog';
 import type { ReviewCatalogItem } from '../src/reviewTypes';
-import type { Curriculum } from '../src/types';
+import type { Curriculum, Question } from '../src/types';
 
 const fixed: ReviewCatalogItem = {
   id: 'witness-definition',
@@ -230,4 +230,39 @@ test('library starts with a distinct loading state and a Review return link', as
   assert.ok(html.includes('Loading review catalog…'));
   assert.ok(html.includes('Review Library'));
   assert.ok(html.includes('#/review/sets'));
+});
+
+test('library answer shows the accepted response alongside the explanation and tolerates old snapshots', async () => {
+  const { CatalogQuestion } = await import('../src/ReviewLibrary');
+  const question: Question = {
+    id: 1,
+    section: 'Synthetic',
+    instructions: 'Synthetic instructions',
+    answer: 'Synthetic explanation',
+    assessment: {
+      version: 1,
+      inputs: [
+        { id: 'first', kind: 'math', label: 'First field' },
+        { id: 'second', kind: 'text', label: 'Second field' },
+      ],
+      requirements: [],
+      feedback: { correct: '', incorrect: '' },
+      evidence: { level: 'production', interactionCost: 'low', inputCapabilities: ['math-text'] },
+      solution: { first: String.raw`\frac{1}{2}`, second: '0' },
+    },
+  };
+  const html = renderToStaticMarkup(createElement(CatalogQuestion, { question }));
+  assert.ok(html.includes('Accepted answer'));
+  assert.ok(
+    html.includes(String.raw`<annotation encoding="application/x-tex">\frac{1}{2}</annotation>`),
+  );
+  assert.ok(html.includes('Copy TeX'));
+  assert.ok(!html.includes('katex-error'));
+  assert.ok(html.includes('<span class="literal-answer-value">0</span>'));
+  assert.ok(html.includes('Synthetic explanation'));
+  assert.ok(!html.includes('<input'));
+  delete question.assessment!.solution;
+  const historical = renderToStaticMarkup(createElement(CatalogQuestion, { question }));
+  assert.ok(historical.includes('Synthetic explanation'));
+  assert.ok(!historical.includes('Accepted answer'));
 });

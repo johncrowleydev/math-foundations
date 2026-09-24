@@ -14,6 +14,8 @@ function enclosed(s: string, left: string, right: string): boolean {
 }
 export function splitValues(source: string): string[] {
   let s = source
+    // A source newline after a TeX row break does not start an empty row.
+    .replace(/\\\\\s*/g, ';')
     .trim()
     .replace(/^\$\$?|\$\$?$/g, '')
     .replace(/\\(?:left|right)/g, '')
@@ -47,6 +49,7 @@ export function splitValues(source: string): string[] {
 }
 export function parseMatrix(source: string): Exact[][] {
   let s = source
+    .replace(/\\\\\s*/g, ';')
     .trim()
     .replace(/^\$\$?|\$\$?$/g, '')
     .replace(/\\(?:left|right)/g, '')

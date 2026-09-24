@@ -64,7 +64,8 @@ export function validPresentation(value: unknown): boolean {
 }
 
 // Exact serialized identity avoids hash collisions and is only stored locally.
-// Display numbers/lesson placement do not change the response's meaning.
+// Display numbers, lesson placement, and accepted-answer examples do not change
+// the response's meaning. Keep legacy fingerprints identical when adding a solution.
 export function assessmentFingerprint(q: Question): string {
   const ordered = (value: unknown): unknown =>
     Array.isArray(value)
@@ -83,7 +84,9 @@ export function assessmentFingerprint(q: Question): string {
       math: q.math,
       table: q.table,
       choice: q.choice,
-      assessment: q.assessment,
+      assessment:
+        q.assessment &&
+        Object.fromEntries(Object.entries(q.assessment).filter(([key]) => key !== 'solution')),
     }),
   );
 }

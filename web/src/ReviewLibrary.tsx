@@ -82,7 +82,10 @@ export function ReviewLibrary({ data, lesson }: { data: Curriculum; lesson: stri
           <button onClick={() => setRequest((n) => n + 1)}>Retry catalog</button>
         </div>
       ) : !catalog ? (
-        <p role="status">Loading review catalog…</p>
+        <p className="review-loading" role="status">
+          <span className="spinner" aria-hidden="true" />
+          Loading review catalog…
+        </p>
       ) : (
         <>
           <section className="library-filter-panel" aria-label="Catalog filters">
@@ -509,6 +512,16 @@ export function CatalogQuestion({ question: q }: { question: Question }) {
       )}
       <div className="library-answer">
         <h4>Answer</h4>
+        {q.assessment?.solution && (
+          <div className="revealed-structured-answer">
+            <strong>Accepted answer</strong>
+            <StructuredAnswer
+              assessment={q.assessment}
+              response={q.assessment.solution}
+              acceptedValues
+            />
+          </div>
+        )}
         {q.answer ? (
           <Rich text={q.answer} />
         ) : (

@@ -44,3 +44,17 @@ The Go regression reproduces both failures with the preceding content and
 checks that the repair preserves due dates, issues compatible questions, and
 advances scheduling only after graded answers. The Review Library browser check
 captures `output/e2e/review-library/specification-interpretation.png`.
+
+## Integration with the current production release
+
+Before deployment, integrated production commit `c1a3123`, including the broader
+written-review repair and accepted-answer changes. Its written-review compiler
+uses current primary skills, so exercise 117's former interpretation target still
+requires this repair. The two added questions and separate recognition objective
+remain the only curriculum differences from that production release.
+
+Repeated the four exact artifact-hash reconstructions above against production's
+inspected compatibility records. The grading-version reconstruction additionally
+includes the unchanged compiled `reviewQuestions` map, as required by the current
+build. The deterministic audit again differs only in catalog version. The Go
+regression now uses the shared `publishedCatalog` fixture introduced on main.

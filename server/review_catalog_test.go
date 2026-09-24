@@ -105,17 +105,8 @@ func TestPublishedReviewCatalogPlanningAndDeterministicGrading(t *testing.T) {
 }
 
 func TestPublishedDoubleNegationReviewUsesRecognitionChoices(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build to test the published catalog")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
 	g := reviewFixture(t)
-	if err = json.Unmarshal(raw, &g.catalog); err != nil {
-		t.Fatal(err)
-	}
+	g.catalog = publishedCatalog(t)
 	found := false
 	for _, item := range g.reviewCatalog().Items {
 		if item.OriginalExercise != "propositional-logic-55" {

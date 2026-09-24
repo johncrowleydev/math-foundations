@@ -66,6 +66,44 @@ version and the attempt inventory. Mutations are idempotent by operation ID;
 revisioned records retain conflicting versions. Media uploads are addressed and
 verified by SHA-256. Grading and Review use their dedicated server routes.
 
+## GitHub Actions deployment
+
+Run **Deploy Foundations** from the Actions tab on `main`, or use
+`gh workflow run deploy.yml --ref main`. Deployment starts immediately without
+waiting for **Foundations checks**. CI runs independently. Deployments are manual,
+serialized, and refuse branch builds and commits superseded on `main` before
+upload.
+
+The `production` environment uses repository secrets `DEPLOY_SSH_KEY` (a
+dedicated deployment SSH private key) and `DEPLOY_KNOWN_HOSTS` (the verified
+server host key), plus repository variables `DEPLOY_HOST` and `DEPLOY_USER`.
+Repository secrets `JC_DEV_AWS_ACCESS_KEY_ID` and
+`JC_DEV_AWS_SECRET_ACCESS_KEY` provide permission to authorize and revoke
+security-group ingress on `sg-0a25b825526a4d0f0` in `us-east-1`, matching Helix
+Academy's deployment connection to the same host. Immediately before upload,
+the workflow allows TCP port 22 from the runner's validated IPv4 address only
+(`/32`). An always-run cleanup step revokes that rule after success or failure.
+If the runner is forcibly terminated before cleanup, remove the temporary rule
+manually; do not remove the workstation's existing SSH rule.
+
+The SSH account needs noninteractive sudo for the existing installer. Never
+put server account passwords or provider configuration into the workflow.
+
+The workflow builds an ARM64 backend together with the web bundle and catalog,
+creates and verifies a database/media recovery point, and invokes the existing
+installer. It retains previous releases, catalogs, and the weekly backup timer.
+Private rollback records under `/var/lib/math-foundations/deployments/` identify
+the previous release and matching `predeploy-*` recovery point. These recovery
+points are operator-managed and are not pruned by the weekly job.
+
+Public `/deployment.json` identifies the deployed Git commit and Actions run.
+Automated checks verify this marker, the web response, service/timer state,
+nginx configuration, and rejection of unauthenticated and bearer-only API
+requests. They do not verify authenticated learner data; complete the account,
+media, and offline checks below after deployment. Failed installation or health
+checks require inspection and the documented rollback procedure; the workflow
+does not automatically restore a database or assume older schema compatibility.
+
 ## Build and deploy
 
 The installer in [server/deploy/install.sh](../server/deploy/install.sh) targets

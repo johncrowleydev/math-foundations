@@ -44,6 +44,7 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
   let offline = false;
   let heldReview;
   let submissions = 0;
+  let summaryRequests = 0;
   function summary() {
     return {
       due: covered ? 2 : 3,
@@ -75,6 +76,7 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
     if (path.endsWith('/auth/session'))
       body = { email: 'synthetic-progress@example.test', expires: now + day };
     else if (path.endsWith('/review')) {
+      summaryRequests++;
       if (heldReview) await heldReview;
       body = summary();
     } else if (path.endsWith('/attempts') && request.method() === 'POST') {
@@ -127,7 +129,7 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
   }
 
   await page.goto(baseURL + '/#/review/propositional-logic');
-  await review.getByRole('button', { name: 'Start Regular review', exact: true }).waitFor();
+  await review.getByRole('button', { name: 'Start review', exact: true }).waitFor();
   await page.evaluate(async (saved) => {
     const { retainReviewSession } = await import('/src/reviewApi.ts');
     await retainReviewSession(saved);
@@ -137,12 +139,15 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
   heldReview = new Promise((resolve) => {
     releaseReview = resolve;
   });
+  const beforeRestore = summaryRequests;
   await page.reload();
   await atTask(2);
-  await review.getByText('Saved review plan', { exact: false }).waitFor();
+  await review.getByText('Showing review status', { exact: false }).waitFor();
   assert.ok(heldReview, 'Saved work renders while the online summary request is still pending');
   heldReview = undefined;
   releaseReview();
+  await review.locator('.review-loading').waitFor({ state: 'hidden' });
+  assert.equal(summaryRequests - beforeRestore, 1, 'Restoring graded work requests one summary');
   await review.getByRole('button', { name: 'Skip for now →', exact: true }).click();
   await atTask(3);
   const editor = review.getByRole('textbox', { name: 'Answer editor', exact: true });
@@ -195,7 +200,7 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
   offline = true;
   await page.reload();
   await atTask(4);
-  await review.getByText('Saved review plan', { exact: false }).waitFor();
+  await review.getByText('Showing review status', { exact: false }).waitFor();
   assert.equal(
     (await savedState()).draft.text,
     draft,
@@ -203,7 +208,7 @@ await withBrowser('review-session-progress', async ({ page, baseURL, directory }
   );
   offline = false;
   await review.getByRole('button', { name: 'Skip for now →', exact: true }).click();
-  await review.getByRole('button', { name: 'Revisit tasks', exact: true }).click();
+  await review.getByRole('button', { name: 'Revisit questions', exact: true }).click();
   await atTask(1);
   await review.getByText('Previously completed synthetic response.', { exact: true }).waitFor();
   const retained = await savedState();

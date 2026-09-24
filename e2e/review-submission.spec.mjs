@@ -118,7 +118,7 @@ try {
   const review = page.locator('.review-page');
   async function focused(mode, lesson, concept, skill) {
     const overview = review.getByRole('button', { name: 'Back to overview', exact: true });
-    const end = review.getByRole('button', { name: 'End session', exact: true });
+    const end = review.getByRole('button', { name: /^(End|Close) session$/ });
     if (await overview.isVisible()) {
       await overview.click();
       // Pause persists the session before rendering this action. An immediate

@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"os"
 	"reflect"
 	"strings"
 	"testing"
@@ -13,19 +12,10 @@ import (
 // depth. Its interpretation choice is now supporting evidence, but learners'
 // already-due targets must still have a question that can satisfy that depth.
 func TestPublishedReviewCoveragePreservesHistoricalInterpretation(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build to test the published catalog")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
 	for _, concept := range []string{"quantified-specification", "quantifier-negation"} {
 		t.Run(concept, func(t *testing.T) {
 			g := reviewFixture(t)
-			if err := json.Unmarshal(raw, &g.catalog); err != nil {
-				t.Fatal(err)
-			}
+			g.catalog = publishedCatalog(t)
 			meta, _ := json.Marshal(map[string]any{
 				"concepts": []map[string]string{{"concept": concept, "role": "primary"}},
 				"skills":   []map[string]string{{"skill": "interpret", "role": "primary"}},
@@ -77,20 +67,11 @@ func TestPublishedReviewCoveragePreservesHistoricalInterpretation(t *testing.T) 
 }
 
 func TestReviewCoveragePublishedFactoring(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build to test the published catalog")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
 	for _, kind := range []string{"scheduled-review", "focused-practice"} {
 		for _, first := range []string{"transform", "justify"} {
 			t.Run(kind+"/"+first+" due first", func(t *testing.T) {
 				g := reviewFixture(t)
-				if err := json.Unmarshal(raw, &g.catalog); err != nil {
-					t.Fatal(err)
-				}
+				g.catalog = publishedCatalog(t)
 				exercises := map[string]json.RawMessage{}
 				for _, id := range []string{"propositional-logic-108", "propositional-logic-109"} {
 					if len(g.catalog.Exercises[id]) == 0 {

@@ -22,8 +22,16 @@ After checking changed claims against the cited passages, update only the corres
 | TeX catalog                            | `sourceHash({ syntax, typing })`             |
 | Review template                        | `sourceHash(template)`                       |
 | Complete review variant bank           | `sourceHash(reviewVariants[id])`             |
+| Compiled written review question       | `sourceHash(reviewQuestions[exerciseKey])`   |
 
 Use the candidate published content objects from `tools/content/build.ts`; do not hash stale output from before an edit. Review source assignments must match their template's `sourceIds`. The builder has no auto-approve or skip-validation flag. A digest documents the inspected content version; it cannot prove that a citation supports a claim. Human/editorial source inspection remains necessary.
+
+Written review questions compile from canonical exercises before response-format
+conversion, with instructions and explicit corrections in
+`content/written-review.json`. Inspect the complete resulting question, including
+the answer and any table, before recording its separate `reviewQuestions` entry.
+Its sources must match the original exercise's practice-group assignment, which
+also supplies the collapsed citation details in Review.
 
 Run `npm run content:build`, `npm test`, and `npm run web:build`. Citation metadata is a separate bundled `sources.json`; it does not change exercise IDs, submitted context, grades, or grading content versions. Offline readers can open bibliographic details. Opening the external text requires connectivity.
 

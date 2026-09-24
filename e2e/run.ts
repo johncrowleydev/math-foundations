@@ -20,12 +20,16 @@ const available = (await readdir(join(root, 'e2e')))
 const candidates = available.filter(
   (file) => names.length === 0 || names.includes(file.replace(/\.spec\.(ts|mjs)$/, '')),
 );
-// Start the longest checks first, based on CI timings, to avoid a long tail.
+// Start the longest checks first. With production React the catalog-wide checks
+// dominate, so put them on opposite shards before the shorter Review checks.
 const longest = [
-  'review-submission',
   'review-library',
-  'review',
   'deterministic',
+  'offline',
+  'review-submission',
+  'mdx',
+  'revise-failed-grading',
+  'stale-submission',
   'grading-toasts',
 ];
 const priority = (file: string) => {
@@ -61,6 +65,9 @@ const results = await runWithWorkers(selected, workers, async (file) => {
         // already isolated per spec. Vite's writable dependency cache must be too.
         env: {
           ...process.env,
+          // Match the shipped React runtime while retaining Vite source imports
+          // for fixture setup. Development JSX diagnostics dominate these checks.
+          NODE_ENV: 'production',
           FOUNDATIONS_VITE_CACHE_DIR: join(root, 'output/e2e/.vite', file),
         },
       });

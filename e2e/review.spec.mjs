@@ -236,8 +236,8 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
   }
   async function overview() {
     await review.getByRole('button', { name: 'Back to overview', exact: true }).click();
-    await review.getByRole('button', { name: 'End session', exact: true }).click();
-    await review.getByRole('button', { name: 'Start Regular review', exact: true }).waitFor();
+    await review.getByRole('button', { name: /^(End|Close) session$/ }).click();
+    await review.getByRole('heading', { name: 'Focused practice', exact: true }).waitFor();
   }
   async function waitForAttemptUpload(id) {
     await page.waitForFunction(async (id) => {
@@ -252,9 +252,9 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
   }
   try {
     await page.goto(baseURL + '/#/review/propositional-logic');
-    await review.getByRole('button', { name: 'Start Quick review', exact: true }).waitFor();
+    await review.getByRole('button', { name: 'Quick review', exact: true }).waitFor();
     await screenshot('landing');
-    await review.getByRole('button', { name: 'Start Regular review', exact: true }).click();
+    await review.getByRole('button', { name: 'Start review', exact: true }).click();
     await review.getByLabel('Response format').waitFor();
     await review.getByText('Why am I seeing this?', { exact: true }).click();
     await screenshot('regular');
@@ -266,7 +266,7 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
       'Existing photo input remains available',
     );
     await overview();
-    await review.getByRole('button', { name: 'Start Quick review', exact: true }).click();
+    await review.getByRole('button', { name: 'Quick review', exact: true }).click();
     await review.getByRole('radiogroup', { name: 'Answer choices' }).waitFor();
     await screenshot('quick');
     await review.getByRole('radio', { name: 'A witness', exact: true }).check();
@@ -297,17 +297,25 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     );
     await review.getByRole('button', { name: 'Next →', exact: true }).click();
     await page
-      .getByText('You can stop here for today. Other work can wait for a later session.', {
-        exact: true,
-      })
+      .getByText(
+        'Your session is still open. Revisit its questions, or end the session to return to the overview. Your drafts and answers stay saved.',
+        {
+          exact: true,
+        },
+      )
       .waitFor();
     assert.deepEqual(
       targets.filter((t) => !t.quick).map((t) => t.dueAt),
       deepDueDates,
     );
     await screenshot('deferred');
-    await review.getByRole('button', { name: 'Return to overview', exact: true }).click();
-    await review.getByRole('button', { name: 'End session', exact: true }).click();
+    await review.getByRole('button', { name: /^(End|Close) session$/ }).click();
+    await review.getByRole('heading', { name: 'You’re caught up for now' }).waitFor();
+    assert.equal(
+      await review.getByRole('button', { name: 'Start review', exact: true }).count(),
+      0,
+    );
+    await screenshot('caught-up');
     await review.getByLabel('Lesson', { exact: false }).selectOption('propositional-logic');
     await review.getByLabel('Concept', { exact: false }).selectOption('existential-quantification');
     await review.getByLabel('Skill', { exact: false }).selectOption('recall');
@@ -327,16 +335,21 @@ await withBrowser('review', async ({ page, baseURL, directory }) => {
     // Assets remain online: this does not claim to test production service-worker caching.
     apiOffline = true;
     await page.reload();
-    await review.getByText('Saved review plan', { exact: false }).waitFor();
+    await review.getByText('Showing review status', { exact: false }).waitFor();
     await review.getByRole('radio', { name: 'A witness', exact: true }).check();
     await review.getByRole('button', { name: 'Submit', exact: true }).click();
-    const queued = await page.waitForFunction(async () => {
+    await page.waitForFunction(async () => {
       const storage = await import('/src/storage.ts');
-      return (await storage.all('outbox')).find(
+      return (await storage.all('outbox')).some(
         (op) => op.kind === 'attempt' && op.data.review?.kind === 'focused-practice',
       );
     });
-    const { id: queuedID } = await queued.jsonValue();
+    const queuedID = await page.evaluate(async () => {
+      const storage = await import('/src/storage.ts');
+      return (await storage.all('outbox')).find(
+        (op) => op.kind === 'attempt' && op.data.review?.kind === 'focused-practice',
+      ).id;
+    });
     assert.equal(submissions.length, 1, 'Offline response was retained locally');
     // sync() can return while a background sync is already busy. Observe this
     // exact request's acknowledgment and confirmed record, not just queue size.
