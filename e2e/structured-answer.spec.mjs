@@ -249,7 +249,7 @@ try {
   const exercise = () => page.locator('article.exercise:visible');
   const open = async (id) => {
     await page.goto(base + `/#/practice/propositional-logic/${id}`);
-    await exercise().locator('.structured-answer').waitFor();
+    await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   };
   await open(40);
   assert.equal(

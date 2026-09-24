@@ -132,14 +132,15 @@ try {
   await page.evaluate(
     () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
   );
+  // Revealed solutions are read-only; only editable answers depend on draft hydration.
   assert.equal(
-    await exercise().locator('.structured-answer').count(),
+    await exercise().locator('.structured-answer:not(.readonly-answer)').count(),
     0,
     'The legacy hydration effect must not expose an empty editor before initial restoration completes',
   );
   await exercise().getByText('Opening answer…', { exact: true }).waitFor();
   await page.evaluate(() => window.releaseDraftHydration());
-  await exercise().locator('.structured-answer').waitFor();
+  await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   const entry = JSON.parse(
     await readFile(join(root, 'content/deterministic-exercises.json'), 'utf8'),
   ).find((e) => e.lesson === 'linear-algebra-matrices' && e.id === 1);
@@ -258,7 +259,7 @@ try {
     'Repeated idle pauses must not publish another draft',
   );
   await page.reload();
-  await exercise().locator('.structured-answer').waitFor();
+  await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   await page.evaluate(() => window.releaseDraftHydration());
   // Releasing the read gate does not await React's restored draft render.
   await exercise().locator('.unsure-option input:checked').waitFor();
