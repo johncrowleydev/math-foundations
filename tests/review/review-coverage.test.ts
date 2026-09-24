@@ -5,6 +5,7 @@ import { compileWrittenReviewQuestions } from '../../tools/content/review-covera
 import type { EvidenceCatalog } from '../../web/src/evidenceTypes.js';
 import type { Assessment } from '../../shared/assessment.js';
 import { sourceHash, validateWrittenReviewSources } from '../../tools/content/sources.js';
+import type { AuthoredReviewTemplate } from '../../tools/content/review-templates.js';
 
 const original = {
   id: 1,
@@ -59,6 +60,27 @@ test('an uncovered skill fails the build instead of publishing an unanswerable r
   );
 });
 
+test('a shallow template declaration cannot cover a deeper target even with a deep assessment', () => {
+  const templates = [
+    {
+      concept: 'classification',
+      skill: 'justify',
+      evidenceLevel: 'production',
+      question: { assessment: { evidence: { level: 'reasoning' } } },
+    },
+    {
+      concept: 'classification',
+      skill: 'justify',
+      evidenceLevel: 'reasoning',
+      question: { assessment: { evidence: { level: 'recognition' } } },
+    },
+  ] as AuthoredReviewTemplate[];
+  assert.throws(
+    () => compileWrittenReviewQuestions([], [], evidence, templates),
+    /without compatible questions/,
+  );
+});
+
 test('open recall keeps its production requirement after conversion', () => {
   const recall = structuredClone(evidence);
   recall.exercises['logic-1'].skills = [{ skill: 'recall', role: 'primary' }];
@@ -94,6 +116,13 @@ test('published written representations are source-pinned separately from conver
       .map(([id, e]: [string, any]) => [id, e.reviewQuestion]),
   );
   assert.ok(Object.keys(questions).length > 0);
+  const written = await read('content/written-review.json');
+  for (const id of Object.keys(written.overrides)) {
+    assert.ok(
+      questions[id],
+      'Every written correction must reach a published review question: ' + id,
+    );
+  }
   validateWrittenReviewSources(sources, questions, publishedSources.targets);
   const key = Object.keys(questions)[0];
   assert.equal(sources.reviewQuestions[key].reviewedContentHash, sourceHash(questions[key]));

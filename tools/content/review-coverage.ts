@@ -92,7 +92,9 @@ export function compileWrittenReviewQuestions(
         : q.choice
           ? 1
           : depth(t.evidenceLevel);
-      record(available, key, actual);
+      // The scheduler also filters template declarations against the target's
+      // maximum required depth; a shallow declaration cannot cover a deeper one.
+      record(available, key, Math.min(actual, depth(t.evidenceLevel)));
     }
   }
   const missing = (key: string) => (available.get(key) ?? 0) < required.get(key)!;
