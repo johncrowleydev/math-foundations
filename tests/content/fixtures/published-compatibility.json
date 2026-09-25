@@ -16,36 +16,48 @@
   },
   "inspectedUpdates": {
     "content/tex-teaching.json": {
-      "sha256": "5141a399d1a77feb87f2c7f267d2a67a101c678679a8d3a534198630689cd3a8",
-      "commit": "3c1c641505659b985b592866726bfa674cd9cdf2",
-      "inspection": "3c1c641505659b985b592866726bfa674cd9cdf2:docs/accepted-answer-inspection.md",
-      "description": "The 3,282 structured exercise inspection fingerprints include verified accepted TeX responses and inspected prompt/hint changes. Each prior fingerprint was checked against the original published question first. Teaching prose, syntax requirements, placements, inspection notes and original deployment hashes are preserved."
+      "sha256": "ee03dcc5b96f2a429243979afa1680a7307079e52af6db40e94dd9511b247593",
+      "commit": "38401cc4dc32523b41edbafcec6f72a00ca21d3b",
+      "inspection": "38401cc4dc32523b41edbafcec6f72a00ca21d3b:docs/negated-unique-existence-inspection.md#production-integration",
+      "description": "Preserves deployed historical interpretation coverage and adds the single negated-uniqueness grading alternative with its inspected TeX hash and new content version.",
+      "previous": {
+        "sha256": "5141a399d1a77feb87f2c7f267d2a67a101c678679a8d3a534198630689cd3a8",
+        "commit": "3c1c641505659b985b592866726bfa674cd9cdf2",
+        "inspection": "3c1c641505659b985b592866726bfa674cd9cdf2:docs/accepted-answer-inspection.md",
+        "description": "The 3,282 structured exercise inspection fingerprints include verified accepted TeX responses and inspected prompt/hint changes. Each prior fingerprint was checked against the original published question first. Teaching prose, syntax requirements, placements, inspection notes and original deployment hashes are preserved."
+      }
     },
     "content/grading-version.json": {
-      "sha256": "7dbe8f68433580f20c1411611c2a3879d4ad9b23aaac38e7be80ddc640045199",
-      "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
-      "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
-      "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
+      "sha256": "5ce285a98ab9de69208aedb9696bfcb3479ceb45c7058c44e20ea59ddd5f90a1",
+      "commit": "38401cc4dc32523b41edbafcec6f72a00ca21d3b",
+      "inspection": "38401cc4dc32523b41edbafcec6f72a00ca21d3b:docs/negated-unique-existence-inspection.md#production-integration",
+      "description": "Preserves deployed historical interpretation coverage and adds the single negated-uniqueness grading alternative with its inspected TeX hash and new content version.",
       "previous": {
-        "sha256": "bb07146a5b4a933a4d39ddb94464fb3344df9d4de8728fedf884935374451dff",
-        "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
-        "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
-        "description": "Combined version includes PR38 verified accepted answers and PR37 written review questions. All parent question payloads and historical version aliases are preserved; semantic comparison is documented in the integration inspection.",
+        "sha256": "7dbe8f68433580f20c1411611c2a3879d4ad9b23aaac38e7be80ddc640045199",
+        "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
+        "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
+        "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
         "previous": {
-          "sha256": "379bf8d02dc4ecf454620f9a22aa83d5a1e7443c9b80fda28830b3192d6cfaa6",
-          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-          "description": "New content version for explicit verified accepted responses and clarified formula instructions; historical aliases unchanged.",
+          "sha256": "bb07146a5b4a933a4d39ddb94464fb3344df9d4de8728fedf884935374451dff",
+          "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
+          "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
+          "description": "Combined version includes PR38 verified accepted answers and PR37 written review questions. All parent question payloads and historical version aliases are preserved; semantic comparison is documented in the integration inspection.",
           "previous": {
-            "sha256": "0806b096630d53178d93f42e7da1f16c5071f15ee7d09fae26d9430e0bf74201",
-            "commit": "fb34e84",
-            "inspection": "fb34e84:docs/review-coverage-repair.md",
-            "description": "New content version includes 187 source-checked written review questions; existing lesson contracts and historical version alias unchanged.",
+            "sha256": "379bf8d02dc4ecf454620f9a22aa83d5a1e7443c9b80fda28830b3192d6cfaa6",
+            "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+            "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+            "description": "New content version for explicit verified accepted responses and clarified formula instructions; historical aliases unchanged.",
             "previous": {
-              "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
-              "commit": "f53e7b4",
-              "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
-              "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+              "sha256": "0806b096630d53178d93f42e7da1f16c5071f15ee7d09fae26d9430e0bf74201",
+              "commit": "fb34e84",
+              "inspection": "fb34e84:docs/review-coverage-repair.md",
+              "description": "New content version includes 187 source-checked written review questions; existing lesson contracts and historical version alias unchanged.",
+              "previous": {
+                "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
+                "commit": "f53e7b4",
+                "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+                "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+              }
             }
           }
         }
@@ -94,22 +106,34 @@
       }
     },
     "grading-catalog.json": {
-      "sha256": "ba83d9ded3f9ac760e4cb9223f6d1e131979eb063d81723ebbb6537ef79243aa",
-      "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
-      "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
-      "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
+      "sha256": "4c6c869a2d2a2fc4859c139676b80bf5407f45abf1b9d765b83270c0eccba525",
+      "commit": "38401cc4dc32523b41edbafcec6f72a00ca21d3b",
+      "inspection": "38401cc4dc32523b41edbafcec6f72a00ca21d3b:docs/negated-unique-existence-inspection.md#production-integration",
+      "description": "Preserves deployed historical interpretation coverage and adds the single negated-uniqueness grading alternative with its inspected TeX hash and new content version.",
       "previous": {
-        "sha256": "d06682d2fdad61a83e7f2e1899885bc2cd1169b666c12cf39b0fc7e2d4fe8ef5",
-        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-        "description": "Verified accepted responses and clarified input instructions included in the published grading catalog; exercise IDs, requirements, expected answers, fixtures and archived version aliases preserved."
+        "sha256": "ba83d9ded3f9ac760e4cb9223f6d1e131979eb063d81723ebbb6537ef79243aa",
+        "commit": "d3d1b6b0dc59ed818e4e6f4396aa814621092444",
+        "inspection": "d3d1b6b0dc59ed818e4e6f4396aa814621092444:tests/content/fixtures/review-coverage-inspection.md#integration-with-the-current-production-release",
+        "description": "Two written interpretation questions restore historical production targets; nested negation choices retain a separate recognition objective. Exact reconstruction preserves the prior production artifact. All newer written-review and accepted-answer changes remain intact.",
+        "previous": {
+          "sha256": "d06682d2fdad61a83e7f2e1899885bc2cd1169b666c12cf39b0fc7e2d4fe8ef5",
+          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+          "description": "Verified accepted responses and clarified input instructions included in the published grading catalog; exercise IDs, requirements, expected answers, fixtures and archived version aliases preserved."
+        }
       }
     },
     "content/notebook.json": {
-      "sha256": "a649c86a28f6e8960aa6b61bb6a67ce24918e45a96651475fb1c46ae878db02d",
-      "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-      "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-      "description": "All 3,282 structured lesson assessments now include a complete accepted response; mathematical fields use standard TeX. Thirty-one formula prompts/instructions clarified, TeX input hints updated, and an offline contract index added for frozen reviews. Exercise identities, expected answers, fixtures, placements and grading requirements preserved."
+      "sha256": "bfdacccb44c9d6cf7e5c2db168e4e4b3d9d24b82b8db73812db5a702670fe9f4",
+      "commit": "38401cc4dc32523b41edbafcec6f72a00ca21d3b",
+      "inspection": "38401cc4dc32523b41edbafcec6f72a00ca21d3b:docs/negated-unique-existence-inspection.md#production-integration",
+      "description": "Preserves deployed historical interpretation coverage and adds the single negated-uniqueness grading alternative with its inspected TeX hash and new content version.",
+      "previous": {
+        "sha256": "a649c86a28f6e8960aa6b61bb6a67ce24918e45a96651475fb1c46ae878db02d",
+        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+        "description": "All 3,282 structured lesson assessments now include a complete accepted response; mathematical fields use standard TeX. Thirty-one formula prompts/instructions clarified, TeX input hints updated, and an offline contract index added for frozen reviews. Exercise identities, expected answers, fixtures, placements and grading requirements preserved."
+      }
     },
     "content/teaching.json": {
       "sha256": "6af406e5bfcfb0de06ab54ab1b00cad33695c0cd6d4f87f4af70d52b5cd15610",
