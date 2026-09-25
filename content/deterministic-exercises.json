@@ -21284,6 +21284,7 @@
           "fields": ["formula"],
           "params": {
             "expected": "(!exists x in Z S(x))|exists x in Z exists y in Z (S(x)&S(y)&x!=y)",
+            "alternatives": ["!exists! x in Z S(x)"],
             "domains": ["Z"],
             "predicates": {
               "S": 1
@@ -21306,6 +21307,78 @@
       }
     },
     "fixtures": [
+      {
+        "response": {
+          "formula": "\\neg(\\exists!u\\,S(u))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "¬(∃!v S(v))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "not exists! u in Z S(u)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "\\neg\\exists!z\\in\\mathbb{Z}\\; S(z)"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "not exists u (S(u) and forall v (S(v) -> v = u))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "forall u (S(u) -> exists v (S(v) and v != u))"
+        },
+        "verdict": "correct"
+      },
+      {
+        "response": {
+          "formula": "exists! u S(u)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "exists! u not S(u)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "exists u exists v (S(u) and S(v) and u != v)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "forall u forall v ((S(u) and S(v)) -> u = v)"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "not exists u (S(u) and forall v (S(v) -> v != u))"
+        },
+        "verdict": "incorrect"
+      },
+      {
+        "response": {
+          "formula": "not exists! u in R S(u)"
+        },
+        "error": true
+      },
       {
         "response": {
           "formula": "(!exists x in Z S(x))|exists x in Z exists y in Z (S(x)&S(y)&x!=y)"
