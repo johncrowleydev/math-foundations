@@ -436,6 +436,7 @@ try {
     ['recurrence-relations', 36, 'recurrence-desktop', 1440],
     ['sets-and-set-operations', 1, 'finite-set-phone', 390],
     ['predicates-and-quantifiers', 83, 'finite-model-phone', 390],
+    ['proof-by-contradiction', 6, 'negated-unique-existence-phone', 390],
     ['asymptotic-growth', 34, 'truth-and-value-phone', 390],
     ['linear-algebra-bases', 23, 'basis-desktop', 1440],
     ['linear-algebra-systems', 43, null, 390],
@@ -474,6 +475,11 @@ try {
       await exercise().getByRole('button', { name: 'Try again', exact: true }).click();
     }
     const typed = { ...responseFor(slug, id, true) };
+    if (slug === 'proof-by-contradiction' && id === 6) {
+      // Negating unique existence is equivalent to zero or multiple solutions.
+      // Rename the bound variable and use the integer domain supplied by the prompt.
+      typed.formula = String.raw`\neg(\exists!u\,S(u))`;
+    }
     if (name?.startsWith('probability-')) {
       // These selected exercises explicitly ask for four decimal places.
       for (const requirement of q.assessment.requirements)
@@ -552,6 +558,7 @@ try {
       await first.fill('2');
     }
     await submit();
+    if (name === 'negated-unique-existence-phone') await shot(name + '-correct');
     if (offlineCases.has(name)) {
       await page.reload();
       await exercise().getByText('Correct', { exact: true }).waitFor();
