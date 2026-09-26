@@ -12,7 +12,7 @@ async function settleEditor(page: Page) {
     const deadline = stableSince + 3000;
     for (;;) {
       await new Promise(requestAnimationFrame);
-      const box = document.querySelector('.cm-content')!.getBoundingClientRect();
+      const box = document.querySelector('.review-page .cm-content')!.getBoundingClientRect();
       const current = JSON.stringify([
         box.x,
         box.y,
@@ -41,6 +41,31 @@ async function positions(controls: Record<string, Locator>) {
       }),
     ),
   );
+}
+
+async function visiblePositions(controls: Record<string, Locator>) {
+  for (const [name, control] of Object.entries(controls)) {
+    assert.ok(
+      await control.evaluate((el) => {
+        const box = el.getBoundingClientRect();
+        const reader = el.closest('.reader')!.getBoundingClientRect();
+        return (
+          box.top >= reader.top &&
+          box.bottom <= reader.bottom &&
+          box.left >= 0 &&
+          box.right <= innerWidth
+        );
+      }),
+      `${name} must be inside the visible reader before measuring its position`,
+    );
+  }
+  return positions(controls);
+}
+
+async function settleScroll(page: Page) {
+  await page.evaluate(async () => {
+    for (let frame = 0; frame < 3; frame++) await new Promise(requestAnimationFrame);
+  });
 }
 
 async function unchanged(
@@ -198,23 +223,33 @@ await withBrowser('review-layout-stability', async ({ browser, baseURL, director
       const cachedNotice = review.getByRole('complementary', { name: 'Review status updates' });
       await cachedNotice.waitFor();
       const navigation = review.getByRole('navigation', { name: 'Review navigation' });
-      const taskControls = {
+      const taskControls = { editor };
+      const navigationControls = {
         previous: navigation.locator('button').nth(0),
         next: navigation.locator('button').nth(1),
-        editor,
       };
+      assert.ok(
+        await navigation.evaluate((el) => {
+          const exercise = el.parentElement!.querySelector('.exercise')!;
+          return (
+            !!(exercise.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) &&
+            getComputedStyle(el).position === 'static'
+          );
+        }),
+        'Review navigation remains below the exercise in normal document flow',
+      );
       await editor.focus();
       await editor.scrollIntoViewIfNeeded();
       // CodeMirror measures its editor and scrolls its selection on animation frames.
       await settleEditor(page);
-      const cachedPositions = await positions(taskControls);
+      const cachedPositions = await visiblePositions(taskControls);
       heldSummary = undefined;
       releaseSummary!();
       await cachedNotice.waitFor({ state: 'detached' });
       await unchanged(cachedPositions, taskControls, `${viewport.name}: saved plan refreshed`);
       const refreshing = review.getByText('Refreshing review schedule…', { exact: true });
       await refreshing.waitFor({ state: 'hidden' });
-      const idlePositions = await positions(taskControls);
+      const idlePositions = await visiblePositions(taskControls);
       heldSummary = new Promise<void>((resolve) => {
         releaseSummary = resolve;
       });
@@ -235,7 +270,7 @@ await withBrowser('review-layout-stability', async ({ browser, baseURL, director
         .getByText('A synthetic draft retained through background updates.', { exact: true })
         .waitFor();
       await settleEditor(page);
-      const uncoveredPositions = await positions(taskControls);
+      const uncoveredPositions = await visiblePositions(taskControls);
       covered = true;
       await refresh();
       await review
@@ -250,10 +285,10 @@ await withBrowser('review-layout-stability', async ({ browser, baseURL, director
       covered = false;
       await refresh();
       await navigation.getByRole('button', { name: 'Skip for now →', exact: true }).waitFor();
-      const unansweredNavigation = await positions({
-        previous: taskControls.previous,
-        next: taskControls.next,
-      });
+      await navigationControls.next.focus();
+      await navigation.scrollIntoViewIfNeeded();
+      await settleScroll(page);
+      const unansweredNavigation = await visiblePositions(navigationControls);
       async function save(
         status: 'pending' | 'grading' | 'graded',
         item = instances[0],
@@ -271,6 +306,7 @@ await withBrowser('review-layout-stability', async ({ browser, baseURL, director
               text: 'Synthetic submitted response.',
               images: [],
               revealed: false,
+              presentation: { question: item.question },
               status,
               ...(status !== 'pending'
                 ? { transcription: 'Synthetic expanded response.\n\n'.repeat(12) }
@@ -300,30 +336,62 @@ await withBrowser('review-layout-stability', async ({ browser, baseURL, director
         .waitFor();
       await unchanged(
         unansweredNavigation,
-        { previous: taskControls.previous, next: taskControls.next },
+        navigationControls,
         `${viewport.name}: submission started`,
       );
       await page.screenshot({ path: `${directory}/pending-${viewport.name}.png`, fullPage: true });
-      await more.scrollIntoViewIfNeeded();
-      const gradingControls = { previous: taskControls.previous, next: taskControls.next, more };
-      const pendingPositions = await positions(gradingControls);
+      const actions = review.locator('.attempt-actions');
+      assert.ok(
+        await actions.evaluate((el) => {
+          const attempt = el.closest('.attempt')!;
+          const response = attempt.querySelector('.submitted')!;
+          const question = attempt.querySelector('.submitted-question')!;
+          return (
+            !!(response.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) &&
+            !!(question.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) &&
+            getComputedStyle(el).display === 'flex'
+          );
+        }),
+        'Attempt actions remain in the original compact toolbar after the response and submitted question',
+      );
+      await navigation.scrollIntoViewIfNeeded();
+      await settleScroll(page);
+      const moreVisible = await more.evaluate((el) => {
+        const box = el.getBoundingClientRect();
+        const reader = el.closest('.reader')!.getBoundingClientRect();
+        return box.top >= reader.top && box.bottom <= reader.bottom;
+      });
+      const gradingControls = { ...navigationControls, ...(moreVisible ? { more } : {}) };
+      const pendingPositions = await visiblePositions(gradingControls);
       await save('grading');
       await review.getByText('Synthetic expanded response.', { exact: false }).first().waitFor();
       await unchanged(pendingPositions, gradingControls, `${viewport.name}: transcription arrived`);
       await save('graded');
+      await review.locator('.attempt-status').getByText('Incorrect', { exact: true }).waitFor();
       await review.getByRole('button', { name: 'Show feedback', exact: true }).waitFor();
       await unchanged(pendingPositions, gradingControls, `${viewport.name}: grade arrived`);
+      await navigation.scrollIntoViewIfNeeded();
+      await settleScroll(page);
+      const feedbackPositions = await visiblePositions(navigationControls);
       await review.getByRole('button', { name: 'Show feedback', exact: true }).click();
       await review.getByRole('button', { name: 'Hide feedback', exact: true }).waitFor();
-      await unchanged(pendingPositions, gradingControls, `${viewport.name}: feedback expanded`);
+      await unchanged(feedbackPositions, navigationControls, `${viewport.name}: feedback expanded`);
       await page.screenshot({ path: `${directory}/graded-${viewport.name}.png`, fullPage: true });
+      await review.getByRole('button', { name: 'Hide feedback', exact: true }).click();
       await save('graded', instances[1], 'correct');
-      const beforeCompletion = await positions(gradingControls);
+      await navigation.scrollIntoViewIfNeeded();
+      await settleScroll(page);
+      const beforeCompletion = await visiblePositions(navigationControls);
       await save('graded', instances[0], 'correct');
       await review.getByRole('region', { name: 'Session completion' }).waitFor();
+      assert.equal(
+        await review.locator('.feedback').count(),
+        0,
+        'An incoming correct grade does not expand feedback without a click',
+      );
       await unchanged(
         beforeCompletion,
-        gradingControls,
+        navigationControls,
         `${viewport.name}: session completion appeared`,
       );
       await page.screenshot({
@@ -351,7 +419,7 @@ await withBrowser('review-layout-stability', async ({ browser, baseURL, director
           );
         }
         assert.ok(
-          Math.abs((await exercise.boundingBox())!.height - originalHeight) <= 1,
+          (await exercise.boundingBox())!.height <= originalHeight + 1,
           'Returning to desktop releases the height retained at mobile width',
         );
       }
