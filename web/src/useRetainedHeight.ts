@@ -21,7 +21,7 @@ export function useRetainedHeight<T extends HTMLElement>(key: string, enabled = 
     };
     retainHeight();
     const observer = new ResizeObserver(retainHeight);
-    observer.observe(element);
+    observer.observe(element, { box: 'border-box' });
     return () => {
       observer.disconnect();
       element.style.minHeight = '';

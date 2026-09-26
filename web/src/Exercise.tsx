@@ -55,6 +55,7 @@ export function Exercise({
   const evidence = instance?.analytics || snapshot(data.evidence, key);
   const choiceGroup = useId();
   const card = useRetainedHeight<HTMLElement>(key, !!instance);
+  const answerStage = useRetainedHeight<HTMLDivElement>(key, !!instance);
   const clock = useRef(new EffortClock());
   const rev = useRevision();
   const draftRevision = useRevision('draft:' + key);
@@ -523,6 +524,29 @@ export function Exercise({
       </div>
     </div>
   );
+  const response = (
+    <>
+      {!draft ? (
+        <p>Opening answer…</p>
+      ) : editing ? (
+        editor
+      ) : (
+        last && (
+          <AttemptPanel
+            attempt={last}
+            stableLayout={!!instance}
+            choice={q.choice}
+            allowRecheck={!deterministic}
+            onFeedbackSeen={() => feedbackSeen(last.id)}
+            onRetry={() => void retry(last)}
+            resumeDraft={draft?.recovery}
+            canRetry={!correct && !pending}
+            onHistory={attempts.length > 1 ? () => setHistory(true) : undefined}
+          />
+        )
+      )}
+    </>
+  );
   return (
     <article
       ref={card}
@@ -585,24 +609,12 @@ export function Exercise({
           </thead>
         </table>
       )}
-      {!draft ? (
-        <p>Opening answer…</p>
-      ) : editing ? (
-        editor
+      {instance ? (
+        <div className="review-answer-stage" ref={answerStage}>
+          {response}
+        </div>
       ) : (
-        last && (
-          <AttemptPanel
-            attempt={last}
-            stableLayout={!!instance}
-            choice={q.choice}
-            allowRecheck={!deterministic}
-            onFeedbackSeen={() => feedbackSeen(last.id)}
-            onRetry={() => void retry(last)}
-            resumeDraft={draft?.recovery}
-            canRetry={!correct && !pending}
-            onHistory={attempts.length > 1 ? () => setHistory(true) : undefined}
-          />
-        )
+        response
       )}
       {scratchwork}
       {!!draft?.earlierWork?.length && (
@@ -807,12 +819,14 @@ function AttemptPanel({
     [cancelling, setCancelling] = useState(false),
     [error, setError] = useState('');
   useEffect(() => {
-    setFeedback(a.verdict === 'correct');
-  }, [a.verdict, g?.at]);
+    // Incoming grades must not expand content beneath the controls being used.
+    // Review feedback remains available through the existing feedback button.
+    if (!stableLayout) setFeedback(a.verdict === 'correct');
+  }, [a.verdict, g?.at, stableLayout]);
   const active = ['pending', 'grading', 'rechecking'].includes(a.status);
   const actions = (
     <div className="toolbar attempt-actions">
-      {!stableLayout && ['error', 'cancelled'].includes(a.status) && canRecheck && (
+      {['error', 'cancelled'].includes(a.status) && canRecheck && (
         <button
           className="primary"
           onClick={() =>
@@ -849,18 +863,6 @@ function AttemptPanel({
         </button>
         {more && (
           <div className="menu">
-            {stableLayout && ['error', 'cancelled'].includes(a.status) && canRecheck && (
-              <button
-                onClick={() => {
-                  setMore(false);
-                  void recheck(a, a.recheckReason || g?.reason || '').catch((e) =>
-                    setError(String(e)),
-                  );
-                }}
-              >
-                {a.verdict ? 'Retry recheck' : 'Retry grading'}
-              </button>
-            )}
             {[
               'Expand response',
               ...(!a.transcription && g?.transcription ? ['What the grader read'] : []),
@@ -949,7 +951,6 @@ function AttemptPanel({
           })}
         </time>
       </div>
-      {stableLayout && actions}
       {a.mode === 'structured' ? (
         <div className="submitted">
           <SubmittedStructuredAnswer attempt={a} />
@@ -988,7 +989,7 @@ function AttemptPanel({
           {error}
         </p>
       )}
-      {!stableLayout && actions}
+      {actions}
       {g && feedback && (
         <div className="feedback">
           <Rich
