@@ -3,7 +3,16 @@ import type { ReviewInstance } from './reviewTypes';
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
-import { all, emptyDraft, get, put, saveAttempt, saveMedia, useRevision } from './storage';
+import {
+  all,
+  emptyDraft,
+  get,
+  put,
+  saveAttempt,
+  saveDraftEffort,
+  saveMedia,
+  useRevision,
+} from './storage';
 import { connected, recheck, sync, cancelGrading } from './sync';
 import { Rich, Modal } from './Rich';
 import { TexEditor } from './TexEditor';
@@ -16,6 +25,7 @@ import { EffortClock } from './effort';
 import { expose } from './exposure';
 import { markAssistance, seenAssistance } from './assistance';
 import { StructuredAnswer, SubmittedStructuredAnswer } from './StructuredAnswer';
+import { resolveAcceptedAnswer } from '../../shared/acceptedAnswers';
 import {
   assessmentFingerprint,
   deterministicAttempt,
@@ -39,6 +49,8 @@ export function Exercise({
   const key = instance?.exercise || exerciseKey(lesson, q.id);
   const fingerprint = assessmentFingerprint(q);
   const deterministic = !!(q.choice || q.assessment);
+  const acceptedAnswer = q.assessment && resolveAcceptedAnswer(q.assessment, data.acceptedAnswers);
+  const correctChoice = q.choice?.options.find((option) => option.id === q.choice?.correctOption);
   const evidence = instance?.analytics || snapshot(data.evidence, key);
   const choiceGroup = useId();
   const card = useRef<HTMLElement>(null);
@@ -212,7 +224,20 @@ export function Exercise({
   editingRef.current = editing;
   useEffect(() => {
     const pause = () => {
-      if (latestDraft.current && editingRef.current) update(clock.current.pause());
+      if (!latestDraft.current || !editingRef.current || !clock.current.active) return;
+      const previous = latestDraft.current;
+      const effort = clock.current.pause();
+      latestDraft.current = { ...previous, ...effort };
+      setDraft(latestDraft.current);
+      writes.current = writes.current
+        .then(async () => {
+          await saveDraftEffort(key, previous, effort);
+          saveError.current = '';
+        })
+        .catch((e) => {
+          saveError.current = 'Draft save failed: ' + String(e);
+          setError(saveError.current);
+        });
     };
     const visibility = () => {
       if (document.hidden) pause();
@@ -714,6 +739,18 @@ export function Exercise({
         }}
       >
         <summary>Reveal answer</summary>
+        {q.assessment && acceptedAnswer && (
+          <div className="revealed-structured-answer">
+            <strong>Accepted answer</strong>
+            <StructuredAnswer assessment={q.assessment} response={acceptedAnswer} acceptedValues />
+          </div>
+        )}
+        {correctChoice && (
+          <div className="revealed-choice-answer">
+            <strong>Correct answer</strong>
+            <Rich text={correctChoice.text} />
+          </div>
+        )}
         <Rich
           text={q.answer}
           source={

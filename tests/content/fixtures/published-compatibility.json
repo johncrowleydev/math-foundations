@@ -16,45 +16,105 @@
   },
   "inspectedUpdates": {
     "content/tex-teaching.json": {
-      "sha256": "624986ef3fbf0fa021773d0aba0c1b54db0e9c3b63c9f71f0d211cd2ad642ada",
-      "commit": "58bf9be",
-      "inspection": "docs/audits/sustainable-practice-tex-inspection.md",
-      "description": "Eighteen inline-to-practice classifications plus twenty-six inspected context fingerprints: seventeen changed section labels, five quick-check teaching hashes, four changed prose contexts. Typing content, prerequisites and placement identities preserved. Exact old-field reconstruction and inspection are documented; original deployment hashes and comparator exclusions unchanged."
+      "sha256": "ee03dcc5b96f2a429243979afa1680a7307079e52af6db40e94dd9511b247593",
+      "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
+      "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
+      "description": "Only the inspected hash for proof-by-contradiction/6 changes after verifying its old hash and the sole assessment alternative. All other records are preserved.",
+      "previous": {
+        "sha256": "5141a399d1a77feb87f2c7f267d2a67a101c678679a8d3a534198630689cd3a8",
+        "commit": "3c1c641505659b985b592866726bfa674cd9cdf2",
+        "inspection": "3c1c641505659b985b592866726bfa674cd9cdf2:docs/accepted-answer-inspection.md",
+        "description": "The 3,282 structured exercise inspection fingerprints include verified accepted TeX responses and inspected prompt/hint changes. Each prior fingerprint was checked against the original published question first. Teaching prose, syntax requirements, placements, inspection notes and original deployment hashes are preserved."
+      }
     },
     "content/grading-version.json": {
-      "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
-      "commit": "f53e7b4",
-      "inspection": "docs/audits/learning-efficiency.md",
-      "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+      "sha256": "7010354058924ed4ea7d77f1d597495fb37dde5d5e0eb3ed7afff1a26bd28b92",
+      "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
+      "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
+      "description": "New grading version for the corrected unique-existence assessment; historical aliases are unchanged.",
+      "previous": {
+        "sha256": "bb07146a5b4a933a4d39ddb94464fb3344df9d4de8728fedf884935374451dff",
+        "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
+        "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
+        "description": "Combined version includes PR38 verified accepted answers and PR37 written review questions. All parent question payloads and historical version aliases are preserved; semantic comparison is documented in the integration inspection.",
+        "previous": {
+          "sha256": "379bf8d02dc4ecf454620f9a22aa83d5a1e7443c9b80fda28830b3192d6cfaa6",
+          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+          "description": "New content version for explicit verified accepted responses and clarified formula instructions; historical aliases unchanged.",
+          "previous": {
+            "sha256": "0806b096630d53178d93f42e7da1f16c5071f15ee7d09fae26d9430e0bf74201",
+            "commit": "fb34e84",
+            "inspection": "fb34e84:docs/review-coverage-repair.md",
+            "description": "New content version includes 187 source-checked written review questions; existing lesson contracts and historical version alias unchanged.",
+            "previous": {
+              "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
+              "commit": "f53e7b4",
+              "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+              "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+            }
+          }
+        }
+      }
     },
     "content/review-templates.json": {
-      "sha256": "5853e11cf6ca399a48ab015473879e25ab50973c18fdd94b812a4f53aaa3fe62",
-      "commit": "f53e7b4",
-      "inspection": "docs/audits/learning-efficiency.md",
-      "description": "Forty new fast terminology/strategy objectives appended. All 555 historical templates remain identical and ordered."
+      "sha256": "2f1b6f70a642bfccc589a545150acd985c4092a686037d35622ce96956b6a8f1",
+      "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+      "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+      "description": "All 922 structured review question records include complete accepted responses; formula hints use TeX and quantified-negation instructions explicitly request formulas. Template/variant IDs, expected answers and grading requirements preserved."
     },
     "content/sources.json": {
-      "sha256": "5c550a3819c4ede91a7a1a8ba158232de0e63fa69c9b2b3166c618ebe5d9a685",
-      "commit": "f53e7b4",
-      "inspection": "docs/audits/learning-efficiency.md",
-      "description": "Nine pinpoint citations added, seven existing source support/date descriptions updated, and source targets for six revised lessons and forty new reviews inspected."
+      "sha256": "ebdf9a50f652102c0f3f6916b5240cd40183e5066bb0abc9f02f57c8fbe8f03c",
+      "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
+      "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
+      "description": "Combines inspected accepted-answer citations with written-review coverage citations. Published bibliography, citation, and group-assignment differences from PR38 exactly match PR37; four written-question lists inherit PR38 group assignments without changing content inspection hashes.",
+      "previous": {
+        "sha256": "d321cb672e24bf1c6a3bd7d1bc396f590503ef3e4a42dcf75585c57d96c1bc16",
+        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+        "description": "Source coverage rechecked for added accepted responses and clarified instructions. Pinpoint assignments added for affected contradiction and induction groups; 71 lesson and 373 review-template digests updated after inspection.",
+        "previous": {
+          "sha256": "e14ca5070ccdfba85f577d6069d7d973739a5ebd476f128adf718670334e2af2",
+          "commit": "fb34e84",
+          "inspection": "fb34e84:docs/review-coverage-repair.md",
+          "description": "Inspected citation additions for restored written questions, NIST binary-tree definitions, and updated MDN empty-array support. Original published lesson content unchanged.",
+          "previous": {
+            "sha256": "5c550a3819c4ede91a7a1a8ba158232de0e63fa69c9b2b3166c618ebe5d9a685",
+            "commit": "f53e7b4",
+            "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+            "description": "Nine pinpoint citations added, seven existing source support/date descriptions updated, and source targets for six revised lessons and forty new reviews inspected."
+          }
+        }
+      }
     },
     "grading-catalog.json": {
-      "sha256": "f5a38e9bc66c7c910f51f9cb837111b237dafb20eda1d9470030686351ca5047",
-      "commit": "f53e7b4",
-      "inspection": "docs/audits/learning-efficiency.md",
-      "description": "Original question/assessment/analytics payloads and finite variant banks preserved. Six lessons teaching context changes, forty review records added, category/seconds added outside question payloads."
+      "sha256": "1585bf336a99dce1473aeb241e08363ac3733e7a140e1eb26dcc070f9a17503c",
+      "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
+      "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
+      "description": "Only proof-by-contradiction-6 gains the negated-unique-existence alternative. Every other contract and question is identical to c1a3123.",
+      "previous": {
+        "sha256": "d06682d2fdad61a83e7f2e1899885bc2cd1169b666c12cf39b0fc7e2d4fe8ef5",
+        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+        "description": "Verified accepted responses and clarified input instructions included in the published grading catalog; exercise IDs, requirements, expected answers, fixtures and archived version aliases preserved."
+      }
     },
     "content/notebook.json": {
-      "sha256": "8b2d14833bf89847454e9645f3b8e22848e4eb1e1a2696187520f3815d122dfd",
-      "commit": "f53e7b4",
-      "inspection": "docs/audits/learning-efficiency.md",
-      "description": "Six teaching documents and eighteen inline placements intentionally revised; seventeen display section labels change. All 4426 exercise identities and grading payloads preserved."
+      "sha256": "bfdacccb44c9d6cf7e5c2db168e4e4b3d9d24b82b8db73812db5a702670fe9f4",
+      "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
+      "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
+      "description": "Only one quantified assessment gains an alternative; its accepted-answer index key changes without changing the answer. All lesson prose, identities and placements are preserved.",
+      "previous": {
+        "sha256": "a649c86a28f6e8960aa6b61bb6a67ce24918e45a96651475fb1c46ae878db02d",
+        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+        "description": "All 3,282 structured lesson assessments now include a complete accepted response; mathematical fields use standard TeX. Thirty-one formula prompts/instructions clarified, TeX input hints updated, and an offline contract index added for frozen reviews. Exercise identities, expected answers, fixtures, placements and grading requirements preserved."
+      }
     },
     "content/teaching.json": {
       "sha256": "6af406e5bfcfb0de06ab54ab1b00cad33695c0cd6d4f87f4af70d52b5cd15610",
       "commit": "f53e7b4",
-      "inspection": "docs/audits/learning-efficiency.md",
+      "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
       "description": "Only formula context records in revised teaching change: 128 additions, two removed occurrences, 65 changed records. Existing references and figures unchanged."
     }
   }

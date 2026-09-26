@@ -33,6 +33,17 @@ test('review families publish without altering existing exercise identities', ()
   ]);
   assert.ok(grading.exercises['predicates-and-quantifiers-1']);
 });
+test('review templates and every authored variant require an accepted displayed solution', () => {
+  for (const variant of [false, true]) {
+    const rows = structuredClone(templates);
+    const row = rows.find((t: any) =>
+      variant ? t.variants?.some((q: any) => q.assessment) : t.question.assessment,
+    );
+    const q = variant ? row.variants.find((q: any) => q.assessment) : row.question;
+    delete q.assessment.solution;
+    assert.throws(() => validate(rows), /authored accepted answer is required/);
+  }
+});
 test('review authoring rejects duplicate IDs, unknown targets, invalid family payloads and answer keys', () => {
   const duplicate = structuredClone(templates);
   duplicate.push(duplicate[0]);

@@ -337,6 +337,7 @@ export function cleanMath(source: string): string {
     .replace(/\\operatorname\{(sqrt|binom|choose)\}/g, '$1')
     .replace(/√/g, 'sqrt')
     .replace(/\\lambda\b|λ/g, 'lambda')
+    .replace(/\\theta\b|θ/g, 'theta')
     .replace(/[{}]/g, (m) => (m === '{' ? '(' : ')'));
 }
 type Token = { value: string; pos: number };

@@ -1,0 +1,17 @@
+{
+  "instructions": "Write your answer and explain the reasoning that supports it.",
+  "overrides": {
+    "propositional-logic-1": {
+      "officialAnswer": "It is a [proposition](ref:proposition): the declarative statement has a definite [truth value](ref:truth-value). It is true because $7+5=12$."
+    },
+    "graph-theory-21": {
+      "prompt": "Which descriptions apply to $a,b,c,d,e$: walk, [trail](ref:trail), [path](ref:path), or [cycle](ref:cycle)? Give every applicable description and the length, and justify your classifications."
+    },
+    "linear-algebra-projections-51": {
+      "officialAnswer": "With $A=(1,2)^T$ and coefficient $x=1$, the output is $Ax=(1,2)^T=b$. The residual is $b-Ax=(0,0)^T$, whose dot product with $(1,2)^T$ is $0$. The squared error is $0$, the smallest possible value, so this is a least-squares solution."
+    },
+    "linear-algebra-eigenvalues-23": {
+      "officialAnswer": "The only eigenvalue is $1$, with algebraic multiplicity two because the characteristic polynomial is $(1-\\lambda)^2$. Since $A$ is the identity matrix, its eigenspace for $1$ is all of $\\mathbb R^2$, of dimension two. A basis of eigenvectors exists, so $A$ is diagonalizable."
+    }
+  }
+}

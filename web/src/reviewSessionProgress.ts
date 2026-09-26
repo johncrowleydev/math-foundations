@@ -39,16 +39,63 @@ export function nextReviewTaskIndex(
   fetchedAt: number | undefined,
   { resume = false } = {},
 ): number {
-  for (let index = start; index < session.instances.length; index++) {
-    const instance = session.instances[index];
+  const needsWork = (instance: ReviewInstance) => {
     if (
       resume &&
       attempts.some(
         (attempt) => attempt.exercise === instance.exercise && attempt.verdict === 'correct',
       )
     )
-      continue;
-    if (!reviewTargetCovered(session, instance, attempts, summary, fetchedAt)) return index;
+      return false;
+    return !reviewTargetCovered(session, instance, attempts, summary, fetchedAt);
+  };
+  for (let index = start; index < session.instances.length; index++) {
+    if (needsWork(session.instances[index])) return index;
+  }
+  if (resume) {
+    // A saved position may be past earlier skipped or unfinished questions.
+    // Reopening a session must not turn that position into a completion screen.
+    for (let index = 0; index < Math.min(start, session.instances.length); index++) {
+      if (needsWork(session.instances[index])) return index;
+    }
+    // Fully answered/covered sessions remain available for inspecting answers.
+    return Math.max(0, Math.min(start, session.instances.length - 1));
   }
   return session.instances.length;
+}
+
+// Session progress describes issued work, not mastery or the server's next plan.
+// Keep queued deterministic successes complete locally; their schedule updates
+// can still be waiting for synchronization.
+export function reviewSessionProgress(
+  session: ReviewSession,
+  attempts: Attempt[],
+  summary: ReviewSummary | undefined,
+  fetchedAt: number | undefined,
+) {
+  let completed = 0;
+  let awaitingGrading = 0;
+  let processing = 0;
+  for (const instance of session.instances) {
+    const history = attempts.filter((attempt) => attempt.exercise === instance.exercise);
+    const pending = history.some((attempt) =>
+      ['queued', 'pending', 'grading', 'rechecking'].includes(attempt.status),
+    );
+    if (pending) processing++;
+    if (
+      history.some((attempt) => attempt.verdict === 'correct') ||
+      reviewTargetCovered(session, instance, attempts, summary, fetchedAt)
+    )
+      completed++;
+    else if (pending) awaitingGrading++;
+  }
+  const total = session.instances.length;
+  return {
+    total,
+    completed,
+    awaitingGrading,
+    remaining: total - completed - awaitingGrading,
+    processing,
+    complete: total > 0 && completed === total,
+  };
 }

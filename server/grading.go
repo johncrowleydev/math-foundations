@@ -92,6 +92,7 @@ type ChoiceAssessment struct {
 type Grading struct {
 	active         sync.Map // job ID -> context.CancelFunc
 	server         *Server
+	reviewData     *reviewCatalogData
 	catalog        Catalog
 	catalogArchive string
 	key, endpoint  string
@@ -763,6 +764,8 @@ func configureGrading(s *Server) (*Grading, error) {
 	if endpoint == "" {
 		endpoint = "https://openrouter.ai/api/v1/chat/completions"
 	}
-	return &Grading{server: s, catalog: c, catalogArchive: os.Getenv("FOUNDATIONS_CATALOG_ARCHIVE"), key: key, endpoint: endpoint, client: &http.Client{Timeout: 120 * time.Second}}, nil
+	g := &Grading{server: s, catalog: c, catalogArchive: os.Getenv("FOUNDATIONS_CATALOG_ARCHIVE"), key: key, endpoint: endpoint, client: &http.Client{Timeout: 120 * time.Second}}
+	g.reviewData = buildReviewCatalogData(g.reviewTemplates())
+	return g, nil
 }
 func contentHash(b []byte) string { h := sha256.Sum256(b); return hex.EncodeToString(h[:]) }

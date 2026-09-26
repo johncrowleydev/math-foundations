@@ -3,26 +3,16 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"os"
 	"reflect"
 	"testing"
 )
 
 func TestReviewCoveragePublishedFactoring(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build to test the published catalog")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
 	for _, kind := range []string{"scheduled-review", "focused-practice"} {
 		for _, first := range []string{"transform", "justify"} {
 			t.Run(kind+"/"+first+" due first", func(t *testing.T) {
 				g := reviewFixture(t)
-				if err := json.Unmarshal(raw, &g.catalog); err != nil {
-					t.Fatal(err)
-				}
+				g.catalog = publishedCatalog(t)
 				exercises := map[string]json.RawMessage{}
 				for _, id := range []string{"propositional-logic-108", "propositional-logic-109"} {
 					if len(g.catalog.Exercises[id]) == 0 {

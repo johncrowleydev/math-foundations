@@ -20,6 +20,7 @@ function clean(source: string): string {
     .replace(/^\$\$?|\$\$?$/g, '')
     .replace(/\\(?:left|right)\b/g, '')
     .replace(/\\mathbb\{([NZQRDC])\}/g, ' $1 ')
+    .replace(/\\(?:cdot|times)\b/g, '*')
     .replace(/\\forall\b|∀/g, ' forall ')
     .replace(/\\exists\b|∃/g, ' exists ')
     .replace(/\\notin\b|∉/g, ' notin ')

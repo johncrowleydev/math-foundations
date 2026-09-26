@@ -1,25 +1,59 @@
-# Implementation contract
+# Deterministic assessment contract
 
-Question and trusted catalog context gain `assessment?: Assessment` (mutually exclusive with choice). Shared definitions are in `shared/assessment.ts`. Structured submissions use `mode: "structured"`, `response: StructuredResponse`; no text/media/ink scratchwork is sent. Server-owned `presentation?: {question: Question; assessment?: Assessment}` is returned from stored context (question includes assessment for normal snapshots); browser caches it offline. Drafts have `response?`, `assessmentFingerprint?`, `earlierWork?` while retaining existing text/strokes/photos. Fingerprint effective question plus assessment. Historical attempts and frozen Review use their stored definition.
+Choice and structured assessments use authored data and bounded validators in both the offline client and Go server. They never fall back to model grading. General attempts, history, and retry behavior are documented in [grading](grading.md); this guide covers authoring and implementation contracts.
 
-The shared TypeScript checker is `shared/deterministic.ts`: `validateAssessment(unknown): asserts value is Assessment`; `gradeAssessment(assessment, response): AssessmentResult` throws `InputError` for malformed/incomplete/unsupported syntax. Named validators are data only, with bounded JSON parameters. Go implements identical names/parameters; no evaluator scripts. Fixtures live in `tests/grading/fixtures/deterministic-fixtures.json`. Definition validation must reject unknown validators, invalid fields, absent requirements and invalid fixtures.
+## Canonical definitions
 
-Initial validators: `boolean` params `{expected: boolean[]}`; `term` `{accepted: string[], caseSensitive?: boolean}`; `selection` `{expected: string[]}`; `exact` `{expected: string[]}` (one exact arithmetic expression per field); `tuple` `{expected: string[], ordered?:boolean}` (one typed tuple field); `matrix` `{expected: string[][]}` (typed matrix or row-major scalar fields); `boolean-formula` `{expected:string, variables:string[], form?:"nnf"|"no-implication"|"contrapositive", structure?:string}`; `expression` `{expected:string, variables:string[], domain?:string[]}`. Additional bounded mathematical validators must be coordinated with root, with shared fixtures before use. Labels may contain inline math; use Rich rendering. Empty selection is an explicit [] value, absence is incomplete. Boolean false is an answer; null is blank. Interval has four generated scalar keys (see helper).
+Edit the existing JSON files directly:
 
-Evidence level belongs to each assessment, including variant-specific definitions. Preserve deeper existing target requirements and history. No deterministic retry/recheck/restoration can create model jobs. A deterministic question with wrong/unsupported submission mode fails rather than falling back. Catalog and deterministic readiness are independent of model-provider readiness.
+| Source                                              | Purpose                                                                                                            |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `content/choice-exercises.json`                     | Stable lesson/exercise identity, inspected source hash, rationale, options, correct option, and baseline feedback. |
+| `content/choice-feedback.json`                      | Per-option explanations, checked against the current prompt, answer, and option text; overrides baseline feedback. |
+| `content/knowledge-check-exercises.json`            | Stable exercise IDs for quick checks at their existing teaching locations.                                         |
+| `content/deterministic-exercises.json`              | Structured assessments for discrete mathematics.                                                                   |
+| `content/deterministic-linear.json`                 | Linear algebra assessments.                                                                                        |
+| `content/deterministic-algorithms.json`             | Algorithm-related assessments.                                                                                     |
+| `content/deterministic-calculus.json`               | Calculus assessments.                                                                                              |
+| `content/deterministic-probability-statistics.json` | Probability and statistics assessments.                                                                            |
 
-### Explicit numerical zero powers
+Dedicated Review definitions also embed assessments in their canonical JSON; see [Review authoring](review-system.md#authoring).
 
-The ordinary exact-arithmetic source parser returns input guidance when the
-parsed base and exponent both evaluate to zero, including `0^0` and
-`(2-2)^(3-3)`. The recurrence prompts `sequences-and-summations-18` and
-`recurrence-relations-8` explicitly require answers that do not rely on that
-notation; `9*0^0` and `7*0^0` must not bypass those instructions. This is a bounded
-input policy, not a claim that every mathematical context uses the same convention.
-Internal polynomial powers and symbolic `x^0` normalization retain their existing
-algebraic convention; nonzero constants raised to zero and `0!` remain supported.
+A structured exercise entry contains `lesson`, `id`, `sourceHash`, `rationale`, `assessment`, and `fixtures`. Optional `instructions`, `prompt`, and `answer` override the displayed task; an overridden answer must match correct feedback. Source hashes pin the original instructions, prompt, math, and answer. The build rejects unknown IDs, duplicate/conflicting grading methods, stale source hashes, invalid definitions, and mismatched fixtures. Reinspect the complete task and its sources before updating hashes; follow [source requirements](content-sources.md).
 
-### Calculus expressions and antiderivatives
+Preserve every requirement in the prompt: requested explanations, calculations, constructions, and proofs cannot be dropped to make an exercise deterministic. Keep stable lesson slugs, exercise IDs, quick-check placements, and evidence depth. Wrong choice feedback should explain the selected misconception and offer a useful next step; correct feedback should explain the accepted reasoning.
+
+Each structured definition needs accepted and rejected fixtures. A fixture contains `response` and exactly one expected outcome: `verdict: "correct"`, `verdict: "incorrect"`, or `error: true` for input guidance. Include malformed/incomplete input and consequential domain or boundary cases. Definitions and their fixtures are validated by `tools/content/deterministic-exercises.ts`; builds compile runtime output rather than generating canonical content.
+
+## Shared response model
+
+`shared/assessment.ts` defines `Assessment`, `AssessmentRequirement`, and `StructuredResponse`. An assessment has version `1`, inputs, requirements, correct/incorrect feedback, and evidence metadata. Each requirement names a validator, response field IDs, bounded JSON parameters, and a description; it may specify its own evidence level.
+
+| Input kind               | Response value                                                                                |
+| ------------------------ | --------------------------------------------------------------------------------------------- |
+| `text`, `math`, `select` | String; selections use authored option IDs.                                                   |
+| `boolean`                | Boolean; `false` is an answer and `null` is blank.                                            |
+| `multiselect`            | Array of option IDs; explicit `[]` is an empty answer, while absence is incomplete.           |
+| `grid`                   | Separate editable cell IDs with text/boolean values; given cells are presentation only.       |
+| `interval`               | Four generated fields: `<id>.lower`, `<id>.upper`, `<id>.leftClosed`, and `<id>.rightClosed`. |
+
+Labels support inline math. An exercise's `assessment` and `choice` are mutually exclusive. Structured submissions use `mode: "structured"` and `response`; text, media, and ink scratchwork are not submitted for grading. Drafts retain that scratchwork separately.
+
+The browser fingerprints the effective question and assessment. A changed definition preserves prior responses in `earlierWork` instead of reinterpreting them under new controls. Server-owned `presentation` returns the frozen question/assessment for history and offline caching. Historical attempts and issued Review questions retain their original definitions.
+
+Evidence distinguishes recognition, production, and reasoning, plus interaction cost and input capabilities. Variant-specific definitions retain their own evidence. Deterministic formatting must not lower a deeper Review target's required evidence.
+
+## Validator implementation
+
+`shared/deterministic.ts` provides `validateAssessment(unknown)` and `gradeAssessment(assessment, response)`. The latter returns a correct/incorrect result with requirement satisfaction, or throws `InputError` for malformed, incomplete, unsupported, or unresolved input. Input guidance does not create a mathematical attempt. The server implements the same validators in `server/deterministic*.go`, independently validates submissions, and rejects unsupported modes instead of sending them to a provider.
+
+Common validators include `boolean`, `term`, `selection`, `exact`, `tuple`, `matrix`, `boolean-formula`, and `expression`. The registry and its imported modules define the supported bounded validators for logic, sets, relations, graphs, linear algebra, sequences, recurrence, asymptotics, and calculus. Use an existing definition and shared fixtures as the parameter reference; validator names are data, never executable scripts.
+
+Implement a new validator in both TypeScript and Go before authoring content that uses it. Add conformance cases under `tests/grading/fixtures/`, including equivalent answers, true errors, unsupported syntax, and invalid definitions. Existing provider-trap tests cover submission, retry, Review, and restoration. Catalog readiness and deterministic readiness are independent of provider readiness.
+
+The exact-arithmetic parser returns input guidance for an explicitly numerical zero raised to zero, including expressions whose base and exponent both evaluate to zero. Symbolic `x^0`, nonzero constants raised to zero, and `0!` remain supported. This is the parser's bounded input policy, not a convention for every mathematical context.
+
+## Calculus expressions and antiderivatives
 
 The `calculus-expression` and `antiderivative` validators use the existing version-1
 assessment and one `math` field. They run offline in TypeScript and on the Go
@@ -109,7 +143,7 @@ This conservative boundary is relative to the immutable authored normal form;
 it is not a general-purpose theorem prover. Correct identities already covered
 by the exact normalizer remain accepted. No sampling or provider fallback is used.
 
-### Approximate numerical answers
+## Approximate numerical answers
 
 `approximate-number` uses one existing math field and params
 `{expected: string, tolerance: string, minimum?: string, maximum?: string}`.

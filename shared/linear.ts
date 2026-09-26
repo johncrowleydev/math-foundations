@@ -362,7 +362,9 @@ export function linearRequirement(r: AssessmentRequirement, response: Structured
                 : splitValues(value(response, r.fields[2]))
             ).map(parseExact)
           : [];
-      if (/^none$/i.test(point))
+      if (
+        /^(?:none|\\(?:varnothing|emptyset)|\\text\{none\})$/i.test(point.replace(/^\$|\$$/g, ''))
+      )
         return (
           !directions.length &&
           !free.length &&

@@ -39,6 +39,9 @@ const schema = z
     reviewVariants: z
       .record(text, z.object({ reviewedContentHash: text, sources: ids }).strict())
       .default({}),
+    reviewQuestions: z
+      .record(text, z.object({ reviewedContentHash: text, sources: ids }).strict())
+      .default({}),
     syntax: z.object({ reviewedContentHash: text, entries: z.record(text, ids) }).strict(),
   })
   .strict();
@@ -185,6 +188,7 @@ export async function loadSources(
   teaching: Teaching,
   reviewTemplates: { id: string; sourceIds: string[] }[] = [],
   reviewVariants: Record<string, unknown> = {},
+  reviewQuestions: Record<string, unknown> = {},
 ) {
   const [raw, syntax, typing] = await Promise.all(
     ['content/sources.json', 'content/tex-syntax.json', 'content/tex-teaching.json'].map(
@@ -192,5 +196,25 @@ export async function loadSources(
     ),
   );
   validateReviewVariantSources(raw, reviewVariants, reviewTemplates);
-  return validateSources(raw, lessons, teaching, syntax, typing, reviewTemplates);
+  const sources = validateSources(raw, lessons, teaching, syntax, typing, reviewTemplates);
+  validateWrittenReviewSources(raw, reviewQuestions, sources.targets);
+  return sources;
+}
+
+export function validateWrittenReviewSources(
+  raw: unknown,
+  questions: Record<string, unknown>,
+  targets: Record<string, string[]>,
+) {
+  const catalog = schema.parse(raw);
+  const ids = Object.keys(questions);
+  if (Object.keys(catalog.reviewQuestions).length !== ids.length)
+    throw Error('Source coverage mismatch: written review questions');
+  for (const id of ids) {
+    const inspected = catalog.reviewQuestions[id];
+    if (!inspected || inspected.reviewedContentHash !== sourceHash(questions[id]))
+      throw Error('Written review question sources need reinspection: ' + id);
+    if (JSON.stringify(inspected.sources) !== JSON.stringify(targets['exercise:' + id]))
+      throw Error('Written review question source assignment mismatch: ' + id);
+  }
 }

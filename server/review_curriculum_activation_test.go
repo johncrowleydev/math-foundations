@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"os"
 	"testing"
 )
 
@@ -10,17 +9,8 @@ import (
 // component. Replay activates on the target concept as well as explicit aliases,
 // so verify actual state rather than treating activationConcepts as a gate.
 func TestPublishedCurriculumReviewPrerequisiteActivation(t *testing.T) {
-	raw, err := os.ReadFile("../output/grading-catalog.json")
-	if os.IsNotExist(err) {
-		t.Skip("run npm run content:build first")
-	}
-	if err != nil {
-		t.Fatal(err)
-	}
 	published := reviewFixture(t)
-	if err := json.Unmarshal(raw, &published.catalog); err != nil {
-		t.Fatal(err)
-	}
+	published.catalog = publishedCatalog(t)
 	templates := map[string]ReviewTemplate{}
 	for _, template := range published.reviewTemplates() {
 		templates[template.ID] = template

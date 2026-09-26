@@ -164,7 +164,7 @@ try {
     );
     assert.ok(lesson, 'Published exercise for ' + slug + '/' + id);
     await page.goto(baseURL + `/#/practice/${lesson.slug}/${id}`);
-    await exercise().locator('.structured-answer').waitFor();
+    await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
     return question(lesson.slug, id);
   };
   const noOverflow = async () => {
@@ -346,7 +346,7 @@ try {
       }),
   );
   await page.reload();
-  await exercise().locator('.structured-answer').waitFor();
+  await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   assert.equal(
     await exercise().getByLabel('Unsure', { exact: true }).isChecked(),
     true,
@@ -436,6 +436,7 @@ try {
     ['recurrence-relations', 36, 'recurrence-desktop', 1440],
     ['sets-and-set-operations', 1, 'finite-set-phone', 390],
     ['predicates-and-quantifiers', 83, 'finite-model-phone', 390],
+    ['proof-by-contradiction', 6, 'negated-unique-existence-phone', 390],
     ['asymptotic-growth', 34, 'truth-and-value-phone', 390],
     ['linear-algebra-bases', 23, 'basis-desktop', 1440],
     ['linear-algebra-systems', 43, null, 390],
@@ -474,6 +475,11 @@ try {
       await exercise().getByRole('button', { name: 'Try again', exact: true }).click();
     }
     const typed = { ...responseFor(slug, id, true) };
+    if (slug === 'proof-by-contradiction' && id === 6) {
+      // Negating unique existence is equivalent to zero or multiple solutions.
+      // Rename the bound variable and use the integer domain supplied by the prompt.
+      typed.formula = String.raw`\neg(\exists!u\,S(u))`;
+    }
     if (name?.startsWith('probability-')) {
       // These selected exercises explicitly ask for four decimal places.
       for (const requirement of q.assessment.requirements)
@@ -519,7 +525,7 @@ try {
       await page.setViewportSize({ width: 1440, height: 1000 });
       // Multiple edits in one event loop must not overwrite other fields through stale props.
       await exercise()
-        .locator('.structured-answer')
+        .locator('.structured-answer:not(.readonly-answer)')
         .evaluate((answer) => {
           const setValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
           for (const [i, input] of [...answer.querySelectorAll('.answer-grid input')].entries()) {
@@ -552,6 +558,7 @@ try {
       await first.fill('2');
     }
     await submit();
+    if (name === 'negated-unique-existence-phone') await shot(name + '-correct');
     if (offlineCases.has(name)) {
       await page.reload();
       await exercise().getByText('Correct', { exact: true }).waitFor();

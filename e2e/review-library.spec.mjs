@@ -565,6 +565,34 @@ try {
     await page.setViewportSize({ width: 1440, height: 1000 });
   }
 
+  // The converted classification exercise must also supply a written task for
+  // the historical justification target, with the original explanation visible.
+  await clear();
+  const writtenID = 'exercise-propositional-logic-60-truth-classification-justify-written';
+  const writtenTemplate = catalog.items.find((item) => item.id === writtenID);
+  assert.ok(writtenTemplate, 'Justification has a compatible written question');
+  assert.equal(writtenTemplate.evidenceLevel, 'reasoning');
+  assert.equal(writtenTemplate.question.assessment, undefined);
+  assert.equal(writtenTemplate.question.choice, undefined);
+  await library.getByLabel('Search catalog', { exact: true }).fill(writtenID);
+  await expectCount(1);
+  const written = library.locator(`[data-template-id="${writtenID}"]`);
+  await written.locator('summary').click();
+  await written
+    .getByText('Write your answer and explain the reasoning that supports it.')
+    .waitFor();
+  assert.ok((await written.locator('.katex').count()) > 0);
+  assert.equal(await written.locator('.library-choices li').count(), 0);
+  for (const [name, width, height] of [
+    ['desktop', 1440, 1000],
+    ['phone', 390, 844],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await assertNoOverflow();
+    await screenshot(`written-justification-${name}`, written.locator('.library-question'));
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
+
   await page.route('**/api/v1/review/catalog', (route) =>
     route.fulfill({ status: 503, body: 'Catalog unavailable' }),
   );

@@ -14,7 +14,24 @@ Assignments are explicit for each lesson introduction, each stable teaching sect
 
 `tools/content/sources.ts` runs in every content build, including CI. Missing/dangling assignments, unknown sources, duplicate citations, non-HTTPS links, and unused citations fail the build. Review digests cover the full published lesson, exercises (including feedback), references, formula contexts, figures, and typing placements. A separate digest covers all TeX content. A content edit therefore requires source reinspection even when its section ID remains unchanged.
 
-After checking changed claims against the cited passages, update only the corresponding digest using the exported `lessonSourceHash(lesson, teaching, typing)` or `sourceHash({ syntax, typing })` functions. Use the candidate published content objects from `tools/content/build.ts`; do not hash stale output from before an edit. The builder deliberately has no auto-approve or skip-validation flag. A digest documents the inspected content version; it cannot prove that a citation supports a claim. Human/editorial source inspection remains necessary.
+After checking changed claims against the cited passages, update only the corresponding digest using the functions exported by `tools/content/sources.ts`:
+
+| Inspected record                       | Digest input                                 |
+| -------------------------------------- | -------------------------------------------- |
+| Lesson and its teaching/typing context | `lessonSourceHash(lesson, teaching, typing)` |
+| TeX catalog                            | `sourceHash({ syntax, typing })`             |
+| Review template                        | `sourceHash(template)`                       |
+| Complete review variant bank           | `sourceHash(reviewVariants[id])`             |
+| Compiled written review question       | `sourceHash(reviewQuestions[exerciseKey])`   |
+
+Use the candidate published content objects from `tools/content/build.ts`; do not hash stale output from before an edit. Review source assignments must match their template's `sourceIds`. The builder has no auto-approve or skip-validation flag. A digest documents the inspected content version; it cannot prove that a citation supports a claim. Human/editorial source inspection remains necessary.
+
+Written review questions compile from canonical exercises before response-format
+conversion, with instructions and explicit corrections in
+`content/written-review.json`. Inspect the complete resulting question, including
+the answer and any table, before recording its separate `reviewQuestions` entry.
+Its sources must match the original exercise's practice-group assignment, which
+also supplies the collapsed citation details in Review.
 
 Run `npm run content:build`, `npm test`, and `npm run web:build`. Citation metadata is a separate bundled `sources.json`; it does not change exercise IDs, submitted context, grades, or grading content versions. Offline readers can open bibliographic details. Opening the external text requires connectivity.
 
@@ -22,25 +39,19 @@ Run `npm run content:build`, `npm test`, and `npm run web:build`. Citation metad
 
 Sources are closed by default under each teaching section and introduction, in full glossary entries, inside figure notes, within typing tutorials, and beneath revealed official exercise explanations. There are no inline superscripts, popovers, or source buttons beside answer choices. Native details/summary preserves keyboard and touch access. External links open separately and do not move the reading position.
 
-## Initial source selection
+## Bibliography and inspection records
 
-- Lehman, Leighton, Meyer, _Mathematics for Computer Science_, MIT (2018): discrete structures, proofs, sums, counting, graph theory, asymptotics, recurrences.
-- Hammack, _Book of Proof_, third edition/revision 3.4: sets, logic, proof methods, relations, functions.
-- Levin, _Discrete Mathematics: An Open Introduction_, fourth edition: overview, sequence growth, rooted trees.
-- Margalit and Rabinoff, _Interactive Linear Algebra_, Georgia Tech (2019): vectors through least squares and eigenvalues.
-- Deisenroth, Faisal, Ong, _Mathematics for Machine Learning_, Cambridge (2020; author PDF 2024): affine maps, SVD, modeling limitations.
-- Stanford STATS305C: low-rank approximation in Frobenius norm. This is distinct from the spectral-norm statement in MML §4.6.
-- MIT 6.006 notes: computation models and BFS/DFS.
-- LAPACK and NumPy documentation: numerical least squares and rank tolerances.
-- Stanford Encyclopedia of Philosophy and the University of the Pacific Euler Archive: historical notes. The archive provides Euler’s original paper and an English translation; it also avoids reliance on the older MAA site, which was unavailable during link checking.
-- KaTeX and MDN: supported syntax and JavaScript semantics.
-
-Books sometimes use different conventions: MIT permits partial functions unless totality is specified; this notebook defaults to total functions. Graph walk terminology also varies. The notebook states its own conventions; citations support the underlying results rather than overriding those conventions.
+`content/sources.json` is the current bibliography and pinpoint assignment catalog
+for all four subjects. Keep source details there instead of duplicating book
+lists or coverage counts in documentation. State convention differences in the
+authored material; a citation does not override the notebook's stated conventions.
 
 Downloaded research PDFs/HTML remain under ignored `output/source-research/` and are not shipped. Citation coverage and link validity are separate checks: network failures must be investigated, but ordinary builds/tests never depend on live external sites.
 
-## Initial coverage and verification
-
-The September 2026 source pass covers 27 lessons (including both introductions), 269 reading units, 2,060 exercises, 479 reference entries, 46 figures, and 119 TeX constructions. The catalog contains 89 pinpoint references to 13 works. Coverage counts describe source assignments, not a claim that the external books contain the app's exact exercises.
-
-Content validation, root tests, web tests, typechecking, formatting, and the production PWA build pass. Browser checks cover collapsed/expanded citations, keyboard access, phone wrapping, exercise explanations, reference entries, figure notes, and a production service-worker offline reload. Screenshot records are in `docs/screenshots/sources/`.
+Historical inspection notes in `content/curriculum-audit.json` and
+`content/tex-teaching.json` retain their original report paths and inspected hashes.
+Those reports are available in Git at commit
+`485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89`; retrieve a referenced report with
+`git show 485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/<report>.md`.
+These notes document prior inspections, not the current authoring workflow.
+Do not rewrite them or refresh source digests as part of documentation maintenance.

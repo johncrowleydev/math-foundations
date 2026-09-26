@@ -8,8 +8,8 @@ import {
   inspectionFingerprint,
 } from '../../tools/audit/tex-teaching.js';
 
-test('TeX syntax inventory covers every exercise and its teaching precedes required use', async () => {
-  const failures = await inspectTexTeaching();
+test('TeX syntax inventory and completed inspections cover every exercise before required use', async () => {
+  const failures = await inspectTexTeaching(true);
   assert.deepEqual(failures, []);
 });
 test('syntax extraction reads actual nested text without inventing JSON escapes', () => {

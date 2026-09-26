@@ -13,7 +13,7 @@ npm run web:build
 FOUNDATIONS_API_TARGET=http://127.0.0.1:18084 npm run web:preview
 ```
 
-`--no-install-links` matches the parent-package symlink in the web lockfile, including with npm 9. The build generates the shared curriculum and copies it into `web/public` before bundling.
+`--no-install-links` matches the parent-package symlink in the web lockfile. The build compiles the canonical curriculum and copies runtime assets into `web/public` before bundling.
 
 Open **http://localhost:4173**. This is the production-style build, with installation and offline caching enabled. Authenticated use requires the backend described below. Keep the terminal running for online API requests. After a successful online login and the app's assets have been cached, the app can reopen offline while the remembered session remains valid.
 
@@ -34,28 +34,25 @@ Run the Go API from `server/` with `go run .` after configuring these environmen
 - `FOUNDATIONS_DATA`: an absolute path to an isolated local data directory, such as this checkout's ignored `output/local-api`. The API creates its SQLite database and media directory there. Without this override it uses `/var/lib/math-foundations`.
 - `FOUNDATIONS_ADDR`: `127.0.0.1:18084`, the default loopback listener and the target used above.
 
-Leave `FOUNDATIONS_CATALOG` unset for auth/sync development without grading; attempt submission, recheck, and cancellation endpoints are unavailable in that mode. To enable grading, set it to the absolute path of generated `output/grading-catalog.json` and configure `OPENROUTER_API_KEY` on the backend. Local frontend startup alone does not start or configure the API.
+Leave `FOUNDATIONS_CATALOG` unset for auth/sync development without grading; attempt submission, recheck, and cancellation endpoints are unavailable in that mode. To enable attempts and Review, set it to the absolute path of compiled `output/grading-catalog.json`. Deterministic grading works without a provider key; free-response grading additionally requires `OPENROUTER_API_KEY` on the backend. Local frontend startup alone does not start or configure the API.
 
-## Included
+## Reader and answer input
 
-- Discrete mathematics and linear algebra: 27 lessons including two reading-only introductions, 2,060 exercises, 50 quick checks, answers, terminology, and TeX teaching blocks.
-- Native-inspired responsive layout, chapter navigation, persistent reader outline/scrollspy on wide windows, compact chapter/outline sheets, focused practice, section bookmarks, and explicit resume from synced positions.
-- Markdown and KaTeX, contextual term popovers, formula readings and symbol bindings, searchable Terms/Notation library, related entries, teaching links, and copyable TeX.
-- All 46 authored figures and their interactive steps, SVG math labels, captions, construction notes, reset, and expansion. Adjacency tables remain HTML tables so they stay readable on phones.
-- CodeMirror answer editing with prose/math syntax distinctions, completion, brace matching, diagnostics, undo/redo, selection, delimiter insertion, searchable syntax help, live preview, and expanded editing. Syntax diagnostics do not grade mathematical correctness.
-- Pressure-aware browser pen/sketch canvas with color, widths, erasing, undo/redo, drawing/panning modes; photos via upload or the device camera chooser, multiple ordered attachments, rotation, removal/undo, and enlargement.
-- Native Android stroke serialization compatibility for importing saved ink and submitting reusable pen attempts. Coordinates and pressure are preserved; browser brush rendering and prediction are intentionally not pixel-identical to Android. The adapter follows Google's public [stroke input schema](https://github.com/google/ink/blob/main/ink/storage/proto/stroke_input_batch.proto) and [numeric-run schema](https://github.com/google/ink/blob/main/ink/storage/proto/coded_numeric_run.proto).
-- Local recovery drafts; immutable timestamped submissions; offline upload queue; binary grading, animated pending status, optional incorrect feedback, previous attempts/assessments, clarification-aware rechecks, and correct-answer submission locks.
-- API synchronization of submitted attempts/media, quick checks, preferences, practice position, and bookmarks. Legacy synced answers remain accessible through **Previously synced work**. New drafts stay local; Android is retired.
-- Installable app shell, locally bundled curriculum/fonts, offline downloaded work, update notification, and local-work export. Browser storage errors are surfaced rather than silently reporting a successful save.
+Lessons render from MDX through registered React components, with KaTeX mathematics, interactive figures, contextual terms, formula readings, and a searchable Terms/Notation library. The responsive reader provides a wide-screen outline, compact navigation sheets, bookmarks, and resume from synced positions. See [architecture](architecture.md) and [content authoring](content-authoring.md).
 
-## Deliberate browser differences
+Exercises use authored choice or structured controls where available. Free responses offer independent Type, Pen, and Photo drafts. CodeMirror provides TeX completion, diagnostics, syntax help, preview, and expanded editing; syntax diagnostics do not grade mathematics. The pen canvas supports pressure, erasing, undo/redo, and drawing/panning. Photos use upload or the device camera chooser, with ordered attachments, rotation, removal/undo, and enlargement.
 
-This is a functional client port, not an Android emulation layer. Browser camera capture uses the platform file/camera chooser. Pen input uses Pointer Events and a browser renderer. Mouse wheels, trackpads and nested panels use normal browser scrolling; the optional two-finger setting applies to touch scrolling in the outer teaching reader. The regular-scroll default suits typing devices.
+Saved handwriting retains Android stroke serialization compatibility through `web/src/nativeInk.ts`. Coordinates and pressure are preserved; brush rendering and prediction follow the browser implementation. The adapter uses Google's [stroke input schema](https://github.com/google/ink/blob/main/ink/storage/proto/stroke_input_batch.proto) and [numeric-run schema](https://github.com/google/ink/blob/main/ink/storage/proto/coded_numeric_run.proto). Android is retired.
 
-Browsers do not guarantee Android-style periodic background jobs when the app is closed. Sync runs while open, on reconnect, and on returning to the app; offline submissions remain queued until that happens. API calls and credentials are not cached by the service worker. Only use the installable preview build when testing offline reload, and remember that clearing site data removes unsynced drafts. Export local work before deliberately clearing it.
+Mouse wheels, trackpads, and nested panels use normal browser scrolling. The optional two-finger setting applies to touch scrolling in the outer teaching reader.
 
-Email/password authentication and trusted-device offline sessions are documented in [PWA deployment](pwa-deployment.md). Provider keys never enter the web bundle.
+## Saved work and offline behavior
+
+Drafts stay on their device. Submitted attempts, grades, supported media, preferences, practice positions, and bookmarks synchronize through the API. **Previously synced work** retains access to legacy answers. [Grading](grading.md) describes immutable submissions, retries, correct-answer locks, and photo/handwriting transcription retention.
+
+The production bundle caches the app shell, curriculum, and fonts. Downloaded work and issued [Review](review-system.md) questions remain usable offline; new Review sessions and model grading require the server. API calls and credentials are not cached by the service worker.
+
+Sync polls every five seconds while visible, and runs on reconnect and return to the app. Closed browsers do not guarantee background uploads, so offline submissions remain queued until the app runs again. Storage failures are surfaced instead of reporting a successful save. Export local work from Settings before deliberately clearing site data, which removes unsynced drafts.
 
 ## Checks
 
@@ -64,12 +61,4 @@ npm run web:build
 npm run web:test
 ```
 
-Build first on a fresh checkout so the tests can read generated assets in `web/public`. Node tests cover escaped/incomplete math syntax, unsupported commands, native pen-format round trips, draft/submission separation, monotonic received revisions, and full content/figure coverage. Historical browser checks from the initial web port exercised:
-
-- Typed draft recovery after reload and the compact editor/settings layout.
-- Two isolated browser clients against a simulated API: submit, hidden incorrect feedback, incoming attempts, recheck explanation, and cross-client correct locks. No personal notebook was changed by these tests.
-- All 39 figures / 97 authored states, plus desktop and 360px layouts.
-- Symbol insertion without solved examples, reference navigation, pen capture, photo rotation/removal/undo/submission, and landscape phones.
-- Production PWA offline reload, cached assets, and queued-attempt recovery.
-
-Android releases are retired. Local browser artifacts and screenshots are under the ignored `output/` directory.
+Build first on a fresh checkout so tests can read the compiled assets in `web/public`. For browser verification, run `npm run test:e2e -- offline` or select other suites from `e2e/`; see [tooling](tooling.md) for browser setup and validation commands. Local artifacts belong under ignored `output/`.

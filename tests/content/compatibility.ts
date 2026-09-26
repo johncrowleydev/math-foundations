@@ -58,6 +58,9 @@ export function comparableCatalog(catalog: any) {
     return cache.get(source);
   };
   for (const exercise of Object.values(copy.exercises) as any[]) {
+    // Additive written review representations have separate source pins and
+    // exhaustive scheduler coverage tests; the lesson grading contract stays exact.
+    delete exercise.reviewQuestion;
     exercise.introduction = compare(exercise.introduction);
     for (const section of exercise.teaching) section.markdown = compare(section.markdown);
   }

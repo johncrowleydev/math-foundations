@@ -143,7 +143,7 @@ try {
   const exercise = () => page.locator('article.exercise:visible');
   const open = async (slug, id) => {
     await page.goto(`${baseURL}/#/practice/${slug}/${id}`);
-    await exercise().locator('.structured-answer').waitFor();
+    await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   };
   const fillMatrix = async (entry = '6') => {
     for (const [label, value] of [
@@ -169,7 +169,7 @@ try {
   await page.evaluate(() => navigator.serviceWorker.ready.then(() => undefined));
   await page.reload();
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
-  await exercise().locator('.structured-answer').waitFor();
+  await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   await waitFor(async () => (await readStore('outbox')).length === 0, 'Initial sync settles');
 
   // A syntactically valid but malformed acknowledgement must never erase the
@@ -257,7 +257,7 @@ try {
   await page.goto(baseURL + '/#/practice/functions/1');
   await exercise().getByText('Correct', { exact: true }).waitFor();
   await page.goBack();
-  await exercise().locator('.structured-answer').waitFor();
+  await exercise().locator('.structured-answer:not(.readonly-answer)').waitFor();
   await page.goForward();
   await exercise().getByText('Correct', { exact: true }).waitFor();
   await context.setOffline(false);
