@@ -1,3 +1,4 @@
+import { useRetainedHeight } from './useRetainedHeight';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum } from './types';
 import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
@@ -285,10 +286,11 @@ export function Review({
       Queued or grading answers will update your review schedule after server processing.
     </p>
   );
+  const page = useRetainedHeight<HTMLDivElement>(`${session?.id || 'overview'}:${paused}:${index}`);
   const reviewAvailable = summary && summary.due > 0 && summary.estimatedMinutes !== 0;
   return (
     <>
-      <div className="reading-column review-page">
+      <div className="reading-column review-page" ref={page}>
         <div className="review-heading">
           <div>
             <div className="eyebrow">Spaced retrieval</div>
@@ -306,60 +308,47 @@ export function Review({
             {session && !paused && <button onClick={() => void pause()}>Back to overview</button>}
           </div>
         </div>
-        {visibleError && (
-          <p className="error" role="alert">
-            {visibleError}
-          </p>
-        )}
-        {(busy || checking) && (
-          <p className="review-loading" role="status">
-            <span className="spinner" aria-hidden="true" />
-            {busy
-              ? 'Planning your session…'
-              : summary
-                ? 'Refreshing review schedule…'
-                : 'Loading review schedule…'}
-          </p>
-        )}
-        {cached && summary && (
-          <aside className="review-notice" aria-label="Review status updates">
-            <p>
-              {checking ? 'Checking for review updates…' : 'Couldn’t check for review updates.'}{' '}
-              Showing review status
-              {fetchedAt ? ' from ' + new Date(fetchedAt).toLocaleString() : ''}.
-            </p>
-            <p>
-              {session?.instances.length
-                ? 'Your saved session can still be continued offline. New sessions need a connection.'
-                : 'Starting a review or focused practice session needs a connection.'}
-            </p>
-            {!checking && <button onClick={() => void refresh()}>Try again</button>}
-          </aside>
-        )}
-        {!summary && visibleError && !checking && (
-          <button onClick={() => void refresh()}>Try again</button>
-        )}
-        {notice && (
-          <p className="review-notice" role="status">
-            {notice}
-          </p>
-        )}
+        <p
+          className="review-loading"
+          role="status"
+          style={busy || checking ? undefined : { visibility: 'hidden' }}
+        >
+          {(busy || checking) && (
+            <>
+              <span className="spinner" aria-hidden="true" />
+              {busy
+                ? 'Planning your session…'
+                : summary
+                  ? 'Refreshing review schedule…'
+                  : 'Loading review schedule…'}
+            </>
+          )}
+        </p>
         {session && !paused && item ? (
           <>
-            {progress?.complete && (
-              <section className="review-panel" aria-label="Session completion">
-                <h2>{completedTitle}</h2>
-                <p>{progressText}</p>
-                <p>
-                  Every question has a correct answer or is covered by recent work. Your answers are
-                  saved.
-                </p>
-                {processingNote}
-                <button className="primary" onClick={() => void finish()}>
-                  Close session
-                </button>
-              </section>
-            )}
+            <nav className="practice-nav" aria-label="Review navigation">
+              <button disabled={index === 0} onClick={() => void goTo(index - 1)}>
+                ← Previous
+              </button>
+              <button
+                onClick={() => {
+                  const next = nextReviewTaskIndex(
+                    session,
+                    index + 1,
+                    attempts,
+                    summary,
+                    fetchedAt,
+                  );
+                  void goTo(next);
+                }}
+              >
+                {answered || covered
+                  ? 'Next →'
+                  : pending
+                    ? 'Continue while grading →'
+                    : 'Skip for now →'}
+              </button>
+            </nav>
             <div className="practice-heading">
               <strong>
                 {session.mode === 'quick' ? 'Quick' : 'Regular'} · {index + 1} of{' '}
@@ -397,12 +386,6 @@ export function Review({
                 </p>
               )}
             </details>
-            {covered && (
-              <p className="review-notice" role="status">
-                This review target is already covered by recent work. You can continue without
-                answering again. Any draft is saved.
-              </p>
-            )}
             <Exercise
               key={item.id}
               q={item.question}
@@ -412,29 +395,26 @@ export function Review({
               data={data}
               instance={item}
             />
-            <nav className="practice-nav" aria-label="Review navigation">
-              <button disabled={index === 0} onClick={() => void goTo(index - 1)}>
-                ← Previous
-              </button>
-              <button
-                onClick={() => {
-                  const next = nextReviewTaskIndex(
-                    session,
-                    index + 1,
-                    attempts,
-                    summary,
-                    fetchedAt,
-                  );
-                  void goTo(next);
-                }}
-              >
-                {answered || covered
-                  ? 'Next →'
-                  : pending
-                    ? 'Continue while grading →'
-                    : 'Skip for now →'}
-              </button>
-            </nav>
+            {covered && (
+              <p className="review-notice" role="status">
+                This review target is already covered by recent work. You can continue without
+                answering again. Any draft is saved.
+              </p>
+            )}
+            {progress?.complete && (
+              <section className="review-panel" aria-label="Session completion">
+                <h2>{completedTitle}</h2>
+                <p>{progressText}</p>
+                <p>
+                  Every question has a correct answer or is covered by recent work. Your answers are
+                  saved.
+                </p>
+                {processingNote}
+                <button className="primary" onClick={() => void finish()}>
+                  Close session
+                </button>
+              </section>
+            )}
             {!answered && !pending && !covered && (
               <p className="muted">You can leave this for another day. Your draft is saved.</p>
             )}
@@ -527,13 +507,14 @@ export function Review({
                     <h2 id="today-review">
                       {reviewAvailable ? 'Today’s review' : 'You’re caught up for now'}
                     </h2>
-                    {reviewAvailable ? (
-                      <>
-                        {summary.estimatedMinutes !== undefined && (
-                          <p className="review-estimate">
-                            About {Math.ceil(summary.estimatedMinutes)} minutes
-                          </p>
-                        )}
+                    <div className="review-plan-body">
+                      <div
+                        className={!reviewAvailable ? 'review-plan-inactive' : undefined}
+                        inert={!reviewAvailable}
+                      >
+                        <p className="review-estimate">
+                          About {Math.ceil(summary.estimatedMinutes || 0)} minutes
+                        </p>
                         <div className="review-counts" aria-label="Next session breakdown">
                           <div>
                             <strong>{summary.plannedQuick ?? '—'}</strong>
@@ -558,31 +539,28 @@ export function Review({
                           >
                             {busy ? 'Starting…' : 'Start review'}
                           </button>
-                          {summary.quick > 0 && (
-                            <button
-                              disabled={busy}
-                              aria-describedby="quick-review-help"
-                              onClick={() =>
-                                void start({ kind: 'scheduled-review', mode: 'quick' })
-                              }
-                            >
-                              Quick review
-                            </button>
-                          )}
+                          <button
+                            className={summary.quick ? undefined : 'review-plan-inactive'}
+                            disabled={busy || !summary.quick}
+                            aria-describedby="quick-review-help"
+                            onClick={() => void start({ kind: 'scheduled-review', mode: 'quick' })}
+                          >
+                            Quick review
+                          </button>
                         </div>
-                        {summary.quick > 0 && (
-                          <p className="muted" id="quick-review-help">
-                            Quick review uses only tap or short-text questions. Deeper due work
-                            stays scheduled for later.
-                          </p>
-                        )}
-                      </>
-                    ) : (
-                      <p>
+                        <p
+                          className={'muted' + (!summary.quick ? ' review-plan-inactive' : '')}
+                          id="quick-review-help"
+                        >
+                          Quick review uses only tap or short-text questions. Deeper due work stays
+                          scheduled for later.
+                        </p>
+                      </div>
+                      <p className={reviewAvailable ? 'review-plan-inactive' : undefined}>
                         No scheduled review is currently available. More review will become due
                         later.
                       </p>
-                    )}
+                    </div>
                   </section>
                 )}
                 <div className="review-allowance">
@@ -716,6 +694,34 @@ export function Review({
               </>
             )}
           </>
+        )}
+        {visibleError && (
+          <p className="error" role="alert">
+            {visibleError}
+          </p>
+        )}
+        {cached && summary && (
+          <aside className="review-notice" aria-label="Review status updates">
+            <p>
+              {checking ? 'Checking for review updates…' : 'Couldn’t check for review updates.'}{' '}
+              Showing review status
+              {fetchedAt ? ' from ' + new Date(fetchedAt).toLocaleString() : ''}.
+            </p>
+            <p>
+              {session?.instances.length
+                ? 'Your saved session can still be continued offline. New sessions need a connection.'
+                : 'Starting a review or focused practice session needs a connection.'}
+            </p>
+            {!checking && <button onClick={() => void refresh()}>Try again</button>}
+          </aside>
+        )}
+        {!summary && visibleError && !checking && (
+          <button onClick={() => void refresh()}>Try again</button>
+        )}
+        {notice && (
+          <p className="review-notice" role="status">
+            {notice}
+          </p>
         )}
       </div>
       {showQueue && (

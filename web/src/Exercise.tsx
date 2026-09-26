@@ -1,3 +1,4 @@
+import { useRetainedHeight } from './useRetainedHeight';
 import { exerciseKey, exerciseNamespace, type ExerciseIdentity } from './exerciseIdentity';
 import type { ReviewInstance } from './reviewTypes';
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
@@ -53,6 +54,7 @@ export function Exercise({
   const correctChoice = q.choice?.options.find((option) => option.id === q.choice?.correctOption);
   const evidence = instance?.analytics || snapshot(data.evidence, key);
   const choiceGroup = useId();
+  const card = useRetainedHeight<HTMLElement>(key, !!instance);
   const clock = useRef(new EffortClock());
   const rev = useRevision();
   const draftRevision = useRevision('draft:' + key);
@@ -523,6 +525,7 @@ export function Exercise({
   );
   return (
     <article
+      ref={card}
       className={
         'exercise ' +
         (correct
@@ -590,6 +593,7 @@ export function Exercise({
         last && (
           <AttemptPanel
             attempt={last}
+            stableLayout={!!instance}
             choice={q.choice}
             allowRecheck={!deterministic}
             onFeedbackSeen={() => feedbackSeen(last.id)}
@@ -781,11 +785,13 @@ function AttemptPanel({
   onHistory,
   choice,
   allowRecheck = true,
+  stableLayout = false,
 }: {
   attempt: Attempt;
   onFeedbackSeen?: () => void;
   choice?: ChoiceAssessment;
   allowRecheck?: boolean;
+  stableLayout?: boolean;
   resumeDraft?: boolean;
   onRetry?: () => void;
   canRetry?: boolean;
@@ -804,10 +810,113 @@ function AttemptPanel({
     setFeedback(a.verdict === 'correct');
   }, [a.verdict, g?.at]);
   const active = ['pending', 'grading', 'rechecking'].includes(a.status);
+  const actions = (
+    <div className="toolbar attempt-actions">
+      {!stableLayout && ['error', 'cancelled'].includes(a.status) && canRecheck && (
+        <button
+          className="primary"
+          onClick={() =>
+            void recheck(a, a.recheckReason || g?.reason || '').catch((e) => setError(String(e)))
+          }
+        >
+          {a.verdict ? 'Retry recheck' : 'Retry grading'}
+        </button>
+      )}
+      {(g || stableLayout) && (
+        <button
+          className="feedback-toggle"
+          disabled={!g}
+          onClick={() => {
+            if (!feedback && a.verdict === 'incorrect') onFeedbackSeen?.();
+            setFeedback(!feedback);
+          }}
+        >
+          {feedback ? 'Hide feedback' : 'Show feedback'}
+        </button>
+      )}
+      {(canRetry || stableLayout) && onRetry && (
+        <button className="retry-answer" disabled={!canRetry} onClick={onRetry}>
+          {resumeDraft
+            ? 'Continue draft'
+            : a.status === 'error' && !deterministic
+              ? 'Edit answer'
+              : 'Try again'}
+        </button>
+      )}
+      <div className="menu-anchor">
+        <button aria-expanded={more} onClick={() => setMore(!more)}>
+          More ▾
+        </button>
+        {more && (
+          <div className="menu">
+            {stableLayout && ['error', 'cancelled'].includes(a.status) && canRecheck && (
+              <button
+                onClick={() => {
+                  setMore(false);
+                  void recheck(a, a.recheckReason || g?.reason || '').catch((e) =>
+                    setError(String(e)),
+                  );
+                }}
+              >
+                {a.verdict ? 'Retry recheck' : 'Retry grading'}
+              </button>
+            )}
+            {[
+              'Expand response',
+              ...(!a.transcription && g?.transcription ? ['What the grader read'] : []),
+              ...(onHistory ? ['Previous attempts'] : []),
+              ...(!active && a.status !== 'queued' && canRecheck ? ['Request recheck'] : []),
+              ...(a.grades?.length > 1 ? ['Previous assessments'] : []),
+            ].map((s) => (
+              <button
+                key={s}
+                onClick={() => {
+                  setMore(false);
+                  if (s === 'Previous attempts') onHistory?.();
+                  else {
+                    if (
+                      s === 'Previous assessments' &&
+                      a.grades.some((g) => g.verdict === 'incorrect')
+                    )
+                      onFeedbackSeen?.();
+                    setPanel(s);
+                  }
+                }}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      {(active || stableLayout) && (
+        <button
+          className="danger push cancel-grading"
+          style={stableLayout && !active ? { visibility: 'hidden' } : undefined}
+          disabled={cancelling || !active}
+          onClick={() => {
+            setCancelling(true);
+            setError('');
+            void cancelGrading(a)
+              .catch((e) => setError(String(e)))
+              .finally(() => setCancelling(false));
+          }}
+        >
+          {cancelling ? 'Cancelling…' : 'Cancel'}
+        </button>
+      )}
+    </div>
+  );
   return (
-    <div className="attempt">
+    <div className={'attempt' + (stableLayout ? ' stable-attempt' : '')}>
       <div className="attempt-status">
-        {active && <span className="spinner" aria-label="Grading in progress" />}
+        {(active || stableLayout) && (
+          <span
+            className={active ? 'spinner' : 'attempt-status-spacer'}
+            aria-label={active ? 'Grading in progress' : undefined}
+            aria-hidden={!active || undefined}
+          />
+        )}
         <strong>
           {a.status === 'queued'
             ? deterministic
@@ -840,6 +949,7 @@ function AttemptPanel({
           })}
         </time>
       </div>
+      {stableLayout && actions}
       {a.mode === 'structured' ? (
         <div className="submitted">
           <SubmittedStructuredAnswer attempt={a} />
@@ -878,86 +988,7 @@ function AttemptPanel({
           {error}
         </p>
       )}
-      <div className="toolbar">
-        {['error', 'cancelled'].includes(a.status) && canRecheck && (
-          <button
-            className="primary"
-            onClick={() =>
-              void recheck(a, a.recheckReason || g?.reason || '').catch((e) => setError(String(e)))
-            }
-          >
-            {a.verdict ? 'Retry recheck' : 'Retry grading'}
-          </button>
-        )}
-        {g && (
-          <button
-            onClick={() => {
-              if (!feedback && a.verdict === 'incorrect') onFeedbackSeen?.();
-              setFeedback(!feedback);
-            }}
-          >
-            {feedback ? 'Hide feedback' : 'Show feedback'}
-          </button>
-        )}
-        {canRetry && onRetry && (
-          <button onClick={onRetry}>
-            {resumeDraft
-              ? 'Continue draft'
-              : a.status === 'error' && !deterministic
-                ? 'Edit answer'
-                : 'Try again'}
-          </button>
-        )}
-        <div className="menu-anchor">
-          <button aria-expanded={more} onClick={() => setMore(!more)}>
-            More ▾
-          </button>
-          {more && (
-            <div className="menu">
-              {[
-                'Expand response',
-                ...(!a.transcription && g?.transcription ? ['What the grader read'] : []),
-                ...(onHistory ? ['Previous attempts'] : []),
-                ...(!active && a.status !== 'queued' && canRecheck ? ['Request recheck'] : []),
-                ...(a.grades?.length > 1 ? ['Previous assessments'] : []),
-              ].map((s) => (
-                <button
-                  key={s}
-                  onClick={() => {
-                    setMore(false);
-                    if (s === 'Previous attempts') onHistory?.();
-                    else {
-                      if (
-                        s === 'Previous assessments' &&
-                        a.grades.some((g) => g.verdict === 'incorrect')
-                      )
-                        onFeedbackSeen?.();
-                      setPanel(s);
-                    }
-                  }}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-        {active && (
-          <button
-            className="danger push"
-            disabled={cancelling}
-            onClick={() => {
-              setCancelling(true);
-              setError('');
-              void cancelGrading(a)
-                .catch((e) => setError(String(e)))
-                .finally(() => setCancelling(false));
-            }}
-          >
-            {cancelling ? 'Cancelling…' : 'Cancel'}
-          </button>
-        )}
-      </div>
+      {!stableLayout && actions}
       {g && feedback && (
         <div className="feedback">
           <Rich
