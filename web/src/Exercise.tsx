@@ -1,7 +1,8 @@
+import { useRetainedHeight } from './useRetainedHeight';
 import { exerciseKey, exerciseNamespace, type ExerciseIdentity } from './exerciseIdentity';
 import type { ReviewInstance } from './reviewTypes';
 import { decodeInk, encodeInk, type NativeInk } from './nativeInk';
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import type { Attempt, Curriculum, Draft, Question, RecordData, ChoiceAssessment } from './types';
 import {
   all,
@@ -53,32 +54,7 @@ export function Exercise({
   const correctChoice = q.choice?.options.find((option) => option.id === q.choice?.correctOption);
   const evidence = instance?.analytics || snapshot(data.evidence, key);
   const choiceGroup = useId();
-  const card = useRef<HTMLElement>(null);
-  useLayoutEffect(() => {
-    const element = card.current;
-    if (!instance || !element) return;
-    let width = 0;
-    let height = 0;
-    // A shorter submitted response must not clamp the reader's scroll position.
-    // Keep the space this task has used, but reflow normally at a new width.
-    const retainHeight = () => {
-      const nextWidth = element.getBoundingClientRect().width;
-      if (nextWidth !== width) {
-        width = nextWidth;
-        height = 0;
-        element.style.minHeight = '';
-      }
-      height = Math.max(height, element.getBoundingClientRect().height);
-      element.style.minHeight = `${height}px`;
-    };
-    retainHeight();
-    const observer = new ResizeObserver(retainHeight);
-    observer.observe(element);
-    return () => {
-      observer.disconnect();
-      element.style.minHeight = '';
-    };
-  }, [key, !!instance]);
+  const card = useRetainedHeight<HTMLElement>(key, !!instance);
   const clock = useRef(new EffortClock());
   const rev = useRevision();
   const draftRevision = useRevision('draft:' + key);

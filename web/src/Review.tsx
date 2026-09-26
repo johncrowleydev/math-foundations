@@ -1,3 +1,4 @@
+import { useRetainedHeight } from './useRetainedHeight';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum } from './types';
 import type { ReviewMode, ReviewSession, ReviewSessionRequest, ReviewSummary } from './reviewTypes';
@@ -285,10 +286,11 @@ export function Review({
       Queued or grading answers will update your review schedule after server processing.
     </p>
   );
+  const page = useRetainedHeight<HTMLDivElement>(`${session?.id || 'overview'}:${paused}:${index}`);
   const reviewAvailable = summary && summary.due > 0 && summary.estimatedMinutes !== 0;
   return (
     <>
-      <div className="reading-column review-page">
+      <div className="reading-column review-page" ref={page}>
         <div className="review-heading">
           <div>
             <div className="eyebrow">Spaced retrieval</div>
