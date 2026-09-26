@@ -1,3 +1,4 @@
+import { useReviewNavigationAnchor } from './useReviewNavigationAnchor';
 import { useRetainedHeight } from './useRetainedHeight';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Attempt, Curriculum } from './types';
@@ -286,7 +287,9 @@ export function Review({
       Queued or grading answers will update your review schedule after server processing.
     </p>
   );
-  const page = useRetainedHeight<HTMLDivElement>(`${session?.id || 'overview'}:${paused}:${index}`);
+  const surfaceKey = `${session?.id || 'overview'}:${paused}:${index}`;
+  const page = useRetainedHeight<HTMLDivElement>(surfaceKey);
+  const navigation = useReviewNavigationAnchor(surfaceKey);
   const reviewAvailable = summary && summary.due > 0 && summary.estimatedMinutes !== 0;
   return (
     <>
@@ -326,29 +329,6 @@ export function Review({
         </p>
         {session && !paused && item ? (
           <>
-            <nav className="practice-nav" aria-label="Review navigation">
-              <button disabled={index === 0} onClick={() => void goTo(index - 1)}>
-                ← Previous
-              </button>
-              <button
-                onClick={() => {
-                  const next = nextReviewTaskIndex(
-                    session,
-                    index + 1,
-                    attempts,
-                    summary,
-                    fetchedAt,
-                  );
-                  void goTo(next);
-                }}
-              >
-                {answered || covered
-                  ? 'Next →'
-                  : pending
-                    ? 'Continue while grading →'
-                    : 'Skip for now →'}
-              </button>
-            </nav>
             <div className="practice-heading">
               <strong>
                 {session.mode === 'quick' ? 'Quick' : 'Regular'} · {index + 1} of{' '}
@@ -395,6 +375,29 @@ export function Review({
               data={data}
               instance={item}
             />
+            <nav ref={navigation} className="practice-nav" aria-label="Review navigation">
+              <button disabled={index === 0} onClick={() => void goTo(index - 1)}>
+                ← Previous
+              </button>
+              <button
+                onClick={() => {
+                  const next = nextReviewTaskIndex(
+                    session,
+                    index + 1,
+                    attempts,
+                    summary,
+                    fetchedAt,
+                  );
+                  void goTo(next);
+                }}
+              >
+                {answered || covered
+                  ? 'Next →'
+                  : pending
+                    ? 'Continue while grading →'
+                    : 'Skip for now →'}
+              </button>
+            </nav>
             {covered && (
               <p className="review-notice" role="status">
                 This review target is already covered by recent work. You can continue without
