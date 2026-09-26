@@ -1720,6 +1720,64 @@ button.danger:hover:not(:disabled) {
 .review-heading h1 {
   margin: 4px 0 12px;
 }
+/* Keep session navigation ahead of content that grows or shrinks during grading. */
+.review-page .practice-nav {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding: 8px 0;
+  background: #f5f6f8;
+}
+.review-page .practice-nav button {
+  min-height: 36px;
+}
+.review-page .practice-nav button:last-child {
+  width: 190px;
+}
+.review-page .submission-actions .primary {
+  min-width: 100px;
+}
+.review-plan-status {
+  min-height: 3lh;
+}
+.stable-attempt .attempt-status {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  row-gap: 4px;
+}
+.stable-attempt .attempt-status time {
+  grid-column: 2;
+}
+.attempt-status-spacer {
+  width: 14px;
+  height: 14px;
+}
+.stable-attempt .attempt-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.stable-attempt .attempt-actions button {
+  width: 100%;
+  min-height: 36px;
+  white-space: normal;
+}
+.stable-attempt .feedback-toggle {
+  grid-column: 1;
+  grid-row: 1;
+}
+.stable-attempt .retry-answer {
+  grid-column: 2;
+  grid-row: 1;
+}
+.stable-attempt .menu-anchor {
+  grid-column: 3;
+  grid-row: 1;
+}
+.stable-attempt .cancel-grading {
+  grid-column: 4;
+  grid-row: 1;
+  margin-left: 0;
+}
 .review-counts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2028,6 +2086,17 @@ button.danger:hover:not(:disabled) {
   }
 }
 @media (max-width: 600px) {
+  .stable-attempt .attempt-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stable-attempt .menu-anchor {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .stable-attempt .cancel-grading {
+    grid-column: 2;
+    grid-row: 2;
+  }
   .review-counts {
     gap: 6px;
   }

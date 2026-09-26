@@ -181,24 +181,26 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
           {session && !paused && <button onClick={() => void pause()}>Back to overview</button>}
         </div>
       </div>
-      {error && (
-        <p className="error" role="alert">
-          {error}
-        </p>
-      )}
-      {cached && (
-        <p className="review-notice">
-          Saved review plan{fetchedAt ? ' · ' + new Date(fetchedAt).toLocaleString() : ''}. Connect
-          to refresh the queue. Saved tasks can be answered offline.
-        </p>
-      )}
-      {notice && (
-        <p className="review-notice" role="status">
-          {notice}
-        </p>
-      )}
       {session && !paused && item ? (
         <>
+          <nav className="practice-nav" aria-label="Review navigation">
+            <button disabled={index === 0} onClick={() => setIndex(index - 1)}>
+              ← Previous
+            </button>
+            <button
+              onClick={() => {
+                const next = nextReviewTaskIndex(session, index + 1, attempts, summary, fetchedAt);
+                setIndex(next);
+                if (next === session.instances.length) void refresh();
+              }}
+            >
+              {answered || covered
+                ? 'Next →'
+                : pending
+                  ? 'Continue while grading →'
+                  : 'Skip for now →'}
+            </button>
+          </nav>
           <div className="practice-heading">
             <strong>
               {session.mode === 'quick' ? 'Quick' : 'Regular'} · {index + 1} of{' '}
@@ -236,12 +238,6 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
               </p>
             )}
           </details>
-          {covered && (
-            <p className="review-notice" role="status">
-              This review target is already covered by recent work. You can continue without
-              answering again. Any draft is saved.
-            </p>
-          )}
           <Exercise
             key={item.id}
             q={item.question}
@@ -251,24 +247,12 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
             data={data}
             instance={item}
           />
-          <nav className="practice-nav" aria-label="Review navigation">
-            <button disabled={index === 0} onClick={() => setIndex(index - 1)}>
-              ← Previous
-            </button>
-            <button
-              onClick={() => {
-                const next = nextReviewTaskIndex(session, index + 1, attempts, summary, fetchedAt);
-                setIndex(next);
-                if (next === session.instances.length) void refresh();
-              }}
-            >
-              {answered || covered
-                ? 'Next →'
-                : pending
-                  ? 'Continue while grading →'
-                  : 'Skip for now →'}
-            </button>
-          </nav>
+          {covered && (
+            <p className="review-notice" role="status">
+              This review target is already covered by recent work. You can continue without
+              answering again. Any draft is saved.
+            </p>
+          )}
           {!answered && !pending && !covered && (
             <p className="muted">You can leave this for another day. Your draft is saved.</p>
           )}
@@ -375,14 +359,15 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
               <p className="muted">
                 Your target covers scheduled sessions planned in the last 24 hours. Extra work waits
                 for a later day; there is no backlog to clear. Quick mode keeps input simple.
-                {!!summary.reservedMinutes &&
-                  ` About ${Math.ceil(summary.reservedMinutes)} minutes already planned today.`}
               </p>
-              {!paused && (!summary.due || summary.estimatedMinutes === 0) && (
-                <p>
-                  Your plan is complete for now. You can stop here or choose focused practice below.
-                </p>
-              )}
+              <p className="muted">
+                About {Math.ceil(summary.reservedMinutes || 0)} minutes already planned today.
+              </p>
+              <p className="review-plan-status" role="status">
+                {!paused && (!summary.due || summary.estimatedMinutes === 0)
+                  ? 'Your plan is complete for now. You can stop here or choose focused practice below.'
+                  : 'Choose a planned review above, or choose focused practice below.'}
+              </p>
               <section className="review-panel">
                 <h2>Focused Practice</h2>
                 <p>Choose optional extra work, including proofs, outside your daily review plan.</p>
@@ -464,6 +449,22 @@ export function Review({ data, lesson: currentLesson }: { data: Curriculum; less
             !error && <p role="status">Loading review schedule…</p>
           )}
         </>
+      )}
+      {error && (
+        <p className="error" role="alert">
+          {error}
+        </p>
+      )}
+      {cached && (
+        <p className="review-notice">
+          Saved review plan{fetchedAt ? ' · ' + new Date(fetchedAt).toLocaleString() : ''}. Connect
+          to refresh the queue. Saved tasks can be answered offline.
+        </p>
+      )}
+      {notice && (
+        <p className="review-notice" role="status">
+          {notice}
+        </p>
       )}
     </div>
   );
