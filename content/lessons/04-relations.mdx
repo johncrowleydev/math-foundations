@@ -135,7 +135,11 @@ You can represent this same relation in three common ways.
 
 **Directed graph:** draw one vertex for each element. Draw an arrow $x\to y$ exactly when $(x,y)\in R$. A pair such as $(c,c)$ becomes a loop at $c$.
 
+Each **vertex**, also called a **node**, is a labeled dot; each arrow is a **directed edge**. A loop returning to its own vertex is also called a **self-loop**. A **directed walk** follows a sequence of arrows, with repeated vertices allowed. Its **length** counts the arrows followed, not the distance on the page.
+
 **Boolean matrix:** choose an order for the elements. Rows represent first coordinates and columns represent second coordinates. Put 1 when the pair belongs to the relation and 0 otherwise.
+
+A **matrix** is a rectangular table of entries; a Boolean matrix uses only 0 and 1. For a relation on one set, use the same order for the row and column labels. Its **main diagonal** contains the entries whose row and column name the same object.
 
 These are not three different mathematical objects. They are three representations of the same set of pairs.
 
@@ -367,9 +371,13 @@ Examples include:
 - people having the same birthday month;
 - integers having the same remainder modulo $m$.
 
+A **string** is a finite ordered sequence of symbols, and its **length** counts those symbols. A **binary string** uses only 0 and 1: 01 and 10 are different strings of length two.
+
 ### Congruence modulo $m$
 
-Fix a positive integer $m$. Define
+To say one integer **divides** another means that the second is an integer multiple of the first.
+
+Fix a positive integer $m$, called the **modulus**. Define
 
 $$
 a\equiv b\pmod m
@@ -623,6 +631,8 @@ Two elements $a,b$ are **comparable** when
 $$
 a\preceq b\quad\text{or}\quad b\preceq a.
 $$
+
+Here the curled order symbol means “is below or equal to in this partial order”; it need not be ordinary numerical comparison.
 
 A partial order does **not** require every pair to be comparable.
 
@@ -913,6 +923,8 @@ $$
 $$
 
 For larger finite relations, adding one shortcut may create a new chain that requires another shortcut. Continue until no new pairs are required.
+
+**Reachability** asks whether following the permitted arrows can lead from one object to another.
 
 The **transitive closure** can also be understood as adding $(a,b)$ whenever there is a path of one or more $R$-steps from $a$ to $b$.
 

@@ -256,10 +256,10 @@
     },
     "m-relations": {
       "source": "mcs",
-      "locator": "§4.4",
-      "supports": "Relations as ordered pairs and arrow representations.",
+      "locator": "§4.4, Definitions 4.4.1 and 4.4.5, pp. 111–115",
+      "supports": "Relations, infix notation, arrow representations, and inverse relations. MIT distinguishes a relation's domain, codomain, and graph; this lesson calls the pair set R and states the underlying sets separately. Its finite examples are original applications of these definitions.",
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=119",
-      "checked": "2026-09-15"
+      "checked": "2026-09-29"
     },
     "m-induction": {
       "source": "mcs",
@@ -301,28 +301,35 @@
       "locator": "§§10.1–10.3",
       "supports": "Directed degrees, walks, and adjacency matrices.",
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=431",
-      "checked": "2026-09-15"
+      "checked": "2026-09-29"
     },
     "m-composition": {
       "source": "mcs",
-      "locator": "§10.4",
-      "supports": "Relational composition, reachability, and positive/reflexive walk closures.",
+      "locator": "§10.4, Definition 10.4.2 and equations (10.6)–(10.9), pp. 430–431",
+      "supports": "Relational composition, reachability, and positive/reflexive walk closures. Composition applies the right-hand relation first. The lesson's chain-matching calculations and iterative closure examples are original applications of these definitions.",
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=438",
-      "checked": "2026-09-15"
+      "checked": "2026-09-29"
     },
     "m-orders": {
       "source": "mcs",
-      "locator": "§§10.5–10.9",
-      "supports": "DAG scheduling, partial orders, cover representations, and total orders.",
+      "locator": "§§10.5–10.9, especially Definitions 10.5.3, 10.6.12–10.6.13 and 10.8.1; Problem 10.31, p. 466",
+      "supports": "DAG scheduling, minimal versus minimum elements, partial orders, cover representations, and total orders. The lesson uses partial order for MIT's weak partial order and total order for its linear order. Its convention that b covers a when a is immediately below b reverses the wording of MIT's directed-edge convention in Problem 10.31; both retain exactly the edges needed to recover reachability.",
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=439",
-      "checked": "2026-09-15"
+      "checked": "2026-09-29"
     },
     "m-classes": {
       "source": "mcs",
-      "locator": "§§10.10–10.11",
-      "supports": "Equivalence classes, partitions, and relational properties.",
+      "locator": "§§10.10–10.11, especially Definition 10.10.3 and Theorem 10.10.4, pp. 445–448",
+      "supports": "Equivalence classes, partitions, and relational properties. The lesson writes the class as the elements x with xRa; MIT uses aRx, equivalent by symmetry. Taking the union of each block's Cartesian square is an original explicit construction of the cited same-block relation. Reflexive and symmetric closures and the impossibility of repairing an antisymmetry violation by adding pairs follow directly from the property definitions.",
       "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=453",
-      "checked": "2026-09-15"
+      "checked": "2026-09-29"
+    },
+    "m-strings": {
+      "source": "mcs",
+      "locator": "§7.1, Definitions 7.1.1–7.1.2, p. 218",
+      "supports": "Strings as finite ordered sequences over an alphabet, binary strings over 0 and 1, and length as the number of symbols. The two-symbol examples in the Relations lesson are original applications of these definitions.",
+      "url": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf#page=226",
+      "checked": "2026-09-29"
     },
     "m-graph": {
       "source": "mcs",
@@ -480,10 +487,10 @@
     },
     "p-relations": {
       "source": "proof",
-      "locator": "§§11.1–11.6",
-      "supports": "Relation properties, equivalence classes, and partitions.",
+      "locator": "§§11.1–11.6, especially Definition 11.2, Example 11.8 and Theorems 11.1–11.2, pp. 201–223",
+      "supports": "Relations as pair sets and predicates, relation properties, the divisibility proof that congruence is an equivalence relation, equality of classes by two inclusions, and partitions. The lesson's finite pair lists and modular arithmetic calculations are original applications, not copied textbook exercises.",
       "url": "https://richardhammack.github.io/BookOfProof/Main.pdf#page=213",
-      "checked": "2026-09-15"
+      "checked": "2026-09-29"
     },
     "p-functions": {
       "source": "proof",
@@ -2651,20 +2658,20 @@
       }
     },
     "relations": {
-      "reviewedContentHash": "89d0ce0b1dfcc97cbbc59a3d682616e7289986c25fa0ba13ed0133c5269a009c",
+      "reviewedContentHash": "c5245c9bf6a9847d9a5ced89203a94a57e79209488399dd857887fbfca9a2b80",
       "intro": ["p-relations", "m-orders", "m-composition"],
       "sections": {
-        "relations-as-sets-of-ordered-pairs": ["m-relations", "m-digraph"],
+        "relations-as-sets-of-ordered-pairs": ["m-relations", "m-digraph", "p-relations"],
         "four-fundamental-properties": ["p-relations", "m-classes"],
-        "a-complete-finite-check": ["p-relations"],
+        "a-complete-finite-check": ["p-relations", "m-classes"],
         "vacuous-cases-and-related-properties": ["p-relations", "m-orders"],
-        "equivalence-relations": ["m-classes"],
-        "equivalence-classes-and-partitions": ["m-classes"],
+        "equivalence-relations": ["m-classes", "p-relations", "m-strings"],
+        "equivalence-classes-and-partitions": ["m-classes", "p-relations"],
         "partial-and-total-orders": ["m-orders"],
         "hasse-diagrams-and-extreme-elements": ["m-orders"],
-        "inverses-and-composition-of-relations": ["m-composition", "p-relations"],
-        "building-closures-without-losing-the-meaning": ["m-composition"],
-        "readiness-check": ["p-relations", "m-orders"]
+        "inverses-and-composition-of-relations": ["m-composition", "m-relations", "m-classes"],
+        "building-closures-without-losing-the-meaning": ["m-composition", "m-classes"],
+        "readiness-check": ["p-relations", "m-orders", "m-digraph", "m-composition", "m-classes"]
       },
       "practice": {
         "A complete finite check": ["p-relations"],
@@ -4527,7 +4534,7 @@
     }
   },
   "syntax": {
-    "reviewedContentHash": "97bd6103597dd0448e0de52b903862a3e450d8b718fe912a18897e2b10e7e54d",
+    "reviewedContentHash": "90e9f65df123e1267db8dd9a65ca3d96a2333763bf0b659cf7e0e2c74beefa45",
     "entries": {
       "tex-command-neg": ["tex-supported"],
       "tex-command-land": ["tex-supported"],
