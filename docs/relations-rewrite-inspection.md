@@ -37,6 +37,11 @@ teaching:
   Pinpoint references and convention differences are documented in
   `content/sources.json`; the finite examples are original applications of the
   cited definitions.
+- The TeX teaching bundle changes six placement fingerprints and two quick-check
+  inspection fingerprints. The compatibility comparison excludes placement hashes,
+  so its new pin records only the two quick-check fingerprints. Their questions,
+  answers, feedback, and syntax requirements are unchanged; the inspection is
+  documented in `docs/relations-tex-inspection.md`.
 
 ## Preserved grading and history
 
