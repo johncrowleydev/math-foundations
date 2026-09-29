@@ -28,30 +28,36 @@
       }
     },
     "content/grading-version.json": {
-      "sha256": "7010354058924ed4ea7d77f1d597495fb37dde5d5e0eb3ed7afff1a26bd28b92",
-      "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
-      "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
-      "description": "New grading version for the corrected unique-existence assessment; historical aliases are unchanged.",
+      "sha256": "1d2d79732ebe7108dc24ceee0afa792402ba60c3d8062fc9e2e868636800b0ea",
+      "commit": "6b1fdd1d2ef2da42d5e6bac98b39ae0ccaf71daa",
+      "inspection": "docs/relations-rewrite-inspection.md",
+      "description": "New content version for the inspected Relations teaching rewrite; exercise grading contracts and historical aliases are unchanged.",
       "previous": {
-        "sha256": "bb07146a5b4a933a4d39ddb94464fb3344df9d4de8728fedf884935374451dff",
-        "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
-        "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
-        "description": "Combined version includes PR38 verified accepted answers and PR37 written review questions. All parent question payloads and historical version aliases are preserved; semantic comparison is documented in the integration inspection.",
+        "sha256": "7010354058924ed4ea7d77f1d597495fb37dde5d5e0eb3ed7afff1a26bd28b92",
+        "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
+        "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
+        "description": "New grading version for the corrected unique-existence assessment; historical aliases are unchanged.",
         "previous": {
-          "sha256": "379bf8d02dc4ecf454620f9a22aa83d5a1e7443c9b80fda28830b3192d6cfaa6",
-          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-          "description": "New content version for explicit verified accepted responses and clarified formula instructions; historical aliases unchanged.",
+          "sha256": "bb07146a5b4a933a4d39ddb94464fb3344df9d4de8728fedf884935374451dff",
+          "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
+          "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
+          "description": "Combined version includes PR38 verified accepted answers and PR37 written review questions. All parent question payloads and historical version aliases are preserved; semantic comparison is documented in the integration inspection.",
           "previous": {
-            "sha256": "0806b096630d53178d93f42e7da1f16c5071f15ee7d09fae26d9430e0bf74201",
-            "commit": "fb34e84",
-            "inspection": "fb34e84:docs/review-coverage-repair.md",
-            "description": "New content version includes 187 source-checked written review questions; existing lesson contracts and historical version alias unchanged.",
+            "sha256": "379bf8d02dc4ecf454620f9a22aa83d5a1e7443c9b80fda28830b3192d6cfaa6",
+            "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+            "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+            "description": "New content version for explicit verified accepted responses and clarified formula instructions; historical aliases unchanged.",
             "previous": {
-              "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
-              "commit": "f53e7b4",
-              "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
-              "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+              "sha256": "0806b096630d53178d93f42e7da1f16c5071f15ee7d09fae26d9430e0bf74201",
+              "commit": "fb34e84",
+              "inspection": "fb34e84:docs/review-coverage-repair.md",
+              "description": "New content version includes 187 source-checked written review questions; existing lesson contracts and historical version alias unchanged.",
+              "previous": {
+                "sha256": "aad0f6dce477353e3d1797ec01f950028c56ee210b1568186fb3b78eac998953",
+                "commit": "f53e7b4",
+                "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+                "description": "Normal new content version for six revised lessons and forty added review objectives; historical version alias unchanged."
+              }
             }
           }
         }
@@ -64,58 +70,82 @@
       "description": "All 922 structured review question records include complete accepted responses; formula hints use TeX and quantified-negation instructions explicitly request formulas. Template/variant IDs, expected answers and grading requirements preserved."
     },
     "content/sources.json": {
-      "sha256": "ebdf9a50f652102c0f3f6916b5240cd40183e5066bb0abc9f02f57c8fbe8f03c",
-      "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
-      "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
-      "description": "Combines inspected accepted-answer citations with written-review coverage citations. Published bibliography, citation, and group-assignment differences from PR38 exactly match PR37; four written-question lists inherit PR38 group assignments without changing content inspection hashes.",
+      "sha256": "3adadb9f2155e632c13ac39f70d460cef30d96cb774798efb043a78e6a4a0dc1",
+      "commit": "6b1fdd1d2ef2da42d5e6bac98b39ae0ccaf71daa",
+      "inspection": "docs/relations-rewrite-inspection.md",
+      "description": "Six inspected Relations citation records are updated, the MIT strings citation is added, and 41 Relations/shared-reference target mappings follow the inspected supporting passages. Bibliography and unrelated assignments are preserved.",
       "previous": {
-        "sha256": "d321cb672e24bf1c6a3bd7d1bc396f590503ef3e4a42dcf75585c57d96c1bc16",
-        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-        "description": "Source coverage rechecked for added accepted responses and clarified instructions. Pinpoint assignments added for affected contradiction and induction groups; 71 lesson and 373 review-template digests updated after inspection.",
+        "sha256": "ebdf9a50f652102c0f3f6916b5240cd40183e5066bb0abc9f02f57c8fbe8f03c",
+        "commit": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d",
+        "inspection": "ec98fe786c419c3d77e9c4c7f0724cf7f751269d:docs/accepted-answer-inspection.md#integration-with-written-review-coverage",
+        "description": "Combines inspected accepted-answer citations with written-review coverage citations. Published bibliography, citation, and group-assignment differences from PR38 exactly match PR37; four written-question lists inherit PR38 group assignments without changing content inspection hashes.",
         "previous": {
-          "sha256": "e14ca5070ccdfba85f577d6069d7d973739a5ebd476f128adf718670334e2af2",
-          "commit": "fb34e84",
-          "inspection": "fb34e84:docs/review-coverage-repair.md",
-          "description": "Inspected citation additions for restored written questions, NIST binary-tree definitions, and updated MDN empty-array support. Original published lesson content unchanged.",
+          "sha256": "d321cb672e24bf1c6a3bd7d1bc396f590503ef3e4a42dcf75585c57d96c1bc16",
+          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+          "description": "Source coverage rechecked for added accepted responses and clarified instructions. Pinpoint assignments added for affected contradiction and induction groups; 71 lesson and 373 review-template digests updated after inspection.",
           "previous": {
-            "sha256": "5c550a3819c4ede91a7a1a8ba158232de0e63fa69c9b2b3166c618ebe5d9a685",
-            "commit": "f53e7b4",
-            "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
-            "description": "Nine pinpoint citations added, seven existing source support/date descriptions updated, and source targets for six revised lessons and forty new reviews inspected."
+            "sha256": "e14ca5070ccdfba85f577d6069d7d973739a5ebd476f128adf718670334e2af2",
+            "commit": "fb34e84",
+            "inspection": "fb34e84:docs/review-coverage-repair.md",
+            "description": "Inspected citation additions for restored written questions, NIST binary-tree definitions, and updated MDN empty-array support. Original published lesson content unchanged.",
+            "previous": {
+              "sha256": "5c550a3819c4ede91a7a1a8ba158232de0e63fa69c9b2b3166c618ebe5d9a685",
+              "commit": "f53e7b4",
+              "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+              "description": "Nine pinpoint citations added, seven existing source support/date descriptions updated, and source targets for six revised lessons and forty new reviews inspected."
+            }
           }
         }
       }
     },
     "grading-catalog.json": {
-      "sha256": "1585bf336a99dce1473aeb241e08363ac3733e7a140e1eb26dcc070f9a17503c",
-      "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
-      "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
-      "description": "Only proof-by-contradiction-6 gains the negated-unique-existence alternative. Every other contract and question is identical to c1a3123.",
+      "sha256": "33fc74423c26ef42d8af5e28d672e71ea879fa0b4d39a017bbf6f161c08b10b4",
+      "commit": "6b1fdd1d2ef2da42d5e6bac98b39ae0ccaf71daa",
+      "inspection": "docs/relations-rewrite-inspection.md",
+      "description": "Only introduction, teaching context, and extracted definitions change for 82 Relations exercises. All 4,426 exercise identities and grading contracts, questions, solutions, and complete review banks are preserved.",
       "previous": {
-        "sha256": "d06682d2fdad61a83e7f2e1899885bc2cd1169b666c12cf39b0fc7e2d4fe8ef5",
-        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-        "description": "Verified accepted responses and clarified input instructions included in the published grading catalog; exercise IDs, requirements, expected answers, fixtures and archived version aliases preserved."
+        "sha256": "1585bf336a99dce1473aeb241e08363ac3733e7a140e1eb26dcc070f9a17503c",
+        "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
+        "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
+        "description": "Only proof-by-contradiction-6 gains the negated-unique-existence alternative. Every other contract and question is identical to c1a3123.",
+        "previous": {
+          "sha256": "d06682d2fdad61a83e7f2e1899885bc2cd1169b666c12cf39b0fc7e2d4fe8ef5",
+          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+          "description": "Verified accepted responses and clarified input instructions included in the published grading catalog; exercise IDs, requirements, expected answers, fixtures and archived version aliases preserved."
+        }
       }
     },
     "content/notebook.json": {
-      "sha256": "bfdacccb44c9d6cf7e5c2db168e4e4b3d9d24b82b8db73812db5a702670fe9f4",
-      "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
-      "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
-      "description": "Only one quantified assessment gains an alternative; its accepted-answer index key changes without changing the answer. All lesson prose, identities and placements are preserved.",
+      "sha256": "769c8cc863fdef9a1d74ff2b807287ad38b2004e4e841a3f8de8fc89af4b9e4a",
+      "commit": "6b1fdd1d2ef2da42d5e6bac98b39ae0ccaf71daa",
+      "inspection": "docs/relations-rewrite-inspection.md",
+      "description": "Only Relations introduction, teaching prose/blocks, and two supporting quick-check teaching hashes change. Section and exercise identities, placements, questions, answers, and accepted-answer index are preserved.",
       "previous": {
-        "sha256": "a649c86a28f6e8960aa6b61bb6a67ce24918e45a96651475fb1c46ae878db02d",
-        "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
-        "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
-        "description": "All 3,282 structured lesson assessments now include a complete accepted response; mathematical fields use standard TeX. Thirty-one formula prompts/instructions clarified, TeX input hints updated, and an offline contract index added for frozen reviews. Exercise identities, expected answers, fixtures, placements and grading requirements preserved."
+        "sha256": "bfdacccb44c9d6cf7e5c2db168e4e4b3d9d24b82b8db73812db5a702670fe9f4",
+        "commit": "74595baa89e56c219884f2c30e2b31dd5d1355aa",
+        "inspection": "74595baa89e56c219884f2c30e2b31dd5d1355aa:docs/negated-unique-existence-inspection.md",
+        "description": "Only one quantified assessment gains an alternative; its accepted-answer index key changes without changing the answer. All lesson prose, identities and placements are preserved.",
+        "previous": {
+          "sha256": "a649c86a28f6e8960aa6b61bb6a67ce24918e45a96651475fb1c46ae878db02d",
+          "commit": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291",
+          "inspection": "41d5ed9261cc7d6c9dcffae8f4ff99a722c24291:docs/accepted-answer-inspection.md",
+          "description": "All 3,282 structured lesson assessments now include a complete accepted response; mathematical fields use standard TeX. Thirty-one formula prompts/instructions clarified, TeX input hints updated, and an offline contract index added for frozen reviews. Exercise identities, expected answers, fixtures, placements and grading requirements preserved."
+        }
       }
     },
     "content/teaching.json": {
-      "sha256": "6af406e5bfcfb0de06ab54ab1b00cad33695c0cd6d4f87f4af70d52b5cd15610",
-      "commit": "f53e7b4",
-      "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
-      "description": "Only formula context records in revised teaching change: 128 additions, two removed occurrences, 65 changed records. Existing references and figures unchanged."
+      "sha256": "83895824d66ba7a78b17de7d72321caa0ff53bbeaa2c3769ef6a4a66637840e6",
+      "commit": "6b1fdd1d2ef2da42d5e6bac98b39ae0ccaf71daa",
+      "inspection": "docs/relations-rewrite-inspection.md",
+      "description": "Only Relations formula contexts change: 152 added occurrences, 58 removed occurrences, and 116 changed records. Shared reference definitions, figures, and other lessons are unchanged.",
+      "previous": {
+        "sha256": "6af406e5bfcfb0de06ab54ab1b00cad33695c0cd6d4f87f4af70d52b5cd15610",
+        "commit": "f53e7b4",
+        "inspection": "485bc5f4467a4cf8bbc6a527e8d69335fc6a5c89:docs/audits/learning-efficiency.md",
+        "description": "Only formula context records in revised teaching change: 128 additions, two removed occurrences, 65 changed records. Existing references and figures unchanged."
+      }
     }
   }
 }
