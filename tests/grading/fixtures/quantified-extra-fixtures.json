@@ -665,5 +665,208 @@
       "answer": "forall t in Z ((1/2)^t<=1)"
     },
     "verdict": "incorrect"
+  },
+  {
+    "name": "grouped-injectivity-issue-43-tex",
+    "assessment": {
+      "version": 1,
+      "inputs": [{ "id": "answer", "kind": "math", "label": "Formula" }],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Match the quantified formula",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists a in A exists b in A (a!=b&f(a)=f(b))",
+            "domains": ["A", "B"],
+            "predicates": {},
+            "functions": { "f": 1 }
+          }
+        }
+      ],
+      "feedback": { "correct": "Correct.", "incorrect": "Check your answer." },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": { "answer": "\\exists x,y \\in A, \\quad f(x) = f(y) \\land x \\neq y" },
+    "verdict": "correct"
+  },
+  {
+    "name": "grouped-injectivity-plain",
+    "assessment": {
+      "version": 1,
+      "inputs": [{ "id": "answer", "kind": "math", "label": "Formula" }],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Match the quantified formula",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists a in A exists b in A (a!=b&f(a)=f(b))",
+            "domains": ["A", "B"],
+            "predicates": {},
+            "functions": { "f": 1 }
+          }
+        }
+      ],
+      "feedback": { "correct": "Correct.", "incorrect": "Check your answer." },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": { "answer": "exists x,y in A: f(x)=f(y) and x!=y" },
+    "verdict": "correct"
+  },
+  {
+    "name": "grouped-injectivity-unicode",
+    "assessment": {
+      "version": 1,
+      "inputs": [{ "id": "answer", "kind": "math", "label": "Formula" }],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Match the quantified formula",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists a in A exists b in A (a!=b&f(a)=f(b))",
+            "domains": ["A", "B"],
+            "predicates": {},
+            "functions": { "f": 1 }
+          }
+        }
+      ],
+      "feedback": { "correct": "Correct.", "incorrect": "Check your answer." },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": { "answer": "∃u,v ∈ A (f(u)=f(v) ∧ u≠v)" },
+    "verdict": "correct"
+  },
+  {
+    "name": "grouped-injectivity-wrong-domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [{ "id": "answer", "kind": "math", "label": "Formula" }],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Match the quantified formula",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists a in A exists b in A (a!=b&f(a)=f(b))",
+            "domains": ["A", "B"],
+            "predicates": {},
+            "functions": { "f": 1 }
+          }
+        }
+      ],
+      "feedback": { "correct": "Correct.", "incorrect": "Check your answer." },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": { "answer": "exists x,y in B (f(x)=f(y) and x!=y)" },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "grouped-injectivity-wrong-quantifier",
+    "assessment": {
+      "version": 1,
+      "inputs": [{ "id": "answer", "kind": "math", "label": "Formula" }],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Match the quantified formula",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists a in A exists b in A (a!=b&f(a)=f(b))",
+            "domains": ["A", "B"],
+            "predicates": {},
+            "functions": { "f": 1 }
+          }
+        }
+      ],
+      "feedback": { "correct": "Correct.", "incorrect": "Check your answer." },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": { "answer": "forall x,y in A (f(x)=f(y) and x!=y)" },
+    "verdict": "incorrect"
+  },
+  {
+    "name": "grouped-injectivity-unbound",
+    "assessment": {
+      "version": 1,
+      "inputs": [{ "id": "answer", "kind": "math", "label": "Formula" }],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Match the quantified formula",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists a in A exists b in A (a!=b&f(a)=f(b))",
+            "domains": ["A", "B"],
+            "predicates": {},
+            "functions": { "f": 1 }
+          }
+        }
+      ],
+      "feedback": { "correct": "Correct.", "incorrect": "Check your answer." },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": { "answer": "exists x,y in A (f(x)=f(z) and x!=y)" },
+    "error": true
+  },
+  {
+    "name": "grouped-injectivity-missing-domain",
+    "assessment": {
+      "version": 1,
+      "inputs": [{ "id": "answer", "kind": "math", "label": "Formula" }],
+      "requirements": [
+        {
+          "id": "result",
+          "description": "Match the quantified formula",
+          "validator": "quantified-formula",
+          "fields": ["answer"],
+          "params": {
+            "expected": "exists a in A exists b in A (a!=b&f(a)=f(b))",
+            "domains": ["A", "B"],
+            "predicates": {},
+            "functions": { "f": 1 }
+          }
+        }
+      ],
+      "feedback": { "correct": "Correct.", "incorrect": "Check your answer." },
+      "evidence": {
+        "level": "production",
+        "interactionCost": "low",
+        "inputCapabilities": ["math-text"]
+      }
+    },
+    "response": { "answer": "exists x,y (f(x)=f(y) and x!=y)" },
+    "error": true
   }
 ]
