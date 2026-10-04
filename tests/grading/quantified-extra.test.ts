@@ -153,3 +153,46 @@ test('implicit universal guards preserve NNF without excusing implications in th
     'incorrect',
   );
 });
+
+for (const [name, grouped, expanded] of [
+  ['universal', 'forall x,y in D: R(x,y)', 'forall x in D forall y in D: R(x,y)'],
+  [
+    'three variables and mixed quantifiers',
+    'forall x,y,z in D exists w in D (R(x,w) and R(y,z))',
+    'forall x in D forall y in D forall z in D exists w in D (R(x,w) and R(y,z))',
+  ],
+  ['negated group', 'not exists x,y in D R(x,y)', 'not exists x in D exists y in D R(x,y)'],
+  ['restricted existential', 'exists x,y in A R(x,y)', 'exists x in A exists y in A R(x,y)'],
+  ['restricted universal', 'forall x,y in A R(x,y)', 'forall x in A forall y in A R(x,y)'],
+  ['comma before membership', 'forall x, x in A', 'forall x (x in A)'],
+  [
+    'comma before membership conjunction',
+    'forall x, x in A and R(x,x)',
+    'forall x (x in A and R(x,x))',
+  ],
+  ['comma before predicate', 'forall x, R(x,x)', 'forall x R(x,x)'],
+])
+  test('grouped quantifier parsing: ' + name, () => {
+    const parse = (source: string) =>
+      parseQuantified(source, ['D'], { A: 1, R: 2 }, { sets: ['A'] });
+    assert.deepEqual(parse(grouped), parse(expanded));
+  });
+
+for (const answer of [
+  'exists x,,y in D R(x,y)',
+  'exists x,2 in D R(x,x)',
+  'exists x,y in C R(x,y)',
+  'exists x,y in D',
+  'exists x,y in D R(x,z)',
+  'exists! x,y in D R(x,y)',
+])
+  test('grouped quantifiers preserve validation: ' + answer, () => {
+    assert.throws(() => parseQuantified(answer, ['D'], { R: 2 }), InputError);
+  });
+
+test('grouped variables count toward the existing nesting limit', () => {
+  const variables = Array.from({ length: 64 }, (_, i) => 'x' + i);
+  const formula = (names: string[]) => `forall ${names.join(',')} in D R(x0,x0)`;
+  assert.doesNotThrow(() => parseQuantified(formula(variables.slice(0, 63)), ['D'], { R: 2 }));
+  assert.throws(() => parseQuantified(formula(variables), ['D'], { R: 2 }), /nested too deeply/);
+});

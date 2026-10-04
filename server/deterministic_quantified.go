@@ -101,8 +101,39 @@ func (p *quantifiedParser) unary() (*quantifiedNode, error) {
 		}
 		v := p.peek()
 		p.at++
-		if !regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`).MatchString(v) {
+		variablePattern := regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`)
+		if !variablePattern.MatchString(v) {
 			return nil, errors.New("Name the quantified variable")
+		}
+		variables := []string{v}
+		groupEnd := p.at
+		for groupEnd+2 < len(p.tokens) && p.tokens[groupEnd] == "," &&
+			variablePattern.MatchString(p.tokens[groupEnd+1]) &&
+			enum(p.tokens[groupEnd+2], ",", "in") {
+			groupEnd += 2
+		}
+		if groupEnd > p.at && p.tokens[groupEnd] == "in" {
+			bodyStart := groupEnd + 2
+			if bodyStart < len(p.tokens) && enum(p.tokens[bodyStart], ".", ":", ",") {
+				bodyStart++
+			}
+			// A comma can instead introduce a membership body: forall x, x in A.
+			if bodyStart < len(p.tokens) && !enum(p.tokens[bodyStart], "in", "notin") &&
+				(regexp.MustCompile(`^(?:[A-Za-z][A-Za-z0-9_]*|\d+(?:\.\d+)?)$`).MatchString(p.tokens[bodyStart]) || enum(p.tokens[bodyStart], "(", "!", "+", "-")) {
+				for p.at < groupEnd {
+					variables = append(variables, p.tokens[p.at+1])
+					p.at += 2
+				}
+			}
+		}
+		if len(variables) > 1 && q == "unique" {
+			return nil, errors.New("Use one variable for a unique-existence quantifier")
+		}
+		// Grouped binders consume the same nesting budget as explicit quantifiers.
+		p.depth += len(variables) - 1
+		defer func() { p.depth -= len(variables) - 1 }()
+		if p.depth > 64 {
+			return nil, errors.New("Formula is nested too deeply")
 		}
 		var domain, restrictedSet string
 		if p.take("in") {
@@ -114,7 +145,7 @@ func (p *quantifiedParser) unary() (*quantifiedNode, error) {
 				}
 				restrictedSet, domain = domain, p.domains[0]
 			}
-		} else if len(p.domains) == 1 {
+		} else if len(variables) == 1 && len(p.domains) == 1 {
 			domain = p.domains[0]
 		} else {
 			return nil, errors.New("Include each quantified variable domain")
@@ -126,18 +157,22 @@ func (p *quantifiedParser) unary() (*quantifiedNode, error) {
 		if e != nil {
 			return nil, e
 		}
-		if restrictedSet != "" {
-			guard := &quantifiedNode{kind: "predicate", name: restrictedSet, args: []string{v}}
-			kind := "and"
-			if q == "forall" {
-				// Encode the implicit implication in NNF so form checks inspect
-				// the learner's syntax rather than rejecting the generated guard.
-				kind = "or"
-				guard = &quantifiedNode{kind: "not", body: guard}
+		for i := len(variables) - 1; i >= 0; i-- {
+			v := variables[i]
+			if restrictedSet != "" {
+				guard := &quantifiedNode{kind: "predicate", name: restrictedSet, args: []string{v}}
+				kind := "and"
+				if q == "forall" {
+					// Encode the implicit implication in NNF so form checks inspect
+					// the learner's syntax rather than rejecting the generated guard.
+					kind = "or"
+					guard = &quantifiedNode{kind: "not", body: guard}
+				}
+				body = &quantifiedNode{kind: kind, left: guard, right: body}
 			}
-			body = &quantifiedNode{kind: kind, left: guard, right: body}
+			body = &quantifiedNode{kind: "quantifier", quantifier: q, variable: v, domain: domain, body: body}
 		}
-		return &quantifiedNode{kind: "quantifier", quantifier: q, variable: v, domain: domain, body: body}, e
+		return body, nil
 	}
 	if p.take("!") {
 		body, e := p.unary()

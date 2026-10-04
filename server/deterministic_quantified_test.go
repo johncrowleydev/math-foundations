@@ -2,8 +2,93 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"reflect"
+	"strings"
 	"testing"
 )
+
+func TestQuantifiedGroupedDomains(t *testing.T) {
+	cases := []struct {
+		name, answer, expanded string
+		domains                []string
+	}{
+		{name: "issue 43", answer: `\exists x,y\in A\,(x\ne y\land f(x)=f(y))`, expanded: "exists x in A exists y in A (x!=y and f(x)=f(y))", domains: []string{"A", "B"}},
+		{name: "universal Unicode", answer: "∀x,y∈U: P(x) ∧ P(y)", expanded: "forall x in U forall y in U (P(x) and P(y))"},
+		{name: "three variables", answer: "exists x,y,z in U. (x=y and y=z)", expanded: "exists x in U exists y in U exists z in U (x=y and y=z)"},
+		{name: "mixed quantifiers", answer: "forall x,y in U exists z in U (x=z and y=z)", expanded: "forall x in U forall y in U exists z in U (x=z and y=z)"},
+		{name: "nested groups", answer: "forall x,y in U (exists z,w in U (x=z and y=w))", expanded: "forall x in U forall y in U (exists z in U exists w in U (x=z and y=w))"},
+		{name: "existential restricted guards", answer: "exists x,y in A P(x)", expanded: "exists x in U (A(x) and exists y in U (A(y) and P(x)))"},
+		{name: "universal restricted guards", answer: "forall x,y in A P(x)", expanded: "forall x in U (not A(x) or forall y in U (not A(y) or P(x)))"},
+		{name: "restricted shadowing", answer: "exists x,x in A P(x)", expanded: "exists x in U (A(x) and exists x in U (A(x) and P(x)))"},
+		{name: "implicit comma predicate", answer: "forall x, P(x)", expanded: "forall x in U P(x)"},
+		{name: "implicit comma comparison", answer: "forall x, x=x", expanded: "forall x in U x=x"},
+		{name: "implicit comma membership", answer: "forall x, x in A", expanded: "forall x in U A(x)"},
+		{name: "implicit comma membership conjunction", answer: "forall x, x in A and P(x)", expanded: "forall x in U (A(x) and P(x))"},
+		{name: "parenthesized comma membership", answer: "(forall x, x in A)", expanded: "forall x in U A(x)"},
+		{name: "missing shared domain", answer: "exists x,y (x=y)"},
+		{name: "unknown shared domain", answer: "exists x,y in V (x=y)"},
+		{name: "missing domain value", answer: "exists x,y in (x=y)"},
+		{name: "missing body", answer: "exists x,y in U"},
+		{name: "empty binder", answer: "exists x,,y in U (x=y)"},
+		{name: "trailing comma", answer: "exists x,y, in U (x=y)"},
+		{name: "nonidentifier binder", answer: "exists x,2 in U (x=x)"},
+		{name: "unbound body variable", answer: "exists x,y in U (x=z)"},
+		{name: "grouped unique", answer: "exists! x,y in U (x=y)"},
+		{name: "restricted grouped unique", answer: "exists! x,y in A (x=y)"},
+		{name: "ambiguous restricted universe", answer: "exists x,y in A (x=y)", domains: []string{"U", "D"}},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			if c.domains == nil {
+				c.domains = []string{"U"}
+			}
+			options := quantifiedParams{Sets: []string{"A"}, Functions: map[string]int{"f": 1}}
+			predicates := map[string]int{"A": 1, "P": 1}
+			actual, err := parseQuantified(c.answer, c.domains, predicates, options)
+			if c.expanded == "" {
+				if err == nil {
+					t.Fatal("expected input error")
+				}
+				return
+			}
+			if err != nil {
+				t.Fatal(err)
+			}
+			expected, err := parseQuantified(c.expanded, c.domains, predicates, options)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !reflect.DeepEqual(actual, expected) {
+				t.Fatalf("group does not match explicit expansion %q", c.expanded)
+			}
+		})
+	}
+}
+
+func TestQuantifiedGroupedDomainNestingLimit(t *testing.T) {
+	for _, count := range []int{62, 63, 64} {
+		for _, outer := range []string{"", "exists z in U "} {
+			t.Run(fmt.Sprintf("count=%d/outer=%s", count, outer), func(t *testing.T) {
+				variables := make([]string, count)
+				for i := range variables {
+					variables[i] = fmt.Sprintf("x%d", i)
+				}
+				_, err := parseQuantified(outer+"exists "+strings.Join(variables, ",")+" in U P(x0)", []string{"U"}, map[string]int{"P": 1})
+				depth := count + 1 // Include the predicate body.
+				if outer != "" {
+					depth++
+				}
+				if depth <= 64 && err != nil {
+					t.Fatal(err)
+				}
+				if depth > 64 && (err == nil || err.Error() != "Formula is nested too deeply") {
+					t.Fatalf("expected nesting limit error; got %v", err)
+				}
+			})
+		}
+	}
+}
 
 func TestQuantifiedImplicitDomainGrading(t *testing.T) {
 	const expected = "exists x in D (P(x) and forall y in D (P(y) -> y=x))"

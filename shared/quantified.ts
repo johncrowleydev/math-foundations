@@ -153,6 +153,32 @@ export function parseQuantified(
       const variable = tokens[at++];
       if (!/^[a-zA-Z][a-zA-Z0-9_]*$/.test(variable || ''))
         throw new InputError('Name the quantified variable.');
+      const variables = [variable];
+      let groupAt = at;
+      while (
+        tokens[groupAt] === ',' &&
+        /^[a-zA-Z][a-zA-Z0-9_]*$/.test(tokens[groupAt + 1] || '') &&
+        [',', 'in'].includes(tokens[groupAt + 2])
+      ) {
+        variables.push(tokens[groupAt + 1]);
+        groupAt += 2;
+      }
+      let bodyAt = groupAt + 2;
+      if (['.', ':', ','].includes(tokens[bodyAt])) bodyAt++;
+      // A comma can also introduce the body: `forall x, x in A`.
+      // Only consume a shared-domain group when a formula follows its domain.
+      if (
+        variables.length > 1 &&
+        tokens[groupAt] === 'in' &&
+        /^(?:[A-Za-z][A-Za-z0-9_]*|\d+(?:\.\d+)?|[(!+-])$/.test(tokens[bodyAt] || '') &&
+        !['in', 'notin'].includes(tokens[bodyAt])
+      ) {
+        if (quantifier === 'unique')
+          throw new InputError('Use a single variable with the unique-existence quantifier.');
+        at = groupAt;
+      } else variables.length = 1;
+      depth += variables.length - 1;
+      if (depth > 64) throw new InputError('The formula is nested too deeply.');
       let domain: string;
       if (take('in')) domain = tokens[at++];
       // Ordinary notation omits the domain when the exercise supplies just one.
@@ -167,16 +193,20 @@ export function parseQuantified(
       }
       if (tokens[at] === '.' || tokens[at] === ':' || tokens[at] === ',') at++;
       let body = iff();
-      if (restriction) {
-        const member: QNode = { kind: 'predicate', name: restriction, args: [variable] };
-        // Restrict the witness for exists; for forall, only members must satisfy the body.
-        // Write the latter as not-member OR body so implicit guards preserve NNF checks.
-        body =
-          quantifier === 'forall'
-            ? { kind: 'or', left: { kind: 'not', body: member }, right: body }
-            : { kind: 'and', left: member, right: body };
+      for (const variable of variables.reverse()) {
+        if (restriction) {
+          const member: QNode = { kind: 'predicate', name: restriction, args: [variable] };
+          // Restrict the witness for exists; for forall, only members must satisfy the body.
+          // Write the latter as not-member OR body so implicit guards preserve NNF checks.
+          body =
+            quantifier === 'forall'
+              ? { kind: 'or', left: { kind: 'not', body: member }, right: body }
+              : { kind: 'and', left: member, right: body };
+        }
+        body = { kind: 'quantifier', quantifier, variable, domain, body };
       }
-      n = { kind: 'quantifier', quantifier, variable, domain, body };
+      n = body;
+      depth -= variables.length - 1;
     } else if (take('!')) n = { kind: 'not', body: unary() };
     else if (tokens[at] === '(' && !arithmeticGroup() && take('(')) {
       n = iff();
